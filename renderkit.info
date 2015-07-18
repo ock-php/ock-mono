@@ -1,0 +1,5 @@
+name = Render Kit
+description = Tools for dealing with render arrays.
+core = 7.x
+
+dependencies[] = xautoload

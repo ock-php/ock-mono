@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * Implements hook_theme()
+ *
+ * @return array
+ */
+function renderkit_theme() {
+  return array(
+    /* @see theme_renderkit_container() */
+    'renderkit_container' => array(
+      'render element' => 'element',
+      'file' => 'renderkit.theme.inc',
+    ),
+    /* @see theme_renderkit_link_wrapper() */
+    'renderkit_link_wrapper' => array(
+      'render element' => 'element',
+      'file' => 'renderkit.theme.inc',
+    ),
+  );
+}
+
+/**
+ * Implements hook_element_info()
+ *
+ * @return array
+ */
+function renderkit_element_info() {
+  return array(
+    'renderkit_container' => array(
+      '#theme_wrappers' => array('renderkit_container'),
+    ),
+    'renderkit_link_wrapper' => array(
+      '#theme_wrappers' => array('renderkit_link_wrapper'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ *
+ * @param array $theme_registry
+ */
+function renderkit_theme_registry_alter(array &$theme_registry) {
+  foreach ($theme_registry as $hook => &$item) {
+    if (!empty($item['render element']) && 'elements' === $item['render element']) {
+      // These (pre)processors allow other modules to register (pre)processors
+      // on the render array, without implementing hook_preprocess_HOOK().
+      $item['preprocess functions'][] = '_renderkit_theme_preprocess_element';
+      $item['process functions'][] = '_renderkit_theme_process_element';
+    }
+  }
+}
+
+/**
+ * Theme preprocess callback.
+ *
+ * Calls preprocessors registered on the render array.
+ *
+ * @param array $variables
+ *
+ * @see renderkit_theme_registry_alter()
+ */
+function _renderkit_theme_preprocess_element(array &$variables) {
+  if (!empty($variables['elements']['#renderkit_theme_preprocess'])) {
+    foreach ($variables['elements']['#renderkit_theme_preprocess'] as $preprocessor) {
+      if (is_object($preprocessor)) {
+        // @todo Provide an interface that processors can implement.
+      }
+      elseif (is_callable($preprocessor)) {
+        $preprocessor($variables);
+      }
+    }
+  }
+}
+
+/**
+ * Theme process callback.
+ *
+ * Calls processors registered on the render array.
+ *
+ * @param array $variables
+ *
+ * @see renderkit_theme_registry_alter()
+ */
+function _renderkit_theme_process_element(array &$variables) {
+  if (!empty($variables['elements']['#renderkit_theme_process'])) {
+    foreach ($variables['elements']['#renderkit_theme_process'] as $processor) {
+      if (is_object($processor)) {
+        // @todo Provide an interface that processors can implement.
+      }
+      elseif (is_callable($processor)) {
+        $processor($variables);
+      }
+    }
+  }
+}
