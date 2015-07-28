@@ -2,6 +2,10 @@
 
 namespace Drupal\renderkit\ImageDerivative;
 
+/**
+ * Responsive <img/> element with "srcset" and "sizes" attributes, based on
+ * image styles.
+ */
 class ImageResponsive implements ImageDerivativeInterface {
 
   /**
@@ -84,6 +88,8 @@ class ImageResponsive implements ImageDerivativeInterface {
     $original_path = $build['#path'];
     $original_dimensions = $this->imageBuildGetDimensions($build);
 
+    // Only change the '#path' and '#width' and '#height' if the fallback image
+    // uses an image style.
     if (!empty($this->fallbackStyleName)) {
       /* @see theme_image_style() */
       $style_dimensions = $original_dimensions;

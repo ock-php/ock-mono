@@ -5,13 +5,13 @@ namespace Drupal\renderkit\EntityBuildProcessor;
 interface EntityBuildProcessorInterface {
 
   /**
-   * @param array $build
-   *   The render array produced by the decorated display handler.
+   * @param array[] $builds
+   *   The render arrays produced by the decorated display handler.
    * @param string $entity_type
-   * @param object $entity
+   * @param object[] $entities
    *
-   * @return array
-   *   Modified render array for the given entity.
+   * @return array[]
+   *   Modified render arrays for the given entities.
    */
-  function process($build, $entity_type, $entity);
+  function processMultiple(array $builds, $entity_type, array $entities);
 }

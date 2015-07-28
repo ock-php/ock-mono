@@ -2,12 +2,29 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-class EntityFixedHtml extends EntityFixedRenderArray {
+class EntityFixedHtml extends EntityDisplayBase {
+
+  /**
+   * @var string
+   */
+  private $fixedHtml;
 
   /**
    * @param string $html
+   *   The fixed html to show for each entity.
    */
   function __construct($html) {
-    parent::__construct(array('#markup' => $html));
+    $this->fixedHtml = $html;
+  }
+
+  /**
+   * @param string $entity_type
+   * @param object $entity
+   *
+   * @return array
+   *   Render array for one entity.
+   */
+  protected function buildOne($entity_type, $entity) {
+    return array('#markup' => $this->fixedHtml);
   }
 }

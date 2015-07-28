@@ -2,8 +2,13 @@
 
 namespace Drupal\renderkit\ImageDerivative;
 
-use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
-
+/**
+ * Render array processor that only processes render arrays with
+ * '#theme' => 'image'.
+ *
+ * The resulting render array could be e.g. the same image with
+ * '#theme' => 'image_style'.
+ */
 interface ImageDerivativeInterface {
 
   /**

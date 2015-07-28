@@ -2,10 +2,12 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Drupal\renderkit\Helper\EntityTypeFieldDisplayHelper;
+
 /**
  * Entity display handler to view a specific field on all the entities.
  */
-class EntityFieldDisplay extends EntityDisplayBase {
+class EntityFieldDisplay implements EntityDisplayInterface {
 
   /**
    * @var string
@@ -62,14 +64,14 @@ class EntityFieldDisplay extends EntityDisplayBase {
 
   /**
    * @param string $entity_type
-   * @param object $entity
+   * @param array $entities
    *
    * @return array
-   *   Render array for one entity.
+   * @throws \EntityMalformedException
    */
-  protected function buildOne($entity_type, $entity) {
-    // @todo It would be faster to process multiple entities at once.
-    // But also more complicated, because the core APIs suck.
-    return field_view_field($entity_type, $entity, $this->fieldName, $this->display, $this->langcode);
+  function buildMultiple($entity_type, array $entities) {
+    $helper = EntityTypeFieldDisplayHelper::create($entity_type, $this->fieldName, $this->display, $this->langcode);
+    return $helper->buildMultipleByDelta($entities);
   }
+
 }
