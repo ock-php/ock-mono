@@ -107,6 +107,9 @@ class ImageResponsive extends ImageDerivativeBase {
     /* @see theme_image_srcset() */
     $srcset = array();
     foreach ($this->styleNames as $style_name) {
+      if (empty($style_name)) {
+        continue;
+      }
       $style_src = image_style_url($style_name, $original_path);
       $style_dimensions = $original_dimensions;
       image_style_transform_dimensions($style_name, $style_dimensions);
