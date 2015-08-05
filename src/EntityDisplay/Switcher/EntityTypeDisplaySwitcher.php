@@ -3,6 +3,7 @@
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
 use Drupal\renderkit\EntityDisplay\Decorator\NeutralEntityDisplayDecorator;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 /**
  * Uses a different display handler depending on the entity type.
@@ -18,6 +19,20 @@ class EntityTypeDisplaySwitcher extends NeutralEntityDisplayDecorator {
    *   Format: $[$entityType] = $displayHandler
    */
   private $typeDisplays = array();
+
+  /**
+   * Sets the display that will be used for entities of this type.
+   *
+   * @param string $entityType
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $display
+   *
+   * @return $this
+   */
+  function entityTypeSetDisplay($entityType, EntityDisplayInterface $display) {
+    $this->typeDisplays[$entityType] = $display;
+
+    return $this;
+  }
 
   /**
    * @param string $entity_type

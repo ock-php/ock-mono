@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+
 /**
  * A display handler that uses a different display for specific entity types or
  * bundles.
@@ -13,6 +15,21 @@ class EntityBundleDisplaySwitcher extends EntityTypeDisplaySwitcher {
    *   Format: $[$entityType][$bundleName] = $displayHandler
    */
   private $typeBundleDisplays = array();
+
+  /**
+   * Sets the display handler that will be used for the given bundle.
+   *
+   * @param string $entityType
+   * @param string $bundle
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $display
+   *
+   * @return $this
+   */
+  function entityTypeBundleSetDisplay($entityType, $bundle, EntityDisplayInterface $display) {
+    $this->typeBundleDisplays[$entityType][$bundle] = $display;
+
+    return $this;
+  }
 
   /**
    * @param string $entity_type
