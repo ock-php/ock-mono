@@ -8,7 +8,7 @@ use Drupal\renderkit\EntityImage\EntityImageInterface;
 /**
  * A decorator class for entity image.
  *
- * @see \Drupal\renderkit\EntityDisplay\NeutralDecorator
+ * @see \Drupal\renderkit\EntityDisplay\Wrapper\NeutralEntityWrapper
  */
 class NeutralEntityImageDerivative implements EntityDisplayInterface {
 
