@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\renderkit\Attributes\AttributesTrait;
+use Drupal\renderkit\Html\HtmlAttributesTrait;
 
 /**
  * Renders an entity title linking to the entity.
@@ -12,7 +12,7 @@ use Drupal\renderkit\Attributes\AttributesTrait;
  */
 class EntityTitleLink extends EntityDisplayBase {
 
-  use AttributesTrait;
+  use HtmlAttributesTrait;
 
   /**
    * @param $entity_type

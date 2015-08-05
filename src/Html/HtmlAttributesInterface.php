@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\Attributes;
+namespace Drupal\renderkit\Html;
 
-interface AttributesInterface {
+interface HtmlAttributesInterface {
 
   /**
    * @param string $class

@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\Attributes;
+namespace Drupal\renderkit\Html;
 
-interface TagInterface extends AttributesInterface {
+interface HtmlTagInterface extends HtmlAttributesInterface {
 
   /**
    * @param string $tagName

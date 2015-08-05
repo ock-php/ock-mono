@@ -1,18 +1,18 @@
 <?php
 
-namespace Drupal\renderkit\Attributes;
+namespace Drupal\renderkit\Html;
 
 /**
  * @see TagInterface
  */
-trait TagTrait {
+trait HtmlTagTrait {
 
-  use AttributesTrait;
+  use HtmlAttributesTrait;
 
   /**
    * @var string
    */
-  protected $tagName = 'div';
+  private $tagName = 'div';
 
   /**
    * @param string $tagName

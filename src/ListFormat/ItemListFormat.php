@@ -2,14 +2,14 @@
 
 namespace Drupal\renderkit\ListFormat;
 
-use Drupal\renderkit\Attributes\AttributesTrait;
+use Drupal\renderkit\Html\HtmlAttributesTrait;
 
 /**
  * Builds a render array for ul/li or ol/li lists.
  */
 class ItemListFormat implements ListFormatInterface {
 
-  use AttributesTrait;
+  use HtmlAttributesTrait;
 
   /**
    * @var string

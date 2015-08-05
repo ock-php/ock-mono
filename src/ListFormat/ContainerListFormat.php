@@ -2,11 +2,11 @@
 
 namespace Drupal\renderkit\ListFormat;
 
-use Drupal\renderkit\Attributes\TagTrait;
+use Drupal\renderkit\Html\HtmlTagTrait;
 
 class ContainerListFormat implements ListFormatInterface {
 
-  use TagTrait;
+  use HtmlTagTrait;
 
   /**
    * @param array[] $builds

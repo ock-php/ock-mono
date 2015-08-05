@@ -2,8 +2,8 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Drupal\renderkit\Attributes\AttributesInterface;
-use Drupal\renderkit\Attributes\AttributesTrait;
+use Drupal\renderkit\Html\HtmlAttributesInterface;
+use Drupal\renderkit\Html\HtmlAttributesTrait;
 
 /**
  * Wraps the content from a decorated display handler into a link, linking to
@@ -14,9 +14,9 @@ use Drupal\renderkit\Attributes\AttributesTrait;
  *
  * A typical use case would be to wrap in image into a link element.
  */
-class EntityLinkProcessor extends EntityBuildProcessorBase implements AttributesInterface {
+class EntityLinkProcessor extends EntityBuildProcessorBase implements HtmlAttributesInterface {
 
-  use AttributesTrait;
+  use HtmlAttributesTrait;
 
   /**
    * @param array $build

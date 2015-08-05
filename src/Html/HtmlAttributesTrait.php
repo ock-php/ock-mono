@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\renderkit\Attributes;
+namespace Drupal\renderkit\Html;
 
 /**
  * @see AttributesInterface
  */
-trait AttributesTrait {
+trait HtmlAttributesTrait {
 
   /**
    * @var mixed[]

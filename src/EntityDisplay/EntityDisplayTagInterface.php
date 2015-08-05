@@ -2,8 +2,8 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\renderkit\Attributes\TagInterface;
+use Drupal\renderkit\Html\HtmlTagInterface;
 
-interface EntityDisplayTagInterface extends EntityDisplayAttributesInterface, TagInterface {
+interface EntityDisplayTagInterface extends EntityDisplayAttributesInterface, HtmlTagInterface {
 
 }

@@ -2,15 +2,15 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Drupal\renderkit\Attributes\AttributesInterface;
-use Drupal\renderkit\Attributes\TagTrait;
+use Drupal\renderkit\Html\HtmlAttributesInterface;
+use Drupal\renderkit\Html\HtmlTagTrait;
 
 /**
  * A typical entity container with contextual links and stuff.
  */
-class EntityContextualLinksProcessor extends EntityBuildProcessorBase implements AttributesInterface {
+class EntityContextualLinksProcessor extends EntityBuildProcessorBase implements HtmlAttributesInterface {
 
-  use TagTrait;
+  use HtmlTagTrait;
 
   function __construct() {
     $this->setTagName('article');

@@ -2,12 +2,12 @@
 
 namespace Drupal\renderkit\BuildProcessor;
 
-use Drupal\renderkit\Attributes\AttributesInterface;
-use Drupal\renderkit\Attributes\TagTrait;
+use Drupal\renderkit\Html\HtmlAttributesInterface;
+use Drupal\renderkit\Html\HtmlTagTrait;
 
-class ContainerProcessor extends BuildProcessorBase implements AttributesInterface {
+class ContainerProcessor extends BuildProcessorBase implements HtmlAttributesInterface {
 
-  use TagTrait;
+  use HtmlTagTrait;
 
   /**
    * @param array $build

@@ -2,8 +2,8 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\renderkit\Attributes\AttributesInterface;
+use Drupal\renderkit\Html\HtmlAttributesInterface;
 
-interface EntityDisplayAttributesInterface extends EntityDisplayInterface, AttributesInterface {
+interface EntityDisplayAttributesInterface extends EntityDisplayInterface, HtmlAttributesInterface {
 
 }
