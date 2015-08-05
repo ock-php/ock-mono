@@ -23,10 +23,11 @@ class EntityTitleLink extends EntityDisplayBase {
   protected function buildOne($entity_type, $entity) {
     $uri = entity_uri($entity_type, $entity);
     $text = entity_label($entity_type, $entity);
+    // Add required keys for theme_link().
+    $uri += array('options' => array());
+    $uri['options'] += array('attributes' => array(), 'html' => FALSE);
     // Attributes directly on the link.
-    if (!empty($this->attributes)) {
-      $uri['options']['attributes'] = $this->attributes;
-    }
+    $uri['options']['attributes'] += $this->attributes;
     return array(
       /* @see theme_link() */
       '#theme' => 'link',
