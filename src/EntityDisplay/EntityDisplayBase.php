@@ -11,26 +11,20 @@ namespace Drupal\renderkit\EntityDisplay;
 abstract class EntityDisplayBase implements EntityDisplayInterface {
 
   /**
+   * Builds the render array for multiple entities, by using the method for a
+   * single entity.
+   *
    * @param string $entity_type
    * @param object[] $entities
    *
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildMultiple($entity_type, array $entities) {
+  final function buildMultiple($entity_type, array $entities) {
     $builds = array();
     foreach ($entities as $delta => $entity) {
       $builds[$delta] = $this->buildOne($entity_type, $entity);
     }
     return $builds;
   }
-
-  /**
-   * @param string $entity_type
-   * @param object $entity
-   *
-   * @return array
-   *   Render array for one entity.
-   */
-  abstract protected function buildOne($entity_type, $entity);
 }

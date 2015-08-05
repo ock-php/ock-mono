@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay\EntityImageDerivative;
 
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplayMultipleBase;
 use Drupal\renderkit\EntityImage\EntityImageInterface;
 
 /**
@@ -10,7 +10,7 @@ use Drupal\renderkit\EntityImage\EntityImageInterface;
  *
  * @see \Drupal\renderkit\EntityDisplay\Wrapper\NeutralEntityWrapper
  */
-class NeutralEntityImageDerivative implements EntityDisplayInterface {
+class NeutralEntityImageDerivative extends EntityDisplayMultipleBase {
 
   /**
    * The decorated image provider.

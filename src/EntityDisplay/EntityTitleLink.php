@@ -20,7 +20,7 @@ class EntityTitleLink extends EntityDisplayBase {
    *
    * @return array
    */
-  protected function buildOne($entity_type, $entity) {
+  function buildOne($entity_type, $entity) {
     $uri = entity_uri($entity_type, $entity);
     $text = entity_label($entity_type, $entity);
     // Add required keys for theme_link().

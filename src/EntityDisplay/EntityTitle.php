@@ -13,7 +13,7 @@ class EntityTitle extends EntityDisplayBase {
    *
    * @return array
    */
-  protected function buildOne($entity_type, $entity) {
+  function buildOne($entity_type, $entity) {
     return array(
       '#markup' => entity_label($entity_type, $entity),
     );

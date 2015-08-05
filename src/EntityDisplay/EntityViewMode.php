@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-class EntityViewMode implements EntityDisplayInterface {
+class EntityViewMode extends EntityDisplayMultipleBase {
 
   /**
    * @var string

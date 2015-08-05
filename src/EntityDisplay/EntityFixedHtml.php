@@ -24,7 +24,7 @@ class EntityFixedHtml extends EntityDisplayBase {
    * @return array
    *   Render array for one entity.
    */
-  protected function buildOne($entity_type, $entity) {
+  function buildOne($entity_type, $entity) {
     return array('#markup' => $this->fixedHtml);
   }
 }

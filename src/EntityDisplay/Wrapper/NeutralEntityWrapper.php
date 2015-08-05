@@ -3,8 +3,9 @@
 namespace Drupal\renderkit\EntityDisplay\Wrapper;
 
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplayMultipleBase;
 
-class NeutralEntityWrapper implements EntityDisplayInterface {
+class NeutralEntityWrapper extends EntityDisplayMultipleBase {
 
   /**
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null

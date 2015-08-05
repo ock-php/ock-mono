@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-abstract class UserDisplayBase implements EntityDisplayInterface {
+abstract class UserDisplayBase extends EntityDisplayMultipleBase {
 
   /**
    * @param string $entity_type
