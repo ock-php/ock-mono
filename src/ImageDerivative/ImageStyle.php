@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\ImageDerivative;
 
-class ImageStyle implements ImageDerivativeInterface {
+class ImageStyle extends ImageDerivativeBase {
 
   /**
    * @var string

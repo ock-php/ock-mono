@@ -23,9 +23,13 @@ class NeutralEntityImageDerivative implements EntityDisplayInterface {
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $imageProvider
    *   Object that extracts an image path from an entity, e.g. based on an image
    *   field, or the user picture, etc.
+   *
+   * @return $this
    */
-  function __construct(EntityImageInterface $imageProvider) {
+  function decorate(EntityImageInterface $imageProvider) {
     $this->imageProvider = $imageProvider;
+
+    return $this;
   }
 
   /**
@@ -38,6 +42,9 @@ class NeutralEntityImageDerivative implements EntityDisplayInterface {
    * @throws \Exception
    */
   function buildMultiple($entity_type, array $entities) {
+    if (empty($this->imageProvider)) {
+      return array();
+    }
     $builds = $this->imageProvider->buildMultiple($entity_type, $entities);
     foreach ($builds as $delta => $build) {
       if (empty($build)) {

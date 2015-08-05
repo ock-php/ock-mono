@@ -6,7 +6,7 @@ namespace Drupal\renderkit\ImageDerivative;
  * Responsive <img/> element with "srcset" and "sizes" attributes, based on
  * image styles.
  */
-class ImageResponsive implements ImageDerivativeInterface {
+class ImageResponsive extends ImageDerivativeBase {
 
   /**
    * The fallback style name.
