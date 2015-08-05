@@ -4,7 +4,7 @@ namespace Drupal\renderkit\EntityBuildProcessor;
 
 use Drupal\renderkit\EntityDisplay\Wrapper\NeutralEntityWrapper;
 
-abstract class EntityBuildProcessorBase extends NeutralEntityWrapper implements EntityBuildProcessorInterface {
+abstract class EntityBuildProcessorMultipleBase extends NeutralEntityWrapper implements EntityBuildProcessorInterface {
 
   /**
    * Builds render arrays from the entities provided.
@@ -32,21 +32,21 @@ abstract class EntityBuildProcessorBase extends NeutralEntityWrapper implements 
   }
 
   /**
-   * @param array[] $builds
-   *   The render arrays produced by the decorated display handler.
+   * @param array $build
+   *   The render array produced by the decorated display handler.
    * @param string $entity_type
-   * @param object[] $entities
+   * @param object $entity
    *
-   * @return array[]
-   *   Modified render arrays for the given entities.
+   * @return array
+   *   Modified render array for the given entity.
    */
-  final function processMultiple(array $builds, $entity_type, array $entities) {
-    foreach ($entities as $delta => $entity) {
-      if (!empty($builds[$delta])) {
-        $builds[$delta] = $this->processOne($builds[$delta], $entity_type, $entity);
-      }
+  final function processOne(array $build, $entity_type, $entity) {
+    if (empty($build)) {
+      return array();
     }
-    return $builds;
+    $builds = $this->processMultiple(array($build), $entity_type, array($entity));
+    return isset($builds[0])
+      ? $builds[0]
+      : array();
   }
-
 }
