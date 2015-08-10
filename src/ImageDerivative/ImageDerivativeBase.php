@@ -13,7 +13,6 @@ abstract class ImageDerivativeBase extends NeutralEntityImageDerivative implemen
    *
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
-   * @throws \Exception
    */
   function buildMultiple($entity_type, array $entities) {
     $builds = parent::buildMultiple($entity_type, $entities);

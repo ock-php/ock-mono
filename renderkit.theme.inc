@@ -22,8 +22,8 @@ function theme_renderkit_container($variables) {
   $attributes_str = isset($element['#attributes'])
     ? drupal_attributes($element['#attributes'])
     : '';
-  if (!isset($element['#children'])) {
-    throw new \Exception('renderkit_container can only be used in #theme_wrappers, not in #theme.');
+  if (empty($element['#children'])) {
+    return '';
   }
 
   return '<' . $tagName . $attributes_str . '>' . $element['#children'] . '</' . $tagName . '>';

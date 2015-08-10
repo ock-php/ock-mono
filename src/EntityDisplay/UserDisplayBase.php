@@ -14,7 +14,7 @@ abstract class UserDisplayBase extends EntityDisplayMultipleBase {
    */
   function buildMultiple($entity_type, array $users) {
     if ('user' !== $entity_type) {
-      throw new \Exception("Entity type must be 'user'.");
+      return array();
     }
     $builds = array();
     foreach ($users as $delta => $user) {

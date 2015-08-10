@@ -40,13 +40,16 @@ class NeutralEntityImageDerivative extends EntityDisplayMultipleBase {
   }
 
   /**
+   * Builds a render array for each entity.
+   *
+   * If there is no decorator set, this will return an empty array.
+   *
    * @param string $entity_type
    * @param object[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
-   * @throws \Exception
    */
   function buildMultiple($entity_type, array $entities) {
     if (empty($this->imageProvider)) {
@@ -54,11 +57,14 @@ class NeutralEntityImageDerivative extends EntityDisplayMultipleBase {
     }
     $builds = $this->imageProvider->buildMultiple($entity_type, $entities);
     foreach ($builds as $delta => $build) {
-      if (empty($build)) {
+      if (0
+        || empty($build)
+        || !isset($build['#theme'])
+        || 'image' !== $build['#theme']
+        || empty($build['#path'])
+      ) {
+        // @todo Optionally let the developer know that something is wrong.
         unset($builds[$delta]);
-      }
-      elseif (!isset($build['#theme']) || 'image' !== $build['#theme']) {
-        throw new \Exception("Render arrays from image providers must use '#theme' => 'image'.");
       }
     }
     return $builds;

@@ -117,8 +117,6 @@ class EntityTypeFieldDisplayHelper {
    *
    * @return array[]
    *   Render arrays for each entity, with the original custom order and keys.
-   *
-   * @throws \EntityMalformedException
    */
   function buildMultipleByDelta(array $entitiesByDelta) {
 
@@ -138,15 +136,8 @@ class EntityTypeFieldDisplayHelper {
       if (isset($this->bundleKey)) {
         // Explicitly fail for malformed entities missing the bundle property.
         if (!isset($entity->{$this->bundleKey}) || $entity->{$this->bundleKey} === '') {
-          throw new \EntityMalformedException(
-            t(
-              'Missing bundle property on entity @entity_id of type @entity_type.',
-              array(
-                '@entity_id' => $id,
-                '@entity_type' => $this->entityType,
-              )
-            )
-          );
+          // @todo Optionally let the developer know that something is wrong.
+          continue;
         }
         $entitiesByBundleAndId[$entity->{$this->bundleKey}][$id] = $entity;
       }
