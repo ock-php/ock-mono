@@ -26,7 +26,7 @@ class EntityLinkProcessor extends EntityBuildProcessorBase implements HtmlAttrib
    * @return array
    *   Render array for one entity.
    */
-  function processOne(array $build, $entity_type, $entity) {
+  function processEntityBuild(array $build, $entity_type, $entity) {
     $link_uri = entity_uri($entity_type, $entity);
     $link_uri['options']['attributes'] = $this->attributes;
     return array(

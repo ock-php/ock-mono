@@ -25,7 +25,7 @@ class EntityContextualLinksProcessor extends EntityBuildProcessorBase implements
    * @return array
    *   Render array after the processing.
    */
-  function processOne(array $build, $entity_type, $entity) {
+  function processEntityBuild(array $build, $entity_type, $entity) {
     $build = $this->buildContainer() + array('content' => $build);
     if (!user_access('access contextual links')) {
       return $build;

@@ -43,7 +43,7 @@ abstract class EntityBuildProcessorBase extends NeutralEntityDisplayDecorator im
   final function processEntitiesBuilds(array $builds, $entity_type, array $entities) {
     foreach ($entities as $delta => $entity) {
       if (!empty($builds[$delta])) {
-        $builds[$delta] = $this->processOne($builds[$delta], $entity_type, $entity);
+        $builds[$delta] = $this->processEntityBuild($builds[$delta], $entity_type, $entity);
       }
     }
     return $builds;

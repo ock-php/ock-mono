@@ -44,7 +44,7 @@ abstract class EntitiesBuildsProcessorBase extends NeutralEntityDisplayDecorator
    * @return array
    *   Modified render array for the given entity.
    */
-  final function processOne(array $build, $entity_type, $entity) {
+  final function processEntityBuild(array $build, $entity_type, $entity) {
     if (empty($build)) {
       return array();
     }
