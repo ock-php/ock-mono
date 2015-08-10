@@ -27,7 +27,7 @@ abstract class EntityBuildProcessorBase extends NeutralEntityDisplayDecorator im
   final function buildMultiple($entity_type, array $entities) {
     $builds = parent::buildMultiple($entity_type, $entities);
     return !empty($builds)
-      ? $this->processMultiple($builds, $entity_type, $entities)
+      ? $this->processEntitiesBuilds($builds, $entity_type, $entities)
       : array();
   }
 
@@ -40,7 +40,7 @@ abstract class EntityBuildProcessorBase extends NeutralEntityDisplayDecorator im
    * @return array[]
    *   Modified render arrays for the given entities.
    */
-  final function processMultiple(array $builds, $entity_type, array $entities) {
+  final function processEntitiesBuilds(array $builds, $entity_type, array $entities) {
     foreach ($entities as $delta => $entity) {
       if (!empty($builds[$delta])) {
         $builds[$delta] = $this->processOne($builds[$delta], $entity_type, $entity);

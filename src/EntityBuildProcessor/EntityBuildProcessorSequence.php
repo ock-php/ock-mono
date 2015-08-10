@@ -47,10 +47,10 @@ class EntityBuildProcessorSequence extends EntitiesBuildsProcessorBase {
    * @return array[]
    *   Modified render arrays for the given entities.
    */
-  function processMultiple(array $builds, $entity_type, array $entities) {
+  function processEntitiesBuilds(array $builds, $entity_type, array $entities) {
     foreach ($this->processors as $processor) {
       if ($processor instanceof EntityBuildProcessorInterface) {
-        $builds = $processor->processMultiple($builds, $entity_type, $entities);
+        $builds = $processor->processEntitiesBuilds($builds, $entity_type, $entities);
       }
       elseif ($processor instanceof BuildProcessorInterface) {
         foreach ($builds as $delta => $build) {
