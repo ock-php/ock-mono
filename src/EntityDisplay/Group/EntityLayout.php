@@ -3,12 +3,12 @@
 namespace Drupal\renderkit\EntityDisplay\Group;
 
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit\EntityDisplay\EntityDisplayMultipleBase;
+use Drupal\renderkit\EntityDisplay\EntitiesDisplaysBase;
 
 /**
  * A group of entity display handlers acting as regions in a layout.
  */
-class EntityLayout extends EntityDisplayMultipleBase {
+class EntityLayout extends EntitiesDisplaysBase {
 
   /**
    * @var string

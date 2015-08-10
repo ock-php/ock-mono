@@ -3,12 +3,12 @@
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit\EntityDisplay\EntityDisplayMultipleBase;
+use Drupal\renderkit\EntityDisplay\EntitiesDisplaysBase;
 
 /**
  * Uses a different display handler depending on the entity type.
  */
-class EntityTypeDisplaySwitcher extends EntityDisplayMultipleBase {
+class EntityTypeDisplaySwitcher extends EntitiesDisplaysBase {
 
   /**
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
