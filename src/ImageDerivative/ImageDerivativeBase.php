@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit\ImageDerivative;
 
-use Drupal\renderkit\EntityDisplay\EntityImageDerivative\NeutralEntityImageDerivative;
+use Drupal\renderkit\EntityDisplay\EntityImageDecorator\NeutralEntityImageDecorator;
 
-abstract class ImageDerivativeBase extends NeutralEntityImageDerivative implements ImageDerivativeInterface {
+abstract class ImageDerivativeBase extends NeutralEntityImageDecorator implements ImageDerivativeInterface {
 
   /**
    * @param string $entity_type

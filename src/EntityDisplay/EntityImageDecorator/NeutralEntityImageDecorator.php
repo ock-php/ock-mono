@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay\EntityImageDerivative;
+namespace Drupal\renderkit\EntityDisplay\EntityImageDecorator;
 
 use Drupal\renderkit\EntityDisplay\EntityDisplayMultipleBase;
 use Drupal\renderkit\EntityImage\EntityImageInterface;
@@ -13,7 +13,7 @@ use Drupal\renderkit\EntityImage\EntityImageInterface;
  * without a decorated object, which allows for a decorator / processor duality
  * in inheriting classes.
  */
-class NeutralEntityImageDerivative extends EntityDisplayMultipleBase {
+class NeutralEntityImageDecorator extends EntityDisplayMultipleBase {
 
   /**
    * The decorated image provider.
