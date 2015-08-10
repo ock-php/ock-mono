@@ -2,14 +2,15 @@
 
 namespace Drupal\renderkit\EntityDisplay\Decorator;
 
-use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface;
+use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorMultipleBase;
 
 /**
  * An entity display decorator that runs the render array through a bunch of
  * processors.
  */
-class EntityProcessorDecorator extends NeutralEntityDisplayDecorator {
+class EntityProcessorDecorator extends EntityBuildProcessorMultipleBase {
 
   /**
    * @var object[]
@@ -37,15 +38,18 @@ class EntityProcessorDecorator extends NeutralEntityDisplayDecorator {
   }
 
   /**
+   * Processes all the render arrays, by passing them through all the registered
+   * processors.
+   *
+   * @param array[] $builds
+   *   The render arrays produced by the decorated display handler.
    * @param string $entity_type
    * @param object[] $entities
-   *   Entity objects for which to build the render arrays.
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
+   *   Modified render arrays for the given entities.
    */
-  function buildMultiple($entity_type, array $entities) {
-    $builds = parent::buildMultiple($entity_type, $entities);
+  function processMultiple(array $builds, $entity_type, array $entities) {
     foreach ($this->processors as $processor) {
       if ($processor instanceof EntityBuildProcessorInterface) {
         $builds = $processor->processMultiple($builds, $entity_type, $entities);
