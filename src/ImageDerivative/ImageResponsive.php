@@ -13,12 +13,12 @@ class ImageResponsive extends ImageDerivativeBase {
    *
    * @var string
    */
-  protected $fallbackStyleName;
+  private $fallbackStyleName;
 
   /**
    * @var string[]
    */
-  protected $sizes = array();
+  private $sizes = array();
 
   /**
    * The image style names.
@@ -26,7 +26,7 @@ class ImageResponsive extends ImageDerivativeBase {
    * @var string[]
    *   Format: $[] = $imageStyleName
    */
-  protected $styleNames = array();
+  private $styleNames = array();
 
   /**
    * @param string|null $fallbackStyleName
