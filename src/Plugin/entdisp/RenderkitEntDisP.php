@@ -19,7 +19,7 @@ class RenderkitEntDisP {
    * @param string|null $wrapperTagName
    *   E.g. 'h2'.
    *
-   * @return \Drupal\renderkit\EntityDisplay\EntityDisplayAttributesInterface
+   * @return \Drupal\renderkit\EntityDisplay\Html\EntityDisplayAttributesInterface
    *
    * @plugin
    */
@@ -36,7 +36,7 @@ class RenderkitEntDisP {
    *
    * @param string $wrapperTagName
    *
-   * @return \Drupal\renderkit\EntityDisplay\EntityDisplayAttributesInterface
+   * @return \Drupal\renderkit\EntityDisplay\Html\EntityDisplayAttributesInterface
    *
    * @plugin
    */
