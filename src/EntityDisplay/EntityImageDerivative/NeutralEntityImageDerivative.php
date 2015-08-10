@@ -12,8 +12,6 @@ use Drupal\renderkit\EntityImage\EntityImageInterface;
  * constructor, but with a decorate() method. This allows the instance to exist
  * without a decorated object, which allows for a decorator / processor duality
  * in inheriting classes.
- *
- * @see \Drupal\renderkit\EntityDisplay\Wrapper\NeutralEntityWrapper
  */
 class NeutralEntityImageDerivative extends EntityDisplayMultipleBase {
 

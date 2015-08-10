@@ -11,15 +11,20 @@ use Drupal\renderkit\EntityDisplay\EntityDisplayMultipleBase;
 class NeutralEntityDisplayDecorator extends EntityDisplayMultipleBase {
 
   /**
-   * @var EntityDisplayInterface
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
    */
   private $decorated;
 
   /**
+   * Sets the decorated entity display.
+   *
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
+   *
+   * @return $this
    */
-  function __construct(EntityDisplayInterface $decorated) {
+  function decorate(EntityDisplayInterface $decorated) {
     $this->decorated = $decorated;
+    return $this;
   }
 
   /**
@@ -31,8 +36,9 @@ class NeutralEntityDisplayDecorator extends EntityDisplayMultipleBase {
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
   function buildMultiple($entity_type, array $entities) {
-    // Return the unmodified result.
-    return $this->decorated->buildMultiple($entity_type, $entities);
+    return isset($this->decorated)
+      ? $this->decorated->buildMultiple($entity_type, $entities)
+      : array();
   }
 
 }

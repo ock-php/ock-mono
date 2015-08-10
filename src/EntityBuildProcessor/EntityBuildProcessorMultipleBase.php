@@ -2,13 +2,13 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Drupal\renderkit\EntityDisplay\Wrapper\NeutralEntityWrapper;
+use Drupal\renderkit\EntityDisplay\Decorator\NeutralEntityDisplayDecorator;
 
 /**
  * Base class for entity build processor classes that only want to implement the
  * processOne method.
  */
-abstract class EntityBuildProcessorMultipleBase extends NeutralEntityWrapper implements EntityBuildProcessorInterface {
+abstract class EntityBuildProcessorMultipleBase extends NeutralEntityDisplayDecorator implements EntityBuildProcessorInterface {
 
   /**
    * Builds render arrays from the entities provided.
