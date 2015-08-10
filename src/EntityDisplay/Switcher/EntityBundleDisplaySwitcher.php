@@ -39,7 +39,7 @@ class EntityBundleDisplaySwitcher extends EntityTypeDisplaySwitcher {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildMultiple($entity_type, array $entities) {
+  function buildEntities($entity_type, array $entities) {
     if (isset($this->typeBundleDisplays[$entity_type])) {
       $bundleKey = $this->entityTypeGetBundleKey($entity_type);
       if (isset($bundleKey)) {
@@ -56,9 +56,9 @@ class EntityBundleDisplaySwitcher extends EntityTypeDisplaySwitcher {
           }
           $builds[$delta] = array();
         }
-        $buildsUnsorted = parent::buildMultiple($entity_type, $entities);
+        $buildsUnsorted = parent::buildEntities($entity_type, $entities);
         foreach ($entitiesByBundle as $bundleName => $bundleEntities) {
-          $buildsUnsorted += $bundleDisplays[$bundleName]->buildMultiple($entity_type, $bundleEntities);
+          $buildsUnsorted += $bundleDisplays[$bundleName]->buildEntities($entity_type, $bundleEntities);
         }
         foreach ($buildsUnsorted as $delta => $build) {
           $builds[$delta] = $build;
@@ -66,7 +66,7 @@ class EntityBundleDisplaySwitcher extends EntityTypeDisplaySwitcher {
         return $builds;
       }
     }
-    return parent::buildMultiple($entity_type, $entities);
+    return parent::buildEntities($entity_type, $entities);
   }
 
   /**

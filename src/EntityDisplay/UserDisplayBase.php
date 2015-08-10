@@ -12,7 +12,7 @@ abstract class UserDisplayBase extends EntitiesDisplaysBase {
    *   An array of render arrays, keyed by the original array keys of $entities.
    * @throws \Exception
    */
-  function buildMultiple($entity_type, array $users) {
+  function buildEntities($entity_type, array $users) {
     if ('user' !== $entity_type) {
       return array();
     }

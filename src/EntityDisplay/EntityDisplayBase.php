@@ -20,7 +20,7 @@ abstract class EntityDisplayBase implements EntityDisplayInterface {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  final function buildMultiple($entity_type, array $entities) {
+  final function buildEntities($entity_type, array $entities) {
     $builds = array();
     foreach ($entities as $delta => $entity) {
       $builds[$delta] = $this->buildEntity($entity_type, $entity);

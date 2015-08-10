@@ -49,11 +49,11 @@ class NeutralEntityImageDecorator extends EntitiesDisplaysBase {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildMultiple($entity_type, array $entities) {
+  function buildEntities($entity_type, array $entities) {
     if (empty($this->imageProvider)) {
       return array();
     }
-    $builds = $this->imageProvider->buildMultiple($entity_type, $entities);
+    $builds = $this->imageProvider->buildEntities($entity_type, $entities);
     foreach ($builds as $delta => $build) {
       if (0
         || empty($build)

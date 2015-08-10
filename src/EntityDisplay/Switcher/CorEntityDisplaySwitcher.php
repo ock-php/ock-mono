@@ -30,10 +30,10 @@ class CorEntityDisplaySwitcher extends EntitiesDisplaysBase {
    *
    * @return array[]
    */
-  function buildMultiple($entity_type, array $entities) {
+  function buildEntities($entity_type, array $entities) {
     $builds = array_fill_keys(array_keys($entities), NULL);
     foreach ($this->displays as $display) {
-      foreach ($display->buildMultiple($entity_type, $entities) as $delta => $build) {
+      foreach ($display->buildEntities($entity_type, $entities) as $delta => $build) {
         if (!empty($build)) {
           if (empty($builds[$delta])) {
             $builds[$delta] = $build;

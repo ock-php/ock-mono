@@ -38,10 +38,10 @@ class EntityLayout extends EntitiesDisplaysBase {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildMultiple($entity_type, array $entities) {
+  function buildEntities($entity_type, array $entities) {
     $builds = array();
     foreach ($this->regionDisplayHandlers as $name => $handler) {
-      foreach ($handler->buildMultiple($entity_type, $entities) as $delta => $entity_build) {
+      foreach ($handler->buildEntities($entity_type, $entities) as $delta => $entity_build) {
         $builds[$delta][$name] = $entity_build;
       }
     }

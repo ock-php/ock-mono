@@ -29,7 +29,7 @@ interface EntityDisplayInterface {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildMultiple($entity_type, array $entities);
+  function buildEntities($entity_type, array $entities);
 
   /**
    * @param string $entity_type

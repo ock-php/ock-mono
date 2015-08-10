@@ -24,8 +24,8 @@ abstract class EntityBuildProcessorBase extends NeutralEntityDisplayDecorator im
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  final function buildMultiple($entity_type, array $entities) {
-    $builds = parent::buildMultiple($entity_type, $entities);
+  final function buildEntities($entity_type, array $entities) {
+    $builds = parent::buildEntities($entity_type, $entities);
     return !empty($builds)
       ? $this->processEntitiesBuilds($builds, $entity_type, $entities)
       : array();

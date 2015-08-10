@@ -58,11 +58,11 @@ class EntityTypeDisplaySwitcher extends EntitiesDisplaysBase {
    *
    * @return array[]
    */
-  function buildMultiple($entity_type, array $entities) {
+  function buildEntities($entity_type, array $entities) {
     return isset($this->typeDisplays[$entity_type])
-      ? $this->typeDisplays[$entity_type]->buildMultiple($entity_type, $entities)
+      ? $this->typeDisplays[$entity_type]->buildEntities($entity_type, $entities)
       : (isset($this->fallbackDisplay)
-        ? $this->fallbackDisplay->buildMultiple($entity_type, $entities)
+        ? $this->fallbackDisplay->buildEntities($entity_type, $entities)
         : array());
   }
 

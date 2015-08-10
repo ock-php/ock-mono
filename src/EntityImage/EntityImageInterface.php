@@ -25,5 +25,5 @@ interface EntityImageInterface extends EntityDisplayInterface {
    *   An array of render arrays, keyed by the original array keys of $entities.
    *   Each render array must contain '#theme' => 'image'.
    */
-  function buildMultiple($entity_type, array $entities);
+  function buildEntities($entity_type, array $entities);
 }

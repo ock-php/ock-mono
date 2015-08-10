@@ -26,7 +26,7 @@ class EntityViewMode extends EntitiesDisplaysBase {
    * @see entity_view()
    * @see node_view_multiple()
    */
-  function buildMultiple($entity_type, array $entities) {
+  function buildEntities($entity_type, array $entities) {
     if (empty($entities)) {
       // entity_view() does not like an empty array of entities.
       // Especially, node_view_multiple() really does not.

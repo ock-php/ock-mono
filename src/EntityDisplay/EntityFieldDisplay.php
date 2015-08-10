@@ -69,7 +69,7 @@ class EntityFieldDisplay extends EntitiesDisplaysBase {
    * @return array
    * @throws \EntityMalformedException
    */
-  function buildMultiple($entity_type, array $entities) {
+  function buildEntities($entity_type, array $entities) {
     $helper = EntityTypeFieldDisplayHelper::create($entity_type, $this->fieldName, $this->display, $this->langcode);
     return $helper->buildMultipleByDelta($entities);
   }
