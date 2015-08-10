@@ -5,6 +5,9 @@ namespace Drupal\renderkit\EntityDisplay\Decorator;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\Exception\EntityDisplayRecursionException;
 
+/**
+ * Class that can be mixed into a decorator stack to detect recursion.
+ */
 class EntityDisplayRecursionDetectionDecorator extends NeutralEntityDisplayDecorator {
 
   /**

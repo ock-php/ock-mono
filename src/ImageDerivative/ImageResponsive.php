@@ -9,7 +9,7 @@ namespace Drupal\renderkit\ImageDerivative;
 class ImageResponsive extends ImageDerivativeBase {
 
   /**
-   * The fallback style name.
+   * The image style name to use for the src attribute itself.
    *
    * @var string
    */
@@ -21,7 +21,10 @@ class ImageResponsive extends ImageDerivativeBase {
   protected $sizes = array();
 
   /**
+   * The image style names.
+   *
    * @var string[]
+   *   Format: $[] = $imageStyleName
    */
   protected $styleNames = array();
 
@@ -66,6 +69,8 @@ class ImageResponsive extends ImageDerivativeBase {
   }
 
   /**
+   * Adds a Drupal image style.
+   *
    * @param string $style_name
    *
    * @return $this
@@ -76,11 +81,17 @@ class ImageResponsive extends ImageDerivativeBase {
   }
 
   /**
+   * Processes an image render array.
+   *
    * @param array $build
-   *   Render array with '#theme' => 'image'.
+   *   Render array with '#theme' => 'image' and the original image path at
+   *   #path. The original image path must be in a place that supports image
+   *   style generation.
    *
    * @return array
    *   Render array after the processing.
+   *
+   * @todo Detect if the original image location does not support image styles.
    */
   function processImage(array $build) {
 

@@ -109,9 +109,15 @@ class EntityTypeFieldDisplayHelper {
   }
 
   /**
+   * Builds field render arrays for a series of entities.
+   *
    * @param object[] $entitiesByDelta
+   *   Format: $[$delta] = $entity
+   *   Entities in custom order by custom keys.
    *
    * @return array[]
+   *   Render arrays for each entity, with the original custom order and keys.
+   *
    * @throws \EntityMalformedException
    */
   function buildMultipleByDelta(array $entitiesByDelta) {

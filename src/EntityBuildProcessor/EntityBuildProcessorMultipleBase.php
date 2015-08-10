@@ -4,6 +4,10 @@ namespace Drupal\renderkit\EntityBuildProcessor;
 
 use Drupal\renderkit\EntityDisplay\Wrapper\NeutralEntityWrapper;
 
+/**
+ * Base class for entity build processor classes that only want to implement the
+ * processOne method.
+ */
 abstract class EntityBuildProcessorMultipleBase extends NeutralEntityWrapper implements EntityBuildProcessorInterface {
 
   /**

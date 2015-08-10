@@ -8,6 +8,11 @@ use Drupal\renderkit\EntityImage\EntityImageInterface;
 /**
  * A decorator class for entity image.
  *
+ * Unlike typical "true" decorators, the decorated object is not injected in the
+ * constructor, but with a decorate() method. This allows the instance to exist
+ * without a decorated object, which allows for a decorator / processor duality
+ * in inheriting classes.
+ *
  * @see \Drupal\renderkit\EntityDisplay\Wrapper\NeutralEntityWrapper
  */
 class NeutralEntityImageDerivative extends EntityDisplayMultipleBase {
@@ -20,6 +25,8 @@ class NeutralEntityImageDerivative extends EntityDisplayMultipleBase {
   private $imageProvider;
 
   /**
+   * Sets the decorated entity display providing the image from each entity.
+   *
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $imageProvider
    *   Object that extracts an image path from an entity, e.g. based on an image
    *   field, or the user picture, etc.
