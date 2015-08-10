@@ -8,7 +8,7 @@ use Drupal\renderkit\EntityDisplay\Decorator\NeutralEntityDisplayDecorator;
  * Base class for entity build processor classes that only want to implement the
  * processOne method.
  */
-abstract class EntityBuildProcessorMultipleBase extends NeutralEntityDisplayDecorator implements EntityBuildProcessorInterface {
+abstract class EntitiesBuildsProcessorBase extends NeutralEntityDisplayDecorator implements EntityBuildProcessorInterface {
 
   /**
    * Builds render arrays from the entities provided.

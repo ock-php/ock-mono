@@ -8,7 +8,7 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
  * An entity display decorator that runs the render array through a bunch of
  * processors.
  */
-class EntityBuildProcessorSequence extends EntityBuildProcessorMultipleBase {
+class EntityBuildProcessorSequence extends EntitiesBuildsProcessorBase {
 
   /**
    * @var object[]
