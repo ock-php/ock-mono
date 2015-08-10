@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\ImageDerivative;
+namespace Drupal\renderkit\ImageProcessor;
 
 /**
  * Render array processor that only processes render arrays with
@@ -9,7 +9,7 @@ namespace Drupal\renderkit\ImageDerivative;
  * The resulting render array could be e.g. the same image with
  * '#theme' => 'image_style'.
  */
-interface ImageDerivativeInterface {
+interface ImageProcessorInterface {
 
   /**
    * @param array $build

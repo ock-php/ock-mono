@@ -1,10 +1,10 @@
 <?php
 
-namespace Drupal\renderkit\ImageDerivative;
+namespace Drupal\renderkit\ImageProcessor;
 
 use Drupal\renderkit\EntityDisplay\EntityImageDecorator\NeutralEntityImageDecorator;
 
-abstract class ImageDerivativeBase extends NeutralEntityImageDecorator implements ImageDerivativeInterface {
+abstract class ImageProcessorBase extends NeutralEntityImageDecorator implements ImageProcessorInterface {
 
   /**
    * @param string $entity_type

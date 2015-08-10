@@ -1,12 +1,12 @@
 <?php
 
-namespace Drupal\renderkit\ImageDerivative;
+namespace Drupal\renderkit\ImageProcessor;
 
 /**
  * Responsive <img/> element with "srcset" and "sizes" attributes, based on
  * image styles.
  */
-class ImageResponsive extends ImageDerivativeBase {
+class ImageResponsive extends ImageProcessorBase {
 
   /**
    * The image style name to use for the src attribute itself.

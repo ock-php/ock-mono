@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\ImageDerivative;
+namespace Drupal\renderkit\ImageProcessor;
 
-class ImageStyle extends ImageDerivativeBase {
+class ImageStyle extends ImageProcessorBase {
 
   /**
    * @var string
