@@ -18,7 +18,7 @@ class EntityImageField extends EntityDisplayBase implements EntityImageInterface
    * @return array
    *   Render array for one entity.
    */
-  function buildOne($entity_type, $entity) {
+  function buildEntity($entity_type, $entity) {
     $items = field_get_items($entity_type, $entity, $this->fieldName);
     if (!isset($items[0])) {
       return array();

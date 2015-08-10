@@ -23,7 +23,7 @@ abstract class EntityDisplayBase implements EntityDisplayInterface {
   final function buildMultiple($entity_type, array $entities) {
     $builds = array();
     foreach ($entities as $delta => $entity) {
-      $builds[$delta] = $this->buildOne($entity_type, $entity);
+      $builds[$delta] = $this->buildEntity($entity_type, $entity);
     }
     return $builds;
   }

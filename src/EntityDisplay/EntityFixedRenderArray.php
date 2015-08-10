@@ -23,7 +23,7 @@ class EntityFixedRenderArray extends EntityDisplayBase {
    * @return array
    *   Render array for one entity.
    */
-  function buildOne($entity_type, $entity) {
+  function buildEntity($entity_type, $entity) {
     return $this->fixedRenderArray;
   }
 }

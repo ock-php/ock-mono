@@ -42,7 +42,7 @@ class NodeCreatedDate extends EntityDisplayBase {
    * @return array
    *   Render array for one entity.
    */
-  function buildOne($entity_type, $entity) {
+  function buildEntity($entity_type, $entity) {
     if ('node' !== $entity_type) {
       return array();
     }

@@ -37,5 +37,5 @@ interface EntityDisplayInterface {
    *
    * @return array
    */
-  function buildOne($entity_type, $entity);
+  function buildEntity($entity_type, $entity);
 }
