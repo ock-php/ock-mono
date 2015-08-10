@@ -12,8 +12,8 @@ namespace Drupal\renderkit\EntityDisplay;
  * Implementing classes should use one of the base classes, so they only need to
  * implement one of the two methods, either buildEntities() or buildEntity().
  *
- * @see EntityDisplayBase
- * @see EntitiesDisplaysBase
+ * @see \Drupal\renderkit\EntityDisplay\EntityDisplayBase
+ * @see \Drupal\renderkit\EntityDisplay\EntitiesDisplaysBase
  */
 interface EntityDisplayInterface {
 
