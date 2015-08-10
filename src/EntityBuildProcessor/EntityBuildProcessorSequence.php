@@ -1,16 +1,14 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay\Decorator;
+namespace Drupal\renderkit\EntityBuildProcessor;
 
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
-use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface;
-use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorMultipleBase;
 
 /**
  * An entity display decorator that runs the render array through a bunch of
  * processors.
  */
-class EntityProcessorDecorator extends EntityBuildProcessorMultipleBase {
+class EntityBuildProcessorSequence extends EntityBuildProcessorMultipleBase {
 
   /**
    * @var object[]
