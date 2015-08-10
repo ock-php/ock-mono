@@ -7,6 +7,6 @@ namespace Drupal\renderkit\Exception;
  *
  * @see \Drupal\renderkit\EntityDisplay\Decorator\EntityDisplayRecursionDetectionDecorator
  */
-class EntityDisplayRecursionException extends \Exception {
+class EntityDisplayRecursionException extends \RuntimeException {
 
 }
