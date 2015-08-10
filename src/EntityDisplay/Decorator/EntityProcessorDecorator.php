@@ -2,8 +2,6 @@
 
 namespace Drupal\renderkit\EntityDisplay\Decorator;
 
-use Drupal\renderkit\BuildProvider\BuildProviderInterface;
-use Drupal\renderkit\BuildProvider\StaticBuildProvider;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
@@ -39,27 +37,6 @@ class EntityProcessorDecorator extends NeutralEntityDisplayDecorator {
   }
 
   /**
-   * @param \Drupal\renderkit\BuildProvider\BuildProviderInterface $fallbackBuildProvider
-   *
-   * @return $this
-   */
-  function addFallbackBuildProvider(BuildProviderInterface $fallbackBuildProvider) {
-    $this->processors[] = $fallbackBuildProvider;
-    return $this;
-  }
-
-  /**
-   * @param array $fallbackBuild
-   *   Render array to be used to replace empty results.
-   *
-   * @return $this
-   */
-  function addFallbackBuild(array $fallbackBuild) {
-    $this->processors[] = new StaticBuildProvider($fallbackBuild);
-    return $this;
-  }
-
-  /**
    * @param string $entity_type
    * @param object[] $entities
    *   Entity objects for which to build the render arrays.
@@ -77,21 +54,6 @@ class EntityProcessorDecorator extends NeutralEntityDisplayDecorator {
         foreach ($builds as $delta => $build) {
           if (!empty($build)) {
             $builds[$delta] = $processor->process($build);
-          }
-        }
-      }
-      elseif ($processor instanceof BuildProviderInterface) {
-        // This is a fallback build provider.
-        $emptyDeltas = array();
-        foreach ($entities as $delta => $entity) {
-          if (empty($build)) {
-            $emptyDeltas[] = $delta;
-          }
-        }
-        if (!empty($emptyDeltas)) {
-          $fallbackBuild = $processor->build();
-          foreach ($emptyDeltas as $delta) {
-            $builds[$delta] = $fallbackBuild;
           }
         }
       }
