@@ -7,7 +7,7 @@ use Drupal\renderkit\Exception\EntityDisplayRecursionException;
 /**
  * Class that can be mixed into a decorator stack to detect recursion.
  */
-class EntityDisplayRecursionDetectionDecorator extends NeutralEntityDisplayDecorator {
+class RecursionDetectionEntityDisplayDecorator extends NeutralEntityDisplayDecorator {
 
   /**
    * @var int
