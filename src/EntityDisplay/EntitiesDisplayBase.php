@@ -6,7 +6,7 @@ namespace Drupal\renderkit\EntityDisplay;
  * Base class for entity display handlers that takes away the buildOne() method,
  * so inheriting classes only need to implement the buildMultiple() method.
  */
-abstract class EntitiesDisplaysBase implements EntityDisplayInterface {
+abstract class EntitiesDisplayBase implements EntityDisplayInterface {
 
   /**
    * @param string $entity_type

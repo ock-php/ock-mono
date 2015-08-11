@@ -2,12 +2,12 @@
 
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
-use Drupal\renderkit\EntityDisplay\EntitiesDisplaysBase;
+use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 
 /**
  * Chain-of-responsibility entity display switcher.
  */
-class CorEntityDisplaySwitcher extends EntitiesDisplaysBase {
+class CorEntityDisplaySwitcher extends EntitiesDisplayBase {
 
   /**
    * The displays to try.

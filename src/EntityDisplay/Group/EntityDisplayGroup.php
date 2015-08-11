@@ -3,7 +3,7 @@
 namespace Drupal\renderkit\EntityDisplay\Group;
 
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit\EntityDisplay\EntitiesDisplaysBase;
+use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 
 /**
  * A group of entity display handlers, whose results are assembled into a single
@@ -12,7 +12,7 @@ use Drupal\renderkit\EntityDisplay\EntitiesDisplaysBase;
  * This can be used for something like a layout region with a number of fields
  * or elements.
  */
-class EntityDisplayGroup extends EntitiesDisplaysBase {
+class EntityDisplayGroup extends EntitiesDisplayBase {
 
   /**
    * @var EntityDisplayInterface[]

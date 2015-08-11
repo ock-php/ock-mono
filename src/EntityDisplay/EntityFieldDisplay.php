@@ -7,7 +7,7 @@ use Drupal\renderkit\Helper\EntityTypeFieldDisplayHelper;
 /**
  * Entity display handler to view a specific field on all the entities.
  */
-class EntityFieldDisplay extends EntitiesDisplaysBase {
+class EntityFieldDisplay extends EntitiesDisplayBase {
 
   /**
    * @var string

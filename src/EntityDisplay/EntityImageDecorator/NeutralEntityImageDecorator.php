@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay\EntityImageDecorator;
 
-use Drupal\renderkit\EntityDisplay\EntitiesDisplaysBase;
+use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 use Drupal\renderkit\EntityImage\EntityImageInterface;
 
 /**
@@ -13,7 +13,7 @@ use Drupal\renderkit\EntityImage\EntityImageInterface;
  * without a decorated object, which allows for a decorator / processor duality
  * in inheriting classes.
  */
-class NeutralEntityImageDecorator extends EntitiesDisplaysBase {
+class NeutralEntityImageDecorator extends EntitiesDisplayBase {
 
   /**
    * The decorated image provider.

@@ -3,12 +3,12 @@
 namespace Drupal\renderkit\EntityDisplay\Decorator;
 
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit\EntityDisplay\EntitiesDisplaysBase;
+use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 
 /**
  * A decorator that does not alter the result from the decorated display.
  */
-class NeutralEntityDisplayDecorator extends EntitiesDisplaysBase {
+class NeutralEntityDisplayDecorator extends EntitiesDisplayBase {
 
   /**
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
