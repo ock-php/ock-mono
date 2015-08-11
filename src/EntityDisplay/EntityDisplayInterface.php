@@ -41,7 +41,9 @@ interface EntityDisplayInterface {
    * Same as ->buildEntities(), just for a single entity.
    *
    * @param string $entity_type
+   *   E.g. 'node' or 'taxonomy_term'.
    * @param object $entity
+   *   Single entity object for which to build a render arary.
    *
    * @return array
    */
