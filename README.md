@@ -6,6 +6,8 @@ It is designed as an alternative or addition to Display suite, panels, and other
 
 This module by itself is just about code. But there are / will be other modules that expose a lot of these classes as plugins that can be controlled from the UI.
 
+## Basic components
+
 The most relevant group of classes, "entity display handlers", implementing [EntityDisplayInterface](src/EntityDisplay/EntityDisplayInterface.php), are objects that build render arrays from entities. This may be for a specific field, an entity title link, or an entire entity displayed in a view mode with entity_view().
 
 Besides entity display handlers, there are also classes and interfaces for lists, image derivatives, and more. All of them deal with render arrays somehow.
