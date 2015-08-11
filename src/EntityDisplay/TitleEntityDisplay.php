@@ -5,7 +5,7 @@ namespace Drupal\renderkit\EntityDisplay;
 /**
  * The most boring entity display handler, ever.
  */
-class EntityTitle extends EntityDisplayBase {
+class TitleEntityDisplay extends EntityDisplayBase {
 
   /**
    * @param $entity_type

@@ -2,8 +2,8 @@
 
 namespace Drupal\renderkit\Plugin\entdisp;
 
-use Drupal\renderkit\EntityDisplay\EntityTitle;
-use Drupal\renderkit\EntityDisplay\EntityTitleLink;
+use Drupal\renderkit\EntityDisplay\TitleEntityDisplay;
+use Drupal\renderkit\EntityDisplay\TitleLinkEntityDisplay;
 use Drupal\renderkit\Renderkit;
 
 /**
@@ -19,12 +19,12 @@ class RenderkitEntDisP {
    * @param string|null $wrapperTagName
    *   E.g. 'h2'.
    *
-   * @return \Drupal\renderkit\EntityDisplay\Html\EntityDisplayAttributesInterface
+   * @return \Drupal\renderkit\EntityDisplay\Html\HtmlAttributesEntityDisplayInterface
    *
    * @plugin
    */
   static function entityTitleLink($wrapperTagName = NULL) {
-    $entityDisplay = new EntityTitleLink();
+    $entityDisplay = new TitleLinkEntityDisplay();
     if (isset($wrapperTagName)) {
       $entityDisplay = Renderkit::entityContainer($entityDisplay, $wrapperTagName);
     }
@@ -36,12 +36,12 @@ class RenderkitEntDisP {
    *
    * @param string $wrapperTagName
    *
-   * @return \Drupal\renderkit\EntityDisplay\Html\EntityDisplayAttributesInterface
+   * @return \Drupal\renderkit\EntityDisplay\Html\HtmlAttributesEntityDisplayInterface
    *
    * @plugin
    */
   static function entityTitle($wrapperTagName = 'h2') {
-    return Renderkit::entityContainer(new EntityTitle(), $wrapperTagName);
+    return Renderkit::entityContainer(new TitleEntityDisplay(), $wrapperTagName);
   }
 
 }

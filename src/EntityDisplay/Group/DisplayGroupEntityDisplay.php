@@ -12,7 +12,7 @@ use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
  * This can be used for something like a layout region with a number of fields
  * or elements.
  */
-class EntityDisplayGroup extends EntitiesDisplayBase {
+class DisplayGroupEntityDisplay extends EntitiesDisplayBase {
 
   /**
    * @var EntityDisplayInterface[]

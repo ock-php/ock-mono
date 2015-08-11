@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-class EntityFixedRenderArray extends EntityDisplayBase {
+class FixedBuildEntityDisplay extends EntityDisplayBase {
 
   /**
    * @var array

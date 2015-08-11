@@ -8,7 +8,7 @@ use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 /**
  * A group of entity display handlers acting as regions in a layout.
  */
-class EntityLayout extends EntitiesDisplayBase {
+class LayoutEntityDisplay extends EntitiesDisplayBase {
 
   /**
    * @var string

@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-class EntityViewMode extends EntitiesDisplayBase {
+class ViewModeEntityDisplay extends EntitiesDisplayBase {
 
   /**
    * @var string

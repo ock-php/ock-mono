@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-class NodeCreatedDate extends EntityDisplayBase {
+class CreatedDateNodeDisplay extends EntityDisplayBase {
 
   /**
    * @var string

@@ -10,7 +10,7 @@ use Drupal\renderkit\Html\HtmlAttributesTrait;
  * Does not by itself add any wrapper tags, like "h2".
  * To add those, wrap this handler into a container decorator.
  */
-class EntityTitleLink extends EntityDisplayBase {
+class TitleLinkEntityDisplay extends EntityDisplayBase {
 
   use HtmlAttributesTrait;
 

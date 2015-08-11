@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-class EntityFixedHtml extends EntityDisplayBase {
+class FixedHtmlEntityDisplay extends EntityDisplayBase {
 
   /**
    * @var string
