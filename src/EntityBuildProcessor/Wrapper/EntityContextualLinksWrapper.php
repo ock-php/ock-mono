@@ -1,14 +1,15 @@
 <?php
 
-namespace Drupal\renderkit\EntityBuildProcessor;
+namespace Drupal\renderkit\EntityBuildProcessor\Wrapper;
 
+use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorBase;
 use Drupal\renderkit\Html\HtmlAttributesInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
 
 /**
  * A typical entity container with contextual links and stuff.
  */
-class EntityContextualLinksProcessor extends EntityBuildProcessorBase implements HtmlAttributesInterface {
+class EntityContextualLinksWrapper extends EntityBuildProcessorBase implements HtmlAttributesInterface {
 
   use HtmlTagTrait;
 

@@ -3,7 +3,7 @@
 namespace Drupal\renderkit;
 
 use Drupal\renderkit\BuildProcessor\ContainerBuildProcessor;
-use Drupal\renderkit\EntityBuildProcessor\EntityContextualLinksProcessor;
+use Drupal\renderkit\EntityBuildProcessor\Wrapper\EntityContextualLinksWrapper;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 /**
@@ -29,10 +29,10 @@ class Renderkit {
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
    * @param string $tagName
    *
-   * @return \Drupal\renderkit\EntityBuildProcessor\EntityContextualLinksProcessor
+   * @return \Drupal\renderkit\EntityBuildProcessor\Wrapper\EntityContextualLinksWrapper
    */
   static function entityContextualLinksWrapper(EntityDisplayInterface $decorated, $tagName = 'article') {
-    return (new EntityContextualLinksProcessor())
+    return (new EntityContextualLinksWrapper())
       ->setTagName($tagName)
       ->decorate($decorated);
   }

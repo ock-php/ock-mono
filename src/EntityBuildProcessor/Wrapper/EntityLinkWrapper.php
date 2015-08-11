@@ -1,7 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\EntityBuildProcessor;
+namespace Drupal\renderkit\EntityBuildProcessor\Wrapper;
 
+use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorBase;
 use Drupal\renderkit\Html\HtmlAttributesInterface;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
 
@@ -14,7 +15,7 @@ use Drupal\renderkit\Html\HtmlAttributesTrait;
  *
  * A typical use case would be to wrap in image into a link element.
  */
-class EntityLinkProcessor extends EntityBuildProcessorBase implements HtmlAttributesInterface {
+class EntityLinkWrapper extends EntityBuildProcessorBase implements HtmlAttributesInterface {
 
   use HtmlAttributesTrait;
 
