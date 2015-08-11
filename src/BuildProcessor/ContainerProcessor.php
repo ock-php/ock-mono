@@ -17,6 +17,6 @@ class ContainerProcessor extends BuildProcessorBase implements HtmlAttributesInt
    *   Render array after the processing.
    */
   function process(array $build) {
-    return $this->buildContainer() + array($build);
+    return $this->buildContainer() + array('content' => $build);
   }
 }
