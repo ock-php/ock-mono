@@ -9,7 +9,15 @@ class EntityImageField extends EntityDisplayBase implements EntityImageInterface
   /**
    * @var string
    */
-  protected $fieldName;
+  private $fieldName;
+
+  /**
+   * @param string $fieldName
+   *   The name of an image field, e.g. 'field_teaser_image'.
+   */
+  function __construct($fieldName) {
+    $this->fieldName = $fieldName;
+  }
 
   /**
    * @param string $entity_type
