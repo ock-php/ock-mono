@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\ImageProcessor;
 
-class ImageStyle extends ImageProcessorBase {
+class ImageStyleImageProcessor extends ImageProcessorBase {
 
   /**
    * @var string
