@@ -32,7 +32,7 @@ assert($titleLinkHtml === '<a href="/node/123">Dolphins smarter than you think?<
 
 The nice thing is that you can build composite entity display handlers (or other types) from smaller components.
 
-Let's start with a simple [EntityImageField](src/EntityImage/EntityImageField.php), that builds an image render array from the entity based on an image field. (Omitting all the namespace use statements).
+Let's start with a simple [EntityImageField](src/EntityImage/EntityImageField.php), that builds an image render array from the entity based on an image field (using only the first field item in the image field).
 
 ```php
 $imageDisplay = new EntityImageField('field_teaser_image');
