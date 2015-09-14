@@ -2,10 +2,13 @@
 
 namespace Drupal\renderkit\EntityDisplay\Decorator;
 
-use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 
-class NeutralEntityDisplayDecorator extends EntitiesDisplayBase {
+/**
+ * A decorator that does not alter the result from the decorated display.
+ */
+class OptionalEntityDisplayDecorator extends EntitiesDisplayBase {
 
   /**
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
@@ -16,9 +19,12 @@ class NeutralEntityDisplayDecorator extends EntitiesDisplayBase {
    * Sets the decorated entity display.
    *
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
+   *
+   * @return $this
    */
-  function __construct(EntityDisplayInterface $decorated) {
+  function decorate(EntityDisplayInterface $decorated) {
     $this->decorated = $decorated;
+    return $this;
   }
 
   /**

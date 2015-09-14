@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay\Decorator;
 
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\Exception\EntityDisplayRecursionException;
 
 /**
@@ -20,9 +21,11 @@ class RecursionDetectionEntityDisplayDecorator extends NeutralEntityDisplayDecor
   private $recursionLimit;
 
   /**
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
    * @param int $recursionLimit
    */
-  function __construct($recursionLimit = 20) {
+  function __construct(EntityDisplayInterface $decorated, $recursionLimit = 20) {
+    parent::__construct($decorated);
     $this->recursionLimit = $recursionLimit;
   }
 

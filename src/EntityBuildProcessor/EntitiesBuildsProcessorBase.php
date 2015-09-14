@@ -2,13 +2,13 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Drupal\renderkit\EntityDisplay\Decorator\NeutralEntityDisplayDecorator;
+use Drupal\renderkit\EntityDisplay\Decorator\OptionalEntityDisplayDecorator;
 
 /**
  * Base class for entity build processor classes that only want to implement the
  * processOne method.
  */
-abstract class EntitiesBuildsProcessorBase extends NeutralEntityDisplayDecorator implements EntityBuildProcessorInterface {
+abstract class EntitiesBuildsProcessorBase extends OptionalEntityDisplayDecorator implements EntityBuildProcessorInterface {
 
   /**
    * Builds render arrays from the entities provided.

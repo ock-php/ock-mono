@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Drupal\renderkit\EntityDisplay\Decorator\NeutralEntityDisplayDecorator;
+use Drupal\renderkit\EntityDisplay\Decorator\OptionalEntityDisplayDecorator;
 
-abstract class EntityBuildProcessorBase extends NeutralEntityDisplayDecorator implements EntityBuildProcessorInterface {
+abstract class EntityBuildProcessorBase extends OptionalEntityDisplayDecorator implements EntityBuildProcessorInterface {
 
   /**
    * Builds render arrays from the entities provided.
