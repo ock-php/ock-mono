@@ -20,8 +20,6 @@ class RenderkitEntDisP {
    *   E.g. 'h2'.
    *
    * @return \Drupal\renderkit\EntityDisplay\Html\HtmlAttributesEntityDisplayInterface
-   *
-   * @plugin
    */
   static function entityTitleLink($wrapperTagName = NULL) {
     $entityDisplay = new TitleLinkEntityDisplay();
@@ -37,8 +35,6 @@ class RenderkitEntDisP {
    * @param string $wrapperTagName
    *
    * @return \Drupal\renderkit\EntityDisplay\Html\HtmlAttributesEntityDisplayInterface
-   *
-   * @plugin
    */
   static function entityTitle($wrapperTagName = 'h2') {
     return Renderkit::entityContainer(new TitleEntityDisplay(), $wrapperTagName);
