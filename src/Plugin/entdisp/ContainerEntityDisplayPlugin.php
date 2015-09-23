@@ -64,18 +64,6 @@ class ContainerEntityDisplayPlugin implements ConfigurableUniPluginInterface {
 
   /**
    * @param array $conf
-   * @param array $form
-   * @param array $form_state
-   *
-   * @see \views_handler::options_validate()
-   */
-  function settingsFormValidate(array $conf, array &$form, array &$form_state) {
-    // Nothing to validate.
-    // Validation should happen on element level.
-  }
-
-  /**
-   * @param array $conf
    *   Plugin configuration.
    * @param string $pluginLabel
    *   Label from the plugin definition.
