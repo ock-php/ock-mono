@@ -142,3 +142,25 @@ function renderkit_entdisp_info($entity_type) {
 
   return $definitions;
 }
+
+/**
+ * Implements hook_wickedplugin_info()
+ *
+ * @return array
+ */
+function renderkit_wickedplugin_info() {
+  $definitions = array();
+
+  $definitions[\Drupal\renderkit\ListFormat\ListFormatInterface::class] = array(
+    \Drupal\renderkit\Plugin\ListFormat\SeparatorListFormatPlugin::class => array(
+      'label' => t('Separator'),
+      'plugin_class' => \Drupal\renderkit\Plugin\ListFormat\SeparatorListFormatPlugin::class,
+    ),
+    \Drupal\renderkit\Plugin\ListFormat\ItemListLfPlugin::class => array(
+      'label' => t('HTML list'),
+      'plugin_class' => \Drupal\renderkit\Plugin\ListFormat\ItemListLfPlugin::class,
+    ),
+  );
+
+  return $definitions;
+}
