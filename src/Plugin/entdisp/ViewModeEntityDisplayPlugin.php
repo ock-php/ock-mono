@@ -61,6 +61,18 @@ class ViewModeEntityDisplayPlugin implements ConfigurableUniPluginInterface {
 
   /**
    * @param array $conf
+   *   Plugin configuration.
+   * @param string $pluginLabel
+   *   Label from the plugin definition.
+   *
+   * @return string|null
+   */
+  function confGetSummary(array $conf, $pluginLabel) {
+    return NULL;
+  }
+
+  /**
+   * @param array $conf
    *
    * @return null|object
    */
