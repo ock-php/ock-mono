@@ -1,4 +1,10 @@
 <?php
+use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Drupal\renderkit\Plugin\entdisp\ContainerEntityDisplayPlugin;
+use Drupal\renderkit\Plugin\entdisp\RenderkitEntDisP;
+use Drupal\renderkit\Plugin\entdisp\ViewModeEntityDisplayPlugin;
+use Drupal\renderkit\Plugin\ListFormat\ItemListLfPlugin;
+use Drupal\renderkit\Plugin\ListFormat\SeparatorListFormatPlugin;
 
 /**
  * Implements hook_theme()
@@ -117,26 +123,25 @@ function _renderkit_theme_process_element(array &$variables) {
  */
 function renderkit_entdisp_info($entity_type) {
   $definitions = array();
-
   $definitions['entityTitleLink'] = array(
     'label' => 'Title with link',
-    'handler_factory' => array(Drupal\renderkit\Plugin\entdisp\RenderkitEntDisP::class, 'entityTitleLink'),
+    'handler_factory' => array(RenderkitEntDisP::class, 'entityTitleLink'),
   );
 
   $definitions['entityTitle'] = array(
     'label' => 'Title',
-    'handler_factory' => array(Drupal\renderkit\Plugin\entdisp\RenderkitEntDisP::class, 'entityTitle'),
+    'handler_factory' => array(RenderkitEntDisP::class, 'entityTitle'),
   );
 
   $definitions['viewMode'] = array(
     'label' => t('View mode'),
-    'plugin_class' => \Drupal\renderkit\Plugin\entdisp\ViewModeEntityDisplayPlugin::class,
+    'plugin_class' => ViewModeEntityDisplayPlugin::class,
     'plugin_class_arguments' => array($entity_type),
   );
 
   $definitions['container'] = array(
     'label' => t('Container'),
-    'plugin_factory' => array(\Drupal\renderkit\Plugin\entdisp\ContainerEntityDisplayPlugin::class, 'create'),
+    'plugin_factory' => array(ContainerEntityDisplayPlugin::class, 'create'),
     'plugin_factory_arguments' => array($entity_type),
   );
 
@@ -151,14 +156,14 @@ function renderkit_entdisp_info($entity_type) {
 function renderkit_wickedplugin_info() {
   $definitions = array();
 
-  $definitions[\Drupal\renderkit\ListFormat\ListFormatInterface::class] = array(
-    \Drupal\renderkit\Plugin\ListFormat\SeparatorListFormatPlugin::class => array(
+  $definitions[ListFormatInterface::class] = array(
+    SeparatorListFormatPlugin::class => array(
       'label' => t('Separator'),
-      'plugin_class' => \Drupal\renderkit\Plugin\ListFormat\SeparatorListFormatPlugin::class,
+      'plugin_class' => SeparatorListFormatPlugin::class,
     ),
-    \Drupal\renderkit\Plugin\ListFormat\ItemListLfPlugin::class => array(
+    ItemListLfPlugin::class => array(
       'label' => t('HTML list'),
-      'plugin_class' => \Drupal\renderkit\Plugin\ListFormat\ItemListLfPlugin::class,
+      'plugin_class' => ItemListLfPlugin::class,
     ),
   );
 
