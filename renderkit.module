@@ -120,12 +120,12 @@ function renderkit_entdisp_info($entity_type) {
 
   $definitions['entityTitleLink'] = array(
     'label' => 'Title with link',
-    'handler_factory' => 'Drupal\\renderkit\\Plugin\\entdisp\\RenderkitEntDisP::entityTitleLink',
+    'handler_factory' => array(Drupal\renderkit\Plugin\entdisp\RenderkitEntDisP::class, 'entityTitleLink'),
   );
 
   $definitions['entityTitle'] = array(
     'label' => 'Title',
-    'handler_factory' => 'Drupal\\renderkit\\Plugin\\entdisp\\RenderkitEntDisP::entityTitle',
+    'handler_factory' => array(Drupal\renderkit\Plugin\entdisp\RenderkitEntDisP::class, 'entityTitle'),
   );
 
   $definitions['viewMode'] = array(
