@@ -118,23 +118,23 @@ function _renderkit_theme_process_element(array &$variables) {
 function renderkit_entdisp_info($entity_type) {
   $definitions = array();
 
-  $definitions['renderkit.entityTitleLink'] = array(
+  $definitions['entityTitleLink'] = array(
     'label' => 'Title with link',
     'handler_factory' => 'Drupal\\renderkit\\Plugin\\entdisp\\RenderkitEntDisP::entityTitleLink',
   );
 
-  $definitions['renderkit.entityTitle'] = array(
+  $definitions['entityTitle'] = array(
     'label' => 'Title',
     'handler_factory' => 'Drupal\\renderkit\\Plugin\\entdisp\\RenderkitEntDisP::entityTitle',
   );
 
-  $definitions['renderkit.view_mode'] = array(
+  $definitions['viewMode'] = array(
     'label' => t('View mode'),
     'plugin_class' => \Drupal\renderkit\Plugin\entdisp\ViewModeEntityDisplayPlugin::class,
     'plugin_class_arguments' => array($entity_type),
   );
 
-  $definitions['renderkit.container'] = array(
+  $definitions['container'] = array(
     'label' => t('Container'),
     'plugin_factory' => array(\Drupal\renderkit\Plugin\entdisp\ContainerEntityDisplayPlugin::class, 'create'),
     'plugin_factory_arguments' => array($entity_type),
