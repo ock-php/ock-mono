@@ -30,19 +30,6 @@ class SeparatorListFormatPlugin implements ConfigurableUniPluginInterface {
   }
 
   /**
-   * Validation callback for the settings form.
-   *
-   * @param array $conf
-   * @param array $form
-   * @param array $form_state
-   *
-   * @see \views_handler::options_validate()
-   */
-  function settingsFormValidate(array $conf, array &$form, array &$form_state) {
-    // @todo XSS validation?
-  }
-
-  /**
    * @param array $conf
    *   Plugin configuration.
    * @param string $pluginLabel

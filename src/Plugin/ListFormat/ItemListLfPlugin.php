@@ -38,19 +38,6 @@ class ItemListLfPlugin implements ConfigurableUniPluginInterface {
   }
 
   /**
-   * Validation callback for the settings form.
-   *
-   * @param array $conf
-   * @param array $form
-   * @param array $form_state
-   *
-   * @see \views_handler::options_validate()
-   */
-  function settingsFormValidate(array $conf, array &$form, array &$form_state) {
-    // Nothing to validate..
-  }
-
-  /**
    * Gets a handler object that does the business logic.
    *
    * @param array $configuration
