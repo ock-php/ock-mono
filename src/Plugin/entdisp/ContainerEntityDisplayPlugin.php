@@ -56,7 +56,7 @@ class ContainerEntityDisplayPlugin implements ConfigurableUniPluginInterface {
     $form['decorated'] = array(
       '#title' => t('Child display plugin'),
       '#type' => UIKIT_ELEMENT_TYPE,
-      '#uikit_element_object' => $this->entdispManager->getUikitElementType(),
+      UIKIT_K_TYPE_OBJECT => $this->entdispManager->getUikitElementType(),
       '#default_value' => isset($conf['decorated']) ? $conf['decorated'] : array(),
     );
     return $form;
