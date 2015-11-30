@@ -1,7 +1,5 @@
 <?php
 
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit\FieldFormatter\FieldDisplayDefinitionInterface;
 use Drupal\renderkit\FormUtil;
 use Drupal\renderkit\UniPlugin\EntityDisplay\ContainerEntityDisplayPlugin;
 use Drupal\renderkit\UniPlugin\EntityDisplay\RenderkitEntDisP;
