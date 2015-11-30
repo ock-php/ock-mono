@@ -1,15 +1,17 @@
 <?php
 
-namespace Drupal\renderkit\Plugin\entdisp;
+namespace Drupal\renderkit\UniPlugin\EntityDisplay;
 
-use Drupal\entdisp\Manager\EntdispPluginManagerInterface;
+use Drupal\entdisp\Manager\EntdispManagerInterface;
 use Drupal\renderkit\BuildProcessor\ContainerBuildProcessor;
-use Drupal\uniplugin\UniPlugin\ConfigurableUniPluginInterface;
+use Drupal\renderkit\EntityDisplay\Decorator\BuildProcessedEntityDisplay;
 
-class ContainerEntityDisplayPlugin implements ConfigurableUniPluginInterface {
+use Drupal\uniplugin\UniPlugin\Configurable\ConfigurableUniPluginBase;
+
+class ContainerEntityDisplayPlugin extends ConfigurableUniPluginBase {
 
   /**
-   * @var \Drupal\entdisp\Manager\EntdispPluginManagerInterface
+   * @var \Drupal\entdisp\Manager\EntdispManagerInterface
    */
   private $entdispManager;
 
@@ -19,16 +21,15 @@ class ContainerEntityDisplayPlugin implements ConfigurableUniPluginInterface {
    * @return static
    */
   static function create($entityType) {
-    return new static(entdisp()->etGetManager($entityType));
+    return new static(entdisp()->etGetDisplayManager($entityType));
   }
 
   /**
    * ContainerEntityDisplayPlugin constructor.
    *
-   * @param \Drupal\entdisp\Manager\EntdispPluginManagerInterface $entdispManager
-   *   Entity display plugin manager for the container contents entity display.
+   * @param \Drupal\entdisp\Manager\EntdispManagerInterface $entdispManager
    */
-  function __construct(EntdispPluginManagerInterface $entdispManager) {
+  function __construct(EntdispManagerInterface $entdispManager) {
     $this->entdispManager = $entdispManager;
   }
 
@@ -36,10 +37,9 @@ class ContainerEntityDisplayPlugin implements ConfigurableUniPluginInterface {
    * @param array $conf
    *
    * @return array
-   *
    * @see \views_handler::options_form()
    */
-  function settingsForm(array $conf) {
+  function confGetForm(array $conf) {
     $form['tag_name'] = array(
       '#title' => t('Tag name'),
       '#type' => 'textfield',
@@ -53,13 +53,8 @@ class ContainerEntityDisplayPlugin implements ConfigurableUniPluginInterface {
       '#default_value' => isset($conf['classes']) ? $conf['classes'] : '',
       // @todo Add validation for classes.
     );
-    $form['decorated'] = array(
-      '#title' => t('Child display plugin'),
-      '#type' => UIKIT_ELEMENT_TYPE,
-      UIKIT_K_TYPE_OBJECT => $this->entdispManager->getUikitElementType(),
-      '#default_value' => isset($conf['decorated']) ? $conf['decorated'] : array(),
-    );
-    return $form;
+    $form['decorated'] = $this->entdispManager->confGetForm($conf['decorated']);
+    $form['decorated']['#title'] = t('Child display plugin');
   }
 
   /**
@@ -70,7 +65,7 @@ class ContainerEntityDisplayPlugin implements ConfigurableUniPluginInterface {
    *
    * @return string|null
    */
-  function confGetSummary(array $conf, $pluginLabel) {
+  function confGetSummary(array $conf, $pluginLabel = NULL) {
     return NULL;
   }
 
@@ -81,7 +76,7 @@ class ContainerEntityDisplayPlugin implements ConfigurableUniPluginInterface {
    */
   function confGetHandler(array $configuration = NULL) {
     $configuration += array('decorated' => array());
-    $decorated = $this->entdispManager->settingsGetEntityDisplay($configuration['decorated']);
+    $decorated = $this->entdispManager->confGetEntityDisplay($configuration['decorated']);
     $container = new ContainerBuildProcessor();
     if (!empty($configuration['tag_name'])) {
       // @todo Sanitize tag name.
@@ -91,6 +86,6 @@ class ContainerEntityDisplayPlugin implements ConfigurableUniPluginInterface {
       // @todo Sanitize classes.
       $container->addClasses(explode(' ', $configuration['classes']));
     }
-    return $container->decorate($decorated);
+    return BuildProcessedEntityDisplay::create($decorated, $container);
   }
 }

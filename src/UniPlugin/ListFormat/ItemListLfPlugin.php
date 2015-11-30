@@ -1,11 +1,17 @@
 <?php
 
-namespace Drupal\renderkit\Plugin\ListFormat;
+namespace Drupal\renderkit\UniPlugin\ListFormat;
 
 use Drupal\renderkit\ListFormat\ItemListFormat;
-use Drupal\uniplugin\UniPlugin\ConfigurableUniPluginInterface;
+use Drupal\uniplugin\UniPlugin\Configurable\ConfigurableUniPluginBase;
 
-class ItemListLfPlugin implements ConfigurableUniPluginInterface {
+/**
+ * @UniPlugin(
+ *   id = "html_list",
+ *   label = @Translate("HTML list")
+ * )
+ */
+class ItemListLfPlugin extends ConfigurableUniPluginBase {
 
   /**
    * Builds a settings form for the plugin configuration.
@@ -14,10 +20,9 @@ class ItemListLfPlugin implements ConfigurableUniPluginInterface {
    *   Current configuration. Will be empty if not configured yet.
    *
    * @return array
-   *
    * @see \views_handler::options_form()
    */
-  function settingsForm(array $conf) {
+  function confGetForm(array $conf) {
     $form = array();
     $form['tag_name'] = array(
       '#type' => 'radios',
@@ -38,13 +43,25 @@ class ItemListLfPlugin implements ConfigurableUniPluginInterface {
   }
 
   /**
+   * @param array $conf
+   *   Plugin configuration.
+   * @param string $pluginLabel
+   *   Label from the plugin definition.
+   *
+   * @return string|null
+   */
+  function confGetSummary(array $conf, $pluginLabel = NULL) {
+    return NULL;
+  }
+
+  /**
    * Gets a handler object that does the business logic.
    *
    * @param array $configuration
    *   Configuration for the handler object creation, if this plugin is
    *   configurable.
    *
-   * @return object|null
+   * @return \Drupal\renderkit\ListFormat\ListFormatInterface|null
    *   The handler object, or NULL.
    *   Plugins should return handlers of a specific type, but they are not
    *   technically required to do this. This is why an additional check should
@@ -66,17 +83,5 @@ class ItemListLfPlugin implements ConfigurableUniPluginInterface {
     }
 
     return $listFormat;
-  }
-
-  /**
-   * @param array $conf
-   *   Plugin configuration.
-   * @param string $pluginLabel
-   *   Label from the plugin definition.
-   *
-   * @return string|null
-   */
-  function confGetSummary(array $conf, $pluginLabel) {
-    return NULL;
   }
 }

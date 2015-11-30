@@ -7,6 +7,8 @@ use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 
 /**
  * A decorator that does not alter the result from the decorated display.
+ *
+ * @deprecated
  */
 class OptionalEntityDisplayDecorator extends EntitiesDisplayBase {
 

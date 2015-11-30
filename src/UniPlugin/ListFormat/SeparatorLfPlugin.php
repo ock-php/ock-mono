@@ -1,11 +1,17 @@
 <?php
 
-namespace Drupal\renderkit\Plugin\ListFormat;
+namespace Drupal\renderkit\UniPlugin\ListFormat;
 
 use Drupal\renderkit\ListFormat\SeparatorListFormat;
-use Drupal\uniplugin\UniPlugin\ConfigurableUniPluginInterface;
+use Drupal\uniplugin\UniPlugin\Configurable\ConfigurableUniPluginBase;
 
-class SeparatorListFormatPlugin implements ConfigurableUniPluginInterface {
+/**
+ * @UniPlugin(
+ *   id = "separator",
+ *   label = "Separator"
+ * )
+ */
+class SeparatorLfPlugin extends ConfigurableUniPluginBase {
 
   /**
    * Builds a settings form for the plugin configuration.
@@ -14,10 +20,9 @@ class SeparatorListFormatPlugin implements ConfigurableUniPluginInterface {
    *   Current configuration. Will be empty if not configured yet.
    *
    * @return array
-   *
    * @see \views_handler::options_form()
    */
-  function settingsForm(array $conf) {
+  function confGetForm(array $conf) {
     $form = array();
     $form['separator'] = array(
       '#title' => t('Separator'),
@@ -37,7 +42,7 @@ class SeparatorListFormatPlugin implements ConfigurableUniPluginInterface {
    *
    * @return string|null
    */
-  function confGetSummary(array $conf, $pluginLabel) {
+  function confGetSummary(array $conf, $pluginLabel = NULL) {
     return NULL;
   }
 

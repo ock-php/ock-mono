@@ -1,0 +1,42 @@
+<?php
+
+namespace Drupal\renderkit\EntityBuildProcessor;
+
+use Drupal\renderkit\EntityDisplay\Decorator\OptionalEntityDisplayDecorator;
+
+/**
+ * Base class for entity build processor classes that only want to implement the
+ * processOne method.
+ *
+ * @deprecated
+ */
+abstract class EntitiesBuildsProcessorDecoratorBase extends OptionalEntityDisplayDecorator implements EntityBuildProcessorInterface {
+
+  use EntitiesBuildsProcessorTrait;
+
+  /**
+   * Builds render arrays from the entities provided.
+   *
+   * Both the entities and the resulting render arrays are in plural, to allow
+   * for more performant implementations.
+   *
+   * Array keys and their order must be preserved, although implementations
+   * might remove some keys that are empty.
+   *
+   * @param string $entity_type
+   *   E.g. 'node' or 'taxonomy_term'.
+   * @param object[] $entities
+   *   Entity objects for which to build the render arrays.
+   *   The array keys can be anything, they don't need to be the entity ids.
+   *
+   * @return array[]
+   *   An array of render arrays, keyed by the original array keys of $entities.
+   */
+  final function buildEntities($entity_type, array $entities) {
+    $builds = parent::buildEntities($entity_type, $entities);
+    return !empty($builds)
+      ? $this->processEntitiesBuilds($builds, $entity_type, $entities)
+      : array();
+  }
+
+}

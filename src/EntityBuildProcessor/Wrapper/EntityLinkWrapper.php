@@ -14,6 +14,11 @@ use Drupal\renderkit\Html\HtmlAttributesTrait;
  * the attributes of the link element.
  *
  * A typical use case would be to wrap in image into a link element.
+ *
+ * @UniPlugin(
+ *   id = "entityLinkWrapper",
+ *   label = @Translate("Entity link wrapper")
+ * )
  */
 class EntityLinkWrapper extends EntityBuildProcessorBase implements HtmlAttributesInterface {
 

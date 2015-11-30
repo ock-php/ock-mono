@@ -6,7 +6,7 @@ namespace Drupal\renderkit\ImageProcessor;
  * Responsive <img/> element with "srcset" and "sizes" attributes, based on
  * image styles.
  */
-class ResponsiveImageProcessor extends ImageProcessorBase {
+class ResponsiveImageProcessor implements ImageProcessorInterface {
 
   /**
    * The image style name to use for the src attribute itself.

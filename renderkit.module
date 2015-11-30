@@ -1,10 +1,11 @@
 <?php
-use Drupal\renderkit\ListFormat\ListFormatInterface;
-use Drupal\renderkit\Plugin\entdisp\ContainerEntityDisplayPlugin;
-use Drupal\renderkit\Plugin\entdisp\RenderkitEntDisP;
-use Drupal\renderkit\Plugin\entdisp\ViewModeEntityDisplayPlugin;
-use Drupal\renderkit\Plugin\ListFormat\ItemListLfPlugin;
-use Drupal\renderkit\Plugin\ListFormat\SeparatorListFormatPlugin;
+
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\FieldFormatter\FieldDisplayDefinitionInterface;
+use Drupal\renderkit\FormUtil;
+use Drupal\renderkit\UniPlugin\EntityDisplay\ContainerEntityDisplayPlugin;
+use Drupal\renderkit\UniPlugin\EntityDisplay\RenderkitEntDisP;
+use Drupal\renderkit\UniPlugin\EntityDisplay\ViewModeEntityDisplayPlugin;
 
 /**
  * Implements hook_theme()
@@ -149,23 +150,37 @@ function renderkit_entdisp_info($entity_type) {
 }
 
 /**
- * Implements hook_wickedplugin_info()
+ * Implements hook_uniplugin_info()
  *
  * @return array
  */
-function renderkit_wickedplugin_info() {
-  $definitions = array();
+function renderkit_uniplugin_info() {
+  if (!function_exists('uniplugindiscovery')) {
+    return array();
+  }
+  return uniplugindiscovery()->discoverByInterface(__DIR__ . '/src', 'Drupal\renderkit');
+}
 
-  $definitions[ListFormatInterface::class] = array(
-    SeparatorListFormatPlugin::class => array(
-      'label' => t('Separator'),
-      'plugin_class' => SeparatorListFormatPlugin::class,
-    ),
-    ItemListLfPlugin::class => array(
-      'label' => t('HTML list'),
-      'plugin_class' => ItemListLfPlugin::class,
-    ),
-  );
+/**
+ * @param array $form
+ * @param array $form_state
+ *
+ * @return array
+ *
+ * @see \Drupal\renderkit\FormUtil::elementsBuildDependency()
+ */
+function _renderkit_depended_element_ajax_callback(array $form, array &$form_state) {
+  return $form_state['triggering_element']['#depending_element_reference'];
+}
 
-  return $definitions;
+/**
+ * @param array $element
+ * @param array $form_state
+ * @param array $form
+ *
+ * @return array
+ */
+function _renderkit_process_element_dependency(array $element, array &$form_state, array &$form) {
+  FormUtil::elementsBuildDependency($element, $form, $form_state);
+  return $element;
 }

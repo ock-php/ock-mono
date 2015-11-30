@@ -5,6 +5,9 @@ namespace Drupal\renderkit\BuildProcessor;
 
 use Drupal\renderkit\EntityDisplay\Decorator\OptionalEntityDisplayDecorator;
 
+/**
+ * @deprecated
+ */
 abstract class BuildProcessorBase extends OptionalEntityDisplayDecorator implements BuildProcessorInterface {
 
   /**

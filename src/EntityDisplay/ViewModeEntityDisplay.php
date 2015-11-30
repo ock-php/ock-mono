@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Drupal\renderkit\EntityUtil;
+
 class ViewModeEntityDisplay extends EntitiesDisplayBase {
 
   /**
@@ -35,13 +37,13 @@ class ViewModeEntityDisplay extends EntitiesDisplayBase {
     $builds_by_type = entity_view($entity_type, $entities, $this->viewMode);
     $builds_by_etid = $builds_by_type[$entity_type];
     $builds_by_delta = array();
-    foreach ($entities as $delta => $entity) {
-      $etid = entity_id($entity_type, $entity);
-      if (!isset($builds_by_etid[$etid])) {
-        continue;
+
+    foreach (EntityUtil::entitiesGetIds($entity_type, $entities) as $delta => $etid) {
+      if (isset($builds_by_etid[$etid])) {
+        $builds_by_delta[$delta] = $builds_by_etid[$etid];
       }
-      $builds_by_delta[$delta] = $builds_by_etid[$etid];
     }
+
     return $builds_by_delta;
   }
 }

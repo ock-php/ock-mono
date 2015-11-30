@@ -2,7 +2,15 @@
 
 namespace Drupal\renderkit\EntityToEntities;
 
+/**
+ * Represents a one-to-many relation between entities.
+ */
 interface EntityToEntitiesInterface {
+
+  /**
+   * @return string
+   */
+  function getTargetEntityType();
 
   /**
    * @param string $entityType

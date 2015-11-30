@@ -27,12 +27,12 @@ class EntityTypeDisplaySwitcher extends EntitiesDisplayBase {
    * Sets a fallback entity display handler to use for entity types where no
    * specific handler is configured.
    *
-   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $fallbackDisplay
    *
    * @return $this
    */
-  function setFallbackDisplay(EntityDisplayInterface $decorated) {
-    $this->fallbackDisplay = $decorated;
+  function setFallbackDisplay(EntityDisplayInterface $fallbackDisplay) {
+    $this->fallbackDisplay = $fallbackDisplay;
     return $this;
   }
 

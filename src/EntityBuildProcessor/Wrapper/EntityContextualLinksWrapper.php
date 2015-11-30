@@ -3,11 +3,17 @@
 namespace Drupal\renderkit\EntityBuildProcessor\Wrapper;
 
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorBase;
+
 use Drupal\renderkit\Html\HtmlAttributesInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
 
 /**
  * A typical entity container with contextual links and stuff.
+ *
+ * @UniPlugin(
+ *   id = "contextualLinksWrapper",
+ *   label = "Entity contextual links wrapper"
+ * )
  */
 class EntityContextualLinksWrapper extends EntityBuildProcessorBase implements HtmlAttributesInterface {
 

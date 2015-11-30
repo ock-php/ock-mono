@@ -1,11 +1,17 @@
 <?php
 
-namespace Drupal\renderkit\Plugin\entdisp;
+namespace Drupal\renderkit\UniPlugin\EntityDisplay;
 
 use Drupal\renderkit\EntityDisplay\ViewModeEntityDisplay;
-use Drupal\uniplugin\UniPlugin\ConfigurableUniPluginInterface;
+use Drupal\uniplugin\UniPlugin\Configurable\ConfigurableUniPluginBase;
 
-class ViewModeEntityDisplayPlugin implements ConfigurableUniPluginInterface {
+/**
+ * @UniPlugin(
+ *   id = "viewMode",
+ *   label = @Translate("View mode")
+ * )
+ */
+class ViewModeEntityDisplayPlugin extends ConfigurableUniPluginBase {
 
   /**
    * @var string
@@ -23,11 +29,10 @@ class ViewModeEntityDisplayPlugin implements ConfigurableUniPluginInterface {
    * @param array $conf
    *
    * @return array
-   *
    * @see \entity_views_handler_field_entity::options_form()
    * @see \entity_views_plugin_row_entity_view::options_form()
    */
-  function settingsForm(array $conf) {
+  function confGetForm(array $conf) {
 
     $entity_info = entity_get_info($this->entityType);
     $options = array();
@@ -43,7 +48,9 @@ class ViewModeEntityDisplayPlugin implements ConfigurableUniPluginInterface {
       // @todo Fetch the correct view modes depending on the entity type.
       // This requires that the entity type is known.
       '#options' => $options,
-      '#default_value' => $conf['view_mode'],
+      '#default_value' => isset($conf['view_mode'])
+        ? $conf['view_mode']
+        : array(),
     );
     return $form;
   }
@@ -56,14 +63,14 @@ class ViewModeEntityDisplayPlugin implements ConfigurableUniPluginInterface {
    *
    * @return string|null
    */
-  function confGetSummary(array $conf, $pluginLabel) {
+  function confGetSummary(array $conf, $pluginLabel = NULL) {
     return NULL;
   }
 
   /**
    * @param array $conf
    *
-   * @return null|object
+   * @return null|\Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   function confGetHandler(array $conf = NULL) {
     return isset($conf['view_mode'])

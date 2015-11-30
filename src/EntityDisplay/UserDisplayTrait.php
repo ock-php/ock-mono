@@ -2,7 +2,20 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-abstract class UserDisplayBase extends EntitiesDisplayBase {
+trait UserDisplayTrait {
+
+  /**
+   * @param string $entity_type
+   * @param object $entity
+   *
+   * @return array
+   */
+  final function buildEntity($entity_type, $entity) {
+    if ('user' !== $entity_type) {
+      return array();
+    }
+    return $this->buildUser($entity);
+  }
 
   /**
    * @param string $entity_type
@@ -12,7 +25,7 @@ abstract class UserDisplayBase extends EntitiesDisplayBase {
    *   An array of render arrays, keyed by the original array keys of $entities.
    * @throws \Exception
    */
-  function buildEntities($entity_type, array $users) {
+  final function buildEntities($entity_type, array $users) {
     if ('user' !== $entity_type) {
       return array();
     }

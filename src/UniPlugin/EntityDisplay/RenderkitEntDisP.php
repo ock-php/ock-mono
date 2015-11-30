@@ -1,9 +1,10 @@
 <?php
 
-namespace Drupal\renderkit\Plugin\entdisp;
+namespace Drupal\renderkit\UniPlugin\EntityDisplay;
 
 use Drupal\renderkit\EntityDisplay\TitleEntityDisplay;
 use Drupal\renderkit\EntityDisplay\TitleLinkEntityDisplay;
+
 use Drupal\renderkit\Renderkit;
 
 /**

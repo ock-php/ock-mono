@@ -57,7 +57,7 @@ class EntityTypeFieldDisplayHelper {
    *
    * @return static
    */
-  static function create($entityType, $fieldName, $display, $langcode) {
+  static function create($entityType, $fieldName, array $display, $langcode) {
     $entityTypeInfo = entity_get_info($entityType);
     if (empty($entityTypeInfo['entity keys']['id'])) {
       return NULL;

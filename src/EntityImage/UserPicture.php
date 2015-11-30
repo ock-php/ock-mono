@@ -2,12 +2,29 @@
 
 namespace Drupal\renderkit\EntityImage;
 
-use Drupal\renderkit\EntityDisplay\UserDisplayBase;
+use Drupal\renderkit\EntityDisplay\UserDisplayTrait;
 
 /**
  * Image provider based on user picture.
  */
-class UserPicture extends UserDisplayBase implements EntityImageInterface {
+class UserPicture implements EntityImageInterface {
+
+  use UserDisplayTrait;
+
+  /**
+   * @UniPlugin(
+   *   id = "user_picture",
+   *   label = @Translate("User picture")
+   * )
+   *
+   * @param string $entityType
+   *
+   * @return bool
+   *   TRUE, if a plugin can be made from this class.
+   */
+  static function pluginExists($entityType = NULL) {
+    return NULL === $entityType || 'user' === $entityType;
+  }
 
   /**
    * @param object $user

@@ -2,6 +2,9 @@
 
 namespace Drupal\renderkit\EntityToEntity;
 
+/**
+ * Entity-to-entity relation based on a single-value entity reference field.
+ */
 class MonoEntityReferenceField extends EntityToEntityBase {
 
   /**
@@ -41,5 +44,14 @@ class MonoEntityReferenceField extends EntityToEntityBase {
       // @todo Load the target entity.
     }
     return NULL;
+  }
+
+  /**
+   * Gets the entity type of the referenced entities.
+   *
+   * @return string
+   */
+  function getTargetType() {
+    // TODO: Implement getTargetType() method.
   }
 }

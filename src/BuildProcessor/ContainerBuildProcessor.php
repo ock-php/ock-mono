@@ -5,7 +5,7 @@ namespace Drupal\renderkit\BuildProcessor;
 use Drupal\renderkit\Html\HtmlAttributesInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
 
-class ContainerBuildProcessor extends BuildProcessorBase implements HtmlAttributesInterface {
+class ContainerBuildProcessor implements HtmlAttributesInterface, BuildProcessorInterface {
 
   use HtmlTagTrait;
 

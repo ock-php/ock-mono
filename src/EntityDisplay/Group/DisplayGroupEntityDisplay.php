@@ -4,6 +4,10 @@ namespace Drupal\renderkit\EntityDisplay\Group;
 
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
+use Drupal\valconfapi\Callback\Impl\ClassConstructionCallback;
+
+use Drupal\uniplugin\UniPlugin\ArgumentHandler\TypedArrayArgumentHandler;
+use Drupal\uniplugin\UniPlugin\Configurable\HandlerFactoryConfigurableUniPlugin;
 
 /**
  * A group of entity display handlers, whose results are assembled into a single
@@ -15,15 +19,32 @@ use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 class DisplayGroupEntityDisplay extends EntitiesDisplayBase {
 
   /**
-   * @var EntityDisplayInterface[]
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
    */
   protected $displayHandlers;
 
   /**
-   * @param EntityDisplayInterface[] $displayHandlers
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $displayHandlers
    */
   function __construct(array $displayHandlers) {
     $this->displayHandlers = $displayHandlers;
+  }
+
+  /**
+   * @UniPlugin(
+   *   id = "group",
+   *   label = "Group of entity displays"
+   * )
+   *
+   * @return \Drupal\uniplugin\UniPlugin\UniPluginInterface
+   */
+  static function createPlugin() {
+    $handlerFactory = ClassConstructionCallback::createFromClassName(__CLASS__);
+    $itemArgumentHandler = uniplugin()->interfaceLabelGetOptionHandler(EntityDisplayInterface::class, t('Entity display plugin'));
+    $argumentHandlers = array(
+      'displayHandlers' => new TypedArrayArgumentHandler($itemArgumentHandler, t('Entity displays')),
+    );
+    return new HandlerFactoryConfigurableUniPlugin($handlerFactory, $argumentHandlers, array());
   }
 
   /**

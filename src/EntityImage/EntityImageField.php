@@ -2,14 +2,40 @@
 
 namespace Drupal\renderkit\EntityImage;
 
-use Drupal\renderkit\EntityDisplay\EntityDisplayBase;
+use Drupal\renderkit\EntityDisplay\EntityDisplayBaseTrait;
+use Drupal\valconfapi\Callback\Impl\ClassConstructionCallback;
+use Drupal\uniplugin\UniPlugin\Configurable\HandlerFactoryConfigurableUniPlugin;
+use Drupal\uniplugin\UniPlugin\ArgumentHandler\FieldSelectorArgumentHandler;
 
-class EntityImageField extends EntityDisplayBase implements EntityImageInterface {
+class EntityImageField implements EntityImageInterface {
+
+  use EntityDisplayBaseTrait;
 
   /**
    * @var string
    */
   private $fieldName;
+
+  /**
+   * @UniPlugin(
+   *   id = "entityImageField",
+   *   label = "Entity image field"
+   * )
+   *
+   * @param string $entityType
+   *   (optional) Contextual parameter.
+   * @param string $bundleName
+   *   (optional) Contextual parameter.
+   *
+   * @return \Drupal\uniplugin\UniPlugin\UniPluginInterface
+   */
+  static function createPlugin($entityType = NULL, $bundleName = NULL) {
+    $handlerFactory = ClassConstructionCallback::createFromClassName(__CLASS__);
+    $argumentHandlers = array(
+      'fieldName' => new FieldSelectorArgumentHandler(array('image'), $entityType, $bundleName),
+    );
+    return new HandlerFactoryConfigurableUniPlugin($handlerFactory, $argumentHandlers, array());
+  }
 
   /**
    * @param string $fieldName

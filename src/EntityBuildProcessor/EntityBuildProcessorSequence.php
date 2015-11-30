@@ -7,8 +7,10 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 /**
  * An entity display decorator that runs the render array through a bunch of
  * processors.
+ *
+ * @todo Remove the optional decorator stuff?
  */
-class EntityBuildProcessorSequence extends EntitiesBuildsProcessorBase {
+class EntityBuildProcessorSequence extends EntitiesBuildsProcessorDecoratorBase {
 
   /**
    * @var object[]
