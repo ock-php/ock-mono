@@ -72,7 +72,7 @@ class ViewModeEntityDisplayPlugin extends ConfigurableUniPluginBase {
    *
    * @return null|\Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
-  function confGetHandler(array $conf = NULL) {
+  function confGetHandler(array $conf) {
     return isset($conf['view_mode'])
       ? new ViewModeEntityDisplay($conf['view_mode'])
       : NULL;

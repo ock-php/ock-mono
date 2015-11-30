@@ -109,7 +109,7 @@ class FieldPlugin extends ConfigurableUniPluginBase {
    *
    * @see \Drupal\uniplugin\Handler\BrokenUniHandlerInterface
    */
-  function confGetHandler(array $conf = NULL) {
+  function confGetHandler(array $conf) {
     $conf += array('formatter' => array());
     $displayDefinition = $this->formatterHandlerMap->confGetHandler($conf['formatter']);
     if (!$displayDefinition instanceof FieldDisplayDefinitionInterface) {

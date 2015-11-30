@@ -97,7 +97,7 @@ class FieldFormatterSettingsEntityDisplayPlugin extends ConfigurableUniPluginBas
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayPlugin
    */
-  function confGetHandler(array $conf = NULL) {
+  function confGetHandler(array $conf) {
     $formatterSettings = $this->confGetFormatterSettings($conf);
     $display = array(
       'type' => $this->formatterType,

@@ -128,7 +128,7 @@ class FormatterPlugin extends ConfigurableUniPluginBase {
    *
    * @see \Drupal\uniplugin\Handler\BrokenUniHandlerInterface
    */
-  function confGetHandler(array $conf = NULL) {
+  function confGetHandler(array $conf) {
     $settings = $this->confGetFormatterSettings($conf);
     return FieldDisplayDefinition::create($this->formatterType, $settings);
   }

@@ -233,7 +233,7 @@ class DefaultFieldFormatterPlugin extends ConfigurableUniPluginBase {
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
-  function confGetHandler(array $conf = NULL) {
+  function confGetHandler(array $conf) {
     // TODO: Implement confGetHandler() method.
   }
 

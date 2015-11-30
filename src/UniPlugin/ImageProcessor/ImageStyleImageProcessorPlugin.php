@@ -72,7 +72,7 @@ class ImageStyleImageProcessorPlugin extends ConfigurableUniPluginBase {
    *
    * @throws \Exception
    */
-  function confGetHandler(array $conf = NULL) {
+  function confGetHandler(array $conf) {
     return isset($conf['style_name'])
       ? new ImageStyleImageProcessor($conf['style_name'])
       : new NeutralImageProcessor();

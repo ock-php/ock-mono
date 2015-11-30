@@ -69,7 +69,7 @@ class ItemListLfPlugin extends ConfigurableUniPluginBase {
    *
    * @throws \Exception
    */
-  function confGetHandler(array $conf = NULL) {
+  function confGetHandler(array $conf) {
 
     $tagName = isset($conf['tag_name']) && 'ol' === $conf['tag_name']
       ? 'ol'
