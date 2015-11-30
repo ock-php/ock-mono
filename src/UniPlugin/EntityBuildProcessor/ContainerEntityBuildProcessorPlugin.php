@@ -51,20 +51,20 @@ class ContainerEntityBuildProcessorPlugin extends ConfigurableUniPluginBase {
   }
 
   /**
-   * @param array $configuration
+   * @param array $conf
    *
    * @return \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
    */
-  function confGetHandler(array $configuration = NULL) {
-    $configuration += array('decorated' => array());
+  function confGetHandler(array $conf = NULL) {
+    $conf += array('decorated' => array());
     $container = new ContainerBuildProcessor();
-    if (!empty($configuration['tag_name'])) {
+    if (!empty($conf['tag_name'])) {
       // @todo Sanitize tag name.
-      $container->setTagName($configuration['tag_name']);
+      $container->setTagName($conf['tag_name']);
     }
-    if (!empty($configuration['classes'])) {
+    if (!empty($conf['classes'])) {
       // @todo Sanitize classes.
-      $container->addClasses(explode(' ', $configuration['classes']));
+      $container->addClasses(explode(' ', $conf['classes']));
     }
     return $container;
   }

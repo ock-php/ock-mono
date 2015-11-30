@@ -57,7 +57,7 @@ class ItemListLfPlugin extends ConfigurableUniPluginBase {
   /**
    * Gets a handler object that does the business logic.
    *
-   * @param array $configuration
+   * @param array $conf
    *   Configuration for the handler object creation, if this plugin is
    *   configurable.
    *
@@ -69,16 +69,16 @@ class ItemListLfPlugin extends ConfigurableUniPluginBase {
    *
    * @throws \Exception
    */
-  function confGetHandler(array $configuration = NULL) {
+  function confGetHandler(array $conf = NULL) {
 
-    $tagName = isset($configuration['tag_name']) && 'ol' === $configuration['tag_name']
+    $tagName = isset($conf['tag_name']) && 'ol' === $conf['tag_name']
       ? 'ol'
       : 'ul';
 
     $listFormat = new ItemListFormat($tagName);
 
-    if (!empty($configuration['classes'])) {
-      $classes = array_unique(array_filter(explode(' ', $configuration['classes'])));
+    if (!empty($conf['classes'])) {
+      $classes = array_unique(array_filter(explode(' ', $conf['classes'])));
       $listFormat->addClasses(explode(' ', $classes));
     }
 

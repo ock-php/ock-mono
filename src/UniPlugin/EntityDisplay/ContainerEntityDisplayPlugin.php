@@ -70,21 +70,21 @@ class ContainerEntityDisplayPlugin extends ConfigurableUniPluginBase {
   }
 
   /**
-   * @param array $configuration
+   * @param array $conf
    *
    * @return object|null
    */
-  function confGetHandler(array $configuration = NULL) {
-    $configuration += array('decorated' => array());
-    $decorated = $this->entdispManager->confGetEntityDisplay($configuration['decorated']);
+  function confGetHandler(array $conf = NULL) {
+    $conf += array('decorated' => array());
+    $decorated = $this->entdispManager->confGetEntityDisplay($conf['decorated']);
     $container = new ContainerBuildProcessor();
-    if (!empty($configuration['tag_name'])) {
+    if (!empty($conf['tag_name'])) {
       // @todo Sanitize tag name.
-      $container->setTagName($configuration['tag_name']);
+      $container->setTagName($conf['tag_name']);
     }
-    if (!empty($configuration['classes'])) {
+    if (!empty($conf['classes'])) {
       // @todo Sanitize classes.
-      $container->addClasses(explode(' ', $configuration['classes']));
+      $container->addClasses(explode(' ', $conf['classes']));
     }
     return BuildProcessedEntityDisplay::create($decorated, $container);
   }

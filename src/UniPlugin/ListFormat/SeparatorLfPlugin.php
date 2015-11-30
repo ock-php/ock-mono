@@ -49,7 +49,7 @@ class SeparatorLfPlugin extends ConfigurableUniPluginBase {
   /**
    * Gets a handler object that does the business logic.
    *
-   * @param array $configuration
+   * @param array $conf
    *   Configuration for the handler object creation, if this plugin is
    *   configurable.
    *
@@ -61,9 +61,9 @@ class SeparatorLfPlugin extends ConfigurableUniPluginBase {
    *
    * @throws \Exception
    */
-  function confGetHandler(array $configuration = NULL) {
-    $separator = isset($configuration['separator'])
-      ? $configuration['separator']
+  function confGetHandler(array $conf = NULL) {
+    $separator = isset($conf['separator'])
+      ? $conf['separator']
       : '';
     return new SeparatorListFormat($separator);
   }
