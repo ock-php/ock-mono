@@ -96,7 +96,7 @@ class TitleEntityDisplayPlugin extends ConfigurableUniPluginBase {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
-  function confGetHandler(array $conf) {
+  function confGetValue(array $conf) {
     $wrapperTagName = isset($conf['tag_name'])
       ? $conf['tag_name'] : NULL;
     if (!array_key_exists($wrapperTagName, $this->allowedTagNames)) {

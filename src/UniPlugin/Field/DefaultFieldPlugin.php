@@ -109,7 +109,7 @@ class DefaultFieldPlugin extends ConfigurableUniPluginBase {
    *
    * @see \Drupal\renderkit\Field\FieldInterface
    */
-  function confGetHandler(array $conf) {
+  function confGetValue(array $conf) {
 
     if (!isset($conf['field_name'])) {
       return BrokenUniHandler::createFromMessage('No field name specified.');

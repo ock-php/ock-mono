@@ -61,7 +61,7 @@ class SeparatorLfPlugin extends ConfigurableUniPluginBase {
    *
    * @throws \Exception
    */
-  function confGetHandler(array $conf) {
+  function confGetValue(array $conf) {
     $separator = isset($conf['separator'])
       ? $conf['separator']
       : '';

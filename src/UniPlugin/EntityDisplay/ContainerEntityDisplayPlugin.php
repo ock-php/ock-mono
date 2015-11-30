@@ -74,7 +74,7 @@ class ContainerEntityDisplayPlugin extends ConfigurableUniPluginBase {
    *
    * @return object|null
    */
-  function confGetHandler(array $conf) {
+  function confGetValue(array $conf) {
     $conf += array('decorated' => array());
     $decorated = $this->entdispManager->confGetEntityDisplay($conf['decorated']);
     $container = new ContainerBuildProcessor();

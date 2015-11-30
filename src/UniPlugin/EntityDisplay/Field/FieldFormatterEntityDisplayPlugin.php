@@ -120,7 +120,7 @@ class FieldFormatterEntityDisplayPlugin extends ConfigurableUniPluginBase {
    *
    * @see \Drupal\uniplugin\Handler\BrokenUniHandlerInterface
    */
-  function confGetHandler(array $conf) {
+  function confGetValue(array $conf) {
     return $this->confGetFieldFormatterSettingsPlugin($conf)->getHandler();
   }
 

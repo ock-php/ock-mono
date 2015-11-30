@@ -94,7 +94,7 @@ class FieldEntityDisplayPlugin extends ConfigurableUniPluginBase {
    *
    * @throws \Exception
    */
-  function confGetHandler(array $conf) {
+  function confGetValue(array $conf) {
     return $this->confGetFormatterPlugin($conf)->getHandler();
   }
 
