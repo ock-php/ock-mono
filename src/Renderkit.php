@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit;
 
-use Drupal\renderkit\BuildProcessor\ContainerBuildProcessor;
-use Drupal\renderkit\EntityBuildProcessor\Wrapper\EntityContextualLinksWrapper;
-use Drupal\renderkit\EntityDisplay\Decorator\ProcessedEntityDisplay;
+use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
+use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessor_Wrapper_ContextualLinks;
+use Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithEntityBuildProcessor;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 /**
@@ -18,23 +18,23 @@ class Renderkit {
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
    * @param string $tagName
    *
-   * @return \Drupal\renderkit\BuildProcessor\ContainerBuildProcessor
+   * @return \Drupal\renderkit\BuildProcessor\BuildProcessor_Container
    */
   static function entityContainer(EntityDisplayInterface $decorated, $tagName = 'div') {
-    $processor = (new ContainerBuildProcessor())
+    $processor = (new BuildProcessor_Container())
       ->setTagName($tagName);
-    return ProcessedEntityDisplay::create($decorated, $processor);
+    return EntityDisplay_WithEntityBuildProcessor::create($decorated, $processor);
   }
 
   /**
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
    * @param string $tagName
    *
-   * @return \Drupal\renderkit\EntityDisplay\Decorator\ProcessedEntityDisplay
+   * @return \Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithEntityBuildProcessor
    */
   static function entityContextualLinksWrapper(EntityDisplayInterface $decorated, $tagName = 'article') {
-    $processor = (new EntityContextualLinksWrapper)->setTagName($tagName);
-    return new ProcessedEntityDisplay($decorated, $processor);
+    $processor = (new EntityBuildProcessor_Wrapper_ContextualLinks)->setTagName($tagName);
+    return new EntityDisplay_WithEntityBuildProcessor($decorated, $processor);
   }
 
 }

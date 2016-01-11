@@ -265,7 +265,7 @@ class EntityTypeFieldDisplayHelper {
 
     $build_defaults = array(
       '#theme' => 'field',
-      '#weight' => $this->display['weight'],
+      # '#weight' => $this->display['weight'],
       '#title' => $instance['label'],
       /* @see hook_field_access() */
       '#access' => field_access('view', $this->fieldInfo, $this->entityType, $entity),

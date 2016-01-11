@@ -16,7 +16,7 @@ interface EntityImageInterface extends EntityDisplayInterface {
   /**
    * Same method signature as in parent interface, just a different description.
    *
-   * @param string $entity_type
+   * @param string $entityType
    *   E.g. 'node' or 'taxonomy_term'.
    * @param object[] $entities
    *   Entity objects for which to build the render arrays.
@@ -25,5 +25,5 @@ interface EntityImageInterface extends EntityDisplayInterface {
    *   An array of render arrays, keyed by the original array keys of $entities.
    *   Each render array must contain '#theme' => 'image'.
    */
-  function buildEntities($entity_type, array $entities);
+  function buildEntities($entityType, array $entities);
 }

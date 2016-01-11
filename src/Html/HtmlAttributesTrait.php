@@ -41,9 +41,9 @@ trait HtmlAttributesTrait {
    */
   protected function tagNameBuildContainer($tagName) {
     return array(
-      /* @see renderkit_element_info() */
-      /* @see theme_renderkit_container() */
-      '#type' => 'renderkit_container',
+      /* @see themekit_element_info() */
+      /* @see theme_themekit_container() */
+      '#type' => 'themekit_container',
       '#tag_name' => $tagName,
       '#attributes' => $this->attributes,
     );

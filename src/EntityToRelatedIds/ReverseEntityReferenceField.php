@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityToRelatedIds;
 
-use Drupal\renderkit\EntityUtil;
+use Drupal\renderkit\Util\EntityUtil;
 
 class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
 
