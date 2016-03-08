@@ -8,7 +8,6 @@ use Drupal\cfrfamily\Configurator\Composite\Configurator_IdConf;
 use Drupal\renderkit\ConfiguratorMap\ConfiguratorMap_FieldDisplaySettings;
 use Drupal\renderkit\EnumMap\EnumMap_FieldName;
 use Drupal\renderkit\Helper\EntityTypeFieldDisplayHelper;
-use Drupal\renderkit\ListFormat\ListFormatInterface;
 use Drupal\renderkit\ValueToValue\ValueToValue_FieldEntityDisplay;
 
 /**
@@ -59,13 +58,13 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
       ),
       'hidden');
 
-    $listformatConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(ListFormatInterface::class);
+    # $listformatConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(ListFormatInterface::class);
 
     return (new Configurator_GroupReparentV2V)
       ->keySetConfigurator('field', $fieldConfigurator, t('Field'))
       ->keySetConfigurator('label', $labelDisplayConfigurator, t('Label display'))
-      ->keySetConfigurator('listformat', $listformatConfigurator, t('List format'))
-      ->keySetParents('listformat', array('display', 'listformat'))
+      # ->keySetConfigurator('listformat', $listformatConfigurator, t('List format'))
+      # ->keySetParents('listformat', array('display', 'listformat'))
       ->keySetParents('label', array('display', 'label'))
       ->keySetParents('field', array())
       ->setValueToValue(new ValueToValue_FieldEntityDisplay('field', 'display'))
