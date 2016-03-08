@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\cfrfamily\Configurator\Composite\Configurator_IdConf;
 use Drupal\cfrapi\Configurator\Group\Configurator_GroupReparentV2V;
 use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
+use Drupal\cfrfamily\Configurator\Composite\Configurator_IdConf;
 use Drupal\renderkit\ConfiguratorMap\ConfiguratorMap_FieldDisplaySettings;
 use Drupal\renderkit\EnumMap\EnumMap_FieldName;
 use Drupal\renderkit\Helper\EntityTypeFieldDisplayHelper;
