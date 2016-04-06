@@ -22,7 +22,7 @@ class BuildProcessor_Container implements HtmlAttributesInterface, BuildProcesso
    */
   static function createConfigurator() {
     $configurators = array(
-      Configurator_TagName::createForContainer(),
+      Configurator_TagName::createFree(),
       Configurator_ClassAttribute::create(),
     );
     $labels = array(

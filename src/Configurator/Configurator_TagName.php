@@ -43,4 +43,11 @@ final class Configurator_TagName extends UtilBase {
       $defaultTagName);
   }
 
+  /**
+   * @return \Drupal\renderkit\Configurator\Configurator_TagNameFree
+   */
+  static function createFree() {
+    return new Configurator_TagNameFree();
+  }
+
 }
