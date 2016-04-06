@@ -2,7 +2,9 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-
+use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
+use Drupal\renderkit\Configurator\Configurator_TagName;
 use Drupal\renderkit\Html\HtmlAttributesInterface;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
 
@@ -23,6 +25,33 @@ use Drupal\renderkit\Html\HtmlAttributesTrait;
 class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase implements HtmlAttributesInterface {
 
   use HtmlAttributesTrait;
+
+  /**
+   * @CfrPlugin(
+   *   id = "entityTitleLinkWrapper",
+   *   label = @t("Entity title link wrapper")
+   * )
+   *
+   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   */
+  static function entityTitleConfigurator() {
+    return Configurator_CallbackConfigurable::createFromClassStaticMethod(
+      __CLASS__,
+      'entityTitleLinkWrapper',
+      array(Configurator_TagName::createForTitle()),
+      array(t('Tag name')));
+  }
+
+  /**
+   * @param string $tagName
+   *
+   * @return $this
+   */
+  static function entityTitleLinkWrapper($tagName) {
+    return (new EntityBuildProcessor_Sequence)
+      ->addEntityBuildProcessor(new self)
+      ->addBuildProcessor(BuildProcessor_Container::create($tagName));
+  }
 
   /**
    * @param array $build
