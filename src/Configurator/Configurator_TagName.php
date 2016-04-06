@@ -10,6 +10,13 @@ final class Configurator_TagName extends UtilBase {
   /**
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
+  static function createForTitle() {
+    return self::create(array('h1', 'h2', 'h3', 'h4', 'h5', 'label', 'strong'), 'h2');
+  }
+
+  /**
+   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   */
   static function createForContainer() {
     return self::create(array('div', 'span', 'article', 'section', 'pre'), 'div');
   }
