@@ -5,7 +5,7 @@ namespace Drupal\renderkit\EntityToEntity;
 /**
  * @CfrPlugin(
  *   id = "author",
- *   label = "Entity author"
+ *   label = @t("Entity author")
  * )
  */
 class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
