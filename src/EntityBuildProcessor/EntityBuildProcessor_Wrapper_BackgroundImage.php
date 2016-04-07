@@ -46,7 +46,6 @@ class EntityBuildProcessor_Wrapper_BackgroundImage extends EntityBuildProcessorB
     if (isset($imageDisplay['#path'])) {
       $imageUrl = file_create_url($imageDisplay['#path']);
       $build['#attributes']['style'] = 'background-image: url(' . json_encode($imageUrl) . ')';
-      # dpm($build);
     }
     return $build;
   }
