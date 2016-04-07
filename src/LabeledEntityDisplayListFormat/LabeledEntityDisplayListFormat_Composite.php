@@ -36,6 +36,36 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
 
   /**
    * @CfrPlugin(
+   *   id = "labeledFormat",
+   *   label = @t("Labeled format"),
+   *   inline = true
+   * )
+   *
+   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledFormat
+   *
+   * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
+   */
+  static function createFromLabeledFormat(LabeledEntityBuildProcessorInterface $labeledFormat = NULL) {
+    return new self(NULL, $labeledFormat, NULL, NULL);
+  }
+
+  /**
+   * @CfrPlugin(
+   *   id = "listFormat",
+   *   label = @t("List format"),
+   *   inline = true
+   * )
+   *
+   * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface $listFormat
+   *
+   * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
+   */
+  static function createFromListFormat(EntityDisplayListFormatInterface $listFormat = NULL) {
+    return new self(NULL, NULL, NULL, $listFormat);
+  }
+
+  /**
+   * @CfrPlugin(
    *   id = "composite",
    *   label = @t("Composite")
    * )
