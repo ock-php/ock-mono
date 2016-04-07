@@ -6,6 +6,12 @@ use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 
 /**
  * Implementation that ignores the entity.
+ *
+ * @CfrPlugin(
+ *   id = "withoutEntity",
+ *   label = "Without entity",
+ *   inline = true
+ * )
  */
 class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntityBuildProcessorInterface {
 
@@ -15,12 +21,6 @@ class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntity
   private $labeledFormat;
 
   /**
-   * @CfrPlugin(
-   *   id = "withoutEntity",
-   *   label = "Without entity"
-   *   inline = true
-   * )
-   *
    * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
    */
   function __construct(LabeledFormatInterface $labeledFormat) {
