@@ -11,6 +11,18 @@ namespace Drupal\renderkit\EntityToEntity;
 class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
 
   /**
+   * @CfrPlugin(
+   *   id = "userEntityOrAuthor",
+   *   label = @t("User entity or author")
+   * )
+   *
+   * @return \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
+   */
+  static function userEntityOrAuthor() {
+    return new EntityToEntity_SelfOrOther(new self());
+  }
+
+  /**
    * Gets the entity type of the referenced entities.
    *
    * @return string
