@@ -88,6 +88,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    */
   function buildList(array $builds) {
     $listBuild = array(
+      /* @see theme_themekit_item_list() */
       '#theme' => 'themekit_item_list',
       '#tag_name' => $this->tagName,
       '#attributes' => $this->attributes,
