@@ -2,6 +2,9 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
+use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
+use Drupal\cfrapi\Context\CfrContextInterface;
+use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
 /**
@@ -11,6 +14,41 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
 
   use EntitiesBuildsProcessorTrait;
+
+  /**
+   * @CfrPlugin(
+   *   id = "sequence",
+   *   label = "Sequence of processors"
+   * )
+   *
+   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
+   *
+   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   */
+  static function createConfigurator(CfrContextInterface $context = NULL) {
+    $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityBuildProcessorInterface::class, $context);
+    $configurators = array(new Configurator_Sequence($displayConfigurator));
+    $labels = array(NULL);
+    return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
+  }
+
+  /**
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface[] $processors
+   *
+   * @return \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
+   */
+  static function create(array $processors) {
+    $sequence = new self();
+    foreach ($processors as $processor) {
+      if ($processor instanceof EntityBuildProcessorInterface) {
+        $sequence->addEntityBuildProcessor($processor);
+      }
+      elseif ($processor instanceof BuildProcessorInterface) {
+        $sequence->addBuildProcessor($processor);
+      }
+    }
+    return $sequence;
+  }
 
   /**
    * @var object[]
