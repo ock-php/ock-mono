@@ -94,7 +94,7 @@ function theme_themekit_item_list(array $variables) {
   }
 
   $attributes_str = isset($element['#attributes'])
-    ? drupal_render($element['#attributes'])
+    ? drupal_attributes($element['#attributes'])
     : '';
 
   return '<' . $tag_name . $attributes_str . '>' . $html . '</' . $tag_name . '>';
