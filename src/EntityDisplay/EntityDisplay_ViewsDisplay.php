@@ -98,6 +98,8 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
       return array();
     }
     $view->set_arguments(array($etid));
+    // See https://www.drupal.org/node/525592#comment-1833824
+    $view->override_path = $_GET['q'];
     $markup = $view->preview();
     if (FALSE === $markup) {
       return array();
