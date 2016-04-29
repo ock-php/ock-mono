@@ -41,6 +41,10 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
           unset($entities[$delta]);
         }
       }
+      /** @noinspection DisconnectedForeachInstructionInspection */
+      if (array() === $entities) {
+        break;
+      }
     }
     return array_filter($builds);
   }
