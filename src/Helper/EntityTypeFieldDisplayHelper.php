@@ -292,7 +292,7 @@ class EntityTypeFieldDisplayHelper {
       '#items' => $items,
       '#formatter' => $this->display['type'],
     );
-    $build = $build_defaults + $build;
+    $build += $build_defaults;
 
     // Invoke hook_field_attach_view_alter() to let other modules alter the
     // renderable array, as in a full field_attach_view() execution.
