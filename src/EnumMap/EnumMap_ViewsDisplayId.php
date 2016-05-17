@@ -56,6 +56,7 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
 
       /** @var \views_display $display */
       foreach ($view->display as $display_id => $display) {
+        /** @noinspection PhpUndefinedFieldInspection */
         if ('default' === $display->display_plugin || 'page' === $display->display_plugin) {
           continue;
         }
@@ -69,6 +70,7 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
         // Pick the first and only argument.
         foreach ($display->display_options['argument_input'] as $arg_name => $arg_options) {}
 
+        /** @noinspection DisconnectedForeachInstructionInspection */
         if (!isset($arg_options['context'])) {
           continue;
         }
@@ -80,6 +82,7 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
           continue;
         }
 
+        /** @noinspection PhpUnusedLocalVariableInspection */
         list(, $entity_type, $id_key) = $m;
 
         if (NULL !== $this->entityType && $entity_type !== $this->entityType) {
@@ -87,6 +90,7 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
           continue;
         }
 
+        /** @noinspection PhpUndefinedFieldInspection */
         $options[$view_label][$view_id . ':' . $display_id] = $display->display_title;
       }
     }
