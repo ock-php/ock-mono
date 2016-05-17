@@ -159,8 +159,10 @@ class EntityTypeFieldDisplayHelper {
 
   /**
    * @param object[][] $entitiesByBundleAndId
+   *   Format: $[$bundle_name][$entity_id] = $entity
    *
    * @return array[]
+   *   Format: $[$entity_id] = $build
    */
   private function buildMultipleByBundleAndId(array $entitiesByBundleAndId) {
 
@@ -197,11 +199,16 @@ class EntityTypeFieldDisplayHelper {
 
   /**
    * @param object[] $languageEntitiesById
+   *   Format: $[$entity_id] = $entity
    * @param string[] $bundlesById
+   *   Format: $[$entity_id] = $bundle_name
    * @param array[] $instancesById
+   *   Format: $[$entity_id] = $field_instance_info
    * @param string $entityFieldDisplayLanguage
+   *   E.g. 'en'.
    *
    * @return array[]
+   *   Format: $[$entity_id] = $build
    */
   private function languageEntitiesBuildField(array $languageEntitiesById, array $bundlesById, array $instancesById, $entityFieldDisplayLanguage) {
 
