@@ -52,7 +52,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
       return new BrokenConfigurator(NULL, get_defined_vars(), 'Field has no type.');
     }
     $fieldType = $fieldInfo['type'];
-    if (!in_array($fieldType, $formatterTypeInfo['field types'])) {
+    if (!in_array($fieldType, $formatterTypeInfo['field types'], TRUE)) {
       return new BrokenConfigurator(NULL, get_defined_vars(), 'Field type not supported by formatter type.');
     }
     return new self($fieldName, $fieldInfo, $formatterType, $formatterTypeInfo);
