@@ -54,7 +54,11 @@ class EntityDisplay_ViewMode extends EntitiesDisplayBase {
       // Especially, node_view_multiple() really does not.
       return array();
     }
+    /** @var array|false $builds_by_type */
     $builds_by_type = entity_view($entityType, $entities, $this->viewMode);
+    if ($builds_by_type === FALSE) {
+      return array();
+    }
     $builds_by_etid = $builds_by_type[$entityType];
     $builds_by_delta = array();
 
