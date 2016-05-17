@@ -176,8 +176,12 @@ class EntityTypeFieldDisplayHelper {
         continue;
       }
       foreach ($bundleEntitiesById as $id => $entity) {
-        $bundlesById[$id] = $bundle;
         $entityFieldDisplayLanguage = $this->entityFieldLanguage($entity);
+        if ($entityFieldDisplayLanguage === FALSE) {
+          continue;
+        }
+        $bundlesById[$id] = $bundle;
+        /** @var string $entityFieldDisplayLanguage */
         $instancesByLanguageAndId[$entityFieldDisplayLanguage][$id] = $instance;
         $entitiesByLanguageAndId[$entityFieldDisplayLanguage][$id] = $entity;
       }
