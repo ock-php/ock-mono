@@ -52,6 +52,7 @@ class EntityImage_ImageField implements EntityImageInterface {
    *   Render array for one entity.
    */
   function buildEntity($entity_type, $entity) {
+    /** @var array[]|false $items */
     $items = field_get_items($entity_type, $entity, $this->fieldName);
     if (!isset($items[0])) {
       return array();
