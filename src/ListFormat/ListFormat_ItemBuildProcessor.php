@@ -29,6 +29,7 @@ class ListFormat_ItemBuildProcessor implements ListFormatInterface {
    */
   function buildList(array $builds) {
     foreach ($builds as &$itemBuild) {
+      /** @noinspection ReferenceMismatchInspection */
       $itemBuild = $this->itemBuildProcessor->process($itemBuild);
     }
     return $builds;
