@@ -103,7 +103,7 @@ final class FieldUtil extends UtilBase {
   static function fieldTypeGetAvailableFormatterTypes($fieldType) {
     $availableFormatterTypes = array();
     foreach (field_info_formatter_types() as $formatterTypeName => $formatterTypeDefinition) {
-      if (!in_array($fieldType, $formatterTypeDefinition['field types'])) {
+      if (!in_array($fieldType, $formatterTypeDefinition['field types'], TRUE)) {
         continue;
       }
       $availableFormatterTypes[$formatterTypeName] = $formatterTypeDefinition;
@@ -211,7 +211,7 @@ final class FieldUtil extends UtilBase {
     foreach ($optionsAll as $fieldName => $optionLabel) {
       if (isset($fields[$fieldName]['type'])) {
         $fieldTypeName = $fields[$fieldName]['type'];
-        if (isset($allowedFieldTypes) && !in_array($fieldTypeName, $allowedFieldTypes)) {
+        if (isset($allowedFieldTypes) && !in_array($fieldTypeName, $allowedFieldTypes, TRUE)) {
           continue;
         }
         if (isset($knownFieldTypes[$fieldTypeName]['label'])) {
