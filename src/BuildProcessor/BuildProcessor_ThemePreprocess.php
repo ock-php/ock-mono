@@ -32,5 +32,6 @@ class BuildProcessor_ThemePreprocess implements BuildProcessorInterface {
    */
   function process(array $build) {
     $build[THEMEKIT_PREPROCESS][] = $this->themePreprocessor;
+    return $build;
   }
 }
