@@ -2,10 +2,9 @@
 
 namespace Drupal\renderkit\EntityImages;
 
-use Drupal\renderkit\EntityDisplay\EntityDisplayBaseTrait;
-use Drupal\renderkit\EnumMap\EnumMap_FieldName;
 use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Drupal\renderkit\EnumMap\EnumMap_FieldName;
 
 class EntityImages_ImageField implements EntityImagesInterface {
 
