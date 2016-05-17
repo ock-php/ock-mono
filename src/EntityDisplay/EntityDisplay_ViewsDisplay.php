@@ -4,7 +4,7 @@ namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\EnumMap\EnumMap_ViewsDisplayId;
+use Drupal\renderkit\EnumMap\EnumMap_ViewsDisplayId_Entity;
 use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
 
 /**
@@ -39,7 +39,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    */
   static function createConfigurator($entityType = NULL) {
 
-    $legend = new EnumMap_ViewsDisplayId($entityType);
+    $legend = new EnumMap_ViewsDisplayId_Entity($entityType);
 
     return Configurator_CallbackConfigurable::createFromCallable(
       function ($id, LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL) {

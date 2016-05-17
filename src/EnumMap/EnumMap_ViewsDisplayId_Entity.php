@@ -4,7 +4,7 @@ namespace Drupal\renderkit\EnumMap;
 
 use Drupal\cfrapi\EnumMap\EnumMapInterface;
 
-class EnumMap_ViewsDisplayId implements EnumMapInterface {
+class EnumMap_ViewsDisplayId_Entity implements EnumMapInterface {
 
   /**
    * @var string|null
