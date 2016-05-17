@@ -52,16 +52,16 @@ final class FieldUtil extends UtilBase {
   }
 
   /**
-   * @param string|null $entityType
-   * @param string|null $bundleName
+   * @param string|null $expectedEntityType
+   * @param string|null $expectedBundleName
    *
    * @return array[][]
    *   Format: $[$fieldName][$instanceFieldLabel][] = array($instanceEntityType, $instanceBundleName)
    */
-  static function etBundleGetFieldInstancesByFieldAndLabel($entityType = NULL, $bundleName = NULL) {
+  static function etBundleGetFieldInstancesByFieldAndLabel($expectedEntityType = NULL, $expectedBundleName = NULL) {
 
     $instancesByFieldAndLabel = array();
-    foreach (self::etBundleGetFieldInstancesByEtBundle($entityType, $bundleName) as $entityType => $entityTypeInstances) {
+    foreach (self::etBundleGetFieldInstancesByEtBundle($expectedEntityType, $expectedBundleName) as $entityType => $entityTypeInstances) {
       foreach ($entityTypeInstances as $bundleName => $bundleInstances) {
         foreach ($bundleInstances as $fieldName => $instance) {
           $instancesByFieldAndLabel[$fieldName][$instance['label']][] = array($entityType, $bundleName);
