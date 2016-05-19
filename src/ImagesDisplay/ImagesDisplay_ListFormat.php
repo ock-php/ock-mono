@@ -15,12 +15,12 @@ use Drupal\renderkit\Util\RenderUtil;
 class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit\ImageProcessor\ImageProcessorInterface
+   * @var \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null
    */
   private $imageProcessor;
 
   /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface
+   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
    */
   private $listFormat;
 
@@ -28,7 +28,7 @@ class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
    * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface $imageProcessor
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    */
-  function __construct(ImageProcessorInterface $imageProcessor, ListFormatInterface $listFormat) {
+  function __construct(ImageProcessorInterface $imageProcessor = NULL, ListFormatInterface $listFormat = NULL) {
     $this->imageProcessor = $imageProcessor;
     $this->listFormat = $listFormat;
   }
@@ -42,10 +42,15 @@ class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
    */
   function buildImages(array $images) {
     RenderUtil::validateImages($images);
-    $builds = array();
-    foreach ($images as $delta => $image) {
-      $builds[$delta] = $this->imageProcessor->processImage($image);
+    if ($this->imageProcessor !== NULL) {
+      foreach ($images as $delta => $image) {
+        $images[$delta] = $this->imageProcessor->processImage($image);
+      }
     }
-    return $this->listFormat->buildList($builds);
+    if ($this->listFormat !== NULL) {
+      $images = $this->listFormat->buildList($images);
+    }
+    return $images;
   }
+
 }
