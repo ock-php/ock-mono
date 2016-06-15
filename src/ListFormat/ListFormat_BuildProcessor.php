@@ -4,6 +4,9 @@ namespace Drupal\renderkit\ListFormat;
 
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
+/**
+ * @CfrPlugin("buildProcessor", "Build processor")
+ */
 class ListFormat_BuildProcessor implements ListFormatInterface {
 
   /**
