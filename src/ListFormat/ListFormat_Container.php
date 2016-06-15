@@ -5,9 +5,10 @@ namespace Drupal\renderkit\ListFormat;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\Configurator\Configurator_ClassAttribute;
 use Drupal\renderkit\Configurator\Configurator_TagName;
+use Drupal\renderkit\Html\HtmlTagInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
 
-class ListFormat_Container implements ListFormatInterface {
+class ListFormat_Container implements ListFormatInterface, HtmlTagInterface {
 
   use HtmlTagTrait;
 
