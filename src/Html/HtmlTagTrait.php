@@ -3,7 +3,7 @@
 namespace Drupal\renderkit\Html;
 
 /**
- * @see TagInterface
+ * @see \Drupal\renderkit\Html\HtmlTagInterface
  */
 trait HtmlTagTrait {
 
