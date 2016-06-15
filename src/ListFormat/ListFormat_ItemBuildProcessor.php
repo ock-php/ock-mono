@@ -15,11 +15,18 @@ class ListFormat_ItemBuildProcessor implements ListFormatInterface {
   private $itemBuildProcessor;
 
   /**
+   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
+   */
+  private $decorated;
+
+  /**
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $itemBuildProcessor
    *   Process the render array for each list item.
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $decorated
    */
-  function __construct(BuildProcessorInterface $itemBuildProcessor) {
+  function __construct(BuildProcessorInterface $itemBuildProcessor, ListFormatInterface $decorated = NULL) {
     $this->itemBuildProcessor = $itemBuildProcessor;
+    $this->decorated = $decorated;
   }
 
   /**
@@ -34,6 +41,9 @@ class ListFormat_ItemBuildProcessor implements ListFormatInterface {
     foreach ($builds as &$itemBuild) {
       /** @noinspection ReferenceMismatchInspection */
       $itemBuild = $this->itemBuildProcessor->process($itemBuild);
+    }
+    if (NULL !== $this->decorated) {
+      $builds = $this->decorated->buildList($builds);
     }
     return $builds;
   }
