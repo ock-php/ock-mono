@@ -45,7 +45,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase
   /**
    * @param string $tagName
    *
-   * @return $this
+   * @return \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
    */
   static function entityTitleLinkWrapper($tagName) {
     return (new EntityBuildProcessor_Sequence)
