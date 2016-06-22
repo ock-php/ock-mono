@@ -3,9 +3,10 @@
 namespace Drupal\renderkit\Configurator;
 
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
+use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 
-class Configurator_ClassAttribute implements ConfiguratorInterface {
+class Configurator_ClassAttribute implements ConfiguratorInterface, ConfToPhpInterface {
 
   /**
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
@@ -99,5 +100,19 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
       }
     }
     return $classes;
+  }
+
+  /**
+   * @param mixed $conf
+   *   Configuration from a form, config file or storage.
+   *
+   * @return string
+   *   PHP statement to generate the value.
+   *
+   * @throws \Drupal\cfrapi\Exception\PhpGenerationNotSupportedException
+   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
+   */
+  public function confGetPhp($conf) {
+    return var_export($this->confGetValue($conf), TRUE);
   }
 }
