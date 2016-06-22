@@ -3,9 +3,10 @@
 namespace Drupal\renderkit\Configurator;
 
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
+use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 
-class Configurator_ListSeparator implements ConfiguratorInterface {
+class Configurator_ListSeparator implements ConfiguratorInterface, ConfToPhpInterface {
 
   /**
    * @param mixed $conf
@@ -51,5 +52,23 @@ class Configurator_ListSeparator implements ConfiguratorInterface {
       $conf = '';
     }
     return check_plain($conf);
+  }
+
+  /**
+   * @param mixed $conf
+   *   Configuration from a form, config file or storage.
+   *
+   * @return string
+   *   PHP statement to generate the value.
+   *
+   * @throws \Drupal\cfrapi\Exception\PhpGenerationNotSupportedException
+   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
+   * @throws \Drupal\cfrapi\Exception\BrokenConfiguratorException
+   */
+  public function confGetPhp($conf) {
+    if (!is_string($conf)) {
+      $conf = '';
+    }
+    return var_export(check_plain($conf), TRUE);
   }
 }
