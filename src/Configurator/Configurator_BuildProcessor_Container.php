@@ -59,6 +59,7 @@ class Configurator_BuildProcessor_Container implements ConfiguratorInterface {
    * @return \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
    */
   function confGetValue($conf) {
+    // @todo What is the purpose of this 'decorated' key?
     $conf += array('decorated' => array());
     $container = new BuildProcessor_Container();
     if (!empty($conf['tag_name'])) {
