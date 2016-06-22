@@ -4,12 +4,12 @@ namespace Drupal\renderkit\Configurator;
 
 use Drupal\cfrapi\BrokenValue\BrokenValue;
 use Drupal\cfrapi\BrokenValue\BrokenValueInterface;
-use Drupal\cfrfamily\Configurator\Composite\Configurator_IdConf;
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
-use Drupal\cfrfamily\ConfiguratorMap\ConfiguratorMapInterface;
-use Drupal\cfrfamily\IdValueToValue\IdValueToValueInterface;
 use Drupal\cfrapi\Legend\LegendInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
+use Drupal\cfrfamily\Configurator\Composite\Configurator_IdConf;
+use Drupal\cfrfamily\ConfiguratorMap\ConfiguratorMapInterface;
+use Drupal\cfrfamily\IdValueToValue\IdValueToValueInterface;
 use Drupal\renderkit\ConfiguratorMap\ConfiguratorMap_FieldDisplaySettings;
 use Drupal\renderkit\EnumMap\EnumMap_FieldName;
 use Drupal\renderkit\IdValueToValue\IdValueToValue_FieldDisplaySettingsToFieldEntityDisplay;
