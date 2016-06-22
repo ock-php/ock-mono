@@ -3,6 +3,7 @@
 namespace Drupal\renderkit\Configurator;
 
 
+use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
@@ -15,7 +16,7 @@ use Drupal\cfrapi\Configurator\ConfiguratorInterface;
  *
  * @deprecated
  */
-class Configurator_BuildProcessor_Container implements ConfiguratorInterface {
+class Configurator_BuildProcessor_Container implements ConfiguratorInterface, ConfToPhpInterface {
 
   /**
    * @param array $conf
@@ -73,4 +74,32 @@ class Configurator_BuildProcessor_Container implements ConfiguratorInterface {
     return $container;
   }
 
+  /**
+   * @param mixed $conf
+   *   Configuration from a form, config file or storage.
+   *
+   * @return string
+   *   PHP statement to generate the value.
+   *
+   * @throws \Drupal\cfrapi\Exception\PhpGenerationNotSupportedException
+   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
+   */
+  public function confGetPhp($conf) {
+    // @todo What is the purpose of this 'decorated' key?
+    $conf += array('decorated' => array());
+    $php = 'new BuildProcessor_Container()';
+    $php_suffix = '';
+    if (!empty($conf['tag_name'])) {
+      // @todo Sanitize tag name.
+      $php_suffix .= '->setTagName(' . var_export($conf['tag_name'], TRUE) . ')';
+    }
+    if (!empty($conf['classes'])) {
+      // @todo Sanitize classes.
+      $php_suffix .= '->addClasses(' . var_export(explode(' ', $conf['classes']), TRUE) . ')';
+    }
+    if ('' !== $php_suffix) {
+      $php = '(' . $php . ')' . $php_suffix;
+    }
+    return $php;
+  }
 }
