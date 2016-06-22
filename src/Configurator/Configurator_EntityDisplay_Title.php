@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\Configurator;
 
+use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessor_Wrapper_LinkToEntity;
@@ -10,7 +11,7 @@ use Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithEntityBuildProces
 use Drupal\renderkit\EntityDisplay\EntityDisplay_Title;
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
 
-class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
+class Configurator_EntityDisplay_Title implements ConfiguratorInterface, ConfToPhpInterface {
 
   /**
    * @var string[]
@@ -110,6 +111,36 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
     }
 
     return $display;
+  }
+
+  /**
+   * @param mixed $conf
+   *   Configuration from a form, config file or storage.
+   *
+   * @return string
+   *   PHP statement to generate the value.
+   *
+   * @throws \Drupal\cfrapi\Exception\PhpGenerationNotSupportedException
+   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
+   * @throws \Drupal\cfrapi\Exception\BrokenConfiguratorException
+   */
+  public function confGetPhp($conf) {
+    list($wrapperTagName, $link) = $this->confGetNormalized($conf);
+
+    $display_php = 'new ' . EntityDisplay_Title::class . '()';
+
+    if ($link) {
+      $wrapper = 'new ' . EntityBuildProcessor_Wrapper_LinkToEntity::class . '()';
+      $display_php = 'new ' . EntityDisplay_WithEntityBuildProcessor::class . "(\n  $display_php,\n  $wrapper)";
+    }
+
+    if (NULL !== $wrapperTagName) {
+      $container = '(new ' . BuildProcessor_Container::class . '())';
+      $container .= '->setTagName(' . var_export($wrapperTagName, TRUE)  . ')';
+      $display_php = 'new ' . EntityDisplay_WithBuildProcessor::class . "(\n  $display_php,\n  $container)";
+    }
+
+    return $display_php;
   }
 
   /**
