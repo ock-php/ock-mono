@@ -47,6 +47,9 @@ class Configurator_ListSeparator implements ConfiguratorInterface {
    *   Value to be used in the application.
    */
   function confGetValue($conf) {
+    if (!is_string($conf)) {
+      $conf = '';
+    }
     return check_plain($conf);
   }
 }
