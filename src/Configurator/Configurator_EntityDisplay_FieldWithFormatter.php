@@ -14,6 +14,9 @@ use Drupal\renderkit\ConfiguratorMap\ConfiguratorMap_FieldDisplaySettings;
 use Drupal\renderkit\EnumMap\EnumMap_FieldName;
 use Drupal\renderkit\IdValueToValue\IdValueToValue_FieldDisplaySettingsToFieldEntityDisplay;
 
+/**
+ * @todo This should probably be removed. It seems broken anyway.
+ */
 class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_IdConf {
 
   /**
