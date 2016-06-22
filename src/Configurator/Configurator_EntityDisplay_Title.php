@@ -41,9 +41,8 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
    * @return array
    */
   function confGetForm($conf, $label) {
-    $tagName = isset($conf['tag_name'])
-      ? $conf['tag_name'] : NULL;
-    $link = !empty($conf['link']);
+    list($tagName, $link) = $this->confGetNormalized($conf);
+
     $form = array();
     $form['tag_name'] = array(
       '#type' => 'select',
@@ -68,19 +67,15 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
    * @return null|string
    */
   function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
-    $wrapperTagName = isset($conf['tag_name'])
-      ? $conf['tag_name'] : NULL;
-    if (!array_key_exists($wrapperTagName, $this->allowedTagNames)) {
-      $wrapperTagName = NULL;
-    }
-    $link = !empty($conf['link']);
-    if ($link && $wrapperTagName) {
+    list($wrapperTagName, $link) = $this->confGetNormalized($conf);
+
+    if ($link && NULL !== $wrapperTagName) {
       return $wrapperTagName . ', ' . t('linked to entity') . '.';
     }
     elseif ($link) {
       return t('Linked to entity');
     }
-    elseif ($wrapperTagName) {
+    elseif (NULL !== $wrapperTagName) {
       return $wrapperTagName;
     }
     else {
@@ -99,23 +94,45 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   function confGetValue($conf) {
-    $wrapperTagName = isset($conf['tag_name'])
-      ? $conf['tag_name'] : NULL;
-    if (!array_key_exists($wrapperTagName, $this->allowedTagNames)) {
-      $wrapperTagName = NULL;
-    }
-    $link = !empty($conf['link']);
+    list($wrapperTagName, $link) = $this->confGetNormalized($conf);
 
     $display = new EntityDisplay_Title();
+
     if ($link) {
       $wrapper = new EntityBuildProcessor_Wrapper_LinkToEntity();
       $display = new EntityDisplay_WithEntityBuildProcessor($display, $wrapper);
     }
-    if ($wrapperTagName) {
+
+    if (NULL !== $wrapperTagName) {
       $container = new BuildProcessor_Container();
       $container->setTagName($wrapperTagName);
       $display = new EntityDisplay_WithBuildProcessor($display, $container);
     }
+
     return $display;
+  }
+
+  /**
+   * @param mixed $conf
+   *
+   * @return array
+   *   Format: [$tagName, $link]
+   */
+  private function confGetNormalized($conf) {
+
+    if (!is_array($conf)) {
+      $conf = array();
+    }
+
+    if (0
+      || !isset($conf['tag_name'])
+      || !array_key_exists($conf['tag_name'], $this->allowedTagNames)
+    ) {
+      $conf['tag_name'] = NULL;
+    }
+
+    $conf['link'] = !empty($conf['link']);
+
+    return array($conf['tag_name'], $conf['link']);
   }
 }
