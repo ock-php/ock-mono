@@ -6,6 +6,9 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
+/**
+ * @CfrPlugin("composite", "Composite")
+ */
 class LabeledListFormat_Composite implements LabeledListFormatInterface {
 
   /**
