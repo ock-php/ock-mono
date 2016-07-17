@@ -19,12 +19,19 @@ class ValueToValue_FieldEntityDisplay implements ValueToValueInterface {
   private $displayKey;
 
   /**
+   * @var string
+   */
+  private $processorKey;
+
+  /**
    * @param string $fieldKey
    * @param string $displayKey
+   * @param string $processorKey
    */
-  function __construct($fieldKey, $displayKey) {
+  function __construct($fieldKey, $displayKey, $processorKey) {
     $this->fieldKey = $fieldKey;
     $this->displayKey = $displayKey;
+    $this->processorKey = $processorKey;
   }
 
   /**
@@ -39,6 +46,9 @@ class ValueToValue_FieldEntityDisplay implements ValueToValueInterface {
     if (!isset($value[$this->fieldKey]) || !isset($value[$this->displayKey])) {
       return NULL;
     }
-    return new EntityDisplay_FieldWithFormatter($value[$this->fieldKey], $value[$this->displayKey]);
+    return new EntityDisplay_FieldWithFormatter(
+      $value[$this->fieldKey],
+      $value[$this->displayKey],
+      isset($value[$this->processorKey]) ? $value[$this->processorKey] : NULL);
   }
 }

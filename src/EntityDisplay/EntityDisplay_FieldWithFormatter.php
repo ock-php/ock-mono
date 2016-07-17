@@ -7,6 +7,7 @@ use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
 use Drupal\cfrfamily\Configurator\Composite\Configurator_IdConf;
 use Drupal\renderkit\ConfiguratorMap\ConfiguratorMap_FieldDisplaySettings;
 use Drupal\renderkit\EnumMap\EnumMap_FieldName;
+use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 use Drupal\renderkit\Helper\EntityTypeFieldDisplayHelper;
 use Drupal\renderkit\ValueToValue\ValueToValue_FieldEntityDisplay;
 
@@ -24,6 +25,11 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    * @var array
    */
   private $display;
+
+  /**
+   * @var \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null
+   */
+  private $fieldDisplayProcessor;
 
   /**
    * @var string|null
@@ -58,27 +64,29 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
       ),
       'hidden');
 
-    # $listformatConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(ListFormatInterface::class);
+    $processorConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(FieldDisplayProcessorInterface::class);
 
     return (new Configurator_GroupReparentV2V)
       ->keySetConfigurator('field', $fieldConfigurator, t('Field'))
       ->keySetConfigurator('label', $labelDisplayConfigurator, t('Label display'))
-      # ->keySetConfigurator('listformat', $listformatConfigurator, t('List format'))
-      # ->keySetParents('listformat', array('display', 'listformat'))
+      ->keySetConfigurator('processor', $processorConfigurator, t('Field display processor'))
+      ->keySetParents('processor', array('processor'))
       ->keySetParents('label', array('display', 'label'))
       ->keySetParents('field', array())
-      ->setValueToValue(new ValueToValue_FieldEntityDisplay('field', 'display'))
+      ->setValueToValue(new ValueToValue_FieldEntityDisplay('field', 'display', 'processor'))
     ;
   }
 
   /**
    * @param string $field_name
    * @param array $display
+   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
    * @param string $langcode
    */
-  function __construct($field_name, array $display = array(), $langcode = NULL) {
+  function __construct($field_name, array $display = array(), FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL, $langcode = NULL) {
     $this->fieldName = $field_name;
     $this->display = $display + array('label' => 'hidden');
+    $this->fieldDisplayProcessor = $fieldDisplayProcessor;
     $this->langcode = $langcode;
   }
 
@@ -118,7 +126,13 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    */
   function buildEntities($entityType, array $entities) {
     $helper = EntityTypeFieldDisplayHelper::create($entityType, $this->fieldName, $this->display, $this->langcode);
-    return $helper->buildMultipleByDelta($entities);
+    $builds = $helper->buildMultipleByDelta($entities);
+    if (NULL !== $this->fieldDisplayProcessor) {
+      foreach ($builds as $delta => $build) {
+        $builds[$delta] = $this->fieldDisplayProcessor->process($build);
+      }
+    }
+    return $builds;
   }
 
 }
