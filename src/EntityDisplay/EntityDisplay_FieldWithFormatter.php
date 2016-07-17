@@ -47,7 +47,7 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    * @param string|null $bundleName
    *   Contextual parameter.
    *
-   * @return \Drupal\cfrfamily\Configurator\Composite\Configurator_IdConf
+   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   static function createConfigurator($entityType = NULL, $bundleName = NULL) {
     $legend = new EnumMap_FieldName(NULL, $entityType, $bundleName);
