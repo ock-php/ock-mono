@@ -10,6 +10,11 @@ function themekit_theme() {
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
     ),
+    /* @see theme_themekit_item_containers() */
+    'themekit_item_containers' => array(
+      'render element' => 'element',
+      'file' => 'themekit.theme.inc',
+    ),
     /* @see theme_themekit_link_wrapper() */
     'themekit_link_wrapper' => array(
       'render element' => 'element',
