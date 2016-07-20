@@ -75,4 +75,50 @@ class ThemekitWebTest extends \DrupalWebTestCase {
     $this->assertIdentical($html_expected, $html = drupal_render($element));
   }
 
+  public function testThemekitProcessReparent() {
+
+    $form_orig = [
+      'group_a' => [
+        '#tree' => TRUE,
+        'text' => [
+          '#type' => 'textfield',
+        ],
+      ],
+    ];
+
+    // First run without any reparenting.
+    $form = $this->buildForm($form_orig);
+    $this->assertIdentical(['group_a'], $form['group_a']['#array_parents']);
+    $this->assertIdentical(['group_a'], $form['group_a']['#parents']);
+    $this->assertFalse(isset($form['group_a']['#name']));
+    $this->assertIdentical(['group_a', 'text'], $form['group_a']['text']['#array_parents']);
+    $this->assertIdentical(['group_a', 'text'], $form['group_a']['text']['#parents']);
+    $this->assertIdentical('group_a[text]', $form['group_a']['text']['#name']);
+
+    // Assign THEMEKIT_POP_PARENT.
+    $form_orig['group_a']['#process'] = [THEMEKIT_POP_PARENT];
+
+    // Run again with reparented elements.
+    $form = $this->buildForm($form_orig);
+    $this->assertIdentical(['group_a'], $form['group_a']['#array_parents']);
+    $this->assertIdentical([], $form['group_a']['#parents']);
+    $this->assertFalse(isset($form['group_a']['#name']));
+    $this->assertIdentical(['group_a', 'text'], $form['group_a']['text']['#array_parents']);
+    $this->assertIdentical(['text'], $form['group_a']['text']['#parents']);
+    $this->assertIdentical('text', $form['group_a']['text']['#name']);
+  }
+
+  private function buildForm(array $form) {
+    $form_id = '?';
+    $form_state = form_state_defaults() + ['values' => []];
+    drupal_prepare_form($form_id, $form, $form_state);
+
+    // Clear out all group associations as these might be different when
+    // re-rendering the form.
+    $form_state['groups'] = array();
+
+    // Return a fully built form that is ready for rendering.
+    return form_builder($form_id, $form, $form_state);
+  }
+
 }

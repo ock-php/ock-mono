@@ -1,5 +1,7 @@
 <?php
 
+/* @see _themekit_pop_parent() */
+define('THEMEKIT_POP_PARENT', '_themekit_pop_parent');
 define('THEMEKIT_PREPROCESS', '#themekit_theme_preprocess');
 define('THEMEKIT_PROCESS', '#themekit_theme_process');
 
@@ -109,4 +111,16 @@ function _themekit_theme_process_element(array &$variables) {
       }
     }
   }
+}
+
+/**
+ * Callback for $element['#process'].
+ *
+ * @param array $element
+ *
+ * @return array
+ */
+function _themekit_pop_parent(array $element) {
+  array_pop($element['#parents']);
+  return $element;
 }
