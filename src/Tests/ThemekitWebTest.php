@@ -38,7 +38,7 @@ class ThemekitWebTest extends \DrupalWebTestCase {
       . '<div class="field-item field-item-even field-item-last">Z</div>'
       . '';
 
-    $this->assertIdentical($html_expected, theme_themekit_item_containers(['element' => $element]));
+    $this->assertIdentical($html_expected, theme('themekit_item_containers', ['element' => $element]));
 
     $this->assertIdentical($html_expected, drupal_render($element));
   }
