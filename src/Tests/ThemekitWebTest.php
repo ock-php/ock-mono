@@ -2,6 +2,8 @@
 
 namespace Drupal\themekit\Tests;
 
+use Drupal\themekit\Callback\Callback_ElementReparent;
+
 class ThemekitWebTest extends \DrupalWebTestCase {
 
   function setUp() {
@@ -106,6 +108,18 @@ class ThemekitWebTest extends \DrupalWebTestCase {
     $this->assertIdentical(['group_a', 'text'], $form['group_a']['text']['#array_parents']);
     $this->assertIdentical(['text'], $form['group_a']['text']['#parents']);
     $this->assertIdentical('text', $form['group_a']['text']['#name']);
+
+    // Now assign reparent.
+    $form_orig['group_a']['#process'][] = new Callback_ElementReparent(1, ['group_b']);
+
+    // Run again with reparented elements.
+    $form = $this->buildForm($form_orig);
+    $this->assertIdentical(['group_a'], $form['group_a']['#array_parents']);
+    $this->assertIdentical(['group_b'], $form['group_a']['#parents']);
+    $this->assertFalse(isset($form['group_a']['#name']));
+    $this->assertIdentical(['group_a', 'text'], $form['group_a']['text']['#array_parents']);
+    $this->assertIdentical(['group_b', 'text'], $form['group_a']['text']['#parents']);
+    $this->assertIdentical('group_b[text]', $form['group_a']['text']['#name']);
   }
 
   private function buildForm(array $form) {
