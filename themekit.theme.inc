@@ -69,8 +69,15 @@ function theme_themekit_item_containers(array $variables) {
     return '';
   }
 
-  if (empty($element['#item_tag_name'])) {
-
+  if (!isset($element['#item_tag_name'])) {
+    $tag_name = 'div';
+    $item_close_tag = '</div>';
+  }
+  elseif (false !== $element['#item_tag_name']) {
+    $tag_name = $element['#item_tag_name'];
+    $item_close_tag = '</' . $tag_name . '>';
+  }
+  else {
     $html = '';
     foreach ($deltas as $delta) {
       $html .= drupal_render($element[$delta]);
@@ -78,9 +85,6 @@ function theme_themekit_item_containers(array $variables) {
 
     return $html;
   }
-
-  $tag_name = $element['#item_tag_name'];
-  $item_close_tag = '</' . $tag_name . '>';
 
   $common_attributes = !empty($element['#item_attributes'])
     ? $element['#item_attributes']

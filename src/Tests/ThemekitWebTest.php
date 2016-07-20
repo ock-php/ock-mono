@@ -22,7 +22,6 @@ class ThemekitWebTest extends \DrupalWebTestCase {
     $element = [
       /* @see theme_themekit_item_containers() */
       '#theme' => 'themekit_item_containers',
-      '#item_tag_name' => 'div',
       '#item_attributes' => ['class' => ['field-item']],
       '#first' => 'field-item-first',
       '#last' => 'field-item-last',
@@ -40,7 +39,12 @@ class ThemekitWebTest extends \DrupalWebTestCase {
 
     $this->assertIdentical($html_expected, theme('themekit_item_containers', ['element' => $element]));
 
-    $this->assertIdentical($html_expected, drupal_render($element));
+    $element_copy = $element;
+    $this->assertIdentical($html_expected, drupal_render($element_copy));
+
+    $element['#item_tag_name'] = false;
+    $html_expected = 'XYZ';
+    $this->assertIdentical($html_expected, theme('themekit_item_containers', ['element' => $element]));
   }
 
   public function testThemekitItemContainersWithContainer() {
