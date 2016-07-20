@@ -1,5 +1,8 @@
 <?php
 
+/* @see _renderkit_pop_parent() */
+define('RENDERKIT_POP_PARENT', '_renderkit_pop_parent');
+
 /**
  * Implements hook_cfrplugin_info()
  *
@@ -9,4 +12,14 @@ function renderkit_cfrplugin_info() {
   return function_exists('cfrplugindiscovery')
     ? cfrplugindiscovery()->discoverByInterface(__DIR__ . '/src', 'Drupal\renderkit')
     : array();
+}
+
+/**
+ * @param array $element
+ *
+ * @return array
+ */
+function _renderkit_pop_parent(array $element) {
+  array_pop($element['#parents']);
+  return $element;
 }
