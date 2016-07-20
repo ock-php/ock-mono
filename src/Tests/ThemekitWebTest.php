@@ -20,6 +20,7 @@ class ThemekitWebTest extends \DrupalWebTestCase {
   public function testThemekitItemContainers() {
 
     $element = [
+      /* @see theme_themekit_item_containers() */
       '#theme' => 'themekit_item_containers',
       '#item_tag_name' => 'div',
       '#item_attributes' => ['class' => ['field-item']],
