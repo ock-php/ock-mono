@@ -28,8 +28,11 @@ class Configurator_TagNameFree extends Configurator_TextfieldBase {
    * @param array $form_state
    * @param array $form
    */
-  function elementValidate(array $element, array $form_state, array $form) {
-    if (FALSE) unset($form_state, $form);
+  function elementValidate(
+    array $element,
+    /** @noinspection PhpUnusedParameterInspection */ array $form_state,
+    /** @noinspection PhpUnusedParameterInspection */ array $form
+  ) {
     if (!preg_match('/^[\w]+$/', $element['#value'])) {
       form_error($element, t('Value does not seem to be a valid HTML tag name.'));
     }

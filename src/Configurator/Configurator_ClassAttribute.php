@@ -18,10 +18,10 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
    * @param array $element
    * @param array $form_state
    */
-  static function elementValidate(array $element, array &$form_state) {
-
-    if (FALSE) unset($form_state);
-
+  static function elementValidate(
+    array $element,
+    /** @noinspection PhpUnusedParameterInspection */ array &$form_state
+  ) {
     $value = $element['#value'];
     if ('' === $value) {
       return;
