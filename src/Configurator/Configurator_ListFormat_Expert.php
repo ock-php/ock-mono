@@ -112,7 +112,6 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
       'groups' => $form,
     ];
 
-    $form['#attached']['js'][] = drupal_get_path('module', 'renderkit') . '/js/renderkit.admin.js';
     $form['#attached']['css'][] = drupal_get_path('module', 'renderkit') . '/css/renderkit.admin.css';
 
     return $form;
