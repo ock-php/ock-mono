@@ -12,7 +12,7 @@ trait UserDisplayTrait {
    */
   final public function buildEntity($entity_type, $entity) {
     if ('user' !== $entity_type) {
-      return array();
+      return [];
     }
     return $this->buildUser($entity);
   }
@@ -27,9 +27,9 @@ trait UserDisplayTrait {
    */
   final public function buildEntities($entity_type, array $users) {
     if ('user' !== $entity_type) {
-      return array();
+      return [];
     }
-    $builds = array();
+    $builds = [];
     foreach ($users as $delta => $user) {
       $builds[$delta] = $this->buildUser($user);
     }

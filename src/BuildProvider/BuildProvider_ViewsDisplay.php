@@ -46,15 +46,15 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
         // No further checking at this point.
         return new self($view_name, $display_id, $labeledFormat);
       },
-      array(
+      [
         Configurator_LegendSelect::createRequired($legend),
         \cfrplugin()->interfaceGetOptionalConfigurator(
           LabeledEntityBuildProcessorInterface::class),
-      ),
-      array(
+      ],
+      [
         t('Views display'),
         t('Label format'),
-      ));
+      ]);
   }
 
   /**
@@ -75,17 +75,17 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
   public function build() {
     $view = \views_get_view($this->viewName);
     if (NULL === $view) {
-      return array();
+      return [];
     }
     $success = $view->set_display($this->displayId);
     if (FALSE === $success) {
-      return array();
+      return [];
     }
     $markup = $view->preview();
     if (FALSE === $markup) {
-      return array();
+      return [];
     }
-    $build = array('#markup' => $markup);
+    $build = ['#markup' => $markup];
     if (NULL === $this->labeledFormat) {
       return $build;
     }

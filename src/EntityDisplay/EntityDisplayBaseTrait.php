@@ -15,7 +15,7 @@ trait EntityDisplayBaseTrait {
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
   final public function buildEntities($entity_type, array $entities) {
-    $builds = array();
+    $builds = [];
     foreach ($entities as $delta => $entity) {
       $builds[$delta] = $this->buildEntity($entity_type, $entity);
     }

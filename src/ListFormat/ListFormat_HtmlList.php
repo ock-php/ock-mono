@@ -22,7 +22,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
   /**
    * @var mixed[]
    */
-  private $itemAttributes = array();
+  private $itemAttributes = [];
 
   /**
    * @CfrPlugin(
@@ -33,16 +33,16 @@ class ListFormat_HtmlList implements ListFormatInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator() {
-    $configurators = array(
+    $configurators = [
       Configurator_LegendSelect::createFromOptions(
-        array(
+        [
           'ul' => t('Unordered list (ul)'),
           'ol' => t('Ordered list (ol)'),
-        ),
+        ],
         'ul'),
       new Configurator_ClassAttribute(),
-    );
-    $labels = array(t('List type'), t('Classes'));
+    ];
+    $labels = [t('List type'), t('Classes')];
     $cfr = Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
     return $cfr;
   }
@@ -53,7 +53,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  public static function create($tagName = 'ul', array $classes = array()) {
+  public static function create($tagName = 'ul', array $classes = []) {
     $format = new self($tagName);
     foreach ($classes as $class) {
       $format->addClass($class);
@@ -87,13 +87,13 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *   Render array for the list.
    */
   public function buildList(array $builds) {
-    $listBuild = array(
+    $listBuild = [
       /* @see theme_themekit_item_list() */
       '#theme' => 'themekit_item_list',
       '#tag_name' => $this->tagName,
       '#attributes' => $this->attributes,
       '#item_attributes' => $this->itemAttributes,
-    );
+    ];
     foreach ($builds as $delta => $build) {
       $listBuild[$delta]['content'] = $build;
     }

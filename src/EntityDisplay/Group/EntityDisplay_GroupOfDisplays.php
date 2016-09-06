@@ -34,8 +34,8 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
    */
   public static function createPlugin(CfrContextInterface $context = NULL) {
     $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
-    $configurators = array(new Configurator_Sequence($displayConfigurator));
-    $labels = array(NULL);
+    $configurators = [new Configurator_Sequence($displayConfigurator)];
+    $labels = [NULL];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }
 
@@ -45,7 +45,7 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
   public function __construct(array $displayHandlers) {
     foreach ($displayHandlers as $delta => $displayHandler) {
       if (!$displayHandler instanceof EntityDisplayInterface) {
-        $displayHandlers = array();
+        $displayHandlers = [];
         break;
       }
     }
@@ -60,7 +60,7 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
   public function buildEntities($entityType, array $entities) {
-    $builds = array();
+    $builds = [];
     foreach ($this->displayHandlers as $name => $handler) {
       foreach ($handler->buildEntities($entityType, $entities) as $delta => $entity_build) {
         unset($entity_build['#weight']);

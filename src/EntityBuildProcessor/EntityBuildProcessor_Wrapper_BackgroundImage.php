@@ -42,7 +42,7 @@ class EntityBuildProcessor_Wrapper_BackgroundImage extends EntityBuildProcessorB
    */
   public function processEntityBuild(array $build, $entity_type, $entity) {
     $imageDisplay = $this->imageProvider->buildEntity($entity_type, $entity);
-    $build = $this->buildContainer() + array('content' => $build);
+    $build = $this->buildContainer() + ['content' => $build];
     if (isset($imageDisplay['#path'])) {
       $imageUrl = file_create_url($imageDisplay['#path']);
       $build['#attributes']['style'] = 'background-image: url(' . json_encode($imageUrl) . ')';

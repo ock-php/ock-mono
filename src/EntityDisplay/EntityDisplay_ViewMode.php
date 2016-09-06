@@ -26,8 +26,8 @@ class EntityDisplay_ViewMode extends EntitiesDisplayBase {
    */
   public static function createConfigurator($entityType) {
     $legend = new EnumMap_EntityViewMode($entityType);
-    $configurators = array(Configurator_LegendSelect::createRequired($legend));
-    $labels = array(t('View mode'));
+    $configurators = [Configurator_LegendSelect::createRequired($legend)];
+    $labels = [t('View mode')];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }
 
@@ -52,15 +52,15 @@ class EntityDisplay_ViewMode extends EntitiesDisplayBase {
     if (empty($entities)) {
       // entity_view() does not like an empty array of entities.
       // Especially, node_view_multiple() really does not.
-      return array();
+      return [];
     }
     /** @var array|false $builds_by_type */
     $builds_by_type = entity_view($entityType, $entities, $this->viewMode);
     if ($builds_by_type === FALSE) {
-      return array();
+      return [];
     }
     $builds_by_etid = $builds_by_type[$entityType];
-    $builds_by_delta = array();
+    $builds_by_delta = [];
 
     foreach (EntityUtil::entitiesGetIds($entityType, $entities) as $delta => $etid) {
       if (isset($builds_by_etid[$etid])) {

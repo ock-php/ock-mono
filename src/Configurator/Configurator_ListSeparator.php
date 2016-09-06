@@ -16,14 +16,14 @@ class Configurator_ListSeparator implements ConfiguratorInterface {
    * @return array
    */
   public function confGetForm($conf, $label) {
-    return array(
+    return [
       '#title' => t('Separator'),
       /* @see theme_textfield() */
       '#type' => 'textfield',
       '#maxlength' => 20,
       '#size' => 6,
       '#default_value' => is_string($conf) ? $conf : NULL,
-    );
+    ];
   }
 
   /**

@@ -15,7 +15,7 @@ final class EntityUtil extends UtilBase {
     $info = entity_get_info($entityType);
     $idKey = $info['entity keys']['id'];
 
-    $idsByDelta = array();
+    $idsByDelta = [];
     foreach ($entities as $delta => $entity) {
       if (isset($entity->$idKey)) {
         $idsByDelta[$delta] = $entity->$idKey;

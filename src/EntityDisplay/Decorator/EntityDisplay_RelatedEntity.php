@@ -39,15 +39,16 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
     $hub = cfrplugin();
     return Configurator_CallbackConfigurable::createFromClassName(
       __CLASS__,
-      array(
+      [
         $hub->interfaceGetConfigurator(EntityToEntityInterface::class, $context),
         // This one is without context, because we no longer know the entity type.
         $hub->interfaceGetConfigurator(EntityDisplayInterface::class),
-      ),
-      array(
+      ],
+      [
         t('Entity relation'),
         t('Related entity display'),
-      ));
+      ]
+    );
   }
 
   /**
@@ -95,7 +96,7 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    */
   public function buildEntity($entity_type, $entity) {
     if (NULL === $relatedEntity = $this->entityToEntity->entityGetRelated($entity_type, $entity)) {
-      return array();
+      return [];
     }
     return $this->relatedEntityDisplay->buildEntity($this->relatedEntityType, $relatedEntity);
   }

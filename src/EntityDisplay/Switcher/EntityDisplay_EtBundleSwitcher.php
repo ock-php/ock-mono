@@ -14,7 +14,7 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[][]
    *   Format: $[$entityType][$bundleName] = $displayHandler
    */
-  private $typeBundleDisplays = array();
+  private $typeBundleDisplays = [];
 
   /**
    * Sets the display handler that will be used for the given bundle.
@@ -43,8 +43,8 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
     if (isset($this->typeBundleDisplays[$entityType])) {
       $bundleKey = $this->entityTypeGetBundleKey($entityType);
       if (isset($bundleKey)) {
-        $builds = array();
-        $entitiesByBundle = array();
+        $builds = [];
+        $entitiesByBundle = [];
         $bundleDisplays = $this->typeBundleDisplays[$entityType];
         foreach ($entities as $delta => $entity) {
           if (isset($entity->$bundleKey)) {
@@ -54,7 +54,7 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
               $entitiesByBundle[$bundleName][$delta] = $entity;
             }
           }
-          $builds[$delta] = array();
+          $builds[$delta] = [];
         }
         $buildsUnsorted = parent::buildEntities($entityType, $entities);
         foreach ($entitiesByBundle as $bundleName => $bundleEntities) {

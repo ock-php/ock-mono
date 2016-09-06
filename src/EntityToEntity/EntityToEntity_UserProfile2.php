@@ -30,8 +30,9 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
       function($profile2TypeName = NULL) use ($entityType) {
         return self::create($entityType, $profile2TypeName);
       },
-      array(Configurator_LegendSelect::createOptional($legend)),
-      array(t('Profile type')));
+      [Configurator_LegendSelect::createOptional($legend)],
+      [t('Profile type')]
+    );
   }
 
   /**

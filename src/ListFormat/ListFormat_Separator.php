@@ -24,10 +24,10 @@ class ListFormat_Separator implements ListFormatInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator() {
-    $configurators = array(
+    $configurators = [
       new Configurator_ListSeparator(),
-    );
-    $labels = array(t('Separator'));
+    ];
+    $labels = [t('Separator')];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }
 
@@ -47,11 +47,11 @@ class ListFormat_Separator implements ListFormatInterface {
    *   Render array for the list.
    */
   public function buildList(array $builds) {
-    return array(
+    return [
       /* @see renderkit_theme() */
       /* @see theme_themekit_separator_list() */
       '#theme' => 'themekit_separator_list',
       '#separator' => $this->separator,
-    ) + $builds;
+    ] + $builds;
   }
 }

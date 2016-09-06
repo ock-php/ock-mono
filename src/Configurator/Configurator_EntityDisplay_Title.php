@@ -21,7 +21,7 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
    * @return \Drupal\renderkit\Configurator\Configurator_EntityDisplay_Title
    */
   public static function create() {
-    return new self(array('h1', 'h2', 'h3', 'h4', 'strong'));
+    return new self(['h1', 'h2', 'h3', 'h4', 'strong']);
   }
 
   /**
@@ -43,19 +43,19 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
   public function confGetForm($conf, $label) {
     list($tagName, $link) = $this->confGetNormalized($conf);
 
-    $form = array();
-    $form['tag_name'] = array(
+    $form = [];
+    $form['tag_name'] = [
       '#type' => 'select',
       '#options' => $this->allowedTagNames,
       '#title' => t('Wrapper'),
       '#empty_option' => t('- No wrapper -'),
       '#default_value' => $tagName,
-    );
-    $form['link'] = array(
+    ];
+    $form['link'] = [
       '#type' => 'checkbox',
       '#title' => t('Link to entity'),
       '#default_value' => $link,
-    );
+    ];
     return $form;
   }
 
@@ -121,7 +121,7 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
   private function confGetNormalized($conf) {
 
     if (!is_array($conf)) {
-      $conf = array();
+      $conf = [];
     }
 
     if (0
@@ -133,6 +133,6 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
 
     $conf['link'] = !empty($conf['link']);
 
-    return array($conf['tag_name'], $conf['link']);
+    return [$conf['tag_name'], $conf['link']];
   }
 }

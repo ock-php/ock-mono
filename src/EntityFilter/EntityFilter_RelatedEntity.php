@@ -33,7 +33,7 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
    */
   public function entitiesFilterDeltas($entityType, array $entities) {
     $relatedIdsByDelta = $this->relation->entitiesGetRelatedIds($entityType, $entities);
-    $relatedIds = array();
+    $relatedIds = [];
     foreach ($relatedIdsByDelta as $delta => $deltaRelatedIds) {
       foreach ($deltaRelatedIds as $relatedId) {
         $relatedIds[] = $relatedId;
@@ -43,7 +43,7 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
     $relatedEntitiesById = entity_load($this->relation->getTargetType(), $relatedIds);
 
     $relatedEntitiesHaveQuality = $this->filter->entitiesFilterDeltas($this->relation->getTargetType(), $relatedEntitiesById);
-    $entitiesHaveQuality = array();
+    $entitiesHaveQuality = [];
     foreach ($relatedIdsByDelta as $delta => $deltaRelatedIds) {
       foreach ($deltaRelatedIds as $id => $relatedEntity) {
         if (!empty($relatedEntitiesHaveQuality[$id])) {

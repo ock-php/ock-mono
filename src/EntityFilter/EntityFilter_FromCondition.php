@@ -42,7 +42,7 @@ class EntityFilter_FromCondition implements EntityFilterInterface {
    *   Deltas where the entity has the quality.
    */
   public function entitiesFilterDeltas($entityType, array $entities) {
-    $deltas = array();
+    $deltas = [];
     foreach ($entities as $delta => $entity) {
       if ($this->singleEntityFilter->entityCheckCondition($entityType, $entity)) {
         $deltas[] = $delta;

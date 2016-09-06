@@ -38,8 +38,9 @@ class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase
     return Configurator_CallbackConfigurable::createFromClassStaticMethod(
       __CLASS__,
       'entityTitleLinkWrapper',
-      array(Configurator_TagName::createForTitle()),
-      array(t('Tag name')));
+      [Configurator_TagName::createForTitle()],
+      [t('Tag name')]
+    );
   }
 
   /**
@@ -64,14 +65,14 @@ class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase
   public function processEntityBuild(array $build, $entity_type, $entity) {
     $link_uri = entity_uri($entity_type, $entity);
     $link_uri['options']['attributes'] = $this->attributes;
-    return array(
+    return [
       $build,
       /* @see themekit_element_info() */
       /* @see theme_themekit_link_wrapper() */
       '#type' => 'themekit_link_wrapper',
       '#path' => $link_uri['path'],
       '#options' => $link_uri['options'],
-    );
+    ];
   }
 
 }

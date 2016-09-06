@@ -48,7 +48,7 @@ class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
    */
   public function entitiesGetRelatedIds($entityType, array $entities) {
     if ($entityType !== $this->fieldTargetType) {
-      return array();
+      return [];
     }
     $idsByDelta = EntityUtil::entitiesGetIds($entityType, $entities);
     $targetIdColName = $this->fieldName . '_target_id';
@@ -57,11 +57,11 @@ class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
     $q->condition($targetIdColName, array_values($idsByDelta));
     $q->addField('f', $targetIdColName, 'target_id');
     $q->addField('f', 'entity_id');
-    $relatedIdsById = array();
+    $relatedIdsById = [];
     foreach ($q->execute() as $row) {
       $relatedIdsById[$row->target_id][] = $row->entity_id;
     }
-    $relatedIdsByDelta = array();
+    $relatedIdsByDelta = [];
     foreach ($idsByDelta as $delta => $etid) {
       if (array_key_exists($etid, $relatedIdsById)) {
         $relatedIdsByDelta[$delta] = $relatedIdsById[$etid];

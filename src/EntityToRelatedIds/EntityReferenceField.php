@@ -53,8 +53,8 @@ class EntityReferenceField extends EntityToRelatedIdsBase {
    *   Format: $[] = $relatedEntityId
    */
   public function entityGetRelatedIds($entityType, $entity) {
-    $relatedIds = array();
-    foreach (field_get_items($entityType, $entity, $this->fieldName) ?: array() as $itemDelta => $item) {
+    $relatedIds = [];
+    foreach (field_get_items($entityType, $entity, $this->fieldName) ?: [] as $itemDelta => $item) {
       if (!empty($item['target_id'])) {
         $relatedIds[$itemDelta] = $item['target_id'];
       }

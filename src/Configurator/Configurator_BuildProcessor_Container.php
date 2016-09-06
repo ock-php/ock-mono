@@ -26,19 +26,19 @@ class Configurator_BuildProcessor_Container implements ConfiguratorInterface {
    * @see \views_handler::options_form()
    */
   public function confGetForm($conf, $label) {
-    $form['tag_name'] = array(
+    $form['tag_name'] = [
       '#title' => t('Tag name'),
       '#type' => 'textfield',
       '#default_value' => isset($conf['tag_name']) ? $conf['tag_name'] : 'div',
       // @todo Add validation for tag name.
-    );
-    $form['classes'] = array(
+    ];
+    $form['classes'] = [
       '#title' => t('Classes'),
       '#description' => t('Classes, separated by space'),
       '#type' => 'textfield',
       '#default_value' => isset($conf['classes']) ? $conf['classes'] : '',
       // @todo Add validation for classes.
-    );
+    ];
     return $form;
   }
 
@@ -60,7 +60,7 @@ class Configurator_BuildProcessor_Container implements ConfiguratorInterface {
    */
   public function confGetValue($conf) {
     // @todo What is the purpose of this 'decorated' key?
-    $conf += array('decorated' => array());
+    $conf += ['decorated' => []];
     $container = new BuildProcessor_Container();
     if (!empty($conf['tag_name'])) {
       // @todo Sanitize tag name.

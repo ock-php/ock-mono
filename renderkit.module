@@ -11,7 +11,7 @@ define('RENDERKIT_POP_PARENT', '_renderkit_pop_parent');
 function renderkit_cfrplugin_info() {
   return function_exists('cfrplugindiscovery')
     ? cfrplugindiscovery()->discoverByInterface(__DIR__ . '/src', 'Drupal\renderkit')
-    : array();
+    : [];
 }
 
 /**

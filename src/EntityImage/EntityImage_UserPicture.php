@@ -40,15 +40,15 @@ class EntityImage_UserPicture implements EntityImageInterface {
     /* @see template_preprocess_user_picture() */
     $image_path = $this->userGetImagePath($user);
     if (!$image_path) {
-      return array();
+      return [];
     }
-    $alt = t("@user's picture", array('@user' => format_username($user)));
-    return array(
+    $alt = t("@user's picture", ['@user' => format_username($user)]);
+    return [
       '#theme' => 'image',
       '#path' => $image_path,
       '#alt' => $alt,
       '#title' => $alt,
-    );
+    ];
   }
 
   /**

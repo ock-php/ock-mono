@@ -33,7 +33,7 @@ class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorB
    *   Render array after the processing.
    */
   public function processEntityBuild(array $build, $entity_type, $entity) {
-    $build = $this->buildContainer() + array('content' => $build);
+    $build = $this->buildContainer() + ['content' => $build];
     if (!user_access('access contextual links')) {
       return $build;
     }
@@ -50,13 +50,13 @@ class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorB
       return $build;
     }
     $base_path = substr($entity_uri['path'], 0, $pos);
-    $build['contextual_links'] = array(
+    $build['contextual_links'] = [
       '#type' => 'contextual_links',
-      '#contextual_links' => array(
-        $entity_type => array($base_path, array($entity_id)),
-      ),
+      '#contextual_links' => [
+        $entity_type => [$base_path, [$entity_id]],
+      ],
       '#element' => $build,
-    );
+    ];
     // Mark this element as potentially having contextual links attached to it.
     $build['#attributes']['class'][] = 'contextual-links-region';
     return $build;

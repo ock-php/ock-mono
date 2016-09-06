@@ -28,7 +28,7 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
     /** @var \view[] $views */
     $views = \views_get_all_views();
 
-    $options = array();
+    $options = [];
 
     foreach ($views as $view_id => $view) {
       if (!empty($view->disabled)) {

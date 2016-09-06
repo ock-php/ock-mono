@@ -23,8 +23,8 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    */
   public static function createConfigurator() {
     $imageStyleMap = new EnumMap_ImageStyle();
-    $paramConfigurators = array(Configurator_LegendSelect::createRequired($imageStyleMap));
-    $labels = array(t('Image style'));
+    $paramConfigurators = [Configurator_LegendSelect::createRequired($imageStyleMap)];
+    $labels = [t('Image style')];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $paramConfigurators, $labels);
   }
 
@@ -45,7 +45,7 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    */
   public function processImage(array $build) {
     if (empty($build)) {
-      return array();
+      return [];
     }
     /* @see theme_image_style() */
     $build['#theme'] = 'image_style';

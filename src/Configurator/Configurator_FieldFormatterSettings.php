@@ -83,16 +83,16 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
     /* @see hook_field_formatter_settings_form() */
     $function = $this->formatterTypeInfo['module'] . '_field_formatter_settings_form';
     if (!function_exists($function)) {
-      return array();
+      return [];
     }
     $settings = $this->confGetFormatterSettings($conf);
     $instance = FieldUtil::createFakeFieldInstance($this->fieldName, '_custom', $this->formatterType, $settings);
-    $form = array();
-    $form_state = array();
+    $form = [];
+    $form_state = [];
     $settings_form = $function($this->fieldInfo, $instance, '_custom', $form, $form_state);
 
     if (!count($settings_form)) {
-      return array();
+      return [];
     }
     return $settings_form;
     # return array('settings' => $settings_form);
@@ -129,7 +129,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
    * @return array
    */
   private function confGetFormatterSettings($conf) {
-    $settings = is_array($conf) ? $conf : array();
+    $settings = is_array($conf) ? $conf : [];
     # $settings = isset($conf['settings']) ? $conf['settings'] : array();
     return $settings + $this->formatterTypeInfo['settings'];
   }

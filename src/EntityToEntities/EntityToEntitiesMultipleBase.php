@@ -11,7 +11,7 @@ abstract class EntityToEntitiesMultipleBase implements EntityToEntitiesInterface
    * @return object[]
    */
   public function entityGetRelated($entityType, $entity) {
-    $targetEntities = $this->entitiesGetRelated($entityType, array($entity));
-    return isset($targetEntities[0]) ? $targetEntities[0] : array();
+    $targetEntities = $this->entitiesGetRelated($entityType, [$entity]);
+    return isset($targetEntities[0]) ? $targetEntities[0] : [];
   }
 }

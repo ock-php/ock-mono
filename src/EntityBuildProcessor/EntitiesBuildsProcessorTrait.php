@@ -15,12 +15,12 @@ trait EntitiesBuildsProcessorTrait {
    */
   final public function processEntityBuild(array $build, $entity_type, $entity) {
     if (empty($build)) {
-      return array();
+      return [];
     }
-    $builds = $this->processEntitiesBuilds(array($build), $entity_type, array($entity));
+    $builds = $this->processEntitiesBuilds([$build], $entity_type, [$entity]);
     return isset($builds[0])
       ? $builds[0]
-      : array();
+      : [];
   }
 
   /**

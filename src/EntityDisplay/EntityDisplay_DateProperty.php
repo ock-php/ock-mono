@@ -57,18 +57,18 @@ class EntityDisplay_DateProperty extends EntityDisplayBase {
    */
   public function buildEntity($entity_type, $entity) {
     if ('node' !== $entity_type) {
-      return array();
+      return [];
     }
     if (!isset($entity->{$this->key})) {
-      return array();
+      return [];
     }
     $date = $entity->{$this->key};
     if (!is_int($date)) {
       // Not a timestamp.
-      return array();
+      return [];
     }
-    return array(
+    return [
       '#markup' => format_date($date, $this->dateFormatType, $this->dateFormatCustom)
-    );
+    ];
   }
 }

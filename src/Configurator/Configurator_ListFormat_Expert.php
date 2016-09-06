@@ -65,11 +65,11 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
         '#title' => t('Element'),
         # '#description' => t('Leave empty for no tag around each item.'),
         '#default_value' => isset($conf[$k]) ? $conf[$k] : '',
-        '#states' => array(
-          'visible' => array(
-            ':input[name$="[' . $wrapper_key . ']"]' => array('checked' => TRUE),
-          ),
-        ),
+        '#states' => [
+          'visible' => [
+            ':input[name$="[' . $wrapper_key . ']"]' => ['checked' => TRUE],
+          ],
+        ],
       ];
 
       $form[$wrapper_key][$colname = 'classes'][$k = $wrapper_key . '-' . $colname] = [
@@ -77,11 +77,11 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
         '#title' => t('Classes'),
         # '#description' => t('Classes separated by spaces. Has no effect if wrapper tag name is empty.'),
         '#default_value' => isset($conf[$k]) ? $conf[$k] : '',
-        '#states' => array(
-          'visible' => array(
-            ':input[name$="[' . $wrapper_key . ']"]' => array('checked' => TRUE),
-          ),
-        ),
+        '#states' => [
+          'visible' => [
+            ':input[name$="[' . $wrapper_key . ']"]' => ['checked' => TRUE],
+          ],
+        ],
       ];
     }
 
@@ -89,22 +89,22 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
       '#type' => 'checkbox',
       '#title' => t("Zebra striping ('even' / 'odd' classes)"),
       '#default_value' => !empty($conf[$k]),
-      '#states' => array(
-        'visible' => array(
-          ':input[name$="[item]"]' => array('checked' => TRUE),
-        ),
-      ),
+      '#states' => [
+        'visible' => [
+          ':input[name$="[item]"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
 
     $form['item']['classes'][$k = 'firstlast'] = [
       '#type' => 'checkbox',
       '#title' => t("Classes for 'first' / 'last'"),
       '#default_value' => !empty($conf[$k]),
-      '#states' => array(
-        'visible' => array(
-          ':input[name$="[item]"]' => array('checked' => TRUE),
-        ),
-      ),
+      '#states' => [
+        'visible' => [
+          ':input[name$="[item]"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
 
     $form = [

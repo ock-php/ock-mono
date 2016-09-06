@@ -36,9 +36,9 @@ class EntityDisplay_Title extends EntityDisplayBase {
    * @return array
    */
   public function buildEntity($entity_type, $entity) {
-    return array(
+    return [
       '#markup' => entity_label($entity_type, $entity),
-    );
+    ];
   }
 
 }

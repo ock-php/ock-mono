@@ -27,9 +27,9 @@ class EntityImages_ImageField implements EntityImagesInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createPlugin($entityType = NULL, $bundleName = NULL) {
-    $legend = new EnumMap_FieldName(array('image'), $entityType, $bundleName);
-    $configurators = array(Configurator_LegendSelect::createRequired($legend));
-    $labels = array(t('Image field'));
+    $legend = new EnumMap_FieldName(['image'], $entityType, $bundleName);
+    $configurators = [Configurator_LegendSelect::createRequired($legend)];
+    $labels = [t('Image field')];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }
 
@@ -49,8 +49,8 @@ class EntityImages_ImageField implements EntityImagesInterface {
    *   Render array for one entity.
    */
   public function entityGetImages($entity_type, $entity) {
-    $items = field_get_items($entity_type, $entity, $this->fieldName) ?: array();
-    $builds = array();
+    $items = field_get_items($entity_type, $entity, $this->fieldName) ?: [];
+    $builds = [];
     foreach ($items as $delta => $item) {
       $builds[$delta] = $this->buildFieldItem($item);
     }
@@ -67,10 +67,10 @@ class EntityImages_ImageField implements EntityImagesInterface {
    */
   protected function buildFieldItem(array $item) {
 
-    $build = array(
+    $build = [
       '#theme' => 'image',
       '#path' => $item['uri'],
-    );
+    ];
 
     if (array_key_exists('alt', $item)) {
       $build['#alt'] = $item['alt'];

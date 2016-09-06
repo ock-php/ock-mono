@@ -40,8 +40,8 @@ class EntityCondition_FromFilter implements EntityConditionInterface {
    * @return bool
    */
   public function entityCheckCondition($entityType, $entity) {
-    $entities = array('entity' => $entity);
+    $entities = ['entity' => $entity];
     $filteredDeltas = $this->multiEntityFilter->entitiesFilterDeltas($entityType, $entities);
-    return $filteredDeltas === array('entity');
+    return $filteredDeltas === ['entity'];
   }
 }

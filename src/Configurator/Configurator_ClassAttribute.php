@@ -26,12 +26,12 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
     if ('' === $value) {
       return;
     }
-    $classes = array();
+    $classes = [];
     foreach (explode(' ', $value) as $class) {
-      $replacements = array(
+      $replacements = [
         '%name' => $element['#title'],
         '!class' => '<code>' . check_plain($class) . '</code>',
-      );
+      ];
       if ('' === $class) {
         form_error($element, t('%name contains more white space than needed.', $replacements));
       }
@@ -54,13 +54,13 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
    * @return array
    */
   public function confGetForm($conf, $label) {
-    return array(
+    return [
       '#title' => $label,
       '#description' => t('Classes, separated by space'),
       '#type' => 'textfield',
       '#default_value' => is_string($conf) ? $conf : '',
-      '#element_validate' => array(array(__CLASS__, 'elementValidate')),
-    );
+      '#element_validate' => [[__CLASS__, 'elementValidate']],
+    ];
   }
 
   /**
@@ -87,10 +87,10 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
    */
   public function confGetValue($conf) {
     if ('' === $conf || !is_string($conf)) {
-      return array();
+      return [];
     }
     // Keep only those class names that don't contain invalid characters, and that are not empty.
-    $classes = array();
+    $classes = [];
     foreach (explode(' ', $conf) as $class) {
       if ('' !== $class) {
         if (!preg_match('[^A-Za-z0-9_-]', $class)) {

@@ -38,15 +38,16 @@ class EntityImage_Related implements EntityImageInterface {
     $hub = cfrplugin();
     return Configurator_CallbackConfigurable::createFromClassName(
       __CLASS__,
-      array(
+      [
         $hub->interfaceGetConfigurator(EntityToEntityInterface::class, $context),
         // This one is without context, because we no longer know the entity type.
         $hub->interfaceGetConfigurator(EntityImageInterface::class),
-      ),
-      array(
+      ],
+      [
         t('Entity relation'),
         t('Related entity image provider'),
-      ));
+      ]
+    );
   }
 
   /**
@@ -71,7 +72,7 @@ class EntityImage_Related implements EntityImageInterface {
    */
   public function buildEntity($entity_type, $entity) {
     if (NULL === $relatedEntity = $this->entityToEntity->entityGetRelated($entity_type, $entity)) {
-      return array();
+      return [];
     }
     return $this->relatedEntityImage->buildEntity($this->relatedEntityType, $relatedEntity);
   }

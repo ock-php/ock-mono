@@ -24,7 +24,7 @@ class EnumMap_EntityViewMode implements EnumMapInterface {
   public function getSelectOptions() {
 
     $entity_info = entity_get_info($this->entityType);
-    $options = array();
+    $options = [];
     if (!empty($entity_info['view modes'])) {
       foreach ($entity_info['view modes'] as $mode => $settings) {
         $options[$mode] = $settings['label'];

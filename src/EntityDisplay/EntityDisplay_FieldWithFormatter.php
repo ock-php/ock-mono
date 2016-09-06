@@ -36,9 +36,9 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
    * @param string $langcode
    */
-  public function __construct($field_name, array $display = array(), FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL, $langcode = NULL) {
+  public function __construct($field_name, array $display = [], FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL, $langcode = NULL) {
     $this->fieldName = $field_name;
-    $this->display = $display + array('label' => 'hidden');
+    $this->display = $display + ['label' => 'hidden'];
     $this->fieldDisplayProcessor = $fieldDisplayProcessor;
     $this->langcode = $langcode;
   }

@@ -32,7 +32,7 @@ class EntityDisplay_NeutralDecorator extends EntitiesDisplayBase {
   public function buildEntities($entityType, array $entities) {
     return isset($this->decorated)
       ? $this->decorated->buildEntities($entityType, $entities)
-      : array();
+      : [];
   }
 
 }

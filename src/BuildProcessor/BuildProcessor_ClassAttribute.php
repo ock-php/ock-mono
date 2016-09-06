@@ -18,7 +18,7 @@ class BuildProcessor_ClassAttribute implements BuildProcessorInterface {
    * @param string[] $classes
    * @param string $attributesKey
    */
-  public function __construct(array $classes = array(), $attributesKey = '#attributes') {
+  public function __construct(array $classes = [], $attributesKey = '#attributes') {
     $this->classes = $classes;
     $this->attributesKey = $attributesKey;
   }

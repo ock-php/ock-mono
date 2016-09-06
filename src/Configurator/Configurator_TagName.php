@@ -11,24 +11,26 @@ final class Configurator_TagName extends UtilBase {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createForTitle() {
-    return self::create(array('h1', 'h2', 'h3', 'h4', 'h5', 'label', 'strong'), 'h2');
+    return self::create(['h1', 'h2', 'h3', 'h4', 'h5', 'label', 'strong'], 'h2');
   }
 
   /**
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createForContainer() {
-    return self::create(array('div', 'span', 'article', 'section', 'pre'), 'div');
+    return self::create(['div', 'span', 'article', 'section', 'pre'], 'div');
   }
 
   /**
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createForHtmlList() {
-    return Configurator_LegendSelect::createFromOptions(array(
+    return Configurator_LegendSelect::createFromOptions(
+      [
       'ul' => t('Unordered list (ul)'),
       'ol' => t('Ordered list (ol)'),
-    ));
+      ]
+    );
   }
 
   /**

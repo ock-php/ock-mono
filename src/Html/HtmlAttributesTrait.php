@@ -10,7 +10,7 @@ trait HtmlAttributesTrait {
   /**
    * @var mixed[]
    */
-  protected $attributes = array();
+  protected $attributes = [];
 
   /**
    * @param string $class
@@ -40,13 +40,13 @@ trait HtmlAttributesTrait {
    * @return array
    */
   protected function tagNameBuildContainer($tagName) {
-    return array(
+    return [
       /* @see themekit_element_info() */
       /* @see theme_themekit_container() */
       '#type' => 'themekit_container',
       '#tag_name' => $tagName,
       '#attributes' => $this->attributes,
-    );
+    ];
   }
 
 }

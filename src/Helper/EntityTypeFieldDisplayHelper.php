@@ -120,8 +120,8 @@ class EntityTypeFieldDisplayHelper {
    */
   public function buildMultipleByDelta(array $entitiesByDelta) {
 
-    $entitiesByBundleAndId = array();
-    $idsByDelta = array();
+    $entitiesByBundleAndId = [];
+    $idsByDelta = [];
     foreach ($entitiesByDelta as $delta => $entity) {
       if (empty($entity->{$this->fieldName})) {
         continue;
@@ -148,7 +148,7 @@ class EntityTypeFieldDisplayHelper {
 
     $buildsById = $this->buildMultipleByBundleAndId($entitiesByBundleAndId);
 
-    $builds = array();
+    $builds = [];
     foreach ($idsByDelta as $delta => $etid) {
       if (isset($buildsById[$etid])) {
         $builds[$delta] = $buildsById[$etid];
@@ -166,9 +166,9 @@ class EntityTypeFieldDisplayHelper {
    */
   private function buildMultipleByBundleAndId(array $entitiesByBundleAndId) {
 
-    $entitiesByLanguageAndId = array();
-    $instancesByLanguageAndId = array();
-    $bundlesById = array();
+    $entitiesByLanguageAndId = [];
+    $instancesByLanguageAndId = [];
+    $bundlesById = [];
     foreach ($entitiesByBundleAndId as $bundle => $bundleEntitiesById) {
       $instance = field_info_instance($this->entityType, $this->fieldName, $bundle);
       if (empty($instance)) {
@@ -189,7 +189,7 @@ class EntityTypeFieldDisplayHelper {
 
     // Invoke the field hook and collect results.
 
-    $buildsById = array();
+    $buildsById = [];
     foreach ($entitiesByLanguageAndId as $entityFieldDisplayLanguage => $languageEntitiesById) {
       $buildsById += $this->languageEntitiesBuildField(
         $languageEntitiesById,
@@ -218,7 +218,7 @@ class EntityTypeFieldDisplayHelper {
 
     $itemsByEntityId = $this->languageEntitiesCollectFieldItems($languageEntitiesById, $instancesById, $entityFieldDisplayLanguage);
 
-    $buildsById = array();
+    $buildsById = [];
     foreach ($languageEntitiesById as $id => $entity) {
       $buildsById[$id] = $this->entityBuildField($entity, $bundlesById[$id], $instancesById[$id], $entityFieldDisplayLanguage, $itemsByEntityId[$id]);
     }
@@ -234,11 +234,11 @@ class EntityTypeFieldDisplayHelper {
    * @return array
    */
   private function languageEntitiesCollectFieldItems(array $languageEntitiesById, array $instancesById, $entityFieldDisplayLanguage) {
-    $itemsByEntityId = array();
+    $itemsByEntityId = [];
     foreach ($languageEntitiesById as $id => $entity) {
       $itemsByEntityId[$id] = isset($entity->{$this->fieldName}[$entityFieldDisplayLanguage])
         ? $entity->{$this->fieldName}[$entityFieldDisplayLanguage]
-        : array();
+        : [];
     }
 
     /* @see hook_field_prepare_view() */
@@ -274,7 +274,7 @@ class EntityTypeFieldDisplayHelper {
       return NULL;
     }
 
-    $build_defaults = array(
+    $build_defaults = [
       '#theme' => 'field',
       # '#weight' => $this->display['weight'],
       '#title' => $instance['label'],
@@ -291,19 +291,19 @@ class EntityTypeFieldDisplayHelper {
       '#object' => $entity,
       '#items' => $items,
       '#formatter' => $this->display['type'],
-    );
+    ];
     $build += $build_defaults;
 
     // Invoke hook_field_attach_view_alter() to let other modules alter the
     // renderable array, as in a full field_attach_view() execution.
-    $context = array(
+    $context = [
       'entity_type' => $this->entityType,
       'entity' => $entity,
       'view_mode' => '_custom',
       'display' => $this->display,
       'language' => $entityFieldDisplayLanguage,
-    );
-    $result = array($this->fieldName => $build);
+    ];
+    $result = [$this->fieldName => $build];
     /* @see hook_field_attach_view_alter() */
     drupal_alter('field_attach_view', $result, $context);
     if (!isset($result[$this->fieldName])) {
@@ -327,12 +327,12 @@ class EntityTypeFieldDisplayHelper {
       : LANGUAGE_NONE;
 
     if ($this->hasTranslationHandler) {
-      $context = array(
+      $context = [
         'entity_type' => $this->entityType,
         'entity' => clone $entity,
         'language' => $langcode,
-      );
-      $languageByField = array($this->fieldName => $langcode);
+      ];
+      $languageByField = [$this->fieldName => $langcode];
       /* @see hook_field_language_alter() */
       drupal_alter('field_language', $languageByField, $context);
       $langcode = isset($languageByField[$this->fieldName])

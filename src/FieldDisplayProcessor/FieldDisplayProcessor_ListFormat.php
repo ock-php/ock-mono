@@ -64,7 +64,7 @@ class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface
    */
   public function process(array $element) {
 
-    $builds = array();
+    $builds = [];
     foreach ($element['#items'] as $delta => $item) {
       if (!empty($element[$delta])) {
         $builds[$delta] = $element[$delta];

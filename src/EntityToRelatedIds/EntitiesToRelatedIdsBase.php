@@ -12,9 +12,9 @@ abstract class EntitiesToRelatedIdsBase implements EntityToRelatedIdsInterface {
    *   Format: $[] = $relatedEntityId
    */
   final public function entityGetRelatedIds($entityType, $entity) {
-    $relatedIdsByDelta = $this->entitiesGetRelatedIds($entityType, array($entity));
+    $relatedIdsByDelta = $this->entitiesGetRelatedIds($entityType, [$entity]);
     return array_key_exists(0, $relatedIdsByDelta)
       ? $relatedIdsByDelta[0]
-      : array();
+      : [];
   }
 }

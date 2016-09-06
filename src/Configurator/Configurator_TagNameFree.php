@@ -17,7 +17,7 @@ class Configurator_TagNameFree extends Configurator_TextfieldBase {
    */
   public function confGetForm($conf, $label) {
     $form = parent::confGetForm($conf, $label);
-    $form['#element_validate'][] = array($this, 'elementValidate');
+    $form['#element_validate'][] = [$this, 'elementValidate'];
     return $form;
   }
 

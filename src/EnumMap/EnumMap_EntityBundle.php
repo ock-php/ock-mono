@@ -24,9 +24,9 @@ class EnumMap_EntityBundle implements EnumMapInterface {
   public function getSelectOptions() {
     $entity_info = entity_get_info($this->entityType);
     if (empty($entity_info['bundles'])) {
-      return array();
+      return [];
     }
-    $options = array();
+    $options = [];
     foreach ($entity_info['bundles'] as $bundle => $bundle_info) {
       $options[$bundle] = $bundle_info['label'];
     }

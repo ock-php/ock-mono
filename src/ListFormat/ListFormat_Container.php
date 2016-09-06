@@ -21,14 +21,14 @@ class ListFormat_Container implements ListFormatInterface, HtmlTagInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator() {
-    $configurators = array(
+    $configurators = [
       Configurator_TagName::createForContainer(),
       Configurator_ClassAttribute::create(),
-    );
-    $labels = array(
+    ];
+    $labels = [
       t('List type'),
       t('Classes'),
-    );
+    ];
     return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
   }
 

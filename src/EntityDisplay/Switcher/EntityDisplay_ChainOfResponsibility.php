@@ -19,7 +19,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
    *   Format: $[] = $displayHandler
    */
-  private $displays = array();
+  private $displays = [];
 
   /**
    * @CfrPlugin(
@@ -33,8 +33,8 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    */
   public static function createPlugin(CfrContextInterface $context = NULL) {
     $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
-    $configurators = array(new Configurator_Sequence($displayConfigurator));
-    $labels = array(NULL);
+    $configurators = [new Configurator_Sequence($displayConfigurator)];
+    $labels = [NULL];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }
 
@@ -63,7 +63,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
         }
       }
       /** @noinspection DisconnectedForeachInstructionInspection */
-      if (array() === $entities) {
+      if ([] === $entities) {
         break;
       }
     }

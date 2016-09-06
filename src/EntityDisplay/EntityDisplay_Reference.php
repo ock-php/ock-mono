@@ -24,10 +24,10 @@ class EntityDisplay_Reference extends EntitiesDisplayBase {
   public static function author($entityType) {
     switch ($entityType) {
       case 'node':
-        return array(
+        return [
           'propertyKey' => 'uid',
           'targetType' => 'user',
-        );
+        ];
     }
 
     return FALSE;

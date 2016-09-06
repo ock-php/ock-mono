@@ -29,9 +29,9 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator($entityType = NULL, $bundleName = NULL) {
-    $legend = new EnumMap_FieldName(array('entityreference'), $entityType, $bundleName);
-    $configurators = array(Configurator_LegendSelect::createRequired($legend));
-    $labels = array(t('Entity reference field'));
+    $legend = new EnumMap_FieldName(['entityreference'], $entityType, $bundleName);
+    $configurators = [Configurator_LegendSelect::createRequired($legend)];
+    $labels = [t('Entity reference field')];
     return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
   }
 
@@ -84,7 +84,7 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
    */
   public function entitiesGetRelated($entityType, array $entities) {
 
-    $target_etids = array();
+    $target_etids = [];
     foreach ($entities as $delta => $entity) {
       $items = field_get_items($entityType, $entity, $this->fieldName) ?: NULL;
       if (NULL === $items) {
@@ -99,7 +99,7 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
 
     $target_entities_by_etid = entity_load($this->targetType, $target_etids);
 
-    $target_entities_by_delta = array();
+    $target_entities_by_delta = [];
     foreach ($target_etids as $delta => $target_etid) {
       if (array_key_exists($target_etid, $target_entities_by_etid)) {
         $target_entities_by_delta[$delta] = $target_entities_by_etid[$target_etid];

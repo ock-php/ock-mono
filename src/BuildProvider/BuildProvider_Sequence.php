@@ -32,7 +32,7 @@ class BuildProvider_Sequence implements BuildProviderInterface {
   public static function createConfigurator(CfrContextInterface $context = NULL) {
     return Configurator_CallbackConfigurable::createFromClassName(
       __CLASS__,
-      array(
+      [
         new Configurator_Sequence(
           cfrplugin()->interfaceGetOptionalConfigurator(
             BuildProviderInterface::class,
@@ -41,11 +41,12 @@ class BuildProvider_Sequence implements BuildProviderInterface {
         cfrplugin()->interfaceGetOptionalConfigurator(
           ListFormatInterface::class,
           $context),
-      ),
-      array(
+      ],
+      [
         NULL,
         t('List format'),
-      ));
+      ]
+    );
   }
 
   /**
@@ -62,15 +63,15 @@ class BuildProvider_Sequence implements BuildProviderInterface {
    *   A render array.
    */
   public function build() {
-    $builds = array();
+    $builds = [];
     foreach ($this->providers as $k => $provider) {
       $build = $provider->build();
-      if (is_array($build) && array() !== $build) {
+      if (is_array($build) && [] !== $build) {
         $builds[$k] = $provider->build();
       }
     }
-    if (array() === $builds) {
-      return array();
+    if ([] === $builds) {
+      return [];
     }
     if (NULL !== $this->listFormat) {
       $builds = $this->listFormat->buildList($builds);

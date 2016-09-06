@@ -39,7 +39,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    */
   public function entitiesGetRelated($entityType, array $entities) {
     // @todo Check if this entity type has a uid!
-    $uids = array();
+    $uids = [];
     foreach ($entities as $delta => $entity) {
       if (!isset($entity->uid)) {
         continue;
@@ -51,7 +51,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
       $uids[$delta] = $entity->uid;
     }
     $usersByUid = user_load_multiple($uids);
-    $usersByDelta = array();
+    $usersByDelta = [];
     foreach ($uids as $delta => $uid) {
       if (array_key_exists($uid, $usersByUid)) {
         $usersByDelta[$delta] = $usersByUid[$uid];

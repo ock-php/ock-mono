@@ -18,7 +18,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
   /**
    * @var string[]
    */
-  private $sizes = array();
+  private $sizes = [];
 
   /**
    * The image style names.
@@ -26,7 +26,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    * @var string[]
    *   Format: $[] = $imageStyleName
    */
-  private $styleNames = array();
+  private $styleNames = [];
 
   /**
    * @param string|null $fallbackStyleName
@@ -116,7 +116,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
 
     /* @see theme_picture() */
     /* @see theme_image_srcset() */
-    $srcset = array();
+    $srcset = [];
     foreach ($this->styleNames as $style_name) {
       if (empty($style_name)) {
         continue;
@@ -146,19 +146,19 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    */
   protected function imageBuildGetDimensions(array $build) {
     if (!empty($build['#width']) && !empty($build['#height'])) {
-      return array(
+      return [
         'width' => $build['#width'],
         'height' => $build['#height'],
-      );
+      ];
     }
     $image_info = image_get_info($build['#path']);
     if (FALSE === $image_info) {
       throw new \Exception("Unable to load image.");
     }
-    return array(
+    return [
       'width' => $image_info['width'],
       'height' => $image_info['height'],
-    );
+    ];
   }
 
 }

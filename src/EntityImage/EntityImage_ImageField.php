@@ -30,9 +30,9 @@ class EntityImage_ImageField implements EntityImageInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createPlugin($entityType = NULL, $bundleName = NULL) {
-    $legend = new EnumMap_FieldName(array('image'), $entityType, $bundleName);
-    $configurators = array(Configurator_LegendSelect::createRequired($legend));
-    $labels = array(t('Image field'));
+    $legend = new EnumMap_FieldName(['image'], $entityType, $bundleName);
+    $configurators = [Configurator_LegendSelect::createRequired($legend)];
+    $labels = [t('Image field')];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }
 
@@ -55,7 +55,7 @@ class EntityImage_ImageField implements EntityImageInterface {
     /** @var array[]|false $items */
     $items = field_get_items($entity_type, $entity, $this->fieldName);
     if (!isset($items[0])) {
-      return array();
+      return [];
     }
     return $this->buildFieldItem($items[0]);
   }
@@ -70,10 +70,10 @@ class EntityImage_ImageField implements EntityImageInterface {
    */
   protected function buildFieldItem(array $item) {
 
-    $build = array(
+    $build = [
       '#theme' => 'image',
       '#path' => $item['uri'],
-    );
+    ];
 
     if (array_key_exists('alt', $item)) {
       $build['#alt'] = $item['alt'];

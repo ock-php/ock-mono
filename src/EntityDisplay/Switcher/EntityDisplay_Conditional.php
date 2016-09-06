@@ -61,9 +61,9 @@ class EntityDisplay_Conditional extends EntitiesDisplayBase {
   public function buildEntities($entityType, array $entities) {
     $deltas = $this->entityFilter->entitiesFilterDeltas($entityType, $entities);
     $lookup = array_fill_keys($deltas, TRUE);
-    $entitiesWithQuality = array();
-    $entitiesWithoutQuality = array();
-    $builds = array();
+    $entitiesWithQuality = [];
+    $entitiesWithoutQuality = [];
+    $builds = [];
     foreach ($entities as $delta => $entity) {
       if (!empty($lookup[$delta])) {
         $entitiesWithQuality[$delta] = $entity;
@@ -71,7 +71,7 @@ class EntityDisplay_Conditional extends EntitiesDisplayBase {
       else {
         $entitiesWithoutQuality[$delta] = $entity;
       }
-      $builds[$delta] = array();
+      $builds[$delta] = [];
     }
     if ($entitiesWithQuality) {
       foreach ($this->displayIfTrue->buildEntities($entityType, $entitiesWithQuality) as $delta => $build) {

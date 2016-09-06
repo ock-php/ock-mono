@@ -43,7 +43,7 @@ final class FieldUtil extends UtilBase {
 
     $instancesByFieldAndLabel = self::etBundleGetFieldInstancesByFieldAndLabel($entityType, $bundleName);
 
-    $options = array();
+    $options = [];
     foreach ($instancesByFieldAndLabel as $fieldName => $fieldInstancesByLabel) {
       $options[$fieldName] = implode(' / ', array_keys($fieldInstancesByLabel)) . ' (' . $fieldName . ')';
     }
@@ -60,11 +60,11 @@ final class FieldUtil extends UtilBase {
    */
   public static function etBundleGetFieldInstancesByFieldAndLabel($expectedEntityType = NULL, $expectedBundleName = NULL) {
 
-    $instancesByFieldAndLabel = array();
+    $instancesByFieldAndLabel = [];
     foreach (self::etBundleGetFieldInstancesByEtBundle($expectedEntityType, $expectedBundleName) as $entityType => $entityTypeInstances) {
       foreach ($entityTypeInstances as $bundleName => $bundleInstances) {
         foreach ($bundleInstances as $fieldName => $instance) {
-          $instancesByFieldAndLabel[$fieldName][$instance['label']][] = array($entityType, $bundleName);
+          $instancesByFieldAndLabel[$fieldName][$instance['label']][] = [$entityType, $bundleName];
         }
       }
     }
@@ -101,7 +101,7 @@ final class FieldUtil extends UtilBase {
    * @return array[]
    */
   public static function fieldTypeGetAvailableFormatterTypes($fieldType) {
-    $availableFormatterTypes = array();
+    $availableFormatterTypes = [];
     foreach (field_info_formatter_types() as $formatterTypeName => $formatterTypeDefinition) {
       if (!in_array($fieldType, $formatterTypeDefinition['field types'], TRUE)) {
         continue;
@@ -159,7 +159,7 @@ final class FieldUtil extends UtilBase {
 
     $field_type = field_info_field_types($field['type']);
 
-    return array(
+    return [
       // Build a fake entity type and bundle.
       'field_name' => $fieldName,
       'entity_type' => 'ctools',
@@ -167,18 +167,18 @@ final class FieldUtil extends UtilBase {
 
       // Use the default field settings for settings and widget.
       'settings' => field_info_instance_settings($field['type']),
-      'widget' => array(
+      'widget' => [
         'type' => $field_type['default_widget'],
-        'settings' => array(),
-      ),
+        'settings' => [],
+      ],
 
       // Build a dummy display mode.
-      'display' => array(
-        $viewMode => array(
+      'display' => [
+        $viewMode => [
           'type' => $formatterTypeName,
           'settings' => $formatterSettings,
-        ),
-      ),
+        ],
+      ],
 
       // Set the other fields to their default values.
       // @see _field_write_instance().
@@ -186,7 +186,7 @@ final class FieldUtil extends UtilBase {
       'label' => $fieldName,
       'description' => '',
       'deleted' => 0,
-    );
+    ];
   }
 
   /**
@@ -207,7 +207,7 @@ final class FieldUtil extends UtilBase {
     $knownFieldTypes = field_info_field_types();
 
     $fields = field_info_fields();
-    $options = array();
+    $options = [];
     foreach ($optionsAll as $fieldName => $optionLabel) {
       if (isset($fields[$fieldName]['type'])) {
         $fieldTypeName = $fields[$fieldName]['type'];

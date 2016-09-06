@@ -11,7 +11,7 @@ abstract class EntityToEntitiesBase implements EntityToEntitiesInterface {
    * @return object[][]
    */
   public function entitiesGetRelated($entityType, array $entities) {
-    $targetEntities = array();
+    $targetEntities = [];
     foreach ($entities as $delta => $entity) {
       $targetEntities[$delta] = $this->entityGetRelated($entityType, $entity);
     }

@@ -50,15 +50,15 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
         // No further checking at this point.
         return new self($view_name, $display_id, $labeledEntityBuildProcessor);
       },
-      array(
+      [
         Configurator_LegendSelect::createRequired($legend),
         \cfrplugin()->interfaceGetOptionalConfigurator(
           LabeledEntityBuildProcessorInterface::class),
-      ),
-      array(
+      ],
+      [
         t('Views display'),
         t('Label format'),
-      ));
+      ]);
   }
 
   /**
@@ -87,24 +87,24 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
   public function buildEntity($entity_type, $entity) {
     $etid = $this->entityGetId($entity_type, $entity);
     if (NULL === $etid) {
-      return array();
+      return [];
     }
     $view = \views_get_view($this->viewName);
     if (NULL === $view) {
-      return array();
+      return [];
     }
     $success = $view->set_display($this->displayId);
     if (FALSE === $success) {
-      return array();
+      return [];
     }
-    $view->set_arguments(array($etid));
+    $view->set_arguments([$etid]);
     // See https://www.drupal.org/node/525592#comment-1833824
     $view->override_path = $_GET['q'];
     $markup = $view->preview();
     if (FALSE === $markup) {
-      return array();
+      return [];
     }
-    $build = array('#markup' => $markup);
+    $build = ['#markup' => $markup];
     if (NULL === $this->labeledDisplay) {
       return $build;
     }

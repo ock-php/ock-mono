@@ -21,7 +21,7 @@ class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
    *   Format: $[$entityType] = $displayHandler
    */
-  private $typeDisplays = array();
+  private $typeDisplays = [];
 
   /**
    * Sets a fallback entity display handler to use for entity types where no
@@ -63,7 +63,7 @@ class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
       ? $this->typeDisplays[$entityType]->buildEntities($entityType, $entities)
       : (isset($this->fallbackDisplay)
         ? $this->fallbackDisplay->buildEntities($entityType, $entities)
-        : array());
+        : []);
   }
 
 }
