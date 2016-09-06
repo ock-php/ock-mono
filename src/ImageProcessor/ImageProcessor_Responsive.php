@@ -33,7 +33,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *   Image style for the fallback image (src attribute), for browsers that
    *   don't understand srcset.
    */
-  function __construct($fallbackStyleName = NULL) {
+  public function __construct($fallbackStyleName = NULL) {
     $this->fallbackStyleName = $fallbackStyleName;
     $this->styleNames[] = $fallbackStyleName;
   }
@@ -44,7 +44,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @return $this
    */
-  function minWidthSize($min_width_px, $formula) {
+  public function minWidthSize($min_width_px, $formula) {
     if ($min_width_px > 0) {
       $media_query = 'min-width: ' . $min_width_px . 'px';
       $formula = '(' . $media_query . ') ' . $formula;
@@ -60,7 +60,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @return $this
    */
-  function minWidthColumn($min_width_px, $ratio, $space) {
+  public function minWidthColumn($min_width_px, $ratio, $space) {
     $percentage = (100 * $ratio) . 'vw';
     $subtract = ($space * $ratio) . 'px';
     $formula = 'calc(' . $percentage . ' - ' . $subtract . ')';
@@ -75,7 +75,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @return $this
    */
-  function addImageStyle($style_name) {
+  public function addImageStyle($style_name) {
     $this->styleNames[] = $style_name;
     return $this;
   }
@@ -93,7 +93,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @todo Detect if the original image location does not support image styles.
    */
-  function processImage(array $build) {
+  public function processImage(array $build) {
 
     // Path to the original image file.
     $original_path = $build['#path'];

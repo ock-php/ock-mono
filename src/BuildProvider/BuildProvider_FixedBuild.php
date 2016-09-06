@@ -12,7 +12,7 @@ class BuildProvider_FixedBuild implements BuildProviderInterface {
   /**
    * @param array $build
    */
-  function __construct(array $build) {
+  public function __construct(array $build) {
     $this->build = $build;
   }
 
@@ -20,7 +20,7 @@ class BuildProvider_FixedBuild implements BuildProviderInterface {
    * @return array
    *   A render array.
    */
-  function build() {
+  public function build() {
     return $this->build;
   }
 }

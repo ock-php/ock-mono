@@ -18,7 +18,7 @@ class EntityFilter_Negation implements EntityFilterInterface {
   /**
    * @param \Drupal\renderkit\EntityFilter\EntityFilterInterface $negatedFilter
    */
-  function __construct(EntityFilterInterface $negatedFilter) {
+  public function __construct(EntityFilterInterface $negatedFilter) {
     $this->negatedFilter = $negatedFilter;
   }
 
@@ -33,7 +33,7 @@ class EntityFilter_Negation implements EntityFilterInterface {
    *   Format: $[] = $delta
    *   A filtered subset of the array keys of the $entities argument.
    */
-  function entitiesFilterDeltas($entityType, array $entities) {
+  public function entitiesFilterDeltas($entityType, array $entities) {
     foreach ($this->negatedFilter->entitiesFilterDeltas($entityType, $entities) as $delta) {
       unset($entities[$delta]);
     }

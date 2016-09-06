@@ -31,7 +31,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createPlugin(CfrContextInterface $context = NULL) {
+  public static function createPlugin(CfrContextInterface $context = NULL) {
     $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
     $configurators = array(new Configurator_Sequence($displayConfigurator));
     $labels = array(NULL);
@@ -41,7 +41,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
   /**
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $displays
    */
-  function __construct(array $displays) {
+  public function __construct(array $displays) {
     $this->displays = $displays;
   }
 
@@ -51,7 +51,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    *
    * @return array[]
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     $builds = array_fill_keys(array_keys($entities), NULL);
     foreach ($this->displays as $display) {
       foreach ($display->buildEntities($entityType, $entities) as $delta => $build) {

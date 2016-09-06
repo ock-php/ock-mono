@@ -23,7 +23,7 @@ class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntity
   /**
    * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
    */
-  function __construct(LabeledFormatInterface $labeledFormat) {
+  public function __construct(LabeledFormatInterface $labeledFormat) {
     $this->labeledFormat = $labeledFormat;
   }
 
@@ -35,7 +35,7 @@ class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntity
    *
    * @return array
    */
-  function buildAddLabelWithEntity(array $build, $entityType, $entity, $label) {
+  public function buildAddLabelWithEntity(array $build, $entityType, $entity, $label) {
     return $this->labeledFormat->buildAddLabel($build, $label);
   }
 }

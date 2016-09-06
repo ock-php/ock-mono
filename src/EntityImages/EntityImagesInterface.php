@@ -13,6 +13,6 @@ interface EntityImagesInterface {
    * @return array[]
    *   Format: $[$delta] = ['#theme' => 'image', '#path' => .., ..]
    */
-  function entityGetImages($entityType, $entity);
+  public function entityGetImages($entityType, $entity);
 
 }

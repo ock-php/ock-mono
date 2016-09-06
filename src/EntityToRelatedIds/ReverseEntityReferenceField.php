@@ -26,7 +26,7 @@ class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
    * @param string $fieldName
    * @param string $fieldTargetType
    */
-  function __construct($fieldSourceType, $fieldName, $fieldTargetType) {
+  public function __construct($fieldSourceType, $fieldName, $fieldTargetType) {
     $this->fieldSourceType = $fieldSourceType;
     $this->fieldName = $fieldName;
     $this->fieldTargetType = $fieldTargetType;
@@ -35,7 +35,7 @@ class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
   /**
    * @return string
    */
-  function getTargetType() {
+  public function getTargetType() {
     return $this->fieldSourceType;
   }
 
@@ -46,7 +46,7 @@ class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
    * @return int[][]
    *   Format: $[$delta][] = $relatedEntityId
    */
-  function entitiesGetRelatedIds($entityType, array $entities) {
+  public function entitiesGetRelatedIds($entityType, array $entities) {
     if ($entityType !== $this->fieldTargetType) {
       return array();
     }

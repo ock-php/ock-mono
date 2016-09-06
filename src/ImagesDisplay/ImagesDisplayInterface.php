@@ -11,6 +11,6 @@ interface ImagesDisplayInterface {
    * @return array
    *   A Drupal render array.
    */
-  function buildImages(array $images);
+  public function buildImages(array $images);
 
 }

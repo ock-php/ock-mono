@@ -23,7 +23,7 @@ class LabeledEntityDisplayListFormat_LabeledListFormat implements LabeledEntityD
   /**
    * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    */
-  function __construct(LabeledListFormatInterface $labeledListFormat) {
+  public function __construct(LabeledListFormatInterface $labeledListFormat) {
     $this->labeledListFormat = $labeledListFormat;
   }
 
@@ -38,7 +38,7 @@ class LabeledEntityDisplayListFormat_LabeledListFormat implements LabeledEntityD
    * @return array
    *   Combined render array.
    */
-  function build(array $builds, $entityType, $entity, $label) {
+  public function build(array $builds, $entityType, $entity, $label) {
     return $this->labeledListFormat->build($builds, $label);
   }
 }

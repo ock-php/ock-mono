@@ -23,7 +23,7 @@ class ListFormat_Separator implements ListFormatInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator() {
+  public static function createConfigurator() {
     $configurators = array(
       new Configurator_ListSeparator(),
     );
@@ -34,7 +34,7 @@ class ListFormat_Separator implements ListFormatInterface {
   /**
    * @param string $separator
    */
-  function __construct($separator = '') {
+  public function __construct($separator = '') {
     $this->separator = $separator;
   }
 
@@ -46,7 +46,7 @@ class ListFormat_Separator implements ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  function buildList(array $builds) {
+  public function buildList(array $builds) {
     return array(
       /* @see renderkit_theme() */
       /* @see theme_themekit_separator_list() */

@@ -28,7 +28,7 @@ class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
    * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface $imageProcessor
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    */
-  function __construct(ImageProcessorInterface $imageProcessor = NULL, ListFormatInterface $listFormat = NULL) {
+  public function __construct(ImageProcessorInterface $imageProcessor = NULL, ListFormatInterface $listFormat = NULL) {
     $this->imageProcessor = $imageProcessor;
     $this->listFormat = $listFormat;
   }
@@ -40,7 +40,7 @@ class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
    * @return array
    *   A Drupal render array.
    */
-  function buildImages(array $images) {
+  public function buildImages(array $images) {
     RenderUtil::validateImages($images);
     if ($this->imageProcessor !== NULL) {
       foreach ($images as $delta => $image) {

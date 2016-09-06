@@ -11,6 +11,6 @@ interface ThemePreprocessorInterface {
    * @param array $variables
    * @param string $hook
    */
-  function __invoke(&$variables, $hook);
+  public function __invoke(&$variables, $hook);
 
 }

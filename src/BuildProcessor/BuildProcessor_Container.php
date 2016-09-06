@@ -20,7 +20,7 @@ class BuildProcessor_Container implements HtmlAttributesInterface, BuildProcesso
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator() {
+  public static function createConfigurator() {
     $configurators = array(
       Configurator_TagName::createFree(),
       Configurator_ClassAttribute::create(),
@@ -38,7 +38,7 @@ class BuildProcessor_Container implements HtmlAttributesInterface, BuildProcesso
    *
    * @return \Drupal\renderkit\BuildProcessor\BuildProcessor_Container
    */
-  static function create($tagName = 'div', array $classes = array()) {
+  public static function create($tagName = 'div', array $classes = array()) {
     return (new self())
       ->setTagName($tagName)
       ->addClasses($classes);
@@ -51,7 +51,7 @@ class BuildProcessor_Container implements HtmlAttributesInterface, BuildProcesso
    * @return array
    *   Render array after the processing.
    */
-  function process(array $build) {
+  public function process(array $build) {
     return $this->buildContainer() + array('content' => $build);
   }
 }

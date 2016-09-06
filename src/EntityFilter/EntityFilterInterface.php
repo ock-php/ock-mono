@@ -20,6 +20,6 @@ interface EntityFilterInterface {
    *   Format: $[] = $delta
    *   A filtered subset of the array keys of the $entities argument.
    */
-  function entitiesFilterDeltas($entityType, array $entities);
+  public function entitiesFilterDeltas($entityType, array $entities);
 
 }

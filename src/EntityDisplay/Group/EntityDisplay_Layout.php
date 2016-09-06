@@ -26,7 +26,7 @@ class EntityDisplay_Layout extends EntitiesDisplayBase {
    * @param EntityDisplayInterface[] $regionDisplayHandlers
    *   The entity display handlers for each layout region.
    */
-  function __construct($themeHook, array $regionDisplayHandlers) {
+  public function __construct($themeHook, array $regionDisplayHandlers) {
     $this->themeHook = $themeHook;
     $this->regionDisplayHandlers = $regionDisplayHandlers;
   }
@@ -38,7 +38,7 @@ class EntityDisplay_Layout extends EntitiesDisplayBase {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     $builds = array();
     foreach ($this->regionDisplayHandlers as $name => $handler) {
       foreach ($handler->buildEntities($entityType, $entities) as $delta => $entity_build) {

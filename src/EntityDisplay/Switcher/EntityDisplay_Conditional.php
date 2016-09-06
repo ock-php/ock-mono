@@ -34,7 +34,7 @@ class EntityDisplay_Conditional extends EntitiesDisplayBase {
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $displayIfTrue
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null $displayIfFalse
    */
-  function __construct(EntityFilterInterface $entityFilter, EntityDisplayInterface $displayIfTrue, EntityDisplayInterface $displayIfFalse = NULL) {
+  public function __construct(EntityFilterInterface $entityFilter, EntityDisplayInterface $displayIfTrue, EntityDisplayInterface $displayIfFalse = NULL) {
     $this->entityFilter = $entityFilter;
     $this->displayIfTrue = $displayIfTrue;
     $this->displayIfFalse = $displayIfFalse;
@@ -58,7 +58,7 @@ class EntityDisplay_Conditional extends EntitiesDisplayBase {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     $deltas = $this->entityFilter->entitiesFilterDeltas($entityType, $entities);
     $lookup = array_fill_keys($deltas, TRUE);
     $entitiesWithQuality = array();

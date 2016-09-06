@@ -23,7 +23,7 @@ class ListFormat_BuildProcessor implements ListFormatInterface {
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $buildProcessor
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $decorated
    */
-  function __construct(BuildProcessorInterface $buildProcessor, ListFormatInterface $decorated = NULL) {
+  public function __construct(BuildProcessorInterface $buildProcessor, ListFormatInterface $decorated = NULL) {
     $this->buildProcessor = $buildProcessor;
     $this->decorated = $decorated;
   }
@@ -36,7 +36,7 @@ class ListFormat_BuildProcessor implements ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  function buildList(array $builds) {
+  public function buildList(array $builds) {
     if (NULL !== $this->decorated) {
       $builds = $this->decorated->buildList($builds);
     }

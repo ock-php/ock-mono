@@ -32,7 +32,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator() {
+  public static function createConfigurator() {
     $configurators = array(
       Configurator_LegendSelect::createFromOptions(
         array(
@@ -53,7 +53,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  static function create($tagName = 'ul', array $classes = array()) {
+  public static function create($tagName = 'ul', array $classes = array()) {
     $format = new self($tagName);
     foreach ($classes as $class) {
       $format->addClass($class);
@@ -64,7 +64,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
   /**
    * @param string $tagName
    */
-  function __construct($tagName = 'ul') {
+  public function __construct($tagName = 'ul') {
     $this->tagName = $tagName;
   }
 
@@ -73,7 +73,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *
    * @return $this
    */
-  function addItemClass($class) {
+  public function addItemClass($class) {
     $this->itemAttributes['class'][] = $class;
     return $this;
   }
@@ -86,7 +86,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  function buildList(array $builds) {
+  public function buildList(array $builds) {
     $listBuild = array(
       /* @see theme_themekit_item_list() */
       '#theme' => 'themekit_item_list',

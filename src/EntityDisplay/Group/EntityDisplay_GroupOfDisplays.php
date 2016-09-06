@@ -32,7 +32,7 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createPlugin(CfrContextInterface $context = NULL) {
+  public static function createPlugin(CfrContextInterface $context = NULL) {
     $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
     $configurators = array(new Configurator_Sequence($displayConfigurator));
     $labels = array(NULL);
@@ -42,7 +42,7 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
   /**
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $displayHandlers
    */
-  function __construct(array $displayHandlers) {
+  public function __construct(array $displayHandlers) {
     foreach ($displayHandlers as $delta => $displayHandler) {
       if (!$displayHandler instanceof EntityDisplayInterface) {
         $displayHandlers = array();
@@ -59,7 +59,7 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     $builds = array();
     foreach ($this->displayHandlers as $name => $handler) {
       foreach ($handler->buildEntities($entityType, $entities) as $delta => $entity_build) {

@@ -23,7 +23,7 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
    *
    * @see ds_extras_field_template_settings_form()
    */
-  function confGetForm($conf, $label) {
+  public function confGetForm($conf, $label) {
 
     $form = [
       '#type' => 'container',
@@ -127,7 +127,7 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
    *   A string summary is always allowed. But other values may be returned if
    *   $summaryBuilder generates them.
    */
-  function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
+  public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
     // No summary details.
     return NULL;
   }
@@ -138,7 +138,7 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  function confGetValue($conf) {
+  public function confGetValue($conf) {
 
     $defaults = [];
 

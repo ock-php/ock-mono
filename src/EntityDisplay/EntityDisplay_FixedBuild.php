@@ -12,7 +12,7 @@ class EntityDisplay_FixedBuild extends EntityDisplayBase {
   /**
    * @param array $fixedRenderArray
    */
-  function __construct(array $fixedRenderArray) {
+  public function __construct(array $fixedRenderArray) {
     $this->fixedRenderArray = $fixedRenderArray;
   }
 
@@ -23,7 +23,7 @@ class EntityDisplay_FixedBuild extends EntityDisplayBase {
    * @return array
    *   Render array for one entity.
    */
-  function buildEntity($entity_type, $entity) {
+  public function buildEntity($entity_type, $entity) {
     return $this->fixedRenderArray;
   }
 }

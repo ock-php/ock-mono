@@ -45,7 +45,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    *
    * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
    */
-  static function createFromLabeledFormat(LabeledEntityBuildProcessorInterface $labeledFormat = NULL) {
+  public static function createFromLabeledFormat(LabeledEntityBuildProcessorInterface $labeledFormat = NULL) {
     return new self(NULL, $labeledFormat, NULL, NULL);
   }
 
@@ -60,7 +60,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    *
    * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
    */
-  static function createFromListFormat(EntityDisplayListFormatInterface $listFormat = NULL) {
+  public static function createFromListFormat(EntityDisplayListFormatInterface $listFormat = NULL) {
     return new self(NULL, NULL, NULL, $listFormat);
   }
 
@@ -75,7 +75,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    *
    * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
    */
-  static function createSimple(
+  public static function createSimple(
     LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
     EntityDisplayListFormatInterface $listFormat = NULL
   ) {
@@ -88,7 +88,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface $innerProcessor
    * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface $listFormat
    */
-  function __construct(
+  public function __construct(
     EntityBuildProcessorInterface $outerProcessor = NULL,
     LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
     EntityBuildProcessorInterface $innerProcessor = NULL,
@@ -111,7 +111,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    * @return array
    *   Combined render array.
    */
-  function build(array $builds, $entityType, $entity, $label) {
+  public function build(array $builds, $entityType, $entity, $label) {
     $build = (NULL !== $this->listFormat)
       ? $this->listFormat->buildListWithEntity($builds, $entityType, $entity)
       : $builds;

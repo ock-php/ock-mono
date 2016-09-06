@@ -21,7 +21,7 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator() {
+  public static function createConfigurator() {
     $imageStyleMap = new EnumMap_ImageStyle();
     $paramConfigurators = array(Configurator_LegendSelect::createRequired($imageStyleMap));
     $labels = array(t('Image style'));
@@ -32,7 +32,7 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    * @param string $styleName
    *   The image style name.
    */
-  function __construct($styleName) {
+  public function __construct($styleName) {
     $this->styleName = $styleName;
   }
 
@@ -43,7 +43,7 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    * @return array
    *   Render array after the processing.
    */
-  function processImage(array $build) {
+  public function processImage(array $build) {
     if (empty($build)) {
       return array();
     }

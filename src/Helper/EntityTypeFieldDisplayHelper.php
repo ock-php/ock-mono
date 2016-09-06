@@ -57,7 +57,7 @@ class EntityTypeFieldDisplayHelper {
    *
    * @return static
    */
-  static function create($entityType, $fieldName, array $display, $langcode) {
+  public static function create($entityType, $fieldName, array $display, $langcode) {
     $entityTypeInfo = entity_get_info($entityType);
     if (empty($entityTypeInfo['entity keys']['id'])) {
       return NULL;
@@ -118,7 +118,7 @@ class EntityTypeFieldDisplayHelper {
    * @return array[]
    *   Render arrays for each entity, with the original custom order and keys.
    */
-  function buildMultipleByDelta(array $entitiesByDelta) {
+  public function buildMultipleByDelta(array $entitiesByDelta) {
 
     $entitiesByBundleAndId = array();
     $idsByDelta = array();

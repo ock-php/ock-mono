@@ -17,7 +17,7 @@ trait HtmlAttributesTrait {
    *
    * @return $this
    */
-  function addClass($class) {
+  public function addClass($class) {
     $this->attributes['class'][] = $class;
     return $this;
   }
@@ -27,7 +27,7 @@ trait HtmlAttributesTrait {
    *
    * @return $this
    */
-  function addClasses(array $classes) {
+  public function addClasses(array $classes) {
     foreach ($classes as $class) {
       $this->attributes['class'][] = $class;
     }

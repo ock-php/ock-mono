@@ -18,7 +18,7 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $first
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $second
    */
-  function __construct(EntityToEntityInterface $first, EntityToEntityInterface $second) {
+  public function __construct(EntityToEntityInterface $first, EntityToEntityInterface $second) {
     $this->first = $first;
     $this->second = $second;
   }
@@ -28,7 +28,7 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
    *
    * @return string
    */
-  function getTargetType() {
+  public function getTargetType() {
     return $this->second->getTargetType();
   }
 
@@ -38,7 +38,7 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
    *
    * @return object[]
    */
-  function entitiesGetRelated($entityType, array $entities) {
+  public function entitiesGetRelated($entityType, array $entities) {
     $related = $this->first->entitiesGetRelated($entityType, $entities);
     return $this->second->entitiesGetRelated($this->first->getTargetType(), $related);
   }
@@ -49,7 +49,7 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
    *
    * @return object|null
    */
-  function entityGetRelated($entityType, $entity) {
+  public function entityGetRelated($entityType, $entity) {
     $related = $this->first->entityGetRelated($entityType, $entity);
     if (NULL === $related) {
       return NULL;

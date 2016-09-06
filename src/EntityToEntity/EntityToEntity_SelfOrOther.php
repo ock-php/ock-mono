@@ -12,7 +12,7 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
   /**
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $decorated
    */
-  function __construct(EntityToEntityInterface $decorated) {
+  public function __construct(EntityToEntityInterface $decorated) {
     $this->decorated = $decorated;
   }
 
@@ -21,7 +21,7 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
    *
    * @return string
    */
-  function getTargetType() {
+  public function getTargetType() {
     return $this->decorated->getTargetType();
   }
 
@@ -31,7 +31,7 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
    *
    * @return object[]
    */
-  function entitiesGetRelated($entityType, array $entities) {
+  public function entitiesGetRelated($entityType, array $entities) {
     if ($entityType === $this->decorated->getTargetType()) {
       return $entities;
     }
@@ -46,7 +46,7 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
    *
    * @return object|null
    */
-  function entityGetRelated($entityType, $entity) {
+  public function entityGetRelated($entityType, $entity) {
     if ($entityType === $this->getTargetType()) {
       return $entity;
     }

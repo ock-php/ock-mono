@@ -19,7 +19,7 @@ class BuildProcessor_ThemePreprocess implements BuildProcessorInterface {
    *
    * @param \Drupal\renderkit\ThemePreprocessor\ThemePreprocessorInterface $themePreprocessor
    */
-  function __construct(ThemePreprocessorInterface $themePreprocessor) {
+  public function __construct(ThemePreprocessorInterface $themePreprocessor) {
     $this->themePreprocessor = $themePreprocessor;
   }
 
@@ -30,7 +30,7 @@ class BuildProcessor_ThemePreprocess implements BuildProcessorInterface {
    * @return array
    *   Render array after the processing.
    */
-  function process(array $build) {
+  public function process(array $build) {
     $build[THEMEKIT_PREPROCESS][] = $this->themePreprocessor;
     return $build;
   }

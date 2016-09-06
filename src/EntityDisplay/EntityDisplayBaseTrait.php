@@ -14,7 +14,7 @@ trait EntityDisplayBaseTrait {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  final function buildEntities($entity_type, array $entities) {
+  final public function buildEntities($entity_type, array $entities) {
     $builds = array();
     foreach ($entities as $delta => $entity) {
       $builds[$delta] = $this->buildEntity($entity_type, $entity);
@@ -34,6 +34,6 @@ trait EntityDisplayBaseTrait {
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  abstract function buildEntity($entity_type, $entity);
+  abstract public function buildEntity($entity_type, $entity);
 
 }

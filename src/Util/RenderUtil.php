@@ -7,7 +7,7 @@ final class RenderUtil extends UtilBase {
   /**
    * @param array $images
    */
-  static function validateImages(array $images) {
+  public static function validateImages(array $images) {
     self::validateList($images);
     foreach ($images as $delta => $image) {
       self::validateImage($image);
@@ -17,7 +17,7 @@ final class RenderUtil extends UtilBase {
   /**
    * @param array $image
    */
-  static function validateImage(array $image) {
+  public static function validateImage(array $image) {
     if (!array_key_exists('#theme', $image)) {
       throw new \RuntimeException("\$image['#theme'] is not set.");
     }
@@ -29,7 +29,7 @@ final class RenderUtil extends UtilBase {
   /**
    * @param array $items
    */
-  static function validateList(array $items) {
+  public static function validateList(array $items) {
     foreach ($items as $delta => $item) {
       if ('#' === $delta[0]) {
         throw new \RuntimeException("Illegal delta '$delta'.");

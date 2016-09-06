@@ -25,7 +25,7 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
    *
    * @return $this
    */
-  function entityTypeBundleSetDisplay($entityType, $bundle, EntityDisplayInterface $display) {
+  public function entityTypeBundleSetDisplay($entityType, $bundle, EntityDisplayInterface $display) {
     $this->typeBundleDisplays[$entityType][$bundle] = $display;
 
     return $this;
@@ -39,7 +39,7 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     if (isset($this->typeBundleDisplays[$entityType])) {
       $bundleKey = $this->entityTypeGetBundleKey($entityType);
       if (isset($bundleKey)) {

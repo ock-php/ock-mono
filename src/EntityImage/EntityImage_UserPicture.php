@@ -23,7 +23,7 @@ class EntityImage_UserPicture implements EntityImageInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator($entityType = NULL) {
+  public static function createConfigurator($entityType = NULL) {
     if (NULL !== $entityType && 'user' !== $entityType) {
       return NULL;
     }

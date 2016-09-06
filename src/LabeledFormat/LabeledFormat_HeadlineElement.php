@@ -20,7 +20,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator() {
+  public static function createConfigurator() {
     return Configurator_CallbackConfigurable::createFromClassName(
       __CLASS__,
       array(
@@ -41,7 +41,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
   /**
    * @param string $tagName
    */
-  function __construct($tagName = 'h2') {
+  public function __construct($tagName = 'h2') {
     $this->tagName = $tagName;
   }
 
@@ -54,7 +54,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
    * @return array
    *   Modified or wrapped render array with label.
    */
-  function buildAddLabel(array $build, $label) {
+  public function buildAddLabel(array $build, $label) {
     $label_markup = '<h2>' . check_plain($label) . '</h2>';
     return array(
       'label' => array(

@@ -26,7 +26,7 @@ class EntityImages_ImageField implements EntityImagesInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createPlugin($entityType = NULL, $bundleName = NULL) {
+  public static function createPlugin($entityType = NULL, $bundleName = NULL) {
     $legend = new EnumMap_FieldName(array('image'), $entityType, $bundleName);
     $configurators = array(Configurator_LegendSelect::createRequired($legend));
     $labels = array(t('Image field'));
@@ -37,7 +37,7 @@ class EntityImages_ImageField implements EntityImagesInterface {
    * @param string $fieldName
    *   The name of an image field, e.g. 'field_teaser_image'.
    */
-  function __construct($fieldName) {
+  public function __construct($fieldName) {
     $this->fieldName = $fieldName;
   }
 
@@ -48,7 +48,7 @@ class EntityImages_ImageField implements EntityImagesInterface {
    * @return array
    *   Render array for one entity.
    */
-  function entityGetImages($entity_type, $entity) {
+  public function entityGetImages($entity_type, $entity) {
     $items = field_get_items($entity_type, $entity, $this->fieldName) ?: array();
     $builds = array();
     foreach ($items as $delta => $item) {

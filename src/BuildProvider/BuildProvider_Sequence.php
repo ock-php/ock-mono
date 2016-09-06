@@ -29,7 +29,7 @@ class BuildProvider_Sequence implements BuildProviderInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator(CfrContextInterface $context = NULL) {
+  public static function createConfigurator(CfrContextInterface $context = NULL) {
     return Configurator_CallbackConfigurable::createFromClassName(
       __CLASS__,
       array(
@@ -52,7 +52,7 @@ class BuildProvider_Sequence implements BuildProviderInterface {
    * @param \Drupal\renderkit\BuildProvider\BuildProviderInterface[] $providers
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    */
-  function __construct(array $providers, ListFormatInterface $listFormat = NULL) {
+  public function __construct(array $providers, ListFormatInterface $listFormat = NULL) {
     $this->providers = $providers;
     $this->listFormat = $listFormat;
   }
@@ -61,7 +61,7 @@ class BuildProvider_Sequence implements BuildProviderInterface {
    * @return array
    *   A render array.
    */
-  function build() {
+  public function build() {
     $builds = array();
     foreach ($this->providers as $k => $provider) {
       $build = $provider->build();

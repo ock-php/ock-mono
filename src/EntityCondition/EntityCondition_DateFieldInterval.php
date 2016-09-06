@@ -35,7 +35,7 @@ class EntityCondition_DateFieldInterval implements EntityConditionInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator($entityType = NULL, $bundleName = NULL) {
+  public static function createConfigurator($entityType = NULL, $bundleName = NULL) {
     $legend = new EnumMap_FieldName(array('date'), $entityType, $bundleName);
     $configurators = array(Configurator_LegendSelect::createRequired($legend));
     $labels = array(t('Date field'));
@@ -47,7 +47,7 @@ class EntityCondition_DateFieldInterval implements EntityConditionInterface {
    *
    * @return \Drupal\renderkit\EntityCondition\EntityCondition_DateFieldInterval
    */
-  static function createNow($fieldName) {
+  public static function createNow($fieldName) {
     return new self($fieldName, time());
   }
 
@@ -55,7 +55,7 @@ class EntityCondition_DateFieldInterval implements EntityConditionInterface {
    * @param string $fieldName
    * @param string|int $referenceTimestamp
    */
-  function __construct($fieldName, $referenceTimestamp) {
+  public function __construct($fieldName, $referenceTimestamp) {
     $this->fieldName = $fieldName;
     $this->referenceTimestamp = $referenceTimestamp;
   }
@@ -66,7 +66,7 @@ class EntityCondition_DateFieldInterval implements EntityConditionInterface {
    *
    * @return bool
    */
-  function entityCheckCondition($entityType, $entity) {
+  public function entityCheckCondition($entityType, $entity) {
     foreach (field_get_items($entityType, $entity, $this->fieldName) ?: array() as $item) {
       if (!isset($item['value']) || $item['value'] <= $this->referenceTimestamp) {
         if (!isset($item['value2']) || $this->referenceTimestamp < $item['value2']) {

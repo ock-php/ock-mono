@@ -24,7 +24,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator($entityType = NULL) {
+  public static function createConfigurator($entityType = NULL) {
     $legend = new EnumMap_EntityBundle('profile2');
     return Configurator_CallbackConfigurable::createFromCallable(
       function($profile2TypeName = NULL) use ($entityType) {
@@ -40,7 +40,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
    *
    * @return \Drupal\renderkit\EntityToEntity\EntityToEntity_ChainOfTwo|\Drupal\renderkit\EntityToEntity\EntityToEntity_UserProfile2
    */
-  static function create($entityType = NULL, $profile2TypeName = NULL) {
+  public static function create($entityType = NULL, $profile2TypeName = NULL) {
     $userToProfile2 = new self($profile2TypeName);
     if ('user' === $entityType) {
       return $userToProfile2;
@@ -58,7 +58,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
    * @param string|null $profile2TypeName
    *   The profile2 bundle name.
    */
-  function __construct($profile2TypeName = NULL) {
+  public function __construct($profile2TypeName = NULL) {
     $this->profile2TypeName = $profile2TypeName;
   }
 
@@ -67,7 +67,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
    *
    * @return string
    */
-  function getTargetType() {
+  public function getTargetType() {
     return 'profile2';
   }
 
@@ -77,7 +77,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
    *
    * @return object|null
    */
-  function entityGetRelated($entityType, $entity) {
+  public function entityGetRelated($entityType, $entity) {
     if ('user' !== $entityType) {
       return NULL;
     }

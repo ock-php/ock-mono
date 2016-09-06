@@ -24,7 +24,7 @@ class EntityBuildProcessor_FromBuildProcessor extends EntityBuildProcessorBase {
    *
    * @todo Use identity / inline.
    */
-  static function create(BuildProcessorInterface $processor) {
+  public static function create(BuildProcessorInterface $processor) {
     return new static($processor);
   }
 
@@ -33,7 +33,7 @@ class EntityBuildProcessor_FromBuildProcessor extends EntityBuildProcessorBase {
    *
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $processor
    */
-  function __construct(BuildProcessorInterface $processor) {
+  public function __construct(BuildProcessorInterface $processor) {
     $this->processor = $processor;
   }
 
@@ -46,7 +46,7 @@ class EntityBuildProcessor_FromBuildProcessor extends EntityBuildProcessorBase {
    * @return array
    *   Modified render array for the given entity.
    */
-  function processEntityBuild(array $build, $entity_type, $entity) {
+  public function processEntityBuild(array $build, $entity_type, $entity) {
     return $this->processor->process($build);
   }
 }

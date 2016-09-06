@@ -27,7 +27,7 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
    *
    * @return array
    */
-  function process(array $element) {
+  public function process(array $element) {
 
     $builds = array();
     foreach ($element['#items'] as $delta => $item) {

@@ -47,7 +47,7 @@ class FieldDisplayProcessor_FieldClasses implements FieldDisplayProcessorInterfa
    *
    * @return array
    */
-  function process(array $element) {
+  public function process(array $element) {
     $build = $this->decorated->process($element);
     $build['#attributes']['class'][] = 'field';
     $build['#attributes']['class'][] = 'field-name-' . str_replace('_', '-', $element['#field_name']);

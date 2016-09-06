@@ -34,7 +34,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function entityTitleConfigurator() {
+  public static function entityTitleConfigurator() {
     return Configurator_CallbackConfigurable::createFromClassStaticMethod(
       __CLASS__,
       'entityTitleLinkWrapper',
@@ -47,7 +47,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase
    *
    * @return \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
    */
-  static function entityTitleLinkWrapper($tagName) {
+  public static function entityTitleLinkWrapper($tagName) {
     return (new EntityBuildProcessor_Sequence)
       ->addEntityBuildProcessor(new self)
       ->addBuildProcessor(BuildProcessor_Container::create($tagName));
@@ -61,7 +61,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase
    * @return array
    *   Render array for one entity.
    */
-  function processEntityBuild(array $build, $entity_type, $entity) {
+  public function processEntityBuild(array $build, $entity_type, $entity) {
     $link_uri = entity_uri($entity_type, $entity);
     $link_uri['options']['attributes'] = $this->attributes;
     return array(

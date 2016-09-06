@@ -72,7 +72,7 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
    *
    * @return string
    */
-  function getTargetType() {
+  public function getTargetType() {
     return $this->targetType;
   }
 
@@ -82,7 +82,7 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
    *
    * @return object[]
    */
-  function entitiesGetRelated($entityType, array $entities) {
+  public function entitiesGetRelated($entityType, array $entities) {
 
     $target_etids = array();
     foreach ($entities as $delta => $entity) {

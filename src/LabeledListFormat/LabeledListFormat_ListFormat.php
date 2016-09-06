@@ -30,7 +30,7 @@ class LabeledListFormat_ListFormat implements LabeledListFormatInterface {
    * @return array
    *   Combined render array.
    */
-  function build(array $builds, $label) {
+  public function build(array $builds, $label) {
     return $this->listFormat->buildList($builds);
   }
 }

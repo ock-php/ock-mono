@@ -12,6 +12,6 @@ interface ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  function buildList(array $builds);
+  public function buildList(array $builds);
 
 }

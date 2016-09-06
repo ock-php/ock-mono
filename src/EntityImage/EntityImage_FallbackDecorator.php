@@ -24,7 +24,7 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $decorated
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $fallback
    */
-  function __construct(EntityImageInterface $decorated, EntityImageInterface $fallback) {
+  public function __construct(EntityImageInterface $decorated, EntityImageInterface $fallback) {
     $this->decorated = $decorated;
     $this->fallback = $fallback;
   }
@@ -39,7 +39,7 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
    *
    * @return array
    */
-  function buildEntity($entity_type, $entity) {
+  public function buildEntity($entity_type, $entity) {
     $build = $this->decorated->buildEntity($entity_type, $entity);
     if (is_array($build) && array() !== $build) {
       return $build;
@@ -59,7 +59,7 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
    *   An array of render arrays, keyed by the original array keys of $entities.
    *   Each render array must contain '#theme' => 'image'.
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     $builds = array_fill_keys(array_keys($entities), NULL);
     $builds += $this->decorated->buildEntities($entityType, $entities);
     foreach (array_filter($this->decorated->buildEntities($entityType, $entities)) as $delta => $build) {

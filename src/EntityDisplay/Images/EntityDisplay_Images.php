@@ -28,7 +28,7 @@ class EntityDisplay_Images extends EntityDisplayBase {
    * @param \Drupal\renderkit\EntityImages\EntityImagesInterface $entityImages
    * @param \Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface $imagesDisplay
    */
-  function __construct(EntityImagesInterface $entityImages, ImagesDisplayInterface $imagesDisplay) {
+  public function __construct(EntityImagesInterface $entityImages, ImagesDisplayInterface $imagesDisplay) {
     $this->entityImages = $entityImages;
     $this->imagesDisplay = $imagesDisplay;
   }
@@ -45,7 +45,7 @@ class EntityDisplay_Images extends EntityDisplayBase {
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  function buildEntity($entity_type, $entity) {
+  public function buildEntity($entity_type, $entity) {
     $images = $this->entityImages->entityGetImages($entity_type, $entity);
     if ($images === array()) {
       return array();

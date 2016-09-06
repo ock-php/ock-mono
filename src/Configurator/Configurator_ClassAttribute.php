@@ -10,7 +10,7 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
   /**
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function create() {
+  public static function create() {
     return new self();
   }
 
@@ -18,7 +18,7 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
    * @param array $element
    * @param array $form_state
    */
-  static function elementValidate(
+  public static function elementValidate(
     array $element,
     /** @noinspection PhpUnusedParameterInspection */ array &$form_state
   ) {
@@ -53,7 +53,7 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
    *
    * @return array
    */
-  function confGetForm($conf, $label) {
+  public function confGetForm($conf, $label) {
     return array(
       '#title' => $label,
       '#description' => t('Classes, separated by space'),
@@ -70,7 +70,7 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
    *
    * @return null|string
    */
-  function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
+  public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
     return NULL !== $conf && '' !== $conf && is_string($conf)
       ? '<code>' . check_plain($conf) . '</code>'
       : NULL;
@@ -85,7 +85,7 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
    *   May contain duplicate names, and empty names. This is a bit ugly, but it
    *   still results in valid HTML, so we don't care.
    */
-  function confGetValue($conf) {
+  public function confGetValue($conf) {
     if ('' === $conf || !is_string($conf)) {
       return array();
     }

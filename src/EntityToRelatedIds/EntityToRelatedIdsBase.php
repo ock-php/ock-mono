@@ -11,7 +11,7 @@ abstract class EntityToRelatedIdsBase implements EntityToRelatedIdsInterface {
    * @return int[][]
    *   Format: $[$delta][] = $relatedEntityId
    */
-  final function entitiesGetRelatedIds($entityType, array $entities) {
+  final public function entitiesGetRelatedIds($entityType, array $entities) {
     $relatedIdsByDelta = array();
     foreach ($entities as $delta => $entity) {
       $relatedIdsByDelta[$delta] = $this->entityGetRelatedIds($entityType, $entity);

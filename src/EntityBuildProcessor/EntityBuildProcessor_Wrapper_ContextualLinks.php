@@ -19,7 +19,7 @@ class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorB
 
   use HtmlTagTrait;
 
-  function __construct() {
+  public function __construct() {
     $this->setTagName('article');
   }
 
@@ -32,7 +32,7 @@ class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorB
    * @return array
    *   Render array after the processing.
    */
-  function processEntityBuild(array $build, $entity_type, $entity) {
+  public function processEntityBuild(array $build, $entity_type, $entity) {
     $build = $this->buildContainer() + array('content' => $build);
     if (!user_access('access contextual links')) {
       return $build;

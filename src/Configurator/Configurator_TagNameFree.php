@@ -15,7 +15,7 @@ class Configurator_TagNameFree extends Configurator_TextfieldBase {
    *
    * @return array
    */
-  function confGetForm($conf, $label) {
+  public function confGetForm($conf, $label) {
     $form = parent::confGetForm($conf, $label);
     $form['#element_validate'][] = array($this, 'elementValidate');
     return $form;
@@ -28,7 +28,7 @@ class Configurator_TagNameFree extends Configurator_TextfieldBase {
    * @param array $form_state
    * @param array $form
    */
-  function elementValidate(
+  public function elementValidate(
     array $element,
     /** @noinspection PhpUnusedParameterInspection */ array $form_state,
     /** @noinspection PhpUnusedParameterInspection */ array $form
@@ -45,7 +45,7 @@ class Configurator_TagNameFree extends Configurator_TextfieldBase {
    * @return mixed
    *   Value to be used in the application.
    */
-  function confGetValue($conf) {
+  public function confGetValue($conf) {
     if (!is_string($conf)) {
       return NULL;
     }

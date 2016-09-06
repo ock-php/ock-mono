@@ -20,7 +20,7 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
    * @param \Drupal\renderkit\EntityToRelatedIds\EntityToRelatedIdsInterface $relation
    * @param \Drupal\renderkit\EntityFilter\EntityFilterInterface $filter
    */
-  function __construct(EntityToRelatedIdsInterface $relation, EntityFilterInterface $filter) {
+  public function __construct(EntityToRelatedIdsInterface $relation, EntityFilterInterface $filter) {
     $this->filter = $filter;
     $this->relation = $relation;
   }
@@ -31,7 +31,7 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
    *
    * @return bool[]
    */
-  function entitiesFilterDeltas($entityType, array $entities) {
+  public function entitiesFilterDeltas($entityType, array $entities) {
     $relatedIdsByDelta = $this->relation->entitiesGetRelatedIds($entityType, $entities);
     $relatedIds = array();
     foreach ($relatedIdsByDelta as $delta => $deltaRelatedIds) {

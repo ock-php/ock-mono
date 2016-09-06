@@ -19,7 +19,7 @@ trait HtmlTagTrait {
    *
    * @return $this
    */
-  function setTagName($tagName) {
+  public function setTagName($tagName) {
     $this->tagName = $tagName;
     return $this;
   }

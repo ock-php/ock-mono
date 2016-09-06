@@ -23,7 +23,7 @@ class EntityDisplay_DateProperty extends EntityDisplayBase {
    * @param string $key
    *   E.g. 'created'.
    */
-  function __construct($key) {
+  public function __construct($key) {
     $this->key = $key;
   }
 
@@ -35,7 +35,7 @@ class EntityDisplay_DateProperty extends EntityDisplayBase {
    *     if it's been assigned a format.
    *   - The machine name of an administrator-defined date format.
    */
-  function setDateFormatType($type) {
+  public function setDateFormatType($type) {
     $this->dateFormatType = $type;
     $this->dateFormatCustom = '';
   }
@@ -43,7 +43,7 @@ class EntityDisplay_DateProperty extends EntityDisplayBase {
   /**
    * @param string $format
    */
-  function setDateFormatCustom($format) {
+  public function setDateFormatCustom($format) {
     $this->dateFormatType = 'custom';
     $this->dateFormatCustom = $format;
   }
@@ -55,7 +55,7 @@ class EntityDisplay_DateProperty extends EntityDisplayBase {
    * @return array
    *   Render array for one entity.
    */
-  function buildEntity($entity_type, $entity) {
+  public function buildEntity($entity_type, $entity) {
     if ('node' !== $entity_type) {
       return array();
     }

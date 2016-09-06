@@ -13,7 +13,7 @@ interface EntityBuildProcessorInterface {
    * @return array[]
    *   Modified render arrays for the given entities.
    */
-  function processEntitiesBuilds(array $builds, $entity_type, array $entities);
+  public function processEntitiesBuilds(array $builds, $entity_type, array $entities);
 
   /**
    * @param array $build
@@ -24,5 +24,5 @@ interface EntityBuildProcessorInterface {
    * @return array
    *   Modified render array for the given entity.
    */
-  function processEntityBuild(array $build, $entity_type, $entity);
+  public function processEntityBuild(array $build, $entity_type, $entity);
 }

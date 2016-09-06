@@ -20,7 +20,7 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
   /**
    * @return \Drupal\renderkit\Configurator\Configurator_EntityDisplay_Title
    */
-  static function create() {
+  public static function create() {
     return new self(array('h1', 'h2', 'h3', 'h4', 'strong'));
   }
 
@@ -29,7 +29,7 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
    *
    * @param string[] $allowedTagNames
    */
-  function __construct(array $allowedTagNames) {
+  public function __construct(array $allowedTagNames) {
     $this->allowedTagNames = array_combine($allowedTagNames, $allowedTagNames);
   }
 
@@ -40,7 +40,7 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
    *
    * @return array
    */
-  function confGetForm($conf, $label) {
+  public function confGetForm($conf, $label) {
     list($tagName, $link) = $this->confGetNormalized($conf);
 
     $form = array();
@@ -66,7 +66,7 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
    *
    * @return null|string
    */
-  function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
+  public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
     list($wrapperTagName, $link) = $this->confGetNormalized($conf);
 
     if ($link && NULL !== $wrapperTagName) {
@@ -93,7 +93,7 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
-  function confGetValue($conf) {
+  public function confGetValue($conf) {
     list($wrapperTagName, $link) = $this->confGetNormalized($conf);
 
     $display = new EntityDisplay_Title();

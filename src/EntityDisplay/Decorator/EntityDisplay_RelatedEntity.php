@@ -34,7 +34,7 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator(CfrContextInterface $context = NULL) {
+  public static function createConfigurator(CfrContextInterface $context = NULL) {
     /** @var \Drupal\cfrplugin\Hub\CfrPluginHubInterface $hub */
     $hub = cfrplugin();
     return Configurator_CallbackConfigurable::createFromClassName(
@@ -54,7 +54,7 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $entityToEntity
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $relatedEntityDisplay
    */
-  function __construct(EntityToEntityInterface $entityToEntity, EntityDisplayInterface $relatedEntityDisplay) {
+  public function __construct(EntityToEntityInterface $entityToEntity, EntityDisplayInterface $relatedEntityDisplay) {
     $this->entityToEntity = $entityToEntity;
     $this->relatedEntityDisplay = $relatedEntityDisplay;
     $this->relatedEntityType = $entityToEntity->getTargetType();
@@ -78,7 +78,7 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     $relatedEntities = $this->entityToEntity->entitiesGetRelated($entityType, $entities);
     return $this->relatedEntityDisplay->buildEntities($this->relatedEntityType, $relatedEntities);
   }
@@ -93,7 +93,7 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    *
    * @return array
    */
-  function buildEntity($entity_type, $entity) {
+  public function buildEntity($entity_type, $entity) {
     if (NULL === $relatedEntity = $this->entityToEntity->entityGetRelated($entity_type, $entity)) {
       return array();
     }

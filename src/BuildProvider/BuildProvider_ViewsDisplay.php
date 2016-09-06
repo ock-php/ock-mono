@@ -33,7 +33,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator() {
+  public static function createConfigurator() {
 
     $legend = new EnumMap_ViewsDisplayId();
 
@@ -62,7 +62,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    * @param string $displayId
    * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
    */
-  function __construct($viewName, $displayId, LabeledFormatInterface $labeledFormat = NULL) {
+  public function __construct($viewName, $displayId, LabeledFormatInterface $labeledFormat = NULL) {
     $this->viewName = $viewName;
     $this->displayId = $displayId;
     $this->labeledFormat = $labeledFormat;
@@ -72,7 +72,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    * @return array
    *   A render array.
    */
-  function build() {
+  public function build() {
     $view = \views_get_view($this->viewName);
     if (NULL === $view) {
       return array();

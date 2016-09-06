@@ -31,7 +31,7 @@ class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
    *
    * @return $this
    */
-  function setFallbackDisplay(EntityDisplayInterface $fallbackDisplay) {
+  public function setFallbackDisplay(EntityDisplayInterface $fallbackDisplay) {
     $this->fallbackDisplay = $fallbackDisplay;
     return $this;
   }
@@ -44,7 +44,7 @@ class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
    *
    * @return $this
    */
-  function entityTypeSetDisplay($entityType, EntityDisplayInterface $display) {
+  public function entityTypeSetDisplay($entityType, EntityDisplayInterface $display) {
     $this->typeDisplays[$entityType] = $display;
 
     return $this;
@@ -58,7 +58,7 @@ class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
    *
    * @return array[]
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     return isset($this->typeDisplays[$entityType])
       ? $this->typeDisplays[$entityType]->buildEntities($entityType, $entities)
       : (isset($this->fallbackDisplay)

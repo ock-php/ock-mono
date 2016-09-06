@@ -25,7 +25,7 @@ class Configurator_BuildProcessor_Container implements ConfiguratorInterface {
    * @return array
    * @see \views_handler::options_form()
    */
-  function confGetForm($conf, $label) {
+  public function confGetForm($conf, $label) {
     $form['tag_name'] = array(
       '#title' => t('Tag name'),
       '#type' => 'textfield',
@@ -49,7 +49,7 @@ class Configurator_BuildProcessor_Container implements ConfiguratorInterface {
    *
    * @return null|string
    */
-  function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
+  public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
     return NULL;
   }
 
@@ -58,7 +58,7 @@ class Configurator_BuildProcessor_Container implements ConfiguratorInterface {
    *
    * @return \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
    */
-  function confGetValue($conf) {
+  public function confGetValue($conf) {
     // @todo What is the purpose of this 'decorated' key?
     $conf += array('decorated' => array());
     $container = new BuildProcessor_Container();

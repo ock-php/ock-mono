@@ -13,6 +13,6 @@ interface LabeledListFormatInterface {
    * @return array
    *   Combined render array.
    */
-  function build(array $builds, $label);
+  public function build(array $builds, $label);
 
 }

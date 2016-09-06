@@ -36,7 +36,7 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
    * @param string $langcode
    */
-  function __construct($field_name, array $display = array(), FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL, $langcode = NULL) {
+  public function __construct($field_name, array $display = array(), FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL, $langcode = NULL) {
     $this->fieldName = $field_name;
     $this->display = $display + array('label' => 'hidden');
     $this->fieldDisplayProcessor = $fieldDisplayProcessor;
@@ -53,7 +53,7 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    *
    * @return $this
    */
-  function setFormatter($name, array $settings = NULL) {
+  public function setFormatter($name, array $settings = NULL) {
     $this->display['type'] = $name;
     if (isset($settings)) {
       $this->display['settings'] = $settings;
@@ -66,7 +66,7 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    *   The default implementation supports 'above', 'inline' and 'hidden'.
    *   Default in core is 'above', but default here is 'hidden'.
    */
-  function setLabelPosition($label_position) {
+  public function setLabelPosition($label_position) {
     $this->display['label'] = $label_position;
   }
 
@@ -77,7 +77,7 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    * @return array
    * @throws \EntityMalformedException
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     $helper = EntityTypeFieldDisplayHelper::create($entityType, $this->fieldName, $this->display, $this->langcode);
     $builds = $helper->buildMultipleByDelta($entities);
     if (NULL !== $this->fieldDisplayProcessor) {

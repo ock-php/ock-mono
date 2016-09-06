@@ -10,7 +10,7 @@ trait UserDisplayTrait {
    *
    * @return array
    */
-  final function buildEntity($entity_type, $entity) {
+  final public function buildEntity($entity_type, $entity) {
     if ('user' !== $entity_type) {
       return array();
     }
@@ -25,7 +25,7 @@ trait UserDisplayTrait {
    *   An array of render arrays, keyed by the original array keys of $entities.
    * @throws \Exception
    */
-  final function buildEntities($entity_type, array $users) {
+  final public function buildEntities($entity_type, array $users) {
     if ('user' !== $entity_type) {
       return array();
     }

@@ -37,7 +37,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator($entityType = NULL) {
+  public static function createConfigurator($entityType = NULL) {
 
     $legend = new EnumMap_ViewsDisplayId_Entity($entityType);
 
@@ -66,7 +66,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    * @param string $displayId
    * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledDisplay
    */
-  function __construct($viewName, $displayId, LabeledEntityBuildProcessorInterface $labeledDisplay = NULL) {
+  public function __construct($viewName, $displayId, LabeledEntityBuildProcessorInterface $labeledDisplay = NULL) {
     $this->viewName = $viewName;
     $this->displayId = $displayId;
     $this->labeledDisplay = $labeledDisplay;
@@ -84,7 +84,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  function buildEntity($entity_type, $entity) {
+  public function buildEntity($entity_type, $entity) {
     $etid = $this->entityGetId($entity_type, $entity);
     if (NULL === $etid) {
       return array();

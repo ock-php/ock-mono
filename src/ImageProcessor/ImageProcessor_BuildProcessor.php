@@ -35,7 +35,7 @@ class ImageProcessor_BuildProcessor implements ImageProcessorInterface {
    * @return array
    *   Render array after the processing.
    */
-  function processImage(array $build) {
+  public function processImage(array $build) {
     if (NULL !== $this->decorated) {
       $build = $this->decorated->processImage($build);
     }

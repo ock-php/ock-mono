@@ -7,7 +7,7 @@ interface EntityToRelatedIdsInterface {
   /**
    * @return string
    */
-  function getTargetType();
+  public function getTargetType();
 
   /**
    * @param string $entityType
@@ -16,7 +16,7 @@ interface EntityToRelatedIdsInterface {
    * @return int[]
    *   Format: $[] = $relatedEntityId
    */
-  function entityGetRelatedIds($entityType, $entity);
+  public function entityGetRelatedIds($entityType, $entity);
 
   /**
    * @param string $entityType
@@ -25,6 +25,6 @@ interface EntityToRelatedIdsInterface {
    * @return int[][]
    *   Format: $[$delta][] = $relatedEntityId
    */
-  function entitiesGetRelatedIds($entityType, array $entities);
+  public function entitiesGetRelatedIds($entityType, array $entities);
 
 }

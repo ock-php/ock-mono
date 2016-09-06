@@ -35,7 +35,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function create($fieldName, $formatterType) {
+  public static function create($fieldName, $formatterType) {
     /* @see hook_field_formatter_info() */
     $formatterTypeInfo = field_info_formatter_types($formatterType);
     if (empty($formatterTypeInfo)) {
@@ -64,7 +64,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
    * @param string $formatterType
    * @param array $formatterTypeInfo
    */
-  function __construct($fieldName, array $fieldInfo, $formatterType, array $formatterTypeInfo) {
+  public function __construct($fieldName, array $fieldInfo, $formatterType, array $formatterTypeInfo) {
     $this->fieldName = $fieldName;
     $this->fieldInfo = $fieldInfo;
     $this->formatterType = $formatterType;
@@ -79,7 +79,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
    *
    * @return array
    */
-  function confGetForm($conf, $label) {
+  public function confGetForm($conf, $label) {
     /* @see hook_field_formatter_settings_form() */
     $function = $this->formatterTypeInfo['module'] . '_field_formatter_settings_form';
     if (!function_exists($function)) {
@@ -105,7 +105,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
    *
    * @return null|string
    */
-  function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
+  public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
     $settings = $this->confGetFormatterSettings($conf);
     $instance = FieldUtil::createFakeFieldInstance($this->fieldName, '_custom', $this->formatterType, $settings);
     /* @see hook_field_formatter_settings_summary() */
@@ -119,7 +119,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
    * @return mixed
    *   Value to be used in the application.
    */
-  function confGetValue($conf) {
+  public function confGetValue($conf) {
     return $this->confGetFormatterSettings($conf);
   }
 

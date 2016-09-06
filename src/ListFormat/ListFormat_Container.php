@@ -20,7 +20,7 @@ class ListFormat_Container implements ListFormatInterface, HtmlTagInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator() {
+  public static function createConfigurator() {
     $configurators = array(
       Configurator_TagName::createForContainer(),
       Configurator_ClassAttribute::create(),
@@ -38,7 +38,7 @@ class ListFormat_Container implements ListFormatInterface, HtmlTagInterface {
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  static function create($tagName, array $classes) {
+  public static function create($tagName, array $classes) {
     return (new self())
       ->setTagName($tagName)
       ->addClasses($classes);
@@ -52,7 +52,7 @@ class ListFormat_Container implements ListFormatInterface, HtmlTagInterface {
    * @return array
    *   Render array for the list.
    */
-  function buildList(array $builds) {
+  public function buildList(array $builds) {
     return $this->buildContainer() + $builds;
   }
 }

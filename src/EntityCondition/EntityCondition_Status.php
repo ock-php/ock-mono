@@ -18,7 +18,7 @@ class EntityCondition_Status implements EntityConditionInterface {
    *
    * @return bool
    */
-  function entityCheckCondition($entityType, $entity) {
+  public function entityCheckCondition($entityType, $entity) {
     # \Drupal\krumong\dpm($entity, __METHOD__);
     return isset($entity->status) && ($entity->status === 1 || $entity->status === '1');
   }

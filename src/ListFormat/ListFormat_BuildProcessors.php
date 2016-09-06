@@ -27,7 +27,7 @@ class ListFormat_BuildProcessors implements ListFormatInterface {
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  static function create(BuildProcessorInterface $outerBuildProcessor = NULL, BuildProcessorInterface $itemBuildProcessor = NULL) {
+  public static function create(BuildProcessorInterface $outerBuildProcessor = NULL, BuildProcessorInterface $itemBuildProcessor = NULL) {
     if (NULL === $outerBuildProcessor) {
       if (NULL === $itemBuildProcessor) {
         return new ListFormat_Bare();
@@ -52,7 +52,7 @@ class ListFormat_BuildProcessors implements ListFormatInterface {
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $itemBuildProcessor
    *   Process the render array for each list item.
    */
-  function __construct(BuildProcessorInterface $outerBuildProcessor, BuildProcessorInterface $itemBuildProcessor) {
+  public function __construct(BuildProcessorInterface $outerBuildProcessor, BuildProcessorInterface $itemBuildProcessor) {
     $this->outerBuildProcessor = $outerBuildProcessor;
     $this->itemBuildProcessor = $itemBuildProcessor;
   }
@@ -65,7 +65,7 @@ class ListFormat_BuildProcessors implements ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  function buildList(array $builds) {
+  public function buildList(array $builds) {
     foreach ($builds as $delta => $build) {
       $builds[$delta] = $this->itemBuildProcessor->process($build);
     }

@@ -24,7 +24,7 @@ class EntityDisplay_ViewMode extends EntitiesDisplayBase {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator($entityType) {
+  public static function createConfigurator($entityType) {
     $legend = new EnumMap_EntityViewMode($entityType);
     $configurators = array(Configurator_LegendSelect::createRequired($legend));
     $labels = array(t('View mode'));
@@ -34,7 +34,7 @@ class EntityDisplay_ViewMode extends EntitiesDisplayBase {
   /**
    * @param string $viewMode
    */
-  function __construct($viewMode) {
+  public function __construct($viewMode) {
     $this->viewMode = $viewMode;
   }
 
@@ -48,7 +48,7 @@ class EntityDisplay_ViewMode extends EntitiesDisplayBase {
    * @see entity_view()
    * @see node_view_multiple()
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     if (empty($entities)) {
       // entity_view() does not like an empty array of entities.
       // Especially, node_view_multiple() really does not.

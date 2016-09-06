@@ -25,7 +25,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator(CfrContextInterface $context = NULL) {
+  public static function createConfigurator(CfrContextInterface $context = NULL) {
     $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityBuildProcessorInterface::class, $context);
     $configurators = array(new Configurator_Sequence($displayConfigurator));
     $labels = array(NULL);
@@ -37,7 +37,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    *
    * @return \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
    */
-  static function create(array $processors) {
+  public static function create(array $processors) {
     $sequence = new self();
     foreach ($processors as $processor) {
       if ($processor instanceof EntityBuildProcessorInterface) {
@@ -60,7 +60,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    *
    * @return $this
    */
-  function addBuildProcessor(BuildProcessorInterface $buildProcessor) {
+  public function addBuildProcessor(BuildProcessorInterface $buildProcessor) {
     $this->processors[] = $buildProcessor;
     return $this;
   }
@@ -70,7 +70,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    *
    * @return $this
    */
-  function addEntityBuildProcessor(EntityBuildProcessorInterface $entityBuildProcessor) {
+  public function addEntityBuildProcessor(EntityBuildProcessorInterface $entityBuildProcessor) {
     $this->processors[] = $entityBuildProcessor;
     return $this;
   }
@@ -87,7 +87,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    * @return array[]
    *   Modified render arrays for the given entities.
    */
-  function processEntitiesBuilds(array $builds, $entity_type, array $entities) {
+  public function processEntitiesBuilds(array $builds, $entity_type, array $entities) {
     foreach ($this->processors as $processor) {
       if ($processor instanceof EntityBuildProcessorInterface) {
         $builds = $processor->processEntitiesBuilds($builds, $entity_type, $entities);

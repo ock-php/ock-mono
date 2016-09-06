@@ -35,7 +35,7 @@ interface EntityDisplayInterface {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildEntities($entityType, array $entities);
+  public function buildEntities($entityType, array $entities);
 
   /**
    * Same as ->buildEntities(), just for a single entity.
@@ -47,5 +47,5 @@ interface EntityDisplayInterface {
    *
    * @return array
    */
-  function buildEntity($entity_type, $entity);
+  public function buildEntity($entity_type, $entity);
 }

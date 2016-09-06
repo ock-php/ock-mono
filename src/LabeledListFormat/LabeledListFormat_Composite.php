@@ -37,7 +37,7 @@ class LabeledListFormat_Composite implements LabeledListFormatInterface {
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL $innerProcessor
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface|NULL $listFormat
    */
-  function __construct(
+  public function __construct(
     BuildProcessorInterface $outerProcessor = NULL,
     LabeledFormatInterface $labeledFormat = NULL,
     BuildProcessorInterface $innerProcessor = NULL,
@@ -58,7 +58,7 @@ class LabeledListFormat_Composite implements LabeledListFormatInterface {
    * @return array
    *   Combined render array.
    */
-  function build(array $builds, $label) {
+  public function build(array $builds, $label) {
     $build = (NULL !== $this->listFormat)
       ? $this->listFormat->buildList($builds)
       : $builds;

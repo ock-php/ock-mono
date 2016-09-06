@@ -15,7 +15,7 @@ class Configurator_ListSeparator implements ConfiguratorInterface {
    *
    * @return array
    */
-  function confGetForm($conf, $label) {
+  public function confGetForm($conf, $label) {
     return array(
       '#title' => t('Separator'),
       /* @see theme_textfield() */
@@ -33,7 +33,7 @@ class Configurator_ListSeparator implements ConfiguratorInterface {
    *
    * @return null|string
    */
-  function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
+  public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
     return is_string($conf)
       ? check_plain(json_encode(substr($conf, 0, 7)))
       : NULL;
@@ -46,7 +46,7 @@ class Configurator_ListSeparator implements ConfiguratorInterface {
    * @return mixed
    *   Value to be used in the application.
    */
-  function confGetValue($conf) {
+  public function confGetValue($conf) {
     if (!is_string($conf)) {
       $conf = '';
     }

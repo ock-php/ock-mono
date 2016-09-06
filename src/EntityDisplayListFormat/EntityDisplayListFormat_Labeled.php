@@ -20,7 +20,7 @@ class EntityDisplayListFormat_Labeled implements EntityDisplayListFormatInterfac
    * @param \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat
    * @param string $label
    */
-  function __construct(LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat, $label) {
+  public function __construct(LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat, $label) {
     $this->labeledEntityDisplayListFormat = $labeledEntityDisplayListFormat;
     $this->label = $label;
   }
@@ -32,7 +32,7 @@ class EntityDisplayListFormat_Labeled implements EntityDisplayListFormatInterfac
    *
    * @return array
    */
-  function buildListWithEntity(array $builds, $entityType, $entity) {
+  public function buildListWithEntity(array $builds, $entityType, $entity) {
     return $this->labeledEntityDisplayListFormat->build($builds,$entityType, $entity, $this->label);
   }
 }

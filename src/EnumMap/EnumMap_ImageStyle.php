@@ -9,7 +9,7 @@ class EnumMap_ImageStyle implements EnumMapInterface {
   /**
    * @return mixed[]
    */
-  function getSelectOptions() {
+  public function getSelectOptions() {
     return image_style_options();
   }
 
@@ -18,7 +18,7 @@ class EnumMap_ImageStyle implements EnumMapInterface {
    *
    * @return string|null
    */
-  function idGetLabel($styleName) {
+  public function idGetLabel($styleName) {
     if (empty($styleName)) {
       return '- ' . t('Original image') . ' -';
     }
@@ -35,7 +35,7 @@ class EnumMap_ImageStyle implements EnumMapInterface {
    *
    * @return bool
    */
-  function idIsKnown($styleName) {
+  public function idIsKnown($styleName) {
     if (empty($styleName)) {
       return TRUE;
     }

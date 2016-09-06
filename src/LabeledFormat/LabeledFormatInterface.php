@@ -13,6 +13,6 @@ interface LabeledFormatInterface {
    * @return array
    *   Modified or wrapped render array with label.
    */
-  function buildAddLabel(array $build, $label);
+  public function buildAddLabel(array $build, $label);
 
 }

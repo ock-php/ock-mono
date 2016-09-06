@@ -12,7 +12,7 @@ interface EntityToEntityInterface {
    *
    * @return string
    */
-  function getTargetType();
+  public function getTargetType();
 
   /**
    * @param string $entityType
@@ -20,7 +20,7 @@ interface EntityToEntityInterface {
    *
    * @return object[]
    */
-  function entitiesGetRelated($entityType, array $entities);
+  public function entitiesGetRelated($entityType, array $entities);
 
   /**
    * @param string $entityType
@@ -28,5 +28,5 @@ interface EntityToEntityInterface {
    *
    * @return object|null
    */
-  function entityGetRelated($entityType, $entity);
+  public function entityGetRelated($entityType, $entity);
 }

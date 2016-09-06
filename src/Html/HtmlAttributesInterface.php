@@ -9,13 +9,13 @@ interface HtmlAttributesInterface {
    *
    * @return $this
    */
-  function addClass($class);
+  public function addClass($class);
 
   /**
    * @param string[] $classes
    *
    * @return $this
    */
-  function addClasses(array $classes);
+  public function addClasses(array $classes);
 
 }

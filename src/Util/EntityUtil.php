@@ -10,7 +10,7 @@ final class EntityUtil extends UtilBase {
    *
    * @return int[]
    */
-  static function entitiesGetIds($entityType, $entities) {
+  public static function entitiesGetIds($entityType, $entities) {
 
     $info = entity_get_info($entityType);
     $idKey = $info['entity keys']['id'];

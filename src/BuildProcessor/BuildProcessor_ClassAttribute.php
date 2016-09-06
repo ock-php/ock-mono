@@ -18,7 +18,7 @@ class BuildProcessor_ClassAttribute implements BuildProcessorInterface {
    * @param string[] $classes
    * @param string $attributesKey
    */
-  function __construct(array $classes = array(), $attributesKey = '#attributes') {
+  public function __construct(array $classes = array(), $attributesKey = '#attributes') {
     $this->classes = $classes;
     $this->attributesKey = $attributesKey;
   }
@@ -30,7 +30,7 @@ class BuildProcessor_ClassAttribute implements BuildProcessorInterface {
    * @return array
    *   Render array after the processing.
    */
-  function process(array $build) {
+  public function process(array $build) {
     if (!isset($build[$this->attributesKey])) {
       return $build;
     }

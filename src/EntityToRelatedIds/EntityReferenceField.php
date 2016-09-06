@@ -19,7 +19,7 @@ class EntityReferenceField extends EntityToRelatedIdsBase {
    *
    * @return static|null
    */
-  static function createFromFieldName($fieldName) {
+  public static function createFromFieldName($fieldName) {
     $fieldInfo = field_info_field($fieldName);
     if (!$fieldInfo ) {
       return NULL;
@@ -33,7 +33,7 @@ class EntityReferenceField extends EntityToRelatedIdsBase {
    * @param string $fieldName
    * @param string $targetType
    */
-  function __construct($fieldName, $targetType) {
+  public function __construct($fieldName, $targetType) {
     $this->fieldName = $fieldName;
     $this->targetType = $targetType;
   }
@@ -41,7 +41,7 @@ class EntityReferenceField extends EntityToRelatedIdsBase {
   /**
    * @return string
    */
-  function getTargetType() {
+  public function getTargetType() {
     return $this->targetType;
   }
 
@@ -52,7 +52,7 @@ class EntityReferenceField extends EntityToRelatedIdsBase {
    * @return int[]
    *   Format: $[] = $relatedEntityId
    */
-  function entityGetRelatedIds($entityType, $entity) {
+  public function entityGetRelatedIds($entityType, $entity) {
     $relatedIds = array();
     foreach (field_get_items($entityType, $entity, $this->fieldName) ?: array() as $itemDelta => $item) {
       if (!empty($item['target_id'])) {

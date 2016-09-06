@@ -21,7 +21,7 @@ class EntityDisplay_Reference extends EntitiesDisplayBase {
    *
    * @return array|bool
    */
-  static function author($entityType) {
+  public static function author($entityType) {
     switch ($entityType) {
       case 'node':
         return array(
@@ -37,7 +37,7 @@ class EntityDisplay_Reference extends EntitiesDisplayBase {
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $reference
    */
-  function __construct(EntityDisplayInterface $decorated, EntityToEntityInterface $reference) {
+  public function __construct(EntityDisplayInterface $decorated, EntityToEntityInterface $reference) {
     $this->decorated = $decorated;
     $this->reference = $reference;
   }
@@ -60,7 +60,7 @@ class EntityDisplay_Reference extends EntitiesDisplayBase {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     $relatedEntities = $this->reference->entitiesGetRelated($entityType, $entities);
     return $this->decorated->buildEntities($this->reference->getTargetType(), $relatedEntities);
   }

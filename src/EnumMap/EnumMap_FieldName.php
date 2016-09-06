@@ -29,7 +29,7 @@ class EnumMap_FieldName implements EnumMapInterface {
    * @param string $bundleName
    *   Contextual parameter.
    */
-  function __construct($allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
+  public function __construct($allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
     $this->fieldTypes = $allowedFieldTypes;
     $this->entityType = $entityType;
     $this->bundleName = $bundleName;
@@ -38,7 +38,7 @@ class EnumMap_FieldName implements EnumMapInterface {
   /**
    * @return mixed[]
    */
-  function getSelectOptions() {
+  public function getSelectOptions() {
     return FieldUtil::fieldTypesGetFieldNameOptions($this->fieldTypes, $this->entityType, $this->bundleName);
   }
 
@@ -47,7 +47,7 @@ class EnumMap_FieldName implements EnumMapInterface {
    *
    * @return string|null
    */
-  function idGetLabel($id) {
+  public function idGetLabel($id) {
     return FieldUtil::fieldnameEtBundleGetLabel($id, $this->entityType, $this->bundleName);
   }
 
@@ -56,7 +56,7 @@ class EnumMap_FieldName implements EnumMapInterface {
    *
    * @return bool
    */
-  function idIsKnown($id) {
+  public function idIsKnown($id) {
     return FieldUtil::fieldnameEtBundleExists($id, $this->entityType, $this->bundleName);
   }
 }

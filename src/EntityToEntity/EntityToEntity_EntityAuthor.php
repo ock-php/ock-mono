@@ -18,7 +18,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    *
    * @return \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
    */
-  static function userEntityOrAuthor() {
+  public static function userEntityOrAuthor() {
     return new EntityToEntity_SelfOrOther(new self());
   }
 
@@ -27,7 +27,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    *
    * @return string
    */
-  function getTargetType() {
+  public function getTargetType() {
     return 'user';
   }
 
@@ -37,7 +37,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    *
    * @return object[]
    */
-  function entitiesGetRelated($entityType, array $entities) {
+  public function entitiesGetRelated($entityType, array $entities) {
     // @todo Check if this entity type has a uid!
     $uids = array();
     foreach ($entities as $delta => $entity) {
@@ -66,7 +66,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    *
    * @return object|null
    */
-  function entityGetRelated($entityType, $entity) {
+  public function entityGetRelated($entityType, $entity) {
     // @todo Check if this entity type has a uid!
     if (!isset($entity->uid)) {
       return NULL;

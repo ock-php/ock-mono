@@ -17,7 +17,7 @@ class EntityCondition_Negation implements EntityConditionInterface {
   /**
    * @param \Drupal\renderkit\EntityCondition\EntityConditionInterface $negatedCondition
    */
-  function __construct(EntityConditionInterface $negatedCondition) {
+  public function __construct(EntityConditionInterface $negatedCondition) {
     $this->negatedCondition = $negatedCondition;
   }
 
@@ -27,7 +27,7 @@ class EntityCondition_Negation implements EntityConditionInterface {
    *
    * @return bool
    */
-  function entityCheckCondition($entityType, $entity) {
+  public function entityCheckCondition($entityType, $entity) {
     return !$this->negatedCondition->entityCheckCondition($entityType, $entity);
   }
 }

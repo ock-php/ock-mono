@@ -24,7 +24,7 @@ class EntityDisplay_RecursionDetectionDecorator extends EntityDisplay_NeutralDec
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
    * @param int $recursionLimit
    */
-  function __construct(EntityDisplayInterface $decorated, $recursionLimit = 20) {
+  public function __construct(EntityDisplayInterface $decorated, $recursionLimit = 20) {
     parent::__construct($decorated);
     $this->recursionLimit = $recursionLimit;
   }
@@ -39,7 +39,7 @@ class EntityDisplay_RecursionDetectionDecorator extends EntityDisplay_NeutralDec
    *
    * @throws \Drupal\renderkit\Exception\EntityDisplayRecursionException
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     if (self::$recursionDepth > $this->recursionLimit) {
       throw new EntityDisplayRecursionException();
     }

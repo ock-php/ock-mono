@@ -29,7 +29,7 @@ class EntityCondition_FromFilter implements EntityConditionInterface {
    *
    * @param \Drupal\renderkit\EntityFilter\EntityFilterInterface $multiEntityFilter
    */
-  function __construct(EntityFilterInterface $multiEntityFilter) {
+  public function __construct(EntityFilterInterface $multiEntityFilter) {
     $this->multiEntityFilter = $multiEntityFilter;
   }
 
@@ -39,7 +39,7 @@ class EntityCondition_FromFilter implements EntityConditionInterface {
    *
    * @return bool
    */
-  function entityCheckCondition($entityType, $entity) {
+  public function entityCheckCondition($entityType, $entity) {
     $entities = array('entity' => $entity);
     $filteredDeltas = $this->multiEntityFilter->entitiesFilterDeltas($entityType, $entities);
     return $filteredDeltas === array('entity');

@@ -29,7 +29,7 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
-  static function create(EntityImageInterface $entityImageProvider, ImageProcessorInterface $imageProcessor = NULL) {
+  public static function create(EntityImageInterface $entityImageProvider, ImageProcessorInterface $imageProcessor = NULL) {
     return NULL !== $imageProcessor
       ? new static($entityImageProvider, $imageProcessor)
       : $entityImageProvider;
@@ -41,7 +41,7 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $entityImageProvider
    * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface $imageProcessor
    */
-  function __construct(EntityImageInterface $entityImageProvider, ImageProcessorInterface $imageProcessor) {
+  public function __construct(EntityImageInterface $entityImageProvider, ImageProcessorInterface $imageProcessor) {
     $this->entityImageProvider = $entityImageProvider;
     $this->imageProcessor = $imageProcessor;
   }
@@ -64,7 +64,7 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     $rawBuilds = $this->entityImageProvider->buildEntities($entityType, $entities);
     $processedBuilds = array();
     foreach ($rawBuilds as $delta => $rawBuild) {

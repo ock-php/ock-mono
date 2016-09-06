@@ -13,7 +13,7 @@ trait EntityBuildProcessorTrait {
    * @return array[]
    *   Modified render arrays for the given entities.
    */
-  final function processEntitiesBuilds(array $builds, $entity_type, array $entities) {
+  final public function processEntitiesBuilds(array $builds, $entity_type, array $entities) {
     foreach ($entities as $delta => $entity) {
       if (!empty($builds[$delta])) {
         $builds[$delta] = $this->processEntityBuild($builds[$delta], $entity_type, $entity);
@@ -33,6 +33,6 @@ trait EntityBuildProcessorTrait {
    *
    * @see \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface::processEntityBuild()
    */
-  abstract function processEntityBuild(array $build, $entity_type, $entity);
+  abstract public function processEntityBuild(array $build, $entity_type, $entity);
 
 }

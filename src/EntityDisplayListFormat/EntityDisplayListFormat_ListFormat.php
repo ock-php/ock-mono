@@ -21,7 +21,7 @@ class EntityDisplayListFormat_ListFormat implements EntityDisplayListFormatInter
   /**
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    */
-  function __construct(ListFormatInterface $listFormat) {
+  public function __construct(ListFormatInterface $listFormat) {
     $this->listFormat = $listFormat;
   }
 
@@ -32,7 +32,7 @@ class EntityDisplayListFormat_ListFormat implements EntityDisplayListFormatInter
    *
    * @return array
    */
-  function buildListWithEntity(array $builds, $entityType, $entity) {
+  public function buildListWithEntity(array $builds, $entityType, $entity) {
     return $this->listFormat->buildList($builds);
   }
 }

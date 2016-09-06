@@ -9,6 +9,6 @@ interface HtmlTagInterface extends HtmlAttributesInterface {
    *
    * @return $this
    */
-  function setTagName($tagName);
+  public function setTagName($tagName);
 
 }

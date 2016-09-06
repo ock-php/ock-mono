@@ -20,7 +20,7 @@ class ListFormat_Labeled implements ListFormatInterface {
    * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    * @param string $label
    */
-  function __construct(LabeledListFormatInterface $labeledListFormat, $label) {
+  public function __construct(LabeledListFormatInterface $labeledListFormat, $label) {
     $this->labeledListFormat = $labeledListFormat;
     $this->label = $label;
   }
@@ -33,7 +33,7 @@ class ListFormat_Labeled implements ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  function buildList(array $builds) {
+  public function buildList(array $builds) {
     return $this->labeledListFormat->build($builds, $this->label);
   }
 }

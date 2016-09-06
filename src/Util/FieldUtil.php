@@ -11,7 +11,7 @@ final class FieldUtil extends UtilBase {
    *
    * @return null|string
    */
-  static function fieldnameEtBundleGetLabel($fieldName, $entityType = NULL, $bundleName = NULL) {
+  public static function fieldnameEtBundleGetLabel($fieldName, $entityType = NULL, $bundleName = NULL) {
     // @todo Maybe this can be done faster?
     $options = self::etBundleGetFieldNameOptions($entityType, $bundleName);
     return isset($options[$fieldName])
@@ -26,7 +26,7 @@ final class FieldUtil extends UtilBase {
    *
    * @return bool
    */
-  static function fieldnameEtBundleExists($fieldName, $entityType = NULL, $bundleName = NULL) {
+  public static function fieldnameEtBundleExists($fieldName, $entityType = NULL, $bundleName = NULL) {
     // @todo Maybe this can be done faster?
     $options = self::etBundleGetFieldNameOptions($entityType, $bundleName);
     return isset($options[$fieldName]);
@@ -39,7 +39,7 @@ final class FieldUtil extends UtilBase {
    * @return string[]
    *   Format: $[$fieldName] = $optionLabel
    */
-  static function etBundleGetFieldNameOptions($entityType = NULL, $bundleName = NULL) {
+  public static function etBundleGetFieldNameOptions($entityType = NULL, $bundleName = NULL) {
 
     $instancesByFieldAndLabel = self::etBundleGetFieldInstancesByFieldAndLabel($entityType, $bundleName);
 
@@ -58,7 +58,7 @@ final class FieldUtil extends UtilBase {
    * @return array[][]
    *   Format: $[$fieldName][$instanceFieldLabel][] = array($instanceEntityType, $instanceBundleName)
    */
-  static function etBundleGetFieldInstancesByFieldAndLabel($expectedEntityType = NULL, $expectedBundleName = NULL) {
+  public static function etBundleGetFieldInstancesByFieldAndLabel($expectedEntityType = NULL, $expectedBundleName = NULL) {
 
     $instancesByFieldAndLabel = array();
     foreach (self::etBundleGetFieldInstancesByEtBundle($expectedEntityType, $expectedBundleName) as $entityType => $entityTypeInstances) {
@@ -79,7 +79,7 @@ final class FieldUtil extends UtilBase {
    * @return array[][]
    *   Format: $[$entityType][$bundleName] = $fieldInstance
    */
-  static function etBundleGetFieldInstancesByEtBundle($entityType = NULL, $bundleName = NULL) {
+  public static function etBundleGetFieldInstancesByEtBundle($entityType = NULL, $bundleName = NULL) {
 
     $cache = _field_info_field_cache();
     if (NULL === $entityType) {
@@ -100,7 +100,7 @@ final class FieldUtil extends UtilBase {
    *
    * @return array[]
    */
-  static function fieldTypeGetAvailableFormatterTypes($fieldType) {
+  public static function fieldTypeGetAvailableFormatterTypes($fieldType) {
     $availableFormatterTypes = array();
     foreach (field_info_formatter_types() as $formatterTypeName => $formatterTypeDefinition) {
       if (!in_array($fieldType, $formatterTypeDefinition['field types'], TRUE)) {
@@ -116,7 +116,7 @@ final class FieldUtil extends UtilBase {
    *
    * @return string|null
    */
-  static function fieldFormatterTypeGetLabel($formatterTypeName) {
+  public static function fieldFormatterTypeGetLabel($formatterTypeName) {
     $formatterTypeDefinition = field_info_formatter_types($formatterTypeName);
     if (!isset($formatterTypeDefinition)) {
       return NULL;
@@ -131,7 +131,7 @@ final class FieldUtil extends UtilBase {
    *
    * @return bool
    */
-  static function fieldFormatterTypeExists($formatterTypeName) {
+  public static function fieldFormatterTypeExists($formatterTypeName) {
     $formatterTypeDefinition = field_info_formatter_types($formatterTypeName);
     return isset($formatterTypeDefinition);
   }
@@ -154,7 +154,7 @@ final class FieldUtil extends UtilBase {
    * @see ctools_fields_fake_field_instance()
    *   Simply copying this to avoid a dependency.
    */
-  static function createFakeFieldInstance($fieldName, $viewMode, $formatterTypeName, $formatterSettings) {
+  public static function createFakeFieldInstance($fieldName, $viewMode, $formatterTypeName, $formatterSettings) {
     $field = field_read_field($fieldName);
 
     $field_type = field_info_field_types($field['type']);
@@ -200,7 +200,7 @@ final class FieldUtil extends UtilBase {
    * @return string[]
    *   Format: $[$fieldName] = $optionLabel
    */
-  static function fieldTypesGetFieldNameOptions(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
+  public static function fieldTypesGetFieldNameOptions(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
 
     $optionsAll = self::etBundleGetFieldNameOptions($entityType, $bundleName);
 

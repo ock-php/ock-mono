@@ -25,7 +25,7 @@ class EntityDisplay_Title extends EntityDisplayBase {
    *
    * @return \Drupal\renderkit\Configurator\Configurator_EntityDisplay_Title
    */
-  static function createConfigurator() {
+  public static function createConfigurator() {
     return Configurator_EntityDisplay_Title::create();
   }
 
@@ -35,7 +35,7 @@ class EntityDisplay_Title extends EntityDisplayBase {
    *
    * @return array
    */
-  function buildEntity($entity_type, $entity) {
+  public function buildEntity($entity_type, $entity) {
     return array(
       '#markup' => entity_label($entity_type, $entity),
     );

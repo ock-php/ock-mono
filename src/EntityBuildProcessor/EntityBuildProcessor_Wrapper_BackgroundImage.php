@@ -25,7 +25,7 @@ class EntityBuildProcessor_Wrapper_BackgroundImage extends EntityBuildProcessorB
   /**
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $imageProvider
    */
-  function __construct(EntityImageInterface $imageProvider) {
+  public function __construct(EntityImageInterface $imageProvider) {
     $this->imageProvider = $imageProvider;
   }
 
@@ -40,7 +40,7 @@ class EntityBuildProcessor_Wrapper_BackgroundImage extends EntityBuildProcessorB
    *
    * @see \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface::processEntityBuild()
    */
-  function processEntityBuild(array $build, $entity_type, $entity) {
+  public function processEntityBuild(array $build, $entity_type, $entity) {
     $imageDisplay = $this->imageProvider->buildEntity($entity_type, $entity);
     $build = $this->buildContainer() + array('content' => $build);
     if (isset($imageDisplay['#path'])) {

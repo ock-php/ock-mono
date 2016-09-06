@@ -11,7 +11,7 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
    *
    * @return bool
    */
-  function idIsKnown($id) {
+  public function idIsKnown($id) {
     list($view_name, $display_id) = explode(':', $id . ':');
     return 1
       && '' !== $view_name
@@ -23,7 +23,7 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
   /**
    * @return mixed[]
    */
-  function getSelectOptions() {
+  public function getSelectOptions() {
 
     /** @var \view[] $views */
     $views = \views_get_all_views();
@@ -62,7 +62,7 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
    *
    * @return string|null
    */
-  function idGetLabel($id) {
+  public function idGetLabel($id) {
     list($view_name, $display_id) = explode(':', $id . ':');
     if ('' === $view_name || '' === $display_id) {
       return NULL;

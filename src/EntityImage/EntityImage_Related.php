@@ -33,7 +33,7 @@ class EntityImage_Related implements EntityImageInterface {
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  static function createConfigurator(CfrContextInterface $context = NULL) {
+  public static function createConfigurator(CfrContextInterface $context = NULL) {
     /** @var \Drupal\cfrplugin\Hub\CfrPluginHubInterface $hub */
     $hub = cfrplugin();
     return Configurator_CallbackConfigurable::createFromClassName(
@@ -53,7 +53,7 @@ class EntityImage_Related implements EntityImageInterface {
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $entityToEntity
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $relatedEntityImage
    */
-  function __construct(EntityToEntityInterface $entityToEntity, EntityImageInterface $relatedEntityImage) {
+  public function __construct(EntityToEntityInterface $entityToEntity, EntityImageInterface $relatedEntityImage) {
     $this->entityToEntity = $entityToEntity;
     $this->relatedEntityImage = $relatedEntityImage;
     $this->relatedEntityType = $entityToEntity->getTargetType();
@@ -69,7 +69,7 @@ class EntityImage_Related implements EntityImageInterface {
    *
    * @return array
    */
-  function buildEntity($entity_type, $entity) {
+  public function buildEntity($entity_type, $entity) {
     if (NULL === $relatedEntity = $this->entityToEntity->entityGetRelated($entity_type, $entity)) {
       return array();
     }
@@ -88,7 +88,7 @@ class EntityImage_Related implements EntityImageInterface {
    *   An array of render arrays, keyed by the original array keys of $entities.
    *   Each render array must contain '#theme' => 'image'.
    */
-  function buildEntities($entityType, array $entities) {
+  public function buildEntities($entityType, array $entities) {
     $entities = $this->entityToEntity->entitiesGetRelated($entityType, $entities);
     return $this->relatedEntityImage->buildEntities($this->relatedEntityType, $entities);
   }

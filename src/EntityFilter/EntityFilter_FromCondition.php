@@ -29,7 +29,7 @@ class EntityFilter_FromCondition implements EntityFilterInterface {
    *
    * @param \Drupal\renderkit\EntityCondition\EntityConditionInterface $entityCondition
    */
-  function __construct(EntityConditionInterface $entityCondition) {
+  public function __construct(EntityConditionInterface $entityCondition) {
     $this->singleEntityFilter = $entityCondition;
   }
 
@@ -41,7 +41,7 @@ class EntityFilter_FromCondition implements EntityFilterInterface {
    *   Format: $[] = $delta
    *   Deltas where the entity has the quality.
    */
-  function entitiesFilterDeltas($entityType, array $entities) {
+  public function entitiesFilterDeltas($entityType, array $entities) {
     $deltas = array();
     foreach ($entities as $delta => $entity) {
       if ($this->singleEntityFilter->entityCheckCondition($entityType, $entity)) {

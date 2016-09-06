@@ -14,14 +14,14 @@ class EnumMap_EntityViewMode implements EnumMapInterface {
   /**
    * @param string $entityType
    */
-  function __construct($entityType) {
+  public function __construct($entityType) {
     $this->entityType = $entityType;
   }
 
   /**
    * @return mixed[]
    */
-  function getSelectOptions() {
+  public function getSelectOptions() {
 
     $entity_info = entity_get_info($this->entityType);
     $options = array();
@@ -39,7 +39,7 @@ class EnumMap_EntityViewMode implements EnumMapInterface {
    *
    * @return string|null
    */
-  function idGetLabel($id) {
+  public function idGetLabel($id) {
     $entity_info = entity_get_info($this->entityType);
     if (isset($entity_info['view modes'][$id]['label'])) {
       return $entity_info['view modes'][$id]['label'];
@@ -57,7 +57,7 @@ class EnumMap_EntityViewMode implements EnumMapInterface {
    *
    * @return bool
    */
-  function idIsKnown($id) {
+  public function idIsKnown($id) {
     $entity_info = entity_get_info($this->entityType);
     return isset($entity_info['view modes'][$id]);
   }
