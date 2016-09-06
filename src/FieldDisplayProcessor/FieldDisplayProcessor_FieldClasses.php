@@ -13,7 +13,7 @@ class FieldDisplayProcessor_FieldClasses implements FieldDisplayProcessorInterfa
   private $decorated;
 
   /**
-   * @CfrPlugin("labeledListFormatWithFieldClasses", @t("Labeled list format + field classes"), inline = true)
+   * @CfrPlugin("labeledListFormatWithFieldClasses", @t("Labeled list format + field classes"))
    *
    * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    *
@@ -24,7 +24,7 @@ class FieldDisplayProcessor_FieldClasses implements FieldDisplayProcessorInterfa
   }
 
   /**
-   * @CfrPlugin("listFormatWithFieldClasses", @t("List format + field classes"), inline = true)
+   * @CfrPlugin("listFormatWithFieldClasses", @t("List format + field classes"))
    *
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    *
