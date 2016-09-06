@@ -2,14 +2,8 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\cfrapi\Configurator\Group\Configurator_GroupReparentV2V;
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
-use Drupal\cfrfamily\Configurator\Composite\Configurator_IdConf;
-use Drupal\renderkit\ConfiguratorMap\ConfiguratorMap_FieldDisplaySettings;
-use Drupal\renderkit\EnumMap\EnumMap_FieldName;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 use Drupal\renderkit\Helper\EntityTypeFieldDisplayHelper;
-use Drupal\renderkit\ValueToValue\ValueToValue_FieldEntityDisplay;
 
 /**
  * Entity display handler to view a specific field on all the entities.
@@ -35,47 +29,6 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    * @var string|null
    */
   private $langcode;
-
-  /**
-   * @CfrPlugin(
-   *   id = "fieldWithFormatter",
-   *   label = "Field with formatter"
-   * )
-   *
-   * @param string|null $entityType
-   *   Contextual parameter.
-   * @param string|null $bundleName
-   *   Contextual parameter.
-   *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
-   */
-  static function createConfigurator($entityType = NULL, $bundleName = NULL) {
-    $legend = new EnumMap_FieldName(NULL, $entityType, $bundleName);
-    $fieldnameToConfigurator = new ConfiguratorMap_FieldDisplaySettings();
-
-    $fieldConfigurator = (new Configurator_IdConf($legend, $fieldnameToConfigurator))
-      ->withKeys('field', 'display');
-
-    $labelDisplayConfigurator = Configurator_LegendSelect::createFromOptions(
-      array(
-        'above' => t('Above'),
-        'inline' => t('Inline'),
-        'hidden' => '<' . t('Hidden') . '>',
-      ),
-      'hidden');
-
-    $processorConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(FieldDisplayProcessorInterface::class);
-
-    return (new Configurator_GroupReparentV2V)
-      ->keySetConfigurator('field', $fieldConfigurator, t('Field'))
-      ->keySetConfigurator('label', $labelDisplayConfigurator, t('Label display'))
-      ->keySetConfigurator('processor', $processorConfigurator, t('Field display processor'))
-      ->keySetParents('processor', array('processor'))
-      ->keySetParents('label', array('display', 'label'))
-      ->keySetParents('field', array())
-      ->setValueToValue(new ValueToValue_FieldEntityDisplay('field', 'display', 'processor'))
-    ;
-  }
 
   /**
    * @param string $field_name
