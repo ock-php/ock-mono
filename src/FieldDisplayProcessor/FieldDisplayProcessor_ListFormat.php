@@ -6,9 +6,6 @@ use Drupal\cfrapi\Configurator\Bool\Configurator_Checkbox;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
-/**
- * @CfrPlugin("listFormat", "List format", inline = true)
- */
 class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface {
 
   /**
