@@ -5,7 +5,7 @@ namespace Drupal\renderkit\FieldDisplayProcessor;
 use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
 
 /**
- * @CfrPlugin("labeledListFormat", "Labeled list format", inline = true)
+ * @CfrPlugin("labeledListFormat", "Labeled list format")
  */
 class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorInterface {
 
