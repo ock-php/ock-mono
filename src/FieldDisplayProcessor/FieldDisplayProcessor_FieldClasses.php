@@ -13,28 +13,6 @@ class FieldDisplayProcessor_FieldClasses implements FieldDisplayProcessorInterfa
   private $decorated;
 
   /**
-   * @CfrPlugin("labeledListFormatWithFieldClasses", @t("Labeled list format + field classes"))
-   *
-   * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
-   *
-   * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
-   */
-  public static function createFromLabeledListFormat(LabeledListFormatInterface $labeledListFormat) {
-    return new self(new FieldDisplayProcessor_LabeledListFormat($labeledListFormat));
-  }
-
-  /**
-   * @CfrPlugin("listFormatWithFieldClasses", @t("List format + field classes"))
-   *
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
-   *
-   * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
-   */
-  public static function createFromListFormat(ListFormatInterface $listFormat) {
-    return new self(new FieldDisplayProcessor_ListFormat($listFormat));
-  }
-
-  /**
    * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface $decorated
    */
   public function __construct(FieldDisplayProcessorInterface $decorated) {
