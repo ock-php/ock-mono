@@ -2,10 +2,10 @@
 
 namespace Drupal\renderkit\ListFormat;
 
+use Drupal\cfrapi\Configurator\Id\Configurator_FlatOptionsSelect;
+use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\Configurator\Configurator_ClassAttribute;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 
 /**
  * Builds a render array for ul/li or ol/li lists.
@@ -34,7 +34,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    */
   public static function createConfigurator() {
     $configurators = [
-      Configurator_LegendSelect::createFromOptions(
+      Configurator_FlatOptionsSelect::createRequired(
         [
           'ul' => t('Unordered list (ul)'),
           'ol' => t('Ordered list (ol)'),

@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\LabeledFormat;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
+use Drupal\cfrapi\Configurator\Id\Configurator_FlatOptionsSelect;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 
 class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
@@ -24,7 +24,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
     return Configurator_CallbackConfigurable::createFromClassName(
       __CLASS__,
       [
-        Configurator_LegendSelect::createFromOptions(
+        new Configurator_FlatOptionsSelect(
           [
             'h1' => 'H1',
             'h2' => 'H2',

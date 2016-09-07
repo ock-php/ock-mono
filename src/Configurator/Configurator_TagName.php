@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\Configurator;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
+use Drupal\cfrapi\Configurator\Id\Configurator_FlatOptionsSelect;
 use Drupal\renderkit\Util\UtilBase;
 
 final class Configurator_TagName extends UtilBase {
@@ -25,7 +25,7 @@ final class Configurator_TagName extends UtilBase {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createForHtmlList() {
-    return Configurator_LegendSelect::createFromOptions(
+    return new Configurator_FlatOptionsSelect(
       [
       'ul' => t('Unordered list (ul)'),
       'ol' => t('Ordered list (ol)'),
@@ -40,7 +40,7 @@ final class Configurator_TagName extends UtilBase {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function create(array $allowedTagNames, $defaultTagName) {
-    return Configurator_LegendSelect::createFromOptions(
+    return Configurator_FlatOptionsSelect::createRequired(
       array_combine($allowedTagNames, $allowedTagNames),
       $defaultTagName);
   }

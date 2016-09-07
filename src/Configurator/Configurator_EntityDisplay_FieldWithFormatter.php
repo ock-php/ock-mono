@@ -3,7 +3,7 @@
 namespace Drupal\renderkit\Configurator;
 
 use Drupal\cfrapi\Configurator\Group\Configurator_Group;
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
+use Drupal\cfrapi\Configurator\Id\Configurator_FlatOptionsSelect;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldWithFormatter;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
@@ -26,7 +26,7 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_Group {
 
     $this->keySetConfigurator(
       'label',
-      Configurator_LegendSelect::createFromOptions(
+      Configurator_FlatOptionsSelect::createRequired(
         [
           'above' => t('Above'),
           'inline' => t('Inline'),
