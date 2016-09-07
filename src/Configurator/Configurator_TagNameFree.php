@@ -4,7 +4,6 @@ namespace Drupal\renderkit\Configurator;
 
 use Drupal\cfrapi\Configurator\Optionable\Configurator_TextfieldBase;
 
-/** @noinspection PhpDeprecationInspection */
 class Configurator_TagNameFree extends Configurator_TextfieldBase {
 
   /**
