@@ -1,15 +1,15 @@
 <?php
 
-namespace Drupal\renderkit\EnumMap;
+namespace Drupal\renderkit\Configurator\Id;
 
-use Drupal\cfrapi\EnumMap\EnumMapInterface;
+use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
 
-class EnumMap_ImageStyle implements EnumMapInterface {
+class Configurator_ImageStyleName extends Configurator_SelectBase {
 
   /**
    * @return mixed[]
    */
-  public function getSelectOptions() {
+  protected function getSelectOptions() {
     return image_style_options();
   }
 
@@ -18,7 +18,7 @@ class EnumMap_ImageStyle implements EnumMapInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($styleName) {
+  protected function idGetLabel($styleName) {
     if (empty($styleName)) {
       return '- ' . t('Original image') . ' -';
     }
@@ -35,7 +35,7 @@ class EnumMap_ImageStyle implements EnumMapInterface {
    *
    * @return bool
    */
-  public function idIsKnown($styleName) {
+  protected function idIsKnown($styleName) {
     if (empty($styleName)) {
       return TRUE;
     }

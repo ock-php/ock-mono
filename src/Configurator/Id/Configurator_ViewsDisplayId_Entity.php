@@ -1,17 +1,31 @@
 <?php
 
-namespace Drupal\renderkit\EnumMap;
+namespace Drupal\renderkit\Configurator\Id;
 
-use Drupal\cfrapi\EnumMap\EnumMapInterface;
+use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
 
-class EnumMap_ViewsDisplayId implements EnumMapInterface {
+class Configurator_ViewsDisplayId_Entity extends Configurator_SelectBase {
+
+  /**
+   * @var string|null
+   */
+  private $entityType;
+
+  /**
+   * @param string $entityType
+   * @param bool $required
+   */
+  public function __construct($entityType = NULL, $required = TRUE) {
+    $this->entityType = $entityType;
+    parent::__construct($required);
+  }
 
   /**
    * @param string $id
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  protected function idIsKnown($id) {
     list($view_name, $display_id) = explode(':', $id . ':');
     return 1
       && '' !== $view_name
@@ -23,7 +37,7 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
   /**
    * @return mixed[]
    */
-  public function getSelectOptions() {
+  protected function getSelectOptions() {
 
     /** @var \view[] $views */
     $views = \views_get_all_views();
@@ -48,6 +62,35 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
         if ('default' === $display->display_plugin || 'page' === $display->display_plugin) {
           continue;
         }
+        if (empty($display->display_options['argument_input'])) {
+          continue;
+        }
+        if (count($display->display_options['argument_input']) > 1) {
+          continue;
+        }
+
+        // Pick the first and only argument.
+        foreach ($display->display_options['argument_input'] as $arg_name => $arg_options) {}
+
+        /** @noinspection DisconnectedForeachInstructionInspection */
+        if (!isset($arg_options['context'])) {
+          continue;
+        }
+
+        $pattern = DRUPAL_PHP_FUNCTION_PATTERN;
+        $regex = "@^entity:($pattern)\.($pattern)$@";
+
+        if (!preg_match($regex, $arg_options['context'], $m)) {
+          continue;
+        }
+
+        /** @noinspection PhpUnusedLocalVariableInspection */
+        list(, $entity_type, $id_key) = $m;
+
+        if (NULL !== $this->entityType && $entity_type !== $this->entityType) {
+          // Not the type we are looking for.
+          continue;
+        }
 
         /** @noinspection PhpUndefinedFieldInspection */
         $options[$view_label][$view_id . ':' . $display_id] = $display->display_title;
@@ -62,7 +105,7 @@ class EnumMap_ViewsDisplayId implements EnumMapInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id) {
+  protected function idGetLabel($id) {
     list($view_name, $display_id) = explode(':', $id . ':');
     if ('' === $view_name || '' === $display_id) {
       return NULL;

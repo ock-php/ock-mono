@@ -2,9 +2,6 @@
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
-use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
-use Drupal\renderkit\ListFormat\ListFormatInterface;
-
 class FieldDisplayProcessor_FieldClasses implements FieldDisplayProcessorInterface {
 
   /**

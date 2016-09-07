@@ -2,9 +2,8 @@
 
 namespace Drupal\renderkit\EntityImages;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\EnumMap\EnumMap_FieldName;
+use Drupal\renderkit\Configurator\Id\Configurator_FieldName;
 
 class EntityImages_ImageField implements EntityImagesInterface {
 
@@ -27,8 +26,7 @@ class EntityImages_ImageField implements EntityImagesInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createPlugin($entityType = NULL, $bundleName = NULL) {
-    $legend = new EnumMap_FieldName(['image'], $entityType, $bundleName);
-    $configurators = [Configurator_LegendSelect::createRequired($legend)];
+    $configurators = [new Configurator_FieldName(['image'], $entityType, $bundleName)];
     $labels = [t('Image field')];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }

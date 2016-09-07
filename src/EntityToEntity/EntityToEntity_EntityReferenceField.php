@@ -2,9 +2,8 @@
 
 namespace Drupal\renderkit\EntityToEntity;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\EnumMap\EnumMap_FieldName;
+use Drupal\renderkit\Configurator\Id\Configurator_FieldName;
 
 class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
 
@@ -29,8 +28,7 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator($entityType = NULL, $bundleName = NULL) {
-    $legend = new EnumMap_FieldName(['entityreference'], $entityType, $bundleName);
-    $configurators = [Configurator_LegendSelect::createRequired($legend)];
+    $configurators = [new Configurator_FieldName(['entityreference'], $entityType, $bundleName)];
     $labels = [t('Entity reference field')];
     return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
   }

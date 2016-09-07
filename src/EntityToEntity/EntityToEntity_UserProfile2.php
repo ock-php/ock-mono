@@ -2,9 +2,8 @@
 
 namespace Drupal\renderkit\EntityToEntity;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\EnumMap\EnumMap_EntityBundle;
+use Drupal\renderkit\Configurator\Id\Configurator_EntityBundleName;
 
 class EntityToEntity_UserProfile2 extends EntityToEntityBase {
 
@@ -25,12 +24,11 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator($entityType = NULL) {
-    $legend = new EnumMap_EntityBundle('profile2');
     return Configurator_CallbackConfigurable::createFromCallable(
       function($profile2TypeName = NULL) use ($entityType) {
         return self::create($entityType, $profile2TypeName);
       },
-      [Configurator_LegendSelect::createOptional($legend)],
+      [new Configurator_EntityBundleName('profile2', FALSE)],
       [t('Profile type')]
     );
   }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Drupal\renderkit\EnumMap;
+namespace Drupal\renderkit\Configurator\Id;
 
-use Drupal\cfrapi\EnumMap\EnumMapInterface;
+use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
 
-class EnumMap_EntityViewMode implements EnumMapInterface {
+class Configurator_EntityViewModeName extends Configurator_SelectBase {
 
   /**
    * @var string
@@ -13,15 +13,17 @@ class EnumMap_EntityViewMode implements EnumMapInterface {
 
   /**
    * @param string $entityType
+   * @param bool $required
    */
-  public function __construct($entityType) {
+  public function __construct($entityType, $required = TRUE) {
     $this->entityType = $entityType;
+    parent::__construct($required);
   }
 
   /**
    * @return mixed[]
    */
-  public function getSelectOptions() {
+  protected function getSelectOptions() {
 
     $entity_info = entity_get_info($this->entityType);
     $options = [];
@@ -39,7 +41,7 @@ class EnumMap_EntityViewMode implements EnumMapInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id) {
+  protected function idGetLabel($id) {
     $entity_info = entity_get_info($this->entityType);
     if (isset($entity_info['view modes'][$id]['label'])) {
       return $entity_info['view modes'][$id]['label'];
@@ -57,7 +59,7 @@ class EnumMap_EntityViewMode implements EnumMapInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  protected function idIsKnown($id) {
     $entity_info = entity_get_info($this->entityType);
     return isset($entity_info['view modes'][$id]);
   }

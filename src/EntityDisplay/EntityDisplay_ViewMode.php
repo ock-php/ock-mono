@@ -2,10 +2,9 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\renderkit\Util\EntityUtil;
-use Drupal\renderkit\EnumMap\EnumMap_EntityViewMode;
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Drupal\renderkit\Configurator\Id\Configurator_EntityViewModeName;
+use Drupal\renderkit\Util\EntityUtil;
 
 class EntityDisplay_ViewMode extends EntitiesDisplayBase {
 
@@ -25,8 +24,7 @@ class EntityDisplay_ViewMode extends EntitiesDisplayBase {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator($entityType) {
-    $legend = new EnumMap_EntityViewMode($entityType);
-    $configurators = [Configurator_LegendSelect::createRequired($legend)];
+    $configurators = [new Configurator_EntityViewModeName($entityType)];
     $labels = [t('View mode')];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }

@@ -2,9 +2,8 @@
 
 namespace Drupal\renderkit\ImageProcessor;
 
-use Drupal\renderkit\EnumMap\EnumMap_ImageStyle;
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Drupal\renderkit\Configurator\Id\Configurator_ImageStyleName;
 
 class ImageProcessor_ImageStyle implements ImageProcessorInterface {
 
@@ -22,8 +21,7 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator() {
-    $imageStyleMap = new EnumMap_ImageStyle();
-    $paramConfigurators = [Configurator_LegendSelect::createRequired($imageStyleMap)];
+    $paramConfigurators = [new Configurator_ImageStyleName()];
     $labels = [t('Image style')];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $paramConfigurators, $labels);
   }

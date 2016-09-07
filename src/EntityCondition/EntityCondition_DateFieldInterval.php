@@ -2,9 +2,8 @@
 
 namespace Drupal\renderkit\EntityCondition;
 
-use Drupal\renderkit\EnumMap\EnumMap_FieldName;
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Drupal\renderkit\Configurator\Id\Configurator_FieldName;
 
 /**
  * An entity condition that returns true if a given timestamp is contained in
@@ -36,8 +35,7 @@ class EntityCondition_DateFieldInterval implements EntityConditionInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator($entityType = NULL, $bundleName = NULL) {
-    $legend = new EnumMap_FieldName(['date'], $entityType, $bundleName);
-    $configurators = [Configurator_LegendSelect::createRequired($legend)];
+    $configurators = [new Configurator_FieldName(['date'], $entityType, $bundleName)];
     $labels = [t('Date field')];
     return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'createNow', $configurators, $labels);
   }

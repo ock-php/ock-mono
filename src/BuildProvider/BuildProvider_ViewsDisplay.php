@@ -2,9 +2,8 @@
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_LegendSelect;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\EnumMap\EnumMap_ViewsDisplayId;
+use Drupal\renderkit\Configurator\Id\Configurator_ViewsDisplayId;
 use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 
@@ -35,8 +34,6 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    */
   public static function createConfigurator() {
 
-    $legend = new EnumMap_ViewsDisplayId();
-
     return Configurator_CallbackConfigurable::createFromCallable(
       function ($id, LabeledFormatInterface $labeledFormat = NULL) {
         list($view_name, $display_id) = explode(':', $id . ':');
@@ -47,7 +44,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
         return new self($view_name, $display_id, $labeledFormat);
       },
       [
-        Configurator_LegendSelect::createRequired($legend),
+        new Configurator_ViewsDisplayId(),
         \cfrplugin()->interfaceGetOptionalConfigurator(
           LabeledEntityBuildProcessorInterface::class),
       ],

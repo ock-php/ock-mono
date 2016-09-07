@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\renderkit\EnumMap;
+namespace Drupal\renderkit\Configurator\Id;
 
+use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
 use Drupal\renderkit\Util\FieldUtil;
-use Drupal\cfrapi\EnumMap\EnumMapInterface;
 
-class EnumMap_FieldName implements EnumMapInterface {
+class Configurator_FieldName extends Configurator_SelectBase {
 
   /**
    * @var null|string[]
@@ -28,17 +28,32 @@ class EnumMap_FieldName implements EnumMapInterface {
    *   Contextual parameter.
    * @param string $bundleName
    *   Contextual parameter.
+   *
+   * @return \Drupal\renderkit\Configurator\Id\Configurator_FieldName
    */
-  public function __construct($allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
+  public static function createOptional(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
+    return new self($allowedFieldTypes, $entityType, $bundleName, FALSE);
+  }
+
+  /**
+   * @param null|string[] $allowedFieldTypes
+   * @param string $entityType
+   *   Contextual parameter.
+   * @param string $bundleName
+   *   Contextual parameter.
+   * @param bool $required
+   */
+  public function __construct(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL, $required = TRUE) {
     $this->fieldTypes = $allowedFieldTypes;
     $this->entityType = $entityType;
     $this->bundleName = $bundleName;
+    parent::__construct($required);
   }
 
   /**
    * @return mixed[]
    */
-  public function getSelectOptions() {
+  protected function getSelectOptions() {
     return FieldUtil::fieldTypesGetFieldNameOptions($this->fieldTypes, $this->entityType, $this->bundleName);
   }
 
@@ -47,7 +62,7 @@ class EnumMap_FieldName implements EnumMapInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id) {
+  protected function idGetLabel($id) {
     return FieldUtil::fieldnameEtBundleGetLabel($id, $this->entityType, $this->bundleName);
   }
 
@@ -56,7 +71,7 @@ class EnumMap_FieldName implements EnumMapInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  protected function idIsKnown($id) {
     return FieldUtil::fieldnameEtBundleExists($id, $this->entityType, $this->bundleName);
   }
 }
