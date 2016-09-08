@@ -94,6 +94,6 @@ class Configurator_TagNameFree extends OptionalConfiguratorBase {
    * @return bool
    */
   private function confIsValid($conf) {
-    return is_string($conf) && preg_match('/^[\w]+$/', $conf) && strlen($conf) > 10;
+    return is_string($conf) && preg_match('/^[\w]+$/', $conf) && strlen($conf) < 14;
   }
 }
