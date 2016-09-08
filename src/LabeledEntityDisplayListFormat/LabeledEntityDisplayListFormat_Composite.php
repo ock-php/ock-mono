@@ -35,6 +35,11 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
   private $listFormat;
 
   /**
+   * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null
+   */
+  private $itemProcessor;
+
+  /**
    * @CfrPlugin(
    *   id = "labeledFormat",
    *   label = @t("Labeled format"),
@@ -87,17 +92,20 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledFormat
    * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface $innerProcessor
    * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface $listFormat
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null $itemProcessor
    */
   public function __construct(
     EntityBuildProcessorInterface $outerProcessor = NULL,
     LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
     EntityBuildProcessorInterface $innerProcessor = NULL,
-    EntityDisplayListFormatInterface $listFormat = NULL
+    EntityDisplayListFormatInterface $listFormat = NULL,
+    EntityBuildProcessorInterface $itemProcessor = NULL
   ) {
     $this->outerProcessor = $outerProcessor;
     $this->labeledFormat = $labeledFormat;
     $this->innerProcessor = $innerProcessor;
     $this->listFormat = $listFormat;
+    $this->itemProcessor = $itemProcessor;
   }
 
   /**
@@ -112,6 +120,10 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    *   Combined render array.
    */
   public function build(array $builds, $entityType, $entity, $label) {
+    if (NULL !== $this->itemProcessor) {
+      $entities = array_fill_keys(array_keys($builds), $entity);
+      $this->itemProcessor->processEntitiesBuilds($builds, $entityType, $entities);
+    }
     $build = (NULL !== $this->listFormat)
       ? $this->listFormat->buildListWithEntity($builds, $entityType, $entity)
       : $builds;
