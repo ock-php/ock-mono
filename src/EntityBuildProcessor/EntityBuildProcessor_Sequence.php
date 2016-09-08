@@ -53,7 +53,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
   /**
    * @var object[]
    */
-  private $processors;
+  private $processors = [];
 
   /**
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $buildProcessor
