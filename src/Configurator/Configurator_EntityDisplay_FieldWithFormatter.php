@@ -80,9 +80,8 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_Group {
     $fieldName = $value['field']['field'];
     $display = $value['field']['display'];
     $display['label'] = $value['label'];
-    $display['processor'] = $value['processor'];
 
-    return new EntityDisplay_FieldWithFormatter($fieldName, $display);
+    return new EntityDisplay_FieldWithFormatter($fieldName, $display, $value['processor']);
   }
 
   /**
