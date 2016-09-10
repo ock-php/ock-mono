@@ -6,7 +6,7 @@ use Drupal\themekit\Callback\Callback_ElementReparent;
 
 class ThemekitWebTest extends \DrupalWebTestCase {
 
-  function setUp() {
+  public function setUp() {
     parent::setUp('themekit');
   }
 

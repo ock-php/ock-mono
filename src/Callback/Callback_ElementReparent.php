@@ -27,7 +27,7 @@ class Callback_ElementReparent {
    * @param string[] $keysToAppend
    *   Keys to append to $element['#parents']
    */
-  function __construct($nKeysToPop, array $keysToAppend) {
+  public function __construct($nKeysToPop, array $keysToAppend) {
     $this->keysToAppend = $keysToAppend;
     $this->nKeysToPop = $nKeysToPop;
   }
