@@ -6,33 +6,33 @@ define('THEMEKIT_PREPROCESS', '#themekit_theme_preprocess');
 define('THEMEKIT_PROCESS', '#themekit_theme_process');
 
 function themekit_theme() {
-  return array(
+  return [
     /* @see theme_themekit_container() */
-    'themekit_container' => array(
+    'themekit_container' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-    ),
+    ],
     /* @see theme_themekit_item_containers() */
-    'themekit_item_containers' => array(
+    'themekit_item_containers' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-    ),
+    ],
     /* @see theme_themekit_link_wrapper() */
-    'themekit_link_wrapper' => array(
+    'themekit_link_wrapper' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-    ),
+    ],
     /* @see theme_themekit_item_list() */
-    'themekit_item_list' => array(
+    'themekit_item_list' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-    ),
+    ],
     /* @see theme_themekit_separator_list() */
-    'themekit_separator_list' => array(
+    'themekit_separator_list' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -41,16 +41,16 @@ function themekit_theme() {
  * @return array
  */
 function themekit_element_info() {
-  return array(
-    'themekit_container' => array(
+  return [
+    'themekit_container' => [
       /* @see theme_themekit_container() */
-      '#theme_wrappers' => array('themekit_container'),
-    ),
-    'themekit_link_wrapper' => array(
+      '#theme_wrappers' => ['themekit_container'],
+    ],
+    'themekit_link_wrapper' => [
       /* @see theme_themekit_link_wrapper() */
-      '#theme_wrappers' => array('themekit_link_wrapper'),
-    ),
-  );
+      '#theme_wrappers' => ['themekit_link_wrapper'],
+    ],
+  ];
 }
 
 /**

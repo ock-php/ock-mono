@@ -16,11 +16,11 @@ class ThemekitUnitTest extends \DrupalUnitTestCase {
 
   public static function getInfo() {
     // Note: getInfo() strings should not be translated.
-    return array(
+    return [
       'name' => 'Themekit unit test',
       'description' => 'Tests utility functions provided by themekit.',
       'group' => 'Themekit',
-    );
+    ];
   }
 
   public function testCallbackElementReparent() {

@@ -12,11 +12,11 @@ class ThemekitWebTest extends \DrupalWebTestCase {
 
   public static function getInfo() {
     // Note: getInfo() strings should not be translated.
-    return array(
+    return [
       'name' => 'Themekit web test',
       'description' => 'Tests theme functions provided by themekit.',
       'group' => 'Themekit',
-    );
+    ];
   }
 
   public function testThemekitItemContainers() {
@@ -129,7 +129,7 @@ class ThemekitWebTest extends \DrupalWebTestCase {
 
     // Clear out all group associations as these might be different when
     // re-rendering the form.
-    $form_state['groups'] = array();
+    $form_state['groups'] = [];
 
     // Return a fully built form that is ready for rendering.
     return form_builder($form_id, $form, $form_state);

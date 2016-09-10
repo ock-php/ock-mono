@@ -49,7 +49,7 @@ function theme_themekit_link_wrapper(array $variables) {
   }
   $link_options = isset($element['#options'])
     ? $element['#options']
-    : array();
+    : [];
   $link_options['html'] = TRUE;
   return l($element['#children'], $element['#path'], $link_options);
 }
@@ -157,8 +157,8 @@ function theme_themekit_item_containers(array $variables) {
 function theme_themekit_item_list(array $variables) {
   $element = $variables['element'];
   $default_child_attributes = isset($element['#child_attributes'])
-    ? $element['#child_attributes'] + array()
-    : array();
+    ? $element['#child_attributes'] + []
+    : [];
   $default_child_attributes_str = drupal_attributes($default_child_attributes);
 
   $html = '';
@@ -201,7 +201,7 @@ function theme_themekit_item_list(array $variables) {
  */
 function theme_themekit_separator_list(array $variables) {
   $element = $variables['element'];
-  $pieces = array();
+  $pieces = [];
   foreach (element_children($element) as $key) {
     $pieces[] = drupal_render($element[$key]);
   }
