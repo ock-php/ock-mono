@@ -62,6 +62,24 @@ class ListFormat_HtmlList implements ListFormatInterface {
   }
 
   /**
+   * @param string[] $classes
+   *
+   * @return \Drupal\renderkit\ListFormat\ListFormatInterface
+   */
+  public static function ul(array $classes = []) {
+    return self::create('ul', $classes);
+  }
+
+  /**
+   * @param string[] $classes
+   *
+   * @return \Drupal\renderkit\ListFormat\ListFormatInterface
+   */
+  public static function ol(array $classes = []) {
+    return self::create('ol', $classes);
+  }
+
+  /**
    * @param string $tagName
    */
   public function __construct($tagName = 'ul') {
