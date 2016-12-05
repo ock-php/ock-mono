@@ -35,7 +35,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
   /**
    * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface[] $processors
    *
-   * @return \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
+   * @return self
    */
   public static function create(array $processors) {
     $sequence = new self();
