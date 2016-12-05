@@ -48,6 +48,15 @@ class Configurator_FieldNameWithFormatter extends Configurator_IdConfBase {
   }
 
   /**
+   * @param string $id
+   *
+   * @return string|null
+   */
+  protected function idGetOptionsFormLabel($id) {
+    return t('Formatter');
+  }
+
+  /**
    * @return string[]|string[][]|mixed[]
    */
   protected function getSelectOptions() {
