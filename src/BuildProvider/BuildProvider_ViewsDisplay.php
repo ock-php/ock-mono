@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit\BuildProvider;
 
+use Drupal\cfrapi\Configurator\Group\Configurator_GroupWithValueCallback;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\Configurator\Id\Configurator_ViewsDisplayId;
-use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 
 class BuildProvider_ViewsDisplay implements BuildProviderInterface {
@@ -25,9 +25,39 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
   private $labeledFormat;
 
   /**
+   * @CfrPlugin("viewsDisplay_v1", @t("Views display"))
+   *
+   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   */
+  public static function createConfigurator_v1() {
+
+    $configurator = new Configurator_GroupWithValueCallback(
+      function (array $values) {
+        list($view_name, $display_id) = explode(':', $values['views_display'] . ':');
+        if ('' === $view_name || '' === $display_id) {
+          return NULL;
+        }
+        // No further checking at this point.
+        return new self($view_name, $display_id, $values['label_format']);
+      });
+
+    $configurator->keySetConfigurator(
+      'views_display',
+      new Configurator_ViewsDisplayId(),
+      t('Views display'));
+
+    $configurator->keySetConfigurator(
+      'label_format',
+      cfrplugin()->interfaceGetOptionalConfigurator(LabeledFormatInterface::class),
+      t('Label format'));
+
+    return $configurator;
+  }
+
+  /**
    * @CfrPlugin(
    *   id = "viewsDisplay",
-   *   label = @t("Views display")
+   *   label = @t("(deprecated) Views display")
    * )
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
@@ -46,7 +76,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
       [
         new Configurator_ViewsDisplayId(),
         \cfrplugin()->interfaceGetOptionalConfigurator(
-          LabeledEntityBuildProcessorInterface::class),
+          LabeledFormatInterface::class),
       ],
       [
         t('Views display'),
