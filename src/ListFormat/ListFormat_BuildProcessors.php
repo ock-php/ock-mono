@@ -38,7 +38,7 @@ class ListFormat_BuildProcessors implements ListFormatInterface {
     }
     else {
       if (NULL === $itemBuildProcessor) {
-        return new ListFormat_BuildProcessor($outerBuildProcessor);
+        return new ListFormat_OuterBuildProcessor($outerBuildProcessor);
       }
       else {
         return new ListFormat_BuildProcessors($outerBuildProcessor, $itemBuildProcessor);

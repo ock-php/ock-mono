@@ -5,9 +5,9 @@ namespace Drupal\renderkit\ListFormat;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
 /**
- * @CfrPlugin("buildProcessor", "Build processor")
+ * @CfrPlugin("outerBuildProcessor", "Outer build processor")
  */
-class ListFormat_BuildProcessor implements ListFormatInterface {
+class ListFormat_OuterBuildProcessor implements ListFormatInterface {
 
   /**
    * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
@@ -20,12 +20,12 @@ class ListFormat_BuildProcessor implements ListFormatInterface {
   private $decorated;
 
   /**
-   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $buildProcessor
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $decorated
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $outerBuildProcessor
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $decoratedListFormat
    */
-  public function __construct(BuildProcessorInterface $buildProcessor, ListFormatInterface $decorated = NULL) {
-    $this->buildProcessor = $buildProcessor;
-    $this->decorated = $decorated;
+  public function __construct(BuildProcessorInterface $outerBuildProcessor, ListFormatInterface $decoratedListFormat = NULL) {
+    $this->buildProcessor = $outerBuildProcessor;
+    $this->decorated = $decoratedListFormat;
   }
 
   /**
