@@ -34,7 +34,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
   public static function createPlugin(CfrContextInterface $context = NULL) {
     $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
     $configurators = [new Configurator_Sequence($displayConfigurator)];
-    $labels = [NULL];
+    $labels = [''];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }
 
