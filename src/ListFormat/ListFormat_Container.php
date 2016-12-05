@@ -15,7 +15,7 @@ class ListFormat_Container implements ListFormatInterface, HtmlTagInterface {
   /**
    * @CfrPlugin(
    *   id = "container",
-   *   label = @t("Container")
+   *   label = @t("Outer container element")
    * )
    *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
