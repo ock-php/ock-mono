@@ -28,7 +28,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
   public static function createConfigurator(CfrContextInterface $context = NULL) {
     $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityBuildProcessorInterface::class, $context);
     $configurators = [new Configurator_Sequence($displayConfigurator)];
-    $labels = [NULL];
+    $labels = [''];
     return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
   }
 
