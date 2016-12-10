@@ -15,10 +15,12 @@ final class Configurator_TagName extends UtilBase {
   }
 
   /**
+   * @param string $default
+   *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  public static function createForContainer() {
-    return self::create(['div', 'span', 'article', 'section', 'pre'], 'div');
+  public static function createForContainer($default = 'div') {
+    return self::create(['div', 'span', 'article', 'section', 'pre'], $default);
   }
 
   /**
