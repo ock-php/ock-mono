@@ -4,6 +4,7 @@ namespace Drupal\renderkit\Configurator;
 
 use Drupal\cfrapi\Configurator\Broken\BrokenConfigurator;
 use Drupal\cfrapi\Configurator\Optional\OptionalConfiguratorBase;
+use Drupal\cfrapi\Exception\InvalidConfigurationException;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 
 class Configurator_TagNameFree extends OptionalConfiguratorBase {
@@ -77,6 +78,24 @@ class Configurator_TagNameFree extends OptionalConfiguratorBase {
     }
 
     return $conf;
+  }
+
+  /**
+   * @param mixed $conf
+   *
+   * @return mixed
+   *
+   * @throws \Drupal\cfrapi\Exception\PhpGenerationNotSupportedException
+   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
+   * @throws \Drupal\cfrapi\Exception\BrokenConfiguratorException
+   */
+  protected function nonEmptyConfGetPhp($conf) {
+
+    if (!$this->confIsValid($conf)) {
+      throw new InvalidConfigurationException("Not a valid tag name.");
+    }
+
+    return var_export($conf, TRUE);
   }
 
   /**
