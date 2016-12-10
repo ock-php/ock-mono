@@ -197,7 +197,7 @@ final class FieldUtil extends UtilBase {
    * @param string $bundleName
    *   (optional) The bundle name, e.g. "article".
    *
-   * @return string[]
+   * @return string[]|string[][]|mixed[]
    *   Format: $[$fieldName] = $optionLabel
    */
   public static function fieldTypesGetFieldNameOptions(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
