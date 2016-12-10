@@ -2,8 +2,10 @@
 
 namespace Drupal\renderkit\Configurator;
 
-use Drupal\cfrapi\Configurator\Group\Configurator_Group;
+use Drupal\cfrapi\Configurator\Group\Configurator_GroupBase;
 use Drupal\cfrapi\Configurator\Id\Configurator_FlatOptionsSelect;
+use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
+use Drupal\cfrapi\Exception\InvalidConfigurationException;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldWithFormatter;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
@@ -11,7 +13,7 @@ use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 /**
  * @CfrPlugin("fieldWithFormatter", @t("Field with formatter *"))
  */
-class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_Group {
+class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBase implements ConfToPhpInterface {
 
   /**
    * @param string|null $entityType
@@ -82,6 +84,32 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_Group {
     $display['label'] = $value['label'];
 
     return new EntityDisplay_FieldWithFormatter($fieldName, $display, $value['processor']);
+  }
+
+  /**
+   * @param mixed $conf
+   *
+   * @return string
+   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
+   */
+  public function confGetPhp($conf) {
+    $conf = $this->confGetNormalized($conf);
+
+    $group_values = parent::confGetValue($conf);
+    $group_snippets = parent::confGetPhpStatements($conf);
+
+    if (!is_array($group_values)) {
+      throw new InvalidConfigurationException("Invalid field settings returned.");
+    }
+
+    $fieldName = $group_values['field']['field'];
+    $display = $group_values['field']['display'];
+    $display['label'] = $group_values['label'];
+
+    return 'new ' . EntityDisplay_FieldWithFormatter::class . '('
+      . "\n  " . var_export($fieldName, TRUE) . ','
+      . "\n  " . var_export($display, TRUE) . ','
+      . "\n  " . $group_snippets['processor'] . ')';
   }
 
   /**
