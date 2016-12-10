@@ -59,7 +59,7 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
   public function __construct(array $displayHandlers) {
     foreach ($displayHandlers as $delta => $displayHandler) {
       if (!$displayHandler instanceof EntityDisplayInterface) {
-        $displayHandlers = [];
+        unset($displayHandlers[$delta]);
         break;
       }
     }
