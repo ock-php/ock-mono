@@ -4,6 +4,9 @@ namespace Drupal\renderkit\EntityBuildProcessor;
 
 
 
+use Drupal\cfrapi\Configurator\Group\Configurator_GroupWithValueCallback;
+use Drupal\renderkit\Configurator\Configurator_ClassAttribute;
+use Drupal\renderkit\Configurator\Configurator_TagName;
 use Drupal\renderkit\Html\HtmlAttributesInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
 
@@ -11,13 +14,40 @@ use Drupal\renderkit\Html\HtmlTagTrait;
  * A typical entity container with contextual links and stuff.
  *
  * @CfrPlugin(
- *   id = "contextualLinksWrapper",
- *   label = "Entity contextual links wrapper"
+ *   id = "contextualLinksWrapperDefault",
+ *   label = "Entity contextual links wrapper, default"
  * )
  */
 class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorBase implements HtmlAttributesInterface {
 
   use HtmlTagTrait;
+
+  /**
+   * @CfrPlugin("contextualLinksWrapper", "Entity contextual links wrapper")
+   *
+   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   */
+  public static function createConfigurator() {
+
+    $configurator = new Configurator_GroupWithValueCallback(function($values) {
+      $processor = new self();
+      $processor->setTagName($values['tag_name']);
+      $processor->addClasses($values['classes']);
+      return $processor;
+    });
+
+    $configurator->keySetConfigurator(
+      'tag_name',
+      Configurator_TagName::createForContainer('article'),
+      t('Tag name'));
+
+    $configurator->keySetConfigurator(
+      'classes',
+      Configurator_ClassAttribute::create(),
+      t('Classes'));
+
+    return $configurator;
+  }
 
   public function __construct() {
     $this->setTagName('article');
