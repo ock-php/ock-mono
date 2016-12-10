@@ -18,7 +18,7 @@ class Renderkit {
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
    * @param string $tagName
    *
-   * @return \Drupal\renderkit\BuildProcessor\BuildProcessor_Container
+   * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   public static function entityContainer(EntityDisplayInterface $decorated, $tagName = 'div') {
     $processor = (new BuildProcessor_Container())
