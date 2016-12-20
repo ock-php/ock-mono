@@ -2,16 +2,16 @@
 
 namespace Drupal\renderkit\Configurator;
 
-use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
+use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
+use Drupal\cfrapi\Configurator\ConfiguratorInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessor_Wrapper_LinkToEntity;
 use Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithBuildProcessor;
 use Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithEntityBuildProcessor;
 use Drupal\renderkit\EntityDisplay\EntityDisplay_Title;
-use Drupal\cfrapi\Configurator\ConfiguratorInterface;
 
-class Configurator_EntityDisplay_Title implements ConfiguratorInterface, ConfToPhpInterface {
+class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
 
   /**
    * @var string[]
@@ -116,15 +116,12 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface, ConfToP
   /**
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
+   * @param \Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface $helper
    *
    * @return string
    *   PHP statement to generate the value.
-   *
-   * @throws \Drupal\cfrapi\Exception\PhpGenerationNotSupportedException
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
-   * @throws \Drupal\cfrapi\Exception\BrokenConfiguratorException
    */
-  public function confGetPhp($conf) {
+  public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
     list($wrapperTagName, $link) = $this->confGetNormalized($conf);
 
     $display_php = 'new ' . EntityDisplay_Title::class . '()';

@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\Configurator;
 
+use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
@@ -139,6 +140,35 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
   public function confGetValue($conf) {
+    $defaults = $this->confGetElementDefaults($conf);
+    return new ListFormat_ElementDefaults($defaults);
+  }
+
+  /**
+   * @param mixed $conf
+   *   Configuration from a form, config file or storage.
+   * @param \Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface $helper
+   *
+   * @return string
+   *   PHP statement to generate the value.
+   */
+  public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
+    $defaults = $this->confGetElementDefaults($conf);
+    return 'new ' . ListFormat_ElementDefaults::class . '('
+      . "\n" . $helper->export($defaults) . ')';
+  }
+
+  /**
+   * @param mixed $conf
+   *
+   * @return array
+   *   Render array defaults.
+   */
+  private function confGetElementDefaults($conf) {
+
+    if (!is_array($conf)) {
+      $conf = [];
+    }
 
     $defaults = [];
 
@@ -184,6 +214,6 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
       }
     }
 
-    return new ListFormat_ElementDefaults($defaults);
+    return $defaults;
   }
 }

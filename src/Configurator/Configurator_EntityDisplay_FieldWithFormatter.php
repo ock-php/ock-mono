@@ -2,10 +2,9 @@
 
 namespace Drupal\renderkit\Configurator;
 
+use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
 use Drupal\cfrapi\Configurator\Group\Configurator_GroupBase;
 use Drupal\cfrapi\Configurator\Id\Configurator_FlatOptionsSelect;
-use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
-use Drupal\cfrapi\Exception\InvalidConfigurationException;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldWithFormatter;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
@@ -13,7 +12,7 @@ use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 /**
  * @CfrPlugin("fieldWithFormatter", @t("Field with formatter *"))
  */
-class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBase implements ConfToPhpInterface {
+class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBase {
 
   /**
    * @param string|null $entityType
@@ -88,18 +87,21 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBa
 
   /**
    * @param mixed $conf
+   * @param \Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface $helper
    *
    * @return string
+   *   PHP statement to generate the value.
+   *
    * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
    */
-  public function confGetPhp($conf) {
+  public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
     $conf = $this->confGetNormalized($conf);
 
     $group_values = parent::confGetValue($conf);
-    $group_snippets = parent::confGetPhpStatements($conf);
+    $group_snippets = parent::confGetPhpStatements($conf, $helper);
 
     if (!is_array($group_values)) {
-      throw new InvalidConfigurationException("Invalid field settings returned.");
+      return $helper->incompatibleConfiguration($conf, "Invalid field settings.");
     }
 
     $fieldName = $group_values['field']['field'];
@@ -108,7 +110,7 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBa
 
     return 'new ' . EntityDisplay_FieldWithFormatter::class . '('
       . "\n  " . var_export($fieldName, TRUE) . ','
-      . "\n  " . var_export($display, TRUE) . ','
+      . "\n  " . $helper->export($display) . ','
       . "\n  " . $group_snippets['processor'] . ')';
   }
 

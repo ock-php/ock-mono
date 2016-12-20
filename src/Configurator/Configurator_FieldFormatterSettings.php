@@ -2,13 +2,13 @@
 
 namespace Drupal\renderkit\Configurator;
 
-use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
-use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
-use Drupal\renderkit\Util\FieldUtil;
+use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
 use Drupal\cfrapi\Configurator\Broken\BrokenConfigurator;
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
+use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
+use Drupal\renderkit\Util\FieldUtil;
 
-class Configurator_FieldFormatterSettings implements ConfiguratorInterface, ConfToPhpInterface {
+class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
 
   /**
    * @var string
@@ -127,15 +127,12 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface, Conf
   /**
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
+   * @param \Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface $helper
    *
    * @return string
    *   PHP statement to generate the value.
-   *
-   * @throws \Drupal\cfrapi\Exception\PhpGenerationNotSupportedException
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
-   * @throws \Drupal\cfrapi\Exception\BrokenConfiguratorException
    */
-  public function confGetPhp($conf) {
+  public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
     return var_export($this->confGetFormatterSettings($conf), TRUE);
   }
 

@@ -29,12 +29,8 @@ class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorB
    */
   public static function createConfigurator() {
 
-    $configurator = new Configurator_GroupWithValueCallback(function($values) {
-      $processor = new self();
-      $processor->setTagName($values['tag_name']);
-      $processor->addClasses($values['classes']);
-      return $processor;
-    });
+    $configurator = new Configurator_GroupWithValueCallback(
+      [self::class, 'createFromGroupValues']);
 
     $configurator->keySetConfigurator(
       'tag_name',
@@ -47,6 +43,18 @@ class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorB
       t('Classes'));
 
     return $configurator;
+  }
+
+  /**
+   * @param array $values
+   *
+   * @return self
+   */
+  public static function createFromGroupValues(array $values) {
+    $processor = new self();
+    $processor->setTagName($values['tag_name']);
+    $processor->addClasses($values['classes']);
+    return $processor;
   }
 
   public function __construct() {

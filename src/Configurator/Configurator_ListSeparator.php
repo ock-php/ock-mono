@@ -2,11 +2,11 @@
 
 namespace Drupal\renderkit\Configurator;
 
+use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
-use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 
-class Configurator_ListSeparator implements ConfiguratorInterface, ConfToPhpInterface {
+class Configurator_ListSeparator implements ConfiguratorInterface {
 
   /**
    * @param mixed $conf
@@ -57,15 +57,12 @@ class Configurator_ListSeparator implements ConfiguratorInterface, ConfToPhpInte
   /**
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
+   * @param \Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface $helper
    *
    * @return string
    *   PHP statement to generate the value.
-   *
-   * @throws \Drupal\cfrapi\Exception\PhpGenerationNotSupportedException
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
-   * @throws \Drupal\cfrapi\Exception\BrokenConfiguratorException
    */
-  public function confGetPhp($conf) {
+  public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
     if (!is_string($conf)) {
       $conf = '';
     }

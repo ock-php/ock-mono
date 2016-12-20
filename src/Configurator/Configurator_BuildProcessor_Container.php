@@ -3,10 +3,10 @@
 namespace Drupal\renderkit\Configurator;
 
 
-use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
+use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
+use Drupal\cfrapi\Configurator\ConfiguratorInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
-use Drupal\cfrapi\Configurator\ConfiguratorInterface;
 
 /**
  * @_Cfr_Plugin_(
@@ -16,7 +16,7 @@ use Drupal\cfrapi\Configurator\ConfiguratorInterface;
  *
  * @deprecated
  */
-class Configurator_BuildProcessor_Container implements ConfiguratorInterface, ConfToPhpInterface {
+class Configurator_BuildProcessor_Container implements ConfiguratorInterface {
 
   /**
    * @param array $conf
@@ -77,17 +77,15 @@ class Configurator_BuildProcessor_Container implements ConfiguratorInterface, Co
   /**
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
+   * @param \Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface $helper
    *
    * @return string
    *   PHP statement to generate the value.
-   *
-   * @throws \Drupal\cfrapi\Exception\PhpGenerationNotSupportedException
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
    */
-  public function confGetPhp($conf) {
+  public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
     // @todo What is the purpose of this 'decorated' key?
     $conf += array('decorated' => array());
-    $php = 'new BuildProcessor_Container()';
+    $php = 'new ' . BuildProcessor_Container::class . '()';
     $php_suffix = '';
     if (!empty($conf['tag_name'])) {
       // @todo Sanitize tag name.

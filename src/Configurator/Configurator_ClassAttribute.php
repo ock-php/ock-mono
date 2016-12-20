@@ -2,11 +2,11 @@
 
 namespace Drupal\renderkit\Configurator;
 
+use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
-use Drupal\cfrapi\ConfToPhp\ConfToPhpInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 
-class Configurator_ClassAttribute implements ConfiguratorInterface, ConfToPhpInterface {
+class Configurator_ClassAttribute implements ConfiguratorInterface {
 
   /**
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
@@ -105,14 +105,12 @@ class Configurator_ClassAttribute implements ConfiguratorInterface, ConfToPhpInt
   /**
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
+   * @param \Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface $helper
    *
    * @return string
    *   PHP statement to generate the value.
-   *
-   * @throws \Drupal\cfrapi\Exception\PhpGenerationNotSupportedException
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
    */
-  public function confGetPhp($conf) {
-    return var_export($this->confGetValue($conf), TRUE);
+  public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
+    return $helper->export($this->confGetValue($conf));
   }
 }
