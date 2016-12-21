@@ -4,6 +4,9 @@ namespace Drupal\renderkit\Configurator\Id;
 
 use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
 
+/**
+ * Configurator for a view mode machine name for a given entity type.
+ */
 class Configurator_EntityViewModeName extends Configurator_SelectBase {
 
   /**
