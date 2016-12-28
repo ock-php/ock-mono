@@ -3,8 +3,8 @@
 namespace Drupal\renderkit\Configurator;
 
 use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
-use Drupal\cfrapi\Configurator\Broken\BrokenConfigurator;
 use Drupal\cfrapi\Configurator\Optional\OptionalConfiguratorBase;
+use Drupal\cfrapi\Exception\InvalidConfigurationException;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 
 class Configurator_TagNameFree extends OptionalConfiguratorBase {
@@ -70,11 +70,13 @@ class Configurator_TagNameFree extends OptionalConfiguratorBase {
    * @param mixed $conf
    *
    * @return mixed
+   *
+   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
    */
   protected function nonEmptyConfGetValue($conf) {
 
     if (!$this->confIsValid($conf)) {
-      return new BrokenConfigurator($this, get_defined_vars(), "Not a valid tag name.");
+      throw new InvalidConfigurationException("Not a valid tag name.");
     }
 
     return $conf;
