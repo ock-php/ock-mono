@@ -6,6 +6,9 @@ use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
 
 /**
  * Configurator for a view mode machine name for a given entity type.
+ *
+ * This is currently not used anywhere, but may be used by whoever finds it
+ * useful.
  */
 class Configurator_EntityViewModeName extends Configurator_SelectBase {
 

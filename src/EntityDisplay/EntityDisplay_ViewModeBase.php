@@ -2,39 +2,9 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\Configurator\Id\Configurator_EntityViewModeName;
 use Drupal\renderkit\Util\EntityUtil;
 
-class EntityDisplay_ViewMode extends EntitiesDisplayBase {
-
-  /**
-   * @var string
-   */
-  protected $viewMode;
-
-  /**
-   * @CfrPlugin(
-   *   id = "viewMode",
-   *   label = @t("View mode")
-   * )
-   *
-   * @param string $entityType
-   *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
-   */
-  public static function createConfigurator($entityType) {
-    $configurators = [new Configurator_EntityViewModeName($entityType)];
-    $labels = [t('View mode')];
-    return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
-  }
-
-  /**
-   * @param string $viewMode
-   */
-  public function __construct($viewMode) {
-    $this->viewMode = $viewMode;
-  }
+abstract class EntityDisplay_ViewModeBase extends EntitiesDisplayBase {
 
   /**
    * @param string $entityType
@@ -47,13 +17,19 @@ class EntityDisplay_ViewMode extends EntitiesDisplayBase {
    * @see node_view_multiple()
    */
   public function buildEntities($entityType, array $entities) {
+
     if (empty($entities)) {
       // entity_view() does not like an empty array of entities.
       // Especially, node_view_multiple() really does not.
       return [];
     }
+
+    if (NULL === $viewMode = $this->etGetViewMode($entityType)) {
+      return [];
+    }
+
     /** @var array|false $builds_by_type */
-    $builds_by_type = entity_view($entityType, $entities, $this->viewMode);
+    $builds_by_type = entity_view($entityType, $entities, $viewMode);
     if ($builds_by_type === FALSE) {
       return [];
     }
@@ -68,4 +44,11 @@ class EntityDisplay_ViewMode extends EntitiesDisplayBase {
 
     return $builds_by_delta;
   }
+
+  /**
+   * @param string $entityType
+   *
+   * @return string|null
+   */
+  abstract protected function etGetViewMode($entityType);
 }
