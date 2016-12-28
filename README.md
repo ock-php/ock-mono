@@ -10,6 +10,12 @@ Besides entity display handlers, there are also classes and interfaces for lists
 
 ## Plugin layer (EntDisP and friends)
 
-There are (or will be) other modules that expose renderkit objects as plugins. More information in the README.md of the respective modules.
- 
-Most notably this is (or will be) [EntDisP (Entity Display Plugin)](https://drupal.org/project/entdisp), which esposes entity display handlers as plugins. The EntDisP README.md contains a lot of information about the plugin architecture.
+Many of the classes and interfaces in Renderkit will be registered as plugins and plugin types with [CfrPlugin](https://drupal.org/project/cfr).
+
+Additional modules can be installed to integrate some of these plugin types into existing Drupal subsystems:
+
+- [EntDisP (Entity Display Plugin)](https://drupal.org/project/entdisp) integrates `EntityDisplayInterface` plugins as Views row plugin, Views field handler, and as a field formatter for fields that reference other entities.
+
+- [ListFormat](https://drupal.org/project/listformat) integrates `ListFormatInterface` plugins as Views style plugin.
+
+- [CfrPreset](https://drupal.org/project/cfrpreset) allows to save and reuse plugin configurations, and export them with features.
