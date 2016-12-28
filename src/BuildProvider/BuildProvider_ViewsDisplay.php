@@ -2,7 +2,6 @@
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Drupal\cfrapi\Configurator\Group\Configurator_GroupWithValueCallback;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\Configurator\Id\Configurator_ViewsDisplayId;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
