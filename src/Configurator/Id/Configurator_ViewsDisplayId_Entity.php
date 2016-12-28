@@ -70,7 +70,7 @@ class Configurator_ViewsDisplayId_Entity extends Configurator_SelectBase {
         }
 
         // Pick the first and only argument.
-        foreach ($display->display_options['argument_input'] as $arg_name => $arg_options) {}
+        $arg_options = reset($display->display_options['argument_input']);
 
         /** @noinspection DisconnectedForeachInstructionInspection */
         if (!isset($arg_options['context'])) {
