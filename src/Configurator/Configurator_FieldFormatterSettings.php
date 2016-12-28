@@ -3,7 +3,6 @@
 namespace Drupal\renderkit\Configurator;
 
 use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
-use Drupal\cfrapi\Configurator\Broken\BrokenConfigurator;
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\Util\FieldUtil;
@@ -40,21 +39,21 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
     /* @see hook_field_formatter_info() */
     $formatterTypeInfo = field_info_formatter_types($formatterType);
     if (empty($formatterTypeInfo)) {
-      return new BrokenConfigurator(NULL, get_defined_vars(), 'Could not find info for formatter type.');
+      return NULL;
     }
     if (!isset($formatterTypeInfo['field types'])) {
-      return new BrokenConfigurator(NULL, get_defined_vars(), 'No field types defined for formatter type.');
+      return NULL;
     }
     $fieldInfo = field_info_field($fieldName);
     if (!isset($fieldInfo)) {
-      return new BrokenConfigurator(NULL, get_defined_vars(), 'Field not found.');
+      return NULL;
     }
     if (!isset($fieldInfo['type'])) {
-      return new BrokenConfigurator(NULL, get_defined_vars(), 'Field has no type.');
+      return NULL;
     }
     $fieldType = $fieldInfo['type'];
     if (!in_array($fieldType, $formatterTypeInfo['field types'], TRUE)) {
-      return new BrokenConfigurator(NULL, get_defined_vars(), 'Field type not supported by formatter type.');
+      return NULL;
     }
     return new self($fieldName, $fieldInfo, $formatterType, $formatterTypeInfo);
   }
