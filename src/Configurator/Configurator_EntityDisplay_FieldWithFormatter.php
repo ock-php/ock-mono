@@ -97,7 +97,13 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBa
   public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
     $conf = $this->confGetNormalized($conf);
 
-    $group_values = parent::confGetValue($conf);
+    try {
+      $group_values = parent::confGetValue($conf);
+    }
+    catch (\Exception $e) {
+      return $helper->incompatibleConfiguration($conf, $e->getMessage());
+    }
+
     $group_snippets = parent::confGetPhpStatements($conf, $helper);
 
     if (!is_array($group_values)) {

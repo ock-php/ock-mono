@@ -111,6 +111,13 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
    *   PHP statement to generate the value.
    */
   public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
-    return $helper->export($this->confGetValue($conf));
+
+    try {
+      $value = $this->confGetValue($conf);
+      return $helper->export($value);
+    }
+    catch (\Exception $e) {
+      return $helper->incompatibleConfiguration($conf, $e->getMessage());
+    }
   }
 }
