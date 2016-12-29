@@ -4,7 +4,7 @@ namespace Drupal\renderkit\CfrGroupSchema;
 
 use Drupal\cfrapi\CfrGroupSchema\CfrGroupSchema_DecoratorBase;
 use Drupal\cfrapi\Configurator\Bool\Configurator_Checkbox;
-use Drupal\cfrkit\Configurator\Configurator_Textfield;
+use Drupal\cfrapi\Configurator\Configurator_Textfield;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessor_Label;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
