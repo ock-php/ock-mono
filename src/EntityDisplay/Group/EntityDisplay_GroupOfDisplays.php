@@ -4,7 +4,6 @@ namespace Drupal\renderkit\EntityDisplay\Group;
 
 use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
@@ -34,23 +33,6 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
     $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
     $sequenceConfigurator = new Configurator_Sequence($displayConfigurator);
     return Configurator_CallbackMono::createFromClassName(__CLASS__, $sequenceConfigurator);
-  }
-
-  /**
-   * @CfrPlugin(
-   *   id = "group",
-   *   label = "(deprecated) Sequence of entity displays"
-   * )
-   *
-   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
-   *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
-   */
-  public static function createPlugin(CfrContextInterface $context = NULL) {
-    $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
-    $configurators = [new Configurator_Sequence($displayConfigurator)];
-    $labels = [''];
-    return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }
 
   /**
