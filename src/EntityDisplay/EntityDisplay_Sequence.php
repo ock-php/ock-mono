@@ -5,12 +5,10 @@ namespace Drupal\renderkit\EntityDisplay;
 use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
-use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 /**
- * A group of entity display handlers, whose results are assembled into a single
- * render array.
+ * A sequence of entity display handlers, whose results are assembled into a
+ * single render array.
  *
  * This can be used for something like a layout region with a number of fields
  * or elements.
