@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay\Group;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
@@ -15,7 +15,7 @@ use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
  * This can be used for something like a layout region with a number of fields
  * or elements.
  */
-class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
+class EntityDisplay_Sequence extends EntitiesDisplayBase {
 
   /**
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
@@ -39,12 +39,14 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $displayHandlers
    */
   public function __construct(array $displayHandlers) {
+
     foreach ($displayHandlers as $delta => $displayHandler) {
       if (!$displayHandler instanceof EntityDisplayInterface) {
         unset($displayHandlers[$delta]);
         break;
       }
     }
+
     $this->displayHandlers = $displayHandlers;
   }
 
@@ -56,6 +58,7 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
    *   An array of render arrays, keyed by the original array keys of $entities.
    */
   public function buildEntities($entityType, array $entities) {
+
     $builds = [];
     foreach ($this->displayHandlers as $name => $handler) {
       foreach ($handler->buildEntities($entityType, $entities) as $delta => $entity_build) {
@@ -63,6 +66,7 @@ class EntityDisplay_GroupOfDisplays extends EntitiesDisplayBase {
         $builds[$delta][$name] = $entity_build;
       }
     }
+
     return $builds;
   }
 }
