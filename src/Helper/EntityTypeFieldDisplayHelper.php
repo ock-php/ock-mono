@@ -234,12 +234,37 @@ class EntityTypeFieldDisplayHelper {
    * @return array[][]
    */
   private function languageEntitiesCollectFieldItems(array $languageEntitiesById, array $instancesById, $entityFieldDisplayLanguage) {
+    $itemsByEntityId = $this->languageEntitiesCollectRawFieldItems($languageEntitiesById, $entityFieldDisplayLanguage);
+    return $this->languageEntitiesPrepareFieldItems($itemsByEntityId, $languageEntitiesById, $instancesById, $entityFieldDisplayLanguage);
+  }
+
+  /**
+   * @param object[] $languageEntitiesById
+   * @param string $entityFieldDisplayLanguage
+   *
+   * @return array[][]
+   */
+  private function languageEntitiesCollectRawFieldItems(array $languageEntitiesById, $entityFieldDisplayLanguage) {
+
     $itemsByEntityId = [];
     foreach ($languageEntitiesById as $id => $entity) {
       $itemsByEntityId[$id] = isset($entity->{$this->fieldName}[$entityFieldDisplayLanguage])
         ? $entity->{$this->fieldName}[$entityFieldDisplayLanguage]
         : [];
     }
+
+    return $itemsByEntityId;
+  }
+
+  /**
+   * @param array[][] $itemsByEntityId
+   * @param object[] $languageEntitiesById
+   * @param array[] $instancesById
+   * @param string $entityFieldDisplayLanguage
+   *
+   * @return array[][]
+   */
+  private function languageEntitiesPrepareFieldItems(array $itemsByEntityId, array $languageEntitiesById, array $instancesById, $entityFieldDisplayLanguage) {
 
     /* @see hook_field_prepare_view() */
     $function = $this->fieldInfo['module'] . '_field_prepare_view';
