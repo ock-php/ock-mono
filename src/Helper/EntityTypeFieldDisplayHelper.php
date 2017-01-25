@@ -55,7 +55,7 @@ class EntityTypeFieldDisplayHelper {
    * @param array $display
    * @param string $langcode
    *
-   * @return static
+   * @return static|null
    */
   public static function create($entityType, $fieldName, array $display, $langcode) {
     $entityTypeInfo = entity_get_info($entityType);
@@ -227,11 +227,11 @@ class EntityTypeFieldDisplayHelper {
   }
 
   /**
-   * @param array $languageEntitiesById
-   * @param array $instancesById
-   * @param $entityFieldDisplayLanguage
+   * @param object[] $languageEntitiesById
+   * @param array[] $instancesById
+   * @param string $entityFieldDisplayLanguage
    *
-   * @return array
+   * @return array[][]
    */
   private function languageEntitiesCollectFieldItems(array $languageEntitiesById, array $instancesById, $entityFieldDisplayLanguage) {
     $itemsByEntityId = [];
