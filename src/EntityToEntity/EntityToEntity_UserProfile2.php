@@ -23,9 +23,14 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
    *   label = "Profile2 from user or author"
    * )
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface|null
    */
   public static function createConfigurator() {
+
+    if (!module_exists('profile2')) {
+      return NULL;
+    }
+
     return Configurator_CallbackConfigurable::createFromClassStaticMethod(
       self::class,
       'create',
