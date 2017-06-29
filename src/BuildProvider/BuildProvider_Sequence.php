@@ -2,6 +2,10 @@
 
 namespace Drupal\renderkit\BuildProvider;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
+use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
+use Drupal\cfrapi\CfrSchema\Iface\IfaceSchemaInterface;
+use Drupal\cfrapi\CfrSchema\Sequence\SequenceSchema;
 use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
@@ -18,6 +22,31 @@ class BuildProvider_Sequence implements BuildProviderInterface {
    * @var \Drupal\renderkit\ListFormat\ListFormatInterface
    */
   private $listFormat;
+
+  /**
+   * @param \Drupal\cfrapi\Context\CfrContextInterface|NULL $context
+   *
+   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   */
+  public static function getCfrSchema(CfrContextInterface $context = NULL) {
+
+    return GroupSchema_Callback::createFromClass(
+      __CLASS__,
+      [
+        new SequenceSchema(
+          new IfaceSchema(
+            BuildProviderInterface::class,
+            $context)),
+        IfaceSchema::createOptional(
+          ListFormatInterface::class,
+          $context),
+      ],
+      [
+        t('Build providers'),
+        t('List format'),
+      ]
+    );
+  }
 
   /**
    * @CfrPlugin(

@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit\EntityImage;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
+use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
@@ -22,6 +24,26 @@ class EntityImage_Related implements EntityImageInterface {
    * @var string
    */
   private $relatedEntityType;
+
+  /**
+   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
+   *
+   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   */
+  public static function createSchema(CfrContextInterface $context = NULL) {
+
+    return GroupSchema_Callback::createFromClass(
+      __CLASS__,
+      [
+        new IfaceSchema(EntityToEntityInterface::class, $context),
+        // This one is without context, because we no longer know the entity type.
+        new IfaceSchema(EntityImageInterface::class),
+      ],
+      [
+        t('Entity relation'),
+        t('Related entity image provider'),
+      ]);
+  }
 
   /**
    * @CfrPlugin(

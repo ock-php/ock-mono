@@ -4,6 +4,9 @@ namespace Drupal\renderkit\EntityBuildProcessor;
 
 
 
+use Drupal\cfrapi\CfrSchema\ValueToValue\ValueToValueSchema_Callback;
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema;
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
 use Drupal\cfrapi\Configurator\Group\Configurator_GroupWithValueCallback;
 use Drupal\renderkit\Configurator\Configurator_ClassAttribute;
 use Drupal\renderkit\Configurator\Configurator_TagName;
@@ -21,6 +24,27 @@ use Drupal\renderkit\Html\HtmlTagTrait;
 class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorBase implements HtmlAttributesInterface {
 
   use HtmlTagTrait;
+
+  /**
+   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   */
+  public static function createCfrSchema() {
+
+    $groupSchema = new GroupSchema(
+      [
+        'tag_name' => Configurator_TagName::createForContainer('article'),
+        'classes' => Configurator_ClassAttribute::create(),
+      ],
+      [
+        'tag_name' => t('Tag name'),
+        'classes' => t('Classes'),
+      ]);
+
+    return ValueToValueSchema_Callback::createFromClassStaticMethod(
+      __CLASS__,
+      'createFromGroupValues',
+      $groupSchema);
+  }
 
   /**
    * @CfrPlugin("contextualLinksWrapper", "Entity contextual links wrapper")

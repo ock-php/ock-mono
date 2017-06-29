@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Drupal\cfrapi\CfrSchema\ValueToValue\ValueToValueSchema_Callback;
 use Drupal\cfrapi\Exception\InvalidConfigurationException;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
 use Drupal\renderkit\Configurator\Id\Configurator_EntityTypeWithViewModeName;
@@ -20,6 +21,19 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    * @var string
    */
   private $viewMode;
+
+  /**
+   * @param string $entityType
+   *
+   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   */
+  public static function createSchema($entityType = NULL) {
+
+    return ValueToValueSchema_Callback::createFromClassStaticMethod(
+      __CLASS__,
+      'createFromId',
+      new Configurator_EntityTypeWithViewModeName($entityType));
+  }
 
   /**
    * @CfrPlugin(

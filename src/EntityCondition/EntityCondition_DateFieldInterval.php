@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\EntityCondition;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\Configurator\Id\Configurator_FieldName;
 
@@ -20,6 +21,26 @@ class EntityCondition_DateFieldInterval implements EntityConditionInterface {
    * @var string|int
    */
   private $referenceTimestamp;
+
+  /**
+   * @param string $entityType
+   * @param string $bundleName
+   *
+   * @return \Drupal\cfrapi\CfrSchema\Group\GroupSchemaInterface
+   */
+  public static function createSchema($entityType = NULL, $bundleName = NULL) {
+
+    return GroupSchema_Callback::createFromClassStaticMethod(
+      __CLASS__,
+      'createNow',
+      [
+        new Configurator_FieldName(
+          ['date'],
+          $entityType,
+          $bundleName)
+      ],
+      [t('Date field')]);
+  }
 
   /**
    * @CfrPlugin(

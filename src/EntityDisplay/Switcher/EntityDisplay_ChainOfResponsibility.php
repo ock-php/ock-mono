@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
+use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
 use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
@@ -20,6 +22,18 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    *   Format: $[] = $displayHandler
    */
   private $displays = [];
+
+  /**
+   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
+   *
+   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   */
+  public static function createCfrSchema(CfrContextInterface $context = NULL) {
+    return GroupSchema_Callback::createFromClass(
+      __CLASS__,
+      [IfaceSchema::createSequence(EntityDisplayInterface::class, $context)],
+      ['']);
+  }
 
   /**
    * @CfrPlugin(

@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit\Configurator\Configurator_TagName;
@@ -25,6 +26,17 @@ use Drupal\renderkit\Html\HtmlAttributesTrait;
 class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase implements HtmlAttributesInterface {
 
   use HtmlAttributesTrait;
+
+  /**
+   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   */
+  public static function entityTitleSchema() {
+    return GroupSchema_Callback::createFromClassStaticMethod(
+      __CLASS__,
+      'entityTitleLinkWrapper',
+      [Configurator_TagName::createForTitle()],
+      [t('Tag name')]);
+  }
 
   /**
    * @CfrPlugin(

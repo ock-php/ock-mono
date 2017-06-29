@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit\EntityDisplay\Decorator;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
+use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
@@ -23,6 +25,25 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    * @var string
    */
   private $relatedEntityType;
+
+  /**
+   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
+   *
+   * @return \Drupal\cfrapi\CfrSchema\Group\GroupSchemaInterface
+   */
+  public static function createSchema(CfrContextInterface $context) {
+
+    return GroupSchema_Callback::createFromClass(
+      __CLASS__,
+      [
+        new IfaceSchema(EntityToEntityInterface::class, $context),
+        new IfaceSchema(EntityDisplayInterface::class),
+      ],
+      [
+        t('Entity relation'),
+        t('Related entity display'),
+      ]);
+  }
 
   /**
    * @CfrPlugin(

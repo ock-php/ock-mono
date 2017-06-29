@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
+use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
 use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
@@ -14,6 +16,24 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
 
   use EntitiesBuildsProcessorTrait;
+
+  /**
+   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
+   *
+   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   */
+  public static function createCfrSchema(CfrContextInterface $context = NULL) {
+
+    return GroupSchema_Callback::createFromClassStaticMethod(
+      __CLASS__,
+      'create',
+      [
+        IfaceSchema::createSequence(
+          EntityBuildProcessorInterface::class,
+          $context),
+      ],
+      ['']);
+  }
 
   /**
    * @CfrPlugin(

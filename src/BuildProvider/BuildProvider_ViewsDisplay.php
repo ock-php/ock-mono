@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit\BuildProvider;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
+use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\Configurator\Id\Configurator_ViewsDisplayId;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
@@ -22,6 +24,25 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    * @var \Drupal\renderkit\LabeledFormat\LabeledFormatInterface
    */
   private $labeledFormat;
+
+  /**
+   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   */
+  public static function createCfrSchema() {
+
+    return GroupSchema_Callback::createFromClassStaticMethod(
+      self::class,
+      /* @see doCreate() */
+      'doCreate',
+      [
+        new Configurator_ViewsDisplayId(),
+        IfaceSchema::createOptional(LabeledFormatInterface::class),
+      ],
+      [
+        t('Views display'),
+        t('Label format'),
+      ]);
+  }
 
   /**
    * @CfrPlugin("viewsDisplay", @t("Views display"))

@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
+use Drupal\cfrapi\CfrSchema\ValueToValue\ValueToValueSchema_Callback;
 use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
@@ -19,6 +21,19 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
    */
   protected $displayHandlers;
+
+  /**
+   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
+   *
+   * @return \Drupal\cfrapi\CfrSchema\ValueToValue\ValueToValueSchemaInterface
+   */
+  public static function createSchema(CfrContextInterface $context = NULL) {
+    return ValueToValueSchema_Callback::createFromClass(
+      __CLASS__,
+      IfaceSchema::createSequence(
+        EntityDisplayInterface::class,
+        $context));
+  }
 
   /**
    * @CfrPlugin("sequence", @t("Sequence of entity displays"))

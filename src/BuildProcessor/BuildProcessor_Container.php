@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\BuildProcessor;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\Configurator\Configurator_ClassAttribute;
 use Drupal\renderkit\Configurator\Configurator_TagName;
@@ -11,6 +12,28 @@ use Drupal\renderkit\Html\HtmlTagTrait;
 class BuildProcessor_Container implements HtmlAttributesInterface, BuildProcessorInterface {
 
   use HtmlTagTrait;
+
+  /**
+   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   */
+  public static function createSchema() {
+
+    $schemas = [
+      Configurator_TagName::createFree(),
+      Configurator_ClassAttribute::create(),
+    ];
+
+    $labels = [
+      t('Tag name'),
+      t('Classes'),
+    ];
+
+    return GroupSchema_Callback::createFromClassStaticMethod(
+      __CLASS__,
+      'create',
+      $schemas,
+      $labels);
+  }
 
   /**
    * @CfrPlugin(

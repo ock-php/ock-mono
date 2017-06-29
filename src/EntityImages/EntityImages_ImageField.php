@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\EntityImages;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\Configurator\Id\Configurator_FieldName;
 
@@ -11,6 +12,25 @@ class EntityImages_ImageField implements EntityImagesInterface {
    * @var string
    */
   private $fieldName;
+
+  /**
+   * @param string $entityType
+   * @param string $bundleName
+   *
+   * @return \Drupal\cfrapi\CfrSchema\Group\GroupSchemaInterface
+   */
+  public static function createSchema($entityType = NULL, $bundleName = NULL) {
+
+    return GroupSchema_Callback::createFromClass(
+      __CLASS__,
+      [
+        new Configurator_FieldName(
+          ['image'],
+          $entityType,
+          $bundleName),
+      ],
+      [t('Image field')]);
+  }
 
   /**
    * @CfrPlugin(

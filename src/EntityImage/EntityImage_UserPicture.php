@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\EntityImage;
 
+use Drupal\cfrapi\CfrSchema\Optionless\OptionlessSchema_Callback;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackSimple;
 use Drupal\renderkit\EntityDisplay\UserDisplayTrait;
 
@@ -11,6 +12,18 @@ use Drupal\renderkit\EntityDisplay\UserDisplayTrait;
 class EntityImage_UserPicture implements EntityImageInterface {
 
   use UserDisplayTrait;
+
+  /**
+   * @param string $entityType
+   *
+   * @return \Drupal\cfrapi\CfrSchema\Optionless\OptionlessSchema_Callback|null
+   */
+  public static function createSchema($entityType = NULL) {
+    if (NULL !== $entityType && 'user' !== $entityType) {
+      return NULL;
+    }
+    return OptionlessSchema_Callback::createFromClass(__CLASS__);
+  }
 
   /**
    * @CfrPlugin(

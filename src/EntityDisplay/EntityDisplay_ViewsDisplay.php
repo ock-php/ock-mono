@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\Configurator\Id\Configurator_ViewsDisplayId_Entity;
 use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
@@ -25,6 +26,11 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    * @var \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface
    */
   private $labeledDisplay;
+
+  public static function createSchema($entityType = NULL) {
+
+    # return GroupSchema_Callback::createFromClassStaticMethod()
+  }
 
   /**
    * @CfrPlugin(
