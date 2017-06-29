@@ -2,8 +2,8 @@
 
 namespace Drupal\renderkit\EntityImage;
 
-use Drupal\renderkit\EntityDisplay\UserDisplayTrait;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackSimple;
+use Drupal\renderkit\EntityDisplay\UserDisplayTrait;
 
 /**
  * Image provider based on user picture.
