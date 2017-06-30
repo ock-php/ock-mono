@@ -19,10 +19,18 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator() {
+
     return Configurator_CallbackMono::createFromClassName(
       self::class,
-      new Configurator_Sequence(
-        cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class)));
+      (new Configurator_Sequence(
+        cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class)))
+        ->withItemLabelCallback(
+          function($delta) {
+            return (NULL === $delta)
+              ? t('New column')
+              : t('Column #@n', ['@n' => $delta + 1]);
+          }
+        ));
   }
 
   /**
