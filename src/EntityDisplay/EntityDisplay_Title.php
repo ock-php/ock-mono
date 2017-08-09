@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit8\EntityDisplay;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\Schema\CfSchema_EntityDisplay_Title;
 
 /**
@@ -30,14 +31,13 @@ class EntityDisplay_Title extends EntityDisplayBase {
   }
 
   /**
-   * @param $entity_type
-   * @param $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    */
-  public function buildEntity($entity_type, $entity) {
+  public function buildEntity(EntityInterface $entity) {
     return [
-      '#markup' => check_plain(entity_label($entity_type, $entity)),
+      '#markup' => $entity->label(),
     ];
   }
 

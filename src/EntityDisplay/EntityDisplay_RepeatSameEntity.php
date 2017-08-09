@@ -6,6 +6,7 @@ use Donquixote\Cf\Context\CfContextInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Donquixote\Cf\Schema\Textfield\CfSchema_Textfield_IntegerInRange;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\EntitiesListFormat\EntitiesListFormatInterface;
 
 class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
@@ -53,14 +54,12 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
   /**
    * Same as ->buildEntities(), just for a single entity.
    *
-   * @param string $entity_type
-   *   E.g. 'node' or 'taxonomy_term'.
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   Single entity object for which to build a render arary.
    *
    * @return array
    */
-  public function buildEntity($entity_type, $entity) {
+  public function buildEntity(EntityInterface $entity) {
     return $this->entitiesListFormat->entitiesBuildList(
       $entity_type,
       array_fill(0, $this->n, $entity));

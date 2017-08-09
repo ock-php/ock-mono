@@ -5,6 +5,7 @@ namespace Drupal\renderkit8\EntityDisplay;
 use Drupal\cfrapi\Context\CfrContext;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrapi\Exception\InvalidConfigurationException;
+use Drupal\Core\Entity\EntityInterface;
 
 class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
@@ -36,16 +37,12 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   }
 
   /**
-   * @param string $entity_type
-   *   E.g. 'node' or 'taxonomy_term'.
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   Single entity object for which to build a render arary.
    *
    * @return array
-   *
-   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  public function buildEntity($entity_type, $entity) {
+  public function buildEntity(EntityInterface $entity) {
 
     if (!empty(self::$inProgress[$this->queryKey])) {
       return ['#markup' => t('Recursion detected.')];
@@ -116,7 +113,6 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
     }
 
     $build['preview'] = $entityDisplay->buildEntity(
-      $entity_type,
       $entity);
 
     return $build;

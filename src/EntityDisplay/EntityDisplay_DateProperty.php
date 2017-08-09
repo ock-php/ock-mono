@@ -49,13 +49,11 @@ class EntityDisplay_DateProperty extends EntityDisplayBase {
   }
 
   /**
-   * @param string $entity_type
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
-   *   Render array for one entity.
    */
-  public function buildEntity($entity_type, $entity) {
+  public function buildEntity(\Drupal\Core\Entity\EntityInterface $entity) {
     if ('node' !== $entity_type) {
       return [];
     }

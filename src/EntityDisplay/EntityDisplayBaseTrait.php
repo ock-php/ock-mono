@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityDisplay;
 
+use Drupal\Core\Entity\EntityInterface;
+
 trait EntityDisplayBaseTrait {
 
   /**
@@ -25,15 +27,12 @@ trait EntityDisplayBaseTrait {
   /**
    * Same as ->buildEntities(), just for a single entity.
    *
-   * @param string $entity_type
-   *   E.g. 'node' or 'taxonomy_term'.
-   * @param object $entity
-   *   Single entity object for which to build a render arary.
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    *
    * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  abstract public function buildEntity($entity_type, $entity);
+  abstract public function buildEntity(EntityInterface $entity);
 
 }

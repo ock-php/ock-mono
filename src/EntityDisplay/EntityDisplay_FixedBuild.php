@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityDisplay;
 
+use Drupal\Core\Entity\EntityInterface;
+
 class EntityDisplay_FixedBuild extends EntityDisplayBase {
 
   /**
@@ -17,13 +19,11 @@ class EntityDisplay_FixedBuild extends EntityDisplayBase {
   }
 
   /**
-   * @param string $entity_type
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
-   *   Render array for one entity.
    */
-  public function buildEntity($entity_type, $entity) {
+  public function buildEntity(EntityInterface $entity) {
     return $this->fixedRenderArray;
   }
 }

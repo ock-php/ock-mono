@@ -4,6 +4,7 @@ namespace Drupal\renderkit8\EntityDisplay;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
 use Drupal\renderkit8\Schema\CfSchema_ViewsDisplayId_Entity;
 
@@ -87,16 +88,12 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
   /**
    * Same as ->buildEntities(), just for a single entity.
    *
-   * @param string $entity_type
-   *   E.g. 'node' or 'taxonomy_term'.
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   Single entity object for which to build a render arary.
    *
    * @return array
-   *
-   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  public function buildEntity($entity_type, $entity) {
+  public function buildEntity(EntityInterface $entity) {
     $etid = $this->entityGetId($entity_type, $entity);
     if (NULL === $etid) {
       return [];

@@ -41,7 +41,7 @@ class EntityBuildProcessor_Wrapper_BackgroundImage extends EntityBuildProcessorB
    * @see \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface::processEntityBuild()
    */
   public function processEntityBuild(array $build, $entity_type, $entity) {
-    $imageDisplay = $this->imageProvider->buildEntity($entity_type, $entity);
+    $imageDisplay = $this->imageProvider->buildEntity($entity);
     $build = $this->buildContainer() + ['content' => $build];
     if (isset($imageDisplay['#path'])) {
       $imageUrl = file_create_url($imageDisplay['#path']);

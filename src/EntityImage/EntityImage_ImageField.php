@@ -3,6 +3,7 @@
 namespace Drupal\renderkit8\EntityImage;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\EntityDisplay\EntityDisplayBaseTrait;
 use Drupal\renderkit8\Schema\CfSchema_FieldName;
 
@@ -47,13 +48,11 @@ class EntityImage_ImageField implements EntityImageInterface {
   }
 
   /**
-   * @param string $entity_type
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
-   *   Render array for one entity.
    */
-  public function buildEntity($entity_type, $entity) {
+  public function buildEntity(EntityInterface $entity) {
 
     if (empty($entity->{$this->fieldName})) {
       return [];

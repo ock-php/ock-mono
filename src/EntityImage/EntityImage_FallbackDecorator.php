@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityImage;
 
+use Drupal\Core\Entity\EntityInterface;
+
 /**
  * @CfrPlugin(
  *   id = "fallback",
@@ -32,19 +34,17 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
   /**
    * Same as ->buildEntities(), just for a single entity.
    *
-   * @param string $entity_type
-   *   E.g. 'node' or 'taxonomy_term'.
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   Single entity object for which to build a render arary.
    *
    * @return array
    */
-  public function buildEntity($entity_type, $entity) {
-    $build = $this->decorated->buildEntity($entity_type, $entity);
+  public function buildEntity(EntityInterface $entity) {
+    $build = $this->decorated->buildEntity($entity);
     if (is_array($build) && [] !== $build) {
       return $build;
     }
-    return $this->fallback->buildEntity($entity_type, $entity);
+    return $this->fallback->buildEntity($entity);
   }
 
   /**

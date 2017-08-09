@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit8\EntityDisplay\Images;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\EntityDisplay\EntityDisplayBase;
 use Drupal\renderkit8\EntityImages\EntityImagesInterface;
 use Drupal\renderkit8\ImagesDisplay\ImagesDisplayInterface;
@@ -36,16 +37,12 @@ class EntityDisplay_Images extends EntityDisplayBase {
   /**
    * Same as ->buildEntities(), just for a single entity.
    *
-   * @param string $entity_type
-   *   E.g. 'node' or 'taxonomy_term'.
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   Single entity object for which to build a render arary.
    *
    * @return array
-   *
-   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  public function buildEntity($entity_type, $entity) {
+  public function buildEntity(EntityInterface $entity) {
     $images = $this->entityImages->entityGetImages($entity_type, $entity);
     if ($images === []) {
       return [];
