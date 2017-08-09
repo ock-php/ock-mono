@@ -2,8 +2,7 @@
 
 namespace Drupal\renderkit\EntityImage;
 
-use Drupal\cfrapi\CfrSchema\Optionless\OptionlessSchema_Callback;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackSimple;
+use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_Callback;
 use Drupal\renderkit\EntityDisplay\UserDisplayTrait;
 
 /**
@@ -14,33 +13,22 @@ class EntityImage_UserPicture implements EntityImageInterface {
   use UserDisplayTrait;
 
   /**
-   * @param string $entityType
-   *
-   * @return \Drupal\cfrapi\CfrSchema\Optionless\OptionlessSchema_Callback|null
-   */
-  public static function createSchema($entityType = NULL) {
-    if (NULL !== $entityType && 'user' !== $entityType) {
-      return NULL;
-    }
-    return OptionlessSchema_Callback::createFromClass(__CLASS__);
-  }
-
-  /**
    * @CfrPlugin(
    *   id = "user_picture",
    *   label = @Translate("User picture")
    * )
    *
-   * @param string $entityType
-   *   Entity type from context.
+   * @param string|null $entityType
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface|null
    */
-  public static function createConfigurator($entityType = NULL) {
+  public static function createSchema($entityType = NULL) {
+
     if (NULL !== $entityType && 'user' !== $entityType) {
       return NULL;
     }
-    return Configurator_CallbackSimple::createFromClassName(__CLASS__);
+
+    return CfSchema_ValueProvider_Callback::fromClass(__CLASS__);
   }
 
   /**

@@ -2,8 +2,9 @@
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
-use Drupal\cfrapi\Configurator\Bool\Configurator_Checkbox;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface;
 
 class FieldDisplayProcessor_LabeledEntityDisplayListFormat implements FieldDisplayProcessorInterface {
@@ -21,17 +22,20 @@ class FieldDisplayProcessor_LabeledEntityDisplayListFormat implements FieldDispl
   }
 
   /**
-   * @CfrPlugin("labeledEntityDisplayListFormatPlus", "Labeled entity display list format +")
+   * @CfrPlugin(
+   *   id = "labeledEntityDisplayListFormatPlus",
+   *   label = "Labeled entity display list format +"
+   * )
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator() {
-    return Configurator_CallbackConfigurable::createFromClassStaticMethod(
+  public static function createSchema() {
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'create',
       [
-        cfrplugin()->interfaceGetConfigurator(LabeledEntityDisplayListFormatInterface::class),
-        new Configurator_Checkbox(),
+        new CfSchema_IfaceWithContext(LabeledEntityDisplayListFormatInterface::class),
+        new CfSchema_Boolean_YesNo(),
       ],
       [
         t('Labeled list format'),

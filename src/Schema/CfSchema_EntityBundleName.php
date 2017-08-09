@@ -1,10 +1,10 @@
 <?php
 
-namespace Drupal\renderkit\Configurator\Id;
+namespace Drupal\renderkit\Schema;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
+use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 
-class Configurator_EntityBundleName extends Configurator_SelectBase {
+class CfSchema_EntityBundleName implements CfSchema_OptionsInterface {
 
   /**
    * @var string
@@ -13,17 +13,15 @@ class Configurator_EntityBundleName extends Configurator_SelectBase {
 
   /**
    * @param string $entityType
-   * @param bool $required
    */
-  public function __construct($entityType, $required = TRUE) {
+  public function __construct($entityType) {
     $this->entityType = $entityType;
-    parent::__construct($required);
   }
 
   /**
    * @return mixed[]
    */
-  protected function getSelectOptions() {
+  public function getGroupedOptions() {
     $entity_info = entity_get_info($this->entityType);
     if (empty($entity_info['bundles'])) {
       return [];
@@ -32,7 +30,7 @@ class Configurator_EntityBundleName extends Configurator_SelectBase {
     foreach ($entity_info['bundles'] as $bundle => $bundle_info) {
       $options[$bundle] = $bundle_info['label'];
     }
-    return $options;
+    return ['' => $options];
   }
 
   /**
@@ -40,7 +38,7 @@ class Configurator_EntityBundleName extends Configurator_SelectBase {
    *
    * @return string|null
    */
-  protected function idGetLabel($id) {
+  public function idGetLabel($id) {
     $entity_info = entity_get_info($this->entityType);
     if (isset($entity_info['bundles'][$id]['label'])) {
       return $entity_info['bundles'][$id]['label'];
@@ -58,7 +56,7 @@ class Configurator_EntityBundleName extends Configurator_SelectBase {
    *
    * @return bool
    */
-  protected function idIsKnown($id) {
+  public function idIsKnown($id) {
     $entity_info = entity_get_info($this->entityType);
     return isset($entity_info['bundles'][$id]);
   }

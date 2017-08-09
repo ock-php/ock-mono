@@ -2,11 +2,10 @@
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\Configurator\Id\Configurator_ViewsDisplayId;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
+use Drupal\renderkit\Schema\CfSchema_ViewsDisplayId;
 
 class BuildProvider_ViewsDisplay implements BuildProviderInterface {
 
@@ -26,39 +25,18 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
   private $labeledFormat;
 
   /**
-   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
-   */
-  public static function createCfrSchema() {
-
-    return GroupSchema_Callback::createFromClassStaticMethod(
-      self::class,
-      /* @see doCreate() */
-      'doCreate',
-      [
-        new Configurator_ViewsDisplayId(),
-        IfaceSchema::createOptional(LabeledFormatInterface::class),
-      ],
-      [
-        t('Views display'),
-        t('Label format'),
-      ]);
-  }
-
-  /**
    * @CfrPlugin("viewsDisplay", @t("Views display"))
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator() {
+  public static function createSchema() {
 
-    return Configurator_CallbackConfigurable::createFromClassStaticMethod(
-      self::class,
-      /* @see doCreate() */
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
+      __CLASS__,
       'doCreate',
       [
-        new Configurator_ViewsDisplayId(),
-        \cfrplugin()->interfaceGetOptionalConfigurator(
-          LabeledFormatInterface::class),
+        new CfSchema_ViewsDisplayId(),
+        CfSchema_IfaceWithContext::createOptional(LabeledFormatInterface::class),
       ],
       [
         t('Views display'),

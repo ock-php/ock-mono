@@ -2,9 +2,10 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\cfrapi\Configurator\Configurator_IntegerInRange;
-use Drupal\cfrapi\Context\CfrContextInterface;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Context\CfContextInterface;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\Cf\Schema\Textfield\CfSchema_Textfield_IntegerInRange;
 use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
 
 class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
@@ -22,16 +23,17 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
   /**
    * @CfrPlugin("repeatSameEntity", "Repeat the same entity")
    *
-   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
+   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  public static function createConfigurator(CfrContextInterface $context = NULL) {
-    return Configurator_CallbackConfigurable::createFromClassName(
+  public static function createSchema(CfContextInterface $context = NULL) {
+
+    return CfSchema_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        cfrplugin()->interfaceGetConfigurator(EntitiesListFormatInterface::class, $context),
-        new Configurator_IntegerInRange(1, 100),
+        CfSchema_IfaceWithContext::create(EntitiesListFormatInterface::class, $context),
+        new CfSchema_Textfield_IntegerInRange(1, 100),
       ],
       [
         t('Entities list format'),

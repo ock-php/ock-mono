@@ -2,10 +2,9 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\cfrapi\CfrSchema\ValueToValue\ValueToValueSchema_Callback;
-use Drupal\cfrapi\Exception\InvalidConfigurationException;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
-use Drupal\renderkit\Configurator\Id\Configurator_EntityTypeWithViewModeName;
+use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
+use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Drupal\renderkit\Schema\CfSchema_EntityTypeWithViewModeName;
 
 /**
  * Renders the entity with a view mode, but only if it has the expected type.
@@ -23,19 +22,6 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
   private $viewMode;
 
   /**
-   * @param string $entityType
-   *
-   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
-   */
-  public static function createSchema($entityType = NULL) {
-
-    return ValueToValueSchema_Callback::createFromClassStaticMethod(
-      __CLASS__,
-      'createFromId',
-      new Configurator_EntityTypeWithViewModeName($entityType));
-  }
-
-  /**
    * @CfrPlugin(
    *   id = "viewMode",
    *   label = @t("View mode")
@@ -43,18 +29,14 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    *
    * @param string $entityType
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator($entityType = NULL) {
+  public static function createSchema($entityType = NULL) {
 
-    # $configurators = [];
-    # $labels = [t('View mode')];
-
-    return Configurator_CallbackMono::createFromClassStaticMethod(
+    return CfSchema_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
-      /* @see createFromId() */
       'createFromId',
-      new Configurator_EntityTypeWithViewModeName($entityType));
+      new CfSchema_EntityTypeWithViewModeName($entityType));
   }
 
   /**
@@ -63,26 +45,30 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_ViewModeOneType
    *
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
+   * @throws \Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration
    */
   public static function createFromId($id) {
 
     if (!is_string($id)) {
-      throw new InvalidConfigurationException("Id must be a string.");
+      throw new EvaluatorException_IncompatibleConfiguration(
+        "Id must be a string.");
     }
 
     if ('' === $id) {
-      throw new InvalidConfigurationException("Id must not be empty.");
+      throw new EvaluatorException_IncompatibleConfiguration(
+        "Id must not be empty.");
     }
 
     list($type, $mode) = explode(':', $id . ':');
 
     if ('' === $type) {
-      throw new InvalidConfigurationException("Entity type must not be empty.");
+      throw new EvaluatorException_IncompatibleConfiguration(
+        "Entity type must not be empty.");
     }
 
     if ('' === $mode) {
-      throw new InvalidConfigurationException("View mode name must not be empty.");
+      throw new EvaluatorException_IncompatibleConfiguration(
+        "View mode name must not be empty.");
     }
 
     return new self($type, $mode);

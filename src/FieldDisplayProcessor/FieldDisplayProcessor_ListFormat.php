@@ -2,8 +2,9 @@
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
-use Drupal\cfrapi\Configurator\Bool\Configurator_Checkbox;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface {
@@ -16,15 +17,14 @@ class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface
   /**
    * @CfrPlugin("listFormatPlus", "List format +")
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  public static function createConfigurator() {
-    return Configurator_CallbackConfigurable::createFromClassStaticMethod(
+  public static function createSchema() {
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'create',
       [
-        cfrplugin()->interfaceGetConfigurator(ListFormatInterface::class),
-        new Configurator_Checkbox(),
+        CfSchema_IfaceWithContext::create(ListFormatInterface::class),
+        new CfSchema_Boolean_YesNo(),
       ],
       [
         t('List format'),

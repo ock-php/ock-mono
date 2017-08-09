@@ -2,10 +2,9 @@
 
 namespace Drupal\renderkit\EntityDisplay\Decorator;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
-use Drupal\cfrapi\Context\CfrContextInterface;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Context\CfContextInterface;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
@@ -27,49 +26,27 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
   private $relatedEntityType;
 
   /**
-   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
-   *
-   * @return \Drupal\cfrapi\CfrSchema\Group\GroupSchemaInterface
-   */
-  public static function createSchema(CfrContextInterface $context) {
-
-    return GroupSchema_Callback::createFromClass(
-      __CLASS__,
-      [
-        new IfaceSchema(EntityToEntityInterface::class, $context),
-        new IfaceSchema(EntityDisplayInterface::class),
-      ],
-      [
-        t('Entity relation'),
-        t('Related entity display'),
-      ]);
-  }
-
-  /**
    * @CfrPlugin(
    *   id = "related",
    *   label = "Show related entity"
    * )
    *
-   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
+   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  public static function createConfigurator(CfrContextInterface $context = NULL) {
-    /** @var \Drupal\cfrplugin\Hub\CfrPluginHubInterface $hub */
-    $hub = cfrplugin();
-    return Configurator_CallbackConfigurable::createFromClassName(
+  public static function createSchema(CfContextInterface $context = NULL) {
+
+    return CfSchema_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        $hub->interfaceGetConfigurator(EntityToEntityInterface::class, $context),
-        // This one is without context, because we no longer know the entity type.
-        $hub->interfaceGetConfigurator(EntityDisplayInterface::class),
+        new CfSchema_IfaceWithContext(EntityToEntityInterface::class, $context),
+        new CfSchema_IfaceWithContext(EntityDisplayInterface::class),
       ],
       [
         t('Entity relation'),
         t('Related entity display'),
-      ]
-    );
+      ]);
   }
 
   /**

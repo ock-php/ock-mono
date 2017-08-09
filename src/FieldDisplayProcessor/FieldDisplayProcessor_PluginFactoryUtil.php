@@ -2,10 +2,10 @@
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
-use Drupal\cfrapi\CfrGroupSchema\CfrGroupSchema_FixedValue;
-use Drupal\cfrapi\Configurator\Group\Configurator_CfrGroupSchema;
-use Drupal\renderkit\CfrGroupSchema\CfrGroupSchema_FieldDisplayProcessor_Label;
-use Drupal\renderkit\CfrGroupSchema\CfrGroupSchema_FieldDisplayProcessor_OuterContainer;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal;
+use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
+use Drupal\renderkit\Schema\CfSchema_FieldDisplayProcessor_Label;
+use Drupal\renderkit\Schema\CfSchema_FieldDisplayProcessor_OuterContainer;
 use Drupal\renderkit\Util\UtilBase;
 
 abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implements FieldDisplayProcessorInterface {
@@ -35,41 +35,33 @@ abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implemen
   /**
    * @CfrPlugin("minimal", @t("Minimal"))
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
   public static function minimal() {
-    return new Configurator_CfrGroupSchema(self::gs_minimal());
+    return CfSchema_FieldDisplayProcessor_OuterContainer::create(
+      self::fullReset(),
+      FALSE)
+      ->getValSchema();
   }
 
   /**
    * @CfrPlugin("fullReset", @t("Full reset"))
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
   public static function fullReset() {
-    return new Configurator_CfrGroupSchema(self::gs_fullReset());
+    return CfSchema_FieldDisplayProcessor_Label::create(
+      self::bare())
+      ->getValSchema();
   }
 
   /**
-   * @return \Drupal\cfrapi\CfrGroupSchema\CfrGroupSchemaInterface
+   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  private static function gs_minimal() {
-    return new CfrGroupSchema_FieldDisplayProcessor_OuterContainer(
-      self::gs_fullReset(), FALSE);
-  }
-
-  /**
-   * @return \Drupal\cfrapi\CfrGroupSchema\CfrGroupSchemaInterface
-   */
-  private static function gs_fullReset() {
-    return new CfrGroupSchema_FieldDisplayProcessor_Label(self::gs_bare());
-  }
-
-  /**
-   * @return \Drupal\cfrapi\CfrGroupSchema\CfrGroupSchemaInterface
-   */
-  private static function gs_bare() {
-    return new CfrGroupSchema_FixedValue(new FieldDisplayProcessor_Bare());
+  private static function bare() {
+    return CfSchema_GroupVal::createEmpty(
+      new CfSchema_ValueProvider_FixedValue(
+        new FieldDisplayProcessor_Bare()));
   }
 
 }

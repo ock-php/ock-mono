@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\Util;
 
-use Drupal\cfrapi\Exception\InvalidConfigurationException;
+use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
 
 final class FieldUtil extends UtilBase {
 
@@ -13,24 +13,26 @@ final class FieldUtil extends UtilBase {
    * @param array $allowedTypes
    *
    * @return array
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
    */
   public static function fieldnameLoadInfoAssertType($fieldName, array $allowedTypes) {
 
     $fieldInfo = field_info_field($fieldName);
 
     if (NULL === $fieldInfo) {
-      throw new InvalidConfigurationException("Field '$fieldName' does not exist.");
+      throw new EvaluatorException_IncompatibleConfiguration(
+        "Field '$fieldName' does not exist.");
     }
 
     if (!isset($fieldInfo['type'])) {
-      throw new InvalidConfigurationException("Field '$fieldName' has no field type.");
+      throw new EvaluatorException_IncompatibleConfiguration(
+        "Field '$fieldName' has no field type.");
     }
 
     if (!in_array($fieldInfo['type'], $allowedTypes, TRUE)) {
       $typeExport = var_export($fieldInfo['type'], TRUE);
       $allowedTypesExport = implode(', ', $allowedTypes);
-      throw new InvalidConfigurationException("Field type of '$fieldName' expected to be one of $allowedTypesExport, $typeExport found instead.");
+      throw new EvaluatorException_IncompatibleConfiguration(
+        "Field type of '$fieldName' expected to be one of $allowedTypesExport, $typeExport found instead.");
     }
 
     return $fieldInfo;
@@ -234,6 +236,31 @@ final class FieldUtil extends UtilBase {
    */
   public static function fieldTypesGetFieldNameOptions(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
 
+    $options = self::fieldTypesGetFieldNameGroupedOptions(
+      $allowedFieldTypes,
+      $entityType,
+      $bundleName);
+
+    if (isset($options[''])) {
+      $options = $options[''] + $options;
+    }
+
+    return $options;
+  }
+
+  /**
+   * @param string[] $allowedFieldTypes
+   *   (optional) Allowed field types.
+   * @param string $entityType
+   *   (optional) An entity type, e.g. "node".
+   * @param string $bundleName
+   *   (optional) The bundle name, e.g. "article".
+   *
+   * @return string[][]
+   *   Format: $[$field_type_label][$fieldName] = $optionLabel
+   */
+  public static function fieldTypesGetFieldNameGroupedOptions(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
+
     $optionsAll = self::etBundleGetFieldNameOptions($entityType, $bundleName);
 
     $knownFieldTypes = field_info_field_types();
@@ -261,7 +288,7 @@ final class FieldUtil extends UtilBase {
         if (isset($allowedFieldTypes)) {
           continue;
         }
-        $options[$fieldName] = $optionLabel;
+        $options[''][$fieldName] = $optionLabel;
       }
     }
 

@@ -8,8 +8,6 @@ use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
 
 /**
- * @CfrPlugin("expert", "Expert")
- *
  * This is inspired by Display suite.
  */
 class Configurator_ListFormat_Expert implements ConfiguratorInterface {

@@ -4,6 +4,7 @@ namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 use Drupal\renderkit\Helper\EntityTypeFieldDisplayHelper;
+use Drupal\renderkit\Schema\CfSchema_EntityDisplay_FieldWithFormatter;
 
 /**
  * Entity display handler to view a specific field on all the entities.
@@ -29,6 +30,15 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    * @var string|null
    */
   private $langcode;
+
+  /**
+   * @CfrPlugin("fieldWithFormatter", @t("Field with formatter *"))
+   *
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   */
+  public static function schema() {
+    return new CfSchema_EntityDisplay_FieldWithFormatter();
+  }
 
   /**
    * @param string $field_name

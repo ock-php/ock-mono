@@ -1,28 +1,21 @@
 <?php
 
-namespace Drupal\renderkit\Configurator\Id;
+namespace Drupal\renderkit\Schema;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
+use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 
 /**
- * Configurator for a view mode machine name that is used across entity types.
+ * Schema for a view mode machine name that is used across entity types.
  *
  * This is currently not used anywhere, but may be used by whoever finds it
  * useful.
  */
-class Configurator_EntityGenericViewModeName extends Configurator_SelectBase {
+class CfSchema_EntityGenericViewModeName implements CfSchema_OptionsInterface {
 
   /**
-   * @param bool $required
+   * @return string[][]
    */
-  public function __construct($required = TRUE) {
-    parent::__construct($required);
-  }
-
-  /**
-   * @return mixed[]
-   */
-  protected function getSelectOptions() {
+  public function getGroupedOptions() {
 
     $modes = [];
     foreach (entity_get_info() as $type => $type_entity_info) {
@@ -43,7 +36,7 @@ class Configurator_EntityGenericViewModeName extends Configurator_SelectBase {
       $options[$mode] = implode(' / ', array_unique($aliases));
     }
 
-    return $options;
+    return ['' => $options];
   }
 
   /**
@@ -51,7 +44,7 @@ class Configurator_EntityGenericViewModeName extends Configurator_SelectBase {
    *
    * @return string|null
    */
-  protected function idGetLabel($id) {
+  public function idGetLabel($id) {
 
     $aliases = [];
     foreach (entity_get_info() as $type_entity_info) {
@@ -75,7 +68,7 @@ class Configurator_EntityGenericViewModeName extends Configurator_SelectBase {
    *
    * @return bool
    */
-  protected function idIsKnown($id) {
+  public function idIsKnown($id) {
 
     foreach (entity_get_info() as $type_entity_info) {
       if (isset($type_entity_info['view modes'][$id])) {

@@ -2,8 +2,9 @@
 
 namespace Drupal\renderkit\EntitiesListFormat;
 
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\Cf\Schema\Sequence\CfSchema_Sequence_ItemLabelCallback;
+use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
@@ -16,21 +17,19 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
   /**
    * @CfrPlugin("simpleTable", "Simple table")
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator() {
+  public static function createSchema() {
 
-    return Configurator_CallbackMono::createFromClassName(
-      self::class,
-      (new Configurator_Sequence(
-        cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class)))
-        ->withItemLabelCallback(
-          function($delta) {
-            return (NULL === $delta)
-              ? t('New column')
-              : t('Column #@n', ['@n' => $delta + 1]);
-          }
-        ));
+    return CfSchema_ValueToValue_CallbackMono::fromClass(
+      __CLASS__,
+      new CfSchema_Sequence_ItemLabelCallback(
+        new CfSchema_IfaceWithContext(EntityDisplayInterface::class),
+        function($delta) {
+          return NULL === $delta
+            ? t('New column')
+            : t('Column #@n', ['@n' => $delta + 1]);
+        }));
   }
 
   /**

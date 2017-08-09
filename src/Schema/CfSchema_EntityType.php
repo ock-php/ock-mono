@@ -1,15 +1,15 @@
 <?php
 
-namespace Drupal\renderkit\Configurator\Id;
+namespace Drupal\renderkit\Schema;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
+use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 
-class Configurator_EntityType extends Configurator_SelectBase {
+class CfSchema_EntityType implements CfSchema_OptionsInterface {
 
   /**
-   * @return string[]|string[][]|mixed[]
+   * @return string[][]
    */
-  protected function getSelectOptions() {
+  public function getGroupedOptions() {
 
     $options = [];
     foreach (entity_get_info() as $entityType => $entityTypeInfo) {
@@ -24,7 +24,7 @@ class Configurator_EntityType extends Configurator_SelectBase {
    *
    * @return string|null
    */
-  protected function idGetLabel($id) {
+  public function idGetLabel($id) {
 
     if (NULL === $info = entity_get_info($id)) {
       return NULL;
@@ -38,7 +38,7 @@ class Configurator_EntityType extends Configurator_SelectBase {
    *
    * @return bool
    */
-  protected function idIsKnown($id) {
+  public function idIsKnown($id) {
     return NULL !== entity_get_info($id);
   }
 }

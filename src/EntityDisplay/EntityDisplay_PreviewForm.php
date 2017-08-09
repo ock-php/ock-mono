@@ -81,7 +81,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
       ? $_GET[$this->queryKey]
       : NULL;
 
-    $context = $this->etBundleBuildContext($entity_type, $entity);
+    $context = $this->entityBuildContext($entity_type, $entity);
 
     $build = [];
     $build['form'] = $this->buildForm($conf, $context);
@@ -124,11 +124,11 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
   /**
    * @param string $entityType
-   * @param object $bundle
+   * @param object $entity
    *
    * @return \Drupal\cfrapi\Context\CfrContextInterface
    */
-  private function etBundleBuildContext($entityType, $entity) {
+  private function entityBuildContext($entityType, $entity) {
     list(,,$bundle) = entity_extract_ids($entityType, $entity);
     return CfrContext::create()
       ->paramNameSetValue('entityType', $entityType)

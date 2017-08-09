@@ -2,8 +2,8 @@
 
 namespace Drupal\renderkit\EntityToEntity;
 
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\Configurator\Id\Configurator_FieldName;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Drupal\renderkit\Schema\CfSchema_FieldName;
 
 class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
 
@@ -25,12 +25,22 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
    * @param string $bundleName
    *   (optional) Contextual parameter.
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  public static function createConfigurator($entityType = NULL, $bundleName = NULL) {
-    $configurators = [new Configurator_FieldName(['entityreference'], $entityType, $bundleName)];
-    $labels = [t('Entity reference field')];
-    return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
+  public static function createSchema($entityType = NULL, $bundleName = NULL) {
+
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
+      __CLASS__,
+      'create',
+      [
+        new CfSchema_FieldName(
+          ['entityreference'],
+          $entityType,
+          $bundleName)
+      ],
+      [
+        t('Entity reference field'),
+      ]);
   }
 
   /**

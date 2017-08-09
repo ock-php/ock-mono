@@ -2,8 +2,8 @@
 
 namespace Drupal\renderkit\EntityToEntity;
 
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\Configurator\Id\Configurator_EntityBundleName;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Drupal\renderkit\Schema\CfSchema_EntityBundleName;
 
 class EntityToEntity_UserProfile2 extends EntityToEntityBase {
 
@@ -18,24 +18,25 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
   private $entityToUser;
 
   /**
-   * @CfrPlugin(
-   *   id = "userProfile2",
-   *   label = "Profile2 from user or author"
-   * )
+   * @ CfrPlugin("userProfile2", @t("Profile2 from user or author"))
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface|null
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface|null
    */
-  public static function createConfigurator() {
+  public static function createSchema() {
 
     if (!module_exists('profile2')) {
       return NULL;
     }
 
-    return Configurator_CallbackConfigurable::createFromClassStaticMethod(
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
       self::class,
       'create',
-      [new Configurator_EntityBundleName('profile2', FALSE)],
-      [t('Profile type')]
+      [
+        new CfSchema_EntityBundleName('profile2'),
+      ],
+      [
+        t('Profile type'),
+      ]
     );
   }
 
@@ -53,9 +54,14 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
    *   The profile2 bundle name.
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface|null $entityToUser
    */
-  public function __construct($profile2TypeName = NULL, EntityToEntityInterface $entityToUser = NULL) {
+  public function __construct(
+    $profile2TypeName = NULL,
+    EntityToEntityInterface $entityToUser = NULL
+  ) {
+
     $this->profile2TypeName = $profile2TypeName;
-    if ('user' === $entityToUser->getTargetType()) {
+
+    if (NULL !== $entityToUser && 'user' === $entityToUser->getTargetType()) {
       $this->entityToUser = $entityToUser;
     }
   }

@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\renderkit\Configurator\Configurator_EntityDisplay_Title;
+use Drupal\renderkit\Schema\CfSchema_EntityDisplay_Title;
 
 /**
  * The most boring entity display handler, ever.
@@ -23,10 +23,10 @@ class EntityDisplay_Title extends EntityDisplayBase {
    *   label = "Entity title"
    * )
    *
-   * @return \Drupal\renderkit\Configurator\Configurator_EntityDisplay_Title
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator() {
-    return Configurator_EntityDisplay_Title::create();
+  public static function createAdvancedSchema() {
+    return CfSchema_EntityDisplay_Title::create()->getValSchema();
   }
 
   /**

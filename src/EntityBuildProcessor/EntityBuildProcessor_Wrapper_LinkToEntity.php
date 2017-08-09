@@ -2,12 +2,11 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
-use Drupal\renderkit\Configurator\Configurator_TagName;
 use Drupal\renderkit\Html\HtmlAttributesInterface;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
+use Drupal\renderkit\Schema\CfSchema_TagName;
 
 /**
  * Wraps the content from a decorated display handler into a link, linking to
@@ -28,31 +27,19 @@ class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase
   use HtmlAttributesTrait;
 
   /**
-   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
-   */
-  public static function entityTitleSchema() {
-    return GroupSchema_Callback::createFromClassStaticMethod(
-      __CLASS__,
-      'entityTitleLinkWrapper',
-      [Configurator_TagName::createForTitle()],
-      [t('Tag name')]);
-  }
-
-  /**
    * @CfrPlugin(
    *   id = "entityTitleLinkWrapper",
    *   label = @t("Entity title link wrapper")
    * )
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function entityTitleConfigurator() {
-    return Configurator_CallbackConfigurable::createFromClassStaticMethod(
+  public static function entityTitleSchema() {
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'entityTitleLinkWrapper',
-      [Configurator_TagName::createForTitle()],
-      [t('Tag name')]
-    );
+      [CfSchema_TagName::createForTitle()],
+      [t('Tag name')]);
   }
 
   /**

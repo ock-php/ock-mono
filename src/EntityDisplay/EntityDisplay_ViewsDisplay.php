@@ -2,10 +2,10 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\Configurator\Id\Configurator_ViewsDisplayId_Entity;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
+use Drupal\renderkit\Schema\CfSchema_ViewsDisplayId_Entity;
 
 /**
  * Show a view (from "views" module) for the entity.
@@ -27,41 +27,50 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    */
   private $labeledDisplay;
 
-  public static function createSchema($entityType = NULL) {
-
-    # return GroupSchema_Callback::createFromClassStaticMethod()
-  }
-
   /**
    * @CfrPlugin(
    *   id = "viewsDisplay",
    *   label = @t("Views display")
    * )
    *
-   * @param string $entityType
+   * @param string|null $entityType
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator($entityType = NULL) {
+  public static function createSchema($entityType = NULL) {
 
-    return Configurator_CallbackConfigurable::createFromCallable(
-      function ($id, LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL) {
-        list($view_name, $display_id) = explode(':', $id . ':');
-        if ('' === $view_name || '' === $display_id) {
-          return NULL;
-        }
-        // No further checking at this point.
-        return new self($view_name, $display_id, $labeledEntityBuildProcessor);
-      },
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
+      __CLASS__,
+      'create',
       [
-        new Configurator_ViewsDisplayId_Entity($entityType),
-        \cfrplugin()->interfaceGetOptionalConfigurator(
-          LabeledEntityBuildProcessorInterface::class),
+        new CfSchema_ViewsDisplayId_Entity($entityType),
+        CfSchema_IfaceWithContext::createOptional(LabeledEntityBuildProcessorInterface::class),
       ],
       [
         t('Views display'),
         t('Label format'),
       ]);
+  }
+
+  /**
+   * @param string $id
+   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledEntityBuildProcessor
+   *
+   * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_ViewsDisplay|null
+   */
+  public static function create($id, LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL) {
+
+    list($view_name, $display_id) = explode(':', $id . ':');
+
+    if ('' === $view_name || '' === $display_id) {
+      return NULL;
+    }
+
+    // No further checking at this point.
+    return new self(
+      $view_name,
+      $display_id,
+      $labeledEntityBuildProcessor);
   }
 
   /**

@@ -2,9 +2,8 @@
 
 namespace Drupal\renderkit\EntityCondition;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\Configurator\Id\Configurator_FieldName;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Drupal\renderkit\Schema\CfSchema_FieldName;
 
 /**
  * An entity condition that returns true if a given timestamp is contained in
@@ -23,42 +22,28 @@ class EntityCondition_DateFieldInterval implements EntityConditionInterface {
   private $referenceTimestamp;
 
   /**
-   * @param string $entityType
-   * @param string $bundleName
-   *
-   * @return \Drupal\cfrapi\CfrSchema\Group\GroupSchemaInterface
-   */
-  public static function createSchema($entityType = NULL, $bundleName = NULL) {
-
-    return GroupSchema_Callback::createFromClassStaticMethod(
-      __CLASS__,
-      'createNow',
-      [
-        new Configurator_FieldName(
-          ['date'],
-          $entityType,
-          $bundleName)
-      ],
-      [t('Date field')]);
-  }
-
-  /**
    * @CfrPlugin(
    *   id = "dateFieldInterval",
    *   label = @t("Date field interval")
    * )
    *
    * @param string $entityType
-   *   The entity type. Contextual argument.
    * @param string $bundleName
-   *   The bundle name. Contextual argument.
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator($entityType = NULL, $bundleName = NULL) {
-    $configurators = [new Configurator_FieldName(['date'], $entityType, $bundleName)];
-    $labels = [t('Date field')];
-    return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'createNow', $configurators, $labels);
+  public static function createSchema($entityType = NULL, $bundleName = NULL) {
+
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
+      __CLASS__,
+      'createNow',
+      [
+        new CfSchema_FieldName(
+          ['date'],
+          $entityType,
+          $bundleName)
+      ],
+      [t('Date field')]);
   }
 
   /**

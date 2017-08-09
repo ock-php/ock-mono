@@ -1,16 +1,16 @@
 <?php
 
-namespace Drupal\renderkit\Configurator\Id;
+namespace Drupal\renderkit\Schema;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
+use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 
 /**
- * Configurator for a view mode machine name for a given entity type.
+ * Schema for a view mode machine name for a given entity type.
  *
  * This is currently not used anywhere, but may be used by whoever finds it
  * useful.
  */
-class Configurator_EntityViewModeName extends Configurator_SelectBase {
+class CfSchema_EntityViewModeName implements CfSchema_OptionsInterface {
 
   /**
    * @var string
@@ -19,17 +19,15 @@ class Configurator_EntityViewModeName extends Configurator_SelectBase {
 
   /**
    * @param string $entityType
-   * @param bool $required
    */
-  public function __construct($entityType, $required = TRUE) {
+  public function __construct($entityType) {
     $this->entityType = $entityType;
-    parent::__construct($required);
   }
 
   /**
-   * @return mixed[]
+   * @return string[][]
    */
-  protected function getSelectOptions() {
+  public function getGroupedOptions() {
 
     $entity_info = entity_get_info($this->entityType);
     $options = [];
@@ -39,7 +37,7 @@ class Configurator_EntityViewModeName extends Configurator_SelectBase {
       }
     }
 
-    return $options;
+    return ['' => $options];
   }
 
   /**
@@ -47,7 +45,7 @@ class Configurator_EntityViewModeName extends Configurator_SelectBase {
    *
    * @return string|null
    */
-  protected function idGetLabel($id) {
+  public function idGetLabel($id) {
     $entity_info = entity_get_info($this->entityType);
     if (isset($entity_info['view modes'][$id]['label'])) {
       return $entity_info['view modes'][$id]['label'];
@@ -65,7 +63,7 @@ class Configurator_EntityViewModeName extends Configurator_SelectBase {
    *
    * @return bool
    */
-  protected function idIsKnown($id) {
+  public function idIsKnown($id) {
     $entity_info = entity_get_info($this->entityType);
     return isset($entity_info['view modes'][$id]);
   }

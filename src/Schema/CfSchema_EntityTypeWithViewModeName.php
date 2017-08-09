@@ -1,14 +1,14 @@
 <?php
 
-namespace Drupal\renderkit\Configurator\Id;
+namespace Drupal\renderkit\Schema;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
+use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 
 /**
- * Configurator for a string consisting of entity type plus view mode name, such
+ * Schema for a string consisting of entity type plus view mode name, such
  * as 'node:teaser' or 'taxonomy_term:full'.
  */
-class Configurator_EntityTypeWithViewModeName extends Configurator_SelectBase {
+class CfSchema_EntityTypeWithViewModeName implements CfSchema_OptionsInterface {
 
   /**
    * @var null|string
@@ -17,17 +17,15 @@ class Configurator_EntityTypeWithViewModeName extends Configurator_SelectBase {
 
   /**
    * @param string|null $entityType
-   * @param bool $required
    */
-  public function __construct($entityType = NULL, $required = TRUE) {
+  public function __construct($entityType = NULL) {
     $this->entityType = $entityType;
-    parent::__construct($required);
   }
 
   /**
    * @return mixed[]
    */
-  protected function getSelectOptions() {
+  public function getGroupedOptions() {
 
     $options = [];
     foreach ($this->getFilteredEntityInfo() as $type => $type_entity_info) {
@@ -48,7 +46,7 @@ class Configurator_EntityTypeWithViewModeName extends Configurator_SelectBase {
    *
    * @return string|null
    */
-  protected function idGetLabel($id) {
+  public function idGetLabel($id) {
     list($type, $mode) = explode(':', $id . ':');
 
     if ('' === $type || '' === $mode) {
@@ -77,7 +75,7 @@ class Configurator_EntityTypeWithViewModeName extends Configurator_SelectBase {
    *
    * @return bool
    */
-  protected function idIsKnown($id) {
+  public function idIsKnown($id) {
 
     list($type, $mode) = explode(':', $id . ':');
 

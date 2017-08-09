@@ -1,10 +1,10 @@
 <?php
 
-namespace Drupal\renderkit\Configurator\Id;
+namespace Drupal\renderkit\Schema;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
+use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 
-class Configurator_ViewsDisplayId_Entity extends Configurator_SelectBase {
+class CfSchema_ViewsDisplayId_Entity implements CfSchema_OptionsInterface {
 
   /**
    * @var string|null
@@ -12,12 +12,10 @@ class Configurator_ViewsDisplayId_Entity extends Configurator_SelectBase {
   private $entityType;
 
   /**
-   * @param string $entityType
-   * @param bool $required
+   * @param string|null $entityType
    */
-  public function __construct($entityType = NULL, $required = TRUE) {
+  public function __construct($entityType = NULL) {
     $this->entityType = $entityType;
-    parent::__construct($required);
   }
 
   /**
@@ -25,7 +23,7 @@ class Configurator_ViewsDisplayId_Entity extends Configurator_SelectBase {
    *
    * @return bool
    */
-  protected function idIsKnown($id) {
+  public function idIsKnown($id) {
     list($view_name, $display_id) = explode(':', $id . ':');
     return 1
       && '' !== $view_name
@@ -35,9 +33,11 @@ class Configurator_ViewsDisplayId_Entity extends Configurator_SelectBase {
   }
 
   /**
-   * @return mixed[]
+   * @return string[][]
+   *   Format: $[$groupLabel][$optionKey] = $optionLabel,
+   *   with $groupLabel === '' for toplevel options.
    */
-  protected function getSelectOptions() {
+  public function getGroupedOptions() {
 
     /** @var \view[] $views */
     $views = \views_get_all_views();
@@ -105,7 +105,7 @@ class Configurator_ViewsDisplayId_Entity extends Configurator_SelectBase {
    *
    * @return string|null
    */
-  protected function idGetLabel($id) {
+  public function idGetLabel($id) {
     list($view_name, $display_id) = explode(':', $id . ':');
     if ('' === $view_name || '' === $display_id) {
       return NULL;

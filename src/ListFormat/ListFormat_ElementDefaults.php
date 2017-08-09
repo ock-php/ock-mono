@@ -2,12 +2,23 @@
 
 namespace Drupal\renderkit\ListFormat;
 
+use Drupal\renderkit\Configurator\Configurator_ListFormat_Expert;
+
 class ListFormat_ElementDefaults implements ListFormatInterface {
 
   /**
    * @var array
    */
   private $elementDefaults;
+
+  /**
+   * @CfrPlugin("expert", "Expert")
+   *
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   */
+  public function createExpertSchema() {
+    return new Configurator_ListFormat_Expert();
+  }
 
   /**
    * @param array $elementDefaults

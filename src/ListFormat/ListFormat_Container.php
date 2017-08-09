@@ -2,34 +2,34 @@
 
 namespace Drupal\renderkit\ListFormat;
 
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\Configurator\Configurator_ClassAttribute;
-use Drupal\renderkit\Configurator\Configurator_TagName;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\renderkit\Html\HtmlTagInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
+use Drupal\renderkit\Schema\CfSchema_ClassAttribute;
+use Drupal\renderkit\Schema\CfSchema_TagName;
 
 class ListFormat_Container implements ListFormatInterface, HtmlTagInterface {
 
   use HtmlTagTrait;
 
   /**
-   * @CfrPlugin(
-   *   id = "container",
-   *   label = @t("Outer container element")
-   * )
+   * @CfrPlugin("container", @t("Outer container element"))
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator() {
-    $configurators = [
-      Configurator_TagName::createForContainer(),
-      Configurator_ClassAttribute::create(),
-    ];
-    $labels = [
-      t('List type'),
-      t('Classes'),
-    ];
-    return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
+  public static function createSchema() {
+
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
+      __CLASS__,
+      'create',
+      [
+        CfSchema_TagName::createForContainer(),
+        CfSchema_ClassAttribute::create(),
+      ],
+      [
+        t('List type'),
+        t('Classes'),
+      ]);
   }
 
   /**

@@ -2,10 +2,10 @@
 
 namespace Drupal\renderkit\ListFormat;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_FlatOptionsSelect;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\Configurator\Configurator_ClassAttribute;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
+use Drupal\renderkit\Schema\CfSchema_ClassAttribute;
+use Drupal\renderkit\Schema\CfSchema_TagName;
 
 /**
  * Builds a render array for ul/li or ol/li lists.
@@ -25,26 +25,23 @@ class ListFormat_HtmlList implements ListFormatInterface {
   private $itemAttributes = [];
 
   /**
-   * @CfrPlugin(
-   *   id = "htmlList",
-   *   label = @t("HTML list")
-   * )
+   * @CfrPlugin("htmlList", @t("HTML list"))
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator() {
-    $configurators = [
-      Configurator_FlatOptionsSelect::createRequired(
-        [
-          'ul' => t('Unordered list (ul)'),
-          'ol' => t('Ordered list (ol)'),
-        ],
-        'ul'),
-      new Configurator_ClassAttribute(),
-    ];
-    $labels = [t('List type'), t('Classes')];
-    $cfr = Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
-    return $cfr;
+  public static function createSchema() {
+
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
+      __CLASS__,
+      'create',
+      [
+        CfSchema_TagName::createForHtmlList(),
+        CfSchema_ClassAttribute::create(),
+      ],
+      [
+        t('List type'),
+        t('Classes'),
+      ]);
   }
 
   /**

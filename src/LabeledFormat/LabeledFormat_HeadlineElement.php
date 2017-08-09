@@ -2,8 +2,8 @@
 
 namespace Drupal\renderkit\LabeledFormat;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_FlatOptionsSelect;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\Options\CfSchema_Options_Fixed;
 
 class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
 
@@ -18,13 +18,13 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
    *   label = "Headline element"
    * )
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  public static function createConfigurator() {
-    return Configurator_CallbackConfigurable::createFromClassName(
+  public static function createSchema() {
+    return CfSchema_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        new Configurator_FlatOptionsSelect(
+        CfSchema_Options_Fixed::createFlat(
           [
             'h1' => 'H1',
             'h2' => 'H2',
@@ -57,7 +57,12 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
    *   Modified or wrapped render array with label.
    */
   public function buildAddLabel(array $build, $label) {
-    $label_markup = '<h2>' . check_plain($label) . '</h2>';
+
+    $label_markup = ''
+      . '<' . $this->tagName . '>'
+      . check_plain($label)
+      . '</' . $this->tagName . '>';
+
     return [
       'label' => [
         '#markup' => $label_markup,

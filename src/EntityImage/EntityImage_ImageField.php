@@ -2,10 +2,9 @@
 
 namespace Drupal\renderkit\EntityImage;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\renderkit\EntityDisplay\EntityDisplayBaseTrait;
-use Drupal\renderkit\Configurator\Id\Configurator_FieldName;
+use Drupal\renderkit\Schema\CfSchema_FieldName;
 
 class EntityImage_ImageField implements EntityImageInterface {
 
@@ -17,17 +16,19 @@ class EntityImage_ImageField implements EntityImageInterface {
   private $fieldName;
 
   /**
+   * @CfrPlugin("entityImageField", @t("Entity image field"))
+   *
    * @param string $entityType
    * @param string $bundleName
    *
-   * @return \Drupal\cfrapi\CfrSchema\Group\GroupSchemaInterface
+   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
   public static function createSchema($entityType = NULL, $bundleName = NULL) {
 
-    return GroupSchema_Callback::createFromClass(
+    return CfSchema_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        new Configurator_FieldName(
+        new CfSchema_FieldName(
           ['image'],
           $entityType,
           $bundleName),
@@ -35,25 +36,6 @@ class EntityImage_ImageField implements EntityImageInterface {
       [
         t('Image field'),
       ]);
-  }
-
-  /**
-   * @CfrPlugin(
-   *   id = "entityImageField",
-   *   label = "Entity image field"
-   * )
-   *
-   * @param string $entityType
-   *   (optional) Contextual parameter.
-   * @param string $bundleName
-   *   (optional) Contextual parameter.
-   *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
-   */
-  public static function createPlugin($entityType = NULL, $bundleName = NULL) {
-    $configurators = [new Configurator_FieldName(['image'], $entityType, $bundleName)];
-    $labels = [t('Image field')];
-    return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }
 
   /**

@@ -2,10 +2,9 @@
 
 namespace Drupal\renderkit\EntityImage;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
-use Drupal\cfrapi\Context\CfrContextInterface;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Context\CfContextInterface;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
 class EntityImage_Related implements EntityImageInterface {
@@ -26,50 +25,28 @@ class EntityImage_Related implements EntityImageInterface {
   private $relatedEntityType;
 
   /**
-   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
-   *
-   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
-   */
-  public static function createSchema(CfrContextInterface $context = NULL) {
-
-    return GroupSchema_Callback::createFromClass(
-      __CLASS__,
-      [
-        new IfaceSchema(EntityToEntityInterface::class, $context),
-        // This one is without context, because we no longer know the entity type.
-        new IfaceSchema(EntityImageInterface::class),
-      ],
-      [
-        t('Entity relation'),
-        t('Related entity image provider'),
-      ]);
-  }
-
-  /**
    * @CfrPlugin(
    *   id = "related",
    *   label = "Image from related entity"
    * )
    *
-   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
+   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator(CfrContextInterface $context = NULL) {
-    /** @var \Drupal\cfrplugin\Hub\CfrPluginHubInterface $hub */
-    $hub = cfrplugin();
-    return Configurator_CallbackConfigurable::createFromClassName(
+  public static function createSchema(CfContextInterface $context = NULL) {
+
+    return CfSchema_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        $hub->interfaceGetConfigurator(EntityToEntityInterface::class, $context),
+        new CfSchema_IfaceWithContext(EntityToEntityInterface::class, $context),
         // This one is without context, because we no longer know the entity type.
-        $hub->interfaceGetConfigurator(EntityImageInterface::class),
+        new CfSchema_IfaceWithContext(EntityImageInterface::class),
       ],
       [
         t('Entity relation'),
         t('Related entity image provider'),
-      ]
-    );
+      ]);
   }
 
   /**

@@ -2,8 +2,8 @@
 
 namespace Drupal\renderkit\ImageProcessor;
 
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\Configurator\Id\Configurator_ImageStyleName;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Drupal\renderkit\Schema\CfSchema_ImageStyleName;
 
 class ImageProcessor_ImageStyle implements ImageProcessorInterface {
 
@@ -18,12 +18,18 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    *   label = @t("Image style")
    * )
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator() {
-    $paramConfigurators = [new Configurator_ImageStyleName()];
-    $labels = [t('Image style')];
-    return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $paramConfigurators, $labels);
+  public static function createSchema() {
+
+    return CfSchema_GroupVal_Callback::fromClass(
+      __CLASS__,
+      [
+        new CfSchema_ImageStyleName(),
+      ],
+      [
+        t('Image style'),
+      ]);
   }
 
   /**

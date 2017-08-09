@@ -2,13 +2,8 @@
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
-use Drupal\cfrapi\CfrSchema\Iface\IfaceSchemaInterface;
-use Drupal\cfrapi\CfrSchema\Sequence\SequenceSchema;
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
-use Drupal\cfrapi\Context\CfrContextInterface;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Context\CfContextInterface;
+use Donquixote\Cf\Schema\Callback\CfSchema_Callback;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 class BuildProvider_Sequence implements BuildProviderInterface {
@@ -24,58 +19,27 @@ class BuildProvider_Sequence implements BuildProviderInterface {
   private $listFormat;
 
   /**
-   * @param \Drupal\cfrapi\Context\CfrContextInterface|NULL $context
-   *
-   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
-   */
-  public static function getCfrSchema(CfrContextInterface $context = NULL) {
-
-    return GroupSchema_Callback::createFromClass(
-      __CLASS__,
-      [
-        new SequenceSchema(
-          new IfaceSchema(
-            BuildProviderInterface::class,
-            $context)),
-        IfaceSchema::createOptional(
-          ListFormatInterface::class,
-          $context),
-      ],
-      [
-        t('Build providers'),
-        t('List format'),
-      ]
-    );
-  }
-
-  /**
    * @CfrPlugin(
    *   id = "sequence",
    *   label = "Sequence of build providers"
    * )
    *
-   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
+   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator(CfrContextInterface $context = NULL) {
-    return Configurator_CallbackConfigurable::createFromClassName(
-      __CLASS__,
-      [
-        new Configurator_Sequence(
-          cfrplugin()->interfaceGetOptionalConfigurator(
-            BuildProviderInterface::class,
-            $context)
-        ),
-        cfrplugin()->interfaceGetOptionalConfigurator(
-          ListFormatInterface::class,
-          $context),
-      ],
-      [
-        NULL,
-        t('List format'),
-      ]
-    );
+  public static function getCfrSchema(CfContextInterface $context = NULL) {
+
+    return CfSchema_Callback::fromClass(__CLASS__)
+      ->withContext($context)
+      ->withParam_IfaceSequence(
+        0,
+        BuildProviderInterface::class,
+        t('Build providers'))
+      ->withParam_IfaceOrNull(
+        1,
+        ListFormatInterface::class,
+        t('List format'));
   }
 
   /**

@@ -2,16 +2,12 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-
-
-use Drupal\cfrapi\CfrSchema\ValueToValue\ValueToValueSchema_Callback;
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema;
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrapi\Configurator\Group\Configurator_GroupWithValueCallback;
-use Drupal\renderkit\Configurator\Configurator_ClassAttribute;
-use Drupal\renderkit\Configurator\Configurator_TagName;
+use Donquixote\Cf\Schema\Group\CfSchema_Group;
+use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 use Drupal\renderkit\Html\HtmlAttributesInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
+use Drupal\renderkit\Schema\CfSchema_ClassAttribute;
+use Drupal\renderkit\Schema\CfSchema_TagName;
 
 /**
  * A typical entity container with contextual links and stuff.
@@ -26,47 +22,26 @@ class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorB
   use HtmlTagTrait;
 
   /**
-   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   * @CfrPlugin("contextualLinksWrapper", "Entity contextual links wrapper")
+   *
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
   public static function createCfrSchema() {
 
-    $groupSchema = new GroupSchema(
+    $groupSchema = new CfSchema_Group(
       [
-        'tag_name' => Configurator_TagName::createForContainer('article'),
-        'classes' => Configurator_ClassAttribute::create(),
+        'tag_name' => CfSchema_TagName::createForContainer('article'),
+        'classes' => CfSchema_ClassAttribute::create(),
       ],
       [
         'tag_name' => t('Tag name'),
         'classes' => t('Classes'),
       ]);
 
-    return ValueToValueSchema_Callback::createFromClassStaticMethod(
+    return CfSchema_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
       'createFromGroupValues',
       $groupSchema);
-  }
-
-  /**
-   * @CfrPlugin("contextualLinksWrapper", "Entity contextual links wrapper")
-   *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
-   */
-  public static function createConfigurator() {
-
-    $configurator = new Configurator_GroupWithValueCallback(
-      [self::class, 'createFromGroupValues']);
-
-    $configurator->keySetConfigurator(
-      'tag_name',
-      Configurator_TagName::createForContainer('article'),
-      t('Tag name'));
-
-    $configurator->keySetConfigurator(
-      'classes',
-      Configurator_ClassAttribute::create(),
-      t('Classes'));
-
-    return $configurator;
   }
 
   /**

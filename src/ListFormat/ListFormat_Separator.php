@@ -2,8 +2,8 @@
 
 namespace Drupal\renderkit\ListFormat;
 
-use Drupal\renderkit\Configurator\Configurator_ListSeparator;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Drupal\renderkit\Schema\CfSchema_ListSeparator;
 
 /**
  * Concatenates the list items with a separator.
@@ -21,14 +21,18 @@ class ListFormat_Separator implements ListFormatInterface {
    *   label = @t("Separator")
    * )
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  public static function createConfigurator() {
-    $configurators = [
-      new Configurator_ListSeparator(),
-    ];
-    $labels = [t('Separator')];
-    return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
+  public static function createSchema() {
+
+    return CfSchema_GroupVal_Callback::fromClass(
+      __CLASS__,
+      [
+        new CfSchema_ListSeparator(),
+      ],
+      [
+        t('Separator'),
+      ]);
   }
 
   /**

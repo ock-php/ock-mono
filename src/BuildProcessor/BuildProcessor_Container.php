@@ -2,60 +2,46 @@
 
 namespace Drupal\renderkit\BuildProcessor;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\renderkit\Configurator\Configurator_ClassAttribute;
-use Drupal\renderkit\Configurator\Configurator_TagName;
+use Donquixote\Cf\Schema\Callback\CfSchema_Callback;
 use Drupal\renderkit\Html\HtmlAttributesInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
+use Drupal\renderkit\Schema\CfSchema_ClassAttribute;
+use Drupal\renderkit\Schema\CfSchema_TagName;
 
 class BuildProcessor_Container implements HtmlAttributesInterface, BuildProcessorInterface {
 
   use HtmlTagTrait;
 
   /**
-   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
+   * @CfrPlugin("container", @t("Container"))
+   *
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
   public static function createSchema() {
 
-    $schemas = [
-      Configurator_TagName::createFree(),
-      Configurator_ClassAttribute::create(),
-    ];
-
-    $labels = [
-      t('Tag name'),
-      t('Classes'),
-    ];
-
-    return GroupSchema_Callback::createFromClassStaticMethod(
-      __CLASS__,
-      'create',
-      $schemas,
-      $labels);
+    return CfSchema_Callback::fromStaticMethod(__CLASS__, 'create')
+      ->withParamSchema(
+        0,
+        CfSchema_TagName::createFree(),
+        t('Tag name'))
+      ->withParamSchema(
+        1,
+        CfSchema_ClassAttribute::create(),
+        t('Classes'));
   }
 
   /**
-   * @CfrPlugin(
-   *   id = "container",
-   *   label = @t("Container")
+   * @_CfrPlugin("container", @t("Container"))
+   * @_ParamSchemas(
+   *   0 = "renderkit.tagName.container",
+   *   1 = "renderkit.classes"
    * )
+   * @_ParamLabels(
+   *   0 = @t("Tag name")
+   *   1 = @t("Classes")
+   * )s
+   * @_ParamSchema(0, "renderkit.tagName.container", @t("Tag name"))
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
-   */
-  public static function createConfigurator() {
-    $configurators = [
-      Configurator_TagName::createFree(),
-      Configurator_ClassAttribute::create(),
-    ];
-    $labels = [
-      t('Tag name'),
-      t('Classes'),
-    ];
-    return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
-  }
-
-  /**
    * @param string $tagName
    * @param array $classes
    *

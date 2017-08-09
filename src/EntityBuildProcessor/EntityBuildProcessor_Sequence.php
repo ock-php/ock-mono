@@ -2,11 +2,9 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
-use Drupal\cfrapi\Context\CfrContextInterface;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Context\CfContextInterface;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
 /**
@@ -18,38 +16,26 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
   use EntitiesBuildsProcessorTrait;
 
   /**
-   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
-   *
-   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
-   */
-  public static function createCfrSchema(CfrContextInterface $context = NULL) {
-
-    return GroupSchema_Callback::createFromClassStaticMethod(
-      __CLASS__,
-      'create',
-      [
-        IfaceSchema::createSequence(
-          EntityBuildProcessorInterface::class,
-          $context),
-      ],
-      ['']);
-  }
-
-  /**
    * @CfrPlugin(
    *   id = "sequence",
    *   label = "Sequence of processors"
    * )
    *
-   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
+   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  public static function createConfigurator(CfrContextInterface $context = NULL) {
-    $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityBuildProcessorInterface::class, $context);
-    $configurators = [new Configurator_Sequence($displayConfigurator)];
-    $labels = [''];
-    return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
+  public static function createCfrSchema(CfContextInterface $context = NULL) {
+
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
+      __CLASS__,
+      'create',
+      [
+        CfSchema_IfaceWithContext::createSequence(
+          EntityBuildProcessorInterface::class,
+          $context),
+      ],
+      ['']);
   }
 
   /**

@@ -2,11 +2,9 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
-use Drupal\cfrapi\CfrSchema\ValueToValue\ValueToValueSchema_Callback;
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
-use Drupal\cfrapi\Context\CfrContextInterface;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
+use Donquixote\Cf\Context\CfContextInterface;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 
 /**
  * A sequence of entity display handlers, whose results are assembled into a
@@ -23,29 +21,18 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
   protected $displayHandlers;
 
   /**
-   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
-   *
-   * @return \Drupal\cfrapi\CfrSchema\ValueToValue\ValueToValueSchemaInterface
-   */
-  public static function createSchema(CfrContextInterface $context = NULL) {
-    return ValueToValueSchema_Callback::createFromClass(
-      __CLASS__,
-      IfaceSchema::createSequence(
-        EntityDisplayInterface::class,
-        $context));
-  }
-
-  /**
    * @CfrPlugin("sequence", @t("Sequence of entity displays"))
    *
-   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
+   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createConfigurator(CfrContextInterface $context = NULL) {
-    $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
-    $sequenceConfigurator = new Configurator_Sequence($displayConfigurator);
-    return Configurator_CallbackMono::createFromClassName(__CLASS__, $sequenceConfigurator);
+  public static function createSchema(CfContextInterface $context = NULL) {
+    return CfSchema_ValueToValue_CallbackMono::fromClass(
+      __CLASS__,
+      CfSchema_IfaceWithContext::createSequence(
+        EntityDisplayInterface::class,
+        $context));
   }
 
   /**

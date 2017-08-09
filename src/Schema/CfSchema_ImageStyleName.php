@@ -1,16 +1,16 @@
 <?php
 
-namespace Drupal\renderkit\Configurator\Id;
+namespace Drupal\renderkit\Schema;
 
-use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
+use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 
-class Configurator_ImageStyleName extends Configurator_SelectBase {
+class CfSchema_ImageStyleName implements CfSchema_OptionsInterface {
 
   /**
-   * @return mixed[]
+   * @return string[][]
    */
-  protected function getSelectOptions() {
-    return image_style_options();
+  public function getGroupedOptions() {
+    return ['' => image_style_options()];
   }
 
   /**
@@ -18,7 +18,7 @@ class Configurator_ImageStyleName extends Configurator_SelectBase {
    *
    * @return string|null
    */
-  protected function idGetLabel($styleName) {
+  public function idGetLabel($styleName) {
     if (empty($styleName)) {
       return '- ' . t('Original image') . ' -';
     }
@@ -35,7 +35,7 @@ class Configurator_ImageStyleName extends Configurator_SelectBase {
    *
    * @return bool
    */
-  protected function idIsKnown($styleName) {
+  public function idIsKnown($styleName) {
     if (empty($styleName)) {
       return TRUE;
     }

@@ -2,11 +2,9 @@
 
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
-use Drupal\cfrapi\CfrSchema\Group\GroupSchema_Callback;
-use Drupal\cfrapi\CfrSchema\Iface\IfaceSchema;
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
-use Drupal\cfrapi\Context\CfrContextInterface;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Donquixote\Cf\Context\CfContextInterface;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
@@ -24,32 +22,23 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
   private $displays = [];
 
   /**
-   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
-   *
-   * @return \Drupal\cfrapi\CfrSchema\CfrSchemaInterface
-   */
-  public static function createCfrSchema(CfrContextInterface $context = NULL) {
-    return GroupSchema_Callback::createFromClass(
-      __CLASS__,
-      [IfaceSchema::createSequence(EntityDisplayInterface::class, $context)],
-      ['']);
-  }
-
-  /**
    * @CfrPlugin(
    *   id = "chain",
    *   label = "Chain of responsibility"
    * )
    *
-   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
+   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createPlugin(CfrContextInterface $context = NULL) {
-    $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
-    $configurators = [new Configurator_Sequence($displayConfigurator)];
-    $labels = [''];
-    return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
+  public static function createCfrSchema(CfContextInterface $context = NULL) {
+
+    return CfSchema_GroupVal_Callback::fromClass(
+      __CLASS__,
+      [CfSchema_IfaceWithContext::createSequence(
+        EntityDisplayInterface::class,
+        $context)],
+      ['']);
   }
 
   /**
