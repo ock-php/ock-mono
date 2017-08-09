@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\renderkit\Exception;
+namespace Drupal\renderkit8\Exception;
 
 /**
  * Exception that indicates a recursion in entity display execution.
  *
- * @see \Drupal\renderkit\EntityDisplay\Decorator\EntityDisplayRecursionDetectionDecorator
+ * @see \Drupal\renderkit8\EntityDisplay\Decorator\EntityDisplayRecursionDetectionDecorator
  */
 class EntityDisplayRecursionException extends \RuntimeException {
 

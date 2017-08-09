@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\ImagesDisplay;
+namespace Drupal\renderkit8\ImagesDisplay;
 
 interface ImagesDisplayInterface {
 

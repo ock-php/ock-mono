@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\renderkit\EntityBuildProcessor;
+namespace Drupal\renderkit8\EntityBuildProcessor;
 
-use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
 
 class EntityBuildProcessor_FromBuildProcessor extends EntityBuildProcessorBase {
 
   /**
-   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
+   * @var \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface
    */
   private $processor;
 
@@ -18,9 +18,9 @@ class EntityBuildProcessor_FromBuildProcessor extends EntityBuildProcessorBase {
    *   inline = true
    * )
    *
-   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $processor
+   * @param \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface $processor
    *
-   * @return \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
+   * @return \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface
    *
    * @todo Use identity / inline.
    */
@@ -31,7 +31,7 @@ class EntityBuildProcessor_FromBuildProcessor extends EntityBuildProcessorBase {
   /**
    * BuildProcessorEntityBuildProcessor constructor.
    *
-   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $processor
+   * @param \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface $processor
    */
   public function __construct(BuildProcessorInterface $processor) {
     $this->processor = $processor;

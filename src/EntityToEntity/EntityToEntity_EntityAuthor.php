@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityToEntity;
+namespace Drupal\renderkit8\EntityToEntity;
 
 /**
  * @CfrPlugin(
@@ -16,7 +16,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    *   label = @t("User entity or author")
    * )
    *
-   * @return \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
+   * @return \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface
    */
   public static function userEntityOrAuthor() {
     return new EntityToEntity_SelfOrOther(new self());

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityToRelatedIds;
+namespace Drupal\renderkit8\EntityToRelatedIds;
 
 abstract class EntityToRelatedIdsBase implements EntityToRelatedIdsInterface {
 

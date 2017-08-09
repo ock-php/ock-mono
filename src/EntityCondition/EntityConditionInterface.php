@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityCondition;
+namespace Drupal\renderkit8\EntityCondition;
 
 interface EntityConditionInterface {
 

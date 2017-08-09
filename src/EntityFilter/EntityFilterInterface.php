@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\renderkit\EntityFilter;
+namespace Drupal\renderkit8\EntityFilter;
 
 /**
  * Interface for entity filters.
  *
- * @see \Drupal\renderkit\EntityCondition\EntityConditionInterface
+ * @see \Drupal\renderkit8\EntityCondition\EntityConditionInterface
  */
 interface EntityFilterInterface {
 

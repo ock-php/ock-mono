@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\ListFormat;
+namespace Drupal\renderkit8\ListFormat;
 
 /**
  * List format that does not add any wrappers and containers.

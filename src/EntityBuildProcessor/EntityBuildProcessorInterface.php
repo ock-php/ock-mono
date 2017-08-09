@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityBuildProcessor;
+namespace Drupal\renderkit8\EntityBuildProcessor;
 
 interface EntityBuildProcessorInterface {
 

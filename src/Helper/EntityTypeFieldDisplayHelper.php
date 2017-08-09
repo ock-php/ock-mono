@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\Helper;
+namespace Drupal\renderkit8\Helper;
 
 class EntityTypeFieldDisplayHelper {
 

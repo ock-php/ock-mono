@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\EntityToEntity;
+namespace Drupal\renderkit8\EntityToEntity;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit\Schema\CfSchema_FieldName;
+use Drupal\renderkit8\Schema\CfSchema_FieldName;
 
 class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
 

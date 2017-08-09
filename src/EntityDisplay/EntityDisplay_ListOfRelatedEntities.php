@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
-use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
-use Drupal\renderkit\EntityToEntities\EntityToEntitiesInterface;
+use Drupal\renderkit8\EntitiesListFormat\EntitiesListFormatInterface;
+use Drupal\renderkit8\EntityToEntities\EntityToEntitiesInterface;
 
 /**
  * @CfrPlugin("listOfRelatedEntities", "List of related entities")
@@ -11,18 +11,18 @@ use Drupal\renderkit\EntityToEntities\EntityToEntitiesInterface;
 class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
 
   /**
-   * @var \Drupal\renderkit\EntityToEntities\EntityToEntitiesInterface
+   * @var \Drupal\renderkit8\EntityToEntities\EntityToEntitiesInterface
    */
   private $entityToEntities;
 
   /**
-   * @var \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface
+   * @var \Drupal\renderkit8\EntitiesListFormat\EntitiesListFormatInterface
    */
   private $entitiesListFormat;
 
   /**
-   * @param \Drupal\renderkit\EntityToEntities\EntityToEntitiesInterface $entityToEntities
-   * @param \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
+   * @param \Drupal\renderkit8\EntityToEntities\EntityToEntitiesInterface $entityToEntities
+   * @param \Drupal\renderkit8\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
    */
   public function __construct(EntityToEntitiesInterface $entityToEntities, EntitiesListFormatInterface $entitiesListFormat) {
     $this->entityToEntities = $entityToEntities;

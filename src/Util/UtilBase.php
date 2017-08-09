@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\Util;
+namespace Drupal\renderkit8\Util;
 
 abstract class UtilBase {
 

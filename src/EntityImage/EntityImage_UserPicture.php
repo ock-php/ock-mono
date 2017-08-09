@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\EntityImage;
+namespace Drupal\renderkit8\EntityImage;
 
 use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_Callback;
-use Drupal\renderkit\EntityDisplay\UserDisplayTrait;
+use Drupal\renderkit8\EntityDisplay\UserDisplayTrait;
 
 /**
  * Image provider based on user picture.

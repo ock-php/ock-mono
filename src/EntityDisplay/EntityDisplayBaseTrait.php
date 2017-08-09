@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
 trait EntityDisplayBaseTrait {
 
@@ -32,7 +32,7 @@ trait EntityDisplayBaseTrait {
    *
    * @return array
    *
-   * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
+   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
   abstract public function buildEntity($entity_type, $entity);
 

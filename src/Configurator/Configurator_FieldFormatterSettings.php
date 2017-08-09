@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\renderkit\Configurator;
+namespace Drupal\renderkit8\Configurator;
 
 use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
-use Drupal\renderkit\Util\FieldUtil;
+use Drupal\renderkit8\Util\FieldUtil;
 
 class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
 

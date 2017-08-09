@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\ThemePreprocessor;
+namespace Drupal\renderkit8\ThemePreprocessor;
 
 interface ThemePreprocessorInterface {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\ImageProcessor;
+namespace Drupal\renderkit8\ImageProcessor;
 
 /**
  * Responsive <img/> element with "srcset" and "sizes" attributes, based on

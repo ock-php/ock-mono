@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
 /**
  * Renders the entity in a view mode depending on the entity type.

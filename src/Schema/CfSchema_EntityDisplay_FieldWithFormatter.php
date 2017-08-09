@@ -1,12 +1,12 @@
 <?php
 
-namespace Drupal\renderkit\Schema;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Group\CfSchema_Group_V2VBase;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Donquixote\Cf\Schema\Options\CfSchema_Options_Fixed;
-use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldWithFormatter;
-use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
+use Drupal\renderkit8\EntityDisplay\EntityDisplay_FieldWithFormatter;
+use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
 class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
 
@@ -85,9 +85,9 @@ class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
   /**
    * @param array $fieldSettings
    * @param string $labelDisplay
-   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $processorOrNull
+   * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $processorOrNull
    *
-   * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_FieldWithFormatter
+   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplay_FieldWithFormatter
    */
   public static function createEntityDisplay(
     array $fieldSettings,

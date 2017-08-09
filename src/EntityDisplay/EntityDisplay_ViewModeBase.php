@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
-use Drupal\renderkit\Util\EntityUtil;
+use Drupal\renderkit8\Util\EntityUtil;
 
 abstract class EntityDisplay_ViewModeBase extends EntitiesDisplayBase {
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace Drupal\renderkit\Schema;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Exception\EvaluatorException;
 use Donquixote\Cf\Schema\Group\CfSchema_Group_V2VDecoratorBase;
 use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface;
 use Donquixote\Cf\V2V\Group\V2V_GroupInterface;
-use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessor_OuterContainer;
-use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
+use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessor_OuterContainer;
+use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
 class CfSchema_FieldDisplayProcessor_OuterContainer extends CfSchema_Group_V2VDecoratorBase {
 

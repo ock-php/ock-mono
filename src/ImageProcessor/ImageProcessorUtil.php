@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\ImageProcessor;
+namespace Drupal\renderkit8\ImageProcessor;
 
 use Drupal\cfrapi\Util\UtilBase;
 
@@ -8,7 +8,7 @@ final class ImageProcessorUtil extends UtilBase {
 
   /**
    * @param array[] $images
-   * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null $imageProcessor
+   * @param \Drupal\renderkit8\ImageProcessor\ImageProcessorInterface|null $imageProcessor
    *
    * @return array[]
    */

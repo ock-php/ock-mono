@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\Schema;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 

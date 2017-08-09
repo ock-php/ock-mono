@@ -1,15 +1,15 @@
 <?php
 
-namespace Drupal\renderkit\Schema;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Optional\CfSchema_Optional;
 use Donquixote\Cf\Schema\Options\CfSchema_Options_Fixed;
-use Drupal\renderkit\Util\UtilBase;
+use Drupal\renderkit8\Util\UtilBase;
 
 final class CfSchema_TagName extends UtilBase {
 
   /**
-   * @CfSchema("renderkit.tagName.free")
+   * @CfSchema("renderkit8.tagName.free")
    *
    * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
@@ -18,7 +18,7 @@ final class CfSchema_TagName extends UtilBase {
   }
 
   /**
-   * @CfSchema("renderkit.tagName.title")
+   * @CfSchema("renderkit8.tagName.title")
    *
    * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
@@ -27,7 +27,7 @@ final class CfSchema_TagName extends UtilBase {
   }
 
   /**
-   * @CfSchema("renderkit.tagName.container")
+   * @CfSchema("renderkit8.tagName.container")
    *
    * @param string $default
    *
@@ -38,7 +38,7 @@ final class CfSchema_TagName extends UtilBase {
   }
 
   /**
-   * @CfSchema("renderkit.tagName.list")
+   * @CfSchema("renderkit8.tagName.list")
    *
    * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */

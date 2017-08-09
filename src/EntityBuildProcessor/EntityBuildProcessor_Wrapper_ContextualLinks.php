@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\renderkit\EntityBuildProcessor;
+namespace Drupal\renderkit8\EntityBuildProcessor;
 
 use Donquixote\Cf\Schema\Group\CfSchema_Group;
 use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
-use Drupal\renderkit\Html\HtmlAttributesInterface;
-use Drupal\renderkit\Html\HtmlTagTrait;
-use Drupal\renderkit\Schema\CfSchema_ClassAttribute;
-use Drupal\renderkit\Schema\CfSchema_TagName;
+use Drupal\renderkit8\Html\HtmlAttributesInterface;
+use Drupal\renderkit8\Html\HtmlTagTrait;
+use Drupal\renderkit8\Schema\CfSchema_ClassAttribute;
+use Drupal\renderkit8\Schema\CfSchema_TagName;
 
 /**
  * A typical entity container with contextual links and stuff.

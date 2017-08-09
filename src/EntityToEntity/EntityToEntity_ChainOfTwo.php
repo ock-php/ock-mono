@@ -1,22 +1,22 @@
 <?php
 
-namespace Drupal\renderkit\EntityToEntity;
+namespace Drupal\renderkit8\EntityToEntity;
 
 class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
+   * @var \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface
    */
   private $first;
 
   /**
-   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
+   * @var \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface
    */
   private $second;
 
   /**
-   * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $first
-   * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $second
+   * @param \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface $first
+   * @param \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface $second
    */
   public function __construct(EntityToEntityInterface $first, EntityToEntityInterface $second) {
     $this->first = $first;

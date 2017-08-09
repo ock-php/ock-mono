@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\LabeledEntityDisplayListFormat;
+namespace Drupal\renderkit8\LabeledEntityDisplayListFormat;
 
 interface LabeledEntityDisplayListFormatInterface {
 

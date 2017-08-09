@@ -1,14 +1,14 @@
 <?php
 
-namespace Drupal\renderkit\Schema;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\Group\CfSchema_Group_V2VBase;
-use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
-use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessor_Wrapper_LinkToEntity;
-use Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithBuildProcessor;
-use Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithEntityBuildProcessor;
-use Drupal\renderkit\EntityDisplay\EntityDisplay_Title;
+use Drupal\renderkit8\BuildProcessor\BuildProcessor_Container;
+use Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessor_Wrapper_LinkToEntity;
+use Drupal\renderkit8\EntityDisplay\Decorator\EntityDisplay_WithBuildProcessor;
+use Drupal\renderkit8\EntityDisplay\Decorator\EntityDisplay_WithEntityBuildProcessor;
+use Drupal\renderkit8\EntityDisplay\EntityDisplay_Title;
 
 class CfSchema_EntityDisplay_Title extends CfSchema_Group_V2VBase {
 

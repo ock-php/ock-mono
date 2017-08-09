@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\LabeledListFormat;
+namespace Drupal\renderkit8\LabeledListFormat;
 
 interface LabeledListFormatInterface {
 

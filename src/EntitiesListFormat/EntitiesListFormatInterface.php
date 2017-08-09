@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntitiesListFormat;
+namespace Drupal\renderkit8\EntitiesListFormat;
 
 interface EntitiesListFormatInterface {
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\renderkit\FieldDisplayProcessor;
+namespace Drupal\renderkit8\FieldDisplayProcessor;
 
 class FieldDisplayProcessor_OuterContainer implements FieldDisplayProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
+   * @var \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
   private $decorated;
 
@@ -15,7 +15,7 @@ class FieldDisplayProcessor_OuterContainer implements FieldDisplayProcessorInter
   private $classes = [];
 
   /**
-   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface $decorated
+   * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface $decorated
    */
   public function __construct(FieldDisplayProcessorInterface $decorated) {
     $this->decorated = $decorated;

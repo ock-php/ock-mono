@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\LabeledFormat;
+namespace Drupal\renderkit8\LabeledFormat;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Options\CfSchema_Options_Fixed;

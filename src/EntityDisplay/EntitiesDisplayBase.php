@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
 /**
  * Base class for entity display handlers that takes away the buildOne() method,

@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay\Decorator;
+namespace Drupal\renderkit8\EntityDisplay\Decorator;
 
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit\Exception\EntityDisplayRecursionException;
+use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit8\Exception\EntityDisplayRecursionException;
 
 /**
  * Class that can be mixed into a decorator stack to detect recursion.
@@ -21,7 +21,7 @@ class EntityDisplay_RecursionDetectionDecorator extends EntityDisplay_NeutralDec
   private $recursionLimit;
 
   /**
-   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
+   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $decorated
    * @param int $recursionLimit
    */
   public function __construct(EntityDisplayInterface $decorated, $recursionLimit = 20) {
@@ -37,7 +37,7 @@ class EntityDisplay_RecursionDetectionDecorator extends EntityDisplay_NeutralDec
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    *
-   * @throws \Drupal\renderkit\Exception\EntityDisplayRecursionException
+   * @throws \Drupal\renderkit8\Exception\EntityDisplayRecursionException
    */
   public function buildEntities($entityType, array $entities) {
     if (self::$recursionDepth > $this->recursionLimit) {

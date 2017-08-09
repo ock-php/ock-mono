@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityFilter;
+namespace Drupal\renderkit8\EntityFilter;
 
 /**
  * @CfrPlugin(
@@ -11,12 +11,12 @@ namespace Drupal\renderkit\EntityFilter;
 class EntityFilter_Negation implements EntityFilterInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityFilter\EntityFilterInterface
+   * @var \Drupal\renderkit8\EntityFilter\EntityFilterInterface
    */
   private $negatedFilter;
 
   /**
-   * @param \Drupal\renderkit\EntityFilter\EntityFilterInterface $negatedFilter
+   * @param \Drupal\renderkit8\EntityFilter\EntityFilterInterface $negatedFilter
    */
   public function __construct(EntityFilterInterface $negatedFilter) {
     $this->negatedFilter = $negatedFilter;

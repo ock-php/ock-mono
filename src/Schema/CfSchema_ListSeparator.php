@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\Schema;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldBase;
 use Donquixote\Cf\V2V\String\V2V_StringInterface;

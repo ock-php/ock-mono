@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\EntityToRelatedIds;
+namespace Drupal\renderkit8\EntityToRelatedIds;
 
-use Drupal\renderkit\Util\EntityUtil;
+use Drupal\renderkit8\Util\EntityUtil;
 
 class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
 

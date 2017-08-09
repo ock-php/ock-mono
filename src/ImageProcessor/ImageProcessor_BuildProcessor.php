@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\ImageProcessor;
+namespace Drupal\renderkit8\ImageProcessor;
 
-use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
 
 /**
  * @CfrPlugin("buildProcessor", "Build processor")
@@ -10,18 +10,18 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 class ImageProcessor_BuildProcessor implements ImageProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|null
+   * @var \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface|null
    */
   private $buildProcessor;
 
   /**
-   * @var \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null
+   * @var \Drupal\renderkit8\ImageProcessor\ImageProcessorInterface|null
    */
   private $decorated;
 
   /**
-   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|null $buildProcessor
-   * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null $decoratedImageProcessor
+   * @param \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface|null $buildProcessor
+   * @param \Drupal\renderkit8\ImageProcessor\ImageProcessorInterface|null $decoratedImageProcessor
    */
   public function __construct(BuildProcessorInterface $buildProcessor = NULL, ImageProcessorInterface $decoratedImageProcessor = NULL) {
     $this->buildProcessor = $buildProcessor;

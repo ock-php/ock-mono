@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay\Group;
+namespace Drupal\renderkit8\EntityDisplay\Group;
 
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
+use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit8\EntityDisplay\EntitiesDisplayBase;
 
 /**
  * A group of entity display handlers acting as regions in a layout.

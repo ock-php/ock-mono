@@ -1,10 +1,10 @@
 <?php
 
-namespace Drupal\renderkit\ImagesDisplay;
+namespace Drupal\renderkit8\ImagesDisplay;
 
-use Drupal\renderkit\ImageProcessor\ImageProcessorInterface;
-use Drupal\renderkit\ListFormat\ListFormatInterface;
-use Drupal\renderkit\Util\RenderUtil;
+use Drupal\renderkit8\ImageProcessor\ImageProcessorInterface;
+use Drupal\renderkit8\ListFormat\ListFormatInterface;
+use Drupal\renderkit8\Util\RenderUtil;
 
 /**
  * @CfrPlugin(
@@ -15,18 +15,18 @@ use Drupal\renderkit\Util\RenderUtil;
 class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null
+   * @var \Drupal\renderkit8\ImageProcessor\ImageProcessorInterface|null
    */
   private $imageProcessor;
 
   /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
+   * @var \Drupal\renderkit8\ListFormat\ListFormatInterface|null
    */
   private $listFormat;
 
   /**
-   * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface $imageProcessor
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
+   * @param \Drupal\renderkit8\ImageProcessor\ImageProcessorInterface $imageProcessor
+   * @param \Drupal\renderkit8\ListFormat\ListFormatInterface $listFormat
    */
   public function __construct(ImageProcessorInterface $imageProcessor = NULL, ListFormatInterface $listFormat = NULL) {
     $this->imageProcessor = $imageProcessor;

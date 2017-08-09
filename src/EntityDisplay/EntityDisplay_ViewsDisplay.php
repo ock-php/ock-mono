@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
-use Drupal\renderkit\Schema\CfSchema_ViewsDisplayId_Entity;
+use Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
+use Drupal\renderkit8\Schema\CfSchema_ViewsDisplayId_Entity;
 
 /**
  * Show a view (from "views" module) for the entity.
@@ -23,7 +23,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
   private $displayId;
 
   /**
-   * @var \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface
+   * @var \Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface
    */
   private $labeledDisplay;
 
@@ -54,9 +54,9 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
 
   /**
    * @param string $id
-   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledEntityBuildProcessor
+   * @param \Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledEntityBuildProcessor
    *
-   * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_ViewsDisplay|null
+   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplay_ViewsDisplay|null
    */
   public static function create($id, LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL) {
 
@@ -76,7 +76,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
   /**
    * @param string $viewName
    * @param string $displayId
-   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledDisplay
+   * @param \Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledDisplay
    */
   public function __construct($viewName, $displayId, LabeledEntityBuildProcessorInterface $labeledDisplay = NULL) {
     $this->viewName = $viewName;
@@ -94,7 +94,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    *
    * @return array
    *
-   * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
+   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
   public function buildEntity($entity_type, $entity) {
     $etid = $this->entityGetId($entity_type, $entity);

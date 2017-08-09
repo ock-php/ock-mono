@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\FieldDisplayProcessor;
+namespace Drupal\renderkit8\FieldDisplayProcessor;
 
 class FieldDisplayProcessor_Bare implements FieldDisplayProcessorInterface {
 

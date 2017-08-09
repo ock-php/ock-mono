@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\LabeledListFormat;
+namespace Drupal\renderkit8\LabeledListFormat;
 
-use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Drupal\renderkit8\ListFormat\ListFormatInterface;
 
 /**
  * @CfrPlugin("listformat", "List format", inline = true)
@@ -10,12 +10,12 @@ use Drupal\renderkit\ListFormat\ListFormatInterface;
 class LabeledListFormat_ListFormat implements LabeledListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface
+   * @var \Drupal\renderkit8\ListFormat\ListFormatInterface
    */
   private $listFormat;
 
   /**
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
+   * @param \Drupal\renderkit8\ListFormat\ListFormatInterface $listFormat
    */
   public function __construct(ListFormatInterface $listFormat) {
     $this->listFormat = $listFormat;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\LabeledEntityBuildProcessor;
+namespace Drupal\renderkit8\LabeledEntityBuildProcessor;
 
 interface LabeledEntityBuildProcessorInterface {
 

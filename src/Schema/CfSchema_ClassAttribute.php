@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\Schema;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\StringVal\CfSchema_StringVal;
 use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldBase;

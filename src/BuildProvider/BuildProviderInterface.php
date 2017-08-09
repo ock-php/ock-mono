@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\BuildProvider;
+namespace Drupal\renderkit8\BuildProvider;
 
 /**
  * Build providers generate a render array without any input.

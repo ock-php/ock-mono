@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\EntityFilter;
+namespace Drupal\renderkit8\EntityFilter;
 
-use Drupal\renderkit\EntityCondition\EntityConditionInterface;
+use Drupal\renderkit8\EntityCondition\EntityConditionInterface;
 
 /**
  * Adapter from EntityConditionInterface to EntityFilterInterface.
@@ -15,19 +15,19 @@ use Drupal\renderkit\EntityCondition\EntityConditionInterface;
  *
  * @todo Implement interface equivalence for cfrplugin.
  *
- * @see \Drupal\renderkit\EntityCondition\EntityCondition_FromFilter
+ * @see \Drupal\renderkit8\EntityCondition\EntityCondition_FromFilter
  */
 class EntityFilter_FromCondition implements EntityFilterInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityCondition\EntityConditionInterface
+   * @var \Drupal\renderkit8\EntityCondition\EntityConditionInterface
    */
   private $singleEntityFilter;
 
   /**
    * Adapter constructor.
    *
-   * @param \Drupal\renderkit\EntityCondition\EntityConditionInterface $entityCondition
+   * @param \Drupal\renderkit8\EntityCondition\EntityConditionInterface $entityCondition
    */
   public function __construct(EntityConditionInterface $entityCondition) {
     $this->singleEntityFilter = $entityCondition;

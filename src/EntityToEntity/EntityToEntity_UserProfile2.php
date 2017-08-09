@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\EntityToEntity;
+namespace Drupal\renderkit8\EntityToEntity;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit\Schema\CfSchema_EntityBundleName;
+use Drupal\renderkit8\Schema\CfSchema_EntityBundleName;
 
 class EntityToEntity_UserProfile2 extends EntityToEntityBase {
 
@@ -13,7 +13,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
   private $profile2TypeName;
 
   /**
-   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface|null
+   * @var \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface|null
    */
   private $entityToUser;
 
@@ -43,7 +43,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
   /**
    * @param string|null $profile2TypeName
    *
-   * @return \Drupal\renderkit\EntityToEntity\EntityToEntity_ChainOfTwo|\Drupal\renderkit\EntityToEntity\EntityToEntity_UserProfile2
+   * @return \Drupal\renderkit8\EntityToEntity\EntityToEntity_ChainOfTwo|\Drupal\renderkit8\EntityToEntity\EntityToEntity_UserProfile2
    */
   public static function create($profile2TypeName = NULL) {
     return new self($profile2TypeName, new EntityToEntity_EntityAuthor());
@@ -52,7 +52,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
   /**
    * @param string|null $profile2TypeName
    *   The profile2 bundle name.
-   * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface|null $entityToUser
+   * @param \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface|null $entityToUser
    */
   public function __construct(
     $profile2TypeName = NULL,

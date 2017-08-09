@@ -1,14 +1,14 @@
 <?php
 
-namespace Drupal\renderkit\Schema;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Exception\EvaluatorException;
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\Group\CfSchema_Group_V2VDecoratorBase;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface;
 use Donquixote\Cf\Schema\Textfield\CfSchema_Textfield_NoValidation;
-use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessor_Label;
-use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
+use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessor_Label;
+use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
 class CfSchema_FieldDisplayProcessor_Label extends CfSchema_Group_V2VDecoratorBase {
 
@@ -46,7 +46,7 @@ class CfSchema_FieldDisplayProcessor_Label extends CfSchema_Group_V2VDecoratorBa
   /**
    * @param mixed[] $values
    *
-   * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
+   * @return \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface
    *
    * @throws \Donquixote\Cf\Exception\EvaluatorException
    */

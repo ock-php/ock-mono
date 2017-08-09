@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityCondition;
+namespace Drupal\renderkit8\EntityCondition;
 
 /**
  * Checks whether $entity->status === 1.

@@ -1,21 +1,21 @@
 <?php
 
-namespace Drupal\renderkit\FieldDisplayProcessor;
+namespace Drupal\renderkit8\FieldDisplayProcessor;
 
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface;
+use Drupal\renderkit8\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface;
 
 class FieldDisplayProcessor_LabeledEntityDisplayListFormat implements FieldDisplayProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
+   * @var \Drupal\renderkit8\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
    */
   private $labeledEntityDisplayListFormat;
 
   /**
-   * @param \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat
+   * @param \Drupal\renderkit8\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat
    */
   public function __construct(LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat) {
     $this->labeledEntityDisplayListFormat = $labeledEntityDisplayListFormat;
@@ -44,10 +44,10 @@ class FieldDisplayProcessor_LabeledEntityDisplayListFormat implements FieldDispl
   }
 
   /**
-   * @param \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat
+   * @param \Drupal\renderkit8\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat
    * @param bool $withFieldClasses
    *
-   * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
+   * @return \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
   public static function create(LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat, $withFieldClasses = FALSE) {
     $fieldDisplayProcessor = new self($labeledEntityDisplayListFormat);

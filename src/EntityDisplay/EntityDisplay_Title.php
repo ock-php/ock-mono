@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
-use Drupal\renderkit\Schema\CfSchema_EntityDisplay_Title;
+use Drupal\renderkit8\Schema\CfSchema_EntityDisplay_Title;
 
 /**
  * The most boring entity display handler, ever.

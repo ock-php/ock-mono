@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
 /**
  * Convenience base class for entity display handlers.

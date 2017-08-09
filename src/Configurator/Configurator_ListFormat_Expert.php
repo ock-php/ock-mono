@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\renderkit\Configurator;
+namespace Drupal\renderkit8\Configurator;
 
 use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
 use Drupal\cfrapi\Configurator\ConfiguratorInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
-use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
+use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
 
 /**
  * This is inspired by Display suite.
@@ -111,7 +111,7 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
       'groups' => $form,
     ];
 
-    $form['#attached']['css'][] = drupal_get_path('module', 'renderkit') . '/css/renderkit.admin.css';
+    $form['#attached']['css'][] = drupal_get_path('module', 'renderkit8') . '/css/renderkit8.admin.css';
 
     return $form;
   }
@@ -135,7 +135,7 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
    *
-   * @return \Drupal\renderkit\ListFormat\ListFormatInterface
+   * @return \Drupal\renderkit8\ListFormat\ListFormatInterface
    */
   public function confGetValue($conf) {
     $defaults = $this->confGetElementDefaults($conf);

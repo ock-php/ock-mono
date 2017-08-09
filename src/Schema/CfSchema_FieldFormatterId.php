@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\Schema;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
-use Drupal\renderkit\Util\FieldUtil;
+use Drupal\renderkit8\Util\FieldUtil;
 
 class CfSchema_FieldFormatterId implements CfSchema_OptionsInterface {
 

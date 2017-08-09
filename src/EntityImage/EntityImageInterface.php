@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\EntityImage;
+namespace Drupal\renderkit8\EntityImage;
 
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 
 /**
  * Interface for entity image providers.

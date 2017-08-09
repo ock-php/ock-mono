@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\LabeledEntityDisplayListFormat;
+namespace Drupal\renderkit8\LabeledEntityDisplayListFormat;
 
-use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
+use Drupal\renderkit8\LabeledListFormat\LabeledListFormatInterface;
 
 /**
  * Implementation that does not use the entity.
@@ -16,12 +16,12 @@ use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
 class LabeledEntityDisplayListFormat_LabeledListFormat implements LabeledEntityDisplayListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface
+   * @var \Drupal\renderkit8\LabeledListFormat\LabeledListFormatInterface
    */
   private $labeledListFormat;
 
   /**
-   * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
+   * @param \Drupal\renderkit8\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    */
   public function __construct(LabeledListFormatInterface $labeledListFormat) {
     $this->labeledListFormat = $labeledListFormat;

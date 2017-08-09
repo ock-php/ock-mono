@@ -1,21 +1,21 @@
 <?php
 
-namespace Drupal\renderkit\EntityImage;
+namespace Drupal\renderkit8\EntityImage;
 
 use Donquixote\Cf\Context\CfContextInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
+use Drupal\renderkit8\EntityToEntity\EntityToEntityInterface;
 
 class EntityImage_Related implements EntityImageInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
+   * @var \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface
    */
   private $entityToEntity;
 
   /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
+   * @var \Drupal\renderkit8\EntityImage\EntityImageInterface
    */
   private $relatedEntityImage;
 
@@ -50,8 +50,8 @@ class EntityImage_Related implements EntityImageInterface {
   }
 
   /**
-   * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $entityToEntity
-   * @param \Drupal\renderkit\EntityImage\EntityImageInterface $relatedEntityImage
+   * @param \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface $entityToEntity
+   * @param \Drupal\renderkit8\EntityImage\EntityImageInterface $relatedEntityImage
    */
   public function __construct(EntityToEntityInterface $entityToEntity, EntityImageInterface $relatedEntityImage) {
     $this->entityToEntity = $entityToEntity;

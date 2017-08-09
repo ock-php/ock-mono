@@ -1,10 +1,10 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
-use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
-use Drupal\renderkit\Helper\EntityTypeFieldDisplayHelper;
-use Drupal\renderkit\Schema\CfSchema_EntityDisplay_FieldWithFormatter;
+use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface;
+use Drupal\renderkit8\Helper\EntityTypeFieldDisplayHelper;
+use Drupal\renderkit8\Schema\CfSchema_EntityDisplay_FieldWithFormatter;
 
 /**
  * Entity display handler to view a specific field on all the entities.
@@ -22,7 +22,7 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
   private $display;
 
   /**
-   * @var \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null
+   * @var \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface|null
    */
   private $fieldDisplayProcessor;
 
@@ -43,7 +43,7 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
   /**
    * @param string $field_name
    * @param array $display
-   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
+   * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
    * @param string $langcode
    */
   public function __construct($field_name, array $display = [], FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL, $langcode = NULL) {

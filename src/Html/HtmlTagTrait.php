@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\Html;
+namespace Drupal\renderkit8\Html;
 
 /**
- * @see \Drupal\renderkit\Html\HtmlTagInterface
+ * @see \Drupal\renderkit8\Html\HtmlTagInterface
  */
 trait HtmlTagTrait {
 

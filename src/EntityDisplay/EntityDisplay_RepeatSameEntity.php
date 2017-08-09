@@ -1,17 +1,17 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
 use Donquixote\Cf\Context\CfContextInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Donquixote\Cf\Schema\Textfield\CfSchema_Textfield_IntegerInRange;
-use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
+use Drupal\renderkit8\EntitiesListFormat\EntitiesListFormatInterface;
 
 class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
 
   /**
-   * @var \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface
+   * @var \Drupal\renderkit8\EntitiesListFormat\EntitiesListFormatInterface
    */
   private $entitiesListFormat;
 
@@ -42,7 +42,7 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
   }
 
   /**
-   * @param \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
+   * @param \Drupal\renderkit8\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
    * @param int $n
    */
   public function __construct(EntitiesListFormatInterface $entitiesListFormat, $n) {

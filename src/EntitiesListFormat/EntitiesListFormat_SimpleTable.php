@@ -1,16 +1,16 @@
 <?php
 
-namespace Drupal\renderkit\EntitiesListFormat;
+namespace Drupal\renderkit8\EntitiesListFormat;
 
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Donquixote\Cf\Schema\Sequence\CfSchema_Sequence_ItemLabelCallback;
 use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 
 class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
+   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface[]
    */
   private $columnDisplays;
 
@@ -33,7 +33,7 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
   }
 
   /**
-   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $columnDisplays
+   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface[] $columnDisplays
    */
   public function __construct(array $columnDisplays) {
     $this->columnDisplays = $columnDisplays;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay\Switcher;
+namespace Drupal\renderkit8\EntityDisplay\Switcher;
 
 use Donquixote\Cf\Context\CfContextInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit8\EntityDisplay\EntitiesDisplayBase;
+use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 
 /**
  * Chain-of-responsibility entity display switcher.
@@ -16,7 +16,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
   /**
    * The displays to try.
    *
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
+   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface[]
    *   Format: $[] = $displayHandler
    */
   private $displays;
@@ -42,7 +42,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
   }
 
   /**
-   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $displays
+   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface[] $displays
    */
   public function __construct(array $displays) {
     $this->displays = $displays;

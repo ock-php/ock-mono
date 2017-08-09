@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\Html;
+namespace Drupal\renderkit8\Html;
 
 interface HtmlTagInterface extends HtmlAttributesInterface {
 

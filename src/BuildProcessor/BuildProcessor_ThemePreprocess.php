@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\renderkit\BuildProcessor;
+namespace Drupal\renderkit8\BuildProcessor;
 
-use Drupal\renderkit\ThemePreprocessor\ThemePreprocessorInterface;
+use Drupal\renderkit8\ThemePreprocessor\ThemePreprocessorInterface;
 
 class BuildProcessor_ThemePreprocess implements BuildProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit\ThemePreprocessor\ThemePreprocessorInterface
+   * @var \Drupal\renderkit8\ThemePreprocessor\ThemePreprocessorInterface
    */
   private $themePreprocessor;
 
@@ -17,7 +17,7 @@ class BuildProcessor_ThemePreprocess implements BuildProcessorInterface {
    *   name = @t("Theme preprocessor")
    * )
    *
-   * @param \Drupal\renderkit\ThemePreprocessor\ThemePreprocessorInterface $themePreprocessor
+   * @param \Drupal\renderkit8\ThemePreprocessor\ThemePreprocessorInterface $themePreprocessor
    */
   public function __construct(ThemePreprocessorInterface $themePreprocessor) {
     $this->themePreprocessor = $themePreprocessor;

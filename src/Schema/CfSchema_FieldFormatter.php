@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\Schema;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_OptionsSchemaBase;
-use Drupal\renderkit\Configurator\Configurator_FieldFormatterSettings;
+use Drupal\renderkit8\Configurator\Configurator_FieldFormatterSettings;
 
 class CfSchema_FieldFormatter extends CfSchema_Drilldown_OptionsSchemaBase {
 

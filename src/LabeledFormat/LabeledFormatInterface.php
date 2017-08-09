@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\LabeledFormat;
+namespace Drupal\renderkit8\LabeledFormat;
 
 interface LabeledFormatInterface {
 

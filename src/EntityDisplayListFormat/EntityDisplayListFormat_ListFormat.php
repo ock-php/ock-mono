@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplayListFormat;
+namespace Drupal\renderkit8\EntityDisplayListFormat;
 
-use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Drupal\renderkit8\ListFormat\ListFormatInterface;
 
 /**
  * @CfrPlugin(
@@ -14,12 +14,12 @@ use Drupal\renderkit\ListFormat\ListFormatInterface;
 class EntityDisplayListFormat_ListFormat implements EntityDisplayListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface
+   * @var \Drupal\renderkit8\ListFormat\ListFormatInterface
    */
   private $listFormat;
 
   /**
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
+   * @param \Drupal\renderkit8\ListFormat\ListFormatInterface $listFormat
    */
   public function __construct(ListFormatInterface $listFormat) {
     $this->listFormat = $listFormat;

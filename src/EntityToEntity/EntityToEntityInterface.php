@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityToEntity;
+namespace Drupal\renderkit8\EntityToEntity;
 
 /**
  * Represents a one-to-one relation between entities.

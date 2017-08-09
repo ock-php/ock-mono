@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\ImageProcessor;
+namespace Drupal\renderkit8\ImageProcessor;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit\Schema\CfSchema_ImageStyleName;
+use Drupal\renderkit8\Schema\CfSchema_ImageStyleName;
 
 class ImageProcessor_ImageStyle implements ImageProcessorInterface {
 

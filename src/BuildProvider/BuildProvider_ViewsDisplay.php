@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\renderkit\BuildProvider;
+namespace Drupal\renderkit8\BuildProvider;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
-use Drupal\renderkit\Schema\CfSchema_ViewsDisplayId;
+use Drupal\renderkit8\LabeledFormat\LabeledFormatInterface;
+use Drupal\renderkit8\Schema\CfSchema_ViewsDisplayId;
 
 class BuildProvider_ViewsDisplay implements BuildProviderInterface {
 
@@ -20,7 +20,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
   private $displayId;
 
   /**
-   * @var \Drupal\renderkit\LabeledFormat\LabeledFormatInterface
+   * @var \Drupal\renderkit8\LabeledFormat\LabeledFormatInterface
    */
   private $labeledFormat;
 
@@ -46,9 +46,9 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
 
   /**
    * @param string $viewNameWithDisplayId
-   * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
+   * @param \Drupal\renderkit8\LabeledFormat\LabeledFormatInterface $labeledFormat
    *
-   * @return \Drupal\renderkit\BuildProvider\BuildProvider_ViewsDisplay|null
+   * @return \Drupal\renderkit8\BuildProvider\BuildProvider_ViewsDisplay|null
    */
   public static function doCreate($viewNameWithDisplayId, LabeledFormatInterface $labeledFormat = NULL) {
     list($view_name, $display_id) = explode(':', $viewNameWithDisplayId . ':');
@@ -63,7 +63,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
   /**
    * @param string $viewName
    * @param string $displayId
-   * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
+   * @param \Drupal\renderkit8\LabeledFormat\LabeledFormatInterface $labeledFormat
    */
   public function __construct($viewName, $displayId, LabeledFormatInterface $labeledFormat = NULL) {
     $this->viewName = $viewName;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\EntityImages;
+namespace Drupal\renderkit8\EntityImages;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit\Schema\CfSchema_FieldName;
+use Drupal\renderkit8\Schema\CfSchema_FieldName;
 
 class EntityImages_ImageField implements EntityImagesInterface {
 

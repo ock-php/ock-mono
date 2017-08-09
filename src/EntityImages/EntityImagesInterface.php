@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityImages;
+namespace Drupal\renderkit8\EntityImages;
 
 interface EntityImagesInterface {
 

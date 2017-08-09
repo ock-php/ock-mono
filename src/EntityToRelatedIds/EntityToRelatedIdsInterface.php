@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityToRelatedIds;
+namespace Drupal\renderkit8\EntityToRelatedIds;
 
 interface EntityToRelatedIdsInterface {
 

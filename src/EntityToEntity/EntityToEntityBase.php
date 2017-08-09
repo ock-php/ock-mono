@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityToEntity;
+namespace Drupal\renderkit8\EntityToEntity;
 
 
 abstract class EntityToEntityBase implements EntityToEntityInterface {

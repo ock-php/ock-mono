@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\renderkit\EntityBuildProcessor;
+namespace Drupal\renderkit8\EntityBuildProcessor;
 
 
-use Drupal\renderkit\EntityImage\EntityImageInterface;
-use Drupal\renderkit\Html\HtmlAttributesInterface;
-use Drupal\renderkit\Html\HtmlTagTrait;
+use Drupal\renderkit8\EntityImage\EntityImageInterface;
+use Drupal\renderkit8\Html\HtmlAttributesInterface;
+use Drupal\renderkit8\Html\HtmlTagTrait;
 
 /**
  * @CfrPlugin(
@@ -18,12 +18,12 @@ class EntityBuildProcessor_Wrapper_BackgroundImage extends EntityBuildProcessorB
   use HtmlTagTrait;
 
   /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
+   * @var \Drupal\renderkit8\EntityImage\EntityImageInterface
    */
   private $imageProvider;
 
   /**
-   * @param \Drupal\renderkit\EntityImage\EntityImageInterface $imageProvider
+   * @param \Drupal\renderkit8\EntityImage\EntityImageInterface $imageProvider
    */
   public function __construct(EntityImageInterface $imageProvider) {
     $this->imageProvider = $imageProvider;
@@ -38,7 +38,7 @@ class EntityBuildProcessor_Wrapper_BackgroundImage extends EntityBuildProcessorB
    * @return array
    *   Modified render array for the given entity.
    *
-   * @see \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface::processEntityBuild()
+   * @see \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface::processEntityBuild()
    */
   public function processEntityBuild(array $build, $entity_type, $entity) {
     $imageDisplay = $this->imageProvider->buildEntity($entity_type, $entity);

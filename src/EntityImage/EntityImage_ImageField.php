@@ -1,10 +1,10 @@
 <?php
 
-namespace Drupal\renderkit\EntityImage;
+namespace Drupal\renderkit8\EntityImage;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit\EntityDisplay\EntityDisplayBaseTrait;
-use Drupal\renderkit\Schema\CfSchema_FieldName;
+use Drupal\renderkit8\EntityDisplay\EntityDisplayBaseTrait;
+use Drupal\renderkit8\Schema\CfSchema_FieldName;
 
 class EntityImage_ImageField implements EntityImageInterface {
 

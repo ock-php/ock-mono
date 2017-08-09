@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\BuildProcessor;
+namespace Drupal\renderkit8\BuildProcessor;
 
 /**
  * This is currently unused and untested!

@@ -1,20 +1,20 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay\Image;
+namespace Drupal\renderkit8\EntityDisplay\Image;
 
-use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
-use Drupal\renderkit\EntityImage\EntityImageInterface;
-use Drupal\renderkit\ImageProcessor\ImageProcessorInterface;
+use Drupal\renderkit8\EntityDisplay\EntitiesDisplayBase;
+use Drupal\renderkit8\EntityImage\EntityImageInterface;
+use Drupal\renderkit8\ImageProcessor\ImageProcessorInterface;
 
 class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
 
   /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
+   * @var \Drupal\renderkit8\EntityImage\EntityImageInterface
    */
   private $entityImageProvider;
 
   /**
-   * @var \Drupal\renderkit\ImageProcessor\ImageProcessorInterface
+   * @var \Drupal\renderkit8\ImageProcessor\ImageProcessorInterface
    */
   private $imageProcessor;
 
@@ -24,10 +24,10 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
    *   label = @Translate("Image with processor")
    * )
    *
-   * @param \Drupal\renderkit\EntityImage\EntityImageInterface $entityImageProvider
-   * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|NULL $imageProcessor
+   * @param \Drupal\renderkit8\EntityImage\EntityImageInterface $entityImageProvider
+   * @param \Drupal\renderkit8\ImageProcessor\ImageProcessorInterface|NULL $imageProcessor
    *
-   * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
+   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
    */
   public static function create(EntityImageInterface $entityImageProvider, ImageProcessorInterface $imageProcessor = NULL) {
     return NULL !== $imageProcessor
@@ -38,8 +38,8 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
   /**
    * ProcessedEntityImage constructor.
    *
-   * @param \Drupal\renderkit\EntityImage\EntityImageInterface $entityImageProvider
-   * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface $imageProcessor
+   * @param \Drupal\renderkit8\EntityImage\EntityImageInterface $entityImageProvider
+   * @param \Drupal\renderkit8\ImageProcessor\ImageProcessorInterface $imageProcessor
    */
   public function __construct(EntityImageInterface $entityImageProvider, ImageProcessorInterface $imageProcessor) {
     $this->entityImageProvider = $entityImageProvider;

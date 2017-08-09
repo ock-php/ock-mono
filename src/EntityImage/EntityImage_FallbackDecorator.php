@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityImage;
+namespace Drupal\renderkit8\EntityImage;
 
 /**
  * @CfrPlugin(
@@ -11,18 +11,18 @@ namespace Drupal\renderkit\EntityImage;
 class EntityImage_FallbackDecorator implements EntityImageInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
+   * @var \Drupal\renderkit8\EntityImage\EntityImageInterface
    */
   private $decorated;
 
   /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
+   * @var \Drupal\renderkit8\EntityImage\EntityImageInterface
    */
   private $fallback;
 
   /**
-   * @param \Drupal\renderkit\EntityImage\EntityImageInterface $decorated
-   * @param \Drupal\renderkit\EntityImage\EntityImageInterface $fallback
+   * @param \Drupal\renderkit8\EntityImage\EntityImageInterface $decorated
+   * @param \Drupal\renderkit8\EntityImage\EntityImageInterface $fallback
    */
   public function __construct(EntityImageInterface $decorated, EntityImageInterface $fallback) {
     $this->decorated = $decorated;

@@ -1,20 +1,20 @@
 <?php
 
-namespace Drupal\renderkit\BuildProvider;
+namespace Drupal\renderkit8\BuildProvider;
 
 use Donquixote\Cf\Context\CfContextInterface;
 use Donquixote\Cf\Schema\Callback\CfSchema_Callback;
-use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Drupal\renderkit8\ListFormat\ListFormatInterface;
 
 class BuildProvider_Sequence implements BuildProviderInterface {
 
   /**
-   * @var \Drupal\renderkit\BuildProvider\BuildProviderInterface[]
+   * @var \Drupal\renderkit8\BuildProvider\BuildProviderInterface[]
    */
   private $providers;
 
   /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface
+   * @var \Drupal\renderkit8\ListFormat\ListFormatInterface
    */
   private $listFormat;
 
@@ -43,8 +43,8 @@ class BuildProvider_Sequence implements BuildProviderInterface {
   }
 
   /**
-   * @param \Drupal\renderkit\BuildProvider\BuildProviderInterface[] $providers
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
+   * @param \Drupal\renderkit8\BuildProvider\BuildProviderInterface[] $providers
+   * @param \Drupal\renderkit8\ListFormat\ListFormatInterface $listFormat
    */
   public function __construct(array $providers, ListFormatInterface $listFormat = NULL) {
     $this->providers = $providers;

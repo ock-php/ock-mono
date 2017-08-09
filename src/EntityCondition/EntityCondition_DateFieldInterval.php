@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\renderkit\EntityCondition;
+namespace Drupal\renderkit8\EntityCondition;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit\Schema\CfSchema_FieldName;
+use Drupal\renderkit8\Schema\CfSchema_FieldName;
 
 /**
  * An entity condition that returns true if a given timestamp is contained in
@@ -49,7 +49,7 @@ class EntityCondition_DateFieldInterval implements EntityConditionInterface {
   /**
    * @param string $fieldName
    *
-   * @return \Drupal\renderkit\EntityCondition\EntityCondition_DateFieldInterval
+   * @return \Drupal\renderkit8\EntityCondition\EntityCondition_DateFieldInterval
    */
   public static function createNow($fieldName) {
     return new self($fieldName, time());

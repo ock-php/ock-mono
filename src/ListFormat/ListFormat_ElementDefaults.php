@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\renderkit\ListFormat;
+namespace Drupal\renderkit8\ListFormat;
 
-use Drupal\renderkit\Configurator\Configurator_ListFormat_Expert;
+use Drupal\renderkit8\Configurator\Configurator_ListFormat_Expert;
 
 class ListFormat_ElementDefaults implements ListFormatInterface {
 

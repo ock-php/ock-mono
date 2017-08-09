@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
 use Drupal\cfrapi\Context\CfrContext;
 use Drupal\cfrapi\Context\CfrContextInterface;
@@ -22,7 +22,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   /**
    * @CfrPlugin("previewForm", "Preview form")
    *
-   * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_PreviewForm
+   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplay_PreviewForm
    */
   public static function create() {
     return new self('entity-display-preview');
@@ -43,7 +43,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    *
    * @return array
    *
-   * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
+   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
   public function buildEntity($entity_type, $entity) {
 
@@ -169,8 +169,8 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
     $form['#submit'][] = [self::class, 'submit'];
 
-    /* @see _renderkit_generic_form() */
-    return drupal_get_form('_renderkit_generic_form', $form);
+    /* @see _renderkit8_generic_form() */
+    return drupal_get_form('_renderkit8_generic_form', $form);
   }
 
   /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\ImageProcessor;
+namespace Drupal\renderkit8\ImageProcessor;
 
 /**
  * Render array processor that only processes render arrays with

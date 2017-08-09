@@ -1,12 +1,12 @@
 <?php
 
-namespace Drupal\renderkit\EntityBuildProcessor;
+namespace Drupal\renderkit8\EntityBuildProcessor;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
-use Drupal\renderkit\Html\HtmlAttributesInterface;
-use Drupal\renderkit\Html\HtmlAttributesTrait;
-use Drupal\renderkit\Schema\CfSchema_TagName;
+use Drupal\renderkit8\BuildProcessor\BuildProcessor_Container;
+use Drupal\renderkit8\Html\HtmlAttributesInterface;
+use Drupal\renderkit8\Html\HtmlAttributesTrait;
+use Drupal\renderkit8\Schema\CfSchema_TagName;
 
 /**
  * Wraps the content from a decorated display handler into a link, linking to
@@ -45,7 +45,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase
   /**
    * @param string $tagName
    *
-   * @return \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
+   * @return \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface
    */
   public static function entityTitleLinkWrapper($tagName) {
     return (new EntityBuildProcessor_Sequence)

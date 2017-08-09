@@ -1,24 +1,24 @@
 <?php
 
-namespace Drupal\renderkit\ImagesDisplay;
+namespace Drupal\renderkit8\ImagesDisplay;
 
-use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Drupal\renderkit8\ListFormat\ListFormatInterface;
 
 class ImagesDisplay_Multiple implements ImagesDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface[]
+   * @var \Drupal\renderkit8\ImagesDisplay\ImagesDisplayInterface[]
    */
   private $displays;
 
   /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
+   * @var \Drupal\renderkit8\ListFormat\ListFormatInterface|null
    */
   private $listFormat;
 
   /**
-   * @param \Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface[] $displays
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $listFormat
+   * @param \Drupal\renderkit8\ImagesDisplay\ImagesDisplayInterface[] $displays
+   * @param \Drupal\renderkit8\ListFormat\ListFormatInterface|null $listFormat
    */
   public function __construct(array $displays, ListFormatInterface $listFormat = NULL) {
     $this->displays = $displays;

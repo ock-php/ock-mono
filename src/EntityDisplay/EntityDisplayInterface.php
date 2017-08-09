@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit\EntityDisplay;
+namespace Drupal\renderkit8\EntityDisplay;
 
 /**
  * Interface for entity display handlers.
@@ -12,8 +12,8 @@ namespace Drupal\renderkit\EntityDisplay;
  * Implementing classes should use one of the base classes, so they only need to
  * implement one of the two methods, either buildEntities() or buildEntity().
  *
- * @see \Drupal\renderkit\EntityDisplay\EntityDisplayBase
- * @see \Drupal\renderkit\EntityDisplay\EntitiesDisplaysBase
+ * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayBase
+ * @see \Drupal\renderkit8\EntityDisplay\EntitiesDisplaysBase
  */
 interface EntityDisplayInterface {
 
