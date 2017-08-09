@@ -3,20 +3,30 @@
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 
 class CfSchema_EntityType implements CfSchema_OptionsInterface {
+
+  /**
+   * @var \Drupal\Core\Entity\EntityTypeRepositoryInterface
+   */
+  private $entityTypeRepository;
+
+  /**
+   * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
+   */
+  public function __construct(EntityTypeRepositoryInterface $entityTypeRepository) {
+    $this->entityTypeRepository = $entityTypeRepository;
+  }
 
   /**
    * @return string[][]
    */
   public function getGroupedOptions() {
 
-    $options = [];
-    foreach (entity_get_info() as $entityType => $entityTypeInfo) {
-      $options[$entityType] = $entityTypeInfo['label'];
-    }
+    $options = $this->entityTypeRepository->getEntityTypeLabels();
 
-    return $options;
+    return ['' => $options];
   }
 
   /**
@@ -26,11 +36,11 @@ class CfSchema_EntityType implements CfSchema_OptionsInterface {
    */
   public function idGetLabel($id) {
 
-    if (NULL === $info = entity_get_info($id)) {
-      return NULL;
-    }
+    $options = $this->entityTypeRepository->getEntityTypeLabels();
 
-    return $info['label'];
+    return isset($options[$id])
+      ? $options[$id]
+      : NULL;
   }
 
   /**
@@ -39,6 +49,9 @@ class CfSchema_EntityType implements CfSchema_OptionsInterface {
    * @return bool
    */
   public function idIsKnown($id) {
-    return NULL !== entity_get_info($id);
+
+    $options = $this->entityTypeRepository->getEntityTypeLabels();
+
+    return isset($options[$id]);
   }
 }

@@ -3,6 +3,8 @@
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 
 /**
  * Schema for a string consisting of entity type plus view mode name, such
@@ -11,14 +13,32 @@ use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 class CfSchema_EntityTypeWithViewModeName implements CfSchema_OptionsInterface {
 
   /**
+   * @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface
+   */
+  private $entityDisplayRepository;
+
+  /**
+   * @var \Drupal\Core\Entity\EntityTypeRepositoryInterface
+   */
+  private $entityTypeRepository;
+
+  /**
    * @var null|string
    */
   private $entityType;
 
   /**
+   * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entityDisplayRepository
+   * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
    * @param string|null $entityType
    */
-  public function __construct($entityType = NULL) {
+  public function __construct(
+    EntityDisplayRepositoryInterface $entityDisplayRepository,
+    EntityTypeRepositoryInterface $entityTypeRepository,
+    $entityType = NULL
+  ) {
+    $this->entityDisplayRepository = $entityDisplayRepository;
+    $this->entityTypeRepository = $entityTypeRepository;
     $this->entityType = $entityType;
   }
 
@@ -27,14 +47,27 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_OptionsInterface {
    */
   public function getGroupedOptions() {
 
+    $entityTypeLabels = $this->entityTypeRepository->getEntityTypeLabels();
+
     $options = [];
-    foreach ($this->getFilteredEntityInfo() as $type => $type_entity_info) {
-      if (empty($type_entity_info['view modes'])) {
-        continue;
+    if (NULL === $this->entityType) {
+      /** @var array[] $viewModes */
+      foreach ($this->entityDisplayRepository->getAllViewModes() as $entityType => $viewModes) {
+        if (!isset($entityTypeLabels[$entityType])) {
+          continue;
+        }
+        $entityTypeLabel = $entityTypeLabels[$entityType];
+        foreach ($viewModes as $mode => $settings) {
+          // @todo Find a "type label".
+          $options[$entityTypeLabel][$entityType . ':' . $mode] = $settings['label'];
+        }
       }
-      $type_label = $type_entity_info['label'];
-      foreach ($type_entity_info['view modes'] as $mode => $settings) {
-        $options[$type_label][$type . ':' . $mode] = $settings['label'];
+    }
+    else {
+      $entityTypeLabel = $entityTypeLabels[$this->entityType];
+      foreach ($this->entityDisplayRepository->getViewModeOptions($this->entityType) as $mode => $label) {
+        // @todo Find a "type label".
+        $options[$entityTypeLabel][$this->entityType . ':' . $mode] = $label;
       }
     }
 
@@ -53,21 +86,23 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_OptionsInterface {
       return NULL;
     }
 
-    if (NULL === $type_entity_info = $this->typeGetEntityInfo($type)) {
+    if (NULL !== $this->entityType && $type !== $this->entityType) {
       return NULL;
     }
 
-    if (isset($type_entity_info['view modes'][$mode]['label'])) {
-      $label = $type_entity_info['view modes'][$mode]['label'];
-    }
-    elseif (isset($type_entity_info['view modes'][$mode])) {
-      $label = $mode;
-    }
-    else {
+    $entityTypeLabels = $this->entityTypeRepository->getEntityTypeLabels();
+    if (!isset($entityTypeLabels[$type])) {
       return NULL;
     }
+    $entityTypeLabel = $entityTypeLabels[$type];
 
-    return $label . '(' . $type_entity_info['label'] . ')';
+    $viewModeLabels = $this->entityDisplayRepository->getViewModeOptions($type);
+    if (!isset($viewModeLabels[$mode])) {
+      return NULL;
+    }
+    $viewModeLabel = $viewModeLabels[$mode];
+
+    return $entityTypeLabel . ': ' . $viewModeLabel;
   }
 
   /**
@@ -76,45 +111,26 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_OptionsInterface {
    * @return bool
    */
   public function idIsKnown($id) {
-
     list($type, $mode) = explode(':', $id . ':');
 
-    return 1
-      && '' !== $type && '' !== $mode
-      && NULL !== ($type_entity_info = $this->typeGetEntityInfo($type))
-      && isset($type_entity_info['view modes'][$mode]);
-  }
-
-  /**
-   * @param string $type
-   *
-   * @return array|null
-   */
-  private function typeGetEntityInfo($type) {
+    if ('' === $type || '' === $mode) {
+      return FALSE;
+    }
 
     if (NULL !== $this->entityType && $type !== $this->entityType) {
-      return NULL;
+      return FALSE;
     }
 
-    return entity_get_info($type);
-  }
-
-  /**
-   * @return array[]
-   *   Format: $[$entity_type] = $type_entity_info
-   */
-  private function getFilteredEntityInfo() {
-
-    $entity_info = entity_get_info();
-
-    if (NULL === $this->entityType) {
-      return $entity_info;
+    $entityTypeLabels = $this->entityTypeRepository->getEntityTypeLabels();
+    if (!isset($entityTypeLabels[$type])) {
+      return FALSE;
     }
 
-    if (!isset($entity_info[$this->entityType])) {
-      return [];
+    $viewModes = $this->entityDisplayRepository->getViewModes($type);
+    if (!isset($viewModes[$mode])) {
+      return FALSE;
     }
 
-    return [$this->entityType => $entity_info[$this->entityType]];
+    return TRUE;
   }
 }

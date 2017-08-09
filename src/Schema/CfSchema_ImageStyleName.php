@@ -3,6 +3,7 @@
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Drupal\Component\Utility\Html;
 
 class CfSchema_ImageStyleName implements CfSchema_OptionsInterface {
 
@@ -22,12 +23,12 @@ class CfSchema_ImageStyleName implements CfSchema_OptionsInterface {
     if (empty($styleName)) {
       return '- ' . t('Original image') . ' -';
     }
-    $styleLabelsRaw = image_style_options(FALSE, PASS_THROUGH);
+    $styleLabelsRaw = image_style_options(FALSE);
     if (!isset($styleLabelsRaw[$styleName])) {
       return t('Unknown image style');
     }
     $styleLabelRaw = $styleLabelsRaw[$styleName];
-    return check_plain($styleLabelRaw);
+    return Html::escape($styleLabelRaw);
   }
 
   /**
@@ -39,7 +40,7 @@ class CfSchema_ImageStyleName implements CfSchema_OptionsInterface {
     if (empty($styleName)) {
       return TRUE;
     }
-    $styles = image_styles();
-    return isset($styles[$styleName]);
+    $styleLabelsRaw = image_style_options();
+    return isset($styleLabelsRaw[$styleName]);
   }
 }

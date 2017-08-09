@@ -3,8 +3,14 @@
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 
 class CfSchema_EntityBundleName implements CfSchema_OptionsInterface {
+
+  /**
+   * @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface
+   */
+  private $bundleInfo;
 
   /**
    * @var string
@@ -12,24 +18,24 @@ class CfSchema_EntityBundleName implements CfSchema_OptionsInterface {
   private $entityType;
 
   /**
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundleInfo
    * @param string $entityType
    */
-  public function __construct($entityType) {
+  public function __construct(EntityTypeBundleInfoInterface $bundleInfo, $entityType) {
+    $this->bundleInfo = $bundleInfo;
     $this->entityType = $entityType;
   }
 
   /**
-   * @return mixed[]
+   * @return string[][]
    */
   public function getGroupedOptions() {
-    $entity_info = entity_get_info($this->entityType);
-    if (empty($entity_info['bundles'])) {
-      return [];
-    }
+
     $options = [];
-    foreach ($entity_info['bundles'] as $bundle => $bundle_info) {
-      $options[$bundle] = $bundle_info['label'];
+    foreach ($this->bundleInfo->getBundleInfo($this->entityType) as $bundleName => $bundleInfo) {
+      $options[$bundleName] = $bundleInfo['label'];
     }
+
     return ['' => $options];
   }
 
@@ -39,16 +45,12 @@ class CfSchema_EntityBundleName implements CfSchema_OptionsInterface {
    * @return string|null
    */
   public function idGetLabel($id) {
-    $entity_info = entity_get_info($this->entityType);
-    if (isset($entity_info['bundles'][$id]['label'])) {
-      return $entity_info['bundles'][$id]['label'];
-    }
-    elseif (isset($entity_info['bundles'][$id])) {
-      return $id;
-    }
-    else {
-      return NULL;
-    }
+
+    $bundles = $this->bundleInfo->getBundleInfo($this->entityType);
+
+    return isset($bundles[$id])
+      ? $bundles[$id]['label']
+      : NULL;
   }
 
   /**
@@ -57,7 +59,9 @@ class CfSchema_EntityBundleName implements CfSchema_OptionsInterface {
    * @return bool
    */
   public function idIsKnown($id) {
-    $entity_info = entity_get_info($this->entityType);
-    return isset($entity_info['bundles'][$id]);
+
+    $bundles = $this->bundleInfo->getBundleInfo($this->entityType);
+
+    return isset($bundles[$id]);
   }
 }

@@ -3,6 +3,7 @@
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 
 /**
  * Schema for a view mode machine name that is used across entity types.
@@ -13,21 +14,30 @@ use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 class CfSchema_EntityGenericViewModeName implements CfSchema_OptionsInterface {
 
   /**
+   * @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface
+   */
+  private $entityDisplayRepository;
+
+  /**
+   * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entityDisplayRepository
+   */
+  public function __construct(EntityDisplayRepositoryInterface $entityDisplayRepository) {
+    $this->entityDisplayRepository = $entityDisplayRepository;
+  }
+
+  /**
    * @return string[][]
    */
   public function getGroupedOptions() {
 
     $modes = [];
-    foreach (entity_get_info() as $type => $type_entity_info) {
-
-      if (empty($type_entity_info['view modes'])) {
-        continue;
-      }
-
-      foreach ($type_entity_info['view modes'] as $mode => $settings) {
-        $modes[$mode][] = isset($settings['label'])
-          ? $settings['label']
-          : $mode;
+    /** @var array[] $viewModes */
+    foreach ($this->entityDisplayRepository->getAllViewModes() as $entityType => $viewModes) {
+      /** @noinspection LoopWhichDoesNotLoopInspection */
+      foreach ($viewModes as $viewModeName => $viewMode) {
+        $modes[$viewModeName][] = isset($viewMode['label'])
+          ? $viewMode['label']
+          : $viewModeName;
       }
     }
 
@@ -47,11 +57,11 @@ class CfSchema_EntityGenericViewModeName implements CfSchema_OptionsInterface {
   public function idGetLabel($id) {
 
     $aliases = [];
-    foreach (entity_get_info() as $type_entity_info) {
-      if (isset($type_entity_info['view modes'][$id]['label'])) {
-        $aliases[] = $type_entity_info['view modes'][$id]['label'];
+    foreach ($this->entityDisplayRepository->getAllViewModes() as $entityType => $viewModes) {
+      if (isset($viewModes[$id]['label'])) {
+        $aliases[] = $viewModes[$id]['label'];
       }
-      elseif (isset($type_entity_info['view modes'][$id])) {
+      elseif (isset($viewModes[$id])) {
         $aliases[] = $id;
       }
     }
@@ -70,8 +80,8 @@ class CfSchema_EntityGenericViewModeName implements CfSchema_OptionsInterface {
    */
   public function idIsKnown($id) {
 
-    foreach (entity_get_info() as $type_entity_info) {
-      if (isset($type_entity_info['view modes'][$id])) {
+    foreach ($this->entityDisplayRepository->getAllViewModes() as $entityType => $viewModes) {
+      if (isset($viewModes[$id])) {
         return TRUE;
       }
     }

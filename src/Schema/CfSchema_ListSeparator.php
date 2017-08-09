@@ -4,6 +4,7 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldBase;
 use Donquixote\Cf\V2V\String\V2V_StringInterface;
+use Drupal\Component\Utility\Html;
 
 class CfSchema_ListSeparator extends CfSchema_TextfieldBase implements V2V_StringInterface {
 
@@ -30,7 +31,7 @@ class CfSchema_ListSeparator extends CfSchema_TextfieldBase implements V2V_Strin
    * @throws \Donquixote\Cf\Exception\EvaluatorException
    */
   public function stringGetValue($string) {
-    return check_plain($string);
+    return Html::escape($string);
   }
 
   /**
@@ -39,6 +40,6 @@ class CfSchema_ListSeparator extends CfSchema_TextfieldBase implements V2V_Strin
    * @return string
    */
   public function stringGetPhp($string) {
-    return var_export(check_plain($string), TRUE);
+    return var_export(Html::escape($string), TRUE);
   }
 }
