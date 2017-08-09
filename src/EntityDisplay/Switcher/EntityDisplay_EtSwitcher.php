@@ -54,7 +54,7 @@ class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
    * Builds render arrays from the entities provided.
    *
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
    */

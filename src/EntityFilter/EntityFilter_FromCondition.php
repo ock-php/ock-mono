@@ -35,7 +35,7 @@ class EntityFilter_FromCondition implements EntityFilterInterface {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return string[]
    *   Format: $[] = $delta

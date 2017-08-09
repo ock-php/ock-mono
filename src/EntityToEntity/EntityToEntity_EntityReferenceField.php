@@ -86,7 +86,7 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return object[]
    */

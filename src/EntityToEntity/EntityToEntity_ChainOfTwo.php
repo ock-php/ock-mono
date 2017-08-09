@@ -34,7 +34,7 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return object[]
    */
@@ -45,7 +45,7 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
 
   /**
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return object|null
    */

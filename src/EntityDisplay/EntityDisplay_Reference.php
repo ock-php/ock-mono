@@ -53,7 +53,7 @@ class EntityDisplay_Reference extends EntitiesDisplayBase {
    *
    * @param string $entityType
    *   E.g. 'node' or 'taxonomy_term'.
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *   The array keys can be anything, they don't need to be the entity ids.
    *

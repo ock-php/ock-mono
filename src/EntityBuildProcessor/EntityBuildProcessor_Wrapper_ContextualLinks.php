@@ -64,7 +64,7 @@ class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorB
    * @param array $build
    *   Render array before the processing.
    * @param string $entity_type
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    *   Render array after the processing.

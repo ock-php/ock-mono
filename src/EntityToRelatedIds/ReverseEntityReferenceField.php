@@ -41,7 +41,7 @@ class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return int[][]
    *   Format: $[$delta][] = $relatedEntityId

@@ -8,7 +8,7 @@ interface EntityImagesInterface {
    * Gets multiple render arrays with '#theme' => 'image' for a given entity.
    * 
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array[]
    *   Format: $[$delta] = ['#theme' => 'image', '#path' => .., ..]

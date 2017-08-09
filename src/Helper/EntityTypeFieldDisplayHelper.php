@@ -111,7 +111,7 @@ class EntityTypeFieldDisplayHelper {
   /**
    * Builds field render arrays for a series of entities.
    *
-   * @param object[] $entitiesByDelta
+   * @param \Drupal\Core\Entity\EntityInterface[] $entitiesByDelta
    *   Format: $[$delta] = $entity
    *   Entities in custom order by custom keys.
    *
@@ -284,7 +284,7 @@ class EntityTypeFieldDisplayHelper {
   }
 
   /**
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    * @param string $bundle
    * @param array $instance
    * @param string $entityFieldDisplayLanguage
@@ -340,7 +340,7 @@ class EntityTypeFieldDisplayHelper {
   }
 
   /**
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return string|bool
    *

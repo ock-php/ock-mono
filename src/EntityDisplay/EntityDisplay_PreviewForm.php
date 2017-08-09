@@ -61,7 +61,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   /**
    * @param string $entity_type
    *   E.g. 'node' or 'taxonomy_term'.
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   Single entity object for which to build a render arary.
    *
    * @return array
@@ -120,7 +120,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
   /**
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return \Drupal\cfrapi\Context\CfrContextInterface
    */

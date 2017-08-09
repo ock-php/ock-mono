@@ -6,7 +6,7 @@ final class EntityUtil extends UtilBase {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return int[]
    */

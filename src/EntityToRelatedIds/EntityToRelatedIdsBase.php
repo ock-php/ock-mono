@@ -6,7 +6,7 @@ abstract class EntityToRelatedIdsBase implements EntityToRelatedIdsInterface {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return int[][]
    *   Format: $[$delta][] = $relatedEntityId

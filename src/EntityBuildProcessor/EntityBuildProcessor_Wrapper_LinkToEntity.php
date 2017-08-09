@@ -56,7 +56,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase
   /**
    * @param array $build
    * @param string $entity_type
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    *   Render array for one entity.

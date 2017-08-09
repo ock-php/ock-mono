@@ -28,7 +28,7 @@ class EntityDisplayListFormat_ListFormat implements EntityDisplayListFormatInter
   /**
    * @param array[] $builds
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    */

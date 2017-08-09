@@ -33,7 +33,7 @@ class EntitiesListFormat_ListFormat implements EntitiesListFormatInterface {
    * Displays the entities as a list, e.g. as a table.
    *
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array
    *   A render array.

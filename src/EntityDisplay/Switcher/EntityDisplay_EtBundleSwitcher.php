@@ -33,7 +33,7 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]

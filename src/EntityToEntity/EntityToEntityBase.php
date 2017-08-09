@@ -7,7 +7,7 @@ abstract class EntityToEntityBase implements EntityToEntityInterface {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return object[]
    */

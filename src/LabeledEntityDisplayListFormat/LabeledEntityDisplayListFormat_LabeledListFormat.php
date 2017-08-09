@@ -31,7 +31,7 @@ class LabeledEntityDisplayListFormat_LabeledListFormat implements LabeledEntityD
    * @param array[] $builds
    *   Render arrays, e.g. for field items or field group children.
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    * @param string $label
    *   A label, e.g. for a field or field group.
    *

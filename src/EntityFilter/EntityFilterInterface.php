@@ -13,7 +13,7 @@ interface EntityFilterInterface {
    * Filters the entities based on a condition.
    *
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Format: $[$delta] = $entity
    *
    * @return string[]

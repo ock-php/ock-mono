@@ -11,7 +11,7 @@ trait EntityDisplayBaseTrait {
    * single entity.
    *
    * @param string $entity_type
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.

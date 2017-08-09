@@ -88,7 +88,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    * @param array[] $builds
    *   The render arrays produced by the decorated display handler.
    * @param string $entity_type
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
    *   Modified render arrays for the given entities.

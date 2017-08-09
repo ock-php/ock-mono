@@ -77,7 +77,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
 
   /**
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return object|null
    */
@@ -98,7 +98,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
 
   /**
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return null|object
    */

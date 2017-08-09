@@ -52,7 +52,7 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
    *
    * @param string $entityType
    *   E.g. 'node' or 'taxonomy_term'.
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]

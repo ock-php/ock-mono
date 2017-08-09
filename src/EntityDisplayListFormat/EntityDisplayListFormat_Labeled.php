@@ -28,7 +28,7 @@ class EntityDisplayListFormat_Labeled implements EntityDisplayListFormatInterfac
   /**
    * @param array[] $builds
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    */

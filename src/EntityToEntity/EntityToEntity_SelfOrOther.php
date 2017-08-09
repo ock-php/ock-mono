@@ -27,7 +27,7 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return object[]
    */
@@ -42,7 +42,7 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
 
   /**
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return object|null
    */

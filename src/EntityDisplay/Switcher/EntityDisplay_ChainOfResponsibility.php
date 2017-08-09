@@ -50,7 +50,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
    */

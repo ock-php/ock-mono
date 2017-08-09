@@ -31,7 +31,7 @@ class EntityDisplay_RecursionDetectionDecorator extends EntityDisplay_NeutralDec
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]

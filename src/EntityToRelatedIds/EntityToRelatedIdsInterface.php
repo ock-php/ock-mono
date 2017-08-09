@@ -11,7 +11,7 @@ interface EntityToRelatedIdsInterface {
 
   /**
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return int[]
    *   Format: $[] = $relatedEntityId
@@ -20,7 +20,7 @@ interface EntityToRelatedIdsInterface {
 
   /**
    * @param string $entityType
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return int[][]
    *   Format: $[$delta][] = $relatedEntityId

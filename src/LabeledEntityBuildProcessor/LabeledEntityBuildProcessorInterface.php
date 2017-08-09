@@ -7,7 +7,7 @@ interface LabeledEntityBuildProcessorInterface {
   /**
    * @param array $build
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    * @param string $label
    *
    * @return array

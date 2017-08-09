@@ -35,7 +35,7 @@ class EntityCondition_FromFilter implements EntityConditionInterface {
 
   /**
    * @param string $entityType
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return bool
    */

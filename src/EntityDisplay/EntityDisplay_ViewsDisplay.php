@@ -126,7 +126,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
 
   /**
    * @param string $entity_type
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return int|null
    */

@@ -8,7 +8,7 @@ interface EntityBuildProcessorInterface {
    * @param array[] $builds
    *   The render arrays produced by the decorated display handler.
    * @param string $entity_type
-   * @param object[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
    *   Modified render arrays for the given entities.
@@ -19,7 +19,7 @@ interface EntityBuildProcessorInterface {
    * @param array $build
    *   The render array produced by the decorated display handler.
    * @param string $entity_type
-   * @param object $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    *   Modified render array for the given entity.
