@@ -83,7 +83,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
    */
   public function entityGetRelated(EntityInterface $entity) {
 
-    if (NULL === $user = $this->entityGetUser($entityType, $entity)) {
+    if (NULL === $user = $this->entityGetUser($entity)) {
       return NULL;
     }
 
@@ -97,14 +97,13 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return null|object
+   * @return null|\Drupal\Core\Entity\EntityInterface
    */
-  private function entityGetUser($entityType, $entity) {
+  private function entityGetUser(EntityInterface $entity) {
 
-    if ('user' === $entityType) {
+    if ('user' === $entity->getEntityTypeId()) {
       return $entity;
     }
 
