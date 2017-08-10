@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityDisplay;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+
 /**
  * Renders the entity in a view mode depending on the entity type.
  *
@@ -21,13 +23,19 @@ class EntityDisplay_ViewModeByType extends EntityDisplay_ViewModeBase {
   private $defaultViewModeName;
 
   /**
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    * @param string[] $viewModesByType
    *   Format: $[$entity_type] = $view_mode
    * @param string|null $defaultViewModeName
    */
-  public function __construct(array $viewModesByType, $defaultViewModeName = NULL) {
+  public function __construct(
+    EntityTypeManagerInterface $entityTypeManager,
+    array $viewModesByType,
+    $defaultViewModeName = NULL
+  ) {
     $this->viewModesByType = $viewModesByType;
     $this->defaultViewModeName = $defaultViewModeName;
+    parent::__construct($entityTypeManager);
   }
 
   /**

@@ -2,47 +2,59 @@
 
 namespace Drupal\renderkit8\EntityDisplay;
 
-use Drupal\renderkit8\Util\EntityUtil;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 abstract class EntityDisplay_ViewModeBase extends EntitiesDisplayBase {
 
   /**
-   * @param string $entityType
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  private $entityTypeManager;
+
+  /**
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   */
+  public function __construct(EntityTypeManagerInterface $entityTypeManager) {
+    $this->entityTypeManager = $entityTypeManager;
+  }
+
+  /**
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
    *
    * @see entity_view()
    * @see node_view_multiple()
    */
-  public function buildEntities($entityType, array $entities) {
+  public function buildEntities(array $entities) {
 
-    if (empty($entities)) {
-      // entity_view() does not like an empty array of entities.
-      // Especially, node_view_multiple() really does not.
+    if ([] === $entities) {
+      // In Drupal 7, entity_view() and even more so node_view_multiple() had
+      // problems with $entities === [].
+      // In Drupal 8? Dunno, let's not push our luck.
       return [];
     }
 
-    if (NULL === $viewMode = $this->etGetViewMode($entityType)) {
-      return [];
+    $entitiesGrouped = [];
+    foreach ($entities as $delta => $entity) {
+      $entitiesGrouped[$entity->getEntityTypeId()][$delta] = $entity;
     }
 
-    /** @var array|false $builds_by_type */
-    $builds_by_type = entity_view($entityType, $entities, $viewMode);
-    if ($builds_by_type === FALSE) {
-      return [];
+    $buildsUnsorted = [];
+    foreach ($entitiesGrouped as $entityTypeId => $typeEntities) {
+      $builder = $this->entityTypeManager->getViewBuilder($entityTypeId);
+      $viewMode = $this->etGetViewMode($entityTypeId);
+      $buildsUnsorted += $builder->viewMultiple($typeEntities, $viewMode);
     }
-    $builds_by_etid = $builds_by_type[$entityType];
-    $builds_by_delta = [];
 
-    foreach (EntityUtil::entitiesGetIds($entityType, $entities) as $delta => $etid) {
-      if (isset($builds_by_etid[$etid])) {
-        $builds_by_delta[$delta] = $builds_by_etid[$etid];
+    $builds = [];
+    foreach ($entities as $delta => $entity) {
+      if (isset($buildsUnsorted[$delta])) {
+        $builds[$delta] = $buildsUnsorted[$delta];
       }
     }
 
-    return $builds_by_delta;
+    return $builds;
   }
 
   /**
