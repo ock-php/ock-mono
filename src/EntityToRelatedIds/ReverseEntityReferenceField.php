@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit8\EntityToRelatedIds;
 
+use Drupal\Core\Database\Database;
 use Drupal\renderkit8\Util\EntityUtil;
 
 class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
@@ -46,12 +47,23 @@ class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
    *   Format: $[$delta][] = $relatedEntityId
    */
   public function entitiesGetRelatedIds(array $entities) {
-    if ($entityType !== $this->fieldTargetType) {
+
+    if ([] === $entities) {
       return [];
     }
-    $idsByDelta = EntityUtil::entitiesGetIds($entityType, $entities);
+
+    $entities = EntityUtil::entitiesFilterByType($entities, $this->fieldTargetType);
+
+    if ([] === $entities) {
+      return [];
+    }
+
+    $idsByDelta = EntityUtil::entitiesGetIds($entities);
+
     $targetIdColName = $this->fieldName . '_target_id';
-    $q = db_select('field_data_' . $this->fieldName, 'f');
+    // @todo Inject the database.
+    // @todo This does probably not work in Drupal 8.
+    $q = Database::getConnection()->select('field_data_' . $this->fieldName, 'f');
     $q->condition('entity_type', $this->fieldSourceType);
     $q->condition($targetIdColName, array_values($idsByDelta));
     $q->addField('f', $targetIdColName, 'target_id');
