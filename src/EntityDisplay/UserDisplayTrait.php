@@ -3,8 +3,29 @@
 namespace Drupal\renderkit8\EntityDisplay;
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\user\UserInterface;
 
 trait UserDisplayTrait {
+
+  /**
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
+   *
+   * @return array[]
+   *   An array of render arrays, keyed by the original array keys of $entities.
+   *
+   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntities()
+   */
+  final public function buildEntities(array $entities) {
+
+    $builds = [];
+    foreach ($entities as $delta => $entity) {
+      if ($entity instanceof UserInterface) {
+        $builds[$delta] = $this->buildUser($entity);
+      }
+    }
+
+    return $builds;
+  }
 
   /**
    * Same as ->buildEntities(), just for a single entity.
@@ -17,7 +38,7 @@ trait UserDisplayTrait {
    */
   final public function buildEntity(EntityInterface $entity) {
 
-    if ('user' !== $entity->getEntityTypeId()) {
+    if (!$entity instanceof UserInterface) {
       return [];
     }
 
@@ -25,30 +46,10 @@ trait UserDisplayTrait {
   }
 
   /**
-   * @param string $entity_type
-   * @param object[] $users
-   *
-   * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
-   * @throws \Exception
-   */
-  final public function buildEntities($entity_type, array $users) {
-    if ('user' !== $entity_type) {
-      return [];
-    }
-    $builds = [];
-    foreach ($users as $delta => $user) {
-      $builds[$delta] = $this->buildUser($user);
-    }
-    return $builds;
-  }
-
-  /**
-   * @param object $user
+   * @param \Drupal\user\UserInterface $user
    *
    * @return array
-   *   Render array for the user object.
    */
-  abstract protected function buildUser($user);
+  abstract protected function buildUser(UserInterface $user);
 
 }
