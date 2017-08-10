@@ -176,9 +176,7 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
       /* @see theme_themekit_container() */
       $defaults['#type'] = 'themekit_container';
 
-      $defaults['#tag_name'] = !empty($conf['items-tag_name'])
-        ? (trim($conf['items-tag_name']) ?: 'div')
-        : 'div';
+      $defaults['#tag_name'] = self::confExtractTagName($conf, 'items-tag-name', 'div');
 
       if (!empty($conf['items-classes'])) {
         if ([] !== $classes = array_unique(array_filter(explode(' ', $conf['items-classes'])))) {
@@ -192,9 +190,7 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
       /* @see theme_themekit_item_containers() */
       $defaults['#theme'] = 'themekit_item_containers';
 
-      $defaults['#item_tag_name'] = !empty($conf['item-tag_name'])
-        ? (trim($conf['item-tag_name']) ?: 'div')
-        : 'div';
+      $defaults['#item_tag_name'] = self::confExtractTagName($conf, 'item-tag-name', 'div');
 
       if (!empty($conf['item-classes'])) {
         if ([] !== $item_classes = array_unique(array_filter(explode(' ', $conf['item-classes'])))) {
@@ -213,5 +209,27 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
     }
 
     return $defaults;
+  }
+
+  /**
+   * @param array $array
+   * @param string $key
+   * @param string $else
+   *
+   * @return string
+   */
+  private static function confExtractTagName(array $array, $key, $else) {
+
+    if (empty($array[$key])) {
+      return $else;
+    }
+
+    $tagName = trim($array[$key]);
+
+    if ('' === $tagName) {
+      return $else;
+    }
+
+    return $tagName;
   }
 }
