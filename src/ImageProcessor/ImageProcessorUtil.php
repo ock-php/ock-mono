@@ -13,12 +13,15 @@ final class ImageProcessorUtil extends UtilBase {
    * @return array[]
    */
   public static function processImages(array $images, ImageProcessorInterface $imageProcessor = NULL) {
+
     if (NULL === $imageProcessor) {
       return $images;
     }
-    foreach ($images as &$image) {
-      $image = $imageProcessor->processImage($image);
+
+    foreach ($images as $delta => $image) {
+      $images[$delta] = $imageProcessor->processImage($image);
     }
+
     return $images;
   }
 
