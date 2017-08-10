@@ -33,7 +33,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
       self::class,
       'create',
       [
-        new CfSchema_EntityBundleName('profile2'),
+        CfSchema_EntityBundleName::create('profile2'),
       ],
       [
         t('Profile type'),

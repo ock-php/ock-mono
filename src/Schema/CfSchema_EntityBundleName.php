@@ -18,6 +18,17 @@ class CfSchema_EntityBundleName implements CfSchema_OptionsInterface {
   private $entityType;
 
   /**
+   * @param string $entityType
+   *
+   * @return \Drupal\renderkit8\Schema\CfSchema_EntityBundleName
+   */
+  public static function create($entityType) {
+    /** @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundleInfo */
+    $bundleInfo = \Drupal::service('entity_type.bundle.info');
+    return new self($bundleInfo, $entityType);
+  }
+
+  /**
    * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundleInfo
    * @param string $entityType
    */
