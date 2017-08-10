@@ -54,7 +54,7 @@ class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
         dpm(get_defined_vars());
         break;
       }
-      $builds[$delta] = $this->entitiesListFormat->entitiesBuildList($entityType, $targetEntities);
+      $builds[$delta] = $this->entitiesListFormat->entitiesBuildList($targetEntities);
     }
 
     return $builds;

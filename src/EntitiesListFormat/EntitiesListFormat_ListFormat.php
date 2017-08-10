@@ -32,13 +32,11 @@ class EntitiesListFormat_ListFormat implements EntitiesListFormatInterface {
   /**
    * Displays the entities as a list, e.g. as a table.
    *
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array
-   *   A render array.
    */
-  public function entitiesBuildList($entityType, array $entities) {
+  public function entitiesBuildList(array $entities) {
     $builds = $this->entityDisplay->buildEntities($entities);
     return $this->listFormat->buildList($builds);
   }

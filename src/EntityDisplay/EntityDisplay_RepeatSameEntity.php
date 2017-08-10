@@ -61,7 +61,6 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
    */
   public function buildEntity(EntityInterface $entity) {
     return $this->entitiesListFormat->entitiesBuildList(
-      $entity_type,
       array_fill(0, $this->n, $entity));
   }
 }
