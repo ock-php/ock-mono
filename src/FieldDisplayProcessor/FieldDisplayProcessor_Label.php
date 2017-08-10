@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\FieldDisplayProcessor;
 
+use Drupal\Component\Utility\Html;
+
 class FieldDisplayProcessor_Label implements FieldDisplayProcessorInterface {
 
   /**
@@ -66,10 +68,10 @@ class FieldDisplayProcessor_Label implements FieldDisplayProcessorInterface {
     }
 
     if (NULL !== $this->labelUnsafe) {
-      $label_safe = check_plain($this->labelUnsafe);
+      $label_safe = Html::escape($this->labelUnsafe);
     }
     elseif (isset($element['#title']) && '' !== $element['#title']) {
-      $label_safe = check_plain($element['#title']);
+      $label_safe = Html::escape($element['#title']);
     }
     else {
       return $modified;

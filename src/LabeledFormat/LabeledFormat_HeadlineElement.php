@@ -4,6 +4,7 @@ namespace Drupal\renderkit8\LabeledFormat;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Options\CfSchema_Options_Fixed;
+use Drupal\Component\Utility\Html;
 
 class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
 
@@ -60,7 +61,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
 
     $label_markup = ''
       . '<' . $this->tagName . '>'
-      . check_plain($label)
+      . Html::escape($label)
       . '</' . $this->tagName . '>';
 
     return [
