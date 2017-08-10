@@ -22,11 +22,6 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
   private $relatedEntityDisplay;
 
   /**
-   * @var string
-   */
-  private $relatedEntityType;
-
-  /**
    * @CfrPlugin(
    *   id = "related",
    *   label = "Show related entity"
@@ -57,7 +52,6 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
   public function __construct(EntityToEntityInterface $entityToEntity, EntityDisplayInterface $relatedEntityDisplay) {
     $this->entityToEntity = $entityToEntity;
     $this->relatedEntityDisplay = $relatedEntityDisplay;
-    $this->relatedEntityType = $entityToEntity->getTargetType();
   }
 
   /**
