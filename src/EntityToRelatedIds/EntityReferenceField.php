@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityToRelatedIds;
 
+use Drupal\Core\Entity\EntityInterface;
+
 class EntityReferenceField extends EntityToRelatedIdsBase {
 
   /**
@@ -46,13 +48,12 @@ class EntityReferenceField extends EntityToRelatedIdsBase {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return int[]
    *   Format: $[] = $relatedEntityId
    */
-  public function entityGetRelatedIds($entityType, $entity) {
+  public function entityGetRelatedIds(EntityInterface $entity) {
     $relatedIds = [];
     foreach (field_get_items($entityType, $entity, $this->fieldName) ?: [] as $itemDelta => $item) {
       if (!empty($item['target_id'])) {

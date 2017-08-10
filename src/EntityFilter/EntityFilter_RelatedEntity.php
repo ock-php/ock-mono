@@ -32,7 +32,7 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
    * @return bool[]
    */
   public function entitiesFilterDeltas($entityType, array $entities) {
-    $relatedIdsByDelta = $this->relation->entitiesGetRelatedIds($entityType, $entities);
+    $relatedIdsByDelta = $this->relation->entitiesGetRelatedIds($entities);
     $relatedIds = [];
     foreach ($relatedIdsByDelta as $delta => $deltaRelatedIds) {
       foreach ($deltaRelatedIds as $relatedId) {

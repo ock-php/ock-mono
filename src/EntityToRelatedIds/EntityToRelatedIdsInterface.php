@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityToRelatedIds;
 
+use Drupal\Core\Entity\EntityInterface;
+
 interface EntityToRelatedIdsInterface {
 
   /**
@@ -10,21 +12,19 @@ interface EntityToRelatedIdsInterface {
   public function getTargetType();
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return int[]
    *   Format: $[] = $relatedEntityId
    */
-  public function entityGetRelatedIds($entityType, $entity);
+  public function entityGetRelatedIds(EntityInterface $entity);
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return int[][]
    *   Format: $[$delta][] = $relatedEntityId
    */
-  public function entitiesGetRelatedIds($entityType, array $entities);
+  public function entitiesGetRelatedIds(array $entities);
 
 }

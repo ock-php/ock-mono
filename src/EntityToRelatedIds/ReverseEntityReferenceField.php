@@ -40,13 +40,12 @@ class ReverseEntityReferenceField extends EntitiesToRelatedIdsBase {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return int[][]
    *   Format: $[$delta][] = $relatedEntityId
    */
-  public function entitiesGetRelatedIds($entityType, array $entities) {
+  public function entitiesGetRelatedIds(array $entities) {
     if ($entityType !== $this->fieldTargetType) {
       return [];
     }
