@@ -21,11 +21,6 @@ class EntityImage_Related implements EntityImageInterface {
   private $relatedEntityImage;
 
   /**
-   * @var string
-   */
-  private $relatedEntityType;
-
-  /**
    * @CfrPlugin(
    *   id = "related",
    *   label = "Image from related entity"
@@ -57,7 +52,6 @@ class EntityImage_Related implements EntityImageInterface {
   public function __construct(EntityToEntityInterface $entityToEntity, EntityImageInterface $relatedEntityImage) {
     $this->entityToEntity = $entityToEntity;
     $this->relatedEntityImage = $relatedEntityImage;
-    $this->relatedEntityType = $entityToEntity->getTargetType();
   }
 
   /**
