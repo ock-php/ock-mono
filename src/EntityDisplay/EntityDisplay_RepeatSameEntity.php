@@ -33,12 +33,12 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
     return CfSchema_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        CfSchema_IfaceWithContext::create(EntitiesListFormatInterface::class, $context),
         new CfSchema_Textfield_IntegerInRange(1, 100),
+        CfSchema_IfaceWithContext::create(EntitiesListFormatInterface::class, $context),
       ],
       [
-        t('Entities list format'),
         t('Number of repetitions'),
+        t('Entities list format'),
       ]);
   }
 
