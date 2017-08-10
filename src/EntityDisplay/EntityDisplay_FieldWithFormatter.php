@@ -2,14 +2,21 @@
 
 namespace Drupal\renderkit8\EntityDisplay;
 
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface;
-use Drupal\renderkit8\Helper\EntityTypeFieldDisplayHelper;
 use Drupal\renderkit8\Schema\CfSchema_EntityDisplay_FieldWithFormatter;
 
 /**
  * Entity display handler to view a specific field on all the entities.
  */
-class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
+class EntityDisplay_FieldWithFormatter extends EntityDisplayBase {
+
+  /**
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  private $entityTypeManager;
 
   /**
    * @var string
@@ -41,16 +48,21 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
   }
 
   /**
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    * @param string $field_name
    * @param array $display
    * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
-   * @param string $langcode
    */
-  public function __construct($field_name, array $display = [], FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL, $langcode = NULL) {
+  public function __construct(
+    EntityTypeManagerInterface $entityTypeManager,
+    $field_name,
+    array $display = [],
+    FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL
+  ) {
+    $this->entityTypeManager = $entityTypeManager;
     $this->fieldName = $field_name;
     $this->display = $display + ['label' => 'hidden'];
     $this->fieldDisplayProcessor = $fieldDisplayProcessor;
-    $this->langcode = $langcode;
   }
 
   /**
@@ -81,21 +93,37 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
   }
 
   /**
-   * @param string $entityType
-   * @param array $entities
+   * Same as ->buildEntities(), just for a single entity.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
-   * @throws \EntityMalformedException
+   *
+   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  public function buildEntities($entityType, array $entities) {
-    $helper = EntityTypeFieldDisplayHelper::create($entityType, $this->fieldName, $this->display, $this->langcode);
-    $builds = $helper->buildMultipleByDelta($entities);
-    if (NULL !== $this->fieldDisplayProcessor) {
-      foreach ($builds as $delta => $build) {
-        $builds[$delta] = $this->fieldDisplayProcessor->process($build);
-      }
-    }
-    return $builds;
-  }
+  public function buildEntity(EntityInterface $entity) {
 
+    if (!$entity instanceof FieldableEntityInterface) {
+      return [];
+    }
+
+    $fieldItemList = $entity->get($this->fieldName);
+
+    if ($fieldItemList->isEmpty()) {
+      return [];
+    }
+
+    $builder = $this->entityTypeManager->getViewBuilder(
+      $entity->getEntityTypeId());
+
+    $build = $builder->viewField(
+      $fieldItemList,
+      $this->display);
+
+    if (NULL !== $this->fieldDisplayProcessor) {
+      $build = $this->fieldDisplayProcessor->process($build);
+    }
+
+    return $build;
+  }
 }
