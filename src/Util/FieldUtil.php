@@ -13,6 +13,8 @@ final class FieldUtil extends UtilBase {
    * @param array $allowedTypes
    *
    * @return array
+   *
+   * @throws \Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration
    */
   public static function fieldnameLoadInfoAssertType($fieldName, array $allowedTypes) {
 
