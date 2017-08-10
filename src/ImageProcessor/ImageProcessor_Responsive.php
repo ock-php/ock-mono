@@ -11,7 +11,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
   /**
    * The image style name to use for the src attribute itself.
    *
-   * @var string
+   * @var string|null
    */
   private $fallbackStyleName;
 
@@ -101,7 +101,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
 
     // Only change the '#path' and '#width' and '#height' if the fallback image
     // uses an image style.
-    if (!empty($this->fallbackStyleName)) {
+    if (NULL !== $this->fallbackStyleName) {
       /* @see theme_image_style() */
       $style_dimensions = $original_dimensions;
       image_style_transform_dimensions($this->fallbackStyleName, $style_dimensions);
