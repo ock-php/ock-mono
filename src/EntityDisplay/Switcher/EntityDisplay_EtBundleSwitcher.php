@@ -32,51 +32,43 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
   }
 
   /**
+   * @param string $entityTypeId
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
-    if (isset($this->typeBundleDisplays[$entityType])) {
-      $bundleKey = $this->entityTypeGetBundleKey($entityType);
-      if (NULL !== $bundleKey) {
-        $builds = [];
-        $entitiesByBundle = [];
-        $bundleDisplays = $this->typeBundleDisplays[$entityType];
-        foreach ($entities as $delta => $entity) {
-          if (isset($entity->$bundleKey)) {
-            $bundleName = $entity->$bundleKey;
-            if (isset($bundleDisplays[$bundleName])) {
-              unset($entities[$delta]);
-              $entitiesByBundle[$bundleName][$delta] = $entity;
-            }
-          }
-          $builds[$delta] = [];
-        }
-        $buildsUnsorted = parent::buildEntities($entities);
-        foreach ($entitiesByBundle as $bundleName => $bundleEntities) {
-          $buildsUnsorted += $bundleDisplays[$bundleName]->buildEntities($bundleEntities);
-        }
-        foreach ($buildsUnsorted as $delta => $build) {
-          $builds[$delta] = $build;
-        }
-        return $builds;
+  protected function typeBuildEntities($entityTypeId, array $entities) {
+
+    if (!isset($this->typeBundleDisplays[$entityTypeId])) {
+      return parent::typeBuildEntities($entityTypeId, $entities);
+    }
+
+    $bundleDisplays = $this->typeBundleDisplays[$entityTypeId];
+
+    $entitiesByBundle = [];
+    $remainingEntities = $entities;
+    foreach ($entities as $delta => $entity) {
+      $bundleName = $entity->bundle();
+      if (isset($bundleDisplays[$bundleName])) {
+        unset($remainingEntities[$delta]);
+        $entitiesByBundle[$bundleName][$delta] = $entity;
       }
     }
-    return parent::buildEntities($entities);
-  }
 
-  /**
-   * @param string $entity_type
-   *
-   * @return string
-   */
-  private function entityTypeGetBundleKey($entity_type) {
-    $info = entity_get_info($entity_type);
-    return empty($info['entity keys']['bundle'])
-      ? NULL
-      : $info['entity keys']['bundle'];
+    $buildsUnsorted = parent::buildEntities($remainingEntities);
+    foreach ($entitiesByBundle as $bundleName => $bundleEntities) {
+      $buildsUnsorted += $bundleDisplays[$bundleName]->buildEntities($bundleEntities);
+    }
+
+    $builds = [];
+    foreach ($entities as $delta => $entity) {
+      if (isset($buildsUnsorted[$delta])) {
+        $builds[$delta] = $buildsUnsorted[$delta];
+      }
+    }
+
+    return $builds;
   }
 
 }
