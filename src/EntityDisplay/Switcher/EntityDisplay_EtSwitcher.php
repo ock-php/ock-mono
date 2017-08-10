@@ -2,13 +2,13 @@
 
 namespace Drupal\renderkit8\EntityDisplay\Switcher;
 
+use Drupal\renderkit8\EntityDisplay\EntityDisplay_GroupByTypeBase;
 use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit8\EntityDisplay\EntitiesDisplayBase;
 
 /**
  * Uses a different display handler depending on the entity type.
  */
-class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
+class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
 
   /**
    * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface|null
@@ -51,16 +51,15 @@ class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
   }
 
   /**
-   * Builds render arrays from the entities provided.
-   *
+   * @param string $entityTypeId
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  protected function typeBuildEntities($entityTypeId, array $entities) {
 
-    if (isset($this->typeDisplays[$entityType])) {
-      return $this->typeDisplays[$entityType]->buildEntities($entities);
+    if (isset($this->typeDisplays[$entityTypeId])) {
+      return $this->typeDisplays[$entityTypeId]->buildEntities($entities);
     }
 
     if (NULL !== $this->fallbackDisplay) {
