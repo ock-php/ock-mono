@@ -64,7 +64,7 @@ class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
       return $this->typeDisplays[$entityType]->buildEntities($entityType, $entities);
     }
 
-    if (isset($this->fallbackDisplay)) {
+    if (NULL !== $this->fallbackDisplay) {
       return $this->fallbackDisplay->buildEntities($entityType, $entities);
     }
 
