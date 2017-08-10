@@ -152,7 +152,7 @@ final class FieldUtil extends UtilBase {
    */
   public static function fieldFormatterTypeGetLabel($formatterTypeName) {
     $formatterTypeDefinition = field_info_formatter_types($formatterTypeName);
-    if (!isset($formatterTypeDefinition)) {
+    if (NULL === $formatterTypeDefinition) {
       return NULL;
     }
     return isset($formatterTypeDefinition['label'])
@@ -167,7 +167,7 @@ final class FieldUtil extends UtilBase {
    */
   public static function fieldFormatterTypeExists($formatterTypeName) {
     $formatterTypeDefinition = field_info_formatter_types($formatterTypeName);
-    return isset($formatterTypeDefinition);
+    return NULL !== $formatterTypeDefinition;
   }
 
   /**
@@ -270,7 +270,7 @@ final class FieldUtil extends UtilBase {
     foreach ($optionsAll as $fieldName => $optionLabel) {
       if (isset($fields[$fieldName]['type'])) {
         $fieldTypeName = $fields[$fieldName]['type'];
-        if (isset($allowedFieldTypes) && !in_array($fieldTypeName, $allowedFieldTypes, TRUE)) {
+        if (NULL !== $allowedFieldTypes && !in_array($fieldTypeName, $allowedFieldTypes, TRUE)) {
           continue;
         }
         if (isset($knownFieldTypes[$fieldTypeName]['label'])) {
@@ -285,7 +285,7 @@ final class FieldUtil extends UtilBase {
         $options[$fieldTypeLabel][$fieldName] = $optionLabel;
       }
       else {
-        if (isset($allowedFieldTypes)) {
+        if (NULL !== $allowedFieldTypes) {
           continue;
         }
         $options[''][$fieldName] = $optionLabel;

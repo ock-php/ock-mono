@@ -45,7 +45,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
       return NULL;
     }
     $fieldInfo = field_info_field($fieldName);
-    if (!isset($fieldInfo)) {
+    if (NULL === $fieldInfo) {
       return NULL;
     }
     if (!isset($fieldInfo['type'])) {

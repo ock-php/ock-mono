@@ -133,7 +133,7 @@ class EntityTypeFieldDisplayHelper {
       }
       $id = $entity->{$this->idKey};
       $idsByDelta[$delta] = $id;
-      if (isset($this->bundleKey)) {
+      if (NULL !== $this->bundleKey) {
         // Explicitly fail for malformed entities missing the bundle property.
         if (!isset($entity->{$this->bundleKey}) || $entity->{$this->bundleKey} === '') {
           // @todo Optionally let the developer know that something is wrong.

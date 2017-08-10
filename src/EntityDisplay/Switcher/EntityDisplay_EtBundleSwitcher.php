@@ -42,7 +42,7 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
   public function buildEntities($entityType, array $entities) {
     if (isset($this->typeBundleDisplays[$entityType])) {
       $bundleKey = $this->entityTypeGetBundleKey($entityType);
-      if (isset($bundleKey)) {
+      if (NULL !== $bundleKey) {
         $builds = [];
         $entitiesByBundle = [];
         $bundleDisplays = $this->typeBundleDisplays[$entityType];

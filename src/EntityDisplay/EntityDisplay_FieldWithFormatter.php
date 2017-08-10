@@ -65,7 +65,7 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    */
   public function setFormatter($name, array $settings = NULL) {
     $this->display['type'] = $name;
-    if (isset($settings)) {
+    if (NULL !== $settings) {
       $this->display['settings'] = $settings;
     }
     return $this;
