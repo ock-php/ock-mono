@@ -10,17 +10,19 @@ trait EntityDisplayBaseTrait {
    * Builds the render array for multiple entities, by using the method for a
    * single entity.
    *
-   * @param string $entity_type
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
+   *
+   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntities()
    */
-  final public function buildEntities($entity_type, array $entities) {
+  final public function buildEntities(array $entities) {
+
     $builds = [];
     foreach ($entities as $delta => $entity) {
-      $builds[$delta] = $this->buildEntity($entity_type, $entity);
+      $builds[$delta] = $this->buildEntity($entity);
     }
+
     return $builds;
   }
 

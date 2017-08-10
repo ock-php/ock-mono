@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityToEntity;
 
+use Drupal\Core\Entity\EntityInterface;
+
 /**
  * Represents a one-to-one relation between entities.
  */
@@ -15,18 +17,16 @@ interface EntityToEntityInterface {
   public function getTargetType();
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
-   * @return object[]
+   * @return \Drupal\Core\Entity\EntityInterface[]
    */
-  public function entitiesGetRelated($entityType, array $entities);
+  public function entitiesGetRelated(array $entities);
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return object|null
+   * @return null|\Drupal\Core\Entity\EntityInterface
    */
-  public function entityGetRelated($entityType, $entity);
+  public function entityGetRelated(EntityInterface $entity);
 }

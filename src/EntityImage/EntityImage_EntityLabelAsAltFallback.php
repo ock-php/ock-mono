@@ -44,21 +44,17 @@ class EntityImage_EntityLabelAsAltFallback implements EntityImageInterface {
   /**
    * Same method signature as in parent interface, just a different description.
    *
-   * @param string $entityType
-   *   E.g. 'node' or 'taxonomy_term'.
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
-   *   Each render array must contain '#theme' => 'image'.
    */
-  public function buildEntities($entityType, array $entities) {
+  public function buildEntities(array $entities) {
 
     $label = NULL;
 
     $images = [];
-    foreach ($this->decorated->buildEntities($entityType, $entities) as $delta => $image) {
+    foreach ($this->decorated->buildEntities($entities) as $delta => $image) {
 
       if (empty($image) || empty($entities[$delta])) {
         continue;

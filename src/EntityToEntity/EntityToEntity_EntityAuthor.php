@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityToEntity;
 
+use Drupal\Core\Entity\EntityInterface;
+
 /**
  * @CfrPlugin(
  *   id = "author",
@@ -32,12 +34,11 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
-   * @return object[]
+   * @return \Drupal\Core\Entity\EntityInterface[]
    */
-  public function entitiesGetRelated($entityType, array $entities) {
+  public function entitiesGetRelated(array $entities) {
     // @todo Check if this entity type has a uid!
     $uids = [];
     foreach ($entities as $delta => $entity) {
@@ -61,12 +62,11 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return object|null
+   * @return null|\Drupal\Core\Entity\EntityInterface
    */
-  public function entityGetRelated($entityType, $entity) {
+  public function entityGetRelated(EntityInterface $entity) {
     // @todo Check if this entity type has a uid!
     if (!isset($entity->uid)) {
       return NULL;

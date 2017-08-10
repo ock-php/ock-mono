@@ -53,19 +53,18 @@ class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
   /**
    * Builds render arrays from the entities provided.
    *
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
    */
-  public function buildEntities($entityType, array $entities) {
+  public function buildEntities(array $entities) {
 
     if (isset($this->typeDisplays[$entityType])) {
-      return $this->typeDisplays[$entityType]->buildEntities($entityType, $entities);
+      return $this->typeDisplays[$entityType]->buildEntities($entities);
     }
 
     if (NULL !== $this->fallbackDisplay) {
-      return $this->fallbackDisplay->buildEntities($entityType, $entities);
+      return $this->fallbackDisplay->buildEntities($entities);
     }
 
     return [];

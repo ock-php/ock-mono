@@ -28,16 +28,13 @@ interface EntityDisplayInterface {
    * Array keys and their order must be preserved, although implementations
    * might remove some keys that are empty.
    *
-   * @param string $entityType
-   *   E.g. 'node' or 'taxonomy_term'.
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *   The array keys can be anything, they don't need to be the entity ids.
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  public function buildEntities($entityType, array $entities);
+  public function buildEntities(array $entities);
 
   /**
    * Same as ->buildEntities(), just for a single entity.

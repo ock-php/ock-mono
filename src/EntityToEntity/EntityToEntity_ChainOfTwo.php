@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityToEntity;
 
+use Drupal\Core\Entity\EntityInterface;
+
 class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
 
   /**
@@ -33,27 +35,25 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
-   * @return object[]
+   * @return \Drupal\Core\Entity\EntityInterface[]
    */
-  public function entitiesGetRelated($entityType, array $entities) {
-    $related = $this->first->entitiesGetRelated($entityType, $entities);
-    return $this->second->entitiesGetRelated($this->first->getTargetType(), $related);
+  public function entitiesGetRelated(array $entities) {
+    $related = $this->first->entitiesGetRelated($entities);
+    return $this->second->entitiesGetRelated($related);
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return object|null
+   * @return null|\Drupal\Core\Entity\EntityInterface
    */
-  public function entityGetRelated($entityType, $entity) {
-    $related = $this->first->entityGetRelated($entityType, $entity);
+  public function entityGetRelated(EntityInterface $entity) {
+    $related = $this->first->entityGetRelated($entity);
     if (NULL === $related) {
       return NULL;
     }
-    return $this->second->entityGetRelated($this->first->getTargetType(), $related);
+    return $this->second->entityGetRelated($related);
   }
 }

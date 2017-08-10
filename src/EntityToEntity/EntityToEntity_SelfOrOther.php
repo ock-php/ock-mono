@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityToEntity;
 
+use Drupal\Core\Entity\EntityInterface;
+
 class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
 
   /**
@@ -26,10 +28,9 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
-   * @return object[]
+   * @return \Drupal\Core\Entity\EntityInterface[]
    */
   public function entitiesGetRelated($entityType, array $entities) {
     if ($entityType === $this->decorated->getTargetType()) {
@@ -41,17 +42,14 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return object|null
+   * @return null|\Drupal\Core\Entity\EntityInterface
    */
-  public function entityGetRelated($entityType, $entity) {
-    if ($entityType === $this->getTargetType()) {
-      return $entity;
-    }
-    else {
-      return $this->decorated->entityGetRelated($entityType, $entity);
-    }
+  public function entityGetRelated(EntityInterface $entity) {
+
+    return $entity->getEntityTypeId() === $this->getTargetType()
+      ? $entity
+      : $this->decorated->entityGetRelated($entity);
   }
 }

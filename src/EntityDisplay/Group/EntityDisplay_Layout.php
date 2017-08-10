@@ -32,16 +32,14 @@ class EntityDisplay_Layout extends EntitiesDisplayBase {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  public function buildEntities($entityType, array $entities) {
+  public function buildEntities(array $entities) {
     $builds = [];
     foreach ($this->regionDisplayHandlers as $name => $handler) {
-      foreach ($handler->buildEntities($entityType, $entities) as $delta => $entity_build) {
+      foreach ($handler->buildEntities($entities) as $delta => $entity_build) {
         $builds[$delta][$name] = $entity_build;
       }
     }

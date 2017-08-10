@@ -52,7 +52,7 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
 
     $rows = [];
     foreach ($this->columnDisplays as $colKey => $columnDisplay) {
-      foreach ($columnDisplay->buildEntities($entityType, $entities) as $rowKey => $build) {
+      foreach ($columnDisplay->buildEntities($entities) as $rowKey => $build) {
         $rows[$rowKey][$colKey] = drupal_render($build);
       }
     }

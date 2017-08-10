@@ -85,12 +85,11 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
-   * @return object[]
+   * @return \Drupal\Core\Entity\EntityInterface[]
    */
-  public function entitiesGetRelated($entityType, array $entities) {
+  public function entitiesGetRelated(array $entities) {
 
     $target_etids = [];
     foreach ($entities as $delta => $entity) {

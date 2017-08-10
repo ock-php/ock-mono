@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityDisplay;
 
+use Drupal\Core\Entity\EntityInterface;
+
 class EntityDisplay_DateProperty extends EntityDisplayBase {
 
   /**
@@ -53,7 +55,7 @@ class EntityDisplay_DateProperty extends EntityDisplayBase {
    *
    * @return array
    */
-  public function buildEntity(\Drupal\Core\Entity\EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity) {
     if ('node' !== $entity_type) {
       return [];
     }

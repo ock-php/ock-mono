@@ -32,14 +32,12 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  public function buildEntities($entityType, array $entities) {
+  public function buildEntities(array $entities) {
     if (isset($this->typeBundleDisplays[$entityType])) {
       $bundleKey = $this->entityTypeGetBundleKey($entityType);
       if (NULL !== $bundleKey) {
@@ -56,9 +54,9 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
           }
           $builds[$delta] = [];
         }
-        $buildsUnsorted = parent::buildEntities($entityType, $entities);
+        $buildsUnsorted = parent::buildEntities($entities);
         foreach ($entitiesByBundle as $bundleName => $bundleEntities) {
-          $buildsUnsorted += $bundleDisplays[$bundleName]->buildEntities($entityType, $bundleEntities);
+          $buildsUnsorted += $bundleDisplays[$bundleName]->buildEntities($bundleEntities);
         }
         foreach ($buildsUnsorted as $delta => $build) {
           $builds[$delta] = $build;
@@ -66,7 +64,7 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
         return $builds;
       }
     }
-    return parent::buildEntities($entityType, $entities);
+    return parent::buildEntities($entities);
   }
 
   /**

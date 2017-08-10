@@ -3,6 +3,7 @@
 namespace Drupal\renderkit8\EntityToEntity;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\Schema\CfSchema_EntityBundleName;
 
 class EntityToEntity_UserProfile2 extends EntityToEntityBase {
@@ -76,12 +77,11 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return object|null
+   * @return null|\Drupal\Core\Entity\EntityInterface
    */
-  public function entityGetRelated($entityType, $entity) {
+  public function entityGetRelated(EntityInterface $entity) {
 
     if (NULL === $user = $this->entityGetUser($entityType, $entity)) {
       return NULL;
@@ -109,7 +109,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
     }
 
     if (NULL !== $this->entityToUser) {
-      return $this->entityToUser->entityGetRelated($entityType, $entity);
+      return $this->entityToUser->entityGetRelated($entity);
     }
 
     return NULL;

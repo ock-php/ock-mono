@@ -69,7 +69,7 @@ class EntityImage_Related implements EntityImageInterface {
    * @return array
    */
   public function buildEntity(EntityInterface $entity) {
-    if (NULL === $relatedEntity = $this->entityToEntity->entityGetRelated($entity_type, $entity)) {
+    if (NULL === $relatedEntity = $this->entityToEntity->entityGetRelated($entity)) {
       return [];
     }
     return $this->relatedEntityImage->buildEntity($relatedEntity);
@@ -78,17 +78,13 @@ class EntityImage_Related implements EntityImageInterface {
   /**
    * Same method signature as in parent interface, just a different description.
    *
-   * @param string $entityType
-   *   E.g. 'node' or 'taxonomy_term'.
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
-   *   Each render array must contain '#theme' => 'image'.
    */
-  public function buildEntities($entityType, array $entities) {
-    $entities = $this->entityToEntity->entitiesGetRelated($entityType, $entities);
-    return $this->relatedEntityImage->buildEntities($this->relatedEntityType, $entities);
+  public function buildEntities(array $entities) {
+    $entities = $this->entityToEntity->entitiesGetRelated($entities);
+    return $this->relatedEntityImage->buildEntities($entities);
   }
 }

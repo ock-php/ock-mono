@@ -49,15 +49,14 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return array[]
    */
-  public function buildEntities($entityType, array $entities) {
+  public function buildEntities(array $entities) {
     $builds = array_fill_keys(array_keys($entities), NULL);
     foreach ($this->displays as $display) {
-      foreach ($display->buildEntities($entityType, $entities) as $delta => $build) {
+      foreach ($display->buildEntities($entities) as $delta => $build) {
         if (!empty($build)) {
           if (empty($builds[$delta])) {
             $builds[$delta] = $build;

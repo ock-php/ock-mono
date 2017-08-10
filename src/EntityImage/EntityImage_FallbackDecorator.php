@@ -50,23 +50,19 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
   /**
    * Same method signature as in parent interface, just a different description.
    *
-   * @param string $entityType
-   *   E.g. 'node' or 'taxonomy_term'.
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
-   *   Each render array must contain '#theme' => 'image'.
    */
-  public function buildEntities($entityType, array $entities) {
+  public function buildEntities(array $entities) {
     $builds = array_fill_keys(array_keys($entities), NULL);
-    $builds += $this->decorated->buildEntities($entityType, $entities);
-    foreach (array_filter($this->decorated->buildEntities($entityType, $entities)) as $delta => $build) {
+    $builds += $this->decorated->buildEntities($entities);
+    foreach (array_filter($this->decorated->buildEntities($entities)) as $delta => $build) {
       unset($entities[$delta]);
       $builds[$delta] = $build;
     }
-    foreach (array_filter($this->fallback->buildEntities($entityType, $entities)) as $delta => $build) {
+    foreach (array_filter($this->fallback->buildEntities($entities)) as $delta => $build) {
       $builds[$delta] = $build;
     }
     return array_filter($builds);

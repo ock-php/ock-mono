@@ -30,21 +30,17 @@ class EntityDisplay_RecursionDetectionDecorator extends EntityDisplay_NeutralDec
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
-   *
-   * @throws \Drupal\renderkit8\Exception\EntityDisplayRecursionException
    */
-  public function buildEntities($entityType, array $entities) {
+  public function buildEntities(array $entities) {
     if (self::$recursionDepth > $this->recursionLimit) {
       throw new EntityDisplayRecursionException();
     }
     ++self::$recursionDepth;
-    $builds = parent::buildEntities($entityType, $entities);
+    $builds = parent::buildEntities($entities);
     --self::$recursionDepth;
     return $builds;
   }

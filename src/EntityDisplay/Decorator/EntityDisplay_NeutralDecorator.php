@@ -22,16 +22,15 @@ class EntityDisplay_NeutralDecorator extends EntitiesDisplayBase {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  public function buildEntities($entityType, array $entities) {
+  public function buildEntities(array $entities) {
+
     return NULL !== $this->decorated
-      ? $this->decorated->buildEntities($entityType, $entities)
+      ? $this->decorated->buildEntities($entities)
       : [];
   }
 

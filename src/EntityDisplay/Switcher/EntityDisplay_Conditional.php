@@ -49,16 +49,13 @@ class EntityDisplay_Conditional extends EntitiesDisplayBase {
    * Array keys and their order must be preserved, although implementations
    * might remove some keys that are empty.
    *
-   * @param string $entityType
-   *   E.g. 'node' or 'taxonomy_term'.
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Entity objects for which to build the render arrays.
    *   The array keys can be anything, they don't need to be the entity ids.
    *
    * @return array[]
-   *   An array of render arrays, keyed by the original array keys of $entities.
    */
-  public function buildEntities($entityType, array $entities) {
+  public function buildEntities(array $entities) {
     $deltas = $this->entityFilter->entitiesFilterDeltas($entityType, $entities);
     $lookup = array_fill_keys($deltas, TRUE);
     $entitiesWithQuality = [];
@@ -74,12 +71,12 @@ class EntityDisplay_Conditional extends EntitiesDisplayBase {
       $builds[$delta] = [];
     }
     if ($entitiesWithQuality) {
-      foreach ($this->displayIfTrue->buildEntities($entityType, $entitiesWithQuality) as $delta => $build) {
+      foreach ($this->displayIfTrue->buildEntities($entitiesWithQuality) as $delta => $build) {
         $builds[$delta] = $build;
       }
     }
     if ($entitiesWithoutQuality && $this->displayIfFalse) {
-      foreach ($this->displayIfFalse->buildEntities($entityType, $entitiesWithoutQuality) as $delta => $build) {
+      foreach ($this->displayIfFalse->buildEntities($entitiesWithoutQuality) as $delta => $build) {
         $builds[$delta] = $build;
       }
     }
