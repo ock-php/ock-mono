@@ -31,6 +31,10 @@ function _renderkit_pop_parent(array $element) {
  *
  * @return array
  */
-function _renderkit_generic_form(array $existing_form, array &$form_state, array $form) {
+function _renderkit_generic_form(
+  /** @noinspection PhpUnusedParameterInspection */ array $existing_form,
+  /** @noinspection PhpUnusedParameterInspection */ array &$form_state,
+  array $form
+) {
   return $form;
 }
