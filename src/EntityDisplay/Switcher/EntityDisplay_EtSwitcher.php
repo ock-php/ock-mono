@@ -59,11 +59,16 @@ class EntityDisplay_EtSwitcher extends EntitiesDisplayBase {
    * @return array[]
    */
   public function buildEntities($entityType, array $entities) {
-    return isset($this->typeDisplays[$entityType])
-      ? $this->typeDisplays[$entityType]->buildEntities($entityType, $entities)
-      : (isset($this->fallbackDisplay)
-        ? $this->fallbackDisplay->buildEntities($entityType, $entities)
-        : []);
+
+    if (isset($this->typeDisplays[$entityType])) {
+      return $this->typeDisplays[$entityType]->buildEntities($entityType, $entities);
+    }
+
+    if (isset($this->fallbackDisplay)) {
+      return $this->fallbackDisplay->buildEntities($entityType, $entities);
+    }
+
+    return [];
   }
 
 }
