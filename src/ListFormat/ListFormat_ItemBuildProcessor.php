@@ -38,13 +38,15 @@ class ListFormat_ItemBuildProcessor implements ListFormatInterface {
    *   Render array for the list.
    */
   public function buildList(array $builds) {
-    foreach ($builds as &$itemBuild) {
-      /** @noinspection ReferenceMismatchInspection */
-      $itemBuild = $this->itemBuildProcessor->process($itemBuild);
+
+    foreach ($builds as $delta => $itemBuild) {
+      $builds[$delta] = $this->itemBuildProcessor->process($itemBuild);
     }
+
     if (NULL !== $this->decorated) {
       $builds = $this->decorated->buildList($builds);
     }
+
     return $builds;
   }
 }
