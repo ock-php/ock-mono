@@ -32,7 +32,7 @@ abstract class EntityDisplay_GroupByTypeBase implements EntityDisplayInterface {
 
     $grouped = [];
     foreach ($entities as $delta => $entity) {
-      $grouped[$entity->getEntityTypeId()] = $entity;
+      $grouped[$entity->getEntityTypeId()][$delta] = $entity;
     }
 
     $buildsUnsorted = [];

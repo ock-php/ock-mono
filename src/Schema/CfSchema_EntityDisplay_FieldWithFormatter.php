@@ -21,14 +21,44 @@ class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
   private $bundleName;
 
   /**
+   * @param string|null $entityType
+   * @param string|null $bundle
+   *
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   */
+  public static function createValSchema($entityType = NULL, $bundle = NULL) {
+    return self::createConfSchema($entityType, $bundle)
+      ->getValSchema();
+  }
+
+  /**
+   * @param string|null $entityType
+   * @param string|null $bundle
+   *
+   * @return self
+   */
+  public static function createConfSchema($entityType = NULL, $bundle = NULL) {
+    return new self($entityType, $bundle);
+  }
+
+  /**
+   * @param string|null $entityType
+   * @param string|null $bundle
+   */
+  public function __construct($entityType = NULL, $bundle = NULL) {
+    $this->entityType = $entityType;
+    $this->bundleName = $bundle;
+  }
+
+  /**
    * @return \Donquixote\Cf\Schema\CfSchemaInterface[]
    */
   public function getItemSchemas() {
     $schemas = [];
 
-    $schemas['field'] = new CfSchema_FieldNameWithFormatter(
-      $this->entityType,
-      $this->bundleName);
+    $schemas['field'] = CfSchema_EtAndFieldNameAndFormatterSettings::create(
+        $this->entityType,
+        $this->bundleName);
 
     $schemas['label'] = CfSchema_Options_Fixed::createFlat(
       [
@@ -95,12 +125,15 @@ class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
     FieldDisplayProcessorInterface $processorOrNull = NULL
   ) {
 
-    $fieldName = $fieldSettings['field'];
+    $et = $fieldSettings['entity_type'];
+    $fieldAndFormatter = $fieldSettings['field_and_formatter'];
+    $fieldName = $fieldAndFormatter['field'];
 
-    $fieldDisplay = $fieldSettings['display'];
+    $fieldDisplay = $fieldAndFormatter['display'];
     $fieldDisplay['label'] = $labelDisplay;
 
-    return new EntityDisplay_FieldWithFormatter(
+    return EntityDisplay_FieldWithFormatter::create(
+      $et,
       $fieldName,
       $fieldDisplay,
       $processorOrNull);

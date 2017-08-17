@@ -39,7 +39,7 @@ class CfSchema_EntityDisplay_Title extends CfSchema_Group_V2VBase {
    */
   public function getItemSchemas() {
     return [
-      'tag_name' => CfSchema_TagName::create(
+      'tag_name' => CfSchema_TagName::createOptional(
         $this->allowedTagNames),
       'link' => new CfSchema_Boolean_YesNo(),
     ];

@@ -2,9 +2,10 @@
 
 namespace Drupal\renderkit8\EntityDisplay;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\EntityToEntity\EntityToEntityInterface;
 
-class EntityDisplay_Reference extends EntitiesDisplayBase {
+class EntityDisplay_Reference implements EntityDisplayInterface {
 
   /**
    * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
@@ -58,7 +59,32 @@ class EntityDisplay_Reference extends EntitiesDisplayBase {
    * @return array[]
    */
   public function buildEntities(array $entities) {
-    $relatedEntities = $this->reference->entitiesGetRelated($entities);
+
+    $relatedEntities = [];
+    foreach ($entities as $delta => $entity) {
+      if (NULL !== $related = $this->reference->entityGetRelated($entity)) {
+        $relatedEntities[$delta] = $related;
+      }
+    }
+
     return $this->decorated->buildEntities($relatedEntities);
+  }
+
+  /**
+   * Same as ->buildEntities(), just for a single entity.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *
+   * @return array
+   *
+   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
+   */
+  public function buildEntity(EntityInterface $entity) {
+
+    if (NULL === $related = $this->reference->entityGetRelated($entity)) {
+      return [];
+    }
+
+    return $this->decorated->buildEntity($related);
   }
 }

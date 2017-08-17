@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit8\Configurator;
 
-use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
-use Drupal\cfrapi\Configurator\ConfiguratorInterface;
-use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
+use Drupal\faktoria\CfrCodegenHelper\CfrCodegenHelperInterface;
+use Drupal\faktoria\Configurator\ConfiguratorInterface;
+use Drupal\faktoria\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
 
 /**
@@ -119,7 +119,7 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
   /**
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
-   * @param \Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface $summaryBuilder
+   * @param \Drupal\faktoria\SummaryBuilder\SummaryBuilderInterface $summaryBuilder
    *   An object that controls the format of the summary.
    *
    * @return mixed|string|null
@@ -145,7 +145,7 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
   /**
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
-   * @param \Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface $helper
+   * @param \Drupal\faktoria\CfrCodegenHelper\CfrCodegenHelperInterface $helper
    *
    * @return string
    *   PHP statement to generate the value.

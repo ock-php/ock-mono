@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\EntityCondition;
 
+use Drupal\Core\Entity\EntityInterface;
+
 /**
  * This is not annotated as CfrPlugin, because it is equivalent with
  *
@@ -22,12 +24,11 @@ class EntityCondition_Negation implements EntityConditionInterface {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return bool
    */
-  public function entityCheckCondition($entityType, $entity) {
-    return !$this->negatedCondition->entityCheckCondition($entityType, $entity);
+  public function entityCheckCondition(EntityInterface $entity) {
+    return !$this->negatedCondition->entityCheckCondition($entity);
   }
 }

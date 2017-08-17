@@ -5,13 +5,16 @@ namespace Drupal\renderkit8\EntityToEntities;
 abstract class EntityToEntitiesMultipleBase implements EntityToEntitiesInterface {
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return object[]
+   * @return \Drupal\Core\Entity\EntityInterface[]
    */
-  public function entityGetRelated($entityType, $entity) {
-    $targetEntities = $this->entitiesGetRelated($entityType, [$entity]);
-    return isset($targetEntities[0]) ? $targetEntities[0] : [];
+  public function entityGetRelated($entity) {
+
+    $targetEntities = $this->entitiesGetRelated([$entity]);
+
+    return isset($targetEntities[0])
+      ? $targetEntities[0]
+      : [];
   }
 }

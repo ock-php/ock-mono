@@ -2,15 +2,31 @@
 
 namespace Drupal\renderkit8\EntityImages;
 
+use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit8\Schema\CfSchema_FieldName;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\file\Plugin\Field\FieldType\FileFieldItemList;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\renderkit8\Schema\CfSchema_EtDotFieldName_AllowedTypes;
+use Drupal\renderkit8\Util\ImageFieldUtil;
 
 class EntityImages_ImageField implements EntityImagesInterface {
 
   /**
    * @var string
    */
+  private $entityTypeId;
+
+  /**
+   * @var string
+   */
   private $fieldName;
+
+  /**
+   * @var bool
+   */
+  private $useDefaultImage;
 
   /**
    * @CfrPlugin(
@@ -25,76 +41,89 @@ class EntityImages_ImageField implements EntityImagesInterface {
    */
   public static function createSchema($entityType = NULL, $bundleName = NULL) {
 
-    return CfSchema_GroupVal_Callback::fromClass(
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
+      'create',
       [
-        new CfSchema_FieldName(
-          ['image'],
+        new CfSchema_EtDotFieldName_AllowedTypes(
           $entityType,
-          $bundleName),
+          $bundleName,
+          ['image']),
+        CfSchema_Boolean_YesNo::create(TRUE),
       ],
       [
         t('Image field'),
+        t('Use default image as fallback'),
       ]);
   }
 
   /**
-   * @param string $fieldName
-   *   The name of an image field, e.g. 'field_teaser_image'.
+   * @param string $etDotFieldName
+   * @param bool $useDefaultImage
+   *
+   * @return self
    */
-  public function __construct($fieldName) {
-    $this->fieldName = $fieldName;
+  public static function create($etDotFieldName, $useDefaultImage = TRUE) {
+
+    list($entityTypeId, $fieldName) = explode('.', $etDotFieldName) + [NULL, NULL];
+
+    if (NULL === $fieldName || '' === $entityTypeId || '' === $fieldName) {
+      return NULL;
+    }
+
+    return new self(
+      $entityTypeId,
+      $fieldName,
+      $useDefaultImage);
   }
 
   /**
-   * @param string $entity_type
+   * @param string $entityTypeId
+   * @param string $fieldName
+   * @param bool $useDefaultImage
+   */
+  public function __construct($entityTypeId, $fieldName, $useDefaultImage = TRUE) {
+    $this->entityTypeId = $entityTypeId;
+    $this->fieldName = $fieldName;
+    $this->useDefaultImage = $useDefaultImage;
+  }
+
+  /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    *   Render array for one entity.
    */
-  public function entityGetImages($entity_type, $entity) {
-    $items = field_get_items($entity_type, $entity, $this->fieldName) ?: [];
+  public function entityGetImages(EntityInterface $entity) {
+
+    if ($this->entityTypeId !== $entity->getEntityTypeId()) {
+      return [];
+    }
+
+    if (!$entity instanceof FieldableEntityInterface) {
+      return [];
+    }
+
+    $items = $entity->get($this->fieldName);
+
+    if (!$items instanceof FileFieldItemList) {
+      return [];
+    }
+
+    if ($this->useDefaultImage) {
+      $items = ImageFieldUtil::itemsGetItems($items);
+    }
+
     $builds = [];
     foreach ($items as $delta => $item) {
-      $builds[$delta] = $this->buildFieldItem($item);
+
+      if (!$item instanceof ImageItem) {
+        continue;
+      }
+
+      $builds[$delta] = ImageFieldUtil::buildImageFieldItem($item);
     }
+
     return $builds;
-  }
-
-  /**
-   * @param array $item
-   *   Field item from an image field.
-   *
-   * @return array
-   *
-   * @see theme_image_formatter()
-   */
-  protected function buildFieldItem(array $item) {
-
-    $build = [
-      '#theme' => 'image',
-      '#path' => $item['uri'],
-    ];
-
-    if (array_key_exists('alt', $item)) {
-      $build['#alt'] = $item['alt'];
-    }
-
-    if (isset($item['attributes'])) {
-      $build['#attributes'] = $item['attributes'];
-    }
-
-    if (isset($item['width']) && isset($item['height'])) {
-      $build['#width'] = $item['width'];
-      $build['#height'] = $item['height'];
-    }
-
-    // Do not output an empty 'title' attribute.
-    if (isset($item['title']) && drupal_strlen($item['title']) > 0) {
-      $build['#title'] = $item['title'];
-    }
-
-    return $build;
   }
 }

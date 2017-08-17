@@ -43,7 +43,7 @@ class EntityDisplay_Images extends EntityDisplayBase {
    * @return array
    */
   public function buildEntity(EntityInterface $entity) {
-    $images = $this->entityImages->entityGetImages($entity_type, $entity);
+    $images = $this->entityImages->entityGetImages($entity);
     if ($images === []) {
       return [];
     }

@@ -21,7 +21,7 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
   /**
    * @CfrPlugin(
    *   id = "processedEntityImage",
-   *   label = @Translate("Image with processor")
+   *   label = @t("Image")
    * )
    *
    * @param \Drupal\renderkit8\EntityImage\EntityImageInterface $entityImageProvider

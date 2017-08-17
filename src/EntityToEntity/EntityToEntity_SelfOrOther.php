@@ -28,32 +28,6 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
   }
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *
-   * @return \Drupal\Core\Entity\EntityInterface[]
-   */
-  public function entitiesGetRelated(array $entities) {
-
-    $targetEntities = [];
-    $sourceEntities = [];
-    foreach ($entities as $delta => $entity) {
-      if ($entity->getEntityType() === $this->getTargetType()) {
-        $targetEntities[$delta] = $entity;
-      }
-      else {
-        $sourceEntities[$delta] = $entity;
-        $targetEntities[$delta] = NULL;
-      }
-    }
-
-    foreach ($this->decorated->entitiesGetRelated($sourceEntities) as $delta => $targetEntity) {
-      $targetEntities[$delta] = $targetEntity;
-    }
-
-    return array_filter($targetEntities);
-  }
-
-  /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return null|\Drupal\Core\Entity\EntityInterface

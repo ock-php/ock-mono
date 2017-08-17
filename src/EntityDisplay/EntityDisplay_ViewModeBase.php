@@ -29,7 +29,12 @@ abstract class EntityDisplay_ViewModeBase extends EntityDisplay_GroupByTypeBase 
     $builder = $this->entityTypeManager->getViewBuilder($entityTypeId);
     $viewMode = $this->etGetViewMode($entityTypeId);
 
-    return $builder->viewMultiple($entities, $viewMode);
+    $builds = [];
+    foreach ($entities as $delta => $entity) {
+      $builds[$delta] = $builder->view($entity, $viewMode);
+    }
+
+    return $builds;
   }
 
   /**

@@ -17,32 +17,44 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
   private $filter;
 
   /**
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  private $targetEntitiesStorage;
+
+  /**
    * @param \Drupal\renderkit8\EntityToRelatedIds\EntityToRelatedIdsInterface $relation
    * @param \Drupal\renderkit8\EntityFilter\EntityFilterInterface $filter
    */
   public function __construct(EntityToRelatedIdsInterface $relation, EntityFilterInterface $filter) {
     $this->filter = $filter;
     $this->relation = $relation;
+    $this->targetEntitiesStorage = \Drupal::service('entity_type.manager')
+      ->getStorage($relation->getTargetType());
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
-   * @return bool[]
+   * @return string[]
+   *   Format: $[] = $delta
    */
-  public function entitiesFilterDeltas($entityType, array $entities) {
+  public function entitiesFilterDeltas(array $entities) {
+
     $relatedIdsByDelta = $this->relation->entitiesGetRelatedIds($entities);
+
     $relatedIds = [];
     foreach ($relatedIdsByDelta as $delta => $deltaRelatedIds) {
       foreach ($deltaRelatedIds as $relatedId) {
         $relatedIds[] = $relatedId;
       }
     }
-    $relatedIds = array_unique($relatedIds);
-    $relatedEntitiesById = entity_load($this->relation->getTargetType(), $relatedIds);
 
-    $relatedEntitiesHaveQuality = $this->filter->entitiesFilterDeltas($this->relation->getTargetType(), $relatedEntitiesById);
+    $relatedIds = array_unique($relatedIds);
+    $relatedEntitiesById = $this->targetEntitiesStorage->loadMultiple($relatedIds);
+
+    $relatedEntitiesHaveQuality = $this->filter->entitiesFilterDeltas(
+      $relatedEntitiesById);
+
     $entitiesHaveQuality = [];
     foreach ($relatedIdsByDelta as $delta => $deltaRelatedIds) {
       foreach ($deltaRelatedIds as $id => $relatedEntity) {
@@ -52,6 +64,7 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
         }
       }
     }
+
     return $entitiesHaveQuality;
   }
 }

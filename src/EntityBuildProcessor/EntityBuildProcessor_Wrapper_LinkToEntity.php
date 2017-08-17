@@ -3,6 +3,7 @@
 namespace Drupal\renderkit8\EntityBuildProcessor;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit8\Html\HtmlAttributesInterface;
 use Drupal\renderkit8\Html\HtmlAttributesTrait;
@@ -22,7 +23,7 @@ use Drupal\renderkit8\Schema\CfSchema_TagName;
  *   label = @t("Entity link wrapper")
  * )
  */
-class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase implements HtmlAttributesInterface {
+class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorInterface, HtmlAttributesInterface {
 
   use HtmlAttributesTrait;
 
@@ -55,22 +56,25 @@ class EntityBuildProcessor_Wrapper_LinkToEntity extends EntityBuildProcessorBase
 
   /**
    * @param array $build
-   * @param string $entity_type
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    *   Render array for one entity.
    */
-  public function processEntityBuild(array $build, $entity_type, $entity) {
-    $link_uri = entity_uri($entity_type, $entity);
-    $link_uri['options']['attributes'] = $this->attributes;
+  public function processEntityBuild(array $build, EntityInterface $entity) {
+
+    /** @var \Drupal\Core\Render\RendererInterface $renderer */
+    $renderer = \Drupal::service('renderer');
+
+    $markup = $renderer->render($build);
+
     return [
-      $build,
-      /* @see themekit_element_info() */
-      /* @see theme_themekit_link_wrapper() */
-      '#type' => 'themekit_link_wrapper',
-      '#path' => $link_uri['path'],
-      '#options' => $link_uri['options'],
+      '#type' => 'link',
+      // @todo Test if this works!
+      '#title' => $markup,
+      /* @see \Drupal\Core\Render\Element\Link */
+      '#url' => $entity->toUrl(),
+      '#attributes' => ['a' => 'b'],
     ];
   }
 

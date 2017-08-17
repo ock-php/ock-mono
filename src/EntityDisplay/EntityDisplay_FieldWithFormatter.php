@@ -2,26 +2,20 @@
 
 namespace Drupal\renderkit8\EntityDisplay;
 
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 use Drupal\renderkit8\Schema\CfSchema_EntityDisplay_FieldWithFormatter;
 
 /**
  * Entity display handler to view a specific field on all the entities.
  */
-class EntityDisplay_FieldWithFormatter extends EntityDisplayBase {
+class EntityDisplay_FieldWithFormatter extends EntityDisplay_FieldItemsBase {
 
   /**
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
    */
-  private $entityTypeManager;
-
-  /**
-   * @var string
-   */
-  private $fieldName;
+  private $viewBuilder;
 
   /**
    * @var array
@@ -34,89 +28,74 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplayBase {
   private $fieldDisplayProcessor;
 
   /**
-   * @var string|null
-   */
-  private $langcode;
-
-  /**
    * @CfrPlugin("fieldWithFormatter", @t("Field with formatter *"))
+   *
+   * @param string|null $entityType
+   * @param string|null $bundle
    *
    * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function schema() {
-    return new CfSchema_EntityDisplay_FieldWithFormatter();
+  public static function schema($entityType = NULL, $bundle = NULL) {
+    return CfSchema_EntityDisplay_FieldWithFormatter::createValSchema(
+      $entityType,
+      $bundle);
+  }
+
+  /**
+   * @param string $entity_type
+   * @param string $field_name
+   * @param array $display
+   * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
+   *
+   * @return self
+   */
+  public static function create(
+    $entity_type,
+    $field_name,
+    array $display = [],
+    FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL
+  ) {
+
+    return new self(
+      \Drupal::service('entity_type.manager'),
+      $entity_type,
+      $field_name,
+      $display,
+      $fieldDisplayProcessor);
   }
 
   /**
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   * @param string $entity_type
    * @param string $field_name
    * @param array $display
    * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
+    $entity_type,
     $field_name,
     array $display = [],
     FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL
   ) {
-    $this->entityTypeManager = $entityTypeManager;
-    $this->fieldName = $field_name;
+    $this->viewBuilder = $entityTypeManager->getViewBuilder($entity_type);
     $this->display = $display + ['label' => 'hidden'];
     $this->fieldDisplayProcessor = $fieldDisplayProcessor;
+    parent::__construct($entity_type, $field_name);
   }
 
   /**
-   * Sets the field formatter.
-   *
-   * @param string $name
-   *   The machine name of the field formatter.
-   * @param array $settings
-   *   The formatter settings.
-   *
-   * @return $this
-   */
-  public function setFormatter($name, array $settings = NULL) {
-    $this->display['type'] = $name;
-    if (NULL !== $settings) {
-      $this->display['settings'] = $settings;
-    }
-    return $this;
-  }
-
-  /**
-   * @param string $label_position
-   *   The default implementation supports 'above', 'inline' and 'hidden'.
-   *   Default in core is 'above', but default here is 'hidden'.
-   */
-  public function setLabelPosition($label_position) {
-    $this->display['label'] = $label_position;
-  }
-
-  /**
-   * Same as ->buildEntities(), just for a single entity.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * @param \Drupal\Core\Field\FieldItemListInterface $fieldItemList
    *
    * @return array
-   *
-   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  public function buildEntity(EntityInterface $entity) {
-
-    if (!$entity instanceof FieldableEntityInterface) {
-      return [];
-    }
-
-    $fieldItemList = $entity->get($this->fieldName);
+  protected function buildFieldItems(FieldItemListInterface $fieldItemList) {
 
     if ($fieldItemList->isEmpty()) {
       return [];
     }
 
-    $builder = $this->entityTypeManager->getViewBuilder(
-      $entity->getEntityTypeId());
-
-    $build = $builder->viewField(
+    $build = $this->viewBuilder->viewField(
       $fieldItemList,
       $this->display);
 

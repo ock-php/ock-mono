@@ -43,7 +43,7 @@ trait HtmlAttributesTrait {
     return [
       /* @see themekit_element_info() */
       /* @see theme_themekit_container() */
-      '#type' => 'themekit_container',
+      '#theme_wrappers' => ['themekit_container'],
       '#tag_name' => $tagName,
       '#attributes' => $this->attributes,
     ];

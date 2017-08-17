@@ -35,25 +35,18 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
   }
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *
-   * @return \Drupal\Core\Entity\EntityInterface[]
-   */
-  public function entitiesGetRelated(array $entities) {
-    $related = $this->first->entitiesGetRelated($entities);
-    return $this->second->entitiesGetRelated($related);
-  }
-
-  /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return null|\Drupal\Core\Entity\EntityInterface
    */
   public function entityGetRelated(EntityInterface $entity) {
+
     $related = $this->first->entityGetRelated($entity);
+
     if (NULL === $related) {
       return NULL;
     }
+
     return $this->second->entityGetRelated($related);
   }
 }

@@ -25,18 +25,18 @@ class EntityFilter_Negation implements EntityFilterInterface {
   /**
    * Filters the entities based on a condition.
    *
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Format: $[$delta] = $entity
    *
    * @return string[]
    *   Format: $[] = $delta
-   *   A filtered subset of the array keys of the $entities argument.
    */
-  public function entitiesFilterDeltas($entityType, array $entities) {
-    foreach ($this->negatedFilter->entitiesFilterDeltas($entityType, $entities) as $delta) {
+  public function entitiesFilterDeltas(array $entities) {
+
+    foreach ($this->negatedFilter->entitiesFilterDeltas($entities) as $delta) {
       unset($entities[$delta]);
     }
+
     return array_keys($entities);
   }
 }

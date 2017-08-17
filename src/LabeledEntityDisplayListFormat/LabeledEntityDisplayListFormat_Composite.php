@@ -120,22 +120,29 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    *   Combined render array.
    */
   public function build(array $builds, $entityType, $entity, $label) {
+
     if (NULL !== $this->itemProcessor) {
-      $entities = array_fill_keys(array_keys($builds), $entity);
-      $this->itemProcessor->processEntitiesBuilds($builds, $entityType, $entities);
+      foreach ($builds as $delta => $build) {
+        $builds[$delta] = $this->itemProcessor->processEntityBuild($build, $entity);
+      }
     }
+
     $build = (NULL !== $this->listFormat)
       ? $this->listFormat->buildListWithEntity($builds, $entityType, $entity)
       : $builds;
+
     if (NULL !== $this->innerProcessor) {
-      $build = $this->innerProcessor->processEntityBuild($build, $entityType, $entity);
+      $build = $this->innerProcessor->processEntityBuild($build, $entity);
     }
+
     if (NULL !== $this->labeledFormat) {
-      $build = $this->labeledFormat->buildAddLabelWithEntity($build, $entityType, $entity, $label);
+      $build = $this->labeledFormat->buildAddLabelWithEntity($build, $entity, $label);
     }
+
     if (NULL !== $this->outerProcessor) {
-      $build = $this->outerProcessor->processEntityBuild($build, $entityType, $entity);
+      $build = $this->outerProcessor->processEntityBuild($build, $entity);
     }
+
     return $build;
   }
 }

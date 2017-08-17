@@ -2,9 +2,10 @@
 
 namespace Drupal\renderkit8\EntityBuildProcessor;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
 
-class EntityBuildProcessor_FromBuildProcessor extends EntityBuildProcessorBase {
+class EntityBuildProcessor_FromBuildProcessor implements EntityBuildProcessorInterface {
 
   /**
    * @var \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface
@@ -40,13 +41,12 @@ class EntityBuildProcessor_FromBuildProcessor extends EntityBuildProcessorBase {
   /**
    * @param array $build
    *   The render array produced by the decorated display handler.
-   * @param string $entity_type
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    *   Modified render array for the given entity.
    */
-  public function processEntityBuild(array $build, $entity_type, $entity) {
+  public function processEntityBuild(array $build, EntityInterface $entity) {
     return $this->processor->process($build);
   }
 }

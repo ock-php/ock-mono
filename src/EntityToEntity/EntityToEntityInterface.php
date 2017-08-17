@@ -17,13 +17,6 @@ interface EntityToEntityInterface {
   public function getTargetType();
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *
-   * @return \Drupal\Core\Entity\EntityInterface[]
-   */
-  public function entitiesGetRelated(array $entities);
-
-  /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return null|\Drupal\Core\Entity\EntityInterface

@@ -3,6 +3,9 @@
 namespace Drupal\renderkit8\EntityToEntity;
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
+use Drupal\user\UserInterface;
 
 /**
  * @CfrPlugin(
@@ -34,47 +37,29 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
   }
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *
-   * @return \Drupal\Core\Entity\EntityInterface[]
-   */
-  public function entitiesGetRelated(array $entities) {
-    // @todo Check if this entity type has a uid!
-    $uids = [];
-    foreach ($entities as $delta => $entity) {
-      if (!isset($entity->uid)) {
-        continue;
-      }
-      $uid = $entity->uid;
-      if ((string)(int)$uid !== (string)$uid || $uid <= 0) {
-        continue;
-      }
-      $uids[$delta] = $entity->uid;
-    }
-    $usersByUid = user_load_multiple($uids);
-    $usersByDelta = [];
-    foreach ($uids as $delta => $uid) {
-      if (array_key_exists($uid, $usersByUid)) {
-        $usersByDelta[$delta] = $usersByUid[$uid];
-      }
-    }
-    return $usersByDelta;
-  }
-
-  /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return null|\Drupal\Core\Entity\EntityInterface
    */
   public function entityGetRelated(EntityInterface $entity) {
-    // @todo Check if this entity type has a uid!
-    if (!isset($entity->uid)) {
+
+    if (!$entity instanceof FieldableEntityInterface) {
       return NULL;
     }
-    $uid = $entity->uid;
-    if ((string)(int)$uid !== (string)$uid || $uid <= 0) {
+
+    // @todo Maybe some entity types use a different field name for author?
+    $item = $entity->get('uid')->first();
+
+    if (!$item instanceof EntityReferenceItem) {
       return NULL;
     }
-    return user_load($uid);
+
+    $user = $item->entity;
+
+    if (!$user instanceof UserInterface) {
+      return NULL;
+    }
+
+    return $user;
   }
 }

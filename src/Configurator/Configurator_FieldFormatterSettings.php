@@ -2,73 +2,25 @@
 
 namespace Drupal\renderkit8\Configurator;
 
-use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
-use Drupal\cfrapi\Configurator\ConfiguratorInterface;
-use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
-use Drupal\renderkit8\Util\FieldUtil;
+use Drupal\faktoria\CfrCodegenHelper\CfrCodegenHelperInterface;
+use Drupal\faktoria\Configurator\ConfiguratorInterface;
+use Drupal\faktoria\SummaryBuilder\SummaryBuilderInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Field\FormatterInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
 
   /**
-   * @var string
+   * @var \Drupal\Core\Field\FormatterInterface
    */
-  private $fieldName;
+  private $formatter;
 
   /**
-   * @var array
+   * @param \Drupal\Core\Field\FormatterInterface $formatter
    */
-  private $fieldInfo;
-
-  /**
-   * @var string
-   */
-  private $formatterType;
-
-  /**
-   * @var array
-   */
-  private $formatterTypeInfo;
-
-  /**
-   * @param string $fieldName
-   * @param string $formatterType
-   *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
-   */
-  public static function create($fieldName, $formatterType) {
-    /* @see hook_field_formatter_info() */
-    $formatterTypeInfo = field_info_formatter_types($formatterType);
-    if (empty($formatterTypeInfo)) {
-      return NULL;
-    }
-    if (!isset($formatterTypeInfo['field types'])) {
-      return NULL;
-    }
-    $fieldInfo = field_info_field($fieldName);
-    if (NULL === $fieldInfo) {
-      return NULL;
-    }
-    if (!isset($fieldInfo['type'])) {
-      return NULL;
-    }
-    $fieldType = $fieldInfo['type'];
-    if (!in_array($fieldType, $formatterTypeInfo['field types'], TRUE)) {
-      return NULL;
-    }
-    return new self($fieldName, $fieldInfo, $formatterType, $formatterTypeInfo);
-  }
-
-  /**
-   * @param string $fieldName
-   * @param array $fieldInfo
-   * @param string $formatterType
-   * @param array $formatterTypeInfo
-   */
-  public function __construct($fieldName, array $fieldInfo, $formatterType, array $formatterTypeInfo) {
-    $this->fieldName = $fieldName;
-    $this->fieldInfo = $fieldInfo;
-    $this->formatterType = $formatterType;
-    $this->formatterTypeInfo = $formatterTypeInfo;
+  public function __construct(FormatterInterface $formatter) {
+    $this->formatter = $formatter;
   }
 
   /**
@@ -80,36 +32,45 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
    * @return array
    */
   public function confGetForm($conf, $label) {
-    /* @see hook_field_formatter_settings_form() */
-    $function = $this->formatterTypeInfo['module'] . '_field_formatter_settings_form';
-    if (!function_exists($function)) {
-      return [];
-    }
-    $settings = $this->confGetFormatterSettings($conf);
-    $instance = FieldUtil::createFakeFieldInstance($this->fieldName, '_custom', $this->formatterType, $settings);
-    $form = [];
-    $form_state = [];
-    $settings_form = $function($this->fieldInfo, $instance, '_custom', $form, $form_state);
 
-    if (!count($settings_form)) {
-      return [];
-    }
-    return $settings_form;
-    # return array('settings' => $settings_form);
+    $formatter = $this->getFormatter($conf);
+
+    $form = [
+      '#type' => 'container',
+      '#input' => TRUE,
+      '#tree' => TRUE,
+    ];
+
+    $form['#process'][] = function (array $element, FormStateInterface $formState, array $form) use ($formatter) {
+      $element['inner'] = $formatter->settingsForm($form, $formState);
+      $element['inner']['#parents'] = $element['#parents'];
+      return $element;
+    };
+
+    return $form;
   }
 
   /**
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
-   * @param \Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface $summaryBuilder
+   * @param \Drupal\faktoria\SummaryBuilder\SummaryBuilderInterface $summaryBuilder
    *
    * @return null|string
    */
   public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
-    $settings = $this->confGetFormatterSettings($conf);
-    $instance = FieldUtil::createFakeFieldInstance($this->fieldName, '_custom', $this->formatterType, $settings);
-    /* @see hook_field_formatter_settings_summary() */
-    return module_invoke($this->formatterTypeInfo['module'], 'field_formatter_settings_summary', $this->fieldInfo, $instance, '_custom');
+
+    $summary = $this->getFormatter($conf)->settingsSummary();
+
+    if (!is_array($summary)) {
+      return $summary;
+    }
+
+    $html = '';
+    foreach ($summary as $item) {
+      $html = '<li>' . Html::escape($item) . '</li>';
+    }
+
+    return '<ul>' . $html . '</ul>';
   }
 
   /**
@@ -126,7 +87,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
   /**
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
-   * @param \Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface $helper
+   * @param \Drupal\faktoria\CfrCodegenHelper\CfrCodegenHelperInterface $helper
    *
    * @return string
    *   PHP statement to generate the value.
@@ -141,8 +102,16 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
    * @return array
    */
   private function confGetFormatterSettings($conf) {
-    $settings = is_array($conf) ? $conf : [];
-    # $settings = isset($conf['settings']) ? $conf['settings'] : array();
-    return $settings + $this->formatterTypeInfo['settings'];
+    return $this->getFormatter($conf)->getSettings();
+  }
+
+  /**
+   * @param mixed $settings
+   *
+   * @return \Drupal\Core\Field\FormatterInterface
+   */
+  private function getFormatter($settings = NULL) {
+    $this->formatter->setSettings($settings ?: []);
+    return $this->formatter;
   }
 }

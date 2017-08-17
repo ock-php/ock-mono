@@ -2,15 +2,32 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Donquixote\Cf\Schema\Options\CfSchema_Options_FromFlatOptions;
+use Donquixote\Cf\Schema\Options\Flat\CfSchema_FlatOptionsInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 
-class CfSchema_EntityType implements CfSchema_OptionsInterface {
+class CfSchema_EntityType implements CfSchema_FlatOptionsInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityTypeRepositoryInterface
    */
   private $entityTypeRepository;
+
+  /**
+   * @return \Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface
+   */
+  public static function createOptionsSchema() {
+    return new CfSchema_Options_FromFlatOptions(self::create());
+  }
+
+  /**
+   * @return self
+   */
+  public static function create() {
+    /** @var \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository */
+    $entityTypeRepository = \Drupal::service('entity_type.repository');
+    return new self($entityTypeRepository);
+  }
 
   /**
    * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
@@ -20,13 +37,15 @@ class CfSchema_EntityType implements CfSchema_OptionsInterface {
   }
 
   /**
-   * @return string[][]
+   * @return string[]
    */
-  public function getGroupedOptions() {
+  public function getOptions() {
 
     $options = $this->entityTypeRepository->getEntityTypeLabels();
 
-    return ['' => $options];
+    asort($options);
+
+    return $options;
   }
 
   /**

@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit8\LabeledEntityBuildProcessor;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\LabeledFormat\LabeledFormatInterface;
 
 /**
@@ -29,13 +30,12 @@ class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntity
 
   /**
    * @param array $build
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    * @param string $label
    *
    * @return array
    */
-  public function buildAddLabelWithEntity(array $build, $entityType, $entity, $label) {
+  public function buildAddLabelWithEntity(array $build, EntityInterface $entity, $label) {
     return $this->labeledFormat->buildAddLabel($build, $label);
   }
 }

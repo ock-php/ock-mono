@@ -5,6 +5,7 @@ namespace Drupal\renderkit8\EntityBuildProcessor;
 use Donquixote\Cf\Context\CfContextInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
 
 /**
@@ -12,8 +13,6 @@ use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
  * processors.
  */
 class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
-
-  use EntitiesBuildsProcessorTrait;
 
   /**
    * @CfrPlugin(
@@ -85,28 +84,27 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    * Processes all the render arrays, by passing them through all the registered
    * processors.
    *
-   * @param array[] $builds
-   *   The render arrays produced by the decorated display handler.
-   * @param string $entity_type
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
+   * @param array $build
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array[]
    *   Modified render arrays for the given entities.
    */
-  public function processEntitiesBuilds(array $builds, $entity_type, array $entities) {
+  public function processEntityBuild(array $build, EntityInterface $entity) {
+
     foreach ($this->processors as $processor) {
-      if ($processor instanceof EntityBuildProcessorInterface) {
-        $builds = $processor->processEntitiesBuilds($builds, $entity_type, $entities);
+      if (empty($build)) {
+        return $build;
+      }
+      elseif ($processor instanceof EntityBuildProcessorInterface) {
+        $build = $processor->processEntityBuild($build, $entity);
       }
       elseif ($processor instanceof BuildProcessorInterface) {
-        foreach ($builds as $delta => $build) {
-          if (!empty($build)) {
-            $builds[$delta] = $processor->process($build);
-          }
-        }
+        $build = $processor->process($build);
       }
     }
-    return $builds;
+
+    return $build;
   }
 
 }

@@ -55,10 +55,24 @@ class EntityImage_Related implements EntityImageInterface {
   }
 
   /**
-   * Same as ->buildEntities(), just for a single entity.
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
+   * @return array[]
+   */
+  public function buildEntities(array $entities) {
+
+    $relatedEntities = [];
+    foreach ($entities as $delta => $entity) {
+      if (NULL !== $related = $this->entityToEntity->entityGetRelated($entity)) {
+        $relatedEntities[$delta] = $related;
+      }
+    }
+
+    return $this->relatedEntityImage->buildEntities($relatedEntities);
+  }
+
+  /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   Single entity object for which to build a render arary.
    *
    * @return array
    */
@@ -67,18 +81,5 @@ class EntityImage_Related implements EntityImageInterface {
       return [];
     }
     return $this->relatedEntityImage->buildEntity($relatedEntity);
-  }
-
-  /**
-   * Same method signature as in parent interface, just a different description.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *   Entity objects for which to build the render arrays.
-   *
-   * @return array[]
-   */
-  public function buildEntities(array $entities) {
-    $entities = $this->entityToEntity->entitiesGetRelated($entities);
-    return $this->relatedEntityImage->buildEntities($entities);
   }
 }

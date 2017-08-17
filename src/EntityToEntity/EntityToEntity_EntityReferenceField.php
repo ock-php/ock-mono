@@ -2,10 +2,18 @@
 
 namespace Drupal\renderkit8\EntityToEntity;
 
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit8\Schema\CfSchema_FieldName;
+use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
+use Drupal\renderkit8\Schema\CfSchema_EtDotFieldName_EntityReference;
 
-class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
+class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
+
+  /**
+   * @var string
+   */
+  private $entityTypeId;
 
   /**
    * @var string
@@ -25,52 +33,59 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
    * @param string $bundleName
    *   (optional) Contextual parameter.
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
   public static function createSchema($entityType = NULL, $bundleName = NULL) {
 
-    return CfSchema_GroupVal_Callback::fromStaticMethod(
+    $etDotFieldNameSchema = new CfSchema_EtDotFieldName_EntityReference(
+      $entityType,
+      $bundleName,
+      NULL);
+
+    return CfSchema_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
       'create',
-      [
-        new CfSchema_FieldName(
-          ['entityreference'],
-          $entityType,
-          $bundleName)
-      ],
-      [
-        t('Entity reference field'),
-      ]);
+      $etDotFieldNameSchema);
   }
 
   /**
-   * @param string $fieldName
+   * @param string $etDotFieldName
    *
    * @return self|null
    */
-  public static function create($fieldName) {
-    $fieldInfo = field_info_field($fieldName);
-    if (NULL === $fieldInfo) {
-      throw new \InvalidArgumentException("Field '$fieldName' does not exist.");
+  public static function create($etDotFieldName) {
+
+    list($entityTypeId, $fieldName) = explode('.', $etDotFieldName) + [NULL, NULL];
+
+    if (NULL === $fieldName || '' === $entityTypeId || '' === $fieldName) {
+      return NULL;
     }
-    if (!isset($fieldInfo['type'])) {
-      throw new \InvalidArgumentException("Field '$fieldName' has no field type.");
+
+    /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
+    $efm = \Drupal::service('entity_field.manager');
+
+    $storages = $efm->getFieldStorageDefinitions($entityTypeId);
+
+    if (!isset($storages[$fieldName])) {
+      return NULL;
     }
-    if ($fieldInfo['type'] !== 'entityreference') {
-      $typeExport = var_export($fieldInfo['type'], TRUE);
-      throw new \InvalidArgumentException("Field type of '$fieldName' expected to be 'entityreference', $typeExport found instead.");
+
+    $storage = $storages[$fieldName];
+
+    if (NULL === $targetTypeId = $storage->getSetting('target_type')) {
+      return NULL;
     }
-    if (!isset($fieldInfo['settings']['target_type'])) {
-      throw new \InvalidArgumentException("No target type in field info.");
-    }
-    return new self($fieldName, $fieldInfo['settings']['target_type']);
+
+    return new self($entityTypeId, $fieldName, $targetTypeId);
   }
 
   /**
+   * @param string $entityTypeId
    * @param string $fieldName
    * @param string $targetType
    */
-  public function __construct($fieldName, $targetType) {
+  public function __construct($entityTypeId, $fieldName, $targetType) {
+    $this->entityTypeId = $entityTypeId;
     $this->fieldName = $fieldName;
     $this->targetType = $targetType;
   }
@@ -85,34 +100,36 @@ class EntityToEntity_EntityReferenceField extends EntityToEntityMultipleBase {
   }
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return \Drupal\Core\Entity\EntityInterface[]
+   * @return \Drupal\Core\Entity\EntityInterface|null
    */
-  public function entitiesGetRelated(array $entities) {
+  public function entityGetRelated(EntityInterface $entity) {
 
-    $target_etids = [];
-    foreach ($entities as $delta => $entity) {
-      $items = field_get_items($entityType, $entity, $this->fieldName) ?: NULL;
-      if (NULL === $items) {
-        continue;
-      }
-      $item = reset($items);
-      if (empty($item['target_id'])) {
-        continue;
-      }
-      $target_etids[$delta] = $item['target_id'];
+    if (!$entity instanceof FieldableEntityInterface) {
+      return NULL;
     }
 
-    $target_entities_by_etid = entity_load($this->targetType, $target_etids);
-
-    $target_entities_by_delta = [];
-    foreach ($target_etids as $delta => $target_etid) {
-      if (array_key_exists($target_etid, $target_entities_by_etid)) {
-        $target_entities_by_delta[$delta] = $target_entities_by_etid[$target_etid];
-      }
+    if ($entity->getEntityTypeId() !== $this->entityTypeId) {
+      return NULL;
     }
 
-    return $target_entities_by_delta;
+    $item = $entity->get($this->fieldName)->first();
+
+    if (!$item instanceof EntityReferenceItem) {
+      return NULL;
+    }
+
+    $targetEntity = $item->entity;
+
+    if (!$targetEntity instanceof EntityInterface) {
+      return NULL;
+    }
+
+    if ($this->targetType !== $targetEntity->getEntityTypeId()) {
+      return NULL;
+    }
+
+    return $targetEntity;
   }
 }

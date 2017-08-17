@@ -4,6 +4,9 @@ namespace Drupal\renderkit8\EntityBuildProcessor;
 
 use Donquixote\Cf\Schema\Group\CfSchema_Group;
 use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\renderkit8\Html\HtmlAttributesInterface;
 use Drupal\renderkit8\Html\HtmlTagTrait;
 use Drupal\renderkit8\Schema\CfSchema_ClassAttribute;
@@ -17,7 +20,7 @@ use Drupal\renderkit8\Schema\CfSchema_TagName;
  *   label = "Entity contextual links wrapper, default"
  * )
  */
-class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorBase implements HtmlAttributesInterface {
+class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcessorInterface, HtmlAttributesInterface {
 
   use HtmlTagTrait;
 
@@ -63,39 +66,73 @@ class EntityBuildProcessor_Wrapper_ContextualLinks extends EntityBuildProcessorB
   /**
    * @param array $build
    *   Render array before the processing.
-   * @param string $entity_type
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
    *   Render array after the processing.
    */
-  public function processEntityBuild(array $build, $entity_type, $entity) {
-    $build = $this->buildContainer() + ['content' => $build];
-    if (!user_access('access contextual links')) {
-      return $build;
-    }
-    // Initialize the template variable as a renderable array.
-    $entity_uri = entity_uri($entity_type, $entity);
-    if (!isset($entity_uri['path'])) {
-      return $build;
-    }
-    $entity_id = entity_id($entity_type, $entity);
-    if (empty($entity_id)) {
-      return $build;
-    }
-    if (FALSE === $pos = strpos($entity_uri['path'] . '/', '/' . $entity_id . '/')) {
-      return $build;
-    }
-    $base_path = substr($entity_uri['path'], 0, $pos);
-    $build['contextual_links'] = [
-      '#type' => 'contextual_links',
-      '#contextual_links' => [
-        $entity_type => [$base_path, [$entity_id]],
-      ],
-      '#element' => $build,
+  public function processEntityBuild(array $build, EntityInterface $entity) {
+
+    return $this->entityBuildContainer($entity) + [
+      'content' => $build,
     ];
-    // Mark this element as potentially having contextual links attached to it.
-    $build['#attributes']['class'][] = 'contextual-links-region';
-    return $build;
+  }
+
+  /**
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *
+   * @return array
+   */
+  private function entityBuildContainer(EntityInterface $entity) {
+
+    $container = $this->buildContainer();
+
+    if ([] === $links = $this->entityBuildContextualLinks($entity)) {
+      return $container;
+    }
+
+    $container['#attributes']['class'][] = 'contextual-region';
+
+    $container['contextual_links'] = [
+      '#type' => 'contextual_links_placeholder',
+      '#id' => _contextual_links_to_id($links),
+    ];
+
+    return $container;
+  }
+
+  /**
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *
+   * @return array[]
+   */
+  private function entityBuildContextualLinks(EntityInterface $entity) {
+
+    /* @see \Drupal\node\NodeViewBuilder::alterBuild() */
+    /* @see \Drupal\taxonomy\TermViewBuilder::alterBuild() */
+
+    if (!$etid = $entity->id()) {
+      return [];
+    }
+
+    $entityTypeId = $entity->getEntityTypeId();
+
+    $link = [];
+    $link['route_parameters'][$entityTypeId] = $etid;
+
+    if ($entity instanceof EntityChangedInterface) {
+      $link['metadata']['changed'] = $entity->getChangedTime();
+    }
+
+    $group = $entityTypeId;
+
+    if ($entity instanceof RevisionableInterface) {
+      if (!$entity->isDefaultRevision()) {
+        $group = $entityTypeId . '_revision';
+        $link['route_parameters'][$entityTypeId . '_revision'] = $entity->getRevisionId();
+      }
+    }
+
+    return [$group => $link];
   }
 }

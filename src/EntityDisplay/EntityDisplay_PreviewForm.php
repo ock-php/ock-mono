@@ -2,10 +2,11 @@
 
 namespace Drupal\renderkit8\EntityDisplay;
 
-use Drupal\cfrapi\Context\CfrContext;
-use Drupal\cfrapi\Context\CfrContextInterface;
-use Drupal\cfrapi\Exception\InvalidConfigurationException;
+use Donquixote\Cf\Context\CfContext;
+use Donquixote\Cf\Context\CfContextInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\faktoria\Exception\InvalidConfigurationException;
+use Drupal\faktoria\Form\Form_GenericRedirectGET;
 
 class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
@@ -26,7 +27,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    * @return \Drupal\renderkit8\EntityDisplay\EntityDisplay_PreviewForm
    */
   public static function create() {
-    return new self('entity-display-preview');
+    return new self('entity_display_preview');
   }
 
   /**
@@ -50,7 +51,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
     self::$inProgress[$this->queryKey] = TRUE;
 
     try {
-      return $this->doBuildEntity($entity_type, $entity);
+      return $this->doBuildEntity($entity);
     }
     finally {
       unset(self::$inProgress[$this->queryKey]);
@@ -59,10 +60,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
 
   /**
-   * @param string $entity_type
-   *   E.g. 'node' or 'taxonomy_term'.
    * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   Single entity object for which to build a render arary.
    *
    * @return array
    *
@@ -72,13 +70,13 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    * @see drupal_process_form()
    * @see form_builder()
    */
-  private function doBuildEntity($entity_type, $entity) {
+  private function doBuildEntity(EntityInterface $entity) {
 
     $conf = isset($_GET[$this->queryKey])
       ? $_GET[$this->queryKey]
       : NULL;
 
-    $context = $this->entityBuildContext($entity_type, $entity);
+    $context = $this->entityBuildContext($entity);
 
     $build = [];
     $build['form'] = $this->buildForm($conf, $context);
@@ -119,16 +117,18 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return \Drupal\cfrapi\Context\CfrContextInterface
+   * @return \Donquixote\Cf\Context\CfContextInterface
    */
-  private function entityBuildContext($entityType, $entity) {
-    list(,,$bundle) = entity_extract_ids($entityType, $entity);
-    return CfrContext::create()
-      ->paramNameSetValue('entityType', $entityType)
-      ->paramNameSetValue('entity_type', $entityType)
+  private function entityBuildContext(EntityInterface $entity) {
+
+    $entityTypeId = $entity->getEntityTypeId();
+    $bundle = $entity->bundle();
+
+    return CfContext::create()
+      ->paramNameSetValue('entityType', $entityTypeId)
+      ->paramNameSetValue('entity_type', $entityTypeId)
       ->paramNameSetValue('bundle', $bundle)
       ->paramNameSetValue('bundle_name', $bundle)
       ->paramNameSetValue('bundleName', $bundle);
@@ -136,19 +136,19 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
   /**
    * @param mixed $conf
-   * @param \Drupal\cfrapi\Context\CfrContextInterface $context
+   * @param \Donquixote\Cf\Context\CfContextInterface $context
    *
    * @return array
    */
-  private function buildForm($conf, CfrContextInterface $context) {
+  private function buildForm($conf, CfContextInterface $context) {
 
     $form = [];
-    $form['entity_display'] = [
+    $form[$this->queryKey] = [
       '#title' => t('Entity display plugin'),
       /* @see cfrplugin_element_info() */
-      '#type' => 'cfrplugin',
-      '#cfrplugin_interface' => EntityDisplayInterface::class,
-      '#cfrplugin_context' => $context,
+      '#type' => 'faktoria',
+      '#faktoria_interface' => EntityDisplayInterface::class,
+      '#faktoria_context' => $context,
       '#default_value' => $conf,
       '#required' => TRUE,
     ];
@@ -158,34 +158,18 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
       '#value' => $this->queryKey,
     ];
 
+    $form['#query_keys'] = [$this->queryKey];
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => t('Show'),
     ];
 
-    $form['#submit'][] = [self::class, 'submit'];
+    // @todo Form submit is not working.
 
-    /* @see _renderkit8_generic_form() */
-    return drupal_get_form('_renderkit8_generic_form', $form);
-  }
-
-  /**
-   * Form submit callback.
-   *
-   * @param array $form
-   * @param array $form_state
-   */
-  public static function submit(
-    /** @noinspection PhpUnusedParameterInspection */ array $form,
-    array &$form_state
-  ) {
-    $queryKey = $form_state['values']['query_key'];
-    $conf = $form_state['values']['entity_display'];
-
-    drupal_goto(
-      $_GET['q'],
-      [
-        'query' => [$queryKey => $conf],
-      ]);
+    /** @noinspection PhpMethodParametersCountMismatchInspection */
+    return \Drupal::formBuilder()->getForm(
+      Form_GenericRedirectGET::class,
+      $form);
   }
 }

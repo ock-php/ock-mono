@@ -2,11 +2,12 @@
 
 namespace Drupal\renderkit8\EntityDisplay\Decorator;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface;
-use Drupal\renderkit8\EntityDisplay\EntitiesDisplayBase;
+use Drupal\renderkit8\EntityDisplay\EntityDisplayBase;
 use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 
-class EntityDisplay_WithEntityBuildProcessor extends EntitiesDisplayBase {
+class EntityDisplay_WithEntityBuildProcessor extends EntityDisplayBase {
 
   /**
    * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
@@ -47,22 +48,14 @@ class EntityDisplay_WithEntityBuildProcessor extends EntitiesDisplayBase {
   }
 
   /**
-   * Builds render arrays from the entities provided.
+   * Same as ->buildEntities(), just for a single entity.
    *
-   * Both the entities and the resulting render arrays are in plural, to allow
-   * for more performant implementations.
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * Array keys and their order must be preserved, although implementations
-   * might remove some keys that are empty.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *   Entity objects for which to build the render arrays.
-   *   The array keys can be anything, they don't need to be the entity ids.
-   *
-   * @return array[]
+   * @return array
    */
-  public function buildEntities(array $entities) {
-    $builds = $this->entityDisplay->buildEntities($entities);
-    return $this->processor->processEntitiesBuilds($builds, $entityType, $entities);
+  public function buildEntity(EntityInterface $entity) {
+    $build = $this->entityDisplay->buildEntity($entity);
+    return $this->processor->processEntityBuild($build, $entity);
   }
 }

@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit8\ImageProcessor;
 
-use Drupal\cfrapi\Util\UtilBase;
+use Drupal\renderkit8\Util\UtilBase;
 
 final class ImageProcessorUtil extends UtilBase {
 

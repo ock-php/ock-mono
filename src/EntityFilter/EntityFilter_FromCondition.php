@@ -34,17 +34,15 @@ class EntityFilter_FromCondition implements EntityFilterInterface {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
    * @return string[]
    *   Format: $[] = $delta
-   *   Deltas where the entity has the quality.
    */
-  public function entitiesFilterDeltas($entityType, array $entities) {
+  public function entitiesFilterDeltas(array $entities) {
     $deltas = [];
     foreach ($entities as $delta => $entity) {
-      if ($this->singleEntityFilter->entityCheckCondition($entityType, $entity)) {
+      if ($this->singleEntityFilter->entityCheckCondition($entity)) {
         $deltas[] = $delta;
       }
     }

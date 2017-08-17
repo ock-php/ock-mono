@@ -2,15 +2,12 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
-use Drupal\renderkit8\Util\FieldUtil;
+use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_OptionsBase;
 
-class CfSchema_FieldName implements CfSchema_OptionsInterface {
-
-  /**
-   * @var null|string[]
-   */
-  private $fieldTypes;
+/**
+ * Schema where the value is like 'body' for field 'node.body'.
+ */
+class CfSchema_FieldName extends CfSchema_Proxy_Cache_OptionsBase {
 
   /**
    * @var null|string
@@ -23,28 +20,39 @@ class CfSchema_FieldName implements CfSchema_OptionsInterface {
   private $bundleName;
 
   /**
-   * @param null|string[] $allowedFieldTypes
-   * @param string $entityType
-   *   Contextual parameter.
-   * @param string $bundleName
-   *   Contextual parameter.
+   * @param string|null $entityType
+   * @param string|null $bundleName
+   *
+   * @return self
    */
-  public function __construct(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
-    $this->fieldTypes = $allowedFieldTypes;
-    $this->entityType = $entityType;
-    $this->bundleName = $bundleName;
+  public static function create($entityType = NULL, $bundleName = NULL) {
+
+    return new self(
+      $entityType,
+      $bundleName);
+
   }
 
   /**
-   * @param string|mixed $id
-   *
-   * @return bool
+   * @param string|null $entityType
+   * @param string|null $bundleName
    */
-  public function idIsKnown($id) {
-    return FieldUtil::fieldnameEtBundleExists(
-      $id,
-      $this->entityType,
-      $this->bundleName);
+  public function __construct(
+    $entityType = NULL,
+    $bundleName = NULL
+  ) {
+    $this->entityType = $entityType;
+    $this->bundleName = $bundleName;
+
+    $signatureData = [
+      $entityType,
+      $bundleName,
+    ];
+
+    $cacheId = 'renderkit:schema:field_name:allowed_types:'
+      . sha1(serialize($signatureData));
+
+    parent::__construct($cacheId);
   }
 
   /**
@@ -52,22 +60,70 @@ class CfSchema_FieldName implements CfSchema_OptionsInterface {
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  public function getGroupedOptions() {
-    return FieldUtil::fieldTypesGetFieldNameGroupedOptions(
-      $this->fieldTypes,
-      $this->entityType,
-      $this->bundleName);
+  protected function getGroupedOptions() {
+
+    $options = [];
+    foreach ($this->getFieldsGrouped() as $field_type => $fields) {
+      // @todo Human-readable field type label!
+      $type_label = $field_type;
+      foreach ($fields as $field_name => $bundles) {
+        // @todo Human-readable field label from field instances!
+        $field_label = $field_name;
+        $options[$type_label][$field_name] = $field_label;
+      }
+    }
+
+    return $options;
   }
 
   /**
-   * @param string|mixed $id
-   *
-   * @return string|null
+   * @return array
+   *   Format: $[$field_type][$entity_type][$field_name][$bundle_name] = $bundle_name
    */
-  public function idGetLabel($id) {
-    return FieldUtil::fieldnameEtBundleGetLabel(
-      $id,
-      $this->entityType,
-      $this->bundleName);
+  private function getFieldsGrouped() {
+
+    /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager */
+    $entityFieldManager = \Drupal::service('entity_field.manager');
+
+    /**
+     * @var array[][] $map
+     *   Format: $[$entity_type][$field_name] = ['type' => $field_type, 'bundles' => $bundles]
+     */
+    $map = $entityFieldManager->getFieldMap();
+
+    if (!isset($map[$this->entityType])) {
+      return [];
+    }
+
+    /**
+     * @var array[] $fields
+     *   Format: $[$field_name] = $field_info
+     */
+    $fields = $map[$this->entityType];
+    unset($map);
+
+    if (NULL !== $this->bundleName) {
+
+      $filteredFields = [];
+      foreach ($fields as $fieldName => $fieldInfo) {
+        if (isset($fieldInfo['bundles'][$this->bundleName])) {
+          $filteredFields[$fieldName] = $fieldInfo;
+        }
+      }
+
+      $fields = $filteredFields;
+    }
+
+    /**
+     * @var array[][] $map
+     *   Format: $[$field_type][$field_name][$bundle_name] = $bundle_name
+     */
+    $grouped = [];
+    foreach ($fields as $fieldName => $fieldInfo) {
+      $type = $fieldInfo['type'];
+      $grouped[$type][$fieldName] = $fieldInfo['bundles'];
+    }
+
+    return $grouped;
   }
 }

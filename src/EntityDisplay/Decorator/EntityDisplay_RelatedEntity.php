@@ -24,7 +24,7 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
   /**
    * @CfrPlugin(
    *   id = "related",
-   *   label = "Show related entity"
+   *   label = "Related entity"
    * )
    *
    * @param \Donquixote\Cf\Context\CfContextInterface|null $context
@@ -70,7 +70,14 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    * @return array[]
    */
   public function buildEntities(array $entities) {
-    $relatedEntities = $this->entityToEntity->entitiesGetRelated($entities);
+
+    $relatedEntities = [];
+    foreach ($entities as $delta => $entity) {
+      if (NULL !== $related = $this->entityToEntity->entityGetRelated($entity)) {
+        $relatedEntities[$delta] = $related;
+      }
+    }
+
     return $this->relatedEntityDisplay->buildEntities($relatedEntities);
   }
 

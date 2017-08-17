@@ -2,10 +2,11 @@
 
 namespace Drupal\renderkit8\BuildProvider;
 
+use Donquixote\Cf\Schema\CfSchema;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\renderkit8\LabeledFormat\LabeledFormatInterface;
-use Drupal\renderkit8\Schema\CfSchema_ViewsDisplayId;
+use Drupal\renderkit8\Schema\CfSchema_ViewIdWithDisplayId;
+use Drupal\views\Views;
 
 class BuildProvider_ViewsDisplay implements BuildProviderInterface {
 
@@ -35,8 +36,8 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
       __CLASS__,
       'doCreate',
       [
-        new CfSchema_ViewsDisplayId(),
-        CfSchema_IfaceWithContext::createOptional(LabeledFormatInterface::class),
+        CfSchema_ViewIdWithDisplayId::createNoArgs(),
+        CfSchema::ifaceOptional(LabeledFormatInterface::class),
       ],
       [
         t('Views display'),
@@ -76,26 +77,31 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    *   A render array.
    */
   public function build() {
-    $view = \views_get_view($this->viewName);
-    if (NULL === $view) {
+
+    if (NULL === $view = Views::getView($this->viewName)) {
       return [];
     }
-    $success = $view->set_display($this->displayId);
-    if (FALSE === $success) {
+
+    if (FALSE === $view->setDisplay($this->displayId)) {
       return [];
     }
-    $markup = $view->preview();
-    if (FALSE === $markup) {
-      return [];
-    }
-    $build = ['#markup' => $markup];
+
+    // @todo Some of this might not be required?
+    $view->preExecute();
+    $view->execute();
+
+    $build = $view->buildRenderable($this->displayId);
+
     if (NULL === $this->labeledFormat) {
       return $build;
     }
-    $label = $view->get_title();
+
+    $label = $view->getTitle();
+
     if (empty($label)) {
       return $build;
     }
+
     return $this->labeledFormat->buildAddLabel($build, $label);
   }
 }

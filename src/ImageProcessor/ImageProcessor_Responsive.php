@@ -2,6 +2,8 @@
 
 namespace Drupal\renderkit8\ImageProcessor;
 
+use Drupal\image\Entity\ImageStyle;
+
 /**
  * Responsive <img/> element with "srcset" and "sizes" attributes, based on
  * image styles.
@@ -102,10 +104,11 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
     // Only change the '#path' and '#width' and '#height' if the fallback image
     // uses an image style.
     if (NULL !== $this->fallbackStyleName) {
+      $fallbackStyle = ImageStyle::load($this->fallbackStyleName);
       /* @see theme_image_style() */
       $style_dimensions = $original_dimensions;
-      image_style_transform_dimensions($this->fallbackStyleName, $style_dimensions);
-      $build['#path'] = image_style_url($this->fallbackStyleName, $original_path);
+      $fallbackStyle->transformDimensions($style_dimensions, $original_path);
+      $build['#path'] = $fallbackStyle->buildUri($original_path);
       $build['#width'] = $style_dimensions['width'];
       $build['#height'] = $style_dimensions['height'];
     }
@@ -121,9 +124,10 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
       if (empty($style_name)) {
         continue;
       }
-      $style_src = image_style_url($style_name, $original_path);
+      $style = ImageStyle::load($style_name);
+      $style_src = $style->buildUrl($original_path);
       $style_dimensions = $original_dimensions;
-      image_style_transform_dimensions($style_name, $style_dimensions);
+      $style->transformDimensions($style_dimensions, $original_path);
       $srcset[] = $style_src . ' ' . $style_dimensions['width'] . 'w';
     }
     $build['#attributes']['srcset'] = implode(', ', $srcset);
@@ -145,20 +149,15 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    * @throws \Exception
    */
   protected function imageBuildGetDimensions(array $build) {
+
     if (!empty($build['#width']) && !empty($build['#height'])) {
       return [
         'width' => $build['#width'],
         'height' => $build['#height'],
       ];
     }
-    $image_info = image_get_info($build['#path']);
-    if (FALSE === $image_info) {
-      throw new \Exception("Unable to load image.");
-    }
-    return [
-      'width' => $image_info['width'],
-      'height' => $image_info['height'],
-    ];
+
+    throw new \Exception("Image lacks width/height information.");
   }
 
 }

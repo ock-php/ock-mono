@@ -3,6 +3,7 @@
 namespace Drupal\renderkit8\EntityBuildProcessor;
 
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\EntityImage\EntityImageInterface;
 use Drupal\renderkit8\Html\HtmlAttributesInterface;
 use Drupal\renderkit8\Html\HtmlTagTrait;
@@ -13,7 +14,7 @@ use Drupal\renderkit8\Html\HtmlTagTrait;
  *   label = @t("Entity background image wrapper")
  * )
  */
-class EntityBuildProcessor_Wrapper_BackgroundImage extends EntityBuildProcessorBase implements HtmlAttributesInterface {
+class EntityBuildProcessor_Wrapper_BackgroundImage implements EntityBuildProcessorInterface, HtmlAttributesInterface {
 
   use HtmlTagTrait;
 
@@ -32,7 +33,6 @@ class EntityBuildProcessor_Wrapper_BackgroundImage extends EntityBuildProcessorB
   /**
    * @param array $build
    *   The render array produced by the decorated display handler.
-   * @param string $entity_type
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return array
@@ -40,7 +40,7 @@ class EntityBuildProcessor_Wrapper_BackgroundImage extends EntityBuildProcessorB
    *
    * @see \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface::processEntityBuild()
    */
-  public function processEntityBuild(array $build, $entity_type, $entity) {
+  public function processEntityBuild(array $build, EntityInterface $entity) {
     $imageDisplay = $this->imageProvider->buildEntity($entity);
     $build = $this->buildContainer() + ['content' => $build];
     if (isset($imageDisplay['#path'])) {

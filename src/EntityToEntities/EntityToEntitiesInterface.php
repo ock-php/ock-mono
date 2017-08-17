@@ -13,18 +13,16 @@ interface EntityToEntitiesInterface {
   public function getTargetEntityType();
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
-   * @return object[][]
+   * @return \Drupal\Core\Entity\EntityInterface[][]
    */
-  public function entitiesGetRelated($entityType, array $entities);
+  public function entitiesGetRelated(array $entities);
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return object[]
+   * @return \Drupal\Core\Entity\EntityInterface[]
    */
-  public function entityGetRelated($entityType, $entity);
+  public function entityGetRelated($entity);
 }

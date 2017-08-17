@@ -56,7 +56,7 @@ class EntityDisplay_Conditional extends EntitiesDisplayBase {
    * @return array[]
    */
   public function buildEntities(array $entities) {
-    $deltas = $this->entityFilter->entitiesFilterDeltas($entityType, $entities);
+    $deltas = $this->entityFilter->entitiesFilterDeltas($entities);
     $lookup = array_fill_keys($deltas, TRUE);
     $entitiesWithQuality = [];
     $entitiesWithoutQuality = [];
@@ -80,7 +80,7 @@ class EntityDisplay_Conditional extends EntitiesDisplayBase {
         $builds[$delta] = $build;
       }
     }
-    # \Drupal\krumong\dpm(get_defined_vars(), TRUE);
+
     return $builds;
   }
 }

@@ -1,0 +1,5 @@
+renderkit8_annotations:
+  path:
+  options:
+    type: annotation
+    module: renderkit8

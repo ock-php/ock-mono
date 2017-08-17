@@ -2,14 +2,15 @@
 
 namespace Drupal\renderkit8\EntityCondition;
 
+use Drupal\Core\Entity\EntityInterface;
+
 interface EntityConditionInterface {
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return bool
    */
-  public function entityCheckCondition($entityType, $entity);
+  public function entityCheckCondition(EntityInterface $entity);
 
 }

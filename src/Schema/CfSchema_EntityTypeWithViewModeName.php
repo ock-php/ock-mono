@@ -3,6 +3,7 @@
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 
@@ -52,20 +53,31 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_OptionsInterface {
     $options = [];
     if (NULL === $this->entityType) {
       /** @var array[] $viewModes */
-      foreach ($this->entityDisplayRepository->getAllViewModes() as $entityType => $viewModes) {
+      foreach ($allvm = $this->entityDisplayRepository->getAllViewModes() as $entityType => $viewModes) {
         if (!isset($entityTypeLabels[$entityType])) {
           continue;
         }
-        $entityTypeLabel = $entityTypeLabels[$entityType];
+        $entityTypeLabel = (string)$entityTypeLabels[$entityType];
+        $options[$entityTypeLabel][$entityType . ':default'] = $entityTypeLabel . ': ' . t('Default');
         foreach ($viewModes as $mode => $settings) {
           // @todo Find a "type label".
-          $options[$entityTypeLabel][$entityType . ':' . $mode] = $settings['label'];
+          $options[$entityTypeLabel][$entityType . ':' . $mode] = $entityTypeLabel . ': ' . $settings['label'];
         }
       }
     }
     else {
       $entityTypeLabel = $entityTypeLabels[$this->entityType];
-      foreach ($this->entityDisplayRepository->getViewModeOptions($this->entityType) as $mode => $label) {
+
+      if (!is_string($entityTypeLabel)) {
+        if ($entityTypeLabel instanceof MarkupInterface) {
+          $entityTypeLabel = $entityTypeLabel->__toString();
+        }
+        else {
+          $entityTypeLabel = $this->entityType;
+        }
+      }
+
+      foreach ($this->etGetViewModeOptions($this->entityType) as $mode => $label) {
         // @todo Find a "type label".
         $options[$entityTypeLabel][$this->entityType . ':' . $mode] = $label;
       }
@@ -96,7 +108,7 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_OptionsInterface {
     }
     $entityTypeLabel = $entityTypeLabels[$type];
 
-    $viewModeLabels = $this->entityDisplayRepository->getViewModeOptions($type);
+    $viewModeLabels = $this->etGetViewModeOptions($type);
     if (!isset($viewModeLabels[$mode])) {
       return NULL;
     }
@@ -126,11 +138,20 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_OptionsInterface {
       return FALSE;
     }
 
-    $viewModes = $this->entityDisplayRepository->getViewModes($type);
-    if (!isset($viewModes[$mode])) {
+    $viewModeLabels = $this->etGetViewModeOptions($type);
+    if (!isset($viewModeLabels[$mode])) {
       return FALSE;
     }
 
     return TRUE;
+  }
+
+  /**
+   * @param string $entityTypeId
+   *
+   * @return string[]
+   */
+  private function etGetViewModeOptions($entityTypeId) {
+    return $this->entityDisplayRepository->getViewModeOptions($entityTypeId);
   }
 }

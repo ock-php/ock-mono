@@ -35,7 +35,7 @@ class EntityImage_EntityLabelAsAltFallback implements EntityImageInterface {
     }
 
     if (empty($image['alt'])) {
-      $image['alt'] = entity_label($entity_type, $entity);
+      $image['alt'] = $entity->label();
     }
 
     return $image;
@@ -63,7 +63,7 @@ class EntityImage_EntityLabelAsAltFallback implements EntityImageInterface {
       if (empty($image['alt'])) {
         $image['alt'] = NULL !== $label
           ? $label
-          : $label = entity_label($entityType, $entities[$delta]);
+          : $label = $entities[$delta]->label();
       }
     }
 

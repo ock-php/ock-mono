@@ -4,9 +4,10 @@ namespace Drupal\renderkit8\EntityDisplay;
 
 use Drupal\renderkit8\EntitiesListFormat\EntitiesListFormatInterface;
 use Drupal\renderkit8\EntityToEntities\EntityToEntitiesInterface;
+use Drupal\renderkit8\Util\ExceptionUtil;
 
 /**
- * @CfrPlugin("listOfRelatedEntities", "List of related entities")
+ * @CfrPlugin("listOfRelatedEntities", "Related entities list")
  */
 class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
 
@@ -46,14 +47,23 @@ class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
    */
   public function buildEntities(array $entities) {
 
-    $targetEntitiess = $this->entityToEntities->entitiesGetRelated($entityType, $entities);
+    $targetEntitiess = $this->entityToEntities->entitiesGetRelated($entities);
 
     $builds = [];
     foreach ($targetEntitiess as $delta => $targetEntities) {
+
       if (!is_array($targetEntities)) {
-        dpm(get_defined_vars());
-        break;
+        throw new \RuntimeException(
+          ExceptionUtil::formatMessage(
+            '@method is expected to return EntityInterface[][], found ?instead at $[?delta].',
+            [
+              '@method' => get_class($this->entityToEntities) . '->entitiesGetRelated()',
+              '?instead' => $targetEntities,
+              '?delta' => $delta,
+            ])
+          );
       }
+
       $builds[$delta] = $this->entitiesListFormat->entitiesBuildList($targetEntities);
     }
 

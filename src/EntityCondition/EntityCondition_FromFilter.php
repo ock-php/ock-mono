@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit8\EntityCondition;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\EntityFilter\EntityFilterInterface;
 
 /**
@@ -34,14 +35,13 @@ class EntityCondition_FromFilter implements EntityConditionInterface {
   }
 
   /**
-   * @param string $entityType
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return bool
    */
-  public function entityCheckCondition($entityType, $entity) {
+  public function entityCheckCondition(EntityInterface $entity) {
     $entities = ['entity' => $entity];
-    $filteredDeltas = $this->multiEntityFilter->entitiesFilterDeltas($entityType, $entities);
+    $filteredDeltas = $this->multiEntityFilter->entitiesFilterDeltas($entities);
     return $filteredDeltas === ['entity'];
   }
 }
