@@ -26,12 +26,14 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
   private $referenceTimestamp;
 
   /**
+   * @CfrPlugin("dateRangeField", "Date range field")
+   *
    * @param string $entityType
    * @param string $bundleName
    *
    * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
-  public static function createSchema($entityType = NULL, $bundleName = NULL) {
+  public static function schema($entityType = NULL, $bundleName = NULL) {
 
     return CfSchema_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
