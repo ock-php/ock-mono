@@ -5,7 +5,10 @@ namespace Drupal\renderkit8\EntityCondition;
 use Drupal\Core\Entity\EntityInterface;
 
 /**
- * This is not annotated as CfrPlugin, because it is equivalent with
+ * @CfrPlugin(
+ *   id = "negation",
+ *   label = @t("Negation")
+ * )
  *
  * @see \Drupal\renderkit8\EntityFilter\EntityFilter_Negation
  */
