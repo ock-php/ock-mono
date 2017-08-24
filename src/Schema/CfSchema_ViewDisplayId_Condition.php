@@ -77,7 +77,7 @@ class CfSchema_ViewDisplayId_Condition implements CfSchema_FlatOptionsInterface 
       return NULL;
     }
 
-    return $displays['display_title'];
+    return $display['display_title'];
   }
 
   /**
