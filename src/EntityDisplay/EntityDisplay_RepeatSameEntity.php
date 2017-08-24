@@ -30,8 +30,9 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
    */
   public static function createSchema(CfContextInterface $context = NULL) {
 
-    return CfSchema_GroupVal_Callback::fromClass(
+    return CfSchema_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
+      'create',
       [
         new CfSchema_Textfield_IntegerInRange(1, 100),
         CfSchema_IfaceWithContext::create(EntitiesListFormatInterface::class, $context),
@@ -40,6 +41,16 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
         t('Number of repetitions'),
         t('Entities list format'),
       ]);
+  }
+
+  /**
+   * @param int $n
+   * @param \Drupal\renderkit8\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
+   *
+   * @return self
+   */
+  public static function create($n, EntitiesListFormatInterface $entitiesListFormat) {
+    return new self($entitiesListFormat, $n);
   }
 
   /**
