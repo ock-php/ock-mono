@@ -2,10 +2,10 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\Flat\CfSchema_FlatOptionsInterface;
+use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
 use Drupal\views\Views;
 
-class CfSchema_ViewId implements CfSchema_FlatOptionsInterface {
+class CfSchema_ViewId implements CfSchema_FlatSelectInterface {
 
   /**
    * @var bool|null

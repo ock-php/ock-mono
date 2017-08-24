@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_Options_FlatOptionsTwoStepGrandBase;
+use Donquixote\Cf\Schema\Select\CfSchema_Select_TwoStepFlatSelectGrandBase;
 use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_And;
 use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_EntityIdArg;
 use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_NoArgs;
@@ -12,7 +12,7 @@ use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInt
 /**
  * Schema for values of the structure $view_id . ':' . $view_display_id
  */
-class CfSchema_ViewIdWithDisplayId extends CfSchema_Options_FlatOptionsTwoStepGrandBase {
+class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGrandBase {
 
   /**
    * @var \Drupal\renderkit8\Schema\CfSchema_ViewId
@@ -79,7 +79,7 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Options_FlatOptionsTwoStepGr
   /**
    * @param string $id
    *
-   * @return \Donquixote\Cf\Schema\Options\Flat\CfSchema_FlatOptionsInterface|null
+   * @return \Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface|null
    */
   protected function idGetSubSchema($id) {
 

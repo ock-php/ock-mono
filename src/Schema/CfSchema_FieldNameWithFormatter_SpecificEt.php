@@ -5,8 +5,8 @@ namespace Drupal\renderkit8\Schema;
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_Composite;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
-use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
 use Donquixote\Cf\Schema\Proxy\Replacer\CfSchema_Proxy_ReplacerInterface;
+use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
 use Drupal\renderkit8\Helper\FieldDefinitionLookup;
 
@@ -68,7 +68,7 @@ class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_Repla
     $fieldNameSchema = $replacer->schemaGetReplacement(
       $this->fieldNameSchemaProxy);
 
-    if (!$fieldNameSchema instanceof CfSchema_OptionsInterface) {
+    if (!$fieldNameSchema instanceof CfSchema_SelectInterface) {
       return NULL;
     }
 

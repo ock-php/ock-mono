@@ -4,12 +4,12 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\IdToSchema\IdToSchema_Callback;
 use Donquixote\Cf\IdToSchema\IdToSchema_Fixed;
-use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_OptionsBase;
+use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
 
 /**
  * Schema where the value is like 'body' for field 'node.body'.
  */
-class CfSchema_FieldName_AllowedTypesX extends CfSchema_Proxy_Cache_OptionsBase {
+class CfSchema_FieldName_AllowedTypesX extends CfSchema_Proxy_Cache_SelectBase {
 
   /**
    * @var string[]

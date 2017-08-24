@@ -2,11 +2,11 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\Flat\CfSchema_FlatOptionsInterface;
+use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
 use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface;
 use Drupal\views\Entity\View;
 
-class CfSchema_ViewDisplayId_Condition implements CfSchema_FlatOptionsInterface {
+class CfSchema_ViewDisplayId_Condition implements CfSchema_FlatSelectInterface {
 
   /**
    * @var \Drupal\views\Entity\View

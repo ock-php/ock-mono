@@ -2,10 +2,10 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_OptionsBase;
+use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
 use Drupal\Core\Entity\FieldableEntityInterface;
 
-abstract class CfSchema_EtDotFieldName_ProxyCacheBase extends CfSchema_Proxy_Cache_OptionsBase {
+abstract class CfSchema_EtDotFieldName_ProxyCacheBase extends CfSchema_Proxy_Cache_SelectBase {
 
   /**
    * @var null|string

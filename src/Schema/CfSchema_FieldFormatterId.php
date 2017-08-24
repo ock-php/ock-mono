@@ -2,10 +2,10 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Core\Field\FormatterPluginManager;
 
-class CfSchema_FieldFormatterId implements CfSchema_OptionsInterface {
+class CfSchema_FieldFormatterId implements CfSchema_SelectInterface {
 
   /**
    * @var \Drupal\Core\Field\FormatterPluginManager

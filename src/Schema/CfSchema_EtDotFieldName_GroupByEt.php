@@ -2,13 +2,13 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Donquixote\Cf\Schema\Options\CfSchema_SelectInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 
 /**
  * Schema where the value is like 'node.body', and everything is in one select element.
  */
-class CfSchema_EtDotFieldName_GroupByEt implements CfSchema_OptionsInterface {
+class CfSchema_EtDotFieldName_GroupByEt implements CfSchema_SelectInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityFieldManagerInterface

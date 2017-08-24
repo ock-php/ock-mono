@@ -2,10 +2,10 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Component\Utility\Html;
 
-class CfSchema_ImageStyleName implements CfSchema_OptionsInterface {
+class CfSchema_ImageStyleName implements CfSchema_SelectInterface {
 
   /**
    * @return string[][]

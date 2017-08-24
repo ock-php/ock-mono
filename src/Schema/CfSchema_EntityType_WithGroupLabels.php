@@ -2,12 +2,12 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 
-class CfSchema_EntityType_WithGroupLabels implements CfSchema_OptionsInterface {
+class CfSchema_EntityType_WithGroupLabels implements CfSchema_SelectInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityTypeRepositoryInterface

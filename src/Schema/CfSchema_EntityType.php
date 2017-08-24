@@ -2,11 +2,11 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_Options_FromFlatOptions;
-use Donquixote\Cf\Schema\Options\Flat\CfSchema_FlatOptionsInterface;
+use Donquixote\Cf\Schema\Select\CfSchema_Select_FromFlatSelect;
+use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 
-class CfSchema_EntityType implements CfSchema_FlatOptionsInterface {
+class CfSchema_EntityType implements CfSchema_FlatSelectInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityTypeRepositoryInterface
@@ -14,10 +14,10 @@ class CfSchema_EntityType implements CfSchema_FlatOptionsInterface {
   private $entityTypeRepository;
 
   /**
-   * @return \Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface
+   * @return \Donquixote\Cf\Schema\Select\CfSchema_SelectInterface
    */
   public static function createOptionsSchema() {
-    return new CfSchema_Options_FromFlatOptions(self::create());
+    return new CfSchema_Select_FromFlatSelect(self::create());
   }
 
   /**

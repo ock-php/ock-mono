@@ -2,10 +2,10 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 
-class CfSchema_EntityBundleName implements CfSchema_OptionsInterface {
+class CfSchema_EntityBundleName implements CfSchema_SelectInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface

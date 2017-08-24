@@ -3,7 +3,7 @@
 namespace Drupal\renderkit8\LabeledFormat;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Options\CfSchema_Options_Fixed;
+use Donquixote\Cf\Schema\Select\CfSchema_Select_Fixed;
 use Drupal\Component\Utility\Html;
 
 class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
@@ -25,7 +25,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
     return CfSchema_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        CfSchema_Options_Fixed::createFlat(
+        CfSchema_Select_Fixed::createFlat(
           [
             'h1' => 'H1',
             'h2' => 'H2',

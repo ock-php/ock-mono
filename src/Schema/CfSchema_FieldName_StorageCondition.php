@@ -4,14 +4,14 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\IdToSchema\IdToSchema_Callback;
 use Donquixote\Cf\IdToSchema\IdToSchema_Fixed;
-use Donquixote\Cf\Schema\Options\CfSchema_Options_TwoStepComposite;
-use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_OptionsBase;
+use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
+use Donquixote\Cf\Schema\Select\CfSchema_Select_TwoStepFlatSelectComposite;
 use Drupal\renderkit8\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface;
 
 /**
  * Schema where the value is like 'body' for field 'node.body'.
  */
-class CfSchema_FieldName_StorageCondition extends CfSchema_Proxy_Cache_OptionsBase {
+class CfSchema_FieldName_StorageCondition extends CfSchema_Proxy_Cache_SelectBase {
 
   /**
    * @var string
@@ -41,7 +41,7 @@ class CfSchema_FieldName_StorageCondition extends CfSchema_Proxy_Cache_OptionsBa
       $storageDefinitionCondition,
       $storageConditionSignature);
 
-    return new CfSchema_Options_TwoStepComposite(
+    return new CfSchema_Select_TwoStepFlatSelectComposite(
       CfSchema_EntityType::create(),
       $etToSchema);
   }

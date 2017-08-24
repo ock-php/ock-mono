@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 
 /**
@@ -11,7 +11,7 @@ use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
  * This is currently not used anywhere, but may be used by whoever finds it
  * useful.
  */
-class CfSchema_EntityGenericViewModeName implements CfSchema_OptionsInterface {
+class CfSchema_EntityGenericViewModeName implements CfSchema_SelectInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface

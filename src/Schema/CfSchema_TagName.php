@@ -4,7 +4,7 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Optional\CfSchema_Optional;
 use Donquixote\Cf\Schema\Optional\CfSchema_Optional_Null;
-use Donquixote\Cf\Schema\Options\CfSchema_Options_Fixed;
+use Donquixote\Cf\Schema\Select\CfSchema_Select_Fixed;
 use Drupal\renderkit8\Util\UtilBase;
 
 final class CfSchema_TagName extends UtilBase {
@@ -51,7 +51,7 @@ final class CfSchema_TagName extends UtilBase {
     ];
 
     // @todo Make 'ul' a default id?
-    return CfSchema_Options_Fixed::createFlat($optionsFlat);
+    return CfSchema_Select_Fixed::createFlat($optionsFlat);
   }
 
   /**
@@ -63,7 +63,7 @@ final class CfSchema_TagName extends UtilBase {
 
     $optionsFlat = array_combine($allowedTagNames, $allowedTagNames);
 
-    $schema = CfSchema_Options_Fixed::createFlat($optionsFlat);
+    $schema = CfSchema_Select_Fixed::createFlat($optionsFlat);
 
     $schema = new CfSchema_Optional_Null($schema);
 
@@ -80,7 +80,7 @@ final class CfSchema_TagName extends UtilBase {
 
     $optionsFlat = array_combine($allowedTagNames, $allowedTagNames);
 
-    $schema = CfSchema_Options_Fixed::createFlat($optionsFlat);
+    $schema = CfSchema_Select_Fixed::createFlat($optionsFlat);
 
     if (NULL !== $defaultTagName) {
       $schema = (new CfSchema_Optional($schema))

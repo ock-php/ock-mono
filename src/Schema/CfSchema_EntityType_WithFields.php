@@ -2,14 +2,14 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_OptionsInterface;
+use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 
 /**
  * Schema where the value is the name of an entity type with one or more fields.
  */
-class CfSchema_EntityType_WithFields implements CfSchema_OptionsInterface {
+class CfSchema_EntityType_WithFields implements CfSchema_SelectInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityFieldManagerInterface

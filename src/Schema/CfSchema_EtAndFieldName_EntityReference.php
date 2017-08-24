@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_OptionsBase;
+use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
 
-class CfSchema_EtAndFieldName_EntityReference extends CfSchema_Proxy_Cache_OptionsBase {
+class CfSchema_EtAndFieldName_EntityReference extends CfSchema_Proxy_Cache_SelectBase {
 
   /**
    * @var null|string
