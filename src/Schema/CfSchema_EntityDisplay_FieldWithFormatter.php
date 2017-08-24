@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit8\Schema;
 
+use Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConf;
 use Donquixote\Cf\Schema\Group\CfSchema_Group_V2VBase;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Donquixote\Cf\Schema\Options\CfSchema_Options_Fixed;
@@ -60,12 +61,18 @@ class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
         $this->entityType,
         $this->bundleName);
 
-    $schemas['label'] = CfSchema_Options_Fixed::createFlat(
+    $labelSchema = CfSchema_Options_Fixed::createFlat(
       [
         'above' => t('Above'),
         'inline' => t('Inline'),
         'hidden' => '<' . t('Hidden') . '>',
       ]);
+
+    $labelSchema = new CfSchema_DefaultConf(
+      $labelSchema,
+      'hidden');
+
+    $schemas['label'] = $labelSchema;
 
     $schemas['processor'] = CfSchema_IfaceWithContext::createOptional(
       FieldDisplayProcessorInterface::class);
