@@ -7,12 +7,12 @@ use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit8\EntityFilter\EntityFilterInterface;
 
 /**
- * @CfrPlugin(
- *   id = "filterDisplaySwitcher",
- *   label = "Conditional entity display"
+ * @ CfrPlugin(
+ *   id = "conditional",
+ *   label = "Conditional"
  * )
  */
-class EntityDisplay_Conditional extends EntitiesDisplayBase {
+class EntityDisplay_EntityFilter extends EntitiesDisplayBase {
 
   /**
    * @var \Drupal\renderkit8\EntityFilter\EntityFilterInterface
