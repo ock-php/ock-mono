@@ -2,12 +2,12 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_OptionsSchemaBase;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_SelectSchemaBase;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FormatterPluginManager;
 
-class CfSchema_FieldFormatterTypeAndSettings extends CfSchema_Drilldown_OptionsSchemaBase {
+class CfSchema_FieldFormatterTypeAndSettings extends CfSchema_Drilldown_SelectSchemaBase {
 
   /**
    * @var \Drupal\Core\Field\FieldDefinitionInterface

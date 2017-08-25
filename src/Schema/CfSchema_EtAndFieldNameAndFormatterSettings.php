@@ -2,14 +2,14 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_OptionsSchemaBase;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_SelectSchemaBase;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Donquixote\Cf\Schema\Group\CfSchema_Group;
 use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 
-class CfSchema_EtAndFieldNameAndFormatterSettings extends CfSchema_Drilldown_OptionsSchemaBase {
+class CfSchema_EtAndFieldNameAndFormatterSettings extends CfSchema_Drilldown_SelectSchemaBase {
 
   /**
    * @param null $entityType

@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_OptionsSchemaBase;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_SelectSchemaBase;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Donquixote\Cf\Schema\Group\CfSchema_Group;
 use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
@@ -10,7 +10,7 @@ use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
 /**
  * Schema where the value is like ['entity_type' => 'node', 'field_name' => 'body'].
  */
-class CfSchema_EtAndFieldName extends CfSchema_Drilldown_OptionsSchemaBase {
+class CfSchema_EtAndFieldName extends CfSchema_Drilldown_SelectSchemaBase {
 
   /**
    * @var null|string[]

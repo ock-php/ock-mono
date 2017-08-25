@@ -5,13 +5,13 @@ namespace Drupal\renderkit8\Schema;
 use Donquixote\Cf\Context\CfContext;
 use Donquixote\Cf\Exception\EvaluatorException;
 use Donquixote\Cf\Schema\CfSchema;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_OptionsSchemaBase;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_SelectSchemaBase;
 use Donquixote\Cf\Schema\Group\CfSchema_Group;
 use Donquixote\Cf\V2V\Drilldown\V2V_DrilldownInterface;
 use Drupal\renderkit8\BuildProvider\BuildProvider_EntityDisplay;
 use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 
-class CfSchema_BuildProvider_EntityDisplay extends CfSchema_Drilldown_OptionsSchemaBase implements V2V_DrilldownInterface {
+class CfSchema_BuildProvider_EntityDisplay extends CfSchema_Drilldown_SelectSchemaBase implements V2V_DrilldownInterface {
 
   public function __construct() {
     parent::__construct(CfSchema_EntityType_WithGroupLabels::create());

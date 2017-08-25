@@ -2,10 +2,10 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_OptionsSchemaBase;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_SelectSchemaBase;
 use Drupal\renderkit8\Helper\FieldDefinitionLookup;
 
-class CfSchema_EtDotFieldNameAndFormatterSettings extends CfSchema_Drilldown_OptionsSchemaBase {
+class CfSchema_EtDotFieldNameAndFormatterSettings extends CfSchema_Drilldown_SelectSchemaBase {
 
   /**
    * @var \Drupal\renderkit8\Helper\FieldDefinitionLookupInterface

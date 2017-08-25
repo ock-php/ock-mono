@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_OptionsSchemaBase;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_SelectSchemaBase;
 
-class CfSchema_EntityTypeAndId extends CfSchema_Drilldown_OptionsSchemaBase {
+class CfSchema_EntityTypeAndId extends CfSchema_Drilldown_SelectSchemaBase {
 
   public function __construct() {
     parent::__construct(

@@ -2,12 +2,12 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_OptionsSchemaBase;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_SelectSchemaBase;
 
 /**
  * Schema for values of the structure $view_id . ':' . $view_display_id
  */
-class CfSchema_ViewIdWithDisplayId_WithLink extends CfSchema_Drilldown_OptionsSchemaBase {
+class CfSchema_ViewIdWithDisplayId_WithLink extends CfSchema_Drilldown_SelectSchemaBase {
 
   /**
    * @param \Drupal\renderkit8\Schema\CfSchema_ViewIdWithDisplayId $optionsSchema
