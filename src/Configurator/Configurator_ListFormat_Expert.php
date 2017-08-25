@@ -2,27 +2,24 @@
 
 namespace Drupal\renderkit8\Configurator;
 
-use Drupal\faktoria\CfrCodegenHelper\CfrCodegenHelperInterface;
-use Drupal\faktoria\Configurator\ConfiguratorInterface;
-use Drupal\faktoria\SummaryBuilder\SummaryBuilderInterface;
+use Donquixote\Cf\Evaluator\EvaluatorInterface;
+use Donquixote\Cf\Form\D8\FormatorD8Interface;
+use Donquixote\Cf\Summarizer\SummarizerInterface;
+use Donquixote\Cf\Util\PhpUtil;
 use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
 
 /**
  * This is inspired by Display suite.
  */
-class Configurator_ListFormat_Expert implements ConfiguratorInterface {
+class Configurator_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interface, SummarizerInterface {
 
   /**
    * @param mixed $conf
-   *   Configuration from a form, config file or storage.
-   * @param string|null $label
-   *   Label for the form element, specifying the purpose where it is used.
+   * @param string $label
    *
-   * @return array
-   *
-   * @see ds_extras_field_template_settings_form()
+   * @return array|null
    */
-  public function confGetForm($conf, $label) {
+  public function confGetD8Form($conf, $label) {
 
     $form = [
       '#type' => 'container',
@@ -118,15 +115,10 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
 
   /**
    * @param mixed $conf
-   *   Configuration from a form, config file or storage.
-   * @param \Drupal\faktoria\SummaryBuilder\SummaryBuilderInterface $summaryBuilder
-   *   An object that controls the format of the summary.
    *
    * @return mixed|string|null
-   *   A string summary is always allowed. But other values may be returned if
-   *   $summaryBuilder generates them.
    */
-  public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
+  public function confGetSummary($conf) {
     // No summary details.
     return NULL;
   }
@@ -144,16 +136,13 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
 
   /**
    * @param mixed $conf
-   *   Configuration from a form, config file or storage.
-   * @param \Drupal\faktoria\CfrCodegenHelper\CfrCodegenHelperInterface $helper
    *
    * @return string
-   *   PHP statement to generate the value.
    */
-  public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
+  public function confGetPhp($conf) {
     $defaults = $this->confGetElementDefaults($conf);
     return 'new ' . ListFormat_ElementDefaults::class . '('
-      . "\n" . $helper->export($defaults) . ')';
+      . "\n" . PhpUtil::phpValue($defaults) . ')';
   }
 
   /**

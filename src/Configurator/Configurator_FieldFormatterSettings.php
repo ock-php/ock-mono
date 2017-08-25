@@ -2,14 +2,14 @@
 
 namespace Drupal\renderkit8\Configurator;
 
-use Drupal\faktoria\CfrCodegenHelper\CfrCodegenHelperInterface;
-use Drupal\faktoria\Configurator\ConfiguratorInterface;
-use Drupal\faktoria\SummaryBuilder\SummaryBuilderInterface;
+use Donquixote\Cf\Evaluator\EvaluatorInterface;
+use Donquixote\Cf\Form\D8\FormatorD8Interface;
+use Donquixote\Cf\Summarizer\SummarizerInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Form\FormStateInterface;
 
-class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
+class Configurator_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, EvaluatorInterface {
 
   /**
    * @var \Drupal\Core\Field\FormatterInterface
@@ -25,13 +25,11 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
 
   /**
    * @param mixed $conf
-   *   Configuration from a form, config file or storage.
-   * @param string|null $label
-   *   Label for the form element, specifying the purpose where it is used.
+   * @param string $label
    *
-   * @return array
+   * @return array|null
    */
-  public function confGetForm($conf, $label) {
+  public function confGetD8Form($conf, $label) {
 
     $formatter = $this->getFormatter($conf);
 
@@ -52,12 +50,10 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
 
   /**
    * @param mixed $conf
-   *   Configuration from a form, config file or storage.
-   * @param \Drupal\faktoria\SummaryBuilder\SummaryBuilderInterface $summaryBuilder
    *
    * @return null|string
    */
-  public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
+  public function confGetSummary($conf) {
 
     $summary = $this->getFormatter($conf)->settingsSummary();
 
@@ -86,13 +82,10 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
 
   /**
    * @param mixed $conf
-   *   Configuration from a form, config file or storage.
-   * @param \Drupal\faktoria\CfrCodegenHelper\CfrCodegenHelperInterface $helper
    *
    * @return string
-   *   PHP statement to generate the value.
    */
-  public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
+  public function confGetPhp($conf) {
     return var_export($this->confGetFormatterSettings($conf), TRUE);
   }
 
