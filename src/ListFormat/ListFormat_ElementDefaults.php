@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit8\ListFormat;
 
-use Drupal\renderkit8\Configurator\Configurator_ListFormat_Expert;
+use Drupal\renderkit8\Schema\CfSchema_ListFormat_Expert;
 
 class ListFormat_ElementDefaults implements ListFormatInterface {
 
@@ -17,7 +17,7 @@ class ListFormat_ElementDefaults implements ListFormatInterface {
    * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
   public function createExpertSchema() {
-    return new Configurator_ListFormat_Expert();
+    return new CfSchema_ListFormat_Expert();
   }
 
   /**

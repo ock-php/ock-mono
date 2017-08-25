@@ -6,7 +6,6 @@ use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_OptionsSchemaBase;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FormatterPluginManager;
-use Drupal\renderkit8\Configurator\Configurator_FieldFormatterSettings;
 
 class CfSchema_FieldFormatterTypeAndSettings extends CfSchema_Drilldown_OptionsSchemaBase {
 
@@ -68,7 +67,7 @@ class CfSchema_FieldFormatterTypeAndSettings extends CfSchema_Drilldown_OptionsS
       return NULL;
     }
 
-    return new Configurator_FieldFormatterSettings($formatter);
+    return new CfSchema_FieldFormatterSettings($formatter);
   }
 
   /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit8\Configurator;
+namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Evaluator\EvaluatorInterface;
 use Donquixote\Cf\Form\D8\FormatorD8Interface;
@@ -9,7 +9,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Form\FormStateInterface;
 
-class Configurator_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, EvaluatorInterface {
+class CfSchema_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, EvaluatorInterface {
 
   /**
    * @var \Drupal\Core\Field\FormatterInterface
