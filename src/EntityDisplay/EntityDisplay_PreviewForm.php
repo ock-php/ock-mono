@@ -7,6 +7,7 @@ use Donquixote\Cf\Context\CfContextInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\faktoria\Exception\InvalidConfigurationException;
 use Drupal\faktoria\Form\Form_GenericRedirectGET;
+use Drupal\faktoria\Hub\CfrPluginHub;
 
 class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
@@ -86,32 +87,17 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
     }
 
     try {
-      $entityDisplay = cfrplugin()
-        ->interfaceGetOptionalConfigurator(
-          EntityDisplayInterface::class, $context)
-        ->confGetValue($conf);
+
+      $sta = CfrPluginHub::getContainer()->schemaToAnything;
+
+      $entityDisplay = EntityDisplay::fromConf($conf, $sta);
     }
     catch (InvalidConfigurationException $e) {
       drupal_set_message(t('Failed to construct the EntityDisplay object from the configuration provided.'));
       return $build;
     }
 
-    if (!$entityDisplay instanceof EntityDisplayInterface) {
-      if (is_object($entityDisplay)) {
-        $build['preview']['#markup'] = t(
-          'The configurator returned an object that does not implement @interface.',
-          ['@interface' => 'EntityDisplayInterface']);
-      }
-      else {
-        $build['preview']['#markup'] = t(
-          'The configurator returned a non-object.');
-      }
-
-      return $build;
-    }
-
-    $build['preview'] = $entityDisplay->buildEntity(
-      $entity);
+    $build['preview'] = $entityDisplay->buildEntity($entity);
 
     return $build;
   }
