@@ -47,8 +47,8 @@ class CfSchema_FieldFormatterId implements CfSchema_SelectInterface {
     $options = $this->formatterPluginManager->getOptions($this->fieldTypeName);
 
     foreach ($options as $type => $label) {
-      # $options[$type] = (string)$label;
-      $options[$type] = $type;
+      $options[$type] = (string)$label;
+      # $options[$type] = $type;
     }
 
     return ['' => $options];

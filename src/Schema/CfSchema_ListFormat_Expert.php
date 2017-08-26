@@ -4,6 +4,7 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Evaluator\EvaluatorInterface;
 use Donquixote\Cf\Form\D8\FormatorD8Interface;
+use Donquixote\Cf\Schema\CfSchemaInterface;
 use Donquixote\Cf\Summarizer\SummarizerInterface;
 use Donquixote\Cf\Util\PhpUtil;
 use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
@@ -11,7 +12,7 @@ use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
 /**
  * This is inspired by Display suite.
  */
-class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interface, SummarizerInterface {
+class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interface, SummarizerInterface, CfSchemaInterface {
 
   /**
    * @param mixed $conf

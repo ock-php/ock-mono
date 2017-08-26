@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit8\Controller;
 
+use Donquixote\Cf\Evaluator\Evaluator;
 use Donquixote\Cf\Exception\EvaluatorException;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Donquixote\Cf\Util\StaUtil;
 use Drupal\controller_annotations\Configuration\Cache;
 use Drupal\controller_annotations\Configuration\Route;
 use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
@@ -76,7 +76,7 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
     $schema = new CfSchema_IfaceWithContext(BuildProviderInterface::class);
 
     try {
-      $evaluator = StaUtil::evaluator($schema, $sta);
+      $evaluator = Evaluator::fromSchema($schema, $sta);
     }
     catch (\Exception $e) {
 

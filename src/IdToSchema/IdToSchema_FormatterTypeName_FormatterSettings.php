@@ -1,13 +1,16 @@
 <?php
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit8\IdToSchema;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_SelectSchemaBase;
+use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FormatterPluginManager;
+use Drupal\renderkit8\Schema\CfSchema_FieldFormatterId;
+use Drupal\renderkit8\Schema\CfSchema_FieldFormatterSettings;
 
-class CfSchema_FieldFormatterTypeAndSettings extends CfSchema_Drilldown_SelectSchemaBase {
+class IdToSchema_FormatterTypeName_FormatterSettings implements IdToSchemaInterface {
 
   /**
    * @var \Drupal\Core\Field\FieldDefinitionInterface
@@ -20,17 +23,40 @@ class CfSchema_FieldFormatterTypeAndSettings extends CfSchema_Drilldown_SelectSc
   private $formatterPluginManager;
 
   /**
-   *
+   * @param \Drupal\Core\Field\FormatterPluginManager $formatterPluginManager
    * @param \Drupal\Core\Field\FieldDefinitionInterface $fieldDefinition
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownValInterface
    */
-  public static function create(FieldDefinitionInterface $fieldDefinition) {
-
+  public static function createDrilldownValSchema(
+    FormatterPluginManager $formatterPluginManager,
+    FieldDefinitionInterface $fieldDefinition
+  ) {
     return CfSchema_DrilldownVal::createArrify(
-      new self(
-        \Drupal::service('plugin.manager.field.formatter'),
+      self::createDrilldownSchema(
+        $formatterPluginManager,
         $fieldDefinition));
+  }
+
+  /**
+   * @param \Drupal\Core\Field\FormatterPluginManager $formatterPluginManager
+   * @param \Drupal\Core\Field\FieldDefinitionInterface $fieldDefinition
+   *
+   * @return \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface
+   */
+  public static function createDrilldownSchema(
+    FormatterPluginManager $formatterPluginManager,
+    FieldDefinitionInterface $fieldDefinition
+  ) {
+
+    return CfSchema_Drilldown::create(
+      new CfSchema_FieldFormatterId(
+        $formatterPluginManager,
+        $fieldDefinition->getType()),
+      new self(
+        $formatterPluginManager,
+        $fieldDefinition))
+      ->withKeys('type', 'settings');
   }
 
   /**
@@ -43,11 +69,6 @@ class CfSchema_FieldFormatterTypeAndSettings extends CfSchema_Drilldown_SelectSc
   ) {
     $this->formatterPluginManager = $formatterPluginManager;
     $this->fieldDefinition = $fieldDefinition;
-
-    parent::__construct(
-      new CfSchema_FieldFormatterId(
-        $formatterPluginManager,
-        $fieldDefinition->getType()));
   }
 
   /**
@@ -57,10 +78,6 @@ class CfSchema_FieldFormatterTypeAndSettings extends CfSchema_Drilldown_SelectSc
    */
   public function idGetSchema($formatterTypeName) {
 
-    if (!$this->idIsKnown($formatterTypeName)) {
-      return NULL;
-    }
-
     $formatter = $this->getFormatterInstance($formatterTypeName);
 
     if (NULL === $formatter) {
@@ -68,20 +85,6 @@ class CfSchema_FieldFormatterTypeAndSettings extends CfSchema_Drilldown_SelectSc
     }
 
     return new CfSchema_FieldFormatterSettings($formatter);
-  }
-
-  /**
-   * @return string
-   */
-  public function getIdKey() {
-    return 'type';
-  }
-
-  /**
-   * @return string
-   */
-  public function getOptionsKey() {
-    return 'settings';
   }
 
   /**

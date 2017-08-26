@@ -28,7 +28,7 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplay_FieldItemsBase {
   private $fieldDisplayProcessor;
 
   /**
-   * @CfrPlugin("fieldWithFormatter", @t("Field with formatter *"))
+   * @CfrPlugin("fieldWithFormatter", @t("Field with formatter"))
    *
    * @param string|null $entityType
    * @param string|null $bundle

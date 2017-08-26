@@ -2,20 +2,14 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_Composite;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Donquixote\Cf\Schema\Proxy\Replacer\CfSchema_Proxy_ReplacerInterface;
 use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
-use Drupal\renderkit8\Helper\FieldDefinitionLookup;
+use Drupal\renderkit8\IdToSchema\IdToSchema_FieldName_FormatterTypeAndSettings;
 
-class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_ReplacerInterface, IdToSchemaInterface {
-
-  /**
-   * @var \Drupal\renderkit8\Helper\FieldDefinitionLookupInterface
-   */
-  private $fieldDefinitionLookup;
+class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_ReplacerInterface {
 
   /**
    * @var string
@@ -35,11 +29,6 @@ class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_Repla
    */
   public static function create($entityType, $bundleName = NULL) {
 
-    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
-    # $etm = \Drupal::service('entity_type.manager');
-
-    # $etm->
-
     return new self($entityType, $bundleName);
   }
 
@@ -48,8 +37,6 @@ class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_Repla
    * @param string|null $bundleName
    */
   public function __construct($entityType, $bundleName = NULL) {
-
-    $this->fieldDefinitionLookup = FieldDefinitionLookup::createBuffered();
 
     $this->entityType = $entityType;
 
@@ -72,32 +59,13 @@ class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_Repla
       return NULL;
     }
 
-    $schema = new CfSchema_Drilldown_Composite(
-      $fieldNameSchema,
-      $this);
+    $idToSchema = new IdToSchema_FieldName_FormatterTypeAndSettings($this->entityType);
 
-    $schema = $schema->withKeys('field', 'display');
+    $drilldownSchema = CfSchema_Drilldown::create($fieldNameSchema, $idToSchema)
+      ->withKeys('field', 'display');
 
-    $schema = CfSchema_DrilldownVal::createArrify($schema);
+    $drilldownValSchema = CfSchema_DrilldownVal::createArrify($drilldownSchema);
 
-    return $schema;
-  }
-
-  /**
-   * @param string|int $fieldName
-   *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface|null
-   */
-  public function idGetSchema($fieldName) {
-
-    $fieldDefinition = $this->fieldDefinitionLookup->etAndFieldNameGetDefinition(
-      $this->entityType,
-      $fieldName);
-
-    if (NULL === $fieldDefinition) {
-      return NULL;
-    }
-
-    return CfSchema_FieldFormatterTypeAndSettings::create($fieldDefinition);
+    return $drilldownValSchema;
   }
 }

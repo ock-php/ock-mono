@@ -4,12 +4,13 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Evaluator\EvaluatorInterface;
 use Donquixote\Cf\Form\D8\FormatorD8Interface;
+use Donquixote\Cf\Schema\CfSchemaInterface;
 use Donquixote\Cf\Summarizer\SummarizerInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Form\FormStateInterface;
 
-class CfSchema_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, EvaluatorInterface {
+class CfSchema_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, EvaluatorInterface, CfSchemaInterface {
 
   /**
    * @var \Drupal\Core\Field\FormatterInterface

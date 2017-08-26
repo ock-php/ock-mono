@@ -2,35 +2,19 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_SelectSchemaBase;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
+use Drupal\renderkit8\IdToSchema\IdToSchema_Et_EntityId;
+use Drupal\renderkit8\Util\UtilBase;
 
-class CfSchema_EntityTypeAndId extends CfSchema_Drilldown_SelectSchemaBase {
-
-  public function __construct() {
-    parent::__construct(
-      CfSchema_EntityType::createOptionsSchema());
-  }
+final class CfSchema_EntityTypeAndId extends UtilBase {
 
   /**
-   * @param string|int $entityTypeId
-   *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface|null
+   * @return \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface
    */
-  public function idGetSchema($entityTypeId) {
-    return new CfSchema_EntityId($entityTypeId);
-  }
-
-  /**
-   * @return string
-   */
-  public function getIdKey() {
-    return 'entity_type';
-  }
-
-  /**
-   * @return string
-   */
-  public function getOptionsKey() {
-    return 'entity_id';
+  public static function create() {
+    return CfSchema_Drilldown::create(
+      CfSchema_EntityType::createOptionsSchema(),
+      new IdToSchema_Et_EntityId())
+      ->withKeys('entity_type', 'entity_id');
   }
 }

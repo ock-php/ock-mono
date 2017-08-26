@@ -2,7 +2,6 @@
 
 namespace Drupal\renderkit8\BuildProvider;
 
-use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit8\Schema\CfSchema_BuildProvider_EntityDisplay;
@@ -25,8 +24,7 @@ class BuildProvider_EntityDisplay implements BuildProviderInterface {
    * @return \Donquixote\Cf\Schema\CfSchemaInterface
    */
   public static function schema() {
-    $schema = new CfSchema_BuildProvider_EntityDisplay();
-    return new CfSchema_DrilldownVal($schema, $schema);
+    return CfSchema_BuildProvider_EntityDisplay::createDrilldown();
   }
 
   /**

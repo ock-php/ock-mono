@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Options\CfSchema_SelectInterface;
+use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 
 /**
