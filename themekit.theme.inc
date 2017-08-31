@@ -1,5 +1,10 @@
 <?php
 
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
+use Drupal\themekit\Util\HtmlUtil;
+
 /**
  * Theme hook implementation.
  *
@@ -15,43 +20,25 @@
  * @see theme_container()
  */
 function theme_themekit_container($variables) {
+
   $element = $variables['element'];
+
   $tagName = isset($element['#tag_name'])
     ? $element['#tag_name']
     : 'div';
+
   $attributes_str = isset($element['#attributes'])
-    ? drupal_attributes($element['#attributes'])
+    ? HtmlUtil::attributes($element['#attributes'])
     : '';
+
   if (empty($element['#children'])) {
     return '';
   }
 
-  return '<' . $tagName . $attributes_str . '>' . $element['#children'] . '</' . $tagName . '>';
-}
-
-/**
- * @param array $variables
- *
- * @return string
- *   Rendered html.
- *
- * @throws Exception
- * 
- * @see theme_link()
- */
-function theme_themekit_link_wrapper(array $variables) {
-  $element = $variables['element'];
-  if (!isset($element['#path'])) {
-    return '';
-  }
-  if (empty($element['#children'])) {
-    return '';
-  }
-  $link_options = isset($element['#options'])
-    ? $element['#options']
-    : [];
-  $link_options['html'] = TRUE;
-  return l($element['#children'], $element['#path'], $link_options);
+  return '<' . $tagName . $attributes_str . '>'
+    . $element['#children']
+    . '</' . $tagName . '>'
+    . "\n";
 }
 
 /**
@@ -63,7 +50,7 @@ function theme_themekit_item_containers(array $variables) {
 
   $element = $variables['element'];
 
-  $deltas = element_children($element);
+  $deltas = Element::children($element);
 
   if ([] === $deltas) {
     return '';
@@ -80,7 +67,7 @@ function theme_themekit_item_containers(array $variables) {
   else {
     $html = '';
     foreach ($deltas as $delta) {
-      $html .= drupal_render($element[$delta]);
+      $html .= \Drupal::service('renderer')->render($element[$delta]);
     }
 
     return $html;
@@ -93,12 +80,14 @@ function theme_themekit_item_containers(array $variables) {
   if (empty($element['#zebra']) && empty($element['#first']) && empty($element['#last'])) {
 
     $item_open_tag = [] !== $common_attributes
-      ? '<' . $tag_name . drupal_attributes($common_attributes) . '>'
+      ? '<' . $tag_name . HtmlUtil::attributes($common_attributes) . '>'
       : '<' . $tag_name . '>';
 
     $html = '';
     foreach ($deltas as $i => $delta) {
-      $html .= $item_open_tag . drupal_render($element[$delta]) . $item_close_tag;
+      $html .= $item_open_tag
+        . \Drupal::service('renderer')->render($element[$delta])
+        . $item_close_tag;
     }
 
     return $html;
@@ -141,8 +130,14 @@ function theme_themekit_item_containers(array $variables) {
 
   $html = '';
   foreach ($attributes_by_delta as $delta => $delta_attributes) {
-    $item_open_tag = '<' . $tag_name . drupal_attributes($delta_attributes) . '>';
-    $html .= $item_open_tag . drupal_render($element[$delta]) . $item_close_tag;
+
+    $item_open_tag = '<' . $tag_name
+      . HtmlUtil::attributes($delta_attributes)
+      . '>';
+
+    $html .= $item_open_tag
+      . \Drupal::service('renderer')->render($element[$delta])
+      . $item_close_tag;
   }
 
   return $html;
@@ -156,30 +151,40 @@ function theme_themekit_item_containers(array $variables) {
  */
 function theme_themekit_item_list(array $variables) {
   $element = $variables['element'];
+
   $default_child_attributes = isset($element['#child_attributes'])
     ? $element['#child_attributes'] + []
     : [];
-  $default_child_attributes_str = drupal_attributes($default_child_attributes);
+
+  $default_child_attributes_str = HtmlUtil::attributes(
+    $default_child_attributes);
 
   $html = '';
-  foreach (element_children($element) as $key) {
-    $child_html = drupal_render($element[$key]);
+  foreach (Element::children($element) as $key) {
+
+    $child_html = \Drupal::service('renderer')->render($element[$key]);
+
     if ('' === $child_html) {
-      continue;
+      # var_dump($element[$key]);
+      $child_html = '?';
+      # continue;
     }
+
     if (isset($element[$key]['#attributes'])) {
       $child_attributes = $element[$key]['#attributes'];
       if (isset($child_attributes['class']) && isset($default_child_attributes['class'])) {
         $child_attributes['class'] = array_unique(array_merge($child_attributes['class'], $default_child_attributes['class']));
       }
       $child_attributes += $default_child_attributes;
-      $child_attributes_str = drupal_attributes($child_attributes);
+      $child_attributes_str = HtmlUtil::attributes($child_attributes);
     }
     else {
       $child_attributes_str = $default_child_attributes_str;
     }
+
     $html .= '<li' . $child_attributes_str . '>' . $child_html . '</li>';
   }
+
   if (isset($element['#tag_name']) && $element['#tag_name'] === 'ol') {
     $tag_name = 'ol';
   }
@@ -188,10 +193,14 @@ function theme_themekit_item_list(array $variables) {
   }
 
   $attributes_str = isset($element['#attributes'])
-    ? drupal_attributes($element['#attributes'])
+    ? HtmlUtil::attributes($element['#attributes'])
     : '';
 
-  return '<' . $tag_name . $attributes_str . '>' . $html . '</' . $tag_name . '>';
+  return ''
+    . '<' . $tag_name . $attributes_str . '>'
+    . $html
+    . '</' . $tag_name . '>'
+    . "\n";
 }
 
 /**
@@ -201,12 +210,31 @@ function theme_themekit_item_list(array $variables) {
  */
 function theme_themekit_separator_list(array $variables) {
   $element = $variables['element'];
+
   $pieces = [];
-  foreach (element_children($element) as $key) {
-    $pieces[] = drupal_render($element[$key]);
+  foreach (Element::children($element) as $key) {
+    $pieces[] = \Drupal::service('renderer')->render($element[$key]);
   }
-  $separator = isset($element['#separator'])
-    ? $element['#separator']
-    : '';
-  return implode($separator, $pieces);
+
+  if (!isset($element['#separator'])) {
+    $separator_safe = '';
+  }
+  else {
+    $separator = $element['#separator'];
+    if (is_string($separator)) {
+      $separator_safe = Html::escape($separator);
+    }
+    elseif ($separator instanceof Markup) {
+      $separator_safe = $separator->__toString();
+    }
+    elseif (is_array($separator)) {
+      $separator_safe = \Drupal::service('renderer')->render($separator);
+    }
+    else {
+      // @todo Log this error?
+      $separator_safe = var_export($separator, TRUE);
+    }
+  }
+
+  return implode($separator_safe, $pieces);
 }

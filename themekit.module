@@ -1,36 +1,35 @@
 <?php
 
-/* @see _themekit_pop_parent() */
-define('THEMEKIT_POP_PARENT', '_themekit_pop_parent');
-define('THEMEKIT_PREPROCESS', '#themekit_theme_preprocess');
-define('THEMEKIT_PROCESS', '#themekit_theme_process');
-
+/**
+ * Implements hook_theme()
+ *
+ * @return array[]
+ */
 function themekit_theme() {
   return [
-    /* @see theme_themekit_container() */
     'themekit_container' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
+      /* @see theme_themekit_container() */
+      'function' => 'theme_themekit_container',
     ],
-    /* @see theme_themekit_item_containers() */
     'themekit_item_containers' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
+      /* @see theme_themekit_item_containers() */
+      'function' => 'theme_themekit_item_containers',
     ],
-    /* @see theme_themekit_link_wrapper() */
-    'themekit_link_wrapper' => [
-      'render element' => 'element',
-      'file' => 'themekit.theme.inc',
-    ],
-    /* @see theme_themekit_item_list() */
     'themekit_item_list' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
+      /* @see theme_themekit_item_list() */
+      'function' => 'theme_themekit_item_list',
     ],
-    /* @see theme_themekit_separator_list() */
     'themekit_separator_list' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
+      /* @see theme_themekit_separator_list() */
+      'function' => 'theme_themekit_separator_list',
     ],
   ];
 }
@@ -46,81 +45,5 @@ function themekit_element_info() {
       /* @see theme_themekit_container() */
       '#theme_wrappers' => ['themekit_container'],
     ],
-    'themekit_link_wrapper' => [
-      /* @see theme_themekit_link_wrapper() */
-      '#theme_wrappers' => ['themekit_link_wrapper'],
-    ],
   ];
-}
-
-/**
- * Implements hook_theme_registry_alter().
- *
- * @param array $theme_registry
- */
-function themekit_theme_registry_alter(array &$theme_registry) {
-  foreach ($theme_registry as $hook => &$item) {
-    if (!empty($item['render element']) && 'elements' === $item['render element']) {
-      // These (pre)processors allow other modules to register (pre)processors
-      // on the render array, without implementing hook_preprocess_HOOK().
-      $item['preprocess functions'][] = '_themekit_theme_preprocess_element';
-      $item['process functions'][] = '_themekit_theme_process_element';
-    }
-  }
-}
-
-/**
- * Theme preprocess callback.
- *
- * Calls preprocessors registered on the render array.
- *
- * @param array $variables
- *
- * @see themekit_theme_registry_alter()
- */
-function _themekit_theme_preprocess_element(array &$variables) {
-  if (!empty($variables['elements'][THEMEKIT_PREPROCESS])) {
-    foreach ($variables['elements'][THEMEKIT_PREPROCESS] as $preprocessor) {
-      if (is_object($preprocessor)) {
-        // @todo Provide an interface that processors can implement.
-      }
-      elseif (is_callable($preprocessor)) {
-        $preprocessor($variables);
-      }
-    }
-  }
-}
-
-/**
- * Theme process callback.
- *
- * Calls processors registered on the render array.
- *
- * @param array $variables
- *
- * @see themekit_theme_registry_alter()
- */
-function _themekit_theme_process_element(array &$variables) {
-  if (!empty($variables['elements'][THEMEKIT_PROCESS])) {
-    foreach ($variables['elements'][THEMEKIT_PROCESS] as $processor) {
-      if (is_object($processor)) {
-        // @todo Provide an interface that processors can implement.
-      }
-      elseif (is_callable($processor)) {
-        $processor($variables);
-      }
-    }
-  }
-}
-
-/**
- * Callback for $element['#process'].
- *
- * @param array $element
- *
- * @return array
- */
-function _themekit_pop_parent(array $element) {
-  array_pop($element['#parents']);
-  return $element;
 }
