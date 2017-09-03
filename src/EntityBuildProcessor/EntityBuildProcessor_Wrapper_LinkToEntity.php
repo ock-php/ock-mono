@@ -73,7 +73,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
       '#title' => $markup,
       /* @see \Drupal\Core\Render\Element\Link */
       '#url' => $entity->toUrl(),
-      '#attributes' => ['a' => 'b'],
+      '#attributes' => $this->attributes,
     ];
   }
 
