@@ -7,7 +7,6 @@ use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\RevisionableInterface;
-use Drupal\renderkit8\Html\HtmlAttributesInterface;
 use Drupal\renderkit8\Html\HtmlTagTrait;
 use Drupal\renderkit8\Schema\CfSchema_ClassAttribute;
 use Drupal\renderkit8\Schema\CfSchema_TagName;
@@ -20,7 +19,7 @@ use Drupal\renderkit8\Schema\CfSchema_TagName;
  *   label = "Entity contextual links wrapper, default"
  * )
  */
-class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcessorInterface, HtmlAttributesInterface {
+class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcessorInterface {
 
   use HtmlTagTrait;
 

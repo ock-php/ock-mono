@@ -2,9 +2,6 @@
 
 namespace Drupal\renderkit8\Html;
 
-/**
- * @see \Drupal\renderkit8\Html\HtmlTagInterface
- */
 trait HtmlTagTrait {
 
   use HtmlAttributesTrait;

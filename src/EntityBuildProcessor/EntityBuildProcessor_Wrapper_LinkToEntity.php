@@ -5,7 +5,6 @@ namespace Drupal\renderkit8\EntityBuildProcessor;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\BuildProcessor\BuildProcessor_Container;
-use Drupal\renderkit8\Html\HtmlAttributesInterface;
 use Drupal\renderkit8\Html\HtmlAttributesTrait;
 use Drupal\renderkit8\Schema\CfSchema_TagName;
 
@@ -23,7 +22,7 @@ use Drupal\renderkit8\Schema\CfSchema_TagName;
  *   label = @t("Entity link wrapper")
  * )
  */
-class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorInterface, HtmlAttributesInterface {
+class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorInterface {
 
   use HtmlAttributesTrait;
 

@@ -3,12 +3,11 @@
 namespace Drupal\renderkit8\BuildProcessor;
 
 use Donquixote\Cf\Schema\Callback\CfSchema_Callback;
-use Drupal\renderkit8\Html\HtmlAttributesInterface;
 use Drupal\renderkit8\Html\HtmlTagTrait;
 use Drupal\renderkit8\Schema\CfSchema_ClassAttribute;
 use Drupal\renderkit8\Schema\CfSchema_TagName;
 
-class BuildProcessor_Container implements HtmlAttributesInterface, BuildProcessorInterface {
+class BuildProcessor_Container implements BuildProcessorInterface {
 
   use HtmlTagTrait;
 

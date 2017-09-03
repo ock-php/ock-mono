@@ -5,7 +5,6 @@ namespace Drupal\renderkit8\EntityBuildProcessor;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit8\EntityImage\EntityImageInterface;
-use Drupal\renderkit8\Html\HtmlAttributesInterface;
 use Drupal\renderkit8\Html\HtmlTagTrait;
 
 /**
@@ -14,7 +13,7 @@ use Drupal\renderkit8\Html\HtmlTagTrait;
  *   label = @t("Entity background image wrapper")
  * )
  */
-class EntityBuildProcessor_Wrapper_BackgroundImage implements EntityBuildProcessorInterface, HtmlAttributesInterface {
+class EntityBuildProcessor_Wrapper_BackgroundImage implements EntityBuildProcessorInterface {
 
   use HtmlTagTrait;
 

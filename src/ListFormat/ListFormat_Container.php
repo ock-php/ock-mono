@@ -3,12 +3,11 @@
 namespace Drupal\renderkit8\ListFormat;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit8\Html\HtmlTagInterface;
 use Drupal\renderkit8\Html\HtmlTagTrait;
 use Drupal\renderkit8\Schema\CfSchema_ClassAttribute;
 use Drupal\renderkit8\Schema\CfSchema_TagName;
 
-class ListFormat_Container implements ListFormatInterface, HtmlTagInterface {
+class ListFormat_Container implements ListFormatInterface {
 
   use HtmlTagTrait;
 
