@@ -27,11 +27,9 @@ function theme_themekit_container($variables) {
     ? $element['#tag_name']
     : 'div';
 
-  $attributes_str = isset($element['#attributes'])
-    ? HtmlUtil::attributes($element['#attributes'])
-    : '';
+  $attributes_str = HtmlUtil::elementAttributesString($element);
 
-  if (empty($element['#children'])) {
+  if (!isset($element['#children']) || '' === $element['#children']) {
     return '';
   }
 
