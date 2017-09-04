@@ -70,17 +70,14 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
 
     $this->assertElements(
       ''
-      . '<div class="field-item field-item-even field-item-first">X</div>'
-      . '<div class="field-item field-item-odd">Y</div>'
-      . '<div class="field-item field-item-even field-item-last">Z</div>'
+      . '<div class="field-item">X</div>'
+      . '<div class="field-item">Y</div>'
+      . '<div class="field-item">Z</div>'
       . '',
       [
         /* @see theme_themekit_item_containers() */
         '#theme' => 'themekit_item_containers',
         '#item_attributes' => ['class' => ['field-item']],
-        '#first' => 'field-item-first',
-        '#last' => 'field-item-last',
-        '#zebra' => ['field-item-even', 'field-item-odd'],
         ['#markup' => 'X'],
         ['#markup' => 'Y'],
         ['#markup' => 'Z'],
@@ -93,9 +90,6 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
         /* @see theme_themekit_item_containers() */
         '#theme' => 'themekit_item_containers',
         '#item_attributes' => ['class' => ['field-item']],
-        '#first' => 'field-item-first',
-        '#last' => 'field-item-last',
-        '#zebra' => ['field-item-even', 'field-item-odd'],
         ['#markup' => 'X'],
         ['#markup' => 'Y'],
         ['#markup' => 'Z'],
@@ -106,9 +100,9 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
     $this->assertElements(
       ''
       . '<ul class="menu">'
-      . '<li class="even">X</li>'
-      . '<li class="odd">Y</li>'
-      . '<li class="even">Z</li>'
+      . '<li>X</li>'
+      . '<li>Y</li>'
+      . '<li>Z</li>'
       . '</ul>'
       . "\n",
       [
@@ -119,7 +113,6 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
         // Wrap each item in <li>.
         '#theme' => 'themekit_item_containers',
         '#item_tag_name' => 'li',
-        '#zebra' => TRUE,
         // Items.
         ['#markup' => 'X'],
         ['#markup' => 'Y'],
