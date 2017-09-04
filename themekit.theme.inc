@@ -17,7 +17,7 @@ use Drupal\themekit\Util\HtmlUtil;
  *
  * @throws Exception
  *
- * @see theme_container()
+ * @see template_preprocess_container()
  */
 function theme_themekit_container($variables) {
 
