@@ -132,8 +132,8 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
       . '</ul>'
       . "\n",
       [
-        /* @see theme_themekit_item_list() */
-        '#theme' => 'themekit_item_list',
+        /* @see theme_themekit_list() */
+        '#theme' => 'themekit_list',
         '#attributes' => ['class' => ['menu']],
         // Items.
         'x' => ['#markup' => 'X'],
@@ -143,7 +143,7 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
           ['#markup' => 'Z'],
         ],
       ],
-      "#theme 'themekit_item_list'.");
+      "#theme 'themekit_list'.");
 
     $this->assertElements(
       ''
@@ -153,14 +153,14 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
       . '</ol>'
       . "\n",
       [
-        /* @see theme_themekit_item_list() */
-        '#theme' => 'themekit_item_list',
+        /* @see theme_themekit_list() */
+        '#theme' => 'themekit_list',
         '#tag_name' => 'ol',
         // Items.
         ['#markup' => 'X'],
         ['#markup' => 'Y'],
       ],
-      "#theme 'themekit_item_list' with #tag_name 'ol'.");
+      "#theme 'themekit_list' with #tag_name 'ol'.");
   }
 
   public function testThemekitSeparatorList() {

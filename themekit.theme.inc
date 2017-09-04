@@ -93,7 +93,7 @@ function theme_themekit_item_containers(array $variables) {
  * @return string
  *   Rendered HTML.
  */
-function theme_themekit_item_list(array $variables) {
+function theme_themekit_list(array $variables) {
   $element = $variables['element'];
 
   $default_child_attributes = isset($element['#child_attributes'])

@@ -19,11 +19,11 @@ function themekit_theme() {
       /* @see theme_themekit_item_containers() */
       'function' => 'theme_themekit_item_containers',
     ],
-    'themekit_item_list' => [
+    'themekit_list' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-      /* @see theme_themekit_item_list() */
-      'function' => 'theme_themekit_item_list',
+      /* @see theme_themekit_list() */
+      'function' => 'theme_themekit_list',
     ],
     'themekit_separator_list' => [
       'render element' => 'element',
