@@ -136,9 +136,7 @@ function theme_themekit_item_list(array $variables) {
     $tag_name = 'ul';
   }
 
-  $attributes_str = isset($element['#attributes'])
-    ? HtmlUtil::attributes($element['#attributes'])
-    : '';
+  $attributes_str = HtmlUtil::elementAttributesString($element);
 
   return ''
     . '<' . $tag_name . $attributes_str . '>'
