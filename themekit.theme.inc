@@ -1,9 +1,9 @@
 <?php
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Render\Element;
 use Drupal\Core\Render\Markup;
 use Drupal\themekit\Util\HtmlUtil;
+use Drupal\themekit\Util\ListUtil;
 
 /**
  * Theme hook implementation.
@@ -48,9 +48,11 @@ function theme_themekit_item_containers(array $variables) {
 
   $element = $variables['element'];
 
-  $deltas = Element::children($element);
+  $items_rendered = ListUtil::elementRenderListItems(
+    $element,
+    \Drupal::service('renderer'));
 
-  if ([] === $deltas) {
+  if ([] === $items_rendered) {
     return '';
   }
 
@@ -63,12 +65,7 @@ function theme_themekit_item_containers(array $variables) {
     $item_close_tag = '</' . $tag_name . '>';
   }
   else {
-    $html = '';
-    foreach ($deltas as $delta) {
-      $html .= \Drupal::service('renderer')->render($element[$delta]);
-    }
-
-    return $html;
+    return implode('', $items_rendered);
   }
 
   $item_attributes_str = HtmlUtil::elementAttributesString(
@@ -78,9 +75,9 @@ function theme_themekit_item_containers(array $variables) {
   $item_open_tag = '<' . $tag_name . $item_attributes_str . '>';
 
   $html = '';
-  foreach ($deltas as $i => $delta) {
+  foreach ($items_rendered as $delta => $item_rendered) {
     $html .= $item_open_tag
-      . \Drupal::service('renderer')->render($element[$delta])
+      . $item_rendered
       . $item_close_tag;
   }
 
@@ -96,6 +93,14 @@ function theme_themekit_item_containers(array $variables) {
 function theme_themekit_list(array $variables) {
   $element = $variables['element'];
 
+  $items_rendered = ListUtil::elementRenderListItems(
+    $element,
+    \Drupal::service('renderer'));
+
+  if ([] === $items_rendered) {
+    return '';
+  }
+
   $default_child_attributes = isset($element['#child_attributes'])
     ? $element['#child_attributes'] + []
     : [];
@@ -104,15 +109,7 @@ function theme_themekit_list(array $variables) {
     $default_child_attributes);
 
   $html = '';
-  foreach (Element::children($element) as $key) {
-
-    $child_html = \Drupal::service('renderer')->render($element[$key]);
-
-    if ('' === $child_html) {
-      # var_dump($element[$key]);
-      $child_html = '?';
-      # continue;
-    }
+  foreach ($items_rendered as $key => $child_html) {
 
     if (isset($element[$key]['#attributes'])) {
       $child_attributes = $element[$key]['#attributes'];
@@ -153,10 +150,9 @@ function theme_themekit_list(array $variables) {
 function theme_themekit_separator_list(array $variables) {
   $element = $variables['element'];
 
-  $pieces = [];
-  foreach (Element::children($element) as $key) {
-    $pieces[] = \Drupal::service('renderer')->render($element[$key]);
-  }
+  $pieces = ListUtil::elementRenderListItems(
+    $element,
+    \Drupal::service('renderer'));
 
   if (!isset($element['#separator'])) {
     $separator_safe = '';
