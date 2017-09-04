@@ -12,6 +12,8 @@ use Drupal\Core\Render\Element\RenderElement as CoreRenderElement;
  */
 class RenderElement_ThemekitContainer extends CoreRenderElement {
 
+  const ID = 'themekit_container';
+
   /**
    * Returns the element properties for this element.
    *
