@@ -4,6 +4,7 @@ namespace Drupal\Tests\themekit\Kernel;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
 
 /**
@@ -16,13 +17,7 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = ['themekit'];
-
-  protected function setUp_() {
-    parent::setUp();
-    $this->installConfig(['system']);
-    \Drupal::service('router.builder')->rebuild();
-  }
+  public static $modules = ['themekit', 'system'];
 
   public function testThemekitContainer() {
 
