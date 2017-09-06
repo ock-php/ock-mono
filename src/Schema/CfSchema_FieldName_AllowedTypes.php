@@ -115,7 +115,7 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
 
     $signature = sha1(serialize($signatureData));
 
-    $cacheId = 'renderkit:schema:field_name:entity_reference_field:' . $signature;
+    $cacheId = 'renderkit:schema:field_name:allowed_types:' . $signature;
 
     parent::__construct($cacheId);
   }
