@@ -194,7 +194,7 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
       }
     }
 
-    if (1 < count($allowedTypesMap)) {
+    if (NULL === $allowedTypesMap || 1 < count($allowedTypesMap)) {
 
       $groupedOptions = [];
       foreach ($groupedOptionsPre1 as $fieldTypeId => $fieldLabelsForType) {
@@ -204,7 +204,7 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
         }
 
         $fieldTypeLabel = isset($fieldTypeDefinition['label'])
-          ? $fieldTypeDefinition['label']
+          ? (string)$fieldTypeDefinition['label']
           : $fieldTypeId;
 
         foreach ($fieldLabelsForType as $fieldName => $fieldLabel) {
