@@ -52,10 +52,10 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
    * @return self
    */
   public static function createFromGroupValues(array $values) {
-    $processor = new self();
-    $processor->setTagName($values['tag_name']);
-    $processor->addClasses($values['classes']);
-    return $processor;
+
+    return (new self())
+      ->setTagName($values['tag_name'])
+      ->addClasses($values['classes']);
   }
 
   public function __construct() {

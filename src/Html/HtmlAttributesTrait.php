@@ -10,16 +10,40 @@ trait HtmlAttributesTrait {
   /**
    * @var mixed[]
    */
-  protected $attributes = [];
+  private $attributes = [];
+
+  /**
+   * @param array $attributes
+   *
+   * @return static
+   */
+  public function withAttributes(array $attributes) {
+    $clone = clone $this;
+    $clone->attributes = $attributes;
+    return $clone;
+  }
+
+  /**
+   * @param string $key
+   * @param mixed $value
+   *
+   * @return static
+   */
+  public function setAttribute($key, $value) {
+    $clone = clone $this;
+    $clone->attributes[$key] = $value;
+    return $clone;
+  }
 
   /**
    * @param string $class
    *
-   * @return $this
+   * @return static
    */
   public function addClass($class) {
-    $this->attributes['class'][] = $class;
-    return $this;
+    $clone = clone $this;
+    $clone->attributes['class'][] = $class;
+    return $clone;
   }
 
   /**
@@ -32,6 +56,13 @@ trait HtmlAttributesTrait {
       $this->attributes['class'][] = $class;
     }
     return $this;
+  }
+
+  /**
+   * @return mixed[]
+   */
+  protected function getAttributes() {
+    return $this->attributes;
   }
 
   /**

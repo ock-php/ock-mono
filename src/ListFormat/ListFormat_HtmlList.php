@@ -51,11 +51,14 @@ class ListFormat_HtmlList implements ListFormatInterface {
    * @return \Drupal\renderkit8\ListFormat\ListFormatInterface
    */
   public static function create($tagName = 'ul', array $classes = []) {
+
     $format = new self($tagName);
-    foreach ($classes as $class) {
-      $format->addClass($class);
+
+    if ([] === $classes) {
+      return $format;
     }
-    return $format;
+
+    return $format->addClasses($classes);
   }
 
   /**
