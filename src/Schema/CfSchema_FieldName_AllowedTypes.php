@@ -23,9 +23,9 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
   private $bundleName;
 
   /**
-   * @var true[]
+   * @var null|string[]
    */
-  private $allowedFieldTypesMap;
+  private $allowedFieldTypes;
 
   /**
    * @param string|null $entityTypeId
@@ -105,7 +105,7 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
   ) {
     $this->entityTypeId = $entityTypeId;
     $this->bundleName = $bundleName;
-    $this->allowedFieldTypesMap = array_fill_keys($allowedFieldTypes, TRUE);
+    $this->allowedFieldTypes = $allowedFieldTypes;
 
     $signatureData = [
       $entityTypeId,
@@ -139,6 +139,10 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
       return [];
     }
 
+    $allowedTypesMap = NULL !== $this->allowedFieldTypes
+      ? array_fill_keys($this->allowedFieldTypes, TRUE)
+      : NULL;
+
     $groupedOptionsPre0 = [];
     $fieldLabels = [];
     $fieldLabelsMissing = [];
@@ -147,8 +151,8 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
       $fieldTypeId = $storage->getType();
 
       if (1
-        && NULL !== $this->allowedFieldTypesMap
-        && !isset($this->allowedFieldTypesMap[$fieldTypeId])
+        && NULL !== $allowedTypesMap
+        && !isset($allowedTypesMap[$fieldTypeId])
       ) {
         continue;
       }
@@ -190,7 +194,7 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
       }
     }
 
-    if (1 < count($this->allowedFieldTypesMap)) {
+    if (1 < count($allowedTypesMap)) {
 
       $groupedOptions = [];
       foreach ($groupedOptionsPre1 as $fieldTypeId => $fieldLabelsForType) {
