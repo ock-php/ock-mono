@@ -101,7 +101,7 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
   public function __construct(
     $entityTypeId,
     $bundleName = NULL,
-    $allowedFieldTypes = NULL
+    array $allowedFieldTypes = NULL
   ) {
     $this->entityTypeId = $entityTypeId;
     $this->bundleName = $bundleName;
