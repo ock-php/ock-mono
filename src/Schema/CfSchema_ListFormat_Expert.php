@@ -11,6 +11,8 @@ use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
 
 /**
  * This is inspired by Display suite.
+ *
+ * @see \Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults
  */
 class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interface, SummarizerInterface, CfSchemaInterface {
 
