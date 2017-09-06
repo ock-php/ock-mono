@@ -206,7 +206,11 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
    *   Assertion message.
    */
   private function assertElements($expected_html, array $elements, $message) {
-    $actual_html = (string) \Drupal::service('renderer')->renderRoot($elements);
+
+    /** @var \Drupal\Core\Render\RendererInterface $renderer */
+    $renderer = \Drupal::service('renderer');
+
+    $actual_html = (string) $renderer->renderRoot($elements);
 
     $out = '<table><tr>';
     $out .= '<td valign="top"><pre>' . Html::escape($expected_html) . '</pre></td>';
