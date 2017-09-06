@@ -42,6 +42,37 @@ function theme_themekit_container(array $variables) {
 /**
  * @param array $variables
  *
+ * @return \Drupal\Component\Render\MarkupInterface|string
+ */
+function theme_themekit_link_wrapper(array $variables) {
+  $element = $variables['element'];
+
+  if (!isset($element['#children']) || '' === $element['#children']) {
+    # dpm(ddebug_backtrace(TRUE), __FUNCTION__);
+    return '??';
+  }
+
+  $link = [
+    '#type' => 'link',
+  ];
+
+  foreach (['#url', '#options', '#attributes'] as $k) {
+    if (isset($element[$k])) {
+      $link[$k] = $element[$k];
+    }
+  }
+
+  $link['#title'] = $element['#children'];
+
+  /** @var \Drupal\Core\Render\RendererInterface $renderer */
+  $renderer = \Drupal::service('renderer');
+
+  return $renderer->render($link);
+}
+
+/**
+ * @param array $variables
+ *
  * @return string
  */
 function theme_themekit_item_containers(array $variables) {

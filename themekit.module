@@ -19,6 +19,12 @@ function themekit_theme() {
       /* @see theme_themekit_item_containers() */
       'function' => 'theme_themekit_item_containers',
     ],
+    'themekit_link_wrapper' => [
+      'render element' => 'element',
+      'file' => 'themekit.theme.inc',
+      /* @see theme_themekit_link_wrapper() */
+      'function' => 'theme_themekit_link_wrapper',
+    ],
     'themekit_list' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',

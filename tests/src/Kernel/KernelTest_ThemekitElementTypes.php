@@ -73,6 +73,23 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
       "#type 'themekit_container' with nested container");
   }
 
+  public function testThemekitLinkWrapper() {
+
+    // Basic container with no attributes.
+    $this->assertElements(
+      '<a href="https://www.drupal.org"><div>foo</div>
+</a>',
+      [
+        '#type' => 'themekit_link_wrapper',
+        'content' => [
+          '#type' => 'container',
+          ['#children' => 'foo'],
+        ],
+        '#url' => Url::fromUri('https://www.drupal.org'),
+      ],
+      "#type 'themekit_link_wrapper' to https://www.drupal.org.");
+  }
+
   public function testThemekitItemContainers() {
 
     $this->assertElements(
