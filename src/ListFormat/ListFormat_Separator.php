@@ -56,6 +56,7 @@ class ListFormat_Separator implements ListFormatInterface {
       /* @see theme_themekit_separator_list() */
       '#theme' => 'themekit_separator_list',
       '#separator' => $this->separator,
-    ] + $builds;
+      '#items' => $builds,
+    ];
   }
 }
