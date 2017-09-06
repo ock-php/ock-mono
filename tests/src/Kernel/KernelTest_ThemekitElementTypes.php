@@ -59,6 +59,18 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
         'child' => ['#markup' => 'foo'],
       ],
       "#type 'themekit_container' with tag name");
+
+    // Container with children.
+    $this->assertElements(
+      "<div><div>foo</div>\n</div>\n",
+      [
+        '#type' => 'themekit_container',
+        'child' => [
+          '#type' => 'container',
+          'child' => ['#children' => 'foo'],
+        ],
+      ],
+      "#type 'themekit_container' with nested container");
   }
 
   public function testThemekitItemContainers() {
