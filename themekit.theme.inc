@@ -23,15 +23,15 @@ function theme_themekit_container(array $variables) {
 
   $element = $variables['element'];
 
+  if (!isset($element['#children']) || '' === $element['#children']) {
+    return '';
+  }
+
   $tagName = isset($element['#tag_name'])
     ? $element['#tag_name']
     : 'div';
 
   $attributes_str = HtmlUtil::elementAttributesString($element);
-
-  if (!isset($element['#children']) || '' === $element['#children']) {
-    return '';
-  }
 
   return '<' . $tagName . $attributes_str . '>'
     . $element['#children']
