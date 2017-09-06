@@ -12,7 +12,7 @@ use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
 class CfSchema_FieldName_AllowedTypesX extends CfSchema_Proxy_Cache_SelectBase {
 
   /**
-   * @var string[]
+   * @var string[]|null
    */
   private $allowedFieldTypes;
 
