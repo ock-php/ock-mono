@@ -19,7 +19,7 @@ use Drupal\themekit\Util\ListUtil;
  *
  * @see template_preprocess_container()
  */
-function theme_themekit_container($variables) {
+function theme_themekit_container(array $variables) {
 
   $element = $variables['element'];
 
