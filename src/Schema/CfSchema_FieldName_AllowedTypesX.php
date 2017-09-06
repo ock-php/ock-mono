@@ -19,7 +19,7 @@ class CfSchema_FieldName_AllowedTypesX extends CfSchema_Proxy_Cache_SelectBase {
   /**
    * @var string
    */
-  private $entityType;
+  private $entityTypeId;
 
   /**
    * @var null|string
@@ -80,21 +80,21 @@ class CfSchema_FieldName_AllowedTypesX extends CfSchema_Proxy_Cache_SelectBase {
 
   /**
    * @param null|string[] $allowedFieldTypes
-   * @param string $entityType
+   * @param string $entityTypeId
    * @param string|null $bundleName
    */
   public function __construct(
     array $allowedFieldTypes = NULL,
-    $entityType,
+    $entityTypeId,
     $bundleName = NULL
   ) {
     $this->allowedFieldTypes = $allowedFieldTypes;
-    $this->entityType = $entityType;
+    $this->entityTypeId = $entityTypeId;
     $this->bundleName = $bundleName;
 
     $signatureData = [
       $allowedFieldTypes,
-      $entityType,
+      $entityTypeId,
       $bundleName,
     ];
 
@@ -140,7 +140,7 @@ class CfSchema_FieldName_AllowedTypesX extends CfSchema_Proxy_Cache_SelectBase {
      */
     $map = $entityFieldManager->getFieldMap();
 
-    if (!isset($map[$this->entityType])) {
+    if (!isset($map[$this->entityTypeId])) {
       return [];
     }
 
@@ -148,7 +148,7 @@ class CfSchema_FieldName_AllowedTypesX extends CfSchema_Proxy_Cache_SelectBase {
      * @var array[] $fields
      *   Format: $[$field_name] = $field_info
      */
-    $fields = $map[$this->entityType];
+    $fields = $map[$this->entityTypeId];
     unset($map);
 
     if (NULL !== $this->bundleName) {
