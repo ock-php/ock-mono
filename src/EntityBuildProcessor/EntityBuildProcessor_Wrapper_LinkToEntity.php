@@ -4,9 +4,11 @@ namespace Drupal\renderkit8\EntityBuildProcessor;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Exception\UndefinedLinkTemplateException;
 use Drupal\renderkit8\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit8\Html\HtmlAttributesTrait;
 use Drupal\renderkit8\Schema\CfSchema_TagName;
+use Drupal\themekit\Element\RenderElement_ThemekitLinkWrapper;
 
 /**
  * Wraps the content from a decorated display handler into a link, linking to
@@ -62,17 +64,19 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
    */
   public function processEntityBuild(array $build, EntityInterface $entity) {
 
-    /** @var \Drupal\Core\Render\RendererInterface $renderer */
-    $renderer = \Drupal::service('renderer');
-
-    $markup = $renderer->render($build);
+    try {
+      $url = $entity->toUrl();
+    }
+    catch (UndefinedLinkTemplateException $e) {
+      // @todo Log this.
+      return $build;
+    }
 
     return [
-      '#type' => 'link',
-      // @todo Test if this works!
-      '#title' => $markup,
-      /* @see \Drupal\Core\Render\Element\Link */
-      '#url' => $entity->toUrl(),
+      '#type' => RenderElement_ThemekitLinkWrapper::ID,
+      'content' => $build,
+      '#url' => $url,
+      // @todo Optionally set $attributes[title] with $entity->label() ?
       '#attributes' => $this->attributes,
     ];
   }
