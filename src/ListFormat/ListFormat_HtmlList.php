@@ -20,11 +20,6 @@ class ListFormat_HtmlList implements ListFormatInterface {
   private $tagName;
 
   /**
-   * @var mixed[]
-   */
-  private $itemAttributes = [];
-
-  /**
    * @CfrPlugin("htmlList", @t("HTML list"))
    *
    * @return \Donquixote\Cf\Schema\CfSchemaInterface
@@ -87,16 +82,6 @@ class ListFormat_HtmlList implements ListFormatInterface {
   }
 
   /**
-   * @param string $class
-   *
-   * @return $this
-   */
-  public function addItemClass($class) {
-    $this->itemAttributes['class'][] = $class;
-    return $this;
-  }
-
-  /**
    * @param array[] $builds
    *   Array of render arrays for list items.
    *   Must not contain any property keys like "#..".
@@ -105,16 +90,13 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *   Render array for the list.
    */
   public function buildList(array $builds) {
-    $listBuild = [
-      /* @see theme_themekit_item_list() */
-      '#theme' => 'themekit_item_list',
+
+    return [
+      /* @see theme_themekit_list() */
+      '#theme' => 'themekit_list',
       '#tag_name' => $this->tagName,
       '#attributes' => $this->attributes,
-      '#item_attributes' => $this->itemAttributes,
+      '#items' => $builds,
     ];
-    foreach ($builds as $delta => $build) {
-      $listBuild[$delta]['content'] = $build;
-    }
-    return $listBuild;
   }
 }
