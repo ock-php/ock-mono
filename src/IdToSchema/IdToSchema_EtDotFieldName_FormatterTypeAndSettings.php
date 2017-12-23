@@ -43,7 +43,7 @@ class IdToSchema_EtDotFieldName_FormatterTypeAndSettings implements IdToSchemaIn
   /**
    * @param string|int $etAndFieldName
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface|null
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
   public function idGetSchema($etAndFieldName) {
     list($et, $fieldName) = explode('.', $etAndFieldName . '.');

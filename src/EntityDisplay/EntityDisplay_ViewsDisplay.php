@@ -37,7 +37,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    *
    * @param string|null $entityType
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema($entityType = NULL) {
 

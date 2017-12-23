@@ -17,7 +17,7 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
   /**
    * @CfrPlugin("labeledListFormatPlus", "Labeled list format +")
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema() {
     return CfSchema_GroupVal_Callback::fromStaticMethod(

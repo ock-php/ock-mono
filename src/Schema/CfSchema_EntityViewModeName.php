@@ -48,7 +48,7 @@ class CfSchema_EntityViewModeName implements CfSchema_SelectInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?string {
 
     $options = $this->entityDisplayRepository
       ->getViewModeOptions($this->entityType);

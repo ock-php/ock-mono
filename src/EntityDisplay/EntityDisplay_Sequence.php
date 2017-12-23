@@ -25,7 +25,7 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
    *
    * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema(CfContextInterface $context = NULL) {
     return CfSchema_ValueToValue_CallbackMono::fromClass(

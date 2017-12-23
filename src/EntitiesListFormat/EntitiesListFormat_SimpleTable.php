@@ -17,7 +17,7 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
   /**
    * @CfrPlugin("simpleTable", "Simple table")
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema() {
 

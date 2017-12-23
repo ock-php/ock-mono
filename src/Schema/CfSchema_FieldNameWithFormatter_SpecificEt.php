@@ -25,7 +25,7 @@ class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_Repla
    * @param string $entityType
    * @param string|null $bundleName
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function create($entityType, $bundleName = NULL) {
 
@@ -48,7 +48,7 @@ class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_Repla
   /**
    * @param \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public function replacerGetSchema(SchemaReplacerInterface $replacer) {
 

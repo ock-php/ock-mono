@@ -38,7 +38,7 @@ class IdToSchema_Et_FieldAndFormatterSettings implements IdToSchemaInterface {
   /**
    * @param string $entityType
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface|null
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
   public function idGetSchema($entityType) {
 

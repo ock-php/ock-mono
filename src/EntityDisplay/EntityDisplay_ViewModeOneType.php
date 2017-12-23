@@ -32,7 +32,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    *
    * @param string|null $entityType
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema($entityType = NULL) {
 
@@ -53,7 +53,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
      * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
      * @param string|null $entityType
      *
-     * @return \Donquixote\Cf\Schema\CfSchemaInterface
+     * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
      */
   public static function doCreateSchema(
     EntityDisplayRepositoryInterface $entityDisplayRepository,
@@ -80,7 +80,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    */
   public static function createFromId($id) {
 
-    if (!is_string($id)) {
+    if (!\is_string($id)) {
       throw new EvaluatorException_IncompatibleConfiguration(
         "Id must be a string.");
     }

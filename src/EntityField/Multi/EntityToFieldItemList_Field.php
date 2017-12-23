@@ -25,7 +25,7 @@ class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function schema(
     array $allowedFieldTypes = NULL,

@@ -33,7 +33,7 @@ class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
    * @param string $bundleName
    *   (optional) Contextual parameter.
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema($entityType = NULL, $bundleName = NULL) {
 

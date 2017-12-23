@@ -30,10 +30,10 @@ final class ExceptionUtil extends UtilBase {
    */
   public static function formatValue($value) {
 
-    switch ($type = gettype($value)) {
+    switch ($type = \gettype($value)) {
 
       case 'object':
-        return get_class($value);
+        return \get_class($value);
 
       case 'bool':
         return $value ? 'TRUE' : 'FALSE';
@@ -45,7 +45,7 @@ final class ExceptionUtil extends UtilBase {
         return "($type)" . $value;
 
       case 'string':
-        if (strlen($value) > 30) {
+        if (\strlen($value) > 30) {
           $value = ''
             . substr($value, 0, 15)
             . '[..]'

@@ -68,7 +68,7 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_SelectInterface {
     else {
       $entityTypeLabel = $entityTypeLabels[$this->entityType];
 
-      if (!is_string($entityTypeLabel)) {
+      if (!\is_string($entityTypeLabel)) {
         if ($entityTypeLabel instanceof MarkupInterface) {
           $entityTypeLabel = $entityTypeLabel->__toString();
         }
@@ -91,7 +91,7 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_SelectInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?string {
     list($type, $mode) = explode(':', $id . ':');
 
     if ('' === $type || '' === $mode) {

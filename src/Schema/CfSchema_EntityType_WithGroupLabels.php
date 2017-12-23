@@ -90,7 +90,7 @@ class CfSchema_EntityType_WithGroupLabels implements CfSchema_SelectInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?string {
 
     $options = $this->entityTypeRepository->getEntityTypeLabels();
 

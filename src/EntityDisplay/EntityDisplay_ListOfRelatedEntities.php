@@ -52,12 +52,12 @@ class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
     $builds = [];
     foreach ($targetEntitiess as $delta => $targetEntities) {
 
-      if (!is_array($targetEntities)) {
+      if (!\is_array($targetEntities)) {
         throw new \RuntimeException(
           ExceptionUtil::formatMessage(
             '@method is expected to return EntityInterface[][], found ?instead at $[?delta].',
             [
-              '@method' => get_class($this->entityToEntities) . '->entitiesGetRelated()',
+              '@method' => \get_class($this->entityToEntities) . '->entitiesGetRelated()',
               '?instead' => $targetEntities,
               '?delta' => $delta,
             ])

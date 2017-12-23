@@ -14,7 +14,7 @@ final class CfSchema_EtAndFieldNameAndFormatterSettings extends UtilBase {
    * @param null $entityType
    * @param null $bundleName
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function create($entityType = NULL, $bundleName = NULL) {
 

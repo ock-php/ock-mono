@@ -6,7 +6,7 @@ use Donquixote\Cf\Exception\EvaluatorException;
 use Donquixote\Cf\IdToSchema\IdToSchema_Class;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
 use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
-use Donquixote\Cf\V2V\Group\V2V_GroupInterface;
+use Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface;
 use Drupal\renderkit8\BuildProvider\BuildProvider_EntityDisplay;
 use Drupal\renderkit8\EntityDisplay\EntityDisplay;
 use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
@@ -35,7 +35,7 @@ class CfSchema_BuildProvider_EntityDisplay implements CfSchema_GroupInterface, V
   }
 
   /**
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface[]
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
    *   Format: $[$groupItemKey] = $groupItemSchema
    */
   public function getItemSchemas() {
@@ -74,7 +74,7 @@ class CfSchema_BuildProvider_EntityDisplay implements CfSchema_GroupInterface, V
    *
    * @return string
    */
-  public function itemsPhpGetPhp(array $itemsPhp) {
+  public function itemsPhpGetPhp(array $itemsPhp): string {
     return '\\' . self::class . '::createBuildProvider('
       . "\n" . var_export($this->entityTypeId, TRUE)
       . "\n" . $itemsPhp['entity_id']

@@ -55,7 +55,7 @@ class CfSchema_EntityBundleName implements CfSchema_SelectInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?string {
 
     $bundles = $this->bundleInfo->getBundleInfo($this->entityType);
 

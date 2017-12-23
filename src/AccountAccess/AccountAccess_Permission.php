@@ -17,7 +17,7 @@ class AccountAccess_Permission implements AccountAccessInterface {
   /**
    * @CfrPlugin("permission", @t("Permission"))
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function schema() {
     return CfSchema_ValueToValue_CallbackMono::fromClass(

@@ -26,7 +26,7 @@ class BuildProvider_Sequence implements BuildProviderInterface {
    *
    * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function getCfrSchema(CfContextInterface $context = NULL) {
 
@@ -59,7 +59,7 @@ class BuildProvider_Sequence implements BuildProviderInterface {
     $builds = [];
     foreach ($this->providers as $k => $provider) {
       $build = $provider->build();
-      if (is_array($build) && [] !== $build) {
+      if (\is_array($build) && [] !== $build) {
         $builds[$k] = $provider->build();
       }
     }

@@ -3,7 +3,7 @@
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldBase;
-use Donquixote\Cf\V2V\String\V2V_StringInterface;
+use Donquixote\Cf\Zoo\V2V\String\V2V_StringInterface;
 use Drupal\Component\Utility\Html;
 
 class CfSchema_ListSeparator extends CfSchema_TextfieldBase implements V2V_StringInterface {
@@ -16,7 +16,7 @@ class CfSchema_ListSeparator extends CfSchema_TextfieldBase implements V2V_Strin
   public function textGetValidationErrors($text) {
     $errors = [];
 
-    if (strlen($text) > 20) {
+    if (\strlen($text) > 20) {
       $errors[] = 'Separator cannot be longer than 20 characters.';
     }
 

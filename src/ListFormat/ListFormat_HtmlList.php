@@ -22,7 +22,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
   /**
    * @CfrPlugin("htmlList", @t("HTML list"))
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema() {
 

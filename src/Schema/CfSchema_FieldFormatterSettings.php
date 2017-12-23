@@ -4,13 +4,12 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Evaluator\EvaluatorInterface;
 use Donquixote\Cf\Form\D8\FormatorD8Interface;
-use Donquixote\Cf\Schema\CfSchemaInterface;
 use Donquixote\Cf\Summarizer\SummarizerInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Form\FormStateInterface;
 
-class CfSchema_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, EvaluatorInterface, CfSchemaInterface {
+class CfSchema_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, EvaluatorInterface, \Donquixote\Cf\Core\Schema\CfSchemaInterface {
 
   /**
    * @var \Drupal\Core\Field\FormatterInterface
@@ -28,9 +27,9 @@ class CfSchema_FieldFormatterSettings implements FormatorD8Interface, Summarizer
    * @param mixed $conf
    * @param string $label
    *
-   * @return array|null
+   * @return array
    */
-  public function confGetD8Form($conf, $label) {
+  public function confGetD8Form($conf, ?string $label): array {
 
     $formatter = $this->getFormatter($conf);
 
@@ -58,7 +57,7 @@ class CfSchema_FieldFormatterSettings implements FormatorD8Interface, Summarizer
 
     $summary = $this->getFormatter($conf)->settingsSummary();
 
-    if (!is_array($summary)) {
+    if (!\is_array($summary)) {
       return $summary;
     }
 
@@ -86,7 +85,7 @@ class CfSchema_FieldFormatterSettings implements FormatorD8Interface, Summarizer
    *
    * @return string
    */
-  public function confGetPhp($conf) {
+  public function confGetPhp($conf): string {
     return var_export($this->confGetFormatterSettings($conf), TRUE);
   }
 

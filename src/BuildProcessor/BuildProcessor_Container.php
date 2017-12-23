@@ -14,7 +14,7 @@ class BuildProcessor_Container implements BuildProcessorInterface {
   /**
    * @CfrPlugin("container", @t("Container"))
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema() {
 

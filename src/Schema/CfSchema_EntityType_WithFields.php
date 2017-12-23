@@ -3,13 +3,14 @@
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
+use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 
 /**
  * Schema where the value is the name of an entity type with one or more fields.
  */
-class CfSchema_EntityType_WithFields implements CfSchema_SelectInterface {
+class CfSchema_EntityType_WithFields implements CfSchema_FlatSelectInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityFieldManagerInterface
@@ -47,7 +48,7 @@ class CfSchema_EntityType_WithFields implements CfSchema_SelectInterface {
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  public function getGroupedOptions() {
+  public function getOptions() {
 
     /**
      * @var array[][] $map
@@ -59,7 +60,7 @@ class CfSchema_EntityType_WithFields implements CfSchema_SelectInterface {
 
     $options = array_intersect_key($etLabels, $map);
 
-    return ['' => $options];
+    return $options;
   }
 
   /**
@@ -67,7 +68,7 @@ class CfSchema_EntityType_WithFields implements CfSchema_SelectInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?string {
 
     /**
      * @var array[][] $map

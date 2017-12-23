@@ -29,7 +29,7 @@ class IdToSchema_FieldName_FormatterTypeAndSettings implements IdToSchemaInterfa
   /**
    * @param string|int $fieldName
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface|null
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
   public function idGetSchema($fieldName) {
 

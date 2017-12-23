@@ -3,7 +3,7 @@
 namespace Drupal\renderkit8\IdToSchema;
 
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
-use Drupal\renderkit8\Schema\CfSchema_FieldName_AllowedTypesX;
+use Drupal\renderkit8\Schema\CfSchema_FieldName_AllowedTypes;
 
 class IdToSchema_Et_FieldName implements IdToSchemaInterface {
 
@@ -32,13 +32,13 @@ class IdToSchema_Et_FieldName implements IdToSchemaInterface {
   /**
    * @param string|int $entityTypeId
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface|null
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
   public function idGetSchema($entityTypeId) {
 
-    return CfSchema_FieldName_AllowedTypesX::create(
-      $this->allowedFieldTypes,
+    return new CfSchema_FieldName_AllowedTypes(
       $entityTypeId,
-      $this->bundleName);
+      $this->bundleName,
+      $this->allowedFieldTypes);
   }
 }

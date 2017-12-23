@@ -41,7 +41,7 @@ class CfSchema_ViewId implements CfSchema_FlatSelectInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?string {
 
     if (NULL === $view = $this->idGetView($id)) {
       return NULL;

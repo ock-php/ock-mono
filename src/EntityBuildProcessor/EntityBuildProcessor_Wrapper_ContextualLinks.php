@@ -26,7 +26,7 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
   /**
    * @CfrPlugin("contextualLinksWrapper", "Entity contextual links wrapper")
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createCfrSchema() {
 

@@ -104,7 +104,7 @@ class CfSchema_EtDotFieldName_GroupByEt implements CfSchema_SelectInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($etAndFieldName) {
+  public function idGetLabel($etAndFieldName): ?string {
     list($et, $fieldName) = explode('.', $etAndFieldName . '.');
 
     if (NULL !== $this->entityType) {
@@ -132,7 +132,7 @@ class CfSchema_EtDotFieldName_GroupByEt implements CfSchema_SelectInterface {
     }
 
     if (NULL !== $this->allowedFieldTypes) {
-      if (!in_array($fieldInfo['type'], $this->allowedFieldTypes, TRUE)) {
+      if (!\in_array($fieldInfo['type'], $this->allowedFieldTypes, TRUE)) {
         return NULL;
       }
     }
@@ -175,7 +175,7 @@ class CfSchema_EtDotFieldName_GroupByEt implements CfSchema_SelectInterface {
     }
 
     if (NULL !== $this->allowedFieldTypes) {
-      if (!in_array($fieldInfo['type'], $this->allowedFieldTypes, TRUE)) {
+      if (!\in_array($fieldInfo['type'], $this->allowedFieldTypes, TRUE)) {
         return FALSE;
       }
     }

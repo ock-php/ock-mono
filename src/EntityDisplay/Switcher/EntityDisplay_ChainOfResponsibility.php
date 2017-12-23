@@ -29,7 +29,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    *
    * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createCfrSchema(CfContextInterface $context = NULL) {
 

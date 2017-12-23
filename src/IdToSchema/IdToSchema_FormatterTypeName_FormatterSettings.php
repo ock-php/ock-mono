@@ -74,7 +74,7 @@ class IdToSchema_FormatterTypeName_FormatterSettings implements IdToSchemaInterf
   /**
    * @param string|int $formatterTypeName
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface|null
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
   public function idGetSchema($formatterTypeName) {
 

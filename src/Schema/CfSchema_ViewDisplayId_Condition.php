@@ -59,7 +59,7 @@ class CfSchema_ViewDisplayId_Condition implements CfSchema_FlatSelectInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?string {
 
     $displays = $this->view->get('display');
 

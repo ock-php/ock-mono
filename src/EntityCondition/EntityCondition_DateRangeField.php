@@ -31,7 +31,7 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
    * @param string $entityType
    * @param string $bundleName
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function schema($entityType = NULL, $bundleName = NULL) {
 

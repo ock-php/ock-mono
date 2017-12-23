@@ -19,7 +19,7 @@ final class CfSchema_EtAndFieldName extends UtilBase {
    * @param string $entityType
    * @param string|null $bundleName
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function create(
     array $allowedFieldTypes = NULL,
@@ -34,10 +34,10 @@ final class CfSchema_EtAndFieldName extends UtilBase {
         [
           // @todo This should be _FixedConf instead.
           'entity_type' => new CfSchema_ValueProvider_FixedValue($entityType),
-          'field_name' => CfSchema_FieldName_AllowedTypesX::create(
-            $allowedFieldTypes,
+          'field_name' => new CfSchema_FieldName_AllowedTypes(
             $entityType,
-            $bundleName),
+            $bundleName,
+            $allowedFieldTypes),
         ],
         [
           'entity_type' => t('Entity type'),

@@ -21,7 +21,7 @@ class BuildProvider_EntityDisplay implements BuildProviderInterface {
   /**
    * @CfrPlugin("entityDisplay", "Entity display")
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function schema() {
     return CfSchema_BuildProvider_EntityDisplay::createDrilldown();

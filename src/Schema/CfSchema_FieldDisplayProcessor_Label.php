@@ -24,7 +24,7 @@ class CfSchema_FieldDisplayProcessor_Label extends CfSchema_Group_V2VDecoratorBa
   }
 
   /**
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface[]
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
    */
   public function getItemSchemas() {
     $schemas = parent::getItemSchemas();
@@ -76,7 +76,7 @@ class CfSchema_FieldDisplayProcessor_Label extends CfSchema_Group_V2VDecoratorBa
    *
    * @return string
    */
-  public function itemsPhpGetPhp(array $itemsPhp) {
+  public function itemsPhpGetPhp(array $itemsPhp): string {
 
     $php = parent::itemsPhpGetPhp($itemsPhp);
 

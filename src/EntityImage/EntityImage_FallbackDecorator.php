@@ -41,7 +41,7 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
    */
   public function buildEntity(EntityInterface $entity) {
     $build = $this->decorated->buildEntity($entity);
-    if (is_array($build) && [] !== $build) {
+    if (\is_array($build) && [] !== $build) {
       return $build;
     }
     return $this->fallback->buildEntity($entity);

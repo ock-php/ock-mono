@@ -28,7 +28,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
   /**
    * @CfrPlugin("viewsDisplay", @t("Views display"))
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema() {
 

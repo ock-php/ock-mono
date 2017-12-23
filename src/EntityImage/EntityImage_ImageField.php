@@ -23,7 +23,7 @@ class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements Ent
    * @param string $entityType
    * @param string $bundleName
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema($entityType = NULL, $bundleName = NULL) {
 

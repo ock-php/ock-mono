@@ -6,7 +6,7 @@ use Donquixote\Cf\Schema\StringVal\CfSchema_StringVal;
 use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldBase;
 use Donquixote\Cf\Util\HtmlUtil;
 use Donquixote\Cf\Util\PhpUtil;
-use Donquixote\Cf\V2V\String\V2V_StringInterface;
+use Donquixote\Cf\Zoo\V2V\String\V2V_StringInterface;
 
 class CfSchema_ClassAttribute extends CfSchema_TextfieldBase implements V2V_StringInterface {
 
@@ -99,7 +99,7 @@ class CfSchema_ClassAttribute extends CfSchema_TextfieldBase implements V2V_Stri
       return PhpUtil::phpValue($classes);
     }
     catch (\Exception $e) {
-      return PhpUtil::exception(get_class($e), $e->getMessage());
+      return PhpUtil::exception(\get_class($e), $e->getMessage());
     }
   }
 }

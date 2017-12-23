@@ -14,7 +14,7 @@ class ListFormat_ElementDefaults implements ListFormatInterface {
   /**
    * @CfrPlugin("expert", "Expert")
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createExpertSchema() {
     return new CfSchema_ListFormat_Expert();

@@ -34,7 +34,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
    *   label = @t("Entity title link wrapper")
    * )
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function entityTitleSchema() {
     return CfSchema_GroupVal_Callback::fromStaticMethod(

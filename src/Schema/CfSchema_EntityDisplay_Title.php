@@ -34,7 +34,7 @@ class CfSchema_EntityDisplay_Title extends CfSchema_Group_V2VBase {
   }
 
   /**
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface[]
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
    *   Format: $[$groupItemKey] = $groupItemSchema
    */
   public function getItemSchemas() {
@@ -88,7 +88,7 @@ class CfSchema_EntityDisplay_Title extends CfSchema_Group_V2VBase {
    *
    * @return string
    */
-  public function itemsPhpGetPhp(array $itemsPhp) {
+  public function itemsPhpGetPhp(array $itemsPhp): string {
 
     $wrapperTagNamePhp = $itemsPhp['tag_name'];
     $linkPhp = $itemsPhp['link'];
@@ -144,7 +144,7 @@ class CfSchema_EntityDisplay_Title extends CfSchema_Group_V2VBase {
    */
   private function confGetNormalized($conf) {
 
-    if (!is_array($conf)) {
+    if (!\is_array($conf)) {
       $conf = [];
     }
 

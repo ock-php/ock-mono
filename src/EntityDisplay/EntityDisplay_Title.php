@@ -24,7 +24,7 @@ class EntityDisplay_Title extends EntityDisplayBase {
    *   label = "Entity title"
    * )
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createAdvancedSchema() {
     return CfSchema_EntityDisplay_Title::create()->getValSchema();

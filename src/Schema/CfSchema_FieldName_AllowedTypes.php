@@ -4,23 +4,12 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\IdToSchema\IdToSchema_Callback;
 use Donquixote\Cf\IdToSchema\IdToSchema_Fixed;
-use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
-use Drupal\Core\Field\FieldDefinitionInterface;
+use Donquixote\Cf\Schema\Select\CfSchema_Select_TwoStepFlatSelectComposite;
 
 /**
  * Schema where the value is like 'body' for field 'node.body'.
  */
-class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
-
-  /**
-   * @var string
-   */
-  private $entityTypeId;
-
-  /**
-   * @var null|string
-   */
-  private $bundleName;
+class CfSchema_FieldName_AllowedTypes extends CfSchema_FieldName_Base {
 
   /**
    * @var null|string[]
@@ -32,7 +21,7 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
    * @param string|null $bundle
    * @param string[]|null $allowedFieldTypes
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createEtDotFieldNameSchema(
     $entityTypeId = NULL,
@@ -55,8 +44,8 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
 
     $cacheId = 'renderkit:schema:et_dot_field_name:entity_reference:' . $signature;
 
-    return new CfSchema_EtDotFieldName_EntityReference(
-      $cacheId,
+    return new CfSchema_Select_TwoStepFlatSelectComposite(
+      CfSchema_EntityType::create(),
       $etToSchema);
   }
 
@@ -103,180 +92,30 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_Proxy_Cache_SelectBase {
     $bundleName = NULL,
     array $allowedFieldTypes = NULL
   ) {
-    $this->entityTypeId = $entityTypeId;
-    $this->bundleName = $bundleName;
+
     $this->allowedFieldTypes = $allowedFieldTypes;
 
-    $signatureData = [
+    parent::__construct(
       $entityTypeId,
       $bundleName,
-      $allowedFieldTypes,
-    ];
-
-    $signature = sha1(serialize($signatureData));
-
-    $cacheId = 'renderkit:schema:field_name:allowed_types:' . $signature;
-
-    parent::__construct($cacheId);
+      $allowedFieldTypes);
   }
 
   /**
-   * @return string[][]
-   *   Format: $[$groupLabel][$optionKey] = $optionLabel,
-   *   with $groupLabel === '' for toplevel options.
+   * @return \Drupal\Core\Field\FieldStorageDefinitionInterface[][]
+   *   Format: $[$fieldTypeId][$fieldName] = $fieldStorageDefinition
    */
-  protected function getGroupedOptions() {
+  protected function getStorageDefinitionsByType() {
 
-    /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
-    $efm = \Drupal::service('entity_field.manager');
+    $storagesByType = parent::getStorageDefinitionsByType();
 
-    /** @var \Drupal\Core\Field\FieldTypePluginManagerInterface $ftm */
-    $ftm = \Drupal::service('plugin.manager.field.field_type');
-
-    $storages = $efm->getFieldStorageDefinitions($this->entityTypeId);
-
-    if ([] === $storages) {
-      return [];
+    if (NULL === $this->allowedFieldTypes) {
+      return $storagesByType;
     }
 
-    $allowedTypesMap = NULL !== $this->allowedFieldTypes
-      ? array_fill_keys($this->allowedFieldTypes, TRUE)
-      : NULL;
-
-    $groupedOptionsPre0 = [];
-    $fieldLabels = [];
-    $fieldLabelsMissing = [];
-    foreach ($storages as $fieldName => $storage) {
-
-      $fieldTypeId = $storage->getType();
-
-      if (1
-        && NULL !== $allowedTypesMap
-        && !isset($allowedTypesMap[$fieldTypeId])
-      ) {
-        continue;
-      }
-
-      if ($storage instanceof FieldDefinitionInterface) {
-        if (NULL !== $label = $storage->getLabel()) {
-          $fieldLabels[$fieldName] = $label;
-        }
-        else {
-          $fieldLabels[$fieldName] = $fieldName;
-        }
-      }
-      else {
-        $fieldLabels[$fieldName] = $fieldName;
-        $fieldLabelsMissing[$fieldName] = TRUE;
-      }
-
-      $groupedOptionsPre0[$fieldTypeId][$fieldName] = $fieldName;
-    }
-
-    if ([] === $groupedOptionsPre0) {
-      return [];
-    }
-
-    $moreLabels = $this->fieldNamesGetLabels($fieldLabelsMissing);
-
-    $fieldLabels = array_replace($fieldLabels, $moreLabels);
-
-    $groupedOptionsPre1 = [];
-    foreach ($groupedOptionsPre0 as $fieldTypeId => $fieldNamesForType) {
-
-      foreach ($fieldNamesForType as $fieldName) {
-
-        $fieldLabel = isset($fieldLabels[$fieldName])
-          ? $fieldLabels[$fieldName]
-          : $fieldName;
-
-        $groupedOptionsPre1[$fieldTypeId][$fieldName] = $fieldLabel;
-      }
-    }
-
-    if (NULL === $allowedTypesMap || 1 < count($allowedTypesMap)) {
-
-      $groupedOptions = [];
-      foreach ($groupedOptionsPre1 as $fieldTypeId => $fieldLabelsForType) {
-
-        if (NULL === $fieldTypeDefinition = $ftm->getDefinition($fieldTypeId)) {
-          continue;
-        }
-
-        $fieldTypeLabel = isset($fieldTypeDefinition['label'])
-          ? (string)$fieldTypeDefinition['label']
-          : $fieldTypeId;
-
-        foreach ($fieldLabelsForType as $fieldName => $fieldLabel) {
-          $groupedOptions[$fieldTypeLabel][$fieldName] = $fieldLabel;
-        }
-      }
-
-      return $groupedOptions;
-    }
-
-    if (1 < count($groupedOptionsPre1)) {
-      throw new \RuntimeException('Misbehaving algorithm.');
-    }
-
-    return ['' => reset($groupedOptionsPre1)];
+    return array_intersect_key(
+      $storagesByType,
+      array_fill_keys($this->allowedFieldTypes, TRUE));
   }
 
-  /**
-   * @param true[] $fieldNamesMap
-   *   Format: $[$fieldName] = TRUE
-   *
-   * @return string[]
-   *   Format: [$fieldName] = $label
-   */
-  private function fieldNamesGetLabels(array $fieldNamesMap) {
-
-    /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
-    $efm = \Drupal::service('entity_field.manager');
-
-    /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $kv */
-    $kv = \Drupal::service('keyvalue');
-
-    /** @var \Drupal\Core\KeyValueStore\KeyValueStoreInterface $bfm */
-    $bfm = $kv->get('entity.definitions.bundle_field_map');
-
-    $bundleFieldMaps = array_intersect_key(
-      $bfm->get($this->entityTypeId, []),
-      $fieldNamesMap);
-
-    $bundles = [];
-    foreach ($bundleFieldMaps as $fieldName => $fieldBundleMap) {
-      foreach ($fieldBundleMap['bundles'] as $bundle) {
-        $bundles[$bundle][$fieldName] = $fieldName;
-      }
-    }
-
-    $labelAliases = [];
-    foreach ($bundles as $bundle => $bundleFieldNames) {
-
-      if (NULL !== $this->bundleName && $bundle !== $this->bundleName) {
-        continue;
-      }
-
-      $bundleFieldDefinitions = $efm->getFieldDefinitions(
-        $this->entityTypeId,
-        $bundle);
-
-      foreach ($bundleFieldNames as $fieldName) {
-        if (isset($bundleFieldDefinitions[$fieldName])) {
-          $fieldDefinition = $bundleFieldDefinitions[$fieldName];
-          if (NULL !== $label = $fieldDefinition->getLabel()) {
-            $labelAliases[$fieldName][$label] = $label;
-          }
-        }
-      }
-    }
-
-    $labels = [];
-    foreach ($labelAliases as $fieldName => $fieldLabelAliases) {
-      $labels[$fieldName] = implode(' | ', $fieldLabelAliases);
-    }
-
-    return $labels;
-  }
 }

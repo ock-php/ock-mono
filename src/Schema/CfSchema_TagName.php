@@ -12,7 +12,7 @@ final class CfSchema_TagName extends UtilBase {
   /**
    * @CfSchema("renderkit8.tagName.free")
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createFree() {
     return new CfSchema_TagNameFree();
@@ -21,7 +21,7 @@ final class CfSchema_TagName extends UtilBase {
   /**
    * @CfSchema("renderkit8.tagName.title")
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createForTitle() {
     return self::create(['h1', 'h2', 'h3', 'h4', 'h5', 'label', 'strong'], 'h2');
@@ -32,7 +32,7 @@ final class CfSchema_TagName extends UtilBase {
    *
    * @param string $default
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createForContainer($default = 'div') {
     return self::create(['div', 'span', 'article', 'section', 'pre'], $default);
@@ -41,7 +41,7 @@ final class CfSchema_TagName extends UtilBase {
   /**
    * @CfSchema("renderkit8.tagName.list")
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createForHtmlList() {
 
@@ -57,7 +57,7 @@ final class CfSchema_TagName extends UtilBase {
   /**
    * @param string[] $allowedTagNames
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createOptional(array $allowedTagNames) {
 
@@ -74,7 +74,7 @@ final class CfSchema_TagName extends UtilBase {
    * @param string[] $allowedTagNames
    * @param string|null $defaultTagName
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function create(array $allowedTagNames, $defaultTagName = NULL) {
 

@@ -27,7 +27,7 @@ class FieldDisplayProcessor_LabeledEntityDisplayListFormat implements FieldDispl
    *   label = "Labeled entity display list format +"
    * )
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema() {
     return CfSchema_GroupVal_Callback::fromStaticMethod(

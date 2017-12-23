@@ -25,7 +25,7 @@ class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createValSchema($entityType = NULL, $bundle = NULL) {
     return self::createConfSchema($entityType, $bundle)
@@ -52,7 +52,7 @@ class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
   }
 
   /**
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface[]
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
    */
   public function getItemSchemas() {
     $schemas = [];
@@ -111,7 +111,7 @@ class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
    *
    * @return string
    */
-  public function itemsPhpGetPhp(array $itemsPhp) {
+  public function itemsPhpGetPhp(array $itemsPhp): string {
 
     return '\\' . self::class . '::createEntityDisplay('
       . "\n" . $itemsPhp['field'] . ','

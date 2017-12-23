@@ -4,7 +4,6 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Evaluator\EvaluatorInterface;
 use Donquixote\Cf\Form\D8\FormatorD8Interface;
-use Donquixote\Cf\Schema\CfSchemaInterface;
 use Donquixote\Cf\Summarizer\SummarizerInterface;
 use Donquixote\Cf\Util\PhpUtil;
 use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
@@ -14,15 +13,15 @@ use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
  *
  * @see \Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults
  */
-class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interface, SummarizerInterface, CfSchemaInterface {
+class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interface, SummarizerInterface, \Donquixote\Cf\Core\Schema\CfSchemaInterface {
 
   /**
    * @param mixed $conf
    * @param string $label
    *
-   * @return array|null
+   * @return array
    */
-  public function confGetD8Form($conf, $label) {
+  public function confGetD8Form($conf, ?string $label): array {
 
     $form = [
       '#type' => 'container',
@@ -142,7 +141,7 @@ class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interf
    *
    * @return string
    */
-  public function confGetPhp($conf) {
+  public function confGetPhp($conf): string {
     $defaults = $this->confGetElementDefaults($conf);
     return 'new ' . ListFormat_ElementDefaults::class . '('
       . "\n" . PhpUtil::phpValue($defaults) . ')';
@@ -156,7 +155,7 @@ class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interf
    */
   private function confGetElementDefaults($conf) {
 
-    if (!is_array($conf)) {
+    if (!\is_array($conf)) {
       $conf = [];
     }
 

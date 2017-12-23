@@ -33,7 +33,7 @@ class CfSchema_FieldName_EntityReference extends CfSchema_Proxy_Cache_SelectBase
    * @param string|null $bundle
    * @param string|null $targetTypeId
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createEtDotFieldNameSchema(
     $entityTypeId = NULL,

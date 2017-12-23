@@ -103,8 +103,8 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
           t(
             'The @evaluator_class::confGetValue() method threw a @exception_class exception.',
             [
-              '@evaluator_class' => get_class($evaluator),
-              '@exception_class' => get_class($e),
+              '@evaluator_class' => \get_class($evaluator),
+              '@exception_class' => \get_class($e),
             ]),
           'warning');
       }
@@ -125,7 +125,7 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
         t(
           'The @evaluator_class::confGetValue() method had an unexpected return value.',
           [
-            '@evaluator_class' => get_class($evaluator),
+            '@evaluator_class' => \get_class($evaluator),
           ]),
         'warning');
       $out['object'] = UiDumpUtil::dumpDataInFieldset($object, t('Unexpected value or object'));

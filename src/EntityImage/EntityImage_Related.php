@@ -28,7 +28,7 @@ class EntityImage_Related implements EntityImageInterface {
    *
    * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema(CfContextInterface $context = NULL) {
 

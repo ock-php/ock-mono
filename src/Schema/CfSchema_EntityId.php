@@ -33,7 +33,7 @@ class CfSchema_EntityId implements CfSchema_IdInterface, FormatorD8Interface {
    *
    * @return string
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?string {
 
     if (NULL === $entity = $this->idGetEntity($id)) {
       return NULL;
@@ -46,12 +46,12 @@ class CfSchema_EntityId implements CfSchema_IdInterface, FormatorD8Interface {
    * @param mixed $conf
    * @param string $label
    *
-   * @return array|null
+   * @return array
    */
-  public function confGetD8Form($conf, $label) {
+  public function confGetD8Form($conf, ?string $label): array {
 
     $entity = NULL;
-    if (is_string($conf) || is_int($conf)) {
+    if (\is_string($conf) || \is_int($conf)) {
       $entity = $this->idGetEntity($conf);
     }
 

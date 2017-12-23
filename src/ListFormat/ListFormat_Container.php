@@ -14,7 +14,7 @@ class ListFormat_Container implements ListFormatInterface {
   /**
    * @CfrPlugin("container", @t("Outer container element"))
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema() {
 

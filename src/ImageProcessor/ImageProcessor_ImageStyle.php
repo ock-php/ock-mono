@@ -18,7 +18,7 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    *   label = @t("Image style")
    * )
    *
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function createSchema() {
 

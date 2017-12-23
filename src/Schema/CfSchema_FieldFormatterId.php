@@ -59,7 +59,7 @@ class CfSchema_FieldFormatterId implements CfSchema_SelectInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($formatterTypeName) {
+  public function idGetLabel($formatterTypeName): ?string {
 
     if (NULL === $definition = $this->idGetDefinition($formatterTypeName)) {
       return NULL;
@@ -93,7 +93,7 @@ class CfSchema_FieldFormatterId implements CfSchema_SelectInterface {
       return NULL;
     }
 
-    if (!in_array($this->fieldTypeName, $definition['field_types'], TRUE)) {
+    if (!\in_array($this->fieldTypeName, $definition['field_types'], TRUE)) {
       return NULL;
     }
 

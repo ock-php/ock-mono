@@ -6,7 +6,7 @@ use Donquixote\Cf\Exception\EvaluatorException;
 use Donquixote\Cf\Schema\Group\CfSchema_Group_V2VDecoratorBase;
 use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface;
-use Donquixote\Cf\V2V\Group\V2V_GroupInterface;
+use Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface;
 use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessor_OuterContainer;
 use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
@@ -35,7 +35,7 @@ class CfSchema_FieldDisplayProcessor_OuterContainer extends CfSchema_Group_V2VDe
 
   /**
    * @param \Donquixote\Cf\Schema\Group\CfSchema_GroupInterface $decoratedSchema
-   * @param \Donquixote\Cf\V2V\Group\V2V_GroupInterface $decoratedV2V
+   * @param \Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface $decoratedV2V
    * @param bool $withClassesOption
    */
   public function __construct(
@@ -48,7 +48,7 @@ class CfSchema_FieldDisplayProcessor_OuterContainer extends CfSchema_Group_V2VDe
   }
 
   /**
-   * @return \Donquixote\Cf\Schema\CfSchemaInterface[]
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
    */
   public function getItemSchemas() {
 
@@ -104,7 +104,7 @@ class CfSchema_FieldDisplayProcessor_OuterContainer extends CfSchema_Group_V2VDe
    *
    * @return string
    */
-  public function itemsPhpGetPhp(array $itemsPhp) {
+  public function itemsPhpGetPhp(array $itemsPhp): string {
 
     $php = parent::itemsPhpGetPhp($itemsPhp);
 
