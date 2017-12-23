@@ -18,7 +18,7 @@ final class HtmlUtil {
       return '';
     }
 
-    if (is_array($element[$key])) {
+    if (\is_array($element[$key])) {
       $attributes_object = new Attribute($element[$key]);
       return $attributes_object->__toString();
     }
@@ -27,7 +27,7 @@ final class HtmlUtil {
       return $element[$key]->__toString();
     }
 
-    $type = gettype($key);
+    $type = \gettype($key);
 
     throw new \RuntimeException("Unexpected value ($type) for \$element[$key].");
   }
