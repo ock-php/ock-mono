@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\IdToSchema;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Donquixote\Cf\Schema\Label\CfSchema_Label;
 use Drupal\renderkit8\Helper\FieldDefinitionLookup;
@@ -31,7 +33,7 @@ class IdToSchema_FieldName_FormatterTypeAndSettings implements IdToSchemaInterfa
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
-  public function idGetSchema($fieldName) {
+  public function idGetSchema($fieldName): ?CfSchemaInterface {
 
     $fieldDefinition = $this->fieldDefinitionLookup->etAndFieldNameGetDefinition(
       $this->entityType,

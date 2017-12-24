@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityDisplay;
 
@@ -65,9 +66,7 @@ abstract class EntityDisplay_GroupByTypeBase implements EntityDisplayInterface {
       $entity->getEntityTypeId(),
       [$entity]);
 
-    return isset($builds[0])
-      ? $builds[0]
-      : [];
+    return $builds[0] ?? [];
   }
 
   /**

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -26,7 +27,7 @@ class CfSchema_FieldDisplayProcessor_Label extends CfSchema_Group_V2VDecoratorBa
   /**
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
    */
-  public function getItemSchemas() {
+  public function getItemSchemas(): array {
     $schemas = parent::getItemSchemas();
     $schemas['lb-col'] = new CfSchema_Boolean_YesNo();
     $schemas['label'] = new CfSchema_Textfield_NoValidation();
@@ -36,7 +37,7 @@ class CfSchema_FieldDisplayProcessor_Label extends CfSchema_Group_V2VDecoratorBa
   /**
    * @return string[]
    */
-  public function getLabels() {
+  public function getLabels(): array {
     $labels = parent::getLabels();
     $labels['lb-col'] = t('Hide label colon');
     $labels['label'] = t('Label');
@@ -50,7 +51,7 @@ class CfSchema_FieldDisplayProcessor_Label extends CfSchema_Group_V2VDecoratorBa
    *
    * @throws \Donquixote\Cf\Exception\EvaluatorException
    */
-  public function valuesGetValue(array $values) {
+  public function valuesGetValue(array $values): FieldDisplayProcessorInterface {
 
     $fdp = parent::valuesGetValue($values);
 

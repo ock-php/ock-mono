@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\Tests\renderkit8\Kernel;
 
@@ -45,6 +46,9 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
     # $this->installConfig(['node_test_config', 'field_test_config']);
   }
 
+  /**
+   * @throws \Exception
+   */
   public function testEnvironment() {
 
     /** @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface $etbi */
@@ -55,9 +59,9 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
 
     $bundles = $etbi->getAllBundleInfo();
 
-    $this->assertArrayHasKey('entity_test', $bundles);
+    static::assertArrayHasKey('entity_test', $bundles);
 
-    $this->assertSame(
+    static::assertSame(
       [
         'entity_test' => ['label' => 'Entity Test Bundle'],
       ],
@@ -496,7 +500,8 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
   }
 
   /**
-   * @param array $expected
+   * @param string[][] $expected
+   *   Format: $[$optgroupLabel][$id] = $optionLabel
    * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
    */
   private function assertSchemaGroupedOptions(array $expected, CfSchemaInterface $schema) {
@@ -513,10 +518,10 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
     $replacement = $this->schemaReplacer()->schemaGetReplacement($schema);
 
     if (NULL !== $replacement) {
-      if (!$schema instanceof CfSchema_SelectInterface) {
-        $class = \get_class($schema);
-        $rclass = \get_class($schema);
-        $this->fail("Unexpected schema replacement $class for $rclass.");
+      if (!$replacement instanceof CfSchema_SelectInterface) {
+        $schemaClass = \get_class($schema);
+        $replacementClass = \get_class($replacement);
+        static::fail("Unexpected schema replacement $replacementClass for $schemaClass.");
         return;
       }
 
@@ -524,8 +529,8 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
       $schema = $replacement;
     }
     elseif (!$schema instanceof CfSchema_SelectInterface) {
-      $class = \get_class($schema);
-      $this->fail("Unexpected schema $class.");
+      $schemaClass = \get_class($schema);
+      static::fail("Unexpected schema $schemaClass.");
       return;
     }
 
@@ -548,11 +553,14 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
       }
     }
 
-    $this->assertSame(
+    static::assertSame(
       $expected,
       $actual);
   }
 
+  /**
+   * @return \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface
+   */
   private function schemaReplacer() {
     return CfrPluginHub::getContainer()->schemaReplacer;
   }

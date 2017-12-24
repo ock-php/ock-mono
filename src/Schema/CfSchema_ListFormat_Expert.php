@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Evaluator\EvaluatorInterface;
 use Donquixote\Cf\Form\D8\FormatorD8Interface;
 use Donquixote\Cf\Summarizer\SummarizerInterface;
@@ -13,7 +15,7 @@ use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
  *
  * @see \Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults
  */
-class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interface, SummarizerInterface, \Donquixote\Cf\Core\Schema\CfSchemaInterface {
+class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interface, SummarizerInterface, CfSchemaInterface {
 
   /**
    * @param mixed $conf
@@ -62,7 +64,7 @@ class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interf
         '#size' => '10',
         '#title' => t('Element'),
         # '#description' => t('Leave empty for no tag around each item.'),
-        '#default_value' => isset($conf[$k]) ? $conf[$k] : '',
+        '#default_value' => $conf[$k] ?? '',
         '#states' => [
           'visible' => [
             ':input[name$="[' . $wrapper_key . ']"]' => ['checked' => TRUE],
@@ -74,7 +76,7 @@ class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interf
         '#type' => 'textfield',
         '#title' => t('Classes'),
         # '#description' => t('Classes separated by spaces. Has no effect if wrapper tag name is empty.'),
-        '#default_value' => isset($conf[$k]) ? $conf[$k] : '',
+        '#default_value' => $conf[$k] ?? '',
         '#states' => [
           'visible' => [
             ':input[name$="[' . $wrapper_key . ']"]' => ['checked' => TRUE],

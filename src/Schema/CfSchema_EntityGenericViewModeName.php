@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -28,16 +29,14 @@ class CfSchema_EntityGenericViewModeName implements CfSchema_SelectInterface {
   /**
    * @return string[][]
    */
-  public function getGroupedOptions() {
+  public function getGroupedOptions(): array {
 
     $modes = [];
     /** @var array[] $viewModes */
     foreach ($this->entityDisplayRepository->getAllViewModes() as $entityType => $viewModes) {
       /** @noinspection LoopWhichDoesNotLoopInspection */
       foreach ($viewModes as $viewModeName => $viewMode) {
-        $modes[$viewModeName][] = isset($viewMode['label'])
-          ? $viewMode['label']
-          : $viewModeName;
+        $modes[$viewModeName][] = $viewMode['label'] ?? $viewModeName;
       }
     }
 
@@ -78,7 +77,7 @@ class CfSchema_EntityGenericViewModeName implements CfSchema_SelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  public function idIsKnown($id): bool {
 
     foreach ($this->entityDisplayRepository->getAllViewModes() as $entityType => $viewModes) {
       if (isset($viewModes[$id])) {

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityDisplay;
 
@@ -17,8 +18,6 @@ abstract class EntitiesDisplayBase implements EntityDisplayInterface {
    */
   final public function buildEntity(EntityInterface $entity) {
     $builds = $this->buildEntities([$entity]);
-    return isset($builds[0])
-      ? $builds[0]
-      : [];
+    return $builds[0] ?? [];
   }
 }

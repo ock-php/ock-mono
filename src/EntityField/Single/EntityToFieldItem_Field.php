@@ -1,10 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityField\Single;
 
 use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemInterface;
+use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\renderkit8\Schema\CfSchema_EtAndFieldName;
 
 class EntityToFieldItem_Field implements EntityToFieldItemInterface {
@@ -74,7 +76,13 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
       return NULL;
     }
 
-    $item = $entity->get($this->fieldName)->first();
+    try {
+      $item = $entity->get($this->fieldName)->first();
+    }
+    catch (MissingDataException $e) {
+      unset($e);
+      return null;
+    }
 
     if (!$item instanceof FieldItemInterface) {
       return NULL;

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -40,7 +41,7 @@ class CfSchema_EntityBundleName implements CfSchema_SelectInterface {
   /**
    * @return string[][]
    */
-  public function getGroupedOptions() {
+  public function getGroupedOptions(): array {
 
     $options = [];
     foreach ($this->bundleInfo->getBundleInfo($this->entityType) as $bundleName => $bundleInfo) {
@@ -69,7 +70,7 @@ class CfSchema_EntityBundleName implements CfSchema_SelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  public function idIsKnown($id): bool {
 
     $bundles = $this->bundleInfo->getBundleInfo($this->entityType);
 

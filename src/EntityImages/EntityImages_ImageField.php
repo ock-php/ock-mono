@@ -1,10 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityImages;
 
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\file\Plugin\Field\FieldType\FileFieldItemList;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
@@ -111,7 +113,14 @@ class EntityImages_ImageField implements EntityImagesInterface {
     }
 
     if ($this->useDefaultImage) {
-      $items = ImageFieldUtil::itemsGetItems($items);
+      try {
+        $items = ImageFieldUtil::itemsGetItems($items);
+      }
+      catch (EntityStorageException $e) {
+        // @todo Log this.
+        unset($e);
+        return [];
+      }
     }
 
     $builds = [];

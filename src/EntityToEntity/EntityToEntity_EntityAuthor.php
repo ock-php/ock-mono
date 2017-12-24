@@ -1,10 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityToEntity;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
+use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\user\UserInterface;
 
 /**
@@ -48,7 +50,14 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
     }
 
     // @todo Maybe some entity types use a different field name for author?
-    $item = $entity->get('uid')->first();
+    try {
+      $item = $entity->get('uid')->first();
+    }
+    catch (MissingDataException $e) {
+      // No need to log this. It just means the list is empty.
+      unset($e);
+      return NULL;
+    }
 
     if (!$item instanceof EntityReferenceItem) {
       return NULL;

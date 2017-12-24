@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema\Misc\SelectByEt;
 
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 
 class SelectByEt_FieldName_EntityReference extends SelectByEt_FieldName_Base {
@@ -33,7 +35,14 @@ class SelectByEt_FieldName_EntityReference extends SelectByEt_FieldName_Base {
     $storagesByTypeFiltered = [];
     foreach ($storagesByType as $fieldTypeId => $storagesForType) {
 
-      if (NULL === $fieldTypeDefinition = $ftm->getDefinition($fieldTypeId)) {
+      try {
+        $fieldTypeDefinition = $ftm->getDefinition($fieldTypeId);
+      }
+      catch (PluginNotFoundException $e) {
+        throw new \RuntimeException('Misbehaving FieldTypeManager::getDefinition(): Exception thrown, even though $exception_on_invalid was false.', 0, $e);
+      }
+
+      if (NULL === $fieldTypeDefinition) {
         continue;
       }
 

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityToRelatedIds;
 
@@ -69,7 +70,7 @@ class EntityToRelatedIds_ReverseEntityReferenceField extends EntityToRelatedIds_
     $q->addField('f', $targetIdColName, 'target_id');
     $q->addField('f', 'entity_id');
     $relatedIdsById = [];
-    foreach ($q->execute() as $row) {
+    foreach ($q->execute() ?: [] as $row) {
       $relatedIdsById[$row->target_id][] = $row->entity_id;
     }
     $relatedIdsByDelta = [];

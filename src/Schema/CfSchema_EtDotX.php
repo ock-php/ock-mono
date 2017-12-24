@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -37,7 +38,7 @@ class CfSchema_EtDotX extends CfSchema_Proxy_Cache_SelectBase {
   /**
    * @param string $separator
    *
-   * @return \Drupal\renderkit8\Schema\CfSchema_EtDotX_FixedEt
+   * @return static
    */
   public function withSeparator($separator) {
     $clone = clone $this;
@@ -50,11 +51,13 @@ class CfSchema_EtDotX extends CfSchema_Proxy_Cache_SelectBase {
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  protected function getGroupedOptions() {
+  protected function getGroupedOptions(): array {
 
     $groupedOptions = [];
     foreach ($this->etSelector->getOptions() as $entityTypeId => $entityTypeLabel) {
       $entityTypeLabel = (string)$entityTypeLabel;
+      // The IDE has difficulties to recognize the type of $optionsInGroup.
+      /** @var string[] $optionsInGroup */
       foreach ($this->selectByEt->etGetGroupedOptions($entityTypeId) as $groupLabel => $optionsInGroup) {
         foreach ($optionsInGroup as $k => $label) {
           $groupedOptions[$entityTypeLabel][$entityTypeId . $this->separator . $k] = $label . ' (' . $groupLabel . ')';

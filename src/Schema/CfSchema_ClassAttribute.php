@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -23,7 +24,7 @@ class CfSchema_ClassAttribute extends CfSchema_TextfieldBase implements V2V_Stri
    *
    * @return string[]
    */
-  public function textGetValidationErrors($text) {
+  public function textGetValidationErrors($text): array {
 
     if ('' === $text) {
       return [];
@@ -92,7 +93,7 @@ class CfSchema_ClassAttribute extends CfSchema_TextfieldBase implements V2V_Stri
    *
    * @return string
    */
-  public function stringGetPhp($string) {
+  public function stringGetPhp($string): string {
 
     try {
       $classes = $this->stringGetValue($string);

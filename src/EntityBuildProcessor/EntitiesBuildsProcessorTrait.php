@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityBuildProcessor;
 
@@ -18,9 +19,7 @@ trait EntitiesBuildsProcessorTrait {
       return [];
     }
     $builds = $this->processEntitiesBuilds([$build], $entity_type, [$entity]);
-    return isset($builds[0])
-      ? $builds[0]
-      : [];
+    return $builds[0] ?? [];
   }
 
   /**

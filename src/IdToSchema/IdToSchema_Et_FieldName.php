@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\IdToSchema;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Drupal\renderkit8\Schema\CfSchema_FieldName_AllowedTypes;
 
@@ -34,7 +36,7 @@ class IdToSchema_Et_FieldName implements IdToSchemaInterface {
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
-  public function idGetSchema($entityTypeId) {
+  public function idGetSchema($entityTypeId): ?CfSchemaInterface {
 
     return new CfSchema_FieldName_AllowedTypes(
       $entityTypeId,

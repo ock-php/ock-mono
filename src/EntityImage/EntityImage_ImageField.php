@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityImage;
 
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\renderkit8\EntityDisplay\EntityDisplay_FieldItemsBase;
 use Drupal\renderkit8\Schema\CfSchema_EtDotFieldName_AllowedTypes;
@@ -72,10 +75,23 @@ class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements Ent
   protected function buildFieldItems(FieldItemListInterface $items) {
 
     if ($this->useDefaultImage) {
-      $items = ImageFieldUtil::itemsGetItems($items);
+      try {
+        $items = ImageFieldUtil::itemsGetItems($items);
+      }
+      catch (EntityStorageException $e) {
+        // @todo Log this.
+        unset($e);
+        return [];
+      }
     }
 
-    $item = $items->first();
+    try {
+      $item = $items->first();
+    }
+    catch (MissingDataException $e) {
+      unset($e);
+      return [];
+    }
 
     if (!$item instanceof ImageItem) {
       return [];

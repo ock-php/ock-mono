@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FieldDefinitionInterface;
 
 /**
@@ -51,7 +53,7 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  protected function getGroupedOptions() {
+  protected function getGroupedOptions(): array {
 
     $storagesByType = $this->getStorageDefinitionsByType();
 
@@ -111,7 +113,16 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
     $typeLabels = [];
     foreach ($fieldTypeIds as $fieldTypeId) {
 
-      if (NULL === $fieldTypeDefinition = $ftm->getDefinition($fieldTypeId)) {
+      try {
+        $fieldTypeDefinition = $ftm->getDefinition(
+          $fieldTypeId,
+          false);
+      }
+      catch (PluginNotFoundException $e) {
+        throw new \RuntimeException('Misbehaving FieldTypeManager::getDefinition(): Exception thrown, even though $exception_on_invalid was false.', 0, $e);
+      }
+
+      if (NULL === $fieldTypeDefinition) {
         continue;
       }
 
@@ -224,10 +235,18 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
     /** @var \Drupal\Core\KeyValueStore\KeyValueStoreInterface $bfm */
     $bfm = $kv->get('entity.definitions.bundle_field_map');
 
+    /**
+     * @var string[][][] $bundleFieldMaps
+     *   Format: $[$fieldName]['bundles'][] = $bundle
+     */
     $bundleFieldMaps = array_intersect_key(
       $bfm->get($this->entityTypeId, []),
       $fieldNamesMap);
 
+    /**
+     * @var string[][] $bundles
+     *   Format: $[$bundle][$fieldName] = $fieldName
+     */
     $bundles = [];
     foreach ($bundleFieldMaps as $fieldName => $fieldBundleMap) {
       foreach ($fieldBundleMap['bundles'] as $bundle) {
@@ -235,6 +254,10 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
       }
     }
 
+    /**
+     * @var string[][] $labelAliases
+     *   Format: $[$fieldName][$label] = $label
+     */
     $labelAliases = [];
     foreach ($bundles as $bundle => $bundleFieldNames) {
 
@@ -256,6 +279,10 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
       }
     }
 
+    /**
+     * @var string[] $labels
+     *   Format: $[$fieldName] = $label
+     */
     $labels = [];
     foreach ($labelAliases as $fieldName => $fieldLabelAliases) {
       $labels[$fieldName] = implode(' | ', $fieldLabelAliases);

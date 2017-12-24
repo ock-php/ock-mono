@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -47,7 +48,7 @@ class CfSchema_EtAndFieldName_EntityReference extends CfSchema_Proxy_Cache_Selec
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  protected function getGroupedOptions() {
+  protected function getGroupedOptions(): array {
 
     /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
     # $efm = \Drupal::service('entity_field.manager');

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -13,7 +14,7 @@ class CfSchema_ListSeparator extends CfSchema_TextfieldBase implements V2V_Strin
    *
    * @return string[]
    */
-  public function textGetValidationErrors($text) {
+  public function textGetValidationErrors($text): array {
     $errors = [];
 
     if (\strlen($text) > 20) {
@@ -39,7 +40,7 @@ class CfSchema_ListSeparator extends CfSchema_TextfieldBase implements V2V_Strin
    *
    * @return string
    */
-  public function stringGetPhp($string) {
+  public function stringGetPhp($string): string {
     return var_export(Html::escape($string), TRUE);
   }
 }

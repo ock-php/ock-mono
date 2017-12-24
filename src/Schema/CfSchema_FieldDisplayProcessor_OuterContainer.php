@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -50,7 +51,7 @@ class CfSchema_FieldDisplayProcessor_OuterContainer extends CfSchema_Group_V2VDe
   /**
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
    */
-  public function getItemSchemas() {
+  public function getItemSchemas(): array {
 
     $schemas = parent::getItemSchemas();
 
@@ -64,7 +65,7 @@ class CfSchema_FieldDisplayProcessor_OuterContainer extends CfSchema_Group_V2VDe
   /**
    * @return string[]
    */
-  public function getLabels() {
+  public function getLabels(): array {
 
     $labels = parent::getLabels();
 

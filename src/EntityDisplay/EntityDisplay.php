@@ -1,11 +1,15 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityDisplay;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Evaluator\Evaluator;
+use Donquixote\Cf\Evaluator\EvaluatorInterface;
 use Donquixote\Cf\Schema\CfSchema;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Summarizer\Summarizer;
+use Drupal\cfrapi\Exception\UnsupportedSchemaException;
 use Drupal\renderkit8\Context\EntityContext;
 use Drupal\renderkit8\Util\UtilBase;
 
@@ -18,10 +22,16 @@ final class EntityDisplay extends UtilBase {
    * @return \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface|null
    *
    * @throws \Donquixote\Cf\Exception\EvaluatorException
+   * @throws \Drupal\cfrapi\Exception\UnsupportedSchemaException
    */
-  public static function fromConf($conf, SchemaToAnythingInterface $schemaToAnything) {
-    $schema = self::schema();
-    $evaluator = Evaluator::fromSchema($schema, $schemaToAnything);
+  public static function fromConf($conf, SchemaToAnythingInterface $schemaToAnything): ?EntityDisplayInterface {
+
+    $evaluator = self::evaluatorOrNull($schemaToAnything);
+
+    if (null === $evaluator) {
+      throw new UnsupportedSchemaException("Failed to create evaluator from schema.");
+    }
+
     $candidate = $evaluator->confGetValue($conf);
 
     if (!$candidate instanceof EntityDisplayInterface) {
@@ -32,12 +42,24 @@ final class EntityDisplay extends UtilBase {
   }
 
   /**
+   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   *
+   * @return \Donquixote\Cf\Evaluator\EvaluatorInterface|null
+   */
+  public static function evaluatorOrNull(SchemaToAnythingInterface $schemaToAnything): ?EvaluatorInterface {
+
+    return Evaluator::fromSchema(
+      self::schema(),
+      $schemaToAnything);
+  }
+
+  /**
    * @param string|null $entityType
    * @param string|null $bundle
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public static function schema($entityType = NULL, $bundle = NULL) {
+  public static function schema($entityType = NULL, $bundle = NULL): CfSchemaInterface {
 
     if (NULL === $entityType) {
       return CfSchema::iface(EntityDisplayInterface::class);
@@ -53,6 +75,8 @@ final class EntityDisplay extends UtilBase {
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return string|null
+   *
+   * @throws \Drupal\cfrapi\Exception\UnsupportedSchemaException
    */
   public static function summary($conf, SchemaToAnythingInterface $schemaToAnything) {
 
@@ -61,6 +85,10 @@ final class EntityDisplay extends UtilBase {
     $summarizer = Summarizer::fromSchema(
       $schema,
       $schemaToAnything);
+
+    if (null === $summarizer) {
+      throw new UnsupportedSchemaException("Failed to create summarizer from schema.");
+    }
 
     return $summarizer->confGetSummary($conf);
   }

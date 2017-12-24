@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
-use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
 use Drupal\renderkit8\Schema\Misc\SelectByEt\SelectByEtInterface;
 
 class CfSchema_EtDotX_FixedEt extends CfSchema_Proxy_Cache_SelectBase {
@@ -57,9 +57,11 @@ class CfSchema_EtDotX_FixedEt extends CfSchema_Proxy_Cache_SelectBase {
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  protected function getGroupedOptions() {
+  protected function getGroupedOptions(): array {
 
     $groupedOptions = [];
+    // IDE fails to recognize this type.
+    /** @var string[] $optionsInGroup */
     foreach ($this->selectByEt->etGetGroupedOptions(
       $this->entityTypeId,
       $this->bundleNames

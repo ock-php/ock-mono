@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -7,6 +8,7 @@ use Donquixote\Cf\IdToSchema\IdToSchema_Class;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
 use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
 use Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface;
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\renderkit8\BuildProvider\BuildProvider_EntityDisplay;
 use Drupal\renderkit8\EntityDisplay\EntityDisplay;
 use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
@@ -38,7 +40,7 @@ class CfSchema_BuildProvider_EntityDisplay implements CfSchema_GroupInterface, V
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
    *   Format: $[$groupItemKey] = $groupItemSchema
    */
-  public function getItemSchemas() {
+  public function getItemSchemas(): array {
     return [
       'entity_id' => new CfSchema_EntityId($this->entityTypeId),
       'entity_display' => EntityDisplay::schema($this->entityTypeId),
@@ -48,7 +50,7 @@ class CfSchema_BuildProvider_EntityDisplay implements CfSchema_GroupInterface, V
   /**
    * @return string[]
    */
-  public function getLabels() {
+  public function getLabels(): array {
     return [
       'entity_id' => t('Entity id'),
       'entity_display' => t('Entity display'),
@@ -100,7 +102,12 @@ class CfSchema_BuildProvider_EntityDisplay implements CfSchema_GroupInterface, V
     /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
     $etm = \Drupal::service('entity_type.manager');
 
-    $storage = $etm->getStorage($entityTypeId);
+    try {
+      $storage = $etm->getStorage($entityTypeId);
+    }
+    catch (InvalidPluginDefinitionException $e) {
+      throw new EvaluatorException("No entity type storage found for '$entityTypeId'.", 0, $e);
+    }
 
     if (NULL === $entity = $storage->load($entityId)) {
       throw new EvaluatorException("Entity $entityTypeId:$entityId does not exist.");

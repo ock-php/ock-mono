@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\IdToSchema;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
@@ -40,7 +42,7 @@ class IdToSchema_Et_FieldAndFormatterSettings implements IdToSchemaInterface {
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
-  public function idGetSchema($entityType) {
+  public function idGetSchema($entityType): ?CfSchemaInterface {
 
     $schema = CfSchema_FieldNameWithFormatter_SpecificEt::create($entityType);
 

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -31,7 +32,7 @@ class CfSchema_ViewDisplayId_Condition implements CfSchema_FlatSelectInterface {
    * @return string[]
    *   Format: $[$optionKey] = $optionLabel
    */
-  public function getOptions() {
+  public function getOptions(): array {
 
     $displays = $this->view->get('display');
 
@@ -85,7 +86,7 @@ class CfSchema_ViewDisplayId_Condition implements CfSchema_FlatSelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  public function idIsKnown($id): bool {
 
     $displays = $this->view->get('display');
 

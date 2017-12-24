@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -13,7 +14,7 @@ class CfSchema_FieldName extends CfSchema_FieldName_Base {
    * @param string $entityTypeId
    * @param string|null $bundleName
    *
-   * @return self
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
   public static function create($entityTypeId, $bundleName = NULL) {
 

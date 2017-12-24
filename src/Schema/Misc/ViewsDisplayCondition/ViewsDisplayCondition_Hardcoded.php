@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition;
 
@@ -92,6 +93,12 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
     return TRUE;
   }
 
+  /**
+   * @param mixed[] $arguments
+   * @param string[] $signature
+   *
+   * @return bool
+   */
   private static function validateArgumentsSignature(array $arguments, array $signature) {
 
     if ([] === $signature) {

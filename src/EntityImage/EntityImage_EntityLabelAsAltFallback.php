@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityImage;
 
@@ -61,9 +62,7 @@ class EntityImage_EntityLabelAsAltFallback implements EntityImageInterface {
       }
 
       if (empty($image['alt'])) {
-        $image['alt'] = NULL !== $label
-          ? $label
-          : $label = $entities[$delta]->label();
+        $image['alt'] = $label ?? $label = $entities[$delta]->label();
       }
     }
 

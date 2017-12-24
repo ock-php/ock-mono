@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\IdToSchema;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
 use Drupal\renderkit8\Helper\FieldDefinitionLookup;
@@ -45,7 +47,7 @@ class IdToSchema_EtDotFieldName_FormatterTypeAndSettings implements IdToSchemaIn
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
-  public function idGetSchema($etAndFieldName) {
+  public function idGetSchema($etAndFieldName): ?CfSchemaInterface {
     list($et, $fieldName) = explode('.', $etAndFieldName . '.');
 
     $fieldDefinition = $this->fieldDefinitionLookup->etAndFieldNameGetDefinition(

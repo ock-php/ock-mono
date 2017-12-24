@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema\Misc\SelectByEt;
 
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FieldDefinitionInterface;
 
 abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
@@ -92,7 +94,14 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
     $typeLabels = [];
     foreach ($fieldTypeIds as $fieldTypeId) {
 
-      if (NULL === $fieldTypeDefinition = $ftm->getDefinition($fieldTypeId)) {
+      try {
+        $fieldTypeDefinition = $ftm->getDefinition($fieldTypeId);
+      }
+      catch (PluginNotFoundException $e) {
+        throw new \RuntimeException('Misbehaving FieldTypeManager::getDefinition(): Exception thrown, even though $exception_on_invalid was false.', 0, $e);
+      }
+
+      if (NULL === $fieldTypeDefinition) {
         continue;
       }
 
@@ -113,6 +122,9 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    */
   protected function buildGroupedOptions(array $storagesByType, array $fieldLabels, array $typeLabels) {
 
+    /**
+     * @var string[][] $groupedOptions
+     */
     $groupedOptions = [];
     foreach ($storagesByType as $fieldTypeId => $storagesForType) {
 
@@ -220,10 +232,18 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
     /** @var \Drupal\Core\KeyValueStore\KeyValueStoreInterface $bfm */
     $bfm = $kv->get('entity.definitions.bundle_field_map');
 
+    /**
+     * @var string[][][] $bundleFieldMaps
+     *   Format: $[$fieldName]['bundles'][] = $bundleName
+     */
     $bundleFieldMaps = array_intersect_key(
       $bfm->get($entityTypeId, []),
       $fieldNamesMap);
 
+    /**
+     * @var string[][] $bundles
+     *   Format: $[$bundle][$fieldName] = $fieldName
+     */
     $bundles = [];
     foreach ($bundleFieldMaps as $fieldName => $fieldBundleMap) {
       foreach ($fieldBundleMap['bundles'] as $bundle) {

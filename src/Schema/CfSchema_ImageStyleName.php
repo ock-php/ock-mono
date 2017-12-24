@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -10,7 +11,7 @@ class CfSchema_ImageStyleName implements CfSchema_SelectInterface {
   /**
    * @return string[][]
    */
-  public function getGroupedOptions() {
+  public function getGroupedOptions(): array {
     return ['' => image_style_options()];
   }
 
@@ -36,7 +37,7 @@ class CfSchema_ImageStyleName implements CfSchema_SelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($styleName) {
+  public function idIsKnown($styleName): bool {
     if (empty($styleName)) {
       return TRUE;
     }

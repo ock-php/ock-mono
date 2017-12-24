@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
-use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
@@ -48,7 +48,7 @@ class CfSchema_EntityType_WithFields implements CfSchema_FlatSelectInterface {
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  public function getOptions() {
+  public function getOptions(): array {
 
     /**
      * @var array[][] $map
@@ -90,7 +90,7 @@ class CfSchema_EntityType_WithFields implements CfSchema_FlatSelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  public function idIsKnown($id): bool {
 
     /**
      * @var array[][] $map

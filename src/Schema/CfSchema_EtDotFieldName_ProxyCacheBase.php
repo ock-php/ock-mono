@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -48,7 +49,7 @@ abstract class CfSchema_EtDotFieldName_ProxyCacheBase extends CfSchema_Proxy_Cac
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  protected function getGroupedOptions() {
+  protected function getGroupedOptions(): array {
 
     if (NULL !== $this->entityTypeId) {
 

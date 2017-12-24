@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Util;
 
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\TypedData\Exception\ReadOnlyException;
 use Drupal\field\FieldConfigInterface;
 use Drupal\file\FileInterface;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
@@ -10,9 +12,13 @@ use Drupal\image\Plugin\Field\FieldType\ImageItem;
 final class ImageFieldUtil extends UtilBase {
 
   /**
+   * Returns the same items, or loads default items if empty.
+   *
    * @param \Drupal\Core\Field\FieldItemListInterface $items
    *
    * @return \Drupal\Core\Field\FieldItemListInterface
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public static function itemsGetItems(FieldItemListInterface $items) {
 
@@ -47,11 +53,7 @@ final class ImageFieldUtil extends UtilBase {
       return $items;
     }
 
-    // Clone the FieldItemList into a runtime-only object for the formatter,
-    // so that the fallback image can be rendered without affecting the
-    // field values in the entity being rendered.
-    $items = clone $items;
-    $items->setValue([
+    $value = [
       'target_id' => $file->id(),
       'alt' => $default_image['alt'],
       'title' => $default_image['title'],
@@ -60,7 +62,18 @@ final class ImageFieldUtil extends UtilBase {
       'entity' => $file,
       '_loaded' => TRUE,
       '_is_default' => TRUE,
-    ]);
+    ];
+
+    // Clone the FieldItemList into a runtime-only object for the formatter,
+    // so that the fallback image can be rendered without affecting the
+    // field values in the entity being rendered.
+    $items = clone $items;
+    try {
+      $items->setValue($value);
+    }
+    catch (ReadOnlyException $e) {
+      throw new \RuntimeException('Field item seems to be read-only.', 0, $e);
+    }
 
     /** @noinspection PhpUndefinedFieldInspection */
     $file->_referringItem = $items[0];

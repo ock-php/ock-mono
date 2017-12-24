@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\views\Views;
 
 class CfSchema_ViewId implements CfSchema_FlatSelectInterface {
@@ -24,7 +26,7 @@ class CfSchema_ViewId implements CfSchema_FlatSelectInterface {
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  public function getOptions() {
+  public function getOptions(): array {
 
     $options = [];
     foreach ($this->getViews() as $key => $view) {
@@ -55,7 +57,7 @@ class CfSchema_ViewId implements CfSchema_FlatSelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  public function idIsKnown($id): bool {
     return NULL !== $view = $this->idGetView($id);
   }
 
@@ -70,7 +72,14 @@ class CfSchema_ViewId implements CfSchema_FlatSelectInterface {
     $etm = \Drupal::service('entity_type.manager');
 
     /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
-    $storage = $etm->getStorage('view');
+    try {
+      $storage = $etm->getStorage('view');
+    }
+    catch (InvalidPluginDefinitionException $e) {
+      // @todo Log this.
+      unset($e);
+      return null;
+    }
 
     /** @var null|\Drupal\views\Entity\View $view */
     if (NULL === $view = $storage->load($id)) {

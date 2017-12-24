@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -39,7 +40,7 @@ class CfSchema_EntityType implements CfSchema_FlatSelectInterface {
   /**
    * @return string[]
    */
-  public function getOptions() {
+  public function getOptions(): array {
 
     $options = $this->entityTypeRepository->getEntityTypeLabels();
 
@@ -57,9 +58,7 @@ class CfSchema_EntityType implements CfSchema_FlatSelectInterface {
 
     $options = $this->entityTypeRepository->getEntityTypeLabels();
 
-    return isset($options[$id])
-      ? $options[$id]
-      : NULL;
+    return $options[$id] ?? null;
   }
 
   /**
@@ -67,7 +66,7 @@ class CfSchema_EntityType implements CfSchema_FlatSelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  public function idIsKnown($id): bool {
 
     $options = $this->entityTypeRepository->getEntityTypeLabels();
 

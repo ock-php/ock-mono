@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityToEntities;
 
@@ -13,8 +14,6 @@ abstract class EntityToEntitiesMultipleBase implements EntityToEntitiesInterface
 
     $targetEntities = $this->entitiesGetRelated([$entity]);
 
-    return isset($targetEntities[0])
-      ? $targetEntities[0]
-      : [];
+    return $targetEntities[0] ?? [];
   }
 }

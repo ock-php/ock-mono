@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityFilter;
 
@@ -40,6 +41,8 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
    */
   public function entitiesFilterDeltas(array $entities) {
 
+    // The IDE has problems to determine the type, although all information is there.
+    /** @var string[][] $relatedIdsByDelta */
     $relatedIdsByDelta = $this->relation->entitiesGetRelatedIds($entities);
 
     $relatedIds = [];

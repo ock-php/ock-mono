@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -43,6 +44,9 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_FieldName_Base {
     $signature = sha1(serialize($signatureData));
 
     $cacheId = 'renderkit:schema:et_dot_field_name:entity_reference:' . $signature;
+
+    // @todo What was this about?
+    unset($cacheId);
 
     return new CfSchema_Select_TwoStepFlatSelectComposite(
       CfSchema_EntityType::create(),

@@ -1,8 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Select\CfSchema_Select_TwoStepFlatSelectGrandBase;
+use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_And;
 use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_EntityIdArg;
 use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_NoArgs;
@@ -72,7 +75,7 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGran
   /**
    * @return \Drupal\renderkit8\Schema\CfSchema_ViewId
    */
-  protected function getIdSchema() {
+  protected function getIdSchema(): CfSchema_FlatSelectInterface {
     return $this->idSchema;
   }
 
@@ -81,7 +84,7 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGran
    *
    * @return \Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface|null
    */
-  protected function idGetSubSchema($id) {
+  protected function idGetSubSchema($id): ?CfSchema_FlatSelectInterface {
 
     if (NULL === $view = $this->idGetView($id)) {
       return NULL;
@@ -103,7 +106,14 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGran
     $etm = \Drupal::service('entity_type.manager');
 
     /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
-    $storage = $etm->getStorage('view');
+    try {
+      $storage = $etm->getStorage('view');
+    }
+    catch (InvalidPluginDefinitionException $e) {
+      // @todo Log this.
+      unset($e);
+      return null;
+    }
 
     /** @var null|\Drupal\views\Entity\View $view */
     $view = $storage->load($id);

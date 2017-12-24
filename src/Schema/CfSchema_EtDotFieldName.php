@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -79,8 +80,12 @@ class CfSchema_EtDotFieldName implements CfSchema_SelectInterface {
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  public function getGroupedOptions() {
+  public function getGroupedOptions(): array {
 
+    /**
+     * @var string[][] $options
+     *   Format: $[$groupLabel][$optionKey] = $optionLabel
+     */
     $options = [];
     foreach ($this->getFieldsGrouped() as $field_type => $fields_by_et) {
       // @todo Human-readable field type label!
@@ -147,7 +152,7 @@ class CfSchema_EtDotFieldName implements CfSchema_SelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($etAndFieldName) {
+  public function idIsKnown($etAndFieldName): bool {
     list($et, $fieldName) = explode('.', $etAndFieldName . '.');
 
     if (NULL !== $this->entityType) {
@@ -184,7 +189,7 @@ class CfSchema_EtDotFieldName implements CfSchema_SelectInterface {
   }
 
   /**
-   * @return array
+   * @return string[][][][]
    *   Format: $[$field_type][$entity_type][$field_name][$bundle_name] = $bundle_name
    */
   private function getFieldsGrouped() {
@@ -217,7 +222,7 @@ class CfSchema_EtDotFieldName implements CfSchema_SelectInterface {
     }
 
     /**
-     * @var array[][] $map
+     * @var string[][][][] $grouped
      *   Format: $[$field_type][$entity_type][$field_name][$bundle_name] = $bundle_name
      */
     $grouped = [];

@@ -1,11 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityDisplay;
 
 use Donquixote\Cf\Context\CfContext;
 use Donquixote\Cf\Context\CfContextInterface;
+use Donquixote\Cf\Exception\EvaluatorException;
+use Drupal\cfrapi\Exception\UnsupportedSchemaException;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\faktoria\Exception\InvalidConfigurationException;
 use Drupal\faktoria\Form\Form_GenericRedirectGET;
 use Drupal\faktoria\Hub\CfrPluginHub;
 
@@ -73,9 +75,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    */
   private function doBuildEntity(EntityInterface $entity) {
 
-    $conf = isset($_GET[$this->queryKey])
-      ? $_GET[$this->queryKey]
-      : NULL;
+    $conf = $_GET[$this->queryKey] ?? null;
 
     $context = $this->entityBuildContext($entity);
 
@@ -92,8 +92,21 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
       $entityDisplay = EntityDisplay::fromConf($conf, $sta);
     }
-    catch (InvalidConfigurationException $e) {
+    catch (UnsupportedSchemaException $e) {
+      // @todo Log this.
+      unset($e);
+      drupal_set_message(t('Unsupported schema.'));
+      return $build;
+    }
+    catch (EvaluatorException $e) {
+      // @todo Log this.
+      unset($e);
       drupal_set_message(t('Failed to construct the EntityDisplay object from the configuration provided.'));
+      return $build;
+    }
+
+    if (null === $entityDisplay) {
+      // @ŧodo
       return $build;
     }
 

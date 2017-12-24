@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -35,7 +36,7 @@ class CfSchema_EntityViewModeName implements CfSchema_SelectInterface {
   /**
    * @return string[][]
    */
-  public function getGroupedOptions() {
+  public function getGroupedOptions(): array {
 
     $options = $this->entityDisplayRepository
       ->getViewModeOptions($this->entityType);
@@ -53,9 +54,7 @@ class CfSchema_EntityViewModeName implements CfSchema_SelectInterface {
     $options = $this->entityDisplayRepository
       ->getViewModeOptions($this->entityType);
 
-    return isset($options[$id])
-      ? $options[$id]
-      : NULL;
+    return $options[$id] ?? null;
   }
 
   /**
@@ -63,7 +62,7 @@ class CfSchema_EntityViewModeName implements CfSchema_SelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  public function idIsKnown($id): bool {
 
     $options = $this->entityDisplayRepository
       ->getViewModeOptions($this->entityType);

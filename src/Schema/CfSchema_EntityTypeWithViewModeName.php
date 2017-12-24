@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -46,7 +47,7 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_SelectInterface {
   /**
    * @return mixed[]
    */
-  public function getGroupedOptions() {
+  public function getGroupedOptions(): array {
 
     $entityTypeLabels = $this->entityTypeRepository->getEntityTypeLabels();
 
@@ -122,7 +123,7 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_SelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  public function idIsKnown($id): bool {
     list($type, $mode) = explode(':', $id . ':');
 
     if ('' === $type || '' === $mode) {

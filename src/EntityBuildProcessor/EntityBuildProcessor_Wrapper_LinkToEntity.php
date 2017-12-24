@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityBuildProcessor;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityMalformedException;
 use Drupal\Core\Entity\Exception\UndefinedLinkTemplateException;
 use Drupal\renderkit8\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit8\Html\HtmlAttributesTrait;
@@ -69,6 +71,12 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
     }
     catch (UndefinedLinkTemplateException $e) {
       // @todo Log this.
+      unset($e);
+      return $build;
+    }
+    catch (EntityMalformedException $e) {
+      // @todo Log this.
+      unset($e);
       return $build;
     }
 

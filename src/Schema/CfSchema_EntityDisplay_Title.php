@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -37,7 +38,7 @@ class CfSchema_EntityDisplay_Title extends CfSchema_Group_V2VBase {
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
    *   Format: $[$groupItemKey] = $groupItemSchema
    */
-  public function getItemSchemas() {
+  public function getItemSchemas(): array {
     return [
       'tag_name' => CfSchema_TagName::createOptional(
         $this->allowedTagNames),
@@ -48,7 +49,7 @@ class CfSchema_EntityDisplay_Title extends CfSchema_Group_V2VBase {
   /**
    * @return string[]
    */
-  public function getLabels() {
+  public function getLabels(): array {
     return [
       t('Wrapper'),
       t('Link to entity'),

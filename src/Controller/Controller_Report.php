@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Controller;
 
@@ -51,9 +52,7 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
    */
   public function demo() {
 
-    $settings = isset($_GET['plugin'])
-      ? $_GET['plugin']
-      : [];
+    $settings = $_GET['plugin'] ?? [];
 
     $out = [];
 
@@ -75,10 +74,9 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
 
     $schema = new CfSchema_IfaceWithContext(BuildProviderInterface::class);
 
-    try {
-      $evaluator = Evaluator::fromSchema($schema, $sta);
-    }
-    catch (\Exception $e) {
+    $evaluator = Evaluator::fromSchema($schema, $sta);
+
+    if (null === $evaluator) {
 
       $out['problem'] = [
         '#type' => 'fieldset',

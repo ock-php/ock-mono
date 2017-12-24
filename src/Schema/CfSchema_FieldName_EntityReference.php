@@ -1,10 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\IdToSchema\IdToSchema_Callback;
 use Donquixote\Cf\IdToSchema\IdToSchema_Fixed;
 use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 
@@ -126,7 +128,7 @@ class CfSchema_FieldName_EntityReference extends CfSchema_Proxy_Cache_SelectBase
    *   Format: $[$groupLabel][$optionKey] = $optionLabel,
    *   with $groupLabel === '' for toplevel options.
    */
-  protected function getGroupedOptions() {
+  protected function getGroupedOptions(): array {
 
     /** @var \Drupal\Core\Entity\EntityTypeRepositoryInterface $etr */
     $etr = \Drupal::service('entity_type.repository');
@@ -154,12 +156,27 @@ class CfSchema_FieldName_EntityReference extends CfSchema_Proxy_Cache_SelectBase
       $storagesByType[$storage->getType()][$fieldName] = $storage;
     }
 
+    /**
+     * @var string[] $fieldLabels
+     *   Format: $[$fieldName] = $fieldLabel
+     * @var true[] $fieldLabelsMissing
+     *   Format: $[$fieldName] = true
+     * @var string[][] $groupedOptionsPre
+     *   Format: $[$targetTypeLabel][$fieldName] = $fieldTypeLabel
+     */
     $fieldLabels = [];
     $fieldLabelsMissing = [];
     $groupedOptionsPre = [];
     foreach ($storagesByType as $fieldTypeId => $storagesForType) {
 
-      if (NULL === $fieldTypeDefinition = $ftm->getDefinition($fieldTypeId)) {
+      try {
+        $fieldTypeDefinition = $ftm->getDefinition($fieldTypeId, false);
+      }
+      catch (PluginNotFoundException $e) {
+        throw new \RuntimeException('Misbehaving FieldTypeManager::getDefinition(): Exception thrown, even though $exception_on_invalid is false.', 0, $e);
+      }
+
+      if (NULL === $fieldTypeDefinition) {
         continue;
       }
 
@@ -177,9 +194,7 @@ class CfSchema_FieldName_EntityReference extends CfSchema_Proxy_Cache_SelectBase
         continue;
       }
 
-      $fieldTypeLabel = isset($fieldTypeDefinition['label'])
-        ? $fieldTypeDefinition['label']
-        : $fieldTypeId;
+      $fieldTypeLabel = $fieldTypeDefinition['label'] ?? $fieldTypeId;
 
       foreach ($storagesForType as $fieldName => $storage) {
 
@@ -227,9 +242,7 @@ class CfSchema_FieldName_EntityReference extends CfSchema_Proxy_Cache_SelectBase
     foreach ($groupedOptionsPre as $targetTypeLabel => $targetTypeFields) {
       foreach ($targetTypeFields as $fieldName => $fieldTypeLabel) {
 
-        $fieldLabel =  isset($fieldLabels[$fieldName])
-          ? $fieldLabels[$fieldName]
-          : $fieldName;
+        $fieldLabel = $fieldLabels[$fieldName] ?? $fieldName;
 
         $groupedOptions[$targetTypeLabel][$fieldName] = $fieldLabel . ' (' . $fieldTypeLabel . ')';
       }
@@ -256,10 +269,18 @@ class CfSchema_FieldName_EntityReference extends CfSchema_Proxy_Cache_SelectBase
     /** @var \Drupal\Core\KeyValueStore\KeyValueStoreInterface $bfm */
     $bfm = $kv->get('entity.definitions.bundle_field_map');
 
+    /**
+     * @var string[][][] $bundleFieldMaps
+     *   Format: $[fieldName]['bundles'][] = $bundleName
+     */
     $bundleFieldMaps = array_intersect_key(
       $bfm->get($this->entityTypeId, []),
       $fieldNamesMap);
 
+    /**
+     * @var string[][] $bundles
+     *   Format: $[$bundle][$fieldName] = $fieldName
+     */
     $bundles = [];
     foreach ($bundleFieldMaps as $fieldName => $fieldBundleMap) {
       foreach ($fieldBundleMap['bundles'] as $bundle) {
@@ -267,6 +288,10 @@ class CfSchema_FieldName_EntityReference extends CfSchema_Proxy_Cache_SelectBase
       }
     }
 
+    /**
+     * @var string[][] $labelAliases
+     *   Format: $[$fieldName][$label] = $label
+     */
     $labelAliases = [];
     foreach ($bundles as $bundle => $bundleFieldNames) {
 

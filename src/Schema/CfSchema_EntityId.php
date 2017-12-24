@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Form\D8\FormatorD8Interface;
 use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 
 class CfSchema_EntityId implements CfSchema_IdInterface, FormatorD8Interface {
 
@@ -24,7 +26,7 @@ class CfSchema_EntityId implements CfSchema_IdInterface, FormatorD8Interface {
    *
    * @return bool
    */
-  public function idIsKnown($id) {
+  public function idIsKnown($id): bool {
     return NULL !== $this->idGetEntity($id);
   }
 
@@ -57,6 +59,7 @@ class CfSchema_EntityId implements CfSchema_IdInterface, FormatorD8Interface {
 
     return [
       '#title' => $label,
+      /* @see \Drupal\Core\Entity\Element\EntityAutocomplete */
       '#type' => 'entity_autocomplete',
       '#target_type' => $this->entityTypeId,
       '#default_value' => $entity,
@@ -74,7 +77,14 @@ class CfSchema_EntityId implements CfSchema_IdInterface, FormatorD8Interface {
     /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
     $etm = \Drupal::service('entity_type.manager');
 
-    $storage = $etm->getStorage($this->entityTypeId);
+    try {
+      $storage = $etm->getStorage($this->entityTypeId);
+    }
+    catch (InvalidPluginDefinitionException $e) {
+      // @todo Log this.
+      unset($e);
+      return null;
+    }
 
     return $storage->load($id);
   }

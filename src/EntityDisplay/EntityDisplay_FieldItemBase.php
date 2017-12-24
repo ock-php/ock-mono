@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityDisplay;
 
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\TypedData\Exception\MissingDataException;
 
 /**
  * Entity display handler to view a specific field on all the entities.
@@ -17,7 +19,12 @@ abstract class EntityDisplay_FieldItemBase extends EntityDisplay_FieldItemsBase 
    */
   final protected function buildFieldItems(FieldItemListInterface $fieldItemList) {
 
-    if (NULL === $item = $fieldItemList->first()) {
+    try {
+      $item = $fieldItemList->first();
+    }
+    catch (MissingDataException $e) {
+      // No reason to log this, it just means the item does not exist.
+      unset($e);
       return [];
     }
 

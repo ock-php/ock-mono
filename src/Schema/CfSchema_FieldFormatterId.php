@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -42,7 +43,7 @@ class CfSchema_FieldFormatterId implements CfSchema_SelectInterface {
   /**
    * @return string[][]
    */
-  public function getGroupedOptions() {
+  public function getGroupedOptions(): array {
 
     $options = $this->formatterPluginManager->getOptions($this->fieldTypeName);
 
@@ -73,7 +74,7 @@ class CfSchema_FieldFormatterId implements CfSchema_SelectInterface {
    *
    * @return bool
    */
-  public function idIsKnown($formatterTypeName) {
+  public function idIsKnown($formatterTypeName): bool {
 
     return NULL !== $this->idGetDefinition($formatterTypeName);
   }

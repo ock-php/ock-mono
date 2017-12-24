@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\ImageProcessor;
 
@@ -36,6 +37,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *   don't understand srcset.
    */
   public function __construct($fallbackStyleName = NULL) {
+    // @todo Load the image styles here, instead of later!
     $this->fallbackStyleName = $fallbackStyleName;
     $this->styleNames[] = $fallbackStyleName;
   }
@@ -105,12 +107,15 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
     // uses an image style.
     if (NULL !== $this->fallbackStyleName) {
       $fallbackStyle = ImageStyle::load($this->fallbackStyleName);
-      /* @see theme_image_style() */
-      $style_dimensions = $original_dimensions;
-      $fallbackStyle->transformDimensions($style_dimensions, $original_path);
-      $build['#path'] = $fallbackStyle->buildUri($original_path);
-      $build['#width'] = $style_dimensions['width'];
-      $build['#height'] = $style_dimensions['height'];
+      // @todo Log if style not found.
+      if (null !== $fallbackStyle) {
+        /* @see theme_image_style() */
+        $style_dimensions = $original_dimensions;
+        $fallbackStyle->transformDimensions($style_dimensions, $original_path);
+        $build['#path'] = $fallbackStyle->buildUri($original_path);
+        $build['#width'] = $style_dimensions['width'];
+        $build['#height'] = $style_dimensions['height'];
+      }
     }
 
     if (empty($this->sizes) || empty($this->styleNames)) {
@@ -125,6 +130,10 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
         continue;
       }
       $style = ImageStyle::load($style_name);
+      if (null === $style) {
+        // @todo Log this.
+        continue;
+      }
       $style_src = $style->buildUrl($original_path);
       $style_dimensions = $original_dimensions;
       $style->transformDimensions($style_dimensions, $original_path);
@@ -144,20 +153,15 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    * @param array $build
    *   A render array with '#theme' => 'image'.
    *
-   * @return int[]
-   *   Format: array('width' => $width, 'height' => $height)
-   * @throws \Exception
+   * @return int[]|null[]
+   *   Format: ['width' => $widthOrNull, 'height' => $heightOrNull]
    */
-  protected function imageBuildGetDimensions(array $build) {
+  protected function imageBuildGetDimensions(array $build): array {
 
-    if (!empty($build['#width']) && !empty($build['#height'])) {
-      return [
-        'width' => $build['#width'],
-        'height' => $build['#height'],
-      ];
-    }
-
-    throw new \Exception("Image lacks width/height information.");
+    return [
+      'width' => ($build['#width'] ?? null) ?: null,
+      'height' => ($build['#height'] ?? null) ?: null,
+    ];
   }
 
 }

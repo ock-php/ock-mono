@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -54,7 +55,7 @@ class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
   /**
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
    */
-  public function getItemSchemas() {
+  public function getItemSchemas(): array {
     $schemas = [];
 
     $schemas['field'] = CfSchema_EtAndFieldNameAndFormatterSettings::create(
@@ -83,7 +84,7 @@ class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
   /**
    * @return string[]
    */
-  public function getLabels() {
+  public function getLabels(): array {
     return [
       'field' => t('Field'),
       'label' => t('Label display'),

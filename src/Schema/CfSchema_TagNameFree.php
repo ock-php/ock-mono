@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
@@ -11,7 +12,7 @@ class CfSchema_TagNameFree extends CfSchema_TextfieldBase {
    *
    * @return string[]
    */
-  public function textGetValidationErrors($text) {
+  public function textGetValidationErrors($text): array {
 
     $errors = [];
 

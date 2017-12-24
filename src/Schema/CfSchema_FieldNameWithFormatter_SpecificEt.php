@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Donquixote\Cf\Schema\Proxy\Replacer\CfSchema_Proxy_ReplacerInterface;
@@ -50,7 +52,7 @@ class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_Repla
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public function replacerGetSchema(SchemaReplacerInterface $replacer) {
+  public function replacerGetSchema(SchemaReplacerInterface $replacer): CfSchemaInterface {
 
     $fieldNameSchema = $replacer->schemaGetReplacement(
       $this->fieldNameSchemaProxy);

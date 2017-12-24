@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\renderkit8\FieldDisplayProcessor;
 
@@ -55,8 +56,10 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
   }
 
   /**
-   * @param array $element
-   *   Render array with ['#theme' => 'field', ..]
+   * @param array|array[][] $element
+   *   Format:
+   *     ['#theme' => 'field', '#items' => [..], ..]
+   *     $['#items'][$delta] = $item
    *
    * @return array
    */
