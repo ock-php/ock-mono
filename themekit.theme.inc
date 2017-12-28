@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
@@ -27,9 +28,7 @@ function theme_themekit_container(array $variables) {
     return '';
   }
 
-  $tagName = isset($element['#tag_name'])
-    ? $element['#tag_name']
-    : 'div';
+  $tagName = $element['#tag_name'] ?? 'div';
 
   $attributes_str = HtmlUtil::elementAttributesString($element);
 
@@ -43,6 +42,8 @@ function theme_themekit_container(array $variables) {
  * @param array $variables
  *
  * @return \Drupal\Component\Render\MarkupInterface|string
+ *
+ * @throws \Exception
  */
 function theme_themekit_link_wrapper(array $variables) {
   $element = $variables['element'];
@@ -79,9 +80,16 @@ function theme_themekit_item_containers(array $variables) {
 
   $element = $variables['element'];
 
-  $items_rendered = ListUtil::elementRenderListItems(
-    $element,
-    \Drupal::service('renderer'));
+  try {
+    $items_rendered = ListUtil::elementRenderListItems(
+      $element,
+      \Drupal::service('renderer'));
+  }
+  catch (Exception $e) {
+    // @todo Log this!
+    unset($e);
+    return '<!-- Something went wrong here. -->';
+  }
 
   if ([] === $items_rendered) {
     return '';
@@ -124,9 +132,16 @@ function theme_themekit_item_containers(array $variables) {
 function theme_themekit_list(array $variables) {
   $element = $variables['element'];
 
-  $items_rendered = ListUtil::elementRenderListItems(
-    $element,
-    \Drupal::service('renderer'));
+  try {
+    $items_rendered = ListUtil::elementRenderListItems(
+      $element,
+      \Drupal::service('renderer'));
+  }
+  catch (Exception $e) {
+    // @todo Log this!
+    unset($e);
+    return '<!-- Something went wrong here. -->';
+  }
 
   if ([] === $items_rendered) {
     return '';
@@ -144,7 +159,7 @@ function theme_themekit_list(array $variables) {
 
     if (isset($element[$key]['#attributes'])) {
       $child_attributes = $element[$key]['#attributes'];
-      if (isset($child_attributes['class']) && isset($default_child_attributes['class'])) {
+      if (isset($child_attributes['class'], $default_child_attributes['class'])) {
         $child_attributes['class'] = array_unique(array_merge($child_attributes['class'], $default_child_attributes['class']));
       }
       $child_attributes += $default_child_attributes;
@@ -181,9 +196,15 @@ function theme_themekit_list(array $variables) {
 function theme_themekit_separator_list(array $variables) {
   $element = $variables['element'];
 
-  $pieces = ListUtil::elementRenderListItems(
-    $element,
-    \Drupal::service('renderer'));
+  try {
+    $pieces = ListUtil::elementRenderListItems(
+      $element,
+      \Drupal::service('renderer'));
+  }
+  catch (Exception $e) {
+    unset($e);
+    return '<!-- Something went wrong here. -->';
+  }
 
   if (!isset($element['#separator'])) {
     $separator_safe = '';

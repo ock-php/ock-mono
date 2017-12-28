@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\themekit\Util;
 
@@ -12,6 +13,8 @@ final class ListUtil {
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *
    * @return array
+   * @throws \Exception
+   *   Exception from renderer.
    */
   public static function elementRenderListItems(array &$element, RendererInterface $renderer) {
 

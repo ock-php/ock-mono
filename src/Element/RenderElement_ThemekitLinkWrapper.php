@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\themekit\Element;
 
@@ -13,7 +14,7 @@ use Drupal\Core\Render\Element\RenderElement as CoreRenderElement;
  */
 class RenderElement_ThemekitLinkWrapper extends CoreRenderElement {
 
-  const ID = 'themekit_link_wrapper';
+  public const ID = 'themekit_link_wrapper';
 
   /**
    * Returns the element properties for this element.

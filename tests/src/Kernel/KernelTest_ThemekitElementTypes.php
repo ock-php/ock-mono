@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\Tests\themekit\Kernel;
 
@@ -247,7 +248,7 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
     $out .= '</tr></table>';
     $this->verbose($out);
 
-    $this->assertSame(
+    static::assertSame(
       $expected_html,
       $actual_html,
       Html::escape($message));

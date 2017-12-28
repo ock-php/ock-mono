@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\themekit\Element;
 
@@ -12,7 +13,7 @@ use Drupal\Core\Render\Element\RenderElement as CoreRenderElement;
  */
 class RenderElement_ThemekitContainer extends CoreRenderElement {
 
-  const ID = 'themekit_container';
+  public const ID = 'themekit_container';
 
   /**
    * Returns the element properties for this element.
