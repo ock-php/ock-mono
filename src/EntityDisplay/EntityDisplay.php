@@ -78,7 +78,7 @@ final class EntityDisplay extends UtilBase {
    *
    * @throws \Drupal\cfrapi\Exception\UnsupportedSchemaException
    */
-  public static function summary($conf, SchemaToAnythingInterface $schemaToAnything) {
+  public static function summary($conf, SchemaToAnythingInterface $schemaToAnything): ?string {
 
     $schema = self::schema();
 

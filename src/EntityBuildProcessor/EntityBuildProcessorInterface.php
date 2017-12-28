@@ -15,5 +15,5 @@ interface EntityBuildProcessorInterface {
    * @return array
    *   Modified render array for the given entity.
    */
-  public function processEntityBuild(array $build, EntityInterface $entity);
+  public function processEntityBuild(array $build, EntityInterface $entity): array;
 }

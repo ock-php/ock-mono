@@ -5,8 +5,10 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\IdToSchema\IdToSchema_Callback;
 use Donquixote\Cf\IdToSchema\IdToSchema_Fixed;
+use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
 use Donquixote\Cf\Schema\Select\CfSchema_Select_TwoStepFlatSelectComposite;
+use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\renderkit8\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface;
 
@@ -43,7 +45,7 @@ class CfSchema_FieldName_StorageCondition extends CfSchema_Proxy_Cache_SelectBas
     $bundle = NULL,
     FieldStorageDefinitionConditionInterface $storageDefinitionCondition,
     $storageConditionSignature
-  ) {
+  ): CfSchema_SelectInterface {
 
     $etToSchema = self::createEtToSchema(
       $entityTypeId,
@@ -69,7 +71,7 @@ class CfSchema_FieldName_StorageCondition extends CfSchema_Proxy_Cache_SelectBas
     $bundle = NULL,
     FieldStorageDefinitionConditionInterface $storageDefinitionCondition,
     $storageConditionSignature
-  ) {
+  ): IdToSchemaInterface {
 
     if (NULL === $entityTypeId) {
       return new IdToSchema_Callback(
@@ -202,7 +204,7 @@ class CfSchema_FieldName_StorageCondition extends CfSchema_Proxy_Cache_SelectBas
    * @return string[]
    *   Format: [$fieldName] = $label
    */
-  private function fieldNamesGetLabels(array $fieldNamesMap) {
+  private function fieldNamesGetLabels(array $fieldNamesMap): array {
 
     /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
     $efm = \Drupal::service('entity_field.manager');

@@ -72,7 +72,7 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
    *
    * @return string[]
    */
-  protected function buildFieldLabels(array $storagesByType) {
+  private function buildFieldLabels(array $storagesByType): array {
 
     $fieldLabels = [];
     $fieldLabelsMissing = [];
@@ -105,7 +105,7 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
    *
    * @return string[]
    */
-  protected function buildTypeLabels(array $fieldTypeIds) {
+  private function buildTypeLabels(array $fieldTypeIds): array {
 
     /** @var \Drupal\Core\Field\FieldTypePluginManagerInterface $ftm */
     $ftm = \Drupal::service('plugin.manager.field.field_type');
@@ -141,7 +141,7 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
    *
    * @return string[][]
    */
-  protected function buildGroupedOptions(array $storagesByType, array $fieldLabels, array $typeLabels) {
+  private function buildGroupedOptions(array $storagesByType, array $fieldLabels, array $typeLabels): array {
 
     $groupedOptions = [];
     foreach ($storagesByType as $fieldTypeId => $storagesForType) {
@@ -169,7 +169,7 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
    * @return \Drupal\Core\Field\FieldStorageDefinitionInterface[][]
    *   Format: $[$fieldTypeId][$fieldName] = $fieldStorageDefinition
    */
-  protected function getStorageDefinitionsByType() {
+  protected function getStorageDefinitionsByType(): array {
 
     $storages = $this->getStorageDefinitions();
 
@@ -185,7 +185,7 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
    * @return \Drupal\Core\Field\FieldStorageDefinitionInterface[]
    *   Format: $[$fieldName] = $fieldStorageDefinition
    */
-  protected function getStorageDefinitions() {
+  private function getStorageDefinitions(): array {
 
     /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
     $efm = \Drupal::service('entity_field.manager');
@@ -224,7 +224,7 @@ abstract class CfSchema_FieldName_Base extends CfSchema_Proxy_Cache_SelectBase {
    * @return string[]
    *   Format: [$fieldName] = $label
    */
-  private function fieldNamesGetLabels(array $fieldNamesMap) {
+  private function fieldNamesGetLabels(array $fieldNamesMap): array {
 
     /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
     $efm = \Drupal::service('entity_field.manager');

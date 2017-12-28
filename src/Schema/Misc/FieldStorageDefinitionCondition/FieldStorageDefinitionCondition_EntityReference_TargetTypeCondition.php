@@ -21,17 +21,17 @@ class FieldStorageDefinitionCondition_EntityReference_TargetTypeCondition extend
   }
 
   /**
-   * @param \Drupal\Core\Field\FieldStorageDefinitionInterface $storage
+   * @param \Drupal\Core\Field\FieldStorageDefinitionInterface $storageDefinition
    *
    * @return bool
    */
-  public function checkStorageDefinition(FieldStorageDefinitionInterface $storage) {
+  public function checkStorageDefinition(FieldStorageDefinitionInterface $storageDefinition): bool {
 
-    if (!parent::checkStorageDefinition($storage)) {
+    if (!parent::checkStorageDefinition($storageDefinition)) {
       return FALSE;
     }
 
-    if (NULL === $targetTypeId = $storage->getSetting('target_type')) {
+    if (NULL === $targetTypeId = $storageDefinition->getSetting('target_type')) {
       return FALSE;
     }
 

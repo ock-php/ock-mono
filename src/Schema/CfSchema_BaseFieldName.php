@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\IdToSchema\IdToSchema_Callback;
 use Donquixote\Cf\IdToSchema\IdToSchema_Fixed;
+use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FieldDefinitionInterface;
@@ -40,7 +42,7 @@ class CfSchema_BaseFieldName extends CfSchema_Proxy_Cache_SelectBase {
     $entityTypeId = NULL,
     $bundle = NULL,
     array $allowedFieldTypes = NULL
-  ) {
+  ): CfSchemaInterface {
 
     $etToSchema = self::createEtToSchema(
       $entityTypeId,
@@ -70,10 +72,10 @@ class CfSchema_BaseFieldName extends CfSchema_Proxy_Cache_SelectBase {
    * @return \Donquixote\Cf\IdToSchema\IdToSchemaInterface
    */
   public static function createEtToSchema(
-    $entityTypeId = NULL,
-    $bundle = NULL,
+    string $entityTypeId = NULL,
+    string $bundle = NULL,
     array $allowedFieldTypes = NULL
-  ) {
+  ): IdToSchemaInterface {
 
     if (NULL === $entityTypeId) {
       return new IdToSchema_Callback(
@@ -252,7 +254,7 @@ class CfSchema_BaseFieldName extends CfSchema_Proxy_Cache_SelectBase {
    * @return string[]
    *   Format: [$fieldName] = $label
    */
-  private function fieldNamesGetLabels(array $fieldNamesMap) {
+  private function fieldNamesGetLabels(array $fieldNamesMap): array {
 
     /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
     $efm = \Drupal::service('entity_field.manager');

@@ -63,13 +63,11 @@ class CfSchema_ClassAttribute extends CfSchema_TextfieldBase implements V2V_Stri
   }
 
   /**
-   * @param string|int $string
+   * @param string $string
    *
    * @return mixed
-   *
-   * @throws \Donquixote\Cf\Exception\EvaluatorException
    */
-  public function stringGetValue($string) {
+  public function stringGetValue(string $string) {
 
     if ('' === $string) {
       return [];
@@ -89,11 +87,11 @@ class CfSchema_ClassAttribute extends CfSchema_TextfieldBase implements V2V_Stri
   }
 
   /**
-   * @param string|int $string
+   * @param string $string
    *
    * @return string
    */
-  public function stringGetPhp($string): string {
+  public function stringGetPhp(string $string): string {
 
     try {
       $classes = $this->stringGetValue($string);

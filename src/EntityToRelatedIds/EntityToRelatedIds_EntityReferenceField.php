@@ -32,7 +32,7 @@ class EntityToRelatedIds_EntityReferenceField extends EntityToRelatedIdsBase {
   /**
    * @return string
    */
-  public function getTargetType() {
+  public function getTargetType(): string {
     return $this->targetType;
   }
 
@@ -42,7 +42,7 @@ class EntityToRelatedIds_EntityReferenceField extends EntityToRelatedIdsBase {
    * @return int[]
    *   Format: $[] = $relatedEntityId
    */
-  public function entityGetRelatedIds(EntityInterface $entity) {
+  public function entityGetRelatedIds(EntityInterface $entity): array {
 
     if (!$entity instanceof FieldableEntityInterface) {
       return [];

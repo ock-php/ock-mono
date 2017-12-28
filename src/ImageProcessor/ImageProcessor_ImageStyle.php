@@ -48,7 +48,7 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    * @return array
    *   Render array after the processing.
    */
-  public function processImage(array $build) {
+  public function processImage(array $build): array {
     if (empty($build)) {
       return [];
     }

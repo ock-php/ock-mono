@@ -13,7 +13,7 @@ abstract class EntityToRelatedIds_MultipleBase implements EntityToRelatedIdsInte
    * @return int[]
    *   Format: $[] = $relatedEntityId
    */
-  final public function entityGetRelatedIds(EntityInterface $entity) {
+  final public function entityGetRelatedIds(EntityInterface $entity): array {
     $relatedIdsByDelta = $this->entitiesGetRelatedIds([$entity]);
     return array_key_exists(0, $relatedIdsByDelta)
       ? $relatedIdsByDelta[0]

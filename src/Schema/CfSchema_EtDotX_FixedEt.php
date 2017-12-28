@@ -46,7 +46,7 @@ class CfSchema_EtDotX_FixedEt extends CfSchema_Proxy_Cache_SelectBase {
    *
    * @return \Drupal\renderkit8\Schema\CfSchema_EtDotX_FixedEt
    */
-  public function withSeparator($separator) {
+  public function withSeparator(string $separator): self {
     $clone = clone $this;
     $clone->separator = $separator;
     return $clone;

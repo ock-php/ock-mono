@@ -5,6 +5,7 @@ namespace Drupal\renderkit8\Schema;
 
 use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\views\Entity\View;
 use Drupal\views\Views;
 
 class CfSchema_ViewId implements CfSchema_FlatSelectInterface {
@@ -66,7 +67,7 @@ class CfSchema_ViewId implements CfSchema_FlatSelectInterface {
    *
    * @return \Drupal\views\Entity\View|null
    */
-  private function idGetView($id) {
+  private function idGetView($id): ?View {
 
     /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
     $etm = \Drupal::service('entity_type.manager');
@@ -99,7 +100,7 @@ class CfSchema_ViewId implements CfSchema_FlatSelectInterface {
   /**
    * @return \Drupal\views\Entity\View[]
    */
-  private function getViews() {
+  private function getViews(): array {
 
     if (NULL === $this->status) {
       return Views::getAllViews();

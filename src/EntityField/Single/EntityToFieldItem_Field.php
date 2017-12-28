@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityField\Single;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemInterface;
@@ -34,7 +35,7 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
     array $allowedFieldTypes = NULL,
     $entityType = NULL,
     $bundle = NULL
-  ) {
+  ): CfSchemaInterface {
 
     return CfSchema_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
@@ -50,7 +51,7 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
    *
    * @return self
    */
-  public static function create(array $settings) {
+  public static function create(array $settings): self {
     return new self(
       $settings['entity_type'],
       $settings['field_name']);
@@ -70,7 +71,7 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
    *
    * @return \Drupal\Core\Field\FieldItemInterface|null
    */
-  public function entityGetItem(FieldableEntityInterface $entity) {
+  public function entityGetItem(FieldableEntityInterface $entity): ?FieldItemInterface {
 
     if ($this->entityTypeId !== $entity->getEntityTypeId()) {
       return NULL;

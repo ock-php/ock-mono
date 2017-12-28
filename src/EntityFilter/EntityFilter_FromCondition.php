@@ -37,10 +37,10 @@ class EntityFilter_FromCondition implements EntityFilterInterface {
   /**
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
-   * @return string[]
+   * @return string[]|int[]
    *   Format: $[] = $delta
    */
-  public function entitiesFilterDeltas(array $entities) {
+  public function entitiesFilterDeltas(array $entities): array {
     $deltas = [];
     foreach ($entities as $delta => $entity) {
       if ($this->singleEntityFilter->entityCheckCondition($entity)) {

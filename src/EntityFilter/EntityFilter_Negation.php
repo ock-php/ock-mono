@@ -29,10 +29,10 @@ class EntityFilter_Negation implements EntityFilterInterface {
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Format: $[$delta] = $entity
    *
-   * @return string[]
+   * @return string[]|int[]
    *   Format: $[] = $delta
    */
-  public function entitiesFilterDeltas(array $entities) {
+  public function entitiesFilterDeltas(array $entities): array {
 
     foreach ($this->negatedFilter->entitiesFilterDeltas($entities) as $delta) {
       unset($entities[$delta]);

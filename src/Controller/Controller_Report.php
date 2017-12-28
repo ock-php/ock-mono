@@ -37,7 +37,7 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
    *
    * @return array
    */
-  public function index() {
+  public function index(): array {
     return [
       '#markup' => __METHOD__,
     ];
@@ -50,7 +50,7 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
    *
    * @return array
    */
-  public function demo() {
+  public function demo(): array {
 
     $settings = $_GET['plugin'] ?? [];
 

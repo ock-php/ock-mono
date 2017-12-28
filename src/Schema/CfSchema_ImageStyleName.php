@@ -26,7 +26,7 @@ class CfSchema_ImageStyleName implements CfSchema_SelectInterface {
     }
     $styleLabelsRaw = image_style_options(FALSE);
     if (!isset($styleLabelsRaw[$styleName])) {
-      return t('Unknown image style');
+      return (string)t('Unknown image style');
     }
     $styleLabelRaw = $styleLabelsRaw[$styleName];
     return Html::escape($styleLabelRaw);

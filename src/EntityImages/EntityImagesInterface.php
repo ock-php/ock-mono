@@ -15,6 +15,6 @@ interface EntityImagesInterface {
    * @return array[]
    *   Format: $[$delta] = ['#theme' => 'image', '#path' => .., ..]
    */
-  public function entityGetImages(EntityInterface $entity);
+  public function entityGetImages(EntityInterface $entity): array;
 
 }

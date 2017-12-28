@@ -8,7 +8,7 @@ class SelectByEt_FieldName extends SelectByEt_FieldName_Base {
   /**
    * @return string
    */
-  public function getCacheId() {
+  public function getCacheId(): string {
     return static::class;
   }
 }

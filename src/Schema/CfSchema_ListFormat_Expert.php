@@ -9,6 +9,7 @@ use Donquixote\Cf\Form\D8\FormatorD8Interface;
 use Donquixote\Cf\Summarizer\SummarizerInterface;
 use Donquixote\Cf\Util\PhpUtil;
 use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
+use Drupal\renderkit8\ListFormat\ListFormatInterface;
 
 /**
  * This is inspired by Display suite.
@@ -133,7 +134,7 @@ class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interf
    *
    * @return \Drupal\renderkit8\ListFormat\ListFormatInterface
    */
-  public function confGetValue($conf) {
+  public function confGetValue($conf): ListFormatInterface {
     $defaults = $this->confGetElementDefaults($conf);
     return new ListFormat_ElementDefaults($defaults);
   }
@@ -155,7 +156,7 @@ class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interf
    * @return array
    *   Render array defaults.
    */
-  private function confGetElementDefaults($conf) {
+  private function confGetElementDefaults($conf): array {
 
     if (!\is_array($conf)) {
       $conf = [];
@@ -211,7 +212,7 @@ class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interf
    *
    * @return string
    */
-  private static function confExtractTagName(array $array, $key, $else) {
+  private static function confExtractTagName(array $array, $key, $else): string {
 
     if (empty($array[$key])) {
       return $else;

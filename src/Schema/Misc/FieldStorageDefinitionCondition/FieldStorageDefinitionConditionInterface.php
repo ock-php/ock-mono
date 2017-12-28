@@ -12,6 +12,6 @@ interface FieldStorageDefinitionConditionInterface {
    *
    * @return bool
    */
-  public function checkStorageDefinition(FieldStorageDefinitionInterface $storageDefinition);
+  public function checkStorageDefinition(FieldStorageDefinitionInterface $storageDefinition): bool;
 
 }

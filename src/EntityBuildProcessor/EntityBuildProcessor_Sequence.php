@@ -91,7 +91,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    * @return array[]
    *   Modified render arrays for the given entities.
    */
-  public function processEntityBuild(array $build, EntityInterface $entity) {
+  public function processEntityBuild(array $build, EntityInterface $entity): array {
 
     foreach ($this->processors as $processor) {
       if (empty($build)) {

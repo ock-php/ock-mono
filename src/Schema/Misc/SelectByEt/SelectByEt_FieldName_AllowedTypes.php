@@ -20,7 +20,7 @@ class SelectByEt_FieldName_AllowedTypes extends SelectByEt_FieldName_Base {
   /**
    * @return string
    */
-  public function getCacheId() {
+  public function getCacheId(): string {
     return static::class . ':' . implode(',', $this->allowedFieldTypes);
   }
 
@@ -32,7 +32,7 @@ class SelectByEt_FieldName_AllowedTypes extends SelectByEt_FieldName_Base {
    * @return \Drupal\Core\Field\FieldStorageDefinitionInterface[][]
    *   Format: $[$fieldTypeId][$fieldName] = $fieldStorageDefinition
    */
-  protected function getStorageDefinitionsByType($entityTypeId, array $bundleNames = NULL) {
+  protected function getStorageDefinitionsByType(string $entityTypeId, array $bundleNames = NULL): array {
 
     $storagesByType = parent::getStorageDefinitionsByType(
       $entityTypeId,

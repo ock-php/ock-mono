@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityToEntity;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -37,7 +38,7 @@ class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public static function createSchema($entityType = NULL, $bundleName = NULL) {
+  public static function createSchema($entityType = NULL, $bundleName = NULL): CfSchemaInterface {
 
     $etDotFieldNameSchema = new CfSchema_EtDotFieldName_EntityReference(
       $entityType,
@@ -55,7 +56,7 @@ class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
    *
    * @return self|null
    */
-  public static function create($etDotFieldName) {
+  public static function create($etDotFieldName): ?self {
 
     list($entityTypeId, $fieldName) = explode('.', $etDotFieldName) + [NULL, NULL];
 
@@ -97,7 +98,7 @@ class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
    *
    * @return string
    */
-  public function getTargetType() {
+  public function getTargetType(): string {
     return $this->targetType;
   }
 
@@ -106,7 +107,7 @@ class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
    *
    * @return \Drupal\Core\Entity\EntityInterface|null
    */
-  public function entityGetRelated(EntityInterface $entity) {
+  public function entityGetRelated(EntityInterface $entity): ?EntityInterface {
 
     if (!$entity instanceof FieldableEntityInterface) {
       return NULL;

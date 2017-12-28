@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityImage;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\Core\Entity\EntityStorageException;
@@ -28,7 +29,7 @@ class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements Ent
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public static function createSchema($entityType = NULL, $bundleName = NULL) {
+  public static function createSchema(string $entityType = NULL, string $bundleName = NULL): CfSchemaInterface {
 
     return CfSchema_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
@@ -52,7 +53,7 @@ class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements Ent
    *
    * @return self
    */
-  public static function create($etDotFieldName, $useDefaultImage = TRUE) {
+  public static function create(string $etDotFieldName, bool $useDefaultImage = TRUE): self {
     list($et, $fieldName) = explode('.', $etDotFieldName . '.');
     return new self($et, $fieldName, $useDefaultImage);
   }
@@ -68,15 +69,15 @@ class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements Ent
   }
 
   /**
-   * @param \Drupal\Core\Field\FieldItemListInterface $items
+   * @param \Drupal\Core\Field\FieldItemListInterface $fieldItemList
    *
    * @return array
    */
-  protected function buildFieldItems(FieldItemListInterface $items) {
+  protected function buildFieldItems(FieldItemListInterface $fieldItemList): array {
 
     if ($this->useDefaultImage) {
       try {
-        $items = ImageFieldUtil::itemsGetItems($items);
+        $fieldItemList = ImageFieldUtil::itemsGetItems($fieldItemList);
       }
       catch (EntityStorageException $e) {
         // @todo Log this.
@@ -86,7 +87,7 @@ class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements Ent
     }
 
     try {
-      $item = $items->first();
+      $item = $fieldItemList->first();
     }
     catch (MissingDataException $e) {
       unset($e);

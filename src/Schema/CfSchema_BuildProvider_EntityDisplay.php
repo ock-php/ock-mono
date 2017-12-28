@@ -6,6 +6,7 @@ namespace Drupal\renderkit8\Schema;
 use Donquixote\Cf\Exception\EvaluatorException;
 use Donquixote\Cf\IdToSchema\IdToSchema_Class;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
+use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
 use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
 use Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
@@ -23,7 +24,7 @@ class CfSchema_BuildProvider_EntityDisplay implements CfSchema_GroupInterface, V
   /**
    * @return \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface
    */
-  public static function createDrilldown() {
+  public static function createDrilldown(): CfSchema_DrilldownInterface {
     return CfSchema_Drilldown::create(
       CfSchema_EntityType_WithGroupLabels::create(),
       new IdToSchema_Class(self::class));
@@ -97,7 +98,7 @@ class CfSchema_BuildProvider_EntityDisplay implements CfSchema_GroupInterface, V
     $entityTypeId,
     $entityId,
     EntityDisplayInterface $entityDisplay
-  ) {
+  ): BuildProvider_EntityDisplay {
 
     /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
     $etm = \Drupal::service('entity_type.manager');

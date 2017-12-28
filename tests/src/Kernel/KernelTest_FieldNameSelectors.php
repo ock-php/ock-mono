@@ -6,6 +6,8 @@ namespace Drupal\Tests\renderkit8\Kernel;
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
 use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
+use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Drupal\faktoria\Hub\CfrPluginHub;
 use Drupal\renderkit8\Schema\CfSchema_EntityType_WithFields;
 use Drupal\renderkit8\Schema\CfSchema_EtDotX;
@@ -561,7 +563,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
   /**
    * @return \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface
    */
-  private function schemaReplacer() {
+  private function schemaReplacer(): SchemaReplacerInterface {
     return CfrPluginHub::getContainer()->schemaReplacer;
   }
 
@@ -569,7 +571,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
   /**
    * @return \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface
    */
-  private function sta() {
+  private function sta(): SchemaToAnythingInterface {
     return CfrPluginHub::getContainer()->schemaToAnything;
   }
 }

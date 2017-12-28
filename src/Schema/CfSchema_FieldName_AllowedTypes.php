@@ -109,7 +109,7 @@ class CfSchema_FieldName_AllowedTypes extends CfSchema_FieldName_Base {
    * @return \Drupal\Core\Field\FieldStorageDefinitionInterface[][]
    *   Format: $[$fieldTypeId][$fieldName] = $fieldStorageDefinition
    */
-  protected function getStorageDefinitionsByType() {
+  protected function getStorageDefinitionsByType(): array {
 
     $storagesByType = parent::getStorageDefinitionsByType();
 

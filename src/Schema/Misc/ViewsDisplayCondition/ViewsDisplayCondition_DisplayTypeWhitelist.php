@@ -24,7 +24,7 @@ class ViewsDisplayCondition_DisplayTypeWhitelist implements ViewsDisplayConditio
    *
    * @return bool
    */
-  public function displayCheckCondition($id, array $display, array $default_display = NULL) {
+  public function displayCheckCondition(string $id, array $display, array $default_display = NULL): bool {
 
     return isset($this->allowedDisplayTypes[$display['display_plugin']]);
   }

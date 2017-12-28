@@ -47,7 +47,7 @@ class EntityBuildProcessor_FromBuildProcessor implements EntityBuildProcessorInt
    * @return array
    *   Modified render array for the given entity.
    */
-  public function processEntityBuild(array $build, EntityInterface $entity) {
+  public function processEntityBuild(array $build, EntityInterface $entity): array {
     return $this->processor->process($build);
   }
 }

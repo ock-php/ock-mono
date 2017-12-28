@@ -8,7 +8,7 @@ interface SelectByEtInterface {
   /**
    * @return string
    */
-  public function getCacheId();
+  public function getCacheId(): string;
 
   /**
    * @param string $entityTypeId
@@ -19,5 +19,5 @@ interface SelectByEtInterface {
    * @return string[][]
    *   Format: $[$groupLabel][$optionKey] = $optionLabel
    */
-  public function etGetGroupedOptions($entityTypeId, array $bundleNames = NULL);
+  public function etGetGroupedOptions($entityTypeId, array $bundleNames = NULL): array;
 }

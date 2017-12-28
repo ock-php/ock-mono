@@ -58,6 +58,6 @@ abstract class EntityDisplay_FieldItemsBase extends EntityDisplayBase {
    *
    * @return array
    */
-  abstract protected function buildFieldItems(FieldItemListInterface $fieldItemList);
+  abstract protected function buildFieldItems(FieldItemListInterface $fieldItemList): array;
 
 }

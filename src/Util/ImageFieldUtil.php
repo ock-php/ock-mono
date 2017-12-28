@@ -20,7 +20,7 @@ final class ImageFieldUtil extends UtilBase {
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public static function itemsGetItems(FieldItemListInterface $items) {
+  public static function itemsGetItems(FieldItemListInterface $items): FieldItemListInterface {
 
     if (!$items->isEmpty()) {
       return $items;
@@ -86,7 +86,7 @@ final class ImageFieldUtil extends UtilBase {
    *
    * @return array
    */
-  public static function buildImageFieldItem(ImageItem $item) {
+  public static function buildImageFieldItem(ImageItem $item): array {
 
     // See https://www.drupal.org/node/2901435
     // "Document field item properties with @property doc"

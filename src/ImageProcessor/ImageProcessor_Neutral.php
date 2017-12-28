@@ -12,7 +12,7 @@ class ImageProcessor_Neutral implements ImageProcessorInterface {
    * @return array
    *   Render array after the processing.
    */
-  public function processImage(array $build) {
+  public function processImage(array $build): array {
     return $build;
   }
 }

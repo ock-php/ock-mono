@@ -17,7 +17,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    * @return string[][]
    *   Format: $[$groupLabel][$optionKey] = $optionLabel
    */
-  public function etGetGroupedOptions($entityTypeId, array $bundleNames = NULL) {
+  public function etGetGroupedOptions($entityTypeId, array $bundleNames = NULL): array {
 
     if (NULL !== $bundleNames) {
       $bundleNames = array_combine($bundleNames, $bundleNames);
@@ -50,7 +50,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    *
    * @return string[]
    */
-  protected function buildFieldLabels(array $storagesByType, $entityTypeId, array $bundleNames = NULL) {
+  private function buildFieldLabels(array $storagesByType, string $entityTypeId, array $bundleNames = NULL): array {
 
     $fieldLabels = [];
     $fieldLabelsMissing = [];
@@ -86,7 +86,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    *
    * @return string[]
    */
-  protected function buildTypeLabels(array $fieldTypeIds) {
+  private function buildTypeLabels(array $fieldTypeIds): array {
 
     /** @var \Drupal\Core\Field\FieldTypePluginManagerInterface $ftm */
     $ftm = \Drupal::service('plugin.manager.field.field_type');
@@ -120,7 +120,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    *
    * @return string[][]
    */
-  protected function buildGroupedOptions(array $storagesByType, array $fieldLabels, array $typeLabels) {
+  private function buildGroupedOptions(array $storagesByType, array $fieldLabels, array $typeLabels): array {
 
     /**
      * @var string[][] $groupedOptions
@@ -155,7 +155,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    * @return \Drupal\Core\Field\FieldStorageDefinitionInterface[][]
    *   Format: $[$fieldTypeId][$fieldName] = $fieldStorageDefinition
    */
-  protected function getStorageDefinitionsByType($entityTypeId, array $bundleNames = NULL) {
+  protected function getStorageDefinitionsByType(string $entityTypeId, array $bundleNames = NULL): array {
 
     $storages = $this->etGetStorageDefinitions(
       $entityTypeId,
@@ -178,7 +178,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    * @return \Drupal\Core\Field\FieldStorageDefinitionInterface[]
    *   Format: $[$fieldName] = $fieldStorageDefinition
    */
-  protected function etGetStorageDefinitions($entityTypeId, array $bundleNames = NULL) {
+  private function etGetStorageDefinitions(string $entityTypeId, array $bundleNames = NULL): array {
 
     /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
     $efm = \Drupal::service('entity_field.manager');
@@ -221,7 +221,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    * @return string[]
    *   Format: [$fieldName] = $label
    */
-  private function fieldNamesGetLabels(array $fieldNamesMap, $entityTypeId, array $bundleNames = NULL) {
+  private function fieldNamesGetLabels(array $fieldNamesMap, string $entityTypeId, array $bundleNames = NULL): array {
 
     /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
     $efm = \Drupal::service('entity_field.manager');

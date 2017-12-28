@@ -60,7 +60,7 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
    *
    * @return bool
    */
-  public function displayCheckCondition($id, array $display, array $default_display = NULL) {
+  public function displayCheckCondition(string $id, array $display, array $default_display = NULL): bool {
 
     if (NULL !== $this->status) {
       if ($display['enabled'] !== $this->status) {
@@ -99,7 +99,7 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
    *
    * @return bool
    */
-  private static function validateArgumentsSignature(array $arguments, array $signature) {
+  private static function validateArgumentsSignature(array $arguments, array $signature): bool {
 
     if ([] === $signature) {
       return [] === $arguments;

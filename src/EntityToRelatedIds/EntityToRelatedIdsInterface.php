@@ -10,7 +10,7 @@ interface EntityToRelatedIdsInterface {
   /**
    * @return string
    */
-  public function getTargetType();
+  public function getTargetType(): string;
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
@@ -18,7 +18,7 @@ interface EntityToRelatedIdsInterface {
    * @return int[]
    *   Format: $[] = $relatedEntityId
    */
-  public function entityGetRelatedIds(EntityInterface $entity);
+  public function entityGetRelatedIds(EntityInterface $entity): array;
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
@@ -26,6 +26,6 @@ interface EntityToRelatedIdsInterface {
    * @return int[][]
    *   Format: $[$delta][] = $relatedEntityId
    */
-  public function entitiesGetRelatedIds(array $entities);
+  public function entitiesGetRelatedIds(array $entities): array;
 
 }

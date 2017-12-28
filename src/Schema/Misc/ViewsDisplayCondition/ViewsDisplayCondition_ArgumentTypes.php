@@ -24,7 +24,7 @@ class ViewsDisplayCondition_ArgumentTypes implements ViewsDisplayConditionInterf
    *
    * @return bool
    */
-  public function displayCheckCondition($id, array $display, array $default_display = NULL) {
+  public function displayCheckCondition(string $id, array $display, array $default_display = NULL): bool {
 
     if (isset($display['display_options']['arguments'])) {
       $arguments = $display['display_options']['arguments'];

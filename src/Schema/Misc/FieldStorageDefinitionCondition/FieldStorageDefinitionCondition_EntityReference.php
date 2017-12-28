@@ -10,13 +10,13 @@ use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 class FieldStorageDefinitionCondition_EntityReference implements FieldStorageDefinitionConditionInterface {
 
   /**
-   * @param \Drupal\Core\Field\FieldStorageDefinitionInterface $storage
+   * @param \Drupal\Core\Field\FieldStorageDefinitionInterface $storageDefinition
    *
    * @return bool
    */
-  public function checkStorageDefinition(FieldStorageDefinitionInterface $storage) {
+  public function checkStorageDefinition(FieldStorageDefinitionInterface $storageDefinition): bool {
 
-    $fieldTypeId = $storage->getType();
+    $fieldTypeId = $storageDefinition->getType();
 
     /** @var \Drupal\Core\Field\FieldTypePluginManagerInterface $ftm */
     $ftm = \Drupal::service('plugin.manager.field.field_type');

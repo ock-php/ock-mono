@@ -11,6 +11,7 @@ use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_En
 use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_NoArgs;
 use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_Status;
 use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface;
+use Drupal\views\Entity\View;
 
 /**
  * Schema for values of the structure $view_id . ':' . $view_display_id
@@ -28,9 +29,9 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGran
   private $condition;
 
   /**
-   * @return \Drupal\renderkit8\Schema\CfSchema_ViewIdWithDisplayId
+   * @return self
    */
-  public static function createNoArgs() {
+  public static function createNoArgs(): self {
     return self::createWithDisplayCondition(
       new ViewsDisplayCondition_NoArgs());
   }
@@ -40,7 +41,7 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGran
    *
    * @return self
    */
-  public static function createWithEntityIdArg($entityTypeId = NULL) {
+  public static function createWithEntityIdArg(string $entityTypeId = NULL): self {
 
     return self::createWithDisplayCondition(
       new ViewsDisplayCondition_EntityIdArg($entityTypeId));
@@ -51,7 +52,7 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGran
    *
    * @return self
    */
-  public static function createWithDisplayCondition(ViewsDisplayConditionInterface $condition) {
+  public static function createWithDisplayCondition(ViewsDisplayConditionInterface $condition): self {
 
     return new self(
       TRUE,
@@ -100,7 +101,7 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGran
    *
    * @return \Drupal\views\Entity\View|null
    */
-  private function idGetView($id) {
+  private function idGetView($id): ?View {
 
     /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
     $etm = \Drupal::service('entity_type.manager');

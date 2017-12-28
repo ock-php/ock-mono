@@ -55,12 +55,17 @@ class CfSchema_FieldFormatterSettings implements FormatorD8Interface, Summarizer
    *
    * @return null|string
    */
-  public function confGetSummary($conf) {
+  public function confGetSummary($conf): ?string {
 
     $summary = $this->getFormatter($conf)->settingsSummary();
 
     if (!\is_array($summary)) {
-      return $summary;
+
+      if (null === $summary) {
+        return null;
+      }
+
+      return (string)$summary;
     }
 
     $html = '';
@@ -96,7 +101,7 @@ class CfSchema_FieldFormatterSettings implements FormatorD8Interface, Summarizer
    *
    * @return array
    */
-  private function confGetFormatterSettings($conf) {
+  private function confGetFormatterSettings($conf): array {
     return $this->getFormatter($conf)->getSettings();
   }
 
@@ -105,7 +110,7 @@ class CfSchema_FieldFormatterSettings implements FormatorD8Interface, Summarizer
    *
    * @return \Drupal\Core\Field\FormatterInterface
    */
-  private function getFormatter($settings = NULL) {
+  private function getFormatter($settings = NULL): FormatterInterface {
     $this->formatter->setSettings($settings ?: []);
     return $this->formatter;
   }

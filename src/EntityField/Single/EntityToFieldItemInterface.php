@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit8\EntityField\Single;
 
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\FieldItemInterface;
 
 interface EntityToFieldItemInterface {
 
@@ -12,6 +13,6 @@ interface EntityToFieldItemInterface {
    *
    * @return \Drupal\Core\Field\FieldItemInterface|null
    */
-  public function entityGetItem(FieldableEntityInterface $entity);
+  public function entityGetItem(FieldableEntityInterface $entity): ?FieldItemInterface;
 
 }

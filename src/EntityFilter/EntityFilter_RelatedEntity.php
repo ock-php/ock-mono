@@ -36,10 +36,10 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
   /**
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *
-   * @return string[]
+   * @return string[]|int[]
    *   Format: $[] = $delta
    */
-  public function entitiesFilterDeltas(array $entities) {
+  public function entitiesFilterDeltas(array $entities): array {
 
     // The IDE has problems to determine the type, although all information is there.
     /** @var string[][] $relatedIdsByDelta */

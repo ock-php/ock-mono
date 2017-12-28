@@ -36,6 +36,6 @@ trait EntityDisplayBaseTrait {
    *
    * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  abstract public function buildEntity(EntityInterface $entity);
+  abstract public function buildEntity(EntityInterface $entity): array;
 
 }

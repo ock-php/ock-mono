@@ -16,9 +16,9 @@ interface EntityFilterInterface {
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Format: $[$delta] = $entity
    *
-   * @return string[]
+   * @return string[]|int[]
    *   Format: $[] = $delta
    */
-  public function entitiesFilterDeltas(array $entities);
+  public function entitiesFilterDeltas(array $entities): array;
 
 }

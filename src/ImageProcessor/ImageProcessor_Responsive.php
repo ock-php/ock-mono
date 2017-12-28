@@ -97,7 +97,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @todo Detect if the original image location does not support image styles.
    */
-  public function processImage(array $build) {
+  public function processImage(array $build): array {
 
     // Path to the original image file.
     $original_path = $build['#path'];

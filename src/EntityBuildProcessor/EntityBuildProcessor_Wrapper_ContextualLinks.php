@@ -71,7 +71,7 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
    * @return array
    *   Render array after the processing.
    */
-  public function processEntityBuild(array $build, EntityInterface $entity) {
+  public function processEntityBuild(array $build, EntityInterface $entity): array {
 
     return $this->entityBuildContainer($entity) + [
       'content' => $build,

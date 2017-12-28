@@ -90,7 +90,7 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplay_FieldItemsBase {
    *
    * @return array
    */
-  protected function buildFieldItems(FieldItemListInterface $fieldItemList) {
+  protected function buildFieldItems(FieldItemListInterface $fieldItemList): array {
 
     if ($fieldItemList->isEmpty()) {
       return [];

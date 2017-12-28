@@ -40,7 +40,7 @@ class EntityBuildProcessor_Wrapper_BackgroundImage implements EntityBuildProcess
    *
    * @see \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface::processEntityBuild()
    */
-  public function processEntityBuild(array $build, EntityInterface $entity) {
+  public function processEntityBuild(array $build, EntityInterface $entity): array {
     $imageDisplay = $this->imageProvider->buildEntity($entity);
     $build = $this->buildContainer() + ['content' => $build];
     if (isset($imageDisplay['#path'])) {

@@ -27,9 +27,9 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   /**
    * @CfrPlugin("previewForm", "Preview form")
    *
-   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplay_PreviewForm
+   * @return self
    */
-  public static function create() {
+  public static function create(): self {
     return new self('entity_display_preview');
   }
 
@@ -46,7 +46,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    *
    * @return array
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
 
     if (!empty(self::$inProgress[$this->queryKey])) {
       return ['#markup' => t('Recursion detected.')];
@@ -73,7 +73,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    * @see drupal_process_form()
    * @see form_builder()
    */
-  private function doBuildEntity(EntityInterface $entity) {
+  private function doBuildEntity(EntityInterface $entity): array {
 
     $conf = $_GET[$this->queryKey] ?? null;
 
@@ -120,7 +120,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    *
    * @return \Donquixote\Cf\Context\CfContextInterface
    */
-  private function entityBuildContext(EntityInterface $entity) {
+  private function entityBuildContext(EntityInterface $entity): CfContextInterface {
 
     $entityTypeId = $entity->getEntityTypeId();
     $bundle = $entity->bundle();
@@ -139,7 +139,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    *
    * @return array
    */
-  private function buildForm($conf, CfContextInterface $context) {
+  private function buildForm($conf, CfContextInterface $context): array {
 
     $form = [];
     $form[$this->queryKey] = [

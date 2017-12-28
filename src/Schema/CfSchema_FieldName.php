@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit8\Schema;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Drupal\renderkit8\Schema\Misc\SelectByEt\SelectByEt_FieldName;
 
 /**
@@ -16,7 +17,7 @@ class CfSchema_FieldName extends CfSchema_FieldName_Base {
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public static function create($entityTypeId, $bundleName = NULL) {
+  public static function create($entityTypeId, $bundleName = NULL): CfSchemaInterface {
 
     return new CfSchema_SelectByEt(
       $entityTypeId,

@@ -5,6 +5,7 @@ namespace Drupal\renderkit8\EntityImages;
 
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -41,7 +42,7 @@ class EntityImages_ImageField implements EntityImagesInterface {
    *
    * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  public static function createSchema($entityType = NULL, $bundleName = NULL) {
+  public static function createSchema($entityType = NULL, $bundleName = NULL): CfSchema_GroupValInterface {
 
     return CfSchema_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
@@ -65,7 +66,7 @@ class EntityImages_ImageField implements EntityImagesInterface {
    *
    * @return self
    */
-  public static function create($etDotFieldName, $useDefaultImage = TRUE) {
+  public static function create($etDotFieldName, $useDefaultImage = TRUE): self {
 
     list($entityTypeId, $fieldName) = explode('.', $etDotFieldName) + [NULL, NULL];
 
@@ -96,7 +97,7 @@ class EntityImages_ImageField implements EntityImagesInterface {
    * @return array
    *   Render array for one entity.
    */
-  public function entityGetImages(EntityInterface $entity) {
+  public function entityGetImages(EntityInterface $entity): array {
 
     if ($this->entityTypeId !== $entity->getEntityTypeId()) {
       return [];

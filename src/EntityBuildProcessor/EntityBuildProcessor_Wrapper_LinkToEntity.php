@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit8\EntityBuildProcessor;
 
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityMalformedException;
@@ -38,7 +39,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public static function entityTitleSchema() {
+  public static function entityTitleSchema(): CfSchemaInterface {
     return CfSchema_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'entityTitleLinkWrapper',
@@ -51,7 +52,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
    *
    * @return \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface
    */
-  public static function entityTitleLinkWrapper($tagName) {
+  public static function entityTitleLinkWrapper($tagName): EntityBuildProcessorInterface {
     return (new EntityBuildProcessor_Sequence)
       ->addEntityBuildProcessor(new self)
       ->addBuildProcessor(BuildProcessor_Container::create($tagName));
@@ -64,7 +65,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
    * @return array
    *   Render array for one entity.
    */
-  public function processEntityBuild(array $build, EntityInterface $entity) {
+  public function processEntityBuild(array $build, EntityInterface $entity): array {
 
     try {
       $url = $entity->toUrl();

@@ -28,10 +28,8 @@ class CfSchema_ListSeparator extends CfSchema_TextfieldBase implements V2V_Strin
    * @param string $string
    *
    * @return mixed
-   *
-   * @throws \Donquixote\Cf\Exception\EvaluatorException
    */
-  public function stringGetValue($string) {
+  public function stringGetValue(string $string) {
     return Html::escape($string);
   }
 
@@ -40,7 +38,7 @@ class CfSchema_ListSeparator extends CfSchema_TextfieldBase implements V2V_Strin
    *
    * @return string
    */
-  public function stringGetPhp($string): string {
+  public function stringGetPhp(string $string): string {
     return var_export(Html::escape($string), TRUE);
   }
 }

@@ -17,7 +17,7 @@ abstract class EntityDisplay_FieldItemBase extends EntityDisplay_FieldItemsBase 
    *
    * @return array
    */
-  final protected function buildFieldItems(FieldItemListInterface $fieldItemList) {
+  final protected function buildFieldItems(FieldItemListInterface $fieldItemList): array {
 
     try {
       $item = $fieldItemList->first();
@@ -41,6 +41,6 @@ abstract class EntityDisplay_FieldItemBase extends EntityDisplay_FieldItemsBase 
    *
    * @return array
    */
-  abstract protected function buildFieldItem(FieldItemInterface $item);
+  abstract protected function buildFieldItem(FieldItemInterface $item): array;
 
 }

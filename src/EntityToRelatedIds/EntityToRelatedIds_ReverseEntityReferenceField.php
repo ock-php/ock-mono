@@ -37,7 +37,7 @@ class EntityToRelatedIds_ReverseEntityReferenceField extends EntityToRelatedIds_
   /**
    * @return string
    */
-  public function getTargetType() {
+  public function getTargetType(): string {
     return $this->fieldSourceType;
   }
 
@@ -47,7 +47,7 @@ class EntityToRelatedIds_ReverseEntityReferenceField extends EntityToRelatedIds_
    * @return int[][]
    *   Format: $[$delta][] = $relatedEntityId
    */
-  public function entitiesGetRelatedIds(array $entities) {
+  public function entitiesGetRelatedIds(array $entities): array {
 
     if ([] === $entities) {
       return [];

@@ -40,7 +40,7 @@ class CfSchema_EtDotFieldName implements CfSchema_SelectInterface {
    *
    * @return self
    */
-  public static function create(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL) {
+  public static function create(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL): self {
 
     // @todo Real dependency injection.
 
@@ -192,7 +192,7 @@ class CfSchema_EtDotFieldName implements CfSchema_SelectInterface {
    * @return string[][][][]
    *   Format: $[$field_type][$entity_type][$field_name][$bundle_name] = $bundle_name
    */
-  private function getFieldsGrouped() {
+  private function getFieldsGrouped(): array {
 
     /**
      * @var array[][] $map

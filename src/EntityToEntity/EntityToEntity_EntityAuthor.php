@@ -25,7 +25,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    *
    * @return \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface
    */
-  public static function userEntityOrAuthor() {
+  public static function userEntityOrAuthor(): EntityToEntityInterface {
     return new EntityToEntity_SelfOrOther(new self());
   }
 
@@ -34,7 +34,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    *
    * @return string
    */
-  public function getTargetType() {
+  public function getTargetType(): string {
     return 'user';
   }
 
@@ -43,7 +43,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    *
    * @return null|\Drupal\Core\Entity\EntityInterface
    */
-  public function entityGetRelated(EntityInterface $entity) {
+  public function entityGetRelated(EntityInterface $entity): ?EntityInterface {
 
     if (!$entity instanceof FieldableEntityInterface) {
       return NULL;
