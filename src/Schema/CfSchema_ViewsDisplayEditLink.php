@@ -63,7 +63,7 @@ class CfSchema_ViewsDisplayEditLink extends CfSchema_ValueProvider_Null implemen
    *
    * @return array
    */
-  public function confGetD8Form($conf, ?string $label): array {
+  public function confGetD8Form($conf, $label): array {
 
     return [
       '#children' => Link::createFromRoute(

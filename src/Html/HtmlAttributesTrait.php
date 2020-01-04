@@ -28,9 +28,20 @@ trait HtmlAttributesTrait {
    * @param string $key
    * @param mixed $value
    *
-   * @return static
+   * @return $this
    */
   public function setAttribute($key, $value) {
+    $this->attributes[$key] = $value;
+    return $this;
+  }
+
+  /**
+   * @param string $key
+   * @param mixed $value
+   *
+   * @return static
+   */
+  public function withAttributeValue($key, $value) {
     $clone = clone $this;
     $clone->attributes[$key] = $value;
     return $clone;
@@ -39,9 +50,19 @@ trait HtmlAttributesTrait {
   /**
    * @param string $class
    *
-   * @return static
+   * @return $this
    */
   public function addClass($class) {
+    $this->attributes['class'][] = $class;
+    return $this;
+  }
+
+  /**
+   * @param string $class
+   *
+   * @return static
+   */
+  public function withAddedClass($class) {
     $clone = clone $this;
     $clone->attributes['class'][] = $class;
     return $clone;

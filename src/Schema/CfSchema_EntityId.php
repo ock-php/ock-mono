@@ -50,7 +50,7 @@ class CfSchema_EntityId implements CfSchema_IdInterface, FormatorD8Interface {
    *
    * @return array
    */
-  public function confGetD8Form($conf, ?string $label): array {
+  public function confGetD8Form($conf, $label): array {
 
     $entity = NULL;
     if (\is_string($conf) || \is_int($conf)) {

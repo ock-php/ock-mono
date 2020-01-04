@@ -31,7 +31,7 @@ class CfSchema_FieldFormatterSettings implements FormatorD8Interface, Summarizer
    *
    * @return array
    */
-  public function confGetD8Form($conf, ?string $label): array {
+  public function confGetD8Form($conf, $label): array {
 
     $formatter = $this->getFormatter($conf);
 

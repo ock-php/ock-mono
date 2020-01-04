@@ -15,9 +15,19 @@ trait HtmlTagTrait {
   /**
    * @param string $tagName
    *
-   * @return static
+   * @return $this
    */
   public function setTagName($tagName) {
+    $this->tagName = $tagName;
+    return $this;
+  }
+
+  /**
+   * @param string $tagName
+   *
+   * @return static
+   */
+  public function withTagName($tagName) {
     $clone = clone $this;
     $clone->tagName = $tagName;
     return $clone;

@@ -24,7 +24,7 @@ class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interf
    *
    * @return array
    */
-  public function confGetD8Form($conf, ?string $label): array {
+  public function confGetD8Form($conf, $label): array {
 
     $form = [
       '#type' => 'container',

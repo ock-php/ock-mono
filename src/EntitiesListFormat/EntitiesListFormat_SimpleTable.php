@@ -26,10 +26,10 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
       __CLASS__,
       new CfSchema_Sequence_ItemLabelCallback(
         new CfSchema_IfaceWithContext(EntityDisplayInterface::class),
-        function($delta) {
+        static function ($delta) {
           return NULL === $delta
-            ? t('New column')
-            : t('Column #@n', ['@n' => $delta + 1]);
+            ? '' . t('New column')
+            : '' . t('Column #@n', ['@n' => $delta + 1]);
         }));
   }
 
