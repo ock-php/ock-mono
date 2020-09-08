@@ -1,5 +1,5 @@
 name: 'Renderkit tests'
-type: module
 description: 'Defines some entity types, bundles, fields and other things.'
-core: 8.x
+type: module
+core_version_requirement: ^8.8 || ^9
 package: Testing
