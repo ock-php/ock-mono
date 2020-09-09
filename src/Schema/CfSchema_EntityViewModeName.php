@@ -45,9 +45,7 @@ class CfSchema_EntityViewModeName implements CfSchema_SelectInterface {
   }
 
   /**
-   * @param string $id
-   *
-   * @return string|null
+   * {@inheritdoc}
    */
   public function idGetLabel($id): ?string {
 

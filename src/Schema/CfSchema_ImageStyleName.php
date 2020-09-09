@@ -16,9 +16,7 @@ class CfSchema_ImageStyleName implements CfSchema_SelectInterface {
   }
 
   /**
-   * @param string $styleName
-   *
-   * @return string|null
+   * {@inheritdoc}
    */
   public function idGetLabel($styleName): ?string {
     if (empty($styleName)) {

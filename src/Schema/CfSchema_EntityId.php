@@ -31,9 +31,7 @@ class CfSchema_EntityId implements CfSchema_IdInterface, FormatorD8Interface {
   }
 
   /**
-   * @param string|int $id
-   *
-   * @return string
+   * {@inheritdoc}
    */
   public function idGetLabel($id): ?string {
 

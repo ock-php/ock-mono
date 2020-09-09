@@ -56,9 +56,7 @@ class CfSchema_FieldFormatterId implements CfSchema_SelectInterface {
   }
 
   /**
-   * @param string $formatterTypeName
-   *
-   * @return string|null
+   * {@inheritdoc}
    */
   public function idGetLabel($formatterTypeName): ?string {
 

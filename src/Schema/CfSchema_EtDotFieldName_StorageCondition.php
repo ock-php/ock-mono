@@ -101,9 +101,7 @@ class CfSchema_EtDotFieldName_StorageCondition implements CfSchema_SelectInterfa
   }
 
   /**
-   * @param string|mixed $etAndFieldName
-   *
-   * @return string|null
+   * {@inheritdoc}
    */
   public function idGetLabel($etAndFieldName): ?string {
     list($et, $fieldName) = explode('.', $etAndFieldName . '.');

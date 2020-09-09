@@ -56,9 +56,7 @@ class CfSchema_ViewDisplayId_Condition implements CfSchema_FlatSelectInterface {
   }
 
   /**
-   * @param string $id
-   *
-   * @return string|null
+   * {@inheritdoc}
    */
   public function idGetLabel($id): ?string {
 

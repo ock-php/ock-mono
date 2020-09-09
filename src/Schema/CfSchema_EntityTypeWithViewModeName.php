@@ -88,9 +88,7 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_SelectInterface {
   }
 
   /**
-   * @param string $id
-   *
-   * @return string|null
+   * {@inheritdoc}
    */
   public function idGetLabel($id): ?string {
     list($type, $mode) = explode(':', $id . ':');

@@ -87,9 +87,7 @@ class CfSchema_EntityType_WithGroupLabels implements CfSchema_SelectInterface {
   }
 
   /**
-   * @param string $id
-   *
-   * @return string|null
+   * {@inheritdoc}
    */
   public function idGetLabel($id): ?string {
 
