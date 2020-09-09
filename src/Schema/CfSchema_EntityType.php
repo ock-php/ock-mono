@@ -52,7 +52,7 @@ class CfSchema_EntityType implements CfSchema_FlatSelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?string {
+  public function idGetLabel($id) {
 
     $options = $this->entityTypeRepository->getEntityTypeLabels();
 

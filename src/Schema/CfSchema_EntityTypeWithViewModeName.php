@@ -90,7 +90,7 @@ class CfSchema_EntityTypeWithViewModeName implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?string {
+  public function idGetLabel($id) {
     list($type, $mode) = explode(':', $id . ':');
 
     if ('' === $type || '' === $mode) {

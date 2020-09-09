@@ -51,7 +51,7 @@ class CfSchema_EntityGenericViewModeName implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?string {
+  public function idGetLabel($id) {
 
     $aliases = [];
     foreach ($this->entityDisplayRepository->getAllViewModes() as $entityType => $viewModes) {

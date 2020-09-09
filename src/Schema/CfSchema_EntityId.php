@@ -33,7 +33,7 @@ class CfSchema_EntityId implements CfSchema_IdInterface, FormatorD8Interface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?string {
+  public function idGetLabel($id) {
 
     if (NULL === $entity = $this->idGetEntity($id)) {
       return NULL;
