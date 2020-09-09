@@ -18,7 +18,7 @@ class CfSchema_ImageStyleName implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($styleName): ?string {
+  public function idGetLabel($styleName) {
     if (empty($styleName)) {
       return '- ' . t('Original image') . ' -';
     }

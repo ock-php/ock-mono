@@ -55,7 +55,7 @@ class CfSchema_FieldFormatterSettings implements FormatorD8Interface, Summarizer
    *
    * @return null|string
    */
-  public function confGetSummary($conf): ?string {
+  public function confGetSummary($conf) {
 
     $summary = $this->getFormatter($conf)->settingsSummary();
 

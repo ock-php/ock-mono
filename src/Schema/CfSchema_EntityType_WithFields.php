@@ -66,7 +66,7 @@ class CfSchema_EntityType_WithFields implements CfSchema_FlatSelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?string {
+  public function idGetLabel($id) {
 
     /**
      * @var array[][] $map

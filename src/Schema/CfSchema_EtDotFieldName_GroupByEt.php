@@ -103,7 +103,7 @@ class CfSchema_EtDotFieldName_GroupByEt implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($etAndFieldName): ?string {
+  public function idGetLabel($etAndFieldName) {
     list($et, $fieldName) = explode('.', $etAndFieldName . '.');
 
     if (NULL !== $this->entityType) {
