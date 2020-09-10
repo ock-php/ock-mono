@@ -1,0 +1,95 @@
+<?php
+declare(strict_types=1);
+
+namespace Donquixote\Cf\SchemaToAnything\Partial;
+
+use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
+use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
+use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\Cf\Exception\SchemaToAnythingException;
+use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+
+class SchemaToAnythingPartial_CallbackNoHelper extends SchemaToAnythingPartialBase {
+
+  /**
+   * @var \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface
+   */
+  private $callback;
+
+  /**
+   * @param string $class
+   * @param string|null $schemaType
+   *
+   * @return self
+   */
+  public static function fromClassName($class, $schemaType = NULL): self {
+    $callback = CallbackReflection_ClassConstruction::createFromClassName($class);
+    return new self(
+      $callback,
+      $schemaType,
+      $class);
+  }
+
+  /**
+   * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
+   * @param string|null $resultType
+   *
+   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface|null
+   */
+  public static function create(CallbackReflectionInterface $callback, $resultType = NULL): ?SchemaToAnythingPartialInterface {
+
+    $params = $callback->getReflectionParameters();
+
+    if ([0] !== array_keys($params)) {
+      return NULL;
+    }
+
+    if (NULL === $t0 = $params[0]->getClass()) {
+      return NULL;
+    }
+
+    if (CfSchemaInterface::class === $schemaType = $t0->getName()) {
+      $schemaType = NULL;
+    }
+    elseif (!is_a($schemaType, CfSchemaInterface::class, TRUE)) {
+      return NULL;
+    }
+
+    return new self($callback, $schemaType, $resultType);
+  }
+
+  /**
+   *
+   * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
+   * @param string|null $schemaType
+   * @param string|null $resultType
+   */
+  public function __construct(CallbackReflectionInterface $callback, $schemaType = NULL, $resultType = NULL) {
+    $this->callback = $callback;
+    parent::__construct($schemaType, $resultType);
+  }
+
+  /**
+   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param string $interface
+   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $helper
+   *
+   * @return null|object
+   *   An instance of $interface, or NULL.
+   *
+   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   */
+  protected function schemaDoGetObject(
+    CfSchemaInterface $schema,
+    $interface,
+    SchemaToAnythingInterface $helper
+  ) {
+
+    try {
+      return $this->callback->invokeArgs([$schema]);
+    }
+    catch (\Exception $e) {
+      throw new SchemaToAnythingException("Exception in callback.", 0, $e);
+    }
+  }
+}
