@@ -1,0 +1,64 @@
+{
+  "name": "donquixote/ocui",
+  "description": "Object Composition UI",
+  "license": "GPL-2.0-or-later",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../phplib/adaptism"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/adaptism-d8"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/annotation-parser"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/callback-reflection"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/class-discovery"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/containerkit"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/factory-discovery"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/factory-reflection"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/nicetrace"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/reflectionkit"
+    }
+  ],
+  "require": {
+    "composer/installers": "^1.9",
+    "donquixote/callback-reflection": "^1.0",
+    "donquixote/containerkit": "*",
+    "donquixote/nicetrace": "*",
+    "psr/log": "^1.1"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Donquixote\\Cf\\": "src"
+    }
+  }
+}
