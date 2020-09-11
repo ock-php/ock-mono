@@ -249,7 +249,7 @@ final class ReflectionUtil extends UtilBase {
     }
 
     // See https://stackoverflow.com/a/17560595/246724
-    $closure = function & ($k) use ($object) {
+    $closure = static function & ($k) use ($object) {
       // Using $object instead of $this, to prevent IDE warnings.
       return $object->$k;
     };
@@ -298,7 +298,7 @@ final class ReflectionUtil extends UtilBase {
     }
 
     // See https://stackoverflow.com/a/17560595/246724
-    $closure = function ($k) use ($object) {
+    $closure = static function ($k) use ($object) {
       // Using $object instead of $this, to prevent IDE warnings.
       return $object->$k;
     };
@@ -317,7 +317,7 @@ final class ReflectionUtil extends UtilBase {
   public static function objectGetPropertyValuesDeep(object $object): array {
 
     // See https://stackoverflow.com/a/17560595/246724
-    $closure = function & ($k) use ($object) {
+    $closure = static function & ($k) use ($object) {
       // Using $object instead of $this, to prevent IDE warnings.
       return $object->$k;
     };
