@@ -11,7 +11,10 @@ interface TranslatableInterface {
   public function getOriginalText(): string;
 
   /**
-   * @return string[]
+   * Gets the replacements.
+   *
+   * @return mixed[]
+   *   Map of strings or stringable objects.
    */
   public function getReplacements(): array;
 
