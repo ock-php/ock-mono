@@ -31,7 +31,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @return \ReflectionFunctionAbstract
    */
-  public static function callableGetReflectionFunction(callable $callable): \ReflectionFunctionAbstract {
+  public static function callableGetReflectionFunction(callable $callable): ?\ReflectionFunctionAbstract {
 
     if ($callable instanceof \Closure) {
       return new \ReflectionFunction($callable);
