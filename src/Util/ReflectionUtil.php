@@ -256,6 +256,7 @@ final class ReflectionUtil extends UtilBase {
 
     $bound = $closure->bindTo(null, $context);
 
+    /** @noinspection PhpPassByRefInspection */
     return $bound->__invoke($k);
   }
 
@@ -334,6 +335,7 @@ final class ReflectionUtil extends UtilBase {
       }
 
       $k = $property->getName();
+      /** @noinspection PhpPassByRefInspection */
       $valuess[0][$k] = &$bound->__invoke($k);
     }
 
@@ -351,6 +353,7 @@ final class ReflectionUtil extends UtilBase {
 
         $k = $property->getName();
 
+        /** @noinspection PhpPassByRefInspection */
         $valuess[$level][$k] = &$bound->__invoke($k);
       }
     }
