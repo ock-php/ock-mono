@@ -149,9 +149,7 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
       $annotations,
       $className);
 
-    return DefinitionUtil::buildDefinitionsByTypeAndId(
-      $pluginTypeNames,
-      $definitionsById);
+    return array_fill_keys($pluginTypeNames, $definitionsById);
   }
 
   /**
@@ -198,9 +196,7 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
       $annotations,
       $name);
 
-    return DefinitionUtil::buildDefinitionsByTypeAndId(
-      $returnTypeNames,
-      $definitionsById);
+    return array_fill_keys($returnTypeNames, $definitionsById);
   }
 
   /**
@@ -232,9 +228,8 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
       $annotations,
       $name);
 
-    return DefinitionUtil::buildDefinitionsByTypeAndId(
-      $pluginTypeNames,
-      $definitionsById);
+    // Multiply the definitions for all applicable plugin type names.
+    return array_fill_keys($pluginTypeNames, $definitionsById);
   }
 
   /**
