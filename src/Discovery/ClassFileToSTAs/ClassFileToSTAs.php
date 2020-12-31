@@ -8,6 +8,7 @@ use Donquixote\Cf\Discovery\FactoryToSTA\FactoryToSTAInterface;
 use Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactories;
 use Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactoriesInterface;
 use Donquixote\FactoryReflection\ClassToFactories\ClassToFactories;
+use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnType_Chain;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinder_PhpTokenParser;
 
 class ClassFileToSTAs implements ClassFileToSTAsInterface {
@@ -26,9 +27,10 @@ class ClassFileToSTAs implements ClassFileToSTAsInterface {
    * @return \Donquixote\Cf\Discovery\ClassFileToSTAs\ClassFileToSTAsInterface
    */
   public static function create(): ClassFileToSTAsInterface {
+    $functionToReturnType = FunctionToReturnType_Chain::create();
     return new self(
       new ClassFileToFactories(
-        ClassToFactories::create(),
+        ClassToFactories::create($functionToReturnType),
         new ContextFinder_PhpTokenParser()),
       new FactoryToSTA());
   }
