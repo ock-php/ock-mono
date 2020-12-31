@@ -6,7 +6,6 @@ namespace Donquixote\Cf\Zoo\V2V\Group;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
 use Donquixote\Cf\Exception\EvaluatorException;
-use Drupal\faktoria\Util\CfrReflectionUtil;
 
 class V2V_Group_Callback implements V2V_GroupInterface {
 
@@ -26,7 +25,7 @@ class V2V_Group_Callback implements V2V_GroupInterface {
    * {@inheritdoc}
    */
   public function valuesGetValue(array $values) {
-    CfrReflectionUtil::callbackAssertValidArgs($this->callbackReflection, $values);
+    // @todo Validate args.
 
     try {
       return $this->callbackReflection->invokeArgs($values);
