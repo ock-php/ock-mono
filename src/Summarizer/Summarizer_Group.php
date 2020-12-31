@@ -5,6 +5,7 @@ namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\Cf\Text\TextInterface;
 use Donquixote\Cf\Util\HtmlUtil;
 use Donquixote\Cf\Util\StaUtil;
 
@@ -57,7 +58,7 @@ class Summarizer_Group implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
+  public function confGetSummary($conf): ?TextInterface {
 
     if (!\is_array($conf)) {
       $conf = [];

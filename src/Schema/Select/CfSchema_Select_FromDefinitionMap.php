@@ -5,6 +5,7 @@ namespace Donquixote\Cf\Schema\Select;
 
 use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
 use Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\Cf\Text\TextInterface;
 
 class CfSchema_Select_FromDefinitionMap implements CfSchema_SelectInterface {
 
@@ -62,7 +63,7 @@ class CfSchema_Select_FromDefinitionMap implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?\Donquixote\Cf\Text\TextInterface {
+  public function idGetLabel($id): ?TextInterface {
     if (NULL === $definition = $this->definitionMap->idGetDefinition($id)) {
       return NULL;
     }

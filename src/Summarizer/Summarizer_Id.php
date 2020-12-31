@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
+use Donquixote\Cf\Text\TextInterface;
 use Donquixote\Cf\Translator\TranslatorInterface;
 use Donquixote\Cf\Util\ConfUtil;
 
@@ -34,7 +35,7 @@ class Summarizer_Id implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
+  public function confGetSummary($conf): ?TextInterface {
 
     if (NULL === $id = ConfUtil::confGetId($conf)) {
       return $this->translator->translate('Required id missing.');

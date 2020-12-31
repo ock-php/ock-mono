@@ -5,6 +5,7 @@ namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\Cf\Text\TextInterface;
 use Donquixote\Cf\Util\HtmlUtil;
 use Donquixote\Cf\Util\StaUtil;
 
@@ -68,7 +69,7 @@ class Summarizer_Optional implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
+  public function confGetSummary($conf): ?TextInterface {
 
     if (!\is_array($conf) || empty($conf['enabled'])) {
 

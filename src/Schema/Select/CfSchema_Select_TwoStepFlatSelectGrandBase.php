@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Schema\Select;
 
 use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
+use Donquixote\Cf\Text\TextInterface;
 
 abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_SelectInterface {
 
@@ -52,7 +53,7 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($combinedId): ?\Donquixote\Cf\Text\TextInterface {
+  public function idGetLabel($combinedId): ?TextInterface {
     [$id0, $id1] = $this->splitId($combinedId) + [NULL, NULL];
 
     if (NULL === $id1) {

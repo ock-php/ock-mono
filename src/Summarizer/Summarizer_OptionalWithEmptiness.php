@@ -5,6 +5,7 @@ namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Emptiness\EmptinessInterface;
 use Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface;
+use Donquixote\Cf\Text\TextInterface;
 use Donquixote\Cf\Util\HtmlUtil;
 
 class Summarizer_OptionalWithEmptiness implements SummarizerInterface {
@@ -42,7 +43,7 @@ class Summarizer_OptionalWithEmptiness implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
+  public function confGetSummary($conf): ?TextInterface {
 
     if ($this->emptiness->confIsEmpty($conf)) {
 

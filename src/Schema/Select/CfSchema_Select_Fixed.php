@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Schema\Select;
 
+use Donquixote\Cf\Text\TextInterface;
+
 class CfSchema_Select_Fixed implements CfSchema_SelectInterface {
 
   /**
@@ -72,7 +74,7 @@ class CfSchema_Select_Fixed implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?\Donquixote\Cf\Text\TextInterface {
+  public function idGetLabel($id): ?TextInterface {
 
     return $this->options[$id] ?? null;
   }

@@ -5,6 +5,7 @@ namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldInterface;
 use Donquixote\Cf\Text\Text;
+use Donquixote\Cf\Text\TextInterface;
 use Donquixote\Cf\Util\HtmlUtil;
 
 /**
@@ -27,7 +28,7 @@ class Summarizer_Textfield implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
+  public function confGetSummary($conf): ?TextInterface {
 
     if (!\is_string($conf)) {
       return Text::t('Value is not a string.');

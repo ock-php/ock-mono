@@ -7,6 +7,7 @@ use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownValInterface;
 use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
+use Donquixote\Cf\Text\TextInterface;
 
 class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
 
@@ -76,7 +77,7 @@ class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?\Donquixote\Cf\Text\TextInterface {
+  public function idGetLabel($id): ?TextInterface {
 
     if (FALSE === /* $pos = */ strpos($id, '/')) {
       return $this->decorated->idGetLabel($id);

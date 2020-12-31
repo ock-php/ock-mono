@@ -5,6 +5,7 @@ namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\Cf\Text\TextInterface;
 use Donquixote\Cf\Translator\TranslatorInterface;
 
 class Summarizer_Sequence implements SummarizerInterface {
@@ -57,7 +58,7 @@ class Summarizer_Sequence implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
+  public function confGetSummary($conf): ?TextInterface {
 
     if (!\is_array($conf)) {
       $conf = [];
