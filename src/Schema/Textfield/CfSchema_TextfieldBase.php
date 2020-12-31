@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Schema\Textfield;
 
+use Donquixote\Cf\Text\TextInterface;
+
 abstract class CfSchema_TextfieldBase implements CfSchema_TextfieldInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function getDescription(): ?string {
+  public function getDescription(): ?TextInterface {
     return NULL;
   }
 

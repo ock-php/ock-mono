@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Schema\Textfield;
 
+use Donquixote\Cf\Text\Text;
+use Donquixote\Cf\Text\TextInterface;
+
 class CfSchema_Textfield_IntegerInRange extends CfSchema_Textfield_IntegerBase {
 
   /**
@@ -27,34 +30,34 @@ class CfSchema_Textfield_IntegerInRange extends CfSchema_Textfield_IntegerBase {
   /**
    * {@inheritdoc}
    */
-  public function getDescription(): ?string {
+  public function getDescription(): ?TextInterface {
 
     if (NULL === $this->max) {
       if (NULL === $this->min) {
         return NULL;
       }
       elseif (0 === $this->min) {
-        return (string)t('Non-negative integer.');
+        return Text::t('Non-negative integer.');
       }
       elseif (1 === $this->min) {
-        return (string)t('Positive integer.');
+        return Text::t('Positive integer.');
       }
       else {
-        return (string)t('Integer greater or equal to @min', ['@min' => $this->min]);
+        return Text::t('Integer greater or equal to @min', ['@min' => $this->min]);
       }
     }
     elseif (NULL === $this->min) {
-      return (string)t('Integer up to @max', ['@max' => $this->max]);
+      return Text::t('Integer up to @max', ['@max' => $this->max]);
     }
     else {
-      return (string)t('Integer in range [@min...@max]', ['@min' => $this->min, '@max' => $this->max]);
+      return Text::t('Integer in range [@min...@max]', ['@min' => $this->min, '@max' => $this->max]);
     }
   }
 
   /**
    * @param int $v
    *
-   * @return string[]
+   * @return \Donquixote\Cf\Text\TextInterface[]
    */
   protected function numberGetValidationErrors(int $v): array {
 
@@ -62,20 +65,20 @@ class CfSchema_Textfield_IntegerInRange extends CfSchema_Textfield_IntegerBase {
 
     if ($v < $this->min) {
       if (0 === $this->min) {
-        $errors[] = t('Value must be non-negative.');
+        $errors[] = Text::t('Value must be non-negative.');
       }
       elseif (1 === $this->min) {
-        $errors[] = t('Value must be positive.');
+        $errors[] = Text::t('Value must be positive.');
       }
       else {
-        $errors[] = t(
+        $errors[] = Text::t(
           'Value must be greater than or equal to @min.',
           ['@min' => $this->min]);
       }
     }
 
     if ($v > $this->max) {
-      $errors[] = t(
+      $errors[] = Text::t(
         '%name must be no greater than @max.',
         ['@max' => $this->max]);
     }

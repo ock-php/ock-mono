@@ -3,23 +3,25 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Schema\Boolean;
 
+use Donquixote\Cf\Text\TextInterface;
+
 class CfSchema_Boolean implements CfSchema_BooleanInterface {
 
   /**
-   * @var string|null
+   * @var \Donquixote\Cf\Text\TextInterface|null
    */
   private $trueSummary;
 
   /**
-   * @var string|null
+   * @var \Donquixote\Cf\Text\TextInterface|null
    */
   private $falseSummary;
 
   /**
-   * @param string|null $trueSummary
-   * @param string|null $falseSummary
+   * @param \Donquixote\Cf\Text\TextInterface|null $trueSummary
+   * @param \Donquixote\Cf\Text\TextInterface|null $falseSummary
    */
-  public function __construct($trueSummary, $falseSummary) {
+  public function __construct(TextInterface $trueSummary, TextInterface $falseSummary) {
     $this->trueSummary = $trueSummary;
     $this->falseSummary = $falseSummary;
   }
@@ -27,14 +29,14 @@ class CfSchema_Boolean implements CfSchema_BooleanInterface {
   /**
    * {@inheritdoc}
    */
-  public function getTrueSummary(): ?string {
+  public function getTrueSummary(): ?TextInterface {
     return $this->trueSummary;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getFalseSummary(): ?string {
+  public function getFalseSummary(): ?TextInterface {
     return $this->falseSummary;
   }
 }

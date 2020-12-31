@@ -5,6 +5,8 @@ namespace Donquixote\Cf\Schema\Boolean;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConf;
+use Donquixote\Cf\Text\Text;
+use Donquixote\Cf\Text\TextInterface;
 
 class CfSchema_Boolean_YesNo implements CfSchema_BooleanInterface {
 
@@ -25,14 +27,14 @@ class CfSchema_Boolean_YesNo implements CfSchema_BooleanInterface {
   /**
    * {@inheritdoc}
    */
-  public function getTrueSummary(): ?string {
-    return (string)\t('Yes');
+  public function getTrueSummary(): ?TextInterface {
+    return Text::t('Yes');
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getFalseSummary(): ?string {
-    return (string)\t('No');
+  public function getFalseSummary(): ?TextInterface {
+    return Text::t('No');
   }
 }

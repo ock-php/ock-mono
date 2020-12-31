@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Translatable;
 
-interface TranslatableInterface {
+use Donquixote\Cf\Text\TextInterface;
+
+interface TranslatableInterface extends TextInterface {
 
   /**
    * @return string

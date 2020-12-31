@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Schema\Textfield;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\Cf\Text\TextInterface;
 
 /**
  * @todo What about limited number of characters?
@@ -11,9 +12,9 @@ use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 interface CfSchema_TextfieldInterface extends CfSchemaInterface {
 
   /**
-   * @return string|null
+   * @return \Donquixote\Cf\Text\TextInterface|null
    */
-  public function getDescription(): ?string;
+  public function getDescription(): ?TextInterface;
 
   /**
    * @param string $text
