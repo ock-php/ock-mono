@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Generator;
 
-use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Cf\Schema\StringVal\CfSchema_StringValInterface;
 use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldInterface;
 use Donquixote\Cf\Util\PhpUtil;
@@ -51,22 +50,6 @@ class Generator_Textfield implements GeneratorInterface {
   public function __construct(CfSchema_TextfieldInterface $schema, V2V_StringInterface $v2v) {
     $this->schema = $schema;
     $this->v2v = $v2v;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function confGetValue($conf) {
-
-    if (!\is_string($conf)) {
-      throw new EvaluatorException_IncompatibleConfiguration("Value must be a string");
-    }
-
-    if ([] !== $errors = $this->schema->textGetValidationErrors($conf)) {
-      throw new EvaluatorException_IncompatibleConfiguration(reset($errors));
-    }
-
-    return $this->v2v->stringGetValue($conf);
   }
 
   /**

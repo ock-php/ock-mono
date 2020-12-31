@@ -49,18 +49,6 @@ class Generator_Boolean implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-
-    $boolean = !empty($conf);
-
-    return $boolean
-      ? $this->v2v->getTrueValue()
-      : $this->v2v->getFalseValue();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
 
     $boolean = !empty($conf);

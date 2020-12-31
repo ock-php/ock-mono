@@ -63,20 +63,6 @@ class Generator_Optional implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-
-    if (!\is_array($conf) || empty($conf['enabled'])) {
-      return $this->schema->getEmptyValue();
-    }
-
-    $subConf = $conf['options'] ?? null;
-
-    return $this->decorated->confGetValue($subConf);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
 
     if (!\is_array($conf) || empty($conf['enabled'])) {

@@ -20,13 +20,6 @@ abstract class Generator_DecoratorBase implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-    return $this->decorated->confGetValue($conf);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
     return $this->decorated->confGetPhp($conf);
   }

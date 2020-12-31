@@ -46,13 +46,6 @@ class Generator_FixedConf implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-    return $this->decorated->confGetValue($this->conf);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
     return $this->decorated->confGetPhp($this->conf);
   }

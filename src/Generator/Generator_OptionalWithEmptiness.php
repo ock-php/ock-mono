@@ -37,18 +37,6 @@ class Generator_OptionalWithEmptiness implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-
-    if ($this->emptiness->confIsEmpty($conf)) {
-      return $this->schema->getEmptyValue();
-    }
-
-    return $this->decorated->confGetValue($conf);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
 
     if ($this->emptiness->confIsEmpty($conf)) {

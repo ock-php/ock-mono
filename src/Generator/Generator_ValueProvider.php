@@ -25,13 +25,6 @@ class Generator_ValueProvider implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-    return $this->schema->getValue();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
     return $this->schema->getPhp();
   }

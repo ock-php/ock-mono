@@ -27,11 +27,6 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   private $v2v;
 
   /**
-   * @var mixed[]|null
-   */
-  private $commonValues;
-
-  /**
    * @var string[]|null
    */
   private $commonValuesPhp;
@@ -125,43 +120,6 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
     $this->moreGenerators = $moreGenerators;
     $this->specialKey = $specialKey;
     $this->v2v = $v2v;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function confGetValue($conf) {
-
-    $values = $this->getCommonValues();
-    $values[$this->specialKey] = parent::confGetValue($conf);
-
-    return $this->v2v->valuesGetValue($values);
-  }
-
-  /**
-   * @return mixed[]
-   *
-   * @throws \Donquixote\Cf\Exception\EvaluatorException
-   */
-  private function getCommonValues(): array {
-    return $this->commonValues
-      ?? $this->commonValues = $this->buildCommonValues();
-  }
-
-  /**
-   * @return mixed[]
-   *
-   * @throws \Donquixote\Cf\Exception\EvaluatorException
-   */
-  private function buildCommonValues(): array {
-
-    $commonValues = [];
-    $commonValues[$this->specialKey] = NULL;
-    foreach ($this->moreGenerators as $k => $evaluator) {
-      $commonValues[$k] = $evaluator->confGetValue(NULL);
-    }
-
-    return $commonValues;
   }
 
   /**

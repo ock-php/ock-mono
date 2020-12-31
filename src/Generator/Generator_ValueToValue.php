@@ -47,14 +47,6 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-    $value = parent::confGetValue($conf);
-    return $this->v2v->valueGetValue($value);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
     $php = parent::confGetPhp($conf);
     return $this->v2v->phpGetPhp($php);

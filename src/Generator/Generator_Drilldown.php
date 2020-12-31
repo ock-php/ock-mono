@@ -4,8 +4,6 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
-use Donquixote\Cf\Exception\EvaluatorException_UnsupportedSchema;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownValInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;

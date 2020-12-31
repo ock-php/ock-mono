@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Generator;
 
-use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
 use Donquixote\Cf\Schema\IdVal\CfSchema_IdValInterface;
 use Donquixote\Cf\Util\ConfUtil;
@@ -50,23 +49,6 @@ class Generator_Id implements GeneratorInterface {
   public function __construct(CfSchema_IdInterface $schema, V2V_IdInterface $v2v) {
     $this->schema = $schema;
     $this->v2v = $v2v;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function confGetValue($conf) {
-
-    if (NULL === $id = ConfUtil::confGetId($conf)) {
-      throw new EvaluatorException_IncompatibleConfiguration('Required id empty for id schema.');
-    }
-
-    if (!$this->schema->idIsKnown($id)) {
-      $schemaClass = \get_class($this->schema);
-      throw new EvaluatorException_IncompatibleConfiguration("Unknown id '$id' for schema of class $schemaClass.");
-    }
-
-    return $this->v2v->idGetValue($id);
   }
 
   /**

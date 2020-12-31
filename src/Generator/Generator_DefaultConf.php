@@ -61,18 +61,6 @@ class Generator_DefaultConf implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-
-    if (NULL === $conf) {
-      $conf = $this->defaultConf;
-    }
-
-    return $this->decorated->confGetValue($conf);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
 
     if (NULL === $conf) {

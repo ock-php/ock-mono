@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Generator;
 
-use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface;
 use Donquixote\Cf\Schema\SequenceVal\CfSchema_SequenceValInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
@@ -81,35 +80,6 @@ class Generator_Sequence implements GeneratorInterface {
   protected function __construct(GeneratorInterface $itemGenerator, V2V_SequenceInterface $v2v) {
     $this->itemGenerator = $itemGenerator;
     $this->v2v = $v2v;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function confGetValue($conf) {
-
-    if (NULL === $conf) {
-      $conf = [];
-    }
-    elseif (!\is_array($conf)) {
-      throw new EvaluatorException_IncompatibleConfiguration('Configuration must be an array or NULL.');
-    }
-
-    $values = [];
-    foreach ($conf as $delta => $itemConf) {
-
-      if ((string)(int)$delta !== (string)$delta || $delta < 0) {
-        $deltaExport = var_export($delta, TRUE);
-        // Fail on non-numeric and negative keys.
-        throw new EvaluatorException_IncompatibleConfiguration(''
-          . "Deltas must be non-negative integers."
-          . "\n" . "Found $deltaExport instead.");
-      }
-
-      $values[] = $this->itemGenerator->confGetValue($itemConf);
-    }
-
-    return $this->v2v->valuesGetValue($values);
   }
 
   /**

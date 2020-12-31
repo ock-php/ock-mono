@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Generator;
 
-use Donquixote\Cf\Exception\EvaluatorException;
 use Donquixote\Cf\Schema\Para\CfSchema_ParaInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Util\PhpUtil;
@@ -48,20 +47,15 @@ class Generator_Para implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-    $paraConf = $this->decorated->confGetValue($conf);
-    return $this->paraGenerator->confGetValue($paraConf);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
 
+    $paraConfPhp = $this->decorated->confGetPhp($conf);
+
     try {
-      $paraConf = $this->decorated->confGetValue($conf);
+      // @todo Use a service that can pass in variables!
+      $paraConf = eval($paraConfPhp);
     }
-    catch (EvaluatorException $e) {
+    catch (\Exception $e) {
       return PhpUtil::incompatibleConfiguration($e->getMessage());
     }
 

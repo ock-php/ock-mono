@@ -84,27 +84,6 @@ class Generator_Group implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-
-    if (!\is_array($conf)) {
-      // If all values are optional, this might still work.
-      $conf = [];
-    }
-
-    $values = [];
-    foreach ($this->itemGenerators as $key => $itemGenerator) {
-
-      $itemConf = $conf[$key] ?? null;
-
-      $values[$key] = $itemGenerator->confGetValue($itemConf);
-    }
-
-    return $this->v2v->valuesGetValue($values);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
 
     if (!\is_array($conf)) {
