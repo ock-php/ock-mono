@@ -19,7 +19,7 @@ abstract class SchemaReplacerPartial_IfaceDefinitionsBase extends SchemaReplacer
   protected function schemaDoGetReplacement(
     CfSchema_IfaceWithContextInterface $ifaceSchema,
     SchemaReplacerInterface $replacer
-  ): CfSchemaInterface {
+  ): ?CfSchemaInterface {
 
     $type = $ifaceSchema->getInterface();
     $context = $ifaceSchema->getContext();

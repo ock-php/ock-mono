@@ -31,7 +31,7 @@ class SchemaReplacerPartial_IfaceTag extends SchemaReplacerPartial_IfaceBase {
   protected function schemaDoGetReplacement(
     CfSchema_IfaceWithContextInterface $ifaceSchema,
     SchemaReplacerInterface $replacer
-  ): CfSchemaInterface {
+  ): ?CfSchemaInterface {
 
     if (NULL === $schema = $this->decorated->schemaGetReplacement($ifaceSchema, $replacer)) {
       // @todo Tag this one as well?

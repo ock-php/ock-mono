@@ -32,19 +32,19 @@ abstract class SchemaReplacerPartial_IfaceBase implements SchemaReplacerPartialI
 
     $k = $schema->getCacheId();
 
-    // The value NULL does not occur, so isset() is safe.
-    return $this->schemas[$k]
-      ?? $this->schemas[$k] = $this->schemaDoGetReplacement($schema, $replacer);
+    return array_key_exists($k, $this->schemas)
+      ? $this->schemas[$k]
+      : $this->schemas[$k] = $this->schemaDoGetReplacement($schema, $replacer);
   }
 
   /**
    * @param \Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
    * @param \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
   abstract protected function schemaDoGetReplacement(
     CfSchema_IfaceWithContextInterface $ifaceSchema,
     SchemaReplacerInterface $replacer
-  ): CfSchemaInterface;
+  ): ?CfSchemaInterface;
 }
