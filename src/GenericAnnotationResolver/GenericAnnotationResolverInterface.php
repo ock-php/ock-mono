@@ -1,5 +1,7 @@
 <?php
 
+namespace Donquixote\Cf\GenericAnnotationResolver;
+
 interface GenericAnnotationResolverInterface {
 
   /**
