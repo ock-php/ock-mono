@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Schema\Textfield;
 
-use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Cf\Schema\StringVal\CfSchema_StringVal;
 use Donquixote\Cf\Util\PhpUtil;
 use Donquixote\Cf\Zoo\V2V\String\V2V_StringInterface;
