@@ -22,7 +22,7 @@ trait StaticFactoryTrait {
    */
   public static function schema(): CfSchemaInterface {
     return self::$schema
-      ?? self::$schema = self::createSchema();
+      ?? self::$schema = static::createSchema();
   }
 
   /**
