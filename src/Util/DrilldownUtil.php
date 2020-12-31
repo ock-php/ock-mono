@@ -14,7 +14,7 @@ final class DrilldownUtil extends UtilBase {
    *
    * @return array
    */
-  public static function schemaBuildConf(CfSchema_DrilldownInterface $schema, $id, $options): array {
+  public static function schemaBuildConf(CfSchema_DrilldownInterface $schema, string $id, $options): array {
 
     return self::buildConf(
       $id,
@@ -31,7 +31,7 @@ final class DrilldownUtil extends UtilBase {
    *
    * @return array|mixed
    */
-  public static function buildConf($id, $options, $k0 = 'id', $k1 = 'options') {
+  public static function buildConf(string $id, $options, $k0 = 'id', $k1 = 'options') {
 
     if (NULL === $k0) {
       return $id;

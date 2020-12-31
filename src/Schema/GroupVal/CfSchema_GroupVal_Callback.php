@@ -20,7 +20,7 @@ final class CfSchema_GroupVal_Callback extends UtilBase {
    *
    * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  public static function fromClass($class, array $schemas, array $labels): CfSchema_GroupValInterface {
+  public static function fromClass(string $class, array $schemas, array $labels): CfSchema_GroupValInterface {
 
     return self::create(
       CallbackReflection_ClassConstruction::createFromClassName(
@@ -37,7 +37,7 @@ final class CfSchema_GroupVal_Callback extends UtilBase {
    *
    * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  public static function fromStaticMethod($class, $methodName, array $schemas, array $labels): CfSchema_GroupValInterface {
+  public static function fromStaticMethod(string $class, string $methodName, array $schemas, array $labels): CfSchema_GroupValInterface {
 
     return self::create(
       CallbackReflection_StaticMethod::create(

@@ -21,7 +21,7 @@ class CfSchema_Id_DefmapKey implements CfSchema_IdInterface {
    * @param \Donquixote\Cf\Defmap\IdToDefinition\IdToDefinitionInterface $definitionMap
    * @param string $key
    */
-  public function __construct(IdToDefinitionInterface $definitionMap, $key) {
+  public function __construct(IdToDefinitionInterface $definitionMap, string $key) {
     $this->definitionMap = $definitionMap;
     $this->key = $key;
   }

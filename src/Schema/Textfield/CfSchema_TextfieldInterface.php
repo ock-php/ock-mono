@@ -20,13 +20,13 @@ interface CfSchema_TextfieldInterface extends CfSchemaInterface {
    *
    * @return bool
    */
-  public function textIsValid($text): bool;
+  public function textIsValid(string $text): bool;
 
   /**
    * @param string $text
    *
    * @return string[]
    */
-  public function textGetValidationErrors($text): array;
+  public function textGetValidationErrors(string $text): array;
 
 }

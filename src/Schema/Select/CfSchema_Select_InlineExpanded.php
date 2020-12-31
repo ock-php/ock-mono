@@ -64,7 +64,7 @@ class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
    *
    * @return null|string[][]
    */
-  private function idGetInlineOptions($id): ?array {
+  private function idGetInlineOptions(string $id): ?array {
 
     if (NULL === $schema = $this->idGetSelectSchema($id)) {
       return NULL;
@@ -82,7 +82,7 @@ class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
       return $this->decorated->idGetLabel($id);
     }
 
-    list($prefix, $suffix) = explode('/', $id, 2);
+    [$prefix, $suffix] = explode('/', $id, 2);
 
     if (NULL === $subSchema = $this->idGetSelectSchema($prefix)) {
       return NULL;
@@ -100,7 +100,7 @@ class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
       return $this->decorated->idIsKnown($combinedId);
     }
 
-    list($prefix, $suffix) = explode('/', $combinedId, 2);
+    [$prefix, $suffix] = explode('/', $combinedId, 2);
 
     if (NULL === $subSchema = $this->idGetSelectSchema($prefix)) {
       return FALSE;
@@ -128,11 +128,11 @@ class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
   }
 
   /**
-   * @param string $id
+* @param string $id
    *
    * @return \Donquixote\Cf\Schema\Id\CfSchema_IdInterface|null
    */
-  private function idGetIdSchema($id): ?CfSchema_IdInterface {
+  private function idGetIdSchema(string $id): ?CfSchema_IdInterface {
 
     if (NULL === $nestedSchema = $this->idToSchema->idGetSchema($id)) {
       return NULL;

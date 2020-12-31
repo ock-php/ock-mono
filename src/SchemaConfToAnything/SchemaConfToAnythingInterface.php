@@ -17,6 +17,6 @@ interface SchemaConfToAnythingInterface {
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public function schema(CfSchemaInterface $schema, $conf, $interface): object;
+  public function schema(CfSchemaInterface $schema, $conf, string $interface): object;
 
 }

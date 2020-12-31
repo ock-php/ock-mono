@@ -111,7 +111,7 @@ class SchemaToAnythingPartial_Callback extends SchemaToAnythingPartialBase {
    */
   protected function schemaDoGetObject(
     CfSchemaInterface $schema,
-    $interface,
+    string $interface,
     SchemaToAnythingInterface $helper
   ) {
 

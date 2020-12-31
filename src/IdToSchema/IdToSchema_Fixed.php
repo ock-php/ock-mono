@@ -25,7 +25,7 @@ class IdToSchema_Fixed implements IdToSchemaInterface {
    *
    * @return \Donquixote\Cf\IdToSchema\IdToSchema_Fixed
    */
-  public function withSchema($id, CfSchemaInterface $schema): IdToSchema_Fixed {
+  public function withSchema(string $id, CfSchemaInterface $schema): IdToSchema_Fixed {
     $clone = clone $this;
     $clone->schemas[$id] = $schema;
     return $clone;

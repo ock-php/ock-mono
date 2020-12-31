@@ -16,7 +16,7 @@ abstract class CfSchema_Proxy_Cache_SelectBase implements CfSchema_Proxy_CacheIn
   /**
    * @param string $cacheId
    */
-  public function __construct($cacheId) {
+  public function __construct(string $cacheId) {
     $this->cacheId = $cacheId;
   }
 

@@ -103,9 +103,9 @@ class AnnotatedFactory implements AnnotatedFactoryInterface {
    */
   public function __construct(
     CallbackReflectionInterface $callback,
-    $docComment,
+    string $docComment,
     array $returnTypeNames,
-    $definitionValue
+    ?string $definitionValue
   ) {
     $this->callback = $callback;
     $this->docComment = $docComment;

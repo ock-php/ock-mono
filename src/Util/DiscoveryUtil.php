@@ -55,7 +55,7 @@ final class DiscoveryUtil extends UtilBase {
    */
   public static function classFindAnnotatedFactories(
     \ReflectionClass $reflClass,
-    $annotationTagName
+    string $annotationTagName
   ) {
 
     if (1

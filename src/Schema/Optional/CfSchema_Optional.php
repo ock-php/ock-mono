@@ -25,7 +25,7 @@ class CfSchema_Optional extends CfSchema_OptionalBase {
    *
    * @return static
    */
-  public function withEmptySummary($emptySummary) {
+  public function withEmptySummary(string $emptySummary) {
     $clone = clone $this;
     $clone->emptySummary = $emptySummary;
     return $clone;

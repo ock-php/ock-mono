@@ -21,7 +21,7 @@ trait CfSchema_Drilldown_CustomKeysTrait {
    *
    * @return static
    */
-  public function withKeys($idKey, $optionsKey): self {
+  public function withKeys(string $idKey, string $optionsKey): self {
     $clone = clone $this;
     $clone->idKey = $idKey;
     $clone->optionsKey = $optionsKey;

@@ -23,7 +23,7 @@ class DefinitionsById_FromType implements DefinitionsByIdInterface {
    * @param \Donquixote\Cf\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface $typeToDefinitionsById
    * @param string $type
    */
-  public function __construct(TypeToDefinitionsbyidInterface $typeToDefinitionsById, $type) {
+  public function __construct(TypeToDefinitionsbyidInterface $typeToDefinitionsById, string $type) {
     $this->typeToDefinitionsById = $typeToDefinitionsById;
     $this->type = $type;
   }

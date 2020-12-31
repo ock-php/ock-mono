@@ -12,14 +12,14 @@ interface CachePrefixInterface {
    *
    * @return \Donquixote\Cf\Cache\Offset\CacheOffsetInterface
    */
-  public function getOffset($key): CacheOffsetInterface;
+  public function getOffset(string $key): CacheOffsetInterface;
 
   /**
    * @param string $prefix
    *
    * @return \Donquixote\Cf\Cache\Prefix\CachePrefixInterface
    */
-  public function withAppendedPrefix($prefix): self;
+  public function withAppendedPrefix(string $prefix): self;
 
   /**
    * Clears this section of the cache.

@@ -16,7 +16,7 @@ final class CfSchema extends UtilBase {
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public static function iface($interface, CfContextInterface $context = NULL): CfSchemaInterface {
+  public static function iface(string $interface, CfContextInterface $context = NULL): CfSchemaInterface {
     return CfSchema_IfaceWithContext::create($interface, $context);
   }
 
@@ -26,7 +26,7 @@ final class CfSchema extends UtilBase {
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public static function ifaceOptional($interface, CfContextInterface $context = NULL): CfSchemaInterface {
+  public static function ifaceOptional(string $interface, CfContextInterface $context = NULL): CfSchemaInterface {
     return CfSchema_IfaceWithContext::createOptional($interface, $context);
   }
 
@@ -36,7 +36,7 @@ final class CfSchema extends UtilBase {
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public static function ifaceSequence($interface, CfContextInterface $context = NULL): CfSchemaInterface {
+  public static function ifaceSequence(string $interface, CfContextInterface $context = NULL): CfSchemaInterface {
     return CfSchema_IfaceWithContext::createSequence($interface, $context);
   }
 

@@ -21,7 +21,7 @@ class CfSchema_ValueProvider_Callback implements CfSchema_ValueProviderInterface
    *
    * @return \Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_Callback
    */
-  public static function fromClass($class): CfSchema_ValueProvider_Callback {
+  public static function fromClass(string $class): CfSchema_ValueProvider_Callback {
     $callback = CallbackReflection_ClassConstruction::create($class);
     return new self($callback);
   }
@@ -32,7 +32,7 @@ class CfSchema_ValueProvider_Callback implements CfSchema_ValueProviderInterface
    *
    * @return \Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_Callback
    */
-  public static function createFromClassStaticMethod($class, $methodName): CfSchema_ValueProvider_Callback {
+  public static function createFromClassStaticMethod(string $class, string $methodName): CfSchema_ValueProvider_Callback {
     $callback = CallbackReflection_StaticMethod::create($class, $methodName);
     return new self($callback);
   }

@@ -20,7 +20,7 @@ abstract class CfSchema_Textfield_IntegerBase extends CfSchema_TextfieldBase imp
   /**
    * {@inheritdoc}
    */
-  public function textGetValidationErrors($text): array {
+  public function textGetValidationErrors(string $text): array {
 
     $errors = [];
 

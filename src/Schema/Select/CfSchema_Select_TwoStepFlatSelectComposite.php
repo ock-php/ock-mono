@@ -30,7 +30,7 @@ class CfSchema_Select_TwoStepFlatSelectComposite extends CfSchema_Select_TwoStep
    *
    * @return CfSchema_FlatSelectInterface|null
    */
-  protected function idGetSubSchema($id): ?CfSchema_FlatSelectInterface {
+  protected function idGetSubSchema(string $id): ?CfSchema_FlatSelectInterface {
 
     $subSchema = $this->idToSubSchema->idGetSchema($id);
 

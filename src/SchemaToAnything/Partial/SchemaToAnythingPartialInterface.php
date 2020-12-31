@@ -30,14 +30,14 @@ interface SchemaToAnythingPartialInterface {
    *
    * @return bool
    */
-  public function providesResultType($resultInterface): bool;
+  public function providesResultType(string $resultInterface): bool;
 
   /**
    * @param string $schemaClass
    *
    * @return bool
    */
-  public function acceptsSchemaClass($schemaClass): bool;
+  public function acceptsSchemaClass(string $schemaClass): bool;
 
   /**
    * @return int

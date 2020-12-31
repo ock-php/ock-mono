@@ -46,7 +46,7 @@ class CfSchema_MoreArgs extends CfSchema_DecoratorBase implements CfSchema_MoreA
    *
    * @return \Donquixote\Cf\Schema\MoreArgs\CfSchema_MoreArgs
    */
-  public function withItemSchema($key, CfSchema_OptionlessInterface $schema): CfSchema_MoreArgs {
+  public function withItemSchema(string $key, CfSchema_OptionlessInterface $schema): CfSchema_MoreArgs {
     $clone = clone $this;
     $clone->more[$key] = $schema;
     return $clone;

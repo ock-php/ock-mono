@@ -32,7 +32,7 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
    *
    * @return \Donquixote\Cf\Schema\Sequence\CfSchema_Sequence
    */
-  public static function createSequence($interface, CfContextInterface $context = NULL): CfSchema_Sequence {
+  public static function createSequence(string $interface, CfContextInterface $context = NULL): CfSchema_Sequence {
     return new CfSchema_Sequence(
       new self($interface, $context));
   }
@@ -43,7 +43,7 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
    *
    * @return \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface
    */
-  public static function createOptional($interface, CfContextInterface $context = NULL): CfSchema_OptionalInterface {
+  public static function createOptional(string $interface, CfContextInterface $context = NULL): CfSchema_OptionalInterface {
     return new CfSchema_Optional(new self($interface, $context));
   }
 

@@ -22,7 +22,7 @@ final class CfSchema_MoreArgsVal_Callback extends UtilBase {
    * @return \Donquixote\Cf\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
    */
   public static function fromClass(
-    $class,
+    string $class,
     CfSchemaInterface $decorated,
     array $more
   ): CfSchema_MoreArgsValInterface {
@@ -43,8 +43,8 @@ final class CfSchema_MoreArgsVal_Callback extends UtilBase {
    * @return \Donquixote\Cf\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
    */
   public static function fromStaticMethod(
-    $class,
-    $methodName,
+    string $class,
+    string $methodName,
     CfSchemaInterface $decorated,
     array $more
   ): CfSchema_MoreArgsValInterface {

@@ -19,7 +19,7 @@ class CfSchema_Id_DefinitionsKey implements CfSchema_IdInterface {
    * @param array[] $definitions
    * @param string $key
    */
-  public function __construct(array $definitions, $key) {
+  public function __construct(array $definitions, string $key) {
     $this->definitions = $definitions;
     $this->key = $key;
   }

@@ -50,7 +50,7 @@ class CfSchema_Drilldown_Fixed extends CfSchema_Drilldown_CustomKeysBase {
    *
    * @return static
    */
-  public function withOption($id, CfSchemaInterface $schema, $label, $groupLabel = '') {
+  public function withOption(string $id, CfSchemaInterface $schema, string $label, $groupLabel = '') {
     $clone = clone $this;
     $clone->idSchema = $this->idSchema->withOption($id, $label, $groupLabel);
     $clone->idToSchema = $this->idToSchema->withSchema($id, $schema);

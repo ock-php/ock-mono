@@ -23,7 +23,7 @@ final class PhpUtil extends UtilBase {
    *
    * @return string
    */
-  public static function formatAsFile($php, $namespace = NULL): string {
+  public static function formatAsFile(string $php, $namespace = NULL): string {
 
     $php = CodegenUtil::autoIndent($php, '  ');
     $aliases = CodegenUtil::aliasify($php);
@@ -82,7 +82,7 @@ EOT;
    *
    * @return string
    */
-  public static function misbehavingSTA(CfSchemaInterface $schema, $expectedClass, $foundValue): string {
+  public static function misbehavingSTA(CfSchemaInterface $schema, string $expectedClass, $foundValue): string {
 
     $schemaClass = \get_class($schema);
 
@@ -118,7 +118,7 @@ EOT;
    *
    * @return string
    */
-  public static function unableToSTA(CfSchemaInterface $schema, $destinationClass): string {
+  public static function unableToSTA(CfSchemaInterface $schema, string $destinationClass): string {
 
     $schemaClass = \get_class($schema);
 
@@ -164,7 +164,7 @@ EOT;
    *
    * @return string
    */
-  public static function exception($exceptionClass, $message): string {
+  public static function exception(string $exceptionClass, string $message): string {
 
     $messagePhp = var_export($message, TRUE);
 
@@ -177,7 +177,7 @@ EOT;
    *
    * @return string
    */
-  private static function exceptionWithMessagePhp($exceptionClass, $messagePhp): string {
+  private static function exceptionWithMessagePhp(string $exceptionClass, $messagePhp): string {
 
     return <<<EOT
 // @todo Fix the generated code manually.
@@ -194,7 +194,7 @@ EOT;
    *
    * @return string
    */
-  public static function phpCallFunction($function, array $argsPhp): string {
+  public static function phpCallFunction(string $function, array $argsPhp): string {
     return $function . '(' . "\n" . self::phpCallArglist($argsPhp) . ')';
   }
 
@@ -276,7 +276,7 @@ EOT;
    *
    * @return string
    */
-  public static function phpString($string): string {
+  public static function phpString(string $string): string {
 
     /*
     if (false !== strpos($string, '\\')) {

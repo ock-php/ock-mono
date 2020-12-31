@@ -53,7 +53,7 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
    *
    * @return static
    */
-  public function withSchemaType($schemaType) {
+  public function withSchemaType(string $schemaType) {
 
     if ($schemaType === $this->schemaType) {
       return $this;
@@ -69,7 +69,7 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
    *
    * @return static
    */
-  public function withResultType($resultType) {
+  public function withResultType(string $resultType) {
 
     if ($resultType === $this->resultType) {
       return $this;
@@ -127,14 +127,14 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
    */
   abstract protected function schemaDoGetObject(
     CfSchemaInterface $schema,
-    $interface,
+    string $interface,
     SchemaToAnythingInterface $helper
   );
 
   /**
    * {@inheritdoc}
    */
-  public function acceptsSchemaClass($schemaClass): bool {
+  public function acceptsSchemaClass(string $schemaClass): bool {
     return NULL === $this->schemaType
       || is_a($schemaClass, $this->schemaType, TRUE);
   }
@@ -142,7 +142,7 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
   /**
    * {@inheritdoc}
    */
-  public function providesResultType($resultInterface): bool {
+  public function providesResultType(string $resultInterface): bool {
     return NULL === $this->resultType
       || is_a($this->resultType, $resultInterface, TRUE);
   }

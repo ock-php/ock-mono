@@ -38,7 +38,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return \Donquixote\Cf\Schema\Callback\CfSchema_Callback
    */
-  public static function fromClass($class, CfContextInterface $context = NULL): CfSchema_Callback {
+  public static function fromClass(string $class, CfContextInterface $context = NULL): CfSchema_Callback {
 
     return new self(
       CallbackReflection_ClassConstruction::create($class),
@@ -52,7 +52,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return self
    */
-  public static function fromStaticMethod($class, $methodName, CfContextInterface $context = NULL): CfSchema_Callback {
+  public static function fromStaticMethod(string $class, string $methodName, CfContextInterface $context = NULL): CfSchema_Callback {
 
     return new self(
       CallbackReflection_StaticMethod::create(
@@ -106,7 +106,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return static
    */
-  public function withParamLabel($index, $label) {
+  public function withParamLabel($index, string $label) {
     $clone = clone $this;
     $clone->explicitLabels[$index] = $label;
     return $clone;
@@ -119,7 +119,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return static
    */
-  public function withParam_Iface($index, $interface, $label = NULL) {
+  public function withParam_Iface($index, string $interface, $label = NULL) {
     return $this->withParamSchema(
       $index,
       new CfSchema_IfaceWithContext($interface, $this->context),
@@ -133,7 +133,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return static
    */
-  public function withParam_IfaceSequence($index, $interface, $label = NULL) {
+  public function withParam_IfaceSequence($index, string $interface, $label = NULL) {
     return $this->withParamSchema(
       $index,
       CfSchema_IfaceWithContext::createSequence($interface, $this->getContext()),
@@ -147,7 +147,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return static
    */
-  public function withParam_IfaceOrNull($index, $interface, $label = NULL) {
+  public function withParam_IfaceOrNull($index, string $interface, $label = NULL) {
     return $this->withParamSchema(
       $index,
       CfSchema_IfaceWithContext::createOptional($interface, $this->getContext()),

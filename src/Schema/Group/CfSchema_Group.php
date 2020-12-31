@@ -50,7 +50,7 @@ class CfSchema_Group implements CfSchema_GroupInterface {
    *
    * @return \Donquixote\Cf\Schema\Group\CfSchema_Group
    */
-  public function withItem($key, CfSchemaInterface $schema, $label = NULL): CfSchema_Group {
+  public function withItem(string $key, CfSchemaInterface $schema, $label = NULL): CfSchema_Group {
     $clone = clone $this;
     $clone->schemas[$key] = $schema;
     $clone->labels[$key] = $label ?? $key;

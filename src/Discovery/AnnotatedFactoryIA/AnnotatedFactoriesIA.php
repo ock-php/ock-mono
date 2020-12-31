@@ -28,7 +28,7 @@ class AnnotatedFactoriesIA implements AnnotatedFactoriesIAInterface {
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    * @param string $annotationTagName
    */
-  public function __construct(ClassFilesIAInterface $classFilesIA, $annotationTagName) {
+  public function __construct(ClassFilesIAInterface $classFilesIA, string $annotationTagName) {
     $this->classFilesIA = $classFilesIA;
     $this->needle = '@' . $annotationTagName;
     $this->needleRegex = '/' . preg_quote('@' . $annotationTagName, '/') . '\w/';

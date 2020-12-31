@@ -24,7 +24,7 @@ class SchemaToAnythingPartial_IfaceDefmap extends SchemaToAnythingPartialBase {
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $ifaceSchema
+   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
    * @param string $interface
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $helper
    *
@@ -32,16 +32,16 @@ class SchemaToAnythingPartial_IfaceDefmap extends SchemaToAnythingPartialBase {
    *   An instance of $interface, or NULL.
    */
   protected function schemaDoGetObject(
-    CfSchemaInterface $ifaceSchema,
-    $interface,
+    CfSchemaInterface $schema,
+    string $interface,
     SchemaToAnythingInterface $helper
   ) {
 
-    /** @var \Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext $ifaceSchema */
+    /** @var \Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext $schema */
 
     $schema = $this->typeToSchema->typeGetSchema(
-      $ifaceSchema->getInterface(),
-      $ifaceSchema->getContext());
+      $schema->getInterface(),
+      $schema->getContext());
 
     if (NULL === $schema) {
       return NULL;

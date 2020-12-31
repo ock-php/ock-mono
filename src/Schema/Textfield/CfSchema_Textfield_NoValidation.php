@@ -15,14 +15,14 @@ class CfSchema_Textfield_NoValidation implements CfSchema_TextfieldInterface {
   /**
    * {@inheritdoc}
    */
-  public function textIsValid($text): bool {
+  public function textIsValid(string $text): bool {
     return TRUE;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function textGetValidationErrors($text): array {
+  public function textGetValidationErrors(string $text): array {
     return [];
   }
 }

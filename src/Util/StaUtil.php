@@ -27,7 +27,7 @@ final class StaUtil extends UtilBase {
    * @return mixed[]|null
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public static function getMultiple(array $itemSchemas, SchemaToAnythingInterface $schemaToAnything, $interface): ?array {
+  public static function getMultiple(array $itemSchemas, SchemaToAnythingInterface $schemaToAnything, string $interface): ?array {
 
     $itemObjects = [];
     foreach ($itemSchemas as $k => $itemSchema) {
@@ -51,7 +51,7 @@ final class StaUtil extends UtilBase {
    *
    * @return mixed|null
    */
-  public static function getObject(CfSchemaInterface $schema, SchemaToAnythingInterface $schemaToAnything, $interface) {
+  public static function getObject(CfSchemaInterface $schema, SchemaToAnythingInterface $schemaToAnything, string $interface) {
 
     $object = $schemaToAnything->schema($schema, $interface);
 

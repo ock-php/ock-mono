@@ -28,7 +28,7 @@ class DefinitionToLabel implements DefinitionToLabelInterface {
    * @param string $key
    *   E.g. 'label'.
    */
-  public function __construct($key) {
+  public function __construct(string $key) {
     $this->key = $key;
   }
 

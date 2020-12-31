@@ -116,7 +116,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
    *
    * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
-  private function schemaTypeAndTargetTypeGetPartials($schemaType, $targetType): array {
+  private function schemaTypeAndTargetTypeGetPartials($schemaType, string $targetType): array {
 
     return $this->partialsGrouped[$schemaType][$targetType]
       ?? ($this->partialsGrouped[$schemaType][$targetType] = $this->schemaTypeAndTargetTypeCollectPartials(
@@ -130,7 +130,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
    *
    * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
-  private function schemaTypeAndTargetTypeCollectPartials($schemaType, $targetType): array {
+  private function schemaTypeAndTargetTypeCollectPartials(string $schemaType, string $targetType): array {
 
     return array_intersect_key(
       $this->schemaTypeGetPartials($schemaType),
@@ -153,7 +153,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
    *
    * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
-  private function targetTypeCollectPartials($targetType): array {
+  private function targetTypeCollectPartials(string $targetType): array {
 
     $partials = [];
     /** @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface $partial */
@@ -183,7 +183,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
    *
    * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
-  private function schemaTypeCollectPartials($schemaType): array {
+  private function schemaTypeCollectPartials(string $schemaType): array {
 
     $partials = [];
     /** @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface $partial */
@@ -200,14 +200,14 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
   /**
    * {@inheritdoc}
    */
-  public function providesResultType($resultInterface): bool {
+  public function providesResultType(string $resultInterface): bool {
     return [] !== $this->targetTypeGetPartials($resultInterface);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function acceptsSchemaClass($schemaClass): bool {
+  public function acceptsSchemaClass(string $schemaClass): bool {
     return [] !== $this->schemaTypeGetPartials($schemaClass);
   }
 }

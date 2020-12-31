@@ -37,7 +37,7 @@ class FormatorCommon_V2V implements SchemaToAnythingPartialInterface {
   /**
    * {@inheritdoc}
    */
-  public function providesResultType($resultInterface): bool {
+  public function providesResultType(string $resultInterface): bool {
     return is_a(
       $resultInterface ,
       FormatorCommonInterface::class,
@@ -47,7 +47,7 @@ class FormatorCommon_V2V implements SchemaToAnythingPartialInterface {
   /**
    * {@inheritdoc}
    */
-  public function acceptsSchemaClass($schemaClass): bool {
+  public function acceptsSchemaClass(string $schemaClass): bool {
     return is_a(
       $schemaClass,
       CfSchema_ValueToValueBaseInterface::class,

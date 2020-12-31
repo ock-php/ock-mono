@@ -32,7 +32,7 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
    * {@inheritdoc}
    */
   public function idIsKnown($combinedId): bool {
-    list($id0, $id1) = $this->splitId($combinedId) + [NULL, NULL];
+    [$id0, $id1] = $this->splitId($combinedId) + [NULL, NULL];
 
     if (NULL === $id1) {
       return FALSE;
@@ -53,7 +53,7 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
    * {@inheritdoc}
    */
   public function idGetLabel($combinedId) {
-    list($id0, $id1) = $this->splitId($combinedId) + [NULL, NULL];
+    [$id0, $id1] = $this->splitId($combinedId) + [NULL, NULL];
 
     if (NULL === $id1) {
       return NULL;
@@ -90,7 +90,7 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
    *
    * @return string
    */
-  protected function combineIds($id0, $id1): string {
+  protected function combineIds(string $id0, string $id1): string {
     return $id0 . ':' . $id1;
   }
 
@@ -110,9 +110,9 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
   abstract protected function getIdSchema(): CfSchema_FlatSelectInterface;
 
   /**
-   * @param string $id
+* @param string $id
    *
    * @return \Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface|null
    */
-  abstract protected function idGetSubSchema($id): ?CfSchema_FlatSelectInterface;
+  abstract protected function idGetSubSchema(string $id): ?CfSchema_FlatSelectInterface;
 }

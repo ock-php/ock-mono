@@ -13,7 +13,7 @@ class DrilldownKeysHelper_OptionsKeyNull implements DrilldownKeysHelperInterface
   /**
    * @param string $idKey
    */
-  public function __construct($idKey) {
+  public function __construct(string $idKey) {
     $this->idKey = $idKey;
   }
 

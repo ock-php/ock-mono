@@ -24,14 +24,14 @@ class CachePrefix_Root implements CachePrefixInterface {
   /**
    * {@inheritdoc}
    */
-  public function getOffset($key): CacheOffsetInterface {
+  public function getOffset(string $key): CacheOffsetInterface {
     return new CacheOffset($this->cache, $key);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function withAppendedPrefix($prefix): CachePrefixInterface {
+  public function withAppendedPrefix(string $prefix): CachePrefixInterface {
     return new CachePrefix($this->cache, $prefix);
   }
 

@@ -14,7 +14,7 @@ class SchemaToAnythingException extends \Exception implements UnsupportedSchemaE
    *
    * @return self
    */
-  public static function createWithInstead(CfSchemaInterface $schema, $interface, $instead): self {
+  public static function createWithInstead(CfSchemaInterface $schema, string $interface, $instead): self {
 
     $message = strtr(
       "Failed to create !destination\nfor !schema.",

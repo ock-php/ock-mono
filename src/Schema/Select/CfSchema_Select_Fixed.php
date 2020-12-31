@@ -48,7 +48,7 @@ class CfSchema_Select_Fixed implements CfSchema_SelectInterface {
    *
    * @return static
    */
-  public function withOption($id, $label, $groupLabel = '') {
+  public function withOption(string $id, string $label, $groupLabel = '') {
     $clone = clone $this;
     $clone->groupedOptions[$groupLabel][$id] = $label;
     $clone->options[$id] = $label;

@@ -34,7 +34,7 @@ class DefinitionsById_Cache implements DefinitionsByIdInterface {
    *
    * @return array|null
    */
-  public function idGetDefinition($id): ?array {
+  public function idGetDefinition(string $id): ?array {
     $definitions = $this->getDefinitionsById();
     return $definitions[$id] ?? null;
   }

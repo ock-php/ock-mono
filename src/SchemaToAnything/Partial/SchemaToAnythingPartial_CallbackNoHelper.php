@@ -22,7 +22,7 @@ class SchemaToAnythingPartial_CallbackNoHelper extends SchemaToAnythingPartialBa
    *
    * @return self
    */
-  public static function fromClassName($class, $schemaType = NULL): self {
+  public static function fromClassName(string $class, $schemaType = NULL): self {
     $callback = CallbackReflection_ClassConstruction::createFromClassName($class);
     return new self(
       $callback,
@@ -81,7 +81,7 @@ class SchemaToAnythingPartial_CallbackNoHelper extends SchemaToAnythingPartialBa
    */
   protected function schemaDoGetObject(
     CfSchemaInterface $schema,
-    $interface,
+    string $interface,
     SchemaToAnythingInterface $helper
   ) {
 

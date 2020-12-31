@@ -62,7 +62,7 @@ class SchemaReplacer_FromPartials implements SchemaReplacerInterface {
    *
    * @return \Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartialInterface[]
    */
-  private function schemaClassFindPartials($schemaClass): array {
+  private function schemaClassFindPartials(string $schemaClass): array {
 
     $partials = [];
     foreach ($this->partials as $partial) {

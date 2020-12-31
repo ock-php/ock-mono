@@ -26,7 +26,7 @@ class DefinitionMap_Proxy implements DefinitionMapInterface {
    * @param \Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmapInterface $typeToDefmap
    * @param string $type
    */
-  public function __construct(TypeToDefmapInterface $typeToDefmap, $type) {
+  public function __construct(TypeToDefmapInterface $typeToDefmap, string $type) {
     $this->typeToDefmap = $typeToDefmap;
     $this->type = $type;
   }

@@ -19,7 +19,7 @@ final class CfSchema_ValueToValue_CallbackMono extends UtilBase {
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public static function fromStaticMethod($class, $methodName, CfSchemaInterface $decorated): CfSchemaInterface {
+  public static function fromStaticMethod(string $class, string $methodName, CfSchemaInterface $decorated): CfSchemaInterface {
     $callback = CallbackReflection_StaticMethod::create($class, $methodName);
     return self::create($decorated, $callback);
   }
@@ -30,7 +30,7 @@ final class CfSchema_ValueToValue_CallbackMono extends UtilBase {
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
    */
-  public static function fromClass($class, CfSchemaInterface $decorated): CfSchemaInterface {
+  public static function fromClass(string $class, CfSchemaInterface $decorated): CfSchemaInterface {
     $callback = CallbackReflection_ClassConstruction::create($class);
     return self::create($decorated, $callback);
   }

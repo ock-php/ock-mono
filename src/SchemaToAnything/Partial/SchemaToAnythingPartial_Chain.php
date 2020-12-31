@@ -64,14 +64,14 @@ class SchemaToAnythingPartial_Chain implements SchemaToAnythingPartialInterface 
   /**
    * {@inheritdoc}
    */
-  public function providesResultType($resultInterface): bool {
+  public function providesResultType(string $resultInterface): bool {
     return TRUE;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function acceptsSchemaClass($schemaClass): bool {
+  public function acceptsSchemaClass(string $schemaClass): bool {
     return TRUE;
   }
 

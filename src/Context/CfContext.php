@@ -37,7 +37,7 @@ class CfContext implements CfContextInterface {
    *
    * @return $this
    */
-  public function paramNameSetValue($paramName, $value) {
+  public function paramNameSetValue(string $paramName, $value) {
     $this->values[$paramName] = $value;
     return $this;
   }

@@ -17,7 +17,7 @@ abstract class CfSchema_TextfieldBase implements CfSchema_TextfieldInterface {
    *
    * @return bool
    */
-  final public function textIsValid($text): bool {
+  final public function textIsValid(string $text): bool {
     return [] !== $this->textGetValidationErrors($text);
   }
 }

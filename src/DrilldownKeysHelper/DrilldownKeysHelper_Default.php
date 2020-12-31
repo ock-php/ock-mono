@@ -19,7 +19,7 @@ class DrilldownKeysHelper_Default implements DrilldownKeysHelperInterface {
    * @param string $idKey
    * @param string $optionsKey
    */
-  public function __construct($idKey, $optionsKey) {
+  public function __construct(string $idKey, string $optionsKey) {
     $this->idKey = $idKey;
     $this->optionsKey = $optionsKey;
   }

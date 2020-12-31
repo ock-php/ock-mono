@@ -26,7 +26,7 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
    *
    * @return self
    */
-  public static function create($tagName): ClassFileToDefinitions_NativeReflection {
+  public static function create(string $tagName): ClassFileToDefinitions_NativeReflection {
     return new self(
       DocToAnnotations::create($tagName),
       $tagName);
@@ -36,7 +36,7 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
    * @param \Donquixote\Cf\Discovery\DocToAnnotations\DocToAnnotationsInterface $docToAnnotations
    * @param string $tagName
    */
-  public function __construct(DocToAnnotationsInterface $docToAnnotations, $tagName) {
+  public function __construct(DocToAnnotationsInterface $docToAnnotations, string $tagName) {
     $this->docToAnnotations = $docToAnnotations;
     $this->tagName = $tagName;
   }

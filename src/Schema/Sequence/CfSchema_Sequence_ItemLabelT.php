@@ -29,7 +29,7 @@ class CfSchema_Sequence_ItemLabelT extends CfSchema_SequenceBase {
    * @param string $itemLabelN
    * @param string $placeholder
    */
-  public function __construct(CfSchemaInterface $itemSchema, $newItemLabel, $itemLabelN, $placeholder = '!n') {
+  public function __construct(CfSchemaInterface $itemSchema, string $newItemLabel, string $itemLabelN, $placeholder = '!n') {
     parent::__construct($itemSchema);
     $this->newItemLabel = $newItemLabel;
     $this->itemLabelN = $itemLabelN;

@@ -50,7 +50,7 @@ final class ReflectionUtil extends UtilBase {
         return new \ReflectionFunction($callable);
       }
       else {
-        list($class, $methodName) = explode('::', $callable);
+        [$class, $methodName] = explode('::', $callable);
         if (!method_exists($class, $methodName)) {
           return NULL;
         }
@@ -190,7 +190,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @return bool|mixed|null|string
    */
-  public static function aliasGetClassName($alias, array $aliasMap = [], $namespace = NULL) {
+  public static function aliasGetClassName(string $alias, array $aliasMap = [], $namespace = NULL) {
 
     if ('' === $alias) {
       return NULL;
@@ -240,7 +240,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @return mixed
    */
-  public static function &objectGetPropertyValueRef($object, $k, $context = null) {
+  public static function &objectGetPropertyValueRef($object, string $k, $context = null) {
 
     if (null === $context) {
       /** @var string|object|null $context */
@@ -290,7 +290,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @return mixed
    */
-  public static function objectGetPropertyValue($object, $k, $context = null) {
+  public static function objectGetPropertyValue($object, string $k, $context = null) {
 
     if (null === $context) {
       /** @var string|object|null $context */
@@ -371,7 +371,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @throws \ReflectionException
    */
-  public static function createInstance($class, array $values, array $privateParentValues = []) {
+  public static function createInstance(string $class, array $values, array $privateParentValues = []) {
 
     $reflClass = new \ReflectionClass($class);
     $object = $reflClass->newInstanceWithoutConstructor();
@@ -413,7 +413,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @throws \ReflectionException
    */
-  public static function objectCallMethodArgs($object, $methodName, array $args, $context = null) {
+  public static function objectCallMethodArgs($object, string $methodName, array $args, $context = null) {
 
     if (null === $context) {
       /** @var string|object|null $context */

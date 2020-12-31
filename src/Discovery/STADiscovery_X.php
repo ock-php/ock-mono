@@ -132,7 +132,7 @@ class STADiscovery_X {
    *
    * @return bool
    */
-  public static function docCommentHasArglessAnnotationName($docComment, $name): bool {
+  public static function docCommentHasArglessAnnotationName($docComment, string $name): bool {
 
     if (false === strpos($docComment, '@' . $name)) {
       return false;

@@ -91,14 +91,14 @@ class SchemaToAnythingPartial_SchemaReplacer implements SchemaToAnythingPartialI
   /**
    * {@inheritdoc}
    */
-  public function providesResultType($resultInterface): bool {
+  public function providesResultType(string $resultInterface): bool {
     return TRUE;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function acceptsSchemaClass($schemaClass): bool {
+  public function acceptsSchemaClass(string $schemaClass): bool {
     return $this->replacer->acceptsSchemaClass($schemaClass);
   }
 }

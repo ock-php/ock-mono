@@ -12,7 +12,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string
    */
-  public static function regex($search, $delim, array $replacements = []): string {
+  public static function regex(string $search, string $delim, array $replacements = []): string {
     $regex = preg_quote($search, $delim);
     $regex = strtr($regex, $replacements);
     return $delim . $regex . $delim;
@@ -24,7 +24,7 @@ final class StringUtil extends UtilBase {
    *
    * @return bool
    */
-  public static function startsWith($haystack, $needle): bool {
+  public static function startsWith(string $haystack, string $needle): bool {
     return 0 === strncmp($haystack, $needle, \strlen($needle));
   }
 
@@ -34,7 +34,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string|false
    */
-  public static function clipPrefixOrFalse($haystack, $needle) {
+  public static function clipPrefixOrFalse(string $haystack, string $needle) {
 
     $l = \strlen($needle);
 
@@ -68,7 +68,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string[]|string
    */
-  public static function camelCaseExplode($string, $lowercase = true, $example_string = 'AA Bc', $glue = false) {
+  public static function camelCaseExplode(string $string, $lowercase = true, $example_string = 'AA Bc', $glue = false) {
     static $regexp_by_example = [];
     if (!isset($regexp_by_example[$example_string])) {
       $regexp_by_example[$example_string] = self::camelCaseExplodeExampleToRegex($example_string);
@@ -86,7 +86,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string[]
    */
-  public static function camelCaseExplodeWithRegex($regexp, $string): array {
+  public static function camelCaseExplodeWithRegex(string $regexp, $string): array {
     return preg_split($regexp, $string, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
   }
 
@@ -96,7 +96,7 @@ final class StringUtil extends UtilBase {
    * @return string
    *   Regular expression to use.
    */
-  public static function camelCaseExplodeExampleToRegex($example_string): string {
+  public static function camelCaseExplodeExampleToRegex(string $example_string): string {
     static $regexp_available = [
       '/([A-Z][^A-Z]*)/',
       '/([A-Z][^A-Z]+)/',
@@ -118,7 +118,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string
    */
-  public static function interfaceGenerateLabel($interface): string {
+  public static function interfaceGenerateLabel(string $interface): string {
     $title = $interface;
     if (FALSE !== $pos = strrpos($title, '\\')) {
       $title = substr($title, $pos + 1);
@@ -134,7 +134,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string
    */
-  public static function classGetShortname($class): string {
+  public static function classGetShortname(string $class): string {
     return (FALSE !== $pos = strrpos($class, '\\'))
       ? substr($class, $pos + 1)
       : $class;
