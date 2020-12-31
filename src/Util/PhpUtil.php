@@ -68,7 +68,7 @@ EOT;
    *
    * @return string
    */
-  public static function incompatibleConfiguration($message): string {
+  public static function incompatibleConfiguration(string $message): string {
 
     return self::exception(
       EvaluatorException_IncompatibleConfiguration::class,
@@ -177,7 +177,7 @@ EOT;
    *
    * @return string
    */
-  private static function exceptionWithMessagePhp(string $exceptionClass, $messagePhp): string {
+  private static function exceptionWithMessagePhp(string $exceptionClass, string $messagePhp): string {
 
     return <<<EOT
 // @todo Fix the generated code manually.

@@ -11,7 +11,7 @@ final class DocUtil extends UtilBase {
    *
    * @return string[]
    */
-  public static function docGetReturnTypeClassNames($docComment, $selfClassName): array {
+  public static function docGetReturnTypeClassNames(string $docComment, string $selfClassName): array {
 
     if (!preg_match('~(?:^/\*\*\ +|\v\h*\* )@return\h+(\S+)~', $docComment, $m)) {
       return [];

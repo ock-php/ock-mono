@@ -43,7 +43,7 @@ class SchemaReplacer_FromPartials implements SchemaReplacerInterface {
   /**
    * {@inheritdoc}
    */
-  public function acceptsSchemaClass($schemaClass): bool {
+  public function acceptsSchemaClass(string $schemaClass): bool {
     return [] !== $this->schemaClassGetPartials($schemaClass);
   }
 

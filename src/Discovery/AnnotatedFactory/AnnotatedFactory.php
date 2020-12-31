@@ -52,7 +52,8 @@ class AnnotatedFactory implements AnnotatedFactoryInterface {
 
     return new self(
       new CallbackReflection_StaticMethod($method),
-      $method->getDocComment(),
+      // Convert false to '' (empty string).
+      (string) $method->getDocComment(),
       $returnTypeNames,
       $definitionValue);
   }

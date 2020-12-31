@@ -121,7 +121,7 @@ class SchemaToAnything_SmartChain implements SchemaToAnythingInterface {
    *
    * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
-  private function schemaTypeAndTargetTypeGetPartials($schemaType, string $targetType): array {
+  private function schemaTypeAndTargetTypeGetPartials(string $schemaType, string $targetType): array {
 
     return $this->partialsGrouped[$schemaType][$targetType]
       ?? ($this->partialsGrouped[$schemaType][$targetType] = $this->schemaTypeAndTargetTypeCollectPartials(

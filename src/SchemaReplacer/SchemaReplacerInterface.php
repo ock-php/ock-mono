@@ -20,6 +20,6 @@ interface SchemaReplacerInterface {
    *
    * @return bool
    */
-  public function acceptsSchemaClass($schemaClass): bool;
+  public function acceptsSchemaClass(string $schemaClass): bool;
 
 }

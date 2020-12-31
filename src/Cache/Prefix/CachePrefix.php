@@ -23,7 +23,7 @@ class CachePrefix implements CachePrefixInterface {
    * @param \Donquixote\Cf\Cache\CacheInterface $cache
    * @param string $prefix
    */
-  public function __construct(CacheInterface $cache, $prefix) {
+  public function __construct(CacheInterface $cache, string $prefix) {
     $this->cache = $cache;
     $this->prefix = $prefix;
   }

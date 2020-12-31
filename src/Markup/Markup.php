@@ -13,7 +13,7 @@ class Markup implements MarkupInterface {
   /**
    * @param string $html
    */
-  public function __construct($html) {
+  public function __construct(string $html) {
     $this->html = $html;
   }
 

@@ -16,7 +16,7 @@ interface CacheInterface {
    * @return bool
    *   TRUE if found, FALSE if not found.
    */
-  public function getInto($key, &$value): bool;
+  public function getInto(string $key, &$value): bool;
 
   /**
    * Writes a cache value.
@@ -26,7 +26,7 @@ interface CacheInterface {
    * @param mixed $value
    *   Value to write.
    */
-  public function set($key, $value): void;
+  public function set(string $key, $value): void;
 
   /**
    * Clears cache entries.

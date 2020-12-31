@@ -26,7 +26,7 @@ class CfSchema_Neutral_IfaceTransformed extends CfSchema_DecoratorBase implement
    */
   public function __construct(
     CfSchemaInterface $decorated,
-    $interface,
+    string $interface,
     CfContextInterface $context = NULL
   ) {
     parent::__construct($decorated);
