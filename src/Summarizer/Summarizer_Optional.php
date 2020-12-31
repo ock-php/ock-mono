@@ -26,14 +26,14 @@ class Summarizer_Optional implements SummarizerInterface {
    * @param \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface $schema
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Summarizer\SummarizerInterface
+   * @return \Donquixote\Cf\Summarizer\SummarizerInterface|null
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
   public static function create(
     CfSchema_OptionalInterface $schema,
     SchemaToAnythingInterface $schemaToAnything
-  ): SummarizerInterface {
+  ): ?SummarizerInterface {
 
     $decorated = Summarizer::fromSchema($schema->getDecorated(), $schemaToAnything);
 
