@@ -22,7 +22,7 @@ class Translatable implements TranslatableInterface {
    * @param string $original
    * @param mixed[] $replacements
    */
-  public function __construct($original, array $replacements) {
+  public function __construct(string $original, array $replacements = []) {
     $this->original = $original;
     $this->replacements = $replacements;
   }
