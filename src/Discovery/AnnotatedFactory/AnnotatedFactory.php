@@ -63,7 +63,7 @@ class AnnotatedFactory implements AnnotatedFactoryInterface {
    *
    * @return \Donquixote\Cf\Discovery\AnnotatedFactory\AnnotatedFactoryInterface|null
    */
-  public static function fromCallable($callable): ?AnnotatedFactoryInterface {
+  public static function fromCallable(callable $callable): ?AnnotatedFactoryInterface {
 
     if (NULL !== $reflFunction = ReflectionUtil::callableGetReflectionFunction(
       $callable)
