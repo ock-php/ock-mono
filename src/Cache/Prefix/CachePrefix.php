@@ -31,14 +31,14 @@ class CachePrefix implements CachePrefixInterface {
   /**
    * {@inheritdoc}
    */
-  public function getOffset($key): CacheOffsetInterface {
+  public function getOffset(string $key): CacheOffsetInterface {
     return new CacheOffset($this->cache, $this->prefix . $key);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function withAppendedPrefix($prefix): CachePrefixInterface {
+  public function withAppendedPrefix(string $prefix): CachePrefixInterface {
     return new self($this->cache, $this->prefix . $prefix);
   }
 

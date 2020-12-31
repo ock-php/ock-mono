@@ -21,7 +21,7 @@ class CacheOffset implements CacheOffsetInterface {
    * @param \Donquixote\Cf\Cache\CacheInterface $cache
    * @param string $key
    */
-  public function __construct(CacheInterface $cache, $key) {
+  public function __construct(CacheInterface $cache, string $key) {
     $this->cache = $cache;
     $this->key = $key;
   }
