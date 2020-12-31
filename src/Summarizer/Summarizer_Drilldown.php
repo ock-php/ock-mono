@@ -6,6 +6,8 @@ namespace Donquixote\Cf\Summarizer;
 use Donquixote\Cf\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\Cf\Text\Text;
+use Donquixote\Cf\Text\TextInterface;
 use Donquixote\Cf\Translator\TranslatorInterface;
 use Donquixote\Cf\Util\HtmlUtil;
 
@@ -25,43 +27,39 @@ class Summarizer_Drilldown implements SummarizerInterface {
   private $schemaToAnything;
 
   /**
-   * @var \Donquixote\Cf\Translator\TranslatorInterface
-   */
-  private $translator;
-
-  /**
    * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $schema
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
-   * @param \Donquixote\Cf\Translator\TranslatorInterface $translator
    */
   public function __construct(
     CfSchema_DrilldownInterface $schema,
-    SchemaToAnythingInterface $schemaToAnything,
-    TranslatorInterface $translator
+    SchemaToAnythingInterface $schemaToAnything
   ) {
     $this->schema = $schema;
     $this->schemaToAnything = $schemaToAnything;
-    $this->translator = $translator;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf) {
+  public function confGetSummary($conf): ?TextInterface {
 
-    list($id, $subConf) = DrilldownKeysHelper::fromSchema($this->schema)
+    [$id, $subConf] = DrilldownKeysHelper::fromSchema($this->schema)
       ->unpack($conf);
 
     if (NULL === $id) {
-      return '- ' . $this->translator->translate('None') . ' -';
+      return Text::option('None');
     }
 
     if (NULL === $subSchema = $this->schema->getIdToSchema()->idGetSchema($id)) {
-      return '- ' . $this->translator->translate('Unknown id "@id".', ['@id' => $id]) . ' -';
+      return Text::option('Unknown id "@id".', [
+        '@id' => $id,
+      ]);
     }
 
     if (NULL === $idLabelUnsafe = $this->schema->getIdSchema()->idGetLabel($id)) {
-      return '- ' . $this->translator->translate('Unknown id "@id".', ['@id' => $id]) . ' -';
+      return Text::option('Unnamed id "@id".', [
+        '@id' => $id,
+      ]);
     }
 
     $idLabelSafe = HtmlUtil::sanitize($idLabelUnsafe);
@@ -71,7 +69,9 @@ class Summarizer_Drilldown implements SummarizerInterface {
       $this->schemaToAnything);
 
     if (NULL === $subSummarizer) {
-      return '- ' . $this->translator->translate('Unknown id "@id".', ['@id' => $id]) . ' -';
+      return Text::option('Undocumented id "@id".', [
+        '@id' => $id,
+      ]);
     }
 
     $subSummary = $subSummarizer->confGetSummary($subConf);

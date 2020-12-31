@@ -45,6 +45,8 @@ class TranslatorLookup_D7 implements TranslatorLookupInterface {
    */
   public function lookup(string $string): string {
     // Calling t() without any replacements does exactly what we need.
-    return (string)t($string, [], []);
+    // The function is only present in a Drupal 7 environment.
+    /** @noinspection PhpUndefinedFunctionInspection */
+    return (string) \t($string, [], []);
   }
 }

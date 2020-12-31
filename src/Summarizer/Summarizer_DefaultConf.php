@@ -5,6 +5,7 @@ namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConfInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\Cf\Text\TextInterface;
 
 class Summarizer_DefaultConf implements SummarizerInterface {
 
@@ -58,7 +59,7 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf) {
+  public function confGetSummary($conf): ?TextInterface {
 
     if (NULL === $conf) {
       $conf = $this->defaultConf;

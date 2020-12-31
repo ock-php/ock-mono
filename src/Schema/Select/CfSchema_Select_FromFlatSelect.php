@@ -29,7 +29,7 @@ class CfSchema_Select_FromFlatSelect implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?\Donquixote\Cf\Text\TextInterface {
     return $this->decorated->idGetLabel($id);
   }
 

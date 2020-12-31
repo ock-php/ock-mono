@@ -76,7 +76,7 @@ class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?\Donquixote\Cf\Text\TextInterface {
 
     if (FALSE === /* $pos = */ strpos($id, '/')) {
       return $this->decorated->idGetLabel($id);

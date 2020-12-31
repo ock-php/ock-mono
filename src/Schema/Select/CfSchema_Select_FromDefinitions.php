@@ -55,7 +55,7 @@ class CfSchema_Select_FromDefinitions implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?\Donquixote\Cf\Text\TextInterface {
 
     if (!isset($this->definitions[$id])) {
       return NULL;

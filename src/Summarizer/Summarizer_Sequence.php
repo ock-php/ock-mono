@@ -57,7 +57,7 @@ class Summarizer_Sequence implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf) {
+  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
 
     if (!\is_array($conf)) {
       $conf = [];

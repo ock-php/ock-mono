@@ -52,7 +52,7 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($combinedId) {
+  public function idGetLabel($combinedId): ?\Donquixote\Cf\Text\TextInterface {
     [$id0, $id1] = $this->splitId($combinedId) + [NULL, NULL];
 
     if (NULL === $id1) {

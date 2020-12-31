@@ -34,7 +34,7 @@ class Summarizer_Id implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf) {
+  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
 
     if (NULL === $id = ConfUtil::confGetId($conf)) {
       return $this->translator->translate('Required id missing.');

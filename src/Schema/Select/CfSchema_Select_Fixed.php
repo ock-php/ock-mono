@@ -72,7 +72,7 @@ class CfSchema_Select_Fixed implements CfSchema_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?\Donquixote\Cf\Text\TextInterface {
 
     return $this->options[$id] ?? null;
   }

@@ -42,7 +42,7 @@ class Summarizer_OptionalWithEmptiness implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf) {
+  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
 
     if ($this->emptiness->confIsEmpty($conf)) {
 

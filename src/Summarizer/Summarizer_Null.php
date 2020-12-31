@@ -8,7 +8,7 @@ class Summarizer_Null implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf) {
+  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
     return NULL;
   }
 }

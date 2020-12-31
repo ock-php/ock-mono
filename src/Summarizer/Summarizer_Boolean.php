@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Schema\Boolean\CfSchema_BooleanInterface;
+use Donquixote\Cf\Text\TextInterface;
 
 /**
  * @STA
@@ -25,7 +26,7 @@ class Summarizer_Boolean implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf) {
+  public function confGetSummary($conf): ?TextInterface {
 
     $boolean = !empty($conf);
 

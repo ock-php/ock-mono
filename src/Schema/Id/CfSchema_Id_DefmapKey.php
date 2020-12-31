@@ -41,7 +41,7 @@ class CfSchema_Id_DefmapKey implements CfSchema_IdInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?\Donquixote\Cf\Text\TextInterface {
     return $id;
   }
 }
