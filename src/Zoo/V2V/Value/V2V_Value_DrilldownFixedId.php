@@ -19,7 +19,7 @@ class V2V_Value_DrilldownFixedId implements V2V_ValueInterface {
 
   /**
    * @param \Donquixote\Cf\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2vDrilldown
-   * @param string $id
+   * @param string|int $id
    */
   public function __construct(V2V_DrilldownInterface $v2vDrilldown, $id) {
     $this->v2vDrilldown = $v2vDrilldown;

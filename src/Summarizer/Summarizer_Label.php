@@ -26,8 +26,6 @@ class Summarizer_Label implements SummarizerInterface {
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
-   *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
   public static function create(CfSchema_LabelInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Summarizer_Label {
 
