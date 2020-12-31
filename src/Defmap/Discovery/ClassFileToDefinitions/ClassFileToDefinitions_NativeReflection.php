@@ -74,9 +74,13 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
   }
 
   /**
+   * Reads all plugin definitions on a class and its static methods.
+   *
    * @param \ReflectionClass $reflectionClass
+   *   The class, as a ReflectionClass object.
    *
    * @return array[][]
+   *   Plugin definitions that were found.
    *   Format: $[$pluginType][$pluginId] = $pluginDefinition
    */
   private function reflectionClassGetDefinitions(\ReflectionClass $reflectionClass): array {
@@ -108,10 +112,17 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
   }
 
   /**
+   * Reads plugin definitions on class/constructor level.
+   *
+   * Annotations are in the class doc, but the factory signature is coming from
+   * the constructor method.
+   *
    * @param \ReflectionClass $reflectionClass
+   *   The class, as a ReflectionClass object.
    *
    * @return array[][]
-   *   Format: $[$pluginType][$pluginId] = $pluginDefinition
+   *   Plugin definitions that were found.
+   *   Format: $[$pluginType][$pluginId] = $pluginDefinition.
    */
   private function reflectionClassGetDefinitionsForClass(\ReflectionClass $reflectionClass): array {
 
@@ -144,10 +155,14 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
   }
 
   /**
+   * Reads plugin definitions from a specific static method.
+   *
    * @param \ReflectionMethod $method
+   *   A static method.
    *
    * @return array[][]
-   *   Format: $[$pluginType][$pluginId] = $pluginDefinition
+   *   Plugin definitions that were found.
+   *   Format: $[$pluginType][$pluginId] = $pluginDefinition.
    */
   private function staticMethodGetDefinitions(\ReflectionMethod $method): array {
 
@@ -190,11 +205,13 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
 
   /**
    * @param \ReflectionMethod $method
+   *   A static method.
    * @param array[] $annotations
    *   E.g. [['id' => 'entityTitle', 'label' => 'Entity title'], ..]
    *
    * @return array[][]
-   *   Format: $[$pluginType][$pluginId] = $pluginDefinition
+   *   Plugin definitions that were found.
+   *   Format: $[$pluginType][$pluginId] = $pluginDefinition.
    */
   private static function schemaFactoryGetDefinitions(
     \ReflectionMethod $method,
@@ -221,10 +238,13 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
   }
 
   /**
+   * Reads return type names for a static method.
+   *
    * @param \ReflectionMethod $reflectionMethod
+   *   The method to analyse.
    *
    * @return string[]
-   *   Format: $[$interface] = $interface
+   *   Format: $[$interface] = $interface.
    */
   private function reflectionMethodGetReturnTypeNames(\ReflectionMethod $reflectionMethod): array {
 
