@@ -25,7 +25,7 @@ class DocToAnnotations implements DocToAnnotationsInterface {
    *
    * @return self
    */
-  public static function create($tagName): DocToAnnotations {
+  public static function create(string $tagName): DocToAnnotations {
     return new self($tagName, AnnotationResolver::createGeneric());
   }
 
@@ -33,7 +33,7 @@ class DocToAnnotations implements DocToAnnotationsInterface {
    * @param string $tagName
    * @param \Donquixote\Annotation\Resolver\AnnotationResolverInterface $annotationResolver
    */
-  public function __construct($tagName, AnnotationResolverInterface $annotationResolver) {
+  public function __construct(string $tagName, AnnotationResolverInterface $annotationResolver) {
     $this->tagName = $tagName;
     $this->annotationResolver = $annotationResolver;
   }
