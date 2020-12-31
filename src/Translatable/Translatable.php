@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Translatable;
 
+/**
+ * Default implementation. Behaves like a value object.
+ */
 class Translatable implements TranslatableInterface {
 
   /**
