@@ -66,33 +66,6 @@ class Generator_Drilldown implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetValue($conf) {
-
-    list($id, $subConf) = DrilldownKeysHelper::fromSchema($this->schema)
-      ->unpack($conf);
-
-    if (NULL === $id) {
-      throw new EvaluatorException_IncompatibleConfiguration("Required id for drilldown is missing.");
-    }
-
-    if (NULL === $subSchema = $this->schema->getIdToSchema()->idGetSchema($id)) {
-      throw new EvaluatorException_IncompatibleConfiguration("Unknown id '$id' in drilldown.");
-    }
-
-    $subGenerator = Generator::fromSchema($subSchema, $this->schemaToAnything);
-
-    if (NULL === $subGenerator) {
-      throw new EvaluatorException_UnsupportedSchema("Unsupported schema for id '$id' in drilldown.");
-    }
-
-    $subValue = $subGenerator->confGetValue($subConf);
-
-    return $this->v2v->idValueGetValue($id, $subValue);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function confGetPhp($conf): string {
 
     list($id, $subConf) = DrilldownKeysHelper::fromSchema($this->schema)

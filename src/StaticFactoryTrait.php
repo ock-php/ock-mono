@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Donquixote\Cf;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Evaluator\Evaluator;
-use Donquixote\Cf\Evaluator\EvaluatorInterface;
+use Donquixote\Cf\Generator\Generator;
+use Donquixote\Cf\Generator\GeneratorInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Summarizer\Summarizer;
 use Donquixote\Cf\Summarizer\SummarizerInterface;
@@ -33,11 +33,11 @@ trait StaticFactoryTrait {
   /**
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Evaluator\EvaluatorInterface|null
+   * @return \Donquixote\Cf\Generator\GeneratorInterface|null
    */
-  public static function evaluator(SchemaToAnythingInterface $schemaToAnything): EvaluatorInterface {
+  public static function evaluator(SchemaToAnythingInterface $schemaToAnything): GeneratorInterface {
 
-    return Evaluator::fromSchema(
+    return Generator::fromSchema(
       static::schema(),
       $schemaToAnything);
   }

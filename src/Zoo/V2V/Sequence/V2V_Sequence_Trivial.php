@@ -10,13 +10,6 @@ class V2V_Sequence_Trivial implements V2V_SequenceInterface {
   /**
    * {@inheritdoc}
    */
-  public function valuesGetValue(array $values) {
-    return $values;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function itemsPhpGetPhp(array $itemsPhp): string {
     return PhpUtil::phpArray($itemsPhp);
   }

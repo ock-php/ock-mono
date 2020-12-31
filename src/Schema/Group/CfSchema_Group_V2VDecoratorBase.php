@@ -46,13 +46,6 @@ abstract class CfSchema_Group_V2VDecoratorBase extends CfSchema_Group_V2VBase {
   /**
    * {@inheritdoc}
    */
-  public function valuesGetValue(array $values) {
-    return $this->decoratedV2V->valuesGetValue($values);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function itemsPhpGetPhp(array $itemsPhp): string {
     return $this->decoratedV2V->itemsPhpGetPhp($itemsPhp);
   }

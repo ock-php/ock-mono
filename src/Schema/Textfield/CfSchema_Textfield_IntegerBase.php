@@ -44,18 +44,6 @@ abstract class CfSchema_Textfield_IntegerBase extends CfSchema_TextfieldBase imp
   /**
    * {@inheritdoc}
    */
-  public function stringGetValue(string $string) {
-
-    if ([] !== $errors = $this->textGetValidationErrors($string)) {
-      throw new EvaluatorException_IncompatibleConfiguration(reset($errors));
-    }
-
-    return (int)$string;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function stringGetPhp(string $string): string {
 
     if ([] !== $errors = $this->textGetValidationErrors($string)) {

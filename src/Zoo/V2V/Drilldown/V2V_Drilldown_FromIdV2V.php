@@ -22,13 +22,6 @@ class V2V_Drilldown_FromIdV2V implements V2V_DrilldownInterface {
   /**
    * {@inheritdoc}
    */
-  public function idValueGetValue($id, $value) {
-    return $this->v2vId->idGetValue($id);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function idPhpGetPhp($id, string $php) {
     return $this->v2vId->idGetPhp($id);
   }

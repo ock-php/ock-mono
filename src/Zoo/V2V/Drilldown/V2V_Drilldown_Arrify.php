@@ -25,17 +25,6 @@ class V2V_Drilldown_Arrify implements V2V_DrilldownInterface {
   }
 
   /**
-   * {@inheritdoc}
-   */
-  public function idValueGetValue($id, $value) {
-
-    return [
-      $this->idKey => $id,
-      $this->optionsKey => $value,
-    ];
-  }
-
-  /**
    * @param string|int $id
    * @param string $php
    *

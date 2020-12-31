@@ -8,20 +8,6 @@ class V2V_Boolean_Trivial implements V2V_BooleanInterface {
   /**
    * {@inheritdoc}
    */
-  public function getTrueValue() {
-    return TRUE;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getFalseValue() {
-    return FALSE;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getTruePhp(): string {
     return 'TRUE';
   }

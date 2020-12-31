@@ -29,13 +29,6 @@ class V2V_Value_DrilldownFixedId implements V2V_ValueInterface {
   /**
    * {@inheritdoc}
    */
-  public function valueGetValue($value) {
-    return $this->v2vDrilldown->idValueGetValue($this->id, $value);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function phpGetPhp(string $php): string {
     return $this->v2vDrilldown->idPhpGetPhp($this->id, $php);
   }

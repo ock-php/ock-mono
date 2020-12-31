@@ -5,7 +5,6 @@ namespace Donquixote\Cf\Zoo\V2V\Value;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
-use Donquixote\Cf\Exception\EvaluatorException;
 
 class V2V_Value_CallbackMono implements V2V_ValueInterface {
 
@@ -19,19 +18,6 @@ class V2V_Value_CallbackMono implements V2V_ValueInterface {
    */
   public function __construct(CallbackReflectionInterface $callback) {
     $this->callback = $callback;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function valueGetValue($value) {
-
-    try {
-      return $this->callback->invokeArgs([$value]);
-    }
-    catch (\Exception $e) {
-      throw new EvaluatorException("Exception in callback.", 0, $e);
-    }
   }
 
   /**

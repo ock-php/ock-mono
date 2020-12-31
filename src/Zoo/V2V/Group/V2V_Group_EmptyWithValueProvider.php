@@ -24,17 +24,6 @@ class V2V_Group_EmptyWithValueProvider implements V2V_GroupInterface {
   /**
    * {@inheritdoc}
    */
-  public function valuesGetValue(array $values) {
-    if ([] !== $values) {
-      throw new EvaluatorException("Values must be an empty array.");
-    }
-
-    return $this->valueProvider->getValue();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function itemsPhpGetPhp(array $itemsPhp): string {
 
     if ([] !== $itemsPhp) {
