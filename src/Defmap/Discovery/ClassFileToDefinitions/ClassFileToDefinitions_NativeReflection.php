@@ -253,15 +253,27 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
 
     $returnTypeInterfaceNames = [];
     foreach ($returnTypeClassNames as $returnTypeClassName) {
-      if (class_exists($returnTypeClassName)) {
-        // Find the interfaces for the class.
-        foreach (self::classGetPluginTypeNames(new \ReflectionClass($returnTypeClassName)) as $interfaceName) {
-          $returnTypeInterfaceNames[] = $interfaceName;
-        }
+      try {
+        $reflClass = new \ReflectionClass($returnTypeClassName);
       }
-      else {
+      catch (\ReflectionException $e) {
+        // Class does not exist.
+        // @todo Log an error.
+        continue;
+      }
+      if ($reflClass->isInterface()) {
         // Assume it is an interface.
+        // @todo Include parent interfaces?
         $returnTypeInterfaceNames[] = $returnTypeClassName;
+      }
+      elseif (!$reflClass->isTrait()) {
+        // Traits are not supported.
+        // @todo Log an error.
+        continue;
+      }
+      // Find the interfaces for the class.
+      foreach (self::classGetPluginTypeNames($reflClass) as $interfaceName) {
+        $returnTypeInterfaceNames[] = $interfaceName;
       }
     }
 
