@@ -277,6 +277,7 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
       }
     }
 
+    // Multiply the definitions for all applicable plugin type names.
     return array_unique($returnTypeInterfaceNames);
   }
 
@@ -302,6 +303,7 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
       }
     }
 
+    // Multiply the definitions for all applicable plugin type names.
     return array_keys($interfaces);
   }
 }
