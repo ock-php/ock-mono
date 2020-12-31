@@ -130,7 +130,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
     $valuesPhp = $this->getCommonValuesPhp();
     $valuesPhp[$this->specialKey] = parent::confGetPhp($conf);
 
-    return $this->v2v->valuesGetValue($valuesPhp);
+    return $this->v2v->itemsPhpGetPhp($valuesPhp);
   }
 
   /**
