@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
-abstract class Evaluator_DecoratorBase implements EvaluatorInterface {
+abstract class Generator_DecoratorBase implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Evaluator\EvaluatorInterface
+   * @var \Donquixote\Cf\Generator\GeneratorInterface
    */
   private $decorated;
 
   /**
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface $decorated
+   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
    */
-  protected function __construct(EvaluatorInterface $decorated) {
+  protected function __construct(GeneratorInterface $decorated) {
     $this->decorated = $decorated;
   }
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
@@ -13,7 +13,7 @@ use Donquixote\Cf\Util\PhpUtil;
 use Donquixote\Cf\Zoo\V2V\Drilldown\V2V_Drilldown_Trivial;
 use Donquixote\Cf\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
 
-class Evaluator_Drilldown implements EvaluatorInterface {
+class Generator_Drilldown implements GeneratorInterface {
 
   /**
    * @var \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface
@@ -81,13 +81,13 @@ class Evaluator_Drilldown implements EvaluatorInterface {
       throw new EvaluatorException_IncompatibleConfiguration("Unknown id '$id' in drilldown.");
     }
 
-    $subEvaluator = Evaluator::fromSchema($subSchema, $this->schemaToAnything);
+    $subGenerator = Generator::fromSchema($subSchema, $this->schemaToAnything);
 
-    if (NULL === $subEvaluator) {
+    if (NULL === $subGenerator) {
       throw new EvaluatorException_UnsupportedSchema("Unsupported schema for id '$id' in drilldown.");
     }
 
-    $subValue = $subEvaluator->confGetValue($subConf);
+    $subValue = $subGenerator->confGetValue($subConf);
 
     return $this->v2v->idValueGetValue($id, $subValue);
   }
@@ -121,12 +121,12 @@ class Evaluator_Drilldown implements EvaluatorInterface {
       return PhpUtil::incompatibleConfiguration("Unknown id '$id' in drilldown.");
     }
 
-    $subEvaluator = Evaluator::fromSchema($subSchema, $this->schemaToAnything);
+    $subGenerator = Generator::fromSchema($subSchema, $this->schemaToAnything);
 
-    if (NULL === $subEvaluator) {
+    if (NULL === $subGenerator) {
       return PhpUtil::unsupportedSchema($subSchema, "Unsupported schema for id '$id' in drilldown.");
     }
 
-    return $subEvaluator->confGetPhp($subConf);
+    return $subGenerator->confGetPhp($subConf);
   }
 }

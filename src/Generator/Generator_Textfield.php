@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Cf\Schema\StringVal\CfSchema_StringValInterface;
@@ -10,7 +10,7 @@ use Donquixote\Cf\Util\PhpUtil;
 use Donquixote\Cf\Zoo\V2V\String\V2V_String_Trivial;
 use Donquixote\Cf\Zoo\V2V\String\V2V_StringInterface;
 
-class Evaluator_Textfield implements EvaluatorInterface {
+class Generator_Textfield implements GeneratorInterface {
 
   /**
    * @var \Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldInterface
@@ -29,7 +29,7 @@ class Evaluator_Textfield implements EvaluatorInterface {
    *
    * @return self
    */
-  public static function createFromStringSchema(CfSchema_TextfieldInterface $schema): Evaluator_Textfield {
+  public static function createFromStringSchema(CfSchema_TextfieldInterface $schema): Generator_Textfield {
     return new self($schema, new V2V_String_Trivial());
   }
 
@@ -40,7 +40,7 @@ class Evaluator_Textfield implements EvaluatorInterface {
    *
    * @return self
    */
-  public static function createFromStringValSchema(CfSchema_StringValInterface $schema): Evaluator_Textfield {
+  public static function createFromStringValSchema(CfSchema_StringValInterface $schema): Generator_Textfield {
     return new self($schema->getDecorated(), $schema->getV2V());
   }
 

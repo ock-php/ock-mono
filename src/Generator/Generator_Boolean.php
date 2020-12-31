@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Schema\Boolean\CfSchema_BooleanInterface;
 use Donquixote\Cf\Schema\BoolVal\CfSchema_BoolValInterface;
 use Donquixote\Cf\Zoo\V2V\Boolean\V2V_Boolean_Trivial;
 use Donquixote\Cf\Zoo\V2V\Boolean\V2V_BooleanInterface;
 
-class Evaluator_Boolean implements EvaluatorInterface {
+class Generator_Boolean implements GeneratorInterface {
 
   /**
    * @var \Donquixote\Cf\Zoo\V2V\Boolean\V2V_BooleanInterface
@@ -24,7 +24,7 @@ class Evaluator_Boolean implements EvaluatorInterface {
    */
   public static function createFromBooleanSchema(
     /** @noinspection PhpUnusedParameterInspection */ CfSchema_BooleanInterface $schema
-  ): Evaluator_Boolean {
+  ): Generator_Boolean {
     return new self(new V2V_Boolean_Trivial());
   }
 
@@ -35,7 +35,7 @@ class Evaluator_Boolean implements EvaluatorInterface {
    *
    * @return self
    */
-  public static function createFromBooleanValSchema(CfSchema_BoolValInterface $schema): Evaluator_Boolean {
+  public static function createFromBooleanValSchema(CfSchema_BoolValInterface $schema): Generator_Boolean {
     return new self($schema->getV2V());
   }
 

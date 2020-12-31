@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValueInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Zoo\V2V\Value\V2V_ValueInterface;
 
-class Evaluator_ValueToValue extends Evaluator_DecoratorBase {
+class Generator_ValueToValue extends Generator_DecoratorBase {
 
   /**
    * @var \Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValueInterface
@@ -26,9 +26,9 @@ class Evaluator_ValueToValue extends Evaluator_DecoratorBase {
 
     $decorated = $schemaToAnything->schema(
       $valueToValueSchema->getDecorated(),
-      EvaluatorInterface::class);
+      GeneratorInterface::class);
 
-    if (NULL === $decorated || !$decorated instanceof EvaluatorInterface) {
+    if (NULL === $decorated || !$decorated instanceof GeneratorInterface) {
       return NULL;
     }
 
@@ -36,10 +36,10 @@ class Evaluator_ValueToValue extends Evaluator_DecoratorBase {
   }
 
   /**
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface $decorated
+   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
    * @param \Donquixote\Cf\Zoo\V2V\Value\V2V_ValueInterface $v2v
    */
-  public function __construct(EvaluatorInterface $decorated, V2V_ValueInterface $v2v) {
+  public function __construct(GeneratorInterface $decorated, V2V_ValueInterface $v2v) {
     parent::__construct($decorated);
     $this->v2v = $v2v;
   }

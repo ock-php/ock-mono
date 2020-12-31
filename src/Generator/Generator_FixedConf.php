@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Schema\FixedConf\CfSchema_FixedConfInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 
-class Evaluator_FixedConf implements EvaluatorInterface {
+class Generator_FixedConf implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Evaluator\EvaluatorInterface
+   * @var \Donquixote\Cf\Generator\GeneratorInterface
    */
   private $decorated;
 
@@ -24,21 +24,21 @@ class Evaluator_FixedConf implements EvaluatorInterface {
    * @param \Donquixote\Cf\Schema\FixedConf\CfSchema_FixedConfInterface $schema
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Evaluator\EvaluatorInterface
+   * @return \Donquixote\Cf\Generator\GeneratorInterface
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public static function create(CfSchema_FixedConfInterface $schema, SchemaToAnythingInterface $schemaToAnything): EvaluatorInterface {
+  public static function create(CfSchema_FixedConfInterface $schema, SchemaToAnythingInterface $schemaToAnything): GeneratorInterface {
     return new self(
-      Evaluator::fromSchema($schema->getDecorated(), $schemaToAnything),
+      Generator::fromSchema($schema->getDecorated(), $schemaToAnything),
       $schema->getConf());
   }
 
   /**
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface $decorated
+   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
    * @param mixed $conf
    */
-  public function __construct(EvaluatorInterface $decorated, $conf) {
+  public function __construct(GeneratorInterface $decorated, $conf) {
     $this->decorated = $decorated;
     $this->conf = $conf;
   }

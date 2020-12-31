@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Emptiness\EmptinessInterface;
 use Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface;
 
-class Evaluator_OptionalWithEmptiness implements EvaluatorInterface {
+class Generator_OptionalWithEmptiness implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Evaluator\EvaluatorInterface
+   * @var \Donquixote\Cf\Generator\GeneratorInterface
    */
   private $decorated;
 
@@ -24,11 +24,11 @@ class Evaluator_OptionalWithEmptiness implements EvaluatorInterface {
   private $emptiness;
 
   /**
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface $decorated
+   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
    * @param \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface $schema
    * @param \Donquixote\Cf\Emptiness\EmptinessInterface $emptiness
    */
-  public function __construct(EvaluatorInterface $decorated, CfSchema_OptionalInterface $schema, EmptinessInterface $emptiness) {
+  public function __construct(GeneratorInterface $decorated, CfSchema_OptionalInterface $schema, EmptinessInterface $emptiness) {
     $this->decorated = $decorated;
     $this->schema = $schema;
     $this->emptiness = $emptiness;

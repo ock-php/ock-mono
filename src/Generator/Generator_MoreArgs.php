@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Schema\MoreArgs\CfSchema_MoreArgsInterface;
 use Donquixote\Cf\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface;
@@ -9,12 +9,12 @@ use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Zoo\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface;
 
-class Evaluator_MoreArgs extends Evaluator_DecoratorBase {
+class Generator_MoreArgs extends Generator_DecoratorBase {
 
   /**
-   * @var \Donquixote\Cf\Evaluator\EvaluatorInterface[]
+   * @var \Donquixote\Cf\Generator\GeneratorInterface[]
    */
-  private $moreEvaluators;
+  private $moreGenerators;
 
   /**
    * @var int|string
@@ -46,7 +46,7 @@ class Evaluator_MoreArgs extends Evaluator_DecoratorBase {
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public static function createFromMoreArgsSchema(CfSchema_MoreArgsInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Evaluator_MoreArgs {
+  public static function createFromMoreArgsSchema(CfSchema_MoreArgsInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_MoreArgs {
     return self::create($schema, new V2V_Group_Trivial(), $schemaToAnything);
   }
 
@@ -63,7 +63,7 @@ class Evaluator_MoreArgs extends Evaluator_DecoratorBase {
   public static function createFromMoreArgsValSchema(
     CfSchema_MoreArgsValInterface $schema,
     SchemaToAnythingInterface $schemaToAnything
-  ): ?Evaluator_MoreArgs {
+  ): ?Generator_MoreArgs {
     return self::create(
       $schema->getDecorated(),
       $schema->getV2V(),
@@ -83,46 +83,46 @@ class Evaluator_MoreArgs extends Evaluator_DecoratorBase {
     CfSchema_MoreArgsInterface $moreArgsSchema,
     V2V_GroupInterface $v2v,
     SchemaToAnythingInterface $schemaToAnything
-  ): ?Evaluator_MoreArgs {
+  ): ?Generator_MoreArgs {
 
-    $decoratedEvaluator = Evaluator::fromSchema(
+    $decoratedGenerator = Generator::fromSchema(
       $moreArgsSchema->getDecorated(),
       $schemaToAnything);
 
-    if (NULL === $decoratedEvaluator) {
+    if (NULL === $decoratedGenerator) {
       return NULL;
     }
 
-    $moreEvaluators = [];
+    $moreGenerators = [];
     foreach ($moreArgsSchema->getMoreArgs() as $k => $itemSchema) {
-      $itemEvaluator = Evaluator::fromSchema($itemSchema, $schemaToAnything);
-      if (NULL === $itemEvaluator) {
+      $itemGenerator = Generator::fromSchema($itemSchema, $schemaToAnything);
+      if (NULL === $itemGenerator) {
         return NULL;
       }
-      $moreEvaluators[$k] = $itemEvaluator;
+      $moreGenerators[$k] = $itemGenerator;
     }
 
     return new self(
-      $decoratedEvaluator,
-      $moreEvaluators,
+      $decoratedGenerator,
+      $moreGenerators,
       $moreArgsSchema->getSpecialKey(),
       $v2v);
   }
 
   /**
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface $decorated
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface[] $moreEvaluators
+   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\Cf\Generator\GeneratorInterface[] $moreGenerators
    * @param string|int $specialKey
    * @param \Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface $v2v
    */
   protected function __construct(
-    EvaluatorInterface $decorated,
-    array $moreEvaluators,
+    GeneratorInterface $decorated,
+    array $moreGenerators,
     $specialKey,
     V2V_GroupInterface $v2v
   ) {
     parent::__construct($decorated);
-    $this->moreEvaluators = $moreEvaluators;
+    $this->moreGenerators = $moreGenerators;
     $this->specialKey = $specialKey;
     $this->v2v = $v2v;
   }
@@ -157,7 +157,7 @@ class Evaluator_MoreArgs extends Evaluator_DecoratorBase {
 
     $commonValues = [];
     $commonValues[$this->specialKey] = NULL;
-    foreach ($this->moreEvaluators as $k => $evaluator) {
+    foreach ($this->moreGenerators as $k => $evaluator) {
       $commonValues[$k] = $evaluator->confGetValue(NULL);
     }
 
@@ -190,7 +190,7 @@ class Evaluator_MoreArgs extends Evaluator_DecoratorBase {
 
     $commonValuesPhp = [];
     $commonValuesPhp[$this->specialKey] = NULL;
-    foreach ($this->moreEvaluators as $k => $evaluator) {
+    foreach ($this->moreGenerators as $k => $evaluator) {
       $commonValuesPhp[$k] = $evaluator->confGetPhp(NULL);
     }
 

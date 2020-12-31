@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Emptiness\EmptinessInterface;
 
-interface Evaluator_OptionableInterface extends EvaluatorInterface {
+interface Generator_OptionableInterface extends GeneratorInterface {
 
   /**
    * @return \Donquixote\Cf\Emptiness\EmptinessInterface|null

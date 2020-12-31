@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Exception\EvaluatorException;
 use Donquixote\Cf\Schema\Para\CfSchema_ParaInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Util\PhpUtil;
 
-class Evaluator_Para implements EvaluatorInterface {
+class Generator_Para implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Evaluator\EvaluatorInterface
+   * @var \Donquixote\Cf\Generator\GeneratorInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\Cf\Evaluator\EvaluatorInterface
+   * @var \Donquixote\Cf\Generator\GeneratorInterface
    */
-  private $paraEvaluator;
+  private $paraGenerator;
 
   /**
    * @STA
@@ -30,19 +30,19 @@ class Evaluator_Para implements EvaluatorInterface {
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public static function create(CfSchema_ParaInterface $schema, SchemaToAnythingInterface $schemaToAnything): Evaluator_Para {
+  public static function create(CfSchema_ParaInterface $schema, SchemaToAnythingInterface $schemaToAnything): Generator_Para {
     return new self(
-      Evaluator::fromSchema($schema->getDecorated(), $schemaToAnything),
-      Evaluator::fromSchema($schema->getParaSchema(), $schemaToAnything));
+      Generator::fromSchema($schema->getDecorated(), $schemaToAnything),
+      Generator::fromSchema($schema->getParaSchema(), $schemaToAnything));
   }
 
   /**
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface $decorated
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface $paraEvaluator
+   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\Cf\Generator\GeneratorInterface $paraGenerator
    */
-  public function __construct(EvaluatorInterface $decorated, EvaluatorInterface $paraEvaluator) {
+  public function __construct(GeneratorInterface $decorated, GeneratorInterface $paraGenerator) {
     $this->decorated = $decorated;
-    $this->paraEvaluator = $paraEvaluator;
+    $this->paraGenerator = $paraGenerator;
   }
 
   /**
@@ -50,7 +50,7 @@ class Evaluator_Para implements EvaluatorInterface {
    */
   public function confGetValue($conf) {
     $paraConf = $this->decorated->confGetValue($conf);
-    return $this->paraEvaluator->confGetValue($paraConf);
+    return $this->paraGenerator->confGetValue($paraConf);
   }
 
   /**
@@ -65,6 +65,6 @@ class Evaluator_Para implements EvaluatorInterface {
       return PhpUtil::incompatibleConfiguration($e->getMessage());
     }
 
-    return $this->paraEvaluator->confGetPhp($paraConf);
+    return $this->paraGenerator->confGetPhp($paraConf);
   }
 }

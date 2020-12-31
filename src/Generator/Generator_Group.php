@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface;
@@ -9,12 +9,12 @@ use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Zoo\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface;
 
-class Evaluator_Group implements EvaluatorInterface {
+class Generator_Group implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Evaluator\EvaluatorInterface[]
+   * @var \Donquixote\Cf\Generator\GeneratorInterface[]
    */
-  private $itemEvaluators;
+  private $itemGenerators;
 
   /**
    * @var \Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface
@@ -31,7 +31,7 @@ class Evaluator_Group implements EvaluatorInterface {
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public static function createFromGroupSchema(CfSchema_GroupInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Evaluator_Group {
+  public static function createFromGroupSchema(CfSchema_GroupInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Group {
     return self::create($schema, new V2V_Group_Trivial(), $schemaToAnything);
   }
 
@@ -45,7 +45,7 @@ class Evaluator_Group implements EvaluatorInterface {
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public static function createFromGroupValSchema(CfSchema_GroupValInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Evaluator_Group {
+  public static function createFromGroupValSchema(CfSchema_GroupValInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Group {
     return self::create($schema->getDecorated(), $schema->getV2V(), $schemaToAnything);
   }
 
@@ -58,26 +58,26 @@ class Evaluator_Group implements EvaluatorInterface {
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public static function create(CfSchema_GroupInterface $groupSchema, V2V_GroupInterface $v2v, SchemaToAnythingInterface $schemaToAnything): ?Evaluator_Group {
+  public static function create(CfSchema_GroupInterface $groupSchema, V2V_GroupInterface $v2v, SchemaToAnythingInterface $schemaToAnything): ?Generator_Group {
 
-    $itemEvaluators = [];
+    $itemGenerators = [];
     foreach ($groupSchema->getItemSchemas() as $k => $itemSchema) {
-      $itemEvaluator = Evaluator::fromSchema($itemSchema, $schemaToAnything);
-      if (NULL === $itemEvaluator) {
+      $itemGenerator = Generator::fromSchema($itemSchema, $schemaToAnything);
+      if (NULL === $itemGenerator) {
         return NULL;
       }
-      $itemEvaluators[$k] = $itemEvaluator;
+      $itemGenerators[$k] = $itemGenerator;
     }
 
-    return new self($itemEvaluators, $v2v);
+    return new self($itemGenerators, $v2v);
   }
 
   /**
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface[] $itemEvaluators
+   * @param \Donquixote\Cf\Generator\GeneratorInterface[] $itemGenerators
    * @param \Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface $v2v
    */
-  protected function __construct(array $itemEvaluators, V2V_GroupInterface $v2v) {
-    $this->itemEvaluators = $itemEvaluators;
+  protected function __construct(array $itemGenerators, V2V_GroupInterface $v2v) {
+    $this->itemGenerators = $itemGenerators;
     $this->v2v = $v2v;
   }
 
@@ -92,11 +92,11 @@ class Evaluator_Group implements EvaluatorInterface {
     }
 
     $values = [];
-    foreach ($this->itemEvaluators as $key => $itemEvaluator) {
+    foreach ($this->itemGenerators as $key => $itemGenerator) {
 
       $itemConf = $conf[$key] ?? null;
 
-      $values[$key] = $itemEvaluator->confGetValue($itemConf);
+      $values[$key] = $itemGenerator->confGetValue($itemConf);
     }
 
     return $this->v2v->valuesGetValue($values);
@@ -113,11 +113,11 @@ class Evaluator_Group implements EvaluatorInterface {
     }
 
     $phpStatements = [];
-    foreach ($this->itemEvaluators as $key => $itemEvaluator) {
+    foreach ($this->itemGenerators as $key => $itemGenerator) {
 
       $itemConf = $conf[$key] ?? null;
 
-      $phpStatements[$key] = $itemEvaluator->confGetPhp($itemConf);
+      $phpStatements[$key] = $itemGenerator->confGetPhp($itemConf);
     }
 
     return $this->v2v->itemsPhpGetPhp($phpStatements);

@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Util\StaUtil;
 
-class Evaluator_Optional implements EvaluatorInterface {
+class Generator_Optional implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Evaluator\EvaluatorInterface
+   * @var \Donquixote\Cf\Generator\GeneratorInterface
    */
   private $decorated;
 
@@ -25,13 +25,13 @@ class Evaluator_Optional implements EvaluatorInterface {
    * @param \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface $schema
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Evaluator\EvaluatorInterface
+   * @return \Donquixote\Cf\Generator\GeneratorInterface
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public static function create(CfSchema_OptionalInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?EvaluatorInterface {
+  public static function create(CfSchema_OptionalInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?GeneratorInterface {
 
-    $decorated = Evaluator::fromSchema($schema->getDecorated(), $schemaToAnything);
+    $decorated = Generator::fromSchema($schema->getDecorated(), $schemaToAnything);
 
     if (NULL === $decorated) {
       return NULL;
@@ -45,17 +45,17 @@ class Evaluator_Optional implements EvaluatorInterface {
         $schema);
     }
 
-    return new Evaluator_OptionalWithEmptiness(
+    return new Generator_OptionalWithEmptiness(
       $decorated,
       $schema,
       $emptiness);
   }
 
   /**
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface $decorated
+   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
    * @param \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface $schema
    */
-  public function __construct(EvaluatorInterface $decorated, CfSchema_OptionalInterface $schema) {
+  public function __construct(GeneratorInterface $decorated, CfSchema_OptionalInterface $schema) {
     $this->decorated = $decorated;
     $this->schema = $schema;
   }

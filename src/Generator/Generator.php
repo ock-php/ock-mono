@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Util\UtilBase;
 
-final class Evaluator extends UtilBase {
+final class Generator extends UtilBase {
 
   /**
    * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Evaluator\EvaluatorInterface|null
+   * @return \Donquixote\Cf\Generator\GeneratorInterface|null
    */
   public static function fromSchema(
     CfSchemaInterface $schema,
     SchemaToAnythingInterface $schemaToAnything
-  ): ?EvaluatorInterface {
+  ): ?GeneratorInterface {
 
     $candidate = $schemaToAnything->schema(
       $schema,
-      EvaluatorInterface::class);
+      GeneratorInterface::class);
 
-    if ($candidate instanceof EvaluatorInterface) {
+    if ($candidate instanceof GeneratorInterface) {
       return $candidate;
     }
 
@@ -32,7 +32,7 @@ final class Evaluator extends UtilBase {
       return null;
     }
 
-    throw new \RuntimeException("Expected an EvaluatorInterface object or NULL.");
+    throw new \RuntimeException("Expected an GeneratorInterface object or NULL.");
   }
 
 }

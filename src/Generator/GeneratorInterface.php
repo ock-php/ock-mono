@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
-interface EvaluatorInterface {
+interface GeneratorInterface {
 
   /**
    * @param mixed $conf

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
@@ -11,7 +11,7 @@ use Donquixote\Cf\Util\PhpUtil;
 use Donquixote\Cf\Zoo\V2V\Id\V2V_Id_Trivial;
 use Donquixote\Cf\Zoo\V2V\Id\V2V_IdInterface;
 
-class Evaluator_Id implements EvaluatorInterface {
+class Generator_Id implements GeneratorInterface {
 
   /**
    * @var \Donquixote\Cf\Schema\Id\CfSchema_IdInterface
@@ -30,7 +30,7 @@ class Evaluator_Id implements EvaluatorInterface {
    *
    * @return self
    */
-  public static function createFromIdSchema(CfSchema_IdInterface $schema): Evaluator_Id {
+  public static function createFromIdSchema(CfSchema_IdInterface $schema): Generator_Id {
     return new self($schema, new V2V_Id_Trivial());
   }
 
@@ -39,7 +39,7 @@ class Evaluator_Id implements EvaluatorInterface {
    *
    * @return self
    */
-  public static function createFromIdValSchema(CfSchema_IdValInterface $schema): Evaluator_Id {
+  public static function createFromIdValSchema(CfSchema_IdValInterface $schema): Generator_Id {
     return new self($schema->getDecorated(), $schema->getV2V());
   }
 

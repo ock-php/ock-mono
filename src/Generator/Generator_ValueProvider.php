@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProviderInterface;
 
 /**
  * @STA
  */
-class Evaluator_ValueProvider implements EvaluatorInterface {
+class Generator_ValueProvider implements GeneratorInterface {
 
   /**
    * @var \Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProviderInterface

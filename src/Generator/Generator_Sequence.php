@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface;
@@ -11,12 +11,12 @@ use Donquixote\Cf\Util\PhpUtil;
 use Donquixote\Cf\Zoo\V2V\Sequence\V2V_Sequence_Trivial;
 use Donquixote\Cf\Zoo\V2V\Sequence\V2V_SequenceInterface;
 
-class Evaluator_Sequence implements EvaluatorInterface {
+class Generator_Sequence implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Evaluator\EvaluatorInterface
+   * @var \Donquixote\Cf\Generator\GeneratorInterface
    */
-  private $itemEvaluator;
+  private $itemGenerator;
 
   /**
    * @var \Donquixote\Cf\Zoo\V2V\Sequence\V2V_SequenceInterface
@@ -33,7 +33,7 @@ class Evaluator_Sequence implements EvaluatorInterface {
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public static function createFromSequenceSchema(CfSchema_SequenceInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Evaluator_Sequence {
+  public static function createFromSequenceSchema(CfSchema_SequenceInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
     return self::create($schema, new V2V_Sequence_Trivial(), $schemaToAnything);
   }
 
@@ -47,7 +47,7 @@ class Evaluator_Sequence implements EvaluatorInterface {
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  public static function createFromSequenceValSchema(CfSchema_SequenceValInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Evaluator_Sequence {
+  public static function createFromSequenceValSchema(CfSchema_SequenceValInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
     return self::create($schema->getDecorated(), $schema->getV2V(), $schemaToAnything);
   }
 
@@ -60,26 +60,26 @@ class Evaluator_Sequence implements EvaluatorInterface {
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
-  private static function create(CfSchema_SequenceInterface $schema, V2V_SequenceInterface $v2v, SchemaToAnythingInterface $schemaToAnything): ?Evaluator_Sequence {
+  private static function create(CfSchema_SequenceInterface $schema, V2V_SequenceInterface $v2v, SchemaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
 
-    $itemEvaluator = Evaluator::fromSchema(
+    $itemGenerator = Generator::fromSchema(
       $schema->getItemSchema(),
       $schemaToAnything
     );
 
-    if (NULL === $itemEvaluator) {
+    if (NULL === $itemGenerator) {
       return NULL;
     }
 
-    return new self($itemEvaluator, $v2v);
+    return new self($itemGenerator, $v2v);
   }
 
   /**
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface $itemEvaluator
+   * @param \Donquixote\Cf\Generator\GeneratorInterface $itemGenerator
    * @param \Donquixote\Cf\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
    */
-  protected function __construct(EvaluatorInterface $itemEvaluator, V2V_SequenceInterface $v2v) {
-    $this->itemEvaluator = $itemEvaluator;
+  protected function __construct(GeneratorInterface $itemGenerator, V2V_SequenceInterface $v2v) {
+    $this->itemGenerator = $itemGenerator;
     $this->v2v = $v2v;
   }
 
@@ -106,7 +106,7 @@ class Evaluator_Sequence implements EvaluatorInterface {
           . "\n" . "Found $deltaExport instead.");
       }
 
-      $values[] = $this->itemEvaluator->confGetValue($itemConf);
+      $values[] = $this->itemGenerator->confGetValue($itemConf);
     }
 
     return $this->v2v->valuesGetValue($values);
@@ -132,7 +132,7 @@ class Evaluator_Sequence implements EvaluatorInterface {
         return PhpUtil::incompatibleConfiguration("Sequence array keys must be non-negative integers.");
       }
 
-      $phpStatements[] = $this->itemEvaluator->confGetPhp($itemConf);
+      $phpStatements[] = $this->itemGenerator->confGetPhp($itemConf);
     }
 
     return $this->v2v->itemsPhpGetPhp($phpStatements);

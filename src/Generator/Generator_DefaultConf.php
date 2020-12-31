@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Evaluator;
+namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConfInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
@@ -9,10 +9,10 @@ use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 /**
  * @see \Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConfInterface
  */
-class Evaluator_DefaultConf implements EvaluatorInterface {
+class Generator_DefaultConf implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Evaluator\EvaluatorInterface
+   * @var \Donquixote\Cf\Generator\GeneratorInterface
    */
   private $decorated;
 
@@ -36,7 +36,7 @@ class Evaluator_DefaultConf implements EvaluatorInterface {
     SchemaToAnythingInterface $schemaToAnything
   ): ?self {
 
-    $decorated = Evaluator::fromSchema(
+    $decorated = Generator::fromSchema(
       $schema->getDecorated(),
       $schemaToAnything);
 
@@ -50,10 +50,10 @@ class Evaluator_DefaultConf implements EvaluatorInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Evaluator\EvaluatorInterface $decorated
+   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
    * @param mixed $defaultConf
    */
-  public function __construct(EvaluatorInterface $decorated, $defaultConf) {
+  public function __construct(GeneratorInterface $decorated, $defaultConf) {
     $this->decorated = $decorated;
     $this->defaultConf = $defaultConf;
   }
