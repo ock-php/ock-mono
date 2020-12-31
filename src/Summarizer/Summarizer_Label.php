@@ -54,7 +54,7 @@ class Summarizer_Label implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?\Donquixote\Cf\Text\TextInterface {
+  public function confGetSummary($conf): ?TextInterface {
 
     $decorated = $this->decorated->confGetSummary($conf);
 
