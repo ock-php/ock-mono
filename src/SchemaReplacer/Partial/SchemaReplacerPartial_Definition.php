@@ -49,7 +49,6 @@ class SchemaReplacerPartial_Definition implements SchemaReplacerPartialInterface
     }
 
     if (NULL !== $replacement = $replacer->schemaGetReplacement($schema)) {
-      /** @noinspection CallableParameterUseCaseInTypeContextInspection */
       $schema = $replacement;
     }
 
