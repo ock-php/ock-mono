@@ -54,7 +54,15 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
       return [];
     }
 
-    $reflectionClass = new \ReflectionClass($class);
+    try {
+      $reflectionClass = new \ReflectionClass($class);
+    }
+    catch (\ReflectionException $e) {
+      // Class does not exist.
+      // @todo Log an error.
+      return [];
+    }
+
     if ($reflectionClass->isInterface() || $reflectionClass->isTrait()) {
       return [];
     }
