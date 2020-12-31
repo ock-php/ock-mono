@@ -44,7 +44,6 @@ class SchemaReplacerPartial_Definition implements SchemaReplacerPartialInterface
         $schema->getContext());
     }
     catch (\Exception $e) {
-      dpm($schema->getDefinition(), $e->getMessage());
       // @todo Allow throwing exceptions? Log the problem somewhere? BrokenSchema?
       return NULL;
     }

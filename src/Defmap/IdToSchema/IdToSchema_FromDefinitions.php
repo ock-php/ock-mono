@@ -56,7 +56,6 @@ class IdToSchema_FromDefinitions implements IdToSchemaInterface {
         $this->context);
     }
     catch (CfSchemaCreationException $e) {
-      dpm($this->definitions[$id], $e->getMessage());
       // @todo Maybe report this somewhere?
       return NULL;
     }

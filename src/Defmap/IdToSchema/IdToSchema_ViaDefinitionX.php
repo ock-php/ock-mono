@@ -60,7 +60,6 @@ class IdToSchema_ViaDefinitionX implements IdToSchemaInterface {
       return $this->definitionToSchema->definitionGetSchema($definition, $this->context);
     }
     catch (CfSchemaCreationException $e) {
-      dpm($definition, $e->getMessage());
       // @todo Report this in watchdog?
       return NULL;
     }

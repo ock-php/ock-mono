@@ -57,10 +57,6 @@ class SchemaToAnythingPartial_SchemaReplacer implements SchemaToAnythingPartialI
       throw new SchemaToAnythingException("Replacer did not replace.");
     }
 
-    if ($recursionLevel > 5) {
-      dpm(spl_object_hash($replacement), 'REPLACEMENT OBJECT HASH at ' . $recursionLevel);
-    }
-
     if ($recursionLevel > 10) {
       # kdpm($schema, spl_object_hash($schema));
       # kdpm($replacement, spl_object_hash($replacement));
