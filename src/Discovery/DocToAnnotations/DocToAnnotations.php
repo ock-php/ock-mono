@@ -7,7 +7,6 @@ use Donquixote\Annotation\Resolver\AnnotationResolver;
 use Donquixote\Annotation\Resolver\AnnotationResolverInterface;
 use Donquixote\Annotation\Util\DocCommentUtil;
 use Donquixote\Annotation\Value\GenericAnnotation\GenericAnnotationInterface;
-use Drupal\Component\Render\MarkupInterface;
 
 class DocToAnnotations implements DocToAnnotationsInterface {
 
@@ -80,17 +79,11 @@ class DocToAnnotations implements DocToAnnotationsInterface {
    *
    * @return mixed|null
    */
-  private function resolveAnnotation($name, array $args) {
+  private function resolveAnnotation(string $name, array $args) {
 
-    if ($name === \t::class || $name === \Translate::class) {
+    if ($name === 't' || $name === 'Translate') {
       if (isset($args[0]) && \is_string($args[0])) {
-        $translated = t($args[0]);
-        if ($translated instanceof MarkupInterface) {
-          return $translated->render();
-        }
-        if (\is_string($translated)) {
-          return $translated;
-        }
+        // @todo Translate this!
         return $args[0];
       }
     }
