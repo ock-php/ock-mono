@@ -24,7 +24,7 @@ class TypeToDefmap_Cache implements TypeToDefmapInterface {
 
   /**
    * @param \Donquixote\Cf\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface $typeToDefinitionsbyid
-   * @param \Donquixote\Cf\Cache\Prefix\CachePrefixInterface $cachePrefix
+   * @param \Donquixote\Cf\Cache\Prefix\CachePrefixInterface|null $cachePrefix
    *   A prefix to prepend to the cache id, or NULL to have no cache.
    *   If specified, it should include the langcode.
    */

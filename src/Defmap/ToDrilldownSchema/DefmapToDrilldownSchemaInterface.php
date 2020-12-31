@@ -11,7 +11,7 @@ interface DefmapToDrilldownSchemaInterface {
 
   /**
    * @param \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
-   * @param \Donquixote\Cf\Context\CfContextInterface $context
+   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
    *
    * @return \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface
    */
