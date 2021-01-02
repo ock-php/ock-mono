@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Schema\Optional;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\Cf\Text\TextInterface;
 
 interface CfSchema_OptionalInterface extends CfSchemaInterface {
 
@@ -14,11 +15,9 @@ interface CfSchema_OptionalInterface extends CfSchemaInterface {
   public function getDecorated(): CfSchemaInterface;
 
   /**
-   * @return string|null
-   *
-   * @todo Does this need a helper?
+   * @return \Donquixote\Cf\Text\TextInterface|null
    */
-  public function getEmptySummary(): ?string;
+  public function getEmptySummary(): ?TextInterface;
 
   /**
    * @return mixed
