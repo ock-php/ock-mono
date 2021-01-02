@@ -20,14 +20,6 @@ interface CfSchema_OptionalInterface extends CfSchemaInterface {
   public function getEmptySummary(): ?TextInterface;
 
   /**
-   * @return mixed
-   *   Typically NULL.
-   *
-   * @todo Does this need a helper?
-   */
-  public function getEmptyValue();
-
-  /**
    * @return string
    *   Typically 'NULL'.
    *
