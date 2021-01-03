@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Defmap\DefinitionToLabel;
 
+use Donquixote\Cf\Text\Text;
+use Donquixote\Cf\Text\TextInterface;
+
 class DefinitionToLabel implements DefinitionToLabelInterface {
 
   /**
@@ -35,7 +38,7 @@ class DefinitionToLabel implements DefinitionToLabelInterface {
   /**
    * {@inheritdoc}
    */
-  public function definitionGetLabel(array $definition, ?string $else): string {
-    return $definition[$this->key] ?? $else;
+  public function definitionGetLabel(array $definition, ?string $else): ?TextInterface {
+    return $definition[$this->key] ?? Text::s($else);
   }
 }
