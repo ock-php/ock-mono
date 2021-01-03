@@ -72,8 +72,6 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
     }
 
     if ($value instanceof ReflectionFactoryInterface) {
-      $value->is_return = TRUE;
-      $value->is_return_value = TRUE;
       return $this->decorated->factoryGetPartial($value);
     }
 
@@ -90,8 +88,6 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
       return NULL;
     }
 
-    $factory->is_return = TRUE;
-    $factory->is_return_callable = TRUE;
     return $this->decorated->factoryGetPartial($factory);
   }
 }
