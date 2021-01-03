@@ -62,6 +62,11 @@ class AnnotatedFactory implements AnnotatedFactoryInterface {
    * @param callable $callable
    *
    * @return \Donquixote\Cf\Discovery\AnnotatedFactory\AnnotatedFactoryInterface|null
+   *
+   * @throws \ReflectionException
+   *   Function or method does not exist.
+   * @throws \Exception
+   *   Malformed callable definition.
    */
   public static function fromCallable(callable $callable): ?AnnotatedFactoryInterface {
 

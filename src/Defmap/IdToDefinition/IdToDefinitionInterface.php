@@ -6,7 +6,7 @@ namespace Donquixote\Cf\Defmap\IdToDefinition;
 interface IdToDefinitionInterface {
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return array|null
    */
