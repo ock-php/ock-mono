@@ -79,10 +79,18 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
       return NULL;
     }
 
-    $factory = ReflectionFactory::fromCallable(
-      $value,
-      $this->contextFinder,
-      $this->functionToReturnType);
+    try {
+      $factory = ReflectionFactory::fromCallable(
+        $value,
+        $this->contextFinder,
+        $this->functionToReturnType);
+    }
+    catch (\ReflectionException $e) {
+      throw new \RuntimeException('Impossible exception', 0, $e);
+    }
+    catch (\Exception $e) {
+      throw new \RuntimeException('Impossible exception', 0, $e);
+    }
 
     if (NULL === $factory) {
       return NULL;
