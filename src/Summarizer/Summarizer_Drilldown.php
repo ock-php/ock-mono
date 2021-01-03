@@ -8,8 +8,6 @@ use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Text\Text;
 use Donquixote\Cf\Text\TextInterface;
-use Donquixote\Cf\Translator\TranslatorInterface;
-use Donquixote\Cf\Util\HtmlUtil;
 
 /**
  * @STA
@@ -47,39 +45,38 @@ class Summarizer_Drilldown implements SummarizerInterface {
       ->unpack($conf);
 
     if (NULL === $id) {
-      return Text::option('None');
+      return Text::tSpecialOption('None');
     }
 
     if (NULL === $subSchema = $this->schema->getIdToSchema()->idGetSchema($id)) {
-      return Text::option('Unknown id "@id".', [
+      return Text::tSpecialOption('Unknown id "@id".', [
         '@id' => $id,
       ]);
     }
 
-    if (NULL === $idLabelUnsafe = $this->schema->getIdSchema()->idGetLabel($id)) {
-      return Text::option('Unnamed id "@id".', [
+    if (NULL === $idLabel = $this->schema->getIdSchema()->idGetLabel($id)) {
+      return Text::tSpecialOption('Unnamed id "@id".', [
         '@id' => $id,
       ]);
     }
-
-    $idLabelSafe = HtmlUtil::sanitize($idLabelUnsafe);
 
     $subSummarizer = Summarizer::fromSchema(
       $subSchema,
       $this->schemaToAnything);
 
     if (NULL === $subSummarizer) {
-      return Text::option('Undocumented id "@id".', [
+      return Text::tSpecialOption('Undocumented id "@id".', [
         '@id' => $id,
       ]);
     }
 
     $subSummary = $subSummarizer->confGetSummary($subConf);
 
-    if (!\is_string($subSummary) || '' === $subSummary) {
-      return $idLabelSafe;
+    if ($subSummary === NULL) {
+      return $idLabel;
     }
 
-    return $idLabelSafe . ': ' . $subSummary;
+    // @todo Show just the label if subSummary produces empty string?
+    return Text::label($idLabel, $subSummary);
   }
 }
