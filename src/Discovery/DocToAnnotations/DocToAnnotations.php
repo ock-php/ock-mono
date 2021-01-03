@@ -89,6 +89,6 @@ class DocToAnnotations implements DocToAnnotationsInterface {
     }
 
     return NULL;
-
   }
+
 }
