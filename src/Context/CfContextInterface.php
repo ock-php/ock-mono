@@ -24,14 +24,14 @@ interface CfContextInterface {
    *
    * @return bool
    */
-  public function paramNameHasValue($paramName);
+  public function paramNameHasValue(string $paramName);
 
   /**
    * @param string $paramName
    *
    * @return mixed
    */
-  public function paramNameGetValue($paramName);
+  public function paramNameGetValue(string $paramName);
 
   /**
    * @return string
