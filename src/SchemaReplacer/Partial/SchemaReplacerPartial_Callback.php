@@ -124,7 +124,7 @@ class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
    * @param int $iParamUnconfigurable
    *   Parameter index which is creating problems.
    */
-  private function logUnconfigurableParameter(CallbackReflectionInterface $callback, $iParamUnconfigurable) {
+  private function logUnconfigurableParameter(CallbackReflectionInterface $callback, int $iParamUnconfigurable): void {
 
     $params = $callback->getReflectionParameters();
 
