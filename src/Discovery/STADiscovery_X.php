@@ -30,7 +30,7 @@ class STADiscovery_X {
    *
    * @return self
    */
-  public static function create(ParamToValueInterface $paramToValue) {
+  public static function create(ParamToValueInterface $paramToValue): self {
 
     $contextFinder = new ContextFinder_PhpTokenParser();
     $functionToReturnType = FunctionToReturnType_Chain::create();
