@@ -17,7 +17,7 @@ class CfSchema_Sequence_ItemLabelCallback extends CfSchema_SequenceBase {
    * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $itemSchema
    * @param callable $itemLabelCallback
    */
-  public function __construct(CfSchemaInterface $itemSchema, $itemLabelCallback) {
+  public function __construct(CfSchemaInterface $itemSchema, callable $itemLabelCallback) {
     parent::__construct($itemSchema);
     $this->itemLabelCallback = $itemLabelCallback;
   }

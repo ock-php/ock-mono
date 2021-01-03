@@ -103,7 +103,7 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
    * @return string[]
    *   Format: [$id0, $id1]
    */
-  protected function splitId($combinedId): array {
+  protected function splitId(string $combinedId): array {
     return explode(':', $combinedId);
   }
 
