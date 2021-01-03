@@ -22,7 +22,7 @@ class CfSchema_Textfield_IntegerInRange extends CfSchema_Textfield_IntegerBase {
    * @param int|null $min
    * @param int|null $max
    */
-  public function __construct($min = NULL, $max = NULL) {
+  public function __construct(?int $min = NULL, ?int $max = NULL) {
     $this->min = $min;
     $this->max = $max;
   }
