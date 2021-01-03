@@ -20,7 +20,7 @@ class FormatorCommon_V2V implements SchemaToAnythingPartialInterface {
     CfSchemaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
-  ) {
+  ): ?object {
 
     if (!$schema instanceof CfSchema_ValueToValueBaseInterface) {
       return NULL;
