@@ -30,14 +30,7 @@ class SchemaToAnythingPartial_SchemaReplacer implements SchemaToAnythingPartialI
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
-   * @param string $interface
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $helper
-   *
-   * @return null|object
-   *   An instance of $interface, or NULL.
-   *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * {@inheritdoc}
    */
   public function schema(
     CfSchemaInterface $schema,

@@ -35,13 +35,7 @@ class SchemaToAnythingPartial_Chain implements SchemaToAnythingPartialInterface 
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
-   * @param string $interface
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $helper
-   *
-   * @return null|object
-   *   An instance of $interface, or NULL.
-   *
+   * {@inheritdoc}
    */
   public function schema(
     CfSchemaInterface $schema,
