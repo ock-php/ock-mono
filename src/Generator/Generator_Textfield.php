@@ -62,7 +62,8 @@ class Generator_Textfield implements GeneratorInterface {
     }
 
     if ([] !== $errors = $this->schema->textGetValidationErrors($conf)) {
-      return PhpUtil::incompatibleConfiguration(reset($errors));
+      // @todo Produce a comment from the errors text!
+      return PhpUtil::incompatibleConfiguration(count($errors) . ' errors.');
     }
 
     return $this->v2v->stringGetPhp($conf);
