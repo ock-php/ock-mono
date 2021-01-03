@@ -53,7 +53,8 @@ class SchemaReplacerPartial_Proxy_Cache implements SchemaReplacerPartialInterfac
     if (isset($this->buffer[$cacheId])) {
       return $this->buffer[$cacheId];
     }
-    elseif (isset($this->seen[$cacheId])) {
+
+    if (isset($this->seen[$cacheId])) {
       return NULL;
     }
 
