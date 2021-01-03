@@ -16,7 +16,7 @@ class CfSchema_Label extends CfSchema_DecoratorBase implements CfSchema_LabelInt
 
   /**
    * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
-   * @param TextInterface|null $label
+   * @param \Donquixote\Cf\Text\TextInterface|null $label
    */
   public function __construct(CfSchemaInterface $decorated, ?TextInterface $label) {
     parent::__construct($decorated);

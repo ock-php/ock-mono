@@ -78,10 +78,10 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
   }
 
   /**
-   * @param TextInterface $label0
-   * @param TextInterface $label1
+   * @param \Donquixote\Cf\Text\TextInterface $label0
+   * @param \Donquixote\Cf\Text\TextInterface $label1
    *
-   * @return TextInterface
+   * @return \Donquixote\Cf\Text\TextInterface
    */
   protected function combineLabels(TextInterface $label0, TextInterface $label1): TextInterface {
     return Text::concat([$label0, $label1], ' - ');

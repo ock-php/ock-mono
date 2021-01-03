@@ -26,7 +26,7 @@ interface CfSchema_TextfieldInterface extends CfSchemaInterface {
   /**
    * @param string $text
    *
-   * @return string[]
+   * @return \Donquixote\Cf\Text\TextInterface[]
    */
   public function textGetValidationErrors(string $text): array;
 

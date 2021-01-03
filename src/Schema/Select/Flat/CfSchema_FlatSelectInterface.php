@@ -12,7 +12,7 @@ use Donquixote\Cf\Text\TextInterface;
 interface CfSchema_FlatSelectInterface extends CfSchema_IdInterface {
 
   /**
-   * @return string[]
+   * @return \Donquixote\Cf\Text\TextInterface[]
    *   Format: $[$optionKey] = $optionLabel
    */
   public function getOptions(): array;

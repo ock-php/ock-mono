@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Schema\Textfield;
 
 use Donquixote\Cf\Schema\StringVal\CfSchema_StringVal;
+use Donquixote\Cf\Text\Text;
 use Donquixote\Cf\Util\PhpUtil;
 use Donquixote\Cf\Zoo\V2V\String\V2V_StringInterface;
 
@@ -23,8 +24,8 @@ abstract class CfSchema_Textfield_IntegerBase extends CfSchema_TextfieldBase imp
 
     $errors = [];
 
-    if ((string)(int)$text !== (string)$text) {
-      $errors[] = "Value must be an integer.";
+    if ((string) (int) $text !== $text) {
+      $errors[] = Text::t("Value must be an integer.");
       return $errors;
     }
 
@@ -34,7 +35,7 @@ abstract class CfSchema_Textfield_IntegerBase extends CfSchema_TextfieldBase imp
   /**
    * @param int $number
    *
-   * @return string[]
+   * @return \Donquixote\Cf\Text\TextInterface[]
    */
   protected function numberGetValidationErrors(int $number): array {
     return [];
