@@ -7,7 +7,7 @@ abstract class TextBase implements TextInterface {
   /**
    * @var string
    */
-  private string $value;
+  private $value;
 
   /**
    * @param string $value

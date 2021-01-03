@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
+use Donquixote\Cf\Text\Text;
 use Donquixote\Cf\Text\TextInterface;
-use Donquixote\Cf\Translator\TranslatorInterface;
 use Donquixote\Cf\Util\ConfUtil;
 
 /**
@@ -19,17 +19,10 @@ class Summarizer_Id implements SummarizerInterface {
   private $schema;
 
   /**
-   * @var \Donquixote\Cf\Translator\TranslatorInterface
-   */
-  private $translator;
-
-  /**
    * @param \Donquixote\Cf\Schema\Id\CfSchema_IdInterface $schema
-   * @param \Donquixote\Cf\Translator\TranslatorInterface $translator
    */
-  public function __construct(CfSchema_IdInterface $schema, TranslatorInterface $translator) {
+  public function __construct(CfSchema_IdInterface $schema) {
     $this->schema = $schema;
-    $this->translator = $translator;
   }
 
   /**
@@ -38,12 +31,12 @@ class Summarizer_Id implements SummarizerInterface {
   public function confGetSummary($conf): ?TextInterface {
 
     if (NULL === $id = ConfUtil::confGetId($conf)) {
-      return $this->translator->translate('Required id missing.');
+      return Text::t('Required id missing.');
     }
 
     if (!$this->schema->idIsKnown($id)) {
-      return $this->translator->translate(
-        'Unknown id "@id" for options schema.',
+      return Text::t(
+        'Unknown id "@id".',
         ['@id' => $id]);
     }
 

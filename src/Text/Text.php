@@ -8,19 +8,38 @@ namespace Donquixote\Cf\Text;
 class Text {
 
   /**
-   * Gets text for a select option with '- ... -'.
+   * Builds a text object for a select option with '- ... -'.
    *
    * @param string $string
    *   Original untranslated text with placeholders.
    * @param array $replacements
    *   Replacements.
    */
-  public static function option(string $string, array $replacements = []) {
-    return static::t(
-      '- @option -',
-      [
-        '@option' => static::t($string, $replacements),
-      ]);
+  public static function tSpecialOption(string $string, array $replacements = []) {
+    return static::t('- @option -', [
+      '@option' => static::t($string, $replacements),
+    ]);
+  }
+
+  public static function tParens(string $string, array $replacements = []) {
+    return static::t('(@text)', [
+      '@text' => static::t($string, $replacements),
+    ]);
+  }
+
+  /**
+   * Builds a text object for "Label: Value".
+   *
+   * @param \Donquixote\Cf\Text\TextInterface $label
+   *   Label.
+   * @param \Donquixote\Cf\Text\TextInterface $value
+   *   Value.
+   */
+  public static function label(TextInterface $label, TextInterface $value) {
+    return static::t('@label: @value', [
+      '@label' => $label,
+      '@value' => $value,
+    ]);
   }
 
   /**
@@ -51,7 +70,7 @@ class Text {
    *   Replacements.
    *
    * @return \Donquixote\Cf\Text\TextInterface
-   *   Translatable text object.
+   *   Text object.
    */
   public static function s(string $string, array $replacements = []) {
     $text = new Text_Raw($string);
@@ -59,7 +78,90 @@ class Text {
       $text = new Text_Replacements($text, $replacements);
     }
     return $text;
+  }
 
+  /**
+   * Builds a text object for an integer number.
+   *
+   * @param int $number
+   *   Integer number.
+   *
+   * @return \Donquixote\Cf\Text\TextInterface
+   *   Text object.
+   */
+  public static function i(int $number) {
+    return new Text_Raw((string) $number);
+  }
+
+  /**
+   * Builds a text object for a html list with <ul>.
+   *
+   * @param \Donquixote\Cf\Text\TextInterface[] $parts
+   *   List items.
+   *
+   * @return \Donquixote\Cf\Text\TextInterface
+   *   Translatable text object.
+   */
+  public static function ul(array $parts) {
+    return static::ulOrOl($parts, 'ul');
+  }
+
+  /**
+   * Builds a text object for a html list with <ol>.
+   *
+   * @param \Donquixote\Cf\Text\TextInterface[] $parts
+   *   List items.
+   *
+   * @return \Donquixote\Cf\Text\TextInterface
+   *   Translatable text object.
+   */
+  public static function ol(array $parts) {
+    return static::ulOrOl($parts, 'ul');
+  }
+
+  /**
+   * Builds a text object for a html list with <ul> or <ol>.
+   *
+   * @param \Donquixote\Cf\Text\TextInterface[] $parts
+   *   List items.
+   * @param string $tag
+   *   One of 'ul' or 'ol'.
+   *
+   * @return \Donquixote\Cf\Text\TextInterface
+   *   Translatable text object.
+   */
+  protected static function ulOrOl(array $parts, string $tag) {
+    $string = '';
+    $replacements = [];
+    foreach (array_values($parts) as $i => $part) {
+      $key = '@' . $i;
+      $string .= "<li>$key</li>";
+      $replacements[$key] = $part;
+    }
+    return new Text_Replacements(
+      new Text_Raw("<$tag>$string</$tag>"),
+      $replacements);
+  }
+
+  /**
+   * Gets a non-translatable text object.
+   *
+   * @param \Donquixote\Cf\Text\TextInterface[] $parts
+   *   List items.
+   * @param string $glue
+   *   Glue string between the items.
+   *
+   * @return \Donquixote\Cf\Text\TextInterface
+   *   Translatable text object.
+   */
+  public static function concat(array $parts, string $glue = '') {
+    $replacements = [];
+    foreach (array_values($parts) as $i => $part) {
+      $replacements['@' . $i] = $part;
+    }
+    return static::s(
+      implode($glue, array_keys($replacements)),
+      $replacements);
   }
 
 }

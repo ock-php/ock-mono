@@ -46,26 +46,25 @@ class CallbackUtil {
   }
 
   /**
-   * @param mixed|callable $callable
+   * Gets a function-like reflector for a given callable.
    *
-   * @return \ReflectionFunctionAbstract|null
+   * @param mixed $callable
+   *   Callable definition.
+   *
+   * @return \ReflectionFunctionAbstract
+   *   Reflector.
+   *
+   * @throws \ReflectionException
+   *   Function or method does not exist.
+   * @throws \Exception
+   *   Malformed callable definition.
    */
-  public static function callableGetReflector($callable): ?\ReflectionFunctionAbstract {
-
-    if (!\is_callable($callable)) {
-      return NULL;
-    }
+  public static function callableGetReflector($callable): \ReflectionFunctionAbstract {
 
     if (\is_string($callable)) {
-      if (FALSE === strpos($callable, '::')) {
-        if (!\function_exists($callable)) {
-          return NULL;
-        }
-        return new \ReflectionFunction($callable);
-      }
-      else {
-        return new \ReflectionMethod($callable);
-      }
+      return FALSE === strpos($callable, '::')
+        ? new \ReflectionFunction($callable)
+        : new \ReflectionMethod($callable);
     }
 
     if (\is_object($callable)) {
@@ -78,12 +77,14 @@ class CallbackUtil {
     }
 
     if (\is_array($callable)) {
-      if (isset($callable[0], $callable[1])) {
-        return new \ReflectionMethod($callable[0], $callable[1]);
+      if (!isset($callable[0], $callable[1])) {
+        throw new \Exception('Malformed callback array.');
       }
+
+      return new \ReflectionMethod($callable[0], $callable[1]);
     }
 
-    return NULL;
+    throw new \Exception('Malformed callback definition.');
   }
 
 }

@@ -6,7 +6,6 @@ namespace Donquixote\Cf\Summarizer;
 use Donquixote\Cf\Emptiness\EmptinessInterface;
 use Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface;
 use Donquixote\Cf\Text\TextInterface;
-use Donquixote\Cf\Util\HtmlUtil;
 
 class Summarizer_OptionalWithEmptiness implements SummarizerInterface {
 
@@ -45,16 +44,8 @@ class Summarizer_OptionalWithEmptiness implements SummarizerInterface {
    */
   public function confGetSummary($conf): ?TextInterface {
 
-    if ($this->emptiness->confIsEmpty($conf)) {
-
-      if (NULL === $summaryUnsafe = $this->schema->getEmptySummary()) {
-        return NULL;
-      }
-
-      // The schema's summary might not be designed for HTML.
-      return HtmlUtil::sanitize($summaryUnsafe);
-    }
-
-    return $this->decorated->confGetSummary($conf);
+    return $this->emptiness->confIsEmpty($conf)
+      ? $this->schema->getEmptySummary()
+      : $this->decorated->confGetSummary($conf);
   }
 }

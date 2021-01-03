@@ -6,7 +6,6 @@ namespace Donquixote\Cf\Summarizer;
 use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldInterface;
 use Donquixote\Cf\Text\Text;
 use Donquixote\Cf\Text\TextInterface;
-use Donquixote\Cf\Util\HtmlUtil;
 
 /**
  * @STA
@@ -35,9 +34,11 @@ class Summarizer_Textfield implements SummarizerInterface {
     }
 
     if ([] !== $errors = $this->schema->textGetValidationErrors($conf)) {
-      return 'Invalid string: ' . HtmlUtil::sanitize(reset($errors));
+      return Text::label(
+        Text::t('Invalid string'),
+        Text::ul($errors));
     }
 
-    return HtmlUtil::sanitize(var_export($conf, TRUE));
+    return Text::s(var_export($conf, TRUE));
   }
 }

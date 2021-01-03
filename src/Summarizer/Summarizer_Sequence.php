@@ -5,6 +5,7 @@ namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\Cf\Text\Text;
 use Donquixote\Cf\Text\TextInterface;
 use Donquixote\Cf\Translator\TranslatorInterface;
 
@@ -14,11 +15,6 @@ class Summarizer_Sequence implements SummarizerInterface {
    * @var \Donquixote\Cf\Summarizer\SummarizerInterface
    */
   private $itemSummarizer;
-
-  /**
-   * @var \Donquixote\Cf\Translator\TranslatorInterface
-   */
-  private $translator;
 
   /**
    * @STA
@@ -43,16 +39,14 @@ class Summarizer_Sequence implements SummarizerInterface {
       return NULL;
     }
 
-    return new self($itemSummarizer, $translator);
+    return new self($itemSummarizer);
   }
 
   /**
    * @param \Donquixote\Cf\Summarizer\SummarizerInterface $itemSummarizer
-   * @param \Donquixote\Cf\Translator\TranslatorInterface $translator
    */
-  public function __construct(SummarizerInterface $itemSummarizer, TranslatorInterface $translator) {
+  public function __construct(SummarizerInterface $itemSummarizer) {
     $this->itemSummarizer = $itemSummarizer;
-    $this->translator = $translator;
   }
 
   /**
@@ -64,25 +58,18 @@ class Summarizer_Sequence implements SummarizerInterface {
       $conf = [];
     }
 
-    $summary = '';
+    $parts = [];
     foreach ($conf as $delta => $itemConf) {
 
-      if ((string)(int)$delta !== (string)$delta || $delta < 0) {
+      if ((string) (int) $delta !== (string) $delta || $delta < 0) {
         // Fail on non-numeric and negative keys.
-        return '- ' . $this->translator->translate('Noisy configuration') . ' -';
+        return Text::tParens('Noisy configuration.');
       }
 
-      $itemSummary = $this->itemSummarizer->confGetSummary($itemConf);
-
-      if (\is_string($itemSummary) && '' !== $itemSummary) {
-        $summary .= "<li>$itemSummary</li>";
-      }
+      $parts[] = $this->itemSummarizer->confGetSummary($itemConf)
+        ?? Text::tParens('Undocumented item.');
     }
 
-    if ('' === $summary) {
-      return NULL;
-    }
-
-    return "<ol>$summary</ol>";
+    return Text::ol($parts);
   }
 }

@@ -7,12 +7,12 @@ class Text_Replacements implements TextInterface {
   /**
    * @var \Donquixote\Cf\Text\TextInterface
    */
-  private TextInterface $original;
+  private $original;
 
   /**
    * @var \Donquixote\Cf\Text\TextInterface[]
    */
-  private array $replacements;
+  private $replacements;
 
   /**
    * Constructor.
@@ -28,14 +28,14 @@ class Text_Replacements implements TextInterface {
   /**
    * @return \Donquixote\Cf\Text\TextInterface
    */
-  public function getOriginalText() {
+  public function getOriginalText(): TextInterface {
     return $this->original;
   }
 
   /**
    * @return \Donquixote\Cf\Text\TextInterface[]
    */
-  public function getReplacements() {
+  public function getReplacements(): array {
     return $this->replacements;
   }
 

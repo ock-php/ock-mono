@@ -5,8 +5,8 @@ namespace Donquixote\Cf\Summarizer;
 
 use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\Cf\Text\Text;
 use Donquixote\Cf\Text\TextInterface;
-use Donquixote\Cf\Util\HtmlUtil;
 use Donquixote\Cf\Util\StaUtil;
 
 class Summarizer_Group implements SummarizerInterface {
@@ -66,24 +66,20 @@ class Summarizer_Group implements SummarizerInterface {
 
     $labels = $this->schema->getLabels();
 
-    $html = '';
+    $parts = [];
     foreach ($this->itemSummarizers as $key => $itemSummarizer) {
 
-      $itemConf = $conf[$key] ?? null;
+      $itemSummary = $itemSummarizer->confGetSummary($conf[$key] ?? null);
 
-      $itemSummary = $itemSummarizer->confGetSummary($itemConf);
+      if ($itemSummary === NULL) {
+        continue;
+      }
 
-      $itemLabelUnsafe = $labels[$key] ?? $key;
-
-      $itemLabelSafe = HtmlUtil::sanitize($itemLabelUnsafe);
-
-      $html .= "<li>$itemLabelSafe: $itemSummary</li>";
+      $parts[] = Text::label(
+        $labels[$key] ?? Text::s($key),
+        $itemSummary);
     }
 
-    if ('' === $html) {
-      return NULL;
-    }
-
-    return "<ul>$html</ul>";
+    return $parts ? Text::ul($parts) : NULL;
   }
 }

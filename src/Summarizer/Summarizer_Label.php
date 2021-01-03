@@ -7,7 +7,6 @@ use Donquixote\Cf\Schema\Label\CfSchema_LabelInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Text\Text;
 use Donquixote\Cf\Text\TextInterface;
-use Donquixote\Cf\Util\HtmlUtil;
 
 class Summarizer_Label implements SummarizerInterface {
 
@@ -17,7 +16,7 @@ class Summarizer_Label implements SummarizerInterface {
   private $decorated;
 
   /**
-   * @var string
+   * @var \Donquixote\Cf\Text\TextInterface
    */
   private $label;
 
@@ -43,6 +42,8 @@ class Summarizer_Label implements SummarizerInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Cf\Summarizer\SummarizerInterface $decorated
    * @param \Donquixote\Cf\Text\TextInterface $label
    */
@@ -62,11 +63,8 @@ class Summarizer_Label implements SummarizerInterface {
       return $decorated;
     }
 
-    $label = HtmlUtil::sanitize($this->label);
-
-    return Text::t('@label: @value', [
-      '@label' => $label,
-      '@value' => $decorated,
-    ]);
+    return Text::label(
+      $this->label,
+      $decorated);
   }
 }
