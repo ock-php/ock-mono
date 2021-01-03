@@ -14,7 +14,7 @@ interface CfSchema_GroupInterface extends CfSchemaInterface {
   public function getItemSchemas(): array;
 
   /**
-   * @return string[]
+   * @return \Donquixote\Cf\Text\TextInterface[]
    */
   public function getLabels(): array;
 

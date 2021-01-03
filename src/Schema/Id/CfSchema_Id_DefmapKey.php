@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Schema\Id;
 
 use Donquixote\Cf\Defmap\IdToDefinition\IdToDefinitionInterface;
+use Donquixote\Cf\Text\Text;
 use Donquixote\Cf\Text\TextInterface;
 
 class CfSchema_Id_DefmapKey implements CfSchema_IdInterface {
@@ -43,6 +44,6 @@ class CfSchema_Id_DefmapKey implements CfSchema_IdInterface {
    * {@inheritdoc}
    */
   public function idGetLabel($id): ?TextInterface {
-    return $id;
+    return Text::s($id);
   }
 }

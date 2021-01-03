@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Schema\Optional;
 
+use Donquixote\Cf\Text\TextInterface;
+
 class CfSchema_Optional extends CfSchema_OptionalBase {
 
   /**
-   * @var string|null
+   * @var \Donquixote\Cf\Text\TextInterface|null
    */
   private $emptySummary;
 
@@ -21,11 +23,11 @@ class CfSchema_Optional extends CfSchema_OptionalBase {
   private $emptyPhp = 'NULL';
 
   /**
-   * @param string $emptySummary
+   * @param \Donquixote\Cf\Text\TextInterface $emptySummary
    *
    * @return static
    */
-  public function withEmptySummary(string $emptySummary) {
+  public function withEmptySummary(TextInterface $emptySummary) {
     $clone = clone $this;
     $clone->emptySummary = $emptySummary;
     return $clone;
@@ -50,7 +52,7 @@ class CfSchema_Optional extends CfSchema_OptionalBase {
   /**
    * {@inheritdoc}
    */
-  public function getEmptySummary(): ?string {
+  public function getEmptySummary(): ?TextInterface {
     return $this->emptySummary;
   }
 

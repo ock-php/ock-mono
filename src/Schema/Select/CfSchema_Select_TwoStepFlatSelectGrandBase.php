@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Schema\Select;
 
 use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
+use Donquixote\Cf\Text\Text;
 use Donquixote\Cf\Text\TextInterface;
 
 abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_SelectInterface {
@@ -22,7 +23,8 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
 
       foreach ($subSchema->getOptions() as $id1 => $label1) {
         $combinedId = $this->combineIds($id0, $id1);
-        $options[$label0][$combinedId] = $this->combineLabels($label0, $label1);
+        // @todo Find a way to use TextInterface for group labels.
+        $options[$id0][$combinedId] = $this->combineLabels($label0, $label1);
       }
     }
 
@@ -76,13 +78,13 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
   }
 
   /**
-   * @param string $label0
-   * @param string $label1
+   * @param TextInterface $label0
+   * @param TextInterface $label1
    *
-   * @return string
+   * @return TextInterface
    */
-  protected function combineLabels($label0, $label1): string {
-    return $label0 . ' - ' . $label1;
+  protected function combineLabels(TextInterface $label0, TextInterface $label1): TextInterface {
+    return Text::concat([$label0, $label1], ' - ');
   }
 
   /**
