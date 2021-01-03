@@ -35,7 +35,12 @@ class DefinitionToSchemaHelper_Schema implements DefinitionToSchemaHelperInterfa
         $arg = $context->paramGetValue($param);
       }
       elseif ($param->isOptional()) {
-        $arg = $param->getDefaultValue();
+        try {
+          $arg = $param->getDefaultValue();
+        }
+        catch (\ReflectionException $e) {
+          throw new \RuntimeException('Impossible exception', 0, $e);
+        }
       }
       else {
         $paramName = $param->getName();
