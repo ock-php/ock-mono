@@ -13,11 +13,6 @@ class CfSchema_Optional extends CfSchema_OptionalBase {
   private $emptySummary;
 
   /**
-   * @var mixed|null
-   */
-  private $emptyValue;
-
-  /**
    * @var string
    */
   private $emptyPhp = 'NULL';
@@ -34,18 +29,13 @@ class CfSchema_Optional extends CfSchema_OptionalBase {
   }
 
   /**
-   * @param mixed $emptyValue
-   * @param string|null $emptyPhp
+   * @param string $emptyPhp
    *
    * @return \Donquixote\Cf\Schema\Optional\CfSchema_Optional
    */
-  public function withEmptyValue($emptyValue, $emptyPhp = NULL): CfSchema_Optional {
-
+  public function withEmptyPhp(string $emptyPhp): CfSchema_Optional {
     $clone = clone $this;
-    $clone->emptyValue = $emptyValue;
-    $clone->emptyPhp = $emptyPhp
-      ?? var_export($emptyValue, true);
-
+    $clone->emptyPhp = $emptyPhp;
     return $clone;
   }
 
@@ -54,13 +44,6 @@ class CfSchema_Optional extends CfSchema_OptionalBase {
    */
   public function getEmptySummary(): ?TextInterface {
     return $this->emptySummary;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getEmptyValue() {
-    return $this->emptyValue;
   }
 
   /**
