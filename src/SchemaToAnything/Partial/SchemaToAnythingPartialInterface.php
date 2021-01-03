@@ -19,6 +19,8 @@ interface SchemaToAnythingPartialInterface {
    * @return null|object
    *   An instance of $interface, or NULL.
    *
+   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   *   Malfunction in a schema replacer.
    */
   public function schema(
     CfSchemaInterface $schema,
