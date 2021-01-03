@@ -168,18 +168,23 @@ class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
 
     $schema = $replacer->schemaGetReplacement($schema);
 
+    if ($param->allowsNull()) {
+      return new CfSchema_Optional_Null($schema);
+    }
+
     if (!$param->isOptional()) {
       return $schema;
     }
 
-    if (NULL === $default = $param->getDefaultValue()) {
-      return new CfSchema_Optional_Null($schema);
-    }
-
     $schema = new CfSchema_Optional($schema);
 
-    return $schema->withEmptyValue(
-      $default,
-      $param->getDefaultValueConstantName());
+    try {
+      $emptyPhp = $param->getDefaultValueConstantName();
+    }
+    catch (\ReflectionException $e) {
+      throw new \RuntimeException('Impossible exception.');
+    }
+
+    return $schema->withEmptyPhp($emptyPhp);
   }
 }
