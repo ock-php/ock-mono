@@ -54,7 +54,8 @@ class SchemaReplacerPartial_Cache_Select implements SchemaReplacerPartialInterfa
     if (isset($this->buffer[$cacheId])) {
       return $this->buffer[$cacheId];
     }
-    elseif (isset($this->seen[$cacheId])) {
+
+    if (isset($this->seen[$cacheId])) {
       return NULL;
     }
 
