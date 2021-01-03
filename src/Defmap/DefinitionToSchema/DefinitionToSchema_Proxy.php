@@ -21,7 +21,7 @@ class DefinitionToSchema_Proxy implements DefinitionToSchemaInterface {
   /**
    * @param callable $factory
    */
-  public function __construct($factory) {
+  public function __construct(callable $factory) {
     $this->factory = $factory;
   }
 

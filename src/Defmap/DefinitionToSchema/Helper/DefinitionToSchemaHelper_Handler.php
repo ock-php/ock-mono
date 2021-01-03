@@ -9,6 +9,12 @@ use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\Callback\CfSchema_Callback;
 use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
 
+/**
+ * @deprecated
+ *   A definition should not include an instantiated object.
+ *
+ * @todo Remove this.
+ */
 class DefinitionToSchemaHelper_Handler implements DefinitionToSchemaHelperInterface {
 
   /**

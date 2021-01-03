@@ -23,7 +23,7 @@ interface DefinitionToSchemaHelperInterface {
    *
    * @throws \Donquixote\Cf\Exception\CfSchemaCreationException
    */
-  public function objectGetSchema($object): CfSchemaInterface;
+  public function objectGetSchema(object $object): CfSchemaInterface;
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $factory
