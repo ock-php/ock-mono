@@ -47,6 +47,8 @@ class Summarizer_Group implements SummarizerInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Cf\Schema\Group\CfSchema_GroupInterface $schema
    * @param \Donquixote\Cf\Summarizer\SummarizerInterface[] $itemSummarizers
    */

@@ -8,6 +8,9 @@ use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Text\Text;
 use Donquixote\Cf\Text\TextInterface;
 
+/**
+ * Decorator that prepends a "<label>: " to a summary.
+ */
 class Summarizer_Label implements SummarizerInterface {
 
   /**
