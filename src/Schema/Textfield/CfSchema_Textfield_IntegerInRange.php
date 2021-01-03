@@ -34,7 +34,7 @@ class CfSchema_Textfield_IntegerInRange extends CfSchema_Textfield_IntegerBase {
 
     if (NULL === $this->max) {
       if (NULL === $this->min) {
-        return NULL;
+        return Text::t('Integer number.');
       }
 
       if (0 === $this->min) {
