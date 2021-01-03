@@ -38,43 +38,33 @@ class SchemaToAnythingPartial_SchemaReplacer implements SchemaToAnythingPartialI
     SchemaToAnythingInterface $helper
   ): ?object {
     static $recursionLevel = 0;
-    ++$recursionLevel;
-
-    if (NULL === $replacement = $this->replacer->schemaGetReplacement($schema)) {
-      --$recursionLevel;
-      return NULL;
-    }
-
-    if ($replacement === $schema) {
-      --$recursionLevel;
-      throw new SchemaToAnythingException("Replacer did not replace.");
-    }
 
     if ($recursionLevel > 10) {
-      # kdpm($schema, spl_object_hash($schema));
-      # kdpm($replacement, spl_object_hash($replacement));
-      # kdpm($this->replacer, 'REPLACER');
-      --$recursionLevel;
-      throw new SchemaToAnythingException("Recursion.");
+      throw new SchemaToAnythingException("Recursion in schema replacer.");
     }
 
-    /** @noinspection SuspiciousBinaryOperationInspection */
-    if (false && \get_class($replacement) === \get_class($schema)) {
-      # kdpm($schema, spl_object_hash($schema));
-      # kdpm($replacement, spl_object_hash($replacement));
-      # kdpm($this->replacer, 'REPLACER');
-      --$recursionLevel;
-      throw new SchemaToAnythingException("Replacer did not replace.");
+    ++$recursionLevel;
+    // Use try/finally to make sure that recursion level will be decremented.
+    try {
+      $replacement = $this->replacer->schemaGetReplacement($schema);
+
+      if ($replacement === NULL) {
+        return NULL;
+      }
+
+      if ($replacement === $schema) {
+        throw new SchemaToAnythingException("Replacer did not replace. Replacement is identical.");
+      }
+
+      if (\get_class($replacement) === \get_class($schema)) {
+        throw new SchemaToAnythingException("Replacer did not replace. Replacement has same class.");
+      }
+
+      return $helper->schema($replacement, $interface);
     }
-
-    $anything = $helper->schema($replacement, $interface);
-
-    # if (NULL === $anything) {
-      # kdpm($replacement, 'REPLACEMENT DID NOT HELP');
-    # }
-
-    --$recursionLevel;
-    return $anything;
+    finally {
+      --$recursionLevel;
+    }
   }
 
   /**
