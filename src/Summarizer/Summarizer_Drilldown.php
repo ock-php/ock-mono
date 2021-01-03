@@ -25,6 +25,8 @@ class Summarizer_Drilldown implements SummarizerInterface {
   private $schemaToAnything;
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $schema
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    */
