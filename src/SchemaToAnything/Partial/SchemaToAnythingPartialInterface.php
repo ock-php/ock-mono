@@ -23,7 +23,7 @@ interface SchemaToAnythingPartialInterface {
   public function schema(
     CfSchemaInterface $schema,
     string $interface,
-    SchemaToAnythingInterface $helper);
+    SchemaToAnythingInterface $helper): ?object;
 
   /**
    * @param string $resultInterface

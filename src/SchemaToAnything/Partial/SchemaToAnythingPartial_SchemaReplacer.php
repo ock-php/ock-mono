@@ -43,7 +43,7 @@ class SchemaToAnythingPartial_SchemaReplacer implements SchemaToAnythingPartialI
     CfSchemaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
-  ) {
+  ): ?object {
     static $recursionLevel = 0;
     ++$recursionLevel;
 

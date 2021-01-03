@@ -47,7 +47,7 @@ class SchemaToAnythingPartial_Chain implements SchemaToAnythingPartialInterface 
     CfSchemaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
-  ) {
+  ): ?object {
 
     foreach ($this->partials as $mapper) {
       $candidate = $mapper->schema($schema, $interface, $helper);

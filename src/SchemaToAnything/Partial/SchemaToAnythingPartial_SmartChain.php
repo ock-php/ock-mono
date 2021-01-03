@@ -85,7 +85,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
     CfSchemaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
-  ) {
+  ): ?object {
 
     $partials = $this->schemaTypeAndTargetTypeGetPartials(
       \get_class($schema),
@@ -116,7 +116,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
    *
    * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
-  private function schemaTypeAndTargetTypeGetPartials($schemaType, string $targetType): array {
+  private function schemaTypeAndTargetTypeGetPartials(string $schemaType, string $targetType): array {
 
     return $this->partialsGrouped[$schemaType][$targetType]
       ?? ($this->partialsGrouped[$schemaType][$targetType] = $this->schemaTypeAndTargetTypeCollectPartials(

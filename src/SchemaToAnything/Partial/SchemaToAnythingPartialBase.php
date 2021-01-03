@@ -27,7 +27,7 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
    * @param string|null $schemaType
    * @param string|null $resultType
    */
-  protected function __construct($schemaType = NULL, $resultType = NULL) {
+  protected function __construct(?string $schemaType, ?string $resultType) {
     $this->schemaType = $schemaType;
     $this->resultType = $resultType;
   }
@@ -37,7 +37,7 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
    *
    * @return static
    */
-  public function withSpecifity($specifity) {
+  public function withSpecifity(int $specifity) {
 
     if ($specifity === $this->specifity) {
       return $this;
@@ -94,7 +94,7 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
     CfSchemaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
-  ) {
+  ): ?object {
 
     if (NULL !== $this->schemaType && !$schema instanceof $this->schemaType) {
       return NULL;
