@@ -36,22 +36,27 @@ class CfSchema_Textfield_IntegerInRange extends CfSchema_Textfield_IntegerBase {
       if (NULL === $this->min) {
         return NULL;
       }
-      elseif (0 === $this->min) {
+
+      if (0 === $this->min) {
         return Text::t('Non-negative integer.');
       }
-      elseif (1 === $this->min) {
+
+      if (1 === $this->min) {
         return Text::t('Positive integer.');
       }
-      else {
-        return Text::t('Integer greater or equal to @min', ['@min' => $this->min]);
-      }
+
+      return Text::t('Integer greater or equal to @min', [
+        '@min' => Text::i($this->min),
+      ]);
     }
-    elseif (NULL === $this->min) {
-      return Text::t('Integer up to @max', ['@max' => $this->max]);
+
+    if (NULL === $this->min) {
+      return Text::t('Integer up to @max', [
+        '@max' => Text::i($this->max),
+      ]);
     }
-    else {
-      return Text::t('Integer in range [@min...@max]', ['@min' => $this->min, '@max' => $this->max]);
-    }
+
+    return Text::t('Integer in range [@min...@max]', ['@min' => $this->min, '@max' => $this->max]);
   }
 
   /**
@@ -71,16 +76,16 @@ class CfSchema_Textfield_IntegerInRange extends CfSchema_Textfield_IntegerBase {
         $errors[] = Text::t('Value must be positive.');
       }
       else {
-        $errors[] = Text::t(
-          'Value must be greater than or equal to @min.',
-          ['@min' => $this->min]);
+        $errors[] = Text::t('Value must be greater than or equal to @min.', [
+          '@min' => Text::i($this->min),
+        ]);
       }
     }
 
     if ($v > $this->max) {
-      $errors[] = Text::t(
-        '%name must be no greater than @max.',
-        ['@max' => $this->max]);
+      $errors[] = Text::t('%name must be no greater than @max.', [
+        '@max' => Text::i($this->max),
+      ]);
     }
 
     return $errors;
