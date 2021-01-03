@@ -111,7 +111,7 @@ class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return \Donquixote\Cf\Schema\Select\CfSchema_SelectInterface|null
    */
