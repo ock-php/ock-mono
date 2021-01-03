@@ -13,7 +13,7 @@ class Optionlessness implements OptionlessnessInterface {
   /**
    * @param bool $optionless
    */
-  public function __construct($optionless) {
+  public function __construct(bool $optionless) {
     $this->optionless = $optionless;
   }
 

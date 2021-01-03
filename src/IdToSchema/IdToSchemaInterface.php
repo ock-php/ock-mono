@@ -12,6 +12,6 @@ interface IdToSchemaInterface {
    *
    * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
    */
-  public function idGetSchema($id): ?CfSchemaInterface;
+  public function idGetSchema(string $id): ?CfSchemaInterface;
 
 }

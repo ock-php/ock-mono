@@ -91,7 +91,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return static
    */
-  public function withParamSchema($index, CfSchemaInterface $schema, $label = NULL) {
+  public function withParamSchema(int $index, CfSchemaInterface $schema, $label = NULL) {
     $clone = clone $this;
     $clone->explicitSchemas[$index] = $schema;
     if (NULL !== $label) {
@@ -106,7 +106,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return static
    */
-  public function withParamLabel($index, string $label) {
+  public function withParamLabel(int $index, string $label) {
     $clone = clone $this;
     $clone->explicitLabels[$index] = $label;
     return $clone;
@@ -119,7 +119,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return static
    */
-  public function withParam_Iface($index, string $interface, $label = NULL) {
+  public function withParam_Iface(int $index, string $interface, $label = NULL) {
     return $this->withParamSchema(
       $index,
       new CfSchema_IfaceWithContext($interface, $this->context),
@@ -133,7 +133,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return static
    */
-  public function withParam_IfaceSequence($index, string $interface, $label = NULL) {
+  public function withParam_IfaceSequence(int $index, string $interface, $label = NULL) {
     return $this->withParamSchema(
       $index,
       CfSchema_IfaceWithContext::createSequence($interface, $this->getContext()),
@@ -147,7 +147,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
    *
    * @return static
    */
-  public function withParam_IfaceOrNull($index, string $interface, $label = NULL) {
+  public function withParam_IfaceOrNull(int $index, string $interface, $label = NULL) {
     return $this->withParamSchema(
       $index,
       CfSchema_IfaceWithContext::createOptional($interface, $this->getContext()),

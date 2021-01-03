@@ -15,7 +15,7 @@ class CfSchema_Neutral_ProxyWithCallable extends CfSchema_Neutral_ProxyBase {
   /**
    * @param callable $schemaCallback
    */
-  public function __construct($schemaCallback) {
+  public function __construct(callable $schemaCallback) {
     $this->schemaCallback = $schemaCallback;
   }
 

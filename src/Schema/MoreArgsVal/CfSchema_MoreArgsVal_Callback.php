@@ -65,7 +65,7 @@ final class CfSchema_MoreArgsVal_Callback extends UtilBase {
    * @return \Donquixote\Cf\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
    */
   public static function fromCallable(
-    $callable,
+    callable $callable,
     CfSchemaInterface $decorated,
     array $more
   ): CfSchema_MoreArgsValInterface {

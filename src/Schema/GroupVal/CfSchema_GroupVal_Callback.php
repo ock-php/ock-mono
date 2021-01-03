@@ -54,7 +54,7 @@ final class CfSchema_GroupVal_Callback extends UtilBase {
    *
    * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
    */
-  public static function fromCallable($callable, array $schemas, array $labels): CfSchema_GroupValInterface {
+  public static function fromCallable(callable $callable, array $schemas, array $labels): CfSchema_GroupValInterface {
 
     return self::create(
       CallbackUtil::callableGetCallback($callable),

@@ -66,7 +66,7 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
    * @param string $interface
    * @param \Donquixote\Cf\Context\CfContextInterface|NULL $context
    */
-  public function __construct($interface, CfContextInterface $context = NULL) {
+  public function __construct(string $interface, CfContextInterface $context = NULL) {
     $this->interface = $interface;
     $this->context = $context;
   }
