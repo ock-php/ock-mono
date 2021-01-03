@@ -46,9 +46,11 @@
   ],
   "require": {
     "composer/installers": "^1.9",
-    "donquixote/annotation-parser": "^1.0@alpha",
-    "donquixote/callback-reflection": "^1.0",
+    "donquixote/adaptism": "dev-master",
+    "donquixote/annotation-parser": "@dev",
+    "donquixote/callback-reflection": "@dev",
     "donquixote/containerkit": "*",
+    "donquixote/factory-reflection": "dev-master",
     "donquixote/nicetrace": "*",
     "psr/log": "^1.1"
   },
