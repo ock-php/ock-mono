@@ -20,8 +20,8 @@ final class DrilldownKeysHelper extends UtilBase {
   }
 
   /**
-   * @param string|null $idKey
-   * @param string|null $optionsKey
+   * @param string|int|null $idKey
+   * @param string|int|null $optionsKey
    *
    * @return \Donquixote\Cf\DrilldownKeysHelper\DrilldownKeysHelperInterface
    */
