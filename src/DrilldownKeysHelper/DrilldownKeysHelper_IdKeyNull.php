@@ -13,9 +13,8 @@ class DrilldownKeysHelper_IdKeyNull implements DrilldownKeysHelperInterface  {
     if (!\is_string($conf) && !\is_int($conf)) {
       return [NULL, NULL];
     }
-    else {
-      return [$conf, NULL];
-    }
+
+    return [$conf, NULL];
   }
 
   /**
