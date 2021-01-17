@@ -83,9 +83,8 @@ final class DrilldownUtil extends UtilBase {
       if (!\is_string($conf) && !\is_int($conf)) {
         return [NULL, NULL];
       }
-      else {
-        return [$conf, NULL];
-      }
+
+      return [$conf, NULL];
     }
 
     if (!\is_array($conf)) {
