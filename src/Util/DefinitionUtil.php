@@ -15,7 +15,7 @@ final class DefinitionUtil extends UtilBase {
    *
    * @return array[]
    */
-  public static function buildDefinitionsById($stubDefinition, array $annotations, string $fallbackId): array {
+  public static function buildDefinitionsById(array $stubDefinition, array $annotations, string $fallbackId): array {
 
     $definitionsById = [];
     foreach ($annotations as $annotation) {
