@@ -24,8 +24,6 @@ final class DocUtil extends UtilBase {
         continue;
       }
 
-      // My IDE warns about ReDoS with (...*...)+, but I think this one is safe.
-      /** @noinspection NotOptimalRegularExpressionsInspection */
       if ('\\' === $alias[0] && preg_match('~(\\\\[a-zA-Z_][a-zA-Z_0-9]*)+~', $alias)) {
         $names[] = substr($alias, 1);
       }
