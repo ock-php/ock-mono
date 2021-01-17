@@ -86,7 +86,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string[]
    */
-  public static function camelCaseExplodeWithRegex(string $regexp, $string): array {
+  public static function camelCaseExplodeWithRegex(string $regexp, string $string): array {
     return preg_split($regexp, $string, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
   }
 
@@ -145,7 +145,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string
    */
-  public static function methodNameGenerateLabel($methodName): string {
+  public static function methodNameGenerateLabel(string $methodName): string {
     return ucfirst(self::camelCaseExplode($methodName, TRUE, 'AA Bc', ' '));
   }
 
