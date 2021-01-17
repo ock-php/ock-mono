@@ -5,7 +5,6 @@ namespace Donquixote\Cf\Generator;
 
 use Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\StaUtil;
 
 class Generator_Optional implements GeneratorInterface {
 
@@ -25,7 +24,7 @@ class Generator_Optional implements GeneratorInterface {
    * @param \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface $schema
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Generator\GeneratorInterface
+   * @return \Donquixote\Cf\Generator\GeneratorInterface|null
    *
    * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
    */
@@ -37,18 +36,9 @@ class Generator_Optional implements GeneratorInterface {
       return NULL;
     }
 
-    $emptiness = StaUtil::emptinessOrNull($schema->getDecorated(), $schemaToAnything);
-
-    if (NULL === $emptiness) {
-      return new self(
-        $decorated,
-        $schema);
-    }
-
-    return new Generator_OptionalWithEmptiness(
+    return new self(
       $decorated,
-      $schema,
-      $emptiness);
+      $schema);
   }
 
   /**

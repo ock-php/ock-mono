@@ -4,20 +4,9 @@ declare(strict_types=1);
 namespace Donquixote\Cf\Util;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Emptiness\EmptinessInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 
 final class StaUtil extends UtilBase {
-
-  /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
-   *
-   * @return \Donquixote\Cf\Emptiness\EmptinessInterface|null
-   */
-  public static function emptinessOrNull(CfSchemaInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?EmptinessInterface {
-    return self::getObject($schema, $schemaToAnything, EmptinessInterface::class);
-  }
 
   /**
    * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface[] $itemSchemas

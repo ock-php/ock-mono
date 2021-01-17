@@ -41,16 +41,7 @@ class Summarizer_Optional implements SummarizerInterface {
       return NULL;
     }
 
-    $emptiness = StaUtil::emptinessOrNull($schema, $schemaToAnything);
-
-    if (NULL === $emptiness) {
-      return new self($schema, $decorated);
-    }
-
-    return new Summarizer_OptionalWithEmptiness(
-      $schema,
-      $decorated,
-      $emptiness);
+    return new self($schema, $decorated);
   }
 
   /**
