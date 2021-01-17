@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\Util;
 
-use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\Cf\Discovery\AnnotatedFactory\AnnotatedFactory;
-use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
 use Donquixote\Cf\Translator\Translator;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
+use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 final class DiscoveryUtil extends UtilBase {
 
