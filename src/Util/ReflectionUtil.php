@@ -16,62 +16,55 @@ final class ReflectionUtil extends UtilBase {
    * @param callable $callable
    *
    * @return string[]
+   *
+   * @throws \ReflectionException
+   *   Function or method does not exist.
+   * @throws \Exception
+   *   Malformed callable definition.
    */
   public static function callableGetReturnTypeNames(callable $callable): array {
-
-    if (NULL !== $reflFunction = self::callableGetReflectionFunction($callable)) {
-      return self::functionGetReturnTypeNames($reflFunction);
-    }
-
-    return [];
+    $reflFunction = self::callableGetReflectionFunction($callable);
+    return self::functionGetReturnTypeNames($reflFunction);
   }
 
   /**
-   * @param callable $callable
+   * Gets a function-like reflector for a callable.
+   *
+   * @param mixed $callable
+   *   Callable.
    *
    * @return \ReflectionFunctionAbstract
+   *   Function-like reflector.
+   *
+   * @throws \ReflectionException
+   *   Function or method does not exist.
+   * @throws \Exception
+   *   Malformed callable definition.
    */
-  public static function callableGetReflectionFunction(callable $callable): ?\ReflectionFunctionAbstract {
+  public static function callableGetReflectionFunction($callable): \ReflectionFunctionAbstract {
 
     if ($callable instanceof \Closure) {
       return new \ReflectionFunction($callable);
     }
 
-    if (!\is_callable($callable)) {
-      return NULL;
-    }
-
     if (\is_string($callable)) {
-      if (FALSE === strpos($callable, '::')) {
-        if (!\function_exists($callable)) {
-          return NULL;
-        }
-
-        return new \ReflectionFunction($callable);
-      }
-      else {
-        [$class, $methodName] = explode('::', $callable);
-        if (!method_exists($class, $methodName)) {
-          return NULL;
-        }
-
-        return new \ReflectionMethod($class, $callable);
-      }
+      return FALSE === strpos($callable, '::')
+        ? new \ReflectionFunction($callable)
+        : new \ReflectionMethod($callable);
     }
 
     if (\is_array($callable)) {
+      if (!isset($callable[0], $callable[1])) {
+        throw new \Exception('Malformed callback array.');
+      }
       return new \ReflectionMethod($callable[0], $callable[1]);
     }
 
     if (\is_object($callable)) {
-      if (method_exists($callable, '__invoke')) {
-        return new \ReflectionMethod($callable, '__invoke');
-      }
-
-      return NULL;
+      return new \ReflectionMethod($callable, '__invoke');
     }
 
-    return NULL;
+    throw new \Exception('Malformed callback definition.');
   }
 
   /**
@@ -79,10 +72,15 @@ final class ReflectionUtil extends UtilBase {
    *
    * @return string[]
    */
-  public static function closureGetReturnTypeNames(\Closure $closure): array {
-    // A closure is always a valid function.
-    /** @noinspection PhpUnhandledExceptionInspection */
-    $reflFunction = new \ReflectionFunction($closure);
+  public static function closureGetReturnClassNames(\Closure $closure): array {
+    try {
+      $reflFunction = new \ReflectionFunction($closure);
+    }
+    catch (\ReflectionException $e) {
+      // A closure is always a valid function. This is impossible.
+      throw new \RuntimeException('Impossible exception.', 0, $e);
+    }
+
     return self::functionGetReturnTypeNames($reflFunction);
   }
 
@@ -92,23 +90,6 @@ final class ReflectionUtil extends UtilBase {
    * @return string[]
    */
   public static function functionGetReturnTypeNames(\ReflectionFunctionAbstract $function): array {
-
-    // @todo Language detection is pointless if we already use ":array" above.
-    if (method_exists($function, 'getReturnType')) {
-      // This is PHP 7.
-      if (NULL !== $returnType = $function->getReturnType()) {
-        if ($returnType instanceof \ReflectionNamedType) {
-          return [$returnType->getName()];
-        }
-        // The return type has no name, and is not usable for us.
-        // Look into the '@return' doc instead.
-      }
-    }
-
-    if (NULL === $docComment = $function->getDocComment()) {
-      return [];
-    }
-
     if ($function instanceof \ReflectionMethod) {
       $declaringClass = $function->getDeclaringClass();
       $declaringClassName = $declaringClass->getName();
@@ -118,7 +99,24 @@ final class ReflectionUtil extends UtilBase {
     else {
       $declaringClassName = NULL;
       $aliasMap = [];
-      $namespace = NULL;
+      $namespace = $function->getNamespaceName();
+    }
+
+    if (NULL !== $returnType = $function->getReturnType()) {
+      try {
+        self::reflectionTypeReadClassNames($names, $returnType, $declaringClassName);
+        return $names;
+      }
+      catch (\Exception $e) {
+        // Unsupported subclass of \ReflectionType.
+        // Fall through to doc-based detection.
+      }
+    }
+
+    $docComment = $function->getDocComment();
+
+    if ($docComment === NULL) {
+      return [];
     }
 
     return self::docGetReturnTypeClassNames(
@@ -126,6 +124,37 @@ final class ReflectionUtil extends UtilBase {
       $declaringClassName,
       $aliasMap,
       $namespace);
+  }
+
+  /**
+   * @param string[] $names
+   * @param \ReflectionType $type
+   * @param string|null $declaringClassName
+   *
+   * @throws \Exception
+   *   Unsupported subclass of ReflectionType.
+   */
+  public static function reflectionTypeReadClassNames(array &$names, \ReflectionType $type, ?string $declaringClassName): void {
+
+    if ($type instanceof \ReflectionNamedType) {
+      if (!$type->isBuiltin()) {
+        $name = $type->getName();
+        if ($name === 'static' || $name === 'self') {
+          $name = $declaringClassName;
+        }
+        $names[] = $name;
+      }
+    }
+    /** @noinspection PhpElementIsNotAvailableInCurrentPhpVersionInspection */
+    elseif ($type instanceof \ReflectionUnionType) {
+      foreach ($type->getTypes() as $part) {
+        self::reflectionTypeReadClassNames($names, $part, $declaringClassName);
+      }
+    }
+    else {
+      $class = get_class($type);
+      throw new \Exception("Unsupported subclass '$class' of \\ReflectionType.");
+    }
   }
 
   /**
@@ -188,9 +217,9 @@ final class ReflectionUtil extends UtilBase {
    * @param string[] $aliasMap
    * @param string|null $namespace
    *
-   * @return bool|mixed|null|string
+   * @return null|string
    */
-  public static function aliasGetClassName(string $alias, array $aliasMap = [], $namespace = NULL) {
+  public static function aliasGetClassName(string $alias, array $aliasMap = [], $namespace = NULL): ?string {
 
     if ('' === $alias) {
       return NULL;
@@ -240,7 +269,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @return mixed
    */
-  public static function &objectGetPropertyValueRef($object, string $k, $context = null) {
+  public static function &objectGetPropertyValueRef(object $object, string $k, $context = null) {
 
     if (null === $context) {
       /** @var string|object|null $context */
@@ -266,7 +295,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @return mixed|null
    */
-  public static function objectGetPropertyValueAtTrail($object, $trail) {
+  public static function objectGetPropertyValueAtTrail(object $object, array $trail) {
 
     foreach ($trail as $k) {
       if (\is_object($object)) {
@@ -290,7 +319,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @return mixed
    */
-  public static function objectGetPropertyValue($object, string $k, $context = null) {
+  public static function objectGetPropertyValue(object $object, string $k, $context = null) {
 
     if (null === $context) {
       /** @var string|object|null $context */
@@ -413,7 +442,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @throws \ReflectionException
    */
-  public static function objectCallMethodArgs($object, string $methodName, array $args, $context = null) {
+  public static function objectCallMethodArgs(object $object, string $methodName, array $args, $context = null) {
 
     if (null === $context) {
       /** @var string|object|null $context */
