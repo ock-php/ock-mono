@@ -240,7 +240,7 @@ EOT;
    *
    * @return mixed|string
    */
-  public static function phpObject($object) {
+  public static function phpObject(object $object) {
 
     if ($object instanceof \stdClass) {
       return '(object)' . self::phpArray((array)$object);
