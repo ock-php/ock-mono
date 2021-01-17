@@ -32,11 +32,13 @@ final class DiscoveryUtil extends UtilBase {
 
     foreach ($classFilesIA as $file => $class) {
 
-      if (!class_exists($class)) {
+      try {
+        $reflClass = new \ReflectionClass($class);
+      }
+      catch (\ReflectionException $e) {
+        // @todo Log non-existing class.
         continue;
       }
-
-      $reflClass = new \ReflectionClass($class);
 
       if ($file !== $reflClass->getFileName()) {
         // It seems like this class is defined elsewhere.
