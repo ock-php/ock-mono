@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\DrilldownVal;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\SchemaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
 
-interface CfSchema_DrilldownValInterface extends CfSchema_ValueToValueBaseInterface {
+interface CfSchema_DrilldownValInterface extends Formula_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface
+   * @return \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface
    */
-  public function getDecorated(): CfSchemaInterface;
+  public function getDecorated(): FormulaInterface;
 
   /**
    * @return \Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface

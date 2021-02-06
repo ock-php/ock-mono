@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Formula\Textfield;
 
 use Donquixote\OCUI\Text\TextInterface;
 
-class CfSchema_Textfield_NoValidation implements CfSchema_TextfieldInterface {
+class CfSchema_Textfield_NoValidation implements Formula_TextfieldInterface {
 
   /**
    * {@inheritdoc}

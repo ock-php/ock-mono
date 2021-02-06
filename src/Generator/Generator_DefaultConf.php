@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Formula\DefaultConf\CfSchema_DefaultConfInterface;
+use Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 /**
- * @see \Donquixote\OCUI\Formula\DefaultConf\CfSchema_DefaultConfInterface
+ * @see \Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface
  */
 class Generator_DefaultConf implements GeneratorInterface {
 
@@ -24,7 +24,7 @@ class Generator_DefaultConf implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\DefaultConf\CfSchema_DefaultConfInterface $schema
+   * @param \Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
@@ -32,7 +32,7 @@ class Generator_DefaultConf implements GeneratorInterface {
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(
-    CfSchema_DefaultConfInterface $schema,
+    Formula_DefaultConfInterface $schema,
     SchemaToAnythingInterface $schemaToAnything
   ): ?self {
 

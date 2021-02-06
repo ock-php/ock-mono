@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Util;
 
-use Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
 
 final class DrilldownUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $schema
    * @param string $id
    * @param mixed $options
    *
    * @return array
    */
-  public static function schemaBuildConf(CfSchema_DrilldownInterface $schema, string $id, $options): array {
+  public static function schemaBuildConf(Formula_DrilldownInterface $schema, string $id, $options): array {
 
     return self::buildConf(
       $id,
@@ -56,12 +56,12 @@ final class DrilldownUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $schema
    * @param mixed $conf
    *
    * @return array
    */
-  public static function drilldownConfGetIdOptions(CfSchema_DrilldownInterface $schema, $conf): array {
+  public static function drilldownConfGetIdOptions(Formula_DrilldownInterface $schema, $conf): array {
     return self::confGetIdOptions(
       $conf,
       $schema->getIdKey(),

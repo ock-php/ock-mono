@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\GroupVal;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\SchemaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
 
-interface CfSchema_GroupValInterface extends CfSchema_ValueToValueBaseInterface {
+interface CfSchema_GroupValInterface extends Formula_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface
+   * @return \Donquixote\OCUI\Formula\Group\Formula_GroupInterface
    */
-  public function getDecorated(): CfSchemaInterface;
+  public function getDecorated(): FormulaInterface;
 
   /**
    * @return \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface

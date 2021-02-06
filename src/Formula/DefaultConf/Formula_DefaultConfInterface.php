@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\DefaultConf;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBaseInterface;
 
-interface CfSchema_DefaultConfInterface extends CfSchemaInterface, CfSchema_DecoratorBaseInterface {
+interface Formula_DefaultConfInterface extends FormulaInterface, CfSchema_DecoratorBaseInterface {
 
   /**
    * @return mixed

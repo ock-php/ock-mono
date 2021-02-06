@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\Iface;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Optional\CfSchema_Optional;
-use Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface;
+use Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface;
 use Donquixote\OCUI\Formula\Sequence\CfSchema_Sequence;
 
-class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
+class CfSchema_IfaceWithContext implements Formula_IfaceWithContextInterface {
 
   /**
    * @var string
@@ -41,9 +41,9 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
    * @param string $interface
    * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
    *
-   * @return \Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface
+   * @return \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface
    */
-  public static function createOptional(string $interface, CfContextInterface $context = NULL): CfSchema_OptionalInterface {
+  public static function createOptional(string $interface, CfContextInterface $context = NULL): Formula_OptionalInterface {
     return new CfSchema_Optional(new self($interface, $context));
   }
 
@@ -52,9 +52,9 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
    * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
    * @param bool $required
    *
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  public static function create($interface, CfContextInterface $context = NULL, $required = TRUE): CfSchemaInterface {
+  public static function create($interface, CfContextInterface $context = NULL, $required = TRUE): FormulaInterface {
     $schema = new self($interface, $context);
     if (!$required) {
       $schema = new CfSchema_Optional($schema);

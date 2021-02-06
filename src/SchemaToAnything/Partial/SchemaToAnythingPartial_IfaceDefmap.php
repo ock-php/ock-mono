@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchemaInterface;
 use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContext;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
@@ -24,7 +24,7 @@ class SchemaToAnythingPartial_IfaceDefmap extends SchemaToAnythingPartialBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $interface
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
@@ -32,7 +32,7 @@ class SchemaToAnythingPartial_IfaceDefmap extends SchemaToAnythingPartialBase {
    *   An instance of $interface, or NULL.
    */
   protected function schemaDoGetObject(
-    CfSchemaInterface $schema,
+    FormulaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
   ) {

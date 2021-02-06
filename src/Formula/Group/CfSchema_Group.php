@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Group;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
-class CfSchema_Group implements CfSchema_GroupInterface {
+class CfSchema_Group implements Formula_GroupInterface {
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
   private $schemas;
 
@@ -18,7 +18,7 @@ class CfSchema_Group implements CfSchema_GroupInterface {
   private $labels;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
    * @param string[] $labels
    *
    * @return self
@@ -28,13 +28,13 @@ class CfSchema_Group implements CfSchema_GroupInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
    * @param string[] $labels
    */
   public function __construct(array $schemas, array $labels) {
 
     foreach ($schemas as $k => $itemSchema) {
-      if (!$itemSchema instanceof CfSchemaInterface) {
+      if (!$itemSchema instanceof FormulaInterface) {
         throw new \InvalidArgumentException("Item schema at key $k must be instance of CfSchemaInterface.");
       }
     }
@@ -45,12 +45,12 @@ class CfSchema_Group implements CfSchema_GroupInterface {
 
   /**
    * @param string $key
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param null $label
    *
    * @return \Donquixote\OCUI\Formula\Group\CfSchema_Group
    */
-  public function withItem(string $key, CfSchemaInterface $schema, $label = NULL): CfSchema_Group {
+  public function withItem(string $key, FormulaInterface $schema, $label = NULL): CfSchema_Group {
     $clone = clone $this;
     $clone->schemas[$key] = $schema;
     $clone->labels[$key] = $label ?? $key;

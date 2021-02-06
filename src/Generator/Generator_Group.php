@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface;
+use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
 use Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupValInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Trivial;
@@ -24,14 +24,14 @@ class Generator_Group implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $schema
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
-  public static function createFromGroupSchema(CfSchema_GroupInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Group {
+  public static function createFromGroupSchema(Formula_GroupInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Group {
     return self::create($schema, new V2V_Group_Trivial(), $schemaToAnything);
   }
 
@@ -50,7 +50,7 @@ class Generator_Group implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $groupSchema
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $groupSchema
    * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $v2v
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
@@ -58,7 +58,7 @@ class Generator_Group implements GeneratorInterface {
    *
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
-  public static function create(CfSchema_GroupInterface $groupSchema, V2V_GroupInterface $v2v, SchemaToAnythingInterface $schemaToAnything): ?Generator_Group {
+  public static function create(Formula_GroupInterface $groupSchema, V2V_GroupInterface $v2v, SchemaToAnythingInterface $schemaToAnything): ?Generator_Group {
 
     $itemGenerators = [];
     foreach ($groupSchema->getItemSchemas() as $k => $itemSchema) {

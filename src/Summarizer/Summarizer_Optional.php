@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface;
+use Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Text\TextInterface;
 use Donquixote\OCUI\Util\StaUtil;
@@ -11,7 +11,7 @@ use Donquixote\OCUI\Util\StaUtil;
 class Summarizer_Optional implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface
+   * @var \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface
    */
   private $schema;
 
@@ -23,7 +23,7 @@ class Summarizer_Optional implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return \Donquixote\OCUI\Summarizer\SummarizerInterface|null
@@ -31,7 +31,7 @@ class Summarizer_Optional implements SummarizerInterface {
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(
-    CfSchema_OptionalInterface $schema,
+    Formula_OptionalInterface $schema,
     SchemaToAnythingInterface $schemaToAnything
   ): ?SummarizerInterface {
 
@@ -45,11 +45,11 @@ class Summarizer_Optional implements SummarizerInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $schema
    * @param \Donquixote\OCUI\Summarizer\SummarizerInterface $decorated
    */
   public function __construct(
-    CfSchema_OptionalInterface $schema,
+    Formula_OptionalInterface $schema,
     SummarizerInterface $decorated
   ) {
     $this->schema = $schema;

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\TwoStep;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
-interface CfSchema_TwoStepInterface extends CfSchemaInterface {
+interface Formula_TwoStepInterface extends FormulaInterface {
 
   /**
    * @return string
@@ -18,18 +18,18 @@ interface CfSchema_TwoStepInterface extends CfSchemaInterface {
   public function getSecondStepKey(): string;
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  public function getFirstStepSchema(): CfSchemaInterface;
+  public function getFirstStepSchema(): FormulaInterface;
 
   /**
    * @param mixed $firstStepValue
    *   Value from the first step of configuration.
    *
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    *
    * @todo return NULL or throw exception?
    */
-  public function firstStepValueGetSecondStepSchema($firstStepValue): ?CfSchemaInterface;
+  public function firstStepValueGetSecondStepSchema($firstStepValue): ?FormulaInterface;
 
 }

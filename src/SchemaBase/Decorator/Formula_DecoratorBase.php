@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\FixedConf;
+namespace Donquixote\OCUI\SchemaBase\Decorator;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
-class CfSchema_FixedConf implements CfSchema_FixedConfInterface {
+class Formula_DecoratorBase implements FormulaInterface {
 
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface
@@ -13,30 +13,17 @@ class CfSchema_FixedConf implements CfSchema_FixedConfInterface {
   private $decorated;
 
   /**
-   * @var mixed
-   */
-  private $conf;
-
-  /**
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
-   * @param mixed $conf
    */
-  public function __construct(FormulaInterface $decorated, $conf) {
+  public function __construct(FormulaInterface $decorated) {
     $this->decorated = $decorated;
-    $this->conf = $conf;
   }
 
   /**
-   * {@inheritdoc}
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   *   The non-optional version.
    */
   public function getDecorated(): FormulaInterface {
     return $this->decorated;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getConf() {
-    return $this->conf;
   }
 }

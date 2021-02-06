@@ -18,14 +18,14 @@ class CfSchema_Drilldown_DefmapSimple extends UtilBase {
    * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
    * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface
+   * @return \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface
    */
   public static function create(
     DefinitionMapInterface $definitionMap,
     DefinitionToLabelInterface $definitionToLabel,
     DefinitionToLabelInterface $definitionToGroupLabel,
     CfContextInterface $context = NULL
-  ): CfSchema_DrilldownInterface {
+  ): Formula_DrilldownInterface {
     return new CfSchema_Drilldown(
       new CfSchema_Select_FromDefinitionMap(
         $definitionMap,

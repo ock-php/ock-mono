@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInterface {
@@ -81,7 +81,7 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $interface
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
@@ -91,7 +91,7 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   final public function schema(
-    CfSchemaInterface $schema,
+    FormulaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
   ): ?object {
@@ -116,7 +116,7 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $interface
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
@@ -126,7 +126,7 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   abstract protected function schemaDoGetObject(
-    CfSchemaInterface $schema,
+    FormulaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
   );

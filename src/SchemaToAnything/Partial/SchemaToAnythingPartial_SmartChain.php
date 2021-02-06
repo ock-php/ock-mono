@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Util\LocalPackageUtil;
 
@@ -72,7 +72,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $interface
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
@@ -82,7 +82,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public function schema(
-    CfSchemaInterface $schema,
+    FormulaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
   ): ?object {

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Generator\Generator;
 use Donquixote\OCUI\Generator\GeneratorInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
@@ -13,22 +13,22 @@ use Donquixote\OCUI\Summarizer\SummarizerInterface;
 trait StaticFactoryTrait {
 
   /**
-   * @var CfSchemaInterface|null
+   * @var FormulaInterface|null
    */
   private static $schema;
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    */
-  public static function schema(): CfSchemaInterface {
+  public static function schema(): FormulaInterface {
     return self::$schema
       ?? self::$schema = static::createSchema();
   }
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  abstract protected static function createSchema(): CfSchemaInterface;
+  abstract protected static function createSchema(): FormulaInterface;
 
   /**
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything

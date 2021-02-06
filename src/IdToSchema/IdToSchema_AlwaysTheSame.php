@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\IdToSchema;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 class IdToSchema_AlwaysTheSame implements IdToSchemaInterface {
 
@@ -13,16 +13,16 @@ class IdToSchema_AlwaysTheSame implements IdToSchemaInterface {
   private $sameSchema;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $sameSchema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $sameSchema
    */
-  public function __construct(CfSchemaInterface $sameSchema) {
+  public function __construct(FormulaInterface $sameSchema) {
     $this->sameSchema = $sameSchema;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function idGetSchema($id): ?CfSchemaInterface {
+  public function idGetSchema($id): ?FormulaInterface {
     return $this->sameSchema;
   }
 }

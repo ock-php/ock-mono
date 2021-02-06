@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\DrilldownVal;
 
-use Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_Drilldown_Arrify;
 use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_Drilldown_Merge;
 use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
@@ -16,13 +16,13 @@ class CfSchema_DrilldownVal extends CfSchema_DrilldownValBase {
   private $v2v;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $decorated
+   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $decorated
    * @param string|null $idKey
    * @param string|null $optionsKey
    *
    * @return self
    */
-  public static function createArrify(CfSchema_DrilldownInterface $decorated, $idKey = NULL, $optionsKey = NULL): CfSchema_DrilldownVal {
+  public static function createArrify(Formula_DrilldownInterface $decorated, $idKey = NULL, $optionsKey = NULL): CfSchema_DrilldownVal {
 
     if (NULL === $idKey) {
       $idKey = $decorated->getIdKey();
@@ -38,12 +38,12 @@ class CfSchema_DrilldownVal extends CfSchema_DrilldownValBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $decorated
+   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $decorated
    * @param string|null $idKey
    *
    * @return self
    */
-  public static function createMerge(CfSchema_DrilldownInterface $decorated, $idKey = NULL): CfSchema_DrilldownVal {
+  public static function createMerge(Formula_DrilldownInterface $decorated, $idKey = NULL): CfSchema_DrilldownVal {
 
     if (NULL === $idKey) {
       $idKey = $decorated->getIdKey();
@@ -55,10 +55,10 @@ class CfSchema_DrilldownVal extends CfSchema_DrilldownValBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $decorated
+   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $decorated
    * @param \Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
    */
-  public function __construct(CfSchema_DrilldownInterface $decorated, V2V_DrilldownInterface $v2v) {
+  public function __construct(Formula_DrilldownInterface $decorated, V2V_DrilldownInterface $v2v) {
     parent::__construct($decorated);
     $this->v2v = $v2v;
   }

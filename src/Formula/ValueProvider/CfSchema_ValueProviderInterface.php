@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\ValueProvider;
 
-use Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface;
+use Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface;
 
-interface CfSchema_ValueProviderInterface extends CfSchema_OptionlessInterface {
+interface CfSchema_ValueProviderInterface extends Formula_OptionlessInterface {
 
   /**
    * @return mixed

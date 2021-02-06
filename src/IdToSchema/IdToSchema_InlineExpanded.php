@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\IdToSchema;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\OCUI\Formula\DrilldownVal\CfSchema_DrilldownValInterface;
-use Donquixote\OCUI\Formula\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
 use Donquixote\OCUI\Formula\ValueProvider\CfSchema_ValueProvider_Null;
 use Donquixote\OCUI\Formula\ValueToValue\CfSchema_ValueToValue;
 use Donquixote\OCUI\Zoo\V2V\Value\V2V_Value_DrilldownFixedId;
@@ -28,7 +28,7 @@ class IdToSchema_InlineExpanded implements IdToSchemaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetSchema($combinedId): ?CfSchemaInterface {
+  public function idGetSchema($combinedId): ?FormulaInterface {
 
     if (FALSE === /* $pos = */ strpos($combinedId, '/')) {
       return $this->decorated->idGetSchema($combinedId);
@@ -40,11 +40,11 @@ class IdToSchema_InlineExpanded implements IdToSchemaInterface {
       return NULL;
     }
 
-    if ($nestedSchema instanceof CfSchema_DrilldownInterface) {
+    if ($nestedSchema instanceof Formula_DrilldownInterface) {
       return $nestedSchema->getIdToSchema()->idGetSchema($suffix);
     }
 
-    if ($nestedSchema instanceof CfSchema_IdInterface) {
+    if ($nestedSchema instanceof Formula_IdInterface) {
       return new CfSchema_ValueProvider_Null();
     }
 

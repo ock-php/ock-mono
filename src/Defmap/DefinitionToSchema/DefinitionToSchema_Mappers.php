@@ -7,7 +7,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Handler;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Schema;
 use Donquixote\OCUI\Exception\CfSchemaCreationException;
@@ -51,7 +51,7 @@ class DefinitionToSchema_Mappers implements DefinitionToSchemaInterface {
   /**
    * {@inheritdoc}
    */
-  public function definitionGetSchema(array $definition, CfContextInterface $context = NULL): CfSchemaInterface {
+  public function definitionGetSchema(array $definition, CfContextInterface $context = NULL): FormulaInterface {
 
     foreach ($this->helpers as $prefix => $helper) {
 

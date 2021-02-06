@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\Formula\Proxy\Replacer\CfSchema_Proxy_ReplacerInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\Formula\Proxy\Replacer\Formula_Proxy_ReplacerInterface;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_Proxy_Replacer implements SchemaReplacerPartialInterface {
@@ -13,15 +13,15 @@ class SchemaReplacerPartial_Proxy_Replacer implements SchemaReplacerPartialInter
    * {@inheritdoc}
    */
   public function getSourceSchemaClass(): string {
-    return CfSchema_Proxy_ReplacerInterface::class;
+    return Formula_Proxy_ReplacerInterface::class;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(CfSchemaInterface $proxy, SchemaReplacerInterface $replacer): ?CfSchemaInterface {
+  public function schemaGetReplacement(FormulaInterface $proxy, SchemaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$proxy instanceof CfSchema_Proxy_ReplacerInterface) {
+    if (!$proxy instanceof Formula_Proxy_ReplacerInterface) {
       return NULL;
     }
 

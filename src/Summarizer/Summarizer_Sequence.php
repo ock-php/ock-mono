@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\OCUI\Formula\Sequence\CfSchema_SequenceInterface;
+use Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
@@ -19,7 +19,7 @@ class Summarizer_Sequence implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Sequence\CfSchema_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
    *
@@ -28,7 +28,7 @@ class Summarizer_Sequence implements SummarizerInterface {
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(
-    CfSchema_SequenceInterface $schema,
+    Formula_SequenceInterface $schema,
     SchemaToAnythingInterface $schemaToAnything,
     TranslatorInterface $translator
   ): ?Summarizer_Sequence {

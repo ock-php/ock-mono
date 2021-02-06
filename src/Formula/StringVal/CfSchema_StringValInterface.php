@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\StringVal;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\SchemaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\OCUI\Zoo\V2V\String\V2V_StringInterface;
 
-interface CfSchema_StringValInterface extends CfSchema_ValueToValueBaseInterface {
+interface CfSchema_StringValInterface extends Formula_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\OCUI\Formula\Textfield\CfSchema_TextfieldInterface
+   * @return \Donquixote\OCUI\Formula\Textfield\Formula_TextfieldInterface
    */
-  public function getDecorated(): CfSchemaInterface;
+  public function getDecorated(): FormulaInterface;
 
   /**
    * @return \Donquixote\OCUI\Zoo\V2V\String\V2V_StringInterface

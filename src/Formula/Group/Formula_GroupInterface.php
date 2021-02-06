@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Group;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
-interface CfSchema_GroupInterface extends CfSchemaInterface {
+interface Formula_GroupInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    *   Format: $[$groupItemKey] = $groupItemSchema
    */
   public function getItemSchemas(): array;

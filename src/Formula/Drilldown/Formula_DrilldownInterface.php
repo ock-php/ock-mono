@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Drilldown;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
-use Donquixote\OCUI\Formula\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
 
-interface CfSchema_DrilldownInterface extends CfSchemaInterface {
+interface Formula_DrilldownInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\OCUI\Formula\Id\CfSchema_IdInterface
+   * @return \Donquixote\OCUI\Formula\Id\Formula_IdInterface
    */
-  public function getIdSchema(): CfSchema_IdInterface;
+  public function getIdSchema(): Formula_IdInterface;
 
   /**
    * @return \Donquixote\OCUI\IdToSchema\IdToSchemaInterface

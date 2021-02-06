@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\Select;
 
 use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
-use Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\OCUI\Formula\DrilldownVal\CfSchema_DrilldownValInterface;
-use Donquixote\OCUI\Formula\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
 use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
@@ -131,19 +131,19 @@ class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
   /**
 * @param string $id
    *
-   * @return \Donquixote\OCUI\Formula\Id\CfSchema_IdInterface|null
+   * @return \Donquixote\OCUI\Formula\Id\Formula_IdInterface|null
    */
-  private function idGetIdSchema(string $id): ?CfSchema_IdInterface {
+  private function idGetIdSchema(string $id): ?Formula_IdInterface {
 
     if (NULL === $nestedSchema = $this->idToSchema->idGetSchema($id)) {
       return NULL;
     }
 
-    if ($nestedSchema instanceof CfSchema_DrilldownInterface) {
+    if ($nestedSchema instanceof Formula_DrilldownInterface) {
       return $nestedSchema->getIdSchema();
     }
 
-    if ($nestedSchema instanceof CfSchema_IdInterface) {
+    if ($nestedSchema instanceof Formula_IdInterface) {
       return $nestedSchema;
     }
 

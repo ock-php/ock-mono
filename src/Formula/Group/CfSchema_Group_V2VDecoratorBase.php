@@ -8,7 +8,7 @@ use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
 abstract class CfSchema_Group_V2VDecoratorBase extends CfSchema_Group_V2VBase {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface
+   * @var \Donquixote\OCUI\Formula\Group\Formula_GroupInterface
    */
   private $decoratedSchema;
 
@@ -18,11 +18,11 @@ abstract class CfSchema_Group_V2VDecoratorBase extends CfSchema_Group_V2VBase {
   private $decoratedV2V;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $decoratedSchema
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $decoratedSchema
    * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $decoratedV2V
    */
   public function __construct(
-    CfSchema_GroupInterface $decoratedSchema,
+    Formula_GroupInterface $decoratedSchema,
     V2V_GroupInterface $decoratedV2V
   ) {
     $this->decoratedSchema = $decoratedSchema;

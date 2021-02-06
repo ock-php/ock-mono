@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Form\Common;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\SchemaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
@@ -17,12 +17,12 @@ class FormatorCommon_V2V implements SchemaToAnythingPartialInterface {
    * {@inheritdoc}
    */
   public function schema(
-    CfSchemaInterface $schema,
+    FormulaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
   ): ?object {
 
-    if (!$schema instanceof CfSchema_ValueToValueBaseInterface) {
+    if (!$schema instanceof Formula_ValueToValueBaseInterface) {
       return NULL;
     }
 
@@ -45,7 +45,7 @@ class FormatorCommon_V2V implements SchemaToAnythingPartialInterface {
   public function acceptsSchemaClass(string $schemaClass): bool {
     return is_a(
       $schemaClass,
-      CfSchema_ValueToValueBaseInterface::class,
+      Formula_ValueToValueBaseInterface::class,
       TRUE);
   }
 

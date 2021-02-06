@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Boolean;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Text\TextInterface;
 
-interface CfSchema_BooleanInterface extends CfSchemaInterface {
+interface Formula_BooleanInterface extends FormulaInterface {
 
   /**
    * Gets a summary for true.

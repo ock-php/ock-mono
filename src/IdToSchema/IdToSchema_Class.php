@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\IdToSchema;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 class IdToSchema_Class implements IdToSchemaInterface {
 
@@ -22,11 +22,11 @@ class IdToSchema_Class implements IdToSchemaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetSchema($id): ?CfSchemaInterface {
+  public function idGetSchema($id): ?FormulaInterface {
 
     $candidate = new $this->class($id);
 
-    if (!$candidate instanceof CfSchemaInterface) {
+    if (!$candidate instanceof FormulaInterface) {
       return NULL;
     }
 

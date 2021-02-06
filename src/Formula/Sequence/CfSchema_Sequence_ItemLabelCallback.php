@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Sequence;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Translator\TranslatorInterface;
 
 class CfSchema_Sequence_ItemLabelCallback extends CfSchema_SequenceBase {
@@ -14,10 +14,10 @@ class CfSchema_Sequence_ItemLabelCallback extends CfSchema_SequenceBase {
   private $itemLabelCallback;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $itemSchema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $itemSchema
    * @param callable $itemLabelCallback
    */
-  public function __construct(CfSchemaInterface $itemSchema, callable $itemLabelCallback) {
+  public function __construct(FormulaInterface $itemSchema, callable $itemLabelCallback) {
     parent::__construct($itemSchema);
     $this->itemLabelCallback = $itemLabelCallback;
   }

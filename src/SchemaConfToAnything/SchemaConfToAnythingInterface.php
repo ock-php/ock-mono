@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaConfToAnything;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 interface SchemaConfToAnythingInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param mixed $conf
    * @param string $interface
    *
@@ -17,6 +17,6 @@ interface SchemaConfToAnythingInterface {
    *
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
-  public function schema(CfSchemaInterface $schema, $conf, string $interface): object;
+  public function schema(FormulaInterface $schema, $conf, string $interface): object;
 
 }

@@ -6,7 +6,7 @@ namespace Donquixote\OCUI\Formula\Defmap;
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
 
-class CfSchema_Defmap implements CfSchema_DefmapInterface {
+class CfSchema_Defmap implements Formula_DefmapInterface {
 
   /**
    * @var \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface

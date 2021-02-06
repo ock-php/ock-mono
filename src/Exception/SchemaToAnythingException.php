@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Exception;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 class SchemaToAnythingException extends \Exception implements UnsupportedSchemaExceptionInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $interface
    * @param mixed|null $instead
    *
    * @return self
    */
-  public static function createWithInstead(CfSchemaInterface $schema, string $interface, $instead): self {
+  public static function createWithInstead(FormulaInterface $schema, string $interface, $instead): self {
 
     $message = strtr(
       "Failed to create !destination\nfor !schema.",
@@ -35,13 +35,13 @@ class SchemaToAnythingException extends \Exception implements UnsupportedSchemaE
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $interface
    * @param string|null $message_append
    *
    * @return self
    */
-  public static function create(CfSchemaInterface $schema, string $interface, ?string $message_append): self {
+  public static function create(FormulaInterface $schema, string $interface, ?string $message_append): self {
 
     $message = strtr(
       "Failed to create !destination\nfor !schema.",

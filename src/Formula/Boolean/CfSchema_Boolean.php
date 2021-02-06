@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Formula\Boolean;
 
 use Donquixote\OCUI\Text\TextInterface;
 
-class CfSchema_Boolean implements CfSchema_BooleanInterface {
+class CfSchema_Boolean implements Formula_BooleanInterface {
 
   /**
    * @var \Donquixote\OCUI\Text\TextInterface|null

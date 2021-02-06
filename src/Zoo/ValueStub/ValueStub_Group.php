@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Zoo\ValueStub;
 
-use Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface;
+use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
 use Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface;
 
 class ValueStub_Group implements ValueStubInterface {
@@ -16,7 +16,7 @@ class ValueStub_Group implements ValueStubInterface {
   /**
    * @SCTA
    *
-   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $schema
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $schema
    * @param mixed $conf
    * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
@@ -24,13 +24,13 @@ class ValueStub_Group implements ValueStubInterface {
    *
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
-  public static function createFromGroupSchema(CfSchema_GroupInterface $schema, $conf, SchemaConfToAnythingInterface $scta): ?ValueStub_Group {
+  public static function createFromGroupSchema(Formula_GroupInterface $schema, $conf, SchemaConfToAnythingInterface $scta): ?ValueStub_Group {
     $itemStubs = self::createItemStubs($schema, $conf, $scta);
     return new self($itemStubs);
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $groupSchema
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $groupSchema
    * @param mixed $conf
    * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
@@ -38,7 +38,7 @@ class ValueStub_Group implements ValueStubInterface {
    *
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
-  private static function createItemStubs(CfSchema_GroupInterface $groupSchema, $conf, SchemaConfToAnythingInterface $scta): ?array {
+  private static function createItemStubs(Formula_GroupInterface $groupSchema, $conf, SchemaConfToAnythingInterface $scta): ?array {
 
     $itemValueStubs = [];
     foreach ($groupSchema->getItemSchemas() as $k => $itemSchema) {

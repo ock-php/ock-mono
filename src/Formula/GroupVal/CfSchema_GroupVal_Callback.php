@@ -15,7 +15,7 @@ final class CfSchema_GroupVal_Callback extends UtilBase {
 
   /**
    * @param string $class
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
    * @param string[] $labels
    *
    * @return \Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupValInterface
@@ -32,7 +32,7 @@ final class CfSchema_GroupVal_Callback extends UtilBase {
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
    * @param string[] $labels
    *
    * @return \Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupValInterface
@@ -49,7 +49,7 @@ final class CfSchema_GroupVal_Callback extends UtilBase {
 
   /**
    * @param callable $callable
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
    * @param string[] $labels
    *
    * @return \Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupValInterface
@@ -64,7 +64,7 @@ final class CfSchema_GroupVal_Callback extends UtilBase {
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
    * @param string[] $labels
    *
    * @return \Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupValInterface

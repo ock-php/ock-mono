@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\IdToSchema;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 interface IdToSchemaInterface {
 
   /**
    * @param string $id
    *
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    */
-  public function idGetSchema(string $id): ?CfSchemaInterface;
+  public function idGetSchema(string $id): ?FormulaInterface;
 
 }

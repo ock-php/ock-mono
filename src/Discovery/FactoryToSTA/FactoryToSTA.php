@@ -9,7 +9,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_Function;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Core\Formula\Base\CfSchemaBaseInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_Callback;
 use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_CallbackNoHelper;
 use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
@@ -67,7 +67,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
     unset($params[0]);
 
     // Require first parameter type hint class to be a CfSchema* object.
-    if (CfSchemaInterface::class === $schemaType = $t0->getName()) {
+    if (FormulaInterface::class === $schemaType = $t0->getName()) {
       $schemaType = NULL;
       $specifity = -1;
     }

@@ -3,10 +3,10 @@
 namespace Donquixote\OCUI\Formula\ContextProviding;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\Formula\SkipEvaluator\CfSchema_SkipEvaluatorInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
 
-interface CfSchema_ContextProvidingInterface extends CfSchema_SkipEvaluatorInterface {
+interface CfSchema_ContextProvidingInterface extends Formula_SkipEvaluatorInterface {
 
   /**
    * Gets a context to limit available option.

@@ -7,7 +7,7 @@ use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Core\Formula\Base\CfSchemaBaseInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Util\ReflectionUtil;
 
@@ -39,7 +39,7 @@ class SchemaToAnythingPartial_Callback extends SchemaToAnythingPartialBase {
     }
     unset($params[0]);
 
-    if (CfSchemaInterface::class === $schemaType = $t0->getName()) {
+    if (FormulaInterface::class === $schemaType = $t0->getName()) {
       $schemaType = NULL;
       $specifity = -1;
     }
@@ -102,7 +102,7 @@ class SchemaToAnythingPartial_Callback extends SchemaToAnythingPartialBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $interface
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
@@ -110,7 +110,7 @@ class SchemaToAnythingPartial_Callback extends SchemaToAnythingPartialBase {
    *   An instance of $interface, or NULL.
    */
   protected function schemaDoGetObject(
-    CfSchemaInterface $schema,
+    FormulaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
   ) {

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface;
 use Donquixote\OCUI\Formula\Neutral\CfSchema_Neutral_IfaceTransformed;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
@@ -23,15 +23,15 @@ class SchemaReplacerPartial_IfaceTag extends SchemaReplacerPartial_IfaceBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
+   * @param \Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface $ifaceSchema
    * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
   protected function schemaDoGetReplacement(
-    CfSchema_IfaceWithContextInterface $ifaceSchema,
+    Formula_IfaceWithContextInterface $ifaceSchema,
     SchemaReplacerInterface $replacer
-  ): ?CfSchemaInterface {
+  ): ?FormulaInterface {
 
     if (NULL === $schema = $this->decorated->schemaGetReplacement($ifaceSchema, $replacer)) {
       // @todo Tag this one as well?

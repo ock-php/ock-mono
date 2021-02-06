@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Proxy\Cache;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Select\CfSchema_Select_Fixed;
 
-abstract class CfSchema_Proxy_Cache_SelectBase implements CfSchema_Proxy_CacheInterface {
+abstract class CfSchema_Proxy_Cache_SelectBase implements Formula_Proxy_CacheInterface {
 
   /**
    * @var string
@@ -30,9 +30,9 @@ abstract class CfSchema_Proxy_Cache_SelectBase implements CfSchema_Proxy_CacheIn
   /**
    * @param mixed $data
    *
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  final public function dataGetSchema($data): CfSchemaInterface {
+  final public function dataGetSchema($data): FormulaInterface {
     return new CfSchema_Select_Fixed($data);
   }
 

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaReplacer;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 class SchemaReplacer_FromPartials implements SchemaReplacerInterface {
 
@@ -27,7 +27,7 @@ class SchemaReplacer_FromPartials implements SchemaReplacerInterface {
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(CfSchemaInterface $schema): ?CfSchemaInterface {
+  public function schemaGetReplacement(FormulaInterface $schema): ?FormulaInterface {
 
     foreach ($this->schemaClassGetPartials(
       \get_class($schema)

@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Util;
 
 use Donquixote\CallbackReflection\Exception\GeneratedCodeException;
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\OCUI\Exception\EvaluatorException_UnsupportedSchema;
 
@@ -76,13 +76,13 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $expectedClass
    * @param mixed $foundValue
    *
    * @return string
    */
-  public static function misbehavingSTA(CfSchemaInterface $schema, string $expectedClass, $foundValue): string {
+  public static function misbehavingSTA(FormulaInterface $schema, string $expectedClass, $foundValue): string {
 
     $schemaClass = \get_class($schema);
 
@@ -113,12 +113,12 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $destinationClass
    *
    * @return string
    */
-  public static function unableToSTA(CfSchemaInterface $schema, string $destinationClass): string {
+  public static function unableToSTA(FormulaInterface $schema, string $destinationClass): string {
 
     $schemaClass = \get_class($schema);
 
@@ -134,12 +134,12 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string|null $message
    *
    * @return string
    */
-  public static function unsupportedSchema(CfSchemaInterface $schema, $message = NULL): string {
+  public static function unsupportedSchema(FormulaInterface $schema, $message = NULL): string {
 
     $schemaClass = \get_class($schema);
 

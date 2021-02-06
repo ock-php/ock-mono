@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Drilldown;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\Formula\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
 use Donquixote\OCUI\Formula\Select\CfSchema_Select_Fixed;
 use Donquixote\OCUI\IdToSchema\IdToSchema_Fixed;
 use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
@@ -22,7 +22,7 @@ class CfSchema_Drilldown_Fixed extends CfSchema_Drilldown_CustomKeysBase {
   private $idToSchema;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
    * @param string[] $labels
    *
    * @return self
@@ -44,13 +44,13 @@ class CfSchema_Drilldown_Fixed extends CfSchema_Drilldown_CustomKeysBase {
 
   /**
    * @param string $id
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $label
    * @param string $groupLabel
    *
    * @return static
    */
-  public function withOption(string $id, CfSchemaInterface $schema, string $label, $groupLabel = '') {
+  public function withOption(string $id, FormulaInterface $schema, string $label, $groupLabel = '') {
     $clone = clone $this;
     $clone->idSchema = $this->idSchema->withOption($id, $label, $groupLabel);
     $clone->idToSchema = $this->idToSchema->withSchema($id, $schema);
@@ -60,7 +60,7 @@ class CfSchema_Drilldown_Fixed extends CfSchema_Drilldown_CustomKeysBase {
   /**
    * {@inheritdoc}
    */
-  public function getIdSchema(): CfSchema_IdInterface {
+  public function getIdSchema(): Formula_IdInterface {
     return $this->idSchema;
   }
 

@@ -6,7 +6,7 @@ namespace Donquixote\OCUI\Formula\Id;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
 
-class CfSchema_Id_DefinitionsKey implements CfSchema_IdInterface {
+class CfSchema_Id_DefinitionsKey implements Formula_IdInterface {
 
   /**
    * @var array[]

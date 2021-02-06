@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\DefaultConf;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
-class CfSchema_DefaultConf implements CfSchema_DefaultConfInterface {
+class CfSchema_DefaultConf implements Formula_DefaultConfInterface {
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface
+   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
   private $decorated;
 
@@ -18,10 +18,10 @@ class CfSchema_DefaultConf implements CfSchema_DefaultConfInterface {
   private $defaultConf;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
    * @param mixed $defaultConf
    */
-  public function __construct(CfSchemaInterface $decorated, $defaultConf) {
+  public function __construct(FormulaInterface $decorated, $defaultConf) {
     $this->decorated = $decorated;
     $this->defaultConf = $defaultConf;
   }
@@ -29,7 +29,7 @@ class CfSchema_DefaultConf implements CfSchema_DefaultConfInterface {
   /**
    * {@inheritdoc}
    */
-  public function getDecorated(): CfSchemaInterface {
+  public function getDecorated(): FormulaInterface {
     return $this->decorated;
   }
 

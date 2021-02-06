@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Sequence;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Translator\TranslatorInterface;
 
-interface CfSchema_SequenceInterface extends CfSchemaInterface {
+interface Formula_SequenceInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  public function getItemSchema(): CfSchemaInterface;
+  public function getItemSchema(): FormulaInterface;
 
   /**
    * Gets a label for the nth sequence item.

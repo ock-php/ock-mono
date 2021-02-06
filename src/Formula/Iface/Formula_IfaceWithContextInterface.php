@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\Iface;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
-interface CfSchema_IfaceWithContextInterface extends CfSchemaInterface {
+interface Formula_IfaceWithContextInterface extends FormulaInterface {
 
   /**
    * @return string

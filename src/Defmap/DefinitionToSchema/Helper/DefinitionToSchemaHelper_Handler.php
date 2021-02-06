@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Defmap\DefinitionToSchema\Helper;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Callback\CfSchema_Callback;
 use Donquixote\OCUI\Formula\ValueProvider\CfSchema_ValueProvider_FixedValue;
 
@@ -20,14 +20,14 @@ class DefinitionToSchemaHelper_Handler implements DefinitionToSchemaHelperInterf
   /**
    * {@inheritdoc}
    */
-  public function objectGetSchema($object): CfSchemaInterface {
+  public function objectGetSchema($object): FormulaInterface {
     return new CfSchema_ValueProvider_FixedValue($object);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function factoryGetSchema(CallbackReflectionInterface $factory, CfContextInterface $context = NULL): CfSchemaInterface {
+  public function factoryGetSchema(CallbackReflectionInterface $factory, CfContextInterface $context = NULL): FormulaInterface {
     return new CfSchema_Callback($factory, $context);
   }
 }

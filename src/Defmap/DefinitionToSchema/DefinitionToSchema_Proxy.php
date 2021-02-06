@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Defmap\DefinitionToSchema;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 class DefinitionToSchema_Proxy implements DefinitionToSchemaInterface {
 
@@ -28,7 +28,7 @@ class DefinitionToSchema_Proxy implements DefinitionToSchemaInterface {
   /**
    * {@inheritdoc}
    */
-  public function definitionGetSchema(array $definition, CfContextInterface $context = NULL): CfSchemaInterface {
+  public function definitionGetSchema(array $definition, CfContextInterface $context = NULL): FormulaInterface {
 
     if (NULL === $this->instance) {
       $this->instance = \call_user_func($this->factory);

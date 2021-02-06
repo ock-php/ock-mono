@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\ValueToValue;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface;
 
 class CfSchema_ValueToValue extends CfSchema_ValueToValueBase {
@@ -14,10 +14,10 @@ class CfSchema_ValueToValue extends CfSchema_ValueToValueBase {
   private $v2v;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
    * @param \Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface $v2v
    */
-  public function __construct(CfSchemaInterface $decorated, V2V_ValueInterface $v2v) {
+  public function __construct(FormulaInterface $decorated, V2V_ValueInterface $v2v) {
     parent::__construct($decorated);
     $this->v2v = $v2v;
   }

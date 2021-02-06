@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Neutral;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 class CfSchema_Neutral_ProxyWithCallable extends CfSchema_Neutral_ProxyBase {
 
@@ -22,11 +22,11 @@ class CfSchema_Neutral_ProxyWithCallable extends CfSchema_Neutral_ProxyBase {
   /**
    * {@inheritdoc}
    */
-  public function doGetDecorated(): CfSchemaInterface {
+  public function doGetDecorated(): FormulaInterface {
 
     $schema = \call_user_func($this->schemaCallback);
 
-    if (!$schema instanceof CfSchemaInterface) {
+    if (!$schema instanceof FormulaInterface) {
       throw new \RuntimeException("Callback did not return a schema.");
     }
 

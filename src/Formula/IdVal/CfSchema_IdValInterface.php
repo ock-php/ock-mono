@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\IdVal;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\SchemaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\OCUI\Zoo\V2V\Id\V2V_IdInterface;
 
-interface CfSchema_IdValInterface extends CfSchema_ValueToValueBaseInterface {
+interface CfSchema_IdValInterface extends Formula_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\OCUI\Formula\Id\CfSchema_IdInterface
+   * @return \Donquixote\OCUI\Formula\Id\Formula_IdInterface
    */
-  public function getDecorated(): CfSchemaInterface;
+  public function getDecorated(): FormulaInterface;
 
   /**
    * @return \Donquixote\OCUI\Zoo\V2V\Id\V2V_IdInterface

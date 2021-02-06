@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Defmap\IdToSchema;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
 use Donquixote\OCUI\Exception\CfSchemaCreationException;
 use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
@@ -44,7 +44,7 @@ class IdToSchema_FromDefinitions implements IdToSchemaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetSchema($id): ?CfSchemaInterface {
+  public function idGetSchema($id): ?FormulaInterface {
 
     if (!isset($this->definitions[$id])) {
       return NULL;

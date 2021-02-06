@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 /**
@@ -12,7 +12,7 @@ use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 interface SchemaToAnythingPartialInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $interface
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
@@ -23,7 +23,7 @@ interface SchemaToAnythingPartialInterface {
    *   Malfunction in a schema replacer.
    */
   public function schema(
-    CfSchemaInterface $schema,
+    FormulaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper): ?object;
 

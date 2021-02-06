@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\Drilldown;
 
 use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
-use Donquixote\OCUI\Formula\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
 
 class CfSchema_Drilldown extends CfSchema_Drilldown_CustomKeysBase {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Id\CfSchema_IdInterface
+   * @var \Donquixote\OCUI\Formula\Id\Formula_IdInterface
    */
   private $idSchema;
 
@@ -19,20 +19,20 @@ class CfSchema_Drilldown extends CfSchema_Drilldown_CustomKeysBase {
   private $idToSchema;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Id\CfSchema_IdInterface $idSchema
+   * @param \Donquixote\OCUI\Formula\Id\Formula_IdInterface $idSchema
    * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $idToSchema
    *
    * @return self
    */
-  public static function create(CfSchema_IdInterface $idSchema, IdToSchemaInterface $idToSchema): CfSchema_Drilldown {
+  public static function create(Formula_IdInterface $idSchema, IdToSchemaInterface $idToSchema): CfSchema_Drilldown {
     return new self($idSchema, $idToSchema);
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Id\CfSchema_IdInterface $idSchema
+   * @param \Donquixote\OCUI\Formula\Id\Formula_IdInterface $idSchema
    * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $idToSchema
    */
-  public function __construct(CfSchema_IdInterface $idSchema, IdToSchemaInterface $idToSchema) {
+  public function __construct(Formula_IdInterface $idSchema, IdToSchemaInterface $idToSchema) {
     $this->idSchema = $idSchema;
     $this->idToSchema = $idToSchema;
   }
@@ -40,7 +40,7 @@ class CfSchema_Drilldown extends CfSchema_Drilldown_CustomKeysBase {
   /**
    * {@inheritdoc}
    */
-  public function getIdSchema(): CfSchema_IdInterface {
+  public function getIdSchema(): Formula_IdInterface {
     return $this->idSchema;
   }
 

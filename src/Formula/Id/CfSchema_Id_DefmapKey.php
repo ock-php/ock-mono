@@ -7,7 +7,7 @@ use Donquixote\OCUI\Defmap\IdToDefinition\IdToDefinitionInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
 
-class CfSchema_Id_DefmapKey implements CfSchema_IdInterface {
+class CfSchema_Id_DefmapKey implements Formula_IdInterface {
 
   /**
    * @var \Donquixote\OCUI\Defmap\IdToDefinition\IdToDefinitionInterface

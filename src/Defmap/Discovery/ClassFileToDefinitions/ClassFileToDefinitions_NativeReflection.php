@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Defmap\Discovery\ClassFileToDefinitions;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Discovery\DocToAnnotations\DocToAnnotations;
 use Donquixote\OCUI\Discovery\DocToAnnotations\DocToAnnotationsInterface;
 use Donquixote\OCUI\Util\DefinitionUtil;
@@ -178,7 +178,7 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
 
     foreach ($returnTypeNames as $returnTypeName) {
 
-      if (is_a($returnTypeName, CfSchemaInterface::class, TRUE)) {
+      if (is_a($returnTypeName, FormulaInterface::class, TRUE)) {
         // The method returns a schema object.
         // The actual plugin type has to be determined elsewhere.
         return self::schemaFactoryGetDefinitions($method, $annotations);

@@ -6,10 +6,10 @@ namespace Donquixote\OCUI\SchemaReplacer\Partial;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\ParamToLabel\ParamToLabel;
 use Donquixote\OCUI\ParamToLabel\ParamToLabelInterface;
-use Donquixote\OCUI\Formula\Callback\CfSchema_CallbackInterface;
+use Donquixote\OCUI\Formula\Callback\Formula_CallbackInterface;
 use Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContext;
 use Donquixote\OCUI\Formula\Label\CfSchema_Label;
@@ -54,15 +54,15 @@ class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
    * {@inheritdoc}
    */
   public function getSourceSchemaClass(): string {
-    return CfSchema_CallbackInterface::class;
+    return Formula_CallbackInterface::class;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(CfSchemaInterface $original, SchemaReplacerInterface $replacer): ?CfSchemaInterface {
+  public function schemaGetReplacement(FormulaInterface $original, SchemaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$original instanceof CfSchema_CallbackInterface) {
+    if (!$original instanceof Formula_CallbackInterface) {
       return NULL;
     }
 
@@ -150,13 +150,13 @@ class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
    * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    */
   private function paramGetSchema(
     \ReflectionParameter $param,
     CfContextInterface $context = NULL,
     SchemaReplacerInterface $replacer
-  ): ?CfSchemaInterface {
+  ): ?FormulaInterface {
 
     if (NULL === $reflClassLike = $param->getClass()) {
       return NULL;

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\OCUI\Formula\Defmap\CfSchema_DefmapInterface;
+use Donquixote\OCUI\Formula\Defmap\Formula_DefmapInterface;
 use Donquixote\OCUI\Formula\Drilldown\CfSchema_Drilldown_FromDefinitionMap;
 use Donquixote\OCUI\Formula\Drilldown\CfSchema_Drilldown_InlineExpanded;
 use Donquixote\OCUI\Formula\Id\CfSchema_Id_DefmapKey;
@@ -56,15 +56,15 @@ class SchemaReplacerPartial_DefmapDrilldown implements SchemaReplacerPartialInte
    * {@inheritdoc}
    */
   public function getSourceSchemaClass(): string {
-    return CfSchema_DefmapInterface::class;
+    return Formula_DefmapInterface::class;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(CfSchemaInterface $original, SchemaReplacerInterface $replacer): ?CfSchemaInterface {
+  public function schemaGetReplacement(FormulaInterface $original, SchemaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$original instanceof CfSchema_DefmapInterface) {
+    if (!$original instanceof Formula_DefmapInterface) {
       return NULL;
     }
 

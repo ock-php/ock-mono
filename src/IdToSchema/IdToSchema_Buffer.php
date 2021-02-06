@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\IdToSchema;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 class IdToSchema_Buffer implements IdToSchemaInterface {
 
@@ -13,7 +13,7 @@ class IdToSchema_Buffer implements IdToSchemaInterface {
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
   private $buffer = [];
 
@@ -27,7 +27,7 @@ class IdToSchema_Buffer implements IdToSchemaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetSchema($id): ?CfSchemaInterface {
+  public function idGetSchema($id): ?FormulaInterface {
     // @todo Optimize with isset()? But allow NULL values?
     return array_key_exists($id, $this->buffer)
       ? $this->buffer[$id]

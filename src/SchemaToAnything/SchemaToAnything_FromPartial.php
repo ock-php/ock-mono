@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\SchemaToAnything;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Exception\SchemaToAnythingException;
 use Donquixote\OCUI\Formula\ContextProviding\CfSchema_ContextProvidingInterface;
 use Donquixote\OCUI\Formula\Contextual\CfSchema_ContextualInterface;
@@ -68,7 +68,7 @@ class SchemaToAnything_FromPartial implements SchemaToAnythingInterface {
   /**
    * {@inheritdoc}
    */
-  public function schema(CfSchemaInterface $schema, string $interface): ?object {
+  public function schema(FormulaInterface $schema, string $interface): ?object {
 
     if ($schema instanceof CfSchema_ContextProvidingInterface) {
       return $this

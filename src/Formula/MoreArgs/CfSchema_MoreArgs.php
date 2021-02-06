@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\MoreArgs;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface;
-use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBase;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface;
+use Donquixote\OCUI\SchemaBase\Decorator\Formula_DecoratorBase;
 
-class CfSchema_MoreArgs extends CfSchema_DecoratorBase implements CfSchema_MoreArgsInterface {
+class CfSchema_MoreArgs extends Formula_DecoratorBase implements CfSchema_MoreArgsInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface[]
+   * @var \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface[]
    */
   private $more;
 
@@ -20,21 +20,21 @@ class CfSchema_MoreArgs extends CfSchema_DecoratorBase implements CfSchema_MoreA
   private $specialKey;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
    * @param string|int $specialKey
    *
    * @return \Donquixote\OCUI\Formula\MoreArgs\CfSchema_MoreArgs
    */
-  public function createEmpty(CfSchemaInterface $decorated, $specialKey = 0): CfSchema_MoreArgs {
+  public function createEmpty(FormulaInterface $decorated, $specialKey = 0): CfSchema_MoreArgs {
     return new self($decorated, [], $specialKey);
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
-   * @param \Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface[] $more
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface[] $more
    * @param string|int $specialKey
    */
-  public function __construct(CfSchemaInterface $decorated, array $more = [], $specialKey = 0) {
+  public function __construct(FormulaInterface $decorated, array $more = [], $specialKey = 0) {
     parent::__construct($decorated);
     $this->more = $more;
     $this->specialKey = $specialKey;
@@ -42,11 +42,11 @@ class CfSchema_MoreArgs extends CfSchema_DecoratorBase implements CfSchema_MoreA
 
   /**
    * @param string $key
-   * @param \Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface $schema
    *
    * @return \Donquixote\OCUI\Formula\MoreArgs\CfSchema_MoreArgs
    */
-  public function withItemSchema(string $key, CfSchema_OptionlessInterface $schema): CfSchema_MoreArgs {
+  public function withItemSchema(string $key, Formula_OptionlessInterface $schema): CfSchema_MoreArgs {
     $clone = clone $this;
     $clone->more[$key] = $schema;
     return $clone;

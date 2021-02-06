@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Defmap\DefinitionToSchema\Helper;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Exception\CfSchemaCreationException;
 
 class DefinitionToSchemaHelper_Schema implements DefinitionToSchemaHelperInterface {
@@ -13,9 +13,9 @@ class DefinitionToSchemaHelper_Schema implements DefinitionToSchemaHelperInterfa
   /**
    * {@inheritdoc}
    */
-  public function objectGetSchema($object): CfSchemaInterface {
+  public function objectGetSchema($object): FormulaInterface {
 
-    if ($object instanceof CfSchemaInterface) {
+    if ($object instanceof FormulaInterface) {
       return $object;
     }
 
@@ -25,7 +25,7 @@ class DefinitionToSchemaHelper_Schema implements DefinitionToSchemaHelperInterfa
   /**
    * {@inheritdoc}
    */
-  public function factoryGetSchema(CallbackReflectionInterface $factory, CfContextInterface $context = NULL): CfSchemaInterface {
+  public function factoryGetSchema(CallbackReflectionInterface $factory, CfContextInterface $context = NULL): FormulaInterface {
 
     $serialArgs = [];
     foreach ($factory->getReflectionParameters() as $param) {
@@ -57,7 +57,7 @@ class DefinitionToSchemaHelper_Schema implements DefinitionToSchemaHelperInterfa
       throw new CfSchemaCreationException("Exception in callback.", 0, $e);
     }
 
-    if ($candidate instanceof CfSchemaInterface) {
+    if ($candidate instanceof FormulaInterface) {
       return $candidate;
     }
 

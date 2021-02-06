@@ -8,6 +8,6 @@ use Donquixote\OCUI\Core\Formula\Base\CfSchemaBaseInterface;
 /**
  * This is a declarative interface only. It has no methods.
  */
-interface CfSchemaInterface extends CfSchemaBaseInterface {
+interface FormulaInterface extends CfSchemaBaseInterface {
 
 }

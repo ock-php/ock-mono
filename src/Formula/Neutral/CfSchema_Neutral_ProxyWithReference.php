@@ -3,28 +3,28 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Neutral;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 class CfSchema_Neutral_ProxyWithReference extends CfSchema_Neutral_ProxyBase {
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface|null
+   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    */
   private $schemaRef;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface|null $schemaRef
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface|null $schemaRef
    */
-  public function __construct(CfSchemaInterface &$schemaRef = NULL) {
+  public function __construct(FormulaInterface &$schemaRef = NULL) {
     $this->schemaRef =& $schemaRef;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function doGetDecorated(): CfSchemaInterface {
+  public function doGetDecorated(): FormulaInterface {
 
-    if (!$this->schemaRef instanceof CfSchemaInterface) {
+    if (!$this->schemaRef instanceof FormulaInterface) {
       throw new \RuntimeException("Schema reference is still empty.");
     }
 

@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Formula\Definitions;
 
 use Donquixote\OCUI\Context\CfContextInterface;
 
-class CfSchema_Definitions implements CfSchema_DefinitionsInterface {
+class CfSchema_Definitions implements Formula_DefinitionsInterface {
 
   /**
    * @var array[]

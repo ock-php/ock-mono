@@ -19,7 +19,7 @@ final class CfSchema_Drilldown_FromDefinitions extends UtilBase {
    * @param \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
    * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
    *
-   * @return \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface
+   * @return \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface
    */
   public static function create(
     array $definitions,
@@ -27,7 +27,7 @@ final class CfSchema_Drilldown_FromDefinitions extends UtilBase {
     DefinitionToLabelInterface $definitionToGroupLabel,
     DefinitionToSchemaInterface $definitionToSchema,
     CfContextInterface $context = NULL
-  ): CfSchema_DrilldownInterface {
+  ): Formula_DrilldownInterface {
     return new CfSchema_Drilldown(
       new CfSchema_Select_FromDefinitions(
         $definitions,

@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Para;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
-use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\SchemaBase\Formula_ValueToValueBaseInterface;
 
-interface CfSchema_ParaInterface extends CfSchema_ValueToValueBaseInterface {
+interface CfSchema_ParaInterface extends Formula_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  public function getParaSchema(): CfSchemaInterface;
+  public function getParaSchema(): FormulaInterface;
 
 }

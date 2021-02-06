@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Neutral;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 /**
  * A "proxy" schema can be created before the decorated schema exists.
@@ -13,20 +13,20 @@ use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 abstract class CfSchema_Neutral_ProxyBase implements CfSchema_NeutralInterface {
 
   /**
-   * @var CfSchemaInterface
+   * @var FormulaInterface
    */
   private $decorated;
 
   /**
    * {@inheritdoc}
    */
-  public function getDecorated(): CfSchemaInterface {
+  public function getDecorated(): FormulaInterface {
     return $this->decorated
       ?? $this->decorated = $this->doGetDecorated();
   }
 
   /**
-   * @return CfSchemaInterface
+   * @return FormulaInterface
    */
-  abstract protected function doGetDecorated(): CfSchemaInterface;
+  abstract protected function doGetDecorated(): FormulaInterface;
 }

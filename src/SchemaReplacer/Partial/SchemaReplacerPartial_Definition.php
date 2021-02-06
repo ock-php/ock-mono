@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\OCUI\Formula\Definition\CfSchema_DefinitionInterface;
+use Donquixote\OCUI\Formula\Definition\Formula_DefinitionInterface;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_Definition implements SchemaReplacerPartialInterface {
@@ -26,15 +26,15 @@ class SchemaReplacerPartial_Definition implements SchemaReplacerPartialInterface
    * {@inheritdoc}
    */
   public function getSourceSchemaClass(): string {
-    return CfSchema_DefinitionInterface::class;
+    return Formula_DefinitionInterface::class;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(CfSchemaInterface $schema, SchemaReplacerInterface $replacer): ?CfSchemaInterface {
+  public function schemaGetReplacement(FormulaInterface $schema, SchemaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$schema instanceof CfSchema_DefinitionInterface) {
+    if (!$schema instanceof Formula_DefinitionInterface) {
       return NULL;
     }
 

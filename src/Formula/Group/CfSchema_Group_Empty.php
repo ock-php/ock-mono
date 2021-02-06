@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Group;
 
-class CfSchema_Group_Empty implements CfSchema_GroupInterface {
+class CfSchema_Group_Empty implements Formula_GroupInterface {
 
   /**
    * {@inheritdoc}

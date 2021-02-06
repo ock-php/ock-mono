@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface;
 use Donquixote\OCUI\Formula\Defmap\CfSchema_Defmap;
-use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface;
+use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface;
 use Donquixote\OCUI\Formula\Neutral\CfSchema_Neutral_IfaceTransformed;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
@@ -23,7 +23,7 @@ class SchemaReplacerPartial_IfaceDefmap implements SchemaReplacerPartialInterfac
   private $withTaggingDecorator;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
   private $schemas = [];
 
@@ -44,15 +44,15 @@ class SchemaReplacerPartial_IfaceDefmap implements SchemaReplacerPartialInterfac
    */
   public function getSourceSchemaClass(): string {
     // Accepts any schema.
-    return CfSchema_IfaceWithContextInterface::class;
+    return Formula_IfaceWithContextInterface::class;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(CfSchemaInterface $schema, SchemaReplacerInterface $replacer): ?CfSchemaInterface {
+  public function schemaGetReplacement(FormulaInterface $schema, SchemaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$schema instanceof CfSchema_IfaceWithContextInterface) {
+    if (!$schema instanceof Formula_IfaceWithContextInterface) {
       return NULL;
     }
 
@@ -64,15 +64,15 @@ class SchemaReplacerPartial_IfaceDefmap implements SchemaReplacerPartialInterfac
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
+   * @param \Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface $ifaceSchema
    * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
   private function schemaDoGetReplacement(
-    CfSchema_IfaceWithContextInterface $ifaceSchema,
+    Formula_IfaceWithContextInterface $ifaceSchema,
     SchemaReplacerInterface $replacer
-  ): CfSchemaInterface {
+  ): FormulaInterface {
 
     $type = $ifaceSchema->getInterface();
     $context = $ifaceSchema->getContext();

@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Id;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Text\TextInterface;
 
 /**
  * Base interface for schemas where the value is id-like (string or integer).
  */
-interface CfSchema_IdInterface extends CfSchemaInterface {
+interface Formula_IdInterface extends FormulaInterface {
 
   /**
    * Gets the option label for a given id.

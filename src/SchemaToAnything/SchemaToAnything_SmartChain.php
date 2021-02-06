@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\SchemaToAnything;
 
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Exception\SchemaToAnythingException;
 use Donquixote\OCUI\Util\LocalPackageUtil;
 
@@ -85,7 +85,7 @@ class SchemaToAnything_SmartChain implements SchemaToAnythingInterface {
   /**
    * {@inheritdoc}
    */
-  public function schema(CfSchemaInterface $schema, string $interface) {
+  public function schema(FormulaInterface $schema, string $interface) {
 
     if ($schema instanceof $interface) {
       return $schema;

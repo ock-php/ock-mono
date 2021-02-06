@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Textfield;
 
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Text\TextInterface;
 
 /**
  * @todo What about limited number of characters?
  */
-interface CfSchema_TextfieldInterface extends CfSchemaInterface {
+interface Formula_TextfieldInterface extends FormulaInterface {
 
   /**
    * @return \Donquixote\OCUI\Text\TextInterface|null

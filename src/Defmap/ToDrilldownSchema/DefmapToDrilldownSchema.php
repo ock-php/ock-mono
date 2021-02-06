@@ -8,7 +8,7 @@ use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
 use Donquixote\OCUI\Formula\Drilldown\CfSchema_Drilldown_FromDefinitionMap;
-use Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
 
 class DefmapToDrilldownSchema implements DefmapToDrilldownSchemaInterface {
 
@@ -45,7 +45,7 @@ class DefmapToDrilldownSchema implements DefmapToDrilldownSchemaInterface {
   /**
    * {@inheritdoc}
    */
-  public function defmapGetDrilldownSchema(DefinitionMapInterface $definitionMap, CfContextInterface $context = NULL): CfSchema_DrilldownInterface {
+  public function defmapGetDrilldownSchema(DefinitionMapInterface $definitionMap, CfContextInterface $context = NULL): Formula_DrilldownInterface {
 
     return CfSchema_Drilldown_FromDefinitionMap::create(
       $definitionMap,

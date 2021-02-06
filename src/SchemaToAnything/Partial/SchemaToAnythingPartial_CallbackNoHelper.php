@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Exception\SchemaToAnythingException;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
@@ -48,10 +48,10 @@ class SchemaToAnythingPartial_CallbackNoHelper extends SchemaToAnythingPartialBa
       return NULL;
     }
 
-    if (CfSchemaInterface::class === $schemaType = $t0->getName()) {
+    if (FormulaInterface::class === $schemaType = $t0->getName()) {
       $schemaType = NULL;
     }
-    elseif (!is_a($schemaType, CfSchemaInterface::class, TRUE)) {
+    elseif (!is_a($schemaType, FormulaInterface::class, TRUE)) {
       return NULL;
     }
 
@@ -70,7 +70,7 @@ class SchemaToAnythingPartial_CallbackNoHelper extends SchemaToAnythingPartialBa
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string $interface
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
@@ -80,7 +80,7 @@ class SchemaToAnythingPartial_CallbackNoHelper extends SchemaToAnythingPartialBa
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   protected function schemaDoGetObject(
-    CfSchemaInterface $schema,
+    FormulaInterface $schema,
     string $interface,
     SchemaToAnythingInterface $helper
   ) {

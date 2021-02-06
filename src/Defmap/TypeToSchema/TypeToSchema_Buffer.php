@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Defmap\TypeToSchema;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 class TypeToSchema_Buffer implements TypeToSchemaInterface {
 
@@ -14,7 +14,7 @@ class TypeToSchema_Buffer implements TypeToSchemaInterface {
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
   private $schemas = [];
 
@@ -28,7 +28,7 @@ class TypeToSchema_Buffer implements TypeToSchemaInterface {
   /**
    * {@inheritdoc}
    */
-  public function typeGetSchema(string $type, CfContextInterface $context = NULL): CfSchemaInterface {
+  public function typeGetSchema(string $type, CfContextInterface $context = NULL): FormulaInterface {
 
     $k = $type;
     if (NULL !== $context) {

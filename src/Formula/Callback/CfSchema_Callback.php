@@ -7,10 +7,10 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContext;
 
-class CfSchema_Callback implements CfSchema_CallbackInterface {
+class CfSchema_Callback implements Formula_CallbackInterface {
 
   /**
    * @var \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface
@@ -18,7 +18,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
   private $callbackReflection;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
   private $explicitSchemas = [];
 
@@ -86,12 +86,12 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
 
   /**
    * @param int $index
-   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
    * @param string|null $label
    *
    * @return static
    */
-  public function withParamSchema(int $index, CfSchemaInterface $schema, $label = NULL) {
+  public function withParamSchema(int $index, FormulaInterface $schema, $label = NULL) {
     $clone = clone $this;
     $clone->explicitSchemas[$index] = $schema;
     if (NULL !== $label) {
