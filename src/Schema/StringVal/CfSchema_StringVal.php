@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\StringVal;
+namespace Donquixote\OCUI\Schema\StringVal;
 
-use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldInterface;
-use Donquixote\Cf\Zoo\V2V\String\V2V_StringInterface;
+use Donquixote\OCUI\Schema\Textfield\CfSchema_TextfieldInterface;
+use Donquixote\OCUI\Zoo\V2V\String\V2V_StringInterface;
 
 class CfSchema_StringVal extends CfSchema_StringValBase {
 
   /**
-   * @var \Donquixote\Cf\Zoo\V2V\String\V2V_StringInterface
+   * @var \Donquixote\OCUI\Zoo\V2V\String\V2V_StringInterface
    */
   private $v2v;
 
   /**
-   * @param \Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldInterface $decorated
-   * @param \Donquixote\Cf\Zoo\V2V\String\V2V_StringInterface $v2v
+   * @param \Donquixote\OCUI\Schema\Textfield\CfSchema_TextfieldInterface $decorated
+   * @param \Donquixote\OCUI\Zoo\V2V\String\V2V_StringInterface $v2v
    */
   public function __construct(CfSchema_TextfieldInterface $decorated, V2V_StringInterface $v2v) {
     parent::__construct($decorated);

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\MoreArgs;
+namespace Donquixote\OCUI\Schema\MoreArgs;
 
-use Donquixote\Cf\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
 
 interface CfSchema_MoreArgsInterface extends CfSchema_ValueToValueBaseInterface {
 
@@ -13,7 +13,7 @@ interface CfSchema_MoreArgsInterface extends CfSchema_ValueToValueBaseInterface 
   public function getSpecialKey(): string;
 
   /**
-   * @return \Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface[]
+   * @return \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface[]
    */
   public function getMoreArgs(): array;
 

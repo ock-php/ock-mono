@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Proxy\Replacer;
+namespace Donquixote\OCUI\Schema\Proxy\Replacer;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 interface CfSchema_Proxy_ReplacerInterface extends CfSchemaInterface {
 
   /**
-   * @param \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface $replacer
+   * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public function replacerGetSchema(SchemaReplacerInterface $replacer): CfSchemaInterface;
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Markup;
+namespace Donquixote\OCUI\Markup;
 
 class Markup implements MarkupInterface {
 

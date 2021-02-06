@@ -1,36 +1,36 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\ToDrilldownSchema;
+namespace Donquixote\OCUI\Defmap\ToDrilldownSchema;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_FromDefinitionMap;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_Drilldown_FromDefinitionMap;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
 
 class DefmapToDrilldownSchema implements DefmapToDrilldownSchemaInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
    */
   private $definitionToSchema;
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToLabel;
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToGrouplabel;
 
   /**
-   * @param \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
-   * @param \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
-   * @param \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
+   * @param \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
+   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
    */
   public function __construct(
     DefinitionToSchemaInterface $definitionToSchema,

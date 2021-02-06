@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldInterface;
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Schema\Textfield\CfSchema_TextfieldInterface;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
 
 /**
  * @STA
@@ -13,12 +13,12 @@ use Donquixote\Cf\Text\TextInterface;
 class Summarizer_Textfield implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldInterface
+   * @var \Donquixote\OCUI\Schema\Textfield\CfSchema_TextfieldInterface
    */
   private $schema;
 
   /**
-   * @param \Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldInterface $schema
+   * @param \Donquixote\OCUI\Schema\Textfield\CfSchema_TextfieldInterface $schema
    */
   public function __construct(CfSchema_TextfieldInterface $schema) {
     $this->schema = $schema;

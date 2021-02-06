@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 interface SummarizerInterface {
 
   /**
    * @param mixed $conf
    *
-   * @return null|\Donquixote\Cf\Text\TextInterface
+   * @return null|\Donquixote\OCUI\Text\TextInterface
    */
   public function confGetSummary($conf): ?TextInterface;
 

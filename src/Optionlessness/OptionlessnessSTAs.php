@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Optionlessness;
+namespace Donquixote\OCUI\Optionlessness;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface;
-use Donquixote\Cf\Util\UtilBase;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface;
+use Donquixote\OCUI\Util\UtilBase;
 
 final class OptionlessnessSTAs extends UtilBase {
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface $schema
+   * @param \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface $schema
    *
-   * @return \Donquixote\Cf\Optionlessness\OptionlessnessInterface
+   * @return \Donquixote\OCUI\Optionlessness\OptionlessnessInterface
    */
   public static function optionless(
     /** @noinspection PhpUnusedParameterInspection */ CfSchema_OptionlessInterface $schema
@@ -25,9 +25,9 @@ final class OptionlessnessSTAs extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Optionlessness\OptionlessnessInterface $schema
+   * @param \Donquixote\OCUI\Optionlessness\OptionlessnessInterface $schema
    *
-   * @return \Donquixote\Cf\Optionlessness\Optionlessness
+   * @return \Donquixote\OCUI\Optionlessness\Optionlessness
    */
   public static function optionlessness(OptionlessnessInterface $schema): Optionlessness {
     return new Optionlessness($schema->isOptionless());
@@ -36,9 +36,9 @@ final class OptionlessnessSTAs extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    *
-   * @return \Donquixote\Cf\Optionlessness\Optionlessness|null
+   * @return \Donquixote\OCUI\Optionlessness\Optionlessness|null
    */
   public static function other(
     /** @noinspection PhpUnusedParameterInspection */ CfSchemaInterface $schema

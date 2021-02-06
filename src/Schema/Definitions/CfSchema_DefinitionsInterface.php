@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Definitions;
+namespace Donquixote\OCUI\Schema\Definitions;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 interface CfSchema_DefinitionsInterface extends CfSchemaInterface {
 
@@ -14,7 +14,7 @@ interface CfSchema_DefinitionsInterface extends CfSchemaInterface {
   public function getDefinitions(): array;
 
   /**
-   * @return \Donquixote\Cf\Context\CfContextInterface|null
+   * @return \Donquixote\OCUI\Context\CfContextInterface|null
    */
   public function getContext(): ?CfContextInterface;
 

@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaReplacer\Partial;
+namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\Cf\Cache\CacheInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_CacheInterface;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\OCUI\Cache\CacheInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Proxy\Cache\CfSchema_Proxy_CacheInterface;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_Proxy_Cache implements SchemaReplacerPartialInterface {
 
   /**
-   * @var \Donquixote\Cf\Cache\CacheInterface|null
+   * @var \Donquixote\OCUI\Cache\CacheInterface|null
    */
   private $cache;
 
   /**
-   * @var \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
    */
   private $buffer = [];
 
@@ -26,7 +26,7 @@ class SchemaReplacerPartial_Proxy_Cache implements SchemaReplacerPartialInterfac
   private $seen = [];
 
   /**
-   * @param \Donquixote\Cf\Cache\CacheInterface|null $cache
+   * @param \Donquixote\OCUI\Cache\CacheInterface|null $cache
    */
   public function __construct(CacheInterface $cache = NULL) {
     $this->cache = $cache;

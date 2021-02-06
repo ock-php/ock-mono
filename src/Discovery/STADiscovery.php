@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Discovery;
+namespace Donquixote\OCUI\Discovery;
 
-use Donquixote\Cf\Discovery\ClassFileToSTAs\ClassFileToSTAs;
-use Donquixote\Cf\Discovery\ClassFileToSTAs\ClassFileToSTAsInterface;
+use Donquixote\OCUI\Discovery\ClassFileToSTAs\ClassFileToSTAs;
+use Donquixote\OCUI\Discovery\ClassFileToSTAs\ClassFileToSTAsInterface;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 
 class STADiscovery {
@@ -31,7 +31,7 @@ class STADiscovery {
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   public function classFilesIAGetPartials(ClassFilesIAInterface $classFilesIA): array {
 

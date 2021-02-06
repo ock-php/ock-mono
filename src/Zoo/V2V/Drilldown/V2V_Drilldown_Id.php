@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Zoo\V2V\Drilldown;
+namespace Donquixote\OCUI\Zoo\V2V\Drilldown;
 
 class V2V_Drilldown_Id implements V2V_DrilldownInterface {
 

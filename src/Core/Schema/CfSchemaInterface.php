@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Core\Schema;
+namespace Donquixote\OCUI\Core\Schema;
 
-use Donquixote\Cf\Core\Schema\Base\CfSchemaBaseInterface;
+use Donquixote\OCUI\Core\Schema\Base\CfSchemaBaseInterface;
 
 /**
  * This is a declarative interface only. It has no methods.

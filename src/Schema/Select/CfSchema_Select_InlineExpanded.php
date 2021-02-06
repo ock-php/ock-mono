@@ -1,29 +1,29 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Select;
+namespace Donquixote\OCUI\Schema\Select;
 
-use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
-use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownValInterface;
-use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Schema\DrilldownVal\CfSchema_DrilldownValInterface;
+use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\Select\CfSchema_SelectInterface
+   * @var \Donquixote\OCUI\Schema\Select\CfSchema_SelectInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\Cf\IdToSchema\IdToSchemaInterface
+   * @var \Donquixote\OCUI\IdToSchema\IdToSchemaInterface
    */
   private $idToSchema;
 
   /**
-   * @param \Donquixote\Cf\Schema\Select\CfSchema_SelectInterface $decorated
-   * @param \Donquixote\Cf\IdToSchema\IdToSchemaInterface $idToSchema
+   * @param \Donquixote\OCUI\Schema\Select\CfSchema_SelectInterface $decorated
+   * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $idToSchema
    */
   public function __construct(
     CfSchema_SelectInterface $decorated,
@@ -113,7 +113,7 @@ class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
   /**
    * @param string|int $id
    *
-   * @return \Donquixote\Cf\Schema\Select\CfSchema_SelectInterface|null
+   * @return \Donquixote\OCUI\Schema\Select\CfSchema_SelectInterface|null
    */
   private function idGetSelectSchema($id): ?CfSchema_SelectInterface {
 
@@ -131,7 +131,7 @@ class CfSchema_Select_InlineExpanded implements CfSchema_SelectInterface {
   /**
 * @param string $id
    *
-   * @return \Donquixote\Cf\Schema\Id\CfSchema_IdInterface|null
+   * @return \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface|null
    */
   private function idGetIdSchema(string $id): ?CfSchema_IdInterface {
 

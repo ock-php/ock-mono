@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaReplacer\Partial;
+namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Proxy\Replacer\CfSchema_Proxy_ReplacerInterface;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Proxy\Replacer\CfSchema_Proxy_ReplacerInterface;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_Proxy_Replacer implements SchemaReplacerPartialInterface {
 

@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaToAnything\Partial;
+namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Exception\SchemaToAnythingException;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Exception\SchemaToAnythingException;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 class SchemaToAnythingPartial_SchemaReplacer implements SchemaToAnythingPartialInterface {
 
   /**
-   * @var \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface
+   * @var \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface
    */
   private $replacer;
 
   /**
-   * @param \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface $replacer
+   * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    */
   public function __construct(SchemaReplacerInterface $replacer) {
     $this->replacer = $replacer;

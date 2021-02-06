@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaReplacer;
+namespace Donquixote\OCUI\SchemaReplacer;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 class SchemaReplacer_FromPartials implements SchemaReplacerInterface {
 
   /**
-   * @var \Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartialInterface[]
+   * @var \Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartialInterface[]
    */
   private $partials;
 
@@ -18,7 +18,7 @@ class SchemaReplacer_FromPartials implements SchemaReplacerInterface {
   private $partialss = [];
 
   /**
-   * @param \Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartialInterface[] $partials
+   * @param \Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartialInterface[] $partials
    */
   public function __construct(array $partials) {
     $this->partials = $partials;
@@ -50,7 +50,7 @@ class SchemaReplacer_FromPartials implements SchemaReplacerInterface {
   /**
    * @param string $schemaClass
    *
-   * @return \Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartialInterface[]
    */
   private function schemaClassGetPartials(string $schemaClass): array {
     return $this->partialss[$schemaClass]
@@ -60,7 +60,7 @@ class SchemaReplacer_FromPartials implements SchemaReplacerInterface {
   /**
    * @param string $schemaClass
    *
-   * @return \Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartialInterface[]
    */
   private function schemaClassFindPartials(string $schemaClass): array {
 

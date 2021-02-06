@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Callback;
+namespace Donquixote\OCUI\Schema\Callback;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 interface CfSchema_CallbackInterface extends CfSchemaInterface {
 
@@ -15,7 +15,7 @@ interface CfSchema_CallbackInterface extends CfSchemaInterface {
   public function getCallback(): CallbackReflectionInterface;
 
   /**
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
    */
   public function getExplicitParamSchemas(): array;
 
@@ -25,7 +25,7 @@ interface CfSchema_CallbackInterface extends CfSchemaInterface {
   public function getExplicitParamLabels(): array;
 
   /**
-   * @return \Donquixote\Cf\Context\CfContextInterface|null
+   * @return \Donquixote\OCUI\Context\CfContextInterface|null
    */
   public function getContext(): ?CfContextInterface;
 

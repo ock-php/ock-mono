@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Context;
+namespace Donquixote\OCUI\Context;
 
 interface CfContextInterface {
 

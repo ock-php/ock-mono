@@ -1,33 +1,33 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Generator;
+namespace Donquixote\OCUI\Generator;
 
-use Donquixote\Cf\Schema\Para\CfSchema_ParaInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\PhpUtil;
+use Donquixote\OCUI\Schema\Para\CfSchema_ParaInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Util\PhpUtil;
 
 class Generator_Para implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Generator\GeneratorInterface
+   * @var \Donquixote\OCUI\Generator\GeneratorInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\Cf\Generator\GeneratorInterface
+   * @var \Donquixote\OCUI\Generator\GeneratorInterface
    */
   private $paraGenerator;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Para\CfSchema_ParaInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Para\CfSchema_ParaInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(CfSchema_ParaInterface $schema, SchemaToAnythingInterface $schemaToAnything): Generator_Para {
     return new self(
@@ -36,8 +36,8 @@ class Generator_Para implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\Cf\Generator\GeneratorInterface $paraGenerator
+   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\OCUI\Generator\GeneratorInterface $paraGenerator
    */
   public function __construct(GeneratorInterface $decorated, GeneratorInterface $paraGenerator) {
     $this->decorated = $decorated;

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Schema\Boolean\CfSchema_BooleanInterface;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Schema\Boolean\CfSchema_BooleanInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 /**
  * @STA
@@ -12,12 +12,12 @@ use Donquixote\Cf\Text\TextInterface;
 class Summarizer_Boolean implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\Boolean\CfSchema_BooleanInterface
+   * @var \Donquixote\OCUI\Schema\Boolean\CfSchema_BooleanInterface
    */
   private $schema;
 
   /**
-   * @param \Donquixote\Cf\Schema\Boolean\CfSchema_BooleanInterface $schema
+   * @param \Donquixote\OCUI\Schema\Boolean\CfSchema_BooleanInterface $schema
    */
   public function __construct(CfSchema_BooleanInterface $schema) {
     $this->schema = $schema;

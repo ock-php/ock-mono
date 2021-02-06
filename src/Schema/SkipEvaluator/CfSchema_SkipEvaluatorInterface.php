@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\SkipEvaluator;
+namespace Donquixote\OCUI\Schema\SkipEvaluator;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaBase\Decorator\CfSchema_DecoratorBaseInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBaseInterface;
 
 /**
  * Base interface for all schema decorators that have no effect on evaluators.
@@ -12,7 +12,7 @@ use Donquixote\Cf\SchemaBase\Decorator\CfSchema_DecoratorBaseInterface;
 interface CfSchema_SkipEvaluatorInterface extends CfSchema_DecoratorBaseInterface, CfSchemaInterface {
 
   /**
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public function getDecorated(): CfSchemaInterface;
 

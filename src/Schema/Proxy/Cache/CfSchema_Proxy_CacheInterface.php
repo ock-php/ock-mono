@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Proxy\Cache;
+namespace Donquixote\OCUI\Schema\Proxy\Cache;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 interface CfSchema_Proxy_CacheInterface extends CfSchemaInterface {
 
@@ -15,7 +15,7 @@ interface CfSchema_Proxy_CacheInterface extends CfSchemaInterface {
   /**
    * @param mixed $data
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface|null
    */
   public function dataGetSchema($data): ?CfSchemaInterface;
 

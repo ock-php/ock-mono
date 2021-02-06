@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaReplacer\Partial;
+namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 interface SchemaReplacerPartialInterface {
 
@@ -14,10 +14,10 @@ interface SchemaReplacerPartialInterface {
   public function getSourceSchemaClass(): string;
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
-   * @param \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface $replacer
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface|null
    */
   public function schemaGetReplacement(CfSchemaInterface $schema, SchemaReplacerInterface $replacer): ?CfSchemaInterface;
 

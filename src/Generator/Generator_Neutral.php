@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Generator;
+namespace Donquixote\OCUI\Generator;
 
-use Donquixote\Cf\Schema\SkipEvaluator\CfSchema_SkipEvaluatorInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Schema\SkipEvaluator\CfSchema_SkipEvaluatorInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 class Generator_Neutral extends Generator_DecoratorBase {
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\SkipEvaluator\CfSchema_SkipEvaluatorInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\SkipEvaluator\CfSchema_SkipEvaluatorInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Generator\GeneratorInterface|null
+   * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(CfSchema_SkipEvaluatorInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?GeneratorInterface {
 

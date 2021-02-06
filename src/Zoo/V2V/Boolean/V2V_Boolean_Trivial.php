@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Zoo\V2V\Boolean;
+namespace Donquixote\OCUI\Zoo\V2V\Boolean;
 
 class V2V_Boolean_Trivial implements V2V_BooleanInterface {
 

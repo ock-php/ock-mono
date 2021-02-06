@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Schema\Label\CfSchema_LabelInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Schema\Label\CfSchema_LabelInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
 
 /**
  * Decorator that prepends a "<label>: " to a summary.
@@ -14,20 +14,20 @@ use Donquixote\Cf\Text\TextInterface;
 class Summarizer_Label implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Cf\Summarizer\SummarizerInterface
+   * @var \Donquixote\OCUI\Summarizer\SummarizerInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\Cf\Text\TextInterface
+   * @var \Donquixote\OCUI\Text\TextInterface
    */
   private $label;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Label\CfSchema_LabelInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Label\CfSchema_LabelInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    */
@@ -47,8 +47,8 @@ class Summarizer_Label implements SummarizerInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\Cf\Summarizer\SummarizerInterface $decorated
-   * @param \Donquixote\Cf\Text\TextInterface $label
+   * @param \Donquixote\OCUI\Summarizer\SummarizerInterface $decorated
+   * @param \Donquixote\OCUI\Text\TextInterface $label
    */
   public function __construct(SummarizerInterface $decorated, TextInterface $label) {
     $this->decorated = $decorated;

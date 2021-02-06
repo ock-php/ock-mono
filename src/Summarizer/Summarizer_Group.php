@@ -1,39 +1,39 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
-use Donquixote\Cf\Util\StaUtil;
+use Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\OCUI\Util\StaUtil;
 
 class Summarizer_Group implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\Group\CfSchema_GroupInterface
+   * @var \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface
    */
   private $schema;
 
   /**
-   * @var \Donquixote\Cf\Summarizer\SummarizerInterface[]
+   * @var \Donquixote\OCUI\Summarizer\SummarizerInterface[]
    */
   private $itemSummarizers;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Group\CfSchema_GroupInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(CfSchema_GroupInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?self {
 
-    /** @var \Donquixote\Cf\Summarizer\SummarizerInterface[] $itemSummarizers */
+    /** @var \Donquixote\OCUI\Summarizer\SummarizerInterface[] $itemSummarizers */
     $itemSummarizers = StaUtil::getMultiple(
       $schema->getItemSchemas(),
       $schemaToAnything,
@@ -49,8 +49,8 @@ class Summarizer_Group implements SummarizerInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\Cf\Schema\Group\CfSchema_GroupInterface $schema
-   * @param \Donquixote\Cf\Summarizer\SummarizerInterface[] $itemSummarizers
+   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $schema
+   * @param \Donquixote\OCUI\Summarizer\SummarizerInterface[] $itemSummarizers
    */
   public function __construct(CfSchema_GroupInterface $schema, array $itemSummarizers) {
     $this->schema = $schema;

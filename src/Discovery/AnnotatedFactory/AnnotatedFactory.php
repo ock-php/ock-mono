@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Discovery\AnnotatedFactory;
+namespace Donquixote\OCUI\Discovery\AnnotatedFactory;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
-use Donquixote\Cf\Util\ReflectionUtil;
+use Donquixote\OCUI\Util\ReflectionUtil;
 
 class AnnotatedFactory implements AnnotatedFactoryInterface {
 
@@ -33,7 +33,7 @@ class AnnotatedFactory implements AnnotatedFactoryInterface {
   /**
    * @param \ReflectionClass $reflectionClass
    *
-   * @return \Donquixote\Cf\Discovery\AnnotatedFactory\AnnotatedFactoryInterface
+   * @return \Donquixote\OCUI\Discovery\AnnotatedFactory\AnnotatedFactoryInterface
    */
   public static function createFromClass(\ReflectionClass $reflectionClass): AnnotatedFactoryInterface {
     return new AnnotatedFactory_Class($reflectionClass);
@@ -61,7 +61,7 @@ class AnnotatedFactory implements AnnotatedFactoryInterface {
   /**
    * @param callable $callable
    *
-   * @return \Donquixote\Cf\Discovery\AnnotatedFactory\AnnotatedFactoryInterface|null
+   * @return \Donquixote\OCUI\Discovery\AnnotatedFactory\AnnotatedFactoryInterface|null
    *
    * @throws \ReflectionException
    *   Function or method does not exist.

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Neutral;
+namespace Donquixote\OCUI\Schema\Neutral;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 /**
  * A "proxy" schema can be created before the decorated schema exists.

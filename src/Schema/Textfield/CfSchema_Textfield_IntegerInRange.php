@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Textfield;
+namespace Donquixote\OCUI\Schema\Textfield;
 
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Textfield_IntegerInRange extends CfSchema_Textfield_IntegerBase {
 
@@ -62,7 +62,7 @@ class CfSchema_Textfield_IntegerInRange extends CfSchema_Textfield_IntegerBase {
   /**
    * @param int $v
    *
-   * @return \Donquixote\Cf\Text\TextInterface[]
+   * @return \Donquixote\OCUI\Text\TextInterface[]
    */
   protected function numberGetValidationErrors(int $v): array {
 

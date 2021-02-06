@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\DefinitionToSchema;
+namespace Donquixote\OCUI\Defmap\DefinitionToSchema;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 class DefinitionToSchema_Proxy implements DefinitionToSchemaInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface|null
+   * @var \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface|null
    */
   private $instance;
 

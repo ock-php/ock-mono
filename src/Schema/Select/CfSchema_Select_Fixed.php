@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Select;
+namespace Donquixote\OCUI\Schema\Select;
 
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Select_Fixed implements CfSchema_SelectInterface {
 

@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Generator;
+namespace Donquixote\OCUI\Generator;
 
-use Donquixote\Cf\Schema\Boolean\CfSchema_BooleanInterface;
-use Donquixote\Cf\Schema\BoolVal\CfSchema_BoolValInterface;
-use Donquixote\Cf\Zoo\V2V\Boolean\V2V_Boolean_Trivial;
-use Donquixote\Cf\Zoo\V2V\Boolean\V2V_BooleanInterface;
+use Donquixote\OCUI\Schema\Boolean\CfSchema_BooleanInterface;
+use Donquixote\OCUI\Schema\BoolVal\CfSchema_BoolValInterface;
+use Donquixote\OCUI\Zoo\V2V\Boolean\V2V_Boolean_Trivial;
+use Donquixote\OCUI\Zoo\V2V\Boolean\V2V_BooleanInterface;
 
 class Generator_Boolean implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Zoo\V2V\Boolean\V2V_BooleanInterface
+   * @var \Donquixote\OCUI\Zoo\V2V\Boolean\V2V_BooleanInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Boolean\CfSchema_BooleanInterface $schema
+   * @param \Donquixote\OCUI\Schema\Boolean\CfSchema_BooleanInterface $schema
    *
    * @return self
    */
@@ -31,7 +31,7 @@ class Generator_Boolean implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\BoolVal\CfSchema_BoolValInterface $schema
+   * @param \Donquixote\OCUI\Schema\BoolVal\CfSchema_BoolValInterface $schema
    *
    * @return self
    */
@@ -40,7 +40,7 @@ class Generator_Boolean implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Zoo\V2V\Boolean\V2V_BooleanInterface $v2v
+   * @param \Donquixote\OCUI\Zoo\V2V\Boolean\V2V_BooleanInterface $v2v
    */
   public function __construct(V2V_BooleanInterface $v2v) {
     $this->v2v = $v2v;

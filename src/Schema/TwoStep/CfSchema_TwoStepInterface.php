@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\TwoStep;
+namespace Donquixote\OCUI\Schema\TwoStep;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 interface CfSchema_TwoStepInterface extends CfSchemaInterface {
 
@@ -18,7 +18,7 @@ interface CfSchema_TwoStepInterface extends CfSchemaInterface {
   public function getSecondStepKey(): string;
 
   /**
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public function getFirstStepSchema(): CfSchemaInterface;
 
@@ -26,7 +26,7 @@ interface CfSchema_TwoStepInterface extends CfSchemaInterface {
    * @param mixed $firstStepValue
    *   Value from the first step of configuration.
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface|null
    *
    * @todo return NULL or throw exception?
    */

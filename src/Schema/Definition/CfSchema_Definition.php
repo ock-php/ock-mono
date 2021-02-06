@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Definition;
+namespace Donquixote\OCUI\Schema\Definition;
 
-use Donquixote\Cf\Context\CfContextInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
 
 class CfSchema_Definition implements CfSchema_DefinitionInterface {
 
@@ -13,13 +13,13 @@ class CfSchema_Definition implements CfSchema_DefinitionInterface {
   private $definition;
 
   /**
-   * @var \Donquixote\Cf\Context\CfContextInterface|null
+   * @var \Donquixote\OCUI\Context\CfContextInterface|null
    */
   private $context;
 
   /**
    * @param array $definition
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    */
   public function __construct(array $definition, CfContextInterface $context = NULL) {
     $this->definition = $definition;

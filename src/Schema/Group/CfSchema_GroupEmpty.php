@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Group;
+namespace Donquixote\OCUI\Schema\Group;
 
 class CfSchema_GroupEmpty implements CfSchema_GroupInterface {
 

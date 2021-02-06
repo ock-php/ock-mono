@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\UtilBase;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Util\UtilBase;
 
 final class Summarizer extends UtilBase {
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Summarizer\SummarizerInterface|null
+   * @return \Donquixote\OCUI\Summarizer\SummarizerInterface|null
    */
   public static function fromSchema(
     CfSchemaInterface $schema,

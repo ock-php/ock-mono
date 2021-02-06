@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf;
+namespace Donquixote\OCUI;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Generator\Generator;
-use Donquixote\Cf\Generator\GeneratorInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Summarizer\Summarizer;
-use Donquixote\Cf\Summarizer\SummarizerInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Generator\Generator;
+use Donquixote\OCUI\Generator\GeneratorInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Summarizer\Summarizer;
+use Donquixote\OCUI\Summarizer\SummarizerInterface;
 
 trait StaticFactoryTrait {
 
@@ -18,7 +18,7 @@ trait StaticFactoryTrait {
   private static $schema;
 
   /**
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface|null
    */
   public static function schema(): CfSchemaInterface {
     return self::$schema
@@ -26,14 +26,14 @@ trait StaticFactoryTrait {
   }
 
   /**
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   abstract protected static function createSchema(): CfSchemaInterface;
 
   /**
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Generator\GeneratorInterface|null
+   * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    */
   public static function evaluator(SchemaToAnythingInterface $schemaToAnything): GeneratorInterface {
 
@@ -43,9 +43,9 @@ trait StaticFactoryTrait {
   }
 
   /**
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Summarizer\SummarizerInterface|null
+   * @return \Donquixote\OCUI\Summarizer\SummarizerInterface|null
    */
   public static function summarizer(SchemaToAnythingInterface $schemaToAnything): ?SummarizerInterface {
 

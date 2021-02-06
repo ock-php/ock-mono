@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\IdToSchema;
+namespace Donquixote\OCUI\IdToSchema;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
-use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownValInterface;
-use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
-use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_Null;
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue;
-use Donquixote\Cf\Zoo\V2V\Value\V2V_Value_DrilldownFixedId;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Schema\DrilldownVal\CfSchema_DrilldownValInterface;
+use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Schema\ValueProvider\CfSchema_ValueProvider_Null;
+use Donquixote\OCUI\Schema\ValueToValue\CfSchema_ValueToValue;
+use Donquixote\OCUI\Zoo\V2V\Value\V2V_Value_DrilldownFixedId;
 
 class IdToSchema_InlineExpanded implements IdToSchemaInterface {
 
   /**
-   * @var \Donquixote\Cf\IdToSchema\IdToSchemaInterface
+   * @var \Donquixote\OCUI\IdToSchema\IdToSchemaInterface
    */
   private $decorated;
 
   /**
-   * @param \Donquixote\Cf\IdToSchema\IdToSchemaInterface $decorated
+   * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $decorated
    */
   public function __construct(IdToSchemaInterface $decorated) {
     $this->decorated = $decorated;

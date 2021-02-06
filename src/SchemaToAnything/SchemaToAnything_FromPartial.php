@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaToAnything;
+namespace Donquixote\OCUI\SchemaToAnything;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Exception\SchemaToAnythingException;
-use Donquixote\Cf\Schema\ContextProviding\CfSchema_ContextProvidingInterface;
-use Donquixote\Cf\Schema\Contextual\CfSchema_ContextualInterface;
-use Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartial_SmartChain;
-use Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Exception\SchemaToAnythingException;
+use Donquixote\OCUI\Schema\ContextProviding\CfSchema_ContextProvidingInterface;
+use Donquixote\OCUI\Schema\Contextual\CfSchema_ContextualInterface;
+use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_SmartChain;
+use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class SchemaToAnything_FromPartial implements SchemaToAnythingInterface {
 
   /**
-   * @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface
+   * @var \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface
    */
   private $partial;
 
   /**
-   * @var \Donquixote\Cf\Context\CfContextInterface|null
+   * @var \Donquixote\OCUI\Context\CfContextInterface|null
    */
   private $context;
 
@@ -29,14 +29,14 @@ class SchemaToAnything_FromPartial implements SchemaToAnythingInterface {
    *
    * @return self
    *
-   * @throws \Donquixote\Cf\Exception\STABuilderException
+   * @throws \Donquixote\OCUI\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue): self {
     return new self(SchemaToAnythingPartial_SmartChain::create($paramToValue));
   }
 
   /**
-   * @param \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[] $partials
+   * @param \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[] $partials
    *
    * @return self
    */
@@ -45,7 +45,7 @@ class SchemaToAnything_FromPartial implements SchemaToAnythingInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface $partial
+   * @param \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface $partial
    */
   public function __construct(SchemaToAnythingPartialInterface $partial) {
     $this->partial = $partial;
@@ -54,10 +54,10 @@ class SchemaToAnything_FromPartial implements SchemaToAnythingInterface {
   /**
    * Immutable setter. Sets a context.
    *
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *   Context to constrain available options.
    *
-   * @return \Donquixote\Cf\SchemaToAnything\SchemaToAnything_FromPartial
+   * @return \Donquixote\OCUI\SchemaToAnything\SchemaToAnything_FromPartial
    */
   public function withContext(?CfContextInterface $context) {
     $instance = clone $this;

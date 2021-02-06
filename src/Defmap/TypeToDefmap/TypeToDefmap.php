@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\TypeToDefmap;
+namespace Donquixote\OCUI\Defmap\TypeToDefmap;
 
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMap_Buffer;
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\Cf\Defmap\DefinitionsById\DefinitionsById_FromType;
-use Donquixote\Cf\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMap_Buffer;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\Defmap\DefinitionsById\DefinitionsById_FromType;
+use Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface;
 
 class TypeToDefmap implements TypeToDefmapInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface
+   * @var \Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface
    */
   private $typeToDefinitionsbyid;
 
   /**
-   * @param \Donquixote\Cf\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface $typeToDefinitionsbyid
+   * @param \Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface $typeToDefinitionsbyid
    */
   public function __construct(TypeToDefinitionsbyidInterface $typeToDefinitionsbyid) {
     $this->typeToDefinitionsbyid = $typeToDefinitionsbyid;

@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Para;
+namespace Donquixote\OCUI\Schema\Para;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 class CfSchema_Para implements CfSchema_ParaInterface {
 
   /**
-   * @var \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   private $paraSchema;
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $paraSchema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $paraSchema
    */
   public function __construct(CfSchemaInterface $decorated, CfSchemaInterface $paraSchema) {
     $this->decorated = $decorated;

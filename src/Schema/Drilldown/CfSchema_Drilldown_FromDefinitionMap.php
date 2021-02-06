@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Drilldown;
+namespace Donquixote\OCUI\Schema\Drilldown;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\Cf\Defmap\IdToSchema\IdToSchema_FromDefinitionMap;
-use Donquixote\Cf\Schema\Select\CfSchema_Select_FromDefinitionMap;
-use Donquixote\Cf\Util\UtilBase;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
+use Donquixote\OCUI\Defmap\IdToSchema\IdToSchema_FromDefinitionMap;
+use Donquixote\OCUI\Schema\Select\CfSchema_Select_FromDefinitionMap;
+use Donquixote\OCUI\Util\UtilBase;
 
 final class CfSchema_Drilldown_FromDefinitionMap extends UtilBase {
 
   /**
    * @param DefinitionMapInterface $definitionMap
-   * @param \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
-   * @param \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
-   * @param \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
-   * @param \Donquixote\Cf\Context\CfContextInterface|NULL $context
+   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
+   * @param \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
+   * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
    *
-   * @return \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface
+   * @return \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface
    */
   public static function create(
     DefinitionMapInterface $definitionMap,

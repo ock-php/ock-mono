@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Id;
+namespace Donquixote\OCUI\Schema\Id;
 
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Id_DefinitionsKey implements CfSchema_IdInterface {
 

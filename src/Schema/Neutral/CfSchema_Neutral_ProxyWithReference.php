@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Neutral;
+namespace Donquixote\OCUI\Schema\Neutral;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 class CfSchema_Neutral_ProxyWithReference extends CfSchema_Neutral_ProxyBase {
 
   /**
-   * @var \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
+   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface|null
    */
   private $schemaRef;
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface|null $schemaRef
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface|null $schemaRef
    */
   public function __construct(CfSchemaInterface &$schemaRef = NULL) {
     $this->schemaRef =& $schemaRef;

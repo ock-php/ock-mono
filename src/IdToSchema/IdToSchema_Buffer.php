@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\IdToSchema;
+namespace Donquixote\OCUI\IdToSchema;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 class IdToSchema_Buffer implements IdToSchemaInterface {
 
   /**
-   * @var \Donquixote\Cf\IdToSchema\IdToSchemaInterface
+   * @var \Donquixote\OCUI\IdToSchema\IdToSchemaInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
    */
   private $buffer = [];
 
   /**
-   * @param \Donquixote\Cf\IdToSchema\IdToSchemaInterface $decorated
+   * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $decorated
    */
   public function __construct(IdToSchemaInterface $decorated) {
     $this->decorated = $decorated;

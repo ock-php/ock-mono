@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Sequence;
+namespace Donquixote\OCUI\Schema\Sequence;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Translator\TranslatorInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Translator\TranslatorInterface;
 
 interface CfSchema_SequenceInterface extends CfSchemaInterface {
 
   /**
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public function getItemSchema(): CfSchemaInterface;
 
@@ -18,7 +18,7 @@ interface CfSchema_SequenceInterface extends CfSchemaInterface {
    *
    * @param int|null $delta
    *   Index of the sequence item, or NULL for the "new item" item.
-   * @param \Donquixote\Cf\Translator\TranslatorInterface $helper
+   * @param \Donquixote\OCUI\Translator\TranslatorInterface $helper
    *
    * @return string
    */

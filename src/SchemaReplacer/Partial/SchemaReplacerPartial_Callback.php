@@ -1,29 +1,29 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaReplacer\Partial;
+namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\ParamToLabel\ParamToLabel;
-use Donquixote\Cf\ParamToLabel\ParamToLabelInterface;
-use Donquixote\Cf\Schema\Callback\CfSchema_CallbackInterface;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Donquixote\Cf\Schema\Label\CfSchema_Label;
-use Donquixote\Cf\Schema\Optional\CfSchema_Optional;
-use Donquixote\Cf\Schema\Optional\CfSchema_Optional_Null;
-use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_Callback;
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\ParamToLabel\ParamToLabel;
+use Donquixote\OCUI\ParamToLabel\ParamToLabelInterface;
+use Donquixote\OCUI\Schema\Callback\CfSchema_CallbackInterface;
+use Donquixote\OCUI\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\OCUI\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\OCUI\Schema\Label\CfSchema_Label;
+use Donquixote\OCUI\Schema\Optional\CfSchema_Optional;
+use Donquixote\OCUI\Schema\Optional\CfSchema_Optional_Null;
+use Donquixote\OCUI\Schema\ValueProvider\CfSchema_ValueProvider_Callback;
+use Donquixote\OCUI\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 use Psr\Log\LoggerInterface;
 
 class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
 
   /**
-   * @var \Donquixote\Cf\ParamToLabel\ParamToLabelInterface
+   * @var \Donquixote\OCUI\ParamToLabel\ParamToLabelInterface
    */
   private $paramToLabel;
 
@@ -42,7 +42,7 @@ class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\ParamToLabel\ParamToLabelInterface $paramToLabel
+   * @param \Donquixote\OCUI\ParamToLabel\ParamToLabelInterface $paramToLabel
    * @param \Psr\Log\LoggerInterface $logger
    */
   public function __construct(ParamToLabelInterface $paramToLabel, LoggerInterface $logger) {
@@ -147,10 +147,10 @@ class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
 
   /**
    * @param \ReflectionParameter $param
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
-   * @param \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface $replacer
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface|null
    */
   private function paramGetSchema(
     \ReflectionParameter $param,

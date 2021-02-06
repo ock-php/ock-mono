@@ -1,34 +1,34 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Text\TextInterface;
-use Donquixote\Cf\Util\StaUtil;
+use Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\OCUI\Util\StaUtil;
 
 class Summarizer_Optional implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface
+   * @var \Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface
    */
   private $schema;
 
   /**
-   * @var \Donquixote\Cf\Summarizer\SummarizerInterface
+   * @var \Donquixote\OCUI\Summarizer\SummarizerInterface
    */
   private $decorated;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Summarizer\SummarizerInterface|null
+   * @return \Donquixote\OCUI\Summarizer\SummarizerInterface|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(
     CfSchema_OptionalInterface $schema,
@@ -45,8 +45,8 @@ class Summarizer_Optional implements SummarizerInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface $schema
-   * @param \Donquixote\Cf\Summarizer\SummarizerInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface $schema
+   * @param \Donquixote\OCUI\Summarizer\SummarizerInterface $decorated
    */
   public function __construct(
     CfSchema_OptionalInterface $schema,

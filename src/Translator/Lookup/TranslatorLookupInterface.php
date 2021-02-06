@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Translator\Lookup;
+namespace Donquixote\OCUI\Translator\Lookup;
 
 interface TranslatorLookupInterface {
 

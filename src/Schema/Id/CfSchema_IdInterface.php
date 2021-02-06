@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Id;
+namespace Donquixote\OCUI\Schema\Id;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 /**
  * Base interface for schemas where the value is id-like (string or integer).
@@ -17,7 +17,7 @@ interface CfSchema_IdInterface extends CfSchemaInterface {
    * @param string|int $id
    *   The id.
    *
-   * @return \Donquixote\Cf\Text\TextInterface|null
+   * @return \Donquixote\OCUI\Text\TextInterface|null
    *   The label as a string or stringable object.
    */
   public function idGetLabel($id): ?TextInterface;

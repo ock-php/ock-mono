@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\TypeToSchema;
+namespace Donquixote\OCUI\Defmap\TypeToSchema;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 interface TypeToSchemaInterface {
 
   /**
    * @param string $type
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public function typeGetSchema(string $type, CfContextInterface $context = NULL): CfSchemaInterface;
 

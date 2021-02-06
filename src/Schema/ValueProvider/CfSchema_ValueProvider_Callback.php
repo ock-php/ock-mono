@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\ValueProvider;
+namespace Donquixote\OCUI\Schema\ValueProvider;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
-use Donquixote\Cf\Exception\EvaluatorException;
+use Donquixote\OCUI\Exception\EvaluatorException;
 
 class CfSchema_ValueProvider_Callback implements CfSchema_ValueProviderInterface {
 
@@ -19,7 +19,7 @@ class CfSchema_ValueProvider_Callback implements CfSchema_ValueProviderInterface
   /**
    * @param string $class
    *
-   * @return \Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_Callback
+   * @return \Donquixote\OCUI\Schema\ValueProvider\CfSchema_ValueProvider_Callback
    */
   public static function fromClass(string $class): CfSchema_ValueProvider_Callback {
     $callback = CallbackReflection_ClassConstruction::create($class);
@@ -30,7 +30,7 @@ class CfSchema_ValueProvider_Callback implements CfSchema_ValueProviderInterface
    * @param string $class
    * @param string $methodName
    *
-   * @return \Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_Callback
+   * @return \Donquixote\OCUI\Schema\ValueProvider\CfSchema_ValueProvider_Callback
    */
   public static function createFromClassStaticMethod(string $class, string $methodName): CfSchema_ValueProvider_Callback {
     $callback = CallbackReflection_StaticMethod::create($class, $methodName);

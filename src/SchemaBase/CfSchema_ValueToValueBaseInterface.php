@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaBase;
+namespace Donquixote\OCUI\SchemaBase;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 /**
  * Base interface for all schema types where the configuration form and summary
@@ -12,7 +12,7 @@ use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 interface CfSchema_ValueToValueBaseInterface extends CfSchemaInterface {
 
   /**
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public function getDecorated(): CfSchemaInterface;
 

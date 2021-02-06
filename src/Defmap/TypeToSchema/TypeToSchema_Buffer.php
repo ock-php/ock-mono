@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\TypeToSchema;
+namespace Donquixote\OCUI\Defmap\TypeToSchema;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 class TypeToSchema_Buffer implements TypeToSchemaInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\TypeToSchema\TypeToSchemaInterface
+   * @var \Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchemaInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
    */
   private $schemas = [];
 
   /**
-   * @param \Donquixote\Cf\Defmap\TypeToSchema\TypeToSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchemaInterface $decorated
    */
   public function __construct(TypeToSchemaInterface $decorated) {
     $this->decorated = $decorated;

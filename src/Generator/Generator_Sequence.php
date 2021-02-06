@@ -1,36 +1,36 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Generator;
+namespace Donquixote\OCUI\Generator;
 
-use Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface;
-use Donquixote\Cf\Schema\SequenceVal\CfSchema_SequenceValInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\PhpUtil;
-use Donquixote\Cf\Zoo\V2V\Sequence\V2V_Sequence_Trivial;
-use Donquixote\Cf\Zoo\V2V\Sequence\V2V_SequenceInterface;
+use Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface;
+use Donquixote\OCUI\Schema\SequenceVal\CfSchema_SequenceValInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Util\PhpUtil;
+use Donquixote\OCUI\Zoo\V2V\Sequence\V2V_Sequence_Trivial;
+use Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface;
 
 class Generator_Sequence implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Generator\GeneratorInterface
+   * @var \Donquixote\OCUI\Generator\GeneratorInterface
    */
   private $itemGenerator;
 
   /**
-   * @var \Donquixote\Cf\Zoo\V2V\Sequence\V2V_SequenceInterface
+   * @var \Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function createFromSequenceSchema(CfSchema_SequenceInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
     return self::create($schema, new V2V_Sequence_Trivial(), $schemaToAnything);
@@ -39,25 +39,25 @@ class Generator_Sequence implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\SequenceVal\CfSchema_SequenceValInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\SequenceVal\CfSchema_SequenceValInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function createFromSequenceValSchema(CfSchema_SequenceValInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
     return self::create($schema->getDecorated(), $schema->getV2V(), $schemaToAnything);
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface $schema
-   * @param \Donquixote\Cf\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   private static function create(CfSchema_SequenceInterface $schema, V2V_SequenceInterface $v2v, SchemaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
 
@@ -74,8 +74,8 @@ class Generator_Sequence implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Generator\GeneratorInterface $itemGenerator
-   * @param \Donquixote\Cf\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
+   * @param \Donquixote\OCUI\Generator\GeneratorInterface $itemGenerator
+   * @param \Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
    */
   protected function __construct(GeneratorInterface $itemGenerator, V2V_SequenceInterface $v2v) {
     $this->itemGenerator = $itemGenerator;

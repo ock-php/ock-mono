@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\TypeToDefmap;
+namespace Donquixote\OCUI\Defmap\TypeToDefmap;
 
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
 
 class TypeToDefmap_Buffer implements TypeToDefmapInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmapInterface
+   * @var \Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface[]
+   * @var \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface[]
    */
   private $definitionMaps = [];
 
   /**
-   * @param \Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmapInterface $decorated
+   * @param \Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface $decorated
    */
   public function __construct(TypeToDefmapInterface $decorated) {
     $this->decorated = $decorated;

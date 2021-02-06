@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Exception;
+namespace Donquixote\OCUI\Exception;
 
 /**
  * Any exception that happens when trying to create a runtime value, typically

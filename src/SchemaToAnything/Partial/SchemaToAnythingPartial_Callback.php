@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaToAnything\Partial;
+namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\Cf\Core\Schema\Base\CfSchemaBaseInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\ReflectionUtil;
+use Donquixote\OCUI\Core\Schema\Base\CfSchemaBaseInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Util\ReflectionUtil;
 
 class SchemaToAnythingPartial_Callback extends SchemaToAnythingPartialBase {
 
@@ -22,7 +22,7 @@ class SchemaToAnythingPartial_Callback extends SchemaToAnythingPartialBase {
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialBase|null
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialBase|null
    */
   public static function create(
     CallbackReflectionInterface $callback,
@@ -102,9 +102,9 @@ class SchemaToAnythingPartial_Callback extends SchemaToAnythingPartialBase {
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param string $interface
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $helper
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
    * @return null|object
    *   An instance of $interface, or NULL.

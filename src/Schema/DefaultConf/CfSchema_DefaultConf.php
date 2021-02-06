@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\DefaultConf;
+namespace Donquixote\OCUI\Schema\DefaultConf;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 class CfSchema_DefaultConf implements CfSchema_DefaultConfInterface {
 
   /**
-   * @var \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   private $decorated;
 
@@ -18,7 +18,7 @@ class CfSchema_DefaultConf implements CfSchema_DefaultConfInterface {
   private $defaultConf;
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
    * @param mixed $defaultConf
    */
   public function __construct(CfSchemaInterface $decorated, $defaultConf) {

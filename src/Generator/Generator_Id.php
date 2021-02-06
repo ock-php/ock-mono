@@ -1,31 +1,31 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Generator;
+namespace Donquixote\OCUI\Generator;
 
-use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
-use Donquixote\Cf\Schema\IdVal\CfSchema_IdValInterface;
-use Donquixote\Cf\Util\ConfUtil;
-use Donquixote\Cf\Util\PhpUtil;
-use Donquixote\Cf\Zoo\V2V\Id\V2V_Id_Trivial;
-use Donquixote\Cf\Zoo\V2V\Id\V2V_IdInterface;
+use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Schema\IdVal\CfSchema_IdValInterface;
+use Donquixote\OCUI\Util\ConfUtil;
+use Donquixote\OCUI\Util\PhpUtil;
+use Donquixote\OCUI\Zoo\V2V\Id\V2V_Id_Trivial;
+use Donquixote\OCUI\Zoo\V2V\Id\V2V_IdInterface;
 
 class Generator_Id implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\Id\CfSchema_IdInterface
+   * @var \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface
    */
   private $schema;
 
   /**
-   * @var \Donquixote\Cf\Zoo\V2V\Id\V2V_IdInterface
+   * @var \Donquixote\OCUI\Zoo\V2V\Id\V2V_IdInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Id\CfSchema_IdInterface $schema
+   * @param \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface $schema
    *
    * @return self
    */
@@ -34,7 +34,7 @@ class Generator_Id implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\IdVal\CfSchema_IdValInterface $schema
+   * @param \Donquixote\OCUI\Schema\IdVal\CfSchema_IdValInterface $schema
    *
    * @return self
    */
@@ -43,8 +43,8 @@ class Generator_Id implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Id\CfSchema_IdInterface $schema
-   * @param \Donquixote\Cf\Zoo\V2V\Id\V2V_IdInterface $v2v
+   * @param \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface $schema
+   * @param \Donquixote\OCUI\Zoo\V2V\Id\V2V_IdInterface $v2v
    */
   public function __construct(CfSchema_IdInterface $schema, V2V_IdInterface $v2v) {
     $this->schema = $schema;

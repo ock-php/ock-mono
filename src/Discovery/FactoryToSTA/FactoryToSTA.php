@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Discovery\FactoryToSTA;
+namespace Donquixote\OCUI\Discovery\FactoryToSTA;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_Function;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\Cf\Core\Schema\Base\CfSchemaBaseInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartial_Callback;
-use Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartial_CallbackNoHelper;
-use Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\ReflectionUtil;
+use Donquixote\OCUI\Core\Schema\Base\CfSchemaBaseInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_Callback;
+use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_CallbackNoHelper;
+use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Util\ReflectionUtil;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface;
@@ -32,7 +32,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
    * @param \Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface $contextFinder
    * @param \Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface $functionToReturnType
    *
-   * @return \Donquixote\Cf\Discovery\FactoryToSTA\FactoryToSTAInterface
+   * @return \Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface
    */
   public static function createComposite(ParamToValueInterface $paramToValue, ContextFinderInterface $contextFinder, FunctionToReturnTypeInterface $functionToReturnType) {
     return new FactoryToSTA_RequireAnnotationTag(

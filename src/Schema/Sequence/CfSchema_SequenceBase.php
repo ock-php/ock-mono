@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Sequence;
+namespace Donquixote\OCUI\Schema\Sequence;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 abstract class CfSchema_SequenceBase implements CfSchema_SequenceInterface {
 
   /**
-   * @var \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   private $itemSchema;
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $itemSchema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $itemSchema
    */
   public function __construct(CfSchemaInterface $itemSchema) {
     $this->itemSchema = $itemSchema;

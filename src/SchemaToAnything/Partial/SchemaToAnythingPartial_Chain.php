@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaToAnything\Partial;
+namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\LocalPackageUtil;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Util\LocalPackageUtil;
 
 class SchemaToAnythingPartial_Chain implements SchemaToAnythingPartialInterface {
 
   /**
-   * @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @var \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   private $partials;
 
@@ -20,7 +20,7 @@ class SchemaToAnythingPartial_Chain implements SchemaToAnythingPartialInterface 
    *
    * @return self
    *
-   * @throws \Donquixote\Cf\Exception\STABuilderException
+   * @throws \Donquixote\OCUI\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue): self {
     $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
@@ -28,7 +28,7 @@ class SchemaToAnythingPartial_Chain implements SchemaToAnythingPartialInterface 
   }
 
   /**
-   * @param \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[] $partials
+   * @param \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[] $partials
    */
   public function __construct(array $partials) {
     $this->partials = $partials;

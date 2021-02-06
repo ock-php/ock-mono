@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Markup;
+namespace Donquixote\OCUI\Markup;
 
 use Donquixote\Adaptism\ATA\ATAInterface;
-use Donquixote\Cf\Translatable\TranslatableInterface;
-use Donquixote\Cf\Translator\TranslatorInterface;
+use Donquixote\OCUI\Translatable\TranslatableInterface;
+use Donquixote\OCUI\Translator\TranslatorInterface;
 
 class Markup_FromTranslatable {
 
   /**
    * @ATA
    *
-   * @param \Donquixote\Cf\Translatable\TranslatableInterface $translatable
+   * @param \Donquixote\OCUI\Translatable\TranslatableInterface $translatable
    * @param \Donquixote\Adaptism\ATA\ATAInterface $ata
-   * @param \Donquixote\Cf\Translator\TranslatorInterface $translator
+   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
    *
-   * @return \Donquixote\Cf\Markup\MarkupInterface|null
+   * @return \Donquixote\OCUI\Markup\MarkupInterface|null
    */
   public static function create(
     TranslatableInterface $translatable,

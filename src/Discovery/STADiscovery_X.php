@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Discovery;
+namespace Donquixote\OCUI\Discovery;
 
-use Donquixote\Cf\Discovery\FactoryToSTA\FactoryToSTA;
-use Donquixote\Cf\Discovery\FactoryToSTA\FactoryToSTAInterface;
+use Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTA;
+use Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactories;
 use Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactoriesInterface;
@@ -21,7 +21,7 @@ class STADiscovery_X {
   private $classFileToFactories;
 
   /**
-   * @var \Donquixote\Cf\Discovery\FactoryToSTA\FactoryToSTAInterface
+   * @var \Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface
    */
   private $factoryToSTA;
 
@@ -47,7 +47,7 @@ class STADiscovery_X {
 
   /**
    * @param \Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactoriesInterface $classFileToFactories
-   * @param \Donquixote\Cf\Discovery\FactoryToSTA\FactoryToSTAInterface $factoryToSTA
+   * @param \Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface $factoryToSTA
    */
   public function __construct(
     ClassFileToFactoriesInterface $classFileToFactories,
@@ -60,7 +60,7 @@ class STADiscovery_X {
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   public function classFilesIAGetPartials(ClassFilesIAInterface $classFilesIA): array {
     try {
@@ -74,7 +74,7 @@ class STADiscovery_X {
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   private function classFilesIADoGetPartials(ClassFilesIAInterface $classFilesIA): array {
 

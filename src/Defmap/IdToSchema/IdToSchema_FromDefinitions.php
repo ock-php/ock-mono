@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\IdToSchema;
+namespace Donquixote\OCUI\Defmap\IdToSchema;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\Cf\Exception\CfSchemaCreationException;
-use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
+use Donquixote\OCUI\Exception\CfSchemaCreationException;
+use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
 
 class IdToSchema_FromDefinitions implements IdToSchemaInterface {
 
@@ -17,19 +17,19 @@ class IdToSchema_FromDefinitions implements IdToSchemaInterface {
   private $definitions;
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
    */
   private $definitionToSchema;
 
   /**
-   * @var \Donquixote\Cf\Context\CfContextInterface|null
+   * @var \Donquixote\OCUI\Context\CfContextInterface|null
    */
   private $context;
 
   /**
    * @param array[] $definitions
-   * @param \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    */
   public function __construct(
     array $definitions,

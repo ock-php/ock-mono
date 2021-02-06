@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Util;
+namespace Donquixote\OCUI\Util;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
 
 final class DrilldownUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $schema
    * @param string $id
    * @param mixed $options
    *
@@ -56,7 +56,7 @@ final class DrilldownUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $schema
    * @param mixed $conf
    *
    * @return array

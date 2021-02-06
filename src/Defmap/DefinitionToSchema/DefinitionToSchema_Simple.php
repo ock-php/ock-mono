@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\DefinitionToSchema;
+namespace Donquixote\OCUI\Defmap\DefinitionToSchema;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Definition\CfSchema_Definition;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Definition\CfSchema_Definition;
 
 class DefinitionToSchema_Simple implements DefinitionToSchemaInterface {
 

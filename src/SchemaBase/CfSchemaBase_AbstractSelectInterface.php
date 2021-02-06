@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaBase;
+namespace Donquixote\OCUI\SchemaBase;
 
 /**
  * This is a base interface, which by itself does NOT extend CfSchemaInterface.

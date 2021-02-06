@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\DefinitionToSchema\Helper;
+namespace Donquixote\OCUI\Defmap\DefinitionToSchema\Helper;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Callback\CfSchema_Callback;
-use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Callback\CfSchema_Callback;
+use Donquixote\OCUI\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
 
 /**
  * @deprecated

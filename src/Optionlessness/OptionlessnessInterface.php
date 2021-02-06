@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Optionlessness;
+namespace Donquixote\OCUI\Optionlessness;
 
-use Donquixote\Cf\Core\Schema\Base\CfSchemaBaseInterface;
-use Donquixote\Cf\Form\Common\FormatorCommonInterface;
+use Donquixote\OCUI\Core\Schema\Base\CfSchemaBaseInterface;
+use Donquixote\OCUI\Form\Common\FormatorCommonInterface;
 
 interface OptionlessnessInterface extends FormatorCommonInterface, CfSchemaBaseInterface {
 

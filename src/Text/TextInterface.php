@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\Cf\Text;
+namespace Donquixote\OCUI\Text;
 
 /**
  * Generic interface for values that can be used as text.

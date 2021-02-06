@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Group;
+namespace Donquixote\OCUI\Schema\Group;
 
-use Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
 
 abstract class CfSchema_Group_V2VDecoratorBase extends CfSchema_Group_V2VBase {
 
   /**
-   * @var \Donquixote\Cf\Schema\Group\CfSchema_GroupInterface
+   * @var \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface
    */
   private $decoratedSchema;
 
   /**
-   * @var \Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface
    */
   private $decoratedV2V;
 
   /**
-   * @param \Donquixote\Cf\Schema\Group\CfSchema_GroupInterface $decoratedSchema
-   * @param \Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface $decoratedV2V
+   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $decoratedSchema
+   * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $decoratedV2V
    */
   public function __construct(
     CfSchema_GroupInterface $decoratedSchema,

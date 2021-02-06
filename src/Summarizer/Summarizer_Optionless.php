@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface;
-use Donquixote\Cf\Util\UtilBase;
+use Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface;
+use Donquixote\OCUI\Util\UtilBase;
 
 final class Summarizer_Optionless extends UtilBase {
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface $schema
+   * @param \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface $schema
    *
-   * @return \Donquixote\Cf\Summarizer\SummarizerInterface
+   * @return \Donquixote\OCUI\Summarizer\SummarizerInterface
    */
   public static function create(
     /** @noinspection PhpUnusedParameterInspection */ CfSchema_OptionlessInterface $schema

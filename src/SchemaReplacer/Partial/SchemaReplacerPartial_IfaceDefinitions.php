@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaReplacer\Partial;
+namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 class SchemaReplacerPartial_IfaceDefinitions extends SchemaReplacerPartial_IfaceDefinitionsBase {
 

@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Drilldown;
+namespace Donquixote\OCUI\Schema\Drilldown;
 
-use Donquixote\Cf\IdToSchema\IdToSchema_FilterDecorator;
-use Donquixote\Cf\IdToSchema\IdToSchema_InlineExpanded;
-use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
-use Donquixote\Cf\Schema\Select\CfSchema_Select_InlineExpanded;
-use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
-use Donquixote\Cf\Util\UtilBase;
+use Donquixote\OCUI\IdToSchema\IdToSchema_FilterDecorator;
+use Donquixote\OCUI\IdToSchema\IdToSchema_InlineExpanded;
+use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Schema\Select\CfSchema_Select_InlineExpanded;
+use Donquixote\OCUI\Schema\Select\CfSchema_SelectInterface;
+use Donquixote\OCUI\Util\UtilBase;
 
 final class CfSchema_Drilldown_InlineExpanded extends UtilBase {
 
   /**
-   * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $decorated
-   * @param \Donquixote\Cf\Schema\Id\CfSchema_IdInterface $idIsInline
+   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface $idIsInline
    *
-   * @return \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface|null
+   * @return \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface|null
    */
   public static function create(CfSchema_DrilldownInterface $decorated, CfSchema_IdInterface $idIsInline): ?CfSchema_DrilldownInterface {
 

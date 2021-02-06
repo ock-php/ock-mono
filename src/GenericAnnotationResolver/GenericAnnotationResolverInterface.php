@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\Cf\GenericAnnotationResolver;
+namespace Donquixote\OCUI\GenericAnnotationResolver;
 
 interface GenericAnnotationResolverInterface {
 

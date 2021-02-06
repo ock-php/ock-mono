@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\DrilldownKeysHelper;
+namespace Donquixote\OCUI\DrilldownKeysHelper;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
-use Donquixote\Cf\Util\UtilBase;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Util\UtilBase;
 
 final class DrilldownKeysHelper extends UtilBase {
 
   /**
-   * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $drilldown
+   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $drilldown
    *
-   * @return \Donquixote\Cf\DrilldownKeysHelper\DrilldownKeysHelperInterface
+   * @return \Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelperInterface
    */
   public static function fromSchema(CfSchema_DrilldownInterface $drilldown): DrilldownKeysHelperInterface {
     return self::fromKeys(
@@ -23,7 +23,7 @@ final class DrilldownKeysHelper extends UtilBase {
    * @param string|int|null $idKey
    * @param string|int|null $optionsKey
    *
-   * @return \Donquixote\Cf\DrilldownKeysHelper\DrilldownKeysHelperInterface
+   * @return \Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelperInterface
    */
   public static function fromKeys($idKey, $optionsKey): DrilldownKeysHelperInterface {
 

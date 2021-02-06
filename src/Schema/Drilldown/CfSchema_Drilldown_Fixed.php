@@ -1,28 +1,28 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Drilldown;
+namespace Donquixote\OCUI\Schema\Drilldown;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\IdToSchema\IdToSchema_Fixed;
-use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
-use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
-use Donquixote\Cf\Schema\Select\CfSchema_Select_Fixed;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\IdToSchema\IdToSchema_Fixed;
+use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
+use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Schema\Select\CfSchema_Select_Fixed;
 
 class CfSchema_Drilldown_Fixed extends CfSchema_Drilldown_CustomKeysBase {
 
   /**
-   * @var \Donquixote\Cf\Schema\Select\CfSchema_Select_Fixed
+   * @var \Donquixote\OCUI\Schema\Select\CfSchema_Select_Fixed
    */
   private $idSchema;
 
   /**
-   * @var \Donquixote\Cf\IdToSchema\IdToSchema_Fixed
+   * @var \Donquixote\OCUI\IdToSchema\IdToSchema_Fixed
    */
   private $idToSchema;
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface[] $schemas
    * @param string[] $labels
    *
    * @return self
@@ -34,8 +34,8 @@ class CfSchema_Drilldown_Fixed extends CfSchema_Drilldown_CustomKeysBase {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Select\CfSchema_Select_Fixed $idSchema
-   * @param \Donquixote\Cf\IdToSchema\IdToSchema_Fixed $idToSchema
+   * @param \Donquixote\OCUI\Schema\Select\CfSchema_Select_Fixed $idSchema
+   * @param \Donquixote\OCUI\IdToSchema\IdToSchema_Fixed $idToSchema
    */
   private function __construct(CfSchema_Select_Fixed $idSchema, IdToSchema_Fixed $idToSchema) {
     $this->idSchema = $idSchema;
@@ -44,7 +44,7 @@ class CfSchema_Drilldown_Fixed extends CfSchema_Drilldown_CustomKeysBase {
 
   /**
    * @param string $id
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param string $label
    * @param string $groupLabel
    *

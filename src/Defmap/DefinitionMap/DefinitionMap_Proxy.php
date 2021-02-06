@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\DefinitionMap;
+namespace Donquixote\OCUI\Defmap\DefinitionMap;
 
-use Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmapInterface;
+use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface;
 
 class DefinitionMap_Proxy implements DefinitionMapInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmapInterface
+   * @var \Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface
    */
   private $typeToDefmap;
 
@@ -18,12 +18,12 @@ class DefinitionMap_Proxy implements DefinitionMapInterface {
   private $type;
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface|null
+   * @var \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface|null
    */
   private $defmap;
 
   /**
-   * @param \Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmapInterface $typeToDefmap
+   * @param \Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface $typeToDefmap
    * @param string $type
    */
   public function __construct(TypeToDefmapInterface $typeToDefmap, string $type) {
@@ -46,7 +46,7 @@ class DefinitionMap_Proxy implements DefinitionMapInterface {
   }
 
   /**
-   * @return \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface
+   * @return \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface
    */
   private function getDefmap(): DefinitionMapInterface {
     return $this->defmap

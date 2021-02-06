@@ -1,29 +1,29 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\IdToSchema;
+namespace Donquixote\OCUI\Defmap\IdToSchema;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
-use Donquixote\Cf\Schema\Definition\CfSchema_Definition;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
+use Donquixote\OCUI\Schema\Definition\CfSchema_Definition;
 
 class IdToSchema_DefmapSimple implements IdToSchemaInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface
    */
   private $definitionMap;
 
   /**
-   * @var \Donquixote\Cf\Context\CfContextInterface|null
+   * @var \Donquixote\OCUI\Context\CfContextInterface|null
    */
   private $context;
 
   /**
-   * @param \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    */
   public function __construct(
     DefinitionMapInterface $definitionMap,

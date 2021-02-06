@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\BoolVal;
+namespace Donquixote\OCUI\Schema\BoolVal;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaBase\CfSchema_ValueToValueBaseInterface;
-use Donquixote\Cf\Zoo\V2V\Boolean\V2V_BooleanInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\Zoo\V2V\Boolean\V2V_BooleanInterface;
 
 interface CfSchema_BoolValInterface extends CfSchema_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\Cf\Schema\Boolean\CfSchema_BooleanInterface
+   * @return \Donquixote\OCUI\Schema\Boolean\CfSchema_BooleanInterface
    */
   public function getDecorated(): CfSchemaInterface;
 
   /**
-   * @return \Donquixote\Cf\Zoo\V2V\Boolean\V2V_BooleanInterface
+   * @return \Donquixote\OCUI\Zoo\V2V\Boolean\V2V_BooleanInterface
    */
   public function getV2V(): V2V_BooleanInterface;
 

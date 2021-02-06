@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Neutral;
+namespace Donquixote\OCUI\Schema\Neutral;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\SkipEvaluator\CfSchema_SkipEvaluatorInterface;
-use Donquixote\Cf\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\SkipEvaluator\CfSchema_SkipEvaluatorInterface;
+use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
 
 interface CfSchema_NeutralInterface extends CfSchema_ValueToValueBaseInterface, CfSchema_SkipEvaluatorInterface {
 
   /**
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public function getDecorated(): CfSchemaInterface;
 

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
-use Donquixote\Cf\Util\ConfUtil;
+use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\OCUI\Util\ConfUtil;
 
 /**
  * @STA
@@ -14,12 +14,12 @@ use Donquixote\Cf\Util\ConfUtil;
 class Summarizer_Id implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\Id\CfSchema_IdInterface
+   * @var \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface
    */
   private $schema;
 
   /**
-   * @param \Donquixote\Cf\Schema\Id\CfSchema_IdInterface $schema
+   * @param \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface $schema
    */
   public function __construct(CfSchema_IdInterface $schema) {
     $this->schema = $schema;

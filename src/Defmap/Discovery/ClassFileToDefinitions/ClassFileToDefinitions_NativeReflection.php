@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\Discovery\ClassFileToDefinitions;
+namespace Donquixote\OCUI\Defmap\Discovery\ClassFileToDefinitions;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Discovery\DocToAnnotations\DocToAnnotations;
-use Donquixote\Cf\Discovery\DocToAnnotations\DocToAnnotationsInterface;
-use Donquixote\Cf\Util\DefinitionUtil;
-use Donquixote\Cf\Util\DocUtil;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Discovery\DocToAnnotations\DocToAnnotations;
+use Donquixote\OCUI\Discovery\DocToAnnotations\DocToAnnotationsInterface;
+use Donquixote\OCUI\Util\DefinitionUtil;
+use Donquixote\OCUI\Util\DocUtil;
 
 class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsInterface {
 
   /**
-   * @var \Donquixote\Cf\Discovery\DocToAnnotations\DocToAnnotationsInterface
+   * @var \Donquixote\OCUI\Discovery\DocToAnnotations\DocToAnnotationsInterface
    */
   private $docToAnnotations;
 
@@ -33,7 +33,7 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
   }
 
   /**
-   * @param \Donquixote\Cf\Discovery\DocToAnnotations\DocToAnnotationsInterface $docToAnnotations
+   * @param \Donquixote\OCUI\Discovery\DocToAnnotations\DocToAnnotationsInterface $docToAnnotations
    * @param string $tagName
    */
   public function __construct(DocToAnnotationsInterface $docToAnnotations, string $tagName) {

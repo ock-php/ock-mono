@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Translatable;
+namespace Donquixote\OCUI\Translatable;
 
 /**
  * Default implementation. Behaves like a value object.

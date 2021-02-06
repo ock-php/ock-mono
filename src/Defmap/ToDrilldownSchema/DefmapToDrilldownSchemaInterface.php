@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\ToDrilldownSchema;
+namespace Donquixote\OCUI\Defmap\ToDrilldownSchema;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
 
 interface DefmapToDrilldownSchemaInterface {
 
   /**
-   * @param \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface
+   * @return \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface
    */
   public function defmapGetDrilldownSchema(DefinitionMapInterface $definitionMap, CfContextInterface $context = NULL): CfSchema_DrilldownInterface;
 

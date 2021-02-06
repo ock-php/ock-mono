@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\DefaultConf;
+namespace Donquixote\OCUI\Schema\DefaultConf;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaBase\Decorator\CfSchema_DecoratorBaseInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBaseInterface;
 
 interface CfSchema_DefaultConfInterface extends CfSchemaInterface, CfSchema_DecoratorBaseInterface {
 

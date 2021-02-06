@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Cache\Offset;
+namespace Donquixote\OCUI\Cache\Offset;
 
 interface CacheOffsetInterface {
 

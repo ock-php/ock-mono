@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\TypeToDefmap;
+namespace Donquixote\OCUI\Defmap\TypeToDefmap;
 
-use Donquixote\Cf\Cache\Prefix\CachePrefixInterface;
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMap_Buffer;
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\Cf\Defmap\DefinitionsById\DefinitionsById_Cache;
-use Donquixote\Cf\Defmap\DefinitionsById\DefinitionsById_FromType;
-use Donquixote\Cf\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface;
+use Donquixote\OCUI\Cache\Prefix\CachePrefixInterface;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMap_Buffer;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\Defmap\DefinitionsById\DefinitionsById_Cache;
+use Donquixote\OCUI\Defmap\DefinitionsById\DefinitionsById_FromType;
+use Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface;
 
 class TypeToDefmap_Cache implements TypeToDefmapInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface
+   * @var \Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface
    */
   private $typeToDefinitionsbyid;
 
   /**
-   * @var \Donquixote\Cf\Cache\Prefix\CachePrefixInterface
+   * @var \Donquixote\OCUI\Cache\Prefix\CachePrefixInterface
    */
   private $cachePrefix;
 
   /**
-   * @param \Donquixote\Cf\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface $typeToDefinitionsbyid
-   * @param \Donquixote\Cf\Cache\Prefix\CachePrefixInterface|null $cachePrefix
+   * @param \Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface $typeToDefinitionsbyid
+   * @param \Donquixote\OCUI\Cache\Prefix\CachePrefixInterface|null $cachePrefix
    *   A prefix to prepend to the cache id, or NULL to have no cache.
    *   If specified, it should include the langcode.
    */

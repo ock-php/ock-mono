@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Zoo\ValueStub;
+namespace Donquixote\OCUI\Zoo\ValueStub;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaConfToAnything\SchemaConfToAnythingInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface;
 
 class ValueStub {
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param mixed $conf
-   * @param \Donquixote\Cf\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
+   * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
-   * @return null|\Donquixote\Cf\Zoo\ValueStub\ValueStubInterface
+   * @return null|\Donquixote\OCUI\Zoo\ValueStub\ValueStubInterface
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function fromSchemaConf(CfSchemaInterface $schema, $conf, SchemaConfToAnythingInterface $scta): ?ValueStubInterface {
 

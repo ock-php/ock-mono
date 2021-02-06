@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Translator;
+namespace Donquixote\OCUI\Translator;
 
-use Donquixote\Cf\Markup\MarkupInterface;
-use Donquixote\Cf\Translator\Lookup\TranslatorLookup_Passthru;
-use Donquixote\Cf\Translator\Lookup\TranslatorLookupInterface;
-use Donquixote\Cf\Util\HtmlUtil;
+use Donquixote\OCUI\Markup\MarkupInterface;
+use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\OCUI\Translator\Lookup\TranslatorLookupInterface;
+use Donquixote\OCUI\Util\HtmlUtil;
 
 class Translator implements TranslatorInterface {
 
   /**
-   * @var \Donquixote\Cf\Translator\Lookup\TranslatorLookupInterface
+   * @var \Donquixote\OCUI\Translator\Lookup\TranslatorLookupInterface
    */
   private $lookup;
 
@@ -23,7 +23,7 @@ class Translator implements TranslatorInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Translator\Lookup\TranslatorLookupInterface|null $lookup
+   * @param \Donquixote\OCUI\Translator\Lookup\TranslatorLookupInterface|null $lookup
    *
    * @return self
    */
@@ -37,7 +37,7 @@ class Translator implements TranslatorInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Translator\Lookup\TranslatorLookupInterface $lookup
+   * @param \Donquixote\OCUI\Translator\Lookup\TranslatorLookupInterface $lookup
    */
   public function __construct(TranslatorLookupInterface $lookup) {
     $this->lookup = $lookup;

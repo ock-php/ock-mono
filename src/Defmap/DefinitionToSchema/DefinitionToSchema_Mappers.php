@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\DefinitionToSchema;
+namespace Donquixote\OCUI\Defmap\DefinitionToSchema;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Handler;
-use Donquixote\Cf\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Schema;
-use Donquixote\Cf\Exception\CfSchemaCreationException;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Handler;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Schema;
+use Donquixote\OCUI\Exception\CfSchemaCreationException;
 use Psr\Log\LoggerInterface;
 
 class DefinitionToSchema_Mappers implements DefinitionToSchemaInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelperInterface[]
+   * @var \Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelperInterface[]
    */
   private $helpers;
 
@@ -40,7 +40,7 @@ class DefinitionToSchema_Mappers implements DefinitionToSchemaInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelperInterface[] $helpers
+   * @param \Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelperInterface[] $helpers
    * @param \Psr\Log\LoggerInterface $logger
    */
   public function __construct(array $helpers, LoggerInterface $logger) {

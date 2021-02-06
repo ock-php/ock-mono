@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\ParamToLabel;
+namespace Donquixote\OCUI\ParamToLabel;
 
-use Donquixote\Cf\Util\StringUtil;
+use Donquixote\OCUI\Util\StringUtil;
 
 class ParamToLabel implements ParamToLabelInterface {
 

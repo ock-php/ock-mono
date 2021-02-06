@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaToAnything\Partial;
+namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 /**
- * @see \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface
+ * @see \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface
  */
 interface SchemaToAnythingPartialInterface {
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param string $interface
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $helper
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
    * @return null|object
    *   An instance of $interface, or NULL.
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    *   Malfunction in a schema replacer.
    */
   public function schema(

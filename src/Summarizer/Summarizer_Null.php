@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 class Summarizer_Null implements SummarizerInterface {
 

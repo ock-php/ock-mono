@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Select;
+namespace Donquixote\OCUI\Schema\Select;
 
-use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Schema\Select\Flat\CfSchema_FlatSelectInterface;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
 
 abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_SelectInterface {
 
@@ -78,10 +78,10 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
   }
 
   /**
-   * @param \Donquixote\Cf\Text\TextInterface $label0
-   * @param \Donquixote\Cf\Text\TextInterface $label1
+   * @param \Donquixote\OCUI\Text\TextInterface $label0
+   * @param \Donquixote\OCUI\Text\TextInterface $label1
    *
-   * @return \Donquixote\Cf\Text\TextInterface
+   * @return \Donquixote\OCUI\Text\TextInterface
    */
   protected function combineLabels(TextInterface $label0, TextInterface $label1): TextInterface {
     return Text::concat([$label0, $label1], ' - ');
@@ -108,14 +108,14 @@ abstract class CfSchema_Select_TwoStepFlatSelectGrandBase implements CfSchema_Se
   }
 
   /**
-   * @return \Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface
+   * @return \Donquixote\OCUI\Schema\Select\Flat\CfSchema_FlatSelectInterface
    */
   abstract protected function getIdSchema(): CfSchema_FlatSelectInterface;
 
   /**
 * @param string $id
    *
-   * @return \Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface|null
+   * @return \Donquixote\OCUI\Schema\Select\Flat\CfSchema_FlatSelectInterface|null
    */
   abstract protected function idGetSubSchema(string $id): ?CfSchema_FlatSelectInterface;
 }

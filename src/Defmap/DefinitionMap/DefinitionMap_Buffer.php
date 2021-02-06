@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\DefinitionMap;
+namespace Donquixote\OCUI\Defmap\DefinitionMap;
 
 
-use Donquixote\Cf\Defmap\DefinitionsById\DefinitionsByIdInterface;
+use Donquixote\OCUI\Defmap\DefinitionsById\DefinitionsByIdInterface;
 
 /**
  * Buffers the plugins for a specific
@@ -17,12 +17,12 @@ class DefinitionMap_Buffer implements DefinitionMapInterface {
   private $definitions;
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionsById\DefinitionsByIdInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionsById\DefinitionsByIdInterface
    */
   private $decorated;
 
   /**
-   * @param \Donquixote\Cf\Defmap\DefinitionsById\DefinitionsByIdInterface $decorated
+   * @param \Donquixote\OCUI\Defmap\DefinitionsById\DefinitionsByIdInterface $decorated
    */
   public function __construct(DefinitionsByIdInterface $decorated) {
     $this->decorated = $decorated;

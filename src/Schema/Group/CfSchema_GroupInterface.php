@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Group;
+namespace Donquixote\OCUI\Schema\Group;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 interface CfSchema_GroupInterface extends CfSchemaInterface {
 
   /**
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
    *   Format: $[$groupItemKey] = $groupItemSchema
    */
   public function getItemSchemas(): array;
 
   /**
-   * @return \Donquixote\Cf\Text\TextInterface[]
+   * @return \Donquixote\OCUI\Text\TextInterface[]
    */
   public function getLabels(): array;
 

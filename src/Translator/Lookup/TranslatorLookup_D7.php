@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Translator\Lookup;
+namespace Donquixote\OCUI\Translator\Lookup;
 
 class TranslatorLookup_D7 implements TranslatorLookupInterface {
 
   /**
-   * @return \Donquixote\Cf\Translator\Lookup\TranslatorLookupInterface
+   * @return \Donquixote\OCUI\Translator\Lookup\TranslatorLookupInterface
    */
   public static function createOrPassthru(): TranslatorLookupInterface {
 

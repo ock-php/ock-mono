@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Drilldown;
+namespace Donquixote\OCUI\Schema\Drilldown;
 
-use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
-use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
+use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
 
 class CfSchema_Drilldown extends CfSchema_Drilldown_CustomKeysBase {
 
   /**
-   * @var \Donquixote\Cf\Schema\Id\CfSchema_IdInterface
+   * @var \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface
    */
   private $idSchema;
 
   /**
-   * @var \Donquixote\Cf\IdToSchema\IdToSchemaInterface
+   * @var \Donquixote\OCUI\IdToSchema\IdToSchemaInterface
    */
   private $idToSchema;
 
   /**
-   * @param \Donquixote\Cf\Schema\Id\CfSchema_IdInterface $idSchema
-   * @param \Donquixote\Cf\IdToSchema\IdToSchemaInterface $idToSchema
+   * @param \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface $idSchema
+   * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $idToSchema
    *
    * @return self
    */
@@ -29,8 +29,8 @@ class CfSchema_Drilldown extends CfSchema_Drilldown_CustomKeysBase {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Id\CfSchema_IdInterface $idSchema
-   * @param \Donquixote\Cf\IdToSchema\IdToSchemaInterface $idToSchema
+   * @param \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface $idSchema
+   * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $idToSchema
    */
   public function __construct(CfSchema_IdInterface $idSchema, IdToSchemaInterface $idToSchema) {
     $this->idSchema = $idSchema;

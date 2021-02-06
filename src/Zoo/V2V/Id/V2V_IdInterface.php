@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Zoo\V2V\Id;
+namespace Donquixote\OCUI\Zoo\V2V\Id;
 
 interface V2V_IdInterface {
 

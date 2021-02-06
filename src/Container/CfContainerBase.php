@@ -1,41 +1,41 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Container;
+namespace Donquixote\OCUI\Container;
 
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
-use Donquixote\Cf\Cache\CacheInterface;
-use Donquixote\Cf\Cache\Prefix\CachePrefix_Root;
-use Donquixote\Cf\Cache\Prefix\CachePrefixInterface;
-use Donquixote\Cf\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndId_Cache;
-use Donquixote\Cf\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface;
-use Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabel;
-use Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchema_Mappers;
-use Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\Cf\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Handler;
-use Donquixote\Cf\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Schema;
-use Donquixote\Cf\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyid;
-use Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmap;
-use Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmap_Cache;
-use Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmapInterface;
-use Donquixote\Cf\Defmap\TypeToSchema\TypeToSchema_Buffer;
-use Donquixote\Cf\Defmap\TypeToSchema\TypeToSchema_Iface;
-use Donquixote\Cf\Defmap\TypeToSchema\TypeToSchemaInterface;
-use Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartial_Callback;
-use Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartial_DefmapDrilldown;
-use Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartial_IfaceDefmap;
-use Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartial_Proxy_Cache;
-use Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartial_Proxy_Replacer;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacer_FromPartials;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
-use Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartial_SchemaReplacer;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnything_SmartChain;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Translator\Translator;
-use Donquixote\Cf\Translator\TranslatorInterface;
-use Donquixote\Cf\Util\LocalPackageUtil;
+use Donquixote\OCUI\Cache\CacheInterface;
+use Donquixote\OCUI\Cache\Prefix\CachePrefix_Root;
+use Donquixote\OCUI\Cache\Prefix\CachePrefixInterface;
+use Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndId_Cache;
+use Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface;
+use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabel;
+use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchema_Mappers;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Handler;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Schema;
+use Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyid;
+use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmap;
+use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmap_Cache;
+use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface;
+use Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchema_Buffer;
+use Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchema_Iface;
+use Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchemaInterface;
+use Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartial_Callback;
+use Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartial_DefmapDrilldown;
+use Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartial_IfaceDefmap;
+use Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartial_Proxy_Cache;
+use Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartial_Proxy_Replacer;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacer_FromPartials;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_SchemaReplacer;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnything_SmartChain;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Translator\Translator;
+use Donquixote\OCUI\Translator\TranslatorInterface;
+use Donquixote\OCUI\Util\LocalPackageUtil;
 use Donquixote\Containerkit\Container\ContainerBase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -43,7 +43,7 @@ use Psr\Log\NullLogger;
 abstract class CfContainerBase extends ContainerBase implements CfContainerInterface {
 
   /**
-   * @return \Donquixote\Cf\Defmap\TypeToSchema\TypeToSchemaInterface
+   * @return \Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchemaInterface
    *
    * @see $typeToSchema
    */
@@ -56,11 +56,11 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface
+   * @return \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface
    *
    * @see $schemaToAnything
    *
-   * @throws \Donquixote\Cf\Exception\STABuilderException
+   * @throws \Donquixote\OCUI\Exception\STABuilderException
    */
   protected function get_schemaToAnything(): SchemaToAnythingInterface {
 
@@ -73,11 +73,11 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    *
    * @see $staPartials
    *
-   * @throws \Donquixote\Cf\Exception\STABuilderException
+   * @throws \Donquixote\OCUI\Exception\STABuilderException
    */
   protected function get_staPartials(): array {
 
@@ -85,9 +85,9 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    *
-   * @throws \Donquixote\Cf\Exception\STABuilderException
+   * @throws \Donquixote\OCUI\Exception\STABuilderException
    */
   protected function getSTAPartials(): array {
 
@@ -108,7 +108,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface
+   * @return \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface
    *
    * @see $schemaReplacer
    */
@@ -120,7 +120,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\SchemaReplacer\Partial\SchemaReplacerPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartialInterface[]
    */
   protected function getSchemaReplacerPartials(): array {
 
@@ -147,7 +147,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\Translator\TranslatorInterface
+   * @return \Donquixote\OCUI\Translator\TranslatorInterface
    *
    * @see $translator
    */
@@ -156,7 +156,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
+   * @return \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
    *
    * @see $definitionToSchema
    */
@@ -167,7 +167,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelperInterface[]
+   * @return \Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelperInterface[]
    */
   protected function getDefinitionToSchemaHelpers(): array {
     return [
@@ -177,7 +177,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @return \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    *
    * @see $definitionToLabel
    */
@@ -186,7 +186,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @return \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    *
    * @see $definitionToGrouplabel
    */
@@ -195,7 +195,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmapInterface
+   * @return \Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface
    *
    * @see $typeToDefmap
    */
@@ -222,7 +222,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface
+   * @return \Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface
    *
    * @see $definitionsByTypeAndId
    */
@@ -248,7 +248,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface
+   * @return \Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface
    */
   abstract protected function getDefinitionDiscovery(): DefinitionsByTypeAndIdInterface;
 
@@ -264,7 +264,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\Cache\Prefix\CachePrefixInterface|null
+   * @return \Donquixote\OCUI\Cache\Prefix\CachePrefixInterface|null
    *
    * @see $cacheRootOrNull
    */
@@ -291,7 +291,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\Cf\Cache\CacheInterface|null
+   * @return \Donquixote\OCUI\Cache\CacheInterface|null
    *
    * @see $cacheOrNull
    */

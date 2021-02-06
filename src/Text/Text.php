@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\Cf\Text;
+namespace Donquixote\OCUI\Text;
 
 /**
  * Utility class with static methods.
@@ -30,9 +30,9 @@ class Text {
   /**
    * Builds a text object for "Label: Value".
    *
-   * @param \Donquixote\Cf\Text\TextInterface $label
+   * @param \Donquixote\OCUI\Text\TextInterface $label
    *   Label.
-   * @param \Donquixote\Cf\Text\TextInterface $value
+   * @param \Donquixote\OCUI\Text\TextInterface $value
    *   Value.
    */
   public static function label(TextInterface $label, TextInterface $value) {
@@ -47,10 +47,10 @@ class Text {
    *
    * @param string $string
    *   Original untranslated text with placeholders.
-   * @param \Donquixote\Cf\Text\TextInterface[] $replacements
+   * @param \Donquixote\OCUI\Text\TextInterface[] $replacements
    *   Replacements.
    *
-   * @return \Donquixote\Cf\Text\TextInterface
+   * @return \Donquixote\OCUI\Text\TextInterface
    *   Translatable text object.
    */
   public static function t(string $string, array $replacements = []) {
@@ -66,10 +66,10 @@ class Text {
    *
    * @param string $string
    *   Original untranslated text with placeholders.
-   * @param \Donquixote\Cf\Text\TextInterface[] $replacements
+   * @param \Donquixote\OCUI\Text\TextInterface[] $replacements
    *   Replacements.
    *
-   * @return \Donquixote\Cf\Text\TextInterface
+   * @return \Donquixote\OCUI\Text\TextInterface
    *   Text object.
    */
   public static function s(string $string, array $replacements = []) {
@@ -86,7 +86,7 @@ class Text {
    * @param int $number
    *   Integer number.
    *
-   * @return \Donquixote\Cf\Text\TextInterface
+   * @return \Donquixote\OCUI\Text\TextInterface
    *   Text object.
    */
   public static function i(int $number) {
@@ -96,10 +96,10 @@ class Text {
   /**
    * Builds a text object for a html list with <ul>.
    *
-   * @param \Donquixote\Cf\Text\TextInterface[] $parts
+   * @param \Donquixote\OCUI\Text\TextInterface[] $parts
    *   List items.
    *
-   * @return \Donquixote\Cf\Text\TextInterface
+   * @return \Donquixote\OCUI\Text\TextInterface
    *   Translatable text object.
    */
   public static function ul(array $parts) {
@@ -109,10 +109,10 @@ class Text {
   /**
    * Builds a text object for a html list with <ol>.
    *
-   * @param \Donquixote\Cf\Text\TextInterface[] $parts
+   * @param \Donquixote\OCUI\Text\TextInterface[] $parts
    *   List items.
    *
-   * @return \Donquixote\Cf\Text\TextInterface
+   * @return \Donquixote\OCUI\Text\TextInterface
    *   Translatable text object.
    */
   public static function ol(array $parts) {
@@ -122,12 +122,12 @@ class Text {
   /**
    * Builds a text object for a html list with <ul> or <ol>.
    *
-   * @param \Donquixote\Cf\Text\TextInterface[] $parts
+   * @param \Donquixote\OCUI\Text\TextInterface[] $parts
    *   List items.
    * @param string $tag
    *   One of 'ul' or 'ol'.
    *
-   * @return \Donquixote\Cf\Text\TextInterface
+   * @return \Donquixote\OCUI\Text\TextInterface
    *   Translatable text object.
    */
   protected static function ulOrOl(array $parts, string $tag) {
@@ -146,12 +146,12 @@ class Text {
   /**
    * Gets a non-translatable text object.
    *
-   * @param \Donquixote\Cf\Text\TextInterface[] $parts
+   * @param \Donquixote\OCUI\Text\TextInterface[] $parts
    *   List items.
    * @param string $glue
    *   Glue string between the items.
    *
-   * @return \Donquixote\Cf\Text\TextInterface
+   * @return \Donquixote\OCUI\Text\TextInterface
    *   Translatable text object.
    */
   public static function concat(array $parts, string $glue = '') {

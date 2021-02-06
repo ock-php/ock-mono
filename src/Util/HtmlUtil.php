@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Util;
+namespace Donquixote\OCUI\Util;
 
 class HtmlUtil {
 

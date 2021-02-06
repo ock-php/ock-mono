@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Defmap;
+namespace Donquixote\OCUI\Schema\Defmap;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
 
 class CfSchema_Defmap implements CfSchema_DefmapInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface
    */
   private $definitionMap;
 
   /**
-   * @var \Donquixote\Cf\Context\CfContextInterface|null
+   * @var \Donquixote\OCUI\Context\CfContextInterface|null
    */
   private $context;
 
   /**
-   * @param \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    */
   public function __construct(DefinitionMapInterface $definitionMap, CfContextInterface $context = NULL) {
     $this->definitionMap = $definitionMap;

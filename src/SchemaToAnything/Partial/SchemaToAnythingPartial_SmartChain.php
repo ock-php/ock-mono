@@ -1,35 +1,35 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaToAnything\Partial;
+namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\LocalPackageUtil;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Util\LocalPackageUtil;
 
 class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInterface {
 
   /**
-   * @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[][][]
+   * @var \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[][][]
    *   Format: $[$schemaType][$targetType] = $partials
    */
   private $partialsGrouped = [];
 
   /**
-   * @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[][]
+   * @var \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[][]
    *   Format: $[$targetType] = $partials
    */
   private $partialsByTargetType = [];
 
   /**
-   * @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[][]
+   * @var \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[][]
    *   Format: $[$schemaType] = $partials
    */
   private $partialsBySchemaType = [];
 
   /**
-   * @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @var \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   private $partials;
 
@@ -38,7 +38,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
    *
    * @return self
    *
-   * @throws \Donquixote\Cf\Exception\STABuilderException
+   * @throws \Donquixote\OCUI\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue): SchemaToAnythingPartial_SmartChain {
     $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
@@ -46,7 +46,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
   }
 
   /**
-   * @param \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[] $partials
+   * @param \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[] $partials
    */
   public function __construct(array $partials) {
 
@@ -72,14 +72,14 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param string $interface
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $helper
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
    * @return null|object
    *   An instance of $interface, or NULL.
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public function schema(
     CfSchemaInterface $schema,
@@ -106,7 +106,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
    * @param string $schemaType
    * @param string $targetType
    *
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   private function schemaTypeAndTargetTypeGetPartials(string $schemaType, string $targetType): array {
 
@@ -120,7 +120,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
    * @param string $schemaType
    * @param string $targetType
    *
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   private function schemaTypeAndTargetTypeCollectPartials(string $schemaType, string $targetType): array {
 
@@ -132,7 +132,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
   /**
    * @param string $interface
    *
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   private function targetTypeGetPartials(string $interface): array {
 
@@ -143,12 +143,12 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
   /**
    * @param string $targetType
    *
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   private function targetTypeCollectPartials(string $targetType): array {
 
     $partials = [];
-    /** @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface $partial */
+    /** @var \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->providesResultType($targetType)) {
         // Preserve keys for array_intersect().
@@ -162,7 +162,7 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
   /**
    * @param string $interface
    *
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   private function schemaTypeGetPartials(string $interface): array {
 
@@ -173,12 +173,12 @@ class SchemaToAnythingPartial_SmartChain implements SchemaToAnythingPartialInter
   /**
    * @param string $schemaType
    *
-   * @return \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
    */
   private function schemaTypeCollectPartials(string $schemaType): array {
 
     $partials = [];
-    /** @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface $partial */
+    /** @var \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->acceptsSchemaClass($schemaType)) {
         // Preserve keys for array_intersect().

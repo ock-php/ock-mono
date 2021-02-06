@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Select\Flat;
+namespace Donquixote\OCUI\Schema\Select\Flat;
 
-use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 /**
  * @todo Maybe "Options" should be renamed to "Choice"?
@@ -12,7 +12,7 @@ use Donquixote\Cf\Text\TextInterface;
 interface CfSchema_FlatSelectInterface extends CfSchema_IdInterface {
 
   /**
-   * @return \Donquixote\Cf\Text\TextInterface[]
+   * @return \Donquixote\OCUI\Text\TextInterface[]
    *   Format: $[$optionKey] = $optionLabel
    */
   public function getOptions(): array;

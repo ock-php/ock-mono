@@ -1,31 +1,31 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
-use Donquixote\Cf\Translator\TranslatorInterface;
+use Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\OCUI\Translator\TranslatorInterface;
 
 class Summarizer_Sequence implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Cf\Summarizer\SummarizerInterface
+   * @var \Donquixote\OCUI\Summarizer\SummarizerInterface
    */
   private $itemSummarizer;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
-   * @param \Donquixote\Cf\Translator\TranslatorInterface $translator
+   * @param \Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
    *
-   * @return \Donquixote\Cf\Summarizer\Summarizer_Sequence|null
+   * @return \Donquixote\OCUI\Summarizer\Summarizer_Sequence|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(
     CfSchema_SequenceInterface $schema,
@@ -43,7 +43,7 @@ class Summarizer_Sequence implements SummarizerInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Summarizer\SummarizerInterface $itemSummarizer
+   * @param \Donquixote\OCUI\Summarizer\SummarizerInterface $itemSummarizer
    */
   public function __construct(SummarizerInterface $itemSummarizer) {
     $this->itemSummarizer = $itemSummarizer;

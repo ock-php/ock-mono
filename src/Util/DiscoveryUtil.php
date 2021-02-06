@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Util;
+namespace Donquixote\OCUI\Util;
 
-use Donquixote\Cf\Discovery\AnnotatedFactory\AnnotatedFactory;
-use Donquixote\Cf\Translator\Translator;
+use Donquixote\OCUI\Discovery\AnnotatedFactory\AnnotatedFactory;
+use Donquixote\OCUI\Translator\Translator;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -53,7 +53,7 @@ final class DiscoveryUtil extends UtilBase {
    * @param \ReflectionClass $reflClass
    * @param string $annotationTagName
    *
-   * @return \Iterator|\Donquixote\Cf\Discovery\AnnotatedFactory\AnnotatedFactory[]
+   * @return \Iterator|\Donquixote\OCUI\Discovery\AnnotatedFactory\AnnotatedFactory[]
    */
   public static function classFindAnnotatedFactories(
     \ReflectionClass $reflClass,

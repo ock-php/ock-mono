@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\ValueProvider;
+namespace Donquixote\OCUI\Schema\ValueProvider;
 
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
 

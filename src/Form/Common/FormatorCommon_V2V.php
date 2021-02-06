@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Form\Common;
+namespace Donquixote\OCUI\Form\Common;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaBase\CfSchema_ValueToValueBaseInterface;
-use Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 /**
  * @STA

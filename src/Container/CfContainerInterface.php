@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Container;
+namespace Donquixote\OCUI\Container;
 
 /**
  * Main cycle of circular dependencies:
- * @property \Donquixote\Cf\Defmap\TypeToSchema\TypeToSchemaInterface $typeToSchema
- * @property \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[] $staPartials
- * @property \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+ * @property \Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchemaInterface $typeToSchema
+ * @property \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[] $staPartials
+ * @property \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
  * @property \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
- * @property \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface $schemaReplacer
- * @property \Donquixote\Cf\Translator\TranslatorInterface $translator
+ * @property \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $schemaReplacer
+ * @property \Donquixote\OCUI\Translator\TranslatorInterface $translator
  *
  * Non-circular:
- * @property \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
- * @property \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
- * @property \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
- * @property \Donquixote\Cf\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface $definitionsByTypeAndId
- * @property \Donquixote\Cf\Defmap\TypeToDefmap\TypeToDefmapInterface $typeToDefmap
- * @property \Donquixote\Cf\Cache\Prefix\CachePrefixInterface|null $cacheRootOrNull
+ * @property \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
+ * @property \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+ * @property \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
+ * @property \Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface $definitionsByTypeAndId
+ * @property \Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface $typeToDefmap
+ * @property \Donquixote\OCUI\Cache\Prefix\CachePrefixInterface|null $cacheRootOrNull
  *
  * External services
  * @property \Psr\Log\LoggerInterface $logger
  *
  * To be provided by child container:
- * @property \Donquixote\Cf\Cache\CacheInterface|null $cacheOrNull
+ * @property \Donquixote\OCUI\Cache\CacheInterface|null $cacheOrNull
  */
 interface CfContainerInterface {
 

@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\SchemaBase\CfSchema_ValueToValueBaseInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\UtilBase;
+use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Util\UtilBase;
 
 final class Summarizer_V2V extends UtilBase {
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\SchemaBase\CfSchema_ValueToValueBaseInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Summarizer\SummarizerInterface|null
+   * @return \Donquixote\OCUI\Summarizer\SummarizerInterface|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(
     CfSchema_ValueToValueBaseInterface $schema,

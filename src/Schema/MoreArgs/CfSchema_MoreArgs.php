@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\MoreArgs;
+namespace Donquixote\OCUI\Schema\MoreArgs;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface;
-use Donquixote\Cf\SchemaBase\Decorator\CfSchema_DecoratorBase;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface;
+use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBase;
 
 class CfSchema_MoreArgs extends CfSchema_DecoratorBase implements CfSchema_MoreArgsInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface[]
+   * @var \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface[]
    */
   private $more;
 
@@ -20,18 +20,18 @@ class CfSchema_MoreArgs extends CfSchema_DecoratorBase implements CfSchema_MoreA
   private $specialKey;
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
    * @param string|int $specialKey
    *
-   * @return \Donquixote\Cf\Schema\MoreArgs\CfSchema_MoreArgs
+   * @return \Donquixote\OCUI\Schema\MoreArgs\CfSchema_MoreArgs
    */
   public function createEmpty(CfSchemaInterface $decorated, $specialKey = 0): CfSchema_MoreArgs {
     return new self($decorated, [], $specialKey);
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
-   * @param \Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface[] $more
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface[] $more
    * @param string|int $specialKey
    */
   public function __construct(CfSchemaInterface $decorated, array $more = [], $specialKey = 0) {
@@ -42,9 +42,9 @@ class CfSchema_MoreArgs extends CfSchema_DecoratorBase implements CfSchema_MoreA
 
   /**
    * @param string $key
-   * @param \Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface $schema
+   * @param \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface $schema
    *
-   * @return \Donquixote\Cf\Schema\MoreArgs\CfSchema_MoreArgs
+   * @return \Donquixote\OCUI\Schema\MoreArgs\CfSchema_MoreArgs
    */
   public function withItemSchema(string $key, CfSchema_OptionlessInterface $schema): CfSchema_MoreArgs {
     $clone = clone $this;

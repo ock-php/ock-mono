@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConfInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Schema\DefaultConf\CfSchema_DefaultConfInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 class Summarizer_DefaultConf implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Cf\Summarizer\SummarizerInterface
+   * @var \Donquixote\OCUI\Summarizer\SummarizerInterface
    */
   private $decorated;
 
@@ -22,12 +22,12 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConfInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\DefaultConf\CfSchema_DefaultConfInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(
     CfSchema_DefaultConfInterface $schema,
@@ -48,7 +48,7 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Summarizer\SummarizerInterface $decorated
+   * @param \Donquixote\OCUI\Summarizer\SummarizerInterface $decorated
    * @param mixed $defaultConf
    */
   public function __construct(SummarizerInterface $decorated, $defaultConf) {

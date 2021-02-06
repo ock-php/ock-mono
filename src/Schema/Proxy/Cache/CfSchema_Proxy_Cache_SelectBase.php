@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Proxy\Cache;
+namespace Donquixote\OCUI\Schema\Proxy\Cache;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Select\CfSchema_Select_Fixed;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Select\CfSchema_Select_Fixed;
 
 abstract class CfSchema_Proxy_Cache_SelectBase implements CfSchema_Proxy_CacheInterface {
 
@@ -30,7 +30,7 @@ abstract class CfSchema_Proxy_Cache_SelectBase implements CfSchema_Proxy_CacheIn
   /**
    * @param mixed $data
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   final public function dataGetSchema($data): CfSchemaInterface {
     return new CfSchema_Select_Fixed($data);

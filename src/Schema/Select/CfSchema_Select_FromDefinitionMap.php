@@ -1,33 +1,33 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Select;
+namespace Donquixote\OCUI\Schema\Select;
 
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Select_FromDefinitionMap implements CfSchema_SelectInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface
    */
   private $definitionMap;
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToLabel;
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToGroupLabel;
 
   /**
-   * @param \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
-   * @param \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
-   * @param \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
+   * @param \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
+   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
    */
   public function __construct(
     DefinitionMapInterface $definitionMap,

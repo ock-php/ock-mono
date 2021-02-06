@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaReplacer\Partial;
+namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\Cf\Schema\Definition\CfSchema_DefinitionInterface;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
+use Donquixote\OCUI\Schema\Definition\CfSchema_DefinitionInterface;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_Definition implements SchemaReplacerPartialInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
    */
   private $definitionToSchema;
 
   /**
-   * @param \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
+   * @param \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
    */
   public function __construct(DefinitionToSchemaInterface $definitionToSchema) {
     $this->definitionToSchema = $definitionToSchema;

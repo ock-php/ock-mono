@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\Schema\Neutral\CfSchema_NeutralInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\UtilBase;
+use Donquixote\OCUI\Schema\Neutral\CfSchema_NeutralInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Util\UtilBase;
 
 final class Summarizer_Neutral extends UtilBase {
 
@@ -13,12 +13,12 @@ final class Summarizer_Neutral extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Neutral\CfSchema_NeutralInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Neutral\CfSchema_NeutralInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Summarizer\SummarizerInterface
+   * @return \Donquixote\OCUI\Summarizer\SummarizerInterface
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(CfSchema_NeutralInterface $schema, SchemaToAnythingInterface $schemaToAnything): SummarizerInterface {
     return Summarizer::fromSchema($schema->getDecorated(), $schemaToAnything);

@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Id;
+namespace Donquixote\OCUI\Schema\Id;
 
-use Donquixote\Cf\Defmap\IdToDefinition\IdToDefinitionInterface;
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Defmap\IdToDefinition\IdToDefinitionInterface;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Id_DefmapKey implements CfSchema_IdInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\IdToDefinition\IdToDefinitionInterface
+   * @var \Donquixote\OCUI\Defmap\IdToDefinition\IdToDefinitionInterface
    */
   private $definitionMap;
 
@@ -20,7 +20,7 @@ class CfSchema_Id_DefmapKey implements CfSchema_IdInterface {
   private $key;
 
   /**
-   * @param \Donquixote\Cf\Defmap\IdToDefinition\IdToDefinitionInterface $definitionMap
+   * @param \Donquixote\OCUI\Defmap\IdToDefinition\IdToDefinitionInterface $definitionMap
    * @param string $key
    */
   public function __construct(IdToDefinitionInterface $definitionMap, string $key) {

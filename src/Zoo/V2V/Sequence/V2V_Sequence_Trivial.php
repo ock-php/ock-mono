@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Zoo\V2V\Sequence;
+namespace Donquixote\OCUI\Zoo\V2V\Sequence;
 
-use Donquixote\Cf\Util\PhpUtil;
+use Donquixote\OCUI\Util\PhpUtil;
 
 class V2V_Sequence_Trivial implements V2V_SequenceInterface {
 

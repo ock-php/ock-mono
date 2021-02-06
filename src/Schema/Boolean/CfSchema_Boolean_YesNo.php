@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Boolean;
+namespace Donquixote\OCUI\Schema\Boolean;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConf;
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\DefaultConf\CfSchema_DefaultConf;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Boolean_YesNo implements CfSchema_BooleanInterface {
 
   /**
    * @param bool $enabledByDefault
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public static function create($enabledByDefault = FALSE): CfSchemaInterface {
 

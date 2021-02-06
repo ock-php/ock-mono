@@ -1,32 +1,32 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Generator;
+namespace Donquixote\OCUI\Generator;
 
-use Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 class Generator_Optional implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Generator\GeneratorInterface
+   * @var \Donquixote\OCUI\Generator\GeneratorInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface
+   * @var \Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface
    */
   private $schema;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Donquixote\Cf\Generator\GeneratorInterface|null
+   * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(CfSchema_OptionalInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?GeneratorInterface {
 
@@ -42,8 +42,8 @@ class Generator_Optional implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface $schema
+   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface $schema
    */
   public function __construct(GeneratorInterface $decorated, CfSchema_OptionalInterface $schema) {
     $this->decorated = $decorated;

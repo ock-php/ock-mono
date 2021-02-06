@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Textfield;
+namespace Donquixote\OCUI\Schema\Textfield;
 
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Textfield_NoValidation implements CfSchema_TextfieldInterface {
 

@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Summarizer;
+namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\Cf\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Text\Text;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelper;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Text\TextInterface;
 
 /**
  * @STA
@@ -15,20 +15,20 @@ use Donquixote\Cf\Text\TextInterface;
 class Summarizer_Drilldown implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface
+   * @var \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface
    */
   private $schema;
 
   /**
-   * @var \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface
+   * @var \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface
    */
   private $schemaToAnything;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    */
   public function __construct(
     CfSchema_DrilldownInterface $schema,

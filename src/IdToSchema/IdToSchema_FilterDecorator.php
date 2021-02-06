@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\IdToSchema;
+namespace Donquixote\OCUI\IdToSchema;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
 
 class IdToSchema_FilterDecorator implements IdToSchemaInterface {
 
   /**
-   * @var \Donquixote\Cf\IdToSchema\IdToSchemaInterface
+   * @var \Donquixote\OCUI\IdToSchema\IdToSchemaInterface
    */
   private $idToSchema;
 
   /**
-   * @var \Donquixote\Cf\Schema\Id\CfSchema_IdInterface
+   * @var \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface
    */
   private $condition;
 
   /**
-   * @param \Donquixote\Cf\IdToSchema\IdToSchemaInterface $decorated
-   * @param \Donquixote\Cf\Schema\Id\CfSchema_IdInterface $condition
+   * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface $condition
    *
    * @todo There should be a narrower interface for $condition parameter.
    */

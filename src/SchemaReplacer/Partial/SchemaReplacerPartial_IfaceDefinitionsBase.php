@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaReplacer\Partial;
+namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Definitions\CfSchema_Definitions;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContextInterface;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Definitions\CfSchema_Definitions;
+use Donquixote\OCUI\Schema\Iface\CfSchema_IfaceWithContextInterface;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 abstract class SchemaReplacerPartial_IfaceDefinitionsBase extends SchemaReplacerPartial_IfaceBase {
 
   /**
-   * @param \Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
-   * @param \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface $replacer
+   * @param \Donquixote\OCUI\Schema\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
+   * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   protected function schemaDoGetReplacement(
     CfSchema_IfaceWithContextInterface $ifaceSchema,

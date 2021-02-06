@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\Cf\Text;
+namespace Donquixote\OCUI\Text;
 
 /**
  * Raw text, potentially unsafe for output.

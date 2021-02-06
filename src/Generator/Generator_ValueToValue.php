@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Generator;
+namespace Donquixote\OCUI\Generator;
 
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValueInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Zoo\V2V\Value\V2V_ValueInterface;
+use Donquixote\OCUI\Schema\ValueToValue\CfSchema_ValueToValueInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface;
 
 class Generator_ValueToValue extends Generator_DecoratorBase {
 
   /**
-   * @var \Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValueInterface
+   * @var \Donquixote\OCUI\Schema\ValueToValue\CfSchema_ValueToValueInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValueInterface $valueToValueSchema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\ValueToValue\CfSchema_ValueToValueInterface $valueToValueSchema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    */
@@ -36,8 +36,8 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
   }
 
   /**
-   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\Cf\Zoo\V2V\Value\V2V_ValueInterface $v2v
+   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface $v2v
    */
   public function __construct(GeneratorInterface $decorated, V2V_ValueInterface $v2v) {
     parent::__construct($decorated);

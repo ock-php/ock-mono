@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Defmap;
+namespace Donquixote\OCUI\Schema\Defmap;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
 
 interface CfSchema_DefmapInterface extends CfSchemaInterface {
 
   /**
-   * @return \Donquixote\Cf\Defmap\DefinitionMap\DefinitionMapInterface
+   * @return \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface
    */
   public function getDefinitionMap(): DefinitionMapInterface;
 
   /**
-   * @return \Donquixote\Cf\Context\CfContextInterface|null
+   * @return \Donquixote\OCUI\Context\CfContextInterface|null
    */
   public function getContext(): ?CfContextInterface;
 

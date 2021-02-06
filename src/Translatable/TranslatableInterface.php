@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Translatable;
+namespace Donquixote\OCUI\Translatable;
 
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 interface TranslatableInterface extends TextInterface {
 

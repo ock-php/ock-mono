@@ -1,31 +1,31 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaReplacer\Partial;
+namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\Cf\Schema\Definitions\CfSchema_DefinitionsInterface;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_FromDefinitions;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown_InlineExpanded;
-use Donquixote\Cf\Schema\Id\CfSchema_Id_DefinitionsKey;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
+use Donquixote\OCUI\Schema\Definitions\CfSchema_DefinitionsInterface;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_Drilldown_FromDefinitions;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_Drilldown_InlineExpanded;
+use Donquixote\OCUI\Schema\Id\CfSchema_Id_DefinitionsKey;
+use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_DefinitionsDrilldown implements SchemaReplacerPartialInterface {
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
    */
   private $definitionToSchema;
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToLabel;
 
   /**
-   * @var \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToGrouplabel;
 
@@ -35,9 +35,9 @@ class SchemaReplacerPartial_DefinitionsDrilldown implements SchemaReplacerPartia
   private $withInlineChildren;
 
   /**
-   * @param \Donquixote\Cf\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
-   * @param \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
-   * @param \Donquixote\Cf\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
+   * @param \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
+   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
    * @param bool $withInlineChildren
    */
   public function __construct(

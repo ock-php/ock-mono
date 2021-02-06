@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Neutral;
+namespace Donquixote\OCUI\Schema\Neutral;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaBase\Decorator\CfSchema_DecoratorBase;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBase;
 
 class CfSchema_Neutral_IfaceTransformed extends CfSchema_DecoratorBase implements CfSchema_NeutralInterface {
 
@@ -15,14 +15,14 @@ class CfSchema_Neutral_IfaceTransformed extends CfSchema_DecoratorBase implement
   private $interface;
 
   /**
-   * @var \Donquixote\Cf\Context\CfContextInterface|null
+   * @var \Donquixote\OCUI\Context\CfContextInterface|null
    */
   private $context;
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
    * @param string $interface
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    */
   public function __construct(
     CfSchemaInterface $decorated,
@@ -42,7 +42,7 @@ class CfSchema_Neutral_IfaceTransformed extends CfSchema_DecoratorBase implement
   }
 
   /**
-   * @return \Donquixote\Cf\Context\CfContextInterface|null
+   * @return \Donquixote\OCUI\Context\CfContextInterface|null
    */
   public function getContext(): ?CfContextInterface {
     return $this->context;

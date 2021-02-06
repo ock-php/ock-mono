@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Group;
+namespace Donquixote\OCUI\Schema\Group;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 class CfSchema_Group implements CfSchema_GroupInterface {
 
   /**
-   * @var \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
    */
   private $schemas;
 
@@ -18,7 +18,7 @@ class CfSchema_Group implements CfSchema_GroupInterface {
   private $labels;
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface[] $schemas
    * @param string[] $labels
    *
    * @return self
@@ -28,7 +28,7 @@ class CfSchema_Group implements CfSchema_GroupInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface[] $schemas
    * @param string[] $labels
    */
   public function __construct(array $schemas, array $labels) {
@@ -45,10 +45,10 @@ class CfSchema_Group implements CfSchema_GroupInterface {
 
   /**
    * @param string $key
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param null $label
    *
-   * @return \Donquixote\Cf\Schema\Group\CfSchema_Group
+   * @return \Donquixote\OCUI\Schema\Group\CfSchema_Group
    */
   public function withItem(string $key, CfSchemaInterface $schema, $label = NULL): CfSchema_Group {
     $clone = clone $this;

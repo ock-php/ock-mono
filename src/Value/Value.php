@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Value;
+namespace Donquixote\OCUI\Value;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Exception\EvaluatorException;
-use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
-use Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface;
-use Donquixote\Cf\SchemaConfToAnything\SchemaConfToAnythingInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Exception\EvaluatorException;
+use Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface;
+use Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface;
+use Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface;
 
 class Value implements ValueInterface {
 
@@ -17,14 +17,14 @@ class Value implements ValueInterface {
   private $value;
 
   /**
-   * @param \Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface $schema
    * @param $conf
-   * @param \Donquixote\Cf\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
+   * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
-   * @return \Donquixote\Cf\Value\ValueInterface|null
+   * @return \Donquixote\OCUI\Value\ValueInterface|null
    *
-   * @throws \Donquixote\Cf\Exception\EvaluatorException
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\EvaluatorException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function sequence(CfSchema_SequenceInterface $schema, $conf, SchemaConfToAnythingInterface $scta): ?ValueInterface {
 
@@ -43,14 +43,14 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Sequence\CfSchema_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface $schema
    * @param mixed $conf
-   * @param \Donquixote\Cf\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
+   * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
-   * @return \Donquixote\Cf\Value\ValueInterface[]|null
+   * @return \Donquixote\OCUI\Value\ValueInterface[]|null
    *
-   * @throws \Donquixote\Cf\Exception\EvaluatorException
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\EvaluatorException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function sequenceItems(CfSchema_SequenceInterface $schema, $conf, SchemaConfToAnythingInterface $scta): ?array {
 
@@ -58,7 +58,7 @@ class Value implements ValueInterface {
       throw new EvaluatorException("Sequence conf must be an array.");
     }
 
-    /** @var \Donquixote\Cf\Value\ValueInterface[] $items */
+    /** @var \Donquixote\OCUI\Value\ValueInterface[] $items */
     $items = [];
     foreach ($conf as $delta => $deltaConf) {
 
@@ -75,13 +75,13 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Group\CfSchema_GroupInterface $schema
+   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $schema
    * @param mixed $conf
-   * @param \Donquixote\Cf\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
+   * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
-   * @return \Donquixote\Cf\Value\ValueInterface|null
+   * @return \Donquixote\OCUI\Value\ValueInterface|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function group(CfSchema_GroupInterface $schema, $conf, SchemaConfToAnythingInterface $scta): ?ValueInterface {
 
@@ -100,17 +100,17 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Group\CfSchema_GroupInterface $groupSchema
+   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $groupSchema
    * @param mixed $conf
-   * @param \Donquixote\Cf\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
+   * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
-   * @return null|\Donquixote\Cf\Value\ValueInterface[]
+   * @return null|\Donquixote\OCUI\Value\ValueInterface[]
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   private static function groupItems(CfSchema_GroupInterface $groupSchema, $conf, SchemaConfToAnythingInterface $scta): ?array {
 
-    /** @var \Donquixote\Cf\Value\ValueInterface[] $items */
+    /** @var \Donquixote\OCUI\Value\ValueInterface[] $items */
     $items = [];
     foreach ($groupSchema->getItemSchemas() as $k => $itemSchema) {
 
@@ -129,13 +129,13 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param mixed $conf
-   * @param \Donquixote\Cf\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
+   * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
-   * @return null|\Donquixote\Cf\Value\ValueInterface
+   * @return null|\Donquixote\OCUI\Value\ValueInterface
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function fromSchemaConf(CfSchemaInterface $schema, $conf, SchemaConfToAnythingInterface $scta): ?ValueInterface {
 

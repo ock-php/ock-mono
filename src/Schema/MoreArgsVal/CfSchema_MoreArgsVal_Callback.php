@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\MoreArgsVal;
+namespace Donquixote\OCUI\Schema\MoreArgsVal;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\MoreArgs\CfSchema_MoreArgs;
-use Donquixote\Cf\Util\UtilBase;
-use Donquixote\Cf\Zoo\V2V\Group\V2V_Group_Callback;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\MoreArgs\CfSchema_MoreArgs;
+use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Callback;
 
 final class CfSchema_MoreArgsVal_Callback extends UtilBase {
 
   /**
    * @param string $class
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
-   * @param \Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface[] $more
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface[] $more
    *
-   * @return \Donquixote\Cf\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
+   * @return \Donquixote\OCUI\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
    */
   public static function fromClass(
     string $class,
@@ -37,10 +37,10 @@ final class CfSchema_MoreArgsVal_Callback extends UtilBase {
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
-   * @param \Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface[] $more
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface[] $more
    *
-   * @return \Donquixote\Cf\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
+   * @return \Donquixote\OCUI\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
    */
   public static function fromStaticMethod(
     string $class,
@@ -59,10 +59,10 @@ final class CfSchema_MoreArgsVal_Callback extends UtilBase {
 
   /**
    * @param callable $callable
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
-   * @param \Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface[] $more
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface[] $more
    *
-   * @return \Donquixote\Cf\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
+   * @return \Donquixote\OCUI\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
    */
   public static function fromCallable(
     callable $callable,
@@ -78,10 +78,10 @@ final class CfSchema_MoreArgsVal_Callback extends UtilBase {
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
-   * @param \Donquixote\Cf\Schema\Optionless\CfSchema_OptionlessInterface[] $more
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface[] $more
    *
-   * @return \Donquixote\Cf\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
+   * @return \Donquixote\OCUI\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface
    */
   public static function create(
     CallbackReflectionInterface $callbackReflection,

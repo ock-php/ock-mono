@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Optional;
+namespace Donquixote\OCUI\Schema\Optional;
 
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Optional_Null extends CfSchema_OptionalBase {
 

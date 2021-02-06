@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Drilldown;
+namespace Donquixote\OCUI\Schema\Drilldown;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
-use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
+use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
 
 interface CfSchema_DrilldownInterface extends CfSchemaInterface {
 
   /**
-   * @return \Donquixote\Cf\Schema\Id\CfSchema_IdInterface
+   * @return \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface
    */
   public function getIdSchema(): CfSchema_IdInterface;
 
   /**
-   * @return \Donquixote\Cf\IdToSchema\IdToSchemaInterface
+   * @return \Donquixote\OCUI\IdToSchema\IdToSchemaInterface
    */
   public function getIdToSchema(): IdToSchemaInterface;
 

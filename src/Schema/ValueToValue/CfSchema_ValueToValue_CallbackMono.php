@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\ValueToValue;
+namespace Donquixote\OCUI\Schema\ValueToValue;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Util\UtilBase;
-use Donquixote\Cf\Zoo\V2V\Value\V2V_Value_CallbackMono;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\OCUI\Zoo\V2V\Value\V2V_Value_CallbackMono;
 
 final class CfSchema_ValueToValue_CallbackMono extends UtilBase {
 
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public static function fromStaticMethod(string $class, string $methodName, CfSchemaInterface $decorated): CfSchemaInterface {
     $callback = CallbackReflection_StaticMethod::create($class, $methodName);
@@ -26,9 +26,9 @@ final class CfSchema_ValueToValue_CallbackMono extends UtilBase {
 
   /**
    * @param string $class
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public static function fromClass(string $class, CfSchemaInterface $decorated): CfSchemaInterface {
     $callback = CallbackReflection_ClassConstruction::create($class);
@@ -36,10 +36,10 @@ final class CfSchema_ValueToValue_CallbackMono extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public static function create(CfSchemaInterface $decorated, CallbackReflectionInterface $callback): CfSchemaInterface {
     return new CfSchema_ValueToValue(

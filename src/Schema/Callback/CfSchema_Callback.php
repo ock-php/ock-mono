@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Callback;
+namespace Donquixote\OCUI\Schema\Callback;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Iface\CfSchema_IfaceWithContext;
 
 class CfSchema_Callback implements CfSchema_CallbackInterface {
 
@@ -18,7 +18,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
   private $callbackReflection;
 
   /**
-   * @var \Donquixote\Cf\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
    */
   private $explicitSchemas = [];
 
@@ -28,15 +28,15 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
   private $explicitLabels = [];
 
   /**
-   * @var \Donquixote\Cf\Context\CfContextInterface|null
+   * @var \Donquixote\OCUI\Context\CfContextInterface|null
    */
   private $context;
 
   /**
    * @param string $class
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Schema\Callback\CfSchema_Callback
+   * @return \Donquixote\OCUI\Schema\Callback\CfSchema_Callback
    */
   public static function fromClass(string $class, CfContextInterface $context = NULL): CfSchema_Callback {
 
@@ -48,7 +48,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
    * @return self
    */
@@ -63,7 +63,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    */
   public function __construct(
     CallbackReflectionInterface $callbackReflection,
@@ -74,7 +74,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Context\CfContextInterface|NULL $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
    *
    * @return static
    */
@@ -86,7 +86,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
 
   /**
    * @param int $index
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param string|null $label
    *
    * @return static

@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\GroupVal;
+namespace Donquixote\OCUI\Schema\GroupVal;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
-use Donquixote\Cf\Schema\Group\CfSchema_Group;
-use Donquixote\Cf\Util\UtilBase;
-use Donquixote\Cf\Zoo\V2V\Group\V2V_Group_Callback;
+use Donquixote\OCUI\Schema\Group\CfSchema_Group;
+use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Callback;
 
 final class CfSchema_GroupVal_Callback extends UtilBase {
 
   /**
    * @param string $class
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface[] $schemas
    * @param string[] $labels
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\OCUI\Schema\GroupVal\CfSchema_GroupValInterface
    */
   public static function fromClass(string $class, array $schemas, array $labels): CfSchema_GroupValInterface {
 
@@ -32,10 +32,10 @@ final class CfSchema_GroupVal_Callback extends UtilBase {
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface[] $schemas
    * @param string[] $labels
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\OCUI\Schema\GroupVal\CfSchema_GroupValInterface
    */
   public static function fromStaticMethod(string $class, string $methodName, array $schemas, array $labels): CfSchema_GroupValInterface {
 
@@ -49,10 +49,10 @@ final class CfSchema_GroupVal_Callback extends UtilBase {
 
   /**
    * @param callable $callable
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface[] $schemas
    * @param string[] $labels
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\OCUI\Schema\GroupVal\CfSchema_GroupValInterface
    */
   public static function fromCallable(callable $callable, array $schemas, array $labels): CfSchema_GroupValInterface {
 
@@ -64,10 +64,10 @@ final class CfSchema_GroupVal_Callback extends UtilBase {
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface[] $schemas
    * @param string[] $labels
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\OCUI\Schema\GroupVal\CfSchema_GroupValInterface
    */
   public static function create(
     CallbackReflectionInterface $callbackReflection,

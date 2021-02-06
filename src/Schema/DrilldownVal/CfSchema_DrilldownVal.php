@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\DrilldownVal;
+namespace Donquixote\OCUI\Schema\DrilldownVal;
 
-use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
-use Donquixote\Cf\Zoo\V2V\Drilldown\V2V_Drilldown_Arrify;
-use Donquixote\Cf\Zoo\V2V\Drilldown\V2V_Drilldown_Merge;
-use Donquixote\Cf\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_Drilldown_Arrify;
+use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_Drilldown_Merge;
+use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
 
 class CfSchema_DrilldownVal extends CfSchema_DrilldownValBase {
 
   /**
-   * @var \Donquixote\Cf\Zoo\V2V\Drilldown\V2V_DrilldownInterface
+   * @var \Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface
    */
   private $v2v;
 
   /**
-   * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $decorated
    * @param string|null $idKey
    * @param string|null $optionsKey
    *
@@ -38,7 +38,7 @@ class CfSchema_DrilldownVal extends CfSchema_DrilldownValBase {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $decorated
+   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $decorated
    * @param string|null $idKey
    *
    * @return self
@@ -55,8 +55,8 @@ class CfSchema_DrilldownVal extends CfSchema_DrilldownValBase {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $decorated
-   * @param \Donquixote\Cf\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
+   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $decorated
+   * @param \Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
    */
   public function __construct(CfSchema_DrilldownInterface $decorated, V2V_DrilldownInterface $v2v) {
     parent::__construct($decorated);

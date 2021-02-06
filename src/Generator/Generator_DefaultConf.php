@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Generator;
+namespace Donquixote\OCUI\Generator;
 
-use Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConfInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Schema\DefaultConf\CfSchema_DefaultConfInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 /**
- * @see \Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConfInterface
+ * @see \Donquixote\OCUI\Schema\DefaultConf\CfSchema_DefaultConfInterface
  */
 class Generator_DefaultConf implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Generator\GeneratorInterface
+   * @var \Donquixote\OCUI\Generator\GeneratorInterface
    */
   private $decorated;
 
@@ -24,12 +24,12 @@ class Generator_DefaultConf implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConfInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\DefaultConf\CfSchema_DefaultConfInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   public static function create(
     CfSchema_DefaultConfInterface $schema,
@@ -50,7 +50,7 @@ class Generator_DefaultConf implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
    * @param mixed $defaultConf
    */
   public function __construct(GeneratorInterface $decorated, $defaultConf) {

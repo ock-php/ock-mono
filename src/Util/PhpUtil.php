@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Util;
+namespace Donquixote\OCUI\Util;
 
 use Donquixote\CallbackReflection\Exception\GeneratedCodeException;
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
-use Donquixote\Cf\Exception\EvaluatorException_UnsupportedSchema;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Exception\EvaluatorException_IncompatibleConfiguration;
+use Donquixote\OCUI\Exception\EvaluatorException_UnsupportedSchema;
 
 final class PhpUtil extends UtilBase {
 
@@ -76,7 +76,7 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param string $expectedClass
    * @param mixed $foundValue
    *
@@ -113,7 +113,7 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param string $destinationClass
    *
    * @return string
@@ -134,7 +134,7 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param string|null $message
    *
    * @return string
@@ -266,7 +266,7 @@ EOT;
     }
 
     return self::phpCallFunction(
-      /* @see \Donquixote\Cf\Util\ReflectionUtil::createInstance() */
+      /* @see \Donquixote\OCUI\Util\ReflectionUtil::createInstance() */
       '\\' . ReflectionUtil::class . '::createInstance',
       $argsPhp);
   }

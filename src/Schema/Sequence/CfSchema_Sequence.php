@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Sequence;
+namespace Donquixote\OCUI\Schema\Sequence;
 
-use Donquixote\Cf\Translator\TranslatorInterface;
+use Donquixote\OCUI\Translator\TranslatorInterface;
 
 class CfSchema_Sequence extends CfSchema_SequenceBase {
 

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Optional;
+namespace Donquixote\OCUI\Schema\Optional;
 
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 class CfSchema_Optional extends CfSchema_OptionalBase {
 
   /**
-   * @var \Donquixote\Cf\Text\TextInterface|null
+   * @var \Donquixote\OCUI\Text\TextInterface|null
    */
   private $emptySummary;
 
@@ -18,7 +18,7 @@ class CfSchema_Optional extends CfSchema_OptionalBase {
   private $emptyPhp = 'NULL';
 
   /**
-   * @param \Donquixote\Cf\Text\TextInterface $emptySummary
+   * @param \Donquixote\OCUI\Text\TextInterface $emptySummary
    *
    * @return static
    */
@@ -31,7 +31,7 @@ class CfSchema_Optional extends CfSchema_OptionalBase {
   /**
    * @param string $emptyPhp
    *
-   * @return \Donquixote\Cf\Schema\Optional\CfSchema_Optional
+   * @return \Donquixote\OCUI\Schema\Optional\CfSchema_Optional
    */
   public function withEmptyPhp(string $emptyPhp): CfSchema_Optional {
     $clone = clone $this;

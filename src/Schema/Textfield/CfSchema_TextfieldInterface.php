@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Textfield;
+namespace Donquixote\OCUI\Schema\Textfield;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Text\TextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 /**
  * @todo What about limited number of characters?
@@ -12,7 +12,7 @@ use Donquixote\Cf\Text\TextInterface;
 interface CfSchema_TextfieldInterface extends CfSchemaInterface {
 
   /**
-   * @return \Donquixote\Cf\Text\TextInterface|null
+   * @return \Donquixote\OCUI\Text\TextInterface|null
    */
   public function getDescription(): ?TextInterface;
 
@@ -26,7 +26,7 @@ interface CfSchema_TextfieldInterface extends CfSchemaInterface {
   /**
    * @param string $text
    *
-   * @return \Donquixote\Cf\Text\TextInterface[]
+   * @return \Donquixote\OCUI\Text\TextInterface[]
    */
   public function textGetValidationErrors(string $text): array;
 

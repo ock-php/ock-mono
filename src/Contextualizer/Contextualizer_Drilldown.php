@@ -1,40 +1,40 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Contextualizer;
+namespace Donquixote\OCUI\Contextualizer;
 
-use Donquixote\Cf\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\Cf\Generator\Generator;
-use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
-use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownValInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Util\PhpUtil;
-use Donquixote\Cf\Zoo\V2V\Drilldown\V2V_Drilldown_Trivial;
-use Donquixote\Cf\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
+use Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelper;
+use Donquixote\OCUI\Generator\Generator;
+use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Schema\DrilldownVal\CfSchema_DrilldownValInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Util\PhpUtil;
+use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_Drilldown_Trivial;
+use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
 use Donquixote\ReflectionKit\Context\ContextInterface;
 
 class Contextualizer_Drilldown implements ContextualizerInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface
+   * @var \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface
    */
   private $schema;
 
   /**
-   * @var \Donquixote\Cf\Zoo\V2V\Drilldown\V2V_DrilldownInterface
+   * @var \Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface
    */
   private $v2v;
 
   /**
-   * @var \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface
+   * @var \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface
    */
   private $schemaToAnything;
 
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownValInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\DrilldownVal\CfSchema_DrilldownValInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self
    */
@@ -45,8 +45,8 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $schema
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self
    */
@@ -55,9 +55,9 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
   }
 
   /**
-   * @param \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface $schema
-   * @param \Donquixote\Cf\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    */
   protected function __construct(CfSchema_DrilldownInterface $schema, V2V_DrilldownInterface $v2v, SchemaToAnythingInterface $schemaToAnything) {
     $this->schema = $schema;

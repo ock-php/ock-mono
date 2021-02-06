@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaToAnything\Partial;
+namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInterface {
 
@@ -81,14 +81,14 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param string $interface
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $helper
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
    * @return null|object
    *   An instance of $interface, or NULL.
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   final public function schema(
     CfSchemaInterface $schema,
@@ -116,14 +116,14 @@ abstract class SchemaToAnythingPartialBase implements SchemaToAnythingPartialInt
   }
 
   /**
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
    * @param string $interface
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $helper
+   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $helper
    *
    * @return null|object
    *   An instance of $interface, or NULL.
    *
-   * @throws \Donquixote\Cf\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
   abstract protected function schemaDoGetObject(
     CfSchemaInterface $schema,

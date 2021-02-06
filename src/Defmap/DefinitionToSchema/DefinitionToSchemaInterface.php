@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Defmap\DefinitionToSchema;
+namespace Donquixote\OCUI\Defmap\DefinitionToSchema;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 
 /**
  * Objects to create schema based on definitions.
@@ -17,11 +17,11 @@ interface DefinitionToSchemaInterface {
    * Gets or creates a schema object from a given definition array.
    *
    * @param array $definition
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    *
-   * @throws \Donquixote\Cf\Exception\CfSchemaCreationException
+   * @throws \Donquixote\OCUI\Exception\CfSchemaCreationException
    */
   public function definitionGetSchema(array $definition, CfContextInterface $context = NULL): CfSchemaInterface;
 

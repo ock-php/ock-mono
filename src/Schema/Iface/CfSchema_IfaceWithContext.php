@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Schema\Iface;
+namespace Donquixote\OCUI\Schema\Iface;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Optional\CfSchema_Optional;
-use Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface;
-use Donquixote\Cf\Schema\Sequence\CfSchema_Sequence;
+use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Schema\Optional\CfSchema_Optional;
+use Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface;
+use Donquixote\OCUI\Schema\Sequence\CfSchema_Sequence;
 
 class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
 
@@ -17,7 +17,7 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
   private $interface;
 
   /**
-   * @var \Donquixote\Cf\Context\CfContextInterface|NULL
+   * @var \Donquixote\OCUI\Context\CfContextInterface|NULL
    */
   private $context;
 
@@ -28,9 +28,9 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
 
   /**
    * @param string $interface
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Schema\Sequence\CfSchema_Sequence
+   * @return \Donquixote\OCUI\Schema\Sequence\CfSchema_Sequence
    */
   public static function createSequence(string $interface, CfContextInterface $context = NULL): CfSchema_Sequence {
     return new CfSchema_Sequence(
@@ -39,9 +39,9 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
 
   /**
    * @param string $interface
-   * @param \Donquixote\Cf\Context\CfContextInterface|NULL $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
    *
-   * @return \Donquixote\Cf\Schema\Optional\CfSchema_OptionalInterface
+   * @return \Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface
    */
   public static function createOptional(string $interface, CfContextInterface $context = NULL): CfSchema_OptionalInterface {
     return new CfSchema_Optional(new self($interface, $context));
@@ -49,10 +49,10 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
 
   /**
    * @param $interface
-   * @param \Donquixote\Cf\Context\CfContextInterface|NULL $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
    * @param bool $required
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
    */
   public static function create($interface, CfContextInterface $context = NULL, $required = TRUE): CfSchemaInterface {
     $schema = new self($interface, $context);
@@ -64,7 +64,7 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
 
   /**
    * @param string $interface
-   * @param \Donquixote\Cf\Context\CfContextInterface|NULL $context
+   * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
    */
   public function __construct(string $interface, CfContextInterface $context = NULL) {
     $this->interface = $interface;

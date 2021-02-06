@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Zoo\V2V\Drilldown;
+namespace Donquixote\OCUI\Zoo\V2V\Drilldown;
 
-use Donquixote\Cf\Zoo\V2V\Id\V2V_IdInterface;
+use Donquixote\OCUI\Zoo\V2V\Id\V2V_IdInterface;
 
 class V2V_Drilldown_FromIdV2V implements V2V_DrilldownInterface {
 
   /**
-   * @var \Donquixote\Cf\Zoo\V2V\Id\V2V_IdInterface
+   * @var \Donquixote\OCUI\Zoo\V2V\Id\V2V_IdInterface
    */
   private $v2vId;
 
   /**
-   * @param \Donquixote\Cf\Zoo\V2V\Id\V2V_IdInterface $v2vId
+   * @param \Donquixote\OCUI\Zoo\V2V\Id\V2V_IdInterface $v2vId
    */
   public function __construct(V2V_IdInterface $v2vId) {
     $this->v2vId = $v2vId;

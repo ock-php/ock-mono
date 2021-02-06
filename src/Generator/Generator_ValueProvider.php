@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\Generator;
+namespace Donquixote\OCUI\Generator;
 
-use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProviderInterface;
+use Donquixote\OCUI\Schema\ValueProvider\CfSchema_ValueProviderInterface;
 
 /**
  * @STA
@@ -11,12 +11,12 @@ use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProviderInterface;
 class Generator_ValueProvider implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProviderInterface
+   * @var \Donquixote\OCUI\Schema\ValueProvider\CfSchema_ValueProviderInterface
    */
   private $schema;
 
   /**
-   * @param \Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProviderInterface $schema
+   * @param \Donquixote\OCUI\Schema\ValueProvider\CfSchema_ValueProviderInterface $schema
    */
   public function __construct(CfSchema_ValueProviderInterface $schema) {
     $this->schema = $schema;

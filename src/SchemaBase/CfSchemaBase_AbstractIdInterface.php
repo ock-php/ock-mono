@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Cf\SchemaBase;
+namespace Donquixote\OCUI\SchemaBase;
 
 interface CfSchemaBase_AbstractIdInterface {
 
