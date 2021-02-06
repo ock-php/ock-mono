@@ -8,7 +8,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_Function;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\OCUI\Core\Formula\Base\CfSchemaBaseInterface;
+use Donquixote\OCUI\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_Callback;
 use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_CallbackNoHelper;
@@ -72,7 +72,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
       $specifity = -1;
     }
     // @todo Why are we only requiring CfSchemaBaseInterface?
-    elseif (!is_a($schemaType, CfSchemaBaseInterface::class, TRUE)) {
+    elseif (!is_a($schemaType, FormulaBaseInterface::class, TRUE)) {
       return NULL;
     }
     else {

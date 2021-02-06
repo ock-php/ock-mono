@@ -6,7 +6,7 @@ namespace Donquixote\OCUI\SchemaToAnything\Partial;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\OCUI\Core\Formula\Base\CfSchemaBaseInterface;
+use Donquixote\OCUI\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Util\ReflectionUtil;
@@ -43,7 +43,7 @@ class SchemaToAnythingPartial_Callback extends SchemaToAnythingPartialBase {
       $schemaType = NULL;
       $specifity = -1;
     }
-    elseif (!is_a($schemaType, CfSchemaBaseInterface::class, TRUE)) {
+    elseif (!is_a($schemaType, FormulaBaseInterface::class, TRUE)) {
       return NULL;
     }
     else {

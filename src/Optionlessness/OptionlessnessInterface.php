@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Optionlessness;
 
-use Donquixote\OCUI\Core\Formula\Base\CfSchemaBaseInterface;
+use Donquixote\OCUI\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\OCUI\Form\Common\FormatorCommonInterface;
 
-interface OptionlessnessInterface extends FormatorCommonInterface, CfSchemaBaseInterface {
+interface OptionlessnessInterface extends FormatorCommonInterface, FormulaBaseInterface {
 
   /**
    * @return bool

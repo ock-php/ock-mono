@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaBase\Decorator;
 
-use Donquixote\OCUI\Core\Formula\Base\CfSchemaBaseInterface;
+use Donquixote\OCUI\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
-interface CfSchema_DecoratorBaseInterface extends CfSchemaBaseInterface {
+interface Formula_DecoratorBaseInterface extends FormulaBaseInterface {
 
   /**
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
