@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\FixedConf;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 
 class CfSchema_FixedConf implements CfSchema_FixedConfInterface {
 
   /**
-   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface
+   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface
    */
   private $decorated;
 
@@ -18,7 +18,7 @@ class CfSchema_FixedConf implements CfSchema_FixedConfInterface {
   private $conf;
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
    * @param mixed $conf
    */
   public function __construct(CfSchemaInterface $decorated, $conf) {

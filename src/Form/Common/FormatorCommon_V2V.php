@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Form\Common;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\SchemaBase\CfSchema_ValueToValueBaseInterface;
 use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;

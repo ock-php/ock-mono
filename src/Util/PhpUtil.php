@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Util;
 
 use Donquixote\CallbackReflection\Exception\GeneratedCodeException;
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\OCUI\Exception\EvaluatorException_UnsupportedSchema;
 
@@ -76,7 +76,7 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
    * @param string $expectedClass
    * @param mixed $foundValue
    *
@@ -113,7 +113,7 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
    * @param string $destinationClass
    *
    * @return string
@@ -134,7 +134,7 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
    * @param string|null $message
    *
    * @return string

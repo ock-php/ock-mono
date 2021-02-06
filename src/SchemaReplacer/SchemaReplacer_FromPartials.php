@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaReplacer;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 
 class SchemaReplacer_FromPartials implements SchemaReplacerInterface {
 

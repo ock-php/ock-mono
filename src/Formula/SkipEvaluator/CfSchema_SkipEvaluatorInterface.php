@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\SkipEvaluator;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBaseInterface;
 
 /**
@@ -12,7 +12,7 @@ use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBaseInterface;
 interface CfSchema_SkipEvaluatorInterface extends CfSchema_DecoratorBaseInterface, CfSchemaInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
    */
   public function getDecorated(): CfSchemaInterface;
 

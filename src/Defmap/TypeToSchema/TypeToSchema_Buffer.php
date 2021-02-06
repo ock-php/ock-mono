@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Defmap\TypeToSchema;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 
 class TypeToSchema_Buffer implements TypeToSchemaInterface {
 
@@ -14,7 +14,7 @@ class TypeToSchema_Buffer implements TypeToSchemaInterface {
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
    */
   private $schemas = [];
 

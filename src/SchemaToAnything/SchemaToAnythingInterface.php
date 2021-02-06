@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaToAnything;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 
 interface SchemaToAnythingInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
    * @param string $interface
    *
    * @return object|null

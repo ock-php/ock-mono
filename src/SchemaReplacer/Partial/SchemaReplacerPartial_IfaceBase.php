@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 abstract class SchemaReplacerPartial_IfaceBase implements SchemaReplacerPartialInterface {
 
   /**
-   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
    */
   private $schemas = [];
 
@@ -41,7 +41,7 @@ abstract class SchemaReplacerPartial_IfaceBase implements SchemaReplacerPartialI
    * @param \Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
    * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface|null
    */
   abstract protected function schemaDoGetReplacement(
     CfSchema_IfaceWithContextInterface $ifaceSchema,

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Label;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBase;
 use Donquixote\OCUI\Text\TextInterface;
 
@@ -15,7 +15,7 @@ class CfSchema_Label extends CfSchema_DecoratorBase implements CfSchema_LabelInt
   private $label;
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
    * @param \Donquixote\OCUI\Text\TextInterface|null $label
    */
   public function __construct(CfSchemaInterface $decorated, ?TextInterface $label) {

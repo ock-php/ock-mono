@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Defmap\DefinitionToSchema;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class DefinitionToSchema_Replacer implements DefinitionToSchemaInterface {
@@ -35,7 +35,7 @@ class DefinitionToSchema_Replacer implements DefinitionToSchemaInterface {
    * @param array $definition
    * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
    *
    * @throws \Donquixote\OCUI\Exception\CfSchemaCreationException
    */

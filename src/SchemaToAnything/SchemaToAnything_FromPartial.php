@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\SchemaToAnything;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Exception\SchemaToAnythingException;
 use Donquixote\OCUI\Formula\ContextProviding\CfSchema_ContextProvidingInterface;
 use Donquixote\OCUI\Formula\Contextual\CfSchema_ContextualInterface;

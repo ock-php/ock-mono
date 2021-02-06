@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Exception;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 
 class SchemaToAnythingException extends \Exception implements UnsupportedSchemaExceptionInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
    * @param string $interface
    * @param mixed|null $instead
    *
@@ -35,7 +35,7 @@ class SchemaToAnythingException extends \Exception implements UnsupportedSchemaE
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
    * @param string $interface
    * @param string|null $message_append
    *

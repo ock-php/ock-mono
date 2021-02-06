@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaBase;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 
 /**
  * Base interface for all schema types where the configuration form and summary
@@ -12,7 +12,7 @@ use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 interface CfSchema_ValueToValueBaseInterface extends CfSchemaInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
    */
   public function getDecorated(): CfSchemaInterface;
 

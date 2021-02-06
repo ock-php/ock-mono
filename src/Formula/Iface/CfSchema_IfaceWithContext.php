@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\Iface;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Formula\Optional\CfSchema_Optional;
 use Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface;
 use Donquixote\OCUI\Formula\Sequence\CfSchema_Sequence;
@@ -52,7 +52,7 @@ class CfSchema_IfaceWithContext implements CfSchema_IfaceWithContextInterface {
    * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
    * @param bool $required
    *
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
    */
   public static function create($interface, CfContextInterface $context = NULL, $required = TRUE): CfSchemaInterface {
     $schema = new self($interface, $context);

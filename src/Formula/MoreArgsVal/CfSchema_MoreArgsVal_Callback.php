@@ -7,7 +7,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Formula\MoreArgs\CfSchema_MoreArgs;
 use Donquixote\OCUI\Util\UtilBase;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Callback;
@@ -16,7 +16,7 @@ final class CfSchema_MoreArgsVal_Callback extends UtilBase {
 
   /**
    * @param string $class
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
    * @param \Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface[] $more
    *
    * @return \Donquixote\OCUI\Formula\MoreArgsVal\CfSchema_MoreArgsValInterface
@@ -37,7 +37,7 @@ final class CfSchema_MoreArgsVal_Callback extends UtilBase {
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
    * @param \Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface[] $more
    *
    * @return \Donquixote\OCUI\Formula\MoreArgsVal\CfSchema_MoreArgsValInterface
@@ -59,7 +59,7 @@ final class CfSchema_MoreArgsVal_Callback extends UtilBase {
 
   /**
    * @param callable $callable
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
    * @param \Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface[] $more
    *
    * @return \Donquixote\OCUI\Formula\MoreArgsVal\CfSchema_MoreArgsValInterface
@@ -78,7 +78,7 @@ final class CfSchema_MoreArgsVal_Callback extends UtilBase {
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
    * @param \Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface[] $more
    *
    * @return \Donquixote\OCUI\Formula\MoreArgsVal\CfSchema_MoreArgsValInterface

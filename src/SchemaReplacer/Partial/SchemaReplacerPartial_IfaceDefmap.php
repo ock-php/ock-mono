@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface;
 use Donquixote\OCUI\Formula\Defmap\CfSchema_Defmap;
 use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface;
@@ -23,7 +23,7 @@ class SchemaReplacerPartial_IfaceDefmap implements SchemaReplacerPartialInterfac
   private $withTaggingDecorator;
 
   /**
-   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
    */
   private $schemas = [];
 
@@ -67,7 +67,7 @@ class SchemaReplacerPartial_IfaceDefmap implements SchemaReplacerPartialInterfac
    * @param \Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
    * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
    */
   private function schemaDoGetReplacement(
     CfSchema_IfaceWithContextInterface $ifaceSchema,

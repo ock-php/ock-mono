@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Defmap\Discovery\ClassFileToDefinitions;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Discovery\DocToAnnotations\DocToAnnotations;
 use Donquixote\OCUI\Discovery\DocToAnnotations\DocToAnnotationsInterface;
 use Donquixote\OCUI\Util\DefinitionUtil;

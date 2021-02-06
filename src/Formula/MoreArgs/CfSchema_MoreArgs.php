@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\MoreArgs;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface;
 use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBase;
 
@@ -20,7 +20,7 @@ class CfSchema_MoreArgs extends CfSchema_DecoratorBase implements CfSchema_MoreA
   private $specialKey;
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
    * @param string|int $specialKey
    *
    * @return \Donquixote\OCUI\Formula\MoreArgs\CfSchema_MoreArgs
@@ -30,7 +30,7 @@ class CfSchema_MoreArgs extends CfSchema_DecoratorBase implements CfSchema_MoreA
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
    * @param \Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface[] $more
    * @param string|int $specialKey
    */

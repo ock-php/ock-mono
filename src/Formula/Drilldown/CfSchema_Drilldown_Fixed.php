@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Drilldown;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Formula\Id\CfSchema_IdInterface;
 use Donquixote\OCUI\Formula\Select\CfSchema_Select_Fixed;
 use Donquixote\OCUI\IdToSchema\IdToSchema_Fixed;
@@ -22,7 +22,7 @@ class CfSchema_Drilldown_Fixed extends CfSchema_Drilldown_CustomKeysBase {
   private $idToSchema;
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface[] $schemas
    * @param string[] $labels
    *
    * @return self
@@ -44,7 +44,7 @@ class CfSchema_Drilldown_Fixed extends CfSchema_Drilldown_CustomKeysBase {
 
   /**
    * @param string $id
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
    * @param string $label
    * @param string $groupLabel
    *

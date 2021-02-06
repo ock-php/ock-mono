@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Generator\Generator;
 use Donquixote\OCUI\Generator\GeneratorInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
@@ -18,7 +18,7 @@ trait StaticFactoryTrait {
   private static $schema;
 
   /**
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface|null
    */
   public static function schema(): CfSchemaInterface {
     return self::$schema
@@ -26,7 +26,7 @@ trait StaticFactoryTrait {
   }
 
   /**
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
    */
   abstract protected static function createSchema(): CfSchemaInterface;
 

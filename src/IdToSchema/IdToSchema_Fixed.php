@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\IdToSchema;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 
 class IdToSchema_Fixed implements IdToSchemaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
    */
   private $schemas;
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface[] $schemas
    */
   public function __construct(array $schemas) {
     $this->schemas = $schemas;
@@ -21,7 +21,7 @@ class IdToSchema_Fixed implements IdToSchemaInterface {
 
   /**
    * @param string $id
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
    *
    * @return \Donquixote\OCUI\IdToSchema\IdToSchema_Fixed
    */

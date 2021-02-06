@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Optional;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Text\TextInterface;
 
 interface CfSchema_OptionalInterface extends CfSchemaInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface
    *   The non-optional version.
    */
   public function getDecorated(): CfSchemaInterface;

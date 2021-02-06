@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Util;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 final class StaUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface[] $itemSchemas
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface[] $itemSchemas
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    * @param string $interface
    *
@@ -34,7 +34,7 @@ final class StaUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    * @param string $interface
    *

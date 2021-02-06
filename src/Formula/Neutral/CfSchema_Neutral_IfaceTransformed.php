@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\Neutral;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBase;
 
 class CfSchema_Neutral_IfaceTransformed extends CfSchema_DecoratorBase implements CfSchema_NeutralInterface {
@@ -20,7 +20,7 @@ class CfSchema_Neutral_IfaceTransformed extends CfSchema_DecoratorBase implement
   private $context;
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $decorated
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $decorated
    * @param string $interface
    * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    */

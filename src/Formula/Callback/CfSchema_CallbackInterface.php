@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Formula\Callback;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 
 interface CfSchema_CallbackInterface extends CfSchemaInterface {
 
@@ -15,7 +15,7 @@ interface CfSchema_CallbackInterface extends CfSchemaInterface {
   public function getCallback(): CallbackReflectionInterface;
 
   /**
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
    */
   public function getExplicitParamSchemas(): array;
 

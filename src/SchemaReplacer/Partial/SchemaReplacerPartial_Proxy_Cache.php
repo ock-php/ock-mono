@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 use Donquixote\OCUI\Cache\CacheInterface;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Formula\Proxy\Cache\CfSchema_Proxy_CacheInterface;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
@@ -16,7 +16,7 @@ class SchemaReplacerPartial_Proxy_Cache implements SchemaReplacerPartialInterfac
   private $cache;
 
   /**
-   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
    */
   private $buffer = [];
 

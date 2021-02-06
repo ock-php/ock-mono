@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\StringVal;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Formula\Textfield\CfSchema_TextfieldInterface;
 
 abstract class CfSchema_StringValBase implements CfSchema_StringValInterface {

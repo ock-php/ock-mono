@@ -3,7 +3,7 @@
 namespace Donquixote\OCUI\Formula\ContextProviding;
 
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Formula\SkipEvaluator\CfSchema_SkipEvaluatorInterface;
 
 interface CfSchema_ContextProvidingInterface extends CfSchema_SkipEvaluatorInterface {

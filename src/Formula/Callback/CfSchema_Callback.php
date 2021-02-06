@@ -7,7 +7,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContext;
 
 class CfSchema_Callback implements CfSchema_CallbackInterface {
@@ -18,7 +18,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
   private $callbackReflection;
 
   /**
-   * @var \Donquixote\OCUI\Core\Schema\CfSchemaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\CfSchemaInterface[]
    */
   private $explicitSchemas = [];
 
@@ -86,7 +86,7 @@ class CfSchema_Callback implements CfSchema_CallbackInterface {
 
   /**
    * @param int $index
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $schema
    * @param string|null $label
    *
    * @return static

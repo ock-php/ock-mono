@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Sequence;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\Translator\TranslatorInterface;
 
 class CfSchema_Sequence_ItemLabelT extends CfSchema_SequenceBase {
@@ -24,7 +24,7 @@ class CfSchema_Sequence_ItemLabelT extends CfSchema_SequenceBase {
   private $placeholder;
 
   /**
-   * @param \Donquixote\OCUI\Core\Schema\CfSchemaInterface $itemSchema
+   * @param \Donquixote\OCUI\Core\Formula\CfSchemaInterface $itemSchema
    * @param string $newItemLabel
    * @param string $itemLabelN
    * @param string $placeholder

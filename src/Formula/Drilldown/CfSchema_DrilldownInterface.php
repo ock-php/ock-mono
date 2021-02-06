@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Drilldown;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
 use Donquixote\OCUI\Formula\Id\CfSchema_IdInterface;
 

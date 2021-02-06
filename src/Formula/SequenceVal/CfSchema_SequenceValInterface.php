@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\SequenceVal;
 
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\SchemaBase\Decorator\CfSchema_DecoratorBaseInterface;
 use Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface;
 

@@ -6,7 +6,7 @@ namespace Donquixote\OCUI\SchemaReplacer\Partial;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
 use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
+use Donquixote\OCUI\Core\Formula\CfSchemaInterface;
 use Donquixote\OCUI\ParamToLabel\ParamToLabel;
 use Donquixote\OCUI\ParamToLabel\ParamToLabelInterface;
 use Donquixote\OCUI\Formula\Callback\CfSchema_CallbackInterface;
@@ -150,7 +150,7 @@ class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
    * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
-   * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface|null
+   * @return \Donquixote\OCUI\Core\Formula\CfSchemaInterface|null
    */
   private function paramGetSchema(
     \ReflectionParameter $param,
