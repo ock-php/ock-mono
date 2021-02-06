@@ -5,8 +5,8 @@ namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 use Donquixote\OCUI\Cache\CacheInterface;
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
-use Donquixote\OCUI\Schema\Cache\CfSchema_Cache_SelectInterface;
-use Donquixote\OCUI\Schema\Select\CfSchema_Select_Fixed;
+use Donquixote\OCUI\Formula\Cache\CfSchema_Cache_SelectInterface;
+use Donquixote\OCUI\Formula\Select\CfSchema_Select_Fixed;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_Cache_Select implements SchemaReplacerPartialInterface {
@@ -80,7 +80,7 @@ class SchemaReplacerPartial_Cache_Select implements SchemaReplacerPartialInterfa
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Cache\CfSchema_Cache_SelectInterface $proxy
+   * @param \Donquixote\OCUI\Formula\Cache\CfSchema_Cache_SelectInterface $proxy
    *
    * @return array
    */

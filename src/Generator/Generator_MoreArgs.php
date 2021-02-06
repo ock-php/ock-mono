@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Schema\MoreArgs\CfSchema_MoreArgsInterface;
-use Donquixote\OCUI\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface;
+use Donquixote\OCUI\Formula\MoreArgs\CfSchema_MoreArgsInterface;
+use Donquixote\OCUI\Formula\MoreArgsVal\CfSchema_MoreArgsValInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Trivial;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
@@ -34,7 +34,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\MoreArgs\CfSchema_MoreArgsInterface $schema
+   * @param \Donquixote\OCUI\Formula\MoreArgs\CfSchema_MoreArgsInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
@@ -48,7 +48,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\MoreArgsVal\CfSchema_MoreArgsValInterface $schema
+   * @param \Donquixote\OCUI\Formula\MoreArgsVal\CfSchema_MoreArgsValInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
@@ -66,7 +66,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\MoreArgs\CfSchema_MoreArgsInterface $moreArgsSchema
+   * @param \Donquixote\OCUI\Formula\MoreArgs\CfSchema_MoreArgsInterface $moreArgsSchema
    * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $v2v
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *

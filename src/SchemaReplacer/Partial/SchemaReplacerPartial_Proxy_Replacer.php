@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
-use Donquixote\OCUI\Schema\Proxy\Replacer\CfSchema_Proxy_ReplacerInterface;
+use Donquixote\OCUI\Formula\Proxy\Replacer\CfSchema_Proxy_ReplacerInterface;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_Proxy_Replacer implements SchemaReplacerPartialInterface {

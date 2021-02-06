@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface;
+use Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
@@ -12,7 +12,7 @@ use Donquixote\OCUI\Util\StaUtil;
 class Summarizer_Group implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface
+   * @var \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface
    */
   private $schema;
 
@@ -24,7 +24,7 @@ class Summarizer_Group implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $schema
+   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
@@ -49,7 +49,7 @@ class Summarizer_Group implements SummarizerInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $schema
+   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $schema
    * @param \Donquixote\OCUI\Summarizer\SummarizerInterface[] $itemSummarizers
    */
   public function __construct(CfSchema_GroupInterface $schema, array $itemSummarizers) {

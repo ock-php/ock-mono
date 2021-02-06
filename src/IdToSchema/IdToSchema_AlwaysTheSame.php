@@ -8,7 +8,7 @@ use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 class IdToSchema_AlwaysTheSame implements IdToSchemaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue
+   * @var \Donquixote\OCUI\Formula\ValueProvider\CfSchema_ValueProvider_FixedValue
    */
   private $sameSchema;
 

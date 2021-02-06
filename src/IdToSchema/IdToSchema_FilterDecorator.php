@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\IdToSchema;
 
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
-use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Formula\Id\CfSchema_IdInterface;
 
 class IdToSchema_FilterDecorator implements IdToSchemaInterface {
 
@@ -14,13 +14,13 @@ class IdToSchema_FilterDecorator implements IdToSchemaInterface {
   private $idToSchema;
 
   /**
-   * @var \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface
+   * @var \Donquixote\OCUI\Formula\Id\CfSchema_IdInterface
    */
   private $condition;
 
   /**
    * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $decorated
-   * @param \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface $condition
+   * @param \Donquixote\OCUI\Formula\Id\CfSchema_IdInterface $condition
    *
    * @todo There should be a narrower interface for $condition parameter.
    */

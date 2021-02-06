@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\OCUI\Schema\Textfield\CfSchema_TextfieldInterface;
+use Donquixote\OCUI\Formula\Textfield\CfSchema_TextfieldInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
 
@@ -13,12 +13,12 @@ use Donquixote\OCUI\Text\TextInterface;
 class Summarizer_Textfield implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Schema\Textfield\CfSchema_TextfieldInterface
+   * @var \Donquixote\OCUI\Formula\Textfield\CfSchema_TextfieldInterface
    */
   private $schema;
 
   /**
-   * @param \Donquixote\OCUI\Schema\Textfield\CfSchema_TextfieldInterface $schema
+   * @param \Donquixote\OCUI\Formula\Textfield\CfSchema_TextfieldInterface $schema
    */
   public function __construct(CfSchema_TextfieldInterface $schema) {
     $this->schema = $schema;

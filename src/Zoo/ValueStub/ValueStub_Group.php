@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Zoo\ValueStub;
 
-use Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface;
+use Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface;
 use Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface;
 
 class ValueStub_Group implements ValueStubInterface {
@@ -16,7 +16,7 @@ class ValueStub_Group implements ValueStubInterface {
   /**
    * @SCTA
    *
-   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $schema
+   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $schema
    * @param mixed $conf
    * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
@@ -30,7 +30,7 @@ class ValueStub_Group implements ValueStubInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $groupSchema
+   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $groupSchema
    * @param mixed $conf
    * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *

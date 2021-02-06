@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Defmap\DefinitionToSchema;
 
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
-use Donquixote\OCUI\Schema\Definition\CfSchema_Definition;
+use Donquixote\OCUI\Formula\Definition\CfSchema_Definition;
 
 class DefinitionToSchema_Simple implements DefinitionToSchemaInterface {
 

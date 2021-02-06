@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface;
+use Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface;
 use Donquixote\OCUI\Util\UtilBase;
 
 final class Summarizer_Optionless extends UtilBase {
@@ -11,7 +11,7 @@ final class Summarizer_Optionless extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface $schema
    *
    * @return \Donquixote\OCUI\Summarizer\SummarizerInterface
    */

@@ -5,8 +5,8 @@ namespace Donquixote\OCUI\Value;
 
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 use Donquixote\OCUI\Exception\EvaluatorException;
-use Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface;
-use Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface;
+use Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface;
+use Donquixote\OCUI\Formula\Sequence\CfSchema_SequenceInterface;
 use Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface;
 
 class Value implements ValueInterface {
@@ -17,7 +17,7 @@ class Value implements ValueInterface {
   private $value;
 
   /**
-   * @param \Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Formula\Sequence\CfSchema_SequenceInterface $schema
    * @param $conf
    * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
@@ -43,7 +43,7 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Formula\Sequence\CfSchema_SequenceInterface $schema
    * @param mixed $conf
    * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
@@ -75,7 +75,7 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $schema
+   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $schema
    * @param mixed $conf
    * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *
@@ -100,7 +100,7 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $groupSchema
+   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $groupSchema
    * @param mixed $conf
    * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
    *

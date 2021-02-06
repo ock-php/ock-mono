@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\DrilldownKeysHelper;
 
-use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface;
 use Donquixote\OCUI\Util\UtilBase;
 
 final class DrilldownKeysHelper extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $drilldown
+   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $drilldown
    *
    * @return \Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelperInterface
    */

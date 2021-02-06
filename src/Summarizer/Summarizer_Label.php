@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\OCUI\Schema\Label\CfSchema_LabelInterface;
+use Donquixote\OCUI\Formula\Label\CfSchema_LabelInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
@@ -26,7 +26,7 @@ class Summarizer_Label implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Label\CfSchema_LabelInterface $schema
+   * @param \Donquixote\OCUI\Formula\Label\CfSchema_LabelInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null

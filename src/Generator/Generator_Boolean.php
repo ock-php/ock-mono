@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Schema\Boolean\CfSchema_BooleanInterface;
-use Donquixote\OCUI\Schema\BoolVal\CfSchema_BoolValInterface;
+use Donquixote\OCUI\Formula\Boolean\CfSchema_BooleanInterface;
+use Donquixote\OCUI\Formula\BoolVal\CfSchema_BoolValInterface;
 use Donquixote\OCUI\Zoo\V2V\Boolean\V2V_Boolean_Trivial;
 use Donquixote\OCUI\Zoo\V2V\Boolean\V2V_BooleanInterface;
 
@@ -18,7 +18,7 @@ class Generator_Boolean implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Boolean\CfSchema_BooleanInterface $schema
+   * @param \Donquixote\OCUI\Formula\Boolean\CfSchema_BooleanInterface $schema
    *
    * @return self
    */
@@ -31,7 +31,7 @@ class Generator_Boolean implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\BoolVal\CfSchema_BoolValInterface $schema
+   * @param \Donquixote\OCUI\Formula\BoolVal\CfSchema_BoolValInterface $schema
    *
    * @return self
    */

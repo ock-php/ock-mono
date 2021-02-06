@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
-use Donquixote\OCUI\Schema\Iface\CfSchema_IfaceWithContextInterface;
-use Donquixote\OCUI\Schema\Neutral\CfSchema_Neutral_IfaceTransformed;
+use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface;
+use Donquixote\OCUI\Formula\Neutral\CfSchema_Neutral_IfaceTransformed;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_IfaceTag extends SchemaReplacerPartial_IfaceBase {
@@ -23,7 +23,7 @@ class SchemaReplacerPartial_IfaceTag extends SchemaReplacerPartial_IfaceBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
+   * @param \Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
    * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
    * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface

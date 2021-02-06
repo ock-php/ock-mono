@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Summarizer;
 
 use Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
@@ -15,7 +15,7 @@ use Donquixote\OCUI\Text\TextInterface;
 class Summarizer_Drilldown implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface
+   * @var \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface
    */
   private $schema;
 
@@ -27,7 +27,7 @@ class Summarizer_Drilldown implements SummarizerInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    */
   public function __construct(

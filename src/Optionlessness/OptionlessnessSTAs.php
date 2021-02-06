@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Optionlessness;
 
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
-use Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface;
+use Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface;
 use Donquixote\OCUI\Util\UtilBase;
 
 final class OptionlessnessSTAs extends UtilBase {
@@ -12,7 +12,7 @@ final class OptionlessnessSTAs extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Optionless\CfSchema_OptionlessInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optionless\CfSchema_OptionlessInterface $schema
    *
    * @return \Donquixote\OCUI\Optionlessness\OptionlessnessInterface
    */

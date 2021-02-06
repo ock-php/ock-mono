@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface;
-use Donquixote\OCUI\Schema\SequenceVal\CfSchema_SequenceValInterface;
+use Donquixote\OCUI\Formula\Sequence\CfSchema_SequenceInterface;
+use Donquixote\OCUI\Formula\SequenceVal\CfSchema_SequenceValInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Util\PhpUtil;
 use Donquixote\OCUI\Zoo\V2V\Sequence\V2V_Sequence_Trivial;
@@ -25,7 +25,7 @@ class Generator_Sequence implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Formula\Sequence\CfSchema_SequenceInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
@@ -39,7 +39,7 @@ class Generator_Sequence implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\SequenceVal\CfSchema_SequenceValInterface $schema
+   * @param \Donquixote\OCUI\Formula\SequenceVal\CfSchema_SequenceValInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
@@ -51,7 +51,7 @@ class Generator_Sequence implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Sequence\CfSchema_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Formula\Sequence\CfSchema_SequenceInterface $schema
    * @param \Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *

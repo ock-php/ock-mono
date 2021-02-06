@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\OCUI\Schema\Neutral\CfSchema_NeutralInterface;
+use Donquixote\OCUI\Formula\Neutral\CfSchema_NeutralInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Util\UtilBase;
 
@@ -13,7 +13,7 @@ final class Summarizer_Neutral extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Neutral\CfSchema_NeutralInterface $schema
+   * @param \Donquixote\OCUI\Formula\Neutral\CfSchema_NeutralInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return \Donquixote\OCUI\Summarizer\SummarizerInterface

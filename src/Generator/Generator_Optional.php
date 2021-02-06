@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface;
+use Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 class Generator_Optional implements GeneratorInterface {
@@ -14,14 +14,14 @@ class Generator_Optional implements GeneratorInterface {
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface
+   * @var \Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface
    */
   private $schema;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
@@ -43,7 +43,7 @@ class Generator_Optional implements GeneratorInterface {
 
   /**
    * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\OCUI\Schema\Optional\CfSchema_OptionalInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optional\CfSchema_OptionalInterface $schema
    */
   public function __construct(GeneratorInterface $decorated, CfSchema_OptionalInterface $schema) {
     $this->decorated = $decorated;

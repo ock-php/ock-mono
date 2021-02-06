@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\SchemaToAnything\Partial;
 
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 use Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchemaInterface;
-use Donquixote\OCUI\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContext;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 class SchemaToAnythingPartial_Iface extends SchemaToAnythingPartialBase {
@@ -37,7 +37,7 @@ class SchemaToAnythingPartial_Iface extends SchemaToAnythingPartialBase {
     SchemaToAnythingInterface $helper
   ) {
 
-    /** @var \Donquixote\OCUI\Schema\Iface\CfSchema_IfaceWithContext $schema */
+    /** @var \Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContext $schema */
 
     $schema = $this->typeToSchema->typeGetSchema(
       $schema->getInterface(),

@@ -6,8 +6,8 @@ namespace Donquixote\OCUI\Defmap\DefinitionToSchema\Helper;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
-use Donquixote\OCUI\Schema\Callback\CfSchema_Callback;
-use Donquixote\OCUI\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
+use Donquixote\OCUI\Formula\Callback\CfSchema_Callback;
+use Donquixote\OCUI\Formula\ValueProvider\CfSchema_ValueProvider_FixedValue;
 
 /**
  * @deprecated

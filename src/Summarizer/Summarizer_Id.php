@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Summarizer;
 
-use Donquixote\OCUI\Schema\Id\CfSchema_IdInterface;
+use Donquixote\OCUI\Formula\Id\CfSchema_IdInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
 use Donquixote\OCUI\Util\ConfUtil;
@@ -14,12 +14,12 @@ use Donquixote\OCUI\Util\ConfUtil;
 class Summarizer_Id implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface
+   * @var \Donquixote\OCUI\Formula\Id\CfSchema_IdInterface
    */
   private $schema;
 
   /**
-   * @param \Donquixote\OCUI\Schema\Id\CfSchema_IdInterface $schema
+   * @param \Donquixote\OCUI\Formula\Id\CfSchema_IdInterface $schema
    */
   public function __construct(CfSchema_IdInterface $schema) {
     $this->schema = $schema;

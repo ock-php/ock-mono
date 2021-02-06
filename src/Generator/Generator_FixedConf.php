@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Schema\FixedConf\CfSchema_FixedConfInterface;
+use Donquixote\OCUI\Formula\FixedConf\CfSchema_FixedConfInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 class Generator_FixedConf implements GeneratorInterface {
@@ -21,7 +21,7 @@ class Generator_FixedConf implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\FixedConf\CfSchema_FixedConfInterface $schema
+   * @param \Donquixote\OCUI\Formula\FixedConf\CfSchema_FixedConfInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface

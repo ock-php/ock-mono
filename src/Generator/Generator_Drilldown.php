@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Generator;
 
 use Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
-use Donquixote\OCUI\Schema\DrilldownVal\CfSchema_DrilldownValInterface;
+use Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Formula\DrilldownVal\CfSchema_DrilldownValInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Util\PhpUtil;
 use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_Drilldown_Trivial;
@@ -14,7 +14,7 @@ use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
 class Generator_Drilldown implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface
+   * @var \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface
    */
   private $schema;
 
@@ -31,7 +31,7 @@ class Generator_Drilldown implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\DrilldownVal\CfSchema_DrilldownValInterface $schema
+   * @param \Donquixote\OCUI\Formula\DrilldownVal\CfSchema_DrilldownValInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self
@@ -43,7 +43,7 @@ class Generator_Drilldown implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self
@@ -53,7 +53,7 @@ class Generator_Drilldown implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $schema
    * @param \Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    */

@@ -7,8 +7,8 @@ use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\OCUI\Schema\Drilldown\CfSchema_Drilldown_FromDefinitionMap;
-use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Formula\Drilldown\CfSchema_Drilldown_FromDefinitionMap;
+use Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface;
 
 class DefmapToDrilldownSchema implements DefmapToDrilldownSchemaInterface {
 

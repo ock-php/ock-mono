@@ -5,8 +5,8 @@ namespace Donquixote\OCUI\Contextualizer;
 
 use Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\OCUI\Generator\Generator;
-use Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface;
-use Donquixote\OCUI\Schema\DrilldownVal\CfSchema_DrilldownValInterface;
+use Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface;
+use Donquixote\OCUI\Formula\DrilldownVal\CfSchema_DrilldownValInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Util\PhpUtil;
 use Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_Drilldown_Trivial;
@@ -16,7 +16,7 @@ use Donquixote\ReflectionKit\Context\ContextInterface;
 class Contextualizer_Drilldown implements ContextualizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface
+   * @var \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface
    */
   private $schema;
 
@@ -33,7 +33,7 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\DrilldownVal\CfSchema_DrilldownValInterface $schema
+   * @param \Donquixote\OCUI\Formula\DrilldownVal\CfSchema_DrilldownValInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self
@@ -45,7 +45,7 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self
@@ -55,7 +55,7 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Drilldown\CfSchema_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Formula\Drilldown\CfSchema_DrilldownInterface $schema
    * @param \Donquixote\OCUI\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    */

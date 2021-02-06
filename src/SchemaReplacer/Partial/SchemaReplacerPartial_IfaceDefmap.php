@@ -5,9 +5,9 @@ namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface;
-use Donquixote\OCUI\Schema\Defmap\CfSchema_Defmap;
-use Donquixote\OCUI\Schema\Iface\CfSchema_IfaceWithContextInterface;
-use Donquixote\OCUI\Schema\Neutral\CfSchema_Neutral_IfaceTransformed;
+use Donquixote\OCUI\Formula\Defmap\CfSchema_Defmap;
+use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface;
+use Donquixote\OCUI\Formula\Neutral\CfSchema_Neutral_IfaceTransformed;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_IfaceDefmap implements SchemaReplacerPartialInterface {
@@ -64,7 +64,7 @@ class SchemaReplacerPartial_IfaceDefmap implements SchemaReplacerPartialInterfac
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
+   * @param \Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContextInterface $ifaceSchema
    * @param \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $replacer
    *
    * @return \Donquixote\OCUI\Core\Schema\CfSchemaInterface

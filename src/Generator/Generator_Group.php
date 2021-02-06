@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface;
-use Donquixote\OCUI\Schema\GroupVal\CfSchema_GroupValInterface;
+use Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface;
+use Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupValInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Trivial;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
@@ -24,7 +24,7 @@ class Generator_Group implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $schema
+   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
@@ -38,7 +38,7 @@ class Generator_Group implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\GroupVal\CfSchema_GroupValInterface $schema
+   * @param \Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupValInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
@@ -50,7 +50,7 @@ class Generator_Group implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Schema\Group\CfSchema_GroupInterface $groupSchema
+   * @param \Donquixote\OCUI\Formula\Group\CfSchema_GroupInterface $groupSchema
    * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $v2v
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *

@@ -3,21 +3,21 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Schema\ValueToValue\CfSchema_ValueToValueInterface;
+use Donquixote\OCUI\Formula\ValueToValue\CfSchema_ValueToValueInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface;
 
 class Generator_ValueToValue extends Generator_DecoratorBase {
 
   /**
-   * @var \Donquixote\OCUI\Schema\ValueToValue\CfSchema_ValueToValueInterface
+   * @var \Donquixote\OCUI\Formula\ValueToValue\CfSchema_ValueToValueInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\ValueToValue\CfSchema_ValueToValueInterface $valueToValueSchema
+   * @param \Donquixote\OCUI\Formula\ValueToValue\CfSchema_ValueToValueInterface $valueToValueSchema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null

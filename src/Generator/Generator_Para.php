@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Schema\Para\CfSchema_ParaInterface;
+use Donquixote\OCUI\Formula\Para\CfSchema_ParaInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Util\PhpUtil;
 
@@ -22,7 +22,7 @@ class Generator_Para implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\Para\CfSchema_ParaInterface $schema
+   * @param \Donquixote\OCUI\Formula\Para\CfSchema_ParaInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self

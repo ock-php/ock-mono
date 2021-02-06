@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Util;
 
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\OCUI\Discovery\AnnotatedFactory\AnnotatedFactory;
 use Donquixote\OCUI\Translator\Translator;
+use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 

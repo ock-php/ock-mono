@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Schema\SkipEvaluator\CfSchema_SkipEvaluatorInterface;
+use Donquixote\OCUI\Formula\SkipEvaluator\CfSchema_SkipEvaluatorInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 
 class Generator_Neutral extends Generator_DecoratorBase {
@@ -11,7 +11,7 @@ class Generator_Neutral extends Generator_DecoratorBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Schema\SkipEvaluator\CfSchema_SkipEvaluatorInterface $schema
+   * @param \Donquixote\OCUI\Formula\SkipEvaluator\CfSchema_SkipEvaluatorInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface|null

@@ -6,10 +6,10 @@ namespace Donquixote\OCUI\SchemaReplacer\Partial;
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\OCUI\Schema\Definitions\CfSchema_DefinitionsInterface;
-use Donquixote\OCUI\Schema\Drilldown\CfSchema_Drilldown_FromDefinitions;
-use Donquixote\OCUI\Schema\Drilldown\CfSchema_Drilldown_InlineExpanded;
-use Donquixote\OCUI\Schema\Id\CfSchema_Id_DefinitionsKey;
+use Donquixote\OCUI\Formula\Definitions\CfSchema_DefinitionsInterface;
+use Donquixote\OCUI\Formula\Drilldown\CfSchema_Drilldown_FromDefinitions;
+use Donquixote\OCUI\Formula\Drilldown\CfSchema_Drilldown_InlineExpanded;
+use Donquixote\OCUI\Formula\Id\CfSchema_Id_DefinitionsKey;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_DefinitionsDrilldown implements SchemaReplacerPartialInterface {
