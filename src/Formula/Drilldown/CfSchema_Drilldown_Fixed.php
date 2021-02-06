@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\Drilldown;
 
 use Donquixote\OCUI\Core\Schema\CfSchemaInterface;
-use Donquixote\OCUI\IdToSchema\IdToSchema_Fixed;
-use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
 use Donquixote\OCUI\Formula\Id\CfSchema_IdInterface;
 use Donquixote\OCUI\Formula\Select\CfSchema_Select_Fixed;
+use Donquixote\OCUI\IdToSchema\IdToSchema_Fixed;
+use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
 
 class CfSchema_Drilldown_Fixed extends CfSchema_Drilldown_CustomKeysBase {
 

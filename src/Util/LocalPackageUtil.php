@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Util;
 
-use Donquixote\OCUI\Discovery\STADiscovery_X;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\NamespaceDirectory;
+use Donquixote\OCUI\Discovery\STADiscovery_X;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 final class LocalPackageUtil extends UtilBase {
