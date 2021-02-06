@@ -40,6 +40,11 @@ class SchemaToAnything_SmartChain implements SchemaToAnythingInterface {
   private $partials;
 
   /**
+   * @var \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface
+   */
+  private $sta;
+
+  /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
    * @return self
@@ -66,6 +71,8 @@ class SchemaToAnything_SmartChain implements SchemaToAnythingInterface {
     array_multisort($specifities, SORT_DESC, $indices, $partials);
 
     $this->partials = $partials;
+
+    $this->sta = $this;
   }
 
   /**

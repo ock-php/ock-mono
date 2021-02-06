@@ -3,11 +3,14 @@ declare(strict_types=1);
 
 namespace Donquixote\Cf\SchemaToAnything;
 
-use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
+use Donquixote\Cf\Context\CfContextInterface;
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Exception\SchemaToAnythingException;
+use Donquixote\Cf\Schema\ContextProviding\CfSchema_ContextProvidingInterface;
+use Donquixote\Cf\Schema\Contextual\CfSchema_ContextualInterface;
 use Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartial_SmartChain;
 use Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
+use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class SchemaToAnything_FromPartial implements SchemaToAnythingInterface {
 
@@ -15,6 +18,11 @@ class SchemaToAnything_FromPartial implements SchemaToAnythingInterface {
    * @var \Donquixote\Cf\SchemaToAnything\Partial\SchemaToAnythingPartialInterface
    */
   private $partial;
+
+  /**
+   * @var \Donquixote\Cf\Context\CfContextInterface|null
+   */
+  private $context;
 
   /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
@@ -44,9 +52,38 @@ class SchemaToAnything_FromPartial implements SchemaToAnythingInterface {
   }
 
   /**
+   * Immutable setter. Sets a context.
+   *
+   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   *   Context to constrain available options.
+   *
+   * @return \Donquixote\Cf\SchemaToAnything\SchemaToAnything_FromPartial
+   */
+  public function withContext(?CfContextInterface $context) {
+    $instance = clone $this;
+    $instance->context = $context;
+    return $instance;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function schema(CfSchemaInterface $schema, string $interface): ?object {
+
+    if ($schema instanceof CfSchema_ContextProvidingInterface) {
+      return $this
+        ->withContext($schema->getContext())
+        ->schema(
+          $schema->getDecorated(),
+          $interface);
+    }
+
+    if ($schema instanceof CfSchema_ContextualInterface) {
+      return $this
+        ->schema(
+          $schema->getDecorated($this->context),
+          $interface);
+    }
 
     try {
       $candidate = $this->partial->schema($schema, $interface, $this);
