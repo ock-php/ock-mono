@@ -17,7 +17,7 @@ interface Formula_CallbackInterface extends FormulaInterface {
   /**
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
-  public function getExplicitParamSchemas(): array;
+  public function getExplicitParamFormulas(): array;
 
   /**
    * @return string[]

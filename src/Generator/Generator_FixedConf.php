@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Generator;
 
 use Donquixote\OCUI\Formula\FixedConf\Formula_FixedConfInterface;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 
 class Generator_FixedConf implements GeneratorInterface {
 
@@ -22,15 +22,15 @@ class Generator_FixedConf implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\OCUI\Formula\FixedConf\Formula_FixedConfInterface $schema
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface
    *
-   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_FixedConfInterface $schema, SchemaToAnythingInterface $schemaToAnything): GeneratorInterface {
+  public static function create(Formula_FixedConfInterface $schema, FormulaToAnythingInterface $schemaToAnything): GeneratorInterface {
     return new self(
-      Generator::fromSchema($schema->getDecorated(), $schemaToAnything),
+      Generator::fromFormula($schema->getDecorated(), $schemaToAnything),
       $schema->getConf());
   }
 

@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Formula\Label;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
-use Donquixote\OCUI\SchemaBase\Decorator\Formula_DecoratorBaseInterface;
+use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
 use Donquixote\OCUI\Text\TextInterface;
 
 interface Formula_LabelInterface extends FormulaInterface, Formula_DecoratorBaseInterface, Formula_SkipEvaluatorInterface {

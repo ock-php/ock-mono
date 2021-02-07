@@ -29,7 +29,7 @@ class Generator_Id implements GeneratorInterface {
    *
    * @return self
    */
-  public static function createFromIdSchema(Formula_IdInterface $schema): Generator_Id {
+  public static function createFromIdFormula(Formula_IdInterface $schema): Generator_Id {
     return new self($schema, new V2V_Id_Trivial());
   }
 
@@ -38,7 +38,7 @@ class Generator_Id implements GeneratorInterface {
    *
    * @return self
    */
-  public static function createFromIdValSchema(Formula_IdValInterface $schema): Generator_Id {
+  public static function createFromIdValFormula(Formula_IdValInterface $schema): Generator_Id {
     return new self($schema->getDecorated(), $schema->getV2V());
   }
 

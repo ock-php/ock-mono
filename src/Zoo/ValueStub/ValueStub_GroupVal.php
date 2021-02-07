@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Zoo\ValueStub;
 
 use Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface;
+use Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
 
 class ValueStub_GroupVal implements ValueStubInterface {
@@ -24,15 +24,15 @@ class ValueStub_GroupVal implements ValueStubInterface {
    *
    * @param \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface $schema
    * @param mixed $conf
-   * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
+   * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
    * @return \Donquixote\OCUI\Zoo\ValueStub\ValueStubInterface|null
    *
-   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_GroupValInterface $schema, $conf, SchemaConfToAnythingInterface $scta): ?ValueStubInterface {
+  public static function create(Formula_GroupValInterface $schema, $conf, FormulaConfToAnythingInterface $scta): ?ValueStubInterface {
     return new self(
-      ValueStub_Group::createFromGroupSchema($schema->getDecorated(), $conf, $scta),
+      ValueStub_Group::createFromGroupFormula($schema->getDecorated(), $conf, $scta),
       $schema->getV2V());
   }
 

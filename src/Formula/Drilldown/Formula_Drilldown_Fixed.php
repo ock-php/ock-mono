@@ -6,20 +6,20 @@ namespace Donquixote\OCUI\Formula\Drilldown;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
 use Donquixote\OCUI\Formula\Select\Formula_Select_Fixed;
-use Donquixote\OCUI\IdToSchema\IdToSchema_Fixed;
-use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
+use Donquixote\OCUI\IdToFormula\IdToFormula_Fixed;
+use Donquixote\OCUI\IdToFormula\IdToFormulaInterface;
 
 class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
 
   /**
    * @var \Donquixote\OCUI\Formula\Select\Formula_Select_Fixed
    */
-  private $idSchema;
+  private $idFormula;
 
   /**
-   * @var \Donquixote\OCUI\IdToSchema\IdToSchema_Fixed
+   * @var \Donquixote\OCUI\IdToFormula\IdToFormula_Fixed
    */
-  private $idToSchema;
+  private $idToFormula;
 
   /**
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
@@ -30,16 +30,16 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
   public static function create(array $schemas = [], array $labels = []): Formula_Drilldown_Fixed {
     return new self(
       Formula_Select_Fixed::createFlat($labels),
-      new IdToSchema_Fixed($schemas));
+      new IdToFormula_Fixed($schemas));
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Select\Formula_Select_Fixed $idSchema
-   * @param \Donquixote\OCUI\IdToSchema\IdToSchema_Fixed $idToSchema
+   * @param \Donquixote\OCUI\Formula\Select\Formula_Select_Fixed $idFormula
+   * @param \Donquixote\OCUI\IdToFormula\IdToFormula_Fixed $idToFormula
    */
-  private function __construct(Formula_Select_Fixed $idSchema, IdToSchema_Fixed $idToSchema) {
-    $this->idSchema = $idSchema;
-    $this->idToSchema = $idToSchema;
+  private function __construct(Formula_Select_Fixed $idFormula, IdToFormula_Fixed $idToFormula) {
+    $this->idFormula = $idFormula;
+    $this->idToFormula = $idToFormula;
   }
 
   /**
@@ -52,22 +52,22 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
    */
   public function withOption(string $id, FormulaInterface $schema, string $label, $groupLabel = '') {
     $clone = clone $this;
-    $clone->idSchema = $this->idSchema->withOption($id, $label, $groupLabel);
-    $clone->idToSchema = $this->idToSchema->withSchema($id, $schema);
+    $clone->idFormula = $this->idFormula->withOption($id, $label, $groupLabel);
+    $clone->idToFormula = $this->idToFormula->withFormula($id, $schema);
     return $clone;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getIdSchema(): Formula_IdInterface {
-    return $this->idSchema;
+  public function getIdFormula(): Formula_IdInterface {
+    return $this->idFormula;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getIdToSchema(): IdToSchemaInterface {
-    return $this->idToSchema;
+  public function getIdToFormula(): IdToFormulaInterface {
+    return $this->idToFormula;
   }
 }

@@ -12,7 +12,7 @@ abstract class Formula_Group_V2VBase implements Formula_GroupInterface, V2V_Grou
   /**
    * @return \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface
    */
-  public function getValSchema(): Formula_GroupValInterface {
+  public function getValFormula(): Formula_GroupValInterface {
     return new Formula_GroupVal($this, $this);
   }
 }

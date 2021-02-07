@@ -33,8 +33,8 @@ class Formula_Group implements Formula_GroupInterface {
    */
   public function __construct(array $schemas, array $labels) {
 
-    foreach ($schemas as $k => $itemSchema) {
-      if (!$itemSchema instanceof FormulaInterface) {
+    foreach ($schemas as $k => $itemFormula) {
+      if (!$itemFormula instanceof FormulaInterface) {
         throw new \InvalidArgumentException("Item schema at key $k must be instance of FormulaInterface.");
       }
     }
@@ -60,7 +60,7 @@ class Formula_Group implements Formula_GroupInterface {
   /**
    * {@inheritdoc}
    */
-  public function getItemSchemas(): array {
+  public function getItemFormulas(): array {
     return $this->schemas;
   }
 

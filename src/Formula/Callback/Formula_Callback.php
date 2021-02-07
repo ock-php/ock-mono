@@ -20,7 +20,7 @@ class Formula_Callback implements Formula_CallbackInterface {
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
-  private $explicitSchemas = [];
+  private $explicitFormulas = [];
 
   /**
    * @var string[]
@@ -91,9 +91,9 @@ class Formula_Callback implements Formula_CallbackInterface {
    *
    * @return static
    */
-  public function withParamSchema(int $index, FormulaInterface $schema, $label = NULL) {
+  public function withParamFormula(int $index, FormulaInterface $schema, $label = NULL) {
     $clone = clone $this;
-    $clone->explicitSchemas[$index] = $schema;
+    $clone->explicitFormulas[$index] = $schema;
     if (NULL !== $label) {
       $clone->explicitLabels[$index] = $label;
     }
@@ -120,7 +120,7 @@ class Formula_Callback implements Formula_CallbackInterface {
    * @return static
    */
   public function withParam_Iface(int $index, string $interface, $label = NULL) {
-    return $this->withParamSchema(
+    return $this->withParamFormula(
       $index,
       new Formula_IfaceWithContext($interface, $this->context),
       $label);
@@ -134,7 +134,7 @@ class Formula_Callback implements Formula_CallbackInterface {
    * @return static
    */
   public function withParam_IfaceSequence(int $index, string $interface, $label = NULL) {
-    return $this->withParamSchema(
+    return $this->withParamFormula(
       $index,
       Formula_IfaceWithContext::createSequence($interface, $this->getContext()),
       $label);
@@ -148,7 +148,7 @@ class Formula_Callback implements Formula_CallbackInterface {
    * @return static
    */
   public function withParam_IfaceOrNull(int $index, string $interface, $label = NULL) {
-    return $this->withParamSchema(
+    return $this->withParamFormula(
       $index,
       Formula_IfaceWithContext::createOptional($interface, $this->getContext()),
       $label);
@@ -164,8 +164,8 @@ class Formula_Callback implements Formula_CallbackInterface {
   /**
    * {@inheritdoc}
    */
-  public function getExplicitParamSchemas(): array {
-    return $this->explicitSchemas;
+  public function getExplicitParamFormulas(): array {
+    return $this->explicitFormulas;
   }
 
   /**

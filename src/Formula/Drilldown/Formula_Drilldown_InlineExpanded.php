@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Drilldown;
 
-use Donquixote\OCUI\IdToSchema\IdToSchema_FilterDecorator;
-use Donquixote\OCUI\IdToSchema\IdToSchema_InlineExpanded;
+use Donquixote\OCUI\IdToFormula\IdToFormula_FilterDecorator;
+use Donquixote\OCUI\IdToFormula\IdToFormula_InlineExpanded;
 use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
 use Donquixote\OCUI\Formula\Select\Formula_Select_InlineExpanded;
 use Donquixote\OCUI\Formula\Select\Formula_SelectInterface;
@@ -20,23 +20,23 @@ final class Formula_Drilldown_InlineExpanded extends UtilBase {
    */
   public static function create(Formula_DrilldownInterface $decorated, Formula_IdInterface $idIsInline): ?Formula_DrilldownInterface {
 
-    $decoratedIdSchema = $decorated->getIdSchema();
+    $decoratedIdFormula = $decorated->getIdFormula();
 
-    if (!$decoratedIdSchema instanceof Formula_SelectInterface) {
+    if (!$decoratedIdFormula instanceof Formula_SelectInterface) {
       return NULL;
     }
 
-    $idSchema = new Formula_Select_InlineExpanded(
-      $decoratedIdSchema,
-      new IdToSchema_FilterDecorator(
-        $decorated->getIdToSchema(),
+    $idFormula = new Formula_Select_InlineExpanded(
+      $decoratedIdFormula,
+      new IdToFormula_FilterDecorator(
+        $decorated->getIdToFormula(),
         $idIsInline));
 
-    $idToSchema = new IdToSchema_InlineExpanded(
-      $decorated->getIdToSchema());
+    $idToFormula = new IdToFormula_InlineExpanded(
+      $decorated->getIdToFormula());
 
     return new Formula_Drilldown(
-      $idSchema,
-      $idToSchema);
+      $idFormula,
+      $idToFormula);
   }
 }

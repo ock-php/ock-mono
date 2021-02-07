@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Summarizer;
 
 use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
 use Donquixote\OCUI\Util\StaUtil;
@@ -25,17 +25,17 @@ class Summarizer_Group implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $schema
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_GroupInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?self {
+  public static function create(Formula_GroupInterface $schema, FormulaToAnythingInterface $schemaToAnything): ?self {
 
     /** @var \Donquixote\OCUI\Summarizer\SummarizerInterface[] $itemSummarizers */
     $itemSummarizers = StaUtil::getMultiple(
-      $schema->getItemSchemas(),
+      $schema->getItemFormulas(),
       $schemaToAnything,
       SummarizerInterface::class);
 

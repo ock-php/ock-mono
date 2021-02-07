@@ -10,19 +10,19 @@ abstract class Formula_SequenceBase implements Formula_SequenceInterface {
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  private $itemSchema;
+  private $itemFormula;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $itemSchema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $itemFormula
    */
-  public function __construct(FormulaInterface $itemSchema) {
-    $this->itemSchema = $itemSchema;
+  public function __construct(FormulaInterface $itemFormula) {
+    $this->itemFormula = $itemFormula;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getItemSchema(): FormulaInterface {
-    return $this->itemSchema;
+  public function getItemFormula(): FormulaInterface {
+    return $this->itemFormula;
   }
 }

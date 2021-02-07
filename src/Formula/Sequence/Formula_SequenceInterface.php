@@ -11,7 +11,7 @@ interface Formula_SequenceInterface extends FormulaInterface {
   /**
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  public function getItemSchema(): FormulaInterface;
+  public function getItemFormula(): FormulaInterface;
 
   /**
    * Gets a label for the nth sequence item.

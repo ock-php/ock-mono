@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\MoreArgs;
 
-use Donquixote\OCUI\SchemaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\OCUI\FormulaBase\Formula_ValueToValueBaseInterface;
 
 interface Formula_MoreArgsInterface extends Formula_ValueToValueBaseInterface {
 

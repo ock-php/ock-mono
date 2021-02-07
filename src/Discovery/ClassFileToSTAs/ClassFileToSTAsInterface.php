@@ -9,7 +9,7 @@ interface ClassFileToSTAsInterface {
    * @param string $class
    * @param string $fileRealpath
    *
-   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   public function classFileGetPartials(string $class, string $fileRealpath): array;
 }

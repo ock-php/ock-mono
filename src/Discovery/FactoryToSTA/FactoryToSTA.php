@@ -10,10 +10,10 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_Callback;
-use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_CallbackNoHelper;
-use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartial_Callback;
+use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartial_CallbackNoHelper;
+use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Util\ReflectionUtil;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
@@ -53,7 +53,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
   /**
    * {@inheritdoc}
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?SchemaToAnythingPartialInterface {
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?FormulaToAnythingPartialInterface {
 
     $params = $factory->getParameters();
 
@@ -83,7 +83,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
     if (1
       && isset($params[1])
       && NULL !== ($t1 = $params[1]->getClass())
-      && is_a(SchemaToAnythingInterface::class, $t1->getName(), TRUE)
+      && is_a(FormulaToAnythingInterface::class, $t1->getName(), TRUE)
     ) {
       $hasStaParam = TRUE;
       unset($params[1]);
@@ -112,13 +112,13 @@ class FactoryToSTA implements FactoryToSTAInterface {
     }
 
     if ($hasStaParam) {
-      $sta = new SchemaToAnythingPartial_Callback(
+      $sta = new FormulaToAnythingPartial_Callback(
         $callback,
         $schemaType,
         $returnTypeClass->getName());
     }
     else {
-      $sta = new SchemaToAnythingPartial_CallbackNoHelper(
+      $sta = new FormulaToAnythingPartial_CallbackNoHelper(
         $callback,
         $schemaType,
         $returnTypeClass->getName());

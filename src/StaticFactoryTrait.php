@@ -6,7 +6,7 @@ namespace Donquixote\OCUI;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Generator\Generator;
 use Donquixote\OCUI\Generator\GeneratorInterface;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Summarizer\Summarizer;
 use Donquixote\OCUI\Summarizer\SummarizerInterface;
 
@@ -22,34 +22,34 @@ trait StaticFactoryTrait {
    */
   public static function schema(): FormulaInterface {
     return self::$schema
-      ?? self::$schema = static::createSchema();
+      ?? self::$schema = static::createFormula();
   }
 
   /**
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  abstract protected static function createSchema(): FormulaInterface;
+  abstract protected static function createFormula(): FormulaInterface;
 
   /**
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    */
-  public static function evaluator(SchemaToAnythingInterface $schemaToAnything): GeneratorInterface {
+  public static function evaluator(FormulaToAnythingInterface $schemaToAnything): GeneratorInterface {
 
-    return Generator::fromSchema(
+    return Generator::fromFormula(
       static::schema(),
       $schemaToAnything);
   }
 
   /**
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return \Donquixote\OCUI\Summarizer\SummarizerInterface|null
    */
-  public static function summarizer(SchemaToAnythingInterface $schemaToAnything): ?SummarizerInterface {
+  public static function summarizer(FormulaToAnythingInterface $schemaToAnything): ?SummarizerInterface {
 
-    return Summarizer::fromSchema(
+    return Summarizer::fromFormula(
       static::schema(),
       $schemaToAnything);
   }

@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Summarizer;
 
 use Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
 
@@ -20,7 +20,7 @@ class Summarizer_Drilldown implements SummarizerInterface {
   private $schema;
 
   /**
-   * @var \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface
+   * @var \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface
    */
   private $schemaToAnything;
 
@@ -28,11 +28,11 @@ class Summarizer_Drilldown implements SummarizerInterface {
    * Constructor.
    *
    * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $schema
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    */
   public function __construct(
     Formula_DrilldownInterface $schema,
-    SchemaToAnythingInterface $schemaToAnything
+    FormulaToAnythingInterface $schemaToAnything
   ) {
     $this->schema = $schema;
     $this->schemaToAnything = $schemaToAnything;
@@ -43,27 +43,27 @@ class Summarizer_Drilldown implements SummarizerInterface {
    */
   public function confGetSummary($conf): ?TextInterface {
 
-    [$id, $subConf] = DrilldownKeysHelper::fromSchema($this->schema)
+    [$id, $subConf] = DrilldownKeysHelper::fromFormula($this->schema)
       ->unpack($conf);
 
     if (NULL === $id) {
       return Text::tSpecialOption('None');
     }
 
-    if (NULL === $subSchema = $this->schema->getIdToSchema()->idGetSchema($id)) {
+    if (NULL === $subFormula = $this->schema->getIdToFormula()->idGetFormula($id)) {
       return Text::tSpecialOption('Unknown id "@id".', [
         '@id' => $id,
       ]);
     }
 
-    if (NULL === $idLabel = $this->schema->getIdSchema()->idGetLabel($id)) {
+    if (NULL === $idLabel = $this->schema->getIdFormula()->idGetLabel($id)) {
       return Text::tSpecialOption('Unnamed id "@id".', [
         '@id' => $id,
       ]);
     }
 
-    $subSummarizer = Summarizer::fromSchema(
-      $subSchema,
+    $subSummarizer = Summarizer::fromFormula(
+      $subFormula,
       $this->schemaToAnything);
 
     if (NULL === $subSummarizer) {

@@ -12,27 +12,27 @@ use Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndId_Cache;
 use Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabel;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchema_Mappers;
-use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Handler;
-use Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Schema;
+use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormula_Mappers;
+use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
+use Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Handler;
+use Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Formula;
 use Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyid;
 use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmap;
 use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmap_Cache;
 use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface;
-use Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchema_Buffer;
-use Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchema_Iface;
-use Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchemaInterface;
-use Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartial_Callback;
-use Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartial_DefmapDrilldown;
-use Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartial_IfaceDefmap;
-use Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartial_Proxy_Cache;
-use Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartial_Proxy_Replacer;
-use Donquixote\OCUI\SchemaReplacer\SchemaReplacer_FromPartials;
-use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
-use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_SchemaReplacer;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnything_SmartChain;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormula_Buffer;
+use Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormula_Iface;
+use Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface;
+use Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartial_Callback;
+use Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartial_DefmapDrilldown;
+use Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartial_IfaceDefmap;
+use Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartial_Proxy_Cache;
+use Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartial_Proxy_Replacer;
+use Donquixote\OCUI\FormulaReplacer\FormulaReplacer_FromPartials;
+use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartial_FormulaReplacer;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnything_SmartChain;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Translator\Translator;
 use Donquixote\OCUI\Translator\TranslatorInterface;
 use Donquixote\OCUI\Util\LocalPackageUtil;
@@ -43,37 +43,37 @@ use Psr\Log\NullLogger;
 abstract class CfContainerBase extends ContainerBase implements CfContainerInterface {
 
   /**
-   * @return \Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchemaInterface
+   * @return \Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface
    *
-   * @see $typeToSchema
+   * @see $typeToFormula
    */
-  protected function get_typeToSchema(): TypeToSchemaInterface {
+  protected function get_typeToFormula(): TypeToFormulaInterface {
 
-    $typeToSchema = new TypeToSchema_Iface();
-    $typeToSchema = new TypeToSchema_Buffer($typeToSchema);
+    $typeToFormula = new TypeToFormula_Iface();
+    $typeToFormula = new TypeToFormula_Buffer($typeToFormula);
 
-    return $typeToSchema;
+    return $typeToFormula;
   }
 
   /**
-   * @return \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface
+   * @return \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface
    *
    * @see $schemaToAnything
    *
    * @throws \Donquixote\OCUI\Exception\STABuilderException
    */
-  protected function get_schemaToAnything(): SchemaToAnythingInterface {
+  protected function get_schemaToAnything(): FormulaToAnythingInterface {
 
     $partials = $this->staPartials;
 
-    $partials[] = new SchemaToAnythingPartial_SchemaReplacer(
+    $partials[] = new FormulaToAnythingPartial_FormulaReplacer(
       $this->schemaReplacer);
 
-    return new SchemaToAnything_SmartChain($partials);
+    return new FormulaToAnything_SmartChain($partials);
   }
 
   /**
-   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    *
    * @see $staPartials
    *
@@ -85,7 +85,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    *
    * @throws \Donquixote\OCUI\Exception\STABuilderException
    */
@@ -108,40 +108,40 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface
+   * @return \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface
    *
    * @see $schemaReplacer
    */
-  protected function get_schemaReplacer(): SchemaReplacerInterface {
+  protected function get_schemaReplacer(): FormulaReplacerInterface {
 
-    $partials = $this->getSchemaReplacerPartials();
+    $partials = $this->getFormulaReplacerPartials();
 
-    return new SchemaReplacer_FromPartials($partials);
+    return new FormulaReplacer_FromPartials($partials);
   }
 
   /**
-   * @return \Donquixote\OCUI\SchemaReplacer\Partial\SchemaReplacerPartialInterface[]
+   * @return \Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
    */
-  protected function getSchemaReplacerPartials(): array {
+  protected function getFormulaReplacerPartials(): array {
 
     $partials = [];
 
-    $partials[] = new SchemaReplacerPartial_IfaceDefmap(
+    $partials[] = new FormulaReplacerPartial_IfaceDefmap(
       $this->typeToDefmap,
       TRUE);
 
-    $partials[] = new SchemaReplacerPartial_DefmapDrilldown(
-      $this->definitionToSchema,
+    $partials[] = new FormulaReplacerPartial_DefmapDrilldown(
+      $this->definitionToFormula,
       $this->definitionToLabel,
       $this->definitionToGrouplabel,
       TRUE);
 
-    $partials[] = SchemaReplacerPartial_Callback::create($this->logger);
+    $partials[] = FormulaReplacerPartial_Callback::create($this->logger);
 
-    $partials[] = new SchemaReplacerPartial_Proxy_Cache(
+    $partials[] = new FormulaReplacerPartial_Proxy_Cache(
       $this->cacheOrNull);
 
-    $partials[] = new SchemaReplacerPartial_Proxy_Replacer();
+    $partials[] = new FormulaReplacerPartial_Proxy_Replacer();
 
     return $partials;
   }
@@ -156,23 +156,23 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface
+   * @return \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
    *
-   * @see $definitionToSchema
+   * @see $definitionToFormula
    */
-  protected function get_definitionToSchema(): DefinitionToSchemaInterface {
-    return new DefinitionToSchema_Mappers(
-      $this->getDefinitionToSchemaHelpers(),
+  protected function get_definitionToFormula(): DefinitionToFormulaInterface {
+    return new DefinitionToFormula_Mappers(
+      $this->getDefinitionToFormulaHelpers(),
       $this->logger);
   }
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelperInterface[]
+   * @return \Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelperInterface[]
    */
-  protected function getDefinitionToSchemaHelpers(): array {
+  protected function getDefinitionToFormulaHelpers(): array {
     return [
-      'schema' => new DefinitionToSchemaHelper_Schema(),
-      'handler' => new DefinitionToSchemaHelper_Handler(),
+      'schema' => new DefinitionToFormulaHelper_Formula(),
+      'handler' => new DefinitionToFormulaHelper_Handler(),
     ];
   }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Generator;
 
 use Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 
 class Generator_Optional implements GeneratorInterface {
 
@@ -22,15 +22,15 @@ class Generator_Optional implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $schema
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    *
-   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_OptionalInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?GeneratorInterface {
+  public static function create(Formula_OptionalInterface $schema, FormulaToAnythingInterface $schemaToAnything): ?GeneratorInterface {
 
-    $decorated = Generator::fromSchema($schema->getDecorated(), $schemaToAnything);
+    $decorated = Generator::fromFormula($schema->getDecorated(), $schemaToAnything);
 
     if (NULL === $decorated) {
       return NULL;

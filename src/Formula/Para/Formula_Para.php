@@ -15,15 +15,15 @@ class Formula_Para implements Formula_ParaInterface {
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  private $paraSchema;
+  private $paraFormula;
 
   /**
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $paraSchema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $paraFormula
    */
-  public function __construct(FormulaInterface $decorated, FormulaInterface $paraSchema) {
+  public function __construct(FormulaInterface $decorated, FormulaInterface $paraFormula) {
     $this->decorated = $decorated;
-    $this->paraSchema = $paraSchema;
+    $this->paraFormula = $paraFormula;
   }
 
   /**
@@ -36,7 +36,7 @@ class Formula_Para implements Formula_ParaInterface {
   /**
    * {@inheritdoc}
    */
-  public function getParaSchema(): FormulaInterface {
-    return $this->paraSchema;
+  public function getParaFormula(): FormulaInterface {
+    return $this->paraFormula;
   }
 }

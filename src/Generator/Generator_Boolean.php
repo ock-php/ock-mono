@@ -22,7 +22,7 @@ class Generator_Boolean implements GeneratorInterface {
    *
    * @return self
    */
-  public static function createFromBooleanSchema(
+  public static function createFromBooleanFormula(
     /** @noinspection PhpUnusedParameterInspection */ Formula_BooleanInterface $schema
   ): Generator_Boolean {
     return new self(new V2V_Boolean_Trivial());
@@ -35,7 +35,7 @@ class Generator_Boolean implements GeneratorInterface {
    *
    * @return self
    */
-  public static function createFromBooleanValSchema(Formula_BoolValInterface $schema): Generator_Boolean {
+  public static function createFromBooleanValFormula(Formula_BoolValInterface $schema): Generator_Boolean {
     return new self($schema->getV2V());
   }
 

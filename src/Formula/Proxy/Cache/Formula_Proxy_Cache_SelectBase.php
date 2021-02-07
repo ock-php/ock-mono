@@ -32,7 +32,7 @@ abstract class Formula_Proxy_Cache_SelectBase implements Formula_Proxy_CacheInte
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  final public function dataGetSchema($data): FormulaInterface {
+  final public function dataGetFormula($data): FormulaInterface {
     return new Formula_Select_Fixed($data);
   }
 

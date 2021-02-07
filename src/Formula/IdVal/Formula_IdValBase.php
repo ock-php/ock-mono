@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\IdVal;
 
 use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
-use Donquixote\OCUI\SchemaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 
 abstract class Formula_IdValBase extends Formula_DecoratorBase implements Formula_IdValInterface {
 

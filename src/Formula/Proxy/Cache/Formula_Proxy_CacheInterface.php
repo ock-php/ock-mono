@@ -17,7 +17,7 @@ interface Formula_Proxy_CacheInterface extends FormulaInterface {
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    */
-  public function dataGetSchema($data): ?FormulaInterface;
+  public function dataGetFormula($data): ?FormulaInterface;
 
   /**
    * @return mixed

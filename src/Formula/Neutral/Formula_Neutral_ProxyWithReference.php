@@ -25,7 +25,7 @@ class Formula_Neutral_ProxyWithReference extends Formula_Neutral_ProxyBase {
   public function doGetDecorated(): FormulaInterface {
 
     if (!$this->schemaRef instanceof FormulaInterface) {
-      throw new \RuntimeException("Schema reference is still empty.");
+      throw new \RuntimeException("Formula reference is still empty.");
     }
 
     return $this->schemaRef;

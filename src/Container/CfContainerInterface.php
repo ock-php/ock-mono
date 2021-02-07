@@ -5,15 +5,15 @@ namespace Donquixote\OCUI\Container;
 
 /**
  * Main cycle of circular dependencies:
- * @property \Donquixote\OCUI\Defmap\TypeToSchema\TypeToSchemaInterface $typeToSchema
- * @property \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[] $staPartials
- * @property \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+ * @property \Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface $typeToFormula
+ * @property \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $staPartials
+ * @property \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
  * @property \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
- * @property \Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface $schemaReplacer
+ * @property \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $schemaReplacer
  * @property \Donquixote\OCUI\Translator\TranslatorInterface $translator
  *
  * Non-circular:
- * @property \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
+ * @property \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
  * @property \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
  * @property \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
  * @property \Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface $definitionsByTypeAndId

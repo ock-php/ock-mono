@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Select;
 
-use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
+use Donquixote\OCUI\IdToFormula\IdToFormulaInterface;
 use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\OCUI\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
@@ -17,20 +17,20 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\IdToSchema\IdToSchemaInterface
+   * @var \Donquixote\OCUI\IdToFormula\IdToFormulaInterface
    */
-  private $idToSchema;
+  private $idToFormula;
 
   /**
    * @param \Donquixote\OCUI\Formula\Select\Formula_SelectInterface $decorated
-   * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $idToSchema
+   * @param \Donquixote\OCUI\IdToFormula\IdToFormulaInterface $idToFormula
    */
   public function __construct(
     Formula_SelectInterface $decorated,
-    IdToSchemaInterface $idToSchema
+    IdToFormulaInterface $idToFormula
   ) {
     $this->decorated = $decorated;
-    $this->idToSchema = $idToSchema;
+    $this->idToFormula = $idToFormula;
   }
 
   /**
@@ -67,7 +67,7 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
    */
   private function idGetInlineOptions(string $id): ?array {
 
-    if (NULL === $schema = $this->idGetSelectSchema($id)) {
+    if (NULL === $schema = $this->idGetSelectFormula($id)) {
       return NULL;
     }
 
@@ -85,11 +85,11 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
 
     [$prefix, $suffix] = explode('/', $id, 2);
 
-    if (NULL === $subSchema = $this->idGetSelectSchema($prefix)) {
+    if (NULL === $subFormula = $this->idGetSelectFormula($prefix)) {
       return NULL;
     }
 
-    return $subSchema->idGetLabel($suffix);
+    return $subFormula->idGetLabel($suffix);
   }
 
   /**
@@ -103,11 +103,11 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
 
     [$prefix, $suffix] = explode('/', $combinedId, 2);
 
-    if (NULL === $subSchema = $this->idGetSelectSchema($prefix)) {
+    if (NULL === $subFormula = $this->idGetSelectFormula($prefix)) {
       return FALSE;
     }
 
-    return $subSchema->idIsKnown($suffix);
+    return $subFormula->idIsKnown($suffix);
   }
 
   /**
@@ -115,17 +115,17 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
    *
    * @return \Donquixote\OCUI\Formula\Select\Formula_SelectInterface|null
    */
-  private function idGetSelectSchema($id): ?Formula_SelectInterface {
+  private function idGetSelectFormula($id): ?Formula_SelectInterface {
 
-    if (NULL === $idSchema = $this->idGetIdSchema($id)) {
+    if (NULL === $idFormula = $this->idGetIdFormula($id)) {
       return NULL;
     }
 
-    if (!$idSchema instanceof Formula_SelectInterface) {
+    if (!$idFormula instanceof Formula_SelectInterface) {
       return NULL;
     }
 
-    return $idSchema;
+    return $idFormula;
   }
 
   /**
@@ -133,22 +133,22 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
    *
    * @return \Donquixote\OCUI\Formula\Id\Formula_IdInterface|null
    */
-  private function idGetIdSchema(string $id): ?Formula_IdInterface {
+  private function idGetIdFormula(string $id): ?Formula_IdInterface {
 
-    if (NULL === $nestedSchema = $this->idToSchema->idGetSchema($id)) {
+    if (NULL === $nestedFormula = $this->idToFormula->idGetFormula($id)) {
       return NULL;
     }
 
-    if ($nestedSchema instanceof Formula_DrilldownInterface) {
-      return $nestedSchema->getIdSchema();
+    if ($nestedFormula instanceof Formula_DrilldownInterface) {
+      return $nestedFormula->getIdFormula();
     }
 
-    if ($nestedSchema instanceof Formula_IdInterface) {
-      return $nestedSchema;
+    if ($nestedFormula instanceof Formula_IdInterface) {
+      return $nestedFormula;
     }
 
-    if ($nestedSchema instanceof Formula_DrilldownValInterface) {
-      return $nestedSchema->getDecorated()->getIdSchema();
+    if ($nestedFormula instanceof Formula_DrilldownValInterface) {
+      return $nestedFormula->getDecorated()->getIdFormula();
     }
 
     return NULL;

@@ -3,26 +3,26 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Select;
 
-use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
+use Donquixote\OCUI\IdToFormula\IdToFormulaInterface;
 use Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface;
 
 class Formula_Select_TwoStepFlatSelectComposite extends Formula_Select_TwoStepFlatSelectBase {
 
   /**
-   * @var \Donquixote\OCUI\IdToSchema\IdToSchemaInterface
+   * @var \Donquixote\OCUI\IdToFormula\IdToFormulaInterface
    */
-  private $idToSubSchema;
+  private $idToSubFormula;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface $idSchema
-   * @param \Donquixote\OCUI\IdToSchema\IdToSchemaInterface $idToSubSchema
+   * @param \Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface $idFormula
+   * @param \Donquixote\OCUI\IdToFormula\IdToFormulaInterface $idToSubFormula
    */
   public function __construct(
-    Formula_FlatSelectInterface $idSchema,
-    IdToSchemaInterface $idToSubSchema
+    Formula_FlatSelectInterface $idFormula,
+    IdToFormulaInterface $idToSubFormula
   ) {
-    parent::__construct($idSchema);
-    $this->idToSubSchema = $idToSubSchema;
+    parent::__construct($idFormula);
+    $this->idToSubFormula = $idToSubFormula;
   }
 
   /**
@@ -30,14 +30,14 @@ class Formula_Select_TwoStepFlatSelectComposite extends Formula_Select_TwoStepFl
    *
    * @return Formula_FlatSelectInterface|null
    */
-  protected function idGetSubSchema(string $id): ?Formula_FlatSelectInterface {
+  protected function idGetSubFormula(string $id): ?Formula_FlatSelectInterface {
 
-    $subSchema = $this->idToSubSchema->idGetSchema($id);
+    $subFormula = $this->idToSubFormula->idGetFormula($id);
 
-    if (!$subSchema instanceof Formula_FlatSelectInterface) {
+    if (!$subFormula instanceof Formula_FlatSelectInterface) {
       return NULL;
     }
 
-    return $subSchema;
+    return $subFormula;
   }
 }

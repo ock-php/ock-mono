@@ -10,7 +10,7 @@ abstract class Formula_Group_V2VDecoratorBase extends Formula_Group_V2VBase {
   /**
    * @var \Donquixote\OCUI\Formula\Group\Formula_GroupInterface
    */
-  private $decoratedSchema;
+  private $decoratedFormula;
 
   /**
    * @var \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface
@@ -18,29 +18,29 @@ abstract class Formula_Group_V2VDecoratorBase extends Formula_Group_V2VBase {
   private $decoratedV2V;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $decoratedSchema
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $decoratedFormula
    * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $decoratedV2V
    */
   public function __construct(
-    Formula_GroupInterface $decoratedSchema,
+    Formula_GroupInterface $decoratedFormula,
     V2V_GroupInterface $decoratedV2V
   ) {
-    $this->decoratedSchema = $decoratedSchema;
+    $this->decoratedFormula = $decoratedFormula;
     $this->decoratedV2V = $decoratedV2V;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getItemSchemas(): array {
-    return $this->decoratedSchema->getItemSchemas();
+  public function getItemFormulas(): array {
+    return $this->decoratedFormula->getItemFormulas();
   }
 
   /**
    * {@inheritdoc}
    */
   public function getLabels(): array {
-    return $this->decoratedSchema->getLabels();
+    return $this->decoratedFormula->getLabels();
   }
 
   /**

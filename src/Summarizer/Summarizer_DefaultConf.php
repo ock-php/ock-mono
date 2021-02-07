@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Summarizer;
 
 use Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Text\TextInterface;
 
 class Summarizer_DefaultConf implements SummarizerInterface {
@@ -23,18 +23,18 @@ class Summarizer_DefaultConf implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface $schema
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_DefaultConfInterface $schema,
-    SchemaToAnythingInterface $schemaToAnything
+    FormulaToAnythingInterface $schemaToAnything
   ): ?Summarizer_DefaultConf {
 
-    $decorated = Summarizer::fromSchema(
+    $decorated = Summarizer::fromFormula(
       $schema->getDecorated(),
       $schemaToAnything);
 

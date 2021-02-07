@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\BoolVal;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\SchemaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\OCUI\FormulaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\OCUI\Zoo\V2V\Boolean\V2V_BooleanInterface;
 
 interface Formula_BoolValInterface extends Formula_ValueToValueBaseInterface {

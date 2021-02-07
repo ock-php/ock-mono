@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Formula\ValueToValue;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Label\Formula_Label;
-use Donquixote\OCUI\SchemaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 use Donquixote\OCUI\Text\TextInterface;
 
 abstract class Formula_ValueToValueBase extends Formula_DecoratorBase implements Formula_ValueToValueInterface {

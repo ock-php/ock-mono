@@ -15,13 +15,13 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
   public function getGroupedOptions(): array {
 
     $options = [];
-    foreach ($this->getIdSchema()->getOptions() as $id0 => $label0) {
+    foreach ($this->getIdFormula()->getOptions() as $id0 => $label0) {
 
-      if (null === $subSchema = $this->idGetSubSchema($id0)) {
+      if (null === $subFormula = $this->idGetSubFormula($id0)) {
         continue;
       }
 
-      foreach ($subSchema->getOptions() as $id1 => $label1) {
+      foreach ($subFormula->getOptions() as $id1 => $label1) {
         $combinedId = $this->combineIds($id0, $id1);
         // @todo Find a way to use TextInterface for group labels.
         $options[$id0][$combinedId] = $this->combineLabels($label0, $label1);
@@ -41,15 +41,15 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
       return FALSE;
     }
 
-    if (!$this->getIdSchema()->idIsKnown($id0)) {
+    if (!$this->getIdFormula()->idIsKnown($id0)) {
       return FALSE;
     }
 
-    if (null === $subSchema = $this->idGetSubSchema($id0)) {
+    if (null === $subFormula = $this->idGetSubFormula($id0)) {
       return FALSE;
     }
 
-    return $subSchema->idIsKnown($id1);
+    return $subFormula->idIsKnown($id1);
   }
 
   /**
@@ -62,15 +62,15 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
       return NULL;
     }
 
-    if (NULL === $label0 = $this->getIdSchema()->idGetLabel($id0)) {
+    if (NULL === $label0 = $this->getIdFormula()->idGetLabel($id0)) {
       return NULL;
     }
 
-    if (NULL === $subSchema = $this->idGetSubSchema($id0)) {
+    if (NULL === $subFormula = $this->idGetSubFormula($id0)) {
       return NULL;
     }
 
-    if (NULL === $label1 = $subSchema->idGetLabel($id1)) {
+    if (NULL === $label1 = $subFormula->idGetLabel($id1)) {
       return NULL;
     }
 
@@ -110,12 +110,12 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
   /**
    * @return \Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface
    */
-  abstract protected function getIdSchema(): Formula_FlatSelectInterface;
+  abstract protected function getIdFormula(): Formula_FlatSelectInterface;
 
   /**
 * @param string $id
    *
    * @return \Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface|null
    */
-  abstract protected function idGetSubSchema(string $id): ?Formula_FlatSelectInterface;
+  abstract protected function idGetSubFormula(string $id): ?Formula_FlatSelectInterface;
 }

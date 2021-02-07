@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Formula\MoreArgs;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface;
-use Donquixote\OCUI\SchemaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 
 class Formula_MoreArgs extends Formula_DecoratorBase implements Formula_MoreArgsInterface {
 
@@ -46,7 +46,7 @@ class Formula_MoreArgs extends Formula_DecoratorBase implements Formula_MoreArgs
    *
    * @return \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgs
    */
-  public function withItemSchema(string $key, Formula_OptionlessInterface $schema): Formula_MoreArgs {
+  public function withItemFormula(string $key, Formula_OptionlessInterface $schema): Formula_MoreArgs {
     $clone = clone $this;
     $clone->more[$key] = $schema;
     return $clone;

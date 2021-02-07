@@ -20,7 +20,7 @@ interface Formula_TwoStepInterface extends FormulaInterface {
   /**
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  public function getFirstStepSchema(): FormulaInterface;
+  public function getFirstStepFormula(): FormulaInterface;
 
   /**
    * @param mixed $firstStepValue
@@ -30,6 +30,6 @@ interface Formula_TwoStepInterface extends FormulaInterface {
    *
    * @todo return NULL or throw exception?
    */
-  public function firstStepValueGetSecondStepSchema($firstStepValue): ?FormulaInterface;
+  public function firstStepValueGetSecondStepFormula($firstStepValue): ?FormulaInterface;
 
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\DrilldownVal;
 
 use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\OCUI\SchemaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 
 abstract class Formula_DrilldownValBase extends Formula_DecoratorBase implements Formula_DrilldownValInterface {
 

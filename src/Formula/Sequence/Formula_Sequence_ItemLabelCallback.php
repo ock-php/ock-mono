@@ -14,11 +14,11 @@ class Formula_Sequence_ItemLabelCallback extends Formula_SequenceBase {
   private $itemLabelCallback;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $itemSchema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $itemFormula
    * @param callable $itemLabelCallback
    */
-  public function __construct(FormulaInterface $itemSchema, callable $itemLabelCallback) {
-    parent::__construct($itemSchema);
+  public function __construct(FormulaInterface $itemFormula, callable $itemLabelCallback) {
+    parent::__construct($itemFormula);
     $this->itemLabelCallback = $itemLabelCallback;
   }
 

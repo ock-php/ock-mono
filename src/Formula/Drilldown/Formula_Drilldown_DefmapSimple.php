@@ -6,7 +6,7 @@ namespace Donquixote\OCUI\Formula\Drilldown;
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\Defmap\IdToSchema\IdToSchema_DefmapSimple;
+use Donquixote\OCUI\Defmap\IdToFormula\IdToFormula_DefmapSimple;
 use Donquixote\OCUI\Formula\Select\Formula_Select_FromDefinitionMap;
 use Donquixote\OCUI\Util\UtilBase;
 
@@ -31,7 +31,7 @@ class Formula_Drilldown_DefmapSimple extends UtilBase {
         $definitionMap,
         $definitionToLabel,
         $definitionToGroupLabel),
-      new IdToSchema_DefmapSimple(
+      new IdToFormula_DefmapSimple(
         $definitionMap,
         $context));
   }

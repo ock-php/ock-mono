@@ -7,7 +7,7 @@ use Donquixote\CallbackReflection\Exception\GeneratedCodeException;
 use Donquixote\CallbackReflection\Util\CodegenUtil;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Exception\EvaluatorException_IncompatibleConfiguration;
-use Donquixote\OCUI\Exception\EvaluatorException_UnsupportedSchema;
+use Donquixote\OCUI\Exception\EvaluatorException_UnsupportedFormula;
 
 final class PhpUtil extends UtilBase {
 
@@ -107,7 +107,7 @@ EOT;
     }
 
     return self::exceptionWithMessagePhp(
-      EvaluatorException_UnsupportedSchema::class,
+      EvaluatorException_UnsupportedFormula::class,
       $messagePhp);
     
   }
@@ -129,7 +129,7 @@ EOT;
 EOT;
 
     return self::exceptionWithMessagePhp(
-      EvaluatorException_UnsupportedSchema::class,
+      EvaluatorException_UnsupportedFormula::class,
       $messagePhp);
   }
 
@@ -139,7 +139,7 @@ EOT;
    *
    * @return string
    */
-  public static function unsupportedSchema(FormulaInterface $schema, $message = NULL): string {
+  public static function unsupportedFormula(FormulaInterface $schema, $message = NULL): string {
 
     $schemaClass = \get_class($schema);
 
@@ -154,7 +154,7 @@ EOT;
     }
 
     return self::exceptionWithMessagePhp(
-      EvaluatorException_UnsupportedSchema::class,
+      EvaluatorException_UnsupportedFormula::class,
       $messagePhp);
   }
 

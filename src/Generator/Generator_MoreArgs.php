@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Generator;
 
 use Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface;
 use Donquixote\OCUI\Formula\MoreArgsVal\Formula_MoreArgsValInterface;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Trivial;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
 
@@ -35,13 +35,13 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface $schema
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function createFromMoreArgsSchema(Formula_MoreArgsInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_MoreArgs {
+  public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $schema, FormulaToAnythingInterface $schemaToAnything): ?Generator_MoreArgs {
     return self::create($schema, new V2V_Group_Trivial(), $schemaToAnything);
   }
 
@@ -49,15 +49,15 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\OCUI\Formula\MoreArgsVal\Formula_MoreArgsValInterface $schema
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function createFromMoreArgsValSchema(
+  public static function createFromMoreArgsValFormula(
     Formula_MoreArgsValInterface $schema,
-    SchemaToAnythingInterface $schemaToAnything
+    FormulaToAnythingInterface $schemaToAnything
   ): ?Generator_MoreArgs {
     return self::create(
       $schema->getDecorated(),
@@ -66,22 +66,22 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsSchema
+   * @param \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
    * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
   public static function create(
-    Formula_MoreArgsInterface $moreArgsSchema,
+    Formula_MoreArgsInterface $moreArgsFormula,
     V2V_GroupInterface $v2v,
-    SchemaToAnythingInterface $schemaToAnything
+    FormulaToAnythingInterface $schemaToAnything
   ): ?Generator_MoreArgs {
 
-    $decoratedGenerator = Generator::fromSchema(
-      $moreArgsSchema->getDecorated(),
+    $decoratedGenerator = Generator::fromFormula(
+      $moreArgsFormula->getDecorated(),
       $schemaToAnything);
 
     if (NULL === $decoratedGenerator) {
@@ -89,8 +89,8 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
     }
 
     $moreGenerators = [];
-    foreach ($moreArgsSchema->getMoreArgs() as $k => $itemSchema) {
-      $itemGenerator = Generator::fromSchema($itemSchema, $schemaToAnything);
+    foreach ($moreArgsFormula->getMoreArgs() as $k => $itemFormula) {
+      $itemGenerator = Generator::fromFormula($itemFormula, $schemaToAnything);
       if (NULL === $itemGenerator) {
         return NULL;
       }
@@ -100,7 +100,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
     return new self(
       $decoratedGenerator,
       $moreGenerators,
-      $moreArgsSchema->getSpecialKey(),
+      $moreArgsFormula->getSpecialKey(),
       $v2v);
   }
 

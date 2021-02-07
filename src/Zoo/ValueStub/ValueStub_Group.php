@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Zoo\ValueStub;
 
 use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
-use Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface;
+use Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface;
 
 class ValueStub_Group implements ValueStubInterface {
 
@@ -18,32 +18,32 @@ class ValueStub_Group implements ValueStubInterface {
    *
    * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $schema
    * @param mixed $conf
-   * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
+   * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function createFromGroupSchema(Formula_GroupInterface $schema, $conf, SchemaConfToAnythingInterface $scta): ?ValueStub_Group {
+  public static function createFromGroupFormula(Formula_GroupInterface $schema, $conf, FormulaConfToAnythingInterface $scta): ?ValueStub_Group {
     $itemStubs = self::createItemStubs($schema, $conf, $scta);
     return new self($itemStubs);
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $groupSchema
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $groupFormula
    * @param mixed $conf
-   * @param \Donquixote\OCUI\SchemaConfToAnything\SchemaConfToAnythingInterface $scta
+   * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
    * @return \Donquixote\OCUI\Zoo\ValueStub\ValueStubInterface[]|null
    *
-   * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  private static function createItemStubs(Formula_GroupInterface $groupSchema, $conf, SchemaConfToAnythingInterface $scta): ?array {
+  private static function createItemStubs(Formula_GroupInterface $groupFormula, $conf, FormulaConfToAnythingInterface $scta): ?array {
 
     $itemValueStubs = [];
-    foreach ($groupSchema->getItemSchemas() as $k => $itemSchema) {
+    foreach ($groupFormula->getItemFormulas() as $k => $itemFormula) {
 
-      $itemValueStub = ValueStub::fromSchemaConf($itemSchema, $conf, $scta);
+      $itemValueStub = ValueStub::fromFormulaConf($itemFormula, $conf, $scta);
 
       if (NULL === $itemValueStub) {
         return NULL;

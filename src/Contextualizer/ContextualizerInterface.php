@@ -11,6 +11,6 @@ interface ContextualizerInterface {
    *
    * @return string
    */
-  public function contextGetSchema(?ContextInterface $context): string;
+  public function contextGetFormula(?ContextInterface $context): string;
 
 }

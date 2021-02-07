@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\SequenceVal;
 
 use Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\OCUI\SchemaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 
 abstract class Formula_SequenceValBase extends Formula_DecoratorBase implements Formula_SequenceValInterface {
 

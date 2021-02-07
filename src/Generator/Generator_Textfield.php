@@ -28,7 +28,7 @@ class Generator_Textfield implements GeneratorInterface {
    *
    * @return self
    */
-  public static function createFromStringSchema(Formula_TextfieldInterface $schema): Generator_Textfield {
+  public static function createFromStringFormula(Formula_TextfieldInterface $schema): Generator_Textfield {
     return new self($schema, new V2V_String_Trivial());
   }
 
@@ -39,7 +39,7 @@ class Generator_Textfield implements GeneratorInterface {
    *
    * @return self
    */
-  public static function createFromStringValSchema(Formula_StringValInterface $schema): Generator_Textfield {
+  public static function createFromStringValFormula(Formula_StringValInterface $schema): Generator_Textfield {
     return new self($schema->getDecorated(), $schema->getV2V());
   }
 

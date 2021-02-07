@@ -5,8 +5,8 @@ namespace Donquixote\OCUI\Formula\Drilldown;
 
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\OCUI\Defmap\IdToSchema\IdToSchema_FromDefinitions;
+use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
+use Donquixote\OCUI\Defmap\IdToFormula\IdToFormula_FromDefinitions;
 use Donquixote\OCUI\Formula\Select\Formula_Select_FromDefinitions;
 use Donquixote\OCUI\Util\UtilBase;
 
@@ -16,7 +16,7 @@ final class Formula_Drilldown_FromDefinitions extends UtilBase {
    * @param array $definitions
    * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
    * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
-   * @param \Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface $definitionToSchema
+   * @param \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
    * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
    *
    * @return \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface
@@ -25,7 +25,7 @@ final class Formula_Drilldown_FromDefinitions extends UtilBase {
     array $definitions,
     DefinitionToLabelInterface $definitionToLabel,
     DefinitionToLabelInterface $definitionToGroupLabel,
-    DefinitionToSchemaInterface $definitionToSchema,
+    DefinitionToFormulaInterface $definitionToFormula,
     CfContextInterface $context = NULL
   ): Formula_DrilldownInterface {
     return new Formula_Drilldown(
@@ -33,9 +33,9 @@ final class Formula_Drilldown_FromDefinitions extends UtilBase {
         $definitions,
         $definitionToLabel,
         $definitionToGroupLabel),
-      new IdToSchema_FromDefinitions(
+      new IdToFormula_FromDefinitions(
         $definitions,
-        $definitionToSchema,
+        $definitionToFormula,
         $context));
   }
 }

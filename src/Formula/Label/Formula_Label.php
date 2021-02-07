@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\Label;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\SchemaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 use Donquixote\OCUI\Text\TextInterface;
 
 class Formula_Label extends Formula_DecoratorBase implements Formula_LabelInterface {

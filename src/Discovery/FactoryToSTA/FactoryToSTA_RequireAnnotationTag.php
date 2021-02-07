@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Discovery\FactoryToSTA;
 
-use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
+use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 
 class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
@@ -23,7 +23,7 @@ class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
   /**
    * {@inheritdoc}
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?SchemaToAnythingPartialInterface {
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?FormulaToAnythingPartialInterface {
 
     if (!$this->factoryIsSTA($factory)) {
       return null;

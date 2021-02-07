@@ -13,7 +13,7 @@ final class DrilldownKeysHelper extends UtilBase {
    *
    * @return \Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelperInterface
    */
-  public static function fromSchema(Formula_DrilldownInterface $drilldown): DrilldownKeysHelperInterface {
+  public static function fromFormula(Formula_DrilldownInterface $drilldown): DrilldownKeysHelperInterface {
     return self::fromKeys(
       $drilldown->getIdKey(),
       $drilldown->getOptionsKey());

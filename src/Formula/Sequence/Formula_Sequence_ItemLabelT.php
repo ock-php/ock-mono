@@ -24,13 +24,13 @@ class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
   private $placeholder;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $itemSchema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $itemFormula
    * @param string $newItemLabel
    * @param string $itemLabelN
    * @param string $placeholder
    */
-  public function __construct(FormulaInterface $itemSchema, string $newItemLabel, string $itemLabelN, $placeholder = '!n') {
-    parent::__construct($itemSchema);
+  public function __construct(FormulaInterface $itemFormula, string $newItemLabel, string $itemLabelN, $placeholder = '!n') {
+    parent::__construct($itemFormula);
     $this->newItemLabel = $newItemLabel;
     $this->itemLabelN = $itemLabelN;
     $this->placeholder = $placeholder;

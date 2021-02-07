@@ -23,8 +23,8 @@ class Contextualizer_Passthru implements ContextualizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function contextGetSchema(?ContextInterface $context): string {
-    // TODO: Implement contextGetSchema() method.
+  public function contextGetFormula(?ContextInterface $context): string {
+    // TODO: Implement contextGetFormula() method.
   }
 
 }

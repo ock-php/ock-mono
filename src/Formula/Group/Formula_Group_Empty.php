@@ -8,7 +8,7 @@ class Formula_Group_Empty implements Formula_GroupInterface {
   /**
    * {@inheritdoc}
    */
-  public function getItemSchemas(): array {
+  public function getItemFormulas(): array {
     return [];
   }
 

@@ -4,20 +4,20 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Generator;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Util\UtilBase;
 
 final class Generator extends UtilBase {
 
   /**
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    */
-  public static function fromSchema(
+  public static function fromFormula(
     FormulaInterface $schema,
-    SchemaToAnythingInterface $schemaToAnything
+    FormulaToAnythingInterface $schemaToAnything
   ): ?GeneratorInterface {
 
     $candidate = $schemaToAnything->schema(

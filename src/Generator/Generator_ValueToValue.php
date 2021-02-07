@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Generator;
 
 use Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValueInterface;
-use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface;
 
 class Generator_ValueToValue extends Generator_DecoratorBase {
@@ -17,22 +17,22 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValueInterface $valueToValueSchema
-   * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValueInterface $valueToValueFormula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    */
-  public static function create(Formula_ValueToValueInterface $valueToValueSchema, SchemaToAnythingInterface $schemaToAnything): ?self {
+  public static function create(Formula_ValueToValueInterface $valueToValueFormula, FormulaToAnythingInterface $schemaToAnything): ?self {
 
     $decorated = $schemaToAnything->schema(
-      $valueToValueSchema->getDecorated(),
+      $valueToValueFormula->getDecorated(),
       GeneratorInterface::class);
 
     if (NULL === $decorated || !$decorated instanceof GeneratorInterface) {
       return NULL;
     }
 
-    return new self($decorated, $valueToValueSchema->getV2V());
+    return new self($decorated, $valueToValueFormula->getV2V());
   }
 
   /**

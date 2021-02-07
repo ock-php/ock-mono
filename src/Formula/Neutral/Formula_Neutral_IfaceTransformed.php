@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Formula\Neutral;
 
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\SchemaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 
 class Formula_Neutral_IfaceTransformed extends Formula_DecoratorBase implements Formula_NeutralInterface {
 

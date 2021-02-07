@@ -7,7 +7,7 @@ final class DefinitionUtil extends UtilBase {
 
   /**
    * @param array $stubDefinition
-   *   E.g. ['schema_class' => 'MySchema']
+   *   E.g. ['schema_class' => 'MyFormula']
    * @param array[] $annotations
    *   E.g. [['id' => 'entityTitle', 'label' => 'Entity title'], ..]
    * @param string $fallbackId

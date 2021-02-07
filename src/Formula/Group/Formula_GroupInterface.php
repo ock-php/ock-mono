@@ -9,9 +9,9 @@ interface Formula_GroupInterface extends FormulaInterface {
 
   /**
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface[]
-   *   Format: $[$groupItemKey] = $groupItemSchema
+   *   Format: $[$groupItemKey] = $groupItemFormula
    */
-  public function getItemSchemas(): array;
+  public function getItemFormulas(): array;
 
   /**
    * @return \Donquixote\OCUI\Text\TextInterface[]

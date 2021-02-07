@@ -13,7 +13,7 @@ abstract class Formula_Textfield_IntegerBase extends Formula_TextfieldBase imple
   /**
    * @return \Donquixote\OCUI\Formula\StringVal\Formula_StringVal
    */
-  public function createValSchema(): Formula_StringVal {
+  public function createValFormula(): Formula_StringVal {
     return new Formula_StringVal($this, $this);
   }
 

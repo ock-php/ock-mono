@@ -10,19 +10,19 @@ abstract class Formula_Select_TwoStepFlatSelectBase extends Formula_Select_TwoSt
   /**
    * @var \Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface
    */
-  private $idSchema;
+  private $idFormula;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface $idSchema
+   * @param \Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface $idFormula
    */
-  public function __construct(Formula_FlatSelectInterface $idSchema) {
-    $this->idSchema = $idSchema;
+  public function __construct(Formula_FlatSelectInterface $idFormula) {
+    $this->idFormula = $idFormula;
   }
 
   /**
    * @return \Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface
    */
-  protected function getIdSchema(): Formula_FlatSelectInterface {
-    return $this->idSchema;
+  protected function getIdFormula(): Formula_FlatSelectInterface {
+    return $this->idFormula;
   }
 }

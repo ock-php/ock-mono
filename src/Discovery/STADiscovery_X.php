@@ -60,7 +60,7 @@ class STADiscovery_X {
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
-   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   public function classFilesIAGetPartials(ClassFilesIAInterface $classFilesIA): array {
     try {
@@ -74,7 +74,7 @@ class STADiscovery_X {
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
-   * @return \Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface[]
+   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   private function classFilesIADoGetPartials(ClassFilesIAInterface $classFilesIA): array {
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\SkipEvaluator;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\SchemaBase\Decorator\Formula_DecoratorBaseInterface;
+use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
 
 /**
  * Base interface for all schema decorators that have no effect on evaluators.
