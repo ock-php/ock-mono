@@ -10,24 +10,24 @@ class IdToFormula_Fixed implements IdToFormulaInterface {
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
-  private $schemas;
+  private $formulas;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
    */
-  public function __construct(array $schemas) {
-    $this->schemas = $schemas;
+  public function __construct(array $formulas) {
+    $this->formulas = $formulas;
   }
 
   /**
    * @param string $id
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    *
    * @return \Donquixote\OCUI\IdToFormula\IdToFormula_Fixed
    */
-  public function withFormula(string $id, FormulaInterface $schema): IdToFormula_Fixed {
+  public function withFormula(string $id, FormulaInterface $formula): IdToFormula_Fixed {
     $clone = clone $this;
-    $clone->schemas[$id] = $schema;
+    $clone->formulas[$id] = $formula;
     return $clone;
   }
 
@@ -36,6 +36,6 @@ class IdToFormula_Fixed implements IdToFormulaInterface {
    */
   public function idGetFormula($id): ?FormulaInterface {
 
-    return $this->schemas[$id] ?? null;
+    return $this->formulas[$id] ?? null;
   }
 }

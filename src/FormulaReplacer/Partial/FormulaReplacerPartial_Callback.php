@@ -60,7 +60,7 @@ class FormulaReplacerPartial_Callback implements FormulaReplacerPartialInterface
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(FormulaInterface $original, FormulaReplacerInterface $replacer): ?FormulaInterface {
+  public function formulaGetReplacement(FormulaInterface $original, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
     if (!$original instanceof Formula_CallbackInterface) {
       return NULL;
@@ -162,21 +162,21 @@ class FormulaReplacerPartial_Callback implements FormulaReplacerPartialInterface
       return NULL;
     }
 
-    $schema = new Formula_IfaceWithContext(
+    $formula = new Formula_IfaceWithContext(
       $reflClassLike->getName(),
       $context);
 
-    $schema = $replacer->schemaGetReplacement($schema);
+    $formula = $replacer->formulaGetReplacement($formula);
 
     if ($param->allowsNull()) {
-      return new Formula_Optional_Null($schema);
+      return new Formula_Optional_Null($formula);
     }
 
     if (!$param->isOptional()) {
-      return $schema;
+      return $formula;
     }
 
-    $schema = new Formula_Optional($schema);
+    $formula = new Formula_Optional($formula);
 
     try {
       $emptyPhp = $param->getDefaultValueConstantName();
@@ -185,6 +185,6 @@ class FormulaReplacerPartial_Callback implements FormulaReplacerPartialInterface
       throw new \RuntimeException('Impossible exception.');
     }
 
-    return $schema->withEmptyPhp($emptyPhp);
+    return $formula->withEmptyPhp($emptyPhp);
   }
 }

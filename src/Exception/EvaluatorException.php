@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Exception;
 
 /**
  * Any exception that happens when trying to create a runtime value, typically
- * from a schema + setting.
+ * from a formula + setting.
  */
 class EvaluatorException extends \Exception {
 

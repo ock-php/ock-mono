@@ -9,7 +9,7 @@ use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 abstract class Formula_GroupValBase extends Formula_DecoratorBase implements Formula_GroupValInterface {
 
   /**
-   * Same as parent, but must be a group schema.
+   * Same as parent, but must be a group formula.
    *
    * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $decorated
    */

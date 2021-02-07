@@ -11,13 +11,13 @@ class Contextualizer_Passthru implements ContextualizerInterface {
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  private $schema;
+  private $formula;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    */
-  protected function __construct(FormulaInterface $schema) {
-    $this->schema = $schema;
+  protected function __construct(FormulaInterface $formula) {
+    $this->formula = $formula;
   }
 
   /**

@@ -8,19 +8,19 @@ use Donquixote\OCUI\Core\Formula\FormulaInterface;
 class FormulaToAnythingException extends \Exception implements UnsupportedFormulaExceptionInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $interface
    * @param mixed|null $instead
    *
    * @return self
    */
-  public static function createWithInstead(FormulaInterface $schema, string $interface, $instead): self {
+  public static function createWithInstead(FormulaInterface $formula, string $interface, $instead): self {
 
     $message = strtr(
-      "Failed to create !destination\nfor !schema.",
+      "Failed to create !destination\nfor !formula.",
       [
         '!destination' => $interface,
-        '!schema' => \get_class($schema) . ' object',
+        '!formula' => \get_class($formula) . ' object',
       ]);
 
     if (NULL !== $instead) {
@@ -35,19 +35,19 @@ class FormulaToAnythingException extends \Exception implements UnsupportedFormul
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $interface
    * @param string|null $message_append
    *
    * @return self
    */
-  public static function create(FormulaInterface $schema, string $interface, ?string $message_append): self {
+  public static function create(FormulaInterface $formula, string $interface, ?string $message_append): self {
 
     $message = strtr(
-      "Failed to create !destination\nfor !schema.",
+      "Failed to create !destination\nfor !formula.",
       [
         '!destination' => $interface,
-        '!schema' => \get_class($schema) . ' object',
+        '!formula' => \get_class($formula) . ' object',
       ]);
 
     if (NULL !== $message_append) {

@@ -62,7 +62,7 @@ class FormulaReplacerPartial_DefinitionsDrilldown implements FormulaReplacerPart
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(FormulaInterface $original, FormulaReplacerInterface $replacer): ?FormulaInterface {
+  public function formulaGetReplacement(FormulaInterface $original, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
     if (!$original instanceof Formula_DefinitionsInterface) {
       return NULL;
@@ -71,7 +71,7 @@ class FormulaReplacerPartial_DefinitionsDrilldown implements FormulaReplacerPart
     $definitions = $original->getDefinitions();
     $context = $original->getContext();
 
-    $schema = Formula_Drilldown_FromDefinitions::create(
+    $formula = Formula_Drilldown_FromDefinitions::create(
       $definitions,
       $this->definitionToLabel,
       $this->definitionToGrouplabel,
@@ -84,11 +84,11 @@ class FormulaReplacerPartial_DefinitionsDrilldown implements FormulaReplacerPart
         $definitions,
         'inline');
 
-      $schema = Formula_Drilldown_InlineExpanded::create(
-        $schema,
+      $formula = Formula_Drilldown_InlineExpanded::create(
+        $formula,
         $inlineIdsLookup);
     }
 
-    return $schema;
+    return $formula;
   }
 }

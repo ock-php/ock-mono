@@ -9,7 +9,7 @@ use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 abstract class Formula_MoreArgsValBase extends Formula_DecoratorBase implements Formula_MoreArgsValInterface {
 
   /**
-   * Same as parent, but must be a MoreArgs schema.
+   * Same as parent, but must be a MoreArgs formula.
    *
    * @param \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface $decorated
    */

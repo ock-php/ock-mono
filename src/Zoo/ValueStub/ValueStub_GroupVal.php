@@ -22,7 +22,7 @@ class ValueStub_GroupVal implements ValueStubInterface {
   /**
    * @SCTA
    *
-   * @param \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface $schema
+   * @param \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface $formula
    * @param mixed $conf
    * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
@@ -30,10 +30,10 @@ class ValueStub_GroupVal implements ValueStubInterface {
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_GroupValInterface $schema, $conf, FormulaConfToAnythingInterface $scta): ?ValueStubInterface {
+  public static function create(Formula_GroupValInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueStubInterface {
     return new self(
-      ValueStub_Group::createFromGroupFormula($schema->getDecorated(), $conf, $scta),
-      $schema->getV2V());
+      ValueStub_Group::createFromGroupFormula($formula->getDecorated(), $conf, $scta),
+      $formula->getV2V());
   }
 
   /**

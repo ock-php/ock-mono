@@ -15,14 +15,14 @@ trait StaticFactoryTrait {
   /**
    * @var FormulaInterface|null
    */
-  private static $schema;
+  private static $formula;
 
   /**
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    */
-  public static function schema(): FormulaInterface {
-    return self::$schema
-      ?? self::$schema = static::createFormula();
+  public static function formula(): FormulaInterface {
+    return self::$formula
+      ?? self::$formula = static::createFormula();
   }
 
   /**
@@ -31,27 +31,27 @@ trait StaticFactoryTrait {
   abstract protected static function createFormula(): FormulaInterface;
 
   /**
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    */
-  public static function evaluator(FormulaToAnythingInterface $schemaToAnything): GeneratorInterface {
+  public static function evaluator(FormulaToAnythingInterface $formulaToAnything): GeneratorInterface {
 
     return Generator::fromFormula(
-      static::schema(),
-      $schemaToAnything);
+      static::formula(),
+      $formulaToAnything);
   }
 
   /**
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Donquixote\OCUI\Summarizer\SummarizerInterface|null
    */
-  public static function summarizer(FormulaToAnythingInterface $schemaToAnything): ?SummarizerInterface {
+  public static function summarizer(FormulaToAnythingInterface $formulaToAnything): ?SummarizerInterface {
 
     return Summarizer::fromFormula(
-      static::schema(),
-      $schemaToAnything);
+      static::formula(),
+      $formulaToAnything);
   }
 
 }

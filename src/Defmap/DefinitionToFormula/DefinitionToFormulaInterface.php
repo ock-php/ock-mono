@@ -7,14 +7,14 @@ use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 /**
- * Objects to create schema based on definitions.
+ * Objects to create formula based on definitions.
  *
  * Definitions arrays are the format in which components register their plugins.
  */
 interface DefinitionToFormulaInterface {
 
   /**
-   * Gets or creates a schema object from a given definition array.
+   * Gets or creates a formula object from a given definition array.
    *
    * @param array $definition
    * @param \Donquixote\OCUI\Context\CfContextInterface|null $context

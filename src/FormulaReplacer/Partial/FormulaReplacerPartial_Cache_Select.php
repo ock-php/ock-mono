@@ -43,7 +43,7 @@ class FormulaReplacerPartial_Cache_Select implements FormulaReplacerPartialInter
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(FormulaInterface $proxy, FormulaReplacerInterface $replacer): ?FormulaInterface {
+  public function formulaGetReplacement(FormulaInterface $proxy, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
     if (!$proxy instanceof Formula_Cache_SelectInterface) {
       return NULL;

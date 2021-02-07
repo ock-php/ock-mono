@@ -11,12 +11,12 @@ final class Summarizer_Optionless extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface $formula
    *
    * @return \Donquixote\OCUI\Summarizer\SummarizerInterface
    */
   public static function create(
-    /** @noinspection PhpUnusedParameterInspection */ Formula_OptionlessInterface $schema
+    /** @noinspection PhpUnusedParameterInspection */ Formula_OptionlessInterface $formula
   ): SummarizerInterface {
     return new Summarizer_Null();
   }

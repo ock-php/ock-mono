@@ -9,7 +9,7 @@ use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 abstract class Formula_DrilldownValBase extends Formula_DecoratorBase implements Formula_DrilldownValInterface {
 
   /**
-   * Same as parent constructor, but the decorated schema must be a drilldown.
+   * Same as parent constructor, but the decorated formula must be a drilldown.
    *
    * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $decorated
    */

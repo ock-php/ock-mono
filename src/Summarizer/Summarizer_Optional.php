@@ -13,7 +13,7 @@ class Summarizer_Optional implements SummarizerInterface {
   /**
    * @var \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface
    */
-  private $schema;
+  private $formula;
 
   /**
    * @var \Donquixote\OCUI\Summarizer\SummarizerInterface
@@ -23,36 +23,36 @@ class Summarizer_Optional implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Donquixote\OCUI\Summarizer\SummarizerInterface|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
   public static function create(
-    Formula_OptionalInterface $schema,
-    FormulaToAnythingInterface $schemaToAnything
+    Formula_OptionalInterface $formula,
+    FormulaToAnythingInterface $formulaToAnything
   ): ?SummarizerInterface {
 
-    $decorated = Summarizer::fromFormula($schema->getDecorated(), $schemaToAnything);
+    $decorated = Summarizer::fromFormula($formula->getDecorated(), $formulaToAnything);
 
     if (NULL === $decorated) {
       return NULL;
     }
 
-    return new self($schema, $decorated);
+    return new self($formula, $decorated);
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $formula
    * @param \Donquixote\OCUI\Summarizer\SummarizerInterface $decorated
    */
   public function __construct(
-    Formula_OptionalInterface $schema,
+    Formula_OptionalInterface $formula,
     SummarizerInterface $decorated
   ) {
-    $this->schema = $schema;
+    $this->formula = $formula;
     $this->decorated = $decorated;
   }
 
@@ -62,7 +62,7 @@ class Summarizer_Optional implements SummarizerInterface {
   public function confGetSummary($conf): ?TextInterface {
 
     if (!\is_array($conf) || empty($conf['enabled'])) {
-      return $this->schema->getEmptySummary();
+      return $this->formula->getEmptySummary();
     }
 
     return $this->decorated->confGetSummary($conf['options'] ?? null);

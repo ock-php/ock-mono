@@ -33,7 +33,7 @@ class DefinitionToFormula_Mappers implements DefinitionToFormulaInterface {
   public static function create(LoggerInterface $logger): DefinitionToFormula_Mappers {
     return new self(
       [
-        'schema' => new DefinitionToFormulaHelper_Formula(),
+        'formula' => new DefinitionToFormulaHelper_Formula(),
         'handler' => new DefinitionToFormulaHelper_Handler(),
       ],
       $logger);

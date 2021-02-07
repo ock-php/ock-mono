@@ -8,19 +8,19 @@ use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
 final class DrilldownUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param string $id
    * @param mixed $options
    *
    * @return array
    */
-  public static function schemaBuildConf(Formula_DrilldownInterface $schema, string $id, $options): array {
+  public static function formulaBuildConf(Formula_DrilldownInterface $formula, string $id, $options): array {
 
     return self::buildConf(
       $id,
       $options,
-      $schema->getIdKey(),
-      $schema->getOptionsKey());
+      $formula->getIdKey(),
+      $formula->getOptionsKey());
   }
 
   /**
@@ -56,16 +56,16 @@ final class DrilldownUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $schema
+   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param mixed $conf
    *
    * @return array
    */
-  public static function drilldownConfGetIdOptions(Formula_DrilldownInterface $schema, $conf): array {
+  public static function drilldownConfGetIdOptions(Formula_DrilldownInterface $formula, $conf): array {
     return self::confGetIdOptions(
       $conf,
-      $schema->getIdKey(),
-      $schema->getOptionsKey()
+      $formula->getIdKey(),
+      $formula->getOptionsKey()
     );
   }
 

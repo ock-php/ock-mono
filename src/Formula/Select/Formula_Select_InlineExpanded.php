@@ -67,11 +67,11 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
    */
   private function idGetInlineOptions(string $id): ?array {
 
-    if (NULL === $schema = $this->idGetSelectFormula($id)) {
+    if (NULL === $formula = $this->idGetSelectFormula($id)) {
       return NULL;
     }
 
-    return $schema->getGroupedOptions();
+    return $formula->getGroupedOptions();
   }
 
   /**

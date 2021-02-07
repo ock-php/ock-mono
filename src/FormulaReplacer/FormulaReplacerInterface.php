@@ -8,18 +8,18 @@ use Donquixote\OCUI\Core\Formula\FormulaInterface;
 interface FormulaReplacerInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
-   *   A transformed schema, or NULL if no replacement can be found.
+   *   A transformed formula, or NULL if no replacement can be found.
    */
-  public function schemaGetReplacement(FormulaInterface $schema): ?FormulaInterface;
+  public function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface;
 
   /**
-   * @param string $schemaClass
+   * @param string $formulaClass
    *
    * @return bool
    */
-  public function acceptsFormulaClass(string $schemaClass): bool;
+  public function acceptsFormulaClass(string $formulaClass): bool;
 
 }

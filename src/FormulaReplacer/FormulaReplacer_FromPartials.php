@@ -27,12 +27,12 @@ class FormulaReplacer_FromPartials implements FormulaReplacerInterface {
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(FormulaInterface $schema): ?FormulaInterface {
+  public function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface {
 
-    foreach ($this->schemaClassGetPartials(
-      \get_class($schema)
+    foreach ($this->formulaClassGetPartials(
+      \get_class($formula)
     ) as $partial) {
-      if (NULL !== $replacement = $partial->schemaGetReplacement($schema, $this)) {
+      if (NULL !== $replacement = $partial->formulaGetReplacement($formula, $this)) {
         return $replacement;
       }
     }
@@ -43,31 +43,31 @@ class FormulaReplacer_FromPartials implements FormulaReplacerInterface {
   /**
    * {@inheritdoc}
    */
-  public function acceptsFormulaClass(string $schemaClass): bool {
-    return [] !== $this->schemaClassGetPartials($schemaClass);
+  public function acceptsFormulaClass(string $formulaClass): bool {
+    return [] !== $this->formulaClassGetPartials($formulaClass);
   }
 
   /**
-   * @param string $schemaClass
+   * @param string $formulaClass
    *
    * @return \Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
    */
-  private function schemaClassGetPartials(string $schemaClass): array {
-    return $this->partialss[$schemaClass]
-      ?? $this->partialss[$schemaClass] = $this->schemaClassFindPartials($schemaClass);
+  private function formulaClassGetPartials(string $formulaClass): array {
+    return $this->partialss[$formulaClass]
+      ?? $this->partialss[$formulaClass] = $this->formulaClassFindPartials($formulaClass);
   }
 
   /**
-   * @param string $schemaClass
+   * @param string $formulaClass
    *
    * @return \Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
    */
-  private function schemaClassFindPartials(string $schemaClass): array {
+  private function formulaClassFindPartials(string $formulaClass): array {
 
     $partials = [];
     foreach ($this->partials as $partial) {
       $acceptedFormulaClass = $partial->getSourceFormulaClass();
-      if (is_a($schemaClass, $acceptedFormulaClass, TRUE)) {
+      if (is_a($formulaClass, $acceptedFormulaClass, TRUE)) {
         $partials[] = $partial;
       }
     }

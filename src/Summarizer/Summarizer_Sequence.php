@@ -19,8 +19,8 @@ class Summarizer_Sequence implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
    *
    * @return \Donquixote\OCUI\Summarizer\Summarizer_Sequence|null
@@ -28,12 +28,12 @@ class Summarizer_Sequence implements SummarizerInterface {
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
   public static function create(
-    Formula_SequenceInterface $schema,
-    FormulaToAnythingInterface $schemaToAnything,
+    Formula_SequenceInterface $formula,
+    FormulaToAnythingInterface $formulaToAnything,
     TranslatorInterface $translator
   ): ?Summarizer_Sequence {
 
-    $itemSummarizer = Summarizer::fromFormula($schema->getItemFormula(), $schemaToAnything);
+    $itemSummarizer = Summarizer::fromFormula($formula->getItemFormula(), $formulaToAnything);
 
     if (NULL === $itemSummarizer) {
       return NULL;

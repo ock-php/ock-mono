@@ -32,26 +32,26 @@ class FormulaReplacerPartial_Definition implements FormulaReplacerPartialInterfa
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(FormulaInterface $schema, FormulaReplacerInterface $replacer): ?FormulaInterface {
+  public function formulaGetReplacement(FormulaInterface $formula, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$schema instanceof Formula_DefinitionInterface) {
+    if (!$formula instanceof Formula_DefinitionInterface) {
       return NULL;
     }
 
     try {
-      $schema = $this->definitionToFormula->definitionGetFormula(
-        $schema->getDefinition(),
-        $schema->getContext());
+      $formula = $this->definitionToFormula->definitionGetFormula(
+        $formula->getDefinition(),
+        $formula->getContext());
     }
     catch (\Exception $e) {
       // @todo Allow throwing exceptions? Log the problem somewhere? BrokenFormula?
       return NULL;
     }
 
-    if (NULL !== $replacement = $replacer->schemaGetReplacement($schema)) {
-      $schema = $replacement;
+    if (NULL !== $replacement = $replacer->formulaGetReplacement($formula)) {
+      $formula = $replacement;
     }
 
-    return $schema;
+    return $formula;
   }
 }

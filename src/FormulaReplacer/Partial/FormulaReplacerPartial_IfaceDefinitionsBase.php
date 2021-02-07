@@ -16,7 +16,7 @@ abstract class FormulaReplacerPartial_IfaceDefinitionsBase extends FormulaReplac
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  protected function schemaDoGetReplacement(
+  protected function formulaDoGetReplacement(
     Formula_IfaceWithContextInterface $ifaceFormula,
     FormulaReplacerInterface $replacer
   ): ?FormulaInterface {
@@ -26,13 +26,13 @@ abstract class FormulaReplacerPartial_IfaceDefinitionsBase extends FormulaReplac
 
     $definitions = $this->typeGetDefinitions($type);
 
-    $schema = new Formula_Definitions($definitions, $context);
+    $formula = new Formula_Definitions($definitions, $context);
 
-    if (NULL !== $replacement = $replacer->schemaGetReplacement($schema)) {
-      $schema = $replacement;
+    if (NULL !== $replacement = $replacer->formulaGetReplacement($formula)) {
+      $formula = $replacement;
     }
 
-    return $schema;
+    return $formula;
   }
 
   /**

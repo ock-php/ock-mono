@@ -9,7 +9,7 @@ use Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface;
 class ValueStub {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param mixed $conf
    * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
@@ -17,9 +17,9 @@ class ValueStub {
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function fromFormulaConf(FormulaInterface $schema, $conf, FormulaConfToAnythingInterface $scta): ?ValueStubInterface {
+  public static function fromFormulaConf(FormulaInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueStubInterface {
 
-    $object = $scta->schema($schema, $conf, ValueStubInterface::class);
+    $object = $scta->formula($formula, $conf, ValueStubInterface::class);
 
     if (NULL === $object || !$object instanceof ValueStubInterface) {
       return NULL;

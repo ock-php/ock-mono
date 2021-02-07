@@ -55,11 +55,11 @@ class Formula_IfaceWithContext implements Formula_IfaceWithContextInterface {
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
   public static function create($interface, CfContextInterface $context = NULL, $required = TRUE): FormulaInterface {
-    $schema = new self($interface, $context);
+    $formula = new self($interface, $context);
     if (!$required) {
-      $schema = new Formula_Optional($schema);
+      $formula = new Formula_Optional($formula);
     }
-    return $schema;
+    return $formula;
   }
 
   /**

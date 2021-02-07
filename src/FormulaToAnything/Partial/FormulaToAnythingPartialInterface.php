@@ -12,7 +12,7 @@ use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 interface FormulaToAnythingPartialInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $interface
    * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
    *
@@ -20,10 +20,10 @@ interface FormulaToAnythingPartialInterface {
    *   An instance of $interface, or NULL.
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
-   *   Malfunction in a schema replacer.
+   *   Malfunction in a formula replacer.
    */
-  public function schema(
-    FormulaInterface $schema,
+  public function formula(
+    FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper): ?object;
 
@@ -35,11 +35,11 @@ interface FormulaToAnythingPartialInterface {
   public function providesResultType(string $resultInterface): bool;
 
   /**
-   * @param string $schemaClass
+   * @param string $formulaClass
    *
    * @return bool
    */
-  public function acceptsFormulaClass(string $schemaClass): bool;
+  public function acceptsFormulaClass(string $formulaClass): bool;
 
   /**
    * @return int

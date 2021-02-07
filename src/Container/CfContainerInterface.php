@@ -7,9 +7,9 @@ namespace Donquixote\OCUI\Container;
  * Main cycle of circular dependencies:
  * @property \Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface $typeToFormula
  * @property \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $staPartials
- * @property \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+ * @property \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
  * @property \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
- * @property \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $schemaReplacer
+ * @property \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $formulaReplacer
  * @property \Donquixote\OCUI\Translator\TranslatorInterface $translator
  *
  * Non-circular:

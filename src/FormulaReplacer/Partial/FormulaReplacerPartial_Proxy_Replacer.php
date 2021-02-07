@@ -19,7 +19,7 @@ class FormulaReplacerPartial_Proxy_Replacer implements FormulaReplacerPartialInt
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(FormulaInterface $proxy, FormulaReplacerInterface $replacer): ?FormulaInterface {
+  public function formulaGetReplacement(FormulaInterface $proxy, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
     if (!$proxy instanceof Formula_Proxy_ReplacerInterface) {
       return NULL;

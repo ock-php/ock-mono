@@ -9,7 +9,7 @@ use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
 abstract class Formula_SequenceValBase extends Formula_DecoratorBase implements Formula_SequenceValInterface {
 
   /**
-   * Same as parent, but requires a sequence schema.
+   * Same as parent, but requires a sequence formula.
    *
    * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $decorated
    */

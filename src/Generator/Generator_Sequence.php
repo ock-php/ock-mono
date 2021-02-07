@@ -25,45 +25,45 @@ class Generator_Sequence implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function createFromSequenceFormula(Formula_SequenceInterface $schema, FormulaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
-    return self::create($schema, new V2V_Sequence_Trivial(), $schemaToAnything);
+  public static function createFromSequenceFormula(Formula_SequenceInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Generator_Sequence {
+    return self::create($formula, new V2V_Sequence_Trivial(), $formulaToAnything);
   }
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\SequenceVal\Formula_SequenceValInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\SequenceVal\Formula_SequenceValInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function createFromSequenceValFormula(Formula_SequenceValInterface $schema, FormulaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
-    return self::create($schema->getDecorated(), $schema->getV2V(), $schemaToAnything);
+  public static function createFromSequenceValFormula(Formula_SequenceValInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Generator_Sequence {
+    return self::create($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $formula
    * @param \Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  private static function create(Formula_SequenceInterface $schema, V2V_SequenceInterface $v2v, FormulaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
+  private static function create(Formula_SequenceInterface $formula, V2V_SequenceInterface $v2v, FormulaToAnythingInterface $formulaToAnything): ?Generator_Sequence {
 
     $itemGenerator = Generator::fromFormula(
-      $schema->getItemFormula(),
-      $schemaToAnything
+      $formula->getItemFormula(),
+      $formulaToAnything
     );
 
     if (NULL === $itemGenerator) {

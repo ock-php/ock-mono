@@ -22,15 +22,15 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
   private $idToFormula;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    *
    * @return self
    */
-  public static function create(array $schemas = [], array $labels = []): Formula_Drilldown_Fixed {
+  public static function create(array $formulas = [], array $labels = []): Formula_Drilldown_Fixed {
     return new self(
       Formula_Select_Fixed::createFlat($labels),
-      new IdToFormula_Fixed($schemas));
+      new IdToFormula_Fixed($formulas));
   }
 
   /**
@@ -44,16 +44,16 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
 
   /**
    * @param string $id
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $label
    * @param string $groupLabel
    *
    * @return static
    */
-  public function withOption(string $id, FormulaInterface $schema, string $label, $groupLabel = '') {
+  public function withOption(string $id, FormulaInterface $formula, string $label, $groupLabel = '') {
     $clone = clone $this;
     $clone->idFormula = $this->idFormula->withOption($id, $label, $groupLabel);
-    $clone->idToFormula = $this->idToFormula->withFormula($id, $schema);
+    $clone->idToFormula = $this->idToFormula->withFormula($id, $formula);
     return $clone;
   }
 

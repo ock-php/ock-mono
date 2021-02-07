@@ -22,17 +22,17 @@ class Generator_Para implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Para\Formula_ParaInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\Para\Formula_ParaInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_ParaInterface $schema, FormulaToAnythingInterface $schemaToAnything): Generator_Para {
+  public static function create(Formula_ParaInterface $formula, FormulaToAnythingInterface $formulaToAnything): Generator_Para {
     return new self(
-      Generator::fromFormula($schema->getDecorated(), $schemaToAnything),
-      Generator::fromFormula($schema->getParaFormula(), $schemaToAnything));
+      Generator::fromFormula($formula->getDecorated(), $formulaToAnything),
+      Generator::fromFormula($formula->getParaFormula(), $formulaToAnything));
   }
 
   /**

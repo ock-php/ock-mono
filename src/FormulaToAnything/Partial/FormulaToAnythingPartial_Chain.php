@@ -37,14 +37,14 @@ class FormulaToAnythingPartial_Chain implements FormulaToAnythingPartialInterfac
   /**
    * {@inheritdoc}
    */
-  public function schema(
-    FormulaInterface $schema,
+  public function formula(
+    FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
   ): ?object {
 
     foreach ($this->partials as $mapper) {
-      $candidate = $mapper->schema($schema, $interface, $helper);
+      $candidate = $mapper->formula($formula, $interface, $helper);
       if (NULL !== $candidate) {
         if ($candidate instanceof $interface) {
           return $candidate;
@@ -65,7 +65,7 @@ class FormulaToAnythingPartial_Chain implements FormulaToAnythingPartialInterfac
   /**
    * {@inheritdoc}
    */
-  public function acceptsFormulaClass(string $schemaClass): bool {
+  public function acceptsFormulaClass(string $formulaClass): bool {
     return TRUE;
   }
 

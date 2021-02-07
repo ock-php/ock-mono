@@ -7,7 +7,7 @@ use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Text\TextInterface;
 
 /**
- * Base interface for schemas where the value is id-like (string or integer).
+ * Base interface for formulas where the value is id-like (string or integer).
  */
 interface Formula_IdInterface extends FormulaInterface {
 

@@ -18,13 +18,13 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValueInterface $valueToValueFormula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    */
-  public static function create(Formula_ValueToValueInterface $valueToValueFormula, FormulaToAnythingInterface $schemaToAnything): ?self {
+  public static function create(Formula_ValueToValueInterface $valueToValueFormula, FormulaToAnythingInterface $formulaToAnything): ?self {
 
-    $decorated = $schemaToAnything->schema(
+    $decorated = $formulaToAnything->formula(
       $valueToValueFormula->getDecorated(),
       GeneratorInterface::class);
 

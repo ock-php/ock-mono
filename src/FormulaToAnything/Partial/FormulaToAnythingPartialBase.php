@@ -11,7 +11,7 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
   /**
    * @var null|string
    */
-  private $schemaType;
+  private $formulaType;
 
   /**
    * @var null|string
@@ -24,11 +24,11 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
   private $specifity = 0;
 
   /**
-   * @param string|null $schemaType
+   * @param string|null $formulaType
    * @param string|null $resultType
    */
-  protected function __construct(?string $schemaType, ?string $resultType) {
-    $this->schemaType = $schemaType;
+  protected function __construct(?string $formulaType, ?string $resultType) {
+    $this->formulaType = $formulaType;
     $this->resultType = $resultType;
   }
 
@@ -49,18 +49,18 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
   }
 
   /**
-   * @param string $schemaType
+   * @param string $formulaType
    *
    * @return static
    */
-  public function withFormulaType(string $schemaType) {
+  public function withFormulaType(string $formulaType) {
 
-    if ($schemaType === $this->schemaType) {
+    if ($formulaType === $this->formulaType) {
       return $this;
     }
 
     $clone = clone $this;
-    $clone->schemaType = $schemaType;
+    $clone->formulaType = $formulaType;
     return $clone;
   }
 
@@ -81,7 +81,7 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $interface
    * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
    *
@@ -90,17 +90,17 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  final public function schema(
-    FormulaInterface $schema,
+  final public function formula(
+    FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
   ): ?object {
 
-    if (NULL !== $this->schemaType && !$schema instanceof $this->schemaType) {
+    if (NULL !== $this->formulaType && !$formula instanceof $this->formulaType) {
       return NULL;
     }
 
-    $candidate = $this->schemaDoGetObject($schema, $interface, $helper);
+    $candidate = $this->formulaDoGetObject($formula, $interface, $helper);
 
     if (NULL === $candidate) {
       return NULL;
@@ -116,7 +116,7 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $interface
    * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
    *
@@ -125,8 +125,8 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  abstract protected function schemaDoGetObject(
-    FormulaInterface $schema,
+  abstract protected function formulaDoGetObject(
+    FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
   );
@@ -134,9 +134,9 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
   /**
    * {@inheritdoc}
    */
-  public function acceptsFormulaClass(string $schemaClass): bool {
-    return NULL === $this->schemaType
-      || is_a($schemaClass, $this->schemaType, TRUE);
+  public function acceptsFormulaClass(string $formulaClass): bool {
+    return NULL === $this->formulaType
+      || is_a($formulaClass, $this->formulaType, TRUE);
   }
 
   /**

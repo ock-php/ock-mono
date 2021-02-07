@@ -18,12 +18,12 @@ class Generator_Boolean implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface $schema
+   * @param \Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface $formula
    *
    * @return self
    */
   public static function createFromBooleanFormula(
-    /** @noinspection PhpUnusedParameterInspection */ Formula_BooleanInterface $schema
+    /** @noinspection PhpUnusedParameterInspection */ Formula_BooleanInterface $formula
   ): Generator_Boolean {
     return new self(new V2V_Boolean_Trivial());
   }
@@ -31,12 +31,12 @@ class Generator_Boolean implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\BoolVal\Formula_BoolValInterface $schema
+   * @param \Donquixote\OCUI\Formula\BoolVal\Formula_BoolValInterface $formula
    *
    * @return self
    */
-  public static function createFromBooleanValFormula(Formula_BoolValInterface $schema): Generator_Boolean {
-    return new self($schema->getV2V());
+  public static function createFromBooleanValFormula(Formula_BoolValInterface $formula): Generator_Boolean {
+    return new self($formula->getV2V());
   }
 
   /**

@@ -24,29 +24,29 @@ class FormulaToAnythingPartial_IfaceDefmap extends FormulaToAnythingPartialBase 
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $interface
    * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
    *
    * @return null|object
    *   An instance of $interface, or NULL.
    */
-  protected function schemaDoGetObject(
-    FormulaInterface $schema,
+  protected function formulaDoGetObject(
+    FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
   ) {
 
-    /** @var \Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContext $schema */
+    /** @var \Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContext $formula */
 
-    $schema = $this->typeToFormula->typeGetFormula(
-      $schema->getInterface(),
-      $schema->getContext());
+    $formula = $this->typeToFormula->typeGetFormula(
+      $formula->getInterface(),
+      $formula->getContext());
 
-    if (NULL === $schema) {
+    if (NULL === $formula) {
       return NULL;
     }
 
-    return $helper->schema($schema, $interface);
+    return $helper->formula($formula, $interface);
   }
 }

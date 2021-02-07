@@ -9,13 +9,13 @@ use Donquixote\OCUI\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
 interface Formula_ContextualInterface extends Formula_SkipEvaluatorInterface {
 
   /**
-   * Gets a schema with a context applied.
+   * Gets a formula with a context applied.
    *
    * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *   Context to limit available options, or NULL for no limitations.
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
-   *   Decorated schema with the context applied.
+   *   Decorated formula with the context applied.
    */
   public function getDecorated(CfContextInterface $context = NULL): FormulaInterface;
 

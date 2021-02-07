@@ -39,11 +39,11 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
     }
     unset($params[0]);
 
-    if (FormulaInterface::class === $schemaType = $t0->getName()) {
-      $schemaType = NULL;
+    if (FormulaInterface::class === $formulaType = $t0->getName()) {
+      $formulaType = NULL;
       $specifity = -1;
     }
-    elseif (!is_a($schemaType, FormulaBaseInterface::class, TRUE)) {
+    elseif (!is_a($formulaType, FormulaBaseInterface::class, TRUE)) {
       return NULL;
     }
     else {
@@ -73,12 +73,12 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
     if ($hasStaParam) {
       $sta = new self(
         $callback,
-        $schemaType);
+        $formulaType);
     }
     else {
       $sta = new FormulaToAnythingPartial_CallbackNoHelper(
         $callback,
-        $schemaType);
+        $formulaType);
     }
 
     $sta = $sta->withSpecifity($specifity);
@@ -89,35 +89,35 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
   /**
    *
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
-   * @param string|null $schemaType
+   * @param string|null $formulaType
    * @param string|null $resultType
    */
   public function __construct(
     CallbackReflectionInterface $callback,
-    $schemaType = NULL,
+    $formulaType = NULL,
     $resultType = NULL
   ) {
     $this->callback = $callback;
-    parent::__construct($schemaType, $resultType);
+    parent::__construct($formulaType, $resultType);
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $interface
    * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
    *
    * @return null|object
    *   An instance of $interface, or NULL.
    */
-  protected function schemaDoGetObject(
-    FormulaInterface $schema,
+  protected function formulaDoGetObject(
+    FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
   ) {
 
     try {
       // Other arguments, e.g. services, might already be part of the callback.
-      return $this->callback->invokeArgs([$schema, $helper]);
+      return $this->callback->invokeArgs([$formula, $helper]);
     }
     catch (\Exception $e) {
       // @todo Log exception in callback!

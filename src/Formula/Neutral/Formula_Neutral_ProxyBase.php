@@ -6,9 +6,9 @@ namespace Donquixote\OCUI\Formula\Neutral;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 /**
- * A "proxy" schema can be created before the decorated schema exists.
+ * A "proxy" formula can be created before the decorated formula exists.
  *
- * This allows e.g. recursive schemas.
+ * This allows e.g. recursive formulas.
  */
 abstract class Formula_Neutral_ProxyBase implements Formula_NeutralInterface {
 

@@ -16,7 +16,7 @@ class TypeToFormula_Buffer implements TypeToFormulaInterface {
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
-  private $schemas = [];
+  private $formulas = [];
 
   /**
    * @param \Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface $decorated
@@ -35,9 +35,9 @@ class TypeToFormula_Buffer implements TypeToFormulaInterface {
       $k .= '::' . $context->getMachineName();
     }
 
-    return array_key_exists($k, $this->schemas)
-      ? $this->schemas[$k]
-      : $this->schemas[$k] = $this->decorated->typeGetFormula($type, $context);
+    return array_key_exists($k, $this->formulas)
+      ? $this->formulas[$k]
+      : $this->formulas[$k] = $this->decorated->typeGetFormula($type, $context);
   }
 
 }

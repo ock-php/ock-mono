@@ -16,17 +16,17 @@ class FormatorCommon_V2V implements FormulaToAnythingPartialInterface {
   /**
    * {@inheritdoc}
    */
-  public function schema(
-    FormulaInterface $schema,
+  public function formula(
+    FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
   ): ?object {
 
-    if (!$schema instanceof Formula_ValueToValueBaseInterface) {
+    if (!$formula instanceof Formula_ValueToValueBaseInterface) {
       return NULL;
     }
 
-    return $helper->schema($schema->getDecorated(), $interface);
+    return $helper->formula($formula->getDecorated(), $interface);
   }
 
   /**
@@ -42,9 +42,9 @@ class FormatorCommon_V2V implements FormulaToAnythingPartialInterface {
   /**
    * {@inheritdoc}
    */
-  public function acceptsFormulaClass(string $schemaClass): bool {
+  public function acceptsFormulaClass(string $formulaClass): bool {
     return is_a(
-      $schemaClass,
+      $formulaClass,
       Formula_ValueToValueBaseInterface::class,
       TRUE);
   }

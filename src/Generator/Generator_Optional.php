@@ -16,21 +16,21 @@ class Generator_Optional implements GeneratorInterface {
   /**
    * @var \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface
    */
-  private $schema;
+  private $formula;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_OptionalInterface $schema, FormulaToAnythingInterface $schemaToAnything): ?GeneratorInterface {
+  public static function create(Formula_OptionalInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?GeneratorInterface {
 
-    $decorated = Generator::fromFormula($schema->getDecorated(), $schemaToAnything);
+    $decorated = Generator::fromFormula($formula->getDecorated(), $formulaToAnything);
 
     if (NULL === $decorated) {
       return NULL;
@@ -38,16 +38,16 @@ class Generator_Optional implements GeneratorInterface {
 
     return new self(
       $decorated,
-      $schema);
+      $formula);
   }
 
   /**
    * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $formula
    */
-  public function __construct(GeneratorInterface $decorated, Formula_OptionalInterface $schema) {
+  public function __construct(GeneratorInterface $decorated, Formula_OptionalInterface $formula) {
     $this->decorated = $decorated;
-    $this->schema = $schema;
+    $this->formula = $formula;
   }
 
   /**
@@ -56,7 +56,7 @@ class Generator_Optional implements GeneratorInterface {
   public function confGetPhp($conf): string {
 
     if (!\is_array($conf) || empty($conf['enabled'])) {
-      return $this->schema->getEmptyPhp();
+      return $this->formula->getEmptyPhp();
     }
 
     $subConf = $conf['options'] ?? null;

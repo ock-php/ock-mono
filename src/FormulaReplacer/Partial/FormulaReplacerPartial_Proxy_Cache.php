@@ -42,7 +42,7 @@ class FormulaReplacerPartial_Proxy_Cache implements FormulaReplacerPartialInterf
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(FormulaInterface $proxy, FormulaReplacerInterface $replacer): ?FormulaInterface {
+  public function formulaGetReplacement(FormulaInterface $proxy, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
     if (!$proxy instanceof Formula_Proxy_CacheInterface) {
       return NULL;

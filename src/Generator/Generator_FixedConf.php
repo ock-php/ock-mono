@@ -21,17 +21,17 @@ class Generator_FixedConf implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\FixedConf\Formula_FixedConfInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\FixedConf\Formula_FixedConfInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_FixedConfInterface $schema, FormulaToAnythingInterface $schemaToAnything): GeneratorInterface {
+  public static function create(Formula_FixedConfInterface $formula, FormulaToAnythingInterface $formulaToAnything): GeneratorInterface {
     return new self(
-      Generator::fromFormula($schema->getDecorated(), $schemaToAnything),
-      $schema->getConf());
+      Generator::fromFormula($formula->getDecorated(), $formulaToAnything),
+      $formula->getConf());
   }
 
   /**

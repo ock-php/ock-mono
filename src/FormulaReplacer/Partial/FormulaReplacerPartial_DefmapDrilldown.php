@@ -62,7 +62,7 @@ class FormulaReplacerPartial_DefmapDrilldown implements FormulaReplacerPartialIn
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(FormulaInterface $original, FormulaReplacerInterface $replacer): ?FormulaInterface {
+  public function formulaGetReplacement(FormulaInterface $original, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
     if (!$original instanceof Formula_DefmapInterface) {
       return NULL;
@@ -71,7 +71,7 @@ class FormulaReplacerPartial_DefmapDrilldown implements FormulaReplacerPartialIn
     $defmap = $original->getDefinitionMap();
     $context = $original->getContext();
 
-    $schema = Formula_Drilldown_FromDefinitionMap::create(
+    $formula = Formula_Drilldown_FromDefinitionMap::create(
       $defmap,
       $this->definitionToLabel,
       $this->definitionToGrouplabel,
@@ -84,11 +84,11 @@ class FormulaReplacerPartial_DefmapDrilldown implements FormulaReplacerPartialIn
         $defmap,
         'inline');
 
-      $schema = Formula_Drilldown_InlineExpanded::create(
-        $schema,
+      $formula = Formula_Drilldown_InlineExpanded::create(
+        $formula,
         $inlineIdsLookup);
     }
 
-    return $schema;
+    return $formula;
   }
 }

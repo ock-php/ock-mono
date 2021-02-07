@@ -179,9 +179,9 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
     foreach ($returnTypeNames as $returnTypeName) {
 
       if (is_a($returnTypeName, FormulaInterface::class, TRUE)) {
-        // The method returns a schema object.
+        // The method returns a formula object.
         // The actual plugin type has to be determined elsewhere.
-        return self::schemaFactoryGetDefinitions($method, $annotations);
+        return self::formulaFactoryGetDefinitions($method, $annotations);
       }
     }
 
@@ -209,7 +209,7 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
    *   Plugin definitions that were found.
    *   Format: $[$pluginType][$pluginId] = $pluginDefinition.
    */
-  private static function schemaFactoryGetDefinitions(
+  private static function formulaFactoryGetDefinitions(
     \ReflectionMethod $method,
     array $annotations
   ): array {
@@ -217,7 +217,7 @@ class ClassFileToDefinitions_NativeReflection implements ClassFileToDefinitionsI
     $name = $method->getDeclaringClass()->getName() . '::' . $method->getName();
 
     $definition = [
-      'schema_factory' => $name,
+      'formula_factory' => $name,
     ];
 
     $pluginTypeNames = self::classGetPluginTypeNames(

@@ -32,35 +32,35 @@ class FormulaToAnythingPartial_FormulaReplacer implements FormulaToAnythingParti
   /**
    * {@inheritdoc}
    */
-  public function schema(
-    FormulaInterface $schema,
+  public function formula(
+    FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
   ): ?object {
     static $recursionLevel = 0;
 
     if ($recursionLevel > 10) {
-      throw new FormulaToAnythingException("Recursion in schema replacer.");
+      throw new FormulaToAnythingException("Recursion in formula replacer.");
     }
 
     ++$recursionLevel;
     // Use try/finally to make sure that recursion level will be decremented.
     try {
-      $replacement = $this->replacer->schemaGetReplacement($schema);
+      $replacement = $this->replacer->formulaGetReplacement($formula);
 
       if ($replacement === NULL) {
         return NULL;
       }
 
-      if ($replacement === $schema) {
+      if ($replacement === $formula) {
         throw new FormulaToAnythingException("Replacer did not replace. Replacement is identical.");
       }
 
-      if (\get_class($replacement) === \get_class($schema)) {
+      if (\get_class($replacement) === \get_class($formula)) {
         throw new FormulaToAnythingException("Replacer did not replace. Replacement has same class.");
       }
 
-      return $helper->schema($replacement, $interface);
+      return $helper->formula($replacement, $interface);
     }
     finally {
       --$recursionLevel;
@@ -77,7 +77,7 @@ class FormulaToAnythingPartial_FormulaReplacer implements FormulaToAnythingParti
   /**
    * {@inheritdoc}
    */
-  public function acceptsFormulaClass(string $schemaClass): bool {
-    return $this->replacer->acceptsFormulaClass($schemaClass);
+  public function acceptsFormulaClass(string $formulaClass): bool {
+    return $this->replacer->acceptsFormulaClass($formulaClass);
   }
 }

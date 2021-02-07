@@ -12,13 +12,13 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
 
   /**
    * @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][][]
-   *   Format: $[$schemaType][$targetType] = $partials
+   *   Format: $[$formulaType][$targetType] = $partials
    */
   private $partialsGrouped = [];
 
   /**
    * @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][][]
-   *   Format: $[$targetType][$schemaType] = $partials
+   *   Format: $[$targetType][$formulaType] = $partials
    */
   private $partialsGroupedReverse = [];
 
@@ -30,7 +30,7 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
 
   /**
    * @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][]
-   *   Format: $[$schemaType] = $partials
+   *   Format: $[$formulaType] = $partials
    */
   private $partialsByFormulaType = [];
 
@@ -85,14 +85,14 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
   /**
    * {@inheritdoc}
    */
-  public function schema(FormulaInterface $schema, string $interface) {
+  public function formula(FormulaInterface $formula, string $interface) {
 
-    if ($schema instanceof $interface) {
-      return $schema;
+    if ($formula instanceof $interface) {
+      return $formula;
     }
 
-    $partials = $this->schemaTypeAndTargetTypeGetPartials(
-      \get_class($schema),
+    $partials = $this->formulaTypeAndTargetTypeGetPartials(
+      \get_class($formula),
       $interface);
 
     if ([] === $partials) {
@@ -103,7 +103,7 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
     foreach ($partials as $partial) {
 
       try {
-        $candidate = $partial->schema($schema, $interface, $this);
+        $candidate = $partial->formula($formula, $interface, $this);
       }
       catch (FormulaToAnythingException $e) {
         // @todo Log this!
@@ -123,29 +123,29 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
   }
 
   /**
-   * @param string $schemaType
+   * @param string $formulaType
    * @param string $targetType
    *
    * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
-  private function schemaTypeAndTargetTypeGetPartials(string $schemaType, string $targetType): array {
+  private function formulaTypeAndTargetTypeGetPartials(string $formulaType, string $targetType): array {
 
-    return $this->partialsGrouped[$schemaType][$targetType]
-      ?? ($this->partialsGrouped[$schemaType][$targetType] = $this->schemaTypeAndTargetTypeCollectPartials(
-        $schemaType,
+    return $this->partialsGrouped[$formulaType][$targetType]
+      ?? ($this->partialsGrouped[$formulaType][$targetType] = $this->formulaTypeAndTargetTypeCollectPartials(
+        $formulaType,
         $targetType));
   }
 
   /**
-   * @param string $schemaType
+   * @param string $formulaType
    * @param string $targetType
    *
    * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
-  private function schemaTypeAndTargetTypeCollectPartials(string $schemaType, string $targetType): array {
+  private function formulaTypeAndTargetTypeCollectPartials(string $formulaType, string $targetType): array {
 
-    return $this->partialsGroupedReverse[$targetType][$schemaType] = array_intersect_key(
-      $this->schemaTypeGetPartials($schemaType),
+    return $this->partialsGroupedReverse[$targetType][$formulaType] = array_intersect_key(
+      $this->formulaTypeGetPartials($formulaType),
       $this->targetTypeGetPartials($targetType));
   }
 
@@ -184,23 +184,23 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
    *
    * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
-  private function schemaTypeGetPartials(string $interface): array {
+  private function formulaTypeGetPartials(string $interface): array {
 
     return $this->partialsByFormulaType[$interface]
-      ?? $this->partialsByFormulaType[$interface] = $this->schemaTypeCollectPartials($interface);
+      ?? $this->partialsByFormulaType[$interface] = $this->formulaTypeCollectPartials($interface);
   }
 
   /**
-   * @param string $schemaType
+   * @param string $formulaType
    *
    * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
-  private function schemaTypeCollectPartials(string $schemaType): array {
+  private function formulaTypeCollectPartials(string $formulaType): array {
 
     $partials = [];
     /** @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial */
     foreach ($this->partials as $k => $partial) {
-      if ($partial->acceptsFormulaClass($schemaType)) {
+      if ($partial->acceptsFormulaClass($formulaType)) {
         // Preserve keys for array_intersect().
         $partials[$k] = $partial;
       }
@@ -224,6 +224,6 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
    * @return bool
    */
   public function acceptsFormulaClass(string $interface): bool {
-    return [] !== $this->schemaTypeGetPartials($interface);
+    return [] !== $this->formulaTypeGetPartials($interface);
   }
 }

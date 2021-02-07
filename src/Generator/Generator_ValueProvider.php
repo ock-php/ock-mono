@@ -13,19 +13,19 @@ class Generator_ValueProvider implements GeneratorInterface {
   /**
    * @var \Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProviderInterface
    */
-  private $schema;
+  private $formula;
 
   /**
-   * @param \Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProviderInterface $schema
+   * @param \Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProviderInterface $formula
    */
-  public function __construct(Formula_ValueProviderInterface $schema) {
-    $this->schema = $schema;
+  public function __construct(Formula_ValueProviderInterface $formula) {
+    $this->formula = $formula;
   }
 
   /**
    * {@inheritdoc}
    */
   public function confGetPhp($conf): string {
-    return $this->schema->getPhp();
+    return $this->formula->getPhp();
   }
 }

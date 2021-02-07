@@ -16,13 +16,13 @@ class Summarizer_Id implements SummarizerInterface {
   /**
    * @var \Donquixote\OCUI\Formula\Id\Formula_IdInterface
    */
-  private $schema;
+  private $formula;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Id\Formula_IdInterface $schema
+   * @param \Donquixote\OCUI\Formula\Id\Formula_IdInterface $formula
    */
-  public function __construct(Formula_IdInterface $schema) {
-    $this->schema = $schema;
+  public function __construct(Formula_IdInterface $formula) {
+    $this->formula = $formula;
   }
 
   /**
@@ -34,12 +34,12 @@ class Summarizer_Id implements SummarizerInterface {
       return Text::t('Required id missing.');
     }
 
-    if (!$this->schema->idIsKnown($id)) {
+    if (!$this->formula->idIsKnown($id)) {
       return Text::t(
         'Unknown id "@id".',
         ['@id' => $id]);
     }
 
-    return $this->schema->idGetLabel($id);
+    return $this->formula->idGetLabel($id);
   }
 }

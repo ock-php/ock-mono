@@ -14,7 +14,7 @@ class Summarizer_Group implements SummarizerInterface {
   /**
    * @var \Donquixote\OCUI\Formula\Group\Formula_GroupInterface
    */
-  private $schema;
+  private $formula;
 
   /**
    * @var \Donquixote\OCUI\Summarizer\SummarizerInterface[]
@@ -24,36 +24,36 @@ class Summarizer_Group implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_GroupInterface $schema, FormulaToAnythingInterface $schemaToAnything): ?self {
+  public static function create(Formula_GroupInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?self {
 
     /** @var \Donquixote\OCUI\Summarizer\SummarizerInterface[] $itemSummarizers */
     $itemSummarizers = StaUtil::getMultiple(
-      $schema->getItemFormulas(),
-      $schemaToAnything,
+      $formula->getItemFormulas(),
+      $formulaToAnything,
       SummarizerInterface::class);
 
     if (NULL === $itemSummarizers) {
       return NULL;
     }
 
-    return new self($schema, $itemSummarizers);
+    return new self($formula, $itemSummarizers);
   }
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $schema
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
    * @param \Donquixote\OCUI\Summarizer\SummarizerInterface[] $itemSummarizers
    */
-  public function __construct(Formula_GroupInterface $schema, array $itemSummarizers) {
-    $this->schema = $schema;
+  public function __construct(Formula_GroupInterface $formula, array $itemSummarizers) {
+    $this->formula = $formula;
     $this->itemSummarizers = $itemSummarizers;
   }
 
@@ -66,7 +66,7 @@ class Summarizer_Group implements SummarizerInterface {
       $conf = [];
     }
 
-    $labels = $this->schema->getLabels();
+    $labels = $this->formula->getLabels();
 
     $parts = [];
     foreach ($this->itemSummarizers as $key => $itemSummarizer) {

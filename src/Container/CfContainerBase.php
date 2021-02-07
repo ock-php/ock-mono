@@ -58,16 +58,16 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   /**
    * @return \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface
    *
-   * @see $schemaToAnything
+   * @see $formulaToAnything
    *
    * @throws \Donquixote\OCUI\Exception\STABuilderException
    */
-  protected function get_schemaToAnything(): FormulaToAnythingInterface {
+  protected function get_formulaToAnything(): FormulaToAnythingInterface {
 
     $partials = $this->staPartials;
 
     $partials[] = new FormulaToAnythingPartial_FormulaReplacer(
-      $this->schemaReplacer);
+      $this->formulaReplacer);
 
     return new FormulaToAnything_SmartChain($partials);
   }
@@ -110,9 +110,9 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   /**
    * @return \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface
    *
-   * @see $schemaReplacer
+   * @see $formulaReplacer
    */
-  protected function get_schemaReplacer(): FormulaReplacerInterface {
+  protected function get_formulaReplacer(): FormulaReplacerInterface {
 
     $partials = $this->getFormulaReplacerPartials();
 
@@ -171,7 +171,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
    */
   protected function getDefinitionToFormulaHelpers(): array {
     return [
-      'schema' => new DefinitionToFormulaHelper_Formula(),
+      'formula' => new DefinitionToFormulaHelper_Formula(),
       'handler' => new DefinitionToFormulaHelper_Handler(),
     ];
   }

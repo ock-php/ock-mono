@@ -14,11 +14,11 @@ interface FormulaReplacerPartialInterface {
   public function getSourceFormulaClass(): string;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $replacer
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    */
-  public function schemaGetReplacement(FormulaInterface $schema, FormulaReplacerInterface $replacer): ?FormulaInterface;
+  public function formulaGetReplacement(FormulaInterface $formula, FormulaReplacerInterface $replacer): ?FormulaInterface;
 
 }

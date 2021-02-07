@@ -8,7 +8,7 @@ use Donquixote\OCUI\Core\Formula\FormulaInterface;
 interface FormulaConfToAnythingInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param mixed $conf
    * @param string $interface
    *
@@ -17,6 +17,6 @@ interface FormulaConfToAnythingInterface {
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public function schema(FormulaInterface $schema, $conf, string $interface): object;
+  public function formula(FormulaInterface $formula, $conf, string $interface): object;
 
 }

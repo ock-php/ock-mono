@@ -18,15 +18,15 @@ class FormulaToAnythingPartial_CallbackNoHelper extends FormulaToAnythingPartial
 
   /**
    * @param string $class
-   * @param string|null $schemaType
+   * @param string|null $formulaType
    *
    * @return self
    */
-  public static function fromClassName(string $class, $schemaType = NULL): self {
+  public static function fromClassName(string $class, $formulaType = NULL): self {
     $callback = CallbackReflection_ClassConstruction::createFromClassName($class);
     return new self(
       $callback,
-      $schemaType,
+      $formulaType,
       $class);
   }
 
@@ -48,29 +48,29 @@ class FormulaToAnythingPartial_CallbackNoHelper extends FormulaToAnythingPartial
       return NULL;
     }
 
-    if (FormulaInterface::class === $schemaType = $t0->getName()) {
-      $schemaType = NULL;
+    if (FormulaInterface::class === $formulaType = $t0->getName()) {
+      $formulaType = NULL;
     }
-    elseif (!is_a($schemaType, FormulaInterface::class, TRUE)) {
+    elseif (!is_a($formulaType, FormulaInterface::class, TRUE)) {
       return NULL;
     }
 
-    return new self($callback, $schemaType, $resultType);
+    return new self($callback, $formulaType, $resultType);
   }
 
   /**
    *
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
-   * @param string|null $schemaType
+   * @param string|null $formulaType
    * @param string|null $resultType
    */
-  public function __construct(CallbackReflectionInterface $callback, $schemaType = NULL, $resultType = NULL) {
+  public function __construct(CallbackReflectionInterface $callback, $formulaType = NULL, $resultType = NULL) {
     $this->callback = $callback;
-    parent::__construct($schemaType, $resultType);
+    parent::__construct($formulaType, $resultType);
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $interface
    * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
    *
@@ -79,14 +79,14 @@ class FormulaToAnythingPartial_CallbackNoHelper extends FormulaToAnythingPartial
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  protected function schemaDoGetObject(
-    FormulaInterface $schema,
+  protected function formulaDoGetObject(
+    FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
   ) {
 
     try {
-      return $this->callback->invokeArgs([$schema]);
+      return $this->callback->invokeArgs([$formula]);
     }
     catch (\Exception $e) {
       throw new FormulaToAnythingException("Exception in callback.", 0, $e);

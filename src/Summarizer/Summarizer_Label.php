@@ -26,22 +26,22 @@ class Summarizer_Label implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Label\Formula_LabelInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\Label\Formula_LabelInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    */
-  public static function create(Formula_LabelInterface $schema, FormulaToAnythingInterface $schemaToAnything): ?Summarizer_Label {
+  public static function create(Formula_LabelInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Summarizer_Label {
 
     if (NULL === $decorated = Summarizer::fromFormula(
-        $schema->getDecorated(),
-        $schemaToAnything
+        $formula->getDecorated(),
+        $formulaToAnything
       )
     ) {
       return NULL;
     }
 
-    return new self($decorated, $schema->getLabel());
+    return new self($decorated, $formula->getLabel());
   }
 
   /**

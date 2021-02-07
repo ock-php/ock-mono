@@ -14,13 +14,13 @@ class Summarizer_Boolean implements SummarizerInterface {
   /**
    * @var \Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface
    */
-  private $schema;
+  private $formula;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface $schema
+   * @param \Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface $formula
    */
-  public function __construct(Formula_BooleanInterface $schema) {
-    $this->schema = $schema;
+  public function __construct(Formula_BooleanInterface $formula) {
+    $this->formula = $formula;
   }
 
   /**
@@ -31,7 +31,7 @@ class Summarizer_Boolean implements SummarizerInterface {
     $boolean = !empty($conf);
 
     return $boolean
-      ? $this->schema->getTrueSummary()
-      : $this->schema->getFalseSummary();
+      ? $this->formula->getTrueSummary()
+      : $this->formula->getFalseSummary();
   }
 }

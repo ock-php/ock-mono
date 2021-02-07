@@ -16,7 +16,7 @@ class ValueStub_Group implements ValueStubInterface {
   /**
    * @SCTA
    *
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $schema
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
    * @param mixed $conf
    * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
@@ -24,8 +24,8 @@ class ValueStub_Group implements ValueStubInterface {
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function createFromGroupFormula(Formula_GroupInterface $schema, $conf, FormulaConfToAnythingInterface $scta): ?ValueStub_Group {
-    $itemStubs = self::createItemStubs($schema, $conf, $scta);
+  public static function createFromGroupFormula(Formula_GroupInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueStub_Group {
+    $itemStubs = self::createItemStubs($formula, $conf, $scta);
     return new self($itemStubs);
   }
 

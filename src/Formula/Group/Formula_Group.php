@@ -10,7 +10,7 @@ class Formula_Group implements Formula_GroupInterface {
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
-  private $schemas;
+  private $formulas;
 
   /**
    * @var string[]
@@ -18,41 +18,41 @@ class Formula_Group implements Formula_GroupInterface {
   private $labels;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    *
    * @return self
    */
-  public static function create(array $schemas = [], array $labels = []): Formula_Group {
-    return new self($schemas, $labels);
+  public static function create(array $formulas = [], array $labels = []): Formula_Group {
+    return new self($formulas, $labels);
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    */
-  public function __construct(array $schemas, array $labels) {
+  public function __construct(array $formulas, array $labels) {
 
-    foreach ($schemas as $k => $itemFormula) {
+    foreach ($formulas as $k => $itemFormula) {
       if (!$itemFormula instanceof FormulaInterface) {
-        throw new \InvalidArgumentException("Item schema at key $k must be instance of FormulaInterface.");
+        throw new \InvalidArgumentException("Item formula at key $k must be instance of FormulaInterface.");
       }
     }
 
-    $this->schemas = $schemas;
+    $this->formulas = $formulas;
     $this->labels = $labels;
   }
 
   /**
    * @param string $key
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param null $label
    *
    * @return \Donquixote\OCUI\Formula\Group\Formula_Group
    */
-  public function withItem(string $key, FormulaInterface $schema, $label = NULL): Formula_Group {
+  public function withItem(string $key, FormulaInterface $formula, $label = NULL): Formula_Group {
     $clone = clone $this;
-    $clone->schemas[$key] = $schema;
+    $clone->formulas[$key] = $formula;
     $clone->labels[$key] = $label ?? $key;
     return $clone;
   }
@@ -61,7 +61,7 @@ class Formula_Group implements Formula_GroupInterface {
    * {@inheritdoc}
    */
   public function getItemFormulas(): array {
-    return $this->schemas;
+    return $this->formulas;
   }
 
   /**

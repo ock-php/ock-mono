@@ -22,21 +22,21 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
   public static function create(
-    Formula_DefaultConfInterface $schema,
-    FormulaToAnythingInterface $schemaToAnything
+    Formula_DefaultConfInterface $formula,
+    FormulaToAnythingInterface $formulaToAnything
   ): ?Summarizer_DefaultConf {
 
     $decorated = Summarizer::fromFormula(
-      $schema->getDecorated(),
-      $schemaToAnything);
+      $formula->getDecorated(),
+      $formulaToAnything);
 
     if (NULL === $decorated) {
       return NULL;
@@ -44,7 +44,7 @@ class Summarizer_DefaultConf implements SummarizerInterface {
 
     return new self(
       $decorated,
-      $schema->getDefaultConf());
+      $formula->getDefaultConf());
   }
 
   /**

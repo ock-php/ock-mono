@@ -15,7 +15,7 @@ class Generator_Id implements GeneratorInterface {
   /**
    * @var \Donquixote\OCUI\Formula\Id\Formula_IdInterface
    */
-  private $schema;
+  private $formula;
 
   /**
    * @var \Donquixote\OCUI\Zoo\V2V\Id\V2V_IdInterface
@@ -25,29 +25,29 @@ class Generator_Id implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Id\Formula_IdInterface $schema
+   * @param \Donquixote\OCUI\Formula\Id\Formula_IdInterface $formula
    *
    * @return self
    */
-  public static function createFromIdFormula(Formula_IdInterface $schema): Generator_Id {
-    return new self($schema, new V2V_Id_Trivial());
+  public static function createFromIdFormula(Formula_IdInterface $formula): Generator_Id {
+    return new self($formula, new V2V_Id_Trivial());
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\IdVal\Formula_IdValInterface $schema
+   * @param \Donquixote\OCUI\Formula\IdVal\Formula_IdValInterface $formula
    *
    * @return self
    */
-  public static function createFromIdValFormula(Formula_IdValInterface $schema): Generator_Id {
-    return new self($schema->getDecorated(), $schema->getV2V());
+  public static function createFromIdValFormula(Formula_IdValInterface $formula): Generator_Id {
+    return new self($formula->getDecorated(), $formula->getV2V());
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Id\Formula_IdInterface $schema
+   * @param \Donquixote\OCUI\Formula\Id\Formula_IdInterface $formula
    * @param \Donquixote\OCUI\Zoo\V2V\Id\V2V_IdInterface $v2v
    */
-  public function __construct(Formula_IdInterface $schema, V2V_IdInterface $v2v) {
-    $this->schema = $schema;
+  public function __construct(Formula_IdInterface $formula, V2V_IdInterface $v2v) {
+    $this->formula = $formula;
     $this->v2v = $v2v;
   }
 
@@ -57,11 +57,11 @@ class Generator_Id implements GeneratorInterface {
   public function confGetPhp($conf): string {
 
     if (NULL === $id = ConfUtil::confGetId($conf)) {
-      return PhpUtil::incompatibleConfiguration('Required id empty for id schema.');
+      return PhpUtil::incompatibleConfiguration('Required id empty for id formula.');
     }
 
-    if (!$this->schema->idIsKnown($id)) {
-      return PhpUtil::incompatibleConfiguration("Unknown id '$id' for id schema.");
+    if (!$this->formula->idIsKnown($id)) {
+      return PhpUtil::incompatibleConfiguration("Unknown id '$id' for id formula.");
     }
 
     return $this->v2v->idGetPhp($id);

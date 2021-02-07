@@ -6,8 +6,8 @@ namespace Donquixote\OCUI\FormulaBase;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 /**
- * Base interface for all schema types where the configuration form and summary
- * is the same as for the decorated schema.
+ * Base interface for all formula types where the configuration form and summary
+ * is the same as for the decorated formula.
  */
 interface Formula_ValueToValueBaseInterface extends FormulaInterface {
 

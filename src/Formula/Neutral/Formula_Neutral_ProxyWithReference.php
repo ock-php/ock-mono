@@ -10,13 +10,13 @@ class Formula_Neutral_ProxyWithReference extends Formula_Neutral_ProxyBase {
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    */
-  private $schemaRef;
+  private $formulaRef;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface|null $schemaRef
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface|null $formulaRef
    */
-  public function __construct(FormulaInterface &$schemaRef = NULL) {
-    $this->schemaRef =& $schemaRef;
+  public function __construct(FormulaInterface &$formulaRef = NULL) {
+    $this->formulaRef =& $formulaRef;
   }
 
   /**
@@ -24,10 +24,10 @@ class Formula_Neutral_ProxyWithReference extends Formula_Neutral_ProxyBase {
    */
   public function doGetDecorated(): FormulaInterface {
 
-    if (!$this->schemaRef instanceof FormulaInterface) {
+    if (!$this->formulaRef instanceof FormulaInterface) {
       throw new \RuntimeException("Formula reference is still empty.");
     }
 
-    return $this->schemaRef;
+    return $this->formulaRef;
   }
 }

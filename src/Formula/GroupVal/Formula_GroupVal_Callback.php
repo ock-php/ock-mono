@@ -15,68 +15,68 @@ final class Formula_GroupVal_Callback extends UtilBase {
 
   /**
    * @param string $class
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    *
    * @return \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function fromClass(string $class, array $schemas, array $labels): Formula_GroupValInterface {
+  public static function fromClass(string $class, array $formulas, array $labels): Formula_GroupValInterface {
 
     return self::create(
       CallbackReflection_ClassConstruction::createFromClassName(
         $class),
-      $schemas,
+      $formulas,
       $labels);
   }
 
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    *
    * @return \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function fromStaticMethod(string $class, string $methodName, array $schemas, array $labels): Formula_GroupValInterface {
+  public static function fromStaticMethod(string $class, string $methodName, array $formulas, array $labels): Formula_GroupValInterface {
 
     return self::create(
       CallbackReflection_StaticMethod::create(
         $class,
         $methodName),
-      $schemas,
+      $formulas,
       $labels);
   }
 
   /**
    * @param callable $callable
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    *
    * @return \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function fromCallable(callable $callable, array $schemas, array $labels): Formula_GroupValInterface {
+  public static function fromCallable(callable $callable, array $formulas, array $labels): Formula_GroupValInterface {
 
     return self::create(
       CallbackUtil::callableGetCallback($callable),
-      $schemas,
+      $formulas,
       $labels);
   }
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $schemas
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    *
    * @return \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function create(
     CallbackReflectionInterface $callbackReflection,
-    array $schemas,
+    array $formulas,
     array $labels
   ): Formula_GroupValInterface {
 
     return new Formula_GroupVal(
-      new Formula_Group($schemas, $labels),
+      new Formula_Group($formulas, $labels),
       new V2V_Group_Callback($callbackReflection));
   }
 }

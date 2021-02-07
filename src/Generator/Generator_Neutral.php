@@ -11,15 +11,15 @@ class Generator_Neutral extends Generator_DecoratorBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_SkipEvaluatorInterface $schema, FormulaToAnythingInterface $schemaToAnything): ?GeneratorInterface {
+  public static function create(Formula_SkipEvaluatorInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?GeneratorInterface {
 
-    return Generator::fromFormula($schema->getDecorated(), $schemaToAnything);
+    return Generator::fromFormula($formula->getDecorated(), $formulaToAnything);
   }
 }

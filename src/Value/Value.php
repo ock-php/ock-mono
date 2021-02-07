@@ -17,7 +17,7 @@ class Value implements ValueInterface {
   private $value;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $formula
    * @param $conf
    * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
@@ -26,9 +26,9 @@ class Value implements ValueInterface {
    * @throws \Donquixote\OCUI\Exception\EvaluatorException
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function sequence(Formula_SequenceInterface $schema, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
+  public static function sequence(Formula_SequenceInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
 
-    $items = self::sequenceItems($schema, $conf, $scta);
+    $items = self::sequenceItems($formula, $conf, $scta);
 
     if (NULL === $items) {
       return NULL;
@@ -43,7 +43,7 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $schema
+   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $formula
    * @param mixed $conf
    * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
@@ -52,7 +52,7 @@ class Value implements ValueInterface {
    * @throws \Donquixote\OCUI\Exception\EvaluatorException
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function sequenceItems(Formula_SequenceInterface $schema, $conf, FormulaConfToAnythingInterface $scta): ?array {
+  public static function sequenceItems(Formula_SequenceInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?array {
 
     if (!\is_array($conf)) {
       throw new EvaluatorException("Sequence conf must be an array.");
@@ -62,7 +62,7 @@ class Value implements ValueInterface {
     $items = [];
     foreach ($conf as $delta => $deltaConf) {
 
-      $item = self::fromFormulaConf($schema->getItemFormula(), $deltaConf, $scta);
+      $item = self::fromFormulaConf($formula->getItemFormula(), $deltaConf, $scta);
 
       if (NULL === $item) {
         return NULL;
@@ -75,7 +75,7 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $schema
+   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
    * @param mixed $conf
    * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
@@ -83,9 +83,9 @@ class Value implements ValueInterface {
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function group(Formula_GroupInterface $schema, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
+  public static function group(Formula_GroupInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
 
-    $items = self::groupItems($schema, $conf, $scta);
+    $items = self::groupItems($formula, $conf, $scta);
 
     if (NULL === $items) {
       return NULL;
@@ -129,7 +129,7 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param mixed $conf
    * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
@@ -137,9 +137,9 @@ class Value implements ValueInterface {
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function fromFormulaConf(FormulaInterface $schema, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
+  public static function fromFormulaConf(FormulaInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
 
-    $object = $scta->schema($schema, $conf, ValueInterface::class);
+    $object = $scta->formula($formula, $conf, ValueInterface::class);
 
     if (NULL === $object || !$object instanceof ValueInterface) {
       return NULL;

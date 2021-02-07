@@ -34,41 +34,41 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $schema, FormulaToAnythingInterface $schemaToAnything): ?Generator_MoreArgs {
-    return self::create($schema, new V2V_Group_Trivial(), $schemaToAnything);
+  public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Generator_MoreArgs {
+    return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
   }
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\MoreArgsVal\Formula_MoreArgsValInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\MoreArgsVal\Formula_MoreArgsValInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
   public static function createFromMoreArgsValFormula(
-    Formula_MoreArgsValInterface $schema,
-    FormulaToAnythingInterface $schemaToAnything
+    Formula_MoreArgsValInterface $formula,
+    FormulaToAnythingInterface $formulaToAnything
   ): ?Generator_MoreArgs {
     return self::create(
-      $schema->getDecorated(),
-      $schema->getV2V(),
-      $schemaToAnything);
+      $formula->getDecorated(),
+      $formula->getV2V(),
+      $formulaToAnything);
   }
 
   /**
    * @param \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
    * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -77,12 +77,12 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   public static function create(
     Formula_MoreArgsInterface $moreArgsFormula,
     V2V_GroupInterface $v2v,
-    FormulaToAnythingInterface $schemaToAnything
+    FormulaToAnythingInterface $formulaToAnything
   ): ?Generator_MoreArgs {
 
     $decoratedGenerator = Generator::fromFormula(
       $moreArgsFormula->getDecorated(),
-      $schemaToAnything);
+      $formulaToAnything);
 
     if (NULL === $decoratedGenerator) {
       return NULL;
@@ -90,7 +90,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
 
     $moreGenerators = [];
     foreach ($moreArgsFormula->getMoreArgs() as $k => $itemFormula) {
-      $itemGenerator = Generator::fromFormula($itemFormula, $schemaToAnything);
+      $itemGenerator = Generator::fromFormula($itemFormula, $formulaToAnything);
       if (NULL === $itemGenerator) {
         return NULL;
       }

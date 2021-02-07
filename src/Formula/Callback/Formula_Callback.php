@@ -86,14 +86,14 @@ class Formula_Callback implements Formula_CallbackInterface {
 
   /**
    * @param int $index
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string|null $label
    *
    * @return static
    */
-  public function withParamFormula(int $index, FormulaInterface $schema, $label = NULL) {
+  public function withParamFormula(int $index, FormulaInterface $formula, $label = NULL) {
     $clone = clone $this;
-    $clone->explicitFormulas[$index] = $schema;
+    $clone->explicitFormulas[$index] = $formula;
     if (NULL !== $label) {
       $clone->explicitLabels[$index] = $label;
     }

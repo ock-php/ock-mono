@@ -76,20 +76,20 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $expectedClass
    * @param mixed $foundValue
    *
    * @return string
    */
-  public static function misbehavingSTA(FormulaInterface $schema, string $expectedClass, $foundValue): string {
+  public static function misbehavingSTA(FormulaInterface $formula, string $expectedClass, $foundValue): string {
 
-    $schemaClass = \get_class($schema);
+    $formulaClass = \get_class($formula);
 
     $messagePhp = <<<EOT
 ''
 . 'Attempted to create a ' . \\$expectedClass::class . ' object' . "\\n"
-. 'from schema of class ' . \\$schemaClass::class . '.' . "\\n"
+. 'from formula of class ' . \\$formulaClass::class . '.' . "\\n"
 EOT;
 
     if (\is_object($foundValue)) {
@@ -113,19 +113,19 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string $destinationClass
    *
    * @return string
    */
-  public static function unableToSTA(FormulaInterface $schema, string $destinationClass): string {
+  public static function unableToSTA(FormulaInterface $formula, string $destinationClass): string {
 
-    $schemaClass = \get_class($schema);
+    $formulaClass = \get_class($formula);
 
     $messagePhp = <<<EOT
 ''
 . 'Unable to create a ' . \\$destinationClass::class . ' object' . "\\n"
-. 'from schema of class ' . \\$schemaClass::class . '.'
+. 'from formula of class ' . \\$formulaClass::class . '.'
 EOT;
 
     return self::exceptionWithMessagePhp(
@@ -134,18 +134,18 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param string|null $message
    *
    * @return string
    */
-  public static function unsupportedFormula(FormulaInterface $schema, $message = NULL): string {
+  public static function unsupportedFormula(FormulaInterface $formula, $message = NULL): string {
 
-    $schemaClass = \get_class($schema);
+    $formulaClass = \get_class($formula);
 
     $messagePhp = <<<EOT
 
-'Unsupported schema of class ' . \\$schemaClass::class
+'Unsupported formula of class ' . \\$formulaClass::class
 EOT;
 
     if (NULL !== $message) {

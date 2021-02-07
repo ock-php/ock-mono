@@ -42,13 +42,13 @@ class Formula_MoreArgs extends Formula_DecoratorBase implements Formula_MoreArgs
 
   /**
    * @param string $key
-   * @param \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface $schema
+   * @param \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface $formula
    *
    * @return \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgs
    */
-  public function withItemFormula(string $key, Formula_OptionlessInterface $schema): Formula_MoreArgs {
+  public function withItemFormula(string $key, Formula_OptionlessInterface $formula): Formula_MoreArgs {
     $clone = clone $this;
-    $clone->more[$key] = $schema;
+    $clone->more[$key] = $formula;
     return $clone;
   }
 

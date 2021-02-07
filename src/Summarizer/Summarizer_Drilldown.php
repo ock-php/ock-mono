@@ -17,25 +17,25 @@ class Summarizer_Drilldown implements SummarizerInterface {
   /**
    * @var \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface
    */
-  private $schema;
+  private $formula;
 
   /**
    * @var \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface
    */
-  private $schemaToAnything;
+  private $formulaToAnything;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    */
   public function __construct(
-    Formula_DrilldownInterface $schema,
-    FormulaToAnythingInterface $schemaToAnything
+    Formula_DrilldownInterface $formula,
+    FormulaToAnythingInterface $formulaToAnything
   ) {
-    $this->schema = $schema;
-    $this->schemaToAnything = $schemaToAnything;
+    $this->formula = $formula;
+    $this->formulaToAnything = $formulaToAnything;
   }
 
   /**
@@ -43,20 +43,20 @@ class Summarizer_Drilldown implements SummarizerInterface {
    */
   public function confGetSummary($conf): ?TextInterface {
 
-    [$id, $subConf] = DrilldownKeysHelper::fromFormula($this->schema)
+    [$id, $subConf] = DrilldownKeysHelper::fromFormula($this->formula)
       ->unpack($conf);
 
     if (NULL === $id) {
       return Text::tSpecialOption('None');
     }
 
-    if (NULL === $subFormula = $this->schema->getIdToFormula()->idGetFormula($id)) {
+    if (NULL === $subFormula = $this->formula->getIdToFormula()->idGetFormula($id)) {
       return Text::tSpecialOption('Unknown id "@id".', [
         '@id' => $id,
       ]);
     }
 
-    if (NULL === $idLabel = $this->schema->getIdFormula()->idGetLabel($id)) {
+    if (NULL === $idLabel = $this->formula->getIdFormula()->idGetLabel($id)) {
       return Text::tSpecialOption('Unnamed id "@id".', [
         '@id' => $id,
       ]);
@@ -64,7 +64,7 @@ class Summarizer_Drilldown implements SummarizerInterface {
 
     $subSummarizer = Summarizer::fromFormula(
       $subFormula,
-      $this->schemaToAnything);
+      $this->formulaToAnything);
 
     if (NULL === $subSummarizer) {
       return Text::tSpecialOption('Undocumented id "@id".', [

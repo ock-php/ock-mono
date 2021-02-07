@@ -10,18 +10,18 @@ use Donquixote\OCUI\Util\UtilBase;
 final class Generator extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    */
   public static function fromFormula(
-    FormulaInterface $schema,
-    FormulaToAnythingInterface $schemaToAnything
+    FormulaInterface $formula,
+    FormulaToAnythingInterface $formulaToAnything
   ): ?GeneratorInterface {
 
-    $candidate = $schemaToAnything->schema(
-      $schema,
+    $candidate = $formulaToAnything->formula(
+      $formula,
       GeneratorInterface::class);
 
     if ($candidate instanceof GeneratorInterface) {

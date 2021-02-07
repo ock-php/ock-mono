@@ -12,20 +12,20 @@ final class Summarizer_V2V extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\FormulaBase\Formula_ValueToValueBaseInterface $schema
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\OCUI\FormulaBase\Formula_ValueToValueBaseInterface $formula
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Donquixote\OCUI\Summarizer\SummarizerInterface|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
   public static function create(
-    Formula_ValueToValueBaseInterface $schema,
-    FormulaToAnythingInterface $schemaToAnything
+    Formula_ValueToValueBaseInterface $formula,
+    FormulaToAnythingInterface $formulaToAnything
   ): ?SummarizerInterface {
     return Summarizer::fromFormula(
-      $schema->getDecorated(),
-      $schemaToAnything
+      $formula->getDecorated(),
+      $formulaToAnything
     );
   }
 

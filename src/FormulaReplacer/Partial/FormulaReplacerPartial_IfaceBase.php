@@ -12,7 +12,7 @@ abstract class FormulaReplacerPartial_IfaceBase implements FormulaReplacerPartia
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
-  private $schemas = [];
+  private $formulas = [];
 
   /**
    * {@inheritdoc}
@@ -24,17 +24,17 @@ abstract class FormulaReplacerPartial_IfaceBase implements FormulaReplacerPartia
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(FormulaInterface $schema, FormulaReplacerInterface $replacer): ?FormulaInterface {
+  public function formulaGetReplacement(FormulaInterface $formula, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$schema instanceof Formula_IfaceWithContextInterface) {
+    if (!$formula instanceof Formula_IfaceWithContextInterface) {
       return NULL;
     }
 
-    $k = $schema->getCacheId();
+    $k = $formula->getCacheId();
 
-    return array_key_exists($k, $this->schemas)
-      ? $this->schemas[$k]
-      : $this->schemas[$k] = $this->schemaDoGetReplacement($schema, $replacer);
+    return array_key_exists($k, $this->formulas)
+      ? $this->formulas[$k]
+      : $this->formulas[$k] = $this->formulaDoGetReplacement($formula, $replacer);
   }
 
   /**
@@ -43,7 +43,7 @@ abstract class FormulaReplacerPartial_IfaceBase implements FormulaReplacerPartia
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    */
-  abstract protected function schemaDoGetReplacement(
+  abstract protected function formulaDoGetReplacement(
     Formula_IfaceWithContextInterface $ifaceFormula,
     FormulaReplacerInterface $replacer
   ): ?FormulaInterface;

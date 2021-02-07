@@ -67,12 +67,12 @@ class FactoryToSTA implements FactoryToSTAInterface {
     unset($params[0]);
 
     // Require first parameter type hint class to be a Formula* object.
-    if (FormulaInterface::class === $schemaType = $t0->getName()) {
-      $schemaType = NULL;
+    if (FormulaInterface::class === $formulaType = $t0->getName()) {
+      $formulaType = NULL;
       $specifity = -1;
     }
     // @todo Why are we only requiring FormulaBaseInterface?
-    elseif (!is_a($schemaType, FormulaBaseInterface::class, TRUE)) {
+    elseif (!is_a($formulaType, FormulaBaseInterface::class, TRUE)) {
       return NULL;
     }
     else {
@@ -114,13 +114,13 @@ class FactoryToSTA implements FactoryToSTAInterface {
     if ($hasStaParam) {
       $sta = new FormulaToAnythingPartial_Callback(
         $callback,
-        $schemaType,
+        $formulaType,
         $returnTypeClass->getName());
     }
     else {
       $sta = new FormulaToAnythingPartial_CallbackNoHelper(
         $callback,
-        $schemaType,
+        $formulaType,
         $returnTypeClass->getName());
     }
 

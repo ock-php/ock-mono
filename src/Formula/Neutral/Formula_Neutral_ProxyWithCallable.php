@@ -10,13 +10,13 @@ class Formula_Neutral_ProxyWithCallable extends Formula_Neutral_ProxyBase {
   /**
    * @var callable
    */
-  private $schemaCallback;
+  private $formulaCallback;
 
   /**
-   * @param callable $schemaCallback
+   * @param callable $formulaCallback
    */
-  public function __construct(callable $schemaCallback) {
-    $this->schemaCallback = $schemaCallback;
+  public function __construct(callable $formulaCallback) {
+    $this->formulaCallback = $formulaCallback;
   }
 
   /**
@@ -24,12 +24,12 @@ class Formula_Neutral_ProxyWithCallable extends Formula_Neutral_ProxyBase {
    */
   public function doGetDecorated(): FormulaInterface {
 
-    $schema = \call_user_func($this->schemaCallback);
+    $formula = \call_user_func($this->formulaCallback);
 
-    if (!$schema instanceof FormulaInterface) {
-      throw new \RuntimeException("Callback did not return a schema.");
+    if (!$formula instanceof FormulaInterface) {
+      throw new \RuntimeException("Callback did not return a formula.");
     }
 
-    return $schema;
+    return $formula;
   }
 }

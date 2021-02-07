@@ -68,25 +68,25 @@ class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
   /**
    * {@inheritdoc}
    */
-  public function schema(FormulaInterface $schema, string $interface): ?object {
+  public function formula(FormulaInterface $formula, string $interface): ?object {
 
-    if ($schema instanceof Formula_ContextProvidingInterface) {
+    if ($formula instanceof Formula_ContextProvidingInterface) {
       return $this
-        ->withContext($schema->getContext())
-        ->schema(
-          $schema->getDecorated(),
+        ->withContext($formula->getContext())
+        ->formula(
+          $formula->getDecorated(),
           $interface);
     }
 
-    if ($schema instanceof Formula_ContextualInterface) {
+    if ($formula instanceof Formula_ContextualInterface) {
       return $this
-        ->schema(
-          $schema->getDecorated($this->context),
+        ->formula(
+          $formula->getDecorated($this->context),
           $interface);
     }
 
     try {
-      $candidate = $this->partial->schema($schema, $interface, $this);
+      $candidate = $this->partial->formula($formula, $interface, $this);
     }
     catch (FormulaToAnythingException $e) {
       // @todo Log this!

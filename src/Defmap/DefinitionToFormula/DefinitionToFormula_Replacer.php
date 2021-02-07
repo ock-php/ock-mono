@@ -43,14 +43,14 @@ class DefinitionToFormula_Replacer implements DefinitionToFormulaInterface {
     array $definition,
     CfContextInterface $context = NULL
   ): FormulaInterface {
-    $schema = $this->decorated->definitionGetFormula(
+    $formula = $this->decorated->definitionGetFormula(
       $definition,
       $context);
 
-    if (NULL !== $replacement = $this->replacer->schemaGetReplacement($schema)) {
-      $schema = $replacement;
+    if (NULL !== $replacement = $this->replacer->formulaGetReplacement($formula)) {
+      $formula = $replacement;
     }
 
-    return $schema;
+    return $formula;
   }
 }

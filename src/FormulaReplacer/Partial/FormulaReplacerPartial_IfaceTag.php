@@ -28,22 +28,22 @@ class FormulaReplacerPartial_IfaceTag extends FormulaReplacerPartial_IfaceBase {
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  protected function schemaDoGetReplacement(
+  protected function formulaDoGetReplacement(
     Formula_IfaceWithContextInterface $ifaceFormula,
     FormulaReplacerInterface $replacer
   ): ?FormulaInterface {
 
-    if (NULL === $schema = $this->decorated->schemaGetReplacement($ifaceFormula, $replacer)) {
+    if (NULL === $formula = $this->decorated->formulaGetReplacement($ifaceFormula, $replacer)) {
       // @todo Tag this one as well?
       return NULL;
-      # $schema = $ifaceFormula;
+      # $formula = $ifaceFormula;
     }
 
-    $schema = new Formula_Neutral_IfaceTransformed(
-      $schema,
+    $formula = new Formula_Neutral_IfaceTransformed(
+      $formula,
       $ifaceFormula->getInterface(),
       $ifaceFormula->getContext());
 
-    return $schema;
+    return $formula;
   }
 }

@@ -15,13 +15,13 @@ class Summarizer_Textfield implements SummarizerInterface {
   /**
    * @var \Donquixote\OCUI\Formula\Textfield\Formula_TextfieldInterface
    */
-  private $schema;
+  private $formula;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Textfield\Formula_TextfieldInterface $schema
+   * @param \Donquixote\OCUI\Formula\Textfield\Formula_TextfieldInterface $formula
    */
-  public function __construct(Formula_TextfieldInterface $schema) {
-    $this->schema = $schema;
+  public function __construct(Formula_TextfieldInterface $formula) {
+    $this->formula = $formula;
   }
 
   /**
@@ -33,7 +33,7 @@ class Summarizer_Textfield implements SummarizerInterface {
       return Text::t('Value is not a string.');
     }
 
-    if ([] !== $errors = $this->schema->textGetValidationErrors($conf)) {
+    if ([] !== $errors = $this->formula->textGetValidationErrors($conf)) {
       return Text::label(
         Text::t('Invalid string'),
         Text::ul($errors));

@@ -25,7 +25,7 @@ class FormulaReplacerPartial_IfaceDefmap implements FormulaReplacerPartialInterf
   /**
    * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
    */
-  private $schemas = [];
+  private $formulas = [];
 
   /**
    * @param \Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface $typeToDefmap
@@ -43,24 +43,24 @@ class FormulaReplacerPartial_IfaceDefmap implements FormulaReplacerPartialInterf
    * {@inheritdoc}
    */
   public function getSourceFormulaClass(): string {
-    // Accepts any schema.
+    // Accepts any formula.
     return Formula_IfaceWithContextInterface::class;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function schemaGetReplacement(FormulaInterface $schema, FormulaReplacerInterface $replacer): ?FormulaInterface {
+  public function formulaGetReplacement(FormulaInterface $formula, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$schema instanceof Formula_IfaceWithContextInterface) {
+    if (!$formula instanceof Formula_IfaceWithContextInterface) {
       return NULL;
     }
 
-    $k = $schema->getCacheId();
+    $k = $formula->getCacheId();
 
     // The value NULL does not occur, so isset() is safe.
-    return $this->schemas[$k]
-      ?? $this->schemas[$k] = $this->schemaDoGetReplacement($schema, $replacer);
+    return $this->formulas[$k]
+      ?? $this->formulas[$k] = $this->formulaDoGetReplacement($formula, $replacer);
   }
 
   /**
@@ -69,7 +69,7 @@ class FormulaReplacerPartial_IfaceDefmap implements FormulaReplacerPartialInterf
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
-  private function schemaDoGetReplacement(
+  private function formulaDoGetReplacement(
     Formula_IfaceWithContextInterface $ifaceFormula,
     FormulaReplacerInterface $replacer
   ): FormulaInterface {
@@ -79,19 +79,19 @@ class FormulaReplacerPartial_IfaceDefmap implements FormulaReplacerPartialInterf
 
     $defmap = $this->typeToDefmap->typeGetDefmap($type);
 
-    $schema = new Formula_Defmap($defmap, $context);
+    $formula = new Formula_Defmap($defmap, $context);
 
-    if (NULL !== $replacement = $replacer->schemaGetReplacement($schema)) {
-      $schema = $replacement;
+    if (NULL !== $replacement = $replacer->formulaGetReplacement($formula)) {
+      $formula = $replacement;
     }
 
     if ($this->withTaggingDecorator) {
-      $schema = new Formula_Neutral_IfaceTransformed(
-        $schema,
+      $formula = new Formula_Neutral_IfaceTransformed(
+        $formula,
         $type,
         $context);
     }
 
-    return $schema;
+    return $formula;
   }
 }
