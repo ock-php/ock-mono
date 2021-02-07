@@ -7,9 +7,9 @@ use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
 use Donquixote\OCUI\Formula\Defmap\Formula_DefmapInterface;
-use Donquixote\OCUI\Formula\Drilldown\CfSchema_Drilldown_FromDefinitionMap;
-use Donquixote\OCUI\Formula\Drilldown\CfSchema_Drilldown_InlineExpanded;
-use Donquixote\OCUI\Formula\Id\CfSchema_Id_DefmapKey;
+use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown_FromDefinitionMap;
+use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown_InlineExpanded;
+use Donquixote\OCUI\Formula\Id\Formula_Id_DefmapKey;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_DefmapDrilldown implements SchemaReplacerPartialInterface {
@@ -71,7 +71,7 @@ class SchemaReplacerPartial_DefmapDrilldown implements SchemaReplacerPartialInte
     $defmap = $original->getDefinitionMap();
     $context = $original->getContext();
 
-    $schema = CfSchema_Drilldown_FromDefinitionMap::create(
+    $schema = Formula_Drilldown_FromDefinitionMap::create(
       $defmap,
       $this->definitionToLabel,
       $this->definitionToGrouplabel,
@@ -80,11 +80,11 @@ class SchemaReplacerPartial_DefmapDrilldown implements SchemaReplacerPartialInte
 
     if ($this->withInlineChildren) {
 
-      $inlineIdsLookup = new CfSchema_Id_DefmapKey(
+      $inlineIdsLookup = new Formula_Id_DefmapKey(
         $defmap,
         'inline');
 
-      $schema = CfSchema_Drilldown_InlineExpanded::create(
+      $schema = Formula_Drilldown_InlineExpanded::create(
         $schema,
         $inlineIdsLookup);
     }

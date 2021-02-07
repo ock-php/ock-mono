@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Generator;
 
-use Donquixote\OCUI\Formula\StringVal\CfSchema_StringValInterface;
+use Donquixote\OCUI\Formula\StringVal\Formula_StringValInterface;
 use Donquixote\OCUI\Formula\Textfield\Formula_TextfieldInterface;
 use Donquixote\OCUI\Util\PhpUtil;
 use Donquixote\OCUI\Zoo\V2V\String\V2V_String_Trivial;
@@ -35,11 +35,11 @@ class Generator_Textfield implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\StringVal\CfSchema_StringValInterface $schema
+   * @param \Donquixote\OCUI\Formula\StringVal\Formula_StringValInterface $schema
    *
    * @return self
    */
-  public static function createFromStringValSchema(CfSchema_StringValInterface $schema): Generator_Textfield {
+  public static function createFromStringValSchema(Formula_StringValInterface $schema): Generator_Textfield {
     return new self($schema->getDecorated(), $schema->getV2V());
   }
 

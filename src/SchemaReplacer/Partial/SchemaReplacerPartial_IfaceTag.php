@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface;
-use Donquixote\OCUI\Formula\Neutral\CfSchema_Neutral_IfaceTransformed;
+use Donquixote\OCUI\Formula\Neutral\Formula_Neutral_IfaceTransformed;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_IfaceTag extends SchemaReplacerPartial_IfaceBase {
@@ -39,7 +39,7 @@ class SchemaReplacerPartial_IfaceTag extends SchemaReplacerPartial_IfaceBase {
       # $schema = $ifaceSchema;
     }
 
-    $schema = new CfSchema_Neutral_IfaceTransformed(
+    $schema = new Formula_Neutral_IfaceTransformed(
       $schema,
       $ifaceSchema->getInterface(),
       $ifaceSchema->getContext());

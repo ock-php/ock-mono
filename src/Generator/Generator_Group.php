@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Generator;
 
 use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
-use Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupValInterface;
+use Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Trivial;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
@@ -38,14 +38,14 @@ class Generator_Group implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupValInterface $schema
+   * @param \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
-  public static function createFromGroupValSchema(CfSchema_GroupValInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Group {
+  public static function createFromGroupValSchema(Formula_GroupValInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Group {
     return self::create($schema->getDecorated(), $schema->getV2V(), $schemaToAnything);
   }
 

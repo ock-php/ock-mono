@@ -66,12 +66,12 @@ class FactoryToSTA implements FactoryToSTAInterface {
     }
     unset($params[0]);
 
-    // Require first parameter type hint class to be a CfSchema* object.
+    // Require first parameter type hint class to be a Formula* object.
     if (FormulaInterface::class === $schemaType = $t0->getName()) {
       $schemaType = NULL;
       $specifity = -1;
     }
-    // @todo Why are we only requiring CfSchemaBaseInterface?
+    // @todo Why are we only requiring FormulaBaseInterface?
     elseif (!is_a($schemaType, FormulaBaseInterface::class, TRUE)) {
       return NULL;
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Generator;
 
 use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
-use Donquixote\OCUI\Formula\IdVal\CfSchema_IdValInterface;
+use Donquixote\OCUI\Formula\IdVal\Formula_IdValInterface;
 use Donquixote\OCUI\Util\ConfUtil;
 use Donquixote\OCUI\Util\PhpUtil;
 use Donquixote\OCUI\Zoo\V2V\Id\V2V_Id_Trivial;
@@ -34,11 +34,11 @@ class Generator_Id implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\IdVal\CfSchema_IdValInterface $schema
+   * @param \Donquixote\OCUI\Formula\IdVal\Formula_IdValInterface $schema
    *
    * @return self
    */
-  public static function createFromIdValSchema(CfSchema_IdValInterface $schema): Generator_Id {
+  public static function createFromIdValSchema(Formula_IdValInterface $schema): Generator_Id {
     return new self($schema->getDecorated(), $schema->getV2V());
   }
 

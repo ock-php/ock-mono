@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Generator;
 
 use Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\OCUI\Formula\SequenceVal\CfSchema_SequenceValInterface;
+use Donquixote\OCUI\Formula\SequenceVal\Formula_SequenceValInterface;
 use Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\OCUI\Util\PhpUtil;
 use Donquixote\OCUI\Zoo\V2V\Sequence\V2V_Sequence_Trivial;
@@ -39,14 +39,14 @@ class Generator_Sequence implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\SequenceVal\CfSchema_SequenceValInterface $schema
+   * @param \Donquixote\OCUI\Formula\SequenceVal\Formula_SequenceValInterface $schema
    * @param \Donquixote\OCUI\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\SchemaToAnythingException
    */
-  public static function createFromSequenceValSchema(CfSchema_SequenceValInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
+  public static function createFromSequenceValSchema(Formula_SequenceValInterface $schema, SchemaToAnythingInterface $schemaToAnything): ?Generator_Sequence {
     return self::create($schema->getDecorated(), $schema->getV2V(), $schemaToAnything);
   }
 

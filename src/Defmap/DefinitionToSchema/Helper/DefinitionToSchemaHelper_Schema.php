@@ -6,7 +6,7 @@ namespace Donquixote\OCUI\Defmap\DefinitionToSchema\Helper;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Exception\CfSchemaCreationException;
+use Donquixote\OCUI\Exception\FormulaCreationException;
 
 class DefinitionToSchemaHelper_Schema implements DefinitionToSchemaHelperInterface {
 
@@ -19,7 +19,7 @@ class DefinitionToSchemaHelper_Schema implements DefinitionToSchemaHelperInterfa
       return $object;
     }
 
-    throw new CfSchemaCreationException("Object is not a CfSchema.");
+    throw new FormulaCreationException("Object is not a Formula.");
   }
 
   /**
@@ -44,7 +44,7 @@ class DefinitionToSchemaHelper_Schema implements DefinitionToSchemaHelperInterfa
       }
       else {
         $paramName = $param->getName();
-        throw new CfSchemaCreationException("Leftover parameter '$paramName' for the factory callback provided.");
+        throw new FormulaCreationException("Leftover parameter '$paramName' for the factory callback provided.");
       }
 
       $serialArgs[] = $arg;
@@ -54,7 +54,7 @@ class DefinitionToSchemaHelper_Schema implements DefinitionToSchemaHelperInterfa
       $candidate = $factory->invokeArgs($serialArgs);
     }
     catch (\Exception $e) {
-      throw new CfSchemaCreationException("Exception in callback.", 0, $e);
+      throw new FormulaCreationException("Exception in callback.", 0, $e);
     }
 
     if ($candidate instanceof FormulaInterface) {
@@ -63,10 +63,10 @@ class DefinitionToSchemaHelper_Schema implements DefinitionToSchemaHelperInterfa
 
     if (!\is_object($candidate)) {
       $export = var_export($candidate, TRUE);
-      throw new CfSchemaCreationException("The factory returned non-object value $export.");
+      throw new FormulaCreationException("The factory returned non-object value $export.");
     }
 
     $class = \get_class($candidate);
-    throw new CfSchemaCreationException("The factory returned a non-CfSchema object of class $class.");
+    throw new FormulaCreationException("The factory returned a non-Formula object of class $class.");
   }
 }

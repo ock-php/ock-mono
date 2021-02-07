@@ -7,7 +7,7 @@ use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
-use Donquixote\OCUI\Exception\CfSchemaCreationException;
+use Donquixote\OCUI\Exception\FormulaCreationException;
 use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
 
 class IdToSchema_FromDefinitionMap implements IdToSchemaInterface {
@@ -54,7 +54,7 @@ class IdToSchema_FromDefinitionMap implements IdToSchemaInterface {
     try {
       return $this->definitionToSchema->definitionGetSchema($definition, $this->context);
     }
-    catch (CfSchemaCreationException $e) {
+    catch (FormulaCreationException $e) {
       // @todo Maybe report this somewhere?
       return NULL;
     }

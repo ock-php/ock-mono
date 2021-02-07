@@ -5,10 +5,10 @@ namespace Donquixote\OCUI\IdToSchema;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\OCUI\Formula\DrilldownVal\CfSchema_DrilldownValInterface;
+use Donquixote\OCUI\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
-use Donquixote\OCUI\Formula\ValueProvider\CfSchema_ValueProvider_Null;
-use Donquixote\OCUI\Formula\ValueToValue\CfSchema_ValueToValue;
+use Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProvider_Null;
+use Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValue;
 use Donquixote\OCUI\Zoo\V2V\Value\V2V_Value_DrilldownFixedId;
 
 class IdToSchema_InlineExpanded implements IdToSchemaInterface {
@@ -45,13 +45,13 @@ class IdToSchema_InlineExpanded implements IdToSchemaInterface {
     }
 
     if ($nestedSchema instanceof Formula_IdInterface) {
-      return new CfSchema_ValueProvider_Null();
+      return new Formula_ValueProvider_Null();
     }
 
-    if ($nestedSchema instanceof CfSchema_DrilldownValInterface) {
+    if ($nestedSchema instanceof Formula_DrilldownValInterface) {
       $deepSchema = $nestedSchema->getDecorated()->getIdToSchema()->idGetSchema($suffix);
       $v2v = new V2V_Value_DrilldownFixedId($nestedSchema->getV2V(), $suffix);
-      return new CfSchema_ValueToValue($deepSchema, $v2v);
+      return new Formula_ValueToValue($deepSchema, $v2v);
     }
 
     return NULL;

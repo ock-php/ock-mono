@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Definitions\CfSchema_Definitions;
+use Donquixote\OCUI\Formula\Definitions\Formula_Definitions;
 use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
@@ -26,7 +26,7 @@ abstract class SchemaReplacerPartial_IfaceDefinitionsBase extends SchemaReplacer
 
     $definitions = $this->typeGetDefinitions($type);
 
-    $schema = new CfSchema_Definitions($definitions, $context);
+    $schema = new Formula_Definitions($definitions, $context);
 
     if (NULL !== $replacement = $replacer->schemaGetReplacement($schema)) {
       $schema = $replacement;

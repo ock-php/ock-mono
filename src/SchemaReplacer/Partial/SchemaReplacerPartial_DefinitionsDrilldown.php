@@ -7,9 +7,9 @@ use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\DefinitionToSchemaInterface;
 use Donquixote\OCUI\Formula\Definitions\Formula_DefinitionsInterface;
-use Donquixote\OCUI\Formula\Drilldown\CfSchema_Drilldown_FromDefinitions;
-use Donquixote\OCUI\Formula\Drilldown\CfSchema_Drilldown_InlineExpanded;
-use Donquixote\OCUI\Formula\Id\CfSchema_Id_DefinitionsKey;
+use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown_FromDefinitions;
+use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown_InlineExpanded;
+use Donquixote\OCUI\Formula\Id\Formula_Id_DefinitionsKey;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_DefinitionsDrilldown implements SchemaReplacerPartialInterface {
@@ -71,7 +71,7 @@ class SchemaReplacerPartial_DefinitionsDrilldown implements SchemaReplacerPartia
     $definitions = $original->getDefinitions();
     $context = $original->getContext();
 
-    $schema = CfSchema_Drilldown_FromDefinitions::create(
+    $schema = Formula_Drilldown_FromDefinitions::create(
       $definitions,
       $this->definitionToLabel,
       $this->definitionToGrouplabel,
@@ -80,11 +80,11 @@ class SchemaReplacerPartial_DefinitionsDrilldown implements SchemaReplacerPartia
 
     if ($this->withInlineChildren) {
 
-      $inlineIdsLookup = new CfSchema_Id_DefinitionsKey(
+      $inlineIdsLookup = new Formula_Id_DefinitionsKey(
         $definitions,
         'inline');
 
-      $schema = CfSchema_Drilldown_InlineExpanded::create(
+      $schema = Formula_Drilldown_InlineExpanded::create(
         $schema,
         $inlineIdsLookup);
     }

@@ -5,9 +5,9 @@ namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface;
-use Donquixote\OCUI\Formula\Defmap\CfSchema_Defmap;
+use Donquixote\OCUI\Formula\Defmap\Formula_Defmap;
 use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface;
-use Donquixote\OCUI\Formula\Neutral\CfSchema_Neutral_IfaceTransformed;
+use Donquixote\OCUI\Formula\Neutral\Formula_Neutral_IfaceTransformed;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_IfaceDefmap implements SchemaReplacerPartialInterface {
@@ -79,14 +79,14 @@ class SchemaReplacerPartial_IfaceDefmap implements SchemaReplacerPartialInterfac
 
     $defmap = $this->typeToDefmap->typeGetDefmap($type);
 
-    $schema = new CfSchema_Defmap($defmap, $context);
+    $schema = new Formula_Defmap($defmap, $context);
 
     if (NULL !== $replacement = $replacer->schemaGetReplacement($schema)) {
       $schema = $replacement;
     }
 
     if ($this->withTaggingDecorator) {
-      $schema = new CfSchema_Neutral_IfaceTransformed(
+      $schema = new Formula_Neutral_IfaceTransformed(
         $schema,
         $type,
         $context);

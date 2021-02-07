@@ -10,13 +10,13 @@ use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\ParamToLabel\ParamToLabel;
 use Donquixote\OCUI\ParamToLabel\ParamToLabelInterface;
 use Donquixote\OCUI\Formula\Callback\Formula_CallbackInterface;
-use Donquixote\OCUI\Formula\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\OCUI\Formula\Iface\CfSchema_IfaceWithContext;
-use Donquixote\OCUI\Formula\Label\CfSchema_Label;
-use Donquixote\OCUI\Formula\Optional\CfSchema_Optional;
-use Donquixote\OCUI\Formula\Optional\CfSchema_Optional_Null;
-use Donquixote\OCUI\Formula\ValueProvider\CfSchema_ValueProvider_Callback;
-use Donquixote\OCUI\Formula\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Donquixote\OCUI\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\OCUI\Formula\Label\Formula_Label;
+use Donquixote\OCUI\Formula\Optional\Formula_Optional;
+use Donquixote\OCUI\Formula\Optional\Formula_Optional_Null;
+use Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProvider_Callback;
+use Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 use Psr\Log\LoggerInterface;
 
@@ -70,7 +70,7 @@ class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
     $params = $callback->getReflectionParameters();
 
     if ([] === $params) {
-      return new CfSchema_ValueProvider_Callback($callback);
+      return new Formula_ValueProvider_Callback($callback);
     }
 
     $explicitParamSchemas = $original->getExplicitParamSchemas();
@@ -106,14 +106,14 @@ class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
     }
 
     if (1 === \count($paramSchemas)) {
-      $replacement = CfSchema_ValueToValue_CallbackMono::create(
+      $replacement = Formula_ValueToValue_CallbackMono::create(
         $paramSchemas[0],
         $callback);
-      $replacement = new CfSchema_Label($replacement, $paramLabels[0]);
+      $replacement = new Formula_Label($replacement, $paramLabels[0]);
       return $replacement;
     }
 
-    return CfSchema_GroupVal_Callback::create(
+    return Formula_GroupVal_Callback::create(
       $callback,
       $paramSchemas,
       $paramLabels);
@@ -162,21 +162,21 @@ class SchemaReplacerPartial_Callback implements SchemaReplacerPartialInterface {
       return NULL;
     }
 
-    $schema = new CfSchema_IfaceWithContext(
+    $schema = new Formula_IfaceWithContext(
       $reflClassLike->getName(),
       $context);
 
     $schema = $replacer->schemaGetReplacement($schema);
 
     if ($param->allowsNull()) {
-      return new CfSchema_Optional_Null($schema);
+      return new Formula_Optional_Null($schema);
     }
 
     if (!$param->isOptional()) {
       return $schema;
     }
 
-    $schema = new CfSchema_Optional($schema);
+    $schema = new Formula_Optional($schema);
 
     try {
       $emptyPhp = $param->getDefaultValueConstantName();

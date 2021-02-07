@@ -10,7 +10,7 @@ use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Handler;
 use Donquixote\OCUI\Defmap\DefinitionToSchema\Helper\DefinitionToSchemaHelper_Schema;
-use Donquixote\OCUI\Exception\CfSchemaCreationException;
+use Donquixote\OCUI\Exception\FormulaCreationException;
 use Psr\Log\LoggerInterface;
 
 class DefinitionToSchema_Mappers implements DefinitionToSchemaInterface {
@@ -89,7 +89,7 @@ class DefinitionToSchema_Mappers implements DefinitionToSchemaInterface {
           $candidate = $definition[$prefix];
           if (!\is_object($candidate)) {
             $export = var_export($candidate, TRUE);
-            throw new CfSchemaCreationException("Candidate is non-object $export.");
+            throw new FormulaCreationException("Candidate is non-object $export.");
           }
           return $helper->objectGetSchema($candidate);
         }
@@ -105,6 +105,6 @@ class DefinitionToSchema_Mappers implements DefinitionToSchemaInterface {
       return $helper->factoryGetSchema($factory, $context);
     }
 
-    throw new CfSchemaCreationException("None of the mappers was applicable to the definition provided.");
+    throw new FormulaCreationException("None of the mappers was applicable to the definition provided.");
   }
 }

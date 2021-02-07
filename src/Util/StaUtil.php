@@ -21,7 +21,7 @@ final class StaUtil extends UtilBase {
     $itemObjects = [];
     foreach ($itemSchemas as $k => $itemSchema) {
       if (!$itemSchema instanceof FormulaInterface) {
-        throw new \RuntimeException("Item schema at key $k must be instance of CfSchemaInterface.");
+        throw new \RuntimeException("Item schema at key $k must be instance of FormulaInterface.");
       }
       $itemCandidate = self::getObject($itemSchema, $schemaToAnything, $interface);
       if (NULL === $itemCandidate) {

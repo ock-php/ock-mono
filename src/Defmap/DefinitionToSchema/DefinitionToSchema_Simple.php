@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\Defmap\DefinitionToSchema;
 
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Definition\CfSchema_Definition;
+use Donquixote\OCUI\Formula\Definition\Formula_Definition;
 
 class DefinitionToSchema_Simple implements DefinitionToSchemaInterface {
 
@@ -13,6 +13,6 @@ class DefinitionToSchema_Simple implements DefinitionToSchemaInterface {
    * {@inheritdoc}
    */
   public function definitionGetSchema(array $definition, CfContextInterface $context = NULL): FormulaInterface {
-    return new CfSchema_Definition($definition, $context);
+    return new Formula_Definition($definition, $context);
   }
 }

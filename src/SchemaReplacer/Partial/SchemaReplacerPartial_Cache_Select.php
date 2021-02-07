@@ -5,8 +5,8 @@ namespace Donquixote\OCUI\SchemaReplacer\Partial;
 
 use Donquixote\OCUI\Cache\CacheInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Cache\CfSchema_Cache_SelectInterface;
-use Donquixote\OCUI\Formula\Select\CfSchema_Select_Fixed;
+use Donquixote\OCUI\Formula\Cache\Formula_Cache_SelectInterface;
+use Donquixote\OCUI\Formula\Select\Formula_Select_Fixed;
 use Donquixote\OCUI\SchemaReplacer\SchemaReplacerInterface;
 
 class SchemaReplacerPartial_Cache_Select implements SchemaReplacerPartialInterface {
@@ -37,7 +37,7 @@ class SchemaReplacerPartial_Cache_Select implements SchemaReplacerPartialInterfa
    * {@inheritdoc}
    */
   public function getSourceSchemaClass(): string {
-    return CfSchema_Cache_SelectInterface::class;
+    return Formula_Cache_SelectInterface::class;
   }
 
   /**
@@ -45,7 +45,7 @@ class SchemaReplacerPartial_Cache_Select implements SchemaReplacerPartialInterfa
    */
   public function schemaGetReplacement(FormulaInterface $proxy, SchemaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$proxy instanceof CfSchema_Cache_SelectInterface) {
+    if (!$proxy instanceof Formula_Cache_SelectInterface) {
       return NULL;
     }
 
@@ -70,7 +70,7 @@ class SchemaReplacerPartial_Cache_Select implements SchemaReplacerPartialInterfa
       $this->cache->set($cacheId, $groupedOptions);
     }
 
-    $replacement = new CfSchema_Select_Fixed($groupedOptions);
+    $replacement = new Formula_Select_Fixed($groupedOptions);
 
     if (!$replacement instanceof FormulaInterface) {
       return NULL;
@@ -80,11 +80,11 @@ class SchemaReplacerPartial_Cache_Select implements SchemaReplacerPartialInterfa
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Cache\CfSchema_Cache_SelectInterface $proxy
+   * @param \Donquixote\OCUI\Formula\Cache\Formula_Cache_SelectInterface $proxy
    *
    * @return array
    */
-  private function buildGroupedOptions(CfSchema_Cache_SelectInterface $proxy): array {
+  private function buildGroupedOptions(Formula_Cache_SelectInterface $proxy): array {
 
     $optgroupLabels = $proxy->getOptgroupLabels();
 

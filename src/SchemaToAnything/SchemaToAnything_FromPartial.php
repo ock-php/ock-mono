@@ -6,8 +6,8 @@ namespace Donquixote\OCUI\SchemaToAnything;
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Exception\SchemaToAnythingException;
-use Donquixote\OCUI\Formula\ContextProviding\CfSchema_ContextProvidingInterface;
-use Donquixote\OCUI\Formula\Contextual\CfSchema_ContextualInterface;
+use Donquixote\OCUI\Formula\ContextProviding\Formula_ContextProvidingInterface;
+use Donquixote\OCUI\Formula\Contextual\Formula_ContextualInterface;
 use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartial_SmartChain;
 use Donquixote\OCUI\SchemaToAnything\Partial\SchemaToAnythingPartialInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -70,7 +70,7 @@ class SchemaToAnything_FromPartial implements SchemaToAnythingInterface {
    */
   public function schema(FormulaInterface $schema, string $interface): ?object {
 
-    if ($schema instanceof CfSchema_ContextProvidingInterface) {
+    if ($schema instanceof Formula_ContextProvidingInterface) {
       return $this
         ->withContext($schema->getContext())
         ->schema(
@@ -78,7 +78,7 @@ class SchemaToAnything_FromPartial implements SchemaToAnythingInterface {
           $interface);
     }
 
-    if ($schema instanceof CfSchema_ContextualInterface) {
+    if ($schema instanceof Formula_ContextualInterface) {
       return $this
         ->schema(
           $schema->getDecorated($this->context),

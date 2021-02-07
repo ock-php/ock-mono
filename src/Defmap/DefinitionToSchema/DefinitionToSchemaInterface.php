@@ -21,7 +21,7 @@ interface DefinitionToSchemaInterface {
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    *
-   * @throws \Donquixote\OCUI\Exception\CfSchemaCreationException
+   * @throws \Donquixote\OCUI\Exception\FormulaCreationException
    */
   public function definitionGetSchema(array $definition, CfContextInterface $context = NULL): FormulaInterface;
 

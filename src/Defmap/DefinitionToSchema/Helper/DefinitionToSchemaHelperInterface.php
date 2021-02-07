@@ -21,7 +21,7 @@ interface DefinitionToSchemaHelperInterface {
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    *
-   * @throws \Donquixote\OCUI\Exception\CfSchemaCreationException
+   * @throws \Donquixote\OCUI\Exception\FormulaCreationException
    */
   public function objectGetSchema(object $object): FormulaInterface;
 
@@ -31,7 +31,7 @@ interface DefinitionToSchemaHelperInterface {
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    *
-   * @throws \Donquixote\OCUI\Exception\CfSchemaCreationException
+   * @throws \Donquixote\OCUI\Exception\FormulaCreationException
    */
   public function factoryGetSchema(CallbackReflectionInterface $factory, CfContextInterface $context = NULL): FormulaInterface;
 

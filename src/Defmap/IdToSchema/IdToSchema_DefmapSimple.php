@@ -6,8 +6,8 @@ namespace Donquixote\OCUI\Defmap\IdToSchema;
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\OCUI\Formula\Definition\Formula_Definition;
 use Donquixote\OCUI\IdToSchema\IdToSchemaInterface;
-use Donquixote\OCUI\Formula\Definition\CfSchema_Definition;
 
 class IdToSchema_DefmapSimple implements IdToSchemaInterface {
 
@@ -42,6 +42,6 @@ class IdToSchema_DefmapSimple implements IdToSchemaInterface {
       return NULL;
     }
 
-    return new CfSchema_Definition($definition, $this->context);
+    return new Formula_Definition($definition, $this->context);
   }
 }
