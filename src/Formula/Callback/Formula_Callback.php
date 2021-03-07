@@ -8,7 +8,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\OCUI\Formula\Formula;
 
 class Formula_Callback implements Formula_CallbackInterface {
 
@@ -28,37 +28,28 @@ class Formula_Callback implements Formula_CallbackInterface {
   private $explicitLabels = [];
 
   /**
-   * @var \Donquixote\OCUI\Context\CfContextInterface|null
-   */
-  private $context;
-
-  /**
    * @param string $class
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
    * @return \Donquixote\OCUI\Formula\Callback\Formula_Callback
    */
-  public static function fromClass(string $class, CfContextInterface $context = NULL): Formula_Callback {
+  public static function fromClass(string $class): Formula_Callback {
 
     return new self(
-      CallbackReflection_ClassConstruction::create($class),
-      $context);
+      CallbackReflection_ClassConstruction::create($class));
   }
 
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
    * @return self
    */
-  public static function fromStaticMethod(string $class, string $methodName, CfContextInterface $context = NULL): Formula_Callback {
+  public static function fromStaticMethod(string $class, string $methodName): Formula_Callback {
 
     return new self(
       CallbackReflection_StaticMethod::create(
         $class,
-        $methodName),
-      $context);
+        $methodName));
   }
 
   /**
@@ -70,7 +61,6 @@ class Formula_Callback implements Formula_CallbackInterface {
     CfContextInterface $context = NULL
   ) {
     $this->callbackReflection = $callbackReflection;
-    $this->context = $context;
   }
 
   /**
@@ -80,7 +70,6 @@ class Formula_Callback implements Formula_CallbackInterface {
    */
   public function withContext(CfContextInterface $context = NULL) {
     $clone = clone $this;
-    $clone->context = $context;
     return $clone;
   }
 
@@ -122,7 +111,7 @@ class Formula_Callback implements Formula_CallbackInterface {
   public function withParam_Iface(int $index, string $interface, $label = NULL) {
     return $this->withParamFormula(
       $index,
-      new Formula_IfaceWithContext($interface, $this->context),
+      Formula::iface($interface),
       $label);
   }
 
@@ -136,7 +125,7 @@ class Formula_Callback implements Formula_CallbackInterface {
   public function withParam_IfaceSequence(int $index, string $interface, $label = NULL) {
     return $this->withParamFormula(
       $index,
-      Formula_IfaceWithContext::createSequence($interface, $this->getContext()),
+      Formula::ifaceSequence($interface),
       $label);
   }
 
@@ -150,7 +139,7 @@ class Formula_Callback implements Formula_CallbackInterface {
   public function withParam_IfaceOrNull(int $index, string $interface, $label = NULL) {
     return $this->withParamFormula(
       $index,
-      Formula_IfaceWithContext::createOptional($interface, $this->getContext()),
+      Formula::ifaceOrNull($interface),
       $label);
   }
 
@@ -175,10 +164,4 @@ class Formula_Callback implements Formula_CallbackInterface {
     return $this->explicitLabels;
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function getContext(): ?CfContextInterface {
-    return $this->context;
-  }
 }

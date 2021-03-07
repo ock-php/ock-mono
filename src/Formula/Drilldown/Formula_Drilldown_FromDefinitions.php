@@ -6,7 +6,7 @@ namespace Donquixote\OCUI\Formula\Drilldown;
 use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
-use Donquixote\OCUI\Defmap\IdToFormula\IdToFormula_FromDefinitions;
+use Donquixote\OCUI\IdToFormula\IdToFormula_FromDefinitions;
 use Donquixote\OCUI\Formula\Select\Formula_Select_FromDefinitions;
 use Donquixote\OCUI\Util\UtilBase;
 

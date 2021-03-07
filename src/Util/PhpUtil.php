@@ -182,7 +182,7 @@ EOT;
     return <<<EOT
 // @todo Fix the generated code manually.
 call_user_func(
-  function(){
+  static function () {
     throw new \\$exceptionClass($messagePhp);
   })
 EOT;
@@ -303,9 +303,16 @@ EOT;
     }
 
     $php = '';
-    foreach ($valuesPhp as $k => $vPhp) {
-      $kPhp = var_export($k, TRUE);
-      $php .= "\n  $kPhp => $vPhp,";
+    if (array_keys($valuesPhp) === range(0, count($valuesPhp) - 1)) {
+      foreach ($valuesPhp as $k => $vPhp) {
+        $php .= "\n  $vPhp,";
+      }
+    }
+    else {
+      foreach ($valuesPhp as $k => $vPhp) {
+        $kPhp = var_export($k, TRUE);
+        $php .= "\n  $kPhp => $vPhp,";
+      }
     }
 
     return "[$php\n]";

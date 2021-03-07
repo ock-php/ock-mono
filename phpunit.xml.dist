@@ -8,11 +8,10 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         syntaxCheck="false"
          bootstrap="vendor/autoload.php"
 >
   <testsuites>
-    <testsuite name="Nicetrace test suite">
+    <testsuite name="OCUI (Object Composition UI) test suite">
       <directory>./tests/src</directory>
     </testsuite>
   </testsuites>

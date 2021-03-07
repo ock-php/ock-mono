@@ -5,6 +5,7 @@ namespace Donquixote\OCUI\Formula\Select;
 
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
 
 class Formula_Select_FromDefinitions implements Formula_SelectInterface {
 
@@ -41,7 +42,7 @@ class Formula_Select_FromDefinitions implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(): array {
+  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
 
     $options = ['' => []];
     foreach ($this->definitions as $id => $definition) {

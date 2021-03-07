@@ -6,10 +6,9 @@ namespace Donquixote\OCUI\Defmap\DefinitionToFormula;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
-use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Handler;
 use Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Formula;
+use Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Handler;
 use Donquixote\OCUI\Exception\FormulaCreationException;
 use Psr\Log\LoggerInterface;
 
@@ -51,7 +50,7 @@ class DefinitionToFormula_Mappers implements DefinitionToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function definitionGetFormula(array $definition, CfContextInterface $context = NULL): FormulaInterface {
+  public function definitionGetFormula(array $definition): FormulaInterface {
 
     foreach ($this->helpers as $prefix => $helper) {
 

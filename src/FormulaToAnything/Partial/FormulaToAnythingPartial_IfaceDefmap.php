@@ -5,7 +5,7 @@ namespace Donquixote\OCUI\FormulaToAnything\Partial;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface;
-use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface;
 use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 
 class FormulaToAnythingPartial_IfaceDefmap extends FormulaToAnythingPartialBase {
@@ -20,16 +20,11 @@ class FormulaToAnythingPartial_IfaceDefmap extends FormulaToAnythingPartialBase 
    */
   public function __construct(TypeToFormulaInterface $typeToFormula) {
     $this->typeToFormula = $typeToFormula;
-    parent::__construct(Formula_IfaceWithContext::class, NULL);
+    parent::__construct(Formula_IfaceInterface::class, NULL);
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param string $interface
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
-   *
-   * @return null|object
-   *   An instance of $interface, or NULL.
+   * {@inheritdoc}
    */
   protected function formulaDoGetObject(
     FormulaInterface $formula,
@@ -37,11 +32,11 @@ class FormulaToAnythingPartial_IfaceDefmap extends FormulaToAnythingPartialBase 
     FormulaToAnythingInterface $helper
   ) {
 
-    /** @var \Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContext $formula */
+    /** @var \Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface $formula */
 
     $formula = $this->typeToFormula->typeGetFormula(
       $formula->getInterface(),
-      $formula->getContext());
+      $formula->allowsNull());
 
     if (NULL === $formula) {
       return NULL;

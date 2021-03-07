@@ -41,4 +41,5 @@ trait Formula_Drilldown_CustomKeysTrait {
   public function getOptionsKey(): ?string {
     return $this->optionsKey;
   }
+
 }

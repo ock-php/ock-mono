@@ -6,6 +6,7 @@ namespace Donquixote\OCUI\Generator;
 use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
 use Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\OCUI\Util\PhpUtil;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Trivial;
 use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
 
@@ -88,7 +89,7 @@ class Generator_Group implements GeneratorInterface {
 
     if (!\is_array($conf)) {
       // If all values are optional, this might still work.
-      $conf = [];
+      return PhpUtil::incompatibleConfiguration('Configuration must be an array.');
     }
 
     $phpStatements = [];

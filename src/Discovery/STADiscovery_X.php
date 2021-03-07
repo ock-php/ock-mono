@@ -87,6 +87,13 @@ class STADiscovery_X {
       catch (\Exception $e) {
         continue;
       }
+      catch (\Throwable $e) {
+        continue;
+      }
+
+      if (!$factories) {
+        continue;
+      }
 
       foreach ($factories as $factory) {
 

@@ -1,0 +1,13 @@
+plugin: multiply
+decorators:
+  -
+    plugin: extraOpDecorator
+    extraOp:
+      plugin: add
+      increment: 1
+  -
+    plugin: extraOpDecorator
+    extraOp:
+      plugin: add
+      increment: 2
+factor: 5

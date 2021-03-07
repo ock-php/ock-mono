@@ -67,6 +67,11 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
       $factory,
       $this->paramToValue);
 
+    if ($value === NULL) {
+      // Cannot match all parameters.
+      return NULL;
+    }
+
     if ($value instanceof FormulaToAnythingPartialInterface) {
       return $value;
     }

@@ -14,11 +14,14 @@ class TypeToFormula_Buffer implements TypeToFormulaInterface {
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
+   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[][]
+   *   Format: $[$type][$orNull] = $formula.
    */
   private $formulas = [];
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface $decorated
    */
   public function __construct(TypeToFormulaInterface $decorated) {
@@ -28,16 +31,9 @@ class TypeToFormula_Buffer implements TypeToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function typeGetFormula(string $type, CfContextInterface $context = NULL): FormulaInterface {
-
-    $k = $type;
-    if (NULL !== $context) {
-      $k .= '::' . $context->getMachineName();
-    }
-
-    return array_key_exists($k, $this->formulas)
-      ? $this->formulas[$k]
-      : $this->formulas[$k] = $this->decorated->typeGetFormula($type, $context);
+  public function typeGetFormula(string $type, bool $orNull): FormulaInterface {
+    return ($this->formulas[$type][(int) $orNull])
+      ?? ($this->formulas[$type][(int) $orNull] = $this->decorated->typeGetFormula($type, $orNull));
   }
 
 }

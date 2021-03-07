@@ -71,6 +71,14 @@ class Generator_Drilldown implements GeneratorInterface {
     list($id, $subConf) = DrilldownKeysHelper::fromFormula($this->formula)
       ->unpack($conf);
 
+    if (NULL === $id) {
+      if ($this->formula->allowsNull()) {
+        return 'NULL';
+      }
+
+      return PhpUtil::incompatibleConfiguration("Required id for drilldown is missing.");
+    }
+
     $subValuePhp = $this->idConfGetSubValuePhp($id, $subConf);
 
     return $this->v2v->idPhpGetPhp($id, $subValuePhp);
@@ -84,9 +92,6 @@ class Generator_Drilldown implements GeneratorInterface {
    */
   private function idConfGetSubValuePhp($id, $subConf): string {
 
-    if (NULL === $id) {
-      return PhpUtil::incompatibleConfiguration("Required id for drilldown is missing.");
-    }
 
     if (NULL === $subFormula = $this->formula->getIdToFormula()->idGetFormula($id)) {
       return PhpUtil::incompatibleConfiguration("Unknown id '$id' in drilldown.");

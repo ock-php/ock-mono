@@ -42,6 +42,12 @@ class Text {
     ]);
   }
 
+  public static function tOrNull(?string $string, array $replacements = []): ?TextInterface {
+    return ($string !== NULL)
+      ? static::t($string, $replacements)
+      : NULL;
+  }
+
   /**
    * Gets a translatable text object.
    *
@@ -53,7 +59,7 @@ class Text {
    * @return \Donquixote\OCUI\Text\TextInterface
    *   Translatable text object.
    */
-  public static function t(string $string, array $replacements = []) {
+  public static function t(string $string, array $replacements = []): TextInterface {
     $text = new Text_Translatable($string);
     if ($replacements) {
       $text = new Text_Replacements($text, $replacements);

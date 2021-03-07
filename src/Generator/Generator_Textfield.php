@@ -63,7 +63,7 @@ class Generator_Textfield implements GeneratorInterface {
 
     if ([] !== $errors = $this->formula->textGetValidationErrors($conf)) {
       // @todo Produce a comment from the errors text!
-      return PhpUtil::incompatibleConfiguration(count($errors) . ' errors.');
+      return PhpUtil::incompatibleConfiguration(count($errors) . ' errors in text component.');
     }
 
     return $this->v2v->stringGetPhp($conf);

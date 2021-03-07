@@ -102,12 +102,7 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param string $interface
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
-   *
-   * @return null|object
-   *   An instance of $interface, or NULL.
+   * {@inheritdoc}
    */
   protected function formulaDoGetObject(
     FormulaInterface $formula,

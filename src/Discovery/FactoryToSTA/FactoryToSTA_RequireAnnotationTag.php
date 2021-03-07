@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Discovery\FactoryToSTA;
 
-use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
+use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
 
 class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
 

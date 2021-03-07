@@ -1,0 +1,8 @@
+plugin: sequence
+operations:
+  -
+    plugin: add
+    increment: 5
+  -
+    plugin: multiply
+    factor: 7

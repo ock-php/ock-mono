@@ -1,0 +1,3 @@
+plugin: intRounded
+intFormat:
+  plugin: trivial

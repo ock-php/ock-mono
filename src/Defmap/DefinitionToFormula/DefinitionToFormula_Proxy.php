@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Defmap\DefinitionToFormula;
 
-use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 
 class DefinitionToFormula_Proxy implements DefinitionToFormulaInterface {
@@ -28,13 +27,13 @@ class DefinitionToFormula_Proxy implements DefinitionToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function definitionGetFormula(array $definition, CfContextInterface $context = NULL): FormulaInterface {
+  public function definitionGetFormula(array $definition): FormulaInterface {
 
     if (NULL === $this->instance) {
       $this->instance = \call_user_func($this->factory);
     }
 
-    return $this->instance->definitionGetFormula($definition, $context);
+    return $this->instance->definitionGetFormula($definition);
   }
 
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\FormulaReplacer\Partial;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface;
+use Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface;
 use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
 
 abstract class FormulaReplacerPartial_IfaceBase implements FormulaReplacerPartialInterface {
@@ -18,7 +18,7 @@ abstract class FormulaReplacerPartial_IfaceBase implements FormulaReplacerPartia
    * {@inheritdoc}
    */
   public function getSourceFormulaClass(): string {
-    return Formula_IfaceWithContextInterface::class;
+    return Formula_IfaceInterface::class;
   }
 
   /**
@@ -26,7 +26,7 @@ abstract class FormulaReplacerPartial_IfaceBase implements FormulaReplacerPartia
    */
   public function formulaGetReplacement(FormulaInterface $formula, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$formula instanceof Formula_IfaceWithContextInterface) {
+    if (!$formula instanceof Formula_IfaceInterface) {
       return NULL;
     }
 
@@ -38,13 +38,13 @@ abstract class FormulaReplacerPartial_IfaceBase implements FormulaReplacerPartia
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface $ifaceFormula
+   * @param \Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface $ifaceFormula
    * @param \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $replacer
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    */
   abstract protected function formulaDoGetReplacement(
-    Formula_IfaceWithContextInterface $ifaceFormula,
+    Formula_IfaceInterface $ifaceFormula,
     FormulaReplacerInterface $replacer
   ): ?FormulaInterface;
 }

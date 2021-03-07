@@ -81,16 +81,9 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param string $interface
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
-   *
-   * @return null|object
-   *   An instance of $interface, or NULL.
-   *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * {@inheritdoc}
    */
-  final public function formula(
+  public function formula(
     FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper

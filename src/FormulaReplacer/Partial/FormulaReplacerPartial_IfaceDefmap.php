@@ -6,7 +6,7 @@ namespace Donquixote\OCUI\FormulaReplacer\Partial;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface;
 use Donquixote\OCUI\Formula\Defmap\Formula_Defmap;
-use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface;
+use Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface;
 use Donquixote\OCUI\Formula\Neutral\Formula_Neutral_IfaceTransformed;
 use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
 
@@ -44,7 +44,7 @@ class FormulaReplacerPartial_IfaceDefmap implements FormulaReplacerPartialInterf
    */
   public function getSourceFormulaClass(): string {
     // Accepts any formula.
-    return Formula_IfaceWithContextInterface::class;
+    return Formula_IfaceInterface::class;
   }
 
   /**
@@ -52,7 +52,7 @@ class FormulaReplacerPartial_IfaceDefmap implements FormulaReplacerPartialInterf
    */
   public function formulaGetReplacement(FormulaInterface $formula, FormulaReplacerInterface $replacer): ?FormulaInterface {
 
-    if (!$formula instanceof Formula_IfaceWithContextInterface) {
+    if (!$formula instanceof Formula_IfaceInterface) {
       return NULL;
     }
 
@@ -64,13 +64,13 @@ class FormulaReplacerPartial_IfaceDefmap implements FormulaReplacerPartialInterf
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContextInterface $ifaceFormula
+   * @param \Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface $ifaceFormula
    * @param \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $replacer
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    */
   private function formulaDoGetReplacement(
-    Formula_IfaceWithContextInterface $ifaceFormula,
+    Formula_IfaceInterface $ifaceFormula,
     FormulaReplacerInterface $replacer
   ): FormulaInterface {
 

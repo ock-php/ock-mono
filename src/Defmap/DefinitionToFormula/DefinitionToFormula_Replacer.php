@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Defmap\DefinitionToFormula;
 
-use Donquixote\OCUI\Context\CfContextInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
 
@@ -33,19 +32,14 @@ class DefinitionToFormula_Replacer implements DefinitionToFormulaInterface {
 
   /**
    * @param array $definition
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    *
    * @throws \Donquixote\OCUI\Exception\FormulaCreationException
    */
-  public function definitionGetFormula(
-    array $definition,
-    CfContextInterface $context = NULL
-  ): FormulaInterface {
+  public function definitionGetFormula(array $definition): FormulaInterface {
     $formula = $this->decorated->definitionGetFormula(
-      $definition,
-      $context);
+      $definition);
 
     if (NULL !== $replacement = $this->replacer->formulaGetReplacement($formula)) {
       $formula = $replacement;

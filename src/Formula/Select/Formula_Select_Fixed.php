@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\Select;
 
 use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
 
 class Formula_Select_Fixed implements Formula_SelectInterface {
 
@@ -67,7 +68,7 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(): array {
+  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
     return $this->groupedOptions;
   }
 

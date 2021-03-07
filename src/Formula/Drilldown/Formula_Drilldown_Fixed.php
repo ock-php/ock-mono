@@ -24,22 +24,28 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
   /**
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
+   * @param bool $orNull
    *
    * @return self
    */
-  public static function create(array $formulas = [], array $labels = []): Formula_Drilldown_Fixed {
+  public static function create(array $formulas = [], array $labels = [], $orNull = FALSE): Formula_Drilldown_Fixed {
     return new self(
       Formula_Select_Fixed::createFlat($labels),
-      new IdToFormula_Fixed($formulas));
+      new IdToFormula_Fixed($formulas),
+      $orNull);
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\OCUI\Formula\Select\Formula_Select_Fixed $idFormula
    * @param \Donquixote\OCUI\IdToFormula\IdToFormula_Fixed $idToFormula
+   * @param bool $orNull
    */
-  private function __construct(Formula_Select_Fixed $idFormula, IdToFormula_Fixed $idToFormula) {
+  private function __construct(Formula_Select_Fixed $idFormula, IdToFormula_Fixed $idToFormula, $orNull = FALSE) {
     $this->idFormula = $idFormula;
     $this->idToFormula = $idToFormula;
+    parent::__construct($orNull);
   }
 
   /**

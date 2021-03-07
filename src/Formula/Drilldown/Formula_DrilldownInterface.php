@@ -29,4 +29,9 @@ interface Formula_DrilldownInterface extends FormulaInterface {
    */
   public function getOptionsKey(): ?string;
 
+  /**
+   * @return bool
+   */
+  public function allowsNull(): bool;
+
 }

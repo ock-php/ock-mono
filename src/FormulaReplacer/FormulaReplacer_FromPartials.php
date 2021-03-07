@@ -13,7 +13,8 @@ class FormulaReplacer_FromPartials implements FormulaReplacerInterface {
   private $partials;
 
   /**
-   * @var array
+   * @var \Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartialInterface[][]
+   *   Format: $[$formulaClass][] = $partial.
    */
   private $partialss = [];
 

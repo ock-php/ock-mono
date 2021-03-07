@@ -57,9 +57,9 @@ class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
    * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
    *   Context to constrain available options.
    *
-   * @return \Donquixote\OCUI\FormulaToAnything\FormulaToAnything_FromPartial
+   * @return static
    */
-  public function withContext(?CfContextInterface $context) {
+  public function withContext(?CfContextInterface $context): self {
     $instance = clone $this;
     $instance->context = $context;
     return $instance;

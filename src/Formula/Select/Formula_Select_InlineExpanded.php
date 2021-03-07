@@ -8,6 +8,7 @@ use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\OCUI\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
 use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
 
 class Formula_Select_InlineExpanded implements Formula_SelectInterface {
 
@@ -36,11 +37,11 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(): array {
+  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
 
     $options = [];
     /** @var string[] $groupOptions */
-    foreach ($this->decorated->getGroupedOptions() as $groupLabel => $groupOptions) {
+    foreach ($this->decorated->getGroupedOptions($textToMarkup) as $groupLabel => $groupOptions) {
       foreach ($groupOptions as $id => $label) {
 
         if (NULL === $inlineOptions = $this->idGetInlineOptions($id)) {

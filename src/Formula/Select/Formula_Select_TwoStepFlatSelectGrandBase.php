@@ -6,13 +6,14 @@ namespace Donquixote\OCUI\Formula\Select;
 use Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
 
 abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_SelectInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(): array {
+  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
 
     $options = [];
     foreach ($this->getIdFormula()->getOptions() as $id0 => $label0) {

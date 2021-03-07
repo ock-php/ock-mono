@@ -5,6 +5,7 @@ namespace Donquixote\OCUI\Formula\Select;
 
 use Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
 
 class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
 
@@ -23,7 +24,7 @@ class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(): array {
+  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
     return ['' => $this->decorated->getOptions()];
   }
 

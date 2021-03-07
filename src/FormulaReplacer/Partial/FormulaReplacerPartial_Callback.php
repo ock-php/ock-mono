@@ -11,7 +11,7 @@ use Donquixote\OCUI\ParamToLabel\ParamToLabel;
 use Donquixote\OCUI\ParamToLabel\ParamToLabelInterface;
 use Donquixote\OCUI\Formula\Callback\Formula_CallbackInterface;
 use Donquixote\OCUI\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\OCUI\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\OCUI\Formula\Iface\Formula_Iface;
 use Donquixote\OCUI\Formula\Label\Formula_Label;
 use Donquixote\OCUI\Formula\Optional\Formula_Optional;
 use Donquixote\OCUI\Formula\Optional\Formula_Optional_Null;
@@ -162,7 +162,7 @@ class FormulaReplacerPartial_Callback implements FormulaReplacerPartialInterface
       return NULL;
     }
 
-    $formula = new Formula_IfaceWithContext(
+    $formula = new Formula_Iface(
       $reflClassLike->getName(),
       $context);
 

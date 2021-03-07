@@ -60,15 +60,15 @@ class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
   }
 
   /**
-   * @param int $v
+   * @param int $number
    *
    * @return \Donquixote\OCUI\Text\TextInterface[]
    */
-  protected function numberGetValidationErrors(int $v): array {
+  protected function numberGetValidationErrors(int $number): array {
 
     $errors = [];
 
-    if ($v < $this->min) {
+    if ($this->min !== NULL && $number < $this->min) {
       if (0 === $this->min) {
         $errors[] = Text::t('Value must be non-negative.');
       }
@@ -82,7 +82,7 @@ class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
       }
     }
 
-    if ($v > $this->max) {
+    if ($this->max !== NULL && $number > $this->max) {
       $errors[] = Text::t('%name must be no greater than @max.', [
         '@max' => Text::i($this->max),
       ]);
