@@ -89,7 +89,7 @@ class Generator_Group implements GeneratorInterface {
 
     if (!\is_array($conf)) {
       // If all values are optional, this might still work.
-      return PhpUtil::incompatibleConfiguration('Configuration must be an array.');
+      return PhpUtil::expectedConfigButFound('Configuration must be an array.', $conf);
     }
 
     $phpStatements = [];

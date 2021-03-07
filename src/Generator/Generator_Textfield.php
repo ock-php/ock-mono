@@ -58,12 +58,12 @@ class Generator_Textfield implements GeneratorInterface {
   public function confGetPhp($conf): string {
 
     if (!\is_string($conf)) {
-      return PhpUtil::incompatibleConfiguration("Value must be a string");
+      return PhpUtil::expectedConfigButFound("Value must be a string", $conf);
     }
 
     if ([] !== $errors = $this->formula->textGetValidationErrors($conf)) {
       // @todo Produce a comment from the errors text!
-      return PhpUtil::incompatibleConfiguration(count($errors) . ' errors in text component.');
+      return PhpUtil::expectedConfigButFound(count($errors) . ' errors in text component.', $conf);
     }
 
     return $this->v2v->stringGetPhp($conf);

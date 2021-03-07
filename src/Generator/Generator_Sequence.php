@@ -91,15 +91,15 @@ class Generator_Sequence implements GeneratorInterface {
       $conf = [];
     }
     elseif (!\is_array($conf)) {
-      return PhpUtil::incompatibleConfiguration("Configuration must be an array or NULL.");
+      return PhpUtil::expectedConfigButFound("Configuration must be an array or NULL.", $conf);
     }
 
     $phpStatements = [];
     foreach ($conf as $delta => $itemConf) {
 
-      if ((string)(int)$delta !== (string)$delta || $delta < 0) {
+      if ((string) (int) $delta !== (string) $delta || $delta < 0) {
         // Fail on non-numeric and negative keys.
-        return PhpUtil::incompatibleConfiguration("Sequence array keys must be non-negative integers.");
+        return PhpUtil::expectedConfigButFound("Sequence array keys must be non-negative integers.", $conf);
       }
 
       $phpStatements[] = $this->itemGenerator->confGetPhp($itemConf);

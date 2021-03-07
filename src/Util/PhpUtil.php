@@ -6,6 +6,7 @@ namespace Donquixote\OCUI\Util;
 use Donquixote\CallbackReflection\Exception\GeneratedCodeException;
 use Donquixote\CallbackReflection\Util\CodegenUtil;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\Evaluator\Evaluator;
 use Donquixote\OCUI\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\OCUI\Exception\EvaluatorException_UnsupportedFormula;
 
@@ -65,14 +66,31 @@ EOT;
 
   /**
    * @param string $message
+   *   Message describing the problem.
    *
    * @return string
+   *   Generated PHP code.
    */
   public static function incompatibleConfiguration(string $message): string {
+    return self::phpCallStatic([Evaluator::class, 'incompatibleConfiguration'], [
+      self::export($message),
+    ]);
+  }
 
-    return self::exception(
-      EvaluatorException_IncompatibleConfiguration::class,
-      $message);
+  /**
+   * @param string $expected
+   *   Message describing the expected configuration.
+   * @param mixed $conf
+   *   Failing configuration.
+   *
+   * @return string
+   *   Generated PHP code.
+   */
+  public static function expectedConfigButFound(string $expected, $conf): string {
+    return self::phpCallStatic([Evaluator::class, 'expectedConfigButFound'], [
+      self::export($expected),
+      self::export($conf),
+    ]);
   }
 
   /**
@@ -189,13 +207,29 @@ EOT;
   }
 
   /**
+   * @param callable $method
+   *   Static method.
+   * @param array $argsPhp
+   *   Arguments as php expressions.
+   *
+   * @return string
+   *   Php expression that calls the static method.
+   */
+  public static function phpCallStatic(callable $method, array $argsPhp): string {
+    if (!is_array($method) || !is_string($method[0])) {
+      throw new \InvalidArgumentException('Parameter $method must be a static method.');
+    }
+    return self::phpCallFunction($method[0] . '::' . $method[1], $argsPhp);
+  }
+
+  /**
    * @param string $function
    * @param string[] $argsPhp
    *
    * @return string
    */
   public static function phpCallFunction(string $function, array $argsPhp): string {
-    return $function . '(' . "\n" . self::phpCallArglist($argsPhp) . ')';
+    return '\\' . $function . '(' . "\n" . self::phpCallArglist($argsPhp) . ')';
   }
 
   /**
@@ -265,9 +299,8 @@ EOT;
       $argsPhp[] = self::phpValue($valuess);
     }
 
-    return self::phpCallFunction(
-      /* @see \Donquixote\OCUI\Util\ReflectionUtil::createInstance() */
-      '\\' . ReflectionUtil::class . '::createInstance',
+    return self::phpCallStatic(
+      [ReflectionUtil::class, 'createInstance'],
       $argsPhp);
   }
 

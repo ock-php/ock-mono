@@ -37,11 +37,12 @@ class Generator_Primitive implements GeneratorInterface {
   public function confGetPhp($conf): string {
     $type = gettype($conf);
     if (!in_array($type, $this->formula->getAllowedTypes())) {
-      // @todo Produce a comment from the errors text!
-      return PhpUtil::incompatibleConfiguration(sprintf(
-        'Incompatible type: Expected %s, found %s',
-        implode('|', $this->formula->getAllowedTypes()),
-        $type));
+      return PhpUtil::expectedConfigButFound(
+        sprintf(
+          'Incompatible type: Expected %s',
+          implode('|', $this->formula->getAllowedTypes()),
+        ),
+        $conf);
     }
     return var_export($conf, TRUE);
   }

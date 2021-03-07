@@ -51,7 +51,7 @@ class Generator_PluginList implements GeneratorInterface {
       $conf = [];
     }
     elseif (!is_array($conf)) {
-      return PhpUtil::incompatibleConfiguration("Configuration must be an array.");
+      return PhpUtil::expectedConfigButFound("Configuration must be an array.", $conf);
     }
 
     // Look for 'decorator' notation.
