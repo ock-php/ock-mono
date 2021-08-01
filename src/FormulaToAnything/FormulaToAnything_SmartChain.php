@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\FormulaToAnything;
 
+use Donquixote\OCUI\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Exception\FormulaToAnythingException;
@@ -40,11 +41,6 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
   private $partials;
 
   /**
-   * @var \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface
-   */
-  private $sta;
-
-  /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
    * @return self
@@ -71,8 +67,6 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
     array_multisort($specifities, SORT_DESC, $indices, $partials);
 
     $this->partials = $partials;
-
-    $this->sta = $this;
   }
 
   /**
@@ -85,7 +79,7 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
   /**
    * {@inheritdoc}
    */
-  public function formula(FormulaInterface $formula, string $interface) {
+  public function formula(FormulaInterface $formula, string $interface): object {
 
     if ($formula instanceof $interface) {
       return $formula;
@@ -95,31 +89,37 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
       \get_class($formula),
       $interface);
 
-    if ([] === $partials) {
-      // No partials available for given types.
-      return NULL;
-    }
-
+    $candidate = NULL;
     foreach ($partials as $partial) {
 
-      try {
-        $candidate = $partial->formula($formula, $interface, $this);
-      }
-      catch (FormulaToAnythingException $e) {
-        // @todo Log this!
-        unset($e);
+      $candidate = $partial->formula($formula, $interface, $this);
+
+      if ($candidate === NULL) {
         continue;
       }
 
-      if (null !== $candidate) {
-        if ($candidate instanceof $interface) {
-          return $candidate;
-        }
+      if ($candidate instanceof $interface) {
+        return $candidate;
       }
+
+      break;
     }
 
-    // Partials returned nothing.
-    return NULL;
+    $replacements = [
+      '@formula_class' => get_class($formula),
+      '@interface' => $interface,
+      '@found' => MessageUtil::formatValue($candidate),
+    ];
+
+    if ($candidate === NULL) {
+      throw new FormulaToAnythingException(strtr(
+        'Unsupported formula of class @formula_class: Expected @interface object, found @found.',
+        $replacements));
+    }
+
+    throw new \RuntimeException(strtr(
+      'Misbehaving FTA for formula of class @formula_class: Expected @interface object, found @found.',
+      $replacements));
   }
 
   /**

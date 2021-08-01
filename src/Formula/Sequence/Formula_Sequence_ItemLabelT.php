@@ -39,7 +39,7 @@ class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
   /**
    * {@inheritdoc}
    */
-  public function deltaGetItemLabel(?int $delta, TranslatorInterface $helper): string {
+  public function deltaGetItemLabel(?int $delta): \Donquixote\OCUI\Text\TextInterface {
 
     return (NULL === $delta)
       ? $helper->translate($this->newItemLabel)

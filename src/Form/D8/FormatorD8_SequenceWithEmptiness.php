@@ -185,7 +185,7 @@ class FormatorD8_SequenceWithEmptiness implements FormatorD8Interface {
    * @return string
    */
   private function deltaGetItemLabel($delta, TranslatorInterface $helper): string {
-    return $this->sequenceFormula->deltaGetItemLabel($delta, $helper);
+    return $this->sequenceFormula->deltaGetItemLabel($delta);
 
     /*
     return (NULL === $delta)

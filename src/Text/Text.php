@@ -14,14 +14,22 @@ class Text {
    *   Original untranslated text with placeholders.
    * @param array $replacements
    *   Replacements.
+   *
+   * @return \Donquixote\OCUI\Text\TextInterface
    */
-  public static function tSpecialOption(string $string, array $replacements = []) {
+  public static function tSpecialOption(string $string, array $replacements = []): TextInterface {
     return static::t('- @option -', [
       '@option' => static::t($string, $replacements),
     ]);
   }
 
-  public static function tParens(string $string, array $replacements = []) {
+  /**
+   * @param string $string
+   * @param array $replacements
+   *
+   * @return \Donquixote\OCUI\Text\TextInterface
+   */
+  public static function tParens(string $string, array $replacements = []): TextInterface {
     return static::t('(@text)', [
       '@text' => static::t($string, $replacements),
     ]);
@@ -34,8 +42,10 @@ class Text {
    *   Label.
    * @param \Donquixote\OCUI\Text\TextInterface $value
    *   Value.
+   *
+   * @return \Donquixote\OCUI\Text\TextInterface
    */
-  public static function label(TextInterface $label, TextInterface $value) {
+  public static function label(TextInterface $label, TextInterface $value): TextInterface {
     return static::t('@label: @value', [
       '@label' => $label,
       '@value' => $value,
@@ -78,7 +88,7 @@ class Text {
    * @return \Donquixote\OCUI\Text\TextInterface
    *   Text object.
    */
-  public static function s(string $string, array $replacements = []) {
+  public static function s(string $string, array $replacements = []): TextInterface {
     $text = new Text_Raw($string);
     if ($replacements) {
       $text = new Text_Replacements($text, $replacements);
@@ -95,7 +105,7 @@ class Text {
    * @return \Donquixote\OCUI\Text\TextInterface
    *   Text object.
    */
-  public static function i(int $number) {
+  public static function i(int $number): TextInterface {
     return new Text_Raw((string) $number);
   }
 
@@ -108,7 +118,7 @@ class Text {
    * @return \Donquixote\OCUI\Text\TextInterface
    *   Translatable text object.
    */
-  public static function ul(array $parts) {
+  public static function ul(array $parts): TextInterface {
     return static::ulOrOl($parts, 'ul');
   }
 
@@ -121,7 +131,7 @@ class Text {
    * @return \Donquixote\OCUI\Text\TextInterface
    *   Translatable text object.
    */
-  public static function ol(array $parts) {
+  public static function ol(array $parts): TextInterface {
     return static::ulOrOl($parts, 'ul');
   }
 
@@ -136,7 +146,7 @@ class Text {
    * @return \Donquixote\OCUI\Text\TextInterface
    *   Translatable text object.
    */
-  protected static function ulOrOl(array $parts, string $tag) {
+  protected static function ulOrOl(array $parts, string $tag): TextInterface {
     $string = '';
     $replacements = [];
     foreach (array_values($parts) as $i => $part) {
@@ -160,7 +170,7 @@ class Text {
    * @return \Donquixote\OCUI\Text\TextInterface
    *   Translatable text object.
    */
-  public static function concat(array $parts, string $glue = '') {
+  public static function concat(array $parts, string $glue = ''): TextInterface {
     $replacements = [];
     foreach (array_values($parts) as $i => $part) {
       $replacements['@' . $i] = $part;

@@ -6,6 +6,7 @@ namespace Donquixote\OCUI\Form\D8;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Form\D8\Optionable\OptionableFormatorD8Interface;
 use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\OCUI\Util\MessageUtil;
 use Donquixote\OCUI\Util\StaUtil;
 use Donquixote\OCUI\Util\UtilBase;
 
@@ -15,22 +16,34 @@ final class FormatorD8 extends UtilBase {
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
-   * @return \Donquixote\OCUI\Form\D8\FormatorD8Interface|null
+   * @return \Donquixote\OCUI\Form\D8\FormatorD8Interface
+   *
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   *   Cannot build this formator.
+   *
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   *   Cannot build a generator for the given formula.
    */
   public static function fromFormula(
     FormulaInterface $formula,
     FormulaToAnythingInterface $formulaToAnything
-  ): ?FormatorD8Interface {
+  ): FormatorD8Interface {
 
     $candidate = $formulaToAnything->formula(
       $formula,
       FormatorD8Interface::class);
 
-    if (!$candidate instanceof FormatorD8Interface) {
-      return NULL;
+    if ($candidate instanceof FormatorD8Interface) {
+      return $candidate;
     }
 
-    return $candidate;
+    throw new \RuntimeException(strtr(
+      'Misbehaving FTA for formula of class @formula_class: Expected @interface object, found @found.',
+      [
+        '@formula_class' => get_class($formula),
+        '@interface' => FormatorD8Interface::class,
+        '@found' => MessageUtil::formatValue($candidate),
+      ]));
   }
 
   /**

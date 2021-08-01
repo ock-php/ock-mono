@@ -2,41 +2,44 @@
 
 namespace Donquixote\OCUI\Text;
 
+use Donquixote\OCUI\Translator\TranslatorInterface;
+
 class Text_Replacements implements TextInterface {
 
   /**
    * @var \Donquixote\OCUI\Text\TextInterface
    */
-  private $original;
+  private TextInterface $source;
 
   /**
    * @var \Donquixote\OCUI\Text\TextInterface[]
    */
-  private $replacements;
+  private array $replacements;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface $original
+   * @param \Donquixote\OCUI\Text\TextInterface $source
    * @param \Donquixote\OCUI\Text\TextInterface[] $replacements
    */
-  public function __construct(TextInterface $original, array $replacements = []) {
-    $this->original = $original;
+  public function __construct(TextInterface $source, array $replacements = []) {
+    self::validateReplacements(...array_values($replacements));
+    $this->source = $source;
     $this->replacements = $replacements;
   }
 
-  /**
-   * @return \Donquixote\OCUI\Text\TextInterface
-   */
-  public function getOriginalText(): TextInterface {
-    return $this->original;
-  }
+  private static function validateReplacements(TextInterface ...$args): void {}
 
-  /**
-   * @return \Donquixote\OCUI\Text\TextInterface[]
-   */
-  public function getReplacements(): array {
-    return $this->replacements;
+  public function convert(TranslatorInterface $translator): string {
+    $translated = $this->source->convert($translator);
+    if (!$this->replacements) {
+      return $translated;
+    }
+    $replacements = [];
+    foreach ($this->replacements as $key => $replacement) {
+      $replacements[$key] = $replacement->convert($translator);
+    }
+    return strtr($translated, $replacements);
   }
 
 }

@@ -30,7 +30,7 @@ class FormulaToFormula_Iface extends FormulaToAnythingPartialBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaDoGetObject(FormulaInterface $formula, string $interface, FormulaToAnythingInterface $helper) {
+  protected function formulaDoGetObject(FormulaInterface $formula, string $interface, FormulaToAnythingInterface $helper): ?object {
     /** @var \Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface $formula */
     return $this->typeToFormula->typeGetFormula(
       $formula->getInterface(),

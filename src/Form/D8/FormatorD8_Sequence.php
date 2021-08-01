@@ -389,7 +389,7 @@ class FormatorD8_Sequence implements FormatorD8Interface {
    * @return string
    */
   private function deltaGetItemLabel($delta, TranslatorInterface $helper): string {
-    return $this->formula->deltaGetItemLabel($delta, $helper);
+    return $this->formula->deltaGetItemLabel($delta);
 
     /*
     return (NULL === $delta)

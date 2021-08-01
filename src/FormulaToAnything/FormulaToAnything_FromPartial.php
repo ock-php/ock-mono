@@ -10,6 +10,7 @@ use Donquixote\OCUI\Formula\ContextProviding\Formula_ContextProvidingInterface;
 use Donquixote\OCUI\Formula\Contextual\Formula_ContextualInterface;
 use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartial_SmartChain;
 use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\OCUI\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
@@ -68,7 +69,7 @@ class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
   /**
    * {@inheritdoc}
    */
-  public function formula(FormulaInterface $formula, string $interface): ?object {
+  public function formula(FormulaInterface $formula, string $interface): object {
 
     if ($formula instanceof Formula_ContextProvidingInterface) {
       return $this
@@ -85,24 +86,26 @@ class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
           $interface);
     }
 
-    try {
-      $candidate = $this->partial->formula($formula, $interface, $this);
-    }
-    catch (FormulaToAnythingException $e) {
-      // @todo Log this!
-      unset($e);
-      return NULL;
-    }
+    $candidate = $this->partial->formula($formula, $interface, $this);
 
     if ($candidate instanceof $interface) {
       return $candidate;
     }
 
-    if (NULL === $candidate) {
-      return NULL;
+    $replacements = [
+      '@formula_class' => get_class($formula),
+      '@interface' => $interface,
+      '@found' => MessageUtil::formatValue($candidate),
+    ];
+
+    if ($candidate === NULL) {
+      throw new FormulaToAnythingException(strtr(
+        'Unsupported formula of class @formula_class: Expected @interface object, found @found.',
+        $replacements));
     }
 
-    // @todo Log this!
-    return NULL;
+    throw new \RuntimeException(strtr(
+      'Misbehaving FTA for formula of class @formula_class: Expected @interface object, found @found.',
+      $replacements));
   }
 }

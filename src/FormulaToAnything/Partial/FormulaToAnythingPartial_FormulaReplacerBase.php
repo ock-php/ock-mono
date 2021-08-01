@@ -24,7 +24,7 @@ abstract class FormulaToAnythingPartial_FormulaReplacerBase extends FormulaToAny
     FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
-  ) {
+  ): ?object {
     $replacement = $this->formulaGetReplacement($formula);
     if ($replacement === NULL) {
       return NULL;

@@ -208,8 +208,7 @@ abstract class FormatorD8_TabledragBase implements FormatorD8Interface {
       ];
 
       $itemLabel = $this->sequenceFormula->deltaGetItemLabel(
-        $delta,
-        $this->translator);
+        $delta);
 
       if (1
         && isset($element['#title'])

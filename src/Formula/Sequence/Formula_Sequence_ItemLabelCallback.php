@@ -25,7 +25,7 @@ class Formula_Sequence_ItemLabelCallback extends Formula_SequenceBase {
   /**
    * {@inheritdoc}
    */
-  public function deltaGetItemLabel(?int $delta, TranslatorInterface $helper): string {
+  public function deltaGetItemLabel(?int $delta): \Donquixote\OCUI\Text\TextInterface {
     $label = \call_user_func($this->itemLabelCallback, $delta, $helper);
     if (!is_string($label)) {
       return '' . $delta;

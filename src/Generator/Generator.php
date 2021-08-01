@@ -6,6 +6,7 @@ namespace Donquixote\OCUI\Generator;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Formula;
 use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\OCUI\Util\MessageUtil;
 use Donquixote\OCUI\Util\UtilBase;
 
 final class Generator extends UtilBase {
@@ -21,6 +22,9 @@ final class Generator extends UtilBase {
    * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
    *   Generator. Evaluating the code of this generator should create an
    *   instance of $interface.
+   *
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   *   Cannot build a generator for the given interface.
    */
   public static function fromIface(
     string $interface,
@@ -39,13 +43,16 @@ final class Generator extends UtilBase {
    * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
+   * @return \Donquixote\OCUI\Generator\GeneratorInterface
    *   Materialized generator.
+   *
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   *   Cannot build a generator for the given formula.
    */
   public static function fromFormula(
     FormulaInterface $formula,
     FormulaToAnythingInterface $formulaToAnything
-  ): ?GeneratorInterface {
+  ): GeneratorInterface {
 
     $candidate = $formulaToAnything->formula(
       $formula,
@@ -55,11 +62,13 @@ final class Generator extends UtilBase {
       return $candidate;
     }
 
-    if (null === $candidate) {
-      return null;
-    }
-
-    throw new \RuntimeException("Expected a GeneratorInterface object or NULL.");
+    throw new \RuntimeException(strtr(
+      'Misbehaving FTA for formula of class @formula_class: Expected @interface object, found @found.',
+      [
+        '@formula_class' => get_class($formula),
+        '@interface' => GeneratorInterface::class,
+        '@found' => MessageUtil::formatValue($candidate),
+      ]));
   }
 
 }

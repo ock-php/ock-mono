@@ -30,7 +30,7 @@ class FormulaToAnythingPartial_IfaceDefmap extends FormulaToAnythingPartialBase 
     FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
-  ) {
+  ): ?object {
 
     /** @var \Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface $formula */
 

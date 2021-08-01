@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Plugin;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
 
 class Plugin {
@@ -44,6 +45,10 @@ class Plugin {
    */
   public function getLabel(): ?TextInterface {
     return $this->label;
+  }
+
+  public function getLabelOr(string $id): TextInterface {
+    return $this->label ?: Text::s($id);
   }
 
   /**

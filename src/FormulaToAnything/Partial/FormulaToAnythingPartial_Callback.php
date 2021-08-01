@@ -108,7 +108,7 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
     FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
-  ) {
+  ): ?object {
 
     try {
       // Other arguments, e.g. services, might already be part of the callback.

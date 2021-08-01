@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Evaluator;
 
 use Donquixote\OCUI\Exception\EvaluatorException_IncompatibleConfiguration;
+use Donquixote\OCUI\Util\MessageUtil;
 
 class Evaluator {
 
@@ -35,28 +36,8 @@ class Evaluator {
    * @throws \Donquixote\OCUI\Exception\EvaluatorException_IncompatibleConfiguration
    */
   public static function expectedConfigButFound(string $expected, $conf) {
-    $message = $expected . ', found ' . self::formatConf($conf);
+    $message = $expected . ', found ' . MessageUtil::formatValue($conf);
     throw new EvaluatorException_IncompatibleConfiguration($message);
-  }
-
-  /**
-   * @param mixed $conf
-   *
-   * @return string
-   */
-  private static function formatConf($conf): string {
-    switch ($type = gettype($conf)) {
-      case 'object':
-        return get_class($conf) . ' object';
-      case 'array':
-        return $conf ? 'array(..)' : 'array()';
-      case 'resource':
-        return 'resource';
-      case 'integer':
-        return '(int)' . $conf;
-      default:
-        return var_export($conf, TRUE);
-    }
   }
 
 }

@@ -76,7 +76,7 @@ class FormulaToAnythingPartial_CallbackNoHelper extends FormulaToAnythingPartial
     FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
-  ) {
+  ): ?object {
 
     try {
       return $this->callback->invokeArgs([$formula]);

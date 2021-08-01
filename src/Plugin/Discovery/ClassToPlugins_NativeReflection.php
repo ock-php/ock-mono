@@ -31,7 +31,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
    *
    * @return self
    */
-  public static function create($tagName): self {
+  public static function create(string $tagName): self {
     return new self(
       DocToAnnotations::create($tagName),
       $tagName);
@@ -41,7 +41,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
    * @param \Donquixote\OCUI\Discovery\DocToAnnotations\DocToAnnotationsInterface $docToAnnotations
    * @param string $tagName
    */
-  public function __construct(DocToAnnotationsInterface $docToAnnotations, $tagName) {
+  public function __construct(DocToAnnotationsInterface $docToAnnotations, string $tagName) {
     $this->docToAnnotations = $docToAnnotations;
     $this->tagName = $tagName;
   }
@@ -121,8 +121,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
       return [];
     }
 
-    $formula = new Formula_ValueFactory_Class(
-      $reflectionClass->getName());
+    $formula = new Formula_ValueFactory_Class($reflectionClass->getName());
 
     $pluginTypeNames = self::classGetPluginTypeNames($reflectionClass);
 
@@ -208,7 +207,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
    *
    * @return array
    */
-  private static function formulaBuildPluginss(FormulaInterface $formula, $pluginTypeNames, array $annotations) {
+  private static function formulaBuildPluginss(FormulaInterface $formula, $pluginTypeNames, array $annotations): array {
 
     $plugins = [];
     foreach ($annotations as $annotation) {

@@ -122,7 +122,7 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
     FormulaInterface $formula,
     string $interface,
     FormulaToAnythingInterface $helper
-  );
+  ): ?object;
 
   /**
    * {@inheritdoc}

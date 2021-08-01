@@ -44,6 +44,9 @@ class PluginRegistry_AnnotatedDiscovery implements PluginRegistryInterface {
         continue;
       }
     }
+    if (!$pluginsss) {
+      return [];
+    }
     $pluginss = array_merge_recursive(...$pluginsss);
     return $pluginss;
   }

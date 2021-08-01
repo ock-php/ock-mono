@@ -36,7 +36,7 @@ class Formula_Select_FromPlugins implements Formula_SelectInterface {
     // Make sure the no-label group is at the top.
     $optionss = ['' => []];
     foreach ($this->plugins as $id => $plugin) {
-      $label = $plugin->getLabel();
+      $label = $plugin->getLabelOr($id);
       // @todo Do something for the group label.
       $optionss[''][$id] = $label;
     }
