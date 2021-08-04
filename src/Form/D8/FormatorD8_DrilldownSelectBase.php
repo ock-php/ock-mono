@@ -8,8 +8,11 @@ use Donquixote\OCUI\Form\D8\Optionable\OptionableFormatorD8Interface;
 use Donquixote\OCUI\Form\D8\Util\D8FormUtil;
 use Donquixote\OCUI\Form\D8\Util\D8SelectUtil;
 use Donquixote\OCUI\Formula\Select\Formula_SelectInterface;
+use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\OCUI\TextToMarkup\TextToMarkup_Translator;
 use Donquixote\OCUI\Util\ConfUtil;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\cu\Translator\Translator_Drupal;
 
 abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, OptionableFormatorD8Interface {
 
@@ -114,11 +117,20 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
    * @return string[][]
    */
   private function getGroupedOptions(): array {
+    $translation = \Drupal::translation();
+    $translator = new Translator_Drupal($translation);
+    $textToMarkup = new TextToMarkup_Translator($translator);
 
     $groupedOptions = [];
     /** @var string[] $groupOptions */
-    foreach ($this->idSelectFormula->getGroupedOptions() as $groupLabel => $groupOptions) {
+    foreach ($this->idSelectFormula->getGroupedOptions($textToMarkup) as $groupLabel => $groupOptions) {
       foreach ($groupOptions as $id => $label) {
+        if ($label instanceof TextInterface) {
+          $label = $textToMarkup->textGetMarkup($label);
+        }
+        elseif (!is_string($label)) {
+          throw new \RuntimeException('Label must be a string or TextInterface object.');
+        }
         if (!$this->idIsOptionless($id)) {
           $label .= '…';
         }

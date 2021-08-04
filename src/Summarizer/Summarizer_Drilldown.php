@@ -52,13 +52,13 @@ class Summarizer_Drilldown implements SummarizerInterface {
 
     if (NULL === $subFormula = $this->formula->getIdToFormula()->idGetFormula($id)) {
       return Text::tSpecialOption('Unknown id "@id".', [
-        '@id' => $id,
+        '@id' => Text::s($id),
       ]);
     }
 
     if (NULL === $idLabel = $this->formula->getIdFormula()->idGetLabel($id)) {
       return Text::tSpecialOption('Unnamed id "@id".', [
-        '@id' => $id,
+        '@id' => Text::s($id),
       ]);
     }
 
@@ -68,7 +68,7 @@ class Summarizer_Drilldown implements SummarizerInterface {
 
     if (NULL === $subSummarizer) {
       return Text::tSpecialOption('Undocumented id "@id".', [
-        '@id' => $id,
+        '@id' => Text::s($id),
       ]);
     }
 

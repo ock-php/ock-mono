@@ -12,8 +12,7 @@ interface FormulaToAnythingInterface {
    * @param string $interface
    *
    * @return object
-   *   An instance of $interface, or
-   *   NULL, if no adapter can be found.
+   *   An instance of $interface.
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    *   Object cannot be created for the given formula.

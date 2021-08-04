@@ -16,12 +16,12 @@ trait Formula_Drilldown_CustomKeysTrait {
   private $optionsKey = 'options';
 
   /**
-   * @param string $idKey
-   * @param string $optionsKey
+   * @param string|null $idKey
+   * @param string|null $optionsKey
    *
    * @return static
    */
-  public function withKeys(string $idKey, string $optionsKey): self {
+  public function withKeys(?string $idKey, ?string $optionsKey): self {
     $clone = clone $this;
     $clone->idKey = $idKey;
     $clone->optionsKey = $optionsKey;

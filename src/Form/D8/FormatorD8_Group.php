@@ -5,7 +5,10 @@ namespace Donquixote\OCUI\Form\D8;
 
 use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
 use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Util\StaUtil;
+use Drupal\Core\Form\FormState;
+use Drupal\Core\Form\FormStateInterface;
 
 class FormatorD8_Group implements FormatorD8Interface {
 
@@ -15,7 +18,7 @@ class FormatorD8_Group implements FormatorD8Interface {
   private $itemFormators;
 
   /**
-   * @var string[]
+   * @var \Donquixote\OCUI\Text\TextInterface[]
    */
   private $labels;
 
@@ -25,11 +28,11 @@ class FormatorD8_Group implements FormatorD8Interface {
    * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
    * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
-   * @return \Donquixote\OCUI\Form\D8\FormatorD8_Group|null
+   * @return self|null
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_GroupInterface $formula, FormulaToAnythingInterface $formulaToAnything) {
+  public static function create(Formula_GroupInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?self {
 
     if (NULL === $itemFormators = StaUtil::getMultiple(
       $formula->getItemFormulas(),
@@ -44,7 +47,7 @@ class FormatorD8_Group implements FormatorD8Interface {
 
   /**
    * @param \Donquixote\OCUI\Form\D8\FormatorD8Interface[] $itemFormators
-   * @param string[] $labels
+   * @param \Donquixote\OCUI\Text\TextInterface[] $labels
    */
   public function __construct(array $itemFormators, array $labels) {
     $this->itemFormators = $itemFormators;
@@ -70,7 +73,10 @@ class FormatorD8_Group implements FormatorD8Interface {
 
       $itemConf = $conf[$key] ?? null;
 
-      $itemLabel = $this->labels[$key] ?? $key;
+      $itemLabel = $this->labels[$key] ?? NULL;
+      if ($itemLabel !== NULL) {
+
+      }
 
       $form[$key] = $itemFormator->confGetD8Form($itemConf, $itemLabel);
     }

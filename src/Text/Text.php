@@ -12,7 +12,7 @@ class Text {
    *
    * @param string $string
    *   Original untranslated text with placeholders.
-   * @param array $replacements
+   * @param \Donquixote\OCUI\Text\TextInterface[] $replacements
    *   Replacements.
    *
    * @return \Donquixote\OCUI\Text\TextInterface
@@ -25,7 +25,7 @@ class Text {
 
   /**
    * @param string $string
-   * @param array $replacements
+   * @param \Donquixote\OCUI\Text\TextInterface[] $replacements
    *
    * @return \Donquixote\OCUI\Text\TextInterface
    */

@@ -20,9 +20,6 @@ final class FormatorD8 extends UtilBase {
    *
    * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    *   Cannot build this formator.
-   *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
-   *   Cannot build a generator for the given formula.
    */
   public static function fromFormula(
     FormulaInterface $formula,

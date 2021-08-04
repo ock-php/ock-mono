@@ -28,10 +28,11 @@ class FormulaToAnythingPartial_PluginList extends FormulaToAnythingPartial_Formu
    */
   protected function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface {
     /** @var \Donquixote\OCUI\Formula\PluginList\Formula_PluginListInterface $formula */
-    return new Formula_Drilldown(
+    return (new Formula_Drilldown(
       new Formula_Select_FromPlugins($formula->getPlugins()),
       new IdToFormula_FromPlugins($formula->getPlugins()),
-      $formula->allowsNull());
+      $formula->allowsNull()))
+      ->withKeys('plugin', NULL);
   }
 
 }

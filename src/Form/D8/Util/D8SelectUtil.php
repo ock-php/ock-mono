@@ -33,17 +33,17 @@ final class D8SelectUtil extends UtilBase {
 
   /**
    * @param string[][] $groupedOptions
-   * @param $id
-   * @param $label
+   * @param string|null $id
+   * @param string $label
    * @param bool $required
    *
    * @return array
    */
   public static function groupedOptionsBuildSelectElement(
     array $groupedOptions,
-    $id,
-    $label,
-    $required = TRUE
+    ?string $id,
+    string $label,
+    bool $required = TRUE
   ): array {
 
     $element = [

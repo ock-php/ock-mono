@@ -24,8 +24,11 @@ class TextToMarkup_Translator implements TextToMarkupInterface {
     $this->translator = $translator;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function textGetMarkup(TextInterface $text): string {
-    $text->convert($this->translator);
+    return $text->convert($this->translator);
   }
 
 }

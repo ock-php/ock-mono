@@ -50,7 +50,7 @@ class Formula_Select_FromPlugins implements Formula_SelectInterface {
    * {@inheritdoc}
    */
   public function idGetLabel($id): ?TextInterface {
-    if (!isset($this->options[$id])) {
+    if (!isset($this->plugins[$id])) {
       return NULL;
     }
     return $this->plugins[$id]->getLabel();
