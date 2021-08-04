@@ -7,12 +7,13 @@ use Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelperInterface;
 use Donquixote\OCUI\Form\D8\Optionable\OptionableFormatorD8Interface;
 use Donquixote\OCUI\Form\D8\Util\D8FormUtil;
 use Donquixote\OCUI\Form\D8\Util\D8SelectUtil;
+use Donquixote\OCUI\Formula\Select\Formula_Select_Fixed;
 use Donquixote\OCUI\Formula\Select\Formula_SelectInterface;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\TextToMarkup\TextToMarkup_Translator;
+use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\OCUI\Translator\Translator;
 use Donquixote\OCUI\Util\ConfUtil;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\cu\Translator\Translator_Drupal;
 
 abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, OptionableFormatorD8Interface {
 
@@ -68,12 +69,15 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
 
     $conf = $this->keysHelper->pack($id, $optionsConf);
 
+    $translator = new Translator(new TranslatorLookup_Passthru());
+
     $form = [
       '#type' => 'container',
       '#attributes' => ['class' => ['faktoria-drilldown']],
       '#tree' => TRUE,
-      '_id' => D8SelectUtil::groupedOptionsBuildSelectElement(
-        $this->getGroupedOptions(),
+      '_id' => D8SelectUtil::optionsFormulaBuildSelectElement(
+        $this->buildEnhancedSelectFormula(),
+        $translator,
         $id,
         $label,
         $this->required
@@ -114,31 +118,33 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
   }
 
   /**
-   * @return string[][]
+   * Builds a modified select formula with '…' appended to some options.
+   *
+   * @return \Donquixote\OCUI\Formula\Select\Formula_SelectInterface
    */
-  private function getGroupedOptions(): array {
-    $translation = \Drupal::translation();
-    $translator = new Translator_Drupal($translation);
-    $textToMarkup = new TextToMarkup_Translator($translator);
-
-    $groupedOptions = [];
-    /** @var string[] $groupOptions */
-    foreach ($this->idSelectFormula->getGroupedOptions($textToMarkup) as $groupLabel => $groupOptions) {
-      foreach ($groupOptions as $id => $label) {
-        if ($label instanceof TextInterface) {
-          $label = $textToMarkup->textGetMarkup($label);
-        }
-        elseif (!is_string($label)) {
-          throw new \RuntimeException('Label must be a string or TextInterface object.');
-        }
-        if (!$this->idIsOptionless($id)) {
-          $label .= '…';
-        }
-        $groupedOptions[$groupLabel][$id] = $label;
-      }
+  private function buildEnhancedSelectFormula(): Formula_SelectInterface {
+    $grouped_options = [];
+    $grouped_options[''] = $this->buildEnhancedOptionsInGroup(NULL);
+    $groups = $this->idSelectFormula->getOptGroups();
+    foreach ($groups as $group_id => $group_label) {
+      $grouped_options[$group_id] = $this->buildEnhancedOptionsInGroup($group_id);
     }
+    return new Formula_Select_Fixed($grouped_options, $groups);
+  }
 
-    return $groupedOptions;
+  /**
+   * @param string|null $group_id
+   *
+   * @return \Donquixote\OCUI\Text\TextInterface[]
+   */
+  private function buildEnhancedOptionsInGroup(?string $group_id): array {
+    $options = [];
+    foreach ($this->idSelectFormula->getOptions($group_id) as $id => $option_label) {
+      $options[$id] = $this->idIsOptionless($id)
+        ? $option_label
+        : Text::s('@label…', ['@label' => $option_label]);
+    }
+    return $options;
   }
 
   /**

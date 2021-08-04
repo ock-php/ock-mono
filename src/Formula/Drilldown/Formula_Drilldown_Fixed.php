@@ -8,6 +8,7 @@ use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
 use Donquixote\OCUI\Formula\Select\Formula_Select_Fixed;
 use Donquixote\OCUI\IdToFormula\IdToFormula_Fixed;
 use Donquixote\OCUI\IdToFormula\IdToFormulaInterface;
+use Donquixote\OCUI\Text\TextInterface;
 
 class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
 
@@ -51,14 +52,15 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
   /**
    * @param string $id
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param string $label
-   * @param string $groupLabel
+   * @param \Donquixote\OCUI\Text\TextInterface $label
+   * @param ?string $group_id
+   * @param ?\Donquixote\OCUI\Text\TextInterface $group_label
    *
    * @return static
    */
-  public function withOption(string $id, FormulaInterface $formula, string $label, $groupLabel = '') {
+  public function withOption(string $id, FormulaInterface $formula, TextInterface $label, string $group_id = NULL, TextInterface $group_label = NULL): Formula_Drilldown_Fixed {
     $clone = clone $this;
-    $clone->idFormula = $this->idFormula->withOption($id, $label, $groupLabel);
+    $clone->idFormula = $this->idFormula->withOption($id, $label, $group_id);
     $clone->idToFormula = $this->idToFormula->withFormula($id, $formula);
     return $clone;
   }

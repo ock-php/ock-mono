@@ -4,10 +4,13 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Formula\Select;
 
 use Donquixote\OCUI\Formula\Drilldown\Option\DrilldownOptionInterface;
+use Donquixote\OCUI\Formula\Select\Option\SelectOptionInterface;
 use Donquixote\OCUI\Text\TextInterface;
 use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
+use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\OCUI\Translator\Translator;
 
-class Formula_Select_FromOptions implements Formula_SelectInterface {
+class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
 
   /**
    * @var \Donquixote\OCUI\Formula\Select\Option\SelectOptionInterface[]
@@ -25,28 +28,30 @@ class Formula_Select_FromOptions implements Formula_SelectInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\Option\DrilldownOptionInterface ...$options
+   * @param \Donquixote\OCUI\Formula\Select\Option\SelectOptionInterface ...$options
    */
-  private static function validateOptions(DrilldownOptionInterface ...$options): void {}
+  private static function validateOptions(SelectOptionInterface ...$options): void {}
 
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
-    // Make sure the no-label group is at the top.
-    $options = ['' => []];
+  protected function initialize(array &$grouped_options, array &$group_labels): void {
+
+    // Use a simple translator to build group ids.
+    $translator = new Translator(new TranslatorLookup_Passthru());
+
     foreach ($this->options as $id => $option) {
       $label = $option->getLabel();
       $group_label = $option->getGroupLabel();
-      $group_label_string = $group_label !== NULL
-        ? $textToMarkupo->textGetMarkup($group_label)
-        : '';
-      $options[$group_label_string][$id] = $label;
+      if ($group_label !== NULL) {
+        $group_id = $group_label->convert($translator);
+        $groups[$group_id] = $group_label;
+        $grouped_options[$group_id][$id] = $label;
+      }
+      else {
+        $grouped_options[''][$id] = $label;
+      }
     }
-    if (!$options['']) {
-      unset($options['']);
-    }
-    return $options;
   }
 
   /**

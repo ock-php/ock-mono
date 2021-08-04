@@ -9,6 +9,8 @@ use Donquixote\OCUI\Formula\Select\Formula_Select_FromFlatSelect;
 use Donquixote\OCUI\Formula\Select\Formula_SelectInterface;
 use Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\OCUI\FormulaBase\FormulaBase_AbstractSelectInterface;
+use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\OCUI\Translator\Translator;
 use Donquixote\OCUI\Util\ConfUtil;
 
 class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Interface {
@@ -71,9 +73,10 @@ class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Inte
    * {@inheritdoc}
    */
   public function confGetD8Form($conf, $label): array {
-
+    $translator = new Translator(new TranslatorLookup_Passthru());
     return D8SelectUtil::optionsFormulaBuildSelectElement(
       $this->formula,
+      $translator,
       ConfUtil::confGetId($conf),
       $label,
       $this->required

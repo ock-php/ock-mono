@@ -24,8 +24,17 @@ class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
-    return ['' => $this->decorated->getOptions()];
+  public function getOptGroups(): array {
+    return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getOptions(?string $group_id): array {
+    return $group_id === NULL
+      ? $this->decorated->getOptions()
+      : [];
   }
 
   /**

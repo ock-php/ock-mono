@@ -180,4 +180,33 @@ class Text {
       $replacements);
   }
 
+  /**
+   * Validates text objects.
+   *
+   * @param \Donquixote\OCUI\Text\TextInterface ...$texts
+   */
+  public static function validate(TextInterface ...$texts): void {}
+
+  /**
+   * Validates text objects.
+   *
+   * @param \Donquixote\OCUI\Text\TextInterface[] $texts
+   *   Text objects to validate.
+   */
+  public static function validateMultiple(array $texts): void {
+    self::validate(...array_values($texts));
+  }
+
+  /**
+   * Validates arrays of text objects.
+   *
+   * @param \Donquixote\OCUI\Text\TextInterface[][] $textss
+   *   Arrays of text objects.
+   */
+  public static function validateNested(array $textss): void {
+    foreach ($textss as $texts) {
+      self::validate(...array_values($texts));
+    }
+  }
+
 }

@@ -6,37 +6,39 @@ namespace Donquixote\OCUI\Formula\Select;
 use Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
 
 abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_SelectInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
+  public function getOptGroups(): array {
+    return $this->getIdFormula()->getOptions();
+  }
 
-    $options = [];
-    foreach ($this->getIdFormula()->getOptions() as $id0 => $label0) {
-
-      if (null === $subFormula = $this->idGetSubFormula($id0)) {
-        continue;
-      }
-
-      foreach ($subFormula->getOptions() as $id1 => $label1) {
-        $combinedId = $this->combineIds($id0, $id1);
-        // @todo Find a way to use TextInterface for group labels.
-        $options[$id0][$combinedId] = $this->combineLabels($label0, $label1);
-      }
+  /**
+   * {@inheritdoc}
+   */
+  public function getOptions(?string $group_id): array {
+    $subFormula = $this->idGetSubFormula($group_id);
+    if ($subFormula === NULL) {
+      return [];
     }
-
+    $group_label = $this->getIdFormula()->idGetLabel($group_id)
+      ?? Text::s($group_id);
+    $options = [];
+    foreach ($subFormula->getOptions() as $sub_id => $sub_label) {
+      $combinedId = $this->combineIds($group_id, $sub_id);
+      $options[$group_id][$combinedId] = $this->combineLabels($group_label, $sub_label);
+    }
     return $options;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($combinedId): bool {
-    [$id0, $id1] = $this->splitId($combinedId) + [NULL, NULL];
+  public function idIsKnown($id): bool {
+    [$id0, $id1] = $this->splitId($id) + [NULL, NULL];
 
     if (NULL === $id1) {
       return FALSE;

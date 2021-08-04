@@ -5,9 +5,10 @@ namespace Donquixote\OCUI\Formula\Select;
 
 use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
+use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\OCUI\Translator\Translator;
 
-class Formula_Select_FromDefinitions implements Formula_SelectInterface {
+class Formula_Select_FromDefinitions extends Formula_Select_BufferedBase {
 
   /**
    * @var array[]
@@ -25,6 +26,8 @@ class Formula_Select_FromDefinitions implements Formula_SelectInterface {
   private $definitionToGroupLabel;
 
   /**
+   * Constructor.
+   *
    * @param array[] $definitions
    * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
    * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
@@ -42,16 +45,23 @@ class Formula_Select_FromDefinitions implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
+  protected function initialize(array &$grouped_options, array &$group_labels): void {
 
-    $options = ['' => []];
+    // Use a simple translator to build group ids.
+    $translator = new Translator(new TranslatorLookup_Passthru());
+
     foreach ($this->definitions as $id => $definition) {
       $label = $this->definitionToLabel->definitionGetLabel($definition, $id);
-      $groupLabel = $this->definitionToGroupLabel->definitionGetLabel($definition, '');
-      $options[$groupLabel][$id] = $label;
+      $group_label = $this->definitionToGroupLabel->definitionGetLabel($definition, NULL);
+      if ($group_label !== NULL) {
+        $group_id = $group_label->convert($translator);
+        $groups[$group_id] = $group_label;
+        $grouped_options[$group_id][$id] = $label;
+      }
+      else {
+        $grouped_options[''][$id] = $label;
+      }
     }
-
-    return $options;
   }
 
   /**

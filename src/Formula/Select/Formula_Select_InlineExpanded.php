@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\Formula\Select;
 
-use Donquixote\OCUI\IdToFormula\IdToFormulaInterface;
 use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\OCUI\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
+use Donquixote\OCUI\IdToFormula\IdToFormulaInterface;
+use Donquixote\OCUI\Text\Text;
 use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
 
-class Formula_Select_InlineExpanded implements Formula_SelectInterface {
+class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
 
   /**
    * @var \Donquixote\OCUI\Formula\Select\Formula_SelectInterface
@@ -37,42 +37,29 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
-
-    $options = [];
-    /** @var string[] $groupOptions */
-    foreach ($this->decorated->getGroupedOptions($textToMarkup) as $groupLabel => $groupOptions) {
-      foreach ($groupOptions as $id => $label) {
-
-        if (NULL === $inlineOptions = $this->idGetInlineOptions($id)) {
-          $options[$groupLabel][$id] = $label;
+  protected function initialize(array &$grouped_options, array &$group_labels): void {
+    foreach ($this->decorated->getOptGroups() as $group_id => $group_label) {
+      foreach ($this->decorated->getOptions($group_id) as $id => $label) {
+        $inline_formula = $this->idGetSelectFormula($id);
+        if ($inline_formula === NULL) {
+          $grouped_options[$group_id][$id] = $label;
+          $group_labels[$group_id] = $group_label;
         }
         else {
-          foreach ($inlineOptions as $inlineGroupLabel => $inlineGroupOptions) {
-            foreach ($inlineGroupOptions as $inlineId => $inlineLabel) {
-              $options[$inlineGroupLabel]["$id/$inlineId"] = "$label: $inlineLabel";
+          foreach ($inline_formula->getOptGroups() as $inline_group_id => $inline_group_label) {
+            foreach ($inline_formula->getOptions($inline_group_id) as $inline_id => $inline_label) {
+              $grouped_options[$inline_group_id]["$id/$inline_id"] = Text::s('@label: @inline_label', [
+                '@label' => $label,
+                '@inline_label' => $inline_label,
+              ]);
             }
           }
-          $options[$groupLabel][$id] = "$label - ALL";
+          $grouped_options[$group_id][$id] = Text::t('@label - ALL', [
+            '@label' => $label,
+          ]);
         }
       }
     }
-
-    return $options;
-  }
-
-  /**
-   * @param string $id
-   *
-   * @return null|string[][]
-   */
-  private function idGetInlineOptions(string $id): ?array {
-
-    if (NULL === $formula = $this->idGetSelectFormula($id)) {
-      return NULL;
-    }
-
-    return $formula->getGroupedOptions();
   }
 
   /**
@@ -96,13 +83,13 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($combinedId): bool {
+  public function idIsKnown($id): bool {
 
-    if (FALSE === /* $pos = */ strpos($combinedId, '/')) {
-      return $this->decorated->idIsKnown($combinedId);
+    if (FALSE === /* $pos = */ strpos($id, '/')) {
+      return $this->decorated->idIsKnown($id);
     }
 
-    [$prefix, $suffix] = explode('/', $combinedId, 2);
+    [$prefix, $suffix] = explode('/', $id, 2);
 
     if (NULL === $subFormula = $this->idGetSelectFormula($prefix)) {
       return FALSE;
@@ -153,6 +140,6 @@ class Formula_Select_InlineExpanded implements Formula_SelectInterface {
     }
 
     return NULL;
-
   }
+
 }

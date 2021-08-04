@@ -7,7 +7,7 @@ use Donquixote\OCUI\Plugin\Plugin;
 use Donquixote\OCUI\Text\TextInterface;
 use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
 
-class Formula_Select_FromPlugins implements Formula_SelectInterface {
+class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
 
   /**
    * @var \Donquixote\OCUI\Plugin\Plugin[]
@@ -32,18 +32,12 @@ class Formula_Select_FromPlugins implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array {
-    // Make sure the no-label group is at the top.
-    $optionss = ['' => []];
+  protected function initialize(array &$grouped_options, array &$group_labels): void {
     foreach ($this->plugins as $id => $plugin) {
       $label = $plugin->getLabelOr($id);
       // @todo Do something for the group label.
-      $optionss[''][$id] = $label;
+      $grouped_options[''][$id] = $label;
     }
-    if (!$optionss['']) {
-      unset($optionss['']);
-    }
-    return $optionss;
   }
 
   /**

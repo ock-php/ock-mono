@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Form\D8\Util;
 
 use Donquixote\OCUI\FormulaBase\FormulaBase_AbstractSelectInterface;
+use Donquixote\OCUI\Translator\TranslatorInterface;
 use Donquixote\OCUI\Util\UtilBase;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -11,7 +12,8 @@ final class D8SelectUtil extends UtilBase {
 
   /**
    * @param \Donquixote\OCUI\FormulaBase\FormulaBase_AbstractSelectInterface $formula
-   * @param string|int $id
+   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param string|null $id
    * @param string $label
    * @param bool $required
    *
@@ -19,28 +21,7 @@ final class D8SelectUtil extends UtilBase {
    */
   public static function optionsFormulaBuildSelectElement(
     FormulaBase_AbstractSelectInterface $formula,
-    $id,
-    $label,
-    $required = TRUE
-  ): array {
-    return self::groupedOptionsBuildSelectElement(
-      $formula->getGroupedOptions(),
-      $id,
-      $label,
-      $required
-    );
-  }
-
-  /**
-   * @param string[][] $groupedOptions
-   * @param string|null $id
-   * @param string $label
-   * @param bool $required
-   *
-   * @return array
-   */
-  public static function groupedOptionsBuildSelectElement(
-    array $groupedOptions,
+    TranslatorInterface $translator,
     ?string $id,
     string $label,
     bool $required = TRUE
@@ -49,15 +30,16 @@ final class D8SelectUtil extends UtilBase {
     $element = [
       '#title' => $label,
       '#type' => 'select',
-      '#options' => self::groupedOptionsGetSelectOptions($groupedOptions),
+      '#options' => self::formulaBuildSelectOptions($formula, $translator),
       '#default_value' => $id,
     ];
 
     if (NULL !== $id
-      && !self::idExistsInSelectOptions($id, $element['#options'])) {
+      && !self::idExistsInSelectOptions($id, $element['#options'])
+    ) {
       $element['#options'][$id] = t("Unknown id '@id'", ['@id' => $id]);
-      $element['#element_validate'][] = function (array $element, FormStateInterface $form_state) use ($id) {
-        if ((string) $id === (string) $element['#value']) {
+      $element['#element_validate'][] = static function (array $element, FormStateInterface $form_state) use ($id) {
+        if ($id === (string) $element['#value']) {
           $form_state->setError(
             $element,
             t(
@@ -80,36 +62,36 @@ final class D8SelectUtil extends UtilBase {
   }
 
   /**
+   * Gets select options in a format suitable for Drupal 8.
+   *
    * @param \Donquixote\OCUI\FormulaBase\FormulaBase_AbstractSelectInterface $formula
+   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
    *
-   * @return string[]|string[][]
+   * @return string[][]|string[]
+   *   Options to be used in '#options' in a '#type' => 'select' element.
    */
-  public static function optionsFormulaGetSelectOptions(FormulaBase_AbstractSelectInterface $formula): array {
-
-    return self::groupedOptionsGetSelectOptions($formula->getGroupedOptions());
-  }
-
-  /**
-   * @param string[][] $groupedOptions
-   *
-   * @return string[]|string[][]
-   */
-  public static function groupedOptionsGetSelectOptions(array $groupedOptions): array {
-
-    $options = $groupedOptions;
-
-    if (isset($groupedOptions[''])) {
-      $options = $groupedOptions[''] + $options;
+  public static function formulaBuildSelectOptions(
+    FormulaBase_AbstractSelectInterface $formula,
+    TranslatorInterface $translator
+  ): array {
+    $options = [];
+    // Get the top-level options first.
+    foreach ($formula->getOptions(NULL) as $id => $option_label) {
+      $options[$id] = $option_label->convert($translator);
     }
-
-    unset($options['']);
-
+    // Build the opt groups.
+    foreach ($formula->getOptGroups() as $group_id => $group_label) {
+      $group_label_str = $group_label->convert($translator);
+      foreach ($formula->getOptions($group_id) as $id => $option_label) {
+        $options[$group_label_str][$id] = $option_label->convert($translator);
+      }
+    }
     return $options;
   }
 
   /**
    * @param string $id
-   * @param array $options
+   * @param string[][]|string[] $options
    *
    * @return bool
    */

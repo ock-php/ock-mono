@@ -12,16 +12,23 @@ use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
 interface FormulaBase_AbstractSelectInterface {
 
   /**
-   * Gets select options in groups.
+   * Gets named select optgroups.
    *
-   * @param \Donquixote\OCUI\TextToMarkup\TextToMarkupInterface $textToMarkup
-   *   Service to translate strings.
-   *
-   * @return \Donquixote\OCUI\Text\TextInterface[][]
-   *   Format: $[$group_label][$option_id] = $option_label,
-   *   with $group_label === '' for toplevel options.
+   * @return \Donquixote\OCUI\Text\TextInterface[]
+   *   Format: $[$group_id] = $group_label.
    */
-  public function getGroupedOptions(TextToMarkupInterface $textToMarkup): array;
+  public function getOptGroups(): array;
+
+  /**
+   * Gets select options in a group.
+   *
+   * @param string|null $group_id
+   *   Id of the optgroup, or NULL for top-level options.
+   *
+   * @return \Donquixote\OCUI\Text\TextInterface[]
+   *   Format: $[$value] = $label.
+   */
+  public function getOptions(?string $group_id): array;
 
   /**
    * @param string|int $id

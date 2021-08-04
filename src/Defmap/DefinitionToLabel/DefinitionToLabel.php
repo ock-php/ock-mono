@@ -39,6 +39,7 @@ class DefinitionToLabel implements DefinitionToLabelInterface {
    * {@inheritdoc}
    */
   public function definitionGetLabel(array $definition, ?string $else): ?TextInterface {
-    return $definition[$this->key] ?? Text::s($else);
+    return $definition[$this->key]
+      ?? ($else !== NULL ? Text::s($else) : NULL);
   }
 }

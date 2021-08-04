@@ -6,6 +6,8 @@ namespace Donquixote\OCUI\Form\D8;
 use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
 use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Text\Text;
+use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\OCUI\Translator\Translator;
 use Donquixote\OCUI\Util\StaUtil;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
@@ -69,14 +71,15 @@ class FormatorD8_Group implements FormatorD8Interface {
       $form['#title'] = $label;
     }
 
+    $translator = new Translator(new TranslatorLookup_Passthru());
+
     foreach ($this->itemFormators as $key => $itemFormator) {
 
       $itemConf = $conf[$key] ?? null;
 
-      $itemLabel = $this->labels[$key] ?? NULL;
-      if ($itemLabel !== NULL) {
-
-      }
+      $itemLabel = isset($this->labels[$key])
+        ? $this->labels[$key]->convert($translator)
+        : NULL;
 
       $form[$key] = $itemFormator->confGetD8Form($itemConf, $itemLabel);
     }
