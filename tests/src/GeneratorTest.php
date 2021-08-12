@@ -21,6 +21,8 @@ class GeneratorTest extends FormulaTestBase {
    *   File containing the expected generated code.
    *
    * @dataProvider providerTestFormula()
+   *
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
   public function testFormula(string $file): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
@@ -82,6 +84,8 @@ class GeneratorTest extends FormulaTestBase {
    *   Name of the test case.
    *
    * @dataProvider providerTestIfaceGenerator()
+   *
+   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
    */
   public function testIfaceGenerator(string $type, string $name) {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
