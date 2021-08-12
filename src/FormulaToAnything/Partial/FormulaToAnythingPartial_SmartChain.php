@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\FormulaToAnything\Partial;
 
-use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\Util\LocalPackageUtil;
+use Donquixote\OCUI\Util\MessageUtil;
+use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInterface {
 
@@ -91,15 +92,32 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
       \get_class($formula),
       $interface);
 
+    $candidate = NULL;
     foreach ($partials as $partial) {
-      if (NULL !== $candidate = $partial->formula($formula, $interface, $helper)) {
-        if ($candidate instanceof $interface) {
-          return $candidate;
-        }
+      $candidate = $partial->formula($formula, $interface, $helper);
+      if ($candidate instanceof $interface) {
+        return $candidate;
+      }
+      if ($candidate !== NULL) {
+        // Misbehaving FTA.
+        // Fall through to the runtime exception below.
+        break;
       }
     }
 
-    return NULL;
+    if ($candidate === NULL) {
+      return NULL;
+    }
+
+    $replacements = [
+      '@formula_class' => get_class($formula),
+      '@interface' => $interface,
+      '@found' => MessageUtil::formatValue($candidate),
+    ];
+
+    throw new \RuntimeException(strtr(
+      'Misbehaving FTA for formula of class @formula_class: Expected @interface object, found @found.',
+      $replacements));
   }
 
   /**

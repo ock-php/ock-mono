@@ -70,13 +70,6 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
   }
 
   /**
-   * @return int
-   */
-  public function getSpecifity(): int {
-    return 0;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function formula(FormulaInterface $formula, string $interface): object {
@@ -102,6 +95,7 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
         return $candidate;
       }
 
+      // Fall through to the runtime exception below.
       break;
     }
 

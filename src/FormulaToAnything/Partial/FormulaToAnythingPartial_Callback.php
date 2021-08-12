@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\OCUI\FormulaToAnything\Partial;
 
+use Donquixote\OCUI\Exception\FormulaToAnythingException;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
@@ -115,9 +116,7 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
       return $this->callback->invokeArgs([$formula, $helper]);
     }
     catch (\Exception $e) {
-      // @todo Log exception in callback!
-      unset($e);
-      return null;
+      throw new FormulaToAnythingException($e->getMessage(), 0, $e);
     }
   }
 }
