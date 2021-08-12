@@ -1,0 +1,5 @@
+cu_annotations:
+  path: ''
+  options:
+    type: annotation
+    module: cu

@@ -1,0 +1,4 @@
+name: 'Composition UI (cu)'
+description: 'Integrates the "Composition UI" Composer package with Drupal.'
+type: module
+core_version_requirement: ^8.8 || ^9

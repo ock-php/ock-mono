@@ -1,0 +1,80 @@
+
+.cu-tools {
+  opacity: 0;
+  transition: opacity 60ms;
+  display: inline-block;
+  margin-left: 5px;
+  position: relative;
+}
+
+.cu-drilldown > .form-type-select:hover > .cu-tools {
+  opacity: 1;
+}
+
+.cu-tools > .cu-tools-handle {
+  text-indent: -999px;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 5px;
+  width: 1em;
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cu-tools > .cu-tools-handle::before {
+  content: '|||';
+  display: block;
+  transform: rotate(90deg);
+  position: absolute;
+  text-indent: 0;
+}
+
+.cu-tools:hover {
+}
+
+.cu-tools-dropdown {
+  display: none;
+  list-style: none;
+  margin: -1px -200px 0 0;
+  padding: 5px 0;
+  position: absolute;
+  background: white;
+  border: 1px solid #aaa;
+  z-index: 100;
+}
+
+.cu-tools:hover > .cu-tools-dropdown {
+  display: block;
+}
+
+.cu-tools-dropdown > hr {
+  margin: 5px 0;
+  background: #aaa;
+}
+
+.cu-tools-dropdown > a,
+.cu-tools-dropdown > a:link,
+.cu-tools-dropdown > a:visited,
+.cu-tools-dropdown > a:focus {
+  display: block;
+  padding: 0 9px;
+  transition: opacity 60ms;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.7;
+  cursor: pointer;
+  border: none;
+}
+
+.cu-tools-dropdown > a:hover {
+  text-decoration: none;
+  opacity: 1;
+  color: inherit;
+  border: none;
+}
+
+.cu-tools-dropdown > a:active {
+  color: black;
+  text-shadow: 0 0 2px #eee;
+}

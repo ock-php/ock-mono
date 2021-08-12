@@ -1,0 +1,16 @@
+form:
+  version: 1.x
+  css:
+    layout:
+      css/cu.form.css: {}
+  dependencies:
+    - core/jquery
+drilldown-tools:
+  version: 1.x
+  css:
+    layout:
+      css/cu.drilldown-tools.css: {}
+  js:
+    js/cu.drilldown-tools.js: {}
+  dependencies:
+    - core/jquery
