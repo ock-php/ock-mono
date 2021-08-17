@@ -24,7 +24,7 @@ class FormulaToFormula_Iface extends FormulaToAnythingPartialBase {
    */
   public function __construct(TypeToFormulaInterface $typeToFormula) {
     $this->typeToFormula = $typeToFormula;
-    parent::__construct(Formula_IfaceInterface::class);
+    parent::__construct(Formula_IfaceInterface::class, FormulaInterface::class);
   }
 
   /**
