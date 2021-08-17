@@ -28,9 +28,7 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
+   * {@inheritdoc}
    */
   protected function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface {
     /** @var \Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface $formula */

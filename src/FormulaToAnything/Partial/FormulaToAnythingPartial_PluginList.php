@@ -22,9 +22,7 @@ class FormulaToAnythingPartial_PluginList extends FormulaToAnythingPartial_Formu
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
+   * {@inheritdoc}
    */
   protected function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface {
     /** @var \Donquixote\OCUI\Formula\PluginList\Formula_PluginListInterface $formula */

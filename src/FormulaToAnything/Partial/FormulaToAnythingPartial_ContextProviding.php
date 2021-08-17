@@ -8,6 +8,9 @@ use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 
 class FormulaToAnythingPartial_ContextProviding implements FormulaToAnythingPartialInterface {
 
+  /**
+   * {@inheritdoc}
+   */
   public function formula(FormulaInterface $formula, string $interface, FormulaToAnythingInterface $helper): ?object {
     if (!$formula instanceof Formula_ContextProvidingInterface) {
       return NULL;
@@ -20,10 +23,16 @@ class FormulaToAnythingPartial_ContextProviding implements FormulaToAnythingPart
         $interface);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function providesResultType(string $resultInterface): bool {
     return TRUE;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function acceptsFormulaClass(string $formulaClass): bool {
     return is_a(
       $formulaClass,
@@ -31,6 +40,9 @@ class FormulaToAnythingPartial_ContextProviding implements FormulaToAnythingPart
       TRUE);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function getSpecifity(): int {
     return 0;
   }

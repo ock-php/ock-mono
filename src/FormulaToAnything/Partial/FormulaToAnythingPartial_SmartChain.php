@@ -73,14 +73,7 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param string $interface
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
-   *
-   * @return null|object
-   *   An instance of $interface, or NULL.
-   *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * {@inheritdoc}
    */
   public function formula(
     FormulaInterface $formula,
