@@ -39,7 +39,7 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
    *
    * @return self|null
    */
-  public static function create(Formula_DrilldownInterface $drilldown, FormulaToAnythingInterface $formulaToAnything) {
+  public static function create(Formula_DrilldownInterface $drilldown, FormulaToAnythingInterface $formulaToAnything): ?self {
 
     $idFormula = $drilldown->getIdFormula();
 
@@ -97,7 +97,6 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
       OptionlessnessInterface::class);
 
     return 1
-      && NULL !== $optionlessnessOrNull
       && $optionlessnessOrNull instanceof OptionlessnessInterface
       && $optionlessnessOrNull->isOptionless();
   }

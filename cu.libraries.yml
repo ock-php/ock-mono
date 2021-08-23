@@ -14,3 +14,13 @@ drilldown-tools:
     js/cu.drilldown-tools.js: {}
   dependencies:
     - core/jquery
+tabledrag:
+  version: 1.x
+  css:
+    layout:
+      css/cu.tabledrag.css: {}
+      css/cu.sequence-tabledrag.css: {}
+  js:
+    js/cu.tabledrag.js: {}
+  dependencies:
+    - core/drupal.tabledrag

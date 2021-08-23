@@ -80,16 +80,14 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
       $count = $this->t('@n plugin definitions', ['@n' => \count($plugins)]);
       $interface_shortname = StringUtil::classGetShortname($interface);
 
+      $helper = Controller_ReportIface::route($interface);
       $row = [
-        $label,
-
-        Controller_ReportIface::route($interface)
-          ->link($count),
-
-        Controller_ReportIface::route($interface)
+        $helper->subpage('demo')
+          ->link($label),
+        $helper->link($count),
+        $helper
           ->subpage('code')
           ->link($interface_shortname),
-
         Markup::create('<code>' . $interface . '</code>'),
       ];
 
