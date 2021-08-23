@@ -31,9 +31,9 @@ class TypeToFormula_Buffer implements TypeToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function typeGetFormula(string $type, bool $orNull): FormulaInterface {
-    return ($this->formulas[$type][(int) $orNull])
-      ?? ($this->formulas[$type][(int) $orNull] = $this->decorated->typeGetFormula($type, $orNull));
+  public function typeGetFormula(string $type, bool $or_null): FormulaInterface {
+    return ($this->formulas[$type][(int) $or_null])
+      ?? ($this->formulas[$type][(int) $or_null] = $this->decorated->typeGetFormula($type, $or_null));
   }
 
 }

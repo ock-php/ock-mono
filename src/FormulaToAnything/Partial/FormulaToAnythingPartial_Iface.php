@@ -6,6 +6,7 @@ namespace Donquixote\OCUI\FormulaToAnything\Partial;
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface;
 use Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 
 /**
  * @STA
@@ -30,7 +31,7 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
     /** @var \Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface $formula */
     return $this->typeToFormula->typeGetFormula(
       $formula->getInterface(),

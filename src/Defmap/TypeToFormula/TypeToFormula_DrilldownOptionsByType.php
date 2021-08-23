@@ -30,7 +30,7 @@ class TypeToFormula_DrilldownOptionsByType implements TypeToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function typeGetFormula(string $type, bool $orNull): FormulaInterface {
+  public function typeGetFormula(string $type, bool $or_null): FormulaInterface {
     $options_by_type = $this->drilldownOptionsByType->getDrilldownOptionsByType();
     $options = $options_by_type[$type] ?? [];
     return new Formula_Drilldown(

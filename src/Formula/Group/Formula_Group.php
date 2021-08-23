@@ -19,17 +19,17 @@ class Formula_Group implements Formula_GroupInterface {
 
   /**
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
-   * @param string[] $labels
+   * @param \Donquixote\OCUI\Text\TextInterface[] $labels
    *
    * @return self
    */
-  public static function create(array $formulas = [], array $labels = []): Formula_Group {
+  public static function create(array $formulas = [], array $labels = []): self {
     return new self($formulas, $labels);
   }
 
   /**
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
-   * @param string[] $labels
+   * @param \Donquixote\OCUI\Text\TextInterface[] $labels
    */
   public function __construct(array $formulas, array $labels) {
 
@@ -48,9 +48,9 @@ class Formula_Group implements Formula_GroupInterface {
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    * @param null $label
    *
-   * @return \Donquixote\OCUI\Formula\Group\Formula_Group
+   * @return static
    */
-  public function withItem(string $key, FormulaInterface $formula, $label = NULL): Formula_Group {
+  public function withItem(string $key, FormulaInterface $formula, $label = NULL): self {
     $clone = clone $this;
     $clone->formulas[$key] = $formula;
     $clone->labels[$key] = $label ?? $key;

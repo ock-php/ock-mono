@@ -9,6 +9,7 @@ class V2V_Drilldown_Trivial implements V2V_DrilldownInterface {
    * {@inheritdoc}
    */
   public function idPhpGetPhp($id, string $php) {
+    return $php;
 
     // We cannot be sure if $id is multi-line.
     $idSafe = str_replace("\n", '\n', $id);
@@ -17,6 +18,5 @@ class V2V_Drilldown_Trivial implements V2V_DrilldownInterface {
 // Drilldown with \$id = "$idSafe".
 $php
 EOT;
-    # return $php;
   }
 }

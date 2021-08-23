@@ -15,7 +15,7 @@ class TypeToFormula_Iface implements TypeToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function typeGetFormula(string $type, bool $orNull): FormulaInterface {
+  public function typeGetFormula(string $type, bool $or_null): FormulaInterface {
     return new Formula_Iface($type);
   }
 }

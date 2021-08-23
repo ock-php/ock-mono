@@ -5,6 +5,7 @@ namespace Donquixote\OCUI\FormulaToAnything\Partial;
 
 use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 /**
@@ -31,7 +32,7 @@ class FormulaToAnythingPartial_FormulaFactory extends FormulaToAnythingPartial_F
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
 
     /** @var \Donquixote\OCUI\Formula\FormulaFactory\Formula_FormulaFactoryInterface $formula */
 

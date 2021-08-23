@@ -7,6 +7,7 @@ use Donquixote\OCUI\Core\Formula\FormulaInterface;
 use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\OCUI\Formula\PluginList\Formula_PluginListInterface;
 use Donquixote\OCUI\Formula\Select\Formula_Select_FromPlugins;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\IdToFormula\IdToFormula_FromPlugins;
 
 /**
@@ -24,13 +25,16 @@ class FormulaToAnythingPartial_PluginList extends FormulaToAnythingPartial_Formu
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
     /** @var \Donquixote\OCUI\Formula\PluginList\Formula_PluginListInterface $formula */
-    return (new Formula_Drilldown(
-      new Formula_Select_FromPlugins($formula->getPlugins()),
-      new IdToFormula_FromPlugins($formula->getPlugins()),
+    $plugins = $formula->getPlugins();
+    $ff = (new Formula_Drilldown(
+      new Formula_Select_FromPlugins($plugins),
+      new IdToFormula_FromPlugins($plugins),
       $formula->allowsNull()))
       ->withKeys('plugin', NULL);
+
+    return $ff;
   }
 
 }

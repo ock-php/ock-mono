@@ -25,7 +25,7 @@ abstract class FormulaToAnythingPartial_FormulaReplacerBase extends FormulaToAny
     string $interface,
     FormulaToAnythingInterface $helper
   ): ?object {
-    $replacement = $this->formulaGetReplacement($formula);
+    $replacement = $this->formulaGetReplacement($formula, $helper);
     if ($replacement === NULL) {
       return NULL;
     }
@@ -39,10 +39,11 @@ abstract class FormulaToAnythingPartial_FormulaReplacerBase extends FormulaToAny
   /**
    * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
    *   Original formula.
+   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
    *   Replacement formula.
    */
-  abstract protected function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface;
+  abstract protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface;
 
 }

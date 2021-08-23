@@ -16,12 +16,12 @@ interface TypeToFormulaInterface {
    *
    * @param string $type
    *   Type, usually an interface name.
-   * @param bool $orNull
+   * @param bool $or_null
    *   TRUE if this is optional.
    *
    * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
    *   Formula for the type.
    */
-  public function typeGetFormula(string $type, bool $orNull): FormulaInterface;
+  public function typeGetFormula(string $type, bool $or_null): FormulaInterface;
 
 }

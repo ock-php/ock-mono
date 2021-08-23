@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\OCUI\Generator;
 
 use Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelper;
+use Donquixote\OCUI\Exception\FormulaToAnythingException;
 use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\OCUI\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
@@ -97,12 +98,14 @@ class Generator_Drilldown implements GeneratorInterface {
       return PhpUtil::incompatibleConfiguration("Unknown id '$id' in drilldown.");
     }
 
-    $subGenerator = Generator::fromFormula($subFormula, $this->formulaToAnything);
-
-    if (NULL === $subGenerator) {
+    try {
+      $subGenerator = Generator::fromFormula($subFormula, $this->formulaToAnything);
+    }
+    catch (FormulaToAnythingException $e) {
       return PhpUtil::unsupportedFormula($subFormula, "Unsupported formula for id '$id' in drilldown.");
     }
 
     return $subGenerator->confGetPhp($subConf);
   }
+
 }

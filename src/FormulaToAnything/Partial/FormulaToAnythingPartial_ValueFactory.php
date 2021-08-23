@@ -15,6 +15,7 @@ use Donquixote\OCUI\Formula\Optional\Formula_Optional_Null;
 use Donquixote\OCUI\Formula\ValueFactory\Formula_ValueFactoryInterface;
 use Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProvider_Callback;
 use Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\OCUI\ParamToLabel\ParamToLabelInterface;
 use Donquixote\OCUI\Text\Text;
 use Psr\Log\LoggerInterface;
@@ -49,7 +50,7 @@ class FormulaToAnythingPartial_ValueFactory extends FormulaToAnythingPartial_For
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
 
     /** @var \Donquixote\OCUI\Formula\ValueFactory\Formula_ValueFactoryInterface $formula */
 
