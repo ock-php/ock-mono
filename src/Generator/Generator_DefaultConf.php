@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 /**
- * @see \Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface
+ * @see \Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface
  */
 class Generator_DefaultConf implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Generator\GeneratorInterface
+   * @var \Donquixote\ObCK\Generator\GeneratorInterface
    */
   private $decorated;
 
@@ -24,12 +24,12 @@ class Generator_DefaultConf implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_DefaultConfInterface $formula,
@@ -50,7 +50,7 @@ class Generator_DefaultConf implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
    * @param mixed $defaultConf
    */
   public function __construct(GeneratorInterface $decorated, $defaultConf) {

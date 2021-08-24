@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Sequence;
+namespace Donquixote\ObCK\Formula\Sequence;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\Translator\TranslatorInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\Translator\TranslatorInterface;
 
 interface Formula_SequenceInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public function getItemFormula(): FormulaInterface;
 
@@ -20,7 +20,7 @@ interface Formula_SequenceInterface extends FormulaInterface {
    * @param int|null $delta
    *   Index of the sequence item, or NULL for the "new item" item.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    */
   public function deltaGetItemLabel(?int $delta): TextInterface;
 

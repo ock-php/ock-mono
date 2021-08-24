@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\GroupVal;
+namespace Donquixote\ObCK\Formula\GroupVal;
 
-use Donquixote\OCUI\Formula\Group\Formula_Group_Empty;
-use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
-use Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProviderInterface;
-use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_EmptyWithValueProvider;
-use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\ObCK\Formula\Group\Formula_Group_Empty;
+use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
+use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface;
+use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_EmptyWithValueProvider;
+use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
 
 class Formula_GroupVal extends Formula_GroupValBase {
 
   /**
-   * @var \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
   /**
-   * @param \Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProviderInterface $valueProvider
+   * @param \Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface $valueProvider
    *
    * @return self
    */
@@ -29,8 +29,8 @@ class Formula_GroupVal extends Formula_GroupValBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $decorated
-   * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $decorated
+   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
    */
   public function __construct(Formula_GroupInterface $decorated, V2V_GroupInterface $v2v) {
     parent::__construct($decorated);

@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaReplacer;
+namespace Donquixote\ObCK\FormulaReplacer;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 interface FormulaReplacerInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    *   A transformed formula, or NULL if no replacement can be found.
    */
   public function formulaGetReplacement(FormulaInterface $formula): ?FormulaInterface;

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Zoo\V2V\Sequence;
+namespace Donquixote\ObCK\Zoo\V2V\Sequence;
 
-use Donquixote\OCUI\Util\DecoUtil;
+use Donquixote\ObCK\Util\DecoUtil;
 
 class V2V_Sequence_Decorators implements V2V_SequenceInterface {
 

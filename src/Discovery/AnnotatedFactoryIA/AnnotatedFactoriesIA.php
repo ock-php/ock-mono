@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Discovery\AnnotatedFactoryIA;
+namespace Donquixote\ObCK\Discovery\AnnotatedFactoryIA;
 
-use Donquixote\OCUI\Discovery\AnnotatedFactory\AnnotatedFactory;
-use Donquixote\OCUI\Util\DiscoveryUtil;
+use Donquixote\ObCK\Discovery\AnnotatedFactory\AnnotatedFactory;
+use Donquixote\ObCK\Util\DiscoveryUtil;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 
 class AnnotatedFactoriesIA implements AnnotatedFactoriesIAInterface {
@@ -50,7 +50,7 @@ class AnnotatedFactoriesIA implements AnnotatedFactoriesIAInterface {
   /**
    * @param \ReflectionClass $reflClass
    *
-   * @return \Iterator|\Donquixote\OCUI\Discovery\AnnotatedFactory\AnnotatedFactory[]
+   * @return \Iterator|\Donquixote\ObCK\Discovery\AnnotatedFactory\AnnotatedFactory[]
    */
   private function reflectionClassGetFactories(\ReflectionClass $reflClass): \Iterator {
 

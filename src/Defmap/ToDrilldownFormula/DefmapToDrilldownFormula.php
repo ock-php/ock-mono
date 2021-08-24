@@ -1,36 +1,36 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\ToDrilldownFormula;
+namespace Donquixote\ObCK\Defmap\ToDrilldownFormula;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
-use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown_FromDefinitionMap;
-use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown_FromDefinitionMap;
+use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
 
 class DefmapToDrilldownFormula implements DefmapToDrilldownFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
    */
   private $definitionToFormula;
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToLabel;
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToGrouplabel;
 
   /**
-   * @param \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
    */
   public function __construct(
     DefinitionToFormulaInterface $definitionToFormula,

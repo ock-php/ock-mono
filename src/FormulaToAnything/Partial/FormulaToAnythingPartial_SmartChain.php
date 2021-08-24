@@ -1,36 +1,36 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\LocalPackageUtil;
-use Donquixote\OCUI\Util\MessageUtil;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\LocalPackageUtil;
+use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInterface {
 
   /**
-   * @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][][]
+   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][][]
    *   Format: $[$formulaType][$targetType] = $partials
    */
   private $partialsGrouped = [];
 
   /**
-   * @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][]
+   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][]
    *   Format: $[$targetType] = $partials
    */
   private $partialsByTargetType = [];
 
   /**
-   * @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][]
+   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][]
    *   Format: $[$formulaType] = $partials
    */
   private $partialsByFormulaType = [];
 
   /**
-   * @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   private $partials;
 
@@ -39,7 +39,7 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
    *
    * @return self
    *
-   * @throws \Donquixote\OCUI\Exception\STABuilderException
+   * @throws \Donquixote\ObCK\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue): FormulaToAnythingPartial_SmartChain {
     $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
@@ -47,7 +47,7 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
   }
 
   /**
-   * @param \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
+   * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
    */
   public function __construct(array $partials) {
 
@@ -117,7 +117,7 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
    * @param string $formulaType
    * @param string $targetType
    *
-   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   private function formulaTypeAndTargetTypeGetPartials(string $formulaType, string $targetType): array {
 
@@ -131,7 +131,7 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
    * @param string $formulaType
    * @param string $targetType
    *
-   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   private function formulaTypeAndTargetTypeCollectPartials(string $formulaType, string $targetType): array {
 
@@ -143,7 +143,7 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
   /**
    * @param string $interface
    *
-   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   private function targetTypeGetPartials(string $interface): array {
 
@@ -154,12 +154,12 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
   /**
    * @param string $targetType
    *
-   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   private function targetTypeCollectPartials(string $targetType): array {
 
     $partials = [];
-    /** @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial */
+    /** @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->providesResultType($targetType)) {
         // Preserve keys for array_intersect().
@@ -173,7 +173,7 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
   /**
    * @param string $interface
    *
-   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   private function formulaTypeGetPartials(string $interface): array {
 
@@ -184,12 +184,12 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
   /**
    * @param string $formulaType
    *
-   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   private function formulaTypeCollectPartials(string $formulaType): array {
 
     $partials = [];
-    /** @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial */
+    /** @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->acceptsFormulaClass($formulaType)) {
         // Preserve keys for array_intersect().

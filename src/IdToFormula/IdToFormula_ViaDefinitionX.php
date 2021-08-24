@@ -1,38 +1,38 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\IdToFormula;
+namespace Donquixote\ObCK\IdToFormula;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
-use Donquixote\OCUI\Defmap\IdToDefinition\IdToDefinitionInterface;
-use Donquixote\OCUI\Exception\FormulaCreationException;
-use Donquixote\OCUI\IdToFormula\IdToFormulaInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
+use Donquixote\ObCK\Defmap\IdToDefinition\IdToDefinitionInterface;
+use Donquixote\ObCK\Exception\FormulaCreationException;
+use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 
 class IdToFormula_ViaDefinitionX implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\IdToDefinition\IdToDefinitionInterface
+   * @var \Donquixote\ObCK\Defmap\IdToDefinition\IdToDefinitionInterface
    */
   private $idToDefinition;
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
    */
   private $definitionToFormula;
 
   /**
-   * @var \Donquixote\OCUI\Context\CfContextInterface|null
+   * @var \Donquixote\ObCK\Context\CfContextInterface|null
    */
   private $context;
 
   /**
-   * @param \Donquixote\OCUI\Defmap\IdToDefinition\IdToDefinitionInterface $idToDefinition
-   * @param \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Defmap\IdToDefinition\IdToDefinitionInterface $idToDefinition
+   * @param \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaCreationException
+   * @throws \Donquixote\ObCK\Exception\FormulaCreationException
    */
   public function __construct(
     IdToDefinitionInterface $idToDefinition,

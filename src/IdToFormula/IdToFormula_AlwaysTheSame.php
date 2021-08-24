@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\IdToFormula;
+namespace Donquixote\ObCK\IdToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class IdToFormula_AlwaysTheSame implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProvider_FixedValue
+   * @var \Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_FixedValue
    */
   private $sameFormula;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $sameFormula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $sameFormula
    */
   public function __construct(FormulaInterface $sameFormula) {
     $this->sameFormula = $sameFormula;

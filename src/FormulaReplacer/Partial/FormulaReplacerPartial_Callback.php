@@ -1,29 +1,29 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaReplacer\Partial;
+namespace Donquixote\ObCK\FormulaReplacer\Partial;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\ParamToLabel\ParamToLabel;
-use Donquixote\OCUI\ParamToLabel\ParamToLabelInterface;
-use Donquixote\OCUI\Formula\Callback\Formula_CallbackInterface;
-use Donquixote\OCUI\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\OCUI\Formula\Iface\Formula_Iface;
-use Donquixote\OCUI\Formula\Label\Formula_Label;
-use Donquixote\OCUI\Formula\Optional\Formula_Optional;
-use Donquixote\OCUI\Formula\Optional\Formula_Optional_Null;
-use Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProvider_Callback;
-use Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\ParamToLabel\ParamToLabel;
+use Donquixote\ObCK\ParamToLabel\ParamToLabelInterface;
+use Donquixote\ObCK\Formula\Callback\Formula_CallbackInterface;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Iface\Formula_Iface;
+use Donquixote\ObCK\Formula\Label\Formula_Label;
+use Donquixote\ObCK\Formula\Optional\Formula_Optional;
+use Donquixote\ObCK\Formula\Optional\Formula_Optional_Null;
+use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_Callback;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
 use Psr\Log\LoggerInterface;
 
 class FormulaReplacerPartial_Callback implements FormulaReplacerPartialInterface {
 
   /**
-   * @var \Donquixote\OCUI\ParamToLabel\ParamToLabelInterface
+   * @var \Donquixote\ObCK\ParamToLabel\ParamToLabelInterface
    */
   private $paramToLabel;
 
@@ -42,7 +42,7 @@ class FormulaReplacerPartial_Callback implements FormulaReplacerPartialInterface
   }
 
   /**
-   * @param \Donquixote\OCUI\ParamToLabel\ParamToLabelInterface $paramToLabel
+   * @param \Donquixote\ObCK\ParamToLabel\ParamToLabelInterface $paramToLabel
    * @param \Psr\Log\LoggerInterface $logger
    */
   public function __construct(ParamToLabelInterface $paramToLabel, LoggerInterface $logger) {
@@ -147,10 +147,10 @@ class FormulaReplacerPartial_Callback implements FormulaReplacerPartialInterface
 
   /**
    * @param \ReflectionParameter $param
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
-   * @param \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $replacer
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface $replacer
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    */
   private function paramGetFormula(
     \ReflectionParameter $param,

@@ -1,10 +1,10 @@
 <?php
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Contextual\Formula_ContextualInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 class FormulaToAnythingPartial_Contextual implements FormulaToAnythingPartialInterface {
 

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\TypeToDefinitionsbyid;
+namespace Donquixote\ObCK\Defmap\TypeToDefinitionsbyid;
 
-use Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface;
+use Donquixote\ObCK\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface;
 
 class TypeToDefinitionsbyid implements TypeToDefinitionsbyidInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface
    */
   private $definitionsByTypeAndId;
 
@@ -18,7 +18,7 @@ class TypeToDefinitionsbyid implements TypeToDefinitionsbyidInterface {
   private $buffer;
 
   /**
-   * @param \Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface $definitionsByTypeAndId
+   * @param \Donquixote\ObCK\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface $definitionsByTypeAndId
    */
   public function __construct(DefinitionsByTypeAndIdInterface $definitionsByTypeAndId) {
     $this->definitionsByTypeAndId = $definitionsByTypeAndId;

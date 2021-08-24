@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntFormat;
+namespace Donquixote\ObCK\Tests\Fixture\IntFormat;
 
 /**
  * Formats a number as a string.

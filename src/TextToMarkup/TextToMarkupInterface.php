@@ -1,13 +1,13 @@
 <?php
 
-namespace Donquixote\OCUI\TextToMarkup;
+namespace Donquixote\ObCK\TextToMarkup;
 
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 interface TextToMarkupInterface {
 
   /**
-   * @param \Donquixote\OCUI\Text\TextInterface $text
+   * @param \Donquixote\ObCK\Text\TextInterface $text
    *
    * @return string
    */

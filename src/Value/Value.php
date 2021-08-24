@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Value;
+namespace Donquixote\ObCK\Value;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Exception\EvaluatorException;
-use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
-use Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Exception\EvaluatorException;
+use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
+use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
+use Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface;
 
 class Value implements ValueInterface {
 
@@ -17,14 +17,14 @@ class Value implements ValueInterface {
   private $value;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $formula
+   * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $formula
    * @param $conf
-   * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
+   * @param \Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
-   * @return \Donquixote\OCUI\Value\ValueInterface|null
+   * @return \Donquixote\ObCK\Value\ValueInterface|null
    *
-   * @throws \Donquixote\OCUI\Exception\EvaluatorException
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\EvaluatorException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function sequence(Formula_SequenceInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
 
@@ -43,14 +43,14 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $formula
+   * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $formula
    * @param mixed $conf
-   * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
+   * @param \Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
-   * @return \Donquixote\OCUI\Value\ValueInterface[]|null
+   * @return \Donquixote\ObCK\Value\ValueInterface[]|null
    *
-   * @throws \Donquixote\OCUI\Exception\EvaluatorException
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\EvaluatorException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function sequenceItems(Formula_SequenceInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?array {
 
@@ -58,7 +58,7 @@ class Value implements ValueInterface {
       throw new EvaluatorException("Sequence conf must be an array.");
     }
 
-    /** @var \Donquixote\OCUI\Value\ValueInterface[] $items */
+    /** @var \Donquixote\ObCK\Value\ValueInterface[] $items */
     $items = [];
     foreach ($conf as $delta => $deltaConf) {
 
@@ -75,13 +75,13 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
+   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
    * @param mixed $conf
-   * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
+   * @param \Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
-   * @return \Donquixote\OCUI\Value\ValueInterface|null
+   * @return \Donquixote\ObCK\Value\ValueInterface|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function group(Formula_GroupInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
 
@@ -100,17 +100,17 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $groupFormula
+   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $groupFormula
    * @param mixed $conf
-   * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
+   * @param \Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
-   * @return null|\Donquixote\OCUI\Value\ValueInterface[]
+   * @return null|\Donquixote\ObCK\Value\ValueInterface[]
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   private static function groupItems(Formula_GroupInterface $groupFormula, $conf, FormulaConfToAnythingInterface $scta): ?array {
 
-    /** @var \Donquixote\OCUI\Value\ValueInterface[] $items */
+    /** @var \Donquixote\ObCK\Value\ValueInterface[] $items */
     $items = [];
     foreach ($groupFormula->getItemFormulas() as $k => $itemFormula) {
 
@@ -129,13 +129,13 @@ class Value implements ValueInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param mixed $conf
-   * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
+   * @param \Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
-   * @return null|\Donquixote\OCUI\Value\ValueInterface
+   * @return null|\Donquixote\ObCK\Value\ValueInterface
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function fromFormulaConf(FormulaInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
 

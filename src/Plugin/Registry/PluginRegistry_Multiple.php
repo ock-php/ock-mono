@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Plugin\Registry;
+namespace Donquixote\ObCK\Plugin\Registry;
 
 class PluginRegistry_Multiple implements PluginRegistryInterface {
 
   /**
-   * @var \Donquixote\OCUI\Plugin\Registry\PluginRegistryInterface[]
+   * @var \Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface[]
    */
   private $registries;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Plugin\Registry\PluginRegistryInterface[] $registries
+   * @param \Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface[] $registries
    */
   public function __construct(array $registries) {
     $this->registries = $registries;

@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Sequence;
+namespace Donquixote\ObCK\Formula\Sequence;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\Text_Replacements;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\Text_Replacements;
+use Donquixote\ObCK\Text\TextInterface;
 
 class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface
+   * @var \Donquixote\ObCK\Text\TextInterface
    */
   private $newItemLabel;
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface
+   * @var \Donquixote\ObCK\Text\TextInterface
    */
   private $itemLabelN;
 
@@ -28,9 +28,9 @@ class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $itemFormula
-   * @param \Donquixote\OCUI\Text\TextInterface $newItemLabel
-   * @param \Donquixote\OCUI\Text\TextInterface $itemLabelN
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $itemFormula
+   * @param \Donquixote\ObCK\Text\TextInterface $newItemLabel
+   * @param \Donquixote\ObCK\Text\TextInterface $itemLabelN
    * @param string $placeholder
    */
   public function __construct(FormulaInterface $itemFormula, TextInterface $newItemLabel, TextInterface $itemLabelN, $placeholder = '!n') {

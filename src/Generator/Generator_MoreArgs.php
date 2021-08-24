@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface;
-use Donquixote\OCUI\Formula\MoreArgsVal\Formula_MoreArgsValInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Trivial;
-use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface;
+use Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Trivial;
+use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
 
 class Generator_MoreArgs extends Generator_DecoratorBase {
 
   /**
-   * @var \Donquixote\OCUI\Generator\GeneratorInterface[]
+   * @var \Donquixote\ObCK\Generator\GeneratorInterface[]
    */
   private $moreGenerators;
 
@@ -22,7 +22,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   private $specialKey;
 
   /**
-   * @var \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
@@ -34,12 +34,12 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Generator_MoreArgs {
     return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
@@ -48,12 +48,12 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\MoreArgsVal\Formula_MoreArgsValInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function createFromMoreArgsValFormula(
     Formula_MoreArgsValInterface $formula,
@@ -66,13 +66,13 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
-   * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
+   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_MoreArgsInterface $moreArgsFormula,
@@ -105,10 +105,10 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface[] $moreGenerators
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface[] $moreGenerators
    * @param string|int $specialKey
-   * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
    */
   protected function __construct(
     GeneratorInterface $decorated,

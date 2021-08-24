@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Materialization;
+namespace Donquixote\ObCK\Materialization;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Form\Common\FormatorCommonInterface;
-use Donquixote\OCUI\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Form\Common\FormatorCommonInterface;
+use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
 
 class Materialization_ValueFactory implements FormulaToAnythingPartialInterface {
 

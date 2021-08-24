@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Util;
+namespace Donquixote\ObCK\Util;
 
 final class DefinitionUtil extends UtilBase {
 

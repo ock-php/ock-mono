@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\TypeToDefmap;
+namespace Donquixote\ObCK\Defmap\TypeToDefmap;
 
-use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface;
 
 interface TypeToDefmapInterface {
 
   /**
    * @param string $type
    *
-   * @return \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface
+   * @return \Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface
    */
   public function typeGetDefmap(string $type): DefinitionMapInterface;
 

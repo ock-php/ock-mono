@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Group;
+namespace Donquixote\ObCK\Formula\Group;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class Formula_Group implements Formula_GroupInterface {
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface[]
    */
   private $formulas;
 
@@ -18,8 +18,8 @@ class Formula_Group implements Formula_GroupInterface {
   private $labels;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
-   * @param \Donquixote\OCUI\Text\TextInterface[] $labels
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
    *
    * @return self
    */
@@ -28,8 +28,8 @@ class Formula_Group implements Formula_GroupInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
-   * @param \Donquixote\OCUI\Text\TextInterface[] $labels
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
    */
   public function __construct(array $formulas, array $labels) {
 
@@ -45,7 +45,7 @@ class Formula_Group implements Formula_GroupInterface {
 
   /**
    * @param string $key
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param null $label
    *
    * @return static

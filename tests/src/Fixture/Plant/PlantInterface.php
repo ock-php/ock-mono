@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\OCUI\Tests\Fixture\Plant;
+namespace Donquixote\ObCK\Tests\Fixture\Plant;
 
 interface PlantInterface {
 

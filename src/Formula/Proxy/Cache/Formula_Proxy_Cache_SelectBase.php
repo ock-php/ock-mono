@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Proxy\Cache;
+namespace Donquixote\ObCK\Formula\Proxy\Cache;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Select\Formula_Select_Fixed;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
 
 abstract class Formula_Proxy_Cache_SelectBase implements Formula_Proxy_CacheInterface {
 
@@ -30,7 +30,7 @@ abstract class Formula_Proxy_Cache_SelectBase implements Formula_Proxy_CacheInte
   /**
    * @param mixed $data
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   final public function dataGetFormula($data): FormulaInterface {
     return new Formula_Select_Fixed($data);

@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Textfield;
+namespace Donquixote\ObCK\Formula\Textfield;
 
-use Donquixote\OCUI\Formula\StringVal\Formula_StringVal;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Util\PhpUtil;
-use Donquixote\OCUI\Zoo\V2V\String\V2V_StringInterface;
+use Donquixote\ObCK\Formula\StringVal\Formula_StringVal;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Util\PhpUtil;
+use Donquixote\ObCK\Zoo\V2V\String\V2V_StringInterface;
 
 abstract class Formula_Textfield_IntegerBase extends Formula_TextfieldBase implements V2V_StringInterface {
 
   /**
-   * @return \Donquixote\OCUI\Formula\StringVal\Formula_StringVal
+   * @return \Donquixote\ObCK\Formula\StringVal\Formula_StringVal
    */
   public function createValFormula(): Formula_StringVal {
     return new Formula_StringVal($this, $this);
@@ -35,7 +35,7 @@ abstract class Formula_Textfield_IntegerBase extends Formula_TextfieldBase imple
   /**
    * @param int $number
    *
-   * @return \Donquixote\OCUI\Text\TextInterface[]
+   * @return \Donquixote\ObCK\Text\TextInterface[]
    */
   protected function numberGetValidationErrors(int $number): array {
     return [];

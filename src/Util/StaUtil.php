@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Util;
+namespace Donquixote\ObCK\Util;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 final class StaUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $itemFormulas
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $itemFormulas
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    * @param string $interface
    *
    * @return mixed[]|null
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function getMultiple(array $itemFormulas, FormulaToAnythingInterface $formulaToAnything, string $interface): ?array {
 
@@ -34,8 +34,8 @@ final class StaUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    * @param string $interface
    *
    * @return object|null

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Translator\Lookup;
+namespace Donquixote\ObCK\Translator\Lookup;
 
 class TranslatorLookup_Passthru implements TranslatorLookupInterface {
 

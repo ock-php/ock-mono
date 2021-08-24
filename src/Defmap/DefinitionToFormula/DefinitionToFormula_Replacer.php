@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionToFormula;
+namespace Donquixote\ObCK\Defmap\DefinitionToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
 
 class DefinitionToFormula_Replacer implements DefinitionToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface
+   * @var \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface
    */
   private $replacer;
 
   /**
-   * @param \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $decorated
-   * @param \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $replacer
+   * @param \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $decorated
+   * @param \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface $replacer
    */
   public function __construct(
     DefinitionToFormulaInterface $decorated,
@@ -33,9 +33,9 @@ class DefinitionToFormula_Replacer implements DefinitionToFormulaInterface {
   /**
    * @param array $definition
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaCreationException
+   * @throws \Donquixote\ObCK\Exception\FormulaCreationException
    */
   public function definitionGetFormula(array $definition): FormulaInterface {
     $formula = $this->decorated->definitionGetFormula(

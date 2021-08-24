@@ -1,11 +1,11 @@
 <?php
 
-namespace Donquixote\OCUI\FormulasByType;
+namespace Donquixote\ObCK\FormulasByType;
 
 interface FormulasByTypeInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface[]
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface[]
    */
   public function getFormulasByType(): array;
 

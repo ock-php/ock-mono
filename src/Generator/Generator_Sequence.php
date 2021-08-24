@@ -1,36 +1,36 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\OCUI\Formula\SequenceVal\Formula_SequenceValInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\PhpUtil;
-use Donquixote\OCUI\Zoo\V2V\Sequence\V2V_Sequence_Trivial;
-use Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface;
+use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
+use Donquixote\ObCK\Formula\SequenceVal\Formula_SequenceValInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\PhpUtil;
+use Donquixote\ObCK\Zoo\V2V\Sequence\V2V_Sequence_Trivial;
+use Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface;
 
 class Generator_Sequence implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Generator\GeneratorInterface
+   * @var \Donquixote\ObCK\Generator\GeneratorInterface
    */
   private $itemGenerator;
 
   /**
-   * @var \Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface
+   * @var \Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function createFromSequenceFormula(Formula_SequenceInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Generator_Sequence {
     return self::create($formula, new V2V_Sequence_Trivial(), $formulaToAnything);
@@ -39,25 +39,25 @@ class Generator_Sequence implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\SequenceVal\Formula_SequenceValInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\SequenceVal\Formula_SequenceValInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function createFromSequenceValFormula(Formula_SequenceValInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Generator_Sequence {
     return self::create($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $formula
+   * @param \Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   private static function create(Formula_SequenceInterface $formula, V2V_SequenceInterface $v2v, FormulaToAnythingInterface $formulaToAnything): ?Generator_Sequence {
 
@@ -74,8 +74,8 @@ class Generator_Sequence implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface $itemGenerator
-   * @param \Donquixote\OCUI\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface $itemGenerator
+   * @param \Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
    */
   protected function __construct(GeneratorInterface $itemGenerator, V2V_SequenceInterface $v2v) {
     $this->itemGenerator = $itemGenerator;

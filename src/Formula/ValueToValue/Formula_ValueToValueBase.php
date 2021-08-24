@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\ValueToValue;
+namespace Donquixote\ObCK\Formula\ValueToValue;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Label\Formula_Label;
-use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Label\Formula_Label;
+use Donquixote\ObCK\FormulaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\ObCK\Text\TextInterface;
 
 abstract class Formula_ValueToValueBase extends Formula_DecoratorBase implements Formula_ValueToValueInterface {
 
   /**
-   * @param \Donquixote\OCUI\Text\TextInterface $label
+   * @param \Donquixote\ObCK\Text\TextInterface $label
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public function withLabel(TextInterface $label): FormulaInterface {
     return new Formula_Label($this, $label);

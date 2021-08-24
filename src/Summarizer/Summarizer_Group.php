@@ -1,39 +1,39 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Summarizer;
+namespace Donquixote\ObCK\Summarizer;
 
-use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\Util\StaUtil;
+use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\Util\StaUtil;
 
 class Summarizer_Group implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Group\Formula_GroupInterface
+   * @var \Donquixote\ObCK\Formula\Group\Formula_GroupInterface
    */
   private $formula;
 
   /**
-   * @var \Donquixote\OCUI\Summarizer\SummarizerInterface[]
+   * @var \Donquixote\ObCK\Summarizer\SummarizerInterface[]
    */
   private $itemSummarizers;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(Formula_GroupInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?self {
 
-    /** @var \Donquixote\OCUI\Summarizer\SummarizerInterface[] $itemSummarizers */
+    /** @var \Donquixote\ObCK\Summarizer\SummarizerInterface[] $itemSummarizers */
     $itemSummarizers = StaUtil::getMultiple(
       $formula->getItemFormulas(),
       $formulaToAnything,
@@ -49,8 +49,8 @@ class Summarizer_Group implements SummarizerInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\OCUI\Summarizer\SummarizerInterface[] $itemSummarizers
+   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
+   * @param \Donquixote\ObCK\Summarizer\SummarizerInterface[] $itemSummarizers
    */
   public function __construct(Formula_GroupInterface $formula, array $itemSummarizers) {
     $this->formula = $formula;

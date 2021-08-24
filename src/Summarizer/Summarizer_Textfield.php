@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Summarizer;
+namespace Donquixote\ObCK\Summarizer;
 
-use Donquixote\OCUI\Formula\Textfield\Formula_TextfieldInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
 
 /**
  * @STA
@@ -13,12 +13,12 @@ use Donquixote\OCUI\Text\TextInterface;
 class Summarizer_Textfield implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Textfield\Formula_TextfieldInterface
+   * @var \Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface
    */
   private $formula;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Textfield\Formula_TextfieldInterface $formula
+   * @param \Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface $formula
    */
   public function __construct(Formula_TextfieldInterface $formula) {
     $this->formula = $formula;

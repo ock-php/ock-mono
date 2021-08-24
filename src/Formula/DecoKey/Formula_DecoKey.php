@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\DecoKey;
+namespace Donquixote\ObCK\Formula\DecoKey;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\OCUI\Formula\Sequence\Formula_Sequence;
-use Donquixote\OCUI\Formula\SequenceVal\Formula_SequenceVal;
-use Donquixote\OCUI\Zoo\V2V\Sequence\V2V_Sequence_Decorators;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\ObCK\Formula\Sequence\Formula_Sequence;
+use Donquixote\ObCK\Formula\SequenceVal\Formula_SequenceVal;
+use Donquixote\ObCK\Zoo\V2V\Sequence\V2V_Sequence_Decorators;
 
 class Formula_DecoKey implements FormulaInterface, Formula_DecoKeyInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface
+   * @var \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
    */
   private FormulaInterface $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   private FormulaInterface $decorator;
 
@@ -30,8 +30,8 @@ class Formula_DecoKey implements FormulaInterface, Formula_DecoKeyInterface {
   /**
    * Static factory.
    *
-   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $decorated
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorator
+   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $decorated
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorator
    *   Formula for a single decorator.
    */
   public static function createSequence(
@@ -49,8 +49,8 @@ class Formula_DecoKey implements FormulaInterface, Formula_DecoKeyInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorator
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorator
    * @param string $key
    */
   public function __construct(

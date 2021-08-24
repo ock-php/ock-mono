@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionToFormula\Helper;
+namespace Donquixote\ObCK\Defmap\DefinitionToFormula\Helper;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Exception\FormulaCreationException;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Exception\FormulaCreationException;
 
 class DefinitionToFormulaHelper_Formula implements DefinitionToFormulaHelperInterface {
 

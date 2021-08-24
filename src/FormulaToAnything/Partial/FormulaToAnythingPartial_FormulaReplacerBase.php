@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 abstract class FormulaToAnythingPartial_FormulaReplacerBase extends FormulaToAnythingPartialBase {
 
@@ -37,11 +37,11 @@ abstract class FormulaToAnythingPartial_FormulaReplacerBase extends FormulaToAny
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *   Original formula.
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $helper
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    *   Replacement formula.
    */
   abstract protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface;

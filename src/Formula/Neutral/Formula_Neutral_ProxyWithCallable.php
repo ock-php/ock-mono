@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Neutral;
+namespace Donquixote\ObCK\Formula\Neutral;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class Formula_Neutral_ProxyWithCallable extends Formula_Neutral_ProxyBase {
 

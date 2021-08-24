@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\Callback;
+namespace Donquixote\ObCK\Tests\Fixture\Callback;
 
 /**
- * @ocui("greaterThan", "Greater than")
+ * @obck("greaterThan", "Greater than")
  */
 class Callback_GreaterThan {
 
@@ -15,7 +15,7 @@ class Callback_GreaterThan {
   private $inf;
 
   /**
-   * @ocui("positive", "Number is positive")
+   * @obck("positive", "Number is positive")
    *
    * @return self
    */
@@ -24,7 +24,7 @@ class Callback_GreaterThan {
   }
 
   /**
-   * @ocui("not_negative", "Number is not negative")
+   * @obck("not_negative", "Number is not negative")
    *
    * @return self
    */

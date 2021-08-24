@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionToLabel;
+namespace Donquixote\ObCK\Defmap\DefinitionToLabel;
 
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
 
 class DefinitionToLabel implements DefinitionToLabelInterface {
 
@@ -14,14 +14,14 @@ class DefinitionToLabel implements DefinitionToLabelInterface {
   private $key;
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabel
+   * @return \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabel
    */
   public static function create(): DefinitionToLabel {
     return new self('label');
   }
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabel
+   * @return \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabel
    */
   public static function createGroupLabel(): DefinitionToLabel {
     return new self('group_label');

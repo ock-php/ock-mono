@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\TypeToFormula;
+namespace Donquixote\ObCK\Defmap\TypeToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\OCUI\Formula\DecoKey\Formula_DecoKey;
-use Donquixote\OCUI\Formula\Group\Formula_Group;
-use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
-use Donquixote\OCUI\Formula\GroupVal\Formula_GroupVal;
-use Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\OCUI\Formula\Select\Formula_Select_FromPlugins;
-use Donquixote\OCUI\IdToFormula\IdToFormula_FromPlugins;
-use Donquixote\OCUI\Plugin\Map\PluginMapInterface;
-use Donquixote\OCUI\Plugin\Plugin;
-use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Deco;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKey;
+use Donquixote\ObCK\Formula\Group\Formula_Group;
+use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\ObCK\Formula\Select\Formula_Select_FromPlugins;
+use Donquixote\ObCK\IdToFormula\IdToFormula_FromPlugins;
+use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
+use Donquixote\ObCK\Plugin\Plugin;
+use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Deco;
 
 /**
  * This is a version of TypeToFormula* where $type is assumed to be an interface
@@ -23,14 +23,14 @@ use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Deco;
 class TypeToFormula_PluginMapDrilldownWithDecorators implements TypeToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
    */
   private $pluginMap;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $pluginMap
    */
   public function __construct(PluginMapInterface $pluginMap) {
     $this->pluginMap = $pluginMap;
@@ -59,10 +59,10 @@ class TypeToFormula_PluginMapDrilldownWithDecorators implements TypeToFormulaInt
   }
 
   /**
-   * @param \Donquixote\OCUI\Plugin\Plugin $plugin
+   * @param \Donquixote\ObCK\Plugin\Plugin $plugin
    *   Original plugin.
    *
-   * @return \Donquixote\OCUI\Plugin\Plugin|null
+   * @return \Donquixote\ObCK\Plugin\Plugin|null
    *   Decorator plugin based on original plugin, or NULL.
    */
   private function buildDecoratorPlugin(Plugin $plugin): ?Plugin {
@@ -78,10 +78,10 @@ class TypeToFormula_PluginMapDrilldownWithDecorators implements TypeToFormulaInt
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *   Original formula.
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    *   Decorator formula based on original formula.
    */
   private function buildDecoratorFormula(FormulaInterface $formula): ?FormulaInterface {
@@ -110,10 +110,10 @@ class TypeToFormula_PluginMapDrilldownWithDecorators implements TypeToFormulaInt
   }
 
   /**
-   * @param \Donquixote\OCUI\Plugin\Plugin[] $plugins
+   * @param \Donquixote\ObCK\Plugin\Plugin[] $plugins
    * @param bool $or_null
    *
-   * @return \Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown
+   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown
    */
   private function pluginsBuildDrilldown(array $plugins, bool $or_null): Formula_Drilldown {
     return new Formula_Drilldown(

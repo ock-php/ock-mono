@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Drilldown;
+namespace Donquixote\ObCK\Formula\Drilldown;
 
-use Donquixote\OCUI\IdToFormula\IdToFormula_FilterDecorator;
-use Donquixote\OCUI\IdToFormula\IdToFormula_InlineExpanded;
-use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
-use Donquixote\OCUI\Formula\Select\Formula_Select_InlineExpanded;
-use Donquixote\OCUI\Formula\Select\Formula_SelectInterface;
-use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\ObCK\IdToFormula\IdToFormula_FilterDecorator;
+use Donquixote\ObCK\IdToFormula\IdToFormula_InlineExpanded;
+use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
+use Donquixote\ObCK\Formula\Select\Formula_Select_InlineExpanded;
+use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
+use Donquixote\ObCK\Util\UtilBase;
 
 final class Formula_Drilldown_InlineExpanded extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $decorated
-   * @param \Donquixote\OCUI\Formula\Id\Formula_IdInterface $idIsInline
+   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $decorated
+   * @param \Donquixote\ObCK\Formula\Id\Formula_IdInterface $idIsInline
    *
-   * @return \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface|null
+   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface|null
    */
   public static function create(Formula_DrilldownInterface $decorated, Formula_IdInterface $idIsInline): ?Formula_DrilldownInterface {
 

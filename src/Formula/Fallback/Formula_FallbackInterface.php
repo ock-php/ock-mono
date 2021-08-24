@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Fallback;
+namespace Donquixote\ObCK\Formula\Fallback;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 interface Formula_FallbackInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public function getDecorated(): FormulaInterface;
 

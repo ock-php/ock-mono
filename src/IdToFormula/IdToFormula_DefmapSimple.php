@@ -1,29 +1,29 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\IdToFormula;
+namespace Donquixote\ObCK\IdToFormula;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\OCUI\Formula\Definition\Formula_Definition;
-use Donquixote\OCUI\IdToFormula\IdToFormulaInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\ObCK\Formula\Definition\Formula_Definition;
+use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 
 class IdToFormula_DefmapSimple implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface
    */
   private $definitionMap;
 
   /**
-   * @var \Donquixote\OCUI\Context\CfContextInterface|null
+   * @var \Donquixote\ObCK\Context\CfContextInterface|null
    */
   private $context;
 
   /**
-   * @param \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    */
   public function __construct(
     DefinitionMapInterface $definitionMap,

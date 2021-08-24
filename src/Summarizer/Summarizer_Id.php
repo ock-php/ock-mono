@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Summarizer;
+namespace Donquixote\ObCK\Summarizer;
 
-use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\Util\ConfUtil;
+use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\Util\ConfUtil;
 
 /**
  * @STA
@@ -14,12 +14,12 @@ use Donquixote\OCUI\Util\ConfUtil;
 class Summarizer_Id implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Id\Formula_IdInterface
+   * @var \Donquixote\ObCK\Formula\Id\Formula_IdInterface
    */
   private $formula;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Id\Formula_IdInterface $formula
+   * @param \Donquixote\ObCK\Formula\Id\Formula_IdInterface $formula
    */
   public function __construct(Formula_IdInterface $formula) {
     $this->formula = $formula;

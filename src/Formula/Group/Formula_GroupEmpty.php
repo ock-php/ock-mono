@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Group;
+namespace Donquixote\ObCK\Formula\Group;
 
 class Formula_GroupEmpty implements Formula_GroupInterface {
 

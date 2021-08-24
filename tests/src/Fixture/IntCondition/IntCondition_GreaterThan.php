@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntCondition;
+namespace Donquixote\ObCK\Tests\Fixture\IntCondition;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\OCUI\Formula\Primitive\Formula_Int;
-use Donquixote\OCUI\Text\Text;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Primitive\Formula_Int;
+use Donquixote\ObCK\Text\Text;
 
 /**
  * Compares the number to a defined operand.
@@ -20,7 +20,7 @@ class IntCondition_GreaterThan implements IntConditionInterface {
   private $operand;
 
   /**
-   * @ocui("positive", "Number is positive")
+   * @obck("positive", "Number is positive")
    *
    * @return self
    */
@@ -29,7 +29,7 @@ class IntCondition_GreaterThan implements IntConditionInterface {
   }
 
   /**
-   * @ocui("not_negative", "Number is not negative")
+   * @obck("not_negative", "Number is not negative")
    *
    * @return self
    */
@@ -38,9 +38,9 @@ class IntCondition_GreaterThan implements IntConditionInterface {
   }
 
   /**
-   * @ocui("greater_than", "Greater than")
+   * @obck("greater_than", "Greater than")
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public static function formula(): FormulaInterface {
     return Formula_GroupVal_Callback::fromClass(

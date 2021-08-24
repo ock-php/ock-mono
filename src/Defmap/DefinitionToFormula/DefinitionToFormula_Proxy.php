@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionToFormula;
+namespace Donquixote\ObCK\Defmap\DefinitionToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class DefinitionToFormula_Proxy implements DefinitionToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface|null
+   * @var \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface|null
    */
   private $instance;
 

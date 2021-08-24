@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntOp;
+namespace Donquixote\ObCK\Tests\Fixture\IntOp;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Formula;
-use Donquixote\OCUI\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\OCUI\Formula\Primitive\Formula_Int;
-use Donquixote\OCUI\Formula\Textfield\Formula_Textfield_IntegerInRange;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\Text_Translatable;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Primitive\Formula_Int;
+use Donquixote\ObCK\Formula\Textfield\Formula_Textfield_IntegerInRange;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\Text_Translatable;
 
 class IntOp_Multiply implements IntOpInterface {
 
@@ -20,9 +20,9 @@ class IntOp_Multiply implements IntOpInterface {
   private $factor;
 
   /**
-   * @ocui("multiply", "Multiply")
+   * @obck("multiply", "Multiply")
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public static function formula(): FormulaInterface {
     return Formula::group()

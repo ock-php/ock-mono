@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\ValueToValue;
+namespace Donquixote\ObCK\Formula\ValueToValue;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface;
 
 class Formula_ValueToValue extends Formula_ValueToValueBase {
 
   /**
-   * @var \Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface
+   * @var \Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface
    */
   private $v2v;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface $v2v
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface $v2v
    */
   public function __construct(FormulaInterface $decorated, V2V_ValueInterface $v2v) {
     parent::__construct($decorated);

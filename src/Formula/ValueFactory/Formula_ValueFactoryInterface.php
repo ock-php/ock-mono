@@ -1,9 +1,9 @@
 <?php
 
-namespace Donquixote\OCUI\Formula\ValueFactory;
+namespace Donquixote\ObCK\Formula\ValueFactory;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 interface Formula_ValueFactoryInterface extends FormulaInterface {
 

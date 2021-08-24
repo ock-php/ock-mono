@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Decorator;
+namespace Donquixote\ObCK\Decorator;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Formula;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\MessageUtil;
-use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\MessageUtil;
+use Donquixote\ObCK\Util\UtilBase;
 
 final class Decorator extends UtilBase {
 
@@ -17,14 +17,14 @@ final class Decorator extends UtilBase {
    *
    * @param string $interface
    *   Interface name.
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\OCUI\Decorator\DecoratorInterface|null
+   * @return \Donquixote\ObCK\Decorator\DecoratorInterface|null
    *   Decorator. Evaluating the code of this Decorator should create an
    *   instance of $interface.
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    *   Cannot build a Decorator for the given interface.
    */
   public static function fromIface(
@@ -39,15 +39,15 @@ final class Decorator extends UtilBase {
   /**
    * Materializes a Decorator from a formula.
    *
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\OCUI\Decorator\DecoratorInterface
+   * @return \Donquixote\ObCK\Decorator\DecoratorInterface
    *   Materialized Decorator.
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    *   Cannot build a Decorator for the given formula.
    */
   public static function fromFormula(

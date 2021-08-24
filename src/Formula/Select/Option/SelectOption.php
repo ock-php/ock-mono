@@ -1,26 +1,26 @@
 <?php
 
-namespace Donquixote\OCUI\Formula\Select\Option;
+namespace Donquixote\ObCK\Formula\Select\Option;
 
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 class SelectOption implements SelectOptionInterface {
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface|null
+   * @var \Donquixote\ObCK\Text\TextInterface|null
    */
   private $label;
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface|null
+   * @var \Donquixote\ObCK\Text\TextInterface|null
    */
   private $groupLabel;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface|null $label
-   * @param \Donquixote\OCUI\Text\TextInterface|null $groupLabel
+   * @param \Donquixote\ObCK\Text\TextInterface|null $label
+   * @param \Donquixote\ObCK\Text\TextInterface|null $groupLabel
    */
   public function __construct(?TextInterface $label, ?TextInterface $groupLabel) {
     $this->label = $label;

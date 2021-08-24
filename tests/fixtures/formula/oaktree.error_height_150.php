@@ -1,7 +1,7 @@
 <?php
 
-use Donquixote\OCUI\Evaluator\Evaluator;
-use Donquixote\OCUI\Tests\Fixture\Plant\Plant_OakTree;
+use Donquixote\ObCK\Evaluator\Evaluator;
+use Donquixote\ObCK\Tests\Fixture\Plant\Plant_OakTree;
 
 return new Plant_OakTree(
   Evaluator::expectedConfigButFound(

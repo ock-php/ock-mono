@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Summarizer;
+namespace Donquixote\ObCK\Summarizer;
 
-use Donquixote\OCUI\Formula\Neutral\Formula_NeutralInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\ObCK\Formula\Neutral\Formula_NeutralInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\UtilBase;
 
 final class Summarizer_Neutral extends UtilBase {
 
@@ -13,12 +13,12 @@ final class Summarizer_Neutral extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Neutral\Formula_NeutralInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Neutral\Formula_NeutralInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
-   * @return \Donquixote\OCUI\Summarizer\SummarizerInterface
+   * @return \Donquixote\ObCK\Summarizer\SummarizerInterface
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(Formula_NeutralInterface $formula, FormulaToAnythingInterface $formulaToAnything): SummarizerInterface {
     return Summarizer::fromFormula($formula->getDecorated(), $formulaToAnything);

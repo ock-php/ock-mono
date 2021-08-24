@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Iface;
+namespace Donquixote\ObCK\Formula\Iface;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 interface Formula_IfaceInterface extends FormulaInterface {
 

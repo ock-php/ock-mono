@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Form\Common;
+namespace Donquixote\ObCK\Form\Common;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 /**
  * @STA

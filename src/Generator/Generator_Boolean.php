@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface;
-use Donquixote\OCUI\Formula\BoolVal\Formula_BoolValInterface;
-use Donquixote\OCUI\Zoo\V2V\Boolean\V2V_Boolean_Trivial;
-use Donquixote\OCUI\Zoo\V2V\Boolean\V2V_BooleanInterface;
+use Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface;
+use Donquixote\ObCK\Formula\BoolVal\Formula_BoolValInterface;
+use Donquixote\ObCK\Zoo\V2V\Boolean\V2V_Boolean_Trivial;
+use Donquixote\ObCK\Zoo\V2V\Boolean\V2V_BooleanInterface;
 
 class Generator_Boolean implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Zoo\V2V\Boolean\V2V_BooleanInterface
+   * @var \Donquixote\ObCK\Zoo\V2V\Boolean\V2V_BooleanInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface $formula
+   * @param \Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface $formula
    *
    * @return self
    */
@@ -31,7 +31,7 @@ class Generator_Boolean implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\BoolVal\Formula_BoolValInterface $formula
+   * @param \Donquixote\ObCK\Formula\BoolVal\Formula_BoolValInterface $formula
    *
    * @return self
    */
@@ -40,7 +40,7 @@ class Generator_Boolean implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Zoo\V2V\Boolean\V2V_BooleanInterface $v2v
+   * @param \Donquixote\ObCK\Zoo\V2V\Boolean\V2V_BooleanInterface $v2v
    */
   public function __construct(V2V_BooleanInterface $v2v) {
     $this->v2v = $v2v;

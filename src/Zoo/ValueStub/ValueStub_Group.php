@@ -1,28 +1,28 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Zoo\ValueStub;
+namespace Donquixote\ObCK\Zoo\ValueStub;
 
-use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
-use Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface;
+use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
+use Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface;
 
 class ValueStub_Group implements ValueStubInterface {
 
   /**
-   * @var array|\Donquixote\OCUI\Zoo\ValueStub\ValueStubInterface[]
+   * @var array|\Donquixote\ObCK\Zoo\ValueStub\ValueStubInterface[]
    */
   private $itemValueStubs;
 
   /**
    * @SCTA
    *
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
+   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
    * @param mixed $conf
-   * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
+   * @param \Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function createFromGroupFormula(Formula_GroupInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueStub_Group {
     $itemStubs = self::createItemStubs($formula, $conf, $scta);
@@ -30,13 +30,13 @@ class ValueStub_Group implements ValueStubInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $groupFormula
+   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $groupFormula
    * @param mixed $conf
-   * @param \Donquixote\OCUI\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
+   * @param \Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
-   * @return \Donquixote\OCUI\Zoo\ValueStub\ValueStubInterface[]|null
+   * @return \Donquixote\ObCK\Zoo\ValueStub\ValueStubInterface[]|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   private static function createItemStubs(Formula_GroupInterface $groupFormula, $conf, FormulaConfToAnythingInterface $scta): ?array {
 
@@ -56,14 +56,14 @@ class ValueStub_Group implements ValueStubInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Zoo\ValueStub\ValueStubInterface[] $itemValueStubs
+   * @param \Donquixote\ObCK\Zoo\ValueStub\ValueStubInterface[] $itemValueStubs
    */
   protected function __construct(array $itemValueStubs) {
     $this->itemValueStubs = $itemValueStubs;
   }
 
   /**
-   * @return array|\Donquixote\OCUI\Zoo\ValueStub\ValueStubInterface[]
+   * @return array|\Donquixote\ObCK\Zoo\ValueStub\ValueStubInterface[]
    */
   public function getItems(): array {
     return $this->itemValueStubs;

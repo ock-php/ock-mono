@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Plugin\Map;
+namespace Donquixote\ObCK\Plugin\Map;
 
 interface PluginMapInterface {
 
@@ -14,7 +14,7 @@ interface PluginMapInterface {
   /**
    * @param string $type
    *
-   * @return \Donquixote\OCUI\Plugin\Plugin[]
+   * @return \Donquixote\ObCK\Plugin\Plugin[]
    *   Format: $[$type] = $plugins.
    */
   public function typeGetPlugins(string $type): array;

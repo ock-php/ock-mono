@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValueInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValueInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface;
 
 class Generator_ValueToValue extends Generator_DecoratorBase {
 
   /**
-   * @var \Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValueInterface
+   * @var \Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValueInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValueInterface $valueToValueFormula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValueInterface $valueToValueFormula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    */
@@ -36,8 +36,8 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\OCUI\Zoo\V2V\Value\V2V_ValueInterface $v2v
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface $v2v
    */
   public function __construct(GeneratorInterface $decorated, V2V_ValueInterface $v2v) {
     parent::__construct($decorated);

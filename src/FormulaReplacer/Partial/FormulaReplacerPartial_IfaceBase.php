@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaReplacer\Partial;
+namespace Donquixote\ObCK\FormulaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
 
 abstract class FormulaReplacerPartial_IfaceBase implements FormulaReplacerPartialInterface {
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface[]
    */
   private $formulas = [];
 
@@ -38,10 +38,10 @@ abstract class FormulaReplacerPartial_IfaceBase implements FormulaReplacerPartia
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface $ifaceFormula
-   * @param \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $replacer
+   * @param \Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface $ifaceFormula
+   * @param \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface $replacer
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    */
   abstract protected function formulaDoGetReplacement(
     Formula_IfaceInterface $ifaceFormula,

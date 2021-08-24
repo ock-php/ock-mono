@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaReplacer\Partial;
+namespace Donquixote\ObCK\FormulaReplacer\Partial;
 
-use Donquixote\OCUI\Cache\CacheInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Cache\Formula_Cache_SelectInterface;
-use Donquixote\OCUI\Formula\Select\Formula_Select_Fixed;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\Cache\CacheInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Cache\Formula_Cache_SelectInterface;
+use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
 
 class FormulaReplacerPartial_Cache_Select implements FormulaReplacerPartialInterface {
 
   /**
-   * @var \Donquixote\OCUI\Cache\CacheInterface|null
+   * @var \Donquixote\ObCK\Cache\CacheInterface|null
    */
   private $cache;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface[]
    */
   private $buffer = [];
 
@@ -27,7 +27,7 @@ class FormulaReplacerPartial_Cache_Select implements FormulaReplacerPartialInter
   private $seen = [];
 
   /**
-   * @param \Donquixote\OCUI\Cache\CacheInterface|null $cache
+   * @param \Donquixote\ObCK\Cache\CacheInterface|null $cache
    */
   public function __construct(CacheInterface $cache = NULL) {
     $this->cache = $cache;
@@ -80,7 +80,7 @@ class FormulaReplacerPartial_Cache_Select implements FormulaReplacerPartialInter
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Cache\Formula_Cache_SelectInterface $proxy
+   * @param \Donquixote\ObCK\Formula\Cache\Formula_Cache_SelectInterface $proxy
    *
    * @return array
    */

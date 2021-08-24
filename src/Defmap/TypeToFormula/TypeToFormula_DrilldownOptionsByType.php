@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\TypeToFormula;
+namespace Donquixote\ObCK\Defmap\TypeToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\IdToFormula\IdToFormula_FromOptions;
-use Donquixote\OCUI\DrilldownOptionsByType\DrilldownOptionsByTypeInterface;
-use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\OCUI\Formula\Select\Formula_Select_FromOptions;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\IdToFormula\IdToFormula_FromOptions;
+use Donquixote\ObCK\DrilldownOptionsByType\DrilldownOptionsByTypeInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\ObCK\Formula\Select\Formula_Select_FromOptions;
 
 /**
  * This is a version of TypeToFormula* where $type is assumed to be an interface
@@ -16,12 +16,12 @@ use Donquixote\OCUI\Formula\Select\Formula_Select_FromOptions;
 class TypeToFormula_DrilldownOptionsByType implements TypeToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\DrilldownOptionsByType\DrilldownOptionsByTypeInterface
+   * @var \Donquixote\ObCK\DrilldownOptionsByType\DrilldownOptionsByTypeInterface
    */
   private $drilldownOptionsByType;
 
   /**
-   * @param \Donquixote\OCUI\DrilldownOptionsByType\DrilldownOptionsByTypeInterface $drilldownOptionsByType
+   * @param \Donquixote\ObCK\DrilldownOptionsByType\DrilldownOptionsByTypeInterface $drilldownOptionsByType
    */
   public function __construct(DrilldownOptionsByTypeInterface $drilldownOptionsByType) {
     $this->drilldownOptionsByType = $drilldownOptionsByType;

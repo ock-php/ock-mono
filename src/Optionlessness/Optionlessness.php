@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Optionlessness;
+namespace Donquixote\ObCK\Optionlessness;
 
 class Optionlessness implements OptionlessnessInterface {
 

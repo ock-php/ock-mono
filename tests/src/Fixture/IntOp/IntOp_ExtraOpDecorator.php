@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntOp;
+namespace Donquixote\ObCK\Tests\Fixture\IntOp;
 
 /**
  * Decorator which applies an additional operation.
  *
- * @ocui(
+ * @obck(
  *   "extraOpDecorator",
  *   "Decorator with additional operation",
  *   decorator = true)
@@ -15,21 +15,21 @@ namespace Donquixote\OCUI\Tests\Fixture\IntOp;
 class IntOp_ExtraOpDecorator implements IntOpInterface {
 
   /**
-   * @var \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface
+   * @var \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface
+   * @var \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface
    */
   private $extraOp;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface $decorated
+   * @param \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface $decorated
    *   Decorated operation.
-   * @param \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface $extraOp
+   * @param \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface $extraOp
    *   Additional operation to run afterwards.
    */
   public function __construct(IntOpInterface $decorated, IntOpInterface $extraOp) {

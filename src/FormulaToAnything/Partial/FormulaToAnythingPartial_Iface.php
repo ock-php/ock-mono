@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface;
-use Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 /**
  * @STA
@@ -14,14 +14,14 @@ use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
 class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaReplacerBase {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface
+   * @var \Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface
    */
   private $typeToFormula;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface $typeToFormula
+   * @param \Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface $typeToFormula
    */
   public function __construct(TypeToFormulaInterface $typeToFormula) {
     $this->typeToFormula = $typeToFormula;
@@ -32,7 +32,7 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
    * {@inheritdoc}
    */
   protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
-    /** @var \Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface $formula */
+    /** @var \Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface $formula */
     return $this->typeToFormula->typeGetFormula(
       $formula->getInterface(),
       $formula->allowsNull());

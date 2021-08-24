@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Para;
+namespace Donquixote\ObCK\Formula\Para;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class Formula_Para implements Formula_ParaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   private $paraFormula;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $paraFormula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $paraFormula
    */
   public function __construct(FormulaInterface $decorated, FormulaInterface $paraFormula) {
     $this->decorated = $decorated;

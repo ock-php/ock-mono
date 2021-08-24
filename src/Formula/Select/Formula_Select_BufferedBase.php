@@ -1,27 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Select;
+namespace Donquixote\ObCK\Formula\Select;
 
-use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
-use Donquixote\OCUI\Translator\Translator;
+use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\ObCK\Translator\Translator;
 
 abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
 
   /**
    * Buffered optgroups.
    *
-   * @var \Donquixote\OCUI\Text\TextInterface[]
+   * @var \Donquixote\ObCK\Text\TextInterface[]
    */
   private $groups = [];
 
   /**
    * Buffered grouped options, with '' for top-level options.
    *
-   * @var \Donquixote\OCUI\Text\TextInterface[][]|null
+   * @var \Donquixote\ObCK\Text\TextInterface[][]|null
    */
   private $groupedOptions;
 
@@ -58,10 +58,10 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
   /**
    * Initializes grouped options and optgroup labels.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface[][] $grouped_options
+   * @param \Donquixote\ObCK\Text\TextInterface[][] $grouped_options
    *   Format: $[$group_id][$id] = $label,
    *   with $group_id === '' for top-level options.
-   * @param \Donquixote\OCUI\Text\TextInterface[] $group_labels
+   * @param \Donquixote\ObCK\Text\TextInterface[] $group_labels
    *   Format: $[$optgroup_id] = $optgroup_label.
    */
   abstract protected function initialize(array &$grouped_options, array &$group_labels): void;

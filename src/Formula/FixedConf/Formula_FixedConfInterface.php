@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\FixedConf;
+namespace Donquixote\ObCK\Formula\FixedConf;
 
-use Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface;
-use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
+use Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface;
+use Donquixote\ObCK\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
 
 interface Formula_FixedConfInterface extends Formula_OptionlessInterface, Formula_DecoratorBaseInterface {
 

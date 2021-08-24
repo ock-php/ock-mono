@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Drilldown;
+namespace Donquixote\ObCK\Formula\Drilldown;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
-use Donquixote\OCUI\IdToFormula\IdToFormula_FromDefinitions;
-use Donquixote\OCUI\Formula\Select\Formula_Select_FromDefinitions;
-use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
+use Donquixote\ObCK\IdToFormula\IdToFormula_FromDefinitions;
+use Donquixote\ObCK\Formula\Select\Formula_Select_FromDefinitions;
+use Donquixote\ObCK\Util\UtilBase;
 
 final class Formula_Drilldown_FromDefinitions extends UtilBase {
 
   /**
    * @param array $definitions
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
-   * @param \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
-   * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
+   * @param \Donquixote\ObCK\Context\CfContextInterface|NULL $context
    *
-   * @return \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface
+   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
    */
   public static function create(
     array $definitions,

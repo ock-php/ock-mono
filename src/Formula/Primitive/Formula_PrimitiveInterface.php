@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Primitive;
+namespace Donquixote\ObCK\Formula\Primitive;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 interface Formula_PrimitiveInterface extends FormulaInterface {
 

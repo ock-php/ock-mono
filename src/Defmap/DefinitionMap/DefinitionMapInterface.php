@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionMap;
+namespace Donquixote\ObCK\Defmap\DefinitionMap;
 
-use Donquixote\OCUI\Defmap\DefinitionsById\DefinitionsByIdInterface;
-use Donquixote\OCUI\Defmap\IdToDefinition\IdToDefinitionInterface;
+use Donquixote\ObCK\Defmap\DefinitionsById\DefinitionsByIdInterface;
+use Donquixote\ObCK\Defmap\IdToDefinition\IdToDefinitionInterface;
 
 /**
  * Combination of two interfaces.

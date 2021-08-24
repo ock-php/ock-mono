@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\IdToDefinition;
+namespace Donquixote\ObCK\Defmap\IdToDefinition;
 
 interface IdToDefinitionInterface {
 

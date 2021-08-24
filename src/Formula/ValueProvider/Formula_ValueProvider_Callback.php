@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\ValueProvider;
+namespace Donquixote\ObCK\Formula\ValueProvider;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
-use Donquixote\OCUI\Exception\EvaluatorException;
+use Donquixote\ObCK\Exception\EvaluatorException;
 
 class Formula_ValueProvider_Callback implements Formula_ValueProviderInterface {
 
@@ -19,7 +19,7 @@ class Formula_ValueProvider_Callback implements Formula_ValueProviderInterface {
   /**
    * @param string $class
    *
-   * @return \Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProvider_Callback
+   * @return \Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_Callback
    */
   public static function fromClass(string $class): Formula_ValueProvider_Callback {
     $callback = CallbackReflection_ClassConstruction::create($class);
@@ -30,7 +30,7 @@ class Formula_ValueProvider_Callback implements Formula_ValueProviderInterface {
    * @param string $class
    * @param string $methodName
    *
-   * @return \Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProvider_Callback
+   * @return \Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_Callback
    */
   public static function createFromClassStaticMethod(string $class, string $methodName): Formula_ValueProvider_Callback {
     $callback = CallbackReflection_StaticMethod::create($class, $methodName);

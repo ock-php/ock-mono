@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\Callback;
+namespace Donquixote\ObCK\Tests\Fixture\Callback;
 
 /**
  * @generic:type T

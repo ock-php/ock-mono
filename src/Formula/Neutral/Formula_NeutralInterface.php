@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Neutral;
+namespace Donquixote\ObCK\Formula\Neutral;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
-use Donquixote\OCUI\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
+use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
 
 interface Formula_NeutralInterface extends Formula_ValueToValueBaseInterface, Formula_SkipEvaluatorInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public function getDecorated(): FormulaInterface;
 

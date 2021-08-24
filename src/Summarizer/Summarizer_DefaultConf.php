@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Summarizer;
+namespace Donquixote\ObCK\Summarizer;
 
-use Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 class Summarizer_DefaultConf implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Summarizer\SummarizerInterface
+   * @var \Donquixote\ObCK\Summarizer\SummarizerInterface
    */
   private $decorated;
 
@@ -22,12 +22,12 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_DefaultConfInterface $formula,
@@ -48,7 +48,7 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Summarizer\SummarizerInterface $decorated
+   * @param \Donquixote\ObCK\Summarizer\SummarizerInterface $decorated
    * @param mixed $defaultConf
    */
   public function __construct(SummarizerInterface $decorated, $defaultConf) {

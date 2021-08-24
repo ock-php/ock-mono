@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Drilldown;
+namespace Donquixote\ObCK\Formula\Drilldown;
 
 abstract class Formula_DrilldownBase implements Formula_DrilldownInterface {
 

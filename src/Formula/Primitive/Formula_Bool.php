@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Primitive;
+namespace Donquixote\ObCK\Formula\Primitive;
 
 class Formula_Bool implements Formula_PrimitiveInterface {
 

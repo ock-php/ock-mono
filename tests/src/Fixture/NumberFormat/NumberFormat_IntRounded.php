@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\NumberFormat;
+namespace Donquixote\ObCK\Tests\Fixture\NumberFormat;
 
-use Donquixote\OCUI\Tests\Fixture\IntFormat\IntFormat_Trivial;
-use Donquixote\OCUI\Tests\Fixture\IntFormat\IntFormatInterface;
+use Donquixote\ObCK\Tests\Fixture\IntFormat\IntFormat_Trivial;
+use Donquixote\ObCK\Tests\Fixture\IntFormat\IntFormatInterface;
 
 /**
- * @ocui("intRounded", "Rounded as integer", adapter = true)
+ * @obck("intRounded", "Rounded as integer", adapter = true)
  */
 class NumberFormat_IntRounded implements NumberFormatInterface {
 
   /**
-   * @var \Donquixote\OCUI\Tests\Fixture\IntFormat\IntFormatInterface
+   * @var \Donquixote\ObCK\Tests\Fixture\IntFormat\IntFormatInterface
    */
   private $intFormat;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Tests\Fixture\IntFormat\IntFormatInterface|null $intFormat
+   * @param \Donquixote\ObCK\Tests\Fixture\IntFormat\IntFormatInterface|null $intFormat
    *   Integer format for the rounded number, or NULL for trivial format.
    */
   public function __construct(IntFormatInterface $intFormat = NULL) {

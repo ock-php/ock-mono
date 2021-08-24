@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\GroupVal;
+namespace Donquixote\ObCK\Formula\GroupVal;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
-use Donquixote\OCUI\Formula\Group\Formula_Group;
-use Donquixote\OCUI\Util\UtilBase;
-use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Callback;
+use Donquixote\ObCK\Formula\Group\Formula_Group;
+use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Callback;
 
 final class Formula_GroupVal_Callback extends UtilBase {
 
   /**
    * @param string $class
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    *
-   * @return \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function fromClass(string $class, array $formulas, array $labels): Formula_GroupValInterface {
 
@@ -32,10 +32,10 @@ final class Formula_GroupVal_Callback extends UtilBase {
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    *
-   * @return \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function fromStaticMethod(string $class, string $methodName, array $formulas, array $labels): Formula_GroupValInterface {
 
@@ -49,10 +49,10 @@ final class Formula_GroupVal_Callback extends UtilBase {
 
   /**
    * @param callable $callable
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    *
-   * @return \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function fromCallable(callable $callable, array $formulas, array $labels): Formula_GroupValInterface {
 
@@ -64,10 +64,10 @@ final class Formula_GroupVal_Callback extends UtilBase {
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    *
-   * @return \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function create(
     CallbackReflectionInterface $callbackReflection,

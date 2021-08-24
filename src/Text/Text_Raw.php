@@ -1,8 +1,8 @@
 <?php
 
-namespace Donquixote\OCUI\Text;
+namespace Donquixote\ObCK\Text;
 
-use Donquixote\OCUI\Translator\TranslatorInterface;
+use Donquixote\ObCK\Translator\TranslatorInterface;
 
 /**
  * Raw text, potentially unsafe for output.

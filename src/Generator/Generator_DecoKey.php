@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Formula\DecoKey\Formula_DecoKeyInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\DecoUtil;
+use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\DecoUtil;
 
 class Generator_DecoKey implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Generator\GeneratorInterface
+   * @var \Donquixote\ObCK\Generator\GeneratorInterface
    */
   private GeneratorInterface $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Generator\GeneratorInterface
+   * @var \Donquixote\ObCK\Generator\GeneratorInterface
    */
   private GeneratorInterface $decorator;
 
@@ -27,12 +27,12 @@ class Generator_DecoKey implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function fromDecoKeyFormula(
     Formula_DecoKeyInterface $formula,
@@ -51,8 +51,8 @@ class Generator_DecoKey implements GeneratorInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorator
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorator
    * @param string $key
    */
   protected function __construct(

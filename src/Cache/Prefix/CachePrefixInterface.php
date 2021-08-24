@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Cache\Prefix;
+namespace Donquixote\ObCK\Cache\Prefix;
 
-use Donquixote\OCUI\Cache\Offset\CacheOffsetInterface;
+use Donquixote\ObCK\Cache\Offset\CacheOffsetInterface;
 
 interface CachePrefixInterface {
 
   /**
    * @param string $key
    *
-   * @return \Donquixote\OCUI\Cache\Offset\CacheOffsetInterface
+   * @return \Donquixote\ObCK\Cache\Offset\CacheOffsetInterface
    */
   public function getOffset(string $key): CacheOffsetInterface;
 
   /**
    * @param string $prefix
    *
-   * @return \Donquixote\OCUI\Cache\Prefix\CachePrefixInterface
+   * @return \Donquixote\ObCK\Cache\Prefix\CachePrefixInterface
    */
   public function withAppendedPrefix(string $prefix): self;
 

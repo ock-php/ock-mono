@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\IdToFormula;
+namespace Donquixote\ObCK\IdToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class IdToFormula_Fixed implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface[]
    */
   private $formulas;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
    */
   public function __construct(array $formulas) {
     $this->formulas = $formulas;
@@ -21,9 +21,9 @@ class IdToFormula_Fixed implements IdToFormulaInterface {
 
   /**
    * @param string $id
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *
-   * @return \Donquixote\OCUI\IdToFormula\IdToFormula_Fixed
+   * @return \Donquixote\ObCK\IdToFormula\IdToFormula_Fixed
    */
   public function withFormula(string $id, FormulaInterface $formula): IdToFormula_Fixed {
     $clone = clone $this;

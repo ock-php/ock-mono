@@ -1,26 +1,26 @@
 <?php
 
-namespace Donquixote\OCUI\Text;
+namespace Donquixote\ObCK\Text;
 
-use Donquixote\OCUI\Translator\TranslatorInterface;
+use Donquixote\ObCK\Translator\TranslatorInterface;
 
 class Text_Replacements implements TextInterface {
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface
+   * @var \Donquixote\ObCK\Text\TextInterface
    */
   private TextInterface $source;
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface[]
+   * @var \Donquixote\ObCK\Text\TextInterface[]
    */
   private array $replacements;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface $source
-   * @param \Donquixote\OCUI\Text\TextInterface[] $replacements
+   * @param \Donquixote\ObCK\Text\TextInterface $source
+   * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
    */
   public function __construct(TextInterface $source, array $replacements = []) {
     self::validateReplacements(...array_values($replacements));

@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\OCUI\Contextualizer;
+namespace Donquixote\ObCK\Contextualizer;
 
 use Donquixote\ReflectionKit\Context\ContextInterface;
 

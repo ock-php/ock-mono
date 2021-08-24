@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\IdToFormula;
+namespace Donquixote\ObCK\IdToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class IdToFormula_Class implements IdToFormulaInterface {
 

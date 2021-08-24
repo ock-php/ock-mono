@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
 abstract class Generator_DecoratorBase implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Generator\GeneratorInterface
+   * @var \Donquixote\ObCK\Generator\GeneratorInterface
    */
   private $decorated;
 
   /**
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
    */
   protected function __construct(GeneratorInterface $decorated) {
     $this->decorated = $decorated;

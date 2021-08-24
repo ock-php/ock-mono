@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\NumberFormat;
+namespace Donquixote\ObCK\Tests\Fixture\NumberFormat;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Formula;
-use Donquixote\OCUI\Formula\Primitive\Formula_Int;
-use Donquixote\OCUI\Text\Text;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\Formula\Primitive\Formula_Int;
+use Donquixote\ObCK\Text\Text;
 
 /**
  * Calls PHP's built-in function number_format().
@@ -30,9 +30,9 @@ class NumberFormat_Native implements NumberFormatInterface {
   private $thousandsSeparator;
 
   /**
-   * @ocui("native", "Call built-in number_format()")
+   * @obck("native", "Call built-in number_format()")
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public static function formula(): FormulaInterface {
     return Formula::group()

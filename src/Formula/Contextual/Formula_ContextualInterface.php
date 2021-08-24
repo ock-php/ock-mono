@@ -1,20 +1,20 @@
 <?php
 
-namespace Donquixote\OCUI\Formula\Contextual;
+namespace Donquixote\ObCK\Formula\Contextual;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
 
 interface Formula_ContextualInterface extends Formula_SkipEvaluatorInterface {
 
   /**
    * Gets a formula with a context applied.
    *
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    *   Context to limit available options, or NULL for no limitations.
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    *   Decorated formula with the context applied.
    */
   public function getDecorated(CfContextInterface $context = NULL): FormulaInterface;

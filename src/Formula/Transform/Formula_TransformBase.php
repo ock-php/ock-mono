@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Transform;
+namespace Donquixote\ObCK\Formula\Transform;
 
-use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\ObCK\FormulaBase\Decorator\Formula_DecoratorBase;
 
 abstract class Formula_TransformBase extends Formula_DecoratorBase implements Formula_TransformInterface {
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Transform;
+namespace Donquixote\ObCK\Formula\Transform;
 
 class Formula_Transform_Rekey extends Formula_TransformBase {
 

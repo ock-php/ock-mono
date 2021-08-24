@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Select\Flat;
+namespace Donquixote\ObCK\Formula\Select\Flat;
 
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 class Formula_FlatSelect_Fixed implements Formula_FlatSelectInterface, FlatSelectBuilderInterface {
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface[]
+   * @var \Donquixote\ObCK\Text\TextInterface[]
    */
   private $options;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface[] $options
+   * @param \Donquixote\ObCK\Text\TextInterface[] $options
    */
   public function __construct(array $options) {
     $this->options = $options;

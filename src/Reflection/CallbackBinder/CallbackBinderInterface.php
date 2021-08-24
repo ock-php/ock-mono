@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Reflection\CallbackBinder;
+namespace Donquixote\ObCK\Reflection\CallbackBinder;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 

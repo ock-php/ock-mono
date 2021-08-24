@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Defmap;
+namespace Donquixote\ObCK\Formula\Defmap;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface;
 
 interface Formula_DefmapInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface
+   * @return \Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface
    */
   public function getDefinitionMap(): DefinitionMapInterface;
 
   /**
-   * @return \Donquixote\OCUI\Context\CfContextInterface|null
+   * @return \Donquixote\ObCK\Context\CfContextInterface|null
    */
   public function getContext(): ?CfContextInterface;
 

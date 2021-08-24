@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\LocalPackageUtil;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\LocalPackageUtil;
 
 class FormulaToAnythingPartial_Chain implements FormulaToAnythingPartialInterface {
 
   /**
-   * @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    */
   private $partials;
 
@@ -20,7 +20,7 @@ class FormulaToAnythingPartial_Chain implements FormulaToAnythingPartialInterfac
    *
    * @return self
    *
-   * @throws \Donquixote\OCUI\Exception\STABuilderException
+   * @throws \Donquixote\ObCK\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue): self {
     $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
@@ -28,7 +28,7 @@ class FormulaToAnythingPartial_Chain implements FormulaToAnythingPartialInterfac
   }
 
   /**
-   * @param \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
+   * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
    */
   public function __construct(array $partials) {
     $this->partials = $partials;

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\TypeToFormula;
+namespace Donquixote\ObCK\Defmap\TypeToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Iface\Formula_Iface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Iface\Formula_Iface;
 
 /**
  * This is a version of TypeToFormula* where $type is assumed to be an interface

@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Exception\FormulaToAnythingException;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Exception\FormulaToAnythingException;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 class FormulaToAnythingPartial_FormulaReplacer implements FormulaToAnythingPartialInterface {
 
   /**
-   * @var \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface
+   * @var \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface
    */
   private $replacer;
 
   /**
-   * @param \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $replacer
+   * @param \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface $replacer
    */
   public function __construct(FormulaReplacerInterface $replacer) {
     $this->replacer = $replacer;

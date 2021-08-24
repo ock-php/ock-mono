@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionMap;
+namespace Donquixote\ObCK\Defmap\DefinitionMap;
 
 class DefinitionMap implements DefinitionMapInterface {
 

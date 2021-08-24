@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 /**
@@ -34,7 +34,7 @@ class FormulaToAnythingPartial_FormulaFactory extends FormulaToAnythingPartial_F
    */
   protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
 
-    /** @var \Donquixote\OCUI\Formula\FormulaFactory\Formula_FormulaFactoryInterface $formula */
+    /** @var \Donquixote\ObCK\Formula\FormulaFactory\Formula_FormulaFactoryInterface $formula */
 
     $factory = $formula->getFormulaFactory();
 

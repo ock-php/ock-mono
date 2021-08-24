@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\MoreArgs;
+namespace Donquixote\ObCK\Formula\MoreArgs;
 
-use Donquixote\OCUI\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
 
 interface Formula_MoreArgsInterface extends Formula_ValueToValueBaseInterface {
 
@@ -13,7 +13,7 @@ interface Formula_MoreArgsInterface extends Formula_ValueToValueBaseInterface {
   public function getSpecialKey(): string;
 
   /**
-   * @return \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface[]
+   * @return \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface[]
    */
   public function getMoreArgs(): array;
 

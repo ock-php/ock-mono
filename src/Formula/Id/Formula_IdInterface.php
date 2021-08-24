@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Id;
+namespace Donquixote\ObCK\Formula\Id;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 /**
  * Base interface for formulas where the value is id-like (string or integer).
@@ -17,7 +17,7 @@ interface Formula_IdInterface extends FormulaInterface {
    * @param string|int $id
    *   The id.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface|null
+   * @return \Donquixote\ObCK\Text\TextInterface|null
    *   The label as a string or stringable object.
    */
   public function idGetLabel($id): ?TextInterface;

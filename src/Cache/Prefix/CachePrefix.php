@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Cache\Prefix;
+namespace Donquixote\ObCK\Cache\Prefix;
 
-use Donquixote\OCUI\Cache\CacheInterface;
-use Donquixote\OCUI\Cache\Offset\CacheOffset;
-use Donquixote\OCUI\Cache\Offset\CacheOffsetInterface;
+use Donquixote\ObCK\Cache\CacheInterface;
+use Donquixote\ObCK\Cache\Offset\CacheOffset;
+use Donquixote\ObCK\Cache\Offset\CacheOffsetInterface;
 
 class CachePrefix implements CachePrefixInterface {
 
   /**
-   * @var \Donquixote\OCUI\Cache\CacheInterface
+   * @var \Donquixote\ObCK\Cache\CacheInterface
    */
   private $cache;
 
@@ -20,7 +20,7 @@ class CachePrefix implements CachePrefixInterface {
   private $prefix;
 
   /**
-   * @param \Donquixote\OCUI\Cache\CacheInterface $cache
+   * @param \Donquixote\ObCK\Cache\CacheInterface $cache
    * @param string $prefix
    */
   public function __construct(CacheInterface $cache, string $prefix) {

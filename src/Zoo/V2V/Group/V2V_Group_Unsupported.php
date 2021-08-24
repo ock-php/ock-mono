@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Zoo\V2V\Group;
+namespace Donquixote\ObCK\Zoo\V2V\Group;
 
-use Donquixote\OCUI\Exception\EvaluatorException;
-use Donquixote\OCUI\Util\PhpUtil;
+use Donquixote\ObCK\Exception\EvaluatorException;
+use Donquixote\ObCK\Util\PhpUtil;
 
 class V2V_Group_Unsupported implements V2V_GroupInterface {
 

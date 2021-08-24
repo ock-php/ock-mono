@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Translator;
+namespace Donquixote\ObCK\Translator;
 
-use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_D7;
-use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_D7;
+use Donquixote\ObCK\Util\UtilBase;
 
 final class Translator_D7 extends UtilBase {
 
   /**
-   * @return \Donquixote\OCUI\Translator\TranslatorInterface
+   * @return \Donquixote\ObCK\Translator\TranslatorInterface
    */
   public static function createOrPassthru(): TranslatorInterface {
     return new Translator(TranslatorLookup_D7::createOrPassthru());
   }
 
   /**
-   * @return \Donquixote\OCUI\Translator\TranslatorInterface|null
+   * @return \Donquixote\ObCK\Translator\TranslatorInterface|null
    */
   public static function create(): ?TranslatorInterface {
 

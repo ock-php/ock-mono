@@ -1,31 +1,31 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaReplacer\Partial;
+namespace Donquixote\ObCK\FormulaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
-use Donquixote\OCUI\Formula\Definitions\Formula_DefinitionsInterface;
-use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown_FromDefinitions;
-use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown_InlineExpanded;
-use Donquixote\OCUI\Formula\Id\Formula_Id_DefinitionsKey;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
+use Donquixote\ObCK\Formula\Definitions\Formula_DefinitionsInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown_FromDefinitions;
+use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown_InlineExpanded;
+use Donquixote\ObCK\Formula\Id\Formula_Id_DefinitionsKey;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
 
 class FormulaReplacerPartial_DefinitionsDrilldown implements FormulaReplacerPartialInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
    */
   private $definitionToFormula;
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToLabel;
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToGrouplabel;
 
@@ -35,9 +35,9 @@ class FormulaReplacerPartial_DefinitionsDrilldown implements FormulaReplacerPart
   private $withInlineChildren;
 
   /**
-   * @param \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGrouplabel
    * @param bool $withInlineChildren
    */
   public function __construct(

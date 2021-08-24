@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Discovery\FactoryToSTA;
+namespace Donquixote\ObCK\Discovery\FactoryToSTA;
 
-use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 
 interface FactoryToSTAInterface {
@@ -11,7 +11,7 @@ interface FactoryToSTAInterface {
   /**
    * @param \Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface $factory
    *
-   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface|null
+   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface|null
    */
   public function factoryGetPartial(ReflectionFactoryInterface $factory): ?FormulaToAnythingPartialInterface;
 }

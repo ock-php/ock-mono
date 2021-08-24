@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Util;
+namespace Donquixote\ObCK\Util;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;

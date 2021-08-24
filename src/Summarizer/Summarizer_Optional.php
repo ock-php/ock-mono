@@ -1,34 +1,34 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Summarizer;
+namespace Donquixote\ObCK\Summarizer;
 
-use Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\Util\StaUtil;
+use Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\Util\StaUtil;
 
 class Summarizer_Optional implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface
+   * @var \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface
    */
   private $formula;
 
   /**
-   * @var \Donquixote\OCUI\Summarizer\SummarizerInterface
+   * @var \Donquixote\ObCK\Summarizer\SummarizerInterface
    */
   private $decorated;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
-   * @return \Donquixote\OCUI\Summarizer\SummarizerInterface|null
+   * @return \Donquixote\ObCK\Summarizer\SummarizerInterface|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_OptionalInterface $formula,
@@ -45,8 +45,8 @@ class Summarizer_Optional implements SummarizerInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\OCUI\Summarizer\SummarizerInterface $decorated
+   * @param \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Donquixote\ObCK\Summarizer\SummarizerInterface $decorated
    */
   public function __construct(
     Formula_OptionalInterface $formula,

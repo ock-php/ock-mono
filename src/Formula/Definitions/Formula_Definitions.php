@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Definitions;
+namespace Donquixote\ObCK\Formula\Definitions;
 
-use Donquixote\OCUI\Context\CfContextInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
 
 class Formula_Definitions implements Formula_DefinitionsInterface {
 
@@ -13,13 +13,13 @@ class Formula_Definitions implements Formula_DefinitionsInterface {
   private $definitions;
 
   /**
-   * @var \Donquixote\OCUI\Context\CfContextInterface|null
+   * @var \Donquixote\ObCK\Context\CfContextInterface|null
    */
   private $context;
 
   /**
    * @param array[] $definitions
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    */
   public function __construct(array $definitions, CfContextInterface $context = NULL) {
     $this->definitions = $definitions;

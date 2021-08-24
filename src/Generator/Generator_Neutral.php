@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 class Generator_Neutral extends Generator_DecoratorBase {
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
-   * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
+   * @return \Donquixote\ObCK\Generator\GeneratorInterface|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(Formula_SkipEvaluatorInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?GeneratorInterface {
 

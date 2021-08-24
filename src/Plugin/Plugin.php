@@ -2,35 +2,35 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Plugin;
+namespace Donquixote\ObCK\Plugin;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
 
 class Plugin {
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface|null
+   * @var \Donquixote\ObCK\Text\TextInterface|null
    */
   private $label;
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface|null
+   * @var \Donquixote\ObCK\Text\TextInterface|null
    */
   private $description;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   private $formula;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface|null $label
-   * @param \Donquixote\OCUI\Text\TextInterface|null $description
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Text\TextInterface|null $label
+   * @param \Donquixote\ObCK\Text\TextInterface|null $description
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    */
   public function __construct(?TextInterface $label, ?TextInterface $description, FormulaInterface $formula) {
     $this->label = $label;
@@ -41,7 +41,7 @@ class Plugin {
   /**
    * Gets a label for the plugin.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface|null
+   * @return \Donquixote\ObCK\Text\TextInterface|null
    */
   public function getLabel(): ?TextInterface {
     return $this->label;
@@ -54,7 +54,7 @@ class Plugin {
   /**
    * Gets a description for the plugin.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface|null
+   * @return \Donquixote\ObCK\Text\TextInterface|null
    */
   public function getDescription(): ?TextInterface {
     return $this->description;
@@ -66,7 +66,7 @@ class Plugin {
    * The formula defines the available configuration options, and the way that
    * factory code shall be generated for the plugin.
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public function getFormula(): FormulaInterface {
     return $this->formula;

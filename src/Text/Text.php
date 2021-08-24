@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\OCUI\Text;
+namespace Donquixote\ObCK\Text;
 
 /**
  * Utility class with static methods.
@@ -12,10 +12,10 @@ class Text {
    *
    * @param string $string
    *   Original untranslated text with placeholders.
-   * @param \Donquixote\OCUI\Text\TextInterface[] $replacements
+   * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
    *   Replacements.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    */
   public static function tSpecialOption(string $string, array $replacements = []): TextInterface {
     return static::t('- @option -', [
@@ -25,9 +25,9 @@ class Text {
 
   /**
    * @param string $string
-   * @param \Donquixote\OCUI\Text\TextInterface[] $replacements
+   * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    */
   public static function tParens(string $string, array $replacements = []): TextInterface {
     return static::t('(@text)', [
@@ -38,12 +38,12 @@ class Text {
   /**
    * Builds a text object for "Label: Value".
    *
-   * @param \Donquixote\OCUI\Text\TextInterface $label
+   * @param \Donquixote\ObCK\Text\TextInterface $label
    *   Label.
-   * @param \Donquixote\OCUI\Text\TextInterface $value
+   * @param \Donquixote\ObCK\Text\TextInterface $value
    *   Value.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    */
   public static function label(TextInterface $label, TextInterface $value): TextInterface {
     return static::t('@label: @value', [
@@ -63,10 +63,10 @@ class Text {
    *
    * @param string $string
    *   Original untranslated text with placeholders.
-   * @param \Donquixote\OCUI\Text\TextInterface[] $replacements
+   * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
    *   Replacements.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    *   Translatable text object.
    */
   public static function t(string $string, array $replacements = []): TextInterface {
@@ -82,10 +82,10 @@ class Text {
    *
    * @param string $string
    *   Original untranslated text with placeholders.
-   * @param \Donquixote\OCUI\Text\TextInterface[] $replacements
+   * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
    *   Replacements.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    *   Text object.
    */
   public static function s(string $string, array $replacements = []): TextInterface {
@@ -102,7 +102,7 @@ class Text {
    * @param int $number
    *   Integer number.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    *   Text object.
    */
   public static function i(int $number): TextInterface {
@@ -112,10 +112,10 @@ class Text {
   /**
    * Builds a text object for a html list with <ul>.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface[] $parts
+   * @param \Donquixote\ObCK\Text\TextInterface[] $parts
    *   List items.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    *   Translatable text object.
    */
   public static function ul(array $parts): TextInterface {
@@ -125,10 +125,10 @@ class Text {
   /**
    * Builds a text object for a html list with <ol>.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface[] $parts
+   * @param \Donquixote\ObCK\Text\TextInterface[] $parts
    *   List items.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    *   Translatable text object.
    */
   public static function ol(array $parts): TextInterface {
@@ -138,12 +138,12 @@ class Text {
   /**
    * Builds a text object for a html list with <ul> or <ol>.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface[] $parts
+   * @param \Donquixote\ObCK\Text\TextInterface[] $parts
    *   List items.
    * @param string $tag
    *   One of 'ul' or 'ol'.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    *   Translatable text object.
    */
   protected static function ulOrOl(array $parts, string $tag): TextInterface {
@@ -162,12 +162,12 @@ class Text {
   /**
    * Gets a non-translatable text object.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface[] $parts
+   * @param \Donquixote\ObCK\Text\TextInterface[] $parts
    *   List items.
    * @param string $glue
    *   Glue string between the items.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextInterface
    *   Translatable text object.
    */
   public static function concat(array $parts, string $glue = ''): TextInterface {
@@ -183,14 +183,14 @@ class Text {
   /**
    * Validates text objects.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface ...$texts
+   * @param \Donquixote\ObCK\Text\TextInterface ...$texts
    */
   public static function validate(TextInterface ...$texts): void {}
 
   /**
    * Validates text objects.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface[] $texts
+   * @param \Donquixote\ObCK\Text\TextInterface[] $texts
    *   Text objects to validate.
    */
   public static function validateMultiple(array $texts): void {
@@ -200,7 +200,7 @@ class Text {
   /**
    * Validates arrays of text objects.
    *
-   * @param \Donquixote\OCUI\Text\TextInterface[][] $textss
+   * @param \Donquixote\ObCK\Text\TextInterface[][] $textss
    *   Arrays of text objects.
    */
   public static function validateNested(array $textss): void {

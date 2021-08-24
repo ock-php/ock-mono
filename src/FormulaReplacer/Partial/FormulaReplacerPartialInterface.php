@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaReplacer\Partial;
+namespace Donquixote\ObCK\FormulaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
 
 interface FormulaReplacerPartialInterface {
 
@@ -14,10 +14,10 @@ interface FormulaReplacerPartialInterface {
   public function getSourceFormulaClass(): string;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $replacer
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface $replacer
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    */
   public function formulaGetReplacement(FormulaInterface $formula, FormulaReplacerInterface $replacer): ?FormulaInterface;
 

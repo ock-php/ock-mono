@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Formula;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\MessageUtil;
-use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\MessageUtil;
+use Donquixote\ObCK\Util\UtilBase;
 
 final class Generator extends UtilBase {
 
@@ -16,14 +16,14 @@ final class Generator extends UtilBase {
    *
    * @param string $interface
    *   Interface name.
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
+   * @return \Donquixote\ObCK\Generator\GeneratorInterface|null
    *   Generator. Evaluating the code of this generator should create an
    *   instance of $interface.
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    *   Cannot build a generator for the given interface.
    */
   public static function fromIface(
@@ -38,15 +38,15 @@ final class Generator extends UtilBase {
   /**
    * Materializes a generator from a formula.
    *
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\OCUI\Generator\GeneratorInterface
+   * @return \Donquixote\ObCK\Generator\GeneratorInterface
    *   Materialized generator.
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    *   Cannot build a generator for the given formula.
    */
   public static function fromFormula(

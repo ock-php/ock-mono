@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaReplacer;
+namespace Donquixote\ObCK\FormulaReplacer;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class FormulaReplacer_FromPartials implements FormulaReplacerInterface {
 
   /**
-   * @var \Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
+   * @var \Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
    */
   private $partials;
 
   /**
-   * @var \Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartialInterface[][]
+   * @var \Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartialInterface[][]
    *   Format: $[$formulaClass][] = $partial.
    */
   private $partialss = [];
 
   /**
-   * @param \Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartialInterface[] $partials
+   * @param \Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartialInterface[] $partials
    */
   public function __construct(array $partials) {
     $this->partials = $partials;
@@ -51,7 +51,7 @@ class FormulaReplacer_FromPartials implements FormulaReplacerInterface {
   /**
    * @param string $formulaClass
    *
-   * @return \Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
    */
   private function formulaClassGetPartials(string $formulaClass): array {
     return $this->partialss[$formulaClass]
@@ -61,7 +61,7 @@ class FormulaReplacer_FromPartials implements FormulaReplacerInterface {
   /**
    * @param string $formulaClass
    *
-   * @return \Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
    */
   private function formulaClassFindPartials(string $formulaClass): array {
 

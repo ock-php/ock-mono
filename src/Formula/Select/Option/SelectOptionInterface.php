@@ -1,8 +1,8 @@
 <?php
 
-namespace Donquixote\OCUI\Formula\Select\Option;
+namespace Donquixote\ObCK\Formula\Select\Option;
 
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 interface SelectOptionInterface {
 

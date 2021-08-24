@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Translator;
+namespace Donquixote\ObCK\Translator;
 
 interface TranslatorInterface {
 

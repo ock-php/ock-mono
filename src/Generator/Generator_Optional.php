@@ -1,32 +1,32 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 class Generator_Optional implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Generator\GeneratorInterface
+   * @var \Donquixote\ObCK\Generator\GeneratorInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface
+   * @var \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface
    */
   private $formula;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
-   * @return \Donquixote\OCUI\Generator\GeneratorInterface|null
+   * @return \Donquixote\ObCK\Generator\GeneratorInterface|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(Formula_OptionalInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?GeneratorInterface {
 
@@ -42,8 +42,8 @@ class Generator_Optional implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\OCUI\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface $formula
    */
   public function __construct(GeneratorInterface $decorated, Formula_OptionalInterface $formula) {
     $this->decorated = $decorated;

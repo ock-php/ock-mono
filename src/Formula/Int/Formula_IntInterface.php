@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Int;
+namespace Donquixote\ObCK\Formula\Int;
 
 interface Formula_IntInterface {
 

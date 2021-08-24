@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Definitions;
+namespace Donquixote\ObCK\Formula\Definitions;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 interface Formula_DefinitionsInterface extends FormulaInterface {
 
@@ -14,7 +14,7 @@ interface Formula_DefinitionsInterface extends FormulaInterface {
   public function getDefinitions(): array;
 
   /**
-   * @return \Donquixote\OCUI\Context\CfContextInterface|null
+   * @return \Donquixote\ObCK\Context\CfContextInterface|null
    */
   public function getContext(): ?CfContextInterface;
 

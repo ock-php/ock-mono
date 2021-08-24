@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionsById;
+namespace Donquixote\ObCK\Defmap\DefinitionsById;
 
-use Donquixote\OCUI\Cache\Offset\CacheOffsetInterface;
+use Donquixote\ObCK\Cache\Offset\CacheOffsetInterface;
 
 class DefinitionsById_Cache implements DefinitionsByIdInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionsById\DefinitionsByIdInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionsById\DefinitionsByIdInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Cache\Offset\CacheOffsetInterface
+   * @var \Donquixote\ObCK\Cache\Offset\CacheOffsetInterface
    */
   private $cacheOffset;
 
   /**
-   * @param \Donquixote\OCUI\Defmap\DefinitionsById\DefinitionsByIdInterface $decorated
-   * @param \Donquixote\OCUI\Cache\Offset\CacheOffsetInterface $cacheOffset
+   * @param \Donquixote\ObCK\Defmap\DefinitionsById\DefinitionsByIdInterface $decorated
+   * @param \Donquixote\ObCK\Cache\Offset\CacheOffsetInterface $cacheOffset
    */
   public function __construct(
     DefinitionsByIdInterface $decorated,

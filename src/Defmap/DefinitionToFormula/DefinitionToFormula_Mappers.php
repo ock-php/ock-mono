@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionToFormula;
+namespace Donquixote\ObCK\Defmap\DefinitionToFormula;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Formula;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Handler;
-use Donquixote\OCUI\Exception\FormulaCreationException;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Formula;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Handler;
+use Donquixote\ObCK\Exception\FormulaCreationException;
 use Psr\Log\LoggerInterface;
 
 class DefinitionToFormula_Mappers implements DefinitionToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelperInterface[]
+   * @var \Donquixote\ObCK\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelperInterface[]
    */
   private $helpers;
 
@@ -39,7 +39,7 @@ class DefinitionToFormula_Mappers implements DefinitionToFormulaInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelperInterface[] $helpers
+   * @param \Donquixote\ObCK\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelperInterface[] $helpers
    * @param \Psr\Log\LoggerInterface $logger
    */
   public function __construct(array $helpers, LoggerInterface $logger) {

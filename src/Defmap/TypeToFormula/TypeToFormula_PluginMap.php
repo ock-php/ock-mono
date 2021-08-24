@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\TypeToFormula;
+namespace Donquixote\ObCK\Defmap\TypeToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\PluginList\Formula_PluginList;
-use Donquixote\OCUI\Plugin\Map\PluginMapInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\PluginList\Formula_PluginList;
+use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 
 /**
  * This is a version of TypeToFormula* where $type is assumed to be an interface
@@ -14,14 +14,14 @@ use Donquixote\OCUI\Plugin\Map\PluginMapInterface;
 class TypeToFormula_PluginMap implements TypeToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
    */
   private $pluginMap;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $pluginMap
    */
   public function __construct(PluginMapInterface $pluginMap) {
     $this->pluginMap = $pluginMap;

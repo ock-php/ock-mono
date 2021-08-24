@@ -1,29 +1,29 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Drilldown;
+namespace Donquixote\ObCK\Formula\Drilldown;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
-use Donquixote\OCUI\Formula\Select\Formula_Select_Fixed;
-use Donquixote\OCUI\IdToFormula\IdToFormula_Fixed;
-use Donquixote\OCUI\IdToFormula\IdToFormulaInterface;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
+use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
+use Donquixote\ObCK\IdToFormula\IdToFormula_Fixed;
+use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Select\Formula_Select_Fixed
+   * @var \Donquixote\ObCK\Formula\Select\Formula_Select_Fixed
    */
   private $idFormula;
 
   /**
-   * @var \Donquixote\OCUI\IdToFormula\IdToFormula_Fixed
+   * @var \Donquixote\ObCK\IdToFormula\IdToFormula_Fixed
    */
   private $idToFormula;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
    * @param bool $orNull
    *
@@ -39,8 +39,8 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Formula\Select\Formula_Select_Fixed $idFormula
-   * @param \Donquixote\OCUI\IdToFormula\IdToFormula_Fixed $idToFormula
+   * @param \Donquixote\ObCK\Formula\Select\Formula_Select_Fixed $idFormula
+   * @param \Donquixote\ObCK\IdToFormula\IdToFormula_Fixed $idToFormula
    * @param bool $orNull
    */
   private function __construct(Formula_Select_Fixed $idFormula, IdToFormula_Fixed $idToFormula, $orNull = FALSE) {
@@ -51,10 +51,10 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
 
   /**
    * @param string $id
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\OCUI\Text\TextInterface $label
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Text\TextInterface $label
    * @param ?string $group_id
-   * @param ?\Donquixote\OCUI\Text\TextInterface $group_label
+   * @param ?\Donquixote\ObCK\Text\TextInterface $group_label
    *
    * @return static
    */

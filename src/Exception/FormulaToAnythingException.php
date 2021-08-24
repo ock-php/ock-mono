@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Exception;
+namespace Donquixote\ObCK\Exception;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class FormulaToAnythingException extends \Exception implements UnsupportedFormulaExceptionInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param string $interface
    * @param mixed|null $instead
    *
@@ -35,7 +35,7 @@ class FormulaToAnythingException extends \Exception implements UnsupportedFormul
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param string $interface
    * @param string|null $message_append
    *

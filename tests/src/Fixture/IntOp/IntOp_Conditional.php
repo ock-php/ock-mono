@@ -2,36 +2,36 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntOp;
+namespace Donquixote\ObCK\Tests\Fixture\IntOp;
 
-use Donquixote\OCUI\Tests\Fixture\IntCondition\IntConditionInterface;
+use Donquixote\ObCK\Tests\Fixture\IntCondition\IntConditionInterface;
 
 /**
- * @ocui("conditional", "Conditional")
+ * @obck("conditional", "Conditional")
  */
 class IntOp_Conditional implements IntOpInterface {
 
   /**
-   * @var \Donquixote\OCUI\Tests\Fixture\IntCondition\IntConditionInterface
+   * @var \Donquixote\ObCK\Tests\Fixture\IntCondition\IntConditionInterface
    */
   private $condition;
 
   /**
-   * @var \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface|null
+   * @var \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface|null
    */
   private $opIfTrue;
 
   /**
-   * @var \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface|null
+   * @var \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface|null
    */
   private $opIfFalse;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Tests\Fixture\IntCondition\IntConditionInterface $condition
-   * @param \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface|null $opIfTrue
-   * @param \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface|null $opIfFalse
+   * @param \Donquixote\ObCK\Tests\Fixture\IntCondition\IntConditionInterface $condition
+   * @param \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface|null $opIfTrue
+   * @param \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface|null $opIfFalse
    */
   public function __construct(IntConditionInterface $condition, ?IntOpInterface $opIfTrue, ?IntOpInterface $opIfFalse) {
     $this->condition = $condition;

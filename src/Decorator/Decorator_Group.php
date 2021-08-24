@@ -2,38 +2,38 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Decorator;
+namespace Donquixote\ObCK\Decorator;
 
-use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
-use Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Generator\Generator;
-use Donquixote\OCUI\Generator\Generator_Group;
-use Donquixote\OCUI\Util\PhpUtil;
-use Donquixote\OCUI\Zoo\V2V\Group\V2V_Group_Trivial;
-use Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Generator\Generator;
+use Donquixote\ObCK\Generator\Generator_Group;
+use Donquixote\ObCK\Util\PhpUtil;
+use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Trivial;
+use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
 
 class Decorator_Group implements DecoratorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Generator\GeneratorInterface[]
+   * @var \Donquixote\ObCK\Generator\GeneratorInterface[]
    */
   private $itemGenerators;
 
   /**
-   * @var \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function fromGroupFormula(
     Formula_GroupInterface $formula,
@@ -48,12 +48,12 @@ class Decorator_Group implements DecoratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\GroupVal\Formula_GroupValInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function fromGroupValFormula(
     Formula_GroupValInterface $formula,
@@ -68,13 +68,13 @@ class Decorator_Group implements DecoratorInterface {
   /**
    * Static factory.
    *
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $groupFormula
-   * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $groupFormula
+   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, FormulaToAnythingInterface $formulaToAnything): ?Generator_Group {
 
@@ -93,8 +93,8 @@ class Decorator_Group implements DecoratorInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface[] $itemGenerators
-   * @param \Donquixote\OCUI\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface[] $itemGenerators
+   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
    */
   protected function __construct(array $itemGenerators, V2V_GroupInterface $v2v) {
     $this->itemGenerators = $itemGenerators;

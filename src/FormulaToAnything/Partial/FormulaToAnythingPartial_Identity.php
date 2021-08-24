@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface;
-use Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 /**
  * @STA

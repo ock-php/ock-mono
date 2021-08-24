@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\TypeToFormula;
+namespace Donquixote\ObCK\Defmap\TypeToFormula;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class TypeToFormula_Buffer implements TypeToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface
+   * @var \Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[][]
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface[][]
    *   Format: $[$type][$orNull] = $formula.
    */
   private $formulas = [];
@@ -22,7 +22,7 @@ class TypeToFormula_Buffer implements TypeToFormulaInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface $decorated
+   * @param \Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface $decorated
    */
   public function __construct(TypeToFormulaInterface $decorated) {
     $this->decorated = $decorated;

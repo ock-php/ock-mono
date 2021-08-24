@@ -1,13 +1,13 @@
 <?php
 
-namespace Donquixote\OCUI\DrilldownOptionsByType;
+namespace Donquixote\ObCK\DrilldownOptionsByType;
 
 interface DrilldownOptionsByTypeInterface {
 
   /**
    * Gets drilldown options by type.
    *
-   * @return \Donquixote\OCUI\Formula\Drilldown\Option\DrilldownOptionInterface[][]
+   * @return \Donquixote\ObCK\Formula\Drilldown\Option\DrilldownOptionInterface[][]
    *   Format: $[$type][$id] = $option.
    */
   public function getDrilldownOptionsByType(): array;

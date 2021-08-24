@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Optional;
+namespace Donquixote\ObCK\Formula\Optional;
 
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 class Formula_Optional extends Formula_OptionalBase {
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface|null
+   * @var \Donquixote\ObCK\Text\TextInterface|null
    */
   private $emptySummary;
 
@@ -18,7 +18,7 @@ class Formula_Optional extends Formula_OptionalBase {
   private $emptyPhp = 'NULL';
 
   /**
-   * @param \Donquixote\OCUI\Text\TextInterface $emptySummary
+   * @param \Donquixote\ObCK\Text\TextInterface $emptySummary
    *
    * @return static
    */
@@ -31,7 +31,7 @@ class Formula_Optional extends Formula_OptionalBase {
   /**
    * @param string $emptyPhp
    *
-   * @return \Donquixote\OCUI\Formula\Optional\Formula_Optional
+   * @return \Donquixote\ObCK\Formula\Optional\Formula_Optional
    */
   public function withEmptyPhp(string $emptyPhp): Formula_Optional {
     $clone = clone $this;

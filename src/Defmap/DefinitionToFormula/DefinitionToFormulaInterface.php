@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionToFormula;
+namespace Donquixote\ObCK\Defmap\DefinitionToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 /**
  * Objects to create formula based on definitions.
@@ -17,9 +17,9 @@ interface DefinitionToFormulaInterface {
    *
    * @param array $definition
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaCreationException
+   * @throws \Donquixote\ObCK\Exception\FormulaCreationException
    */
   public function definitionGetFormula(array $definition): FormulaInterface;
 

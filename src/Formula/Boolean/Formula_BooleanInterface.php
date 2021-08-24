@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Boolean;
+namespace Donquixote\ObCK\Formula\Boolean;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 interface Formula_BooleanInterface extends FormulaInterface {
 
   /**
    * Gets a summary for true.
    *
-   * @return \Donquixote\OCUI\Text\TextInterface|null
+   * @return \Donquixote\ObCK\Text\TextInterface|null
    *   Summary in case the value is true.
    */
   public function getTrueSummary(): ?TextInterface;
 
   /**
-   * @return \Donquixote\OCUI\Text\TextInterface|null
+   * @return \Donquixote\ObCK\Text\TextInterface|null
    *   Summary in case the value is true.
    */
   public function getFalseSummary(): ?TextInterface;

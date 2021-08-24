@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Exception;
+namespace Donquixote\ObCK\Exception;
 
 class EvaluatorCreationException extends \Exception {
 

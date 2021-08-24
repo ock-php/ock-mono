@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Zoo\V2V\String;
+namespace Donquixote\ObCK\Zoo\V2V\String;
 
 final class V2V_String_Trivial implements V2V_StringInterface {
 

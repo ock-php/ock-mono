@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\MoreArgs;
+namespace Donquixote\ObCK\Formula\MoreArgs;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface;
-use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface;
+use Donquixote\ObCK\FormulaBase\Decorator\Formula_DecoratorBase;
 
 class Formula_MoreArgs extends Formula_DecoratorBase implements Formula_MoreArgsInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface[]
+   * @var \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface[]
    */
   private $more;
 
@@ -20,18 +20,18 @@ class Formula_MoreArgs extends Formula_DecoratorBase implements Formula_MoreArgs
   private $specialKey;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
    * @param string|int $specialKey
    *
-   * @return \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgs
+   * @return \Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgs
    */
   public function createEmpty(FormulaInterface $decorated, $specialKey = 0): Formula_MoreArgs {
     return new self($decorated, [], $specialKey);
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface[] $more
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface[] $more
    * @param string|int $specialKey
    */
   public function __construct(FormulaInterface $decorated, array $more = [], $specialKey = 0) {
@@ -42,9 +42,9 @@ class Formula_MoreArgs extends Formula_DecoratorBase implements Formula_MoreArgs
 
   /**
    * @param string $key
-   * @param \Donquixote\OCUI\Formula\Optionless\Formula_OptionlessInterface $formula
+   * @param \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface $formula
    *
-   * @return \Donquixote\OCUI\Formula\MoreArgs\Formula_MoreArgs
+   * @return \Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgs
    */
   public function withItemFormula(string $key, Formula_OptionlessInterface $formula): Formula_MoreArgs {
     $clone = clone $this;

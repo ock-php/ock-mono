@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Select;
+namespace Donquixote\ObCK\Formula\Select;
 
-use Donquixote\OCUI\Formula\Drilldown\Option\DrilldownOptionInterface;
-use Donquixote\OCUI\Formula\Select\Option\SelectOptionInterface;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
-use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
-use Donquixote\OCUI\Translator\Translator;
+use Donquixote\ObCK\Formula\Drilldown\Option\DrilldownOptionInterface;
+use Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\TextToMarkup\TextToMarkupInterface;
+use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\ObCK\Translator\Translator;
 
 class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Select\Option\SelectOptionInterface[]
+   * @var \Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface[]
    */
   private $options;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Formula\Select\Option\SelectOptionInterface[] $options
+   * @param \Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface[] $options
    */
   public function __construct(array $options) {
     self::validateOptions(...array_values($options));
@@ -28,7 +28,7 @@ class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Select\Option\SelectOptionInterface ...$options
+   * @param \Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface ...$options
    */
   private static function validateOptions(SelectOptionInterface ...$options): void {}
 

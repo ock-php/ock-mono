@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\TypeToFormula;
+namespace Donquixote\ObCK\Defmap\TypeToFormula;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 interface TypeToFormulaInterface {
 
@@ -19,7 +19,7 @@ interface TypeToFormulaInterface {
    * @param bool $or_null
    *   TRUE if this is optional.
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    *   Formula for the type.
    */
   public function typeGetFormula(string $type, bool $or_null): FormulaInterface;

@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntOp;
+namespace Donquixote\ObCK\Tests\Fixture\IntOp;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Formula;
-use Donquixote\OCUI\Text\Text;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\Text\Text;
 
 class IntOp_Sequence implements IntOpInterface {
 
   /**
-   * @var \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface[]
+   * @var \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface[]
    */
   private $operations;
 
   /**
-   * @ocui("sequence", "Sequence")
+   * @obck("sequence", "Sequence")
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public static function formula(): FormulaInterface {
     return Formula::group()
@@ -32,7 +32,7 @@ class IntOp_Sequence implements IntOpInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface[] $operations
+   * @param \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface[] $operations
    */
   public function __construct(array $operations) {
     $this->operations = $operations;

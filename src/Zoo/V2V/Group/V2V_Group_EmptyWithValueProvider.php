@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Zoo\V2V\Group;
+namespace Donquixote\ObCK\Zoo\V2V\Group;
 
-use Donquixote\OCUI\Exception\EvaluatorException;
-use Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProviderInterface;
-use Donquixote\OCUI\Util\PhpUtil;
+use Donquixote\ObCK\Exception\EvaluatorException;
+use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface;
+use Donquixote\ObCK\Util\PhpUtil;
 
 class V2V_Group_EmptyWithValueProvider implements V2V_GroupInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProviderInterface
+   * @var \Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface
    */
   private $valueProvider;
 
   /**
-   * @param \Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProviderInterface $valueProvider
+   * @param \Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface $valueProvider
    */
   public function __construct(Formula_ValueProviderInterface $valueProvider) {
     $this->valueProvider = $valueProvider;

@@ -1,11 +1,11 @@
 <?php
 
-namespace Donquixote\OCUI\DefinitionList;
+namespace Donquixote\ObCK\DefinitionList;
 
 interface DefinitionListInterface {
 
   /**
-   * @return \Donquixote\OCUI\Formula\Drilldown\Option\DrilldownOptionInterface[]
+   * @return \Donquixote\ObCK\Formula\Drilldown\Option\DrilldownOptionInterface[]
    */
   public function getDefinitions(): array;
 

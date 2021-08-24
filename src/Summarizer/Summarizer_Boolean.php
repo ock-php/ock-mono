@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Summarizer;
+namespace Donquixote\ObCK\Summarizer;
 
-use Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 /**
  * @STA
@@ -12,12 +12,12 @@ use Donquixote\OCUI\Text\TextInterface;
 class Summarizer_Boolean implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface
+   * @var \Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface
    */
   private $formula;
 
   /**
-   * @param \Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface $formula
+   * @param \Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface $formula
    */
   public function __construct(Formula_BooleanInterface $formula) {
     $this->formula = $formula;

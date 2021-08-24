@@ -1,8 +1,8 @@
 <?php
 
-namespace Donquixote\OCUI\Text;
+namespace Donquixote\ObCK\Text;
 
-use Donquixote\OCUI\Translator\TranslatorInterface;
+use Donquixote\ObCK\Translator\TranslatorInterface;
 
 class Text_Translatable implements TextInterface {
 
@@ -18,7 +18,7 @@ class Text_Translatable implements TextInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    *
    * @return string
    */

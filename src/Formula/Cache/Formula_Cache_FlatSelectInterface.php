@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Cache;
+namespace Donquixote\ObCK\Formula\Cache;
 
 interface Formula_Cache_FlatSelectInterface extends Formula_CacheBaseInterface {
 

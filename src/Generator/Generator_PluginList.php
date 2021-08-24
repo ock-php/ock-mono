@@ -1,29 +1,29 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Formula\PluginList\Formula_PluginListInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\PhpUtil;
+use Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\PhpUtil;
 
 class Generator_PluginList implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\PluginList\Formula_PluginListInterface
+   * @var \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface
    */
   private $formula;
 
   /**
-   * @var \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface
+   * @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
    */
   private $formulaToAnything;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\PluginList\Formula_PluginListInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self
    */
@@ -34,8 +34,8 @@ class Generator_PluginList implements GeneratorInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Formula\PluginList\Formula_PluginListInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    */
   protected function __construct(Formula_PluginListInterface $formula, FormulaToAnythingInterface $formulaToAnything) {
     $this->formula = $formula;

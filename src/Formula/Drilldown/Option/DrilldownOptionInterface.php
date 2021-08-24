@@ -1,9 +1,9 @@
 <?php
 
-namespace Donquixote\OCUI\Formula\Drilldown\Option;
+namespace Donquixote\ObCK\Formula\Drilldown\Option;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Select\Option\SelectOptionInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface;
 
 /**
  * Object representation of a plugin definition.
@@ -15,7 +15,7 @@ use Donquixote\OCUI\Formula\Select\Option\SelectOptionInterface;
 interface DrilldownOptionInterface extends SelectOptionInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public function getFormula(): FormulaInterface;
 

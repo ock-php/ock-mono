@@ -1,10 +1,10 @@
 <?php
 
-namespace Donquixote\OCUI\Tests\Fixture\Plant;
+namespace Donquixote\ObCK\Tests\Fixture\Plant;
 
-use Donquixote\OCUI\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\OCUI\Formula\Textfield\Formula_Textfield_IntegerInRange;
-use Donquixote\OCUI\Text\Text_Translatable;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Textfield\Formula_Textfield_IntegerInRange;
+use Donquixote\ObCK\Text\Text_Translatable;
 
 class Plant_OakTree implements PlantInterface {
 
@@ -14,7 +14,7 @@ class Plant_OakTree implements PlantInterface {
   private $height;
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public static function formula() {
     return Formula_GroupVal_Callback::fromClass(

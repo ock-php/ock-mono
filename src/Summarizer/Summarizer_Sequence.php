@@ -1,33 +1,33 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Summarizer;
+namespace Donquixote\ObCK\Summarizer;
 
-use Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\Translator\Translator;
-use Donquixote\OCUI\Translator\TranslatorInterface;
+use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\Translator\Translator;
+use Donquixote\ObCK\Translator\TranslatorInterface;
 use Drupal\cu\Translator\Translator_Drupal;
 
 class Summarizer_Sequence implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Summarizer\SummarizerInterface
+   * @var \Donquixote\ObCK\Summarizer\SummarizerInterface
    */
   private $itemSummarizer;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    *
-   * @return \Donquixote\OCUI\Summarizer\Summarizer_Sequence|null
+   * @return \Donquixote\ObCK\Summarizer\Summarizer_Sequence|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_SequenceInterface $formula,
@@ -45,7 +45,7 @@ class Summarizer_Sequence implements SummarizerInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Summarizer\SummarizerInterface $itemSummarizer
+   * @param \Donquixote\ObCK\Summarizer\SummarizerInterface $itemSummarizer
    */
   public function __construct(SummarizerInterface $itemSummarizer) {
     $this->itemSummarizer = $itemSummarizer;

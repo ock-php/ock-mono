@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Util;
+namespace Donquixote\ObCK\Util;
 
-use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
 
 final class DrilldownUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $formula
+   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param string $id
    * @param mixed $options
    *
@@ -56,7 +56,7 @@ final class DrilldownUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $formula
+   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param mixed $conf
    *
    * @return array

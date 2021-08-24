@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntOp;
+namespace Donquixote\ObCK\Tests\Fixture\IntOp;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Formula;
-use Donquixote\OCUI\Formula\Primitive\Formula_Int;
-use Donquixote\OCUI\Formula\Textfield\Formula_Textfield_IntegerInRange;
-use Donquixote\OCUI\Text\Text;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\Formula\Primitive\Formula_Int;
+use Donquixote\ObCK\Formula\Textfield\Formula_Textfield_IntegerInRange;
+use Donquixote\ObCK\Text\Text;
 
 class IntOp_Add implements IntOpInterface {
 
@@ -18,9 +18,9 @@ class IntOp_Add implements IntOpInterface {
   private $increment;
 
   /**
-   * @ocui("add", "Add")
+   * @obck("add", "Add")
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    *
    * @throws \ReflectionException
    */

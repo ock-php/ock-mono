@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Zoo\ValueStubToPhp;
+namespace Donquixote\ObCK\Zoo\ValueStubToPhp;
 
-use Donquixote\OCUI\Zoo\ValueStub\ValueStubInterface;
+use Donquixote\ObCK\Zoo\ValueStub\ValueStubInterface;
 
 interface ValueStubToPhpInterface {
 
   /**
-   * @param \Donquixote\OCUI\Zoo\ValueStub\ValueStubInterface $valueStub
+   * @param \Donquixote\ObCK\Zoo\ValueStub\ValueStubInterface $valueStub
    *
    * @return string
    */

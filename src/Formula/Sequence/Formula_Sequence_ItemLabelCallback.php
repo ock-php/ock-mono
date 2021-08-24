@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Sequence;
+namespace Donquixote\ObCK\Formula\Sequence;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\Translator\TranslatorInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\Translator\TranslatorInterface;
 use Drupal\Tests\taxonomy\Functional\Rest\TermXmlCookieTest;
 
 class Formula_Sequence_ItemLabelCallback extends Formula_SequenceBase {
@@ -17,7 +17,7 @@ class Formula_Sequence_ItemLabelCallback extends Formula_SequenceBase {
   private $itemLabelCallback;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $itemFormula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $itemFormula
    * @param callable $itemLabelCallback
    */
   public function __construct(FormulaInterface $itemFormula, callable $itemLabelCallback) {

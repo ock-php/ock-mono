@@ -1,41 +1,41 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Container;
+namespace Donquixote\ObCK\Container;
 
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
-use Donquixote\OCUI\Cache\CacheInterface;
-use Donquixote\OCUI\Cache\Prefix\CachePrefix_Root;
-use Donquixote\OCUI\Cache\Prefix\CachePrefixInterface;
-use Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndId_Cache;
-use Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface;
-use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabel;
-use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormula_Mappers;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Handler;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Formula;
-use Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyid;
-use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmap;
-use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmap_Cache;
-use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface;
-use Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormula_Buffer;
-use Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormula_Iface;
-use Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface;
-use Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartial_Callback;
-use Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartial_DefmapDrilldown;
-use Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartial_IfaceDefmap;
-use Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartial_Proxy_Cache;
-use Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartial_Proxy_Replacer;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacer_FromPartials;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
-use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartial_FormulaReplacer;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnything_SmartChain;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Translator\Translator;
-use Donquixote\OCUI\Translator\TranslatorInterface;
-use Donquixote\OCUI\Util\LocalPackageUtil;
+use Donquixote\ObCK\Cache\CacheInterface;
+use Donquixote\ObCK\Cache\Prefix\CachePrefix_Root;
+use Donquixote\ObCK\Cache\Prefix\CachePrefixInterface;
+use Donquixote\ObCK\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndId_Cache;
+use Donquixote\ObCK\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface;
+use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabel;
+use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormula_Mappers;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Handler;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelper_Formula;
+use Donquixote\ObCK\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyid;
+use Donquixote\ObCK\Defmap\TypeToDefmap\TypeToDefmap;
+use Donquixote\ObCK\Defmap\TypeToDefmap\TypeToDefmap_Cache;
+use Donquixote\ObCK\Defmap\TypeToDefmap\TypeToDefmapInterface;
+use Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormula_Buffer;
+use Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormula_Iface;
+use Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface;
+use Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartial_Callback;
+use Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartial_DefmapDrilldown;
+use Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartial_IfaceDefmap;
+use Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartial_Proxy_Cache;
+use Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartial_Proxy_Replacer;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacer_FromPartials;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartial_FormulaReplacer;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnything_SmartChain;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Translator\Translator;
+use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\ObCK\Util\LocalPackageUtil;
 use Donquixote\Containerkit\Container\ContainerBase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -43,7 +43,7 @@ use Psr\Log\NullLogger;
 abstract class CfContainerBase extends ContainerBase implements CfContainerInterface {
 
   /**
-   * @return \Donquixote\OCUI\Defmap\TypeToFormula\TypeToFormulaInterface
+   * @return \Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface
    *
    * @see $typeToFormula
    */
@@ -56,11 +56,11 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface
+   * @return \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
    *
    * @see $formulaToAnything
    *
-   * @throws \Donquixote\OCUI\Exception\STABuilderException
+   * @throws \Donquixote\ObCK\Exception\STABuilderException
    */
   protected function get_formulaToAnything(): FormulaToAnythingInterface {
 
@@ -73,11 +73,11 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    *
    * @see $staPartials
    *
-   * @throws \Donquixote\OCUI\Exception\STABuilderException
+   * @throws \Donquixote\ObCK\Exception\STABuilderException
    */
   protected function get_staPartials(): array {
 
@@ -85,9 +85,9 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
    *
-   * @throws \Donquixote\OCUI\Exception\STABuilderException
+   * @throws \Donquixote\ObCK\Exception\STABuilderException
    */
   protected function getSTAPartials(): array {
 
@@ -108,7 +108,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface
+   * @return \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface
    *
    * @see $formulaReplacer
    */
@@ -120,7 +120,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
+   * @return \Donquixote\ObCK\FormulaReplacer\Partial\FormulaReplacerPartialInterface[]
    */
   protected function getFormulaReplacerPartials(): array {
 
@@ -147,7 +147,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Translator\TranslatorInterface
+   * @return \Donquixote\ObCK\Translator\TranslatorInterface
    *
    * @see $translator
    */
@@ -156,7 +156,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
+   * @return \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
    *
    * @see $definitionToFormula
    */
@@ -167,7 +167,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelperInterface[]
+   * @return \Donquixote\ObCK\Defmap\DefinitionToFormula\Helper\DefinitionToFormulaHelperInterface[]
    */
   protected function getDefinitionToFormulaHelpers(): array {
     return [
@@ -177,7 +177,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @return \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    *
    * @see $definitionToLabel
    */
@@ -186,7 +186,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @return \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    *
    * @see $definitionToGrouplabel
    */
@@ -195,7 +195,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface
+   * @return \Donquixote\ObCK\Defmap\TypeToDefmap\TypeToDefmapInterface
    *
    * @see $typeToDefmap
    */
@@ -222,7 +222,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface
+   * @return \Donquixote\ObCK\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface
    *
    * @see $definitionsByTypeAndId
    */
@@ -248,7 +248,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface
+   * @return \Donquixote\ObCK\Defmap\DefinitionsByTypeAndId\DefinitionsByTypeAndIdInterface
    */
   abstract protected function getDefinitionDiscovery(): DefinitionsByTypeAndIdInterface;
 
@@ -264,7 +264,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Cache\Prefix\CachePrefixInterface|null
+   * @return \Donquixote\ObCK\Cache\Prefix\CachePrefixInterface|null
    *
    * @see $cacheRootOrNull
    */
@@ -291,7 +291,7 @@ abstract class CfContainerBase extends ContainerBase implements CfContainerInter
   }
 
   /**
-   * @return \Donquixote\OCUI\Cache\CacheInterface|null
+   * @return \Donquixote\ObCK\Cache\CacheInterface|null
    *
    * @see $cacheOrNull
    */

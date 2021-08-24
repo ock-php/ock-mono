@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Select;
+namespace Donquixote\ObCK\Formula\Select;
 
-use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
-use Donquixote\OCUI\Translator\Translator;
+use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\ObCK\Translator\Translator;
 
 class Formula_Select_FromDefinitions extends Formula_Select_BufferedBase {
 
@@ -16,12 +16,12 @@ class Formula_Select_FromDefinitions extends Formula_Select_BufferedBase {
   private $definitions;
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToLabel;
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToGroupLabel;
 
@@ -29,8 +29,8 @@ class Formula_Select_FromDefinitions extends Formula_Select_BufferedBase {
    * Constructor.
    *
    * @param array[] $definitions
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
    */
   public function __construct(
     array $definitions,

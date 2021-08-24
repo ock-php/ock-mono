@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\OCUI\FormulasByType;
+namespace Donquixote\ObCK\FormulasByType;
 
 class FormulasByType_Discovery {
 

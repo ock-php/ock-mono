@@ -1,33 +1,33 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Generator;
+namespace Donquixote\ObCK\Generator;
 
-use Donquixote\OCUI\Formula\Para\Formula_ParaInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\PhpUtil;
+use Donquixote\ObCK\Formula\Para\Formula_ParaInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\PhpUtil;
 
 class Generator_Para implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Generator\GeneratorInterface
+   * @var \Donquixote\ObCK\Generator\GeneratorInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Generator\GeneratorInterface
+   * @var \Donquixote\ObCK\Generator\GeneratorInterface
    */
   private $paraGenerator;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Para\Formula_ParaInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Para\Formula_ParaInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(Formula_ParaInterface $formula, FormulaToAnythingInterface $formulaToAnything): Generator_Para {
     return new self(
@@ -36,8 +36,8 @@ class Generator_Para implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\OCUI\Generator\GeneratorInterface $paraGenerator
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\ObCK\Generator\GeneratorInterface $paraGenerator
    */
   public function __construct(GeneratorInterface $decorated, GeneratorInterface $paraGenerator) {
     $this->decorated = $decorated;

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Util;
+namespace Donquixote\ObCK\Util;
 
 use Donquixote\CallbackReflection\Exception\GeneratedCodeException;
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Evaluator\Evaluator;
-use Donquixote\OCUI\Exception\EvaluatorException_IncompatibleConfiguration;
-use Donquixote\OCUI\Exception\EvaluatorException_UnsupportedFormula;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Evaluator\Evaluator;
+use Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration;
+use Donquixote\ObCK\Exception\EvaluatorException_UnsupportedFormula;
 
 final class PhpUtil extends UtilBase {
 
@@ -94,7 +94,7 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param string $expectedClass
    * @param mixed $foundValue
    *
@@ -131,7 +131,7 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param string $destinationClass
    *
    * @return string
@@ -152,7 +152,7 @@ EOT;
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param string|null $message
    *
    * @return string

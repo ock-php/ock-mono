@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Optional;
+namespace Donquixote\ObCK\Formula\Optional;
 
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Text\TextInterface;
 
 class Formula_Optional_Null extends Formula_OptionalBase {
 

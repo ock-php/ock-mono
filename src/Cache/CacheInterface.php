@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Cache;
+namespace Donquixote\ObCK\Cache;
 
 interface CacheInterface {
 

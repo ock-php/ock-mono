@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntFormat;
+namespace Donquixote\ObCK\Tests\Fixture\IntFormat;
 
-use Donquixote\OCUI\Tests\Fixture\NumberFormat\NumberFormatInterface;
+use Donquixote\ObCK\Tests\Fixture\NumberFormat\NumberFormatInterface;
 
 /**
  * Adapter from NumberFormat to IntFormat.
  *
- * @ocui("numberFormat", "Number format adapter", adapter = true)
+ * @obck("numberFormat", "Number format adapter", adapter = true)
  */
 class IntFormat_NumberFormat implements IntFormatInterface {
 
   /**
-   * @var \Donquixote\OCUI\Tests\Fixture\NumberFormat\NumberFormatInterface
+   * @var \Donquixote\ObCK\Tests\Fixture\NumberFormat\NumberFormatInterface
    */
   private $numberFormat;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Tests\Fixture\NumberFormat\NumberFormatInterface $numberFormat
+   * @param \Donquixote\ObCK\Tests\Fixture\NumberFormat\NumberFormatInterface $numberFormat
    */
   public function __construct(NumberFormatInterface $numberFormat) {
     $this->numberFormat = $numberFormat;

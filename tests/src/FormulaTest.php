@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests;
+namespace Donquixote\ObCK\Tests;
 
-use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\OCUI\Formula\Formula;
-use Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface;
 
 class FormulaTest extends FormulaTestBase {
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Form\Common;
+namespace Donquixote\ObCK\Form\Common;
 
 interface FormatorCommonInterface {
 

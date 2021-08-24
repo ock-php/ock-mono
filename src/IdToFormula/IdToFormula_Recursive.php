@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\IdToFormula;
+namespace Donquixote\ObCK\IdToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class IdToFormula_Recursive implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\IdToFormula\IdToFormulaInterface
+   * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
    */
   private $decorated;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\IdToFormula\IdToFormulaInterface $decorated
+   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $decorated
    *   Decorated object for first level lookup.
    */
   public function __construct(IdToFormulaInterface $decorated) {

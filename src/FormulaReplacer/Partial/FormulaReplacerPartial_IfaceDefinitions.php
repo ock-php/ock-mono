@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaReplacer\Partial;
+namespace Donquixote\ObCK\FormulaReplacer\Partial;
 
 class FormulaReplacerPartial_IfaceDefinitions extends FormulaReplacerPartial_IfaceDefinitionsBase {
 

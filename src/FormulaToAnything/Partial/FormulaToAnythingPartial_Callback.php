@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\OCUI\Exception\FormulaToAnythingException;
+use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\OCUI\Core\Formula\Base\FormulaBaseInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\ReflectionUtil;
+use Donquixote\ObCK\Core\Formula\Base\FormulaBaseInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\ReflectionUtil;
 
 class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
 
@@ -23,7 +23,7 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
-   * @return \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialBase|null
+   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialBase|null
    */
   public static function create(
     CallbackReflectionInterface $callback,

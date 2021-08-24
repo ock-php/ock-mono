@@ -1,36 +1,36 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\IdToFormula;
+namespace Donquixote\ObCK\IdToFormula;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
-use Donquixote\OCUI\Exception\FormulaCreationException;
-use Donquixote\OCUI\IdToFormula\IdToFormulaInterface;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
+use Donquixote\ObCK\Exception\FormulaCreationException;
+use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 
 class IdToFormula_FromDefinitionMap implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface
    */
   private $definitionMap;
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface
    */
   private $definitionToFormula;
 
   /**
-   * @var \Donquixote\OCUI\Context\CfContextInterface|null
+   * @var \Donquixote\ObCK\Context\CfContextInterface|null
    */
   private $context;
 
   /**
-   * @param \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
-   * @param \Donquixote\OCUI\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
+   * @param \Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface $definitionToFormula
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    */
   public function __construct(
     DefinitionMapInterface $definitionMap,

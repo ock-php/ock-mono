@@ -1,15 +1,15 @@
 <?php
 
-namespace Donquixote\OCUI\Tests;
+namespace Donquixote\ObCK\Tests;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\OCUI\Formula\Drilldown\Option\DrilldownOption;
-use Donquixote\OCUI\Generator\Generator;
-use Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface;
-use Donquixote\OCUI\Tests\Fixture\Plant\Plant_OakTree;
-use Donquixote\OCUI\Text\Text_Translatable;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\ObCK\Formula\Drilldown\Option\DrilldownOption;
+use Donquixote\ObCK\Generator\Generator;
+use Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\ObCK\Tests\Fixture\Plant\Plant_OakTree;
+use Donquixote\ObCK\Text\Text_Translatable;
 use Symfony\Component\Yaml\Yaml;
 
 class GeneratorTest extends FormulaTestBase {
@@ -22,7 +22,7 @@ class GeneratorTest extends FormulaTestBase {
    *
    * @dataProvider providerTestFormula()
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public function testFormula(string $file): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
@@ -85,7 +85,7 @@ class GeneratorTest extends FormulaTestBase {
    *
    * @dataProvider providerTestIfaceGenerator()
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public function testIfaceGenerator(string $type, string $name) {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);

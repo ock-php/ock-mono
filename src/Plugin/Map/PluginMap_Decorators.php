@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Plugin\Map;
+namespace Donquixote\ObCK\Plugin\Map;
 
-use Donquixote\OCUI\Plugin\Registry\PluginRegistryInterface;
+use Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface;
 
 class PluginMap_Decorators implements PluginMapInterface {
 
   /**
-   * @var \Donquixote\OCUI\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
    */
   private PluginMapInterface $decorated;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Plugin\Map\PluginMapInterface $decorated
+   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $decorated
    */
   public function __construct(PluginMapInterface $decorated) {
     $this->decorated = $decorated;

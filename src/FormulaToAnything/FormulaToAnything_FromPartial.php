@@ -1,27 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything;
+namespace Donquixote\ObCK\FormulaToAnything;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Exception\FormulaToAnythingException;
-use Donquixote\OCUI\Formula\ContextProviding\Formula_ContextProvidingInterface;
-use Donquixote\OCUI\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartial_SmartChain;
-use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
-use Donquixote\OCUI\Util\MessageUtil;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Exception\FormulaToAnythingException;
+use Donquixote\ObCK\Formula\ContextProviding\Formula_ContextProvidingInterface;
+use Donquixote\ObCK\Formula\Contextual\Formula_ContextualInterface;
+use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartial_SmartChain;
+use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
 
   /**
-   * @var \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface
+   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface
    */
   private $partial;
 
   /**
-   * @var \Donquixote\OCUI\Context\CfContextInterface|null
+   * @var \Donquixote\ObCK\Context\CfContextInterface|null
    */
   private $context;
 
@@ -30,14 +30,14 @@ class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
    *
    * @return self
    *
-   * @throws \Donquixote\OCUI\Exception\STABuilderException
+   * @throws \Donquixote\ObCK\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue): self {
     return new self(FormulaToAnythingPartial_SmartChain::create($paramToValue));
   }
 
   /**
-   * @param \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
+   * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
    *
    * @return self
    */
@@ -46,7 +46,7 @@ class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial
+   * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial
    */
   public function __construct(FormulaToAnythingPartialInterface $partial) {
     $this->partial = $partial;
@@ -55,7 +55,7 @@ class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
   /**
    * Immutable setter. Sets a context.
    *
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    *   Context to constrain available options.
    *
    * @return static

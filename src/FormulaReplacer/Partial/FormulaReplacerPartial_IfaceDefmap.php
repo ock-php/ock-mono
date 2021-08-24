@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaReplacer\Partial;
+namespace Donquixote\ObCK\FormulaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface;
-use Donquixote\OCUI\Formula\Defmap\Formula_Defmap;
-use Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface;
-use Donquixote\OCUI\Formula\Neutral\Formula_Neutral_IfaceTransformed;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Defmap\TypeToDefmap\TypeToDefmapInterface;
+use Donquixote\ObCK\Formula\Defmap\Formula_Defmap;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
+use Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
 
 class FormulaReplacerPartial_IfaceDefmap implements FormulaReplacerPartialInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface
+   * @var \Donquixote\ObCK\Defmap\TypeToDefmap\TypeToDefmapInterface
    */
   private $typeToDefmap;
 
@@ -23,12 +23,12 @@ class FormulaReplacerPartial_IfaceDefmap implements FormulaReplacerPartialInterf
   private $withTaggingDecorator;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface[]
    */
   private $formulas = [];
 
   /**
-   * @param \Donquixote\OCUI\Defmap\TypeToDefmap\TypeToDefmapInterface $typeToDefmap
+   * @param \Donquixote\ObCK\Defmap\TypeToDefmap\TypeToDefmapInterface $typeToDefmap
    * @param bool $withTaggingDecorator
    */
   public function __construct(
@@ -64,10 +64,10 @@ class FormulaReplacerPartial_IfaceDefmap implements FormulaReplacerPartialInterf
   }
 
   /**
-   * @param \Donquixote\OCUI\Formula\Iface\Formula_IfaceInterface $ifaceFormula
-   * @param \Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface $replacer
+   * @param \Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface $ifaceFormula
+   * @param \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface $replacer
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   private function formulaDoGetReplacement(
     Formula_IfaceInterface $ifaceFormula,

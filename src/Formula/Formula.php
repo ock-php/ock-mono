@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula;
+namespace Donquixote\ObCK\Formula;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Group\GroupFormulaBuilder;
-use Donquixote\OCUI\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\OCUI\Formula\Iface\Formula_Iface;
-use Donquixote\OCUI\Formula\Select\Flat\FlatSelectBuilderInterface;
-use Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelect_Fixed;
-use Donquixote\OCUI\Formula\Sequence\Formula_Sequence;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Group\GroupFormulaBuilder;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Iface\Formula_Iface;
+use Donquixote\ObCK\Formula\Select\Flat\FlatSelectBuilderInterface;
+use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelect_Fixed;
+use Donquixote\ObCK\Formula\Sequence\Formula_Sequence;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\UtilBase;
 
 final class Formula extends UtilBase {
 
   /**
-   * @return \Donquixote\OCUI\Formula\Select\Flat\FlatSelectBuilderInterface
+   * @return \Donquixote\ObCK\Formula\Select\Flat\FlatSelectBuilderInterface
    */
   public static function flatSelect(): FlatSelectBuilderInterface {
     return new Formula_FlatSelect_Fixed([]);
@@ -27,7 +27,7 @@ final class Formula extends UtilBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public static function iface(string $interface): FormulaInterface {
     return new Formula_Iface($interface);
@@ -36,7 +36,7 @@ final class Formula extends UtilBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public static function ifaceOrNull(string $interface): FormulaInterface {
     return new Formula_Iface($interface, TRUE);
@@ -45,7 +45,7 @@ final class Formula extends UtilBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public static function ifaceSequence(string $interface): FormulaInterface {
     return new Formula_Sequence(
@@ -53,7 +53,7 @@ final class Formula extends UtilBase {
   }
 
   /**
-   * @return \Donquixote\OCUI\Formula\Group\GroupFormulaBuilder
+   * @return \Donquixote\ObCK\Formula\Group\GroupFormulaBuilder
    */
   public static function group(): GroupFormulaBuilder {
     return new GroupFormulaBuilder();

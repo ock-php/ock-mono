@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntFormat;
+namespace Donquixote\ObCK\Tests\Fixture\IntFormat;
 
-use Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface;
 
 /**
- * @ocui(
+ * @obck(
  *   "intOpDecorator",
  *    "Integer operation decorator",
  *    decorator = true)
@@ -15,20 +15,20 @@ use Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface;
 class IntFormat_IntOpDecorator implements IntFormatInterface {
 
   /**
-   * @var \Donquixote\OCUI\Tests\Fixture\IntFormat\IntFormatInterface|null
+   * @var \Donquixote\ObCK\Tests\Fixture\IntFormat\IntFormatInterface|null
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface
+   * @var \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface
    */
   private $intOp;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Tests\Fixture\IntFormat\IntFormatInterface|null $decorated
-   * @param \Donquixote\OCUI\Tests\Fixture\IntOp\IntOpInterface $intOp
+   * @param \Donquixote\ObCK\Tests\Fixture\IntFormat\IntFormatInterface|null $decorated
+   * @param \Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface $intOp
    */
   public function __construct(?IntFormatInterface $decorated, IntOpInterface $intOp) {
     $this->decorated = $decorated;

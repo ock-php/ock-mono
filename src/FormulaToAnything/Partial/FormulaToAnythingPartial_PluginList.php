@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\OCUI\Formula\PluginList\Formula_PluginListInterface;
-use Donquixote\OCUI\Formula\Select\Formula_Select_FromPlugins;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\IdToFormula\IdToFormula_FromPlugins;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface;
+use Donquixote\ObCK\Formula\Select\Formula_Select_FromPlugins;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\IdToFormula\IdToFormula_FromPlugins;
 
 /**
  * @STA
@@ -26,7 +26,7 @@ class FormulaToAnythingPartial_PluginList extends FormulaToAnythingPartial_Formu
    * {@inheritdoc}
    */
   protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
-    /** @var \Donquixote\OCUI\Formula\PluginList\Formula_PluginListInterface $formula */
+    /** @var \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface $formula */
     $plugins = $formula->getPlugins();
     $ff = (new Formula_Drilldown(
       new Formula_Select_FromPlugins($plugins),

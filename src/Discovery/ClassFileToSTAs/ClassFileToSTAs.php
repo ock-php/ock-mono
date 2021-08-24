@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Discovery\ClassFileToSTAs;
+namespace Donquixote\ObCK\Discovery\ClassFileToSTAs;
 
-use Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTA;
-use Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface;
+use Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTA;
+use Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface;
 use Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactories;
 use Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactoriesInterface;
 use Donquixote\FactoryReflection\ClassToFactories\ClassToFactories;
@@ -19,12 +19,12 @@ class ClassFileToSTAs implements ClassFileToSTAsInterface {
   private $classFileFactories;
 
   /**
-   * @var \Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface
+   * @var \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface
    */
   private $factoryToSTA;
 
   /**
-   * @return \Donquixote\OCUI\Discovery\ClassFileToSTAs\ClassFileToSTAsInterface
+   * @return \Donquixote\ObCK\Discovery\ClassFileToSTAs\ClassFileToSTAsInterface
    */
   public static function create(): ClassFileToSTAsInterface {
     $functionToReturnType = FunctionToReturnType_Chain::create();
@@ -37,7 +37,7 @@ class ClassFileToSTAs implements ClassFileToSTAsInterface {
 
   /**
    * @param ClassFileToFactoriesInterface $classFileFactories
-   * @param \Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface $factoryToSTA
+   * @param \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface $factoryToSTA
    */
   public function __construct(
     ClassFileToFactoriesInterface $classFileFactories,

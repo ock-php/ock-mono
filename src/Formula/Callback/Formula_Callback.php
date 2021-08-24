@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Callback;
+namespace Donquixote\ObCK\Formula\Callback;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Formula;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Formula;
 
 class Formula_Callback implements Formula_CallbackInterface {
 
@@ -18,7 +18,7 @@ class Formula_Callback implements Formula_CallbackInterface {
   private $callbackReflection;
 
   /**
-   * @var \Donquixote\OCUI\Core\Formula\FormulaInterface[]
+   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface[]
    */
   private $explicitFormulas = [];
 
@@ -30,7 +30,7 @@ class Formula_Callback implements Formula_CallbackInterface {
   /**
    * @param string $class
    *
-   * @return \Donquixote\OCUI\Formula\Callback\Formula_Callback
+   * @return \Donquixote\ObCK\Formula\Callback\Formula_Callback
    */
   public static function fromClass(string $class): Formula_Callback {
 
@@ -54,7 +54,7 @@ class Formula_Callback implements Formula_CallbackInterface {
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    */
   public function __construct(
     CallbackReflectionInterface $callbackReflection,
@@ -64,7 +64,7 @@ class Formula_Callback implements Formula_CallbackInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Context\CfContextInterface|NULL $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|NULL $context
    *
    * @return static
    */
@@ -75,7 +75,7 @@ class Formula_Callback implements Formula_CallbackInterface {
 
   /**
    * @param int $index
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param string|null $label
    *
    * @return static

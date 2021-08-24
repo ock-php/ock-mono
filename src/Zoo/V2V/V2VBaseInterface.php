@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Zoo\V2V;
+namespace Donquixote\ObCK\Zoo\V2V;
 
 /**
  * Base interface for all value-to-value interfaces.

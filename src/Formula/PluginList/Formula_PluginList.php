@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\PluginList;
+namespace Donquixote\ObCK\Formula\PluginList;
 
 /**
  * Default implementation.
@@ -10,7 +10,7 @@ namespace Donquixote\OCUI\Formula\PluginList;
 class Formula_PluginList implements Formula_PluginListInterface {
 
   /**
-   * @var \Donquixote\OCUI\Plugin\Plugin[]
+   * @var \Donquixote\ObCK\Plugin\Plugin[]
    */
   private $plugins;
 
@@ -22,7 +22,7 @@ class Formula_PluginList implements Formula_PluginListInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Plugin\Plugin[] $plugins
+   * @param \Donquixote\ObCK\Plugin\Plugin[] $plugins
    *   List of plugins by machine name.
    * @param bool $allowsNull
    *   TRUE if this is optional.

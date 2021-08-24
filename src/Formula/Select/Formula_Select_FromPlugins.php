@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Select;
+namespace Donquixote\ObCK\Formula\Select;
 
-use Donquixote\OCUI\Plugin\Plugin;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
+use Donquixote\ObCK\Plugin\Plugin;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\TextToMarkup\TextToMarkupInterface;
 
 class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\OCUI\Plugin\Plugin[]
+   * @var \Donquixote\ObCK\Plugin\Plugin[]
    */
   private $plugins;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Plugin\Plugin[] $plugins
+   * @param \Donquixote\ObCK\Plugin\Plugin[] $plugins
    */
   public function __construct(array $plugins) {
     self::validatePlugins(...array_values($plugins));
@@ -25,7 +25,7 @@ class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Plugin\Plugin ...$plugins
+   * @param \Donquixote\ObCK\Plugin\Plugin ...$plugins
    */
   private static function validatePlugins(Plugin ...$plugins): void {}
 

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionsById;
+namespace Donquixote\ObCK\Defmap\DefinitionsById;
 
-use Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface;
+use Donquixote\ObCK\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface;
 
 class DefinitionsById_FromType implements DefinitionsByIdInterface {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface
+   * @var \Donquixote\ObCK\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface
    */
   private $typeToDefinitionsById;
 
@@ -20,7 +20,7 @@ class DefinitionsById_FromType implements DefinitionsByIdInterface {
   /**
    * WickedDefinitionsByIdDiscovery constructor.
    *
-   * @param \Donquixote\OCUI\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface $typeToDefinitionsById
+   * @param \Donquixote\ObCK\Defmap\TypeToDefinitionsbyid\TypeToDefinitionsbyidInterface $typeToDefinitionsById
    * @param string $type
    */
   public function __construct(TypeToDefinitionsbyidInterface $typeToDefinitionsById, string $type) {

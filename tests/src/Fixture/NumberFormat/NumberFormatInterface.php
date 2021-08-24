@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\NumberFormat;
+namespace Donquixote\ObCK\Tests\Fixture\NumberFormat;
 
 interface NumberFormatInterface {
 

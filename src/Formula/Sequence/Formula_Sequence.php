@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Sequence;
+namespace Donquixote\ObCK\Formula\Sequence;
 
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\Translator\TranslatorInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\Translator\TranslatorInterface;
 
 class Formula_Sequence extends Formula_SequenceBase {
 

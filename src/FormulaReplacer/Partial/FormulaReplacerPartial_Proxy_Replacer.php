@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaReplacer\Partial;
+namespace Donquixote\ObCK\FormulaReplacer\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Proxy\Replacer\Formula_Proxy_ReplacerInterface;
-use Donquixote\OCUI\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Proxy\Replacer\Formula_Proxy_ReplacerInterface;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
 
 class FormulaReplacerPartial_Proxy_Replacer implements FormulaReplacerPartialInterface {
 

@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 /**
- * @see \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface
+ * @see \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
  */
 interface FormulaToAnythingPartialInterface {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param string $interface
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $helper
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $helper
    *
    * @return null|object
    *   An instance of $interface, or NULL.
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    *   Malfunction in a formula replacer.
    */
   public function formula(

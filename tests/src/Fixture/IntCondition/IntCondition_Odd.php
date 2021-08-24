@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntCondition;
+namespace Donquixote\ObCK\Tests\Fixture\IntCondition;
 
 /**
- * @ocui("odd", "Number is odd")
+ * @obck("odd", "Number is odd")
  */
 class IntCondition_Odd implements IntConditionInterface {
 

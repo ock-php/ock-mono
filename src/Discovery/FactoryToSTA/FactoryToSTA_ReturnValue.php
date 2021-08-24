@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Discovery\FactoryToSTA;
+namespace Donquixote\ObCK\Discovery\FactoryToSTA;
 
-use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
 use Donquixote\FactoryReflection\Factory\ReflectionFactory;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
@@ -17,7 +17,7 @@ use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
 
   /**
-   * @var \Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface
+   * @var \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface
    */
   private $decorated;
 
@@ -37,7 +37,7 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
   private $functionToReturnType;
 
   /**
-   * @param \Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface $decorated
+   * @param \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface $decorated
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    * @param \Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface $contextFinder
    * @param \Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface $functionToReturnType

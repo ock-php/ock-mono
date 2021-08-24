@@ -1,38 +1,38 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Select;
+namespace Donquixote\ObCK\Formula\Select;
 
-use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\TextToMarkup\TextToMarkupInterface;
-use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
-use Donquixote\OCUI\Translator\Translator;
+use Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\TextToMarkup\TextToMarkupInterface;
+use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\ObCK\Translator\Translator;
 
 class Formula_Select_FromDefinitionMap extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface
    */
   private $definitionMap;
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToLabel;
 
   /**
-   * @var \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface
+   * @var \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface
    */
   private $definitionToGroupLabel;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
    */
   public function __construct(
     DefinitionMapInterface $definitionMap,

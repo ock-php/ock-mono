@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Label;
+namespace Donquixote\ObCK\Formula\Label;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaBase\Decorator\Formula_DecoratorBase;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\ObCK\Text\TextInterface;
 
 class Formula_Label extends Formula_DecoratorBase implements Formula_LabelInterface {
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface|null
+   * @var \Donquixote\ObCK\Text\TextInterface|null
    */
   private $label;
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\OCUI\Text\TextInterface|null $label
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\ObCK\Text\TextInterface|null $label
    */
   public function __construct(FormulaInterface $decorated, ?TextInterface $label) {
     parent::__construct($decorated);

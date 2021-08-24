@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Para;
+namespace Donquixote\ObCK\Formula\Para;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
 
 interface Formula_ParaInterface extends Formula_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public function getParaFormula(): FormulaInterface;
 

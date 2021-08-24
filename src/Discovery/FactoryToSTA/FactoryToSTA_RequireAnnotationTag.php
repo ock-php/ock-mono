@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Discovery\FactoryToSTA;
+namespace Donquixote\ObCK\Discovery\FactoryToSTA;
 
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
-use Donquixote\OCUI\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
 
 class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
 
   /**
-   * @var \Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface
+   * @var \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface
    */
   private $decorated;
 
   /**
-   * @param \Donquixote\OCUI\Discovery\FactoryToSTA\FactoryToSTAInterface $decorated
+   * @param \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface $decorated
    */
   public function __construct(FactoryToSTAInterface $decorated) {
     $this->decorated = $decorated;

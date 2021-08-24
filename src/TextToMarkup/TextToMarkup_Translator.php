@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\TextToMarkup;
+namespace Donquixote\ObCK\TextToMarkup;
 
-use Donquixote\OCUI\Text\TextInterface;
-use Donquixote\OCUI\Translator\TranslatorInterface;
+use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\ObCK\Translator\TranslatorInterface;
 
 class TextToMarkup_Translator implements TextToMarkupInterface {
 
   /**
-   * @var \Donquixote\OCUI\Translator\TranslatorInterface
+   * @var \Donquixote\ObCK\Translator\TranslatorInterface
    */
   private TranslatorInterface $translator;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    *   Translator.
    */
   public function __construct(TranslatorInterface $translator) {

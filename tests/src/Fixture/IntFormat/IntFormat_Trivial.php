@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Tests\Fixture\IntFormat;
+namespace Donquixote\ObCK\Tests\Fixture\IntFormat;
 
-use Donquixote\OCUI\Tests\Fixture\NumberFormat\NumberFormatInterface;
+use Donquixote\ObCK\Tests\Fixture\NumberFormat\NumberFormatInterface;
 
 /**
  * Adapter from NumberFormat to IntFormat.
  *
- * @ocui("trivial", "Trival - print integer as-is")
+ * @obck("trivial", "Trival - print integer as-is")
  */
 class IntFormat_Trivial implements IntFormatInterface {
 

@@ -1,18 +1,18 @@
 <?php
 
-namespace Donquixote\OCUI\FormulasByType;
+namespace Donquixote\ObCK\FormulasByType;
 
 class FormulasByType_Buffer implements FormulasByTypeInterface {
 
   /**
-   * @var \Donquixote\OCUI\FormulasByType\FormulasByTypeInterface
+   * @var \Donquixote\ObCK\FormulasByType\FormulasByTypeInterface
    */
   private $decorated;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\FormulasByType\FormulasByTypeInterface $decorated
+   * @param \Donquixote\ObCK\FormulasByType\FormulasByTypeInterface $decorated
    */
   public function __construct(FormulasByTypeInterface $decorated) {
     $this->decorated = $decorated;

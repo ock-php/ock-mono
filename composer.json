@@ -1,6 +1,6 @@
 {
-    "name": "donquixote/ocui",
-    "description": "Object Composition UI",
+    "name": "donquixote/obck",
+    "description": "Object Construction Kit",
     "license": "GPL-2.0-or-later",
     "repositories": [
         {
@@ -65,12 +65,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Donquixote\\OCUI\\": "src"
+            "Donquixote\\ObCK\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Donquixote\\OCUI\\Tests\\": "tests/src"
+            "Donquixote\\ObCK\\Tests\\": "tests/src"
         }
     }
 }

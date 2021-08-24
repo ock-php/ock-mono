@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Summarizer;
+namespace Donquixote\ObCK\Summarizer;
 
-use Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelper;
+use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
 
 /**
  * @STA
@@ -15,20 +15,20 @@ use Donquixote\OCUI\Text\TextInterface;
 class Summarizer_Drilldown implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface
+   * @var \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
    */
   private $formula;
 
   /**
-   * @var \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface
+   * @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
    */
   private $formulaToAnything;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    */
   public function __construct(
     Formula_DrilldownInterface $formula,

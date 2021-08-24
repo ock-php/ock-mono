@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Translator;
+namespace Donquixote\ObCK\Translator;
 
-use Donquixote\OCUI\Translator\Lookup\TranslatorLookupInterface;
+use Donquixote\ObCK\Translator\Lookup\TranslatorLookupInterface;
 
 class TranslatorDecoratorBase implements TranslatorInterface {
 
   /**
-   * @var \Donquixote\OCUI\Translator\TranslatorInterface
+   * @var \Donquixote\ObCK\Translator\TranslatorInterface
    */
   private $translator;
 
   /**
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    */
   public function __construct(TranslatorInterface $translator) {
     $this->translator = $translator;
   }
 
   /**
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    *
    * @return static
    */
@@ -31,7 +31,7 @@ class TranslatorDecoratorBase implements TranslatorInterface {
   }
 
   /**
-   * @param \Donquixote\OCUI\Translator\Lookup\TranslatorLookupInterface $lookup
+   * @param \Donquixote\ObCK\Translator\Lookup\TranslatorLookupInterface $lookup
    *
    * @return static
    */

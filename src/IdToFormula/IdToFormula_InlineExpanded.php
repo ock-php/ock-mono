@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\IdToFormula;
+namespace Donquixote\ObCK\IdToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\OCUI\Formula\DrilldownVal\Formula_DrilldownValInterface;
-use Donquixote\OCUI\Formula\Id\Formula_IdInterface;
-use Donquixote\OCUI\Formula\ValueProvider\Formula_ValueProvider_Null;
-use Donquixote\OCUI\Formula\ValueToValue\Formula_ValueToValue;
-use Donquixote\OCUI\Zoo\V2V\Value\V2V_Value_DrilldownFixedId;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownValInterface;
+use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
+use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_Null;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue;
+use Donquixote\ObCK\Zoo\V2V\Value\V2V_Value_DrilldownFixedId;
 
 class IdToFormula_InlineExpanded implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\OCUI\IdToFormula\IdToFormulaInterface
+   * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
    */
   private $decorated;
 
   /**
-   * @param \Donquixote\OCUI\IdToFormula\IdToFormulaInterface $decorated
+   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $decorated
    */
   public function __construct(IdToFormulaInterface $decorated) {
     $this->decorated = $decorated;

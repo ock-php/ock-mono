@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\ValueProvider;
+namespace Donquixote\ObCK\Formula\ValueProvider;
 
 class Formula_ValueProvider_Null implements Formula_ValueProviderInterface {
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\Discovery\ClassFileToDefinitions;
+namespace Donquixote\ObCK\Defmap\Discovery\ClassFileToDefinitions;
 
 interface ClassFileToDefinitionsInterface {
 

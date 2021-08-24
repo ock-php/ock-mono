@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Decorator;
+namespace Donquixote\ObCK\Decorator;
 
 /**
- * @see \Donquixote\OCUI\Generator\GeneratorInterface
+ * @see \Donquixote\ObCK\Generator\GeneratorInterface
  */
 interface DecoratorInterface {
 

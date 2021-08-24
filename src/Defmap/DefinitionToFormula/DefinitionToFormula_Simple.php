@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Defmap\DefinitionToFormula;
+namespace Donquixote\ObCK\Defmap\DefinitionToFormula;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Definition\Formula_Definition;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Definition\Formula_Definition;
 
 class DefinitionToFormula_Simple implements DefinitionToFormulaInterface {
 

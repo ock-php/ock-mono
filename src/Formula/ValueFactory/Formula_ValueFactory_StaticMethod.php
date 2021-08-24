@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\OCUI\Formula\ValueFactory;
+namespace Donquixote\ObCK\Formula\ValueFactory;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;

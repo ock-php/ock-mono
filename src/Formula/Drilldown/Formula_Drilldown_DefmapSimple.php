@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\OCUI\Formula\Drilldown;
+namespace Donquixote\ObCK\Formula\Drilldown;
 
-use Donquixote\OCUI\Context\CfContextInterface;
-use Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface;
-use Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
-use Donquixote\OCUI\IdToFormula\IdToFormula_DefmapSimple;
-use Donquixote\OCUI\Formula\Select\Formula_Select_FromDefinitionMap;
-use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface;
+use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
+use Donquixote\ObCK\IdToFormula\IdToFormula_DefmapSimple;
+use Donquixote\ObCK\Formula\Select\Formula_Select_FromDefinitionMap;
+use Donquixote\ObCK\Util\UtilBase;
 
 class Formula_Drilldown_DefmapSimple extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
-   * @param \Donquixote\OCUI\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
-   * @param \Donquixote\OCUI\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface $definitionMap
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToLabel
+   * @param \Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface $definitionToGroupLabel
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\OCUI\Formula\Drilldown\Formula_DrilldownInterface
+   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
    */
   public static function create(
     DefinitionMapInterface $definitionMap,
