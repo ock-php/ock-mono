@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
-use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Util\LocalPackageUtil;
+use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class FormulaToAnythingPartial_Chain implements FormulaToAnythingPartialInterface {
+class FormulaToAnythingPartial_Chain extends FormulaToAnythingPartialZeroBase {
 
   /**
    * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
@@ -69,10 +69,4 @@ class FormulaToAnythingPartial_Chain implements FormulaToAnythingPartialInterfac
     return TRUE;
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function getSpecifity(): int {
-    return 0;
-  }
 }

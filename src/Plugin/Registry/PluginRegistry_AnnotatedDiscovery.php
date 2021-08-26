@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Plugin\Registry;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Plugin\Discovery\ClassToPluginsInterface;
 
 class PluginRegistry_AnnotatedDiscovery implements PluginRegistryInterface {

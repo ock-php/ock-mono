@@ -13,7 +13,7 @@ use Donquixote\ObCK\IdToFormula\IdToFormula_FromPlugins;
 use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 
 /**
- * @STA
+ * @_STA
  */
 class FormulaToAnythingPartial_IfacePluginMap extends FormulaToAnythingPartial_FormulaReplacerBase {
 

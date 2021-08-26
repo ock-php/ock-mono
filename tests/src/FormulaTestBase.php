@@ -3,7 +3,7 @@
 namespace Donquixote\ObCK\Tests;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormula_PluginMap;
+use Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormula_PluginMapDrilldownWithDecorators;
 use Donquixote\ObCK\Exception\STABuilderException;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnything_FromPartial;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
@@ -33,11 +33,12 @@ class FormulaTestBase extends TestCase {
     $logger = new TestLogger();
     $objects[] = new ParamToLabel();
     $objects[] = $logger;
-    $objects[] = new TypeToFormula_PluginMap($this->getPluginMap());
+    $objects[] = $this->getPluginMap();
     $param_to_value = new ParamToValue_ObjectsMatchType($objects);
     try {
       $fta = FormulaToAnything_FromPartial::create(
-        $param_to_value);
+        $param_to_value,
+        'test_cid');
     }
     catch (STABuilderException $e) {
       static::fail(sprintf(

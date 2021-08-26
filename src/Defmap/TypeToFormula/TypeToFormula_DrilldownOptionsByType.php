@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Defmap\TypeToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\IdToFormula\IdToFormula_FromOptions;
 use Donquixote\ObCK\DrilldownOptionsByType\DrilldownOptionsByTypeInterface;
 use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;

@@ -23,7 +23,12 @@ class Plugin {
   /**
    * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  private $formula;
+  private FormulaInterface $formula;
+
+  /**
+   * @var array
+   */
+  private array $info;
 
   /**
    * Constructor.
@@ -31,11 +36,13 @@ class Plugin {
    * @param \Donquixote\ObCK\Text\TextInterface|null $label
    * @param \Donquixote\ObCK\Text\TextInterface|null $description
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param array $info
    */
-  public function __construct(?TextInterface $label, ?TextInterface $description, FormulaInterface $formula) {
+  public function __construct(?TextInterface $label, ?TextInterface $description, FormulaInterface $formula, array $info) {
     $this->label = $label;
     $this->description = $description;
     $this->formula = $formula;
+    $this->info = $info;
   }
 
   /**
@@ -47,6 +54,22 @@ class Plugin {
     return $this->label;
   }
 
+  /**
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   *
+   * @return static
+   */
+  public function withFormula(FormulaInterface $formula): self {
+    $clone = clone $this;
+    $clone->formula = $formula;
+    return $clone;
+  }
+
+  /**
+   * @param string $id
+   *
+   * @return \Donquixote\ObCK\Text\TextInterface
+   */
   public function getLabelOr(string $id): TextInterface {
     return $this->label ?: Text::s($id);
   }
@@ -70,6 +93,37 @@ class Plugin {
    */
   public function getFormula(): FormulaInterface {
     return $this->formula;
+  }
+
+  /**
+   * Gets the (reduced) annotation data.
+   *
+   * @return array
+   */
+  public function getInfo(): array {
+    return $this->info;
+  }
+
+  /**
+   * Gets a boolean value from the annotation.
+   *
+   * @param string $key
+   *
+   * @return bool
+   */
+  public function is(string $key): bool {
+    return !empty($this->info[$key]);
+  }
+
+  /**
+   * Gets a value from the annotation.
+   *
+   * @param string $key
+   *
+   * @return mixed
+   */
+  public function get(string $key) {
+    return $this->info[$key];
   }
 
 }

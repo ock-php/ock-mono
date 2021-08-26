@@ -6,9 +6,6 @@ namespace Donquixote\ObCK\Formula\DecoKey;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\Formula\Sequence\Formula_Sequence;
-use Donquixote\ObCK\Formula\SequenceVal\Formula_SequenceVal;
-use Donquixote\ObCK\Zoo\V2V\Sequence\V2V_Sequence_Decorators;
 
 class Formula_DecoKey implements FormulaInterface, Formula_DecoKeyInterface {
 
@@ -26,25 +23,6 @@ class Formula_DecoKey implements FormulaInterface, Formula_DecoKeyInterface {
    * @var string
    */
   private string $key;
-
-  /**
-   * Static factory.
-   *
-   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $decorated
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorator
-   *   Formula for a single decorator.
-   */
-  public static function createSequence(
-    FormulaInterface $decorated,
-    FormulaInterface $decorator
-  ) {
-    return new self(
-      $decorated,
-      new Formula_SequenceVal(
-        new Formula_Sequence($decorator),
-        new V2V_Sequence_Decorators()),
-      'decorators');
-  }
 
   /**
    * Constructor.

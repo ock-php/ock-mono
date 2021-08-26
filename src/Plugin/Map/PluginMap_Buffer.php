@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Plugin\Map;
 
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+
 class PluginMap_Buffer implements PluginMapInterface {
 
   /**

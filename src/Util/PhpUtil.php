@@ -157,7 +157,7 @@ EOT;
    *
    * @return string
    */
-  public static function unsupportedFormula(FormulaInterface $formula, $message = NULL): string {
+  public static function unsupportedFormula(FormulaInterface $formula, string $message = NULL): string {
 
     $formulaClass = \get_class($formula);
 

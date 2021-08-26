@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\FormulaToAnything;
 
-use Donquixote\ObCK\Util\MessageUtil;
-use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ObCK\Util\LocalPackageUtil;
+use Donquixote\ObCK\Util\MessageUtil;
+use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
+class FormulaToAnything_SmartChain extends FormulaToAnythingBase {
 
   /**
    * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][][]
@@ -42,18 +42,21 @@ class FormulaToAnything_SmartChain implements FormulaToAnythingInterface {
 
   /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
+   * @param string $cache_id
    *
    * @return self
    */
-  public static function create(ParamToValueInterface $paramToValue): self {
+  public static function create(ParamToValueInterface $paramToValue, string $cache_id): self {
     $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
-    return new self($partials);
+    return new self($partials, $cache_id);
   }
 
   /**
    * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
+   * @param string $cache_id
    */
-  public function __construct(array $partials) {
+  public function __construct(array $partials, string $cache_id) {
+    parent::__construct($cache_id);
 
     $indices = [];
     $specifities = [];

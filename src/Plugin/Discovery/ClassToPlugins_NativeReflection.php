@@ -16,6 +16,12 @@ use Donquixote\ObCK\Util\DocUtil;
 
 class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
 
+  const KEYS_TO_REMOVE = [
+    TRUE, 'id' => TRUE,
+    TRUE, 'label' => TRUE,
+    'description' => TRUE,
+  ];
+
   /**
    * @var \Donquixote\ObCK\Discovery\DocToAnnotations\DocToAnnotationsInterface
    */
@@ -202,27 +208,38 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param $pluginTypeNames
+   * @param string[] $pluginTypeNames
    * @param array[] $annotations
    *
    * @return array
    */
-  private static function formulaBuildPluginss(FormulaInterface $formula, $pluginTypeNames, array $annotations): array {
+  private static function formulaBuildPluginss(FormulaInterface $formula, array $pluginTypeNames, array $annotations): array {
 
-    $plugins = [];
+    $pluginss = [];
     foreach ($annotations as $annotation) {
       $id = $annotation['id'] ?? $annotation[0] ?? NULL;
       if ($id === NULL) {
         // @todo Log this.
         continue;
       }
-      $plugins[$id] = new Plugin(
+      $plugin = new Plugin(
         Text::tOrNull($annotation['label'] ?? $annotation[1] ?? NULL),
         Text::tOrNull($annotation['description'] ?? NULL),
-        $formula);
+        $formula,
+        array_diff_key($annotation, self::KEYS_TO_REMOVE));
+      if (empty($annotation['decorator'])) {
+        foreach ($pluginTypeNames as $type) {
+          $pluginss[$type][$id] = $plugin;
+        }
+      }
+      else {
+        foreach ($pluginTypeNames as $type) {
+          $pluginss["decorator<$type>"][$id] = $plugin;
+        }
+      }
     }
 
-    return array_fill_keys($pluginTypeNames, $plugins);
+    return $pluginss;
   }
 
   /**

@@ -8,9 +8,9 @@ use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Form\Common\FormatorCommonInterface;
 use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialZeroBase;
 
-class Materialization_ValueFactory implements FormulaToAnythingPartialInterface {
+class Materialization_ValueFactory extends FormulaToAnythingPartialZeroBase {
 
   /**
    * {@inheritdoc}
@@ -46,13 +46,6 @@ class Materialization_ValueFactory implements FormulaToAnythingPartialInterface 
       $formulaClass,
       Formula_ValueToValueBaseInterface::class,
       TRUE);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSpecifity(): int {
-    return 0;
   }
 
 }

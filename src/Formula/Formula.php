@@ -59,6 +59,13 @@ final class Formula extends UtilBase {
     return new GroupFormulaBuilder();
   }
 
+  /**
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything
+   *
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   */
   public static function replace(FormulaInterface $formula, FormulaToAnythingInterface $formula_to_anything): ?FormulaInterface {
 
     $candidate = $formula_to_anything->formula(

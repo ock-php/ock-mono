@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\IdToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 use Donquixote\ObCK\Plugin\Plugin;
 
 class IdToFormula_FromPluginsDecorated implements IdToFormulaInterface {
@@ -12,7 +11,7 @@ class IdToFormula_FromPluginsDecorated implements IdToFormulaInterface {
   /**
    * @var \Donquixote\ObCK\Plugin\Plugin[]
    */
-  private $plugins;
+  private array $plugins;
 
   /**
    * Constructor.

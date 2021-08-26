@@ -23,6 +23,8 @@ class Formula_FormulaFactory_StaticMethod implements Formula_FormulaFactoryInter
 
   /**
    * @param callable $callable
+   *
+   * @return self
    */
   public static function fromCallable(callable $callable): self {
     if (!is_array($callable) || !is_string($callable[0])) {

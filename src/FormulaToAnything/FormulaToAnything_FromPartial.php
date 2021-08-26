@@ -13,7 +13,7 @@ use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
 use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
+class FormulaToAnything_FromPartial extends FormulaToAnythingBase {
 
   /**
    * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface
@@ -27,29 +27,33 @@ class FormulaToAnything_FromPartial implements FormulaToAnythingInterface {
 
   /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
+   * @param string $cache_id
    *
    * @return self
    *
    * @throws \Donquixote\ObCK\Exception\STABuilderException
    */
-  public static function create(ParamToValueInterface $paramToValue): self {
-    return new self(FormulaToAnythingPartial_SmartChain::create($paramToValue));
+  public static function create(ParamToValueInterface $paramToValue, string $cache_id): self {
+    return new self(FormulaToAnythingPartial_SmartChain::create($paramToValue), $cache_id);
   }
 
   /**
    * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
+   * @param string $cache_id
    *
    * @return self
    */
-  public static function createFromPartials(array $partials): self {
-    return new self(new FormulaToAnythingPartial_SmartChain($partials));
+  public static function createFromPartials(array $partials, string $cache_id): self {
+    return new self(new FormulaToAnythingPartial_SmartChain($partials), $cache_id);
   }
 
   /**
    * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial
+   * @param string $cache_id
    */
-  public function __construct(FormulaToAnythingPartialInterface $partial) {
+  public function __construct(FormulaToAnythingPartialInterface $partial, string $cache_id) {
     $this->partial = $partial;
+    parent::__construct($cache_id);
   }
 
   /**

@@ -5,13 +5,13 @@ namespace Donquixote\ObCK\Form\Common;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialZeroBase;
 
 /**
  * @STA
  */
-class FormatorCommon_Contextual implements FormulaToAnythingPartialInterface {
+class FormatorCommon_Contextual extends FormulaToAnythingPartialZeroBase {
 
   /**
    * {@inheritdoc}
@@ -49,10 +49,4 @@ class FormatorCommon_Contextual implements FormulaToAnythingPartialInterface {
       TRUE);
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function getSpecifity(): int {
-    return 0;
-  }
 }

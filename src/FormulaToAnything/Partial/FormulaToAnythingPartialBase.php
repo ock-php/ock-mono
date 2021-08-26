@@ -37,7 +37,7 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
    *
    * @return static
    */
-  public function withSpecifity(int $specifity) {
+  public function withSpecifity(int $specifity): self {
 
     if ($specifity === $this->specifity) {
       return $this;
@@ -53,7 +53,7 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
    *
    * @return static
    */
-  public function withFormulaType(string $formulaType) {
+  public function withFormulaType(string $formulaType): self {
 
     if ($formulaType === $this->formulaType) {
       return $this;
@@ -69,7 +69,7 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
    *
    * @return static
    */
-  public function withResultType(string $resultType) {
+  public function withResultType(string $resultType): self {
 
     if ($resultType === $this->resultType) {
       return $this;

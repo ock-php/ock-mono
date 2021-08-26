@@ -49,9 +49,11 @@
         "donquixote/adaptism": "dev-master",
         "donquixote/annotation-parser": "@dev",
         "donquixote/callback-reflection": "@dev",
+        "donquixote/class-discovery": "@dev",
         "donquixote/containerkit": "*",
         "donquixote/factory-reflection": "dev-master",
         "donquixote/nicetrace": "*",
+        "donquixote/reflectionkit": "*",
         "psr/log": "^1.1"
     },
     "require-dev": {

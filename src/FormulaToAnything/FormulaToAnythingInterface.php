@@ -19,4 +19,11 @@ interface FormulaToAnythingInterface {
    */
   public function formula(FormulaInterface $formula, string $interface): object;
 
+  /**
+   * Gets a cache id.
+   *
+   * @return string
+   */
+  public function getCacheId(): string;
+
 }

@@ -8,7 +8,7 @@ use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
-class FormulaToAnythingPartial_FormulaReplacer implements FormulaToAnythingPartialInterface {
+class FormulaToAnythingPartial_FormulaReplacer extends FormulaToAnythingPartialZeroBase {
 
   /**
    * @var \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface
@@ -20,13 +20,6 @@ class FormulaToAnythingPartial_FormulaReplacer implements FormulaToAnythingParti
    */
   public function __construct(FormulaReplacerInterface $replacer) {
     $this->replacer = $replacer;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSpecifity(): int {
-    return 0;
   }
 
   /**

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Defmap\TypeToFormula;
 
-use Donquixote\ObCK\Context\CfContextInterface;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 interface TypeToFormulaInterface {

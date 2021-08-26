@@ -10,7 +10,7 @@ use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
 
-class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
+class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
 
   /**
    * @var \Donquixote\ObCK\Formula\Select\Formula_SelectInterface

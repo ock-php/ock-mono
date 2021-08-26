@@ -12,6 +12,8 @@ interface Formula_DecoKeyInterface extends Formula_DecoratorBaseInterface {
 
   /**
    * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
+   *
+   * @todo Does this need to be a drilldown?
    */
   public function getDecorated(): Formula_DrilldownInterface;
 

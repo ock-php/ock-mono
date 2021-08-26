@@ -43,6 +43,8 @@ abstract class FormulaToAnythingPartial_FormulaReplacerBase extends FormulaToAny
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    *   Replacement formula.
+   *
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   abstract protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface;
 

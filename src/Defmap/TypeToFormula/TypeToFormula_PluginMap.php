@@ -5,6 +5,7 @@ namespace Donquixote\ObCK\Defmap\TypeToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\PluginList\Formula_PluginList;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 
 /**

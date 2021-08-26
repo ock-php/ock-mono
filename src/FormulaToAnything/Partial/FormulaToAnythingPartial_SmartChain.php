@@ -9,7 +9,7 @@ use Donquixote\ObCK\Util\LocalPackageUtil;
 use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInterface {
+class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBase {
 
   /**
    * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][][]
@@ -63,13 +63,6 @@ class FormulaToAnythingPartial_SmartChain implements FormulaToAnythingPartialInt
     array_multisort($specifities, SORT_DESC, $indices, $partials);
 
     $this->partials = $partials;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSpecifity(): int {
-    return 0;
   }
 
   /**

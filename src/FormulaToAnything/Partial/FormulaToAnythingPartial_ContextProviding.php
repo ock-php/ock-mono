@@ -6,7 +6,7 @@ use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\ContextProviding\Formula_ContextProvidingInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
-class FormulaToAnythingPartial_ContextProviding implements FormulaToAnythingPartialInterface {
+class FormulaToAnythingPartial_ContextProviding extends FormulaToAnythingPartialZeroBase {
 
   /**
    * {@inheritdoc}
@@ -38,13 +38,6 @@ class FormulaToAnythingPartial_ContextProviding implements FormulaToAnythingPart
       $formulaClass,
       Formula_ContextProvidingInterface::class,
       TRUE);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSpecifity(): int {
-    return 0;
   }
 
 }
