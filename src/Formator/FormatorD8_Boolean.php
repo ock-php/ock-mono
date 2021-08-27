@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Formator;
 
-use Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface;
+use Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface;
 
 class FormatorD8_Boolean implements FormatorD8Interface {
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Boolean\Formula_BooleanInterface $formula
+   * @param \Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface $formula
    *
    * @return self
    */

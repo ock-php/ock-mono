@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Formator;
 
-use Donquixote\OCUI\Formula\Label\Formula_LabelInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Formula\Label\Formula_LabelInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 class FormatorD8_Label implements FormatorD8Interface {
 
@@ -21,12 +21,12 @@ class FormatorD8_Label implements FormatorD8Interface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Label\Formula_LabelInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Label\Formula_LabelInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(Formula_LabelInterface $formula, FormulaToAnythingInterface $formulaToAnything) {
 

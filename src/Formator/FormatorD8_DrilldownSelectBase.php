@@ -3,27 +3,28 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Formator;
 
-use Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelperInterface;
+use Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelperInterface;
+use Donquixote\ObCK\Exception\FormulaToAnythingException;
+use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
+use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\ObCK\Translator\Translator;
+use Donquixote\ObCK\Util\ConfUtil;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface;
 use Drupal\cu\Formator\Util\D8FormUtil;
 use Drupal\cu\Formator\Util\D8SelectUtil;
-use Donquixote\OCUI\Formula\Select\Formula_Select_Fixed;
-use Donquixote\OCUI\Formula\Select\Formula_SelectInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
-use Donquixote\OCUI\Translator\Translator;
-use Donquixote\OCUI\Util\ConfUtil;
-use Drupal\Core\Form\FormStateInterface;
 
 abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, OptionableFormatorD8Interface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Select\Formula_SelectInterface
+   * @var \Donquixote\ObCK\Formula\Select\Formula_SelectInterface
    */
   private $idSelectFormula;
 
   /**
-   * @var \Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelperInterface
+   * @var \Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelperInterface
    */
   private $keysHelper;
 
@@ -35,8 +36,8 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Formula\Select\Formula_SelectInterface $idFormula
-   * @param \Donquixote\OCUI\DrilldownKeysHelper\DrilldownKeysHelperInterface $drilldownKeysHelper
+   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $idFormula
+   * @param \Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelperInterface $drilldownKeysHelper
    */
   public function __construct(
     Formula_SelectInterface $idFormula,
@@ -71,12 +72,22 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
 
     $translator = new Translator(new TranslatorLookup_Passthru());
 
+    try {
+      $select_formula = $this->buildEnhancedSelectFormula();
+    }
+    catch (FormulaToAnythingException $e) {
+      // @todo More sophisticated error handling.
+      return [
+        '#markup' => t('Failure.'),
+      ];
+    }
+
     $form = [
       '#type' => 'container',
       '#attributes' => ['class' => ['cu-drilldown']],
       '#tree' => TRUE,
       '_id' => D8SelectUtil::optionsFormulaBuildSelectElement(
-        $this->buildEnhancedSelectFormula(),
+        $select_formula,
         $translator,
         $id,
         $label,
@@ -120,7 +131,9 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
   /**
    * Builds a modified select formula with '…' appended to some options.
    *
-   * @return \Donquixote\OCUI\Formula\Select\Formula_SelectInterface
+   * @return \Donquixote\ObCK\Formula\Select\Formula_SelectInterface
+   *
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   private function buildEnhancedSelectFormula(): Formula_SelectInterface {
     $grouped_options = [];
@@ -135,7 +148,9 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
   /**
    * @param string|null $group_id
    *
-   * @return \Donquixote\OCUI\Text\TextInterface[]
+   * @return \Donquixote\ObCK\Text\TextInterface[]
+   *
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   private function buildEnhancedOptionsInGroup(?string $group_id): array {
     $options = [];
@@ -153,6 +168,8 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
    *
    * @return bool
    *   TRUE, if the sub-formula is optionless.
+   *
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   abstract protected function idIsOptionless(string $id): bool;
 

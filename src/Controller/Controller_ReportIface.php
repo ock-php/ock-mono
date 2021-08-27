@@ -4,14 +4,14 @@ declare(strict_types=1);
 namespace Drupal\cu\Controller;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\OCUI\Exception\FormulaToAnythingException;
-use Donquixote\OCUI\Formula\Formula;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Generator\Generator;
-use Donquixote\OCUI\Plugin\Map\PluginMapInterface;
-use Donquixote\OCUI\Summarizer\Summarizer;
-use Donquixote\OCUI\Translator\TranslatorInterface;
-use Donquixote\OCUI\Util\HtmlUtil;
+use Donquixote\ObCK\Exception\FormulaToAnythingException;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Generator\Generator;
+use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
+use Donquixote\ObCK\Summarizer\Summarizer;
+use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\ObCK\Util\HtmlUtil;
 use Drupal\controller_annotations\Configuration\RouteIsAdmin;
 use Drupal\controller_annotations\Configuration\RouteParameters;
 use Drupal\controller_annotations\Configuration\RouteRequirePermission;
@@ -69,11 +69,11 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): self {
-    /** @var \Donquixote\OCUI\Plugin\Map\PluginMapInterface $plugin_map */
+    /** @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map */
     $plugin_map = $container->get(PluginMapInterface::class);
-    /** @var \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything */
+    /** @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything */
     $formula_to_anything = $container->get(FormulaToAnythingInterface::class);
-    /** @var \Donquixote\OCUI\Translator\TranslatorInterface $translator */
+    /** @var \Donquixote\ObCK\Translator\TranslatorInterface $translator */
     $translator = $container->get(TranslatorInterface::class);
     return new self($plugin_map, $formula_to_anything, $translator);
   }
@@ -81,10 +81,10 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Plugin\Map\PluginMapInterface $plugin_map
+   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map
    *   Plugin map.
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    */
   public function __construct(PluginMapInterface $plugin_map, FormulaToAnythingInterface $formula_to_anything, TranslatorInterface $translator) {
     $this->pluginMap = $plugin_map;
@@ -123,7 +123,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
     $rows_grouped = [];
     foreach ($this->pluginMap->typeGetPlugins($interface) as $key => $plugin) {
 
-      $label = $plugin->getLabelOr($key)->convert($this->translator);
+      $label = $plugin->getLabel()->convert($this->translator);
 
       $row = [
         Controller_ReportPlugin::route($interface, $key)

@@ -1,27 +1,27 @@
 services:
   Drupal\cu\NamespaceDirectoriesIA\NamespaceDirectoriesIA_ModuleNamespaces:
     arguments: ['@extension.list.module', '@container.namespaces']
-  Donquixote\OCUI\Plugin\Discovery\ClassToPluginsInterface:
-    factory: [Donquixote\OCUI\Plugin\Discovery\ClassToPlugins_NativeReflection, create]
+  Donquixote\ObCK\Plugin\Discovery\ClassToPluginsInterface:
+    factory: [Donquixote\ObCK\Plugin\Discovery\ClassToPlugins_NativeReflection, create]
     arguments: [ocui]
-  Donquixote\OCUI\Plugin\Registry\PluginRegistryInterface:
-    class: Donquixote\OCUI\Plugin\Registry\PluginRegistry_ExtensionNamespaces
+  Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface:
+    class: Donquixote\ObCK\Plugin\Registry\PluginRegistry_ExtensionNamespaces
     arguments:
       - '@Drupal\cu\NamespaceDirectoriesIA\NamespaceDirectoriesIA_ModuleNamespaces'
-      - '@Donquixote\OCUI\Plugin\Discovery\ClassToPluginsInterface'
-  Donquixote\OCUI\Plugin\Map\PluginMapInterface:
-    class: Donquixote\OCUI\Plugin\Map\PluginMap_Registry
+      - '@Donquixote\ObCK\Plugin\Discovery\ClassToPluginsInterface'
+  Donquixote\ObCK\Plugin\Map\PluginMapInterface:
+    class: Donquixote\ObCK\Plugin\Map\PluginMap_Registry
     autowire: true
   logger.channel.cu:
     parent: logger.channel_base
     arguments: ['cu']
-  Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface:
+  Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface:
     factory: [Drupal\cu\CuServices, formulaToAnything]
     arguments:
       - '@service_container'
       - '@logger.channel.cu'
-      - '@Donquixote\OCUI\Plugin\Map\PluginMapInterface'
-      - '@Donquixote\OCUI\Translator\TranslatorInterface'
+      - '@Donquixote\ObCK\Plugin\Map\PluginMapInterface'
+      - '@Donquixote\ObCK\Translator\TranslatorInterface'
   Drupal\cu\ParamConverter\ParamConverter_Iface:
     autowire: true
     tags:
@@ -34,7 +34,7 @@ services:
     class: Drupal\cu\TextToDrupal\TextToDrupal_Default
     arguments:
       - '@string_translation'
-  Donquixote\OCUI\Translator\TranslatorInterface:
+  Donquixote\ObCK\Translator\TranslatorInterface:
     class: Drupal\cu\Translator\Translator_Drupal
     arguments:
       - '@string_translation'

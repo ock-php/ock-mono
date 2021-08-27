@@ -7,7 +7,7 @@ namespace Drupal\cu_example\Plant;
 use Drupal\cu_example\Animal\AnimalInterface;
 
 /**
- * @ocui("enchantedCreature", "Enchanted creature")
+ * @ocui("enchantedCreature", "Enchanted creature", inline = true)
  */
 class Plant_EnchantedCreature implements PlantInterface {
 

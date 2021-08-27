@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Formator\Util;
 
-use Donquixote\OCUI\FormulaBase\FormulaBase_AbstractSelectInterface;
-use Donquixote\OCUI\Translator\TranslatorInterface;
-use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface;
+use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\ObCK\Util\UtilBase;
 use Drupal\Core\Form\FormStateInterface;
 
 final class D8SelectUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\FormulaBase\FormulaBase_AbstractSelectInterface $formula
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface $formula
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    * @param string|null $id
    * @param string $label
    * @param bool $required
@@ -64,8 +64,8 @@ final class D8SelectUtil extends UtilBase {
   /**
    * Gets select options in a format suitable for Drupal 8.
    *
-   * @param \Donquixote\OCUI\FormulaBase\FormulaBase_AbstractSelectInterface $formula
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface $formula
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    *
    * @return string[][]|string[]
    *   Options to be used in '#options' in a '#type' => 'select' element.

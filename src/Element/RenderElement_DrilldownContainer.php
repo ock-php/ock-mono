@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Element;
 
-use Donquixote\OCUI\Util\StringUtil;
+use Donquixote\ObCK\Util\StringUtil;
 use Drupal\Core\Render\Element\RenderElement;
 use Drupal\cu\Controller\Controller_ReportIface;
 

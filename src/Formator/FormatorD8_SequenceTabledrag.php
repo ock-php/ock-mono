@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Formator;
 
-use Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Translator\TranslatorInterface;
+use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
@@ -16,7 +16,7 @@ use Drupal\cu\Formator\Util\ArrayMode;
 class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
 
   /**
-   * @var \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface
+   * @var \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface
    */
   private $sequence;
 
@@ -31,21 +31,21 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
   private $arrayMode;
 
   /**
-   * @var \Donquixote\OCUI\Translator\TranslatorInterface
+   * @var \Donquixote\ObCK\Translator\TranslatorInterface
    */
   private TranslatorInterface $translator;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $sequence
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $sequence
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    *
    * @return self
    *   Created instance.
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException Cannot create the item formator.
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException Cannot create the item formator.
    */
   public static function create(
     Formula_SequenceInterface $sequence,
@@ -63,9 +63,9 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Formula\Sequence\Formula_SequenceInterface $sequence
+   * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $sequence
    * @param \Drupal\cu\Formator\FormatorD8Interface $itemFormator
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    */
   public function __construct(
     Formula_SequenceInterface $sequence,

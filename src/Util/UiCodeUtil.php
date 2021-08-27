@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Drupal\cu\Util;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\OCUI\Util\HtmlUtil;
-use Donquixote\OCUI\Util\PhpUtil;
-use Donquixote\OCUI\Util\StringUtil as CfStringUtil;
+use Donquixote\ObCK\Util\HtmlUtil;
+use Donquixote\ObCK\Util\PhpUtil;
+use Donquixote\ObCK\Util\StringUtil as CfStringUtil;
 use Drupal\Core\Render\Markup;
 
 // See https://bugs.php.net/bug.php?id=66773

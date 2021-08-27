@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Formator;
 
-use Donquixote\OCUI\Form\Common\FormatorCommonInterface;
+use Donquixote\ObCK\Form\Common\FormatorCommonInterface;
 
 interface FormatorD8Interface extends FormatorCommonInterface {
 

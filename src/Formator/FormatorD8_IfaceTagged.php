@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Drupal\cu\Formator;
 
 use Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface;
-use Donquixote\OCUI\Formula\Neutral\Formula_Neutral_IfaceTransformed;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 class FormatorD8_IfaceTagged implements FormatorD8Interface, OptionableFormatorD8Interface {
 
@@ -15,19 +15,19 @@ class FormatorD8_IfaceTagged implements FormatorD8Interface, OptionableFormatorD
   private $decorated;
 
   /**
-   * @var \Donquixote\OCUI\Formula\Neutral\Formula_Neutral_IfaceTransformed
+   * @var \Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed
    */
   private $formula;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Neutral\Formula_Neutral_IfaceTransformed $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_Neutral_IfaceTransformed $formula,
@@ -51,7 +51,7 @@ class FormatorD8_IfaceTagged implements FormatorD8Interface, OptionableFormatorD
 
   /**
    * @param \Drupal\cu\Formator\FormatorD8_DrilldownSelect $decorated
-   * @param \Donquixote\OCUI\Formula\Neutral\Formula_Neutral_IfaceTransformed $formula
+   * @param \Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed $formula
    */
   public function __construct(
     FormatorD8_DrilldownSelect $decorated,

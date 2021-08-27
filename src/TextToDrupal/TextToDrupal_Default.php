@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\cu\TextToDrupal;
 
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Text\TextInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 

@@ -3,22 +3,22 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Formator;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Util\MessageUtil;
-use Donquixote\OCUI\Util\StaUtil;
-use Donquixote\OCUI\Util\UtilBase;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Util\MessageUtil;
+use Donquixote\ObCK\Util\StaUtil;
+use Donquixote\ObCK\Util\UtilBase;
 
 final class FormatorD8 extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Drupal\cu\Formator\FormatorD8Interface
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    *   Cannot build this formator.
    */
   public static function fromFormula(
@@ -44,8 +44,8 @@ final class FormatorD8 extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Drupal\cu\Formator\FormatorD8Interface|null
    */
@@ -68,8 +68,8 @@ final class FormatorD8 extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface|null
    */

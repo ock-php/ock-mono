@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace Drupal\cu\Controller;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Generator\Generator;
-use Donquixote\OCUI\Plugin\NamedPlugin;
-use Donquixote\OCUI\Summarizer\Summarizer;
-use Donquixote\OCUI\Translator\TranslatorInterface;
-use Donquixote\OCUI\Util\HtmlUtil;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Generator\Generator;
+use Donquixote\ObCK\Plugin\NamedPlugin;
+use Donquixote\ObCK\Summarizer\Summarizer;
+use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\ObCK\Util\HtmlUtil;
 use Drupal\controller_annotations\Configuration\Cache;
 use Drupal\controller_annotations\Configuration\Route;
 use Drupal\controller_annotations\Configuration\RouteIsAdmin;
@@ -48,12 +48,12 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   use ControllerRouteNameTrait;
 
   /**
-   * @var \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface
+   * @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
    */
   private FormulaToAnythingInterface $formulaToAnything;
 
   /**
-   * @var \Donquixote\OCUI\Translator\TranslatorInterface
+   * @var \Donquixote\ObCK\Translator\TranslatorInterface
    */
   private TranslatorInterface $translator;
 
@@ -79,7 +79,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   public static function create(ContainerInterface $container): self {
     /** @var FormulaToAnythingInterface $formula_to_anything */
     $formula_to_anything = $container->get(FormulaToAnythingInterface::class);
-    /** @var \Donquixote\OCUI\Translator\TranslatorInterface $translator */
+    /** @var \Donquixote\ObCK\Translator\TranslatorInterface $translator */
     $translator = $container->get(TranslatorInterface::class);
     return new self($formula_to_anything, $translator);
   }
@@ -87,8 +87,8 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything
-   * @param \Donquixote\OCUI\Translator\TranslatorInterface $translator
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    */
   public function __construct(FormulaToAnythingInterface $formula_to_anything, TranslatorInterface $translator) {
     $this->formulaToAnything = $formula_to_anything;
@@ -96,7 +96,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   }
 
   /**
-   * @param \Donquixote\OCUI\Plugin\NamedPlugin $named_plugin
+   * @param \Donquixote\ObCK\Plugin\NamedPlugin $named_plugin
    *
    * @return string
    */
@@ -113,7 +113,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * @RouteDefaultTaskLink("Plugin")
    *
    * @param string $interface
-   * @param \Donquixote\OCUI\Plugin\NamedPlugin $named_plugin
+   * @param \Donquixote\ObCK\Plugin\NamedPlugin $named_plugin
    *
    * @return array
    */
@@ -145,7 +145,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
     $rows[] = [
       $this->t('Label'),
       Markup::create('<h3>'
-        . $plugin->getLabelOr($id)->convert($this->translator)
+        . $plugin->getLabel()->convert($this->translator)
         . '</h3>'),
     ];
 
@@ -184,7 +184,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * @Route("/code")
    * @RouteTaskLink("Code")
    *
-   * @param \Donquixote\OCUI\Plugin\NamedPlugin $named_plugin
+   * @param \Donquixote\ObCK\Plugin\NamedPlugin $named_plugin
    *
    * @return array|string
    *
@@ -208,7 +208,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * @RouteTaskLink("Devel")
    *
    * @param string $interface
-   * @param \Donquixote\OCUI\Plugin\NamedPlugin $named_plugin
+   * @param \Donquixote\ObCK\Plugin\NamedPlugin $named_plugin
    *
    * @return array
    */
@@ -239,7 +239,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
 
     $rows[] = [
       $this->t('Label'),
-      Markup::create('<h3>' . $plugin->getLabelOr($id)->convert($this->translator) . '</h3>'),
+      Markup::create('<h3>' . $plugin->getLabel()->convert($this->translator) . '</h3>'),
     ];
 
     $rows[] = [
@@ -289,7 +289,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * @RouteTaskLink("Demo")
    *
    * @param string $interface
-   * @param \Donquixote\OCUI\Plugin\NamedPlugin $named_plugin
+   * @param \Donquixote\ObCK\Plugin\NamedPlugin $named_plugin
    *
    * @return array
    */

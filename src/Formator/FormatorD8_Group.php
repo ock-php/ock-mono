@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Formator;
 
-use Donquixote\OCUI\Formula\Group\Formula_GroupInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\OCUI\Text\Text;
-use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
-use Donquixote\OCUI\Translator\Translator;
-use Donquixote\OCUI\Util\StaUtil;
+use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\ObCK\Translator\Translator;
+use Donquixote\ObCK\Util\StaUtil;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -20,19 +20,19 @@ class FormatorD8_Group implements FormatorD8Interface {
   private $itemFormators;
 
   /**
-   * @var \Donquixote\OCUI\Text\TextInterface[]
+   * @var \Donquixote\ObCK\Text\TextInterface[]
    */
   private $labels;
 
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(Formula_GroupInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?self {
 
@@ -49,7 +49,7 @@ class FormatorD8_Group implements FormatorD8Interface {
 
   /**
    * @param \Drupal\cu\Formator\FormatorD8Interface[] $itemFormators
-   * @param \Donquixote\OCUI\Text\TextInterface[] $labels
+   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
    */
   public function __construct(array $itemFormators, array $labels) {
     $this->itemFormators = $itemFormators;

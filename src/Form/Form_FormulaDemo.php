@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Form;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -23,7 +23,7 @@ class Form_FormulaDemo implements FormInterface {
    *   An associative array containing the structure of the form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface|null $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface|null $formula
    *   Formula.
    *
    * @return array

@@ -4,14 +4,14 @@ declare(strict_types=1);
 namespace Drupal\cu\Util;
 
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
-use Donquixote\OCUI\Formula\ValueFactory\Formula_ValueFactoryInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
+use Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactoryInterface;
 
 final class UiFormulaUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *
    * @return string|null
    *
@@ -35,7 +35,7 @@ final class UiFormulaUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *
    * @return string|null
    *
@@ -160,7 +160,7 @@ final class UiFormulaUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *
    * @return string|null
    *
@@ -186,7 +186,7 @@ final class UiFormulaUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\OCUI\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *
    * @return \Reflector|null
    *

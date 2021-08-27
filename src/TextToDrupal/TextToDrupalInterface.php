@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\cu\TextToDrupal;
 
-use Donquixote\OCUI\Text\TextInterface;
+use Donquixote\ObCK\Text\TextInterface;
 use Drupal\Component\Render\MarkupInterface;
 
 interface TextToDrupalInterface {
 
   /**
-   * @param \Donquixote\OCUI\Text\TextInterface $text
+   * @param \Donquixote\ObCK\Text\TextInterface $text
    *
    * @return \Drupal\Component\Render\MarkupInterface
    */

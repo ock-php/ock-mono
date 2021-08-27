@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\cu_example\Plant;
 
-use Donquixote\OCUI\Core\Formula\FormulaInterface;
-use Donquixote\OCUI\Formula\Formula;
-use Donquixote\OCUI\Text\Text;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\Text\Text;
 use Drupal\cu_example\Animal\AnimalInterface;
 
 /**
@@ -17,7 +17,7 @@ class Plant_EnchantedSwarm implements PlantInterface {
   /**
    * @ocui("enchantedSwarm", "Enchanted swarm")
    *
-   * @return \Donquixote\OCUI\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
   public static function formula(): FormulaInterface {
     return Formula::group()

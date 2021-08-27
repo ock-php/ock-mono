@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\cu;
 
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Drupal\cu\Util\UtilBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

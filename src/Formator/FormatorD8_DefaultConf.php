@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Formator;
 
-use Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 class FormatorD8_DefaultConf implements FormatorD8Interface {
 
@@ -21,12 +21,12 @@ class FormatorD8_DefaultConf implements FormatorD8Interface {
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface $formula
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\OCUI\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_DefaultConfInterface $formula,

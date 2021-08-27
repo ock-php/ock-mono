@@ -5,18 +5,18 @@ namespace Drupal\cu\Formator;
 
 use Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface;
 use Drupal\cu\Formator\Util\D8SelectUtil;
-use Donquixote\OCUI\Formula\Select\Formula_Select_FromFlatSelect;
-use Donquixote\OCUI\Formula\Select\Formula_SelectInterface;
-use Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\OCUI\FormulaBase\FormulaBase_AbstractSelectInterface;
-use Donquixote\OCUI\Translator\Lookup\TranslatorLookup_Passthru;
-use Donquixote\OCUI\Translator\Translator;
-use Donquixote\OCUI\Util\ConfUtil;
+use Donquixote\ObCK\Formula\Select\Formula_Select_FromFlatSelect;
+use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
+use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface;
+use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\ObCK\Translator\Translator;
+use Donquixote\ObCK\Util\ConfUtil;
 
 class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Interface {
 
   /**
-   * @var \Donquixote\OCUI\FormulaBase\FormulaBase_AbstractSelectInterface
+   * @var \Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface
    */
   private $formula;
 
@@ -28,7 +28,7 @@ class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Inte
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Select\Flat\Formula_FlatSelectInterface $formula
+   * @param \Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface $formula
    *
    * @return self
    */
@@ -40,7 +40,7 @@ class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Inte
   /**
    * @STA
    *
-   * @param \Donquixote\OCUI\Formula\Select\Formula_SelectInterface $formula
+   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $formula
    *
    * @return self
    */
@@ -63,7 +63,7 @@ class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Inte
   }
 
   /**
-   * @param \Donquixote\OCUI\FormulaBase\FormulaBase_AbstractSelectInterface $formula
+   * @param \Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface $formula
    */
   public function __construct(FormulaBase_AbstractSelectInterface $formula) {
     $this->formula = $formula;

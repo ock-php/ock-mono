@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Util;
 
-use Donquixote\OCUI\Util\HtmlUtil;
+use Donquixote\ObCK\Util\HtmlUtil;
 use Drupal\Core\Render\Markup;
 use Drupal\devel\DevelDumperManagerInterface;
 

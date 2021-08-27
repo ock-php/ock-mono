@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Controller;
 
-use Donquixote\OCUI\Plugin\Map\PluginMapInterface;
+use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 use Drupal\controller_annotations\Configuration\Route;
 use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
 use Drupal\controller_annotations\Configuration\RouteIsAdmin;
@@ -28,7 +28,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
   use ControllerRouteNameTrait;
 
   /**
-   * @var \Donquixote\OCUI\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
    */
   private $pluginMap;
 
@@ -46,7 +46,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): self {
-    /** @var \Donquixote\OCUI\Plugin\Map\PluginMapInterface $plugin_map */
+    /** @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map */
     $plugin_map = $container->get(PluginMapInterface::class);
     return new self($plugin_map);
   }
@@ -54,7 +54,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
   /**
    * Constructor.
    *
-   * @param \Donquixote\OCUI\Plugin\Map\PluginMapInterface $plugin_map
+   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map
    *   Plugin map.
    */
   public function __construct(PluginMapInterface $plugin_map) {
