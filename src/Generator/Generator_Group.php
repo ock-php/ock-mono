@@ -32,7 +32,7 @@ class Generator_Group implements GeneratorInterface {
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function createFromGroupFormula(Formula_GroupInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Generator_Group {
+  public static function createFromGroupFormula(Formula_GroupInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?self {
     return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
   }
 
@@ -46,7 +46,7 @@ class Generator_Group implements GeneratorInterface {
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function createFromGroupValFormula(Formula_GroupValInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Generator_Group {
+  public static function createFromGroupValFormula(Formula_GroupValInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?self {
     return self::create($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
   }
 
@@ -59,7 +59,7 @@ class Generator_Group implements GeneratorInterface {
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, FormulaToAnythingInterface $formulaToAnything): ?Generator_Group {
+  public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, FormulaToAnythingInterface $formulaToAnything): ?self {
 
     $itemGenerators = [];
     foreach ($groupFormula->getItemFormulas() as $k => $itemFormula) {

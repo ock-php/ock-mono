@@ -75,7 +75,7 @@ class PluginRegistry_Adapters implements PluginRegistryInterface {
         foreach ($pluginss[$source_type] as $source_id => $source_plugin) {
           $source_formula = $source_plugin->getFormula();
           $extended_pluginss[$type]["$adapter_id/$source_id"] = new Plugin(
-            Text::t('@label: @inline_label', [
+            Text::s('@label: @inline_label', [
               '@label' => $adapter_plugin->getLabel(),
               '@inline_label' => $source_plugin->getLabel(),
             ]),

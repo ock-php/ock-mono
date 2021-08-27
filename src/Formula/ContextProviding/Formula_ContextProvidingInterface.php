@@ -3,7 +3,6 @@
 namespace Donquixote\ObCK\Formula\ContextProviding;
 
 use Donquixote\ObCK\Context\CfContextInterface;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
 
 interface Formula_ContextProvidingInterface extends Formula_SkipEvaluatorInterface {

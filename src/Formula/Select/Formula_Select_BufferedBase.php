@@ -3,11 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Formula\Select;
 
-use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
-use Donquixote\ObCK\Translator\Translator;
 
 abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
 

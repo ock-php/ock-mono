@@ -3,12 +3,12 @@
 namespace Donquixote\ObCK\Tests;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormula_PluginMapDrilldownWithDecorators;
 use Donquixote\ObCK\Exception\STABuilderException;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnything_FromPartial;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\ParamToLabel\ParamToLabel;
 use Donquixote\ObCK\Plugin\Discovery\ClassToPlugins_NativeReflection;
+use Donquixote\ObCK\Plugin\GroupLabels\PluginGroupLabels;
 use Donquixote\ObCK\Plugin\Map\PluginMap_Registry;
 use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 use Donquixote\ObCK\Plugin\Registry\PluginRegistry_AnnotatedDiscovery;
@@ -34,6 +34,7 @@ class FormulaTestBase extends TestCase {
     $objects[] = new ParamToLabel();
     $objects[] = $logger;
     $objects[] = $this->getPluginMap();
+    $objects[] = new PluginGroupLabels([]);
     $param_to_value = new ParamToValue_ObjectsMatchType($objects);
     try {
       $fta = FormulaToAnything_FromPartial::create(

@@ -7,7 +7,6 @@ use Donquixote\CallbackReflection\Exception\GeneratedCodeException;
 use Donquixote\CallbackReflection\Util\CodegenUtil;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Evaluator\Evaluator;
-use Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\ObCK\Exception\EvaluatorException_UnsupportedFormula;
 
 final class PhpUtil extends UtilBase {

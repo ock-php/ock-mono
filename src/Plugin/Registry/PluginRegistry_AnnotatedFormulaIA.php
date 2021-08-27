@@ -44,7 +44,7 @@ class PluginRegistry_AnnotatedFormulaIA implements PluginRegistryInterface {
         continue;
       }
       $pluginss[$annotated_formula->getType()][$id] = new Plugin(
-        Text::tOrNull($info['label'] ?? $info[1] ?? NULL),
+        Text::tOrNull($info['label'] ?? $info[1] ?? NULL) ?? Text::s($id),
         Text::tOrNull($info['description'] ?? NULL),
         $annotated_formula->getFormula(),
         array_diff_key($info, self::KEYS_TO_REMOVE));

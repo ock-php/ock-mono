@@ -11,7 +11,7 @@ use Donquixote\ObCK\Text\TextInterface;
 class Plugin {
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface|null
+   * @var \Donquixote\ObCK\Text\TextInterface
    */
   private $label;
 
@@ -33,12 +33,12 @@ class Plugin {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Text\TextInterface|null $label
+   * @param \Donquixote\ObCK\Text\TextInterface $label
    * @param \Donquixote\ObCK\Text\TextInterface|null $description
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param array $info
    */
-  public function __construct(?TextInterface $label, ?TextInterface $description, FormulaInterface $formula, array $info) {
+  public function __construct(TextInterface $label, ?TextInterface $description, FormulaInterface $formula, array $info) {
     $this->label = $label;
     $this->description = $description;
     $this->formula = $formula;
@@ -48,9 +48,9 @@ class Plugin {
   /**
    * Gets a label for the plugin.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface|null
+   * @return \Donquixote\ObCK\Text\TextInterface
    */
-  public function getLabel(): ?TextInterface {
+  public function getLabel(): TextInterface {
     return $this->label;
   }
 
@@ -63,15 +63,6 @@ class Plugin {
     $clone = clone $this;
     $clone->formula = $formula;
     return $clone;
-  }
-
-  /**
-   * @param string $id
-   *
-   * @return \Donquixote\ObCK\Text\TextInterface
-   */
-  public function getLabelOr(string $id): TextInterface {
-    return $this->label ?: Text::s($id);
   }
 
   /**

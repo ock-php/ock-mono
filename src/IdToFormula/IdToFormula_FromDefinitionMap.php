@@ -8,7 +8,6 @@ use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface;
 use Donquixote\ObCK\Defmap\DefinitionToFormula\DefinitionToFormulaInterface;
 use Donquixote\ObCK\Exception\FormulaCreationException;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 
 class IdToFormula_FromDefinitionMap implements IdToFormulaInterface {
 

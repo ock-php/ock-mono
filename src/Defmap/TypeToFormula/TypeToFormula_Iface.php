@@ -5,7 +5,6 @@ namespace Donquixote\ObCK\Defmap\TypeToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Iface\Formula_Iface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 /**
  * This is a version of TypeToFormula* where $type is assumed to be an interface

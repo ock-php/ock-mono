@@ -5,7 +5,6 @@ namespace Donquixote\ObCK\IdToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Drilldown\Option\DrilldownOptionInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 
 class IdToFormula_FromOptions implements IdToFormulaInterface {
 

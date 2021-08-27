@@ -6,7 +6,6 @@ namespace Donquixote\ObCK\Summarizer;
 use Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Util\StaUtil;
 
 class Summarizer_Optional implements SummarizerInterface {
 

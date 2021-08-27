@@ -6,7 +6,6 @@ namespace Donquixote\ObCK\Formula\Select;
 use Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface;
 use Donquixote\ObCK\Defmap\DefinitionToLabel\DefinitionToLabelInterface;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\TextToMarkup\TextToMarkupInterface;
 use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
 use Donquixote\ObCK\Translator\Translator;
 

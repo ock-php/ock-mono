@@ -5,7 +5,6 @@ namespace Donquixote\ObCK\Formula\Select;
 
 use Donquixote\ObCK\Plugin\Plugin;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\TextToMarkup\TextToMarkupInterface;
 
 class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
 
@@ -15,13 +14,20 @@ class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
   private $plugins;
 
   /**
+   * @var \Donquixote\ObCK\Text\TextInterface|\Donquixote\ObCK\Text\TextInterface[]
+   */
+  private array $groupLabels;
+
+  /**
    * Constructor.
    *
    * @param \Donquixote\ObCK\Plugin\Plugin[] $plugins
+   * @param \Donquixote\ObCK\Text\TextInterface[] $groupLabels
    */
-  public function __construct(array $plugins) {
+  public function __construct(array $plugins, array $groupLabels = []) {
     self::validatePlugins(...array_values($plugins));
     $this->plugins = $plugins;
+    $this->groupLabels = $groupLabels;
   }
 
   /**
@@ -33,11 +39,18 @@ class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
    * {@inheritdoc}
    */
   protected function initialize(array &$grouped_options, array &$group_labels): void {
-    foreach ($this->plugins as $id => $plugin) {
-      $label = $plugin->getLabelOr($id);
-      // @todo Do something for the group label.
-      $grouped_options[''][$id] = $label;
+    $sortme = array_keys($this->groupLabels + $this->plugins);
+    sort($sortme);
+    $group_id = '';
+    foreach ($sortme as $id) {
+      if (isset($this->groupLabels[$id])) {
+        $group_id = $id;
+      }
+      if (isset($this->plugins[$id])) {
+        $grouped_options[$group_id][$id] = $this->plugins[$id]->getLabel();
+      }
     }
+    $group_labels = array_intersect_key($this->groupLabels, $grouped_options);
   }
 
   /**

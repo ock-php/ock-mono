@@ -3,7 +3,6 @@
 namespace Donquixote\ObCK\Contextualizer;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Generator\GeneratorInterface;
 use Donquixote\ReflectionKit\Context\ContextInterface;
 
 class Contextualizer_Passthru implements ContextualizerInterface {

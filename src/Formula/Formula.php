@@ -3,11 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Formula;
 
-use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
-use Donquixote\ObCK\Context\CfContextInterface;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Group\GroupFormulaBuilder;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Donquixote\ObCK\Formula\Iface\Formula_Iface;
 use Donquixote\ObCK\Formula\Select\Flat\FlatSelectBuilderInterface;
 use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelect_Fixed;

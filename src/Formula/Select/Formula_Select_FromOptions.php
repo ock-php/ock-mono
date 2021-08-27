@@ -3,10 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Formula\Select;
 
-use Donquixote\ObCK\Formula\Drilldown\Option\DrilldownOptionInterface;
 use Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\TextToMarkup\TextToMarkupInterface;
 use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
 use Donquixote\ObCK\Translator\Translator;
 

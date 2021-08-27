@@ -52,6 +52,18 @@ class Text {
     ]);
   }
 
+  /**
+   * Builds a text object for a translatable string, or NULL.
+   *
+   * This shortcut allows for simple expressions with ??.
+   *
+   * @param string|null $string
+   *   String to be translated, or NULL.
+   * @param array $replacements
+   *
+   * @return \Donquixote\ObCK\Text\TextInterface|null
+   *   Text object, or NULL.
+   */
   public static function tOrNull(?string $string, array $replacements = []): ?TextInterface {
     return ($string !== NULL)
       ? static::t($string, $replacements)

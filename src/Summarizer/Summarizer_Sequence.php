@@ -7,9 +7,7 @@ use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Translator\Translator;
 use Donquixote\ObCK\Translator\TranslatorInterface;
-use Drupal\cu\Translator\Translator_Drupal;
 
 class Summarizer_Sequence implements SummarizerInterface {
 

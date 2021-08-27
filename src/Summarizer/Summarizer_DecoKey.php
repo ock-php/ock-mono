@@ -7,7 +7,6 @@ use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Util\DecoUtil;
 
 class Summarizer_DecoKey implements SummarizerInterface {
 

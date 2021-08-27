@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Plugin\Map;
 
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface;
 
 class PluginMap_Registry implements PluginMapInterface {

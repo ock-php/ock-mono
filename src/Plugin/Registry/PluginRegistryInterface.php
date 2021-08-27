@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Plugin\Registry;
 
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-
 interface PluginRegistryInterface {
 
   /**

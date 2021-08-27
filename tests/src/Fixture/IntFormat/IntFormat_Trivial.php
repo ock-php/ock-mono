@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Tests\Fixture\IntFormat;
 
-use Donquixote\ObCK\Tests\Fixture\NumberFormat\NumberFormatInterface;
-
 /**
  * Adapter from NumberFormat to IntFormat.
  *

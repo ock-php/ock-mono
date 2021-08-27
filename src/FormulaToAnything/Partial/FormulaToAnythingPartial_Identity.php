@@ -4,8 +4,6 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 
 /**

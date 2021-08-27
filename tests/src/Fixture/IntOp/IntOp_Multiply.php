@@ -6,11 +6,8 @@ namespace Donquixote\ObCK\Tests\Fixture\IntOp;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Donquixote\ObCK\Formula\Primitive\Formula_Int;
-use Donquixote\ObCK\Formula\Textfield\Formula_Textfield_IntegerInRange;
 use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\Text_Translatable;
 
 class IntOp_Multiply implements IntOpInterface {
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\FormulaBase;
 
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\TextToMarkup\TextToMarkupInterface;
 
 /**
  * This is a base interface, which by itself does NOT extend FormulaInterface.

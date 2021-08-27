@@ -223,7 +223,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
         continue;
       }
       $plugin = new Plugin(
-        Text::tOrNull($annotation['label'] ?? $annotation[1] ?? NULL),
+        Text::tOrNull($annotation['label'] ?? $annotation[1] ?? NULL) ?? Text::s($id),
         Text::tOrNull($annotation['description'] ?? NULL),
         $formula,
         array_diff_key($annotation, self::KEYS_TO_REMOVE));

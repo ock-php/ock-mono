@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\FormulaToAnything\Partial;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface;
 use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKey;
 use Donquixote\ObCK\Formula\DecoShift\Formula_DecoShift;
 use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
@@ -15,6 +14,7 @@ use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\IdToFormula\IdToFormula_FromPlugins;
 use Donquixote\ObCK\IdToFormula\IdToFormula_InlineExpanded;
 use Donquixote\ObCK\IdToFormula\IdToFormula_Replace;
+use Donquixote\ObCK\Plugin\GroupLabels\PluginGroupLabelsInterface;
 use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 
 /**
@@ -28,13 +28,32 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
   private PluginMapInterface $pluginMap;
 
   /**
+   * @var \Donquixote\ObCK\Text\TextInterface[]
+   */
+  private array $groupLabels;
+
+  /**
+   * @STA
+   *
+   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Donquixote\ObCK\Plugin\GroupLabels\PluginGroupLabelsInterface $groupLabels
+   *
+   * @return static
+   */
+  public static function create(PluginMapInterface $pluginMap, PluginGroupLabelsInterface $groupLabels): self {
+    return new self($pluginMap, $groupLabels->getLabels());
+  }
+
+  /**
    * Constructor.
    *
    * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Donquixote\ObCK\Text\TextInterface[] $groupLabels
    */
-  public function __construct(PluginMapInterface $pluginMap) {
+  public function __construct(PluginMapInterface $pluginMap, array $groupLabels = []) {
     $this->pluginMap = $pluginMap;
     parent::__construct(Formula_IfaceInterface::class);
+    $this->groupLabels = $groupLabels;
   }
 
   /**
@@ -65,7 +84,7 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
     }
 
     // Regular plugins.
-    $idFormula = new Formula_Select_FromPlugins($plugins);
+    $idFormula = new Formula_Select_FromPlugins($plugins, $this->groupLabels);
     $idToFormula = new IdToFormula_FromPlugins($plugins);
 
     $idToFormula = new IdToFormula_Replace($idToFormula, $helper);
@@ -73,7 +92,8 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
     // Support "inline" plugins.
     $idFormula = new Formula_Select_InlineExpanded(
       $idFormula,
-      new IdToFormula_FromPlugins($inline_plugins));
+      new IdToFormula_FromPlugins($inline_plugins),
+      $helper);
     $idToFormula = new IdToFormula_InlineExpanded(
       $idToFormula,
       $helper);
@@ -110,22 +130,14 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
           $plugin->getFormula()));
     }
 
-    return $this
-      ->pluginsBuildDrilldown($decorator_plugins, FALSE)
-      ->withKeys('plugin', NULL);
-  }
+    $drilldown = new Formula_Drilldown(
+      new Formula_Select_FromPlugins($decorator_plugins, $this->groupLabels),
+      new IdToFormula_FromPlugins($decorator_plugins),
+      FALSE);
 
-  /**
-   * @param \Donquixote\ObCK\Plugin\Plugin[] $plugins
-   * @param bool $or_null
-   *
-   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown
-   */
-  private function pluginsBuildDrilldown(array $plugins, bool $or_null): Formula_Drilldown {
-    return new Formula_Drilldown(
-      new Formula_Select_FromPlugins($plugins),
-      new IdToFormula_FromPlugins($plugins),
-      $or_null);
+    $drilldown = $drilldown->withKeys('plugin', NULL);
+
+    return $drilldown;
   }
 
 }

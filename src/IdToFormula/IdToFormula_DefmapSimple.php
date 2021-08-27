@@ -7,7 +7,6 @@ use Donquixote\ObCK\Context\CfContextInterface;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Defmap\DefinitionMap\DefinitionMapInterface;
 use Donquixote\ObCK\Formula\Definition\Formula_Definition;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 
 class IdToFormula_DefmapSimple implements IdToFormulaInterface {
 

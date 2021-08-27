@@ -6,8 +6,6 @@ namespace Donquixote\ObCK\Formula\Sequence;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Translator\TranslatorInterface;
-use Drupal\Tests\taxonomy\Functional\Rest\TermXmlCookieTest;
 
 class Formula_Sequence_ItemLabelCallback extends Formula_SequenceBase {
 

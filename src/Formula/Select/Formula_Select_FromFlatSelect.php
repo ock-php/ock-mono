@@ -5,7 +5,6 @@ namespace Donquixote\ObCK\Formula\Select;
 
 use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\TextToMarkup\TextToMarkupInterface;
 
 class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
 

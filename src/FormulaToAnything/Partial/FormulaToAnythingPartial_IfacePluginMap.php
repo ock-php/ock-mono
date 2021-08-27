@@ -6,7 +6,6 @@ namespace Donquixote\ObCK\FormulaToAnything\Partial;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
-use Donquixote\ObCK\Formula\PluginList\Formula_PluginList;
 use Donquixote\ObCK\Formula\Select\Formula_Select_FromPlugins;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\IdToFormula\IdToFormula_FromPlugins;

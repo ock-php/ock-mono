@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Formula\PluginList;
 
+use Donquixote\ObCK\Plugin\Plugin;
+
 /**
  * Default implementation.
  */
@@ -37,6 +39,13 @@ class Formula_PluginList implements Formula_PluginListInterface {
    */
   public function getPlugins(): array {
     return $this->plugins;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function idGetPlugin(string $id): ?Plugin {
+    return $this->plugins[$id] ?? NULL;
   }
 
   /**

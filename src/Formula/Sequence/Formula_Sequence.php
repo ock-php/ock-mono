@@ -5,7 +5,6 @@ namespace Donquixote\ObCK\Formula\Sequence;
 
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Translator\TranslatorInterface;
 
 class Formula_Sequence extends Formula_SequenceBase {
 
