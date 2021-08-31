@@ -33,7 +33,12 @@ class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
    * @param \Donquixote\ObCK\Text\TextInterface $itemLabelN
    * @param string $placeholder
    */
-  public function __construct(FormulaInterface $itemFormula, TextInterface $newItemLabel, TextInterface $itemLabelN, $placeholder = '!n') {
+  public function __construct(
+    FormulaInterface $itemFormula,
+    TextInterface $newItemLabel,
+    TextInterface $itemLabelN,
+    $placeholder = '!n'
+  ) {
     parent::__construct($itemFormula);
     $this->newItemLabel = $newItemLabel;
     $this->itemLabelN = $itemLabelN;
