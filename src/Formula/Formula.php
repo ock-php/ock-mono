@@ -42,9 +42,9 @@ final class Formula extends UtilBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\ObCK\Formula\Sequence\Formula_Sequence
    */
-  public static function ifaceSequence(string $interface): FormulaInterface {
+  public static function ifaceSequence(string $interface): Formula_Sequence {
     return new Formula_Sequence(
       new Formula_Iface($interface));
   }
