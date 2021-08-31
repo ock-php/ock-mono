@@ -6,6 +6,7 @@ namespace Drupal\cu_example\Plant;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\Formula\Sequence\Formula_Sequence_ItemLabelT;
 use Donquixote\ObCK\Text\Text;
 use Drupal\cu_example\Animal\AnimalInterface;
 
@@ -23,7 +24,10 @@ class Plant_EnchantedSwarm implements PlantInterface {
     return Formula::group()
       ->add(
         'animals',
-        Formula::ifaceSequence(AnimalInterface::class),
+        new Formula_Sequence_ItemLabelT(
+          Formula::iface(AnimalInterface::class),
+          Text::t('New animal'),
+          Text::t('Animal !n')),
         Text::t('Animals'))
       ->construct(self::class);
   }

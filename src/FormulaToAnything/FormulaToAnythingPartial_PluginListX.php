@@ -32,7 +32,6 @@ class FormulaToAnythingPartial_PluginListX extends FormulaToAnythingPartial_Form
       new Formula_Select_FromPlugins($formula->getPlugins()),
       new IdToFormula_FromPlugins($formula->getPlugins()),
       $formula->allowsNull()))
-      # ->withKeys('plugin', NULL)
     ;
   }
 

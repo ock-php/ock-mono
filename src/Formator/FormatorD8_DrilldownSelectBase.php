@@ -90,7 +90,7 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
         $select_formula,
         $translator,
         $id,
-        $label,
+        (string) $label,
         $this->required
       ),
       '#input' => TRUE,

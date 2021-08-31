@@ -36,6 +36,11 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
   private TranslatorInterface $translator;
 
   /**
+   * @var array
+   */
+  private array $minStubConf;
+
+  /**
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $sequence
@@ -77,6 +82,8 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
     $this->translator = $translator;
     // @todo Support other array modes (assoc, mixed).
     $this->arrayMode = 0;
+    // @todo Make this flexible, allow for minimum number of items.
+    $this->minStubConf = [];
   }
 
 
@@ -86,8 +93,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
   public function confGetD8Form($conf, $label): array {
 
     if (!\is_array($conf)) {
-      // Always start with one stub item, if this is a serial sequence.
-      $conf = $this->arrayMode ? [] : [NULL];
+      $conf = $this->minStubConf;
     }
     elseif (!$this->arrayMode) {
       $conf = array_values($conf);
@@ -150,8 +156,11 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
       return NULL;
     }
 
+    // @todo Ignore input, get combined value from nested elements?
+    $vv = $form_state->getValue($element['#parents']);
+
     if (!\is_array($input)) {
-      $input = !$this->arrayMode ? [NULL] : [];
+      $input = $this->minStubConf;
     }
     elseif (!$this->arrayMode) {
       $input = array_values($input);
@@ -194,21 +203,20 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
     $element['#control_name'] = $control_name;
 
     $uniqid = sha1(serialize($element['#parents']));
-    $element['#cu_sequence_ajax_wrapper_id'] = $uniqid;
+    # $element['#cu_sequence_ajax_wrapper_id'] = $uniqid;
 
     $element['#attached']['library'][] = 'cu/tabledrag';
 
     $element['items'] = [];
     $element['items']['#parents'] = $element['#parents'];
 
-    $element['#prefix'] = $prefix = '<div id="' . $uniqid . '" class="cu-sequence-ajax-wrapper">';
+    $element['#prefix'] = '<div id="' . $uniqid . '" class="cu-sequence-ajax-wrapper">';
     $element['#suffix'] = '</div>';
 
     $parents = $element['#parents'];
 
-    $ajax_callback = new AjaxCallback_ElementWithProperty('#prefix', $prefix);
     $ajax = [
-      'callback' => $ajax_callback,
+      'callback' => new AjaxCallback_ElementWithProperty('#prefix', $element['#prefix']),
       'wrapper' => $uniqid,
       'method' => 'replace',
     ];
@@ -243,12 +251,9 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
       }
 
       $item_form = $this->itemFormator->confGetD8Form($item_value, $item_label_str);
+      $item_form['#parents'] = [...$element['#parents'], $delta];
 
       $element['items'][$delta]['item']['form']['conf'] = $item_form;
-
-      $element['items'][$delta]['item']['form']['conf']['#parents'] = array_merge(
-        $element['#parents'],
-        [$delta]);
 
       $element['items'][$delta]['delete'] = [
         '#attributes' => ['class' => ['cu-sequence-delete-container']],
