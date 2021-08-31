@@ -1,3 +1,4 @@
-plugin: numberFormat/native
-decimals: 3
-format: ',.'
+id: numberFormat/native
+options:
+  decimals: 3
+  format: ',.'

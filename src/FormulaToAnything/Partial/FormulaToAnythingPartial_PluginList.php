@@ -31,8 +31,7 @@ class FormulaToAnythingPartial_PluginList extends FormulaToAnythingPartial_Formu
     $ff = (new Formula_Drilldown(
       new Formula_Select_FromPlugins($plugins),
       new IdToFormula_FromPlugins($plugins),
-      $formula->allowsNull()))
-      ->withKeys('plugin', NULL);
+      $formula->allowsNull()));
 
     return $ff;
   }

@@ -74,9 +74,6 @@ class TypeToFormula_PluginMapDrilldownWithDecorators implements TypeToFormulaInt
       $idToFormula,
       $or_null);
 
-    // Adjust keys.
-    $drilldown = $drilldown->withKeys('plugin', NULL);
-
     // Support decorator plugins.
     return new Formula_DecoKey(
       $drilldown,
@@ -101,8 +98,7 @@ class TypeToFormula_PluginMapDrilldownWithDecorators implements TypeToFormulaInt
     }
 
     return $this
-      ->pluginsBuildDrilldown($decorator_plugins, FALSE)
-      ->withKeys('plugin', NULL);
+      ->pluginsBuildDrilldown($decorator_plugins, FALSE);
   }
 
   /**

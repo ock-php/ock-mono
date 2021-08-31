@@ -1,13 +1,18 @@
-plugin: multiply
+id: multiply
+options:
+  factor: 5
 decorators:
   -
-    plugin: extraOpDecorator
-    extraOp:
-      plugin: add
-      increment: 1
+    id: extraOpDecorator
+    options:
+      extraOp:
+        id: add
+        options:
+          increment: 1
   -
-    plugin: extraOpDecorator
-    extraOp:
-      plugin: add
-      increment: 2
-factor: 5
+    id: extraOpDecorator
+    options:
+      extraOp:
+        id: add
+        options:
+          increment: 2

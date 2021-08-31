@@ -37,8 +37,7 @@ class TypeToFormula_PluginMapDecorators implements TypeToFormulaInterface {
     return (new Formula_Drilldown(
       new Formula_Select_FromPlugins($plugins),
       new IdToFormula_FromPlugins($plugins),
-      $or_null))
-      ->withKeys('plugin', NULL);
+      $or_null));
   }
 
 }

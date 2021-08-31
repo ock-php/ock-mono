@@ -1,3 +1,4 @@
-plugin: native
-decimals: 3
-format: ',.'
+id: native
+options:
+  decimals: 3
+  format: ',.'

@@ -1,2 +1,3 @@
-plugin: intRounded
-intFormat: null
+id: intRounded
+options:
+  intFormat: null

@@ -1,3 +1,4 @@
-plugin: intRounded
-intFormat:
-  plugin: trivial
+id: intRounded
+options:
+  intFormat:
+    id: trivial

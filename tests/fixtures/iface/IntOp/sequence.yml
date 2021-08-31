@@ -1,8 +1,11 @@
-plugin: sequence
-operations:
-  -
-    plugin: add
-    increment: 5
-  -
-    plugin: multiply
-    factor: 7
+id: sequence
+options:
+  operations:
+    -
+      id: add
+      options:
+        increment: 5
+    -
+      id: multiply
+      options:
+        factor: 7

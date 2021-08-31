@@ -104,9 +104,6 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
       $idToFormula,
       $or_null);
 
-    // Adjust keys.
-    $drilldown = $drilldown->withKeys('plugin', NULL);
-
     // Support decorator plugins.
     return new Formula_DecoKey(
       $drilldown,
@@ -134,8 +131,6 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
       new Formula_Select_FromPlugins($decorator_plugins, $this->groupLabels),
       new IdToFormula_FromPlugins($decorator_plugins),
       FALSE);
-
-    $drilldown = $drilldown->withKeys('plugin', NULL);
 
     return $drilldown;
   }

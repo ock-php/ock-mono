@@ -41,7 +41,6 @@ class FormulaToAnythingPartial_IfacePluginMap extends FormulaToAnythingPartial_F
       new Formula_Select_FromPlugins($plugins),
       new IdToFormula_FromPlugins($plugins),
       $formula->allowsNull());
-    $ff = $ff->withKeys('plugin', NULL);
     return $ff;
   }
 

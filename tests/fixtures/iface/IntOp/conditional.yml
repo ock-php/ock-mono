@@ -1,7 +1,9 @@
-plugin: conditional
-condition:
-  plugin: odd
-opIfTrue:
-  plugin: add
-  increment: 7
-opIfFalse: null
+id: conditional
+options:
+  condition:
+    id: odd
+  opIfTrue:
+    id: add
+    options:
+      increment: 7
+  opIfFalse: null
