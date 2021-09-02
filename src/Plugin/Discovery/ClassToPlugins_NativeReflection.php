@@ -73,7 +73,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
     // Cause an error if the class is defined elsewhere.
     require_once $file;
 
-    return $this->reflectionClassGetDefinitions($reflectionClass);
+    return $this->reflectionClassGetPluginss($reflectionClass);
   }
 
   /**
@@ -82,13 +82,13 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
    * @return \Donquixote\ObCK\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    */
-  private function reflectionClassGetDefinitions(\ReflectionClass $reflectionClass): array {
+  private function reflectionClassGetPluginss(\ReflectionClass $reflectionClass): array {
 
-    /** @var \Donquixote\ObCK\Plugin\Plugin[][] $definitionsByTypeAndId */
-    $definitionsByTypeAndId = [];
+    /** @var \Donquixote\ObCK\Plugin\Plugin[][] $pluginss */
+    $pluginss = [];
 
     if (!$reflectionClass->isAbstract()) {
-      $definitionsByTypeAndId = $this->reflectionClassGetDefinitionsForClass($reflectionClass);
+      $pluginss = $this->reflectionClassGetClassLevelPluginss($reflectionClass);
     }
 
     foreach ($reflectionClass->getMethods() as $methodReflection) {
@@ -101,14 +101,14 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
         continue;
       }
 
-      foreach ($this->staticMethodGetDefinitions($methodReflection) as $type => $definitions) {
+      foreach ($this->staticMethodGetPluginss($methodReflection) as $type => $definitions) {
         foreach ($definitions as $id => $definition) {
-          $definitionsByTypeAndId[$type][$id] = $definition;
+          $pluginss[$type][$id] = $definition;
         }
       }
     }
 
-    return $definitionsByTypeAndId;
+    return $pluginss;
   }
 
   /**
@@ -117,7 +117,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
    * @return \Donquixote\ObCK\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    */
-  private function reflectionClassGetDefinitionsForClass(\ReflectionClass $reflectionClass): array {
+  private function reflectionClassGetClassLevelPluginss(\ReflectionClass $reflectionClass): array {
 
     if (FALSE === $docComment = $reflectionClass->getDocComment()) {
       return [];
@@ -147,7 +147,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
    * @return \Donquixote\ObCK\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    */
-  private function staticMethodGetDefinitions(\ReflectionMethod $method): array {
+  private function staticMethodGetPluginss(\ReflectionMethod $method): array {
 
     if (FALSE === $docComment = $method->getDocComment()) {
       return [];
@@ -166,7 +166,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
       if (is_a($returnTypeName, FormulaInterface::class, TRUE)) {
         // The method returns a schema object.
         // The actual plugin type has to be determined elsewhere.
-        return self::formulaFactoryGetDefinitions($method, $annotations);
+        return self::formulaFactoryGetPluginss($method, $annotations);
       }
     }
 
@@ -186,7 +186,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
    * @return \Donquixote\ObCK\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    */
-  private static function formulaFactoryGetDefinitions(
+  private static function formulaFactoryGetPluginss(
     \ReflectionMethod $method,
     array $annotations
   ): array {
