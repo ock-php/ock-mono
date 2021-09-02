@@ -7,7 +7,6 @@ namespace Donquixote\ObCK\Decorator;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Formula;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ObCK\Util\UtilBase;
 
 final class Decorator extends UtilBase {

@@ -12,8 +12,6 @@ use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
 use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\Plugin\Plugin;
-use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_Drilldown_Trivial;
 use Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
 use Donquixote\ObCK\Zoo\V2V\Value\V2V_Value_DrilldownFixedId;

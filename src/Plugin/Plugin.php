@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Plugin;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
 
 class Plugin {

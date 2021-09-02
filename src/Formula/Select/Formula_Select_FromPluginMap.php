@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Formula\Select;
 
 use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
-use Donquixote\ObCK\Plugin\Plugin;
 use Donquixote\ObCK\Text\TextInterface;
 
 class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
