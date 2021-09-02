@@ -54,6 +54,8 @@ class Generator_Drilldown implements GeneratorInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface $v2v
    * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything

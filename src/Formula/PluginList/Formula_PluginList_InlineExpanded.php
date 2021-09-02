@@ -89,7 +89,7 @@ class Formula_PluginList_InlineExpanded implements Formula_PluginListInterface {
 
     $subtree = PluginListSubtree::fromFormula($plugin->getFormula(), $this->helper);
 
-      $formula = $plugin->getFormula();
+    $subFormula = $subtree->getFormula();
 
     return $subFormula->idIsKnown($suffix);
   }

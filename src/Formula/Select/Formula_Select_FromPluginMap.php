@@ -44,17 +44,19 @@ class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
    * {@inheritdoc}
    */
   public function idGetLabel($id): ?TextInterface {
-    if (!isset($this->plugins[$id])) {
+    $plugins = $this->pluginMap->typeGetPlugins($this->type);
+    if (!isset($plugins[$id])) {
       return NULL;
     }
-    return $this->plugins[$id]->getLabel();
+    return $plugins[$id]->getLabel();
   }
 
   /**
    * {@inheritdoc}
    */
   public function idIsKnown($id): bool {
-    return isset($this->options[$id]);
+    $plugins = $this->pluginMap->typeGetPlugins($this->type);
+    return isset($plugins[$id]);
   }
 
 }
