@@ -55,21 +55,12 @@ final class Decorator extends UtilBase {
     FormulaToAnythingInterface $formulaToAnything
   ): DecoratorInterface {
 
+    /** @var \Donquixote\ObCK\Decorator\DecoratorInterface $candidate */
     $candidate = $formulaToAnything->formula(
       $formula,
       DecoratorInterface::class);
 
-    if ($candidate instanceof DecoratorInterface) {
-      return $candidate;
-    }
-
-    throw new \RuntimeException(strtr(
-      'Misbehaving FTA for formula of class @formula_class: Expected @interface object, found @found.',
-      [
-        '@formula_class' => get_class($formula),
-        '@interface' => DecoratorInterface::class,
-        '@found' => MessageUtil::formatValue($candidate),
-      ]));
+    return $candidate;
   }
 
 }
