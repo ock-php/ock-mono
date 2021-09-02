@@ -56,8 +56,6 @@ class FormulaToAnythingPartial_ValueFactory extends FormulaToAnythingPartial_For
       return new Formula_ValueProvider_Callback($factory);
     }
 
-    $param_formulas = [];
-    $paramLabels = [];
     $builder = Formula::group();
     foreach ($params as $i => $param) {
       $name = $param->getName();
