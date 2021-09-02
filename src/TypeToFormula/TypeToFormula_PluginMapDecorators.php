@@ -1,17 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Defmap\TypeToFormula;
+namespace Donquixote\ObCK\TypeToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\PluginList\Formula_PluginList;
+use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\ObCK\Formula\Select\Formula_Select_FromPlugins;
+use Donquixote\ObCK\IdToFormula\IdToFormula_FromPlugins;
 use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 
 /**
  * This is a version of TypeToFormula* where $type is assumed to be an interface
  * name.
  */
-class TypeToFormula_PluginMap implements TypeToFormulaInterface {
+class TypeToFormula_PluginMapDecorators implements TypeToFormulaInterface {
 
   /**
    * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
@@ -23,7 +25,7 @@ class TypeToFormula_PluginMap implements TypeToFormulaInterface {
    *
    * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $pluginMap
    */
-  public function __construct(PluginMapInterface $pluginMap) {
+  public function __construct(PluginMapInterface $pluginMap, TypeToFormulaInterface $decorated) {
     $this->pluginMap = $pluginMap;
   }
 
@@ -32,7 +34,10 @@ class TypeToFormula_PluginMap implements TypeToFormulaInterface {
    */
   public function typeGetFormula(string $type, bool $or_null): FormulaInterface {
     $plugins = $this->pluginMap->typeGetPlugins($type);
-    return new Formula_PluginList($plugins, $or_null);
+    return (new Formula_Drilldown(
+      new Formula_Select_FromPlugins($plugins),
+      new IdToFormula_FromPlugins($plugins),
+      $or_null));
   }
 
 }

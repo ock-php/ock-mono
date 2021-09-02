@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Defmap\TypeToFormula;
+namespace Donquixote\ObCK\TypeToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 
 class TypeToFormula_Buffer implements TypeToFormulaInterface {
 
   /**
-   * @var \Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface
+   * @var \Donquixote\ObCK\TypeToFormula\TypeToFormulaInterface
    */
   private $decorated;
 
@@ -21,7 +21,7 @@ class TypeToFormula_Buffer implements TypeToFormulaInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Defmap\TypeToFormula\TypeToFormulaInterface $decorated
+   * @param \Donquixote\ObCK\TypeToFormula\TypeToFormulaInterface $decorated
    */
   public function __construct(TypeToFormulaInterface $decorated) {
     $this->decorated = $decorated;

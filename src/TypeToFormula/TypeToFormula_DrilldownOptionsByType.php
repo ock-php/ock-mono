@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Defmap\TypeToFormula;
+namespace Donquixote\ObCK\TypeToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\IdToFormula\IdToFormula_FromOptions;
