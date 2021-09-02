@@ -6,7 +6,7 @@ namespace Donquixote\ObCK\Formula\Textfield;
 use Donquixote\ObCK\Formula\StringVal\Formula_StringVal;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Util\PhpUtil;
-use Donquixote\ObCK\Zoo\V2V\String\V2V_StringInterface;
+use Donquixote\ObCK\V2V\String\V2V_StringInterface;
 
 abstract class Formula_Textfield_IntegerBase extends Formula_TextfieldBase implements V2V_StringInterface {
 

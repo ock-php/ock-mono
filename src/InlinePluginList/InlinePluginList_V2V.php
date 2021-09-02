@@ -6,7 +6,7 @@ namespace Donquixote\ObCK\InlinePluginList;
 
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue;
 use Donquixote\ObCK\Plugin\Plugin;
-use Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface;
+use Donquixote\ObCK\V2V\Value\V2V_ValueInterface;
 
 class InlinePluginList_V2V implements InlinePluginListInterface {
 
@@ -16,7 +16,7 @@ class InlinePluginList_V2V implements InlinePluginListInterface {
   private InlinePluginListInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface
+   * @var \Donquixote\ObCK\V2V\Value\V2V_ValueInterface
    */
   private V2V_ValueInterface $v2v;
 
@@ -24,7 +24,7 @@ class InlinePluginList_V2V implements InlinePluginListInterface {
    * Constructor.
    *
    * @param \Donquixote\ObCK\InlinePluginList\InlinePluginListInterface $decorated
-   * @param \Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Value\V2V_ValueInterface $v2v
    */
   public function __construct(InlinePluginListInterface $decorated, V2V_ValueInterface $v2v) {
     $this->decorated = $decorated;

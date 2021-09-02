@@ -10,8 +10,8 @@ use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Generator\Generator;
 use Donquixote\ObCK\Generator\Generator_Group;
 use Donquixote\ObCK\Util\PhpUtil;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Trivial;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\ObCK\V2V\Group\V2V_Group_Trivial;
+use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
 
 class Decorator_Group implements DecoratorInterface {
 
@@ -21,7 +21,7 @@ class Decorator_Group implements DecoratorInterface {
   private $itemGenerators;
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
@@ -69,7 +69,7 @@ class Decorator_Group implements DecoratorInterface {
    * Static factory.
    *
    * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $groupFormula
-   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
    * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
@@ -94,7 +94,7 @@ class Decorator_Group implements DecoratorInterface {
    * Constructor.
    *
    * @param \Donquixote\ObCK\Generator\GeneratorInterface[] $itemGenerators
-   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
    */
   protected function __construct(array $itemGenerators, V2V_GroupInterface $v2v) {
     $this->itemGenerators = $itemGenerators;

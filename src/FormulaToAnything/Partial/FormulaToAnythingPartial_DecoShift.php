@@ -11,7 +11,7 @@ use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Deco;
+use Donquixote\ObCK\V2V\Group\V2V_Group_Deco;
 
 /**
  * @STA

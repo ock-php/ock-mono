@@ -5,7 +5,7 @@ namespace Donquixote\ObCK\Formula\GroupVal;
 
 use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
 use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
 
 interface Formula_GroupValInterface extends Formula_ValueToValueBaseInterface {
 
@@ -15,7 +15,7 @@ interface Formula_GroupValInterface extends Formula_ValueToValueBaseInterface {
   public function getDecorated(): Formula_GroupInterface;
 
   /**
-   * @return \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface
+   * @return \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
    */
   public function getV2V(): V2V_GroupInterface;
 

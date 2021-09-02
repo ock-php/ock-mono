@@ -9,8 +9,8 @@ use Donquixote\CallbackReflection\CallbackReflection;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Callback;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\ObCK\V2V\Group\V2V_Group_Callback;
+use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
 
 class GroupFormulaBuilder {
 
@@ -69,7 +69,7 @@ class GroupFormulaBuilder {
   }
 
   /**
-   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */

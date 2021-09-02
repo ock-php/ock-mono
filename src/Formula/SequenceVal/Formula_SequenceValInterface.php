@@ -5,7 +5,7 @@ namespace Donquixote\ObCK\Formula\SequenceVal;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
-use Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface;
+use Donquixote\ObCK\V2V\Sequence\V2V_SequenceInterface;
 
 interface Formula_SequenceValInterface extends Formula_DecoratorBaseInterface {
 
@@ -15,7 +15,7 @@ interface Formula_SequenceValInterface extends Formula_DecoratorBaseInterface {
   public function getDecorated(): FormulaInterface;
 
   /**
-   * @return \Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface
+   * @return \Donquixote\ObCK\V2V\Sequence\V2V_SequenceInterface
    */
   public function getV2V(): V2V_SequenceInterface;
 

@@ -5,7 +5,7 @@ namespace Donquixote\ObCK\Formula\ValueToValue;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface;
+use Donquixote\ObCK\V2V\Value\V2V_ValueInterface;
 
 interface Formula_ValueToValueInterface extends FormulaInterface, Formula_ValueToValueBaseInterface {
 
@@ -15,7 +15,7 @@ interface Formula_ValueToValueInterface extends FormulaInterface, Formula_ValueT
   public function getDecorated(): FormulaInterface;
 
   /**
-   * @return \Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface
+   * @return \Donquixote\ObCK\V2V\Value\V2V_ValueInterface
    */
   public function getV2V(): V2V_ValueInterface;
 

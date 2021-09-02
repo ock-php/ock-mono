@@ -6,8 +6,8 @@ namespace Donquixote\ObCK\Generator;
 use Donquixote\ObCK\Formula\StringVal\Formula_StringValInterface;
 use Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface;
 use Donquixote\ObCK\Util\PhpUtil;
-use Donquixote\ObCK\Zoo\V2V\String\V2V_String_Trivial;
-use Donquixote\ObCK\Zoo\V2V\String\V2V_StringInterface;
+use Donquixote\ObCK\V2V\String\V2V_String_Trivial;
+use Donquixote\ObCK\V2V\String\V2V_StringInterface;
 
 class Generator_Textfield implements GeneratorInterface {
 
@@ -17,7 +17,7 @@ class Generator_Textfield implements GeneratorInterface {
   private $formula;
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\String\V2V_StringInterface
+   * @var \Donquixote\ObCK\V2V\String\V2V_StringInterface
    */
   private $v2v;
 
@@ -45,7 +45,7 @@ class Generator_Textfield implements GeneratorInterface {
 
   /**
    * @param \Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface $formula
-   * @param \Donquixote\ObCK\Zoo\V2V\String\V2V_StringInterface $v2v
+   * @param \Donquixote\ObCK\V2V\String\V2V_StringInterface $v2v
    */
   public function __construct(Formula_TextfieldInterface $formula, V2V_StringInterface $v2v) {
     $this->formula = $formula;

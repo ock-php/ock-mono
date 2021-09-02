@@ -9,8 +9,8 @@ use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Util\PhpUtil;
-use Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_Drilldown_Trivial;
-use Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
+use Donquixote\ObCK\V2V\Drilldown\V2V_Drilldown_Trivial;
+use Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface;
 use Donquixote\ReflectionKit\Context\ContextInterface;
 
 class Contextualizer_Drilldown implements ContextualizerInterface {
@@ -21,7 +21,7 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
   private $formula;
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface
+   * @var \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface
    */
   private $v2v;
 
@@ -56,7 +56,7 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
 
   /**
    * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface $v2v
    * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    */
   protected function __construct(Formula_DrilldownInterface $formula, V2V_DrilldownInterface $v2v, FormulaToAnythingInterface $formulaToAnything) {

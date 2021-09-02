@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Formula\Group;
 
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
 
 abstract class Formula_Group_V2VDecoratorBase extends Formula_Group_V2VBase {
 
@@ -13,13 +13,13 @@ abstract class Formula_Group_V2VDecoratorBase extends Formula_Group_V2VBase {
   private $decoratedFormula;
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
    */
   private $decoratedV2V;
 
   /**
    * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $decoratedFormula
-   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $decoratedV2V
+   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $decoratedV2V
    */
   public function __construct(
     Formula_GroupInterface $decoratedFormula,

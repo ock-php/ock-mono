@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Formula\SequenceVal;
 
 use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface;
+use Donquixote\ObCK\V2V\Sequence\V2V_SequenceInterface;
 
 class Formula_SequenceVal extends Formula_SequenceValBase {
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface
+   * @var \Donquixote\ObCK\V2V\Sequence\V2V_SequenceInterface
    */
   private V2V_SequenceInterface $v2v;
 
@@ -17,7 +17,7 @@ class Formula_SequenceVal extends Formula_SequenceValBase {
    * Constructor.
    *
    * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $decorated
-   * @param \Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Sequence\V2V_SequenceInterface $v2v
    */
   public function __construct(Formula_SequenceInterface $decorated, V2V_SequenceInterface $v2v) {
     parent::__construct($decorated);

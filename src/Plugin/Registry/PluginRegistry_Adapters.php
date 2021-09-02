@@ -13,7 +13,7 @@ use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Plugin\Plugin;
 use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Trivial;
+use Donquixote\ObCK\V2V\Group\V2V_Group_Trivial;
 
 class PluginRegistry_Adapters implements PluginRegistryInterface {
 

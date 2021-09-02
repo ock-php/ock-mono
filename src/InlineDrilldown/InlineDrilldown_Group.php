@@ -7,9 +7,9 @@ namespace Donquixote\ObCK\InlineDrilldown;
 use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Trivial;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
-use Donquixote\ObCK\Zoo\V2V\Value\V2V_Value_GroupV2V;
+use Donquixote\ObCK\V2V\Group\V2V_Group_Trivial;
+use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
+use Donquixote\ObCK\V2V\Value\V2V_Value_GroupV2V;
 
 abstract class InlineDrilldown_Group implements InlineDrilldownInterface {
 
@@ -43,7 +43,7 @@ abstract class InlineDrilldown_Group implements InlineDrilldownInterface {
 
   /**
    * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $groupFormula
-   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
    * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Donquixote\ObCK\InlineDrilldown\InlineDrilldownInterface|null

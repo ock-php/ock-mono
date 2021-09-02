@@ -12,9 +12,9 @@ use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Plugin\Plugin;
 use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_Drilldown_Trivial;
-use Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
-use Donquixote\ObCK\Zoo\V2V\Value\V2V_Value_DrilldownFixedId;
+use Donquixote\ObCK\V2V\Drilldown\V2V_Drilldown_Trivial;
+use Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface;
+use Donquixote\ObCK\V2V\Value\V2V_Value_DrilldownFixedId;
 
 class InlinePluginList_Drilldown implements InlinePluginListInterface {
 
@@ -29,7 +29,7 @@ class InlinePluginList_Drilldown implements InlinePluginListInterface {
   private Formula_DrilldownInterface $formula;
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface
+   * @var \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface
    */
   private V2V_DrilldownInterface $v2v;
 
@@ -73,7 +73,7 @@ class InlinePluginList_Drilldown implements InlinePluginListInterface {
 
   /**
    * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface $v2v
    * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return static|null
@@ -101,7 +101,7 @@ class InlinePluginList_Drilldown implements InlinePluginListInterface {
    *
    * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $idFormula
    * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface $v2v
    */
   public function __construct(
     Formula_SelectInterface $idFormula,

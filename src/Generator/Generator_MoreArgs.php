@@ -6,8 +6,8 @@ namespace Donquixote\ObCK\Generator;
 use Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface;
 use Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Trivial;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\ObCK\V2V\Group\V2V_Group_Trivial;
+use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
 
 class Generator_MoreArgs extends Generator_DecoratorBase {
 
@@ -22,7 +22,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   private $specialKey;
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
@@ -67,7 +67,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
 
   /**
    * @param \Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
-   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
    * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
@@ -108,7 +108,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
    * @param \Donquixote\ObCK\Generator\GeneratorInterface[] $moreGenerators
    * @param string|int $specialKey
-   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
    */
   protected function __construct(
     GeneratorInterface $decorated,

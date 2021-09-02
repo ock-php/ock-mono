@@ -5,7 +5,7 @@ namespace Donquixote\ObCK\Formula\StringVal;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\ObCK\Zoo\V2V\String\V2V_StringInterface;
+use Donquixote\ObCK\V2V\String\V2V_StringInterface;
 
 interface Formula_StringValInterface extends Formula_ValueToValueBaseInterface {
 
@@ -15,7 +15,7 @@ interface Formula_StringValInterface extends Formula_ValueToValueBaseInterface {
   public function getDecorated(): FormulaInterface;
 
   /**
-   * @return \Donquixote\ObCK\Zoo\V2V\String\V2V_StringInterface
+   * @return \Donquixote\ObCK\V2V\String\V2V_StringInterface
    */
   public function getV2V(): V2V_StringInterface;
 

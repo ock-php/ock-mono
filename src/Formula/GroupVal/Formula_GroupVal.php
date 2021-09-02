@@ -6,13 +6,13 @@ namespace Donquixote\ObCK\Formula\GroupVal;
 use Donquixote\ObCK\Formula\Group\Formula_Group_Empty;
 use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
 use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_EmptyWithValueProvider;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\ObCK\V2V\Group\V2V_Group_EmptyWithValueProvider;
+use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
 
 class Formula_GroupVal extends Formula_GroupValBase {
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
@@ -30,7 +30,7 @@ class Formula_GroupVal extends Formula_GroupValBase {
 
   /**
    * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $decorated
-   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
    */
   public function __construct(Formula_GroupInterface $decorated, V2V_GroupInterface $v2v) {
     parent::__construct($decorated);

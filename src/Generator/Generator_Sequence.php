@@ -7,8 +7,8 @@ use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\ObCK\Formula\SequenceVal\Formula_SequenceValInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Util\PhpUtil;
-use Donquixote\ObCK\Zoo\V2V\Sequence\V2V_Sequence_Trivial;
-use Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface;
+use Donquixote\ObCK\V2V\Sequence\V2V_Sequence_Trivial;
+use Donquixote\ObCK\V2V\Sequence\V2V_SequenceInterface;
 
 class Generator_Sequence implements GeneratorInterface {
 
@@ -18,7 +18,7 @@ class Generator_Sequence implements GeneratorInterface {
   private $itemGenerator;
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface
+   * @var \Donquixote\ObCK\V2V\Sequence\V2V_SequenceInterface
    */
   private $v2v;
 
@@ -52,7 +52,7 @@ class Generator_Sequence implements GeneratorInterface {
 
   /**
    * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Sequence\V2V_SequenceInterface $v2v
    * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return self|null
@@ -75,7 +75,7 @@ class Generator_Sequence implements GeneratorInterface {
 
   /**
    * @param \Donquixote\ObCK\Generator\GeneratorInterface $itemGenerator
-   * @param \Donquixote\ObCK\Zoo\V2V\Sequence\V2V_SequenceInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Sequence\V2V_SequenceInterface $v2v
    */
   protected function __construct(GeneratorInterface $itemGenerator, V2V_SequenceInterface $v2v) {
     $this->itemGenerator = $itemGenerator;

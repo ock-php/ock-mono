@@ -9,8 +9,8 @@ use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Util\PhpUtil;
-use Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_Drilldown_Trivial;
-use Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface;
+use Donquixote\ObCK\V2V\Drilldown\V2V_Drilldown_Trivial;
+use Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface;
 
 class Generator_Drilldown implements GeneratorInterface {
 
@@ -20,7 +20,7 @@ class Generator_Drilldown implements GeneratorInterface {
   private $formula;
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface
+   * @var \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface
    */
   private $v2v;
 
@@ -55,7 +55,7 @@ class Generator_Drilldown implements GeneratorInterface {
 
   /**
    * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\ObCK\Zoo\V2V\Drilldown\V2V_DrilldownInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface $v2v
    * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    */
   protected function __construct(Formula_DrilldownInterface $formula, V2V_DrilldownInterface $v2v, FormulaToAnythingInterface $formulaToAnything) {

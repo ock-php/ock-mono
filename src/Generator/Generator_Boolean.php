@@ -5,13 +5,13 @@ namespace Donquixote\ObCK\Generator;
 
 use Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface;
 use Donquixote\ObCK\Formula\BoolVal\Formula_BoolValInterface;
-use Donquixote\ObCK\Zoo\V2V\Boolean\V2V_Boolean_Trivial;
-use Donquixote\ObCK\Zoo\V2V\Boolean\V2V_BooleanInterface;
+use Donquixote\ObCK\V2V\Boolean\V2V_Boolean_Trivial;
+use Donquixote\ObCK\V2V\Boolean\V2V_BooleanInterface;
 
 class Generator_Boolean implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Boolean\V2V_BooleanInterface
+   * @var \Donquixote\ObCK\V2V\Boolean\V2V_BooleanInterface
    */
   private $v2v;
 
@@ -40,7 +40,7 @@ class Generator_Boolean implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Zoo\V2V\Boolean\V2V_BooleanInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Boolean\V2V_BooleanInterface $v2v
    */
   public function __construct(V2V_BooleanInterface $v2v) {
     $this->v2v = $v2v;

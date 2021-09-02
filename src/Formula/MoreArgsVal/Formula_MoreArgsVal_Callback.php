@@ -10,7 +10,7 @@ use Donquixote\CallbackReflection\Util\CallbackUtil;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgs;
 use Donquixote\ObCK\Util\UtilBase;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Callback;
+use Donquixote\ObCK\V2V\Group\V2V_Group_Callback;
 
 final class Formula_MoreArgsVal_Callback extends UtilBase {
 

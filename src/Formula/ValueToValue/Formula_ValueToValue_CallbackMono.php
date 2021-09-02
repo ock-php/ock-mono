@@ -8,7 +8,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Util\UtilBase;
-use Donquixote\ObCK\Zoo\V2V\Value\V2V_Value_CallbackMono;
+use Donquixote\ObCK\V2V\Value\V2V_Value_CallbackMono;
 
 final class Formula_ValueToValue_CallbackMono extends UtilBase {
 

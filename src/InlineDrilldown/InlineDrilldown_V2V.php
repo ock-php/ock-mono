@@ -7,7 +7,7 @@ namespace Donquixote\ObCK\InlineDrilldown;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue;
-use Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface;
+use Donquixote\ObCK\V2V\Value\V2V_ValueInterface;
 
 class InlineDrilldown_V2V implements InlineDrilldownInterface {
 
@@ -17,7 +17,7 @@ class InlineDrilldown_V2V implements InlineDrilldownInterface {
   private InlineDrilldownInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface
+   * @var \Donquixote\ObCK\V2V\Value\V2V_ValueInterface
    */
   private V2V_ValueInterface $v2v;
 
@@ -25,7 +25,7 @@ class InlineDrilldown_V2V implements InlineDrilldownInterface {
    * Constructor.
    *
    * @param \Donquixote\ObCK\InlineDrilldown\InlineDrilldownInterface $decorated
-   * @param \Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Value\V2V_ValueInterface $v2v
    */
   public function __construct(InlineDrilldownInterface $decorated, V2V_ValueInterface $v2v) {
     $this->decorated = $decorated;

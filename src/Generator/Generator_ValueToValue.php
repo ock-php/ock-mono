@@ -5,7 +5,7 @@ namespace Donquixote\ObCK\Generator;
 
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValueInterface;
 use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface;
+use Donquixote\ObCK\V2V\Value\V2V_ValueInterface;
 
 class Generator_ValueToValue extends Generator_DecoratorBase {
 
@@ -37,7 +37,7 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
 
   /**
    * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\ObCK\Zoo\V2V\Value\V2V_ValueInterface $v2v
+   * @param \Donquixote\ObCK\V2V\Value\V2V_ValueInterface $v2v
    */
   public function __construct(GeneratorInterface $decorated, V2V_ValueInterface $v2v) {
     parent::__construct($decorated);

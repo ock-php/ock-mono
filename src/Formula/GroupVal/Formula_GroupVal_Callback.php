@@ -9,7 +9,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
 use Donquixote\ObCK\Formula\Group\Formula_Group;
 use Donquixote\ObCK\Util\UtilBase;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_Group_Callback;
+use Donquixote\ObCK\V2V\Group\V2V_Group_Callback;
 
 final class Formula_GroupVal_Callback extends UtilBase {
 
