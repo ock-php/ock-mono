@@ -88,14 +88,17 @@ class Generator_Group implements GeneratorInterface {
   public function confGetPhp($conf): string {
 
     if (!\is_array($conf)) {
-      // If all values are optional, this might still work.
-      return PhpUtil::expectedConfigButFound('Configuration must be an array.', $conf);
+      if ($this->itemGenerators) {
+        // At least one configurable item exists in the group.
+        return PhpUtil::expectedConfigButFound('Configuration must be an array.', $conf);
+      }
     }
 
     $phpStatements = [];
     foreach ($this->itemGenerators as $key => $itemGenerator) {
 
-      $itemConf = $conf[$key] ?? null;
+      // @todo Complain if setting is missing, instead of assuming NULL.
+      $itemConf = $conf[$key] ?? NULL;
 
       $phpStatements[$key] = $itemGenerator->confGetPhp($itemConf);
     }
