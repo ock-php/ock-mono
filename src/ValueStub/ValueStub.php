@@ -13,17 +13,14 @@ class ValueStub {
    * @param mixed $conf
    * @param \Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
-   * @return null|\Donquixote\ObCK\ValueStub\ValueStubInterface
+   * @return \Donquixote\ObCK\ValueStub\ValueStubInterface
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function fromFormulaConf(FormulaInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueStubInterface {
+  public static function fromFormulaConf(FormulaInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ValueStubInterface {
 
+    /** @var \Donquixote\ObCK\ValueStub\ValueStubInterface $object */
     $object = $scta->formula($formula, $conf, ValueStubInterface::class);
-
-    if (NULL === $object || !$object instanceof ValueStubInterface) {
-      return NULL;
-    }
 
     return $object;
   }

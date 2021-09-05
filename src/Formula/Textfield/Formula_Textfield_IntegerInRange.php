@@ -11,12 +11,12 @@ class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
   /**
    * @var int|null
    */
-  private $min;
+  private ?int $min;
 
   /**
    * @var int|null
    */
-  private $max;
+  private ?int $max;
 
   /**
    * @param int|null $min

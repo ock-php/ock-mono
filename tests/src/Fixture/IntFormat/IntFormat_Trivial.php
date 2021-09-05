@@ -7,7 +7,7 @@ namespace Donquixote\ObCK\Tests\Fixture\IntFormat;
 /**
  * Adapter from NumberFormat to IntFormat.
  *
- * @obck("trivial", "Trival - print integer as-is")
+ * @obck("trivial", "Trivial - print integer as-is")
  */
 class IntFormat_Trivial implements IntFormatInterface {
 

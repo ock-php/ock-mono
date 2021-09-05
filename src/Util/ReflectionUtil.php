@@ -104,6 +104,8 @@ final class ReflectionUtil extends UtilBase {
 
     if (NULL !== $returnType = $function->getReturnType()) {
       try {
+        /** @var string[] $names */
+        $names = [];
         self::reflectionTypeReadClassNames($names, $returnType, $declaringClassName);
         return $names;
       }
@@ -423,9 +425,9 @@ final class ReflectionUtil extends UtilBase {
     $i = 0;
     while ($reflClass = $reflClass->getParentClass()) {
       ++$i;
-      if (!empty($valuess[$i])) {
+      if (!empty($privateParentValues[$i])) {
         $setValues = $setValuesUnbound->bindTo(null, $reflClass->getName());
-        $setValues($valuess[$i]);
+        $setValues($privateParentValues[$i]);
       }
     }
 

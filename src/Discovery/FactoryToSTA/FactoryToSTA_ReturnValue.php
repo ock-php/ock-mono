@@ -103,4 +103,5 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
 
     return $this->decorated->factoryGetPartial($factory);
   }
+
 }

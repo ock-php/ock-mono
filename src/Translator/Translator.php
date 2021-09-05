@@ -18,7 +18,7 @@ class Translator implements TranslatorInterface {
   /**
    * @return self
    */
-  public static function createPassthru(): Translator {
+  public static function createPassthru(): self {
     return new self(new TranslatorLookup_Passthru());
   }
 
@@ -27,7 +27,7 @@ class Translator implements TranslatorInterface {
    *
    * @return self
    */
-  public static function create(TranslatorLookupInterface $lookup = NULL): Translator {
+  public static function create(TranslatorLookupInterface $lookup = NULL): self {
 
     if (NULL === $lookup) {
       $lookup = new TranslatorLookup_Passthru();

@@ -23,6 +23,8 @@ class Formula_ValueFactory_StaticMethod implements Formula_ValueFactoryInterface
 
   /**
    * @param callable $callable
+   *
+   * @return \Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactory_StaticMethod
    */
   public static function fromCallable(callable $callable): self {
     if (!is_array($callable) || !is_string($callable[0])) {

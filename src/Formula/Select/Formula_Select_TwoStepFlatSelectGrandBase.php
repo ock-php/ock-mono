@@ -58,8 +58,8 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($combinedId): ?TextInterface {
-    [$id0, $id1] = $this->splitId($combinedId) + [NULL, NULL];
+  public function idGetLabel($id): ?TextInterface {
+    [$id0, $id1] = $this->splitId($id) + [NULL, NULL];
 
     if (NULL === $id1) {
       return NULL;
