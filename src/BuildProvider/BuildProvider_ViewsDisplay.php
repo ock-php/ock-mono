@@ -6,8 +6,8 @@ namespace Drupal\renderkit\BuildProvider;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Formula;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 use Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId;
+use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 use Drupal\views\Views;
 
 class BuildProvider_ViewsDisplay implements BuildProviderInterface {

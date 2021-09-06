@@ -9,9 +9,9 @@ use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\RevisionableInterface;
-use Drupal\renderkit\Html\HtmlTagTrait;
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
 use Drupal\renderkit\Formula\Formula_TagName;
+use Drupal\renderkit\Html\HtmlTagTrait;
 
 /**
  * A typical entity container with contextual links and stuff.
