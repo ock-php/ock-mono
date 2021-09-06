@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\DecoShift\Formula_DecoShiftInterface;
@@ -10,13 +10,13 @@ use Donquixote\ObCK\Formula\Group\Formula_Group;
 use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\V2V\Group\V2V_Group_Deco;
 
 /**
  * @STA
  */
-class FormulaToAnythingPartial_DecoShift extends FormulaToAnythingPartial_FormulaReplacerBase {
+class Cradle_DecoShift extends Cradle_FormulaReplacerBase {
 
   /**
    * Constructor.
@@ -28,19 +28,19 @@ class FormulaToAnythingPartial_DecoShift extends FormulaToAnythingPartial_Formul
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
     /** @var \Donquixote\ObCK\Formula\DecoShift\Formula_DecoShiftInterface $formula */
     return $this->decoratedFormulaGetReplacement($formula->getDecorated(), $helper);
   }
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $helper
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  private function decoratedFormulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
+  private function decoratedFormulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
     if ($formula instanceof Formula_GroupValInterface) {
       $group_v2v = $formula->getV2V();
       $group_formula = $formula->getDecorated();

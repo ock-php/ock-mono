@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKey;
@@ -10,7 +10,7 @@ use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
 use Donquixote\ObCK\Formula\Select\Formula_Select_FromPlugins;
 use Donquixote\ObCK\Formula\Select\Formula_Select_InlineExpanded;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\IdToFormula\IdToFormula_FromPlugins;
 use Donquixote\ObCK\IdToFormula\IdToFormula_InlineExpanded;
 use Donquixote\ObCK\IdToFormula\IdToFormula_Replace;
@@ -20,7 +20,7 @@ use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 /**
  * @STA
  */
-class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaReplacerBase {
+class Cradle_Iface extends Cradle_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
@@ -59,7 +59,7 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
     /** @var \Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface $formula */
     return $this->typeGetFormula(
       $formula->getInterface(),
@@ -70,11 +70,11 @@ class FormulaToAnythingPartial_Iface extends FormulaToAnythingPartial_FormulaRep
   /**
    * @param string $type
    * @param bool $or_null
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $helper
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public function typeGetFormula(string $type, bool $or_null, FormulaToAnythingInterface $helper): FormulaInterface {
+  public function typeGetFormula(string $type, bool $or_null, NurseryInterface $helper): FormulaInterface {
     $plugins = $this->pluginMap->typeGetPlugins($type);
     $inline_plugins = [];
     foreach ($plugins as $id => $plugin) {

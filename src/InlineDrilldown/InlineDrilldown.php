@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\InlineDrilldown;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\UtilBase;
 
 final class InlineDrilldown extends UtilBase {
@@ -14,7 +14,7 @@ final class InlineDrilldown extends UtilBase {
    *
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\ObCK\InlineDrilldown\InlineDrilldownInterface
@@ -25,10 +25,10 @@ final class InlineDrilldown extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): InlineDrilldownInterface {
 
-    $candidate = $formulaToAnything->formula(
+    $candidate = $formulaToAnything->breed(
       $formula,
       InlineDrilldownInterface::class);
 

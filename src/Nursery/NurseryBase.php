@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything;
+namespace Donquixote\ObCK\Nursery;
 
-abstract class FormulaToAnythingBase implements FormulaToAnythingInterface {
+abstract class NurseryBase implements NurseryInterface {
 
   private string $cacheId;
 

@@ -10,7 +10,7 @@ use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Plugin\Plugin;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\V2V\Group\V2V_Group_Trivial;
@@ -28,18 +28,18 @@ class PluginRegistry_Adapters implements PluginRegistryInterface {
   private PluginRegistryInterface $adaptersRegistry;
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+   * @var \Donquixote\ObCK\Nursery\NurseryInterface
    */
-  private FormulaToAnythingInterface $formulaToAnything;
+  private NurseryInterface $formulaToAnything;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface $decorated
    * @param \Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface $adaptersRegistry
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    */
-  public function __construct(PluginRegistryInterface $decorated, PluginRegistryInterface $adaptersRegistry, FormulaToAnythingInterface $formulaToAnything) {
+  public function __construct(PluginRegistryInterface $decorated, PluginRegistryInterface $adaptersRegistry, NurseryInterface $formulaToAnything) {
     $this->decorated = $decorated;
     $this->adaptersRegistry = $adaptersRegistry;
     $this->formulaToAnything = $formulaToAnything;

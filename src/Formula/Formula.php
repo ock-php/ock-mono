@@ -9,7 +9,7 @@ use Donquixote\ObCK\Formula\Iface\Formula_Iface;
 use Donquixote\ObCK\Formula\Select\Flat\FlatSelectBuilderInterface;
 use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelect_Fixed;
 use Donquixote\ObCK\Formula\Sequence\Formula_Sequence;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\UtilBase;
 
 final class Formula extends UtilBase {
@@ -58,14 +58,14 @@ final class Formula extends UtilBase {
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formula_to_anything
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function replace(FormulaInterface $formula, FormulaToAnythingInterface $formula_to_anything): ?FormulaInterface {
+  public static function replace(FormulaInterface $formula, NurseryInterface $formula_to_anything): ?FormulaInterface {
 
-    $candidate = $formula_to_anything->formula(
+    $candidate = $formula_to_anything->breed(
       $formula,
       FormulaInterface::class);
 

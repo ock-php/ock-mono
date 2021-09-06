@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Discovery\FactoryToSTA;
 
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\Nursery\Cradle\CradleInterface;
 
 class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
 
@@ -23,7 +23,7 @@ class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
   /**
    * {@inheritdoc}
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?FormulaToAnythingPartialInterface {
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?CradleInterface {
 
     if (!$this->factoryIsSTA($factory)) {
       return null;

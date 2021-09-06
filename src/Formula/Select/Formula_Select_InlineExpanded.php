@@ -5,7 +5,7 @@ namespace Donquixote\ObCK\Formula\Select;
 
 use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 use Donquixote\ObCK\InlineDrilldown\InlineDrilldown;
 use Donquixote\ObCK\Text\Text;
@@ -24,21 +24,21 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
   private $idToFormula;
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+   * @var \Donquixote\ObCK\Nursery\NurseryInterface
    */
-  private FormulaToAnythingInterface $helper;
+  private NurseryInterface $helper;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $decorated
    * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $idToFormula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $helper
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
    */
   public function __construct(
     Formula_SelectInterface $decorated,
     IdToFormulaInterface $idToFormula,
-    FormulaToAnythingInterface $helper
+    NurseryInterface $helper
   ) {
     $this->decorated = $decorated;
     $this->idToFormula = $idToFormula;

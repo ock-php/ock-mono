@@ -1,31 +1,34 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 
 /**
- * @see \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+ * @see \Donquixote\ObCK\Nursery\NurseryInterface
  */
-interface FormulaToAnythingPartialInterface {
+interface CradleInterface {
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   *   Formula from which to breed a new object.
    * @param string $interface
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $helper
+   *   Interface for the return value.
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $nursery
+   *   Nursery for nested breed calls.
    *
    * @return null|object
-   *   An instance of $interface, or NULL.
+   *   An instance of $interface, or NULL to try other cradles instead.
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    *   Malfunction in a formula replacer.
    */
-  public function formula(
+  public function breed(
     FormulaInterface $formula,
     string $interface,
-    FormulaToAnythingInterface $helper): ?object;
+    NurseryInterface $nursery): ?object;
 
   /**
    * @param string $resultInterface

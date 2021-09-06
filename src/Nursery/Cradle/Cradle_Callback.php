@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -9,10 +9,10 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\ObCK\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\ReflectionUtil;
 
-class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
+class Cradle_Callback extends CradleBase {
 
   /**
    * @var \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface
@@ -23,12 +23,12 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialBase|null
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleBase|null
    */
   public static function create(
     CallbackReflectionInterface $callback,
     ParamToValueInterface $paramToValue
-  ): ?FormulaToAnythingPartialBase {
+  ): ?CradleBase {
 
     $params = $callback->getReflectionParameters();
 
@@ -54,7 +54,7 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
     if (1
       && isset($params[1])
       && NULL !== ($t1 = $params[1]->getClass())
-      && is_a(FormulaToAnythingInterface::class, $t1->getName(), TRUE)
+      && is_a(NurseryInterface::class, $t1->getName(), TRUE)
     ) {
       $hasStaParam = TRUE;
       unset($params[1]);
@@ -77,7 +77,7 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
         $formulaType);
     }
     else {
-      $sta = new FormulaToAnythingPartial_CallbackNoHelper(
+      $sta = new Cradle_CallbackNoHelper(
         $callback,
         $formulaType);
     }
@@ -108,7 +108,7 @@ class FormulaToAnythingPartial_Callback extends FormulaToAnythingPartialBase {
   protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    FormulaToAnythingInterface $helper
+    NurseryInterface $helper
   ): ?object {
 
     try {

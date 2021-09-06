@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Summarizer;
 
 use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
 use Donquixote\ObCK\Translator\TranslatorInterface;
@@ -20,7 +20,7 @@ class Summarizer_Sequence implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    *
    * @return \Donquixote\ObCK\Summarizer\Summarizer_Sequence|null
@@ -29,7 +29,7 @@ class Summarizer_Sequence implements SummarizerInterface {
    */
   public static function create(
     Formula_SequenceInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything,
+    NurseryInterface $formulaToAnything,
     TranslatorInterface $translator
   ): ?Summarizer_Sequence {
 

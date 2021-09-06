@@ -11,7 +11,7 @@ use Donquixote\ObCK\Formula\Formula;
 use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
 use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\V2V\Drilldown\V2V_Drilldown_Trivial;
 use Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface;
 use Donquixote\ObCK\V2V\Value\V2V_Value_DrilldownFixedId;
@@ -37,14 +37,14 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownValInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function fromDrilldownVal(
     Formula_DrilldownValInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): ?self {
     return self::create(
       $formula->getDecorated(),
@@ -56,14 +56,14 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
   public static function fromDrilldown(
     Formula_DrilldownInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): ?self {
     return self::create(
       $formula,
@@ -74,7 +74,7 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
   /**
    * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface $v2v
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return static|null
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
@@ -82,7 +82,7 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
   public static function create(
     Formula_DrilldownInterface $formula,
     V2V_DrilldownInterface $v2v,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): ?self {
     $idFormula = Formula::replace(
       $formula->getIdFormula(),

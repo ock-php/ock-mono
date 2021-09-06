@@ -5,7 +5,7 @@ namespace Donquixote\ObCK\IdToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\InlineDrilldown\InlineDrilldown;
 
 class IdToFormula_InlineExpanded implements IdToFormulaInterface {
@@ -16,15 +16,15 @@ class IdToFormula_InlineExpanded implements IdToFormulaInterface {
   private $decorated;
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+   * @var \Donquixote\ObCK\Nursery\NurseryInterface
    */
-  private FormulaToAnythingInterface $helper;
+  private NurseryInterface $helper;
 
   /**
    * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $decorated
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $helper
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
    */
-  public function __construct(IdToFormulaInterface $decorated, FormulaToAnythingInterface $helper) {
+  public function __construct(IdToFormulaInterface $decorated, NurseryInterface $helper) {
     $this->decorated = $decorated;
     $this->helper = $helper;
   }

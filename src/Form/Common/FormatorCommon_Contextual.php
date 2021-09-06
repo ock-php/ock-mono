@@ -5,28 +5,28 @@ namespace Donquixote\ObCK\Form\Common;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialZeroBase;
+use Donquixote\ObCK\Nursery\NurseryInterface;
+use Donquixote\ObCK\Nursery\Cradle\CradleZeroBase;
 
 /**
  * @STA
  */
-class FormatorCommon_Contextual extends FormulaToAnythingPartialZeroBase {
+class FormatorCommon_Contextual extends CradleZeroBase {
 
   /**
    * {@inheritdoc}
    */
-  public function formula(
+  public function breed(
     FormulaInterface $formula,
     string $interface,
-    FormulaToAnythingInterface $helper
+    NurseryInterface $nursery
   ): ?object {
 
     if (!$formula instanceof Formula_ContextualInterface) {
       return NULL;
     }
 
-    return $helper->formula($formula->getDecorated(), $interface);
+    return $nursery->breed($formula->getDecorated(), $interface);
   }
 
   /**

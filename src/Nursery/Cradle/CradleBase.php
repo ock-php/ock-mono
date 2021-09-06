@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 
-abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialInterface {
+abstract class CradleBase implements CradleInterface {
 
   /**
    * @var null|string
@@ -83,17 +83,17 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
   /**
    * {@inheritdoc}
    */
-  public function formula(
+  public function breed(
     FormulaInterface $formula,
     string $interface,
-    FormulaToAnythingInterface $helper
+    NurseryInterface $nursery
   ): ?object {
 
     if (NULL !== $this->formulaType && !$formula instanceof $this->formulaType) {
       return NULL;
     }
 
-    $candidate = $this->formulaDoGetObject($formula, $interface, $helper);
+    $candidate = $this->formulaDoGetObject($formula, $interface, $nursery);
 
     if (NULL === $candidate) {
       return NULL;
@@ -111,7 +111,7 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    * @param string $interface
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $helper
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
    *
    * @return null|object
    *   An instance of $interface, or NULL.
@@ -121,7 +121,7 @@ abstract class FormulaToAnythingPartialBase implements FormulaToAnythingPartialI
   abstract protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    FormulaToAnythingInterface $helper
+    NurseryInterface $helper
   ): ?object;
 
   /**

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 
-abstract class FormulaToAnythingPartial_FormulaReplacerBase extends FormulaToAnythingPartialBase {
+abstract class Cradle_FormulaReplacerBase extends CradleBase {
 
   /**
    * Constructor.
@@ -23,7 +23,7 @@ abstract class FormulaToAnythingPartial_FormulaReplacerBase extends FormulaToAny
   final protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    FormulaToAnythingInterface $helper
+    NurseryInterface $helper
   ): ?object {
     $replacement = $this->formulaGetReplacement($formula, $helper);
     if ($replacement === NULL) {
@@ -33,19 +33,19 @@ abstract class FormulaToAnythingPartial_FormulaReplacerBase extends FormulaToAny
       // Looks like recursion.
       return NULL;
     }
-    return $helper->formula($replacement, $interface);
+    return $helper->breed($replacement, $interface);
   }
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *   Original formula.
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $helper
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    *   Replacement formula.
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  abstract protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface;
+  abstract protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface;
 
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Summarizer;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ObCK\Util\UtilBase;
 
@@ -12,7 +12,7 @@ final class Summarizer extends UtilBase {
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return \Donquixote\ObCK\Summarizer\SummarizerInterface
    *
@@ -21,10 +21,10 @@ final class Summarizer extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): SummarizerInterface {
 
-    $candidate = $formulaToAnything->formula(
+    $candidate = $formulaToAnything->breed(
       $formula,
       SummarizerInterface::class);
 

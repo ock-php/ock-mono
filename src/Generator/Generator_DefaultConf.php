@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Generator;
 
 use Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 
 /**
  * @see \Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface
@@ -25,7 +25,7 @@ class Generator_DefaultConf implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -33,7 +33,7 @@ class Generator_DefaultConf implements GeneratorInterface {
    */
   public static function create(
     Formula_DefaultConfInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): ?self {
 
     $decorated = Generator::fromFormula(

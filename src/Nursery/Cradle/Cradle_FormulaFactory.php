@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 /**
  * @STA
  */
-class FormulaToAnythingPartial_FormulaFactory extends FormulaToAnythingPartial_FormulaReplacerBase {
+class Cradle_FormulaFactory extends Cradle_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface
@@ -32,7 +32,7 @@ class FormulaToAnythingPartial_FormulaFactory extends FormulaToAnythingPartial_F
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
 
     /** @var \Donquixote\ObCK\Formula\FormulaFactory\Formula_FormulaFactoryInterface $formula */
 

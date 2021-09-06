@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Generator;
 
 use Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 
 class Generator_Optional implements GeneratorInterface {
 
@@ -22,13 +22,13 @@ class Generator_Optional implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return \Donquixote\ObCK\Generator\GeneratorInterface|null
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_OptionalInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?GeneratorInterface {
+  public static function create(Formula_OptionalInterface $formula, NurseryInterface $formulaToAnything): ?GeneratorInterface {
 
     $decorated = Generator::fromFormula($formula->getDecorated(), $formulaToAnything);
 

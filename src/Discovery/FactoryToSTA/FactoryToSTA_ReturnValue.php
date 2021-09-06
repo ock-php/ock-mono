@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Discovery\FactoryToSTA;
 
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\Nursery\Cradle\CradleInterface;
 use Donquixote\FactoryReflection\Factory\ReflectionFactory;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
@@ -57,7 +57,7 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
   /**
    * {@inheritdoc}
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?FormulaToAnythingPartialInterface {
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?CradleInterface {
 
     if (NULL !== $sta = $this->decorated->factoryGetPartial($factory)) {
       return $sta;
@@ -72,7 +72,7 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
       return NULL;
     }
 
-    if ($value instanceof FormulaToAnythingPartialInterface) {
+    if ($value instanceof CradleInterface) {
       return $value;
     }
 

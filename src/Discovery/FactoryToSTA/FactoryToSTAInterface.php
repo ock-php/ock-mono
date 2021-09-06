@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Discovery\FactoryToSTA;
 
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\Nursery\Cradle\CradleInterface;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 
 interface FactoryToSTAInterface {
@@ -11,7 +11,7 @@ interface FactoryToSTAInterface {
   /**
    * @param \Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface $factory
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface|null
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface|null
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?FormulaToAnythingPartialInterface;
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?CradleInterface;
 }

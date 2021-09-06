@@ -4,19 +4,19 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Util;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 
 final class StaUtil extends UtilBase {
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $itemFormulas
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    * @param string $interface
    *
    * @return mixed[]|null
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function getMultiple(array $itemFormulas, FormulaToAnythingInterface $formulaToAnything, string $interface): ?array {
+  public static function getMultiple(array $itemFormulas, NurseryInterface $formulaToAnything, string $interface): ?array {
 
     $itemObjects = [];
     foreach ($itemFormulas as $k => $itemFormula) {
@@ -35,14 +35,14 @@ final class StaUtil extends UtilBase {
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    * @param string $interface
    *
    * @return object|null
    */
-  public static function getObject(FormulaInterface $formula, FormulaToAnythingInterface $formulaToAnything, string $interface): ?object {
+  public static function getObject(FormulaInterface $formula, NurseryInterface $formulaToAnything, string $interface): ?object {
 
-    $object = $formulaToAnything->formula($formula, $interface);
+    $object = $formulaToAnything->breed($formula, $interface);
 
     if (!$object instanceof $interface) {
       return NULL;

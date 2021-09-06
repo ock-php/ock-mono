@@ -14,7 +14,7 @@ final class LocalPackageUtil extends UtilBase {
   /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
    */
   public static function collectSTAPartials(ParamToValueInterface $paramToValue): array {
 

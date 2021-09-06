@@ -1,55 +1,62 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ObCK\Util\LocalPackageUtil;
 use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBase {
+class Nursery_SmartChain extends NurseryBase {
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][][]
+   * @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface[][][]
    *   Format: $[$formulaType][$targetType] = $partials
    */
   private $partialsGrouped = [];
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][]
+   * @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface[][][]
+   *   Format: $[$targetType][$formulaType] = $partials
+   */
+  private $partialsGroupedReverse = [];
+
+  /**
+   * @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface[][]
    *   Format: $[$targetType] = $partials
    */
   private $partialsByTargetType = [];
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[][]
+   * @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface[][]
    *   Format: $[$formulaType] = $partials
    */
   private $partialsByFormulaType = [];
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
    */
   private $partials;
 
   /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
+   * @param string $cache_id
    *
    * @return self
-   *
-   * @throws \Donquixote\ObCK\Exception\STABuilderException
    */
-  public static function create(ParamToValueInterface $paramToValue): FormulaToAnythingPartial_SmartChain {
+  public static function create(ParamToValueInterface $paramToValue, string $cache_id): self {
     $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
-    return new self($partials);
+    return new self($partials, $cache_id);
   }
 
   /**
-   * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
+   * @param \Donquixote\ObCK\Nursery\Cradle\CradleInterface[] $partials
+   * @param string $cache_id
    */
-  public function __construct(array $partials) {
+  public function __construct(array $partials, string $cache_id) {
+    parent::__construct($cache_id);
 
     $indices = [];
     $specifities = [];
@@ -68,11 +75,11 @@ class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBa
   /**
    * {@inheritdoc}
    */
-  public function formula(
-    FormulaInterface $formula,
-    string $interface,
-    FormulaToAnythingInterface $helper
-  ): ?object {
+  public function breed(FormulaInterface $formula, string $interface): object {
+
+    if ($formula instanceof $interface) {
+      return $formula;
+    }
 
     $partials = $this->formulaTypeAndTargetTypeGetPartials(
       \get_class($formula),
@@ -80,19 +87,19 @@ class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBa
 
     $candidate = NULL;
     foreach ($partials as $partial) {
-      $candidate = $partial->formula($formula, $interface, $helper);
+
+      $candidate = $partial->breed($formula, $interface, $this);
+
+      if ($candidate === NULL) {
+        continue;
+      }
+
       if ($candidate instanceof $interface) {
         return $candidate;
       }
-      if ($candidate !== NULL) {
-        // Misbehaving FTA.
-        // Fall through to the runtime exception below.
-        break;
-      }
-    }
 
-    if ($candidate === NULL) {
-      return NULL;
+      // Fall through to the runtime exception below.
+      break;
     }
 
     $replacements = [
@@ -100,6 +107,12 @@ class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBa
       '@interface' => $interface,
       '@found' => MessageUtil::formatValue($candidate),
     ];
+
+    if ($candidate === NULL) {
+      throw new FormulaToAnythingException(strtr(
+        'Unsupported formula of class @formula_class: Expected @interface object, found @found.',
+        $replacements));
+    }
 
     throw new \RuntimeException(strtr(
       'Misbehaving FTA for formula of class @formula_class: Expected @interface object, found @found.',
@@ -110,7 +123,7 @@ class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBa
    * @param string $formulaType
    * @param string $targetType
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
    */
   private function formulaTypeAndTargetTypeGetPartials(string $formulaType, string $targetType): array {
 
@@ -124,11 +137,11 @@ class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBa
    * @param string $formulaType
    * @param string $targetType
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
    */
   private function formulaTypeAndTargetTypeCollectPartials(string $formulaType, string $targetType): array {
 
-    return array_intersect_key(
+    return $this->partialsGroupedReverse[$targetType][$formulaType] = array_intersect_key(
       $this->formulaTypeGetPartials($formulaType),
       $this->targetTypeGetPartials($targetType));
   }
@@ -136,7 +149,7 @@ class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBa
   /**
    * @param string $interface
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
    */
   private function targetTypeGetPartials(string $interface): array {
 
@@ -147,12 +160,12 @@ class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBa
   /**
    * @param string $targetType
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
    */
   private function targetTypeCollectPartials(string $targetType): array {
 
     $partials = [];
-    /** @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial */
+    /** @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->providesResultType($targetType)) {
         // Preserve keys for array_intersect().
@@ -166,7 +179,7 @@ class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBa
   /**
    * @param string $interface
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
    */
   private function formulaTypeGetPartials(string $interface): array {
 
@@ -177,12 +190,12 @@ class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBa
   /**
    * @param string $formulaType
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
    */
   private function formulaTypeCollectPartials(string $formulaType): array {
 
     $partials = [];
-    /** @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial */
+    /** @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->acceptsFormulaClass($formulaType)) {
         // Preserve keys for array_intersect().
@@ -194,16 +207,20 @@ class FormulaToAnythingPartial_SmartChain extends FormulaToAnythingPartialZeroBa
   }
 
   /**
-   * {@inheritdoc}
+   * @param string $interface
+   *
+   * @return bool
    */
-  public function providesResultType(string $resultInterface): bool {
-    return [] !== $this->targetTypeGetPartials($resultInterface);
+  public function providesResultType(string $interface): bool {
+    return [] !== $this->targetTypeGetPartials($interface);
   }
 
   /**
-   * {@inheritdoc}
+   * @param string $interface
+   *
+   * @return bool
    */
-  public function acceptsFormulaClass(string $formulaClass): bool {
-    return [] !== $this->formulaTypeGetPartials($formulaClass);
+  public function acceptsFormulaClass(string $interface): bool {
+    return [] !== $this->formulaTypeGetPartials($interface);
   }
 }

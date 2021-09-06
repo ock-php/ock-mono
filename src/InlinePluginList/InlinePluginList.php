@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\InlinePluginList;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\UtilBase;
 
 final class InlinePluginList extends UtilBase {
@@ -14,7 +14,7 @@ final class InlinePluginList extends UtilBase {
    *
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\ObCK\InlinePluginList\InlinePluginListInterface
@@ -25,11 +25,11 @@ final class InlinePluginList extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): InlinePluginListInterface {
 
     /** @var \Donquixote\ObCK\InlinePluginList\InlinePluginListInterface $object */
-    $object = $formulaToAnything->formula(
+    $object = $formulaToAnything->breed(
       $formula,
       InlinePluginListInterface::class);
 

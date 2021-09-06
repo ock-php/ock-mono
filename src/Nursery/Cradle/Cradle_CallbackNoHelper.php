@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 
-class FormulaToAnythingPartial_CallbackNoHelper extends FormulaToAnythingPartialBase {
+class Cradle_CallbackNoHelper extends CradleBase {
 
   /**
    * @var \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface
@@ -34,9 +34,9 @@ class FormulaToAnythingPartial_CallbackNoHelper extends FormulaToAnythingPartial
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
    * @param string|null $resultType
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface|null
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface|null
    */
-  public static function create(CallbackReflectionInterface $callback, $resultType = NULL): ?FormulaToAnythingPartialInterface {
+  public static function create(CallbackReflectionInterface $callback, $resultType = NULL): ?CradleInterface {
 
     $params = $callback->getReflectionParameters();
 
@@ -75,7 +75,7 @@ class FormulaToAnythingPartial_CallbackNoHelper extends FormulaToAnythingPartial
   protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    FormulaToAnythingInterface $helper
+    NurseryInterface $helper
   ): ?object {
 
     try {

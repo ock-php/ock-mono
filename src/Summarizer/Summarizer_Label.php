@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Summarizer;
 
 use Donquixote\ObCK\Formula\Label\Formula_LabelInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
 
@@ -27,11 +27,11 @@ class Summarizer_Label implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Label\Formula_LabelInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    */
-  public static function create(Formula_LabelInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Summarizer_Label {
+  public static function create(Formula_LabelInterface $formula, NurseryInterface $formulaToAnything): ?Summarizer_Label {
 
     if (NULL === $decorated = Summarizer::fromFormula(
         $formula->getDecorated(),

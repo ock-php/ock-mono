@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Summarizer;
 
 use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
 use Donquixote\ObCK\Util\StaUtil;
@@ -25,13 +25,13 @@ class Summarizer_Group implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_GroupInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?self {
+  public static function create(Formula_GroupInterface $formula, NurseryInterface $formulaToAnything): ?self {
 
     /** @var \Donquixote\ObCK\Summarizer\SummarizerInterface[] $itemSummarizers */
     $itemSummarizers = StaUtil::getMultiple(

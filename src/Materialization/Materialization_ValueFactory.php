@@ -7,25 +7,25 @@ namespace Donquixote\ObCK\Materialization;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Form\Common\FormatorCommonInterface;
 use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialZeroBase;
+use Donquixote\ObCK\Nursery\NurseryInterface;
+use Donquixote\ObCK\Nursery\Cradle\CradleZeroBase;
 
-class Materialization_ValueFactory extends FormulaToAnythingPartialZeroBase {
+class Materialization_ValueFactory extends CradleZeroBase {
 
   /**
    * {@inheritdoc}
    */
-  public function formula(
+  public function breed(
     FormulaInterface $formula,
     string $interface,
-    FormulaToAnythingInterface $helper
+    NurseryInterface $nursery
   ): ?object {
 
     if (!$formula instanceof Formula_ValueToValueBaseInterface) {
       return NULL;
     }
 
-    return $helper->formula($formula->getDecorated(), $interface);
+    return $nursery->breed($formula->getDecorated(), $interface);
   }
 
   /**

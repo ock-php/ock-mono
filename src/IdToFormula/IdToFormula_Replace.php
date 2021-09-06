@@ -6,24 +6,24 @@ namespace Donquixote\ObCK\IdToFormula;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 
 class IdToFormula_Replace implements IdToFormulaInterface {
 
   private IdToFormulaInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+   * @var \Donquixote\ObCK\Nursery\NurseryInterface
    */
-  private FormulaToAnythingInterface $formulaToAnything;
+  private NurseryInterface $formulaToAnything;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $decorated
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    */
-  public function __construct(IdToFormulaInterface $decorated, FormulaToAnythingInterface $formulaToAnything) {
+  public function __construct(IdToFormulaInterface $decorated, NurseryInterface $formulaToAnything) {
     $this->decorated = $decorated;
     $this->formulaToAnything = $formulaToAnything;
   }

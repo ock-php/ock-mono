@@ -5,7 +5,7 @@ namespace Donquixote\ObCK\Generator;
 
 use Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface;
 use Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\V2V\Group\V2V_Group_Trivial;
 use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
 
@@ -35,13 +35,13 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?Generator_MoreArgs {
+  public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, NurseryInterface $formulaToAnything): ?Generator_MoreArgs {
     return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
   }
 
@@ -49,7 +49,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -57,7 +57,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    */
   public static function createFromMoreArgsValFormula(
     Formula_MoreArgsValInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): ?Generator_MoreArgs {
     return self::create(
       $formula->getDecorated(),
@@ -68,7 +68,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   /**
    * @param \Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
    * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -77,7 +77,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   public static function create(
     Formula_MoreArgsInterface $moreArgsFormula,
     V2V_GroupInterface $v2v,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): ?Generator_MoreArgs {
 
     $decoratedGenerator = Generator::fromFormula(

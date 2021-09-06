@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything;
+namespace Donquixote\ObCK\Nursery;
 
 use Donquixote\ObCK\Context\CfContextInterface;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ObCK\Formula\ContextProviding\Formula_ContextProvidingInterface;
 use Donquixote\ObCK\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartial_SmartChain;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
+use Donquixote\ObCK\Nursery\Cradle\FormulaToAnythingPartial_SmartChain;
+use Donquixote\ObCK\Nursery\Cradle\CradleInterface;
 use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class FormulaToAnything_FromPartial extends FormulaToAnythingBase {
+class Nursery_FromCradle extends NurseryBase {
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface
+   * @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface
    */
-  private $partial;
+  private $cradle;
 
   /**
    * @var \Donquixote\ObCK\Context\CfContextInterface|null
@@ -38,7 +38,7 @@ class FormulaToAnything_FromPartial extends FormulaToAnythingBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
+   * @param \Donquixote\ObCK\Nursery\Cradle\CradleInterface[] $partials
    * @param string $cache_id
    *
    * @return self
@@ -48,11 +48,11 @@ class FormulaToAnything_FromPartial extends FormulaToAnythingBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface $partial
+   * @param \Donquixote\ObCK\Nursery\Cradle\CradleInterface $partial
    * @param string $cache_id
    */
-  public function __construct(FormulaToAnythingPartialInterface $partial, string $cache_id) {
-    $this->partial = $partial;
+  public function __construct(CradleInterface $partial, string $cache_id) {
+    $this->cradle = $partial;
     parent::__construct($cache_id);
   }
 
@@ -73,24 +73,24 @@ class FormulaToAnything_FromPartial extends FormulaToAnythingBase {
   /**
    * {@inheritdoc}
    */
-  public function formula(FormulaInterface $formula, string $interface): object {
+  public function breed(FormulaInterface $formula, string $interface): object {
 
     if ($formula instanceof Formula_ContextProvidingInterface) {
       return $this
         ->withContext($formula->getContext())
-        ->formula(
+        ->breed(
           $formula->getDecorated(),
           $interface);
     }
 
     if ($formula instanceof Formula_ContextualInterface) {
       return $this
-        ->formula(
+        ->breed(
           $formula->getDecorated($this->context),
           $interface);
     }
 
-    $candidate = $this->partial->formula($formula, $interface, $this);
+    $candidate = $this->cradle->breed($formula, $interface, $this);
 
     if ($candidate instanceof $interface) {
       return $candidate;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Formula\PluginList;
 
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Plugin\Plugin;
 
 /**
@@ -18,17 +18,17 @@ class Formula_PluginList_Adapters implements Formula_PluginListInterface {
   private Formula_PluginListInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+   * @var \Donquixote\ObCK\Nursery\NurseryInterface
    */
-  private FormulaToAnythingInterface $helper;
+  private NurseryInterface $helper;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface $decorated
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $helper
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
    */
-  public function __construct(Formula_PluginListInterface $decorated, FormulaToAnythingInterface $helper) {
+  public function __construct(Formula_PluginListInterface $decorated, NurseryInterface $helper) {
     $this->decorated = $decorated;
     $this->helper = $helper;
   }

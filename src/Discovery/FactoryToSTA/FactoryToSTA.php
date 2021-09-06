@@ -10,10 +10,10 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\ObCK\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartial_Callback;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartial_CallbackNoHelper;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\Cradle\Cradle_Callback;
+use Donquixote\ObCK\Nursery\Cradle\Cradle_CallbackNoHelper;
+use Donquixote\ObCK\Nursery\Cradle\CradleInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\ReflectionUtil;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
@@ -53,7 +53,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
   /**
    * {@inheritdoc}
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?FormulaToAnythingPartialInterface {
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?CradleInterface {
 
     $params = $factory->getParameters();
 
@@ -83,7 +83,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
     if (1
       && isset($params[1])
       && NULL !== ($t1 = $params[1]->getClass())
-      && is_a(FormulaToAnythingInterface::class, $t1->getName(), TRUE)
+      && is_a(NurseryInterface::class, $t1->getName(), TRUE)
     ) {
       $hasStaParam = TRUE;
       unset($params[1]);
@@ -112,13 +112,13 @@ class FactoryToSTA implements FactoryToSTAInterface {
     }
 
     if ($hasStaParam) {
-      $sta = new FormulaToAnythingPartial_Callback(
+      $sta = new Cradle_Callback(
         $callback,
         $formulaType,
         $returnTypeClass->getName());
     }
     else {
-      $sta = new FormulaToAnythingPartial_CallbackNoHelper(
+      $sta = new Cradle_CallbackNoHelper(
         $callback,
         $formulaType,
         $returnTypeClass->getName());

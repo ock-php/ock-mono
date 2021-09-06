@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Summarizer;
 
 use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
 
@@ -26,13 +26,13 @@ class Summarizer_DecoKey implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_DecoKeyInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?self {
+  public static function create(Formula_DecoKeyInterface $formula, NurseryInterface $formulaToAnything): ?self {
     return new self(
       Summarizer::fromFormula(
         $formula->getDecorated(),

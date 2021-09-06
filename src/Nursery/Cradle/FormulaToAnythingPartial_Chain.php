@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class FormulaToAnythingPartial_Chain extends FormulaToAnythingPartialZeroBase {
+class FormulaToAnythingPartial_Chain extends CradleZeroBase {
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
    */
   private $partials;
 
@@ -28,7 +28,7 @@ class FormulaToAnythingPartial_Chain extends FormulaToAnythingPartialZeroBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[] $partials
+   * @param \Donquixote\ObCK\Nursery\Cradle\CradleInterface[] $partials
    */
   public function __construct(array $partials) {
     $this->partials = $partials;
@@ -37,14 +37,14 @@ class FormulaToAnythingPartial_Chain extends FormulaToAnythingPartialZeroBase {
   /**
    * {@inheritdoc}
    */
-  public function formula(
+  public function breed(
     FormulaInterface $formula,
     string $interface,
-    FormulaToAnythingInterface $helper
+    NurseryInterface $nursery
   ): ?object {
 
     foreach ($this->partials as $mapper) {
-      $candidate = $mapper->formula($formula, $interface, $helper);
+      $candidate = $mapper->breed($formula, $interface, $nursery);
       if (NULL !== $candidate) {
         if ($candidate instanceof $interface) {
           return $candidate;

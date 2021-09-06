@@ -1,24 +1,24 @@
 <?php
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\ContextProviding\Formula_ContextProvidingInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 
-class FormulaToAnythingPartial_ContextProviding extends FormulaToAnythingPartialZeroBase {
+class FormulaToAnythingPartial_ContextProviding extends CradleZeroBase {
 
   /**
    * {@inheritdoc}
    */
-  public function formula(FormulaInterface $formula, string $interface, FormulaToAnythingInterface $helper): ?object {
+  public function breed(FormulaInterface $formula, string $interface, NurseryInterface $nursery): ?object {
     if (!$formula instanceof Formula_ContextProvidingInterface) {
       return NULL;
     }
 
-    return $helper
+    return $nursery
       # ->withContext($formula->getContext())
-      ->formula(
+      ->breed(
         $formula->getDecorated(),
         $interface);
   }

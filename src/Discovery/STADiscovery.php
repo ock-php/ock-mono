@@ -31,7 +31,7 @@ class STADiscovery {
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartialInterface[]
+   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
    */
   public function classFilesIAGetPartials(ClassFilesIAInterface $classFilesIA): array {
 

@@ -5,7 +5,7 @@ namespace Donquixote\ObCK\Generator;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ObCK\Util\UtilBase;
 
@@ -16,7 +16,7 @@ final class Generator extends UtilBase {
    *
    * @param string $interface
    *   Interface name.
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\ObCK\Generator\GeneratorInterface|null
@@ -28,7 +28,7 @@ final class Generator extends UtilBase {
    */
   public static function fromIface(
     string $interface,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): ?GeneratorInterface {
     return self::fromFormula(
       Formula::iface($interface),
@@ -40,7 +40,7 @@ final class Generator extends UtilBase {
    *
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\ObCK\Generator\GeneratorInterface
@@ -51,10 +51,10 @@ final class Generator extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): GeneratorInterface {
 
-    $candidate = $formulaToAnything->formula(
+    $candidate = $formulaToAnything->breed(
       $formula,
       GeneratorInterface::class);
 

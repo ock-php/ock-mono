@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Generator;
 
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValueInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\V2V\Value\V2V_ValueInterface;
 
 class Generator_ValueToValue extends Generator_DecoratorBase {
@@ -18,13 +18,13 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValueInterface $valueToValueFormula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    */
-  public static function create(Formula_ValueToValueInterface $valueToValueFormula, FormulaToAnythingInterface $formulaToAnything): ?self {
+  public static function create(Formula_ValueToValueInterface $valueToValueFormula, NurseryInterface $formulaToAnything): ?self {
 
-    $decorated = $formulaToAnything->formula(
+    $decorated = $formulaToAnything->breed(
       $valueToValueFormula->getDecorated(),
       GeneratorInterface::class);
 

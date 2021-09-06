@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
 use Donquixote\ObCK\Formula\Select\Formula_Select_FromPlugins;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\IdToFormula\IdToFormula_FromPlugins;
 use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 
 /**
  * @_STA
  */
-class FormulaToAnythingPartial_IfacePluginMap extends FormulaToAnythingPartial_FormulaReplacerBase {
+class Cradle_IfacePluginMap extends Cradle_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
@@ -34,7 +34,7 @@ class FormulaToAnythingPartial_IfacePluginMap extends FormulaToAnythingPartial_F
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
     /** @var \Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface $formula */
     $plugins = $this->pluginMap->typeGetPlugins($formula->getInterface());
     $ff = new Formula_Drilldown(

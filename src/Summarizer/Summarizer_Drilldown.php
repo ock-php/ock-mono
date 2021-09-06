@@ -5,7 +5,7 @@ namespace Donquixote\ObCK\Summarizer;
 
 use Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
 
@@ -20,7 +20,7 @@ class Summarizer_Drilldown implements SummarizerInterface {
   private $formula;
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+   * @var \Donquixote\ObCK\Nursery\NurseryInterface
    */
   private $formulaToAnything;
 
@@ -28,11 +28,11 @@ class Summarizer_Drilldown implements SummarizerInterface {
    * Constructor.
    *
    * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    */
   public function __construct(
     Formula_DrilldownInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ) {
     $this->formula = $formula;
     $this->formulaToAnything = $formulaToAnything;

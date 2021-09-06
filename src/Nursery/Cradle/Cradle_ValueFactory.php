@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
@@ -10,7 +10,7 @@ use Donquixote\ObCK\Formula\Formula;
 use Donquixote\ObCK\Formula\Iface\Formula_Iface;
 use Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactoryInterface;
 use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_Callback;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\ParamToLabel\ParamToLabelInterface;
 use Donquixote\ObCK\Text\Text;
 use Psr\Log\LoggerInterface;
@@ -18,7 +18,7 @@ use Psr\Log\LoggerInterface;
 /**
  * @STA
  */
-class FormulaToAnythingPartial_ValueFactory extends FormulaToAnythingPartial_FormulaReplacerBase {
+class Cradle_ValueFactory extends Cradle_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\ObCK\ParamToLabel\ParamToLabelInterface
@@ -45,7 +45,7 @@ class FormulaToAnythingPartial_ValueFactory extends FormulaToAnythingPartial_For
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, FormulaToAnythingInterface $helper): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
 
     /** @var \Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactoryInterface $formula */
 

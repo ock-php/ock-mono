@@ -4,8 +4,8 @@ namespace Donquixote\ObCK\Tests;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
 use Donquixote\ObCK\Exception\STABuilderException;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnything_FromPartial;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\Nursery_FromCradle;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\ParamToLabel\ParamToLabel;
 use Donquixote\ObCK\Plugin\Discovery\ClassToPlugins_NativeReflection;
 use Donquixote\ObCK\Plugin\GroupLabels\PluginGroupLabels;
@@ -26,10 +26,10 @@ class FormulaTestBase extends TestCase {
    * @param object[] $objects
    *   Objects to pass to the constructors.
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+   * @return \Donquixote\ObCK\Nursery\NurseryInterface
    *   The object.
    */
-  protected function getFormulaToAnything(array $objects = []): FormulaToAnythingInterface {
+  protected function getFormulaToAnything(array $objects = []): NurseryInterface {
     $logger = new TestLogger();
     $objects[] = new ParamToLabel();
     $objects[] = $logger;
@@ -37,7 +37,7 @@ class FormulaTestBase extends TestCase {
     $objects[] = new PluginGroupLabels([]);
     $param_to_value = new ParamToValue_ObjectsMatchType($objects);
     try {
-      $fta = FormulaToAnything_FromPartial::create(
+      $fta = Nursery_FromCradle::create(
         $param_to_value,
         'test_cid');
     }

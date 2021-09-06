@@ -6,7 +6,7 @@ namespace Donquixote\ObCK\Decorator;
 
 use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Generator\Generator;
 use Donquixote\ObCK\Generator\Generator_Group;
 use Donquixote\ObCK\Util\PhpUtil;
@@ -29,7 +29,7 @@ class Decorator_Group implements DecoratorInterface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -37,7 +37,7 @@ class Decorator_Group implements DecoratorInterface {
    */
   public static function fromGroupFormula(
     Formula_GroupInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): ?Generator_Group {
     return self::create(
       $formula,
@@ -49,7 +49,7 @@ class Decorator_Group implements DecoratorInterface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -57,7 +57,7 @@ class Decorator_Group implements DecoratorInterface {
    */
   public static function fromGroupValFormula(
     Formula_GroupValInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): ?Generator_Group {
     return self::create(
       $formula->getDecorated(),
@@ -70,13 +70,13 @@ class Decorator_Group implements DecoratorInterface {
    *
    * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $groupFormula
    * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, FormulaToAnythingInterface $formulaToAnything): ?Generator_Group {
+  public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, NurseryInterface $formulaToAnything): ?Generator_Group {
 
     $itemGenerators = [];
     foreach ($groupFormula->getItemFormulas() as $k => $itemFormula) {

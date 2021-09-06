@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaToAnything\Partial;
+namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 
 /**
  * @STA
  */
-class FormulaToAnythingPartial_Identity implements FormulaToAnythingPartialInterface {
+class Cradle_Identity implements CradleInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function formula(FormulaInterface $formula, string $interface, FormulaToAnythingInterface $helper): ?object {
+  public function breed(FormulaInterface $formula, string $interface, NurseryInterface $nursery): ?object {
     return ($formula instanceof $interface)
       ? $formula
       : NULL;

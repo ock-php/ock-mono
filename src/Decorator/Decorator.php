@@ -6,7 +6,7 @@ namespace Donquixote\ObCK\Decorator;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\UtilBase;
 
 final class Decorator extends UtilBase {
@@ -16,7 +16,7 @@ final class Decorator extends UtilBase {
    *
    * @param string $interface
    *   Interface name.
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\ObCK\Decorator\DecoratorInterface|null
@@ -28,7 +28,7 @@ final class Decorator extends UtilBase {
    */
   public static function fromIface(
     string $interface,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): ?DecoratorInterface {
     return self::fromFormula(
       Formula::iface($interface),
@@ -40,7 +40,7 @@ final class Decorator extends UtilBase {
    *
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\ObCK\Decorator\DecoratorInterface
@@ -51,11 +51,11 @@ final class Decorator extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    NurseryInterface $formulaToAnything
   ): DecoratorInterface {
 
     /** @var \Donquixote\ObCK\Decorator\DecoratorInterface $candidate */
-    $candidate = $formulaToAnything->formula(
+    $candidate = $formulaToAnything->breed(
       $formula,
       DecoratorInterface::class);
 
