@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\Tests\renderkit8\Functional;
+namespace Drupal\Tests\renderkit\Functional;
 
 class FunctionalTest_RenderkitSelectSchemata {
 

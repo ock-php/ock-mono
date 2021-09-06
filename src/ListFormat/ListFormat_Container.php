@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\ListFormat;
+namespace Drupal\renderkit\ListFormat;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit8\Html\HtmlTagTrait;
-use Drupal\renderkit8\Schema\CfSchema_ClassAttribute;
-use Drupal\renderkit8\Schema\CfSchema_TagName;
+use Drupal\renderkit\Html\HtmlTagTrait;
+use Drupal\renderkit\Schema\CfSchema_ClassAttribute;
+use Drupal\renderkit\Schema\CfSchema_TagName;
 
 class ListFormat_Container implements ListFormatInterface {
 
@@ -36,7 +36,7 @@ class ListFormat_Container implements ListFormatInterface {
    * @param string $tagName
    * @param string[] $classes
    *
-   * @return \Drupal\renderkit8\ListFormat\ListFormatInterface
+   * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
   public static function create($tagName, array $classes) {
     return (new self())

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay\Switcher;
+namespace Drupal\renderkit\EntityDisplay\Switcher;
 
-use Drupal\renderkit8\EntityDisplay\EntitiesDisplayBase;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit8\EntityFilter\EntityFilterInterface;
+use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityFilter\EntityFilterInterface;
 
 /**
  * @ CfrPlugin(
@@ -16,24 +16,24 @@ use Drupal\renderkit8\EntityFilter\EntityFilterInterface;
 class EntityDisplay_EntityFilter extends EntitiesDisplayBase {
 
   /**
-   * @var \Drupal\renderkit8\EntityFilter\EntityFilterInterface
+   * @var \Drupal\renderkit\EntityFilter\EntityFilterInterface
    */
   private $entityFilter;
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   private $displayIfTrue;
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface|null
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
    */
   private $displayIfFalse;
 
   /**
-   * @param \Drupal\renderkit8\EntityFilter\EntityFilterInterface $entityFilter
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $displayIfTrue
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface|null $displayIfFalse
+   * @param \Drupal\renderkit\EntityFilter\EntityFilterInterface $entityFilter
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $displayIfTrue
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null $displayIfFalse
    */
   public function __construct(EntityFilterInterface $entityFilter, EntityDisplayInterface $displayIfTrue, EntityDisplayInterface $displayIfFalse = NULL) {
     $this->entityFilter = $entityFilter;

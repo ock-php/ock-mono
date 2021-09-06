@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
@@ -9,7 +9,7 @@ use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Donquixote\Cf\Schema\Proxy\Replacer\CfSchema_Proxy_ReplacerInterface;
 use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
-use Drupal\renderkit8\IdToSchema\IdToSchema_FieldName_FormatterTypeAndSettings;
+use Drupal\renderkit\IdToSchema\IdToSchema_FieldName_FormatterTypeAndSettings;
 
 class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_ReplacerInterface {
 
@@ -19,7 +19,7 @@ class CfSchema_FieldNameWithFormatter_SpecificEt implements CfSchema_Proxy_Repla
   private $entityType;
 
   /**
-   * @var \Drupal\renderkit8\Schema\CfSchema_FieldName
+   * @var \Drupal\renderkit\Schema\CfSchema_FieldName
    */
   private $fieldNameSchemaProxy;
 

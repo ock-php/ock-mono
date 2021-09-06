@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityFilter;
+namespace Drupal\renderkit\EntityFilter;
 
 /**
  * Interface for entity filters.
  *
- * @see \Drupal\renderkit8\EntityCondition\EntityConditionInterface
+ * @see \Drupal\renderkit\EntityCondition\EntityConditionInterface
  */
 interface EntityFilterInterface {
 

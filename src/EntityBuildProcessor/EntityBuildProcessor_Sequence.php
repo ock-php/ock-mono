@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityBuildProcessor;
+namespace Drupal\renderkit\EntityBuildProcessor;
 
 use Donquixote\Cf\Context\CfContextInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
+use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
 /**
  * An entity build processor that runs each render array through a bunch of
@@ -39,7 +39,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
   }
 
   /**
-   * @param \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface[] $processors
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface[] $processors
    *
    * @return self
    */
@@ -62,7 +62,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
   private $processors = [];
 
   /**
-   * @param \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface $buildProcessor
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $buildProcessor
    *
    * @return $this
    */
@@ -72,7 +72,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
   }
 
   /**
-   * @param \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface $entityBuildProcessor
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface $entityBuildProcessor
    *
    * @return $this
    */

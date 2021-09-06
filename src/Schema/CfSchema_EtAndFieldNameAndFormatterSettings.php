@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\Group\CfSchema_Group;
 use Donquixote\Cf\Schema\Label\CfSchema_Label;
 use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
-use Drupal\renderkit8\IdToSchema\IdToSchema_Et_FieldAndFormatterSettings;
-use Drupal\renderkit8\Util\UtilBase;
+use Drupal\renderkit\IdToSchema\IdToSchema_Et_FieldAndFormatterSettings;
+use Drupal\renderkit\Util\UtilBase;
 
 final class CfSchema_EtAndFieldNameAndFormatterSettings extends UtilBase {
 

@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityToRelatedIds;
+namespace Drupal\renderkit\EntityToRelatedIds;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
-use Drupal\renderkit8\EntityField\Multi\EntityToFieldItemListInterface;
+use Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface;
 
 class EntityToRelatedIds_EntityReferenceField extends EntityToRelatedIdsBase {
 
   /**
-   * @var \Drupal\renderkit8\EntityField\Multi\EntityToFieldItemListInterface
+   * @var \Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface
    */
   private $field;
 
@@ -21,7 +21,7 @@ class EntityToRelatedIds_EntityReferenceField extends EntityToRelatedIdsBase {
   private $targetType;
 
   /**
-   * @param \Drupal\renderkit8\EntityField\Multi\EntityToFieldItemListInterface $field
+   * @param \Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface $field
    * @param string $targetType
    */
   public function __construct(EntityToFieldItemListInterface $field, $targetType) {

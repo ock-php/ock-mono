@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\IdToSchema;
+namespace Drupal\renderkit\IdToSchema;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
-use Drupal\renderkit8\Schema\CfSchema_FieldName_AllowedTypes;
+use Drupal\renderkit\Schema\CfSchema_FieldName_AllowedTypes;
 
 class IdToSchema_Et_FieldName implements IdToSchemaInterface {
 

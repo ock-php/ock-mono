@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition;
+namespace Drupal\renderkit\Schema\Misc\ViewsDisplayCondition;
 
 class ViewsDisplayCondition_EntityIdArg implements ViewsDisplayConditionInterface {
 

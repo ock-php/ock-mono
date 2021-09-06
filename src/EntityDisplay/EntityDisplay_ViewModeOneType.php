@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
-use Drupal\renderkit8\Schema\CfSchema_EntityTypeWithViewModeName;
+use Drupal\renderkit\Schema\CfSchema_EntityTypeWithViewModeName;
 
 /**
  * Renders the entity with a view mode, but only if it has the expected type.
@@ -75,7 +75,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    * @param string $id
    *   A combination of entity type and view mode name.
    *
-   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplay_ViewModeOneType
+   * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_ViewModeOneType
    *
    * @throws \Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration
    */

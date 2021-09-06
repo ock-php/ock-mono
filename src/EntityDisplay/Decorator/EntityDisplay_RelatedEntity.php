@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay\Decorator;
+namespace Drupal\renderkit\EntityDisplay\Decorator;
 
 use Donquixote\Cf\Context\CfContextInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit8\EntityToEntity\EntityToEntityInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
 class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface
+   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
    */
   private $entityToEntity;
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   private $relatedEntityDisplay;
 
@@ -47,8 +47,8 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
   }
 
   /**
-   * @param \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface $entityToEntity
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $relatedEntityDisplay
+   * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $entityToEntity
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $relatedEntityDisplay
    */
   public function __construct(EntityToEntityInterface $entityToEntity, EntityDisplayInterface $relatedEntityDisplay) {
     $this->entityToEntity = $entityToEntity;

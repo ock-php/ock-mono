@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityFilter;
+namespace Drupal\renderkit\EntityFilter;
 
-use Drupal\renderkit8\EntityToRelatedIds\EntityToRelatedIdsInterface;
+use Drupal\renderkit\EntityToRelatedIds\EntityToRelatedIdsInterface;
 
 class EntityFilter_RelatedEntity implements EntityFilterInterface {
 
   /**
-   * @var \Drupal\renderkit8\EntityToRelatedIds\EntityToRelatedIdsInterface
+   * @var \Drupal\renderkit\EntityToRelatedIds\EntityToRelatedIdsInterface
    */
   private $relation;
 
   /**
-   * @var \Drupal\renderkit8\EntityFilter\EntityFilterInterface
+   * @var \Drupal\renderkit\EntityFilter\EntityFilterInterface
    */
   private $filter;
 
@@ -23,8 +23,8 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
   private $targetEntitiesStorage;
 
   /**
-   * @param \Drupal\renderkit8\EntityToRelatedIds\EntityToRelatedIdsInterface $relation
-   * @param \Drupal\renderkit8\EntityFilter\EntityFilterInterface $filter
+   * @param \Drupal\renderkit\EntityToRelatedIds\EntityToRelatedIdsInterface $relation
+   * @param \Drupal\renderkit\EntityFilter\EntityFilterInterface $filter
    */
   public function __construct(EntityToRelatedIdsInterface $relation, EntityFilterInterface $filter) {
     $this->filter = $filter;

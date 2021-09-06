@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\LabeledListFormat;
+namespace Drupal\renderkit\LabeledListFormat;
 
-use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
-use Drupal\renderkit8\LabeledFormat\LabeledFormatInterface;
-use Drupal\renderkit8\ListFormat\ListFormatInterface;
+use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
+use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 /**
  * @CfrPlugin("composite", "Composite")
@@ -13,30 +13,30 @@ use Drupal\renderkit8\ListFormat\ListFormatInterface;
 class LabeledListFormat_Composite implements LabeledListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface|NULL
+   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL
    */
   private $outerProcessor;
 
   /**
-   * @var \Drupal\renderkit8\LabeledFormat\LabeledFormatInterface|NULL
+   * @var \Drupal\renderkit\LabeledFormat\LabeledFormatInterface|NULL
    */
   private $labeledFormat;
 
   /**
-   * @var \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface|NULL
+   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL
    */
   private $innerProcessor;
 
   /**
-   * @var \Drupal\renderkit8\ListFormat\ListFormatInterface|NULL
+   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|NULL
    */
   private $listFormat;
 
   /**
-   * @param \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface|NULL $outerProcessor
-   * @param \Drupal\renderkit8\LabeledFormat\LabeledFormatInterface|NULL $labeledFormat
-   * @param \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface|NULL $innerProcessor
-   * @param \Drupal\renderkit8\ListFormat\ListFormatInterface|NULL $listFormat
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL $outerProcessor
+   * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface|NULL $labeledFormat
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL $innerProcessor
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|NULL $listFormat
    */
   public function __construct(
     BuildProcessorInterface $outerProcessor = NULL,

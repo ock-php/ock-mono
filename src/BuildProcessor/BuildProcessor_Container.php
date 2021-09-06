@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\BuildProcessor;
+namespace Drupal\renderkit\BuildProcessor;
 
 use Donquixote\Cf\Schema\Callback\CfSchema_Callback;
-use Drupal\renderkit8\Html\HtmlTagTrait;
-use Drupal\renderkit8\Schema\CfSchema_ClassAttribute;
-use Drupal\renderkit8\Schema\CfSchema_TagName;
+use Drupal\renderkit\Html\HtmlTagTrait;
+use Drupal\renderkit\Schema\CfSchema_ClassAttribute;
+use Drupal\renderkit\Schema\CfSchema_TagName;
 
 class BuildProcessor_Container implements BuildProcessorInterface {
 
@@ -33,19 +33,19 @@ class BuildProcessor_Container implements BuildProcessorInterface {
   /**
    * @_CfrPlugin("container", @t("Container"))
    * @_ParamSchemas(
-   *   0 = "renderkit8.tagName.container",
-   *   1 = "renderkit8.classes"
+   *   0 = "renderkit.tagName.container",
+   *   1 = "renderkit.classes"
    * )
    * @_ParamLabels(
    *   0 = @t("Tag name")
    *   1 = @t("Classes")
    * )s
-   * @_ParamSchema(0, "renderkit8.tagName.container", @t("Tag name"))
+   * @_ParamSchema(0, "renderkit.tagName.container", @t("Tag name"))
    *
    * @param string $tagName
    * @param array $classes
    *
-   * @return \Drupal\renderkit8\BuildProcessor\BuildProcessor_Container
+   * @return \Drupal\renderkit\BuildProcessor\BuildProcessor_Container
    */
   public static function create($tagName = 'div', array $classes = []) {
     return (new self())

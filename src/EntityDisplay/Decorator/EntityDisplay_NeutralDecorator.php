@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay\Decorator;
+namespace Drupal\renderkit\EntityDisplay\Decorator;
 
-use Drupal\renderkit8\EntityDisplay\EntitiesDisplayBase;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 class EntityDisplay_NeutralDecorator extends EntitiesDisplayBase {
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface|null
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
    */
   private $decorated;
 
   /**
    * Sets the decorated entity display.
    *
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $decorated
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
    */
   public function __construct(EntityDisplayInterface $decorated) {
     $this->decorated = $decorated;

@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Evaluator\EvaluatorInterface;
 use Donquixote\Cf\Form\D8\FormatorD8Interface;
 use Donquixote\Cf\Summarizer\SummarizerInterface;
 use Donquixote\Cf\Util\PhpUtil;
-use Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults;
-use Drupal\renderkit8\ListFormat\ListFormatInterface;
+use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
+use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 /**
  * This is inspired by Display suite.
  *
- * @see \Drupal\renderkit8\ListFormat\ListFormat_ElementDefaults
+ * @see \Drupal\renderkit\ListFormat\ListFormat_ElementDefaults
  */
 class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interface, SummarizerInterface, CfSchemaInterface {
 
@@ -113,7 +113,7 @@ class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interf
       'groups' => $form,
     ];
 
-    $form['#attached']['css'][] = drupal_get_path('module', 'renderkit8') . '/css/renderkit8.admin.css';
+    $form['#attached']['css'][] = drupal_get_path('module', 'renderkit') . '/css/renderkit.admin.css';
 
     return $form;
   }
@@ -132,7 +132,7 @@ class CfSchema_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interf
    * @param mixed $conf
    *   Configuration from a form, config file or storage.
    *
-   * @return \Drupal\renderkit8\ListFormat\ListFormatInterface
+   * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
   public function confGetValue($conf): ListFormatInterface {
     $defaults = $this->confGetElementDefaults($conf);

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\LabeledEntityDisplayListFormat;
+namespace Drupal\renderkit\LabeledEntityDisplayListFormat;
 
-use Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface;
-use Drupal\renderkit8\EntityDisplayListFormat\EntityDisplayListFormatInterface;
-use Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
+use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface;
+use Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface;
+use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
 
 /**
  * @CfrPlugin(
@@ -16,27 +16,27 @@ use Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInt
 class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface|null
+   * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null
    */
   private $outerProcessor;
 
   /**
-   * @var \Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null
+   * @var \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null
    */
   private $labeledFormat;
 
   /**
-   * @var \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface|null
+   * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null
    */
   private $innerProcessor;
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplayListFormat\EntityDisplayListFormatInterface|null
+   * @var \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface|null
    */
   private $listFormat;
 
   /**
-   * @var \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface|null
+   * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null
    */
   private $itemProcessor;
 
@@ -47,9 +47,9 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    *   inline = true
    * )
    *
-   * @param \Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledFormat
+   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledFormat
    *
-   * @return \Drupal\renderkit8\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
+   * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
    */
   public static function createFromLabeledFormat(LabeledEntityBuildProcessorInterface $labeledFormat = NULL) {
     return new self(NULL, $labeledFormat, NULL, NULL);
@@ -62,9 +62,9 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    *   inline = true
    * )
    *
-   * @param \Drupal\renderkit8\EntityDisplayListFormat\EntityDisplayListFormatInterface $listFormat
+   * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface $listFormat
    *
-   * @return \Drupal\renderkit8\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
+   * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
    */
   public static function createFromListFormat(EntityDisplayListFormatInterface $listFormat = NULL) {
     return new self(NULL, NULL, NULL, $listFormat);
@@ -76,10 +76,10 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    *   label = @t("Composite")
    * )
    *
-   * @param \Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledFormat
-   * @param \Drupal\renderkit8\EntityDisplayListFormat\EntityDisplayListFormatInterface|null $listFormat
+   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledFormat
+   * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface|null $listFormat
    *
-   * @return \Drupal\renderkit8\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
+   * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
    */
   public static function createSimple(
     LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
@@ -89,11 +89,11 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
   }
 
   /**
-   * @param \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface $outerProcessor
-   * @param \Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledFormat
-   * @param \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface $innerProcessor
-   * @param \Drupal\renderkit8\EntityDisplayListFormat\EntityDisplayListFormatInterface $listFormat
-   * @param \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface|null $itemProcessor
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface $outerProcessor
+   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledFormat
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface $innerProcessor
+   * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface $listFormat
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null $itemProcessor
    */
   public function __construct(
     EntityBuildProcessorInterface $outerProcessor = NULL,

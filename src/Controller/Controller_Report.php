@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Controller;
+namespace Drupal\renderkit\Controller;
 
 use Donquixote\Cf\Evaluator\Evaluator;
 use Donquixote\Cf\Exception\EvaluatorException;
@@ -17,7 +17,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\faktoria\Form\Form_IfaceDemo;
 use Drupal\faktoria\Hub\CfrPluginHub;
 use Drupal\faktoria\Util\UiDumpUtil;
-use Drupal\renderkit8\BuildProvider\BuildProviderInterface;
+use Drupal\renderkit\BuildProvider\BuildProviderInterface;
 use Drupal\routelink\RouteModifier\RouteMenuLink;
 
 /**

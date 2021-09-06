@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\IdToSchema;
+namespace Drupal\renderkit\IdToSchema;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
@@ -9,8 +9,8 @@ use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FormatterPluginManager;
-use Drupal\renderkit8\Schema\CfSchema_FieldFormatterId;
-use Drupal\renderkit8\Schema\CfSchema_FieldFormatterSettings;
+use Drupal\renderkit\Schema\CfSchema_FieldFormatterId;
+use Drupal\renderkit\Schema\CfSchema_FieldFormatterSettings;
 
 class IdToSchema_FormatterTypeName_FormatterSettings implements IdToSchemaInterface {
 

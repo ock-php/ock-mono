@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\ListFormat;
+namespace Drupal\renderkit\ListFormat;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit8\Schema\CfSchema_ListSeparator;
+use Drupal\renderkit\Schema\CfSchema_ListSeparator;
 
 /**
  * Concatenates the list items with a separator.
@@ -53,7 +53,7 @@ class ListFormat_Separator implements ListFormatInterface {
    */
   public function buildList(array $builds) {
     return [
-      /* @see renderkit8_theme() */
+      /* @see renderkit_theme() */
       /* @see theme_themekit_separator_list() */
       '#theme' => 'themekit_separator_list',
       '#separator' => $this->separator,

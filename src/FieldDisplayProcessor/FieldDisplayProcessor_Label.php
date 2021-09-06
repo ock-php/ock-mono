@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\FieldDisplayProcessor;
+namespace Drupal\renderkit\FieldDisplayProcessor;
 
 use Drupal\Component\Utility\Html;
 
 class FieldDisplayProcessor_Label implements FieldDisplayProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface
+   * @var \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
   private $decorated;
 
@@ -23,7 +23,7 @@ class FieldDisplayProcessor_Label implements FieldDisplayProcessorInterface {
   private $appendLabelColon = TRUE;
 
   /**
-   * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface $decorated
+   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface $decorated
    */
   public function __construct(FieldDisplayProcessorInterface $decorated) {
     $this->decorated = $decorated;

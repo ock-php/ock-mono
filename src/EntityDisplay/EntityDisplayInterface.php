@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\Core\Entity\EntityInterface;
 
@@ -15,8 +15,8 @@ use Drupal\Core\Entity\EntityInterface;
  * Implementing classes should use one of the base classes, so they only need to
  * implement one of the two methods, either buildEntities() or buildEntity().
  *
- * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayBase
- * @see \Drupal\renderkit8\EntityDisplay\EntitiesDisplaysBase
+ * @see \Drupal\renderkit\EntityDisplay\EntityDisplayBase
+ * @see \Drupal\renderkit\EntityDisplay\EntitiesDisplaysBase
  */
 interface EntityDisplayInterface {
 

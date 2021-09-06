@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityBuildProcessor;
+namespace Drupal\renderkit\EntityBuildProcessor;
 
 use Drupal\Core\Entity\EntityInterface;
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Util;
+namespace Drupal\renderkit\Util;
 
 final class ExceptionUtil extends UtilBase {
 

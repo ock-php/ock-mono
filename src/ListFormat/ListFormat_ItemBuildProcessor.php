@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\ListFormat;
+namespace Drupal\renderkit\ListFormat;
 
-use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
+use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
 /**
  * @CfrPlugin("itemBuildProcessor", "Item build processor")
@@ -11,19 +11,19 @@ use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
 class ListFormat_ItemBuildProcessor implements ListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface
+   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
    */
   private $itemBuildProcessor;
 
   /**
-   * @var \Drupal\renderkit8\ListFormat\ListFormatInterface|null
+   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
    */
   private $decorated;
 
   /**
-   * @param \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface $itemBuildProcessor
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $itemBuildProcessor
    *   Process the render array for each list item.
-   * @param \Drupal\renderkit8\ListFormat\ListFormatInterface|null $decorated
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $decorated
    */
   public function __construct(BuildProcessorInterface $itemBuildProcessor, ListFormatInterface $decorated = NULL) {
     $this->itemBuildProcessor = $itemBuildProcessor;

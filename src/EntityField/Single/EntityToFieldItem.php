@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityField\Single;
+namespace Drupal\renderkit\EntityField\Single;
 
 use Donquixote\Cf\Schema\CfSchema;
-use Drupal\renderkit8\Context\FieldContext;
-use Drupal\renderkit8\Util\UtilBase;
+use Drupal\renderkit\Context\FieldContext;
+use Drupal\renderkit\Util\UtilBase;
 
 final class EntityToFieldItem extends UtilBase {
 

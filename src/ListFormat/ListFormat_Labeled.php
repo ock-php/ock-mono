@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\ListFormat;
+namespace Drupal\renderkit\ListFormat;
 
-use Drupal\renderkit8\LabeledListFormat\LabeledListFormatInterface;
+use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
 
 class ListFormat_Labeled implements ListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit8\LabeledListFormat\LabeledListFormatInterface
+   * @var \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface
    */
   private $labeledListFormat;
 
@@ -18,7 +18,7 @@ class ListFormat_Labeled implements ListFormatInterface {
   private $label;
 
   /**
-   * @param \Drupal\renderkit8\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
+   * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    * @param string $label
    */
   public function __construct(LabeledListFormatInterface $labeledListFormat, $label) {

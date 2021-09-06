@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\DefaultConf\CfSchema_DefaultConf;
 use Donquixote\Cf\Schema\Group\CfSchema_Group_V2VBase;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Donquixote\Cf\Schema\Select\CfSchema_Select_Fixed;
-use Drupal\renderkit8\EntityDisplay\EntityDisplay_FieldWithFormatter;
-use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldWithFormatter;
+use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
 class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
 
@@ -123,9 +123,9 @@ class CfSchema_EntityDisplay_FieldWithFormatter extends CfSchema_Group_V2VBase {
   /**
    * @param array $fieldSettings
    * @param string $labelDisplay
-   * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $processorOrNull
+   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $processorOrNull
    *
-   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplay_FieldWithFormatter
+   * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_FieldWithFormatter
    */
   public static function createEntityDisplay(
     array $fieldSettings,

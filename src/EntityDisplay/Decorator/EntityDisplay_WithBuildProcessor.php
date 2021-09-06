@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay\Decorator;
+namespace Drupal\renderkit\EntityDisplay\Decorator;
 
-use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
-use Drupal\renderkit8\EntityDisplay\EntitiesDisplayBase;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 class EntityDisplay_WithBuildProcessor extends EntitiesDisplayBase {
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   private $entityDisplay;
 
   /**
-   * @var \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface
+   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
    */
   private $processor;
 
@@ -25,10 +25,10 @@ class EntityDisplay_WithBuildProcessor extends EntitiesDisplayBase {
    *   label = @Translate("Processed entity display")
    * )
    *
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $entityDisplay
-   * @param \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface $processor
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $processor
    *
-   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
+   * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   public static function create(EntityDisplayInterface $entityDisplay, BuildProcessorInterface $processor = NULL) {
     return NULL !== $processor
@@ -39,8 +39,8 @@ class EntityDisplay_WithBuildProcessor extends EntitiesDisplayBase {
   /**
    * ProcessorEntityDisplayDecorator constructor.
    *
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $entityDisplay
-   * @param \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface $processor
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $processor
    */
   public function __construct(EntityDisplayInterface $entityDisplay, BuildProcessorInterface $processor) {
     $this->entityDisplay = $entityDisplay;

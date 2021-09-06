@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay\Switcher;
+namespace Drupal\renderkit\EntityDisplay\Switcher;
 
-use Drupal\renderkit8\EntityDisplay\EntityDisplay_GroupByTypeBase;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplay_GroupByTypeBase;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 /**
  * Uses a different display handler depending on the entity type.
@@ -12,14 +12,14 @@ use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface|null
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
    */
   private $fallbackDisplay;
 
   /**
    * The displays to use per entity type.
    *
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface[]
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
    *   Format: $[$entityType] = $displayHandler
    */
   private $typeDisplays = [];
@@ -28,7 +28,7 @@ class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
    * Sets a fallback entity display handler to use for entity types where no
    * specific handler is configured.
    *
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $fallbackDisplay
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $fallbackDisplay
    *
    * @return $this
    */
@@ -41,7 +41,7 @@ class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
    * Sets the display that will be used for entities of this type.
    *
    * @param string $entityType
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $display
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $display
    *
    * @return $this
    */

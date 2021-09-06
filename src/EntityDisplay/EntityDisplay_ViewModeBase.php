@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 

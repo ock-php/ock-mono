@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityImage;
+namespace Drupal\renderkit\EntityImage;
 
 use Drupal\Core\Entity\EntityInterface;
 
 class EntityImage_EntityLabelAsAltFallback implements EntityImageInterface {
 
   /**
-   * @var \Drupal\renderkit8\EntityImage\EntityImageInterface
+   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
    */
   private $decorated;
 
   /**
-   * @param \Drupal\renderkit8\EntityImage\EntityImageInterface $decorated
+   * @param \Drupal\renderkit\EntityImage\EntityImageInterface $decorated
    */
   public function __construct(EntityImageInterface $decorated) {
     $this->decorated = $decorated;

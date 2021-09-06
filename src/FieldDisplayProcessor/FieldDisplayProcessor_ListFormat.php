@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\FieldDisplayProcessor;
+namespace Drupal\renderkit\FieldDisplayProcessor;
 
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Drupal\renderkit8\ListFormat\ListFormatInterface;
+use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit8\ListFormat\ListFormatInterface
+   * @var \Drupal\renderkit\ListFormat\ListFormatInterface
    */
   private $listFormat;
 
@@ -34,10 +34,10 @@ class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface
   }
 
   /**
-   * @param \Drupal\renderkit8\ListFormat\ListFormatInterface $listFormat
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    * @param bool $withFieldClasses
    *
-   * @return \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface
+   * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
   public static function create(ListFormatInterface $listFormat, $withFieldClasses = FALSE) {
     $fieldDisplayProcessor = new self($listFormat);
@@ -48,7 +48,7 @@ class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface
   }
 
   /**
-   * @param \Drupal\renderkit8\ListFormat\ListFormatInterface $listFormat
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    */
   public function __construct(ListFormatInterface $listFormat) {
     $this->listFormat = $listFormat;

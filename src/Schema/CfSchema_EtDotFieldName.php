@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;

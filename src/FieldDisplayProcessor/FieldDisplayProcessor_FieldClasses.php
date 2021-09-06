@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\FieldDisplayProcessor;
+namespace Drupal\renderkit\FieldDisplayProcessor;
 
 class FieldDisplayProcessor_FieldClasses implements FieldDisplayProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface
+   * @var \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
   private $decorated;
 
   /**
-   * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface $decorated
+   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface $decorated
    */
   public function __construct(FieldDisplayProcessorInterface $decorated) {
     $this->decorated = $decorated;

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
-use Drupal\renderkit8\IdToSchema\IdToSchema_Et_EntityId;
-use Drupal\renderkit8\Util\UtilBase;
+use Drupal\renderkit\IdToSchema\IdToSchema_Et_EntityId;
+use Drupal\renderkit\Util\UtilBase;
 
 final class CfSchema_EntityTypeAndId extends UtilBase {
 

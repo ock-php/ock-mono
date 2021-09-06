@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\ListFormat;
+namespace Drupal\renderkit\ListFormat;
 
-use Drupal\renderkit8\Schema\CfSchema_ListFormat_Expert;
+use Drupal\renderkit\Schema\CfSchema_ListFormat_Expert;
 
 class ListFormat_ElementDefaults implements ListFormatInterface {
 

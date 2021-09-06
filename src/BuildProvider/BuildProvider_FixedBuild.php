@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\BuildProvider;
+namespace Drupal\renderkit\BuildProvider;
 
 class BuildProvider_FixedBuild implements BuildProviderInterface {
 

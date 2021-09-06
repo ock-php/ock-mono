@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\Textfield\CfSchema_TextfieldBase;
 use Donquixote\Cf\Zoo\V2V\String\V2V_StringInterface;

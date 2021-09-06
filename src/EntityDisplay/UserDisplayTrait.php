@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\user\UserInterface;
@@ -14,7 +14,7 @@ trait UserDisplayTrait {
    * @return array[]
    *   An array of render arrays, keyed by the original array keys of $entities.
    *
-   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntities()
+   * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntities()
    */
   final public function buildEntities(array $entities) {
 
@@ -35,7 +35,7 @@ trait UserDisplayTrait {
    *
    * @return array
    *
-   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
+   * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
   final public function buildEntity(EntityInterface $entity) {
 

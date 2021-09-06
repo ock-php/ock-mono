@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\Select\CfSchema_Select_TwoStepFlatSelectGrandBase;
 use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
-use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_And;
-use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_EntityIdArg;
-use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_NoArgs;
-use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_Status;
-use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface;
+use Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_And;
+use Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_EntityIdArg;
+use Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_NoArgs;
+use Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayCondition_Status;
+use Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface;
 use Drupal\views\Entity\View;
 
 /**
@@ -19,12 +19,12 @@ use Drupal\views\Entity\View;
 class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGrandBase {
 
   /**
-   * @var \Drupal\renderkit8\Schema\CfSchema_ViewId
+   * @var \Drupal\renderkit\Schema\CfSchema_ViewId
    */
   private $idSchema;
 
   /**
-   * @var \Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface
+   * @var \Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface
    */
   private $condition;
 
@@ -48,7 +48,7 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGran
   }
 
   /**
-   * @param \Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface $condition
+   * @param \Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface $condition
    *
    * @return self
    */
@@ -66,7 +66,7 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGran
 
   /**
    * @param bool|null $status
-   * @param \Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface $condition
+   * @param \Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface $condition
    */
   public function __construct($status = TRUE, ViewsDisplayConditionInterface $condition) {
     $this->idSchema = new CfSchema_ViewId($status);
@@ -74,7 +74,7 @@ class CfSchema_ViewIdWithDisplayId extends CfSchema_Select_TwoStepFlatSelectGran
   }
 
   /**
-   * @return \Drupal\renderkit8\Schema\CfSchema_ViewId
+   * @return \Drupal\renderkit\Schema\CfSchema_ViewId
    */
   protected function getIdSchema(): CfSchema_FlatSelectInterface {
     return $this->idSchema;

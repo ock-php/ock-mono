@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\TwoStep\CfSchema_TwoStepInterface;

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
@@ -21,7 +21,7 @@ class CfSchema_EntityBundleName implements CfSchema_SelectInterface {
   /**
    * @param string $entityType
    *
-   * @return \Drupal\renderkit8\Schema\CfSchema_EntityBundleName
+   * @return \Drupal\renderkit\Schema\CfSchema_EntityBundleName
    */
   public static function create($entityType) {
     /** @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundleInfo */

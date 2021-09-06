@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\ImageProcessor;
+namespace Drupal\renderkit\ImageProcessor;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit8\Schema\CfSchema_ImageStyleName;
+use Drupal\renderkit\Schema\CfSchema_ImageStyleName;
 
 class ImageProcessor_ImageStyle implements ImageProcessorInterface {
 

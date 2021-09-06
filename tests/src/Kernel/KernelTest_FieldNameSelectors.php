@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\Tests\renderkit8\Kernel;
+namespace Drupal\Tests\renderkit\Kernel;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
@@ -9,13 +9,13 @@ use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Drupal\faktoria\Hub\CfrPluginHub;
-use Drupal\renderkit8\Schema\CfSchema_EntityType_WithFields;
-use Drupal\renderkit8\Schema\CfSchema_EtDotX;
-use Drupal\renderkit8\Schema\CfSchema_EtDotX_FixedEt;
-use Drupal\renderkit8\Schema\CfSchema_FieldName;
-use Drupal\renderkit8\Schema\CfSchema_FieldName_AllowedTypes;
-use Drupal\renderkit8\Schema\Misc\SelectByEt\SelectByEt_FieldName;
-use Drupal\renderkit8\Schema\Misc\SelectByEt\SelectByEt_FieldName_EntityReference;
+use Drupal\renderkit\Schema\CfSchema_EntityType_WithFields;
+use Drupal\renderkit\Schema\CfSchema_EtDotX;
+use Drupal\renderkit\Schema\CfSchema_EtDotX_FixedEt;
+use Drupal\renderkit\Schema\CfSchema_FieldName;
+use Drupal\renderkit\Schema\CfSchema_FieldName_AllowedTypes;
+use Drupal\renderkit\Schema\Misc\SelectByEt\SelectByEt_FieldName;
+use Drupal\renderkit\Schema\Misc\SelectByEt\SelectByEt_FieldName_EntityReference;
 use Drupal\Tests\field\Kernel\FieldKernelTestBase;
 
 /**
@@ -34,7 +34,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
     'text',
     'entity_test',
     'field_test',
-    'renderkit8',
+    'renderkit',
     'faktoria',
     'node',
     'user',

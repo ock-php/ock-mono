@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay\Decorator;
+namespace Drupal\renderkit\EntityDisplay\Decorator;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayBase;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplayBase;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 class EntityDisplay_WithEntityBuildProcessor extends EntityDisplayBase {
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   private $entityDisplay;
 
   /**
-   * @var \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface
+   * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
    */
   private $processor;
 
@@ -26,10 +26,10 @@ class EntityDisplay_WithEntityBuildProcessor extends EntityDisplayBase {
    *   label = @Translate("Processed entity display")
    * )
    *
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $entityDisplay
-   * @param \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface|NULL $processor
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|NULL $processor
    *
-   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
+   * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   public static function create(EntityDisplayInterface $entityDisplay, EntityBuildProcessorInterface $processor = NULL) {
     return NULL !== $processor
@@ -40,8 +40,8 @@ class EntityDisplay_WithEntityBuildProcessor extends EntityDisplayBase {
   /**
    * ProcessorEntityDisplayDecorator constructor.
    *
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $entityDisplay
-   * @param \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface $processor
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface $processor
    */
   public function __construct(EntityDisplayInterface $entityDisplay, EntityBuildProcessorInterface $processor) {
     $this->entityDisplay = $entityDisplay;

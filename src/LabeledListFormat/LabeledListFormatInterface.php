@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\LabeledListFormat;
+namespace Drupal\renderkit\LabeledListFormat;
 
 interface LabeledListFormatInterface {
 

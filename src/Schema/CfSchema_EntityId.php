@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Form\D8\FormatorD8Interface;
 use Donquixote\Cf\Schema\Id\CfSchema_IdInterface;

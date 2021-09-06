@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\ListFormat;
+namespace Drupal\renderkit\ListFormat;
 
-use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
+use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
 /**
  * @CfrPlugin("outerBuildProcessor", "Outer build processor")
@@ -11,18 +11,18 @@ use Drupal\renderkit8\BuildProcessor\BuildProcessorInterface;
 class ListFormat_OuterBuildProcessor implements ListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface
+   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
    */
   private $buildProcessor;
 
   /**
-   * @var \Drupal\renderkit8\ListFormat\ListFormatInterface|null
+   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
    */
   private $decorated;
 
   /**
-   * @param \Drupal\renderkit8\BuildProcessor\BuildProcessorInterface $outerBuildProcessor
-   * @param \Drupal\renderkit8\ListFormat\ListFormatInterface|null $decoratedListFormat
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $outerBuildProcessor
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $decoratedListFormat
    */
   public function __construct(BuildProcessorInterface $outerBuildProcessor, ListFormatInterface $decoratedListFormat = NULL) {
     $this->buildProcessor = $outerBuildProcessor;

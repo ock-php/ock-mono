@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityImages;
+namespace Drupal\renderkit\EntityImages;
 
 use Drupal\Core\Entity\EntityInterface;
 

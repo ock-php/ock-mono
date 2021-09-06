@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityCondition;
+namespace Drupal\renderkit\EntityCondition;
 
 use Drupal\Core\Entity\EntityInterface;
 
@@ -11,17 +11,17 @@ use Drupal\Core\Entity\EntityInterface;
  *   label = @t("Negation")
  * )
  *
- * @see \Drupal\renderkit8\EntityFilter\EntityFilter_Negation
+ * @see \Drupal\renderkit\EntityFilter\EntityFilter_Negation
  */
 class EntityCondition_Negation implements EntityConditionInterface {
 
   /**
-   * @var \Drupal\renderkit8\EntityCondition\EntityConditionInterface
+   * @var \Drupal\renderkit\EntityCondition\EntityConditionInterface
    */
   private $negatedCondition;
 
   /**
-   * @param \Drupal\renderkit8\EntityCondition\EntityConditionInterface $negatedCondition
+   * @param \Drupal\renderkit\EntityCondition\EntityConditionInterface $negatedCondition
    */
   public function __construct(EntityConditionInterface $negatedCondition) {
     $this->negatedCondition = $negatedCondition;

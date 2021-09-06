@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\LabeledEntityBuildProcessor;
+namespace Drupal\renderkit\LabeledEntityBuildProcessor;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\LabeledFormat\LabeledFormatInterface;
+use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 
 /**
  * Implementation that ignores the entity.
@@ -18,12 +18,12 @@ use Drupal\renderkit8\LabeledFormat\LabeledFormatInterface;
 class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntityBuildProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit8\LabeledFormat\LabeledFormatInterface
+   * @var \Drupal\renderkit\LabeledFormat\LabeledFormatInterface
    */
   private $labeledFormat;
 
   /**
-   * @param \Drupal\renderkit8\LabeledFormat\LabeledFormatInterface $labeledFormat
+   * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
    */
   public function __construct(LabeledFormatInterface $labeledFormat) {
     $this->labeledFormat = $labeledFormat;

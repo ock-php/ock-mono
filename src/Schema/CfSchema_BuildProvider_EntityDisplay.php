@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Exception\EvaluatorException;
 use Donquixote\Cf\IdToSchema\IdToSchema_Class;
@@ -10,9 +10,9 @@ use Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface;
 use Donquixote\Cf\Schema\Group\CfSchema_GroupInterface;
 use Donquixote\Cf\Zoo\V2V\Group\V2V_GroupInterface;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
-use Drupal\renderkit8\BuildProvider\BuildProvider_EntityDisplay;
-use Drupal\renderkit8\EntityDisplay\EntityDisplay;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\BuildProvider\BuildProvider_EntityDisplay;
+use Drupal\renderkit\EntityDisplay\EntityDisplay;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 class CfSchema_BuildProvider_EntityDisplay implements CfSchema_GroupInterface, V2V_GroupInterface {
 
@@ -88,9 +88,9 @@ class CfSchema_BuildProvider_EntityDisplay implements CfSchema_GroupInterface, V
   /**
    * @param string $entityTypeId
    * @param int|string $entityId
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $entityDisplay
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
    *
-   * @return \Drupal\renderkit8\BuildProvider\BuildProvider_EntityDisplay
+   * @return \Drupal\renderkit\BuildProvider\BuildProvider_EntityDisplay
    *
    * @throws \Donquixote\Cf\Exception\EvaluatorException
    */

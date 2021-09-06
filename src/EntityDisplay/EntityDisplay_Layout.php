@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Donquixote\Cf\Schema\Select\CfSchema_Select_TwoStepFlatSelectComposite;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Layout\LayoutInterface;
-use Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
-use Drupal\renderkit8\Schema\CfSchema_ViewIdWithDisplayId;
+use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
+use Drupal\renderkit\Schema\CfSchema_ViewIdWithDisplayId;
 use Drupal\views\Views;
 
 /**
@@ -23,12 +23,12 @@ class EntityDisplay_Layout extends EntityDisplayBase {
   private $layout;
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface[]
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
    */
   private $regionDisplays;
 
   /**
-   * @return \Drupal\renderkit8\EntityDisplay\CfSchema_EntityDisplay_Layout
+   * @return \Drupal\renderkit\EntityDisplay\CfSchema_EntityDisplay_Layout
    */
   public static function schema() {
     return new CfSchema_EntityDisplay_Layout();
@@ -38,7 +38,7 @@ class EntityDisplay_Layout extends EntityDisplayBase {
    * Constructor.
    *
    * @param \Drupal\Core\Layout\LayoutInterface $layout
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface[] $region_displays
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $region_displays
    *
    * @throws \Exception
    *   Layouts do not match up.

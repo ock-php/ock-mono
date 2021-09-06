@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplayListFormat;
+namespace Drupal\renderkit\EntityDisplayListFormat;
 
 interface EntityDisplayListFormatInterface {
 

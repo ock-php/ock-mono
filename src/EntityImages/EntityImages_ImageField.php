@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityImages;
+namespace Drupal\renderkit\EntityImages;
 
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
@@ -11,8 +11,8 @@ use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\file\Plugin\Field\FieldType\FileFieldItemList;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
-use Drupal\renderkit8\Schema\CfSchema_EtDotFieldName_AllowedTypes;
-use Drupal\renderkit8\Util\ImageFieldUtil;
+use Drupal\renderkit\Schema\CfSchema_EtDotFieldName_AllowedTypes;
+use Drupal\renderkit\Util\ImageFieldUtil;
 
 class EntityImages_ImageField implements EntityImagesInterface {
 

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Context;
+namespace Drupal\renderkit\Context;
 
 use Donquixote\Cf\Context\CfContext;
-use Drupal\renderkit8\Util\UtilBase;
+use Drupal\renderkit\Util\UtilBase;
 
 final class FieldContext extends UtilBase {
 

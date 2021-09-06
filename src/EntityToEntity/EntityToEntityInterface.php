@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityToEntity;
+namespace Drupal\renderkit\EntityToEntity;
 
 use Drupal\Core\Entity\EntityInterface;
 

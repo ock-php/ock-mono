@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\FieldDisplayProcessor;
+namespace Drupal\renderkit\FieldDisplayProcessor;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal;
 use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
-use Drupal\renderkit8\Schema\CfSchema_FieldDisplayProcessor_Label;
-use Drupal\renderkit8\Schema\CfSchema_FieldDisplayProcessor_OuterContainer;
-use Drupal\renderkit8\Util\UtilBase;
+use Drupal\renderkit\Schema\CfSchema_FieldDisplayProcessor_Label;
+use Drupal\renderkit\Schema\CfSchema_FieldDisplayProcessor_OuterContainer;
+use Drupal\renderkit\Util\UtilBase;
 
 abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implements FieldDisplayProcessorInterface {
 
   /**
    * @CfrPlugin("minimalDefault", @t("Minimal, default"))
    *
-   * @return \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface
+   * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
   public static function minimalDefault() {
     $fdp = self::fullResetDefault();
@@ -25,7 +25,7 @@ abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implemen
   /**
    * @CfrPlugin("fullResetDefault", @t("Full reset, default"))
    *
-   * @return \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface
+   * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
   public static function fullResetDefault() {
     $fdp = new FieldDisplayProcessor_Bare();

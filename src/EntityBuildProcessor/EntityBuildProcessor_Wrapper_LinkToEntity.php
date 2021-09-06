@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityBuildProcessor;
+namespace Drupal\renderkit\EntityBuildProcessor;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityMalformedException;
 use Drupal\Core\Entity\Exception\UndefinedLinkTemplateException;
-use Drupal\renderkit8\BuildProcessor\BuildProcessor_Container;
-use Drupal\renderkit8\Html\HtmlAttributesTrait;
-use Drupal\renderkit8\Schema\CfSchema_TagName;
+use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
+use Drupal\renderkit\Html\HtmlAttributesTrait;
+use Drupal\renderkit\Schema\CfSchema_TagName;
 
 /**
  * Wraps the content from a decorated display handler into a link, linking to
@@ -49,7 +49,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
   /**
    * @param string $tagName
    *
-   * @return \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface
+   * @return \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
    */
   public static function entityTitleLinkWrapper($tagName): EntityBuildProcessorInterface {
     return (new EntityBuildProcessor_Sequence)

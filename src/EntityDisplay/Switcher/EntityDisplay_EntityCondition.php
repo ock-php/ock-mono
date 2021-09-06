@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay\Switcher;
+namespace Drupal\renderkit\EntityDisplay\Switcher;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\EntityCondition\EntityConditionInterface;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityCondition\EntityConditionInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 /**
  * @CfrPlugin(
@@ -16,24 +16,24 @@ use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 class EntityDisplay_EntityCondition implements EntityDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit8\EntityCondition\EntityConditionInterface
+   * @var \Drupal\renderkit\EntityCondition\EntityConditionInterface
    */
   private $condition;
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   private $displayIfTrue;
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface|null
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
    */
   private $displayIfFalse;
 
   /**
-   * @param \Drupal\renderkit8\EntityCondition\EntityConditionInterface $condition
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $displayIfTrue
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface|null $displayIfFalse
+   * @param \Drupal\renderkit\EntityCondition\EntityConditionInterface $condition
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $displayIfTrue
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null $displayIfFalse
    */
   public function __construct(
     EntityConditionInterface $condition,
@@ -106,7 +106,7 @@ class EntityDisplay_EntityCondition implements EntityDisplayInterface {
    *
    * @return array
    *
-   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
+   * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
   public function buildEntity(EntityInterface $entity) {
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Helper;
+namespace Drupal\renderkit\Helper;
 
 class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {
 
@@ -21,12 +21,12 @@ class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {
   private $etProcessed = [];
 
   /**
-   * @var \Drupal\renderkit8\Helper\FieldDefinitionLookupInterface
+   * @var \Drupal\renderkit\Helper\FieldDefinitionLookupInterface
    */
   private $decorated;
 
   /**
-   * @param \Drupal\renderkit8\Helper\FieldDefinitionLookupInterface $decorated
+   * @param \Drupal\renderkit\Helper\FieldDefinitionLookupInterface $decorated
    */
   public function __construct(FieldDefinitionLookupInterface $decorated) {
     $this->decorated = $decorated;

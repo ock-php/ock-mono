@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 class CfSchema_EtDotFieldName_AllowedTypes extends CfSchema_EtDotFieldName_ProxyCacheBase {
 

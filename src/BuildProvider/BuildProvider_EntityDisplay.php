@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\BuildProvider;
+namespace Drupal\renderkit\BuildProvider;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit8\Schema\CfSchema_BuildProvider_EntityDisplay;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\Schema\CfSchema_BuildProvider_EntityDisplay;
 
 class BuildProvider_EntityDisplay implements BuildProviderInterface {
 
@@ -15,7 +15,7 @@ class BuildProvider_EntityDisplay implements BuildProviderInterface {
   private $entity;
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   private $entityDisplay;
 
@@ -30,7 +30,7 @@ class BuildProvider_EntityDisplay implements BuildProviderInterface {
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $entityDisplay
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
    */
   public function __construct(EntityInterface $entity, EntityDisplayInterface $entityDisplay) {
     $this->entity = $entity;

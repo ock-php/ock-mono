@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay\Images;
+namespace Drupal\renderkit\EntityDisplay\Images;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayBase;
-use Drupal\renderkit8\EntityImages\EntityImagesInterface;
-use Drupal\renderkit8\ImagesDisplay\ImagesDisplayInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplayBase;
+use Drupal\renderkit\EntityImages\EntityImagesInterface;
+use Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface;
 
 /**
  * @CfrPlugin(
@@ -17,18 +17,18 @@ use Drupal\renderkit8\ImagesDisplay\ImagesDisplayInterface;
 class EntityDisplay_Images extends EntityDisplayBase {
 
   /**
-   * @var \Drupal\renderkit8\EntityImages\EntityImagesInterface
+   * @var \Drupal\renderkit\EntityImages\EntityImagesInterface
    */
   private $entityImages;
 
   /**
-   * @var \Drupal\renderkit8\ImagesDisplay\ImagesDisplayInterface
+   * @var \Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface
    */
   private $imagesDisplay;
 
   /**
-   * @param \Drupal\renderkit8\EntityImages\EntityImagesInterface $entityImages
-   * @param \Drupal\renderkit8\ImagesDisplay\ImagesDisplayInterface $imagesDisplay
+   * @param \Drupal\renderkit\EntityImages\EntityImagesInterface $entityImages
+   * @param \Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface $imagesDisplay
    */
   public function __construct(EntityImagesInterface $entityImages, ImagesDisplayInterface $imagesDisplay) {
     $this->entityImages = $entityImages;

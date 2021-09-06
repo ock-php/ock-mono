@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface;
-use Drupal\renderkit8\Schema\CfSchema_EntityDisplay_FieldWithFormatter;
+use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
+use Drupal\renderkit\Schema\CfSchema_EntityDisplay_FieldWithFormatter;
 
 /**
  * Entity display handler to view a specific field on all the entities.
@@ -24,7 +24,7 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplay_FieldItemsBase {
   private $display;
 
   /**
-   * @var \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface|null
+   * @var \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null
    */
   private $fieldDisplayProcessor;
 
@@ -46,7 +46,7 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplay_FieldItemsBase {
    * @param string $entity_type
    * @param string $field_name
    * @param array $display
-   * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
+   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
    *
    * @return self
    */
@@ -70,7 +70,7 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplay_FieldItemsBase {
    * @param string $entity_type
    * @param string $field_name
    * @param array $display
-   * @param \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
+   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,

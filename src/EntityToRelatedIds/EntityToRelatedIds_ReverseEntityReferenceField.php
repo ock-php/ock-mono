@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityToRelatedIds;
+namespace Drupal\renderkit\EntityToRelatedIds;
 
 use Drupal\Core\Database\Database;
-use Drupal\renderkit8\Util\EntityUtil;
+use Drupal\renderkit\Util\EntityUtil;
 
 class EntityToRelatedIds_ReverseEntityReferenceField extends EntityToRelatedIds_MultipleBase {
 

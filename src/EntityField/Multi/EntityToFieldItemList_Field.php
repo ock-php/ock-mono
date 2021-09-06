@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityField\Multi;
+namespace Drupal\renderkit\EntityField\Multi;
 
 use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\renderkit8\Schema\CfSchema_EtAndFieldName;
+use Drupal\renderkit\Schema\CfSchema_EtAndFieldName;
 
 class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\ImagesDisplay;
+namespace Drupal\renderkit\ImagesDisplay;
 
 interface ImagesDisplayInterface {
 

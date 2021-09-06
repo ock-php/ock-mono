@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition;
+namespace Drupal\renderkit\Schema\Misc\ViewsDisplayCondition;
 
 class ViewsDisplayCondition_And implements ViewsDisplayConditionInterface {
 
   /**
-   * @var \Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface[]
+   * @var \Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface[]
    */
   private $filters;
 
   /**
-   * @param \Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface[] $filters
+   * @param \Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface[] $filters
    */
   public function __construct(array $filters) {
     $this->filters = $filters;

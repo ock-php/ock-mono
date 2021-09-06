@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityField\Multi;
+namespace Drupal\renderkit\EntityField\Multi;
 
 use Drupal\Core\Entity\FieldableEntityInterface;
 

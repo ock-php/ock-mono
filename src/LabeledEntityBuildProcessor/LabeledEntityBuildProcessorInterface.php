@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\LabeledEntityBuildProcessor;
+namespace Drupal\renderkit\LabeledEntityBuildProcessor;
 
 use Drupal\Core\Entity\EntityInterface;
 

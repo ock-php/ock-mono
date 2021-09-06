@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Helper;
+namespace Drupal\renderkit\Helper;
 
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -14,7 +14,7 @@ class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
   private $entityFieldManager;
 
   /**
-   * @return \Drupal\renderkit8\Helper\FieldDefinitionLookupInterface
+   * @return \Drupal\renderkit\Helper\FieldDefinitionLookupInterface
    */
   public static function createBuffered() {
     return new FieldDefinitionLookup_Buffer(
@@ -22,7 +22,7 @@ class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
   }
 
   /**
-   * @return \Drupal\renderkit8\Helper\FieldDefinitionLookupInterface
+   * @return \Drupal\renderkit\Helper\FieldDefinitionLookupInterface
    */
   public static function createBufferless() {
 

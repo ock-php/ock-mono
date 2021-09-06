@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplayListFormat;
+namespace Drupal\renderkit\EntityDisplayListFormat;
 
-use Drupal\renderkit8\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface;
+use Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface;
 
 class EntityDisplayListFormat_Labeled implements EntityDisplayListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit8\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
+   * @var \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
    */
   private $labeledEntityDisplayListFormat;
 
@@ -18,7 +18,7 @@ class EntityDisplayListFormat_Labeled implements EntityDisplayListFormatInterfac
   private $label;
 
   /**
-   * @param \Drupal\renderkit8\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat
+   * @param \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat
    * @param string $label
    */
   public function __construct(LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat, $label) {

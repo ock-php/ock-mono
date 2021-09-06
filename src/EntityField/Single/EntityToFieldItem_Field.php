@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityField\Single;
+namespace Drupal\renderkit\EntityField\Single;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
-use Drupal\renderkit8\Schema\CfSchema_EtAndFieldName;
+use Drupal\renderkit\Schema\CfSchema_EtAndFieldName;
 
 class EntityToFieldItem_Field implements EntityToFieldItemInterface {
 

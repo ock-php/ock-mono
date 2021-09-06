@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\ImageProcessor;
+namespace Drupal\renderkit\ImageProcessor;
 
-use Drupal\renderkit8\Util\UtilBase;
+use Drupal\renderkit\Util\UtilBase;
 
 final class ImageProcessorUtil extends UtilBase {
 
   /**
    * @param array[] $images
-   * @param \Drupal\renderkit8\ImageProcessor\ImageProcessorInterface|null $imageProcessor
+   * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null $imageProcessor
    *
    * @return array[]
    */

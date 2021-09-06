@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
-use Drupal\renderkit8\Schema\CfSchema_ViewIdWithDisplayId;
+use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
+use Drupal\renderkit\Schema\CfSchema_ViewIdWithDisplayId;
 use Drupal\views\Views;
 
 /**
@@ -26,7 +26,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
   private $displayId;
 
   /**
-   * @var \Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface
+   * @var \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface
    */
   private $labeledDisplay;
 
@@ -57,9 +57,9 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
 
   /**
    * @param string $id
-   * @param \Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledEntityBuildProcessor
+   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledEntityBuildProcessor
    *
-   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplay_ViewsDisplay|null
+   * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_ViewsDisplay|null
    */
   public static function create($id, LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL) {
 
@@ -79,7 +79,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
   /**
    * @param string $viewName
    * @param string $displayId
-   * @param \Drupal\renderkit8\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledDisplay
+   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledDisplay
    */
   public function __construct($viewName, $displayId, LabeledEntityBuildProcessorInterface $labeledDisplay = NULL) {
     $this->viewName = $viewName;

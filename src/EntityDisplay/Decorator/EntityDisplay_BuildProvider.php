@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay\Decorator;
+namespace Drupal\renderkit\EntityDisplay\Decorator;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\BuildProvider\BuildProviderInterface;
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\BuildProvider\BuildProviderInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 /**
  * @CfrPlugin("buildProvider", @t("Build provider"))
@@ -13,12 +13,12 @@ use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 class EntityDisplay_BuildProvider implements EntityDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit8\BuildProvider\BuildProviderInterface
+   * @var \Drupal\renderkit\BuildProvider\BuildProviderInterface
    */
   private $buildProvider;
 
   /**
-   * @param \Drupal\renderkit8\BuildProvider\BuildProviderInterface $buildProvider
+   * @param \Drupal\renderkit\BuildProvider\BuildProviderInterface $buildProvider
    */
   public function __construct(BuildProviderInterface $buildProvider) {
     $this->buildProvider = $buildProvider;

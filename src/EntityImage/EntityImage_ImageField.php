@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityImage;
+namespace Drupal\renderkit\EntityImage;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
@@ -10,9 +10,9 @@ use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
-use Drupal\renderkit8\EntityDisplay\EntityDisplay_FieldItemsBase;
-use Drupal\renderkit8\Schema\CfSchema_EtDotFieldName_AllowedTypes;
-use Drupal\renderkit8\Util\ImageFieldUtil;
+use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldItemsBase;
+use Drupal\renderkit\Schema\CfSchema_EtDotFieldName_AllowedTypes;
+use Drupal\renderkit\Util\ImageFieldUtil;
 
 class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements EntityImageInterface {
 

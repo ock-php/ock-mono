@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\LabeledFormat;
+namespace Drupal\renderkit\LabeledFormat;
 
 interface LabeledFormatInterface {
 

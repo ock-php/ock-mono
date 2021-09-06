@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\IdToSchema;
+namespace Drupal\renderkit\IdToSchema;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Donquixote\Cf\Schema\Label\CfSchema_Label;
-use Drupal\renderkit8\Helper\FieldDefinitionLookup;
+use Drupal\renderkit\Helper\FieldDefinitionLookup;
 
 class IdToSchema_FieldName_FormatterTypeAndSettings implements IdToSchemaInterface {
 
   /**
-   * @var \Drupal\renderkit8\Helper\FieldDefinitionLookupInterface
+   * @var \Drupal\renderkit\Helper\FieldDefinitionLookupInterface
    */
   private $fieldDefinitionLookup;
 

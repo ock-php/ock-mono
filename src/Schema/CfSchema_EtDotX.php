@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
 use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
-use Drupal\renderkit8\Schema\Misc\SelectByEt\SelectByEtInterface;
+use Drupal\renderkit\Schema\Misc\SelectByEt\SelectByEtInterface;
 
 class CfSchema_EtDotX extends CfSchema_Proxy_Cache_SelectBase {
 
@@ -15,7 +15,7 @@ class CfSchema_EtDotX extends CfSchema_Proxy_Cache_SelectBase {
   private $etSelector;
 
   /**
-   * @var \Drupal\renderkit8\Schema\Misc\SelectByEt\SelectByEtInterface
+   * @var \Drupal\renderkit\Schema\Misc\SelectByEt\SelectByEtInterface
    */
   private $selectByEt;
 
@@ -26,7 +26,7 @@ class CfSchema_EtDotX extends CfSchema_Proxy_Cache_SelectBase {
 
   /**
    * @param \Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface $etSelector
-   * @param \Drupal\renderkit8\Schema\Misc\SelectByEt\SelectByEtInterface $selectByEt
+   * @param \Drupal\renderkit\Schema\Misc\SelectByEt\SelectByEtInterface $selectByEt
    * @param string $cacheId
    */
   public function __construct(CfSchema_FlatSelectInterface $etSelector, SelectByEtInterface $selectByEt, $cacheId) {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityToRelatedIds;
+namespace Drupal\renderkit\EntityToRelatedIds;
 
 use Drupal\Core\Entity\EntityInterface;
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Helper;
+namespace Drupal\renderkit\Helper;
 
 interface FieldDefinitionLookupInterface {
 

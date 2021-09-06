@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\ImageProcessor;
+namespace Drupal\renderkit\ImageProcessor;
 
 class ImageProcessor_Neutral implements ImageProcessorInterface {
 

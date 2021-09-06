@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema\Misc\FieldStorageDefinitionCondition;
+namespace Drupal\renderkit\Schema\Misc\FieldStorageDefinitionCondition;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;

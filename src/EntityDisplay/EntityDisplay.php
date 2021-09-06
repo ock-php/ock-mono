@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\Evaluator\Evaluator;
@@ -10,8 +10,8 @@ use Donquixote\Cf\Schema\CfSchema;
 use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
 use Donquixote\Cf\Summarizer\Summarizer;
 use Drupal\cfrapi\Exception\UnsupportedSchemaException;
-use Drupal\renderkit8\Context\EntityContext;
-use Drupal\renderkit8\Util\UtilBase;
+use Drupal\renderkit\Context\EntityContext;
+use Drupal\renderkit\Util\UtilBase;
 
 final class EntityDisplay extends UtilBase {
 
@@ -19,7 +19,7 @@ final class EntityDisplay extends UtilBase {
    * @param mixed $conf
    * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
    *
-   * @return \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface|null
+   * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
    *
    * @throws \Donquixote\Cf\Exception\EvaluatorException
    * @throws \Drupal\cfrapi\Exception\UnsupportedSchemaException

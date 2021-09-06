@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\FieldDisplayProcessor;
+namespace Drupal\renderkit\FieldDisplayProcessor;
 
 use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Drupal\renderkit8\LabeledListFormat\LabeledListFormatInterface;
+use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
 
 class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit8\LabeledListFormat\LabeledListFormatInterface
+   * @var \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface
    */
   private $labeledListFormat;
 
@@ -35,10 +35,10 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
   }
 
   /**
-   * @param \Drupal\renderkit8\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
+   * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    * @param bool $withFieldClasses
    *
-   * @return \Drupal\renderkit8\FieldDisplayProcessor\FieldDisplayProcessorInterface
+   * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
   public static function create(LabeledListFormatInterface $labeledListFormat, $withFieldClasses = FALSE) {
     $fieldDisplayProcessor = new self($labeledListFormat);
@@ -49,7 +49,7 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
   }
 
   /**
-   * @param \Drupal\renderkit8\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
+   * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    */
   public function __construct(LabeledListFormatInterface $labeledListFormat) {
     $this->labeledListFormat = $labeledListFormat;

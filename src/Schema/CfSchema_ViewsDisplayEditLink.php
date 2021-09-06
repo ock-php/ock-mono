@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Form\D8\FormatorD8Interface;
 use Donquixote\Cf\IdToSchema\IdToSchema_Callback;
@@ -22,7 +22,7 @@ class CfSchema_ViewsDisplayEditLink extends CfSchema_ValueProvider_Null implemen
   private $displayId;
 
   /**
-   * @param \Drupal\renderkit8\Schema\CfSchema_ViewIdWithDisplayId $idSchema
+   * @param \Drupal\renderkit\Schema\CfSchema_ViewIdWithDisplayId $idSchema
    *
    * @return \Donquixote\Cf\Schema\Drilldown\CfSchema_DrilldownInterface
    */

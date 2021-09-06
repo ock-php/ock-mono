@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityCondition;
+namespace Drupal\renderkit\EntityCondition;
 
 use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
-use Drupal\renderkit8\EntityField\Multi\EntityToFieldItemList;
-use Drupal\renderkit8\EntityField\Multi\EntityToFieldItemListInterface;
+use Drupal\renderkit\EntityField\Multi\EntityToFieldItemList;
+use Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface;
 
 /**
  * An entity condition that returns true if a given timestamp is contained in
@@ -17,7 +17,7 @@ use Drupal\renderkit8\EntityField\Multi\EntityToFieldItemListInterface;
 class EntityCondition_DateRangeField implements EntityConditionInterface {
 
   /**
-   * @var \Drupal\renderkit8\EntityField\Multi\EntityToFieldItemListInterface
+   * @var \Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface
    */
   private $field;
 
@@ -49,7 +49,7 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
   }
 
   /**
-   * @param \Drupal\renderkit8\EntityField\Multi\EntityToFieldItemListInterface $field
+   * @param \Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface $field
    *
    * @return self
    */
@@ -58,7 +58,7 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
   }
 
   /**
-   * @param \Drupal\renderkit8\EntityField\Multi\EntityToFieldItemListInterface $field
+   * @param \Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface $field
    * @param string|int $referenceTimestamp
    */
   public function __construct(

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\IdToSchema\IdToSchema_Callback;
 use Donquixote\Cf\IdToSchema\IdToSchema_Fixed;
@@ -10,7 +10,7 @@ use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
 use Donquixote\Cf\Schema\Select\CfSchema_Select_TwoStepFlatSelectComposite;
 use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
-use Drupal\renderkit8\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface;
+use Drupal\renderkit\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface;
 
 /**
  * Schema where the value is like 'body' for field 'node.body'.
@@ -28,14 +28,14 @@ class CfSchema_FieldName_StorageCondition extends CfSchema_Proxy_Cache_SelectBas
   private $bundleName;
 
   /**
-   * @var \Drupal\renderkit8\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface
+   * @var \Drupal\renderkit\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface
    */
   private $storageDefinitionCondition;
 
   /**
    * @param string|null $entityTypeId
    * @param string|null $bundle
-   * @param \Drupal\renderkit8\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface $storageDefinitionCondition
+   * @param \Drupal\renderkit\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface $storageDefinitionCondition
    * @param string $storageConditionSignature
    *
    * @return \Donquixote\Cf\Schema\Select\CfSchema_SelectInterface
@@ -61,7 +61,7 @@ class CfSchema_FieldName_StorageCondition extends CfSchema_Proxy_Cache_SelectBas
   /**
    * @param string|null $entityTypeId
    * @param string|null $bundle
-   * @param \Drupal\renderkit8\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface $storageDefinitionCondition
+   * @param \Drupal\renderkit\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface $storageDefinitionCondition
    * @param string $storageConditionSignature
    *
    * @return \Donquixote\Cf\IdToSchema\IdToSchemaInterface
@@ -98,7 +98,7 @@ class CfSchema_FieldName_StorageCondition extends CfSchema_Proxy_Cache_SelectBas
   /**
    * @param string $entityType
    * @param string|null $bundleName
-   * @param \Drupal\renderkit8\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface $storageDefinitionCondition
+   * @param \Drupal\renderkit\Schema\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface $storageDefinitionCondition
    * @param string $storageConditionSignature
    */
   public function __construct(

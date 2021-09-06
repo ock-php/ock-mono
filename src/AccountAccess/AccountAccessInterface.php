@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\AccountAccess;
+namespace Drupal\renderkit\AccountAccess;
 
 use Drupal\Core\Session\AccountInterface;
 

@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\IdToSchema;
+namespace Drupal\renderkit\IdToSchema;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Donquixote\Cf\Schema\Label\CfSchema_Label;
-use Drupal\renderkit8\Schema\CfSchema_EntityType_WithFields;
-use Drupal\renderkit8\Schema\CfSchema_FieldNameWithFormatter_SpecificEt;
+use Drupal\renderkit\Schema\CfSchema_EntityType_WithFields;
+use Drupal\renderkit\Schema\CfSchema_FieldNameWithFormatter_SpecificEt;
 
 class IdToSchema_Et_FieldAndFormatterSettings implements IdToSchemaInterface {
 

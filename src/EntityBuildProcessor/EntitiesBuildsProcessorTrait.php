@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityBuildProcessor;
+namespace Drupal\renderkit\EntityBuildProcessor;
 
 trait EntitiesBuildsProcessorTrait {
 
@@ -31,7 +31,7 @@ trait EntitiesBuildsProcessorTrait {
    * @return array[]
    *   Modified render arrays for the given entities.
    *
-   * @see \Drupal\renderkit8\EntityBuildProcessor\EntityBuildProcessorInterface::processEntitiesBuilds()
+   * @see \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface::processEntitiesBuilds()
    */
   abstract public function processEntitiesBuilds(array $builds, $entity_type, array $entities);
 

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\Select\Flat\CfSchema_FlatSelectInterface;
-use Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface;
+use Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface;
 use Drupal\views\Entity\View;
 
 class CfSchema_ViewDisplayId_Condition implements CfSchema_FlatSelectInterface {
@@ -15,13 +15,13 @@ class CfSchema_ViewDisplayId_Condition implements CfSchema_FlatSelectInterface {
   private $view;
 
   /**
-   * @var \Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface
+   * @var \Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface
    */
   private $condition;
 
   /**
    * @param \Drupal\views\Entity\View $view
-   * @param \Drupal\renderkit8\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface $condition
+   * @param \Drupal\renderkit\Schema\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface $condition
    */
   public function __construct(View $view, ViewsDisplayConditionInterface $condition) {
     $this->view = $view;

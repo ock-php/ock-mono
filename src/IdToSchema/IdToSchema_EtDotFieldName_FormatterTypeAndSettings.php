@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\IdToSchema;
+namespace Drupal\renderkit\IdToSchema;
 
 use Donquixote\Cf\Core\Schema\CfSchemaInterface;
 use Donquixote\Cf\IdToSchema\IdToSchemaInterface;
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
-use Drupal\renderkit8\Helper\FieldDefinitionLookup;
-use Drupal\renderkit8\Schema\CfSchema_EtDotFieldName;
+use Drupal\renderkit\Helper\FieldDefinitionLookup;
+use Drupal\renderkit\Schema\CfSchema_EtDotFieldName;
 
 class IdToSchema_EtDotFieldName_FormatterTypeAndSettings implements IdToSchemaInterface {
 
   /**
-   * @var \Drupal\renderkit8\Helper\FieldDefinitionLookupInterface
+   * @var \Drupal\renderkit\Helper\FieldDefinitionLookupInterface
    */
   private $fieldDefinitionLookup;
 

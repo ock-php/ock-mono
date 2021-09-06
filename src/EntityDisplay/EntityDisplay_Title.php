@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\Schema\CfSchema_EntityDisplay_Title;
+use Drupal\renderkit\Schema\CfSchema_EntityDisplay_Title;
 
 /**
  * The most boring entity display handler, ever.

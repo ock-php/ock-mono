@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityToEntity;
+namespace Drupal\renderkit\EntityToEntity;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -23,7 +23,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    *   label = @t("User entity or author")
    * )
    *
-   * @return \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface
+   * @return \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
    */
   public static function userEntityOrAuthor(): EntityToEntityInterface {
     return new EntityToEntity_SelfOrOther(new self());

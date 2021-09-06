@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\Drilldown\CfSchema_Drilldown;
 use Donquixote\Cf\Schema\DrilldownVal\CfSchema_DrilldownVal;
 use Donquixote\Cf\Schema\Group\CfSchema_Group;
 use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
-use Drupal\renderkit8\IdToSchema\IdToSchema_Et_FieldName;
-use Drupal\renderkit8\Util\UtilBase;
+use Drupal\renderkit\IdToSchema\IdToSchema_Et_FieldName;
+use Drupal\renderkit\Util\UtilBase;
 
 /**
  * Schema where the value is like ['entity_type' => 'node', 'field_name' => 'body'].

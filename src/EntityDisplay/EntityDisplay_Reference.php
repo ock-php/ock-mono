@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit8\EntityToEntity\EntityToEntityInterface;
+use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
 class EntityDisplay_Reference implements EntityDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
   private $decorated;
 
   /**
-   * @var \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface
+   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
    */
   private $reference;
 
@@ -36,8 +36,8 @@ class EntityDisplay_Reference implements EntityDisplayInterface {
   }
 
   /**
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $decorated
-   * @param \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface $reference
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
+   * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $reference
    */
   public function __construct(EntityDisplayInterface $decorated, EntityToEntityInterface $reference) {
     $this->decorated = $decorated;
@@ -78,7 +78,7 @@ class EntityDisplay_Reference implements EntityDisplayInterface {
    *
    * @return array
    *
-   * @see \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface::buildEntity()
+   * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
   public function buildEntity(EntityInterface $entity) {
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema\Misc\SelectByEt;
+namespace Drupal\renderkit\Schema\Misc\SelectByEt;
 
 class SelectByEt_FieldName extends SelectByEt_FieldName_Base {
 

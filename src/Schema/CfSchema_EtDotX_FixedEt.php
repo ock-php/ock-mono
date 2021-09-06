@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Schema;
+namespace Drupal\renderkit\Schema;
 
 use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
-use Drupal\renderkit8\Schema\Misc\SelectByEt\SelectByEtInterface;
+use Drupal\renderkit\Schema\Misc\SelectByEt\SelectByEtInterface;
 
 class CfSchema_EtDotX_FixedEt extends CfSchema_Proxy_Cache_SelectBase {
 
@@ -19,7 +19,7 @@ class CfSchema_EtDotX_FixedEt extends CfSchema_Proxy_Cache_SelectBase {
   private $bundleNames;
 
   /**
-   * @var \Drupal\renderkit8\Schema\Misc\SelectByEt\SelectByEtInterface
+   * @var \Drupal\renderkit\Schema\Misc\SelectByEt\SelectByEtInterface
    */
   private $selectByEt;
 
@@ -31,7 +31,7 @@ class CfSchema_EtDotX_FixedEt extends CfSchema_Proxy_Cache_SelectBase {
   /**
    * @param string $entityTypeId
    * @param string[]|null $bundleNames
-   * @param \Drupal\renderkit8\Schema\Misc\SelectByEt\SelectByEtInterface $selectByEt
+   * @param \Drupal\renderkit\Schema\Misc\SelectByEt\SelectByEtInterface $selectByEt
    * @param string $cacheId
    */
   public function __construct($entityTypeId, array $bundleNames = NULL, SelectByEtInterface $selectByEt, $cacheId) {
@@ -44,7 +44,7 @@ class CfSchema_EtDotX_FixedEt extends CfSchema_Proxy_Cache_SelectBase {
   /**
    * @param string $separator
    *
-   * @return \Drupal\renderkit8\Schema\CfSchema_EtDotX_FixedEt
+   * @return \Drupal\renderkit\Schema\CfSchema_EtDotX_FixedEt
    */
   public function withSeparator(string $separator): self {
     $clone = clone $this;

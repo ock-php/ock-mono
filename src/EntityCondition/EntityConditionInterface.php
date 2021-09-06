@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityCondition;
+namespace Drupal\renderkit\EntityCondition;
 
 use Drupal\Core\Entity\EntityInterface;
 

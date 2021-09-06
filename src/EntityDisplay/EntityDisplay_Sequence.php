@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay;
+namespace Drupal\renderkit\EntityDisplay;
 
 use Donquixote\Cf\Context\CfContextInterface;
 use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
@@ -17,7 +17,7 @@ use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
 class EntityDisplay_Sequence extends EntitiesDisplayBase {
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface[]
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
    */
   protected $displayHandlers;
 
@@ -37,7 +37,7 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
   }
 
   /**
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface[] $displayHandlers
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $displayHandlers
    */
   public function __construct(array $displayHandlers) {
 

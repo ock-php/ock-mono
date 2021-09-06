@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityToEntity;
+namespace Drupal\renderkit\EntityToEntity;
 
 use Drupal\Core\Entity\EntityInterface;
 
 class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
 
   /**
-   * @var \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface
+   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
    */
   private $decorated;
 
   /**
-   * @param \Drupal\renderkit8\EntityToEntity\EntityToEntityInterface $decorated
+   * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $decorated
    */
   public function __construct(EntityToEntityInterface $decorated) {
     $this->decorated = $decorated;

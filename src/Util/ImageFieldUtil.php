@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\Util;
+namespace Drupal\renderkit\Util;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\TypedData\Exception\ReadOnlyException;

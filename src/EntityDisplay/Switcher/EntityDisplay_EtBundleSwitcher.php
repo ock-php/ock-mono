@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\renderkit8\EntityDisplay\Switcher;
+namespace Drupal\renderkit\EntityDisplay\Switcher;
 
-use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 /**
  * A display handler that uses a different display for specific entity types or
@@ -12,7 +12,7 @@ use Drupal\renderkit8\EntityDisplay\EntityDisplayInterface;
 class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
 
   /**
-   * @var \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface[][]
+   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[][]
    *   Format: $[$entityType][$bundleName] = $displayHandler
    */
   private $typeBundleDisplays = [];
@@ -22,7 +22,7 @@ class EntityDisplay_EtBundleSwitcher extends EntityDisplay_EtSwitcher {
    *
    * @param string $entityType
    * @param string $bundle
-   * @param \Drupal\renderkit8\EntityDisplay\EntityDisplayInterface $display
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $display
    *
    * @return $this
    */
