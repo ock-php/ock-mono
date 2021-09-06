@@ -25,7 +25,7 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
    *
    * @return static
    */
-  public function withAllowedTypes(array $allowedDisplayTypes) {
+  public function withAllowedTypes(array $allowedDisplayTypes): self {
     $clone = clone $this;
     $clone->allowedDisplayTypes = array_fill_keys($allowedDisplayTypes, TRUE);
     return $clone;
@@ -36,7 +36,7 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
    *
    * @return static
    */
-  public function withArgumentsSignature(array $argumentsSignature = NULL) {
+  public function withArgumentsSignature(array $argumentsSignature = NULL): self {
     $clone = clone $this;
     $clone->argumentsSignature = $argumentsSignature;
     return $clone;
@@ -47,7 +47,7 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
    *
    * @return static
    */
-  public function withStatus($status = TRUE) {
+  public function withStatus($status = TRUE): self {
     $clone = clone $this;
     $clone->status = $status;
     return $clone;

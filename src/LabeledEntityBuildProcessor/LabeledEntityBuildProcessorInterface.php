@@ -14,6 +14,6 @@ interface LabeledEntityBuildProcessorInterface {
    *
    * @return array
    */
-  public function buildAddLabelWithEntity(array $build, EntityInterface $entity, $label);
+  public function buildAddLabelWithEntity(array $build, EntityInterface $entity, $label): array;
 
 }

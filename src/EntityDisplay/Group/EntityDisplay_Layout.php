@@ -37,7 +37,7 @@ class EntityDisplay_Layout extends EntitiesDisplayBase {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
     $builds = [];
     foreach ($this->regionDisplayHandlers as $name => $handler) {
       foreach ($handler->buildEntities($entities) as $delta => $entity_build) {

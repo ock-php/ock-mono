@@ -120,7 +120,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    * @return array
    *   Combined render array.
    */
-  public function build(array $builds, $entityType, $entity, $label) {
+  public function build(array $builds, $entityType, $entity, $label): array {
 
     if (NULL !== $this->itemProcessor) {
       foreach ($builds as $delta => $build) {

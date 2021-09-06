@@ -10,7 +10,7 @@ abstract class EntityToEntitiesBase implements EntityToEntitiesInterface {
    *
    * @return \Drupal\Core\Entity\EntityInterface[][]
    */
-  public function entitiesGetRelated(array $entities) {
+  public function entitiesGetRelated(array $entities): array {
 
     $targetEntities = [];
     foreach ($entities as $delta => $entity) {

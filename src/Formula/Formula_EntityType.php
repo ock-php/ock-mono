@@ -24,7 +24,7 @@ class Formula_EntityType implements Formula_FlatSelectInterface {
   /**
    * @return self
    */
-  public static function create() {
+  public static function create(): self {
     /** @var \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository */
     $entityTypeRepository = \Drupal::service('entity_type.repository');
     return new self($entityTypeRepository);

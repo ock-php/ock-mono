@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityField\Multi;
 
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\FieldItemListInterface;
 
 interface EntityToFieldItemListInterface {
 
@@ -12,6 +13,6 @@ interface EntityToFieldItemListInterface {
    *
    * @return \Drupal\Core\Field\FieldItemListInterface|null
    */
-  public function entityGetItemList(FieldableEntityInterface $entity);
+  public function entityGetItemList(FieldableEntityInterface $entity): ?FieldItemListInterface;
 
 }

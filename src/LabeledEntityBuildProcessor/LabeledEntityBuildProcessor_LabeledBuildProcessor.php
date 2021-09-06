@@ -36,7 +36,7 @@ class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntity
    *
    * @return array
    */
-  public function buildAddLabelWithEntity(array $build, EntityInterface $entity, $label) {
+  public function buildAddLabelWithEntity(array $build, EntityInterface $entity, $label): array {
     return $this->labeledFormat->buildAddLabel($build, $label);
   }
 }

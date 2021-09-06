@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Multi;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\renderkit\Formula\Formula_EtAndFieldName;
 
 class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
@@ -32,7 +34,7 @@ class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
     array $allowedFieldTypes = NULL,
     $entityType = NULL,
     $bundle = NULL
-  ) {
+  ): FormulaInterface {
 
     return Formula_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
@@ -48,7 +50,7 @@ class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
    *
    * @return self
    */
-  public static function create(array $settings) {
+  public static function create(array $settings): self {
     return new self(
       $settings['entity_type'],
       $settings['field_name']);
@@ -68,7 +70,7 @@ class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
    *
    * @return \Drupal\Core\Field\FieldItemListInterface|null
    */
-  public function entityGetItemList(FieldableEntityInterface $entity) {
+  public function entityGetItemList(FieldableEntityInterface $entity): ?FieldItemListInterface {
 
     if ($this->entityTypeId !== $entity->getEntityTypeId()) {
       return NULL;

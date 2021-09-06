@@ -31,7 +31,7 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
    *
    * @return string
    */
-  public function getTargetType() {
+  public function getTargetType(): string {
     return $this->second->getTargetType();
   }
 
@@ -40,7 +40,7 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
    *
    * @return null|\Drupal\Core\Entity\EntityInterface
    */
-  public function entityGetRelated(EntityInterface $entity) {
+  public function entityGetRelated(EntityInterface $entity): ?EntityInterface {
 
     $related = $this->first->entityGetRelated($entity);
 

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
@@ -35,7 +36,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createFormula($entityType = NULL) {
+  public static function createFormula($entityType = NULL): FormulaInterface {
 
     /** @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entityDisplayRepository */
     $entityDisplayRepository = \Drupal::service('entity_display.repository');
@@ -60,7 +61,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
     EntityDisplayRepositoryInterface $entityDisplayRepository,
     EntityTypeRepositoryInterface $entityTypeRepository,
     $entityType = NULL
-  ) {
+  ): FormulaInterface {
 
     return Formula_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
@@ -75,11 +76,11 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    * @param string $id
    *   A combination of entity type and view mode name.
    *
-   * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_ViewModeOneType
+   * @return self
    *
    * @throws \Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration
    */
-  public static function createFromId($id) {
+  public static function createFromId($id): self {
 
     if (!\is_string($id)) {
       throw new EvaluatorException_IncompatibleConfiguration(
@@ -132,7 +133,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    *
    * @return string|null
    */
-  protected function etGetViewMode($entityType) {
+  protected function etGetViewMode($entityType): ?string {
 
     if ($entityType !== $this->entityType) {
       return NULL;

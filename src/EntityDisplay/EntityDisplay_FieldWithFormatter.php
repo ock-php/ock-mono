@@ -56,7 +56,7 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplay_FieldItemsBase {
     $field_name,
     array $display = [],
     FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL
-  ) {
+  ): self {
 
     return new self(
       \Drupal::service('entity_type.manager'),

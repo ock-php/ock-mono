@@ -10,6 +10,6 @@ interface EntityTypeConditionInterface {
    *
    * @return bool
    */
-  public function checkEntityTypeId($entityTypeId);
+  public function checkEntityTypeId($entityTypeId): bool;
 
 }

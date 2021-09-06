@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ListFormat;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
@@ -25,7 +26,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createFormula() {
+  public static function createFormula(): FormulaInterface {
 
     return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
@@ -90,7 +91,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  public function buildList(array $builds) {
+  public function buildList(array $builds): array {
 
     return [
       /* @see theme_themekit_list() */

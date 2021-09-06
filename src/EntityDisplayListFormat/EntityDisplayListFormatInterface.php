@@ -12,6 +12,6 @@ interface EntityDisplayListFormatInterface {
    *
    * @return array
    */
-  public function buildListWithEntity(array $builds, $entityType, $entity);
+  public function buildListWithEntity(array $builds, $entityType, $entity): array;
 
 }

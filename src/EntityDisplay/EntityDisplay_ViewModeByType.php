@@ -44,7 +44,7 @@ class EntityDisplay_ViewModeByType extends EntityDisplay_ViewModeBase {
    *
    * @return string|null
    */
-  protected function etGetViewMode($entityType) {
+  protected function etGetViewMode($entityType): ?string {
 
     if (!empty($this->viewModesByType[$entityType])) {
       return $this->viewModesByType[$entityType];

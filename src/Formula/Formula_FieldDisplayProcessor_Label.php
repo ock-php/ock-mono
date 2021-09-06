@@ -18,7 +18,7 @@ class Formula_FieldDisplayProcessor_Label extends Formula_Group_V2VDecoratorBase
    *
    * @return self
    */
-  public static function create(Formula_GroupValInterface $decoratedValFormula) {
+  public static function create(Formula_GroupValInterface $decoratedValFormula): self {
     return new self(
       $decoratedValFormula->getDecorated(),
       $decoratedValFormula->getV2V());

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
@@ -40,7 +41,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createFormula($entityType = NULL) {
+  public static function createFormula($entityType = NULL): FormulaInterface {
 
     return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
@@ -59,9 +60,9 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    * @param string $id
    * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledEntityBuildProcessor
    *
-   * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_ViewsDisplay|null
+   * @return self|null
    */
-  public static function create($id, LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL) {
+  public static function create($id, LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL): ?self {
 
     list($view_name, $display_id) = explode(':', $id) + [NULL, NULL];
 
@@ -95,7 +96,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    *
    * @return array
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
 
     if (NULL === $etid = $entity->id()) {
       return [

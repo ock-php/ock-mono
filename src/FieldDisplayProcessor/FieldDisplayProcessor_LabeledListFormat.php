@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
@@ -20,7 +21,7 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createFormula() {
+  public static function createFormula(): FormulaInterface {
     return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'create',
@@ -63,7 +64,7 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
    *
    * @return array
    */
-  public function process(array $element) {
+  public function process(array $element): array {
 
     $builds = [];
     foreach ($element['#items'] as $delta => $item) {

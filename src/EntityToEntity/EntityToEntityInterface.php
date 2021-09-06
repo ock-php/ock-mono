@@ -15,12 +15,12 @@ interface EntityToEntityInterface {
    *
    * @return string
    */
-  public function getTargetType();
+  public function getTargetType(): string;
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return null|\Drupal\Core\Entity\EntityInterface
    */
-  public function entityGetRelated(EntityInterface $entity);
+  public function entityGetRelated(EntityInterface $entity): ?EntityInterface;
 }

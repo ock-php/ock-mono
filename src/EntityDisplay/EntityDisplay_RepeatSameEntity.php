@@ -51,7 +51,7 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
    *
    * @return self
    */
-  public static function create($n, EntitiesListFormatInterface $entitiesListFormat) {
+  public static function create($n, EntitiesListFormatInterface $entitiesListFormat): self {
     return new self($entitiesListFormat, (int) $n);
   }
 
@@ -72,7 +72,7 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
    *
    * @return array
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
     return $this->entitiesListFormat->entitiesBuildList(
       array_fill(0, $this->n, $entity));
   }

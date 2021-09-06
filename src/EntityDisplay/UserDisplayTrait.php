@@ -16,7 +16,7 @@ trait UserDisplayTrait {
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntities()
    */
-  final public function buildEntities(array $entities) {
+  final public function buildEntities(array $entities): array {
 
     $builds = [];
     foreach ($entities as $delta => $entity) {
@@ -37,7 +37,7 @@ trait UserDisplayTrait {
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  final public function buildEntity(EntityInterface $entity) {
+  final public function buildEntity(EntityInterface $entity): array {
 
     if (!$entity instanceof UserInterface) {
       return [];
@@ -51,6 +51,6 @@ trait UserDisplayTrait {
    *
    * @return array
    */
-  abstract protected function buildUser(UserInterface $user);
+  abstract protected function buildUser(UserInterface $user): array;
 
 }

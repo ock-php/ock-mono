@@ -83,7 +83,7 @@ abstract class Formula_EtDotFieldName_ProxyCacheBase extends Formula_Proxy_Cache
   /**
    * @return string[]
    */
-  private function getFieldableEntityTypeLabels() {
+  private function getFieldableEntityTypeLabels(): array {
 
     /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
     $etm = \Drupal::service('entity_type.manager');
@@ -112,6 +112,6 @@ abstract class Formula_EtDotFieldName_ProxyCacheBase extends Formula_Proxy_Cache
    * @return string[][]
    *   Format: $[$groupLabel][$fieldName] = $fieldLabel
    */
-  abstract protected function etGetGroupedOptions($entityTypeId, $bundleName = NULL);
+  abstract protected function etGetGroupedOptions($entityTypeId, $bundleName = NULL): array;
 }
 

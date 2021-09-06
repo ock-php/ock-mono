@@ -14,6 +14,6 @@ interface LabeledListFormatInterface {
    * @return array
    *   Combined render array.
    */
-  public function build(array $builds, $label);
+  public function build(array $builds, $label): array;
 
 }

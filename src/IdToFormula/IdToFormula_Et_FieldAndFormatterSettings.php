@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Drupal\renderkit\IdToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownVal;
@@ -16,7 +18,7 @@ class IdToFormula_Et_FieldAndFormatterSettings implements IdToFormulaInterface {
   /**
    * @return \Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownValInterface
    */
-  public static function createDrilldownValFormula() {
+  public static function createDrilldownValFormula(): Formula_DrilldownValInterface {
 
     return Formula_DrilldownVal::createArrify(
       self::createDrilldownFormula());
@@ -25,7 +27,7 @@ class IdToFormula_Et_FieldAndFormatterSettings implements IdToFormulaInterface {
   /**
    * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
    */
-  public static function createDrilldownFormula() {
+  public static function createDrilldownFormula(): Formula_DrilldownInterface {
 
     $etSelector = new Formula_EntityType_WithFields(
       \Drupal::service('entity_field.manager'),

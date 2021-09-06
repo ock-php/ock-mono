@@ -22,5 +22,5 @@ interface EntityImageInterface extends EntityDisplayInterface {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities);
+  public function buildEntities(array $entities): array;
 }

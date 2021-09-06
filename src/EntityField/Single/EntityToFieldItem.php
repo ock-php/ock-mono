@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Single;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Formula;
 use Drupal\renderkit\Context\FieldContext;
 use Drupal\renderkit\Util\UtilBase;
@@ -20,7 +21,7 @@ final class EntityToFieldItem extends UtilBase {
     array $allowedFieldTypes = NULL,
     $entityType = NULL,
     $bundle = NULL
-  ) {
+  ): FormulaInterface {
     return Formula::iface(
       EntityToFieldItemInterface::class,
       FieldContext::get(

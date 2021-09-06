@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\LabeledFormat;
 
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
 use Drupal\Component\Utility\Html;
 
@@ -22,7 +23,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
    *
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function createFormula() {
+  public static function createFormula(): Formula_GroupValInterface {
     return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
       [
@@ -58,7 +59,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
    * @return array
    *   Modified or wrapped render array with label.
    */
-  public function buildAddLabel(array $build, $label) {
+  public function buildAddLabel(array $build, $label): array {
 
     $label_markup = ''
       . '<' . $this->tagName . '>'

@@ -13,7 +13,7 @@ class FieldDisplayProcessor_Bare implements FieldDisplayProcessorInterface {
    *
    * @return array
    */
-  public function process(array $element) {
+  public function process(array $element): array {
 
     $builds = [];
     foreach ($element['#items'] as $delta => $item) {

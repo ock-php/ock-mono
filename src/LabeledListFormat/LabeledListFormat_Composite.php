@@ -59,7 +59,7 @@ class LabeledListFormat_Composite implements LabeledListFormatInterface {
    * @return array
    *   Combined render array.
    */
-  public function build(array $builds, $label) {
+  public function build(array $builds, $label): array {
     $build = (NULL !== $this->listFormat)
       ? $this->listFormat->buildList($builds)
       : $builds;

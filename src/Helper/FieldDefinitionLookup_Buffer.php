@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Helper;
 
+use Drupal\Core\Field\FieldDefinitionInterface;
+
 class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {
 
   /**
@@ -37,7 +39,7 @@ class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {
    *
    * @return \Drupal\Core\Field\FieldDefinitionInterface[]
    */
-  public function etGetFieldDefinitions($et) {
+  public function etGetFieldDefinitions($et): array {
 
     if (isset($this->etProcessed[$et])) {
       return $this->definitions[$et];
@@ -54,7 +56,7 @@ class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {
    *
    * @return \Drupal\Core\Field\FieldDefinitionInterface|null
    */
-  public function etAndFieldNameGetDefinition($et, $fieldName) {
+  public function etAndFieldNameGetDefinition($et, $fieldName): ?FieldDefinitionInterface {
 
     if (isset($this->fieldProcessed[$et][$fieldName])) {
       return $this->definitions[$et][$fieldName];

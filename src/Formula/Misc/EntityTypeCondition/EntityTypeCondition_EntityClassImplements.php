@@ -22,7 +22,7 @@ class EntityTypeCondition_EntityClassImplements implements EntityTypeConditionIn
    *
    * @return bool
    */
-  public function checkEntityTypeId($entityTypeId) {
+  public function checkEntityTypeId($entityTypeId): bool {
 
     $etm = \Drupal::entityTypeManager();
 

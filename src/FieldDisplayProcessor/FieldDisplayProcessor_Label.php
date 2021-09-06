@@ -34,7 +34,7 @@ class FieldDisplayProcessor_Label implements FieldDisplayProcessorInterface {
    *
    * @return static
    */
-  public function withCustomLabel($labelUnsafe) {
+  public function withCustomLabel($labelUnsafe): self {
     $clone = clone $this;
     $clone->labelUnsafe = $labelUnsafe;
     return $clone;
@@ -43,7 +43,7 @@ class FieldDisplayProcessor_Label implements FieldDisplayProcessorInterface {
   /**
    * @return static
    */
-  public function withoutLabelColon() {
+  public function withoutLabelColon(): self {
     $clone = clone $this;
     $clone->appendLabelColon = FALSE;
     return $clone;
@@ -58,7 +58,7 @@ class FieldDisplayProcessor_Label implements FieldDisplayProcessorInterface {
    * @see theme_ds_field_minimal()
    * @see theme_field()
    */
-  public function process(array $element) {
+  public function process(array $element): array {
 
     if ([] === $modified = $this->decorated->process($element)) {
       return [];

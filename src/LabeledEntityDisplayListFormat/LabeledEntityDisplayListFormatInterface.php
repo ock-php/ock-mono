@@ -16,6 +16,6 @@ interface LabeledEntityDisplayListFormatInterface {
    * @return array
    *   Combined render array.
    */
-  public function build(array $builds, $entityType, $entity, $label);
+  public function build(array $builds, $entityType, $entity, $label): array;
 
 }

@@ -21,7 +21,7 @@ class Formula_EntityDisplay_Title extends Formula_Group_V2VBase {
   /**
    * @return self
    */
-  public static function create() {
+  public static function create(): self {
     return new self(['h1', 'h2', 'h3', 'h4', 'strong']);
   }
 
@@ -120,7 +120,7 @@ class Formula_EntityDisplay_Title extends Formula_Group_V2VBase {
    *
    * @todo Support this?
    */
-  public function _confGetSummary($conf) {
+  public function _confGetSummary($conf): ?string {
     list($wrapperTagName, $link) = $this->confGetNormalized($conf);
 
     if ($link && NULL !== $wrapperTagName) {
@@ -143,7 +143,7 @@ class Formula_EntityDisplay_Title extends Formula_Group_V2VBase {
    * @return array
    *   Format: [$tagName, $link]
    */
-  private function confGetNormalized($conf) {
+  private function confGetNormalized($conf): array {
 
     if (!\is_array($conf)) {
       $conf = [];

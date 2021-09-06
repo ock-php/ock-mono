@@ -40,7 +40,7 @@ class Formula_EtDotX extends Formula_Proxy_Cache_SelectBase {
    *
    * @return static
    */
-  public function withSeparator($separator) {
+  public function withSeparator($separator): self {
     $clone = clone $this;
     $clone->separator = $separator;
     return $clone;

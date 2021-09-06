@@ -32,7 +32,7 @@ class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
    *
    * @return $this
    */
-  public function setFallbackDisplay(EntityDisplayInterface $fallbackDisplay) {
+  public function setFallbackDisplay(EntityDisplayInterface $fallbackDisplay): self {
     $this->fallbackDisplay = $fallbackDisplay;
     return $this;
   }
@@ -45,7 +45,7 @@ class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
    *
    * @return $this
    */
-  public function entityTypeSetDisplay($entityType, EntityDisplayInterface $display) {
+  public function entityTypeSetDisplay($entityType, EntityDisplayInterface $display): self {
     $this->typeDisplays[$entityType] = $display;
 
     return $this;
@@ -57,7 +57,7 @@ class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
    *
    * @return array[]
    */
-  protected function typeBuildEntities($entityTypeId, array $entities) {
+  protected function typeBuildEntities($entityTypeId, array $entities): array {
 
     if (isset($this->typeDisplays[$entityTypeId])) {
       return $this->typeDisplays[$entityTypeId]->buildEntities($entities);

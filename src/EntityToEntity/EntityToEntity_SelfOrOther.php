@@ -24,7 +24,7 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
    *
    * @return string
    */
-  public function getTargetType() {
+  public function getTargetType(): string {
     return $this->decorated->getTargetType();
   }
 
@@ -33,7 +33,7 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
    *
    * @return null|\Drupal\Core\Entity\EntityInterface
    */
-  public function entityGetRelated(EntityInterface $entity) {
+  public function entityGetRelated(EntityInterface $entity): ?EntityInterface {
 
     return $entity->getEntityTypeId() === $this->getTargetType()
       ? $entity

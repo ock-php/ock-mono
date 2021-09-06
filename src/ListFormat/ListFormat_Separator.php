@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\ListFormat;
 
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Drupal\renderkit\Formula\Formula_ListSeparator;
 
 /**
@@ -24,7 +25,7 @@ class ListFormat_Separator implements ListFormatInterface {
    *
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function createFormula() {
+  public static function createFormula(): Formula_GroupValInterface {
 
     return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
@@ -51,7 +52,7 @@ class ListFormat_Separator implements ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  public function buildList(array $builds) {
+  public function buildList(array $builds): array {
     return [
       /* @see renderkit_theme() */
       /* @see theme_themekit_separator_list() */

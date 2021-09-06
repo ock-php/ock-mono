@@ -21,9 +21,9 @@ class Formula_EntityBundleName implements Formula_SelectInterface {
   /**
    * @param string $entityType
    *
-   * @return \Drupal\renderkit\Formula\Formula_EntityBundleName
+   * @return self
    */
-  public static function create($entityType) {
+  public static function create($entityType): self {
     /** @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundleInfo */
     $bundleInfo = \Drupal::service('entity_type.bundle.info');
     return new self($bundleInfo, $entityType);

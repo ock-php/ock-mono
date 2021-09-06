@@ -13,7 +13,7 @@ final class ImageProcessorUtil extends UtilBase {
    *
    * @return array[]
    */
-  public static function processImages(array $images, ImageProcessorInterface $imageProcessor = NULL) {
+  public static function processImages(array $images, ImageProcessorInterface $imageProcessor = NULL): array {
 
     if (NULL === $imageProcessor) {
       return $images;

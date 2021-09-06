@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConf;
 use Donquixote\ObCK\Formula\Group\Formula_Group_V2VBase;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
@@ -28,7 +29,7 @@ class Formula_EntityDisplay_FieldWithFormatter extends Formula_Group_V2VBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createValFormula($entityType = NULL, $bundle = NULL) {
+  public static function createValFormula($entityType = NULL, $bundle = NULL): FormulaInterface {
     return self::createConfFormula($entityType, $bundle)
       ->getValFormula();
   }
@@ -39,7 +40,7 @@ class Formula_EntityDisplay_FieldWithFormatter extends Formula_Group_V2VBase {
    *
    * @return self
    */
-  public static function createConfFormula($entityType = NULL, $bundle = NULL) {
+  public static function createConfFormula($entityType = NULL, $bundle = NULL): self {
     return new self($entityType, $bundle);
   }
 
@@ -131,7 +132,7 @@ class Formula_EntityDisplay_FieldWithFormatter extends Formula_Group_V2VBase {
     array $fieldSettings,
     $labelDisplay,
     FieldDisplayProcessorInterface $processorOrNull = NULL
-  ) {
+  ): EntityDisplay_FieldWithFormatter {
 
     $et = $fieldSettings['entity_type'];
     $fieldAndFormatter = $fieldSettings['field_and_formatter'];

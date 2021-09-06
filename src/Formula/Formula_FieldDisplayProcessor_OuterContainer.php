@@ -27,7 +27,7 @@ class Formula_FieldDisplayProcessor_OuterContainer extends Formula_Group_V2VDeco
   public static function create(
     Formula_GroupValInterface $decoratedValFormula,
     $withClassesOption
-  ) {
+  ): self {
     return new self(
       $decoratedValFormula->getDecorated(),
       $decoratedValFormula->getV2V(),

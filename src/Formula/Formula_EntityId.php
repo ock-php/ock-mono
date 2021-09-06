@@ -6,6 +6,7 @@ namespace Drupal\renderkit\Formula;
 use Donquixote\ObCK\Form\D8\FormatorD8Interface;
 use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\Core\Entity\EntityInterface;
 
 class Formula_EntityId implements Formula_IdInterface, FormatorD8Interface {
 
@@ -70,7 +71,7 @@ class Formula_EntityId implements Formula_IdInterface, FormatorD8Interface {
    *
    * @return \Drupal\Core\Entity\EntityInterface|null
    */
-  private function idGetEntity($id) {
+  private function idGetEntity($id): ?EntityInterface {
 
     /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
     $etm = \Drupal::service('entity_type.manager');

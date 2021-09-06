@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\IdToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
 use Drupal\renderkit\Helper\FieldDefinitionLookup;
@@ -22,7 +23,7 @@ class IdToFormula_EtDotFieldName_FormatterTypeAndSettings implements IdToFormula
    *
    * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
    */
-  public static function createDrilldownFormula($entityType = NULL, $bundleName = NULL) {
+  public static function createDrilldownFormula($entityType = NULL, $bundleName = NULL): Formula_DrilldownInterface {
 
     return Formula_Drilldown::create(
       Formula_EtDotFieldName::create(

@@ -18,7 +18,7 @@ class Formula_EntityType_WithGroupLabels implements Formula_SelectInterface {
   /**
    * @return self
    */
-  public static function create() {
+  public static function create(): self {
     /** @var \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository */
     $entityTypeRepository = \Drupal::service('entity_type.repository');
     return new self($entityTypeRepository);

@@ -150,7 +150,7 @@ class Formula_EntityTypeWithViewModeName implements Formula_SelectInterface {
    *
    * @return string[]
    */
-  private function etGetViewModeOptions($entityTypeId) {
+  private function etGetViewModeOptions($entityTypeId): array {
     return $this->entityDisplayRepository->getViewModeOptions($entityTypeId);
   }
 }

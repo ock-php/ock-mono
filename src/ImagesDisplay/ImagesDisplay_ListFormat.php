@@ -41,7 +41,7 @@ class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
    * @return array
    *   A Drupal render array.
    */
-  public function buildImages(array $images) {
+  public function buildImages(array $images): array {
     RenderUtil::validateImages($images);
     if ($this->imageProcessor !== NULL) {
       foreach ($images as $delta => $image) {

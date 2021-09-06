@@ -22,7 +22,7 @@ class EntityTypeCondition_Whitelist implements EntityTypeConditionInterface {
    *
    * @return bool
    */
-  public function checkEntityTypeId($entityTypeId) {
+  public function checkEntityTypeId($entityTypeId): bool {
     return isset($this->truthsByEt[$entityTypeId]);
   }
 }

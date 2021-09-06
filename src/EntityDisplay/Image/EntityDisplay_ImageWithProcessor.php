@@ -62,7 +62,7 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
     $rawBuilds = $this->entityImageProvider->buildEntities($entities);
     $processedBuilds = [];
     foreach ($rawBuilds as $delta => $rawBuild) {

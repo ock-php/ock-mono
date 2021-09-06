@@ -5,6 +5,7 @@ namespace Drupal\renderkit\FieldDisplayProcessor;
 
 use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
@@ -19,7 +20,7 @@ class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface
    * @CfrPlugin("listFormatPlus", "List format +")
    *
    */
-  public static function createFormula() {
+  public static function createFormula(): Formula_GroupValInterface {
     return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'create',
@@ -62,7 +63,7 @@ class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface
    *
    * @return array
    */
-  public function process(array $element) {
+  public function process(array $element): array {
 
     $builds = [];
     foreach ($element['#items'] as $delta => $item) {

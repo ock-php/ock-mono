@@ -16,7 +16,7 @@ class ListFormat_Bare implements ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  public function buildList(array $builds) {
+  public function buildList(array $builds): array {
     return $builds;
   }
 }

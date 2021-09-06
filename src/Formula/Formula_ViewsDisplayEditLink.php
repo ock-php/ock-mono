@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Donquixote\ObCK\Form\D8\FormatorD8Interface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\ObCK\IdToFormula\IdToFormula_Callback;
 use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_Null;
@@ -26,7 +27,7 @@ class Formula_ViewsDisplayEditLink extends Formula_ValueProvider_Null implements
    *
    * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
    */
-  public static function createDrilldown(Formula_ViewIdWithDisplayId $idFormula) {
+  public static function createDrilldown(Formula_ViewIdWithDisplayId $idFormula): Formula_DrilldownInterface {
     return Formula_Drilldown::create(
       $idFormula,
       new IdToFormula_Callback([self::class, 'fromCompositeId']));
@@ -37,7 +38,7 @@ class Formula_ViewsDisplayEditLink extends Formula_ValueProvider_Null implements
    *
    * @return self|null
    */
-  public static function fromCompositeId($id) {
+  public static function fromCompositeId($id): ?self {
 
     list($viewId, $displayId) = explode(':', $id) + ['', ''];
 

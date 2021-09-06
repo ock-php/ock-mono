@@ -33,7 +33,7 @@ class ImagesDisplay_Multiple implements ImagesDisplayInterface {
    * @return array
    *   A Drupal render array.
    */
-  public function buildImages(array $images) {
+  public function buildImages(array $images): array {
     $build = [];
     foreach ($this->displays as $delta => $display) {
       $build[$delta] = $display->buildImages($images);

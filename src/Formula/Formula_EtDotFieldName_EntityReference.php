@@ -41,7 +41,7 @@ class Formula_EtDotFieldName_EntityReference extends Formula_EtDotFieldName_Prox
    * @return string[][]
    *   Format: $[$groupLabel][$fieldName] = $fieldLabel
    */
-  protected function etGetGroupedOptions($entityTypeId, $bundleName = NULL) {
+  protected function etGetGroupedOptions($entityTypeId, $bundleName = NULL): array {
 
     $formula = new Formula_FieldName_EntityReference(
       $entityTypeId,

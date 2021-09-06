@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityDisplay;
 
 use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 
@@ -28,7 +29,7 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createFormula(CfContextInterface $context = NULL) {
+  public static function createFormula(CfContextInterface $context = NULL): FormulaInterface {
     return Formula_ValueToValue_CallbackMono::fromClass(
       __CLASS__,
       Formula_IfaceWithContext::createSequence(
@@ -56,7 +57,7 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
 
     $builds = [];
     foreach ($this->displayHandlers as $name => $handler) {

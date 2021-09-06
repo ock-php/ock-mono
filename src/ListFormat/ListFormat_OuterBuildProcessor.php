@@ -37,7 +37,7 @@ class ListFormat_OuterBuildProcessor implements ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  public function buildList(array $builds) {
+  public function buildList(array $builds): array {
     if (NULL !== $this->decorated) {
       $builds = $this->decorated->buildList($builds);
     }

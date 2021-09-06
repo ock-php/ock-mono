@@ -27,7 +27,7 @@ class EntityImage_EntityLabelAsAltFallback implements EntityImageInterface {
    *
    * @return array
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
 
     $image = $this->decorated->buildEntity($entity);
 
@@ -50,7 +50,7 @@ class EntityImage_EntityLabelAsAltFallback implements EntityImageInterface {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
 
     $label = NULL;
 

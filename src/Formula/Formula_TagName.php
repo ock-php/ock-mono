@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Optional\Formula_Optional;
 use Donquixote\ObCK\Formula\Optional\Formula_Optional_Null;
 use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
@@ -24,7 +25,7 @@ final class Formula_TagName extends UtilBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createForTitle() {
+  public static function createForTitle(): FormulaInterface {
     return self::create(['h1', 'h2', 'h3', 'h4', 'h5', 'label', 'strong'], 'h2');
   }
 
@@ -35,7 +36,7 @@ final class Formula_TagName extends UtilBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createForContainer($default = 'div') {
+  public static function createForContainer($default = 'div'): FormulaInterface {
     return self::create(['div', 'span', 'article', 'section', 'pre'], $default);
   }
 
@@ -44,7 +45,7 @@ final class Formula_TagName extends UtilBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createForHtmlList() {
+  public static function createForHtmlList(): FormulaInterface {
 
     $optionsFlat = [
       'ul' => t('Unordered list (ul)'),
@@ -77,7 +78,7 @@ final class Formula_TagName extends UtilBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function create(array $allowedTagNames, $defaultTagName = NULL) {
+  public static function create(array $allowedTagNames, $defaultTagName = NULL): FormulaInterface {
 
     $optionsFlat = array_combine($allowedTagNames, $allowedTagNames);
 

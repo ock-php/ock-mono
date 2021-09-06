@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityImage;
 
 use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
@@ -31,7 +32,7 @@ class EntityImage_Related implements EntityImageInterface {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createFormula(CfContextInterface $context = NULL) {
+  public static function createFormula(CfContextInterface $context = NULL): FormulaInterface {
 
     return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
@@ -60,7 +61,7 @@ class EntityImage_Related implements EntityImageInterface {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
 
     $relatedEntities = [];
     foreach ($entities as $delta => $entity) {
@@ -77,7 +78,7 @@ class EntityImage_Related implements EntityImageInterface {
    *
    * @return array
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
     if (NULL === $relatedEntity = $this->entityToEntity->entityGetRelated($entity)) {
       return [];
     }

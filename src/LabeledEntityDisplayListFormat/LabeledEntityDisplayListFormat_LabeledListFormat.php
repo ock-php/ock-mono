@@ -39,7 +39,7 @@ class LabeledEntityDisplayListFormat_LabeledListFormat implements LabeledEntityD
    * @return array
    *   Combined render array.
    */
-  public function build(array $builds, $entityType, $entity, $label) {
+  public function build(array $builds, $entityType, $entity, $label): array {
     return $this->labeledListFormat->build($builds, $label);
   }
 }

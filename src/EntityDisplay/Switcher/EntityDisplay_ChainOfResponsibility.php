@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
 use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
@@ -32,7 +33,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createCfrFormula(CfContextInterface $context = NULL) {
+  public static function createCfrFormula(CfContextInterface $context = NULL): FormulaInterface {
 
     return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
@@ -54,7 +55,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
     $builds = array_fill_keys(array_keys($entities), NULL);
     foreach ($this->displays as $display) {
       foreach ($display->buildEntities($entities) as $delta => $build) {

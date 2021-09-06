@@ -27,7 +27,7 @@ class FieldDisplayProcessor_OuterContainer implements FieldDisplayProcessorInter
    *
    * @return static
    */
-  public function withAdditionalClasses(array $classes) {
+  public function withAdditionalClasses(array $classes): self {
     $clone = clone $this;
     foreach ($classes as $class) {
       $clone->classes[] = $class;
@@ -41,7 +41,7 @@ class FieldDisplayProcessor_OuterContainer implements FieldDisplayProcessorInter
    *
    * @return array
    */
-  public function process(array $element) {
+  public function process(array $element): array {
 
     if ([] === $modified = $this->decorated->process($element)) {
       return [];

@@ -56,7 +56,7 @@ class EntityDisplay_EntityFilter extends EntitiesDisplayBase {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
     $deltas = $this->entityFilter->entitiesFilterDeltas($entities);
     $lookup = array_fill_keys($deltas, TRUE);
     $entitiesWithQuality = [];

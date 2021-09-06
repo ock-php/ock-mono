@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
 use Drupal\renderkit\Formula\Formula_FieldDisplayProcessor_Label;
 use Drupal\renderkit\Formula\Formula_FieldDisplayProcessor_OuterContainer;
@@ -38,7 +39,7 @@ abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implemen
    *
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function minimal() {
+  public static function minimal(): Formula_GroupValInterface {
     return Formula_FieldDisplayProcessor_OuterContainer::create(
       self::fullReset(),
       FALSE)
@@ -50,7 +51,7 @@ abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implemen
    *
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function fullReset() {
+  public static function fullReset(): Formula_GroupValInterface {
     return Formula_FieldDisplayProcessor_Label::create(
       self::bare())
       ->getValFormula();
@@ -59,7 +60,7 @@ abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implemen
   /**
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  private static function bare() {
+  private static function bare(): Formula_GroupValInterface {
     return Formula_GroupVal::createEmpty(
       new Formula_ValueProvider_FixedValue(
         new FieldDisplayProcessor_Bare()));

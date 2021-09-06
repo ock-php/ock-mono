@@ -17,7 +17,7 @@ trait HtmlTagTrait {
    *
    * @return $this
    */
-  public function setTagName($tagName) {
+  public function setTagName($tagName): self {
     $this->tagName = $tagName;
     return $this;
   }
@@ -27,7 +27,7 @@ trait HtmlTagTrait {
    *
    * @return static
    */
-  public function withTagName($tagName) {
+  public function withTagName($tagName): self {
     $clone = clone $this;
     $clone->tagName = $tagName;
     return $clone;
@@ -36,7 +36,7 @@ trait HtmlTagTrait {
   /**
    * @return array
    */
-  protected function buildContainer() {
+  protected function buildContainer(): array {
     return $this->tagNameBuildContainer($this->tagName);
   }
 }

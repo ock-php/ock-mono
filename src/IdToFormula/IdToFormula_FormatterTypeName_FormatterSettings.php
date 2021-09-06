@@ -4,10 +4,13 @@ declare(strict_types=1);
 namespace Drupal\renderkit\IdToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownVal;
+use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownValInterface;
+use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Field\FormatterPluginManager;
 use Drupal\renderkit\Formula\Formula_FieldFormatterId;
 use Drupal\renderkit\Formula\Formula_FieldFormatterSettings;
@@ -33,7 +36,7 @@ class IdToFormula_FormatterTypeName_FormatterSettings implements IdToFormulaInte
   public static function createDrilldownValFormula(
     FormatterPluginManager $formatterPluginManager,
     FieldDefinitionInterface $fieldDefinition
-  ) {
+  ): Formula_DrilldownValInterface {
     return Formula_DrilldownVal::createArrify(
       self::createDrilldownFormula(
         $formatterPluginManager,
@@ -49,7 +52,7 @@ class IdToFormula_FormatterTypeName_FormatterSettings implements IdToFormulaInte
   public static function createDrilldownFormula(
     FormatterPluginManager $formatterPluginManager,
     FieldDefinitionInterface $fieldDefinition
-  ) {
+  ): Formula_DrilldownInterface {
 
     return Formula_Drilldown::create(
       new Formula_FieldFormatterId(
@@ -94,7 +97,7 @@ class IdToFormula_FormatterTypeName_FormatterSettings implements IdToFormulaInte
    *
    * @return \Drupal\Core\Field\FormatterInterface|null
    */
-  private function getFormatterInstance($formatterTypeName) {
+  private function getFormatterInstance($formatterTypeName): ?FormatterInterface {
 
     $settings = $this->formatterPluginManager->getDefaultSettings($formatterTypeName);
 

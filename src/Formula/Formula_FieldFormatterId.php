@@ -23,7 +23,7 @@ class Formula_FieldFormatterId implements Formula_SelectInterface {
    *
    * @return self
    */
-  public static function create($fieldTypeName) {
+  public static function create($fieldTypeName): self {
 
     /* @var \Drupal\Core\Field\FormatterPluginManager $formatterPluginManager */
     $formatterPluginManager = \Drupal::service('plugin.manager.field.formatter');
@@ -82,7 +82,7 @@ class Formula_FieldFormatterId implements Formula_SelectInterface {
    *
    * @return array|null
    */
-  private function idGetDefinition($formatterTypeName) {
+  private function idGetDefinition($formatterTypeName): ?array {
 
     $definition = $this->formatterPluginManager->getDefinition(
       $formatterTypeName,

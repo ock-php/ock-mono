@@ -40,7 +40,7 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
    *
    * @return array
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
     $build = $this->decorated->buildEntity($entity);
     if (\is_array($build) && [] !== $build) {
       return $build;
@@ -56,7 +56,7 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
     $builds = array_fill_keys(array_keys($entities), NULL);
     $builds += $this->decorated->buildEntities($entities);
     foreach (array_filter($this->decorated->buildEntities($entities)) as $delta => $build) {

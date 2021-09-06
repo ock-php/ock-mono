@@ -5,6 +5,7 @@ namespace Drupal\renderkit\Helper;
 
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldDefinitionInterface;
 
 class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
 
@@ -42,7 +43,7 @@ class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
    *
    * @return \Drupal\Core\Field\FieldDefinitionInterface[]
    */
-  public function etGetFieldDefinitions($et) {
+  public function etGetFieldDefinitions($et): array {
 
     try {
       $storageDefinitions = $this->entityFieldManager
@@ -69,7 +70,7 @@ class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
    *
    * @return \Drupal\Core\Field\FieldDefinitionInterface|null
    */
-  public function etAndFieldNameGetDefinition($et, $fieldName) {
+  public function etAndFieldNameGetDefinition($et, $fieldName): ?FieldDefinitionInterface {
 
     try {
       $storageDefinitions = $this->entityFieldManager

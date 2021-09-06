@@ -11,7 +11,7 @@ final class ExceptionUtil extends UtilBase {
    *
    * @return string
    */
-  public static function formatMessage($message, array $replacements) {
+  public static function formatMessage($message, array $replacements): string {
 
     foreach ($replacements as $k => $v) {
       if ('?' === $k[0]) {

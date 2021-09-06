@@ -18,7 +18,7 @@ trait HtmlAttributesTrait {
    *
    * @return static
    */
-  public function withAttributes(array $attributes) {
+  public function withAttributes(array $attributes): self {
     $clone = clone $this;
     $clone->attributes = $attributes;
     return $clone;
@@ -30,7 +30,7 @@ trait HtmlAttributesTrait {
    *
    * @return $this
    */
-  public function setAttribute($key, $value) {
+  public function setAttribute($key, $value): self {
     $this->attributes[$key] = $value;
     return $this;
   }
@@ -41,7 +41,7 @@ trait HtmlAttributesTrait {
    *
    * @return static
    */
-  public function withAttributeValue($key, $value) {
+  public function withAttributeValue($key, $value): self {
     $clone = clone $this;
     $clone->attributes[$key] = $value;
     return $clone;
@@ -52,7 +52,7 @@ trait HtmlAttributesTrait {
    *
    * @return $this
    */
-  public function addClass($class) {
+  public function addClass($class): self {
     $this->attributes['class'][] = $class;
     return $this;
   }
@@ -62,7 +62,7 @@ trait HtmlAttributesTrait {
    *
    * @return static
    */
-  public function withAddedClass($class) {
+  public function withAddedClass($class): self {
     $clone = clone $this;
     $clone->attributes['class'][] = $class;
     return $clone;
@@ -73,7 +73,7 @@ trait HtmlAttributesTrait {
    *
    * @return $this
    */
-  public function addClasses(array $classes) {
+  public function addClasses(array $classes): self {
     foreach ($classes as $class) {
       $this->attributes['class'][] = $class;
     }
@@ -83,7 +83,7 @@ trait HtmlAttributesTrait {
   /**
    * @return mixed[]
    */
-  protected function getAttributes() {
+  protected function getAttributes(): array {
     return $this->attributes;
   }
 
@@ -92,7 +92,7 @@ trait HtmlAttributesTrait {
    *
    * @return array
    */
-  protected function tagNameBuildContainer($tagName) {
+  protected function tagNameBuildContainer($tagName): array {
     return [
       /* @see themekit_element_info() */
       /* @see theme_themekit_container() */

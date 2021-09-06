@@ -38,7 +38,7 @@ class ListFormat_ItemBuildProcessor implements ListFormatInterface {
    * @return array
    *   Render array for the list.
    */
-  public function buildList(array $builds) {
+  public function buildList(array $builds): array {
 
     foreach ($builds as $delta => $itemBuild) {
       $builds[$delta] = $this->itemBuildProcessor->process($itemBuild);

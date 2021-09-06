@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Helper;
 
+use Drupal\Core\Field\FieldDefinitionInterface;
+
 interface FieldDefinitionLookupInterface {
 
   /**
@@ -10,7 +12,7 @@ interface FieldDefinitionLookupInterface {
    *
    * @return \Drupal\Core\Field\FieldDefinitionInterface[]
    */
-  public function etGetFieldDefinitions($entityType);
+  public function etGetFieldDefinitions($entityType): array;
 
   /**
    * @param string $entityType
@@ -18,5 +20,5 @@ interface FieldDefinitionLookupInterface {
    *
    * @return \Drupal\Core\Field\FieldDefinitionInterface|null
    */
-  public function etAndFieldNameGetDefinition($entityType, $fieldName);
+  public function etAndFieldNameGetDefinition($entityType, $fieldName): ?FieldDefinitionInterface;
 }

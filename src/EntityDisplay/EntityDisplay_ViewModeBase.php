@@ -25,7 +25,7 @@ abstract class EntityDisplay_ViewModeBase extends EntityDisplay_GroupByTypeBase 
    *
    * @return array[]
    */
-  protected function typeBuildEntities($entityTypeId, array $entities) {
+  protected function typeBuildEntities($entityTypeId, array $entities): array {
 
     $builder = $this->entityTypeManager->getViewBuilder($entityTypeId);
     $viewMode = $this->etGetViewMode($entityTypeId);
@@ -43,5 +43,5 @@ abstract class EntityDisplay_ViewModeBase extends EntityDisplay_GroupByTypeBase 
    *
    * @return string|null
    */
-  abstract protected function etGetViewMode($entityType);
+  abstract protected function etGetViewMode($entityType): ?string;
 }

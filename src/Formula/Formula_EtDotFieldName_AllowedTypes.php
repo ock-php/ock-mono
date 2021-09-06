@@ -41,7 +41,7 @@ class Formula_EtDotFieldName_AllowedTypes extends Formula_EtDotFieldName_ProxyCa
    * @return string[][]
    *   Format: $[$groupLabel][$fieldName] = $fieldLabel
    */
-  protected function etGetGroupedOptions($entityTypeId, $bundleName = NULL) {
+  protected function etGetGroupedOptions($entityTypeId, $bundleName = NULL): array {
 
     $formula = new Formula_FieldName_AllowedTypes(
       $entityTypeId,

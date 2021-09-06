@@ -11,6 +11,6 @@ interface FieldDisplayProcessorInterface {
    *
    * @return array
    */
-  public function process(array $element);
+  public function process(array $element): array;
 
 }

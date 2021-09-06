@@ -10,7 +10,7 @@ abstract class EntityToEntitiesMultipleBase implements EntityToEntitiesInterface
    *
    * @return \Drupal\Core\Entity\EntityInterface[]
    */
-  public function entityGetRelated($entity) {
+  public function entityGetRelated($entity): array {
 
     $targetEntities = $this->entitiesGetRelated([$entity]);
 

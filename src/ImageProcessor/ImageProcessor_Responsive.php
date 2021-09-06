@@ -48,7 +48,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @return $this
    */
-  public function minWidthSize($min_width_px, $formula) {
+  public function minWidthSize($min_width_px, $formula): self {
     if ($min_width_px > 0) {
       $media_query = 'min-width: ' . $min_width_px . 'px';
       $formula = '(' . $media_query . ') ' . $formula;
@@ -64,7 +64,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @return $this
    */
-  public function minWidthColumn($min_width_px, $ratio, $space) {
+  public function minWidthColumn($min_width_px, $ratio, $space): self {
     $percentage = (100 * $ratio) . 'vw';
     $subtract = ($space * $ratio) . 'px';
     $formula = 'calc(' . $percentage . ' - ' . $subtract . ')';
@@ -79,7 +79,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @return $this
    */
-  public function addImageStyle($style_name) {
+  public function addImageStyle($style_name): self {
     $this->styleNames[] = $style_name;
     return $this;
   }

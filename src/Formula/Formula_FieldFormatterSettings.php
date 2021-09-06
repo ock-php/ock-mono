@@ -55,7 +55,7 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
    *
    * @return null|string
    */
-  public function confGetSummary($conf) {
+  public function confGetSummary($conf): ?string {
 
     $summary = $this->getFormatter($conf)->settingsSummary();
 

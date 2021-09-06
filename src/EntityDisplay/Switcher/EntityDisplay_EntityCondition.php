@@ -60,7 +60,7 @@ class EntityDisplay_EntityCondition implements EntityDisplayInterface {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
 
     if ([] === $entities) {
       return [];
@@ -108,7 +108,7 @@ class EntityDisplay_EntityCondition implements EntityDisplayInterface {
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
 
     if ($this->condition->entityCheckCondition($entity)) {
       return $this->displayIfTrue->buildEntity($entity);

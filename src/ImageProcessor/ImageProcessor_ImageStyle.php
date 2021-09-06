@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ImageProcessor;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\renderkit\Formula\Formula_ImageStyleName;
 
@@ -21,7 +22,7 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createFormula() {
+  public static function createFormula(): FormulaInterface {
 
     return Formula_GroupVal_Callback::fromClass(
       __CLASS__,

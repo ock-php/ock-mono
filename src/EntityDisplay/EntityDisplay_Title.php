@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\Formula\Formula_EntityDisplay_Title;
 
@@ -27,7 +28,7 @@ class EntityDisplay_Title extends EntityDisplayBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createAdvancedFormula() {
+  public static function createAdvancedFormula(): FormulaInterface {
     return Formula_EntityDisplay_Title::create()->getValFormula();
   }
 
@@ -36,7 +37,7 @@ class EntityDisplay_Title extends EntityDisplayBase {
    *
    * @return array
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
     return [
       '#markup' => $entity->label(),
     ];
