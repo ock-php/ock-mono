@@ -95,13 +95,13 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
     catch (UnsupportedSchemaException $e) {
       // @todo Log this.
       unset($e);
-      drupal_set_message(t('Unsupported schema.'));
+      \Drupal::messenger()->addMessage(t('Unsupported schema.'));
       return $build;
     }
     catch (EvaluatorException $e) {
       // @todo Log this.
       unset($e);
-      drupal_set_message(t('Failed to construct the EntityDisplay object from the configuration provided.'));
+      \Drupal::messenger()->addMessage(t('Failed to construct the EntityDisplay object from the configuration provided.'));
       return $build;
     }
 

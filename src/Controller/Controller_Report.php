@@ -94,10 +94,10 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
     }
     catch (\Exception $e) {
       if ($e instanceof EvaluatorException) {
-        drupal_set_message(t('The configuration could not be evaluated.'), 'warning');
+        \Drupal::messenger()->addMessage(t('The configuration could not be evaluated.'), 'warning');
       }
       else {
-        drupal_set_message(
+        \Drupal::messenger()->addMessage(
           t(
             'The @evaluator_class::confGetValue() method threw a @exception_class exception.',
             [
@@ -119,7 +119,7 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
 
     if (!$object instanceof BuildProviderInterface) {
 
-      drupal_set_message(
+      \Drupal::messenger()->addMessage(
         t(
           'The @evaluator_class::confGetValue() method had an unexpected return value.',
           [
