@@ -6,7 +6,7 @@ namespace Drupal\renderkit\EntityDisplay;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
-use Drupal\renderkit\Schema\CfSchema_EntityDisplay_FieldWithFormatter;
+use Drupal\renderkit\Formula\Formula_EntityDisplay_FieldWithFormatter;
 
 /**
  * Entity display handler to view a specific field on all the entities.
@@ -34,10 +34,10 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplay_FieldItemsBase {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function schema($entityType = NULL, $bundle = NULL) {
-    return CfSchema_EntityDisplay_FieldWithFormatter::createValSchema(
+  public static function formula($entityType = NULL, $bundle = NULL) {
+    return Formula_EntityDisplay_FieldWithFormatter::createValFormula(
       $entityType,
       $bundle);
   }

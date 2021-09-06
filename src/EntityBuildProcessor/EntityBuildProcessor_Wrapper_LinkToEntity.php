@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityMalformedException;
 use Drupal\Core\Entity\Exception\UndefinedLinkTemplateException;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
-use Drupal\renderkit\Schema\CfSchema_TagName;
+use Drupal\renderkit\Formula\Formula_TagName;
 
 /**
  * Wraps the content from a decorated display handler into a link, linking to
@@ -36,13 +36,13 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
    *   label = @t("Entity title link wrapper")
    * )
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function entityTitleSchema(): CfSchemaInterface {
-    return CfSchema_GroupVal_Callback::fromStaticMethod(
+  public static function entityTitleFormula(): FormulaInterface {
+    return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'entityTitleLinkWrapper',
-      [CfSchema_TagName::createForTitle()],
+      [Formula_TagName::createForTitle()],
       [t('Tag name')]);
   }
 

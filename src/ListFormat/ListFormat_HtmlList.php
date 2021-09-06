@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ListFormat;
 
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
-use Drupal\renderkit\Schema\CfSchema_ClassAttribute;
-use Drupal\renderkit\Schema\CfSchema_TagName;
+use Drupal\renderkit\Formula\Formula_ClassAttribute;
+use Drupal\renderkit\Formula\Formula_TagName;
 
 /**
  * Builds a render array for ul/li or ol/li lists.
@@ -23,16 +23,16 @@ class ListFormat_HtmlList implements ListFormatInterface {
   /**
    * @CfrPlugin("htmlList", @t("HTML list"))
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema() {
+  public static function createFormula() {
 
-    return CfSchema_GroupVal_Callback::fromStaticMethod(
+    return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'create',
       [
-        CfSchema_TagName::createForHtmlList(),
-        CfSchema_ClassAttribute::create(),
+        Formula_TagName::createForHtmlList(),
+        Formula_ClassAttribute::create(),
       ],
       [
         t('List type'),

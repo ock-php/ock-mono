@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Single;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
-use Drupal\renderkit\Schema\CfSchema_EtAndFieldName;
+use Drupal\renderkit\Formula\Formula_EtAndFieldName;
 
 class EntityToFieldItem_Field implements EntityToFieldItemInterface {
 
@@ -29,18 +29,18 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function schema(
+  public static function formula(
     array $allowedFieldTypes = NULL,
     $entityType = NULL,
     $bundle = NULL
-  ): CfSchemaInterface {
+  ): FormulaInterface {
 
-    return CfSchema_ValueToValue_CallbackMono::fromStaticMethod(
+    return Formula_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
       'create',
-      CfSchema_EtAndFieldName::create(
+      Formula_EtAndFieldName::create(
         $allowedFieldTypes,
         $entityType,
         $bundle));

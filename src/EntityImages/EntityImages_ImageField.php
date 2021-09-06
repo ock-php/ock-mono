@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImages;
 
-use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface;
+use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\file\Plugin\Field\FieldType\FileFieldItemList;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
-use Drupal\renderkit\Schema\CfSchema_EtDotFieldName_AllowedTypes;
+use Drupal\renderkit\Formula\Formula_EtDotFieldName_AllowedTypes;
 use Drupal\renderkit\Util\ImageFieldUtil;
 
 class EntityImages_ImageField implements EntityImagesInterface {
@@ -40,19 +40,19 @@ class EntityImages_ImageField implements EntityImagesInterface {
    * @param string $entityType
    * @param string $bundleName
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function createSchema($entityType = NULL, $bundleName = NULL): CfSchema_GroupValInterface {
+  public static function createFormula($entityType = NULL, $bundleName = NULL): Formula_GroupValInterface {
 
-    return CfSchema_GroupVal_Callback::fromStaticMethod(
+    return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'create',
       [
-        new CfSchema_EtDotFieldName_AllowedTypes(
+        new Formula_EtDotFieldName_AllowedTypes(
           $entityType,
           $bundleName,
           ['image']),
-        CfSchema_Boolean_YesNo::create(TRUE),
+        Formula_Boolean_YesNo::create(TRUE),
       ],
       [
         t('Image field'),

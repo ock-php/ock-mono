@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay\Decorator;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
@@ -28,17 +28,17 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    *   label = "Related entity"
    * )
    *
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function createSchema(CfContextInterface $context = NULL) {
+  public static function createFormula(CfContextInterface $context = NULL) {
 
-    return CfSchema_GroupVal_Callback::fromClass(
+    return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        new CfSchema_IfaceWithContext(EntityToEntityInterface::class, $context),
-        new CfSchema_IfaceWithContext(EntityDisplayInterface::class),
+        new Formula_IfaceWithContext(EntityToEntityInterface::class, $context),
+        new Formula_IfaceWithContext(EntityDisplayInterface::class),
       ],
       [
         t('Entity relation'),

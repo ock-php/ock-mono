@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Donquixote\Cf\Schema\Group\CfSchema_Group;
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Donquixote\ObCK\Formula\Group\Formula_Group;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
-use Drupal\renderkit\Schema\CfSchema_ClassAttribute;
-use Drupal\renderkit\Schema\CfSchema_TagName;
+use Drupal\renderkit\Formula\Formula_ClassAttribute;
+use Drupal\renderkit\Formula\Formula_TagName;
 
 /**
  * A typical entity container with contextual links and stuff.
@@ -27,24 +27,24 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
   /**
    * @CfrPlugin("contextualLinksWrapper", "Entity contextual links wrapper")
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createCfrSchema() {
+  public static function createCfrFormula() {
 
-    $groupSchema = new CfSchema_Group(
+    $groupFormula = new Formula_Group(
       [
-        'tag_name' => CfSchema_TagName::createForContainer('article'),
-        'classes' => CfSchema_ClassAttribute::create(),
+        'tag_name' => Formula_TagName::createForContainer('article'),
+        'classes' => Formula_ClassAttribute::create(),
       ],
       [
         'tag_name' => t('Tag name'),
         'classes' => t('Classes'),
       ]);
 
-    return CfSchema_ValueToValue_CallbackMono::fromStaticMethod(
+    return Formula_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
       'createFromGroupValues',
-      $groupSchema);
+      $groupFormula);
   }
 
   /**

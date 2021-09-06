@@ -1,0 +1,21 @@
+<?php
+declare(strict_types=1);
+
+namespace Drupal\renderkit\Formula;
+
+use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
+use Drupal\renderkit\IdToFormula\IdToFormula_Et_EntityId;
+use Drupal\renderkit\Util\UtilBase;
+
+final class Formula_EntityTypeAndId extends UtilBase {
+
+  /**
+   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
+   */
+  public static function create() {
+    return Formula_Drilldown::create(
+      Formula_EntityType::createOptionsFormula(),
+      new IdToFormula_Et_EntityId())
+      ->withKeys('entity_type', 'entity_id');
+  }
+}

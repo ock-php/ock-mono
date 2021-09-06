@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\LabeledFormat;
 
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Select\CfSchema_Select_Fixed;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
 use Drupal\Component\Utility\Html;
 
 class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
@@ -20,13 +20,13 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
    *   label = "Headline element"
    * )
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function createSchema() {
-    return CfSchema_GroupVal_Callback::fromClass(
+  public static function createFormula() {
+    return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        CfSchema_Select_Fixed::createFlat(
+        Formula_Select_Fixed::createFlat(
           [
             'h1' => 'H1',
             'h2' => 'H2',

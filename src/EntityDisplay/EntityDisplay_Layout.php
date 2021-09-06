@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Donquixote\Cf\Schema\Select\CfSchema_Select_TwoStepFlatSelectComposite;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\ObCK\Formula\Select\Formula_Select_TwoStepFlatSelectComposite;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Layout\LayoutInterface;
 use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
-use Drupal\renderkit\Schema\CfSchema_ViewIdWithDisplayId;
+use Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId;
 use Drupal\views\Views;
 
 /**
@@ -28,10 +28,10 @@ class EntityDisplay_Layout extends EntityDisplayBase {
   private $regionDisplays;
 
   /**
-   * @return \Drupal\renderkit\EntityDisplay\CfSchema_EntityDisplay_Layout
+   * @return \Drupal\renderkit\EntityDisplay\Formula_EntityDisplay_Layout
    */
-  public static function schema() {
-    return new CfSchema_EntityDisplay_Layout();
+  public static function formula() {
+    return new Formula_EntityDisplay_Layout();
   }
 
   /**

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit\Schema\CfSchema_EntityDisplay_Title;
+use Drupal\renderkit\Formula\Formula_EntityDisplay_Title;
 
 /**
  * The most boring entity display handler, ever.
@@ -25,10 +25,10 @@ class EntityDisplay_Title extends EntityDisplayBase {
    *   label = "Entity title"
    * )
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createAdvancedSchema() {
-    return CfSchema_EntityDisplay_Title::create()->getValSchema();
+  public static function createAdvancedFormula() {
+    return Formula_EntityDisplay_Title::create()->getValFormula();
   }
 
   /**

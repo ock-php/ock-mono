@@ -3,19 +3,19 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\renderkit\Kernel;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Proxy\Cache\CfSchema_Proxy_Cache_SelectBase;
-use Donquixote\Cf\Schema\Select\CfSchema_SelectInterface;
-use Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
+use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
+use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Drupal\faktoria\Hub\CfrPluginHub;
-use Drupal\renderkit\Schema\CfSchema_EntityType_WithFields;
-use Drupal\renderkit\Schema\CfSchema_EtDotX;
-use Drupal\renderkit\Schema\CfSchema_EtDotX_FixedEt;
-use Drupal\renderkit\Schema\CfSchema_FieldName;
-use Drupal\renderkit\Schema\CfSchema_FieldName_AllowedTypes;
-use Drupal\renderkit\Schema\Misc\SelectByEt\SelectByEt_FieldName;
-use Drupal\renderkit\Schema\Misc\SelectByEt\SelectByEt_FieldName_EntityReference;
+use Drupal\renderkit\Formula\Formula_EntityType_WithFields;
+use Drupal\renderkit\Formula\Formula_EtDotX;
+use Drupal\renderkit\Formula\Formula_EtDotX_FixedEt;
+use Drupal\renderkit\Formula\Formula_FieldName;
+use Drupal\renderkit\Formula\Formula_FieldName_AllowedTypes;
+use Drupal\renderkit\Formula\Misc\SelectByEt\SelectByEt_FieldName;
+use Drupal\renderkit\Formula\Misc\SelectByEt\SelectByEt_FieldName_EntityReference;
 use Drupal\Tests\field\Kernel\FieldKernelTestBase;
 
 /**
@@ -72,7 +72,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
 
   public function testFieldName() {
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'Number (integer)' => [
           'nid' => 'ID',
@@ -110,11 +110,11 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
           'revision_log' => 'Revision log message',
         ],
       ],
-      new CfSchema_FieldName(
+      new Formula_FieldName(
         'node',
         'non_existing_bundle'));
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'Number (integer)' => [
           'nid' => 'ID',
@@ -152,11 +152,11 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
           'revision_log' => 'Revision log message',
         ],
       ],
-      new CfSchema_FieldName(
+      new Formula_FieldName(
         'node',
         'default'));
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'Number (integer)' => [
           'id' => 'ID',
@@ -184,11 +184,11 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
         ],
         */
       ],
-      new CfSchema_FieldName(
+      new Formula_FieldName(
         'entity_test',
         'entity_test'));
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'Number (integer)' => [
           'id' => 'ID',
@@ -210,14 +210,14 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
           'user_id' => 'User ID',
         ],
       ],
-      new CfSchema_FieldName(
+      new Formula_FieldName(
         'entity_test',
         'non_existing_bundle'));
   }
 
   public function testFieldNameAllowedTypes() {
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'Number (integer)' => [
           'nid' => 'ID',
@@ -255,12 +255,12 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
           'revision_log' => 'Revision log message',
         ],
       ],
-      new CfSchema_FieldName_AllowedTypes(
+      new Formula_FieldName_AllowedTypes(
         'node',
         'non_existing_bundle',
         NULL));
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'UUID' => [
           'uuid' => 'UUID',
@@ -273,13 +273,13 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
           'default_langcode' => 'Default translation',
         ],
       ],
-      new CfSchema_FieldName_AllowedTypes(
+      new Formula_FieldName_AllowedTypes(
         'node',
         // For a non-existing bundle, we only get base fields.
         'non_existing_bundle',
         ['uuid', 'boolean']));
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'UUID' => [
           'uuid' => 'UUID',
@@ -292,12 +292,12 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
           'default_langcode' => 'Default translation',
         ],
       ],
-      new CfSchema_FieldName_AllowedTypes(
+      new Formula_FieldName_AllowedTypes(
         'node',
         'default',
         ['uuid', 'boolean']));
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'Number (integer)' => [
           'id' => 'ID',
@@ -325,7 +325,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
         ],
         */
       ],
-      new CfSchema_FieldName_AllowedTypes(
+      new Formula_FieldName_AllowedTypes(
         'entity_test',
         'entity_test',
         null));
@@ -333,7 +333,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
 
   public function testEtDotFieldName() {
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'Number (integer)' => [
           'entity_test.id' => 'ID',
@@ -361,13 +361,13 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
         ],
         */
       ],
-      new CfSchema_EtDotX_FixedEt(
+      new Formula_EtDotX_FixedEt(
         'entity_test',
         ['entity_test'],
         new SelectByEt_FieldName(),
         'x'));
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'Number (integer)' => [
           'entity_test.id' => 'ID',
@@ -395,13 +395,13 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
         ],
         */
       ],
-      new CfSchema_EtDotX_FixedEt(
+      new Formula_EtDotX_FixedEt(
         'entity_test',
         NULL,
         new SelectByEt_FieldName(),
         'x'));
 
-    $this->assertSchemaGroupedOptions(
+    $this->assertFormulaGroupedOptions(
       [
         'User' => [
           'user.roles' => 'Roles (Entity reference)',
@@ -495,8 +495,8 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
           'node.revision_uid' => 'Revision user ID (Entity reference)',
         ],
       ],
-      new CfSchema_EtDotX(
-        CfSchema_EntityType_WithFields::create(),
+      new Formula_EtDotX(
+        Formula_EntityType_WithFields::create(),
         new SelectByEt_FieldName_EntityReference(),
         'x'));
   }
@@ -504,42 +504,42 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
   /**
    * @param string[][] $expected
    *   Format: $[$optgroupLabel][$id] = $optionLabel
-   * @param \Donquixote\Cf\Core\Schema\CfSchemaInterface $schema
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    */
-  private function assertSchemaGroupedOptions(array $expected, CfSchemaInterface $schema) {
+  private function assertFormulaGroupedOptions(array $expected, FormulaInterface $formula) {
 
-    if ($schema instanceof CfSchema_Proxy_Cache_SelectBase) {
+    if ($formula instanceof Formula_Proxy_Cache_SelectBase) {
 
       $this->assertGroupedOptions(
         $expected,
-        $schema->getData());
+        $formula->getData());
 
       return;
     }
 
-    $replacement = $this->schemaReplacer()->schemaGetReplacement($schema);
+    $replacement = $this->formulaReplacer()->formulaGetReplacement($formula);
 
     if (NULL !== $replacement) {
-      if (!$replacement instanceof CfSchema_SelectInterface) {
-        $schemaClass = \get_class($schema);
+      if (!$replacement instanceof Formula_SelectInterface) {
+        $formulaClass = \get_class($formula);
         $replacementClass = \get_class($replacement);
-        static::fail("Unexpected schema replacement $replacementClass for $schemaClass.");
+        static::fail("Unexpected formula replacement $replacementClass for $formulaClass.");
         return;
       }
 
       /** @noinspection CallableParameterUseCaseInTypeContextInspection */
-      $schema = $replacement;
+      $formula = $replacement;
     }
-    elseif (!$schema instanceof CfSchema_SelectInterface) {
-      $schemaClass = \get_class($schema);
-      static::fail("Unexpected schema $schemaClass.");
+    elseif (!$formula instanceof Formula_SelectInterface) {
+      $formulaClass = \get_class($formula);
+      static::fail("Unexpected formula $formulaClass.");
       return;
     }
 
 
     $this->assertGroupedOptions(
       $expected,
-      $schema->getGroupedOptions());
+      $formula->getGroupedOptions());
   }
 
   /**
@@ -561,17 +561,17 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
   }
 
   /**
-   * @return \Donquixote\Cf\SchemaReplacer\SchemaReplacerInterface
+   * @return \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface
    */
-  private function schemaReplacer(): SchemaReplacerInterface {
-    return CfrPluginHub::getContainer()->schemaReplacer;
+  private function formulaReplacer(): FormulaReplacerInterface {
+    return CfrPluginHub::getContainer()->formulaReplacer;
   }
 
   /** @noinspection PhpUnusedPrivateMethodInspection */
   /**
-   * @return \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface
+   * @return \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
    */
-  private function sta(): SchemaToAnythingInterface {
-    return CfrPluginHub::getContainer()->schemaToAnything;
+  private function sta(): FormulaToAnythingInterface {
+    return CfrPluginHub::getContainer()->formulaToAnything;
   }
 }

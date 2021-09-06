@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityCondition;
 
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
@@ -32,15 +32,15 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
    * @param string $entityType
    * @param string $bundleName
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function schema($entityType = NULL, $bundleName = NULL) {
+  public static function formula($entityType = NULL, $bundleName = NULL) {
 
-    return CfSchema_GroupVal_Callback::fromStaticMethod(
+    return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'createNow',
       [
-        EntityToFieldItemList::schema(
+        EntityToFieldItemList::formula(
           ['daterange'],
           $entityType,
           $bundleName),

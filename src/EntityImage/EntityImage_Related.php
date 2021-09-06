@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImage;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
@@ -27,18 +27,18 @@ class EntityImage_Related implements EntityImageInterface {
    *   label = "Image from related entity"
    * )
    *
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema(CfContextInterface $context = NULL) {
+  public static function createFormula(CfContextInterface $context = NULL) {
 
-    return CfSchema_GroupVal_Callback::fromClass(
+    return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        new CfSchema_IfaceWithContext(EntityToEntityInterface::class, $context),
+        new Formula_IfaceWithContext(EntityToEntityInterface::class, $context),
         // This one is without context, because we no longer know the entity type.
-        new CfSchema_IfaceWithContext(EntityImageInterface::class),
+        new Formula_IfaceWithContext(EntityImageInterface::class),
       ],
       [
         t('Entity relation'),

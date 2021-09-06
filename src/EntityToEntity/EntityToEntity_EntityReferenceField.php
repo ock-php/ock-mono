@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityToEntity;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\TypedData\Exception\MissingDataException;
-use Drupal\renderkit\Schema\CfSchema_EtDotFieldName_EntityReference;
+use Drupal\renderkit\Formula\Formula_EtDotFieldName_EntityReference;
 
 class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
 
@@ -36,19 +36,19 @@ class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
    * @param string $bundleName
    *   (optional) Contextual parameter.
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema($entityType = NULL, $bundleName = NULL): CfSchemaInterface {
+  public static function createFormula($entityType = NULL, $bundleName = NULL): FormulaInterface {
 
-    $etDotFieldNameSchema = new CfSchema_EtDotFieldName_EntityReference(
+    $etDotFieldNameFormula = new Formula_EtDotFieldName_EntityReference(
       $entityType,
       $bundleName,
       NULL);
 
-    return CfSchema_ValueToValue_CallbackMono::fromStaticMethod(
+    return Formula_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
       'create',
-      $etDotFieldNameSchema);
+      $etDotFieldNameFormula);
   }
 
   /**

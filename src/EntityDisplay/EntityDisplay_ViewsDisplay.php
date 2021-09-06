@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
-use Drupal\renderkit\Schema\CfSchema_ViewIdWithDisplayId;
+use Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId;
 use Drupal\views\Views;
 
 /**
@@ -38,16 +38,16 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    *
    * @param string|null $entityType
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema($entityType = NULL) {
+  public static function createFormula($entityType = NULL) {
 
-    return CfSchema_GroupVal_Callback::fromStaticMethod(
+    return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'create',
       [
-        CfSchema_ViewIdWithDisplayId::createWithEntityIdArg($entityType),
-        CfSchema_IfaceWithContext::createOptional(LabeledEntityBuildProcessorInterface::class),
+        Formula_ViewIdWithDisplayId::createWithEntityIdArg($entityType),
+        Formula_IfaceWithContext::createOptional(LabeledEntityBuildProcessorInterface::class),
       ],
       [
         t('Views display'),

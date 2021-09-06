@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Context;
 
-use Donquixote\Cf\Context\CfContext;
+use Donquixote\ObCK\Context\CfContext;
 use Drupal\renderkit\Util\UtilBase;
 
 final class EntityContext extends UtilBase {
@@ -12,7 +12,7 @@ final class EntityContext extends UtilBase {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\Cf\Context\CfContext|null
+   * @return \Donquixote\ObCK\Context\CfContext|null
    */
   public static function get($entityType = NULL, $bundle = NULL) {
 

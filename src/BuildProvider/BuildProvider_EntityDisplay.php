@@ -5,7 +5,7 @@ namespace Drupal\renderkit\BuildProvider;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit\Schema\CfSchema_BuildProvider_EntityDisplay;
+use Drupal\renderkit\Formula\Formula_BuildProvider_EntityDisplay;
 
 class BuildProvider_EntityDisplay implements BuildProviderInterface {
 
@@ -22,10 +22,10 @@ class BuildProvider_EntityDisplay implements BuildProviderInterface {
   /**
    * @CfrPlugin("entityDisplay", "Entity display")
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function schema() {
-    return CfSchema_BuildProvider_EntityDisplay::createDrilldown();
+  public static function formula() {
+    return Formula_BuildProvider_EntityDisplay::createDrilldown();
   }
 
   /**

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Schema\Callback\CfSchema_Callback;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Formula\Callback\Formula_Callback;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 class BuildProvider_Sequence implements BuildProviderInterface {
@@ -25,13 +25,13 @@ class BuildProvider_Sequence implements BuildProviderInterface {
    *   label = "Sequence of build providers"
    * )
    *
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function getCfrSchema(CfContextInterface $context = NULL) {
+  public static function getCfrFormula(CfContextInterface $context = NULL) {
 
-    return CfSchema_Callback::fromClass(__CLASS__)
+    return Formula_Callback::fromClass(__CLASS__)
       ->withContext($context)
       ->withParam_IfaceSequence(
         0,

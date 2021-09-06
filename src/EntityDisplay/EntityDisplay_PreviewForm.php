@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Cf\Context\CfContext;
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Exception\EvaluatorException;
-use Drupal\cfrapi\Exception\UnsupportedSchemaException;
+use Donquixote\ObCK\Context\CfContext;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Exception\EvaluatorException;
+use Drupal\cfrapi\Exception\UnsupportedFormulaException;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\faktoria\Form\Form_GenericRedirectGET;
 use Drupal\faktoria\Hub\CfrPluginHub;
@@ -88,14 +88,14 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
     try {
 
-      $sta = CfrPluginHub::getContainer()->schemaToAnything;
+      $sta = CfrPluginHub::getContainer()->formulaToAnything;
 
       $entityDisplay = EntityDisplay::fromConf($conf, $sta);
     }
-    catch (UnsupportedSchemaException $e) {
+    catch (UnsupportedFormulaException $e) {
       // @todo Log this.
       unset($e);
-      \Drupal::messenger()->addMessage(t('Unsupported schema.'));
+      \Drupal::messenger()->addMessage(t('Unsupported formula.'));
       return $build;
     }
     catch (EvaluatorException $e) {
@@ -118,7 +118,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return \Donquixote\Cf\Context\CfContextInterface
+   * @return \Donquixote\ObCK\Context\CfContextInterface
    */
   private function entityBuildContext(EntityInterface $entity): CfContextInterface {
 
@@ -135,7 +135,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
   /**
    * @param mixed $conf
-   * @param \Donquixote\Cf\Context\CfContextInterface $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface $context
    *
    * @return array
    */

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntitiesListFormat;
 
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Donquixote\Cf\Schema\Sequence\CfSchema_Sequence_ItemLabelCallback;
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\ObCK\Formula\Sequence\Formula_Sequence_ItemLabelCallback;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
@@ -18,14 +18,14 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
   /**
    * @CfrPlugin("simpleTable", "Simple table")
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema() {
+  public static function createFormula() {
 
-    return CfSchema_ValueToValue_CallbackMono::fromClass(
+    return Formula_ValueToValue_CallbackMono::fromClass(
       __CLASS__,
-      new CfSchema_Sequence_ItemLabelCallback(
-        new CfSchema_IfaceWithContext(EntityDisplayInterface::class),
+      new Formula_Sequence_ItemLabelCallback(
+        new Formula_IfaceWithContext(EntityDisplayInterface::class),
         static function ($delta) {
           return NULL === $delta
             ? '' . t('New column')

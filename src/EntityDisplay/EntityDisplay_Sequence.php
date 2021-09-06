@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 
 /**
  * A sequence of entity display handlers, whose results are assembled into a
@@ -24,14 +24,14 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
   /**
    * @CfrPlugin("sequence", @t("Sequence of entity displays"))
    *
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema(CfContextInterface $context = NULL) {
-    return CfSchema_ValueToValue_CallbackMono::fromClass(
+  public static function createFormula(CfContextInterface $context = NULL) {
+    return Formula_ValueToValue_CallbackMono::fromClass(
       __CLASS__,
-      CfSchema_IfaceWithContext::createSequence(
+      Formula_IfaceWithContext::createSequence(
         EntityDisplayInterface::class,
         $context));
   }

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
-use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface;
 
 class FieldDisplayProcessor_LabeledEntityDisplayListFormat implements FieldDisplayProcessorInterface {
@@ -28,15 +28,15 @@ class FieldDisplayProcessor_LabeledEntityDisplayListFormat implements FieldDispl
    *   label = "Labeled entity display list format +"
    * )
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema() {
-    return CfSchema_GroupVal_Callback::fromStaticMethod(
+  public static function createFormula() {
+    return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'create',
       [
-        new CfSchema_IfaceWithContext(LabeledEntityDisplayListFormatInterface::class),
-        new CfSchema_Boolean_YesNo(),
+        new Formula_IfaceWithContext(LabeledEntityDisplayListFormatInterface::class),
+        new Formula_Boolean_YesNo(),
       ],
       [
         t('Labeled list format'),

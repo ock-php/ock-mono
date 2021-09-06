@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImage;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Schema\Boolean\CfSchema_Boolean_YesNo;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldItemsBase;
-use Drupal\renderkit\Schema\CfSchema_EtDotFieldName_AllowedTypes;
+use Drupal\renderkit\Formula\Formula_EtDotFieldName_AllowedTypes;
 use Drupal\renderkit\Util\ImageFieldUtil;
 
 class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements EntityImageInterface {
@@ -27,19 +27,19 @@ class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements Ent
    * @param string $entityType
    * @param string $bundleName
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema(string $entityType = NULL, string $bundleName = NULL): CfSchemaInterface {
+  public static function createFormula(string $entityType = NULL, string $bundleName = NULL): FormulaInterface {
 
-    return CfSchema_GroupVal_Callback::fromStaticMethod(
+    return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'create',
       [
-        new CfSchema_EtDotFieldName_AllowedTypes(
+        new Formula_EtDotFieldName_AllowedTypes(
           $entityType,
           $bundleName,
           ['image']),
-        CfSchema_Boolean_YesNo::create(TRUE),
+        Formula_Boolean_YesNo::create(TRUE),
       ],
       [
         t('Image field'),

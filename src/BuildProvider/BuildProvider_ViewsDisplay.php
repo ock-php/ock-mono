@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Donquixote\Cf\Schema\CfSchema;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
-use Drupal\renderkit\Schema\CfSchema_ViewIdWithDisplayId;
+use Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId;
 use Drupal\views\Views;
 
 class BuildProvider_ViewsDisplay implements BuildProviderInterface {
@@ -29,16 +29,16 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
   /**
    * @CfrPlugin("viewsDisplay", @t("Views display"))
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema() {
+  public static function createFormula() {
 
-    return CfSchema_GroupVal_Callback::fromStaticMethod(
+    return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'doCreate',
       [
-        CfSchema_ViewIdWithDisplayId::createNoArgs(),
-        CfSchema::ifaceOptional(LabeledFormatInterface::class),
+        Formula_ViewIdWithDisplayId::createNoArgs(),
+        Formula::ifaceOptional(LabeledFormatInterface::class),
       ],
       [
         t('Views display'),

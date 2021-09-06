@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProcessor;
 
-use Donquixote\Cf\Schema\Callback\CfSchema_Callback;
+use Donquixote\ObCK\Formula\Callback\Formula_Callback;
 use Drupal\renderkit\Html\HtmlTagTrait;
-use Drupal\renderkit\Schema\CfSchema_ClassAttribute;
-use Drupal\renderkit\Schema\CfSchema_TagName;
+use Drupal\renderkit\Formula\Formula_ClassAttribute;
+use Drupal\renderkit\Formula\Formula_TagName;
 
 class BuildProcessor_Container implements BuildProcessorInterface {
 
@@ -15,24 +15,24 @@ class BuildProcessor_Container implements BuildProcessorInterface {
   /**
    * @CfrPlugin("container", @t("Container"))
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema() {
+  public static function createFormula() {
 
-    return CfSchema_Callback::fromStaticMethod(__CLASS__, 'create')
-      ->withParamSchema(
+    return Formula_Callback::fromStaticMethod(__CLASS__, 'create')
+      ->withParamFormula(
         0,
-        CfSchema_TagName::createFree(),
+        Formula_TagName::createFree(),
         t('Tag name'))
-      ->withParamSchema(
+      ->withParamFormula(
         1,
-        CfSchema_ClassAttribute::create(),
+        Formula_ClassAttribute::create(),
         t('Classes'));
   }
 
   /**
    * @_CfrPlugin("container", @t("Container"))
-   * @_ParamSchemas(
+   * @_ParamFormulas(
    *   0 = "renderkit.tagName.container",
    *   1 = "renderkit.classes"
    * )
@@ -40,7 +40,7 @@ class BuildProcessor_Container implements BuildProcessorInterface {
    *   0 = @t("Tag name")
    *   1 = @t("Classes")
    * )s
-   * @_ParamSchema(0, "renderkit.tagName.container", @t("Tag name"))
+   * @_ParamFormula(0, "renderkit.tagName.container", @t("Tag name"))
    *
    * @param string $tagName
    * @param array $classes

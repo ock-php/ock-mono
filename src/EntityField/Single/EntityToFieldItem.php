@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Single;
 
-use Donquixote\Cf\Schema\CfSchema;
+use Donquixote\ObCK\Formula\Formula;
 use Drupal\renderkit\Context\FieldContext;
 use Drupal\renderkit\Util\UtilBase;
 
@@ -14,14 +14,14 @@ final class EntityToFieldItem extends UtilBase {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function schema(
+  public static function formula(
     array $allowedFieldTypes = NULL,
     $entityType = NULL,
     $bundle = NULL
   ) {
-    return CfSchema::iface(
+    return Formula::iface(
       EntityToFieldItemInterface::class,
       FieldContext::get(
         $allowedFieldTypes,

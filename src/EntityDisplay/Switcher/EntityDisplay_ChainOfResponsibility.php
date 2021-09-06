@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
@@ -28,15 +28,15 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    *   label = "Chain of responsibility"
    * )
    *
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createCfrSchema(CfContextInterface $context = NULL) {
+  public static function createCfrFormula(CfContextInterface $context = NULL) {
 
-    return CfSchema_GroupVal_Callback::fromClass(
+    return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
-      [CfSchema_IfaceWithContext::createSequence(
+      [Formula_IfaceWithContext::createSequence(
         EntityDisplayInterface::class,
         $context)],
       ['']);

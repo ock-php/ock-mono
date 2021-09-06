@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Cf\Core\Schema\CfSchemaInterface;
-use Donquixote\Cf\Evaluator\Evaluator;
-use Donquixote\Cf\Evaluator\EvaluatorInterface;
-use Donquixote\Cf\Schema\CfSchema;
-use Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface;
-use Donquixote\Cf\Summarizer\Summarizer;
-use Drupal\cfrapi\Exception\UnsupportedSchemaException;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Evaluator\Evaluator;
+use Donquixote\ObCK\Evaluator\EvaluatorInterface;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Summarizer\Summarizer;
+use Drupal\cfrapi\Exception\UnsupportedFormulaException;
 use Drupal\renderkit\Context\EntityContext;
 use Drupal\renderkit\Util\UtilBase;
 
@@ -17,19 +17,19 @@ final class EntityDisplay extends UtilBase {
 
   /**
    * @param mixed $conf
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
    *
-   * @throws \Donquixote\Cf\Exception\EvaluatorException
-   * @throws \Drupal\cfrapi\Exception\UnsupportedSchemaException
+   * @throws \Donquixote\ObCK\Exception\EvaluatorException
+   * @throws \Drupal\cfrapi\Exception\UnsupportedFormulaException
    */
-  public static function fromConf($conf, SchemaToAnythingInterface $schemaToAnything): ?EntityDisplayInterface {
+  public static function fromConf($conf, FormulaToAnythingInterface $formulaToAnything): ?EntityDisplayInterface {
 
-    $evaluator = self::evaluatorOrNull($schemaToAnything);
+    $evaluator = self::evaluatorOrNull($formulaToAnything);
 
     if (null === $evaluator) {
-      throw new UnsupportedSchemaException("Failed to create evaluator from schema.");
+      throw new UnsupportedFormulaException("Failed to create evaluator from formula.");
     }
 
     $candidate = $evaluator->confGetValue($conf);
@@ -42,52 +42,52 @@ final class EntityDisplay extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
-   * @return \Donquixote\Cf\Evaluator\EvaluatorInterface|null
+   * @return \Donquixote\ObCK\Evaluator\EvaluatorInterface|null
    */
-  public static function evaluatorOrNull(SchemaToAnythingInterface $schemaToAnything): ?EvaluatorInterface {
+  public static function evaluatorOrNull(FormulaToAnythingInterface $formulaToAnything): ?EvaluatorInterface {
 
-    return Evaluator::fromSchema(
-      self::schema(),
-      $schemaToAnything);
+    return Evaluator::fromFormula(
+      self::formula(),
+      $formulaToAnything);
   }
 
   /**
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function schema($entityType = NULL, $bundle = NULL): CfSchemaInterface {
+  public static function formula($entityType = NULL, $bundle = NULL): FormulaInterface {
 
     if (NULL === $entityType) {
-      return CfSchema::iface(EntityDisplayInterface::class);
+      return Formula::iface(EntityDisplayInterface::class);
     }
 
-    return CfSchema::iface(
+    return Formula::iface(
       EntityDisplayInterface::class,
       EntityContext::get($entityType, $bundle));
   }
 
   /**
    * @param mixed $conf
-   * @param \Donquixote\Cf\SchemaToAnything\SchemaToAnythingInterface $schemaToAnything
+   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    *
    * @return string|null
    *
-   * @throws \Drupal\cfrapi\Exception\UnsupportedSchemaException
+   * @throws \Drupal\cfrapi\Exception\UnsupportedFormulaException
    */
-  public static function summary($conf, SchemaToAnythingInterface $schemaToAnything): ?string {
+  public static function summary($conf, FormulaToAnythingInterface $formulaToAnything): ?string {
 
-    $schema = self::schema();
+    $formula = self::formula();
 
-    $summarizer = Summarizer::fromSchema(
-      $schema,
-      $schemaToAnything);
+    $summarizer = Summarizer::fromFormula(
+      $formula,
+      $formulaToAnything);
 
     if (null === $summarizer) {
-      throw new UnsupportedSchemaException("Failed to create summarizer from schema.");
+      throw new UnsupportedFormulaException("Failed to create summarizer from formula.");
     }
 
     return $summarizer->confGetSummary($conf);

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ListFormat;
 
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit\Schema\CfSchema_ListSeparator;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Drupal\renderkit\Formula\Formula_ListSeparator;
 
 /**
  * Concatenates the list items with a separator.
@@ -22,14 +22,14 @@ class ListFormat_Separator implements ListFormatInterface {
    *   label = @t("Separator")
    * )
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function createSchema() {
+  public static function createFormula() {
 
-    return CfSchema_GroupVal_Callback::fromClass(
+    return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        new CfSchema_ListSeparator(),
+        new Formula_ListSeparator(),
       ],
       [
         t('Separator'),

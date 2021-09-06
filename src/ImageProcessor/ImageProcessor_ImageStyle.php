@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ImageProcessor;
 
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Drupal\renderkit\Schema\CfSchema_ImageStyleName;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Drupal\renderkit\Formula\Formula_ImageStyleName;
 
 class ImageProcessor_ImageStyle implements ImageProcessorInterface {
 
@@ -19,14 +19,14 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    *   label = @t("Image style")
    * )
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema() {
+  public static function createFormula() {
 
-    return CfSchema_GroupVal_Callback::fromClass(
+    return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
       [
-        new CfSchema_ImageStyleName(),
+        new Formula_ImageStyleName(),
       ],
       [
         t('Image style'),

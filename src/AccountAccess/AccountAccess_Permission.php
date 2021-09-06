@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\AccountAccess;
 
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\faktoria\Schema\CfSchema_Select_Permission;
+use Drupal\faktoria\Formula\Formula_Select_Permission;
 
 class AccountAccess_Permission implements AccountAccessInterface {
 
@@ -18,12 +18,12 @@ class AccountAccess_Permission implements AccountAccessInterface {
   /**
    * @CfrPlugin("permission", @t("Permission"))
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function schema() {
-    return CfSchema_ValueToValue_CallbackMono::fromClass(
+  public static function formula() {
+    return Formula_ValueToValue_CallbackMono::fromClass(
       self::class,
-      CfSchema_Select_Permission::proxy());
+      Formula_Select_Permission::proxy());
   }
 
   /**

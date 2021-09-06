@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Multi;
 
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\renderkit\Schema\CfSchema_EtAndFieldName;
+use Drupal\renderkit\Formula\Formula_EtAndFieldName;
 
 class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
 
@@ -26,18 +26,18 @@ class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function schema(
+  public static function formula(
     array $allowedFieldTypes = NULL,
     $entityType = NULL,
     $bundle = NULL
   ) {
 
-    return CfSchema_ValueToValue_CallbackMono::fromStaticMethod(
+    return Formula_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
       'create',
-      CfSchema_EtAndFieldName::create(
+      Formula_EtAndFieldName::create(
         $allowedFieldTypes,
         $entityType,
         $bundle));

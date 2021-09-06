@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal;
-use Donquixote\Cf\Schema\ValueProvider\CfSchema_ValueProvider_FixedValue;
-use Drupal\renderkit\Schema\CfSchema_FieldDisplayProcessor_Label;
-use Drupal\renderkit\Schema\CfSchema_FieldDisplayProcessor_OuterContainer;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal;
+use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
+use Drupal\renderkit\Formula\Formula_FieldDisplayProcessor_Label;
+use Drupal\renderkit\Formula\Formula_FieldDisplayProcessor_OuterContainer;
 use Drupal\renderkit\Util\UtilBase;
 
 abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implements FieldDisplayProcessorInterface {
@@ -36,32 +36,32 @@ abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implemen
   /**
    * @CfrPlugin("minimal", @t("Minimal"))
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function minimal() {
-    return CfSchema_FieldDisplayProcessor_OuterContainer::create(
+    return Formula_FieldDisplayProcessor_OuterContainer::create(
       self::fullReset(),
       FALSE)
-      ->getValSchema();
+      ->getValFormula();
   }
 
   /**
    * @CfrPlugin("fullReset", @t("Full reset"))
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function fullReset() {
-    return CfSchema_FieldDisplayProcessor_Label::create(
+    return Formula_FieldDisplayProcessor_Label::create(
       self::bare())
-      ->getValSchema();
+      ->getValFormula();
   }
 
   /**
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
   private static function bare() {
-    return CfSchema_GroupVal::createEmpty(
-      new CfSchema_ValueProvider_FixedValue(
+    return Formula_GroupVal::createEmpty(
+      new Formula_ValueProvider_FixedValue(
         new FieldDisplayProcessor_Bare()));
   }
 

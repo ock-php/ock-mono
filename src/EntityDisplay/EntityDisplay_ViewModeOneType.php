@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration;
-use Donquixote\Cf\Schema\ValueToValue\CfSchema_ValueToValue_CallbackMono;
+use Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration;
+use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
-use Drupal\renderkit\Schema\CfSchema_EntityTypeWithViewModeName;
+use Drupal\renderkit\Formula\Formula_EntityTypeWithViewModeName;
 
 /**
  * Renders the entity with a view mode, but only if it has the expected type.
@@ -33,9 +33,9 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    *
    * @param string|null $entityType
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createSchema($entityType = NULL) {
+  public static function createFormula($entityType = NULL) {
 
     /** @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entityDisplayRepository */
     $entityDisplayRepository = \Drupal::service('entity_display.repository');
@@ -43,7 +43,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
     /** @var \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository */
     $entityTypeRepository = \Drupal::service('entity_type.repository');
 
-    return self::doCreateSchema(
+    return self::doCreateFormula(
       $entityDisplayRepository,
       $entityTypeRepository,
       $entityType);
@@ -54,18 +54,18 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
      * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
      * @param string|null $entityType
      *
-     * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+     * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
      */
-  public static function doCreateSchema(
+  public static function doCreateFormula(
     EntityDisplayRepositoryInterface $entityDisplayRepository,
     EntityTypeRepositoryInterface $entityTypeRepository,
     $entityType = NULL
   ) {
 
-    return CfSchema_ValueToValue_CallbackMono::fromStaticMethod(
+    return Formula_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
       'createFromId',
-      new CfSchema_EntityTypeWithViewModeName(
+      new Formula_EntityTypeWithViewModeName(
         $entityDisplayRepository,
         $entityTypeRepository,
         $entityType));
@@ -77,7 +77,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_ViewModeOneType
    *
-   * @throws \Donquixote\Cf\Exception\EvaluatorException_IncompatibleConfiguration
+   * @throws \Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration
    */
   public static function createFromId($id) {
 

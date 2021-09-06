@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ListFormat;
 
-use Drupal\renderkit\Schema\CfSchema_ListFormat_Expert;
+use Drupal\renderkit\Formula\Formula_ListFormat_Expert;
 
 class ListFormat_ElementDefaults implements ListFormatInterface {
 
@@ -15,10 +15,10 @@ class ListFormat_ElementDefaults implements ListFormatInterface {
   /**
    * @CfrPlugin("expert", "Expert")
    *
-   * @return \Donquixote\Cf\Core\Schema\CfSchemaInterface
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createExpertSchema() {
-    return new CfSchema_ListFormat_Expert();
+  public static function createExpertFormula() {
+    return new Formula_ListFormat_Expert();
   }
 
   /**

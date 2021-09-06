@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Cf\Context\CfContextInterface;
-use Donquixote\Cf\Schema\GroupVal\CfSchema_GroupVal_Callback;
-use Donquixote\Cf\Schema\Iface\CfSchema_IfaceWithContext;
-use Donquixote\Cf\Schema\Textfield\CfSchema_Textfield_IntegerInRange;
+use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\ObCK\Formula\Textfield\Formula_Textfield_IntegerInRange;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
 
@@ -25,18 +25,18 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
   /**
    * @CfrPlugin("repeatSameEntity", "Repeat the same entity")
    *
-   * @param \Donquixote\Cf\Context\CfContextInterface|null $context
+   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\Cf\Schema\GroupVal\CfSchema_GroupValInterface
+   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function createSchema(CfContextInterface $context = NULL) {
+  public static function createFormula(CfContextInterface $context = NULL) {
 
-    return CfSchema_GroupVal_Callback::fromStaticMethod(
+    return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
       'create',
       [
-        new CfSchema_Textfield_IntegerInRange(1, 100),
-        CfSchema_IfaceWithContext::create(EntitiesListFormatInterface::class, $context),
+        new Formula_Textfield_IntegerInRange(1, 100),
+        Formula_IfaceWithContext::create(EntitiesListFormatInterface::class, $context),
       ],
       [
         t('Number of repetitions'),
