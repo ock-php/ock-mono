@@ -58,11 +58,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
   }
 
   /**
-   * @param array $build
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *
-   * @return array
-   *   Render array for one entity.
+   * {@inheritdoc}
    */
   public function processEntityBuild(array $build, EntityInterface $entity): array {
 
