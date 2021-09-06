@@ -6,7 +6,6 @@ namespace Donquixote\ObCK\Generator;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Formula;
 use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ObCK\Util\UtilBase;
 
 final class Generator extends UtilBase {
@@ -54,21 +53,12 @@ final class Generator extends UtilBase {
     NurseryInterface $formulaToAnything
   ): GeneratorInterface {
 
+    /** @var \Donquixote\ObCK\Generator\GeneratorInterface $candidate */
     $candidate = $formulaToAnything->breed(
       $formula,
       GeneratorInterface::class);
 
-    if ($candidate instanceof GeneratorInterface) {
-      return $candidate;
-    }
-
-    throw new \RuntimeException(strtr(
-      'Misbehaving FTA for formula of class @formula_class: Expected @interface object, found @found.',
-      [
-        '@formula_class' => get_class($formula),
-        '@interface' => GeneratorInterface::class,
-        '@found' => MessageUtil::formatValue($candidate),
-      ]));
+    return $candidate;
   }
 
 }
