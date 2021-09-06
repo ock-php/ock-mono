@@ -40,7 +40,7 @@ class BuildProcessor_Container implements BuildProcessorInterface {
    * @_ParamLabels(
    *   0 = @t("Tag name")
    *   1 = @t("Classes")
-   * )s
+   * )
    * @_ParamFormula(0, "renderkit.tagName.container", @t("Tag name"))
    *
    * @param string $tagName
