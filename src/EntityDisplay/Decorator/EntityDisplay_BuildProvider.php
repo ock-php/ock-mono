@@ -29,7 +29,7 @@ class EntityDisplay_BuildProvider implements EntityDisplayInterface {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
     $element = $this->buildProvider->build();
     return array_fill_keys(array_keys($entities), $element);
   }
@@ -39,7 +39,7 @@ class EntityDisplay_BuildProvider implements EntityDisplayInterface {
    *
    * @return array
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
     return $this->buildProvider->build();
   }
 }

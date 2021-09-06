@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityCondition;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -34,7 +35,7 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function formula($entityType = NULL, $bundleName = NULL) {
+  public static function formula($entityType = NULL, $bundleName = NULL): FormulaInterface {
 
     return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
@@ -53,7 +54,7 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
    *
    * @return self
    */
-  public static function createNow(EntityToFieldItemListInterface $field) {
+  public static function createNow(EntityToFieldItemListInterface $field): self {
     return new self($field, time());
   }
 
@@ -74,7 +75,7 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
    *
    * @return bool
    */
-  public function entityCheckCondition(EntityInterface $entity) {
+  public function entityCheckCondition(EntityInterface $entity): bool {
 
     if (!$entity instanceof FieldableEntityInterface) {
       return FALSE;
@@ -100,7 +101,7 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
    *
    * @return bool
    */
-  private function itemCheckCondition(DateRangeItem $item) {
+  private function itemCheckCondition(DateRangeItem $item): bool {
 
     // @todo Convert to timestamp?
     if (NULL !== $item->value && $item->value > $this->referenceTimestamp) {

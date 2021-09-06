@@ -12,5 +12,5 @@ interface BuildProviderInterface {
    * @return array
    *   A render array.
    */
-  public function build();
+  public function build(): array;
 }

@@ -46,7 +46,7 @@ class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
 
     $targetEntitiess = $this->entityToEntities->entitiesGetRelated($entities);
 

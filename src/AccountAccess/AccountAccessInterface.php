@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\AccountAccess;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
 
 interface AccountAccessInterface {
@@ -12,6 +13,6 @@ interface AccountAccessInterface {
    *
    * @return \Drupal\Core\Access\AccessResult
    */
-  public function access(AccountInterface $account);
+  public function access(AccountInterface $account): AccessResult;
 
 }

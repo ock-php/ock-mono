@@ -32,7 +32,7 @@ class EntityCondition_Negation implements EntityConditionInterface {
    *
    * @return bool
    */
-  public function entityCheckCondition(EntityInterface $entity) {
+  public function entityCheckCondition(EntityInterface $entity): bool {
     return !$this->negatedCondition->entityCheckCondition($entity);
   }
 }

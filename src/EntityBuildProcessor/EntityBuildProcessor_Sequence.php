@@ -5,6 +5,7 @@ namespace Drupal\renderkit\EntityBuildProcessor;
 
 use Donquixote\ObCK\Context\CfContextInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
@@ -25,7 +26,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    *
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function createCfrFormula(CfContextInterface $context = NULL) {
+  public static function createCfrFormula(CfContextInterface $context = NULL): Formula_GroupValInterface {
 
     return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
@@ -43,7 +44,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    *
    * @return self
    */
-  public static function create(array $processors) {
+  public static function create(array $processors): self {
     $sequence = new self();
     foreach ($processors as $processor) {
       if ($processor instanceof EntityBuildProcessorInterface) {
@@ -66,7 +67,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    *
    * @return $this
    */
-  public function addBuildProcessor(BuildProcessorInterface $buildProcessor) {
+  public function addBuildProcessor(BuildProcessorInterface $buildProcessor): self {
     $this->processors[] = $buildProcessor;
     return $this;
   }
@@ -76,7 +77,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    *
    * @return $this
    */
-  public function addEntityBuildProcessor(EntityBuildProcessorInterface $entityBuildProcessor) {
+  public function addEntityBuildProcessor(EntityBuildProcessorInterface $entityBuildProcessor): self {
     $this->processors[] = $entityBuildProcessor;
     return $this;
   }

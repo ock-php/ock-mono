@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\BuildProvider;
 
 use Donquixote\ObCK\Context\CfContextInterface;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Callback\Formula_Callback;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
@@ -29,7 +30,7 @@ class BuildProvider_Sequence implements BuildProviderInterface {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function getCfrFormula(CfContextInterface $context = NULL) {
+  public static function getCfrFormula(CfContextInterface $context = NULL): FormulaInterface {
 
     return Formula_Callback::fromClass(__CLASS__)
       ->withContext($context)
@@ -56,7 +57,7 @@ class BuildProvider_Sequence implements BuildProviderInterface {
    * @return array
    *   A render array.
    */
-  public function build() {
+  public function build(): array {
     $builds = [];
     foreach ($this->providers as $k => $provider) {
       $build = $provider->build();

@@ -17,7 +17,7 @@ trait EntityDisplayBaseTrait {
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntities()
    */
-  final public function buildEntities(array $entities) {
+  final public function buildEntities(array $entities): array {
 
     $builds = [];
     foreach ($entities as $delta => $entity) {
@@ -36,6 +36,6 @@ trait EntityDisplayBaseTrait {
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  abstract public function buildEntity(EntityInterface $entity);
+  abstract public function buildEntity(EntityInterface $entity): array;
 
 }

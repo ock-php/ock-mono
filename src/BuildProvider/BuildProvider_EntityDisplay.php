@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\Formula\Formula_BuildProvider_EntityDisplay;
@@ -24,7 +25,7 @@ class BuildProvider_EntityDisplay implements BuildProviderInterface {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function formula() {
+  public static function formula(): FormulaInterface {
     return Formula_BuildProvider_EntityDisplay::createDrilldown();
   }
 
@@ -41,7 +42,7 @@ class BuildProvider_EntityDisplay implements BuildProviderInterface {
    * @return array
    *   A render array.
    */
-  public function build() {
+  public function build(): array {
     return $this->entityDisplay->buildEntity($this->entity);
   }
 }

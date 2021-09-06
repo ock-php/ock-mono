@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Group\Formula_Group;
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityChangedInterface;
@@ -29,7 +30,7 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createCfrFormula() {
+  public static function createCfrFormula(): FormulaInterface {
 
     $groupFormula = new Formula_Group(
       [
@@ -52,7 +53,7 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
    *
    * @return self
    */
-  public static function createFromGroupValues(array $values) {
+  public static function createFromGroupValues(array $values): self {
 
     return (new self())
       ->setTagName($values['tag_name'])
@@ -83,7 +84,7 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
    *
    * @return array
    */
-  private function entityBuildContainer(EntityInterface $entity) {
+  private function entityBuildContainer(EntityInterface $entity): array {
 
     $container = $this->buildContainer();
 
@@ -106,7 +107,7 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
    *
    * @return array[]
    */
-  private function entityBuildContextualLinks(EntityInterface $entity) {
+  private function entityBuildContextualLinks(EntityInterface $entity): array {
 
     /* @see \Drupal\node\NodeViewBuilder::alterBuild() */
     /* @see \Drupal\taxonomy\TermViewBuilder::alterBuild() */

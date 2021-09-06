@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Formula;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
@@ -31,7 +32,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createFormula() {
+  public static function createFormula(): FormulaInterface {
 
     return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,
@@ -50,9 +51,9 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    * @param string $viewNameWithDisplayId
    * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
    *
-   * @return \Drupal\renderkit\BuildProvider\BuildProvider_ViewsDisplay|null
+   * @return self|null
    */
-  public static function doCreate($viewNameWithDisplayId, LabeledFormatInterface $labeledFormat = NULL) {
+  public static function doCreate($viewNameWithDisplayId, LabeledFormatInterface $labeledFormat = NULL): ?self {
     list($view_name, $display_id) = explode(':', $viewNameWithDisplayId . ':');
     if ('' === $view_name || '' === $display_id) {
       return NULL;
@@ -77,7 +78,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    * @return array
    *   A render array.
    */
-  public function build() {
+  public function build(): array {
 
     if (NULL === $view = Views::getView($this->viewName)) {
       return [];

@@ -5,6 +5,7 @@ namespace Drupal\renderkit\EntityDisplay\Decorator;
 
 use Donquixote\ObCK\Context\CfContextInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
@@ -32,7 +33,7 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    *
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function createFormula(CfContextInterface $context = NULL) {
+  public static function createFormula(CfContextInterface $context = NULL): Formula_GroupValInterface {
 
     return Formula_GroupVal_Callback::fromClass(
       __CLASS__,
@@ -70,7 +71,7 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
 
     $relatedEntities = [];
     foreach ($entities as $delta => $entity) {
@@ -89,7 +90,7 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    *
    * @return array
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
     if (NULL === $relatedEntity = $this->entityToEntity->entityGetRelated($entity)) {
       return [];
     }

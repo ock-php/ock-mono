@@ -38,7 +38,7 @@ abstract class EntityDisplay_FieldItemsBase extends EntityDisplayBase {
    *
    * @return array
    */
-  final public function buildEntity(EntityInterface $entity) {
+  final public function buildEntity(EntityInterface $entity): array {
 
     if (!$entity instanceof FieldableEntityInterface) {
       return [];

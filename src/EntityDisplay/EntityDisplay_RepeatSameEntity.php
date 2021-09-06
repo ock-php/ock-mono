@@ -5,6 +5,7 @@ namespace Drupal\renderkit\EntityDisplay;
 
 use Donquixote\ObCK\Context\CfContextInterface;
 use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Donquixote\ObCK\Formula\Textfield\Formula_Textfield_IntegerInRange;
 use Drupal\Core\Entity\EntityInterface;
@@ -29,7 +30,7 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
    *
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
-  public static function createFormula(CfContextInterface $context = NULL) {
+  public static function createFormula(CfContextInterface $context = NULL): Formula_GroupValInterface {
 
     return Formula_GroupVal_Callback::fromStaticMethod(
       __CLASS__,

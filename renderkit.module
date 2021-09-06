@@ -12,7 +12,7 @@ define('RENDERKIT_POP_PARENT', '_renderkit_pop_parent');
  *
  * @return array
  */
-function renderkit_cfrplugin_info() {
+function renderkit_cfrplugin_info(): array {
 
   return function_exists('cfrplugindiscovery')
     ? cfrplugindiscovery()->discoverByInterface(__DIR__ . '/src', 'Drupal\renderkit')
@@ -24,7 +24,7 @@ function renderkit_cfrplugin_info() {
  *
  * @return array
  */
-function renderkit_faktoria_info() {
+function renderkit_faktoria_info(): array {
   return CfrPluginDiscoveryHub::getInstance()
     ->moduleFileScanPsr4(__FILE__);
 }
@@ -34,7 +34,7 @@ function renderkit_faktoria_info() {
  *
  * @return array
  */
-function _renderkit_pop_parent(array $element) {
+function _renderkit_pop_parent(array $element): array {
   array_pop($element['#parents']);
   return $element;
 }
@@ -50,6 +50,6 @@ function _renderkit_generic_form(
   /** @noinspection PhpUnusedParameterInspection */ array $existing_form,
   /** @noinspection PhpUnusedParameterInspection */ array &$form_state,
   array $form
-) {
+): array {
   return $form;
 }

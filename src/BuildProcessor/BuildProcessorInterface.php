@@ -12,6 +12,6 @@ interface BuildProcessorInterface {
    * @return array
    *   Render array after the processing.
    */
-  public function process(array $build);
+  public function process(array $build): array;
 
 }

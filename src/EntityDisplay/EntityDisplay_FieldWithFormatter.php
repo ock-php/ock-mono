@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
@@ -36,7 +37,7 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplay_FieldItemsBase {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function formula($entityType = NULL, $bundle = NULL) {
+  public static function formula($entityType = NULL, $bundle = NULL): FormulaInterface {
     return Formula_EntityDisplay_FieldWithFormatter::createValFormula(
       $entityType,
       $bundle);

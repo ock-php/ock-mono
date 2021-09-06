@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntitiesListFormat;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
 use Donquixote\ObCK\Formula\Sequence\Formula_Sequence_ItemLabelCallback;
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
@@ -20,7 +21,7 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createFormula() {
+  public static function createFormula(): FormulaInterface {
 
     return Formula_ValueToValue_CallbackMono::fromClass(
       __CLASS__,
@@ -47,7 +48,7 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
    *
    * @return array
    */
-  public function entitiesBuildList(array $entities) {
+  public function entitiesBuildList(array $entities): array {
 
     $rows = [];
     foreach ($this->columnDisplays as $colKey => $columnDisplay) {

@@ -30,7 +30,7 @@ class EntityDisplay_WithBuildProcessor extends EntitiesDisplayBase {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
-  public static function create(EntityDisplayInterface $entityDisplay, BuildProcessorInterface $processor = NULL) {
+  public static function create(EntityDisplayInterface $entityDisplay, BuildProcessorInterface $processor = NULL): EntityDisplayInterface {
     return NULL !== $processor
       ? new static($entityDisplay, $processor)
       : $entityDisplay;
@@ -62,7 +62,7 @@ class EntityDisplay_WithBuildProcessor extends EntitiesDisplayBase {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
     $builds = $this->entityDisplay->buildEntities($entities);
     foreach ($builds as $delta => $build) {
       $builds[$delta] = $this->processor->process($build);

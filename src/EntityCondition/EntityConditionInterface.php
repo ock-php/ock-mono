@@ -12,6 +12,6 @@ interface EntityConditionInterface {
    *
    * @return bool
    */
-  public function entityCheckCondition(EntityInterface $entity);
+  public function entityCheckCondition(EntityInterface $entity): bool;
 
 }

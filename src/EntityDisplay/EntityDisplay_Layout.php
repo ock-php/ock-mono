@@ -30,7 +30,7 @@ class EntityDisplay_Layout extends EntityDisplayBase {
   /**
    * @return \Drupal\renderkit\EntityDisplay\Formula_EntityDisplay_Layout
    */
-  public static function formula() {
+  public static function formula(): Formula_EntityDisplay_Layout {
     return new Formula_EntityDisplay_Layout();
   }
 
@@ -80,7 +80,7 @@ class EntityDisplay_Layout extends EntityDisplayBase {
   /**
    * @inheritDoc
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
 
     $elements = [];
     foreach ($this->regionDisplays as $region_name => $display) {

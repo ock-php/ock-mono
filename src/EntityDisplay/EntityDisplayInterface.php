@@ -35,7 +35,7 @@ interface EntityDisplayInterface {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities);
+  public function buildEntities(array $entities): array;
 
   /**
    * Same as ->buildEntities(), just for a single entity.
@@ -44,5 +44,5 @@ interface EntityDisplayInterface {
    *
    * @return array
    */
-  public function buildEntity(EntityInterface $entity);
+  public function buildEntity(EntityInterface $entity): array;
 }

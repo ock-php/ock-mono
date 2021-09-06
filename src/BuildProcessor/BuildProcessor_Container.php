@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProcessor;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Callback\Formula_Callback;
-use Drupal\renderkit\Html\HtmlTagTrait;
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
 use Drupal\renderkit\Formula\Formula_TagName;
+use Drupal\renderkit\Html\HtmlTagTrait;
 
 class BuildProcessor_Container implements BuildProcessorInterface {
 
@@ -17,7 +18,7 @@ class BuildProcessor_Container implements BuildProcessorInterface {
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function createFormula() {
+  public static function createFormula(): FormulaInterface {
 
     return Formula_Callback::fromStaticMethod(__CLASS__, 'create')
       ->withParamFormula(
@@ -45,9 +46,9 @@ class BuildProcessor_Container implements BuildProcessorInterface {
    * @param string $tagName
    * @param array $classes
    *
-   * @return \Drupal\renderkit\BuildProcessor\BuildProcessor_Container
+   * @return self
    */
-  public static function create($tagName = 'div', array $classes = []) {
+  public static function create($tagName = 'div', array $classes = []): self {
     return (new self())
       ->setTagName($tagName)
       ->addClasses($classes);
@@ -60,7 +61,7 @@ class BuildProcessor_Container implements BuildProcessorInterface {
    * @return array
    *   Render array after the processing.
    */
-  public function process(array $build) {
+  public function process(array $build): array {
     return $this->buildContainer() + ['content' => $build];
   }
 }

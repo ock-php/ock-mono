@@ -22,7 +22,7 @@ abstract class EntityDisplay_GroupByTypeBase implements EntityDisplayInterface {
    *
    * @return array[]
    */
-  final public function buildEntities(array $entities) {
+  final public function buildEntities(array $entities): array {
 
     if ([] === $entities) {
       // In Drupal 7, entity_view() and even more so node_view_multiple() had
@@ -60,7 +60,7 @@ abstract class EntityDisplay_GroupByTypeBase implements EntityDisplayInterface {
    *
    * @return array
    */
-  final public function buildEntity(EntityInterface $entity) {
+  final public function buildEntity(EntityInterface $entity): array {
 
     $builds = $this->typeBuildEntities(
       $entity->getEntityTypeId(),
@@ -75,5 +75,5 @@ abstract class EntityDisplay_GroupByTypeBase implements EntityDisplayInterface {
    *
    * @return array[]
    */
-  abstract protected function typeBuildEntities($entityTypeId, array $entities);
+  abstract protected function typeBuildEntities($entityTypeId, array $entities): array;
 }

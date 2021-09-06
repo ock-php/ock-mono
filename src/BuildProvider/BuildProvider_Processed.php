@@ -33,7 +33,7 @@ class BuildProvider_Processed implements BuildProviderInterface {
    * @return array
    *   A render array.
    */
-  public function build() {
+  public function build(): array {
     $build = $this->decorated->build();
     if ($build) {
       $build = $this->processor->process($build);

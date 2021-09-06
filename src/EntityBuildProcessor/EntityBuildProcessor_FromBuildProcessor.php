@@ -26,7 +26,7 @@ class EntityBuildProcessor_FromBuildProcessor implements EntityBuildProcessorInt
    *
    * @todo Use identity / inline.
    */
-  public static function create(BuildProcessorInterface $processor) {
+  public static function create(BuildProcessorInterface $processor): EntityBuildProcessorInterface {
     return new static($processor);
   }
 

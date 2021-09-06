@@ -37,7 +37,7 @@ class EntitiesListFormat_ListFormat implements EntitiesListFormatInterface {
    *
    * @return array
    */
-  public function entitiesBuildList(array $entities) {
+  public function entitiesBuildList(array $entities): array {
     $builds = $this->entityDisplay->buildEntities($entities);
     return $this->listFormat->buildList($builds);
   }

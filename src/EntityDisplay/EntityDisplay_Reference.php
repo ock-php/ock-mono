@@ -59,7 +59,7 @@ class EntityDisplay_Reference implements EntityDisplayInterface {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
 
     $relatedEntities = [];
     foreach ($entities as $delta => $entity) {
@@ -80,7 +80,7 @@ class EntityDisplay_Reference implements EntityDisplayInterface {
    *
    * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
    */
-  public function buildEntity(EntityInterface $entity) {
+  public function buildEntity(EntityInterface $entity): array {
 
     if (NULL === $related = $this->reference->entityGetRelated($entity)) {
       return [];

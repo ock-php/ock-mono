@@ -20,7 +20,7 @@ class EntityCondition_Status implements EntityConditionInterface {
    *
    * @return bool
    */
-  public function entityCheckCondition(EntityInterface $entity) {
+  public function entityCheckCondition(EntityInterface $entity): bool {
     return isset($entity->status) && ($entity->status === 1 || $entity->status === '1');
   }
 }

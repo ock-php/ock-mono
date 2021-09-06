@@ -28,7 +28,7 @@ class EntityDisplay_NeutralDecorator extends EntitiesDisplayBase {
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
 
     return NULL !== $this->decorated
       ? $this->decorated->buildEntities($entities)

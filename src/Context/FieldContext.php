@@ -15,7 +15,7 @@ final class FieldContext extends UtilBase {
    *
    * @return \Donquixote\ObCK\Context\CfContext|null
    */
-  public static function get(array $allowedFieldTypes = NULL, $entityType = NULL, $bundle = NULL) {
+  public static function get(array $allowedFieldTypes = NULL, $entityType = NULL, $bundle = NULL): ?CfContext {
 
     if ([] === $values = self::getValues(
       $allowedFieldTypes,
@@ -35,7 +35,7 @@ final class FieldContext extends UtilBase {
    *
    * @return array
    */
-  public static function getValues(array $allowedFieldTypes = NULL, $entityType = NULL, $bundle = NULL) {
+  public static function getValues(array $allowedFieldTypes = NULL, $entityType = NULL, $bundle = NULL): array {
 
     $values = EntityContext::getValues($entityType, $bundle);
 

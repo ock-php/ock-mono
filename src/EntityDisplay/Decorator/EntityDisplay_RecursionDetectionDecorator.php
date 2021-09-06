@@ -36,7 +36,7 @@ class EntityDisplay_RecursionDetectionDecorator extends EntityDisplay_NeutralDec
    *
    * @return array[]
    */
-  public function buildEntities(array $entities) {
+  public function buildEntities(array $entities): array {
     if (self::$recursionDepth > $this->recursionLimit) {
       throw new EntityDisplayRecursionException();
     }
