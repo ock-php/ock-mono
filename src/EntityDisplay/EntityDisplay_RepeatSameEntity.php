@@ -45,13 +45,13 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
   }
 
   /**
-   * @param int $n
+   * @param int|string $n
    * @param \Drupal\renderkit8\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
    *
    * @return self
    */
   public static function create($n, EntitiesListFormatInterface $entitiesListFormat) {
-    return new self($entitiesListFormat, $n);
+    return new self($entitiesListFormat, (int) $n);
   }
 
   /**
