@@ -206,9 +206,20 @@ EOT;
   }
 
   /**
+   * @param string $objectPhp
+   * @param string $method
+   * @param string[] $argsPhp
+   *
+   * @return string
+   */
+  public static function phpCallMethod(string $objectPhp, string $method, array $argsPhp): string {
+    return self::phpCallFqn($objectPhp . '->' . $method, $argsPhp);
+  }
+
+  /**
    * @param callable $method
    *   Static method.
-   * @param array $argsPhp
+   * @param string[] $argsPhp
    *   Arguments as php expressions.
    *
    * @return string
@@ -218,7 +229,39 @@ EOT;
     if (!is_array($method) || !is_string($method[0])) {
       throw new \InvalidArgumentException('Parameter $method must be a static method.');
     }
-    return self::phpCallFunction($method[0] . '::' . $method[1], $argsPhp);
+    return self::phpCallFqn('\\' . $method[0] . '::' . $method[1], $argsPhp);
+  }
+
+  /**
+   * @param callable $callable
+   *   Static method.
+   * @param string[] $argsPhp
+   *   Arguments as php expressions.
+   *
+   * @return string
+   *   Php expression that calls the static method.
+   */
+  public static function phpCall(callable $callable, array $argsPhp): string {
+    if (is_array($callable)) {
+      if (!is_string($callable[0])) {
+        throw new \InvalidArgumentException('Parameter must be a static method.');
+      }
+      return self::phpCallFqn('\\' . $callable[0] . '::' . $callable[1], $argsPhp);
+    }
+    if (is_string($callable)) {
+      return self::phpCallFqn('\\' . $callable, $argsPhp);
+    }
+    throw new \InvalidArgumentException('Expected a static method or a function name.');
+  }
+
+  /**
+   * @param string $class
+   * @param string[] $argsPhp
+   *
+   * @return string
+   */
+  public static function phpNewClass(string $class, array $argsPhp): string {
+    return self::phpCallFqn('new \\' . $class, $argsPhp);
   }
 
   /**
@@ -228,16 +271,37 @@ EOT;
    * @return string
    */
   public static function phpCallFunction(string $function, array $argsPhp): string {
-    return '\\' . $function . '(' . "\n" . self::phpCallArglist($argsPhp) . ')';
+    return self::phpCallFqn('\\' . $function, $argsPhp);
   }
 
   /**
+   * @param string $fqn
    * @param string[] $argsPhp
    *
    * @return string
    */
-  public static function phpCallArglist(array $argsPhp): string {
-    return implode(",\n", $argsPhp);
+  public static function phpCallFqn(string $fqn, array $argsPhp): string {
+    $php = $fqn . self::phpCallArglist($argsPhp);
+    if (strlen($php) > 80 || FALSE !== strpos($php, "\n")) {
+      // Code is too long for a single line, or already contains line breaks.
+      // Insert line breaks between arguments.
+      // This is a temporary solution to make tests pass.
+      // @todo Insert line breaks as a post-processing step instead.
+      $php = $fqn . self::phpCallArglist($argsPhp, TRUE);
+    }
+    return $php;
+  }
+
+  /**
+   * @param string[] $argsPhp
+   * @param bool $break
+   *
+   * @return string
+   */
+  public static function phpCallArglist(array $argsPhp, bool $break = FALSE): string {
+    return ($break ? "(\n" : '(')
+      . implode($break ? ",\n" : ", ", $argsPhp)
+      . ')';
   }
 
   /**
