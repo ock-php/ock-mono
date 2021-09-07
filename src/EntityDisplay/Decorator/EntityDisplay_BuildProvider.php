@@ -25,9 +25,7 @@ class EntityDisplay_BuildProvider implements EntityDisplayInterface {
   }
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *
-   * @return array[]
+   * {@inheritdoc}
    */
   public function buildEntities(array $entities): array {
     $element = $this->buildProvider->build();
@@ -35,9 +33,7 @@ class EntityDisplay_BuildProvider implements EntityDisplayInterface {
   }
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *
-   * @return array
+   * {@inheritdoc}
    */
   public function buildEntity(EntityInterface $entity): array {
     return $this->buildProvider->build();

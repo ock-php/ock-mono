@@ -99,7 +99,7 @@ class EntityDisplay_Layout extends EntityDisplayBase {
   }
 
   /**
-   * @inheritDoc
+   * {@inheritdoc}
    */
   public function buildEntity(EntityInterface $entity): array {
 
