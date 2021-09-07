@@ -3,14 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
-use Donquixote\ObCK\Formula\Select\Formula_Select_TwoStepFlatSelectComposite;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Layout\LayoutInterface;
-use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
-use Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId;
-use Drupal\views\Views;
+use Drupal\Core\Layout\LayoutPluginManagerInterface;
+use Drupal\renderkit\IdToFormula\IdToFormula_LayoutAndRegions;
 
 /**
  * Show a view (from "views" module) for the entity.
@@ -28,13 +25,6 @@ class EntityDisplay_Layout extends EntityDisplayBase {
   private $regionDisplays;
 
   /**
-   * @return \Drupal\renderkit\EntityDisplay\Formula_EntityDisplay_Layout
-   */
-  public static function formula(): Formula_EntityDisplay_Layout {
-    return new Formula_EntityDisplay_Layout();
-  }
-
-  /**
    * Constructor.
    *
    * @param \Drupal\Core\Layout\LayoutInterface $layout
@@ -47,6 +37,37 @@ class EntityDisplay_Layout extends EntityDisplayBase {
     $this->layout = $layout;
     $this->regionDisplays = $region_displays;
     $this->throwIfInvalid();
+  }
+
+  /**
+   * @ObCK("layout", "Layout")
+   *
+   * @param \Drupal\Core\Layout\LayoutPluginManagerInterface $layoutManager
+   *
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   */
+  public static function formula(LayoutPluginManagerInterface $layoutManager): FormulaInterface {
+    return IdToFormula_LayoutAndRegions::formula(
+      EntityDisplay::formula(),
+      $layoutManager,
+      [self::class, 'create']);
+  }
+
+  /**
+   * @param \Drupal\Core\Layout\LayoutInterface $layout
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[][] $regions
+   *   Format: $[$region_id][$delta] = $display.
+   *
+   * @return self
+   * @throws \Exception
+   *   Layouts do not match up.
+   */
+  public static function create(LayoutInterface $layout, array $regions): self {
+    $region_displays = [];
+    foreach ($regions as $delta => $displays) {
+      $region_displays[$delta] = new EntityDisplay_Sequence($displays);
+    }
+    return new self($layout, $region_displays);
   }
 
   /**

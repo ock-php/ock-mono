@@ -4,9 +4,12 @@ declare(strict_types=1);
 namespace Drupal\renderkit\IdToFormula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
+use Drupal\cu\Formula\DrupalPluginSettings\Formula_DrupalPluginSettings;
+use Drupal\renderkit\Formula\Formula_LayoutId;
 
 class IdToFormula_Layout implements IdToFormulaInterface {
 
@@ -23,7 +26,22 @@ class IdToFormula_Layout implements IdToFormulaInterface {
   }
 
   /**
-   * @inheritDoc
+   * Static factory. Creates a drilldown formula.
+   *
+   * @param \Drupal\Core\Layout\LayoutPluginManagerInterface $layoutManager
+   *
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   */
+  public static function formula(LayoutPluginManagerInterface $layoutManager): FormulaInterface {
+    $drilldown = new Formula_Drilldown(
+      new Formula_LayoutId($layoutManager),
+      new self($layoutManager));
+    // Options at the top-level.
+    return $drilldown->withKeys('layout_id', 'layout_settings');
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public function idGetFormula($id): ?FormulaInterface {
     try {
@@ -33,7 +51,7 @@ class IdToFormula_Layout implements IdToFormulaInterface {
       // @todo Log this?
       return NULL;
     }
-    return new Formula_Drupal
+    return new Formula_DrupalPluginSettings($plugin);
   }
 
 }
