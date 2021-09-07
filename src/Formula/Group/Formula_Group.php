@@ -3,58 +3,30 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Formula\Group;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Formula;
+use Donquixote\ObCK\Text\Text;
 
 class Formula_Group implements Formula_GroupInterface {
 
   /**
    * @var \Donquixote\ObCK\Core\Formula\FormulaInterface[]
    */
-  private $formulas;
+  private array $formulas;
 
   /**
-   * @var string[]
+   * @var \Donquixote\ObCK\Text\TextInterface[]
    */
-  private $labels;
-
-  /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
-   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
-   *
-   * @return self
-   */
-  public static function create(array $formulas = [], array $labels = []): self {
-    return new self($formulas, $labels);
-  }
+  private array $labels;
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
    * @param \Donquixote\ObCK\Text\TextInterface[] $labels
    */
   public function __construct(array $formulas, array $labels) {
-
-    foreach ($formulas as $k => $itemFormula) {
-      if (!$itemFormula instanceof FormulaInterface) {
-        throw new \InvalidArgumentException("Item formula at key $k must be instance of FormulaInterface.");
-      }
-    }
-
+    Formula::validate(...$formulas);
+    Text::validate(...$labels);
     $this->formulas = $formulas;
     $this->labels = $labels;
-  }
-
-  /**
-   * @param string $key
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param null $label
-   *
-   * @return static
-   */
-  public function withItem(string $key, FormulaInterface $formula, $label = NULL): self {
-    $clone = clone $this;
-    $clone->formulas[$key] = $formula;
-    $clone->labels[$key] = $label ?? $key;
-    return $clone;
   }
 
   /**
