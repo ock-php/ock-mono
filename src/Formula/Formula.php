@@ -15,6 +15,13 @@ use Donquixote\ObCK\Util\UtilBase;
 final class Formula extends UtilBase {
 
   /**
+   * Validates one or more formulas.
+   *
+   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface ...$formulas
+   */
+  public static function validate(FormulaInterface ...$formulas) {}
+
+  /**
    * @return \Donquixote\ObCK\Formula\Select\Flat\FlatSelectBuilderInterface
    */
   public static function flatSelect(): FlatSelectBuilderInterface {
