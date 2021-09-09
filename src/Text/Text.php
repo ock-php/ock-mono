@@ -193,6 +193,21 @@ class Text {
   }
 
   /**
+   * Shows a list of distinct values.
+   *
+   * @param \Donquixote\ObCK\Text\TextInterface[] $parts
+   *   List items.
+   * @param string $glue
+   *   Glue string between the items.
+   *
+   * @return \Donquixote\ObCK\Text\TextInterface
+   *   Translatable text object.
+   */
+  public static function concatDistinct(array $parts, string $glue = ' | '): TextInterface {
+    return new Text_ConcatDistinct($parts, $glue);
+  }
+
+  /**
    * Validates text objects.
    *
    * @param \Donquixote\ObCK\Text\TextInterface ...$texts
