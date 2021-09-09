@@ -11,6 +11,11 @@ use Donquixote\ObCK\Translator\TranslatorInterface;
  */
 interface TextInterface {
 
+  /**
+   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   *
+   * @return string
+   */
   public function convert(TranslatorInterface $translator): string;
 
 }
