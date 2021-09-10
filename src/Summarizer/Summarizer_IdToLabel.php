@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Summarizer;
 
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
 use Donquixote\ObCK\Formula\IdToLabel\Formula_IdToLabelInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;

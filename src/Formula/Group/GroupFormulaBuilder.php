@@ -13,7 +13,6 @@ use Donquixote\ObCK\Text\TextInterface;
 use Donquixote\ObCK\Util\PhpUtil;
 use Donquixote\ObCK\V2V\Group\V2V_Group_Call;
 use Donquixote\ObCK\V2V\Group\V2V_Group_Callback;
-use Donquixote\ObCK\V2V\Group\V2V_Group_ClassConstruction;
 use Donquixote\ObCK\V2V\Group\V2V_Group_Fixed;
 use Donquixote\ObCK\V2V\Group\V2V_Group_ObjectMethodCall;
 use Donquixote\ObCK\V2V\Group\V2V_Group_Partials;

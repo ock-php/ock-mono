@@ -6,7 +6,6 @@ namespace Donquixote\ObCK\Formula\GroupVal;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\CallbackReflection\Util\CallbackUtil;
 use Donquixote\ObCK\Formula\Group\Formula_Group;
 use Donquixote\ObCK\Util\UtilBase;
 use Donquixote\ObCK\V2V\Group\V2V_Group_Callback;

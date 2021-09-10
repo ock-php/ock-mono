@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Formula\Id;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Text\TextInterface;
 
 /**
  * Base interface for formulas where the value is id-like (string or integer).
