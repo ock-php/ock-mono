@@ -3,23 +3,23 @@
 namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Contextual\Formula_ContextualInterface;
+use Donquixote\ObCK\Formula\ContextProviding\Formula_ContextProvidingInterface;
 use Donquixote\ObCK\Nursery\NurseryInterface;
 
-class FormulaToAnythingPartial_Contextual extends CradleZeroBase {
+class Cradle_ContextProviding extends CradleZeroBase {
 
   /**
    * {@inheritdoc}
    */
   public function breed(FormulaInterface $formula, string $interface, NurseryInterface $nursery): ?object {
-
-    if (!$formula instanceof Formula_ContextualInterface) {
+    if (!$formula instanceof Formula_ContextProvidingInterface) {
       return NULL;
     }
 
     return $nursery
+      # ->withContext($formula->getContext())
       ->breed(
-        $formula->getDecorated($nursery->getContext()),
+        $formula->getDecorated(),
         $interface);
   }
 
@@ -36,7 +36,7 @@ class FormulaToAnythingPartial_Contextual extends CradleZeroBase {
   public function acceptsFormulaClass(string $formulaClass): bool {
     return is_a(
       $formulaClass,
-      Formula_ContextualInterface::class,
+      Formula_ContextProvidingInterface::class,
       TRUE);
   }
 

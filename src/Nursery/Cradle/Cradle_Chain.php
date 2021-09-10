@@ -8,7 +8,7 @@ use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class FormulaToAnythingPartial_Chain extends CradleZeroBase {
+class Cradle_Chain extends CradleZeroBase {
 
   /**
    * @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
