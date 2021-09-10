@@ -48,7 +48,8 @@ class Summarizer_Drilldown implements SummarizerInterface {
       ->unpack($conf);
 
     if (NULL === $id) {
-      return Text::tSpecialOption('None');
+      return Text::t('None')
+        ->wrapSprintf('- %s -');
     }
 
     if (NULL === $subFormula = $this->formula->getIdToFormula()->idGetFormula($id)) {

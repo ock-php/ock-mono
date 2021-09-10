@@ -19,32 +19,6 @@ class Text {
    *
    * @return \Donquixote\ObCK\Text\TextBase
    */
-  public static function specialOption(TextInterface $text): TextBase {
-    return new Text_ReplaceOne(
-      static::t('- @option -'),
-      '@option',
-      $text);
-  }
-
-  /**
-   * Builds a text object for a select option with '- ... -'.
-   *
-   * @param string $string
-   *   Original untranslated text with placeholders.
-   * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
-   *   Replacements.
-   *
-   * @return \Donquixote\ObCK\Text\TextBase
-   */
-  public static function tSpecialOption(string $string, array $replacements = []): TextBase {
-    return static::specialOption(static::t($string, $replacements));
-  }
-
-  /**
-   * @param \Donquixote\ObCK\Text\TextInterface $text
-   *
-   * @return \Donquixote\ObCK\Text\TextBase
-   */
   public static function parens(TextInterface $text): TextBase {
     return new Text_ReplaceOne(
       static::t('(@text)'),
