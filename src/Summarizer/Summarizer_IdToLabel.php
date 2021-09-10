@@ -37,13 +37,12 @@ class Summarizer_IdToLabel implements SummarizerInterface {
     }
 
     if (!$this->formula->idIsKnown($id)) {
-      return Text::t(
-        'Unknown id "@id".',
-        ['@id' => Text::s($id)]);
+      return Text::t('Unknown id "@id".')
+        ->replaceS('@id', $id);
     }
 
     return $this->formula->idGetLabel($id)
-      ?? Text::t('Unnamed id "@id".',
-        ['@id' => Text::s($id)]);
+      ?? Text::t('Unnamed id "@id".')
+        ->replaceS('@id', $id);
   }
 }

@@ -45,21 +45,18 @@ class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
         return Text::t('Positive integer.');
       }
 
-      return Text::t('Integer greater or equal to @min', [
-        '@min' => Text::i($this->min),
-      ]);
+      return Text::t('Integer greater or equal to @min')
+        ->replace('@min', Text::i($this->min));
     }
 
     if (NULL === $this->min) {
-      return Text::t('Integer up to @max', [
-        '@max' => Text::i($this->max),
-      ]);
+      return Text::t('Integer up to @max')
+        ->replace('@max', Text::i($this->max));
     }
 
-    return Text::t('Integer in range [@min...@max]', [
-      '@min' => Text::i($this->min),
-      '@max' => Text::i($this->max),
-    ]);
+    return Text::t('Integer in range [@min...@max]')
+      ->replace('@min', Text::i($this->min))
+      ->replace('@max', Text::i($this->max));
   }
 
   /**
@@ -79,9 +76,8 @@ class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
         $errors[] = Text::t('Value must be positive.');
       }
       else {
-        $errors[] = Text::t('Value must be greater than or equal to @min.', [
-          '@min' => Text::i($this->min),
-        ]);
+        $errors[] = Text::t('Value must be greater than or equal to @min.')
+          ->replace('@min', Text::i($this->min));
       }
     }
 
@@ -93,9 +89,8 @@ class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
      * @noinspection InsufficientTypesControlInspection
      */
     if ($this->max !== NULL && $number > $this->max) {
-      $errors[] = Text::t('Value must be no greater than @max.', [
-        '@max' => Text::i($this->max),
-      ]);
+      $errors[] = Text::t('Value must be no greater than @max.')
+        ->replace('@max', Text::i($this->max));
     }
 
     return $errors;

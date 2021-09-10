@@ -32,12 +32,9 @@ class Summarizer_Primitive implements SummarizerInterface {
   public function confGetSummary($conf): ?TextInterface {
     $type = gettype($conf);
     if (!in_array($type, $this->formula->getAllowedTypes())) {
-      return Text::t(
-        'Incompatible type: Expected @expected, found @found',
-        [
-          '@expected' => Text::s(implode('|', $this->formula->getAllowedTypes())),
-          '@found' => Text::s($type),
-        ]);
+      return Text::t('Incompatible type: Expected @expected, found @found')
+        ->replaceS('@expected', implode('|', $this->formula->getAllowedTypes()))
+        ->replaceS('@found', $type);
     }
     return Text::s(var_export($conf, TRUE));
   }

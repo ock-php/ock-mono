@@ -15,8 +15,7 @@ class Formula_Sequence extends Formula_SequenceBase {
 
     return (NULL === $delta)
       ? Text::t('New item')
-      : Text::t('Item !n', [
-        '!n' => Text::s('#' . $delta),
-      ]);
+      : Text::t('Item !n')
+        ->replaceS('!n', '#' . $delta);
   }
 }
