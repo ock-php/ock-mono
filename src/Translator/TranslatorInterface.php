@@ -6,11 +6,10 @@ namespace Donquixote\ObCK\Translator;
 interface TranslatorInterface {
 
   /**
-   * @param string $string
-   * @param string[] $replacements
+   * @param string $source
    *
    * @return string
    */
-  public function translate(string $string, array $replacements = []): string;
+  public function translate(string $source): string;
 
 }

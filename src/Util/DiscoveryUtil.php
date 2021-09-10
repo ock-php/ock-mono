@@ -16,7 +16,7 @@ final class DiscoveryUtil extends UtilBase {
    */
   public static function getParamToValue(): ParamToValueInterface {
     $services = [];
-    $services[] = Translator::createPassthru();
+    $services[] = Translator::passthru();
     return new ParamToValue_ObjectsMatchType($services);
   }
 

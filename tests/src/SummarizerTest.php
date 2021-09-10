@@ -37,7 +37,7 @@ class SummarizerTest extends FormulaTestBase {
     $summarizer = Summarizer::fromFormula(
       $formula,
       $formula_to_anything);
-    $translator = Translator::createPassthru();
+    $translator = Translator::passthru();
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
     $summary_str = $summary->convert($translator);
@@ -80,7 +80,7 @@ class SummarizerTest extends FormulaTestBase {
     $summarizer = Summarizer::fromIface(
       $interface,
       $formula_to_anything);
-    $translator = Translator::createPassthru();
+    $translator = Translator::passthru();
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
     $summary_str = $summary->convert($translator);

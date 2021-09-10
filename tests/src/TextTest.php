@@ -23,7 +23,7 @@ class TextTest extends TestCase {
     if (!$text instanceof TextInterface) {
       self::fail('Text must implement TextInterface.');
     }
-    $translator = Translator::createPassthru();
+    $translator = Translator::passthru();
     $markup = $text->convert($translator);
     self::assertTextEqualsFile("$dir/$name.html", $markup);
   }

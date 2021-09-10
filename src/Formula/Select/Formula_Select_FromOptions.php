@@ -5,7 +5,6 @@ namespace Donquixote\ObCK\Formula\Select;
 
 use Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
 use Donquixote\ObCK\Translator\Translator;
 
 class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
@@ -36,7 +35,7 @@ class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
   protected function initialize(array &$grouped_options, array &$group_labels): void {
 
     // Use a simple translator to build group ids.
-    $translator = new Translator(new TranslatorLookup_Passthru());
+    $translator = Translator::passthru();
 
     foreach ($this->options as $id => $option) {
       $label = $option->getLabel();
