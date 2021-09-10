@@ -20,6 +20,9 @@ class Text_Raw extends TextBuilderBase {
     $this->source = $source;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function convert(TranslatorInterface $translator): string {
     return $this->source;
   }
