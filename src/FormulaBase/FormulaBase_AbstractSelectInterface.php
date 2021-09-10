@@ -42,6 +42,8 @@ interface FormulaBase_AbstractSelectInterface {
    * @param string|int $id
    *
    * @return bool
+   *
+   * @see \Donquixote\ObCK\Formula\Id\Formula_IdInterface::idIsKnown()
    */
   public function idIsKnown($id): bool;
 
