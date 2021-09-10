@@ -37,7 +37,7 @@ abstract class Formula_Proxy_Cache_SelectBase implements Formula_Proxy_CacheInte
   }
 
   /**
-   * @return mixed
+   * {@inheritdoc}
    */
   final public function getData() {
     return $this->getGroupedOptions();
