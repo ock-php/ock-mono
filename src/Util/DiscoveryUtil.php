@@ -23,7 +23,7 @@ final class DiscoveryUtil extends UtilBase {
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
-   * @return \Iterator|\ReflectionClass[]
+   * @return \Iterator<\ReflectionClass>
    *   Format: $[$file] = $class
    */
   public static function findReflectionClasses(ClassFilesIAInterface $classFilesIA) {
@@ -53,7 +53,7 @@ final class DiscoveryUtil extends UtilBase {
    * @param \ReflectionClass $reflClass
    * @param string $annotationTagName
    *
-   * @return \Iterator|\Donquixote\ObCK\Discovery\AnnotatedFactory\AnnotatedFactory[]
+   * @return \Iterator<\Donquixote\ObCK\Discovery\AnnotatedFactory\AnnotatedFactory>
    */
   public static function classFindAnnotatedFactories(
     \ReflectionClass $reflClass,
