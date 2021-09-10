@@ -24,14 +24,14 @@ final class DrilldownUtil extends UtilBase {
   }
 
   /**
-   * @param string $id
+   * @param string|int|null $id
    * @param mixed $options
    * @param string|null $k0
    * @param string|null $k1
    *
-   * @return array|mixed
+   * @return array|null
    */
-  public static function buildConf(string $id, $options, $k0 = 'id', $k1 = 'options') {
+  public static function buildConf($id, $options, $k0 = 'id', $k1 = 'options') {
 
     if (NULL === $k0) {
       return $id;
