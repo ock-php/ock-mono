@@ -29,7 +29,7 @@ class DrilldownOptionsByType_Buffer implements DrilldownOptionsByTypeInterface {
    */
   public function getDrilldownOptionsByType(): array {
     return $this->buffer
-      ?: $this->decorated->getDrilldownOptionsByType();
+      ??= $this->decorated->getDrilldownOptionsByType();
   }
 
 }
