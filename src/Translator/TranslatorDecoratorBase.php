@@ -24,7 +24,7 @@ class TranslatorDecoratorBase implements TranslatorInterface {
    *
    * @return static
    */
-  public function withTranslator(TranslatorInterface $translator) {
+  public function withTranslator(TranslatorInterface $translator): self {
     $clone = clone $this;
     $clone->translator = $translator;
     return $clone;
@@ -35,7 +35,7 @@ class TranslatorDecoratorBase implements TranslatorInterface {
    *
    * @return static
    */
-  public function withTranslatorLookup(TranslatorLookupInterface $lookup) {
+  public function withTranslatorLookup(TranslatorLookupInterface $lookup): self {
     $clone = clone $this;
     $clone->translator = new Translator($lookup);
     return $clone;
