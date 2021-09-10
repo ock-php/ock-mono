@@ -16,7 +16,7 @@ final class Formula_GroupVal_Callback extends UtilBase {
   /**
    * @param string $class
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
-   * @param string[] $labels
+   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
    *
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
@@ -33,7 +33,7 @@ final class Formula_GroupVal_Callback extends UtilBase {
    * @param string $class
    * @param string $methodName
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
-   * @param string[] $labels
+   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
    *
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */
@@ -50,7 +50,7 @@ final class Formula_GroupVal_Callback extends UtilBase {
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
-   * @param string[] $labels
+   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
    *
    * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
    */

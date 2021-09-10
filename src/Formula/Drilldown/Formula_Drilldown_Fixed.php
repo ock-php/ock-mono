@@ -24,7 +24,7 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
-   * @param string[] $labels
+   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
    * @param bool $orNull
    *
    * @return self
