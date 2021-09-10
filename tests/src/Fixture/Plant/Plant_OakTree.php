@@ -2,7 +2,8 @@
 
 namespace Donquixote\ObCK\Tests\Fixture\Plant;
 
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Formula\Formula;
 use Donquixote\ObCK\Formula\Textfield\Formula_Textfield_IntegerInRange;
 use Donquixote\ObCK\Text\Text_Translatable;
 
@@ -16,15 +17,13 @@ class Plant_OakTree implements PlantInterface {
   /**
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function formula() {
-    return Formula_GroupVal_Callback::fromClass(
-      self::class,
-      [
-        'height' => new Formula_Textfield_IntegerInRange(0, 100),
-      ],
-      [
-        'height' => new Text_Translatable('Height in meters'),
-      ]);
+  public static function formula(): FormulaInterface {
+    return Formula::group()
+      ->add(
+        'height',
+        new Formula_Textfield_IntegerInRange(0, 100),
+        new Text_Translatable('Height in meters'))
+      ->construct(self::class);
   }
 
   /**
