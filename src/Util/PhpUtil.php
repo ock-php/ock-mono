@@ -339,8 +339,12 @@ EOT;
    */
   public static function phpObject(object $object) {
 
+    /**
+     * @noinspection PhpConditionAlreadyCheckedInspection
+     *   See https://youtrack.jetbrains.com/issue/WI-62543.
+     */
     if ($object instanceof \stdClass) {
-      return '(object)' . self::phpArray((array)$object);
+      return '(object)' . self::phpArray((array) $object);
     }
 
     if ($object instanceof \Closure) {
