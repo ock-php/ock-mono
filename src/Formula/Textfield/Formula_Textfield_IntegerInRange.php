@@ -85,6 +85,13 @@ class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
       }
     }
 
+    /**
+     * Suppress false positive inspection.
+     *
+     * See https://github.com/kalessil/phpinspectionsea/issues/1707#issuecomment-917009487.
+     *
+     * @noinspection InsufficientTypesControlInspection
+     */
     if ($this->max !== NULL && $number > $this->max) {
       $errors[] = Text::t('Value must be no greater than @max.', [
         '@max' => Text::i($this->max),
