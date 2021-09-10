@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Util;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ObCK\Nursery\NurseryInterface;
 
 final class StaUtil extends UtilBase {
@@ -38,14 +39,16 @@ final class StaUtil extends UtilBase {
    * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    * @param string $interface
    *
-   * @return object|null
+   * @return object
+   *
+   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function getObject(FormulaInterface $formula, NurseryInterface $formulaToAnything, string $interface): ?object {
+  public static function getObject(FormulaInterface $formula, NurseryInterface $formulaToAnything, string $interface): object {
 
     $object = $formulaToAnything->breed($formula, $interface);
 
     if (!$object instanceof $interface) {
-      return NULL;
+      throw new FormulaToAnythingException('Misbehaving STA.');
     }
 
     return $object;
