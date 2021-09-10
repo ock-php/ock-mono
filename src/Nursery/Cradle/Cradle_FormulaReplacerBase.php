@@ -39,13 +39,13 @@ abstract class Cradle_FormulaReplacerBase extends CradleBase {
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
    *   Original formula.
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
+   * @param \Donquixote\ObCK\Nursery\NurseryInterface $nursery
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    *   Replacement formula.
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  abstract protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface;
+  abstract protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface;
 
 }

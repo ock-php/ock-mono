@@ -32,7 +32,7 @@ class Cradle_FormulaFactory extends Cradle_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
 
     /** @var \Donquixote\ObCK\Formula\FormulaFactory\Formula_FormulaFactoryInterface $formula */
 

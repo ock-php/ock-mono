@@ -59,12 +59,12 @@ class Cradle_Iface extends Cradle_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
     /** @var \Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface $formula */
     return $this->typeGetFormula(
       $formula->getInterface(),
       $formula->allowsNull(),
-      $helper);
+      $nursery);
   }
 
   /**

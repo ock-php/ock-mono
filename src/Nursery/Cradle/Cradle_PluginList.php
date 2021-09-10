@@ -25,7 +25,7 @@ class Cradle_PluginList extends Cradle_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
     /** @var \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface $formula */
     $plugins = $formula->getPlugins();
     $ff = (new Formula_Drilldown(

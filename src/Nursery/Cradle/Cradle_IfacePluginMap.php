@@ -34,7 +34,7 @@ class Cradle_IfacePluginMap extends Cradle_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
     /** @var \Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface $formula */
     $plugins = $this->pluginMap->typeGetPlugins($formula->getInterface());
     $ff = new Formula_Drilldown(

@@ -28,9 +28,9 @@ class Cradle_DecoShift extends Cradle_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
     /** @var \Donquixote\ObCK\Formula\DecoShift\Formula_DecoShiftInterface $formula */
-    return $this->decoratedFormulaGetReplacement($formula->getDecorated(), $helper);
+    return $this->decoratedFormulaGetReplacement($formula->getDecorated(), $nursery);
   }
 
   /**
