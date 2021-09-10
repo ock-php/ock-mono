@@ -77,9 +77,9 @@ class DocToAnnotations implements DocToAnnotationsInterface {
    * @param string $name
    * @param array $args
    *
-   * @return mixed|null
+   * @return string|null
    */
-  private function resolveAnnotation(string $name, array $args) {
+  private function resolveAnnotation(string $name, array $args): ?string {
 
     if ($name === 't' || $name === 'Translate') {
       if (isset($args[0]) && \is_string($args[0])) {
