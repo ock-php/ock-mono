@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Summarizer;
 
 use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
+use Donquixote\ObCK\Formula\IdToLabel\Formula_IdToLabelInterface;
 use Donquixote\ObCK\Text\Text;
 use Donquixote\ObCK\Text\TextInterface;
 use Donquixote\ObCK\Util\ConfUtil;
@@ -11,17 +12,19 @@ use Donquixote\ObCK\Util\ConfUtil;
 /**
  * @STA
  */
-class Summarizer_Id implements SummarizerInterface {
+class Summarizer_IdToLabel implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Id\Formula_IdInterface
+   * @var \Donquixote\ObCK\Formula\IdToLabel\Formula_IdToLabelInterface
    */
-  private $formula;
+  private Formula_IdToLabelInterface $formula;
 
   /**
-   * @param \Donquixote\ObCK\Formula\Id\Formula_IdInterface $formula
+   * Constructor.
+   *
+   * @param \Donquixote\ObCK\Formula\IdToLabel\Formula_IdToLabelInterface $formula
    */
-  public function __construct(Formula_IdInterface $formula) {
+  public function __construct(Formula_IdToLabelInterface $formula) {
     $this->formula = $formula;
   }
 
@@ -40,6 +43,8 @@ class Summarizer_Id implements SummarizerInterface {
         ['@id' => $id]);
     }
 
-    return $this->formula->idGetLabel($id);
+    return $this->formula->idGetLabel($id)
+      ?? Text::t('Unnamed id "@id".',
+        ['@id' => $id]);
   }
 }
