@@ -56,7 +56,10 @@ class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
       ]);
     }
 
-    return Text::t('Integer in range [@min...@max]', ['@min' => $this->min, '@max' => $this->max]);
+    return Text::t('Integer in range [@min...@max]', [
+      '@min' => Text::i($this->min),
+      '@max' => Text::i($this->max),
+    ]);
   }
 
   /**
