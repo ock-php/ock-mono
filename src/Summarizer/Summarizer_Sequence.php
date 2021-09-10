@@ -58,7 +58,7 @@ class Summarizer_Sequence implements SummarizerInterface {
       $conf = [];
     }
 
-    $parts = [];
+    $summary = Text::ol();
     foreach ($conf as $delta => $itemConf) {
 
       if ((string) (int) $delta !== (string) $delta || $delta < 0) {
@@ -66,10 +66,11 @@ class Summarizer_Sequence implements SummarizerInterface {
         return Text::tParens('Noisy configuration.');
       }
 
-      $parts[] = $this->itemSummarizer->confGetSummary($itemConf)
-        ?? Text::tParens('Undocumented item.');
+      $summary->add(
+        $this->itemSummarizer->confGetSummary($itemConf)
+        ?? Text::tParens('Undocumented item.'));
     }
 
-    return Text::ol($parts);
+    return $summary;
   }
 }

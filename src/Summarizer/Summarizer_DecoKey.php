@@ -76,17 +76,19 @@ class Summarizer_DecoKey implements SummarizerInterface {
     if (!$decorator_summaries) {
       return $main_summary;
     }
-    return Text::ul([
-      Text::label(
-        Text::t('Plugin'),
-        $main_summary),
-      (count($decorator_summaries) <= 1)
-        ? Text::label(
-        Text::t('Decorator'),
-        reset($decorator_summaries))
-        : Text::label(
-        Text::t('Decorators'),
-        Text::ul($decorator_summaries))
-    ]);
+    return Text::ul()
+      ->add(
+        Text::label(
+          Text::t('Plugin'),
+          $main_summary))
+      ->add(
+        (count($decorator_summaries) <= 1)
+          ? Text::label(
+          Text::t('Decorator'),
+          reset($decorator_summaries))
+          : Text::label(
+          Text::t('Decorators'),
+          Text::ul($decorator_summaries)));
   }
+
 }
