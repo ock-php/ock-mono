@@ -12,17 +12,6 @@ use Donquixote\ObCK\Text\TextInterface;
 interface Formula_IdInterface extends FormulaInterface {
 
   /**
-   * Gets the option label for a given id.
-   *
-   * @param string|int $id
-   *   The id.
-   *
-   * @return \Donquixote\ObCK\Text\TextInterface|null
-   *   The label as a string or stringable object.
-   */
-  public function idGetLabel($id): ?TextInterface;
-
-  /**
    * Checks if an option exists for a given id.
    *
    * @param string|int $id
