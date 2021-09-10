@@ -20,7 +20,7 @@ class V2V_Drilldown_Merge implements V2V_DrilldownInterface {
   /**
    * {@inheritdoc}
    */
-  final public function idPhpGetPhp($id, string $php) {
+  final public function idPhpGetPhp($id, string $php): string {
 
     $idKeyPhp = var_export($this->idKey, TRUE);
     $idPhp = var_export($id, TRUE);

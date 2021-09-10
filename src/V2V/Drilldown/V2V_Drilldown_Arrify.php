@@ -27,7 +27,7 @@ class V2V_Drilldown_Arrify implements V2V_DrilldownInterface {
   /**
    * {@inheritdoc}
    */
-  final public function idPhpGetPhp($id, string $php) {
+  final public function idPhpGetPhp($id, string $php): string {
 
     $idKeyPhp = var_export($this->idKey, TRUE);
     $optionsKeyPhp = var_export($this->optionsKey, TRUE);
