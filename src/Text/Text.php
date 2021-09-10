@@ -15,6 +15,17 @@ class Text {
   }
 
   /**
+   * @param \Donquixote\ObCK\Text\TextInterface $text
+   *
+   * @return \Donquixote\ObCK\Text\TextBase
+   */
+  public static function fluent(TextInterface $text): TextBase {
+    return $text instanceof TextBase
+      ? $text
+      : new Text_FluentDecorator($text);
+  }
+
+  /**
    * Builds a text object for "Label: Value".
    *
    * @param \Donquixote\ObCK\Text\TextInterface $label

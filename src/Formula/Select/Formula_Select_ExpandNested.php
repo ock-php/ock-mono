@@ -54,8 +54,8 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
                 ->s('@label: @inline_label');
             }
           }
-          $grouped_options[$group_id][$id] = Text::t('@label - ALL')
-            ->replace('@label', $label);
+          $grouped_options[$group_id][$id] = Text::fluent($label)
+            ->wrapT('@label', '@label - ALL');
         }
       }
     }

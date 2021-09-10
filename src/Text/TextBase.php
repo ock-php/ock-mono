@@ -16,7 +16,7 @@ abstract class TextBase implements TextInterface {
    * @return self
    */
   public function wrap(string $token, TextInterface $wrapper): self {
-    return new Text_ReplaceOne($wrapper, $token, $this);
+    return new Text_ReplaceOne($wrapper, $token, $this->getThis());
   }
 
   /**
@@ -45,7 +45,14 @@ abstract class TextBase implements TextInterface {
    * @return self
    */
   public function wrapSprintf(string $wrapper): self {
-    return new Text_Sprintf($wrapper, $this);
+    return new Text_Sprintf($wrapper, $this->getThis());
+  }
+
+  /**
+   * @return \Donquixote\ObCK\Text\TextInterface
+   */
+  protected function getThis(): TextInterface {
+    return $this;
   }
 
 }
