@@ -63,9 +63,10 @@ class Formula_PluginList_InlineExpanded implements Formula_PluginListInterface {
           continue;
         }
         $plugins["$prefix/$suffix"] = new Plugin(
-          Text::s('@label: @inline_label')
+          Text::builder()
             ->replace('@label', $plugin->getLabel())
-            ->replace('@inline_label', $sub_plugin->getLabel()),
+            ->replace('@inline_label', $sub_plugin->getLabel())
+            ->s('@label: @inline_label'),
           $sub_plugin->getDescription(),
           $sub_plugin->getFormula(),
           []);

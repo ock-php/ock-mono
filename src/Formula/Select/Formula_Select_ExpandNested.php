@@ -48,9 +48,10 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
         else {
           foreach ($inline_formula->getOptGroups() as $inline_group_id => $inline_group_label) {
             foreach ($inline_formula->getOptions($inline_group_id) as $inline_id => $inline_label) {
-              $grouped_options[$inline_group_id]["$id/$inline_id"] = Text::s('@label: @inline_label')
+              $grouped_options[$inline_group_id]["$id/$inline_id"] = Text::builder()
                 ->replace('@label', $label)
-                ->replace('@inline_label', $inline_label);
+                ->replace('@inline_label', $inline_label)
+                ->s('@label: @inline_label');
             }
           }
           $grouped_options[$group_id][$id] = Text::t('@label - ALL')
