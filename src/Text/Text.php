@@ -8,6 +8,13 @@ namespace Donquixote\ObCK\Text;
 class Text {
 
   /**
+   * @return \Donquixote\ObCK\Text\TextBuilder
+   */
+  public static function builder(): TextBuilder {
+    return new TextBuilder();
+  }
+
+  /**
    * @param \Donquixote\ObCK\Text\TextInterface $text
    *
    * @return \Donquixote\ObCK\Text\TextBase
