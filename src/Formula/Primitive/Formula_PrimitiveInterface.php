@@ -9,7 +9,7 @@ use Donquixote\ObCK\Core\Formula\FormulaInterface;
 interface Formula_PrimitiveInterface extends FormulaInterface {
 
   /**
-   * {@inheritdoc}
+   * @return string[]
    */
   public function getAllowedTypes(): array;
 
