@@ -7,6 +7,8 @@ use Donquixote\ObCK\Text\TextInterface;
 
 /**
  * This is a base interface, which by itself does NOT extend FormulaInterface.
+ *
+ * @todo Do we really need TextInterface here?
  */
 interface FormulaBase_AbstractSelectInterface {
 
