@@ -25,10 +25,7 @@ class V2V_Drilldown_Arrify implements V2V_DrilldownInterface {
   }
 
   /**
-   * @param string|int $id
-   * @param string $php
-   *
-   * @return mixed
+   * {@inheritdoc}
    */
   final public function idPhpGetPhp($id, string $php) {
 
