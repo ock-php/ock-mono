@@ -20,9 +20,9 @@ interface Formula_DrilldownInterface extends FormulaInterface {
   public function getIdToFormula(): IdToFormulaInterface;
 
   /**
-   * @return string|null
+   * @return string
    */
-  public function getIdKey(): ?string;
+  public function getIdKey(): string;
 
   /**
    * @return string|null

@@ -71,21 +71,13 @@ final class DrilldownUtil extends UtilBase {
 
   /**
    * @param mixed $conf
-   * @param string|null $k0
+   * @param string $k0
    * @param string|null $k1
    *
    * @return array
    *   Format: array($id, $options)
    */
-  public static function confGetIdOptions($conf, $k0 = 'id', $k1 = 'options'): array {
-
-    if (NULL === $k0) {
-      if (!\is_string($conf) && !\is_int($conf)) {
-        return [NULL, NULL];
-      }
-
-      return [$conf, NULL];
-    }
+  public static function confGetIdOptions($conf, string $k0 = 'id', ?string $k1 = 'options'): array {
 
     if (!\is_array($conf)) {
       return [NULL, NULL];

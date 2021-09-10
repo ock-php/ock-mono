@@ -8,20 +8,20 @@ trait Formula_Drilldown_CustomKeysTrait {
   /**
    * @var string
    */
-  private $idKey = 'id';
+  private string $idKey = 'id';
 
   /**
-   * @var string
+   * @var string|null
    */
-  private $optionsKey = 'options';
+  private ?string $optionsKey = 'options';
 
   /**
-   * @param string|null $idKey
+   * @param string $idKey
    * @param string|null $optionsKey
    *
    * @return static
    */
-  public function withKeys(?string $idKey, ?string $optionsKey): self {
+  public function withKeys(string $idKey, ?string $optionsKey): self {
     $clone = clone $this;
     $clone->idKey = $idKey;
     $clone->optionsKey = $optionsKey;
@@ -31,7 +31,7 @@ trait Formula_Drilldown_CustomKeysTrait {
   /**
    * {@inheritdoc}
    */
-  public function getIdKey(): ?string {
+  public function getIdKey(): string {
     return $this->idKey;
   }
 
