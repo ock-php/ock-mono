@@ -48,21 +48,6 @@ final class Formula_GroupVal_Callback extends UtilBase {
   }
 
   /**
-   * @param callable $callable
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
-   * @param string[] $labels
-   *
-   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
-   */
-  public static function fromCallable(callable $callable, array $formulas, array $labels): Formula_GroupValInterface {
-
-    return self::create(
-      CallbackUtil::callableGetCallback($callable),
-      $formulas,
-      $labels);
-  }
-
-  /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
    * @param string[] $labels
