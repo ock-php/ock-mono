@@ -5,7 +5,8 @@ namespace Donquixote\ObCK\Tests;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Summarizer\Summarizer;
 use Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface;
-use Donquixote\ObCK\Translator\Translator;
+use Donquixote\ObCK\Tests\Translator\Translator_Test;
+use Donquixote\ObCK\Translator\Translator_Passthru;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -14,19 +15,15 @@ class SummarizerTest extends FormulaTestBase {
   /**
    * Tests various formulas.
    *
-   * @param string $file
-   *   File containing the expected generated code.
+   * @param string $base
+   * @param string $case
    *
    * @dataProvider providerTestFormula()
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public function testFormula(string $file): void {
+  public function testFormula(string $base, string $case): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
-    if (!preg_match('@^(\w+)\.(\w+)\.html$@', $file, $m)) {
-      self::fail("Unexpected file name '$file'.");
-    }
-    list(, $base, $case) = $m;
     $formula = include "$dir/$base.php";
     if (!$formula instanceof FormulaInterface) {
       self::fail('Formula must implement FormulaInterface.');
@@ -37,11 +34,18 @@ class SummarizerTest extends FormulaTestBase {
     $summarizer = Summarizer::fromFormula(
       $formula,
       $formula_to_anything);
-    $translator = Translator::passthru();
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
-    $summary_str = $summary->convert($translator);
-    self::assertSummaryEqualsFile("$dir/$file", $summary_str);
+
+    self::assertSummaryEqualsFile(
+      "$dir/$base.$case.html",
+      $summary->convert(new Translator_Passthru()));
+
+    if (file_exists($file = "$dir/$base.$case.t.html")) {
+      self::assertSummaryEqualsFile(
+        $file,
+        $summary->convert(new Translator_Test()));
+    }
   }
 
   /**
@@ -53,9 +57,11 @@ class SummarizerTest extends FormulaTestBase {
   public function providerTestFormula(): \Iterator {
     $dir = dirname(__DIR__) . '/fixtures/formula';
     $candidates = scandir($dir);
-    $candidates = preg_grep('@^(\w+)\.(\w+)\.html$@', $candidates);
     foreach ($candidates as $candidate) {
-      yield [$candidate];
+      if (preg_match('@^(\w+)\.(\w+)\.html$@', $candidate, $m)) {
+        [, $base, $case] = $m;
+        yield [$base, $case];
+      }
     }
   }
 
@@ -80,11 +86,18 @@ class SummarizerTest extends FormulaTestBase {
     $summarizer = Summarizer::fromIface(
       $interface,
       $formula_to_anything);
-    $translator = Translator::passthru();
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
-    $summary_str = $summary->convert($translator);
-    self::assertSummaryEqualsFile("$filebase.html", $summary_str);
+
+    self::assertSummaryEqualsFile(
+      "$filebase.html",
+      $summary->convert(new Translator_Passthru()));
+
+    if (file_exists($file = "$filebase.t.html")) {
+      self::assertSummaryEqualsFile(
+        $file,
+        $summary->convert(new Translator_Test()));
+    }
   }
 
   /**

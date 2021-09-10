@@ -2,8 +2,9 @@
 
 namespace Donquixote\ObCK\Tests;
 
+use Donquixote\ObCK\Tests\Translator\Translator_Test;
 use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Translator\Translator;
+use Donquixote\ObCK\Translator\Translator_Passthru;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 
@@ -23,9 +24,16 @@ class TextTest extends TestCase {
     if (!$text instanceof TextInterface) {
       self::fail('Text must implement TextInterface.');
     }
-    $translator = Translator::passthru();
-    $markup = $text->convert($translator);
-    self::assertTextEqualsFile("$dir/$name.html", $markup);
+
+    self::assertTextEqualsFile(
+      "$dir/$name.html",
+      $text->convert(new Translator_Passthru()));
+
+    if (file_exists($file = "$dir/$name.t.html")) {
+      self::assertTextEqualsFile(
+        $file,
+        $text->convert(new Translator_Test()));
+    }
   }
 
   /**
