@@ -4,7 +4,7 @@ namespace Donquixote\ObCK\Text;
 
 use Donquixote\ObCK\Translator\TranslatorInterface;
 
-class Text_Replacements implements TextInterface {
+class Text_Replacements extends TextBuilderBase {
 
   /**
    * @var \Donquixote\ObCK\Text\TextInterface
@@ -30,6 +30,18 @@ class Text_Replacements implements TextInterface {
 
   private static function validateReplacements(TextInterface ...$args): void {}
 
+  /**
+   * {@inheritdoc}
+   */
+  public function replace(string $token, TextInterface $replacement): TextBuilderBase {
+    $clone = clone $this;
+    $clone->replacements[$token] = $replacement;
+    return $clone;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function convert(TranslatorInterface $translator): string {
     $translated = $this->source->convert($translator);
     if (!$this->replacements) {

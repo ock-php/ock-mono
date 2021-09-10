@@ -7,7 +7,7 @@ use Donquixote\ObCK\Translator\TranslatorInterface;
 /**
  * Raw text, potentially unsafe for output.
  */
-class Text_Raw implements TextInterface {
+class Text_Raw extends TextBuilderBase {
 
   private string $source;
 

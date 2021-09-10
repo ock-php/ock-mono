@@ -4,7 +4,7 @@ namespace Donquixote\ObCK\Text;
 
 use Donquixote\ObCK\Translator\TranslatorInterface;
 
-class Text_Translatable implements TextInterface {
+class Text_Translatable extends TextBuilderBase {
 
   private string $source;
 

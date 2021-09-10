@@ -8,6 +8,18 @@ namespace Donquixote\ObCK\Text;
 class Text {
 
   /**
+   * @param \Donquixote\ObCK\Text\TextInterface $text
+   *
+   * @return \Donquixote\ObCK\Text\TextBase
+   */
+  public static function specialOption(TextInterface $text): TextBase {
+    return new Text_ReplaceOne(
+      static::t('- @option -'),
+      '@option',
+      $text);
+  }
+
+  /**
    * Builds a text object for a select option with '- ... -'.
    *
    * @param string $string
@@ -15,24 +27,32 @@ class Text {
    * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
    *   Replacements.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextBase
    */
-  public static function tSpecialOption(string $string, array $replacements = []): TextInterface {
-    return static::t('- @option -', [
-      '@option' => static::t($string, $replacements),
-    ]);
+  public static function tSpecialOption(string $string, array $replacements = []): TextBase {
+    return static::specialOption(static::t($string, $replacements));
+  }
+
+  /**
+   * @param \Donquixote\ObCK\Text\TextInterface $text
+   *
+   * @return \Donquixote\ObCK\Text\TextBase
+   */
+  public static function parens(TextInterface $text): TextBase {
+    return new Text_ReplaceOne(
+      static::t('(@text)'),
+      '@text',
+      $text);
   }
 
   /**
    * @param string $string
    * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextBase
    */
-  public static function tParens(string $string, array $replacements = []): TextInterface {
-    return static::t('(@text)', [
-      '@text' => static::t($string, $replacements),
-    ]);
+  public static function tParens(string $string, array $replacements = []): TextBase {
+    return static::parens(static::t($string, $replacements));
   }
 
   /**
@@ -61,10 +81,10 @@ class Text {
    *   String to be translated, or NULL.
    * @param array $replacements
    *
-   * @return \Donquixote\ObCK\Text\TextInterface|null
+   * @return \Donquixote\ObCK\Text\TextBuilderBase|null
    *   Text object, or NULL.
    */
-  public static function tOrNull(?string $string, array $replacements = []): ?TextInterface {
+  public static function tOrNull(?string $string, array $replacements = []): ?TextBuilderBase {
     return ($string !== NULL)
       ? static::t($string, $replacements)
       : NULL;
@@ -78,10 +98,10 @@ class Text {
    * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
    *   Replacements.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextBuilderBase
    *   Translatable text object.
    */
-  public static function t(string $string, array $replacements = []): TextInterface {
+  public static function t(string $string, array $replacements = []): TextBuilderBase {
     $text = new Text_Translatable($string);
     if ($replacements) {
       $text = new Text_Replacements($text, $replacements);
@@ -97,10 +117,10 @@ class Text {
    * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
    *   Replacements.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextBuilderBase
    *   Text object.
    */
-  public static function s(string $string, array $replacements = []): TextInterface {
+  public static function s(string $string, array $replacements = []): TextBuilderBase {
     $text = new Text_Raw($string);
     if ($replacements) {
       $text = new Text_Replacements($text, $replacements);
@@ -114,10 +134,10 @@ class Text {
    * @param int $number
    *   Integer number.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\TextBuilderBase
    *   Text object.
    */
-  public static function i(int $number): TextInterface {
+  public static function i(int $number): TextBuilderBase {
     return new Text_Raw((string) $number);
   }
 
@@ -127,11 +147,11 @@ class Text {
    * @param \Donquixote\ObCK\Text\TextInterface[] $parts
    *   List items.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\Text_ListBase
    *   Translatable text object.
    */
-  public static function ul(array $parts): TextInterface {
-    return static::ulOrOl($parts, 'ul');
+  public static function ul(array $parts = []): Text_ListBase {
+    return new Text_List($parts, 'ul');
   }
 
   /**
@@ -140,11 +160,11 @@ class Text {
    * @param \Donquixote\ObCK\Text\TextInterface[] $parts
    *   List items.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\Text_ListBase
    *   Translatable text object.
    */
-  public static function ol(array $parts): TextInterface {
-    return static::ulOrOl($parts, 'ul');
+  public static function ol(array $parts = []): Text_ListBase {
+    return new Text_List($parts, 'ol');
   }
 
   /**
@@ -155,20 +175,14 @@ class Text {
    * @param string $tag
    *   One of 'ul' or 'ol'.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\Text_ListBase
    *   Translatable text object.
    */
-  protected static function ulOrOl(array $parts, string $tag): TextInterface {
-    $string = '';
-    $replacements = [];
-    foreach (array_values($parts) as $i => $part) {
-      $key = '@' . $i;
-      $string .= "<li>$key</li>";
-      $replacements[$key] = $part;
+  protected static function ulOrOl(array $parts, string $tag): Text_ListBase {
+    if ($tag !== 'ul' && $tag !== 'ol') {
+      throw new \InvalidArgumentException('Invalid list tag name.');
     }
-    return new Text_Replacements(
-      new Text_Raw("<$tag>$string</$tag>"),
-      $replacements);
+    return new Text_List($parts, $tag);
   }
 
   /**
@@ -179,17 +193,11 @@ class Text {
    * @param string $glue
    *   Glue string between the items.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\Text_ListBase
    *   Translatable text object.
    */
-  public static function concat(array $parts, string $glue = ''): TextInterface {
-    $replacements = [];
-    foreach (array_values($parts) as $i => $part) {
-      $replacements['@' . $i] = $part;
-    }
-    return static::s(
-      implode($glue, array_keys($replacements)),
-      $replacements);
+  public static function concat(array $parts, string $glue = ''): Text_ListBase {
+    return new Text_ListConcat($parts, $glue);
   }
 
   /**
@@ -200,10 +208,10 @@ class Text {
    * @param string $glue
    *   Glue string between the items.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\ObCK\Text\Text_ListBase
    *   Translatable text object.
    */
-  public static function concatDistinct(array $parts, string $glue = ' | '): TextInterface {
+  public static function concatDistinct(array $parts, string $glue = ' | '): Text_ListBase {
     return new Text_ConcatDistinct($parts, $glue);
   }
 
