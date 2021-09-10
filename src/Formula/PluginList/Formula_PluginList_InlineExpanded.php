@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Formula\PluginList;
 
 use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\InlinePluginList\InlinePluginList;
+use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Plugin\Plugin;
 use Donquixote\ObCK\Text\Text;
 
