@@ -15,28 +15,6 @@ class Text {
   }
 
   /**
-   * @param \Donquixote\ObCK\Text\TextInterface $text
-   *
-   * @return \Donquixote\ObCK\Text\TextBase
-   */
-  public static function parens(TextInterface $text): TextBase {
-    return new Text_ReplaceOne(
-      static::t('(@text)'),
-      '@text',
-      $text);
-  }
-
-  /**
-   * @param string $string
-   * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
-   *
-   * @return \Donquixote\ObCK\Text\TextBase
-   */
-  public static function tParens(string $string, array $replacements = []): TextBase {
-    return static::parens(static::t($string, $replacements));
-  }
-
-  /**
    * Builds a text object for "Label: Value".
    *
    * @param \Donquixote\ObCK\Text\TextInterface $label

@@ -63,12 +63,14 @@ class Summarizer_Sequence implements SummarizerInterface {
 
       if ((string) (int) $delta !== (string) $delta || $delta < 0) {
         // Fail on non-numeric and negative keys.
-        return Text::tParens('Noisy configuration.');
+        return Text::t('Noisy configuration.')
+          ->wrapSprintf('(%s)');
       }
 
       $summary->add(
         $this->itemSummarizer->confGetSummary($itemConf)
-        ?? Text::tParens('Undocumented item.'));
+        ?? Text::t('Undocumented item.')
+          ->wrapSprintf('(%s)'));
     }
 
     return $summary;
