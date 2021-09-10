@@ -18,7 +18,7 @@ final class Generator extends UtilBase {
    * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\ObCK\Generator\GeneratorInterface|null
+   * @return \Donquixote\ObCK\Generator\GeneratorInterface
    *   Generator. Evaluating the code of this generator should create an
    *   instance of $interface.
    *
@@ -28,7 +28,7 @@ final class Generator extends UtilBase {
   public static function fromIface(
     string $interface,
     NurseryInterface $formulaToAnything
-  ): ?GeneratorInterface {
+  ): GeneratorInterface {
     return self::fromFormula(
       Formula::iface($interface),
       $formulaToAnything);
