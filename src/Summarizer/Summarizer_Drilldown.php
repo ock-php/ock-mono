@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Summarizer;
 
 use Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelper;
+use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Text\Text;
@@ -51,25 +52,26 @@ class Summarizer_Drilldown implements SummarizerInterface {
     }
 
     if (NULL === $subFormula = $this->formula->getIdToFormula()->idGetFormula($id)) {
-      return Text::tSpecialOption('Unknown id "@id".', [
-        '@id' => Text::s($id),
-      ]);
+      return Text::s($id)
+        ->wrapT('@id', 'Unknown id "@id"')
+        ->wrapSprintf('- %s -');
     }
 
     if (NULL === $idLabel = $this->formula->getIdFormula()->idGetLabel($id)) {
-      return Text::tSpecialOption('Unnamed id "@id".', [
-        '@id' => Text::s($id),
-      ]);
+      return Text::s($id)
+        ->wrapT('@id', 'Unnamed id "@id"')
+        ->wrapSprintf('- %s -');
     }
 
-    $subSummarizer = Summarizer::fromFormula(
-      $subFormula,
-      $this->formulaToAnything);
-
-    if (NULL === $subSummarizer) {
-      return Text::tSpecialOption('Undocumented id "@id".', [
-        '@id' => Text::s($id),
-      ]);
+    try {
+      $subSummarizer = Summarizer::fromFormula(
+        $subFormula,
+        $this->formulaToAnything);
+    }
+    catch (FormulaToAnythingException $e) {
+      return Text::s($id)
+        ->wrapT('@id', 'Undocumented id "@id"')
+        ->wrapSprintf('- %s -');
     }
 
     $subSummary = $subSummarizer->confGetSummary($subConf);
