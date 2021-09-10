@@ -44,7 +44,7 @@ class Evaluator {
    * @param string $message
    *   Message describing the problem.
    *
-   * @return mixed
+   * @return never-return
    *
    * @throws \Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration
    */
@@ -60,7 +60,7 @@ class Evaluator {
    * @param mixed $conf
    *   Failing configuration.
    *
-   * @return mixed
+   * @return never-return
    *
    * @throws \Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration
    */
