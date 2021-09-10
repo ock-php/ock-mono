@@ -45,6 +45,26 @@ abstract class Text_ListBase extends TextBase {
   }
 
   /**
+   * @param string $source
+   *
+   * @return $this
+   */
+  public function addT(string $source): self {
+    $this->items[] = Text::t($source);
+    return $this;
+  }
+
+  /**
+   * @param string $source
+   *
+   * @return $this
+   */
+  public function addS(string $source): self {
+    $this->items[] = Text::s($source);
+    return $this;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function convert(TranslatorInterface $translator): string {
