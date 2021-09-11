@@ -7,30 +7,33 @@ use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\faktoria\Formula\Formula_Select_Permission;
+use Drupal\cu\Formula\Formula_PermissionId;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class AccountAccess_Permission implements AccountAccessInterface {
 
   /**
    * @var string
    */
-  private $permission;
+  private string $permission;
 
   /**
    * @CfrPlugin("permission", @t("Permission"))
    *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function formula(): FormulaInterface {
+  public static function formula(ContainerInterface $container): FormulaInterface {
     return Formula_ValueToValue_CallbackMono::fromClass(
       self::class,
-      Formula_Select_Permission::proxy());
+      Formula_PermissionId::fromContainer($container));
   }
 
   /**
    * @param string $permission
    */
-  public function __construct($permission) {
+  public function __construct(string $permission) {
     $this->permission = $permission;
   }
 
