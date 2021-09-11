@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface;
 use Donquixote\Ock\Exception\IncarnatorException;

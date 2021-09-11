@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\ock\RouteHelper;
 
-
 use Drupal\controller_annotations\Util\StringUtil;
 
 class ClassRouteHelper extends ClassRouteHelperBase {

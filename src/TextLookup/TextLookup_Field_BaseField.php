@@ -6,7 +6,6 @@ namespace Drupal\ock\TextLookup;
 
 use Donquixote\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\ock\DrupalText;
 
 class TextLookup_Field_BaseField implements TextLookupInterface {
