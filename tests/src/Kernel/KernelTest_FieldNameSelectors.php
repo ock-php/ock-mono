@@ -6,14 +6,10 @@ namespace Drupal\Tests\renderkit\Kernel;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
 use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
-use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Drupal\faktoria\Hub\CfrPluginHub;
 use Drupal\renderkit\Formula\Formula_EntityType_WithFields;
 use Drupal\renderkit\Formula\Formula_EtDotX;
 use Drupal\renderkit\Formula\Formula_EtDotX_FixedEt;
 use Drupal\renderkit\Formula\Formula_FieldName;
-use Drupal\renderkit\Formula\Formula_FieldName_AllowedTypes;
 use Drupal\renderkit\Formula\Misc\SelectByEt\SelectByEt_FieldName;
 use Drupal\renderkit\Formula\Misc\SelectByEt\SelectByEt_FieldName_EntityReference;
 use Drupal\Tests\field\Kernel\FieldKernelTestBase;
@@ -35,7 +31,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
     'entity_test',
     'field_test',
     'renderkit',
-    'faktoria',
+    'cu',
     'node',
     'user',
     # 'node_test_config',

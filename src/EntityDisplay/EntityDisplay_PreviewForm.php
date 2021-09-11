@@ -6,10 +6,8 @@ namespace Drupal\renderkit\EntityDisplay;
 use Donquixote\ObCK\Context\CfContext;
 use Donquixote\ObCK\Context\CfContextInterface;
 use Donquixote\ObCK\Exception\EvaluatorException;
-use Drupal\cfrapi\Exception\UnsupportedFormulaException;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\faktoria\Form\Form_GenericRedirectGET;
-use Drupal\faktoria\Hub\CfrPluginHub;
+use Drupal\cu\Form\Form_GenericRedirectGET;
 
 class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
@@ -144,10 +142,10 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
     $form = [];
     $form[$this->queryKey] = [
       '#title' => t('Entity display plugin'),
-      /* @see cfrplugin_element_info() */
-      '#type' => 'faktoria',
-      '#faktoria_interface' => EntityDisplayInterface::class,
-      '#faktoria_context' => $context,
+      /* @see \Drupal\cu\Element\FormElement_CuPlugin() */
+      '#type' => 'cu',
+      '#cu_interface' => EntityDisplayInterface::class,
+      '#cu_context' => $context,
       '#default_value' => $conf,
       '#required' => TRUE,
     ];
@@ -166,7 +164,6 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
     // @todo Form submit is not working.
 
-    /** @noinspection PhpMethodParametersCountMismatchInspection */
     return \Drupal::formBuilder()->getForm(
       Form_GenericRedirectGET::class,
       $form);

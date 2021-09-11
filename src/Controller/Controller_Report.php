@@ -14,9 +14,6 @@ use Drupal\controller_annotations\Configuration\RouteTitle;
 use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
 use Drupal\controller_annotations\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\faktoria\Form\Form_IfaceDemo;
-use Drupal\faktoria\Hub\CfrPluginHub;
-use Drupal\faktoria\Util\UiDumpUtil;
 use Drupal\renderkit\BuildProvider\BuildProviderInterface;
 use Drupal\routelink\RouteModifier\RouteMenuLink;
 
