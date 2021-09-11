@@ -35,41 +35,36 @@ class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {
   }
 
   /**
-   * @param string $et
-   *
-   * @return \Drupal\Core\Field\FieldDefinitionInterface[]
+   * {@inheritdoc}
    */
-  public function etGetFieldDefinitions($et): array {
+  public function etGetFieldDefinitions(string $entity_type): array {
 
-    if (isset($this->etProcessed[$et])) {
-      return $this->definitions[$et];
+    if (isset($this->etProcessed[$entity_type])) {
+      return $this->definitions[$entity_type];
     }
 
-    $this->etProcessed[$et] = TRUE;
+    $this->etProcessed[$entity_type] = TRUE;
 
-    return $this->definitions[$et] = $this->decorated->etGetFieldDefinitions($et);
+    return $this->definitions[$entity_type] = $this->decorated->etGetFieldDefinitions($entity_type);
   }
 
   /**
-   * @param string $et
-   * @param string $fieldName
-   *
-   * @return \Drupal\Core\Field\FieldDefinitionInterface|null
+   * {@inheritdoc}
    */
-  public function etAndFieldNameGetDefinition($et, $fieldName): ?FieldDefinitionInterface {
+  public function etAndFieldNameGetDefinition(string $entity_type, string $field_name): ?FieldDefinitionInterface {
 
-    if (isset($this->fieldProcessed[$et][$fieldName])) {
-      return $this->definitions[$et][$fieldName];
+    if (isset($this->fieldProcessed[$entity_type][$field_name])) {
+      return $this->definitions[$entity_type][$field_name];
     }
 
-    $this->fieldProcessed[$et][$fieldName] = TRUE;
+    $this->fieldProcessed[$entity_type][$field_name] = TRUE;
 
-    if (isset($this->etProcessed[$et])) {
+    if (isset($this->etProcessed[$entity_type])) {
       return NULL;
     }
 
-    return $this->definitions[$et][$fieldName] = $this->decorated->etAndFieldNameGetDefinition(
-      $et,
-      $fieldName);
+    return $this->definitions[$entity_type][$field_name] = $this->decorated->etAndFieldNameGetDefinition(
+      $entity_type,
+      $field_name);
   }
 }

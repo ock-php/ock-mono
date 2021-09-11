@@ -39,15 +39,13 @@ class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
   }
 
   /**
-   * @param string $et
-   *
-   * @return \Drupal\Core\Field\FieldDefinitionInterface[]
+   * {@inheritdoc}
    */
-  public function etGetFieldDefinitions($et): array {
+  public function etGetFieldDefinitions(string $entity_type): array {
 
     try {
       $storageDefinitions = $this->entityFieldManager
-        ->getFieldStorageDefinitions($et);
+        ->getFieldStorageDefinitions($entity_type);
     }
     catch (\LogicException $e) {
       throw $e;
@@ -65,16 +63,13 @@ class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
   }
 
   /**
-   * @param string $et
-   * @param string $fieldName
-   *
-   * @return \Drupal\Core\Field\FieldDefinitionInterface|null
+   * {@inheritdoc}
    */
-  public function etAndFieldNameGetDefinition($et, $fieldName): ?FieldDefinitionInterface {
+  public function etAndFieldNameGetDefinition(string $entity_type, string $field_name): ?FieldDefinitionInterface {
 
     try {
       $storageDefinitions = $this->entityFieldManager
-        ->getFieldStorageDefinitions($et);
+        ->getFieldStorageDefinitions($entity_type);
     }
     catch (\LogicException $e) {
       throw $e;
@@ -82,11 +77,11 @@ class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
       # return NULL;
     }
 
-    if (!isset($storageDefinitions[$fieldName])) {
+    if (!isset($storageDefinitions[$field_name])) {
       return NULL;
     }
 
-    $storageDefinition = $storageDefinitions[$fieldName];
+    $storageDefinition = $storageDefinitions[$field_name];
 
     return BaseFieldDefinition::createFromFieldStorageDefinition($storageDefinition);
   }

@@ -44,12 +44,12 @@ class IdToFormula_EtDotFieldName_FormatterTypeAndSettings implements IdToFormula
   }
 
   /**
-   * @param string|int $etAndFieldName
+   * @param string|int $etAndId
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    */
-  public function idGetFormula($etAndFieldName): ?FormulaInterface {
-    list($et, $fieldName) = explode('.', $etAndFieldName . '.');
+  public function idGetFormula($etAndId): ?FormulaInterface {
+    list($et, $fieldName) = explode('.', $etAndId . '.');
 
     $fieldDefinition = $this->fieldDefinitionLookup->etAndFieldNameGetDefinition(
       $et,

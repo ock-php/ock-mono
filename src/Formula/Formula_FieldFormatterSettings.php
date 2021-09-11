@@ -4,25 +4,33 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Evaluator\EvaluatorInterface;
-use Donquixote\ObCK\Form\D8\FormatorD8Interface;
 use Donquixote\ObCK\Summarizer\SummarizerInterface;
-use Drupal\Component\Utility\Html;
+use Donquixote\ObCK\Text\TextInterface;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\cu\DrupalText;
+use Drupal\cu\Formator\FormatorD8Interface;
 
-class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, EvaluatorInterface, FormulaInterface {
+/**
+ * Formula for the settings for a given formatter.
+ */
+class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, FormulaInterface {
 
   /**
+   * Formatter with default settings.
+   *
    * @var \Drupal\Core\Field\FormatterInterface
    */
-  private $formatter;
+  private $stubFormatter;
 
   /**
+   * Constructor.
+   *
    * @param \Drupal\Core\Field\FormatterInterface $formatter
+   *   Formatter with default settings.
    */
   public function __construct(FormatterInterface $formatter) {
-    $this->formatter = $formatter;
+    $this->stubFormatter = $formatter;
   }
 
   /**
@@ -33,7 +41,7 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
    */
   public function confGetD8Form($conf, $label): array {
 
-    $formatter = $this->getFormatter($conf);
+    $formatter = $this->getFormatterWithSettings($conf);
 
     $form = [
       '#type' => 'container',
@@ -41,7 +49,7 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
       '#tree' => TRUE,
     ];
 
-    $form['#process'][] = function (array $element, FormStateInterface $formState, array $form) use ($formatter) {
+    $form['#process'][] = static function (array $element, FormStateInterface $formState, array $form) use ($formatter) {
       $element['inner'] = $formatter->settingsForm($form, $formState);
       $element['inner']['#parents'] = $element['#parents'];
       return $element;
@@ -51,40 +59,13 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
   }
 
   /**
-   * @param mixed $conf
-   *
-   * @return null|string
+   * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?string {
+  public function confGetSummary($conf): ?TextInterface {
 
-    $summary = $this->getFormatter($conf)->settingsSummary();
+    $summary = $this->getFormatterWithSettings($conf)->settingsSummary();
 
-    if (!\is_array($summary)) {
-
-      if (null === $summary) {
-        return null;
-      }
-
-      return (string)$summary;
-    }
-
-    $html = '';
-    foreach ($summary as $item) {
-      $html = '<li>' . Html::escape($item) . '</li>';
-    }
-
-    return '<ul>' . $html . '</ul>';
-  }
-
-  /**
-   * @param mixed $conf
-   *   Configuration from a form, config file or storage.
-   *
-   * @return mixed
-   *   Value to be used in the application.
-   */
-  public function confGetValue($conf) {
-    return $this->confGetFormatterSettings($conf);
+    return DrupalText::fromVarRecursiveUl($summary);
   }
 
   /**
@@ -102,7 +83,7 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
    * @return array
    */
   private function confGetFormatterSettings($conf): array {
-    return $this->getFormatter($conf)->getSettings();
+    return $this->getFormatterWithSettings($conf)->getSettings();
   }
 
   /**
@@ -110,8 +91,8 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
    *
    * @return \Drupal\Core\Field\FormatterInterface
    */
-  private function getFormatter($settings = NULL): FormatterInterface {
-    $this->formatter->setSettings($settings ?: []);
-    return $this->formatter;
+  private function getFormatterWithSettings($settings = NULL): FormatterInterface {
+    $formatter = clone $this->stubFormatter;
+    return $formatter->setSettings($settings ?: []);
   }
 }

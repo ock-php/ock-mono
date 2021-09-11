@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FormatterPluginManager;
+use Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
-class Formula_FieldFormatterId implements Formula_SelectInterface {
+class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
 
   /**
    * @var \Drupal\Core\Field\FormatterPluginManager
@@ -41,16 +42,11 @@ class Formula_FieldFormatterId implements Formula_SelectInterface {
   }
 
   /**
-   * @return string[][]
+   * {@inheritdoc}
    */
   public function getGroupedOptions(): array {
 
     $options = $this->formatterPluginManager->getOptions($this->fieldTypeName);
-
-    foreach ($options as $type => $label) {
-      $options[$type] = (string)$label;
-      # $options[$type] = $type;
-    }
 
     return ['' => $options];
   }
@@ -58,9 +54,9 @@ class Formula_FieldFormatterId implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($formatterTypeName) {
+  public function idGetLabel($id) {
 
-    if (NULL === $definition = $this->idGetDefinition($formatterTypeName)) {
+    if (NULL === $definition = $this->idGetDefinition($id)) {
       return NULL;
     }
 
@@ -68,13 +64,13 @@ class Formula_FieldFormatterId implements Formula_SelectInterface {
   }
 
   /**
-   * @param string $formatterTypeName
+   * @param string $id
    *
    * @return bool
    */
-  public function idIsKnown($formatterTypeName): bool {
+  public function idIsKnown($id): bool {
 
-    return NULL !== $this->idGetDefinition($formatterTypeName);
+    return NULL !== $this->idGetDefinition($id);
   }
 
   /**
@@ -84,9 +80,14 @@ class Formula_FieldFormatterId implements Formula_SelectInterface {
    */
   private function idGetDefinition($formatterTypeName): ?array {
 
-    $definition = $this->formatterPluginManager->getDefinition(
-      $formatterTypeName,
-      FALSE);
+    try {
+      $definition = $this->formatterPluginManager->getDefinition(
+        $formatterTypeName,
+        FALSE);
+    }
+    catch (PluginNotFoundException $e) {
+      throw new \RuntimeException($e->getMessage(), 0, $e);
+    }
 
     if (NULL === $definition) {
       return NULL;

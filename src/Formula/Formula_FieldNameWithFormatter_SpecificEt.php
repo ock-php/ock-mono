@@ -23,13 +23,20 @@ class Formula_FieldNameWithFormatter_SpecificEt implements Formula_Proxy_Replace
    */
   private $fieldNameFormulaProxy;
 
+  public static function cr(string $entity_type_id, string $bundle = NULL) {
+    return new Formula_Drilldown(
+      Formula_FieldName::fromContainer(),
+      new IdToFormula_FieldName_FormatterTypeAndSettings($entity_type_id),
+      9);
+  }
+
   /**
    * @param string $entityType
    * @param string|null $bundleName
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
    */
-  public static function create($entityType, $bundleName = NULL) {
+  public static function create(string $entityType, string $bundleName = NULL) {
 
     return new self($entityType, $bundleName);
   }
@@ -38,7 +45,7 @@ class Formula_FieldNameWithFormatter_SpecificEt implements Formula_Proxy_Replace
    * @param string $entityType
    * @param string|null $bundleName
    */
-  public function __construct($entityType, $bundleName = NULL) {
+  public function __construct(string $entityType, string $bundleName = NULL) {
 
     $this->entityType = $entityType;
 
