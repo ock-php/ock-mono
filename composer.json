@@ -46,7 +46,6 @@
     ],
     "require": {
         "composer/installers": "^1.9",
-        "donquixote/adaptism": "dev-master",
         "donquixote/annotation-parser": "@dev",
         "donquixote/callback-reflection": "@dev",
         "donquixote/class-discovery": "@dev",
