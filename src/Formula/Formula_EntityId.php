@@ -8,7 +8,7 @@ use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\cu\Formator\FormatorD8Interface;
+use Drupal\ock\Formator\FormatorD8Interface;
 
 class Formula_EntityId implements Formula_IdToLabelInterface, FormatorD8Interface {
 

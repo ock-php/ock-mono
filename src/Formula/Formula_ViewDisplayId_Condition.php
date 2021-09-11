@@ -5,7 +5,7 @@ namespace Drupal\renderkit\Formula;
 
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Text\TextInterface;
-use Drupal\cu\DrupalText;
+use Drupal\ock\DrupalText;
 use Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface;
 use Drupal\views\Entity\View;
 

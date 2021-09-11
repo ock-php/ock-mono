@@ -8,8 +8,8 @@ use Donquixote\Ock\Summarizer\SummarizerInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\cu\DrupalText;
-use Drupal\cu\Formator\FormatorD8Interface;
+use Drupal\ock\DrupalText;
+use Drupal\ock\Formator\FormatorD8Interface;
 
 /**
  * Formula for the settings for a given formatter.

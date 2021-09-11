@@ -6,7 +6,7 @@ namespace Drupal\renderkit\Formula;
 use Donquixote\Ock\Formula\Select\Formula_Select_BufferedBase;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
-use Drupal\cu\DrupalText;
+use Drupal\ock\DrupalText;
 
 class Formula_ImageStyleName extends Formula_Select_BufferedBase {
 

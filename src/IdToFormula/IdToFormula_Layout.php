@@ -8,7 +8,7 @@ use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
-use Drupal\cu\Formula\DrupalPluginSettings\Formula_DrupalPluginSettings;
+use Drupal\ock\Formula\DrupalPluginSettings\Formula_DrupalPluginSettings;
 use Drupal\renderkit\Formula\Formula_LayoutId;
 
 class IdToFormula_Layout implements IdToFormulaInterface {

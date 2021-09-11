@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
-use Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
 class Formula_EntityType implements Formula_DrupalSelectInterface {
 

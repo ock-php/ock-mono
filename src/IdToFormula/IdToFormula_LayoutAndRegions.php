@@ -14,9 +14,9 @@ use Donquixote\Ock\Text\Text;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
-use Drupal\cu\DrupalText;
-use Drupal\cu\Formula\DrupalPluginSettings\Formula_DrupalPluginSettings;
-use Drupal\cu\Util\DrupalPhpUtil;
+use Drupal\ock\DrupalText;
+use Drupal\ock\Formula\DrupalPluginSettings\Formula_DrupalPluginSettings;
+use Drupal\ock\Util\DrupalPhpUtil;
 use Drupal\renderkit\Formula\Formula_LayoutId;
 
 class IdToFormula_LayoutAndRegions implements IdToFormulaInterface {

@@ -7,7 +7,7 @@ use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
-use Drupal\cu\DrupalText;
+use Drupal\ock\DrupalText;
 
 class Formula_EntityBundleName implements Formula_FlatSelectInterface {
 

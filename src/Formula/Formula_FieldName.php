@@ -9,8 +9,8 @@ use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
 use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
-use Drupal\cu\TextLookup\TextLookup_Field;
-use Drupal\cu\TextLookup\TextLookup_FieldType;
+use Drupal\ock\TextLookup\TextLookup_Field;
+use Drupal\ock\TextLookup\TextLookup_FieldType;
 use Psr\Container\ContainerInterface;
 
 /**

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Drupal\cu\Formator\FormatorD8Interface\FormatorD8Interface;
+use Drupal\ock\Formator\FormatorD8Interface\FormatorD8Interface;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\IdToFormula\IdToFormula_Callback;
 use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;

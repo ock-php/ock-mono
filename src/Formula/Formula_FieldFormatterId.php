@@ -5,7 +5,7 @@ namespace Drupal\renderkit\Formula;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FormatterPluginManager;
-use Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
 class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
 

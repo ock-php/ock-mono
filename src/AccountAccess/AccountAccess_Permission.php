@@ -7,7 +7,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\cu\Formula\Formula_PermissionId;
+use Drupal\ock\Formula\Formula_PermissionId;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class AccountAccess_Permission implements AccountAccessInterface {

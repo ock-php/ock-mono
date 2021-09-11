@@ -9,7 +9,7 @@ use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
-use Drupal\cu\DrupalText;
+use Drupal\ock\DrupalText;
 
 /**
  * Formula to select a layout id.

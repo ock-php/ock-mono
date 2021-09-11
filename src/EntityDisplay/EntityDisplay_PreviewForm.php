@@ -7,7 +7,7 @@ use Donquixote\Ock\Context\CfContext;
 use Donquixote\Ock\Context\CfContextInterface;
 use Donquixote\Ock\Exception\EvaluatorException;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\cu\Form\Form_GenericRedirectGET;
+use Drupal\ock\Form\Form_GenericRedirectGET;
 
 class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
@@ -142,7 +142,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
     $form = [];
     $form[$this->queryKey] = [
       '#title' => t('Entity display plugin'),
-      /* @see \Drupal\cu\Element\FormElement_CuPlugin() */
+      /* @see \Drupal\ock\Element\FormElement_CuPlugin() */
       '#type' => 'cu',
       '#cu_interface' => EntityDisplayInterface::class,
       '#cu_context' => $context,
