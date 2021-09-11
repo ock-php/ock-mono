@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu;
+namespace Drupal\ock;
 
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Drupal\cu\Util\UtilBase;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Drupal\ock\Util\UtilBase;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -16,7 +16,7 @@ class DrupalIncarnator extends UtilBase {
   /**
    * @param \Psr\Container\ContainerInterface|null $container
    *
-   * @return \Donquixote\ObCK\Incarnator\IncarnatorInterface
+   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
   public static function fromContainer(ContainerInterface $container = NULL): IncarnatorInterface {
     if (!$container) {

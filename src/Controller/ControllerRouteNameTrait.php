@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cu\Controller;
+namespace Drupal\ock\Controller;
 
 use Drupal\controller_annotations\Util\StringUtil;
 

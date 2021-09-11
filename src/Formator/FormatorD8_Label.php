@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Formula\Label\Formula_LabelInterface;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Formula\Label\Formula_LabelInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class FormatorD8_Label implements FormatorD8Interface {
 
   /**
-   * @var \Drupal\cu\Formator\FormatorD8Interface
+   * @var \Drupal\ock\Formator\FormatorD8Interface
    */
   private $decorated;
 
@@ -21,12 +21,12 @@ class FormatorD8_Label implements FormatorD8Interface {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Label\Formula_LabelInterface $formula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Formula\Label\Formula_LabelInterface $formula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_LabelInterface $formula, IncarnatorInterface $incarnator) {
 
@@ -42,7 +42,7 @@ class FormatorD8_Label implements FormatorD8Interface {
   }
 
   /**
-   * @param \Drupal\cu\Formator\FormatorD8Interface $decorated
+   * @param \Drupal\ock\Formator\FormatorD8Interface $decorated
    * @param string $label
    */
   public function __construct(FormatorD8Interface $decorated, $label) {

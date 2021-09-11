@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Reflector;
+namespace Drupal\ock\Reflector;
 
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
-use Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactoryInterface;
+use Donquixote\Ock\Formula\Iface\Formula_IfaceInterface;
+use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface;
 
 class ReflectorIncarnators {
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface $formula
+   * @param \Donquixote\Ock\Formula\Iface\Formula_IfaceInterface $formula
    *
    * @return \Reflector
    *

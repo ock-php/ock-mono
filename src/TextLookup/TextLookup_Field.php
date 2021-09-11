@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\TextLookup;
+namespace Drupal\ock\TextLookup;
 
-use Donquixote\ObCK\TextLookup\TextLookup_FallbackChain;
-use Donquixote\ObCK\TextLookup\TextLookupInterface;
+use Donquixote\Ock\TextLookup\TextLookup_FallbackChain;
+use Donquixote\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
 use Psr\Container\ContainerInterface;
@@ -22,7 +22,7 @@ class TextLookup_Field {
    * @param string $entity_type_id
    * @param string|null $bundle
    *
-   * @return \Donquixote\ObCK\TextLookup\TextLookupInterface
+   * @return \Donquixote\Ock\TextLookup\TextLookupInterface
    */
   public static function fromContainer(ContainerInterface $container, string $entity_type_id, string $bundle = NULL): TextLookupInterface {
     /** @var \Drupal\Core\KeyValueStore\KeyValueFactoryInterface $kv */
@@ -40,7 +40,7 @@ class TextLookup_Field {
    * @param string $entityTypeId
    * @param string|null $bundle
    *
-   * @return \Donquixote\ObCK\TextLookup\TextLookupInterface
+   * @return \Donquixote\Ock\TextLookup\TextLookupInterface
    */
   public static function create(
     EntityFieldManagerInterface $entityFieldManager,

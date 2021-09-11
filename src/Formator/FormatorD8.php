@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface;
-use Donquixote\ObCK\Util\MessageUtil;
-use Donquixote\ObCK\Incarnator\Incarnator;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
+use Donquixote\Ock\Util\MessageUtil;
+use Donquixote\Ock\Incarnator\Incarnator;
+use Donquixote\Ock\Util\UtilBase;
 
 final class FormatorD8 extends UtilBase {
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
-   * @return \Drupal\cu\Formator\FormatorD8Interface
+   * @return \Drupal\ock\Formator\FormatorD8Interface
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException Transition seems to be unsupported for the given formula.
+   * @throws \Donquixote\Ock\Exception\IncarnatorException Transition seems to be unsupported for the given formula.
    */
   public static function fromFormula(
     FormulaInterface $formula,
@@ -44,12 +44,12 @@ final class FormatorD8 extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
-   * @return \Drupal\cu\Formator\FormatorD8Interface|null
+   * @return \Drupal\ock\Formator\FormatorD8Interface|null
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function optional(
     FormulaInterface $formula,
@@ -69,19 +69,19 @@ final class FormatorD8 extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
-   * @return \Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface|null
+   * @return \Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface|null
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function optionable(
     FormulaInterface $formula,
     IncarnatorInterface $incarnator
   ): ?OptionableFormatorD8Interface {
 
-    /** @var \Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface|null $candidate */
+    /** @var \Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface|null $candidate */
     $candidate = Incarnator::incarnate(
       $formula,
       OptionableFormatorD8Interface::class,

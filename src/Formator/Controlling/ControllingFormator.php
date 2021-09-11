@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator\Controlling;
+namespace Drupal\ock\Formator\Controlling;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Incarnator\Incarnator;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Incarnator\Incarnator;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class ControllingFormator {
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
-   * @return \Drupal\cu\Formator\Controlling\ControllingFormatorInterface
+   * @return \Drupal\ock\Formator\Controlling\ControllingFormatorInterface
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromFormula(
     FormulaInterface $formula,
     IncarnatorInterface $incarnator
   ): ControllingFormatorInterface {
 
-    /** @var \Drupal\cu\Formator\Controlling\ControllingFormatorInterface $candidate */
+    /** @var \Drupal\ock\Formator\Controlling\ControllingFormatorInterface $candidate */
     $candidate = Incarnator::incarnate(
       $formula,
       ControllingFormatorInterface::class,

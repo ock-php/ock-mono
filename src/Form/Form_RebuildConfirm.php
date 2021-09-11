@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Form;
+namespace Drupal\ock\Form;
 
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\cu\Controller\Controller_ReportOverview;
+use Drupal\ock\Controller\Controller_ReportOverview;
 
 class Form_RebuildConfirm extends ConfirmFormBase {
 
@@ -15,14 +15,14 @@ class Form_RebuildConfirm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getFormId(): string {
-    return 'cu_rebuild_confirm_form';
+    return 'ock_rebuild_confirm_form';
   }
 
   /**
    * {@inheritdoc}
    */
   public function getQuestion(): string {
-    return $this->t('Rediscover cu plugins?')->render();
+    return $this->t('Rediscover ock plugins?')->render();
   }
 
   /**
@@ -49,10 +49,10 @@ class Form_RebuildConfirm extends ConfirmFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
 
-    // @todo Clear the cu cache.
+    // @todo Clear the ock cache.
 
     \Drupal::messenger()->addMessage(
-      $this->t('The cu plugin cache has been cleared.'));
+      $this->t('The ock plugin cache has been cleared.'));
 
     $form_state->setRedirectUrl($this->getCancelUrl());
   }

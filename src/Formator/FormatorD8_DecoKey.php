@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface;
-use Donquixote\ObCK\Formula\Sequence\Formula_Sequence_ItemLabelT;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface;
+use Donquixote\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\cu\AjaxCallback\AjaxCallback_ElementWithProperty;
+use Drupal\ock\AjaxCallback\AjaxCallback_ElementWithProperty;
 
 class FormatorD8_DecoKey implements FormatorD8Interface {
 
   /**
-   * @var \Drupal\cu\Formator\FormatorD8Interface
+   * @var \Drupal\ock\Formator\FormatorD8Interface
    */
   private FormatorD8Interface $decorated;
 
   /**
-   * @var \Drupal\cu\Formator\FormatorD8Interface
+   * @var \Drupal\ock\Formator\FormatorD8Interface
    */
   private FormatorD8Interface $decorator;
 
@@ -27,12 +27,12 @@ class FormatorD8_DecoKey implements FormatorD8Interface {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_DecoKeyInterface $formula, IncarnatorInterface $incarnator): ?self {
     return new self(
@@ -51,8 +51,8 @@ class FormatorD8_DecoKey implements FormatorD8Interface {
   /**
    * Constructor.
    *
-   * @param \Drupal\cu\Formator\FormatorD8Interface $decorated
-   * @param \Drupal\cu\Formator\FormatorD8Interface $decorator
+   * @param \Drupal\ock\Formator\FormatorD8Interface $decorated
+   * @param \Drupal\ock\Formator\FormatorD8Interface $decorator
    * @param string $key
    */
   public function __construct(
@@ -72,7 +72,7 @@ class FormatorD8_DecoKey implements FormatorD8Interface {
 
     return [
       '#type' => 'themekit_container',
-      '#attributes' => ['class' => ['cu-decorator']],
+      '#attributes' => ['class' => ['ock-decorator']],
       // Use closures so that the actual methods can remain private.
       '#process' => [function (array $element, FormStateInterface $form_state, array $form) use ($conf, $label) {
         return $this->elementProcess($element, $form_state, $form, $conf, $label);
@@ -153,7 +153,7 @@ class FormatorD8_DecoKey implements FormatorD8Interface {
 
     $uniqid = sha1(serialize($element['#parents']));
 
-    $element['#prefix'] = '<div id="' . $uniqid . '" class="cu-deco-ajax-wrapper">';
+    $element['#prefix'] = '<div id="' . $uniqid . '" class="ock-deco-ajax-wrapper">';
     $element['#suffix'] = '</div>';
 
     return [

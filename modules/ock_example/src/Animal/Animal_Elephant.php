@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu_example\Animal;
+namespace Drupal\ock_example\Animal;
 
 /**
- * @ocui("elephant", "Elephant")
+ * @ock("elephant", "Elephant")
  */
 class Animal_Elephant implements AnimalInterface {
 

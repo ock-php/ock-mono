@@ -1,33 +1,33 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface;
-use Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
+use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
+use Donquixote\Ock\Formula\Neutral\Formula_Neutral_IfaceTransformed;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class FormatorD8_IfaceTagged implements FormatorD8Interface, OptionableFormatorD8Interface {
 
   /**
-   * @var \Drupal\cu\Formator\FormatorD8_DrilldownSelect
+   * @var \Drupal\ock\Formator\FormatorD8_DrilldownSelect
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed
+   * @var \Donquixote\Ock\Formula\Neutral\Formula_Neutral_IfaceTransformed
    */
   private $formula;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed $formula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Formula\Neutral\Formula_Neutral_IfaceTransformed $formula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(
     Formula_Neutral_IfaceTransformed $formula,
@@ -50,8 +50,8 @@ class FormatorD8_IfaceTagged implements FormatorD8Interface, OptionableFormatorD
   }
 
   /**
-   * @param \Drupal\cu\Formator\FormatorD8_DrilldownSelect $decorated
-   * @param \Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed $formula
+   * @param \Drupal\ock\Formator\FormatorD8_DrilldownSelect $decorated
+   * @param \Donquixote\Ock\Formula\Neutral\Formula_Neutral_IfaceTransformed $formula
    */
   public function __construct(
     FormatorD8_DrilldownSelect $decorated,
@@ -84,12 +84,12 @@ class FormatorD8_IfaceTagged implements FormatorD8Interface, OptionableFormatorD
 
     $form = $this->decorated->confGetD8Form($conf, $label);
 
-    /* @see \Drupal\cu\Element\RenderElement_DrilldownContainer */
-    $form['#type'] = 'cu_drilldown_container';
-    $form['#cu_interface'] = $this->formula->getInterface();
-    $form['#cu_context'] = $this->formula->getContext();
+    /* @see \Drupal\ock\Element\RenderElement_DrilldownContainer */
+    $form['#type'] = 'ock_drilldown_container';
+    $form['#ock_interface'] = $this->formula->getInterface();
+    $form['#ock_context'] = $this->formula->getContext();
 
-    $form['#attached']['library'][] = 'cu/drilldown-tools';
+    $form['#attached']['library'][] = 'ock/drilldown-tools';
 
     return $form;
   }

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
 class FormatorD8_RenderElement implements FormatorD8Interface {
 

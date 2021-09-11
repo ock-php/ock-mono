@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu_example\Plant;
+namespace Drupal\ock_example\Plant;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\Sequence\Formula_Sequence_ItemLabelT;
-use Donquixote\ObCK\Text\Text;
-use Drupal\cu_example\Animal\AnimalInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
+use Donquixote\Ock\Text\Text;
+use Drupal\ock_example\Animal\AnimalInterface;
 
 /**
  * Plant composed of a swarm of animals.
@@ -16,9 +16,9 @@ use Drupal\cu_example\Animal\AnimalInterface;
 class Plant_EnchantedSwarm implements PlantInterface {
 
   /**
-   * @ocui("enchantedSwarm", "Enchanted swarm")
+   * @ock("enchantedSwarm", "Enchanted swarm")
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(): FormulaInterface {
     return Formula::group()
@@ -35,7 +35,7 @@ class Plant_EnchantedSwarm implements PlantInterface {
   /**
    * Constructor.
    *
-   * @param \Drupal\cu_example\Animal\AnimalInterface[] $animals
+   * @param \Drupal\ock_example\Animal\AnimalInterface[] $animals
    *   Enchanted animal.
    */
   public function __construct(array $animals) {}

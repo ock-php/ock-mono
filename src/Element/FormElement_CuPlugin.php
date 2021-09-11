@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Element;
+namespace Drupal\ock\Element;
 
-use Donquixote\ObCK\Exception\IncarnatorException;
-use Drupal\cu\Formator\FormatorD8;
-use Donquixote\ObCK\Formula\Formula;
+use Donquixote\Ock\Exception\IncarnatorException;
+use Drupal\ock\Formator\FormatorD8;
+use Donquixote\Ock\Formula\Formula;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element\FormElement;
-use Drupal\cu\DrupalIncarnator;
+use Drupal\ock\DrupalIncarnator;
 
 /**
- * @FormElement("cu")
+ * @FormElement("ock")
  */
 class FormElement_CuPlugin extends FormElement {
 
@@ -27,8 +27,8 @@ class FormElement_CuPlugin extends FormElement {
         [self::class, 'process'],
       ],
       // This needs to be set.
-      '#cu_interface' => NULL,
-      '#cu_context' => NULL,
+      '#ock_interface' => NULL,
+      '#ock_context' => NULL,
       '#title' => NULL,
     ];
   }
@@ -49,7 +49,7 @@ class FormElement_CuPlugin extends FormElement {
   ): array {
 
     // @todo Filter by context.
-    $formula = Formula::iface($element['#cu_interface']);
+    $formula = Formula::iface($element['#ock_interface']);
 
     try {
       $formator = FormatorD8::fromFormula(

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
 /**
  * Configurator for associative arrays.

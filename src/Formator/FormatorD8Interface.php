@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Form\Common\FormatorCommonInterface;
+use Donquixote\Ock\Form\Common\FormatorCommonInterface;
 
 interface FormatorD8Interface extends FormatorCommonInterface {
 

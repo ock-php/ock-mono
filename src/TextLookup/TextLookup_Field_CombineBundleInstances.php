@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\TextLookup;
+namespace Drupal\ock\TextLookup;
 
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\TextLookup\TextLookupInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
 
@@ -22,7 +22,7 @@ class TextLookup_Field_CombineBundleInstances implements TextLookupInterface {
   private string $entityTypeId;
 
   /**
-   * @var \Drupal\cu\TextLookup\TextLookup_Field_SpecificBundleInstance
+   * @var \Drupal\ock\TextLookup\TextLookup_Field_SpecificBundleInstance
    */
   private TextLookup_Field_SpecificBundleInstance $stub;
 
@@ -32,7 +32,7 @@ class TextLookup_Field_CombineBundleInstances implements TextLookupInterface {
    * @param string $entityTypeId
    * @param string|null $bundle
    *
-   * @return \Donquixote\ObCK\TextLookup\TextLookupInterface
+   * @return \Donquixote\Ock\TextLookup\TextLookupInterface
    */
   public static function create(
     EntityFieldManagerInterface $entityFieldManager,

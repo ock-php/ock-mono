@@ -1,39 +1,39 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelperInterface;
-use Donquixote\ObCK\Exception\IncarnatorException;
-use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Donquixote\ObCK\Optionlessness\Optionlessness;
+use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
+use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface;
+use Donquixote\Ock\Exception\IncarnatorException;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Optionlessness\Optionlessness;
 
 class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
 
   /**
-   * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   private $idToFormula;
 
   /**
-   * @var \Donquixote\ObCK\Incarnator\IncarnatorInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
   private $incarnator;
 
   /**
-   * @var \Drupal\cu\Formator\FormatorD8Interface[]|false[]
+   * @var \Drupal\ock\Formator\FormatorD8Interface[]|false[]
    */
   private $formators = [];
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $drilldown
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $drilldown
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    */
@@ -56,10 +56,10 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $idFormula
-   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $idToFormula
-   * @param \Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelperInterface $drilldownKeysHelper
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $idFormula
+   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
+   * @param \Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface $drilldownKeysHelper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
   public function __construct(
     Formula_SelectInterface $idFormula,
@@ -100,9 +100,9 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
   /**
    * @param string $id
    *
-   * @return \Drupal\cu\Formator\FormatorD8Interface|null
+   * @return \Drupal\ock\Formator\FormatorD8Interface|null
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   private function idGetFormatorOrFalse($id): ?FormatorD8Interface {
     return ($this->formators[$id]
@@ -113,9 +113,9 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
   /**
    * @param string $id
    *
-   * @return \Drupal\cu\Formator\FormatorD8Interface|null
+   * @return \Drupal\ock\Formator\FormatorD8Interface|null
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Unsupported formula.
    */
   private function idBuildFormator($id): ?FormatorD8Interface {

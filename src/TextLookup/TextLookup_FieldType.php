@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\TextLookup;
+namespace Drupal\ock\TextLookup;
 
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\TextLookup\TextLookupInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Field\FieldTypePluginManager;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
-use Drupal\cu\DrupalText;
+use Drupal\ock\DrupalText;
 use Psr\Container\ContainerInterface;
 
 /**

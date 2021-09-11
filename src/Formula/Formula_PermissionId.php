@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formula;
+namespace Drupal\ock\Formula;
 
-use Donquixote\ObCK\Formula\Select\Formula_Select_BufferedBase;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Formula\Select\Formula_Select_BufferedBase;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\user\PermissionHandlerInterface;
 use Psr\Container\ContainerInterface;

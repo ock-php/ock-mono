@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Incarnator;
+namespace Drupal\ock\Incarnator;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Incarnator\Incarnator_FormulaReplacerBase;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface;
-use Drupal\cu\Formula\Formula_Select_FromDrupalSelect;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Incarnator\Incarnator_FormulaReplacerBase;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
+use Drupal\ock\Formula\Formula_Select_FromDrupalSelect;
 
 /**
  * @STA

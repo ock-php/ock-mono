@@ -1,27 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
-use Drupal\cu\AjaxCallback\AjaxCallback_ElementWithProperty;
-use Drupal\cu\Formator\Util\ArrayMode;
+use Drupal\ock\AjaxCallback\AjaxCallback_ElementWithProperty;
+use Drupal\ock\Formator\Util\ArrayMode;
 
 class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface
+   * @var \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface
    */
   private $sequence;
 
   /**
-   * @var \Drupal\cu\Formator\FormatorD8Interface
+   * @var \Drupal\ock\Formator\FormatorD8Interface
    */
   private $itemFormator;
 
@@ -31,7 +31,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
   private $arrayMode;
 
   /**
-   * @var \Donquixote\ObCK\Translator\TranslatorInterface
+   * @var \Donquixote\Ock\Translator\TranslatorInterface
    */
   private TranslatorInterface $translator;
 
@@ -43,14 +43,14 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $sequence
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $sequence
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
    * @return self
    *   Created instance.
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException Cannot create the item formator.
+   * @throws \Donquixote\Ock\Exception\IncarnatorException Cannot create the item formator.
    */
   public static function create(
     Formula_SequenceInterface $sequence,
@@ -68,9 +68,9 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $sequence
-   * @param \Drupal\cu\Formator\FormatorD8Interface $itemFormator
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $sequence
+   * @param \Drupal\ock\Formator\FormatorD8Interface $itemFormator
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
     Formula_SequenceInterface $sequence,
@@ -106,7 +106,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
       '#input' => TRUE,
       '#default_value' => $conf,
       '#type' => 'themekit_container',
-      '#attributes' => ['class' => ['cu-sequence']],
+      '#attributes' => ['class' => ['ock-sequence']],
       // Use closures so that the actual methods can remain private.
       '#process' => [function (array $element, FormStateInterface $form_state, array $form) {
         return $this->elementProcess($element, $form_state, $form);
@@ -131,7 +131,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
       ];
     }
 
-    $form['#attached']['library'][] = 'cu/tabledrag';
+    $form['#attached']['library'][] = 'ock/tabledrag';
 
     return $form;
   }
@@ -196,21 +196,21 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
    *   Processed element.
    */
   private function elementProcess(array $element, FormStateInterface $form_state, array $form): array {
-    $control_name = 'cu-sequence-' . sha1(serialize($element['#parents']));
+    $control_name = 'ock-sequence-' . sha1(serialize($element['#parents']));
 
     $value = $element['#value'];
 
     $element['#control_name'] = $control_name;
 
     $uniqid = sha1(serialize($element['#parents']));
-    # $element['#cu_sequence_ajax_wrapper_id'] = $uniqid;
+    # $element['#ock_sequence_ajax_wrapper_id'] = $uniqid;
 
-    $element['#attached']['library'][] = 'cu/tabledrag';
+    $element['#attached']['library'][] = 'ock/tabledrag';
 
     $element['items'] = [];
     $element['items']['#parents'] = $element['#parents'];
 
-    $element['#prefix'] = '<div id="' . $uniqid . '" class="cu-sequence-ajax-wrapper">';
+    $element['#prefix'] = '<div id="' . $uniqid . '" class="ock-sequence-ajax-wrapper">';
     $element['#suffix'] = '</div>';
 
     $parents = $element['#parents'];
@@ -224,7 +224,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
     foreach ($value as $delta => $item_value) {
 
       $element['items'][$delta] = [
-        '#attributes' => ['class' => ['cu-sequence-item']],
+        '#attributes' => ['class' => ['ock-sequence-item']],
       ];
 
       $element['items'][$delta]['handle'] = [
@@ -234,7 +234,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
       $element['items'][$delta]['item'] = [
         '#theme_wrappers' => ['container'],
         '#attributes' => [
-          'class' => ['cu-sequence-item-form'],
+          'class' => ['ock-sequence-item-form'],
         ],
       ];
 
@@ -256,7 +256,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
       $element['items'][$delta]['item']['form']['conf'] = $item_form;
 
       $element['items'][$delta]['delete'] = [
-        '#attributes' => ['class' => ['cu-sequence-delete-container']],
+        '#attributes' => ['class' => ['ock-sequence-delete-container']],
       ];
 
       $element['items'][$delta]['delete']['button'] = [
@@ -265,7 +265,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
         // The button name must be explicitly set, otherwise it will be 'op'.
         '#name' => $control_name . '[.delete][' . $delta . ']',
         '#value' => t('Remove'),
-        '#attributes' => ['class' => ['cu-sequence-delete']],
+        '#attributes' => ['class' => ['ock-sequence-delete']],
         '#submit' => [
           function (array $form, FormStateInterface $form_state) use ($parents, $delta) {
             $input_all =& $form_state->getUserInput();
@@ -304,7 +304,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
         // The button name must be explicitly set, otherwise it will be 'op'.
         '#name' => $control_name . '[add_more_button]',
         '#value' => $new_item_label_str,
-        '#attributes' => ['class' => ['cu-sequence-add-more']],
+        '#attributes' => ['class' => ['ock-sequence-add-more']],
         '#submit' => [
           static function (array $form, FormStateInterface $form_state) use ($parents) {
             $input_all =& $form_state->getUserInput();
@@ -326,7 +326,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
       $element['add_more_assoc'] = [
         '#type' => 'themekit_container',
         '#attributes' => [
-          'class' => ['cu-assoc_add_more'],
+          'class' => ['ock-assoc_add_more'],
         ],
       ];
 
@@ -384,7 +384,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
         // The button name must be explicitly set, otherwise it will be 'op'.
         '#name' => $control_name . '[add_more_button]',
         '#value' => $new_item_label_str,
-        '#attributes' => ['class' => ['cu-sequence-add-more']],
+        '#attributes' => ['class' => ['ock-sequence-add-more']],
         '#submit' => [
           function (array $form, FormStateInterface $form_state) use ($parents, $control_name) {
             $input_all =& $form_state->getUserInput();
@@ -512,7 +512,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
       '#attributes' => $element['items']['#attributes'],
     ];
 
-    $table_element['#attributes']['class'][] = 'cu-tabledrag';
+    $table_element['#attributes']['class'][] = 'ock-tabledrag';
 
     $element['items'] = $table_element;
 

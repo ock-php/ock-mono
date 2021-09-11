@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Util;
+namespace Drupal\ock\Util;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\ObCK\Util\HtmlUtil;
-use Donquixote\ObCK\Util\PhpUtil;
-use Donquixote\ObCK\Util\StringUtil as CfStringUtil;
+use Donquixote\Ock\Util\HtmlUtil;
+use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\Ock\Util\StringUtil as CfStringUtil;
 use Drupal\Core\Render\Markup;
 
 // See https://bugs.php.net/bug.php?id=66773

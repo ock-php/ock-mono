@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\ParamConverter;
+namespace Drupal\ock\ParamConverter;
 
-use Drupal\cu\Util\UiUtil;
+use Drupal\ock\Util\UiUtil;
 
 class ParamConverter_Iface extends ParamConverterBase {
 
-  public const TYPE = 'cu:interface';
+  public const TYPE = 'ock:interface';
 
   /**
    * {@inheritdoc}

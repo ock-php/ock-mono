@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu_example\Animal;
+namespace Drupal\ock_example\Animal;
 
 /**
  * Example interface for animals.

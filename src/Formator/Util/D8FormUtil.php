@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator\Util;
+namespace Drupal\ock\Formator\Util;
 
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\Util\UtilBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 
@@ -84,7 +84,7 @@ class D8FormUtil extends UtilBase {
       ];
     }
 
-    $dependingElement['#prefix'] = '<div id="' . $uniqid . '" class="cu-depending-element-container">';
+    $dependingElement['#prefix'] = '<div id="' . $uniqid . '" class="ock-depending-element-container">';
     $dependingElement['#suffix'] = '</div>';
     $dependingElement['#tree'] = TRUE;
 

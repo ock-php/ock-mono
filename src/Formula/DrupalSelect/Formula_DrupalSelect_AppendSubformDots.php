@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Formula\DrupalSelect;
+namespace Drupal\ock\Formula\DrupalSelect;
 
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Donquixote\ObCK\Optionlessness\Optionlessness;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Optionlessness\Optionlessness;
 
 /**
  * Decorator which appends .
@@ -14,26 +14,26 @@ use Donquixote\ObCK\Optionlessness\Optionlessness;
 class Formula_DrupalSelect_AppendSubformDots implements Formula_DrupalSelectInterface {
 
   /**
-   * @var \Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface
+   * @var \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface
    */
   private Formula_DrupalSelectInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   private IdToFormulaInterface $idToFormula;
 
   /**
-   * @var \Donquixote\ObCK\Incarnator\IncarnatorInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
   private IncarnatorInterface $incarnator;
 
   /**
    * Constructor.
    *
-   * @param \Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface $decorated
-   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $idToFormula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $decorated
+   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
   public function __construct(
     Formula_DrupalSelectInterface $decorated,

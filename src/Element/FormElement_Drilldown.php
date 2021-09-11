@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Element;
+namespace Drupal\ock\Element;
 
 use Drupal\Core\Render\Element\FormElement;
 
 /**
  * @todo Not used currently.
  *
- * @FormElement("cu_drilldown")
+ * @FormElement("ock_drilldown")
  */
 class FormElement_Drilldown extends FormElement {
 
@@ -17,10 +17,10 @@ class FormElement_Drilldown extends FormElement {
    */
   public function getInfo(): array {
     return [
-      /* @see _cu_id_conf_element_process() */
-      '#process' => ['_cu_id_conf_element_process'],
+      /* @see _ock_id_conf_element_process() */
+      '#process' => ['_ock_id_conf_element_process'],
       '#theme_wrappers' => ['themekit_container'],
-      '#cu_confToForm' => NULL,
+      '#ock_confToForm' => NULL,
     ];
   }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\TextToDrupal;
+namespace Drupal\ock\TextToDrupal;
 
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Text\TextInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 

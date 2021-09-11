@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Controller;
+namespace Drupal\ock\Controller;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Donquixote\ObCK\Generator\Generator;
-use Donquixote\ObCK\Plugin\NamedPlugin;
-use Donquixote\ObCK\Summarizer\Summarizer;
-use Donquixote\ObCK\Translator\TranslatorInterface;
-use Donquixote\ObCK\Util\HtmlUtil;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Generator\Generator;
+use Donquixote\Ock\Plugin\NamedPlugin;
+use Donquixote\Ock\Summarizer\Summarizer;
+use Donquixote\Ock\Translator\TranslatorInterface;
+use Donquixote\Ock\Util\HtmlUtil;
 use Drupal\controller_annotations\Configuration\Cache;
 use Drupal\controller_annotations\Configuration\Route;
 use Drupal\controller_annotations\Configuration\RouteIsAdmin;
@@ -20,27 +20,27 @@ use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
 use Drupal\controller_annotations\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
-use Drupal\cu\Form\Form_FormulaDemo;
-use Drupal\cu\RouteHelper\ClassRouteHelper;
-use Drupal\cu\RouteHelper\ClassRouteHelperInterface;
-use Drupal\cu\Util\StringUtil;
-use Drupal\cu\Util\UiCodeUtil;
-use Drupal\cu\Util\UiDumpUtil;
-use Drupal\cu\Util\UiFormulaUtil;
-use Drupal\cu\Util\UiUtil;
+use Drupal\ock\Form\Form_FormulaDemo;
+use Drupal\ock\RouteHelper\ClassRouteHelper;
+use Drupal\ock\RouteHelper\ClassRouteHelperInterface;
+use Drupal\ock\Util\StringUtil;
+use Drupal\ock\Util\UiCodeUtil;
+use Drupal\ock\Util\UiDumpUtil;
+use Drupal\ock\Util\UiFormulaUtil;
+use Drupal\ock\Util\UiUtil;
 use Drupal\routelink\RouteModifier\RouteDefaultTaskLink;
 use Drupal\routelink\RouteModifier\RouteTaskLink;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * @Route("/admin/reports/cu/{interface}/plugin/{named_plugin}")
+ * @Route("/admin/reports/ock/{interface}/plugin/{named_plugin}")
  * @Cache(expires="tomorrow")
  * @RouteIsAdmin
  * @RouteTitleMethod("title")
- * @RouteRequirePermission("view cu report")
+ * @RouteRequirePermission("view ock report")
  * @RouteParameters(
- *   interface = "cu:interface",
- *   named_plugin = "cu:plugin"
+ *   interface = "ock:interface",
+ *   named_plugin = "ock:plugin"
  * )
  */
 class Controller_ReportPlugin extends ControllerBase implements ControllerRouteNameInterface {
@@ -48,12 +48,12 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   use ControllerRouteNameTrait;
 
   /**
-   * @var \Donquixote\ObCK\Incarnator\IncarnatorInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
   private IncarnatorInterface $incarnator;
 
   /**
-   * @var \Donquixote\ObCK\Translator\TranslatorInterface
+   * @var \Donquixote\Ock\Translator\TranslatorInterface
    */
   private TranslatorInterface $translator;
 
@@ -61,7 +61,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * @param string $interface
    * @param string $id
    *
-   * @return \Drupal\cu\RouteHelper\ClassRouteHelperInterface
+   * @return \Drupal\ock\RouteHelper\ClassRouteHelperInterface
    */
   public static function route($interface, $id): ClassRouteHelperInterface {
     return ClassRouteHelper::fromClassName(
@@ -79,7 +79,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   public static function create(ContainerInterface $container): self {
     /** @var IncarnatorInterface $formula_to_anything */
     $formula_to_anything = $container->get(IncarnatorInterface::class);
-    /** @var \Donquixote\ObCK\Translator\TranslatorInterface $translator */
+    /** @var \Donquixote\Ock\Translator\TranslatorInterface $translator */
     $translator = $container->get(TranslatorInterface::class);
     return new self($formula_to_anything, $translator);
   }
@@ -87,8 +87,8 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $formula_to_anything
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formula_to_anything
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(IncarnatorInterface $formula_to_anything, TranslatorInterface $translator) {
     $this->incarnator = $formula_to_anything;
@@ -96,7 +96,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   }
 
   /**
-   * @param \Donquixote\ObCK\Plugin\NamedPlugin $named_plugin
+   * @param \Donquixote\Ock\Plugin\NamedPlugin $named_plugin
    *
    * @return string
    */
@@ -113,7 +113,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * @RouteDefaultTaskLink("Plugin")
    *
    * @param string $interface
-   * @param \Donquixote\ObCK\Plugin\NamedPlugin $named_plugin
+   * @param \Donquixote\Ock\Plugin\NamedPlugin $named_plugin
    *
    * @return array
    */
@@ -184,7 +184,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * @Route("/code")
    * @RouteTaskLink("Code")
    *
-   * @param \Donquixote\ObCK\Plugin\NamedPlugin $named_plugin
+   * @param \Donquixote\Ock\Plugin\NamedPlugin $named_plugin
    *
    * @return array|string
    *
@@ -208,7 +208,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * @RouteTaskLink("Devel")
    *
    * @param string $interface
-   * @param \Donquixote\ObCK\Plugin\NamedPlugin $named_plugin
+   * @param \Donquixote\Ock\Plugin\NamedPlugin $named_plugin
    *
    * @return array
    */
@@ -289,7 +289,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * @RouteTaskLink("Demo")
    *
    * @param string $interface
-   * @param \Donquixote\ObCK\Plugin\NamedPlugin $named_plugin
+   * @param \Donquixote\Ock\Plugin\NamedPlugin $named_plugin
    *
    * @return array
    */
@@ -399,7 +399,7 @@ EOT;
 <p>You can use the code below as a starting point for a custom plugin in a custom module.</p>
 <p>If you do so, don't forget to:</p>
 <ul>
-  <li>Implement <code>hook_cu_info()</code> similar to how other modules do it.</li>
+  <li>Implement <code>hook_ock_info()</code> similar to how other modules do it.</li>
   <li>Set up a PSR-4 namespace directory structure for your class files.</li>
   <li>Replace "myPlugin", "My plugin" and "class C" with more suitable names, and put the class into a namespace.</li>
   <li>Leave the <code>@return</code> tag in place, because it tells cudiscovery about the plugin type.</li>

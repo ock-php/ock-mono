@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formula;
+namespace Drupal\ock\Formula;
 
-use Donquixote\ObCK\Formula\Select\Formula_Select_BufferedBase;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
-use Drupal\cu\DrupalText;
-use Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface;
+use Donquixote\Ock\Formula\Select\Formula_Select_BufferedBase;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
+use Drupal\ock\DrupalText;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
 /**
  * Adapter for Drupal select formulas.
  *
- * @see \Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelect_FromCommonSelect
+ * @see \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelect_FromCommonSelect
  */
 class Formula_Select_FromDrupalSelect extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface
+   * @var \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface
    */
   private Formula_DrupalSelectInterface $formula;
 
   /**
    * Constructor.
    *
-   * @param \Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
+   * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
    */
   public function __construct(Formula_DrupalSelectInterface $formula) {
     $this->formula = $formula;

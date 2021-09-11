@@ -1,5 +1,5 @@
 
-.cu-tools {
+.ock-tools {
   opacity: 0;
   transition: opacity 60ms;
   display: inline-block;
@@ -7,11 +7,11 @@
   position: relative;
 }
 
-.cu-drilldown > .form-type-select:hover > .cu-tools {
+.ock-drilldown > .form-type-select:hover > .ock-tools {
   opacity: 1;
 }
 
-.cu-tools > .cu-tools-handle {
+.ock-tools > .ock-tools-handle {
   text-indent: -999px;
   overflow: hidden;
   display: inline-block;
@@ -22,7 +22,7 @@
   text-decoration: none;
 }
 
-.cu-tools > .cu-tools-handle::before {
+.ock-tools > .ock-tools-handle::before {
   content: '|||';
   display: block;
   transform: rotate(90deg);
@@ -30,10 +30,10 @@
   text-indent: 0;
 }
 
-.cu-tools:hover {
+.ock-tools:hover {
 }
 
-.cu-tools-dropdown {
+.ock-tools-dropdown {
   display: none;
   list-style: none;
   margin: -1px -200px 0 0;
@@ -44,19 +44,19 @@
   z-index: 100;
 }
 
-.cu-tools:hover > .cu-tools-dropdown {
+.ock-tools:hover > .ock-tools-dropdown {
   display: block;
 }
 
-.cu-tools-dropdown > hr {
+.ock-tools-dropdown > hr {
   margin: 5px 0;
   background: #aaa;
 }
 
-.cu-tools-dropdown > a,
-.cu-tools-dropdown > a:link,
-.cu-tools-dropdown > a:visited,
-.cu-tools-dropdown > a:focus {
+.ock-tools-dropdown > a,
+.ock-tools-dropdown > a:link,
+.ock-tools-dropdown > a:visited,
+.ock-tools-dropdown > a:focus {
   display: block;
   padding: 0 9px;
   transition: opacity 60ms;
@@ -67,14 +67,14 @@
   border: none;
 }
 
-.cu-tools-dropdown > a:hover {
+.ock-tools-dropdown > a:hover {
   text-decoration: none;
   opacity: 1;
   color: inherit;
   border: none;
 }
 
-.cu-tools-dropdown > a:active {
+.ock-tools-dropdown > a:active {
   color: black;
   text-shadow: 0 0 2px #eee;
 }

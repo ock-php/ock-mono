@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface;
+use Donquixote\Ock\Formula\Boolean\Formula_BooleanInterface;
 
 class FormatorD8_Boolean implements FormatorD8Interface {
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface $formula
+   * @param \Donquixote\Ock\Formula\Boolean\Formula_BooleanInterface $formula
    *
    * @return self
    */

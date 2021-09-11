@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cu\Controller;
+namespace Drupal\ock\Controller;
 
 /**
  * Interface that annotated controllers can implement to provide custom route names.

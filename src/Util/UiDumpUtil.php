@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Util;
+namespace Drupal\ock\Util;
 
-use Donquixote\ObCK\Util\HtmlUtil;
+use Donquixote\Ock\Util\HtmlUtil;
 use Drupal\Core\Render\Markup;
 use Drupal\devel\DevelDumperManagerInterface;
 

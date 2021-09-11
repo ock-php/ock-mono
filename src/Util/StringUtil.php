@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Util;
+namespace Drupal\ock\Util;
 
 final class StringUtil extends UtilBase {
 

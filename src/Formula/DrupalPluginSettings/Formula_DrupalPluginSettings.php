@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Formula\DrupalPluginSettings;
+namespace Drupal\ock\Formula\DrupalPluginSettings;
 
 class Formula_DrupalPluginSettings implements Formula_DrupalPluginSettingsInterface {
 

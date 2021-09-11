@@ -2,25 +2,25 @@ form:
   version: 1.x
   css:
     layout:
-      css/cu.form.css: {}
+      css/ock.form.css: {}
   dependencies:
     - core/jquery
 drilldown-tools:
   version: 1.x
   css:
     layout:
-      css/cu.drilldown-tools.css: {}
+      css/ock.drilldown-tools.css: {}
   js:
-    js/cu.drilldown-tools.js: {}
+    js/ock.drilldown-tools.js: {}
   dependencies:
     - core/jquery
 tabledrag:
   version: 1.x
   css:
     layout:
-      css/cu.tabledrag.css: {}
-      css/cu.sequence-tabledrag.css: {}
+      css/ock.tabledrag.css: {}
+      css/ock.sequence-tabledrag.css: {}
   js:
-    js/cu.tabledrag.js: {}
+    js/ock.tabledrag.js: {}
   dependencies:
     - core/drupal.tabledrag

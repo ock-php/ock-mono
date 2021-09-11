@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\ParamConverter;
+namespace Drupal\ock\ParamConverter;
 
-use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
-use Donquixote\ObCK\Plugin\NamedPlugin;
+use Donquixote\Ock\Plugin\Map\PluginMapInterface;
+use Donquixote\Ock\Plugin\NamedPlugin;
 
 class ParamConverter_Plugin extends ParamConverterBase {
 
-  public const TYPE = 'cu:plugin';
+  public const TYPE = 'ock:plugin';
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface
    */
   private $pluginMap;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $plugin_map
    */
   public function __construct(PluginMapInterface $plugin_map) {
     $this->pluginMap = $plugin_map;

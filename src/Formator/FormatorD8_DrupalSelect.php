@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
-use Donquixote\ObCK\Translator\TranslatorInterface;
-use Donquixote\ObCK\Util\ConfUtil;
-use Drupal\cu\Formator\Controlling\ControllingFormatorInterface;
-use Drupal\cu\Formator\Util\D8SelectUtil;
-use Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelect_FromCommonSelect;
-use Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelect_FromFlatSelect;
-use Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface;
+use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
+use Donquixote\Ock\Util\ConfUtil;
+use Drupal\ock\Formator\Controlling\ControllingFormatorInterface;
+use Drupal\ock\Formator\Util\D8SelectUtil;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelect_FromCommonSelect;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelect_FromFlatSelect;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
 class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormatorInterface {
 
   /**
-   * @var \Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface
+   * @var \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface
    */
   private Formula_DrupalSelectInterface $formula;
 
@@ -28,8 +28,8 @@ class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormato
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface $formula
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
    * @return self
    */
@@ -41,8 +41,8 @@ class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormato
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $formula
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
    * @return self
    */
@@ -54,7 +54,7 @@ class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormato
   /**
    * @STA
    *
-   * @param \Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
+   * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
    *
    * @return self
    */
@@ -65,7 +65,7 @@ class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormato
   /**
    * Constructor.
    *
-   * @param \Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
+   * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
    */
   public function __construct(Formula_DrupalSelectInterface $formula) {
     $this->formula = $formula;

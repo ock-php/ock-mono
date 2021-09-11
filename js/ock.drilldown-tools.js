@@ -5,7 +5,7 @@
 
     $(window).bind('storage', function(jqEvent){
       var event = jqEvent.originalEvent;
-      if ('cu.' !== event.key.substr(0, 10)) {
+      if ('ock.' !== event.key.substr(0, 10)) {
         return;
       }
       var iface = event.key.substr(10);
@@ -23,12 +23,12 @@
     }
 
     this.set = function(iface, values) {
-      localStorage.setItem('cu.' + iface, JSON.stringify(values));
+      localStorage.setItem('ock.' + iface, JSON.stringify(values));
       update(iface, values);
     };
 
     this.get = function(iface) {
-      return JSON.parse(localStorage.getItem('cu.' + iface));
+      return JSON.parse(localStorage.getItem('ock.' + iface));
     };
 
     var onChangeCallbacks = {};
@@ -118,16 +118,16 @@
     }
   }
 
-  Drupal.behaviors.cuDrilldownTools = {
+  Drupal.behaviors.ockDrilldownTools = {
     attach: function (context, settings) {
 
-      $('select.cu-drilldown-select', context).each(function() {
+      $('select.ock-drilldown-select', context).each(function() {
         var $select = $(this);
         var $selectWrapper = $select.parent();
         var $drilldown = $selectWrapper.parent();
-        var iface = $drilldown.attr('data:cu_interface');
+        var iface = $drilldown.attr('data:ock_interface');
 
-        var $tools = $('> .cu-tools', $drilldown);
+        var $tools = $('> .ock-tools', $drilldown);
         if (0 === $tools.length) {
           return;
         }
@@ -142,14 +142,14 @@
 
         $tools.appendTo($selectWrapper).show();
 
-        $('.cu-demo', $tools).mousedown(function(event){
+        $('.ock-demo', $tools).mousedown(function(event){
           var formValuesAll = $form.serializeArray();
           var values = extractValues(formValuesAll, name + '[options]', 'plugin[options]');
           values['plugin[id]'] = $select.val();
           this.search = '?' + $.param(values);
         });
 
-        $('.cu-inspect', $tools).each(function(event){
+        $('.ock-inspect', $tools).each(function(event){
           var link = this;
           var $link = $(link);
           var href = link.href;
@@ -172,7 +172,7 @@
           $select.change(up);
         });
 
-        $('.cu-copy', $tools).click(function(event){
+        $('.ock-copy', $tools).click(function(event){
           // event.preventDefault();
           var formValuesAll = $form.serializeArray();
           var values = extractValues(formValuesAll, name + '[options]', 'options');
@@ -181,7 +181,7 @@
           return false;
         });
 
-        $('.cu-paste', $tools).each(function() {
+        $('.ock-paste', $tools).each(function() {
 
           var $paste = $(this);
 
@@ -193,7 +193,7 @@
             var id = storedConf.id;
             var options = reprefix(storedConf, 'options', name + '[options]');
             options[name + '[_previous_id]'] = id;
-            var $options = $('> .cu-depending-element-container', $drilldown);
+            var $options = $('> .ock-depending-element-container', $drilldown);
             $options.empty();
             insertHiddenInputs($options, options);
             $select.val(id).change();

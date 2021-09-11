@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator\Optionable;
+namespace Drupal\ock\Formator\Optionable;
 
-use Donquixote\ObCK\Form\Common\FormatorCommonInterface;
-use Drupal\cu\Formator\FormatorD8Interface;
+use Donquixote\Ock\Form\Common\FormatorCommonInterface;
+use Drupal\ock\Formator\FormatorD8Interface;
 
 interface OptionableFormatorD8Interface extends FormatorCommonInterface {
 
   /**
-   * @return \Drupal\cu\Formator\FormatorD8Interface|null
+   * @return \Drupal\ock\Formator\FormatorD8Interface|null
    */
   public function getOptionalFormator(): ?FormatorD8Interface;
 

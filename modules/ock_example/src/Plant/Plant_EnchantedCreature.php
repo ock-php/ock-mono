@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu_example\Plant;
+namespace Drupal\ock_example\Plant;
 
-use Drupal\cu_example\Animal\AnimalInterface;
+use Drupal\ock_example\Animal\AnimalInterface;
 
 /**
- * @ocui("enchantedCreature", "Enchanted creature", inline = true)
+ * @ock("enchantedCreature", "Enchanted creature", inline = true)
  */
 class Plant_EnchantedCreature implements PlantInterface {
 
   /**
    * Constructor.
    *
-   * @param \Drupal\cu_example\Animal\AnimalInterface $enchanted_animal
+   * @param \Drupal\ock_example\Animal\AnimalInterface $enchanted_animal
    *   Enchanted animal.
    */
   public function __construct(AnimalInterface $enchanted_animal) {}

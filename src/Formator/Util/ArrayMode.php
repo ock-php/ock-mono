@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator\Util;
+namespace Drupal\ock\Formator\Util;
 
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\Util\UtilBase;
 
 class ArrayMode extends UtilBase {
 

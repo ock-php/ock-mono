@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Formula;
+namespace Drupal\ock\Formula;
 
-use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface;
 
 class Formula_DrupalService implements Formula_ValueProviderInterface {
 

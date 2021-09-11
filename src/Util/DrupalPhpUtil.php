@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Util;
+namespace Drupal\ock\Util;
 
-use Donquixote\ObCK\Util\PhpUtil;
+use Donquixote\Ock\Util\PhpUtil;
 
 final class DrupalPhpUtil extends UtilBase {
 

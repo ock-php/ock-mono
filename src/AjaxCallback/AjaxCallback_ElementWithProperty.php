@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\AjaxCallback;
+namespace Drupal\ock\AjaxCallback;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;

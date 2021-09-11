@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\ObCK\Formula\Select\Formula_Select_FromFlatSelect;
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
-use Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface;
-use Donquixote\ObCK\Translator\Translator;
-use Donquixote\ObCK\Util\ConfUtil;
-use Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface;
-use Drupal\cu\Formator\Util\D8SelectUtil;
+use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\Ock\Formula\Select\Formula_Select_FromFlatSelect;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface;
+use Donquixote\Ock\Translator\Translator;
+use Donquixote\Ock\Util\ConfUtil;
+use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
+use Drupal\ock\Formator\Util\D8SelectUtil;
 
 class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Interface {
 
   /**
-   * @var \Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface
+   * @var \Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface
    */
   private $formula;
 
@@ -27,7 +27,7 @@ class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Inte
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface $formula
+   * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
    *
    * @return self
    */
@@ -39,7 +39,7 @@ class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Inte
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $formula
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
    *
    * @return self
    */
@@ -62,7 +62,7 @@ class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Inte
   }
 
   /**
-   * @param \Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface $formula
+   * @param \Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface $formula
    */
   public function __construct(FormulaBase_AbstractSelectInterface $formula) {
     $this->formula = $formula;

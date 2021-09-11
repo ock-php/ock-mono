@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Controller;
+namespace Drupal\ock\Controller;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\ObCK\Exception\IncarnatorException;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Donquixote\ObCK\Generator\Generator;
-use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
-use Donquixote\ObCK\Summarizer\Summarizer;
-use Donquixote\ObCK\Translator\TranslatorInterface;
-use Donquixote\ObCK\Util\HtmlUtil;
+use Donquixote\Ock\Exception\IncarnatorException;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Generator\Generator;
+use Donquixote\Ock\Plugin\Map\PluginMapInterface;
+use Donquixote\Ock\Summarizer\Summarizer;
+use Donquixote\Ock\Translator\TranslatorInterface;
+use Donquixote\Ock\Util\HtmlUtil;
 use Drupal\controller_annotations\Configuration\RouteIsAdmin;
 use Drupal\controller_annotations\Configuration\RouteParameters;
 use Drupal\controller_annotations\Configuration\RouteRequirePermission;
@@ -21,24 +21,24 @@ use Drupal\controller_annotations\Controller\ControllerRouteNameTrait;
 use Drupal\controller_annotations\Configuration\Route;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
-use Drupal\cu\Form\Form_IfaceDemo;
-use Drupal\cu\RouteHelper\ClassRouteHelper;
-use Drupal\cu\RouteHelper\ClassRouteHelperInterface;
-use Drupal\cu\Util\StringUtil;
-use Drupal\cu\Util\UiCodeUtil;
-use Drupal\cu\Util\UiUtil;
+use Drupal\ock\Form\Form_IfaceDemo;
+use Drupal\ock\RouteHelper\ClassRouteHelper;
+use Drupal\ock\RouteHelper\ClassRouteHelperInterface;
+use Drupal\ock\Util\StringUtil;
+use Drupal\ock\Util\UiCodeUtil;
+use Drupal\ock\Util\UiUtil;
 use Drupal\routelink\RouteModifier\RouteDefaultTaskLink;
 use Drupal\routelink\RouteModifier\RouteTaskLink;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * @Route("/admin/reports/cu/{interface}")
+ * @Route("/admin/reports/ock/{interface}")
  * @RouteIsAdmin
  * @RouteTitleMethod("title")
- * @RouteRequirePermission("view cu report")
- * @RouteParameters(interface = "cu:interface")
+ * @RouteRequirePermission("view ock report")
+ * @RouteParameters(interface = "ock:interface")
  *
- * @see \Drupal\cu\ParamConverter\ParamConverter_Iface
+ * @see \Drupal\ock\ParamConverter\ParamConverter_Iface
  */
 class Controller_ReportIface extends ControllerBase implements ControllerRouteNameInterface {
 
@@ -54,7 +54,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
    * @param string $interface
    * @param string $methodName
    *
-   * @return \Drupal\cu\RouteHelper\ClassRouteHelperInterface
+   * @return \Drupal\ock\RouteHelper\ClassRouteHelperInterface
    */
   public static function route(string $interface, string $methodName = 'listOfPlugins'): ClassRouteHelperInterface {
     return ClassRouteHelper::fromClassName(
@@ -69,11 +69,11 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): self {
-    /** @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map */
+    /** @var \Donquixote\Ock\Plugin\Map\PluginMapInterface $plugin_map */
     $plugin_map = $container->get(PluginMapInterface::class);
-    /** @var \Donquixote\ObCK\Incarnator\IncarnatorInterface $formula_to_anything */
+    /** @var \Donquixote\Ock\Incarnator\IncarnatorInterface $formula_to_anything */
     $formula_to_anything = $container->get(IncarnatorInterface::class);
-    /** @var \Donquixote\ObCK\Translator\TranslatorInterface $translator */
+    /** @var \Donquixote\Ock\Translator\TranslatorInterface $translator */
     $translator = $container->get(TranslatorInterface::class);
     return new self($plugin_map, $formula_to_anything, $translator);
   }
@@ -81,10 +81,10 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $plugin_map
    *   Plugin map.
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $formula_to_anything
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formula_to_anything
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(PluginMapInterface $plugin_map, IncarnatorInterface $formula_to_anything, TranslatorInterface $translator) {
     $this->pluginMap = $plugin_map;
@@ -295,7 +295,7 @@ EOT;
 <p>You can use the code below as a starting point for a custom plugin in a custom module.</p>
 <p>If you do so, don't forget to:</p>
 <ul>
-  <li>Implement <code>hook_cu_info()</code> similar to how other modules do it.</li>
+  <li>Implement <code>hook_ock_info()</code> similar to how other modules do it.</li>
   <li>Set up a PSR-4 namespace directory structure for your class files.</li>
   <li>Replace "myPlugin", "My plugin" and "class C" with more suitable names, and put the class into a namespace.</li>
   <li>Leave the <code>@return</code> tag in place, because it tells cudiscovery about the plugin type.</li>

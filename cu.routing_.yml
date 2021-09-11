@@ -1,9 +1,0 @@
-cu.admin_reports_overview:
-  path: '/admin/reports/cu'
-  defaults:
-    _controller: '\Drupal\cu\Controller\Controller_ReportOverview::overview'
-    _title: 'Composition UI'
-  requirements:
-    _permission: 'view cu reports'
-  options:
-    _admin_route: TRUE

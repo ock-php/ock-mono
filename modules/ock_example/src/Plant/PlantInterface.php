@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu_example\Plant;
+namespace Drupal\ock_example\Plant;
 
 /**
  * Example interface for plants.

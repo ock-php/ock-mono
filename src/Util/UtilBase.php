@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Util;
+namespace Drupal\ock\Util;
 
 /**
  * Base class for classes that cannot be instantiated, e.g. because they only

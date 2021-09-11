@@ -1,34 +1,34 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Donquixote\ObCK\Translator\Translator;
-use Donquixote\ObCK\Incarnator\Incarnator;
+use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Translator\Translator;
+use Donquixote\Ock\Incarnator\Incarnator;
 
 class FormatorD8_Group implements FormatorD8Interface {
 
   /**
-   * @var \Drupal\cu\Formator\FormatorD8Interface[]
+   * @var \Drupal\ock\Formator\FormatorD8Interface[]
    */
   private $itemFormators;
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface[]
+   * @var \Donquixote\Ock\Text\TextInterface[]
    */
   private $labels;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_GroupInterface $formula, IncarnatorInterface $incarnator): ?self {
 
@@ -44,8 +44,8 @@ class FormatorD8_Group implements FormatorD8Interface {
   }
 
   /**
-   * @param \Drupal\cu\Formator\FormatorD8Interface[] $itemFormators
-   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
+   * @param \Drupal\ock\Formator\FormatorD8Interface[] $itemFormators
+   * @param \Donquixote\Ock\Text\TextInterface[] $labels
    */
   public function __construct(array $itemFormators, array $labels) {
     $this->itemFormators = $itemFormators;
@@ -80,7 +80,7 @@ class FormatorD8_Group implements FormatorD8Interface {
       $form[$key] = $itemFormator->confGetD8Form($itemConf, $itemLabel);
     }
 
-    $form['#attached']['library'][] = 'cu/form';
+    $form['#attached']['library'][] = 'ock/form';
 
     return $form;
   }

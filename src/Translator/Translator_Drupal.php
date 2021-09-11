@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Translator;
+namespace Drupal\ock\Translator;
 
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

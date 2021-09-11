@@ -1,5 +1,5 @@
-cu_annotations:
+ock_annotations:
   path: ''
   options:
     type: annotation
-    module: cu
+    module: ock

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\NamespaceDirectoriesIA;
+namespace Drupal\ock\NamespaceDirectoriesIA;
 
 use Donquixote\ClassDiscovery\NamespaceDirectoriesIA\NamespaceDirectoriesIAInterface;
 use Donquixote\ClassDiscovery\NamespaceDirectory;

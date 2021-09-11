@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface;
+use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -12,12 +12,12 @@ use Drupal\Core\Form\FormStateInterface;
 class FormatorD8_Textfield implements FormatorD8Interface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface
+   * @var \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface
    */
   private $formula;
 
   /**
-   * @param \Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface $formula
+   * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula
    */
   public function __construct(Formula_TextfieldInterface $formula) {
     $this->formula = $formula;
@@ -50,7 +50,7 @@ class FormatorD8_Textfield implements FormatorD8Interface {
    */
   public static function validate(array &$element, FormStateInterface $form_state) {
 
-    /** @var \Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface $formula */
+    /** @var \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula */
     $formula = $element['#formula'];
 
     foreach ($formula->textGetValidationErrors($element['#value']) as $error) {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Util;
+namespace Drupal\ock\Util;
 
 use Donquixote\Nicetrace\Util\NicetraceUtil;
 

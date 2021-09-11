@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Formula\DrupalSelect;
+namespace Drupal\ock\Formula\DrupalSelect;
 
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 
 /**
  * Alternative select formula with Drupal label types.

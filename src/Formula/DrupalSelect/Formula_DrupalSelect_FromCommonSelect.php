@@ -2,33 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Formula\DrupalSelect;
+namespace Drupal\ock\Formula\DrupalSelect;
 
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 
 /**
  * Adapter for OCK select formulas.
  *
- * @see \Drupal\cu\Formula\Formula_Select_FromDrupalSelect
+ * @see \Drupal\ock\Formula\Formula_Select_FromDrupalSelect
  */
 class Formula_DrupalSelect_FromCommonSelect implements Formula_DrupalSelectInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Select\Formula_SelectInterface
+   * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface
    */
   private Formula_SelectInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Translator\TranslatorInterface
+   * @var \Donquixote\Ock\Translator\TranslatorInterface
    */
   private TranslatorInterface $translator;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $decorated
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $decorated
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(Formula_SelectInterface $decorated, TranslatorInterface $translator) {
     $this->decorated = $decorated;
@@ -40,7 +40,7 @@ class Formula_DrupalSelect_FromCommonSelect implements Formula_DrupalSelectInter
    */
   public function getGroupedOptions(): array {
     $groups = $this->decorated->getOptGroups();
-    /** @var \Donquixote\ObCK\Text\TextInterface[][] $labelss */
+    /** @var \Donquixote\Ock\Text\TextInterface[][] $labelss */
     $labelss[''] = $this->decorated->getOptions(NULL);
     foreach ($groups as $group_id => $group_label) {
       $group_label_str = $group_label->convert($this->translator);

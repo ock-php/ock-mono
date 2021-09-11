@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator\Controlling;
+namespace Drupal\ock\Formator\Controlling;
 
 interface ControllingFormatorInterface {
 

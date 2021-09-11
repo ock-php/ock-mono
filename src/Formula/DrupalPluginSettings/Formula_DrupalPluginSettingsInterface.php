@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Formula\DrupalPluginSettings;
+namespace Drupal\ock\Formula\DrupalPluginSettings;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 /**
  * Formula type for Drupal plugin settings.

@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface;
-use Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface;
+use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
+use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
 
 class FormatorD8_Optionless implements FormatorD8Interface, OptionableFormatorD8Interface {
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface $formula
+   * @param \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface $formula
    *
    * @return self
    */

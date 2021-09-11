@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\RouteHelper;
+namespace Drupal\ock\RouteHelper;
 
 use Drupal\Core\Link;
 use Drupal\Core\Url;

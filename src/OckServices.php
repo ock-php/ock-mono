@@ -2,33 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu;
+namespace Drupal\ock;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Multiple;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\NamespaceDirectory;
-use Donquixote\ObCK\Discovery\STADiscovery_X;
-use Donquixote\ObCK\Incarnator\Incarnator_SmartChain;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Donquixote\ObCK\ParamToLabel\ParamToLabel;
-use Donquixote\ObCK\Plugin\GroupLabels\PluginGroupLabels;
-use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
-use Donquixote\ObCK\Translator\TranslatorInterface;
-use Donquixote\ObCK\Util\LocalPackageUtil;
+use Donquixote\Ock\Discovery\STADiscovery_X;
+use Donquixote\Ock\Incarnator\Incarnator_SmartChain;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\ParamToLabel\ParamToLabel;
+use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabels;
+use Donquixote\Ock\Plugin\Map\PluginMapInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
+use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class CuServices {
+class OckServices {
 
   /**
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    * @param \Psr\Log\LoggerInterface $logger
-   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $pluginMap
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
-   * @return \Donquixote\ObCK\Incarnator\IncarnatorInterface
+   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
   public static function incarnator(ContainerInterface $container, LoggerInterface $logger, PluginMapInterface $pluginMap, TranslatorInterface $translator): IncarnatorInterface {
     $objects[] = new ParamToLabel();

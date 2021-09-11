@@ -1,9 +1,9 @@
 (function ($) {
-  Drupal.behaviors.cu_orderedIdsTabledrag = {
+  Drupal.behaviors.ock_orderedIdsTabledrag = {
 
     attach: function (context) {
-      $('.cu-tabledrag', context)
-        .once('cu-tabledrag')
+      $('.ock-tabledrag', context)
+        .once('ock-tabledrag')
         .each(function () {
           console.log(this);
           var tabledrag = new Drupal.tableDrag(this, {});

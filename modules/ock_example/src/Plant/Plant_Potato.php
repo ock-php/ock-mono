@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu_example\Plant;
+namespace Drupal\ock_example\Plant;
 
 /**
- * @ocui("potato", "Potato")
+ * @ock("potato", "Potato")
  */
 class Plant_Potato implements PlantInterface {
 

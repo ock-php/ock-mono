@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\cu\Generator;
+namespace Drupal\ock\Generator;
 
 class Generator_DrupalService {
 

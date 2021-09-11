@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Element;
+namespace Drupal\ock\Element;
 
-use Donquixote\ObCK\Util\StringUtil;
+use Donquixote\Ock\Util\StringUtil;
 use Drupal\Core\Render\Element\RenderElement;
-use Drupal\cu\Controller\Controller_ReportIface;
+use Drupal\ock\Controller\Controller_ReportIface;
 
 /**
- * @RenderElement("cu_drilldown_container")
+ * @RenderElement("ock_drilldown_container")
  */
 class RenderElement_DrilldownContainer extends RenderElement {
 
@@ -19,9 +19,9 @@ class RenderElement_DrilldownContainer extends RenderElement {
     return [
       '#theme_wrappers' => ['container'],
       '#process' => ['form_process_container'],
-      '#cu_interface' => NULL,
-      '#cu_context' => NULL,
-      /* @see _cu_pre_render_drilldown_container() */
+      '#ock_interface' => NULL,
+      '#ock_context' => NULL,
+      /* @see _ock_pre_render_drilldown_container() */
       '#pre_render' => [[self::class, 'preRender']],
     ];
   }
@@ -33,25 +33,25 @@ class RenderElement_DrilldownContainer extends RenderElement {
    */
   public static function preRender(array $element): array {
 
-    $interface = $element['#cu_interface'];
+    $interface = $element['#ock_interface'];
     $interface_label = StringUtil::interfaceGenerateLabel($interface);
     $replacements = ['@type' => $interface_label];
 
-    $element['#attributes']['data:cu_interface'] = $interface;
+    $element['#attributes']['data:ock_interface'] = $interface;
 
     $tools = [];
 
     $tools['copy']['#markup']
-      = '<a class="cu-copy">' . t('Copy "@type" configuration (local storage)', $replacements) . '</a>';
+      = '<a class="ock-copy">' . t('Copy "@type" configuration (local storage)', $replacements) . '</a>';
 
     $tools['paste']['#markup']
-      = '<a class="cu-paste">' . t('Paste "@type" configuration (local storage)', $replacements) . '</a>';
+      = '<a class="ock-paste">' . t('Paste "@type" configuration (local storage)', $replacements) . '</a>';
 
     $tools[]['#markup'] = '<hr/>';
 
     # $tools[]['#markup'] = '<strong>' . check_plain($interface_label) . '</strong>';
 
-    if (\Drupal::currentUser()->hasPermission('view cu report')) {
+    if (\Drupal::currentUser()->hasPermission('view ock report')) {
 
       $tools['inspect'] = [
         '#type' => 'link',
@@ -59,7 +59,7 @@ class RenderElement_DrilldownContainer extends RenderElement {
         '#title' => t('About "@name" plugin'),
         '#url' => Controller_ReportIface::route($interface)->url(),
         '#attributes' => [
-          'class' => ['cu-inspect'],
+          'class' => ['ock-inspect'],
           'target' => '_blank',
           'title' => t('About this plugin.'),
         ],
@@ -80,7 +80,7 @@ class RenderElement_DrilldownContainer extends RenderElement {
         '#title' => t('Demo / Code generator.'),
         '#url' => Controller_ReportIface::route($interface, 'demo')->url(),
         '#attributes' => [
-          'class' => ['cu-demo'],
+          'class' => ['ock-demo'],
           'target' => '_blank',
           'title' => t('Demo / Code generator.'),
         ],
@@ -91,20 +91,20 @@ class RenderElement_DrilldownContainer extends RenderElement {
       '#weight' => -999,
       '#type' => 'container',
       '#attributes' => [
-        'class' => ['cu-tools'],
+        'class' => ['ock-tools'],
         'style' => 'display: none;',
       ],
       'top' => [
         '#type' => 'container',
         '#attributes' => [
-          'class' => 'cu-tools-handle',
+          'class' => 'ock-tools-handle',
         ],
         '#children' => t('tools'),
       ],
       'items' => $tools + [
           '#theme_wrappers' => ['container'],
           '#attributes' => [
-            'class' => ['cu-tools-dropdown'],
+            'class' => ['ock-tools-dropdown'],
           ],
         ],
     ];

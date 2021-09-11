@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Form;
+namespace Drupal\ock\Form;
 
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -14,7 +14,7 @@ class Form_IfaceDemo implements FormInterface {
    * {@inheritdoc}
    */
   public function getFormId(): string {
-    return 'cu_iface_demo_form';
+    return 'ock_iface_demo_form';
   }
 
   /**
@@ -29,9 +29,9 @@ class Form_IfaceDemo implements FormInterface {
     $settings = $_GET[self::KEY] ?? [];
 
     $form[self::KEY] = [
-      /* @see \Drupal\cu\Element\FormElement_CuPlugin */
-      '#type' => 'cu',
-      '#cu_interface' => $interface,
+      /* @see \Drupal\ock\Element\FormElement_CuPlugin */
+      '#type' => 'ock',
+      '#ock_interface' => $interface,
       '#title' => t('Plugin'),
       '#default_value' => $settings,
     ];

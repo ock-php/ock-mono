@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\ObCK\Incarnator\IncarnatorInterface;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Util\UtilBase;
 
 final class FormatorD8_V2V extends UtilBase {
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface $formula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface $formula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
-   * @return \Drupal\cu\Formator\FormatorD8Interface|null
+   * @return \Drupal\ock\Formator\FormatorD8Interface|null
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(
     Formula_ValueToValueBaseInterface $formula,
@@ -32,12 +32,12 @@ final class FormatorD8_V2V extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface $formula
-   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface $formula
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
-   * @return \Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface|null
+   * @return \Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface|null
    *
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function createOptionable(
     Formula_ValueToValueBaseInterface $formula,

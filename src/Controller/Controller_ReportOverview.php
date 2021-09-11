@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Controller;
+namespace Drupal\ock\Controller;
 
-use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
+use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 use Drupal\controller_annotations\Configuration\Route;
 use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
 use Drupal\controller_annotations\Configuration\RouteIsAdmin;
@@ -12,28 +12,28 @@ use Drupal\controller_annotations\Configuration\RouteTitle;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Render\Markup;
-use Drupal\cu\RouteHelper\ClassRouteHelper;
-use Drupal\cu\RouteHelper\ClassRouteHelperInterface;
-use Drupal\cu\Util\StringUtil;
+use Drupal\ock\RouteHelper\ClassRouteHelper;
+use Drupal\ock\RouteHelper\ClassRouteHelperInterface;
+use Drupal\ock\Util\StringUtil;
 use Drupal\routelink\RouteModifier\RouteMenuLink;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * @Route("/admin/reports/cu")
+ * @Route("/admin/reports/ock")
  * @RouteIsAdmin
- * @RouteRequirePermission("view cu report")
+ * @RouteRequirePermission("view ock report")
  */
 class Controller_ReportOverview extends ControllerBase implements ControllerRouteNameInterface {
 
   use ControllerRouteNameTrait;
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface
    */
   private $pluginMap;
 
   /**
-   * @return \Drupal\cu\RouteHelper\ClassRouteHelperInterface
+   * @return \Drupal\ock\RouteHelper\ClassRouteHelperInterface
    */
   public static function route(): ClassRouteHelperInterface {
     return ClassRouteHelper::fromClassName(
@@ -46,7 +46,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): self {
-    /** @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map */
+    /** @var \Donquixote\Ock\Plugin\Map\PluginMapInterface $plugin_map */
     $plugin_map = $container->get(PluginMapInterface::class);
     return new self($plugin_map);
   }
@@ -54,7 +54,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $plugin_map
    *   Plugin map.
    */
   public function __construct(PluginMapInterface $plugin_map) {
@@ -63,7 +63,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
 
   /**
    * @Route
-   * @RouteTitle("cu plugins")
+   * @RouteTitle("ock plugins")
    * @RouteMenuLink
    */
   public function overview(): array {

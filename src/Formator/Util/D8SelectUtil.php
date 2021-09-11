@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator\Util;
+namespace Drupal\ock\Formator\Util;
 
-use Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface;
-use Donquixote\ObCK\Translator\TranslatorInterface;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
+use Donquixote\Ock\Util\UtilBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
 final class D8SelectUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface $formula
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface $formula
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    * @param string|null $value
    * @param string $label
    * @param bool $required
@@ -32,7 +32,7 @@ final class D8SelectUtil extends UtilBase {
   }
 
   /**
-   * @param \Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
+   * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
    * @param string|null $value
    * @param string $label
    * @param bool $required
@@ -103,8 +103,8 @@ final class D8SelectUtil extends UtilBase {
   /**
    * Gets select options in a format suitable for Drupal 8.
    *
-   * @param \Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface $formula
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface $formula
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
    * @return string[][]|string[]
    *   Options to be used in '#options' in a '#type' => 'select' element.
@@ -132,7 +132,7 @@ final class D8SelectUtil extends UtilBase {
   }
 
   /**
-   * @param \Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
+   * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
    *
    * @return \Drupal\Component\Render\MarkupInterface[]|\Drupal\Component\Render\MarkupInterface[][]|string|string[]|\string[][]
    */

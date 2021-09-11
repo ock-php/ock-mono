@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Formator;
+namespace Drupal\ock\Formator;
 
-use Donquixote\ObCK\Exception\IncarnatorException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormFactoryInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Plugin\PluginWithFormsInterface;
-use Drupal\cu\Formula\DrupalPluginSettings\Formula_DrupalPluginSettingsInterface;
+use Drupal\ock\Formula\DrupalPluginSettings\Formula_DrupalPluginSettingsInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class FormatorD8_DrupalPluginSettings implements FormatorD8Interface {
@@ -22,11 +22,11 @@ class FormatorD8_DrupalPluginSettings implements FormatorD8Interface {
   /**
    * @STA
    *
-   * @param \Drupal\cu\Formula\DrupalPluginSettings\Formula_DrupalPluginSettingsInterface $formula
+   * @param \Drupal\ock\Formula\DrupalPluginSettings\Formula_DrupalPluginSettingsInterface $formula
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    *
-   * @return \Drupal\cu\Formator\FormatorD8Interface
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @return \Drupal\ock\Formator\FormatorD8Interface
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromFormula(Formula_DrupalPluginSettingsInterface $formula, ContainerInterface $container): FormatorD8Interface {
     /** @var \Drupal\Core\Plugin\PluginFormFactoryInterface $pluginFormFactory */
@@ -40,8 +40,8 @@ class FormatorD8_DrupalPluginSettings implements FormatorD8Interface {
    * @param object $plugin
    * @param \Drupal\Core\Plugin\PluginFormFactoryInterface $pluginFormFactory
    *
-   * @return \Drupal\cu\Formator\FormatorD8Interface
-   * @throws \Donquixote\ObCK\Exception\IncarnatorException
+   * @return \Drupal\ock\Formator\FormatorD8Interface
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromPlugin(object $plugin, PluginFormFactoryInterface $pluginFormFactory): FormatorD8Interface {
     if ($plugin instanceof PluginWithFormsInterface) {

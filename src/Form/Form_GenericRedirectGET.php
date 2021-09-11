@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\cu\Form;
+namespace Drupal\ock\Form;
 
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -12,7 +12,7 @@ class Form_GenericRedirectGET implements FormInterface {
    * {@inheritdoc}
    */
   public function getFormId(): string {
-    return 'cu_generic_form';
+    return 'ock_generic_form';
   }
 
   /**
