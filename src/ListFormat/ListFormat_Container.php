@@ -5,9 +5,9 @@ namespace Drupal\renderkit\ListFormat;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
-use Drupal\renderkit\Html\HtmlTagTrait;
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
 use Drupal\renderkit\Formula\Formula_TagName;
+use Drupal\renderkit\Html\HtmlTagTrait;
 
 class ListFormat_Container implements ListFormatInterface {
 

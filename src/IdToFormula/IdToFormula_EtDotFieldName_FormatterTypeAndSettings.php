@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace Drupal\renderkit\IdToFormula;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
-use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
-use Drupal\renderkit\Helper\FieldDefinitionLookup;
 use Drupal\renderkit\Formula\Formula_EtDotFieldName;
+use Drupal\renderkit\Helper\FieldDefinitionLookup;
 
 class IdToFormula_EtDotFieldName_FormatterTypeAndSettings implements IdToFormulaInterface {
 
