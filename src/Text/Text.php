@@ -197,6 +197,7 @@ class Text {
    *
    * @param \Donquixote\Ock\Text\TextInterface[] $texts
    *   Text objects to validate.
+   *   In PHP < 8.0, string keys are not allowed here.
    */
   public static function validateMultiple(array $texts): void {
     self::validate(...array_values($texts));
@@ -207,6 +208,7 @@ class Text {
    *
    * @param \Donquixote\Ock\Text\TextInterface[][] $textss
    *   Arrays of text objects.
+   *   This array can have string keys.
    */
   public static function validateNested(array $textss): void {
     foreach ($textss as $texts) {

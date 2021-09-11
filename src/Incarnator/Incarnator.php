@@ -5,6 +5,7 @@ namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
+use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\UtilBase;
 
@@ -20,11 +21,10 @@ final class Incarnator extends UtilBase {
    */
   public static function getMultiple(array $itemFormulas, NurseryInterface $formulaToAnything, string $interface): ?array {
 
+    Formula::validateMultiple($itemFormulas);
+
     $itemObjects = [];
     foreach ($itemFormulas as $k => $itemFormula) {
-      if (!$itemFormula instanceof FormulaInterface) {
-        throw new \RuntimeException("Item formula at key $k must be instance of FormulaInterface.");
-      }
       $itemCandidate = self::getObject($itemFormula, $formulaToAnything, $interface);
       if (NULL === $itemCandidate) {
         return NULL;

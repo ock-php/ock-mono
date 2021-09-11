@@ -23,8 +23,8 @@ class Formula_Group implements Formula_GroupInterface {
    * @param \Donquixote\Ock\Text\TextInterface[] $labels
    */
   public function __construct(array $formulas, array $labels) {
-    Formula::validate(...$formulas);
-    Text::validate(...$labels);
+    Formula::validateMultiple($formulas);
+    Text::validateMultiple($labels);
     $this->formulas = $formulas;
     $this->labels = $labels;
   }

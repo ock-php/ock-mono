@@ -18,8 +18,21 @@ final class Formula extends UtilBase {
    * Validates one or more formulas.
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface ...$formulas
+   *   Formulas to validate.
+   *   In PHP < 8.0, string keys are not allowed here.
    */
   public static function validate(FormulaInterface ...$formulas) {}
+
+  /**
+   * Validates an array of formulas.
+   *
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $formulas
+   *   Array of formulas to validate.
+   *   This array can have string keys.
+   */
+  public static function validateMultiple(array $formulas) {
+    self::validate(...array_values($formulas));
+  }
 
   /**
    * @return \Donquixote\Ock\Formula\Select\Flat\FlatSelectBuilderInterface
