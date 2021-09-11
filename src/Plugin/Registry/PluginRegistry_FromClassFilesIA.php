@@ -34,6 +34,10 @@ class PluginRegistry_FromClassFilesIA implements PluginRegistryInterface {
    * {@inheritdoc}
    */
   public function getPluginss(): array {
+    /**
+     * @var \Donquixote\Ock\Plugin\Plugin[][][] $pluginsss
+     *   Format: $[][$type][$id] = $plugin.
+     */
     $pluginsss = [];
     foreach ($this->classFilesIA as $file => $class) {
       try {
@@ -41,7 +45,6 @@ class PluginRegistry_FromClassFilesIA implements PluginRegistryInterface {
       }
       catch (\Exception $e) {
         // @todo Log this.
-        continue;
       }
     }
     if (!$pluginsss) {
