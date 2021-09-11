@@ -11,7 +11,7 @@ use Donquixote\Ock\Plugin\Discovery\ClassToPlugins_NativeReflection;
 use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabels;
 use Donquixote\Ock\Plugin\Map\PluginMap_Registry;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
-use Donquixote\Ock\Plugin\Registry\PluginRegistry_AnnotatedDiscovery;
+use Donquixote\Ock\Plugin\Registry\PluginRegistry_FromClassFilesIA;
 use Donquixote\Ock\Plugin\Registry\PluginRegistryInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
@@ -67,7 +67,7 @@ class FormulaTestBase extends TestCase {
   protected function getPluginRegistry(): PluginRegistryInterface {
     $classFilesIA = ClassFilesIA::psr4FromClass(IntOpInterface::class, 1);
     $classToPlugins = ClassToPlugins_NativeReflection::create('ock');
-    return new PluginRegistry_AnnotatedDiscovery(
+    return new PluginRegistry_FromClassFilesIA(
       $classFilesIA,
       $classToPlugins);
   }

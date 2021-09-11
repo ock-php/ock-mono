@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Plugin\Registry;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\Ock\Plugin\Discovery\ClassToPluginsInterface;
 
-class PluginRegistry_AnnotatedDiscovery implements PluginRegistryInterface {
+class PluginRegistry_FromClassFilesIA implements PluginRegistryInterface {
 
   /**
    * @var \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface

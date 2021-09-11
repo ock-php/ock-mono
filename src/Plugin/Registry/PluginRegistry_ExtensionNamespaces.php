@@ -38,7 +38,7 @@ class PluginRegistry_ExtensionNamespaces implements PluginRegistryInterface {
     $pluginss = [];
     foreach ($this->namespaceDirectories as $name => $namespaceDirectory) {
       $classFilesIA = ClassFilesIA::psr4FromNsdirObject($namespaceDirectory);
-      $registry = new PluginRegistry_AnnotatedDiscovery($classFilesIA, $this->classToPlugins);
+      $registry = new PluginRegistry_FromClassFilesIA($classFilesIA, $this->classToPlugins);
       foreach ($registry->getPluginss() as $type => $plugins) {
         foreach ($plugins as $id => $plugin) {
           $pluginss[$type][$name . '.' . $id] = $plugin;
