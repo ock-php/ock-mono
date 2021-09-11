@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityImage\EntityImageInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
