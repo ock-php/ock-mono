@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Form\D8\FormatorD8Interface;
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
-use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Donquixote\ObCK\Formula\IdToLabel\Formula_IdToLabelInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
+use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\cu\Formator\FormatorD8Interface;
 
-class Formula_EntityId implements Formula_IdInterface, FormatorD8Interface {
+class Formula_EntityId implements Formula_IdToLabelInterface, FormatorD8Interface {
 
   /**
    * @var string
@@ -34,13 +36,13 @@ class Formula_EntityId implements Formula_IdInterface, FormatorD8Interface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?TextInterface {
 
     if (NULL === $entity = $this->idGetEntity($id)) {
       return NULL;
     }
 
-    return $entity->label();
+    return Text::s($entity->label());
   }
 
   /**
@@ -79,10 +81,10 @@ class Formula_EntityId implements Formula_IdInterface, FormatorD8Interface {
     try {
       $storage = $etm->getStorage($this->entityTypeId);
     }
-    catch (InvalidPluginDefinitionException $e) {
+    catch (PluginException $e) {
       // @todo Log this.
       unset($e);
-      return null;
+      return NULL;
     }
 
     return $storage->load($id);

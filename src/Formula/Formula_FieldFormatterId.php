@@ -77,6 +77,7 @@ class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
    * @param string $formatterTypeName
    *
    * @return array|null
+   *   Field formatter definition, or NULL if not found.
    */
   private function idGetDefinition($formatterTypeName): ?array {
 

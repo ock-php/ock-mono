@@ -15,7 +15,7 @@ final class Formula_EntityTypeAndId extends UtilBase {
    */
   public static function create(): Formula_DrilldownInterface {
     return Formula_Drilldown::create(
-      Formula_EntityType::createOptionsFormula(),
+      Formula_EntityType::create(),
       new IdToFormula_Et_EntityId())
       ->withKeys('entity_type', 'entity_id');
   }

@@ -3,10 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
+use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
+use Drupal\cu\DrupalText;
 
-class Formula_EntityBundleName implements Formula_SelectInterface {
+class Formula_EntityBundleName implements Formula_FlatSelectInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface
@@ -23,50 +26,51 @@ class Formula_EntityBundleName implements Formula_SelectInterface {
    *
    * @return self
    */
-  public static function create($entityType): self {
+  public static function create(string $entityType): self {
     /** @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundleInfo */
     $bundleInfo = \Drupal::service('entity_type.bundle.info');
     return new self($bundleInfo, $entityType);
   }
 
   /**
+   * Constructor.
+   *
    * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundleInfo
    * @param string $entityType
    */
-  public function __construct(EntityTypeBundleInfoInterface $bundleInfo, $entityType) {
+  public function __construct(EntityTypeBundleInfoInterface $bundleInfo, string $entityType) {
     $this->bundleInfo = $bundleInfo;
     $this->entityType = $entityType;
   }
 
   /**
-   * @return string[][]
+   * {@inheritdoc}
    */
-  public function getGroupedOptions(): array {
-
+  public function getOptions(): array {
     $options = [];
-    foreach ($this->bundleInfo->getBundleInfo($this->entityType) as $bundleName => $bundleInfo) {
-      $options[$bundleName] = $bundleInfo['label'];
+    foreach ($this->bundleInfo->getBundleInfo($this->entityType) as $bundle => $info) {
+      // Don't use opt groups, put everything at the top-level.
+      $options[$bundle] = DrupalText::fromVar($info['label']);
     }
-
-    return ['' => $options];
+    return $options;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?TextInterface {
 
     $bundles = $this->bundleInfo->getBundleInfo($this->entityType);
 
-    return isset($bundles[$id])
-      ? $bundles[$id]['label']
-      : NULL;
+    if (!isset($bundles[$id])) {
+      return NULL;
+    }
+
+    return DrupalText::fromVar($bundles[$id]['label']) ?? Text::s($id);
   }
 
   /**
-   * @param string $id
-   *
-   * @return bool
+   * {@inheritdoc}
    */
   public function idIsKnown($id): bool {
 
@@ -74,4 +78,5 @@ class Formula_EntityBundleName implements Formula_SelectInterface {
 
     return isset($bundles[$id]);
   }
+
 }

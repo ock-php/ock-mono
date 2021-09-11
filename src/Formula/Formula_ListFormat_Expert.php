@@ -4,19 +4,18 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Evaluator\EvaluatorInterface;
-use Donquixote\ObCK\Form\D8\FormatorD8Interface;
 use Donquixote\ObCK\Summarizer\SummarizerInterface;
+use Donquixote\ObCK\Text\TextInterface;
 use Donquixote\ObCK\Util\PhpUtil;
+use Drupal\cu\Formator\FormatorD8Interface;
 use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
-use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 /**
  * This is inspired by Display suite.
  *
  * @see \Drupal\renderkit\ListFormat\ListFormat_ElementDefaults
  */
-class Formula_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interface, SummarizerInterface, FormulaInterface {
+class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterface, FormulaInterface {
 
   /**
    * @param mixed $conf
@@ -119,24 +118,11 @@ class Formula_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interfa
   }
 
   /**
-   * @param mixed $conf
-   *
-   * @return mixed|string|null
+   * {@inheritdoc}
    */
-  public function confGetSummary($conf) {
+  public function confGetSummary($conf): ?TextInterface {
     // No summary details.
     return NULL;
-  }
-
-  /**
-   * @param mixed $conf
-   *   Configuration from a form, config file or storage.
-   *
-   * @return \Drupal\renderkit\ListFormat\ListFormatInterface
-   */
-  public function confGetValue($conf): ListFormatInterface {
-    $defaults = $this->confGetElementDefaults($conf);
-    return new ListFormat_ElementDefaults($defaults);
   }
 
   /**
@@ -146,8 +132,9 @@ class Formula_ListFormat_Expert implements EvaluatorInterface, FormatorD8Interfa
    */
   public function confGetPhp($conf): string {
     $defaults = $this->confGetElementDefaults($conf);
-    return 'new ' . ListFormat_ElementDefaults::class . '('
-      . "\n" . PhpUtil::phpValue($defaults) . ')';
+    return PhpUtil::phpNewClass(
+      ListFormat_ElementDefaults::class,
+      [PhpUtil::phpValue($defaults)]);
   }
 
   /**

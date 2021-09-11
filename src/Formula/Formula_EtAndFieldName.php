@@ -21,6 +21,14 @@ use Psr\Container\ContainerInterface;
  */
 final class Formula_EtAndFieldName extends UtilBase {
 
+  /**
+   * @param \Psr\Container\ContainerInterface $container
+   * @param array|null $allowed_types
+   * @param string|null $entity_type_id
+   * @param string|null $bundle
+   *
+   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   */
   public static function fromContainer(
     ContainerInterface $container,
     array $allowed_types = NULL,

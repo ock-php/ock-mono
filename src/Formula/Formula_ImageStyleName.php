@@ -3,10 +3,19 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
-use Drupal\Component\Utility\Html;
+use Donquixote\ObCK\Formula\Select\Formula_Select_BufferedBase;
+use Donquixote\ObCK\Text\Text;
+use Donquixote\ObCK\Text\TextInterface;
+use Drupal\cu\DrupalText;
 
-class Formula_ImageStyleName implements Formula_SelectInterface {
+class Formula_ImageStyleName extends Formula_Select_BufferedBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function initialize(array &$grouped_options, array &$group_labels): void {
+    $grouped_options[''] = DrupalText::multiple(image_style_options());
+  }
 
   /**
    * @return string[][]
@@ -18,28 +27,29 @@ class Formula_ImageStyleName implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($styleName) {
-    if (empty($styleName)) {
-      return '- ' . t('Original image') . ' -';
+  public function idGetLabel($id): ?TextInterface {
+    if (!$id) {
+      return Text::t('Original image')
+        ->wrapSprintf('- %s -');
     }
-    $styleLabelsRaw = image_style_options(FALSE);
-    if (!isset($styleLabelsRaw[$styleName])) {
-      return (string)t('Unknown image style');
+    $label = image_style_options(FALSE)[$id] ?? NULL;
+    if ($label === NULL) {
+      return NULL;
     }
-    $styleLabelRaw = $styleLabelsRaw[$styleName];
-    return Html::escape($styleLabelRaw);
+    return DrupalText::fromVarOr($label, $id);
   }
 
   /**
-   * @param string $styleName
+   * @param string $id
    *
    * @return bool
    */
-  public function idIsKnown($styleName): bool {
-    if (empty($styleName)) {
+  public function idIsKnown($id): bool {
+    if (empty($id)) {
       return TRUE;
     }
     $styleLabelsRaw = image_style_options();
-    return isset($styleLabelsRaw[$styleName]);
+    return isset($styleLabelsRaw[$id]);
   }
+
 }

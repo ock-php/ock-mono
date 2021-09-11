@@ -15,6 +15,9 @@ use Drupal\Core\Field\FormatterPluginManager;
 use Drupal\renderkit\Formula\Formula_FieldFormatterId;
 use Drupal\renderkit\Formula\Formula_FieldFormatterSettings;
 
+/**
+ * Object to gets a formatter settings form for a formatter id.
+ */
 class IdToFormula_FormatterTypeName_FormatterSettings implements IdToFormulaInterface {
 
   /**
@@ -77,13 +80,13 @@ class IdToFormula_FormatterTypeName_FormatterSettings implements IdToFormulaInte
   }
 
   /**
-   * @param string|int $formatterTypeName
+   * @param string|int $id
    *
    * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
    */
-  public function idGetFormula($formatterTypeName): ?FormulaInterface {
+  public function idGetFormula($id): ?FormulaInterface {
 
-    $formatter = $this->getFormatterInstance($formatterTypeName);
+    $formatter = $this->getFormatterInstance($id);
 
     if (NULL === $formatter) {
       return NULL;

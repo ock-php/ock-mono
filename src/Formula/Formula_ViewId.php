@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Donquixote\ObCK\Text\TextInterface;
+use Drupal\Component\Plugin\Exception\PluginException;
+use Drupal\cu\DrupalText;
 use Drupal\views\Entity\View;
 use Drupal\views\Views;
 
@@ -16,9 +18,12 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
   private $status;
 
   /**
+   * Constructor.
+   *
    * @param bool|null $status
+   *   Status to filter by.
    */
-  public function __construct($status = true) {
+  public function __construct(?bool $status = true) {
     $this->status = $status;
   }
 
@@ -42,13 +47,13 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?TextInterface {
 
     if (NULL === $view = $this->idGetView($id)) {
       return NULL;
     }
 
-    return $view->label();
+    return DrupalText::fromVar($view->label());
   }
 
   /**
@@ -57,7 +62,7 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
    * @return bool
    */
   public function idIsKnown($id): bool {
-    return NULL !== $view = $this->idGetView($id);
+    return NULL !== $this->idGetView($id);
   }
 
   /**
@@ -74,7 +79,7 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
     try {
       $storage = $etm->getStorage('view');
     }
-    catch (InvalidPluginDefinitionException $e) {
+    catch (PluginException $e) {
       // @todo Log this.
       unset($e);
       return null;
@@ -103,11 +108,11 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
     if (NULL === $this->status) {
       return Views::getAllViews();
     }
-    elseif (FALSE === $this->status) {
+
+    if (FALSE === $this->status) {
       return Views::getDisabledViews();
     }
-    else {
-      return Views::getEnabledViews();
-    }
+
+    return Views::getEnabledViews();
   }
 }

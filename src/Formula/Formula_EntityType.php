@@ -3,23 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Select\Formula_Select_FromFlatSelect;
-use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
+use Drupal\cu\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
-class Formula_EntityType implements Formula_FlatSelectInterface {
+class Formula_EntityType implements Formula_DrupalSelectInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityTypeRepositoryInterface
    */
   private $entityTypeRepository;
-
-  /**
-   * @return \Donquixote\ObCK\Formula\Select\Formula_SelectInterface
-   */
-  public static function createOptionsFormula() {
-    return new Formula_Select_FromFlatSelect(self::create());
-  }
 
   /**
    * @return self
@@ -40,22 +32,17 @@ class Formula_EntityType implements Formula_FlatSelectInterface {
   /**
    * @return string[]
    */
-  public function getOptions(): array {
-
+  public function getGroupedOptions(): array {
     $options = $this->entityTypeRepository->getEntityTypeLabels();
-
     asort($options);
-
-    return $options;
+    return ['' => $options];
   }
 
   /**
    * {@inheritdoc}
    */
   public function idGetLabel($id) {
-
     $options = $this->entityTypeRepository->getEntityTypeLabels();
-
     return $options[$id] ?? null;
   }
 
@@ -65,9 +52,8 @@ class Formula_EntityType implements Formula_FlatSelectInterface {
    * @return bool
    */
   public function idIsKnown($id): bool {
-
     $options = $this->entityTypeRepository->getEntityTypeLabels();
-
     return isset($options[$id]);
   }
+
 }

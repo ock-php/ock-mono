@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\ObCK\Text\TextInterface;
+use Drupal\cu\DrupalText;
 use Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface;
 use Drupal\views\Entity\View;
 
@@ -58,7 +60,7 @@ class Formula_ViewDisplayId_Condition implements Formula_FlatSelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel($id): ?TextInterface {
 
     $displays = $this->view->get('display');
 
@@ -76,7 +78,7 @@ class Formula_ViewDisplayId_Condition implements Formula_FlatSelectInterface {
       return NULL;
     }
 
-    return $display['display_title'];
+    return DrupalText::fromVar($display['display_title']);
   }
 
   /**
