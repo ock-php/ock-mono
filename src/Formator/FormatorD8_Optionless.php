@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
+use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 
 class FormatorD8_Optionless implements FormatorD8Interface, OptionableFormatorD8Interface {
 

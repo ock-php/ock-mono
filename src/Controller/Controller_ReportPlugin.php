@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Drupal\ock\Controller;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Generator\Generator;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Plugin\NamedPlugin;
 use Donquixote\Ock\Summarizer\Summarizer;
 use Donquixote\Ock\Translator\TranslatorInterface;

@@ -5,10 +5,10 @@ namespace Drupal\ock\Controller;
 
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 use Drupal\controller_annotations\Configuration\Route;
-use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
 use Drupal\controller_annotations\Configuration\RouteIsAdmin;
 use Drupal\controller_annotations\Configuration\RouteRequirePermission;
 use Drupal\controller_annotations\Configuration\RouteTitle;
+use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Render\Markup;

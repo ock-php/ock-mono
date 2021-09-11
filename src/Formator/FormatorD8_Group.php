@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Translator\Translator;
-use Donquixote\Ock\Incarnator\Incarnator;
 
 class FormatorD8_Group implements FormatorD8Interface {
 

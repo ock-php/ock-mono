@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 use Donquixote\Ock\Formula\Neutral\Formula_Neutral_IfaceTransformed;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 
 class FormatorD8_IfaceTagged implements FormatorD8Interface, OptionableFormatorD8Interface {
 

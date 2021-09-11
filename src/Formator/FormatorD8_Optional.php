@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Donquixote\Ock\Formula\Optional\Formula_OptionalInterface;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\ConfUtil;
-use Donquixote\Ock\Incarnator\Incarnator;
 use Drupal\Core\Form\FormStateInterface;
 
 class FormatorD8_Optional implements FormatorD8Interface {

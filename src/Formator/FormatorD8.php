@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
-use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
-use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\Ock\Incarnator\Incarnator;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\Ock\Util\UtilBase;
+use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 
 final class FormatorD8 extends UtilBase {
 
