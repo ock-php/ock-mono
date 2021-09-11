@@ -5,7 +5,7 @@ namespace Drupal\cu\Formator;
 
 use Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface;
 use Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 
 class FormatorD8_IfaceTagged implements FormatorD8Interface, OptionableFormatorD8Interface {
 
@@ -23,19 +23,19 @@ class FormatorD8_IfaceTagged implements FormatorD8Interface, OptionableFormatorD
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Neutral\Formula_Neutral_IfaceTransformed $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
   public static function create(
     Formula_Neutral_IfaceTransformed $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?FormatorD8_IfaceTagged {
     $decorated = FormatorD8::fromFormula(
       $formula->getDecorated(),
-      $formulaToAnything
+      $incarnator
     );
 
     if (NULL === $decorated) {

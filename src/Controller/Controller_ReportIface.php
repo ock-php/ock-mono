@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Drupal\cu\Controller;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
+use Donquixote\ObCK\Exception\IncarnatorException;
 use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 use Donquixote\ObCK\Generator\Generator;
 use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 use Donquixote\ObCK\Summarizer\Summarizer;
@@ -46,7 +46,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
 
   private PluginMapInterface $pluginMap;
 
-  private FormulaToAnythingInterface $formulaToAnything;
+  private IncarnatorInterface $Incarnator;
 
   private TranslatorInterface $translator;
 
@@ -71,8 +71,8 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
   public static function create(ContainerInterface $container): self {
     /** @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map */
     $plugin_map = $container->get(PluginMapInterface::class);
-    /** @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything */
-    $formula_to_anything = $container->get(FormulaToAnythingInterface::class);
+    /** @var \Donquixote\ObCK\Incarnator\IncarnatorInterface $formula_to_anything */
+    $formula_to_anything = $container->get(IncarnatorInterface::class);
     /** @var \Donquixote\ObCK\Translator\TranslatorInterface $translator */
     $translator = $container->get(TranslatorInterface::class);
     return new self($plugin_map, $formula_to_anything, $translator);
@@ -83,12 +83,12 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
    *
    * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $plugin_map
    *   Plugin map.
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $formula_to_anything
    * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    */
-  public function __construct(PluginMapInterface $plugin_map, FormulaToAnythingInterface $formula_to_anything, TranslatorInterface $translator) {
+  public function __construct(PluginMapInterface $plugin_map, IncarnatorInterface $formula_to_anything, TranslatorInterface $translator) {
     $this->pluginMap = $plugin_map;
-    $this->formulaToAnything = $formula_to_anything;
+    $this->incarnator = $formula_to_anything;
     $this->translator = $translator;
   }
 
@@ -201,7 +201,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
       return $out;
     }
 
-    $sta = $this->formulaToAnything;
+    $sta = $this->incarnator;
 
     if (!$settings) {
       return $out;
@@ -216,7 +216,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
         ? $summary_obj->convert($this->translator)
         : '?';
     }
-    catch (FormulaToAnythingException $e) {
+    catch (IncarnatorException $e) {
       $summary = '?';
     }
 
@@ -239,7 +239,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
     try {
       $generator = Generator::fromFormula($formula, $sta);
     }
-    catch (FormulaToAnythingException $e) {
+    catch (IncarnatorException $e) {
       $out['problem'] = [
         '#type' => 'fieldset',
         '#title' => t('Problem'),

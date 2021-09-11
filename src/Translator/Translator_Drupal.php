@@ -47,8 +47,8 @@ class Translator_Drupal implements TranslatorInterface {
   /**
    * {@inheritdoc}
    */
-  public function translate(string $string, array $replacements = []): string {
-    return (string) $this->translation->translate($string, $replacements);
+  public function translate(string $source, array $replacements = []): string {
+    return (string) $this->translation->translate($source, $replacements);
   }
 
 }

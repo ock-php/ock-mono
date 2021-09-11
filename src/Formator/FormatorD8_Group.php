@@ -4,13 +4,9 @@ declare(strict_types=1);
 namespace Drupal\cu\Formator;
 
 use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 use Donquixote\ObCK\Translator\Translator;
-use Donquixote\ObCK\Util\StaUtil;
-use Drupal\Core\Form\FormState;
-use Drupal\Core\Form\FormStateInterface;
+use Donquixote\ObCK\Incarnator\Incarnator;
 
 class FormatorD8_Group implements FormatorD8Interface {
 
@@ -28,18 +24,18 @@ class FormatorD8_Group implements FormatorD8Interface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
-  public static function create(Formula_GroupInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?self {
+  public static function create(Formula_GroupInterface $formula, IncarnatorInterface $incarnator): ?self {
 
-    if (NULL === $itemFormators = StaUtil::getMultiple(
-      $formula->getItemFormulas(),
-      $formulaToAnything,
-      FormatorD8Interface::class)
+    if (NULL === $itemFormators = Incarnator::multiple(
+        $formula->getItemFormulas(),
+        FormatorD8Interface::class,
+        $incarnator)
     ) {
       return NULL;
     }
@@ -71,7 +67,7 @@ class FormatorD8_Group implements FormatorD8Interface {
       $form['#title'] = $label;
     }
 
-    $translator = new Translator(new TranslatorLookup_Passthru());
+    $translator = Translator::passthru();
 
     foreach ($this->itemFormators as $key => $itemFormator) {
 

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\cu\Formator;
 
+use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelperInterface;
 use Donquixote\ObCK\Exception\IncarnatorException;
@@ -12,7 +13,7 @@ use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
 use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 use Donquixote\ObCK\Optionlessness\Optionlessness;
 
-class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
+class FormatorD8_Drilldown implements FormatorD8Interface {
 
   /**
    * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
@@ -69,7 +70,6 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
   ) {
     $this->idToFormula = $idToFormula;
     $this->incarnator = $incarnator;
-    parent::__construct($idFormula, $drilldownKeysHelper);
   }
 
   /**
@@ -77,7 +77,7 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
    */
   protected function idIsOptionless(string $id): bool {
     return ($formula = $this->idToFormula->idGetFormula($id))
-      && Optionlessness::checkFormula($formula, $this->incarnator);
+      &&  Optionlessness::checkFormula($formula, $this->incarnator);
   }
 
   /**
@@ -100,33 +100,37 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
   /**
    * @param string $id
    *
-   * @return \Drupal\cu\Formator\FormatorD8Interface|null
+   * @return \Drupal\cu\Formator\FormatorD8Interface|false
    *
    * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
-  private function idGetFormatorOrFalse($id): ?FormatorD8Interface {
-    return ($this->formators[$id]
-      ??= ($this->idBuildFormator($id) ?? FALSE))
-      ?: NULL;
+  private function idGetFormatorOrFalse($id) {
+    return $this->formators[$id]
+      ?? $this->formators[$id] = $this->idBuildFormatorOrFalse($id);
   }
 
   /**
    * @param string $id
    *
-   * @return \Drupal\cu\Formator\FormatorD8Interface|null
+   * @return \Drupal\cu\Formator\FormatorD8Interface|false
    *
    * @throws \Donquixote\ObCK\Exception\IncarnatorException
-   *   Unsupported formula.
    */
-  private function idBuildFormator($id): ?FormatorD8Interface {
+  private function idBuildFormatorOrFalse($id) {
 
     if (NULL === $formula = $this->idToFormula->idGetFormula($id)) {
-      return NULL;
+      return FALSE;
     }
 
-    return FormatorD8::fromFormula(
+    if (NULL === $formator = FormatorD8::fromFormula(
         $formula,
-        $this->incarnator);
+        $this->incarnator
+      )
+    ) {
+      return FALSE;
+    }
+
+    return $formator;
   }
 
 }

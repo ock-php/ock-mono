@@ -15,8 +15,8 @@ services:
   logger.channel.cu:
     parent: logger.channel_base
     arguments: ['cu']
-  Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface:
-    factory: [Drupal\cu\CuServices, formulaToAnything]
+  Donquixote\ObCK\Incarnator\IncarnatorInterface:
+    factory: [Drupal\cu\CuServices, Incarnator]
     arguments:
       - '@service_container'
       - '@logger.channel.cu'

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\cu\Formator;
 
 use Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 
 class FormatorD8_DefaultConf implements FormatorD8Interface {
 
@@ -22,20 +22,20 @@ class FormatorD8_DefaultConf implements FormatorD8Interface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
   public static function create(
     Formula_DefaultConfInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?FormatorD8_DefaultConf {
 
     $decorated = FormatorD8::fromFormula(
       $formula->getDecorated(),
-      $formulaToAnything);
+      $incarnator);
 
     if (NULL === $decorated) {
       return NULL;

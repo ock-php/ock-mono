@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\cu\Formator;
 
 use Donquixote\ObCK\Formula\Label\Formula_LabelInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 
 class FormatorD8_Label implements FormatorD8Interface {
 
@@ -22,17 +22,17 @@ class FormatorD8_Label implements FormatorD8Interface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Label\Formula_LabelInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
-  public static function create(Formula_LabelInterface $formula, FormulaToAnythingInterface $formulaToAnything) {
+  public static function create(Formula_LabelInterface $formula, IncarnatorInterface $incarnator) {
 
     if (NULL === $decorated = FormatorD8::fromFormula(
         $formula->getDecorated(),
-        $formulaToAnything
+        $incarnator
       )
     ) {
       return NULL;

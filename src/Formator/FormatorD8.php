@@ -4,31 +4,31 @@ declare(strict_types=1);
 namespace Drupal\cu\Formator;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 use Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
 use Donquixote\ObCK\Util\MessageUtil;
-use Donquixote\ObCK\Util\StaUtil;
+use Donquixote\ObCK\Incarnator\Incarnator;
 use Donquixote\ObCK\Util\UtilBase;
 
 final class FormatorD8 extends UtilBase {
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Drupal\cu\Formator\FormatorD8Interface
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
-   *   Cannot build this formator.
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException Transition seems to be unsupported for the given formula.
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): FormatorD8Interface {
 
-    $candidate = $formulaToAnything->formula(
+    $candidate = Incarnator::claim(
       $formula,
-      FormatorD8Interface::class);
+      FormatorD8Interface::class,
+      $incarnator);
 
     if ($candidate instanceof FormatorD8Interface) {
       return $candidate;
@@ -45,22 +45,23 @@ final class FormatorD8 extends UtilBase {
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Drupal\cu\Formator\FormatorD8Interface|null
+   *
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
   public static function optional(
     FormulaInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?FormatorD8Interface {
 
     $optionable = self::optionable(
       $formula,
-      $formulaToAnything
+      $incarnator
     );
 
     if (NULL === $optionable) {
-      # kdpm('Sorry.', __METHOD__);
       return NULL;
     }
 
@@ -69,15 +70,24 @@ final class FormatorD8 extends UtilBase {
 
   /**
    * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface|null
+   *
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
   public static function optionable(
     FormulaInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?OptionableFormatorD8Interface {
-    return StaUtil::getObject($formula, $formulaToAnything, OptionableFormatorD8Interface::class);
+
+    /** @var \Drupal\cu\Formator\Optionable\OptionableFormatorD8Interface|null $candidate */
+    $candidate = Incarnator::incarnate(
+      $formula,
+      OptionableFormatorD8Interface::class,
+      $incarnator);
+
+    return $candidate;
   }
 
 }

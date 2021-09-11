@@ -5,7 +5,7 @@ namespace Drupal\cu\Formator;
 
 use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface;
 use Donquixote\ObCK\Formula\Sequence\Formula_Sequence_ItemLabelT;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 use Donquixote\ObCK\Text\Text;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\cu\AjaxCallback\AjaxCallback_ElementWithProperty;
@@ -28,23 +28,23 @@ class FormatorD8_DecoKey implements FormatorD8Interface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
-  public static function create(Formula_DecoKeyInterface $formula, FormulaToAnythingInterface $formulaToAnything): ?self {
+  public static function create(Formula_DecoKeyInterface $formula, IncarnatorInterface $incarnator): ?self {
     return new self(
       FormatorD8::fromFormula(
         $formula->getDecorated(),
-        $formulaToAnything),
+        $incarnator),
       FormatorD8::fromFormula(
         new Formula_Sequence_ItemLabelT(
           $formula->getDecoratorFormula(),
           Text::t('New decorator'),
           Text::t('Decorator #!n')),
-        $formulaToAnything),
+        $incarnator),
       $formula->getDecoKey());
   }
 

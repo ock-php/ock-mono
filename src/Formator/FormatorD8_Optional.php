@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Drupal\cu\Formator;
 
 use Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 use Donquixote\ObCK\Util\ConfUtil;
-use Donquixote\ObCK\Util\StaUtil;
+use Donquixote\ObCK\Incarnator\Incarnator;
 use Drupal\Core\Form\FormStateInterface;
 
 class FormatorD8_Optional implements FormatorD8Interface {
@@ -20,30 +20,30 @@ class FormatorD8_Optional implements FormatorD8Interface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Drupal\cu\Formator\FormatorD8Interface|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
   public static function create(
     Formula_OptionalInterface $formula,
-    FormulaToAnythingInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?FormatorD8Interface {
 
-    if (NULL !== $emptiness = StaUtil::emptinessOrNull(
+    if (NULL !== $emptiness = Incarnator::emptinessOrNull(
       $formula->getDecorated(),
-      $formulaToAnything)
+      $incarnator)
     ) {
       return FormatorD8::optional(
         $formula->getDecorated(),
-        $formulaToAnything
+        $incarnator
       );
     }
 
     $decorated = FormatorD8::fromFormula(
       $formula->getDecorated(),
-      $formulaToAnything
+      $incarnator
     );
 
     return new self($decorated);

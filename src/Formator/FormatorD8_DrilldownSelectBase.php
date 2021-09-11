@@ -4,11 +4,10 @@ declare(strict_types=1);
 namespace Drupal\cu\Formator;
 
 use Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelperInterface;
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
+use Donquixote\ObCK\Exception\IncarnatorException;
 use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
 use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
 use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Translator\Lookup\TranslatorLookup_Passthru;
 use Donquixote\ObCK\Translator\Translator;
 use Donquixote\ObCK\Util\ConfUtil;
 use Drupal\Core\Form\FormStateInterface;
@@ -70,12 +69,12 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
 
     $conf = $this->keysHelper->pack($id, $optionsConf);
 
-    $translator = new Translator(new TranslatorLookup_Passthru());
+    $translator = Translator::passthru();
 
     try {
       $select_formula = $this->buildEnhancedSelectFormula();
     }
-    catch (FormulaToAnythingException $e) {
+    catch (IncarnatorException $e) {
       // @todo More sophisticated error handling.
       return [
         '#markup' => t('Failure.'),
@@ -86,7 +85,7 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
       '#type' => 'container',
       '#attributes' => ['class' => ['cu-drilldown']],
       '#tree' => TRUE,
-      '_id' => D8SelectUtil::optionsFormulaBuildSelectElement(
+      '_id' => D8SelectUtil::selectElementFromCommonSelectFormula(
         $select_formula,
         $translator,
         $id,
@@ -133,7 +132,7 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
    *
    * @return \Donquixote\ObCK\Formula\Select\Formula_SelectInterface
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
   private function buildEnhancedSelectFormula(): Formula_SelectInterface {
     $grouped_options = [];
@@ -150,7 +149,7 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
    *
    * @return \Donquixote\ObCK\Text\TextInterface[]
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
   private function buildEnhancedOptionsInGroup(?string $group_id): array {
     $options = [];
@@ -169,7 +168,7 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
    * @return bool
    *   TRUE, if the sub-formula is optionless.
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException
    */
   abstract protected function idIsOptionless(string $id): bool;
 

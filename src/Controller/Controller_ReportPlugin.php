@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\cu\Controller;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 use Donquixote\ObCK\Generator\Generator;
 use Donquixote\ObCK\Plugin\NamedPlugin;
 use Donquixote\ObCK\Summarizer\Summarizer;
@@ -48,9 +48,9 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   use ControllerRouteNameTrait;
 
   /**
-   * @var \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+   * @var \Donquixote\ObCK\Incarnator\IncarnatorInterface
    */
-  private FormulaToAnythingInterface $formulaToAnything;
+  private IncarnatorInterface $incarnator;
 
   /**
    * @var \Donquixote\ObCK\Translator\TranslatorInterface
@@ -77,8 +77,8 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): self {
-    /** @var FormulaToAnythingInterface $formula_to_anything */
-    $formula_to_anything = $container->get(FormulaToAnythingInterface::class);
+    /** @var IncarnatorInterface $formula_to_anything */
+    $formula_to_anything = $container->get(IncarnatorInterface::class);
     /** @var \Donquixote\ObCK\Translator\TranslatorInterface $translator */
     $translator = $container->get(TranslatorInterface::class);
     return new self($formula_to_anything, $translator);
@@ -87,11 +87,11 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formula_to_anything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $formula_to_anything
    * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    */
-  public function __construct(FormulaToAnythingInterface $formula_to_anything, TranslatorInterface $translator) {
-    $this->formulaToAnything = $formula_to_anything;
+  public function __construct(IncarnatorInterface $formula_to_anything, TranslatorInterface $translator) {
+    $this->incarnator = $formula_to_anything;
     $this->translator = $translator;
   }
 
@@ -299,7 +299,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
 
     $out = [];
 
-    $sta = $this->formulaToAnything;
+    $sta = $this->incarnator;
 
     $formula = $plugin->getFormula();
 

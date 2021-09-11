@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\cu\Formator;
 
 use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 use Donquixote\ObCK\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Component\Utility\NestedArray;
@@ -44,24 +44,24 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
    * @STA
    *
    * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $sequence
-   * @param \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\ObCK\Incarnator\IncarnatorInterface $incarnator
    * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    *
    * @return self
    *   Created instance.
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException Cannot create the item formator.
+   * @throws \Donquixote\ObCK\Exception\IncarnatorException Cannot create the item formator.
    */
   public static function create(
     Formula_SequenceInterface $sequence,
-    FormulaToAnythingInterface $formulaToAnything,
+    IncarnatorInterface $incarnator,
     TranslatorInterface $translator
   ): self {
     return new self(
       $sequence,
       FormatorD8::fromFormula(
         $sequence->getItemFormula(),
-        $formulaToAnything),
+        $incarnator),
       $translator);
   }
 

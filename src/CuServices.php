@@ -9,16 +9,14 @@ use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\NamespaceDirectory;
 use Donquixote\ObCK\Discovery\STADiscovery_X;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnything_FromPartial;
-use Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface;
-use Donquixote\ObCK\FormulaToAnything\Partial\FormulaToAnythingPartial_SmartChain;
+use Donquixote\ObCK\Incarnator\Incarnator_SmartChain;
+use Donquixote\ObCK\Incarnator\IncarnatorInterface;
 use Donquixote\ObCK\ParamToLabel\ParamToLabel;
 use Donquixote\ObCK\Plugin\GroupLabels\PluginGroupLabels;
 use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 use Donquixote\ObCK\Translator\TranslatorInterface;
 use Donquixote\ObCK\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
-use Drupal\Core\Extension\ModuleHandlerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -30,9 +28,9 @@ class CuServices {
    * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $pluginMap
    * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
    *
-   * @return \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+   * @return \Donquixote\ObCK\Incarnator\IncarnatorInterface
    */
-  public static function formulaToAnything(ContainerInterface $container, LoggerInterface $logger, PluginMapInterface $pluginMap, TranslatorInterface $translator): FormulaToAnythingInterface {
+  public static function incarnator(ContainerInterface $container, LoggerInterface $logger, PluginMapInterface $pluginMap, TranslatorInterface $translator): IncarnatorInterface {
     $objects[] = new ParamToLabel();
     $objects[] = $logger;
     $objects[] = $pluginMap;
@@ -43,8 +41,7 @@ class CuServices {
     $class_files_ia = self::getClassFilesIA();
     $partials = STADiscovery_X::create($param_to_value)
       ->classFilesIAGetPartials($class_files_ia);
-    $fta_partial = new FormulaToAnythingPartial_SmartChain($partials);
-    return new FormulaToAnything_FromPartial($fta_partial, 'drupal_fta');
+    return new Incarnator_SmartChain($partials);
   }
 
   /**
