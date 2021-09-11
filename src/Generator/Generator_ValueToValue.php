@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\ObCK\Generator;
 
+use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValueInterface;
 use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\V2V\Value\V2V_ValueInterface;
@@ -24,11 +25,12 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
    */
   public static function create(Formula_ValueToValueInterface $valueToValueFormula, NurseryInterface $formulaToAnything): ?self {
 
-    $decorated = $formulaToAnything->breed(
-      $valueToValueFormula->getDecorated(),
-      GeneratorInterface::class);
-
-    if (NULL === $decorated || !$decorated instanceof GeneratorInterface) {
+    try {
+      $decorated = Generator::fromFormula(
+        $valueToValueFormula->getDecorated(),
+        $formulaToAnything);
+    }
+    catch (FormulaToAnythingException $e) {
       return NULL;
     }
 

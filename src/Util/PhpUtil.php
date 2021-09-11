@@ -335,9 +335,9 @@ EOT;
   /**
    * @param object $object
    *
-   * @return mixed|string
+   * @return string
    */
-  public static function phpObject(object $object) {
+  public static function phpObject(object $object): string {
 
     /**
      * @noinspection PhpConditionAlreadyCheckedInspection

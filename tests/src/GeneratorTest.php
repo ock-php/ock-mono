@@ -62,19 +62,6 @@ class GeneratorTest extends FormulaTestBase {
     }
   }
 
-  public function _testCallbackFormula() {
-    # Formula_GroupVal_Callback::fromClass();
-  }
-
-  public function _testDrilldownFormula() {
-    $formula = Formula_Drilldown::fromOptions([
-      new DrilldownOption(
-        Plant_OakTree::formula(),
-        new Text_Translatable('Oak tree'),
-        NULL),
-    ]);
-  }
-
   /**
    * Tests an interface generator with a specific example.
    *

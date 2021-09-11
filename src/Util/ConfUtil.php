@@ -34,10 +34,10 @@ final class ConfUtil extends UtilBase {
   public static function confGetId($conf): ?string {
 
     if (is_numeric($conf)) {
-      return (string)$conf;
+      return (string) $conf;
     }
 
-    if (NULL === $conf || '' === $conf || !\is_string($conf)) {
+    if ($conf === '' || !\is_string($conf)) {
       return NULL;
     }
 

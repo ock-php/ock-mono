@@ -6,7 +6,6 @@ namespace Donquixote\ObCK\Summarizer;
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
 use Donquixote\ObCK\Formula\Formula;
 use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\MessageUtil;
 use Donquixote\ObCK\Util\UtilBase;
 
 final class Summarizer extends UtilBase {

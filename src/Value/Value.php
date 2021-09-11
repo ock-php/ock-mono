@@ -133,17 +133,14 @@ class Value implements ValueInterface {
    * @param mixed $conf
    * @param \Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
-   * @return null|\Donquixote\ObCK\Value\ValueInterface
+   * @return \Donquixote\ObCK\Value\ValueInterface
    *
    * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
    */
-  public static function fromFormulaConf(FormulaInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
+  public static function fromFormulaConf(FormulaInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ValueInterface {
 
+    /** @var \Donquixote\ObCK\Value\ValueInterface $object */
     $object = $scta->formula($formula, $conf, ValueInterface::class);
-
-    if (NULL === $object || !$object instanceof ValueInterface) {
-      return NULL;
-    }
 
     return $object;
   }

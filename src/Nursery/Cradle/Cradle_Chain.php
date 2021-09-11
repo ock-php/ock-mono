@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\ObCK\Nursery\Cradle;
 
 use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\ObCK\Exception\FormulaToAnythingException;
 use Donquixote\ObCK\Nursery\NurseryInterface;
 use Donquixote\ObCK\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -49,6 +50,7 @@ class Cradle_Chain extends CradleZeroBase {
         if ($candidate instanceof $interface) {
           return $candidate;
         }
+        throw new FormulaToAnythingException('Misbehaving STA.');
       }
     }
 
