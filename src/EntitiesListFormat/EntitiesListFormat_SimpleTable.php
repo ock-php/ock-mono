@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntitiesListFormat;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
-use Donquixote\ObCK\Formula\Sequence\Formula_Sequence_ItemLabelCallback;
-use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Formula\Sequence\Formula_Sequence_ItemLabelCallback;
+use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
@@ -19,7 +19,7 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
   /**
    * @CfrPlugin("simpleTable", "Simple table")
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createFormula(): FormulaInterface {
 

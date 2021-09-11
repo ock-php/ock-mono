@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ListFormat;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
 use Drupal\renderkit\Formula\Formula_TagName;
@@ -24,7 +24,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
   /**
    * @CfrPlugin("htmlList", @t("HTML list"))
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createFormula(): FormulaInterface {
 

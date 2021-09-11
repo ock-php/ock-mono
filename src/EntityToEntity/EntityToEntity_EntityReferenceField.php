@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityToEntity;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
@@ -36,7 +36,7 @@ class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
    * @param string $bundleName
    *   (optional) Contextual parameter.
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createFormula($entityType = NULL, $bundleName = NULL): FormulaInterface {
 

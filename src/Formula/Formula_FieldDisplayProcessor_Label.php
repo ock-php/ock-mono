@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Exception\EvaluatorException;
-use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
-use Donquixote\ObCK\Formula\Group\Formula_Group_V2VDecoratorBase;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\ObCK\Formula\Textfield\Formula_Textfield_NoValidation;
+use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
+use Donquixote\Ock\Formula\Group\Formula_Group_V2VDecoratorBase;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\Formula\Textfield\Formula_Textfield_NoValidation;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessor_Label;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
 class Formula_FieldDisplayProcessor_Label extends Formula_Group_V2VDecoratorBase {
 
   /**
-   * @param \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface $decoratedValFormula
+   * @param \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface $decoratedValFormula
    *
    * @return self
    */
@@ -25,7 +25,7 @@ class Formula_FieldDisplayProcessor_Label extends Formula_Group_V2VDecoratorBase
   }
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface[]
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface[]
    */
   public function getItemFormulas(): array {
     $formulas = parent::getItemFormulas();
@@ -49,7 +49,7 @@ class Formula_FieldDisplayProcessor_Label extends Formula_Group_V2VDecoratorBase
    *
    * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    *
-   * @throws \Donquixote\ObCK\Exception\EvaluatorException
+   * @throws \Donquixote\Ock\Exception\EvaluatorException
    */
   public function valuesGetValue(array $values): FieldDisplayProcessorInterface {
 

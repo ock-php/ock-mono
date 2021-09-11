@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;

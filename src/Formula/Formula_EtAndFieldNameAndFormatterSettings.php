@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Group\Formula_Group;
-use Donquixote\ObCK\Formula\Label\Formula_Label;
-use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
+use Donquixote\Ock\Formula\Group\Formula_Group;
+use Donquixote\Ock\Formula\Label\Formula_Label;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
 use Drupal\renderkit\IdToFormula\IdToFormula_Et_FieldAndFormatterSettings;
 use Drupal\renderkit\Util\UtilBase;
 
@@ -15,7 +15,7 @@ final class Formula_EtAndFieldNameAndFormatterSettings extends UtilBase {
    * @param null $entityType
    * @param null $bundleName
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function create($entityType = NULL, $bundleName = NULL) {
 

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\cu\DrupalText;
 

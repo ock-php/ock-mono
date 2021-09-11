@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\ObCK\Context\CfContext;
-use Donquixote\ObCK\Context\CfContextInterface;
-use Donquixote\ObCK\Exception\EvaluatorException;
+use Donquixote\Ock\Context\CfContext;
+use Donquixote\Ock\Context\CfContextInterface;
+use Donquixote\Ock\Exception\EvaluatorException;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\cu\Form\Form_GenericRedirectGET;
 
@@ -116,7 +116,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return \Donquixote\ObCK\Context\CfContextInterface
+   * @return \Donquixote\Ock\Context\CfContextInterface
    */
   private function entityBuildContext(EntityInterface $entity): CfContextInterface {
 
@@ -133,7 +133,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
   /**
    * @param mixed $conf
-   * @param \Donquixote\ObCK\Context\CfContextInterface $context
+   * @param \Donquixote\Ock\Context\CfContextInterface $context
    *
    * @return array
    */

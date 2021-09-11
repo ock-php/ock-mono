@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Summarizer\SummarizerInterface;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Summarizer\SummarizerInterface;
+use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\cu\DrupalText;

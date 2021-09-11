@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 use Drupal\views\Views;
@@ -30,7 +30,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
   /**
    * @CfrPlugin("viewsDisplay", @t("Views display"))
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createFormula(): FormulaInterface {
 

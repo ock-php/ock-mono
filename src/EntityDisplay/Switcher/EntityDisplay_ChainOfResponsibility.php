@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
-use Donquixote\ObCK\Context\CfContextInterface;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Context\CfContextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
@@ -29,9 +29,9 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    *   label = "Chain of responsibility"
    * )
    *
-   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
+   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createCfrFormula(CfContextInterface $context = NULL): FormulaInterface {
 

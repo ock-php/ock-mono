@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Textfield\Formula_TextfieldBase;
-use Donquixote\ObCK\Zoo\V2V\String\V2V_StringInterface;
+use Donquixote\Ock\Formula\Textfield\Formula_TextfieldBase;
+use Donquixote\Ock\Zoo\V2V\String\V2V_StringInterface;
 use Drupal\Component\Utility\Html;
 
 class Formula_ListSeparator extends Formula_TextfieldBase implements V2V_StringInterface {

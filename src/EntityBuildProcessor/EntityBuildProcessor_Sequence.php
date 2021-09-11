@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Donquixote\ObCK\Context\CfContextInterface;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Context\CfContextInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
@@ -22,9 +22,9 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    *   label = "Sequence of processors"
    * )
    *
-   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
+   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function createCfrFormula(CfContextInterface $context = NULL): Formula_GroupValInterface {
 

@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormula_Callback;
-use Donquixote\ObCK\IdToFormula\IdToFormula_Fixed;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\IdToFormula\IdToFormula_Callback;
+use Donquixote\Ock\IdToFormula\IdToFormula_Fixed;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
@@ -37,7 +37,7 @@ class Formula_FieldName_EntityReference extends Formula_Proxy_Cache_SelectBase {
    * @param string|null $bundle
    * @param string|null $targetTypeId
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createEtDotFieldNameFormula(
     $entityTypeId = NULL,
@@ -70,7 +70,7 @@ class Formula_FieldName_EntityReference extends Formula_Proxy_Cache_SelectBase {
    * @param string|null $bundle
    * @param string|null $targetTypeId
    *
-   * @return \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @return \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   public static function createEtToFormula(
     $entityTypeId = NULL,

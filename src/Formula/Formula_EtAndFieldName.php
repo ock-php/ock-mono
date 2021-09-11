@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownVal;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownVal;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
 use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
@@ -27,7 +27,7 @@ final class Formula_EtAndFieldName extends UtilBase {
    * @param string|null $entity_type_id
    * @param string|null $bundle
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function fromContainer(
     ContainerInterface $container,
@@ -54,7 +54,7 @@ final class Formula_EtAndFieldName extends UtilBase {
    * @param string|null $entity_type_id
    * @param string|null $bundle
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function create(
     EntityFieldManagerInterface $entity_field_manager,

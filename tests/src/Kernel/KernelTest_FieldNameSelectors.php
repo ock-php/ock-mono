@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\renderkit\Kernel;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Drupal\renderkit\Formula\Formula_EntityType_WithFields;
 use Drupal\renderkit\Formula\Formula_EtDotX;
 use Drupal\renderkit\Formula\Formula_EtDotX_FixedEt;
@@ -500,7 +500,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
   /**
    * @param string[][] $expected
    *   Format: $[$optgroupLabel][$id] = $optionLabel
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    */
   private function assertFormulaGroupedOptions(array $expected, FormulaInterface $formula) {
 
@@ -557,7 +557,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
   }
 
   /**
-   * @return \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface
+   * @return \Donquixote\Ock\FormulaReplacer\FormulaReplacerInterface
    */
   private function formulaReplacer(): FormulaReplacerInterface {
     return CfrPluginHub::getContainer()->formulaReplacer;
@@ -565,7 +565,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
 
   /** @noinspection PhpUnusedPrivateMethodInspection */
   /**
-   * @return \Donquixote\ObCK\FormulaToAnything\FormulaToAnythingInterface
+   * @return \Donquixote\Ock\FormulaToAnything\FormulaToAnythingInterface
    */
   private function sta(): FormulaToAnythingInterface {
     return CfrPluginHub::getContainer()->formulaToAnything;

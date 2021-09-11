@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\AccountAccess;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\cu\Formula\Formula_PermissionId;
@@ -22,7 +22,7 @@ class AccountAccess_Permission implements AccountAccessInterface {
    *
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(ContainerInterface $container): FormulaInterface {
     return Formula_ValueToValue_CallbackMono::fromClass(

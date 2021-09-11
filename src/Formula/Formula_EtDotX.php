@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
-use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\Ock\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
+use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Drupal\renderkit\Formula\Misc\SelectByEt\SelectByEtInterface;
 
 class Formula_EtDotX extends Formula_Proxy_Cache_SelectBase {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface
+   * @var \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface
    */
   private $etSelector;
 
@@ -25,7 +25,7 @@ class Formula_EtDotX extends Formula_Proxy_Cache_SelectBase {
   private $separator = '.';
 
   /**
-   * @param \Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface $etSelector
+   * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $etSelector
    * @param \Drupal\renderkit\Formula\Misc\SelectByEt\SelectByEtInterface $selectByEt
    * @param string $cacheId
    */

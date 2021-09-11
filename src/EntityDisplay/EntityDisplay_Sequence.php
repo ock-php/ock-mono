@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\ObCK\Context\CfContextInterface;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
-use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Context\CfContextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 
 /**
  * A sequence of entity display handlers, whose results are assembled into a
@@ -25,9 +25,9 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
   /**
    * @CfrPlugin("sequence", @t("Sequence of entity displays"))
    *
-   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
+   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createFormula(CfContextInterface $context = NULL): FormulaInterface {
     return Formula_ValueToValue_CallbackMono::fromClass(

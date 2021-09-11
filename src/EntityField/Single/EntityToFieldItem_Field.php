@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Single;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
@@ -29,7 +29,7 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(
     array $allowedFieldTypes = NULL,

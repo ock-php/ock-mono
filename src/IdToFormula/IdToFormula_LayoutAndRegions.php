@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\Group\Formula_Group_SameItemFormula;
-use Donquixote\ObCK\Formula\Sequence\Formula_Sequence;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Formula\Group\Formula_Group_SameItemFormula;
+use Donquixote\Ock\Formula\Sequence\Formula_Sequence;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Text\Text;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
@@ -27,7 +27,7 @@ class IdToFormula_LayoutAndRegions implements IdToFormulaInterface {
   private $callback;
 
   /**
-   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   private FormulaInterface $itemFormula;
 
@@ -42,7 +42,7 @@ class IdToFormula_LayoutAndRegions implements IdToFormulaInterface {
    * @param callable $callback
    *   Factory callback with ($layout, $regions) -> *.
    *   Must be a static method.
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $itemFormula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $itemFormula
    * @param \Drupal\Core\Layout\LayoutPluginManagerInterface $layoutManager
    */
   public function __construct(callable $callback, FormulaInterface $itemFormula, LayoutPluginManagerInterface $layoutManager) {
@@ -54,11 +54,11 @@ class IdToFormula_LayoutAndRegions implements IdToFormulaInterface {
   /**
    * Static factory. Creates a drilldown formula.
    *
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $itemFormula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $itemFormula
    * @param \Drupal\Core\Layout\LayoutPluginManagerInterface $layoutManager
    * @param callable $callback
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(
     FormulaInterface $itemFormula,

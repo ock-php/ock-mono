@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
+use Donquixote\Ock\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
 use Drupal\Core\Entity\FieldableEntityInterface;
 
 abstract class Formula_EtDotFieldName_ProxyCacheBase extends Formula_Proxy_Cache_SelectBase {

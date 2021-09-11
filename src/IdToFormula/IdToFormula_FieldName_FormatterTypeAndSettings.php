@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Label\Formula_Label;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Label\Formula_Label;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Field\FormatterPluginManager;
 use Drupal\renderkit\Helper\FieldDefinitionLookup;
 
@@ -43,7 +43,7 @@ class IdToFormula_FieldName_FormatterTypeAndSettings implements IdToFormulaInter
   /**
    * @param string|int $id
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
   public function idGetFormula($id): ?FormulaInterface {
 

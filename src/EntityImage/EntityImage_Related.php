@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImage;
 
-use Donquixote\ObCK\Context\CfContextInterface;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Context\CfContextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
@@ -28,9 +28,9 @@ class EntityImage_Related implements EntityImageInterface {
    *   label = "Image from related entity"
    * )
    *
-   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
+   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createFormula(CfContextInterface $context = NULL): FormulaInterface {
 

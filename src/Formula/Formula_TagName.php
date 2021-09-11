@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Optional\Formula_Optional;
-use Donquixote\ObCK\Formula\Optional\Formula_Optional_Null;
-use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Optional\Formula_Optional;
+use Donquixote\Ock\Formula\Optional\Formula_Optional_Null;
+use Donquixote\Ock\Formula\Select\Formula_Select_Fixed;
 use Drupal\renderkit\Util\UtilBase;
 
 final class Formula_TagName extends UtilBase {
@@ -14,7 +14,7 @@ final class Formula_TagName extends UtilBase {
   /**
    * @Formula("renderkit.tagName.free")
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createFree() {
     return new Formula_TagNameFree();
@@ -23,7 +23,7 @@ final class Formula_TagName extends UtilBase {
   /**
    * @Formula("renderkit.tagName.title")
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createForTitle(): FormulaInterface {
     return self::create(['h1', 'h2', 'h3', 'h4', 'h5', 'label', 'strong'], 'h2');
@@ -34,7 +34,7 @@ final class Formula_TagName extends UtilBase {
    *
    * @param string $default
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createForContainer($default = 'div'): FormulaInterface {
     return self::create(['div', 'span', 'article', 'section', 'pre'], $default);
@@ -43,7 +43,7 @@ final class Formula_TagName extends UtilBase {
   /**
    * @Formula("renderkit.tagName.list")
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createForHtmlList(): FormulaInterface {
 
@@ -59,7 +59,7 @@ final class Formula_TagName extends UtilBase {
   /**
    * @param string[] $allowedTagNames
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createOptional(array $allowedTagNames) {
 
@@ -76,7 +76,7 @@ final class Formula_TagName extends UtilBase {
    * @param string[] $allowedTagNames
    * @param string|null $defaultTagName
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function create(array $allowedTagNames, $defaultTagName = NULL): FormulaInterface {
 

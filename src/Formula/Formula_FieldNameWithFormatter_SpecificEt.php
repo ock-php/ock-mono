@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownVal;
-use Donquixote\ObCK\Formula\Proxy\Replacer\Formula_Proxy_ReplacerInterface;
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
-use Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownVal;
+use Donquixote\Ock\Formula\Proxy\Replacer\Formula_Proxy_ReplacerInterface;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\FormulaReplacer\FormulaReplacerInterface;
 use Drupal\renderkit\IdToFormula\IdToFormula_FieldName_FormatterTypeAndSettings;
 
 class Formula_FieldNameWithFormatter_SpecificEt implements Formula_Proxy_ReplacerInterface {
@@ -34,7 +34,7 @@ class Formula_FieldNameWithFormatter_SpecificEt implements Formula_Proxy_Replace
    * @param string $entityType
    * @param string|null $bundleName
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function create(string $entityType, string $bundleName = NULL) {
 
@@ -55,9 +55,9 @@ class Formula_FieldNameWithFormatter_SpecificEt implements Formula_Proxy_Replace
   }
 
   /**
-   * @param \Donquixote\ObCK\FormulaReplacer\FormulaReplacerInterface $replacer
+   * @param \Donquixote\Ock\FormulaReplacer\FormulaReplacerInterface $replacer
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function replacerGetFormula(FormulaReplacerInterface $replacer): FormulaInterface {
 

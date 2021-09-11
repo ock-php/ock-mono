@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\cu\Formator\FormatorD8Interface\FormatorD8Interface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormula_Callback;
-use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_Null;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\Ock\IdToFormula\IdToFormula_Callback;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_Null;
 use Drupal\Core\Link;
 
 class Formula_ViewsDisplayEditLink extends Formula_ValueProvider_Null implements FormatorD8Interface {
@@ -25,7 +25,7 @@ class Formula_ViewsDisplayEditLink extends Formula_ValueProvider_Null implements
   /**
    * @param \Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId $idFormula
    *
-   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
+   * @return \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
    */
   public static function createDrilldown(Formula_ViewIdWithDisplayId $idFormula): Formula_DrilldownInterface {
     return Formula_Drilldown::create(

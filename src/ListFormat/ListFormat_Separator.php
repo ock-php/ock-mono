@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ListFormat;
 
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
 use Drupal\renderkit\Formula\Formula_ListSeparator;
 
 /**
@@ -23,7 +23,7 @@ class ListFormat_Separator implements ListFormatInterface {
    *   label = @t("Separator")
    * )
    *
-   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function createFormula(): Formula_GroupValInterface {
 

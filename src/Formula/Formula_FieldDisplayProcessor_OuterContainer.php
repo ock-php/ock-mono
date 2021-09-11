@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Exception\EvaluatorException;
-use Donquixote\ObCK\Formula\Group\Formula_Group_V2VDecoratorBase;
-use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\Ock\Formula\Group\Formula_Group_V2VDecoratorBase;
+use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\Zoo\V2V\Group\V2V_GroupInterface;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessor_OuterContainer;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
@@ -19,7 +19,7 @@ class Formula_FieldDisplayProcessor_OuterContainer extends Formula_Group_V2VDeco
   private $withClassesOption;
 
   /**
-   * @param \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface $decoratedValFormula
+   * @param \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface $decoratedValFormula
    * @param bool $withClassesOption
    *
    * @return self
@@ -35,8 +35,8 @@ class Formula_FieldDisplayProcessor_OuterContainer extends Formula_Group_V2VDeco
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $decoratedFormula
-   * @param \Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface $decoratedV2V
+   * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $decoratedFormula
+   * @param \Donquixote\Ock\Zoo\V2V\Group\V2V_GroupInterface $decoratedV2V
    * @param bool $withClassesOption
    */
   public function __construct(
@@ -49,7 +49,7 @@ class Formula_FieldDisplayProcessor_OuterContainer extends Formula_Group_V2VDeco
   }
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface[]
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface[]
    */
   public function getItemFormulas(): array {
 
@@ -81,7 +81,7 @@ class Formula_FieldDisplayProcessor_OuterContainer extends Formula_Group_V2VDeco
    *
    * @return mixed
    *
-   * @throws \Donquixote\ObCK\Exception\EvaluatorException
+   * @throws \Donquixote\Ock\Exception\EvaluatorException
    */
   public function valuesGetValue(array $values) {
 

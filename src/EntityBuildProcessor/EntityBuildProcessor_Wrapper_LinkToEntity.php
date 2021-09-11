@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityMalformedException;
 use Drupal\Core\Entity\Exception\UndefinedLinkTemplateException;
@@ -36,7 +36,7 @@ class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorI
    *   label = @t("Entity title link wrapper")
    * )
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function entityTitleFormula(): FormulaInterface {
     return Formula_GroupVal_Callback::fromStaticMethod(

@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConf;
-use Donquixote\ObCK\Formula\Group\Formula_Group_V2VBase;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
-use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConf;
+use Donquixote\Ock\Formula\Group\Formula_Group_V2VBase;
+use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Formula\Select\Formula_Select_Fixed;
 use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldWithFormatter;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
@@ -27,7 +27,7 @@ class Formula_EntityDisplay_FieldWithFormatter extends Formula_Group_V2VBase {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createValFormula($entityType = NULL, $bundle = NULL): FormulaInterface {
     return self::createConfFormula($entityType, $bundle)
@@ -54,7 +54,7 @@ class Formula_EntityDisplay_FieldWithFormatter extends Formula_Group_V2VBase {
   }
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface[]
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface[]
    */
   public function getItemFormulas(): array {
     $formulas = [];
@@ -98,7 +98,7 @@ class Formula_EntityDisplay_FieldWithFormatter extends Formula_Group_V2VBase {
    *   Format: $[$groupItemKey] = $groupItemValue
    *
    * @return mixed
-   * @throws \Donquixote\ObCK\Exception\EvaluatorException
+   * @throws \Donquixote\Ock\Exception\EvaluatorException
    */
   public function valuesGetValue(array $values) {
 

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 use Drupal\renderkit\Formula\Formula_FieldName;
 use Drupal\renderkit\Formula\Formula_FieldName_AllowedTypes;
 
@@ -25,7 +25,7 @@ class IdToFormula_Et_FieldName implements IdToFormulaInterface {
   /**
    * @param string|int $id
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
   public function idGetFormula($id): ?FormulaInterface {
     return Formula_FieldName::create(

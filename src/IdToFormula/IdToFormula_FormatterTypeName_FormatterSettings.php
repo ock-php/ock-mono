@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownVal;
-use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownValInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownVal;
+use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Field\FormatterPluginManager;
@@ -34,7 +34,7 @@ class IdToFormula_FormatterTypeName_FormatterSettings implements IdToFormulaInte
    * @param \Drupal\Core\Field\FormatterPluginManager $formatterPluginManager
    * @param \Drupal\Core\Field\FieldDefinitionInterface $fieldDefinition
    *
-   * @return \Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownValInterface
+   * @return \Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface
    */
   public static function createDrilldownValFormula(
     FormatterPluginManager $formatterPluginManager,
@@ -50,7 +50,7 @@ class IdToFormula_FormatterTypeName_FormatterSettings implements IdToFormulaInte
    * @param \Drupal\Core\Field\FormatterPluginManager $formatterPluginManager
    * @param \Drupal\Core\Field\FieldDefinitionInterface $fieldDefinition
    *
-   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
+   * @return \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
    */
   public static function createDrilldownFormula(
     FormatterPluginManager $formatterPluginManager,
@@ -82,7 +82,7 @@ class IdToFormula_FormatterTypeName_FormatterSettings implements IdToFormulaInte
   /**
    * @param string|int $id
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
   public function idGetFormula($id): ?FormulaInterface {
 

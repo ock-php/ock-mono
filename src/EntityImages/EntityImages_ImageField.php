@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImages;
 
-use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -40,7 +40,7 @@ class EntityImages_ImageField implements EntityImagesInterface {
    * @param string $entityType
    * @param string $bundleName
    *
-   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function createFormula($entityType = NULL, $bundleName = NULL): Formula_GroupValInterface {
 

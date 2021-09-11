@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Layout\LayoutInterface;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
@@ -40,11 +40,11 @@ class EntityDisplay_Layout extends EntityDisplayBase {
   }
 
   /**
-   * @ObCK("layout", "Layout")
+   * @Ock("layout", "Layout")
    *
    * @param \Drupal\Core\Layout\LayoutPluginManagerInterface $layoutManager
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(LayoutPluginManagerInterface $layoutManager): FormulaInterface {
     return IdToFormula_LayoutAndRegions::formula(

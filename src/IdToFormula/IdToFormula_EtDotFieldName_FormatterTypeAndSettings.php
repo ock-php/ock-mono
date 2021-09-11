@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
 use Drupal\renderkit\Helper\FieldDefinitionLookup;
 use Drupal\renderkit\Formula\Formula_EtDotFieldName;
 
@@ -21,7 +21,7 @@ class IdToFormula_EtDotFieldName_FormatterTypeAndSettings implements IdToFormula
    * @param string|null $entityType
    * @param string|null $bundleName
    *
-   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
+   * @return \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
    */
   public static function createDrilldownFormula($entityType = NULL, $bundleName = NULL): Formula_DrilldownInterface {
 
@@ -46,7 +46,7 @@ class IdToFormula_EtDotFieldName_FormatterTypeAndSettings implements IdToFormula
   /**
    * @param string|int $etAndId
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
   public function idGetFormula($etAndId): ?FormulaInterface {
     list($et, $fieldName) = explode('.', $etAndId . '.');

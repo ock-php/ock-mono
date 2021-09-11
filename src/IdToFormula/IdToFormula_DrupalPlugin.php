@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 
 class IdToFormula_DrupalPlugin implements IdToFormulaInterface {
 

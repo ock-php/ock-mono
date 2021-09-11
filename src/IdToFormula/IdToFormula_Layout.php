@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
 use Drupal\cu\Formula\DrupalPluginSettings\Formula_DrupalPluginSettings;
@@ -30,7 +30,7 @@ class IdToFormula_Layout implements IdToFormulaInterface {
    *
    * @param \Drupal\Core\Layout\LayoutPluginManagerInterface $layoutManager
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(LayoutPluginManagerInterface $layoutManager): FormulaInterface {
     $drilldown = new Formula_Drilldown(

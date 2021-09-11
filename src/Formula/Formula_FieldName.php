@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\Select\Formula_Select_LabelLookupBase;
-use Donquixote\ObCK\TextLookup\TextLookupInterface;
+use Donquixote\Ock\Formula\Select\Formula_Select_LabelLookupBase;
+use Donquixote\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
@@ -41,8 +41,8 @@ class Formula_FieldName extends Formula_Select_LabelLookupBase {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\TextLookup\TextLookupInterface $option_label_lookup
-   * @param \Donquixote\ObCK\TextLookup\TextLookupInterface $group_label_lookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $option_label_lookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $group_label_lookup
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
    * @param string $entity_type_id
    * @param string|null $bundle

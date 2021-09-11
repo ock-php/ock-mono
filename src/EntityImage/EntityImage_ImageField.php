@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImage;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
@@ -27,7 +27,7 @@ class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements Ent
    * @param string $entityType
    * @param string $bundleName
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createFormula(string $entityType = NULL, string $bundleName = NULL): FormulaInterface {
 

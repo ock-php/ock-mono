@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\LabeledFormat;
 
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\Formula\Select\Formula_Select_Fixed;
 use Drupal\Component\Utility\Html;
 
 class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
@@ -21,7 +21,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
    *   label = "Headline element"
    * )
    *
-   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function createFormula(): Formula_GroupValInterface {
     return Formula_GroupVal_Callback::fromClass(

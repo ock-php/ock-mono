@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface;
 
 class FieldDisplayProcessor_LabeledEntityDisplayListFormat implements FieldDisplayProcessorInterface {
@@ -29,7 +29,7 @@ class FieldDisplayProcessor_LabeledEntityDisplayListFormat implements FieldDispl
    *   label = "Labeled entity display list format +"
    * )
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createFormula(): FormulaInterface {
     return Formula_GroupVal_Callback::fromStaticMethod(

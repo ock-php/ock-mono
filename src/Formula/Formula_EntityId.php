@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Formula\IdToLabel\Formula_IdToLabelInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\cu\Formator\FormatorD8Interface;

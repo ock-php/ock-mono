@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration;
-use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration;
+use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
@@ -34,7 +34,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    *
    * @param string|null $entityType
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createFormula($entityType = NULL): FormulaInterface {
 
@@ -55,7 +55,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
      * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
      * @param string|null $entityType
      *
-     * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+     * @return \Donquixote\Ock\Core\Formula\FormulaInterface
      */
   public static function doCreateFormula(
     EntityDisplayRepositoryInterface $entityDisplayRepository,
@@ -78,7 +78,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    *
    * @return self
    *
-   * @throws \Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration
+   * @throws \Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration
    */
   public static function createFromId($id): self {
 

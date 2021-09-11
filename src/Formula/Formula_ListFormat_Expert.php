@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Summarizer\SummarizerInterface;
-use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Util\PhpUtil;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Summarizer\SummarizerInterface;
+use Donquixote\Ock\Text\TextInterface;
+use Donquixote\Ock\Util\PhpUtil;
 use Drupal\cu\Formator\FormatorD8Interface;
 use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
 

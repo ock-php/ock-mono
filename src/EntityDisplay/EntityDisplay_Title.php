@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessor_Wrapper_LinkToEntity;
@@ -32,7 +32,7 @@ class EntityDisplay_Title extends EntityDisplayBase {
    *   label = "Entity title"
    * )
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createAdvancedFormula(): FormulaInterface {
     return Formula::group()

@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\Exception\EvaluatorException;
-use Donquixote\ObCK\IdToFormula\IdToFormula_Class;
-use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
-use Donquixote\ObCK\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\Ock\IdToFormula\IdToFormula_Class;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
+use Donquixote\Ock\Zoo\V2V\Group\V2V_GroupInterface;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\renderkit\BuildProvider\BuildProvider_EntityDisplay;
 use Drupal\renderkit\EntityDisplay\EntityDisplay;
@@ -22,7 +22,7 @@ class Formula_BuildProvider_EntityDisplay implements Formula_GroupInterface, V2V
   private $entityTypeId;
 
   /**
-   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
+   * @return \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
    */
   public static function createDrilldown(): Formula_DrilldownInterface {
     return Formula_Drilldown::create(
@@ -38,7 +38,7 @@ class Formula_BuildProvider_EntityDisplay implements Formula_GroupInterface, V2V
   }
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface[]
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface[]
    *   Format: $[$groupItemKey] = $groupItemFormula
    */
   public function getItemFormulas(): array {
@@ -63,7 +63,7 @@ class Formula_BuildProvider_EntityDisplay implements Formula_GroupInterface, V2V
    *   Format: $[$groupItemKey] = $groupItemValue
    *
    * @return mixed
-   * @throws \Donquixote\ObCK\Exception\EvaluatorException
+   * @throws \Donquixote\Ock\Exception\EvaluatorException
    */
   public function valuesGetValue(array $values) {
     return self::createBuildProvider(
@@ -92,7 +92,7 @@ class Formula_BuildProvider_EntityDisplay implements Formula_GroupInterface, V2V
    *
    * @return \Drupal\renderkit\BuildProvider\BuildProvider_EntityDisplay
    *
-   * @throws \Donquixote\ObCK\Exception\EvaluatorException
+   * @throws \Donquixote\Ock\Exception\EvaluatorException
    */
   public static function createBuildProvider(
     $entityTypeId,

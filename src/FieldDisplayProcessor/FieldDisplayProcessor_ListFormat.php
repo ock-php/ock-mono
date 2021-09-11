@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
-use Donquixote\ObCK\Formula\Boolean\Formula_Boolean_YesNo;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface {

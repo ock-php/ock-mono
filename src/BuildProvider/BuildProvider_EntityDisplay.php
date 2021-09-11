@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\Formula\Formula_BuildProvider_EntityDisplay;
@@ -23,7 +23,7 @@ class BuildProvider_EntityDisplay implements BuildProviderInterface {
   /**
    * @CfrPlugin("entityDisplay", "Entity display")
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(): FormulaInterface {
     return Formula_BuildProvider_EntityDisplay::createDrilldown();

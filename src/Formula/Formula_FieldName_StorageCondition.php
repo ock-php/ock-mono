@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\ObCK\IdToFormula\IdToFormula_Callback;
-use Donquixote\ObCK\IdToFormula\IdToFormula_Fixed;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
-use Donquixote\ObCK\Formula\Select\Formula_Select_TwoStepFlatSelectComposite;
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\IdToFormula\IdToFormula_Callback;
+use Donquixote\Ock\IdToFormula\IdToFormula_Fixed;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
+use Donquixote\Ock\Formula\Select\Formula_Select_TwoStepFlatSelectComposite;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\renderkit\Formula\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface;
 
@@ -38,7 +38,7 @@ class Formula_FieldName_StorageCondition extends Formula_Proxy_Cache_SelectBase 
    * @param \Drupal\renderkit\Formula\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface $storageDefinitionCondition
    * @param string $storageConditionSignature
    *
-   * @return \Donquixote\ObCK\Formula\Select\Formula_SelectInterface
+   * @return \Donquixote\Ock\Formula\Select\Formula_SelectInterface
    */
   public static function createEtDotFieldNameFormula(
     $entityTypeId = NULL,
@@ -64,7 +64,7 @@ class Formula_FieldName_StorageCondition extends Formula_Proxy_Cache_SelectBase 
    * @param \Drupal\renderkit\Formula\Misc\FieldStorageDefinitionCondition\FieldStorageDefinitionConditionInterface $storageDefinitionCondition
    * @param string $storageConditionSignature
    *
-   * @return \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @return \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   public static function createEtToFormula(
     $entityTypeId = NULL,
