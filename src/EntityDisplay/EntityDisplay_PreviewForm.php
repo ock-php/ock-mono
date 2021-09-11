@@ -86,7 +86,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
     try {
 
-      $sta = CfrPluginHub::getContainer()->formulaToAnything;
+      $sta = CfrPluginHub::getContainer()->incarnator;
 
       $entityDisplay = EntityDisplay::fromConf($conf, $sta);
     }

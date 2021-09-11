@@ -63,7 +63,7 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
     }
 
     $container = CfrPluginHub::getContainer();
-    $sta = $container->formulaToAnything;
+    $sta = $container->incarnator;
 
     if (!$settings) {
       return $out;

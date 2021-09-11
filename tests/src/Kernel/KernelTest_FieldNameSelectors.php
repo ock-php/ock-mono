@@ -565,9 +565,9 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
 
   /** @noinspection PhpUnusedPrivateMethodInspection */
   /**
-   * @return \Donquixote\Ock\FormulaToAnything\FormulaToAnythingInterface
+   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private function sta(): FormulaToAnythingInterface {
-    return CfrPluginHub::getContainer()->formulaToAnything;
+  private function sta(): IncarnatorInterface {
+    return CfrPluginHub::getContainer()->incarnator;
   }
 }

@@ -7,7 +7,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Evaluator\Evaluator;
 use Donquixote\Ock\Evaluator\EvaluatorInterface;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\FormulaToAnything\FormulaToAnythingInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Summarizer\Summarizer;
 use Drupal\cfrapi\Exception\UnsupportedFormulaException;
 use Drupal\renderkit\Context\EntityContext;
@@ -17,16 +17,13 @@ final class EntityDisplay extends UtilBase {
 
   /**
    * @param mixed $conf
-   * @param \Donquixote\Ock\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
-   *
-   * @throws \Donquixote\Ock\Exception\EvaluatorException
-   * @throws \Drupal\cfrapi\Exception\UnsupportedFormulaException
    */
-  public static function fromConf($conf, FormulaToAnythingInterface $formulaToAnything): ?EntityDisplayInterface {
+  public static function fromConf($conf, IncarnatorInterface $incarnator): ?EntityDisplayInterface {
 
-    $evaluator = self::evaluatorOrNull($formulaToAnything);
+    $evaluator = self::evaluatorOrNull($incarnator);
 
     if (null === $evaluator) {
       throw new UnsupportedFormulaException("Failed to create evaluator from formula.");
@@ -42,15 +39,15 @@ final class EntityDisplay extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\Ock\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface|null
    */
-  public static function evaluatorOrNull(FormulaToAnythingInterface $formulaToAnything): ?EvaluatorInterface {
+  public static function evaluatorOrNull(IncarnatorInterface $incarnator): ?EvaluatorInterface {
 
     return Evaluator::fromFormula(
       self::formula(),
-      $formulaToAnything);
+      $incarnator);
   }
 
   /**
@@ -72,19 +69,19 @@ final class EntityDisplay extends UtilBase {
 
   /**
    * @param mixed $conf
-   * @param \Donquixote\Ock\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return string|null
    *
    * @throws \Drupal\cfrapi\Exception\UnsupportedFormulaException
    */
-  public static function summary($conf, FormulaToAnythingInterface $formulaToAnything): ?string {
+  public static function summary($conf, IncarnatorInterface $incarnator): ?string {
 
     $formula = self::formula();
 
     $summarizer = Summarizer::fromFormula(
       $formula,
-      $formulaToAnything);
+      $incarnator);
 
     if (null === $summarizer) {
       throw new UnsupportedFormulaException("Failed to create summarizer from formula.");
