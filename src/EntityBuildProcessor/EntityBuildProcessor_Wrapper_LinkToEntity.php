@@ -9,8 +9,8 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityMalformedException;
 use Drupal\Core\Entity\Exception\UndefinedLinkTemplateException;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
-use Drupal\renderkit\Html\HtmlAttributesTrait;
 use Drupal\renderkit\Formula\Formula_TagName;
+use Drupal\renderkit\Html\HtmlAttributesTrait;
 
 /**
  * Wraps the content from a decorated display handler into a link, linking to
