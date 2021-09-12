@@ -70,7 +70,7 @@ class InlinePluginList_Select implements InlinePluginListInterface {
     return new Plugin(
       $this->formula->idGetLabel($id) ?? Text::s($id),
       NULL,
-      new Formula_ValueProvider_FixedValue($id),
+      Formula_ValueProvider_FixedValue::fromValue($id),
       []);
   }
 
