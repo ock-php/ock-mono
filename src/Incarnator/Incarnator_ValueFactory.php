@@ -6,6 +6,7 @@ namespace Donquixote\Ock\Incarnator;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface;
@@ -49,7 +50,13 @@ class Incarnator_ValueFactory extends Incarnator_FormulaReplacerBase {
 
     /** @var \Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface $formula */
 
-    $factory = $formula->getValueFactory();
+    try {
+      $factory = $formula->getValueFactory();
+    }
+    catch (\Exception $e) {
+      throw new IncarnatorException($e->getMessage(), 0, $e);
+    }
+
     $params = $factory->getReflectionParameters();
 
     if ([] === $params) {
@@ -134,7 +141,7 @@ class Incarnator_ValueFactory extends Incarnator_FormulaReplacerBase {
       $default = $param->getDefaultValue();
     }
     catch (\ReflectionException $e) {
-      throw new \RuntimeException('Impossible exception.');
+      throw new \RuntimeException($e->getMessage(), 0, $e);
     }
 
     if ($default === NULL) {
