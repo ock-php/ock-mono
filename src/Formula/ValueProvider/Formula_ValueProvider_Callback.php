@@ -19,9 +19,9 @@ class Formula_ValueProvider_Callback implements Formula_ValueProviderInterface {
   /**
    * @param string $class
    *
-   * @return \Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_Callback
+   * @return self
    */
-  public static function fromClass(string $class): Formula_ValueProvider_Callback {
+  public static function fromClass(string $class): self {
     $callback = CallbackReflection_ClassConstruction::create($class);
     return new self($callback);
   }
@@ -30,9 +30,9 @@ class Formula_ValueProvider_Callback implements Formula_ValueProviderInterface {
    * @param string $class
    * @param string $methodName
    *
-   * @return \Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_Callback
+   * @return self
    */
-  public static function createFromClassStaticMethod(string $class, string $methodName): Formula_ValueProvider_Callback {
+  public static function createFromClassStaticMethod(string $class, string $methodName): self {
     $callback = CallbackReflection_StaticMethod::create($class, $methodName);
     return new self($callback);
   }
