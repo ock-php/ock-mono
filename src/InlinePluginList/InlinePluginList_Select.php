@@ -7,7 +7,7 @@ namespace Donquixote\Ock\InlinePluginList;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Formula\Select\Formula_Select_FromFlatSelect;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
 use Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface;
 use Donquixote\Ock\Plugin\Plugin;
 use Donquixote\Ock\Text\Text;
@@ -70,7 +70,7 @@ class InlinePluginList_Select implements InlinePluginListInterface {
     return new Plugin(
       $this->formula->idGetLabel($id) ?? Text::s($id),
       NULL,
-      Formula_ValueProvider_FixedValue::fromValue($id),
+      Formula_ValueProvider_FixedPhp::fromValue($id),
       []);
   }
 

@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Formula\ValueProvider;
 
 use Donquixote\Ock\Util\PhpUtil;
 
-class Formula_ValueProvider_FixedValue implements Formula_ValueProviderInterface {
+class Formula_ValueProvider_FixedPhp implements Formula_ValueProviderInterface {
 
   /**
    * @var string

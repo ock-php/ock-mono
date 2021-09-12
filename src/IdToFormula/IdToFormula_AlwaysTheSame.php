@@ -8,7 +8,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class IdToFormula_AlwaysTheSame implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedValue
+   * @var \Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp
    */
   private $sameFormula;
 
