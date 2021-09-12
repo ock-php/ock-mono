@@ -7,7 +7,6 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
-use Donquixote\Ock\Exception\EvaluatorException;
 
 class Formula_ValueProvider_Callback implements Formula_ValueProviderInterface {
 
@@ -42,18 +41,6 @@ class Formula_ValueProvider_Callback implements Formula_ValueProviderInterface {
    */
   public function __construct(CallbackReflectionInterface $callback) {
     $this->callback = $callback;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getValue() {
-    try {
-      return $this->callback->invokeArgs([]);
-    }
-    catch (\Exception $e) {
-      throw new EvaluatorException("Exception in callback", 0, $e);
-    }
   }
 
   /**
