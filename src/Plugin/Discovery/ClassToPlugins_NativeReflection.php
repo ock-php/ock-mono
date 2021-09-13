@@ -284,22 +284,11 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
    *   Format: $[] = $interface
    */
   private static function classGetPluginTypeNames(\ReflectionClass $reflectionClass): array {
-
+    $interfaces = $reflectionClass->getInterfaceNames();
     if ($reflectionClass->isInterface()) {
-      return [$reflectionClass->getName()];
+      $interfaces[] = $reflectionClass->getName();
     }
-
-    $interfaces = $reflectionClass->getInterfaces();
-    foreach ($interfaces as $interfaceName => $reflectionInterface) {
-      if (!isset($interfaces[$interfaceName])) {
-        continue;
-      }
-      foreach ($reflectionInterface->getInterfaceNames() as $nameToUnset) {
-        unset($interfaces[$nameToUnset]);
-      }
-    }
-
-    return array_keys($interfaces);
+    return $interfaces;
   }
 
 }
