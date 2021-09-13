@@ -71,7 +71,7 @@ class Incarnator_ValueFactory extends Incarnator_FormulaReplacerBase {
       $builder->add(
         $name,
         $param_formula,
-        Text::t($param_label ?? $name));
+        $param_label ?? Text::s('$' . $name));
     }
 
     return $builder->createWithCallback($factory);
