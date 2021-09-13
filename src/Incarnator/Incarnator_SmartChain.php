@@ -42,7 +42,7 @@ class Incarnator_SmartChain extends IncarnatorZeroBase {
    * @throws \Donquixote\Ock\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue): Incarnator_SmartChain {
-    $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
+    $partials = LocalPackageUtil::collectIncarnators($paramToValue);
     return new self($partials);
   }
 

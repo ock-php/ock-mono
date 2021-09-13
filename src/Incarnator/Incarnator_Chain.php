@@ -24,7 +24,7 @@ class Incarnator_Chain extends IncarnatorZeroBase {
    * @throws \Donquixote\Ock\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue): self {
-    $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
+    $partials = LocalPackageUtil::collectIncarnators($paramToValue);
     return new self($partials);
   }
 

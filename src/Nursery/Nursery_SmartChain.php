@@ -47,7 +47,7 @@ class Nursery_SmartChain extends NurseryBase {
    * @return self
    */
   public static function create(ParamToValueInterface $paramToValue, string $cache_id): self {
-    $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
+    $partials = LocalPackageUtil::collectIncarnators($paramToValue);
     return new self($partials, $cache_id);
   }
 

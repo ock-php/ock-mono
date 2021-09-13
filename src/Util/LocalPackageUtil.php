@@ -16,7 +16,7 @@ final class LocalPackageUtil extends UtilBase {
    *
    * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
    */
-  public static function collectSTAPartials(ParamToValueInterface $paramToValue): array {
+  public static function collectIncarnators(ParamToValueInterface $paramToValue): array {
 
     return STADiscovery_X::create($paramToValue)
       ->classFilesIAGetPartials(self::getClassFilesIA());
