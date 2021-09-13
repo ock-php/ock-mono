@@ -8,8 +8,8 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\FormulaToAnythingException;
 use Donquixote\Ock\Formula\ContextProviding\Formula_ContextProvidingInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\Ock\Nursery\Cradle\FormulaToAnythingPartial_SmartChain;
 use Donquixote\Ock\Nursery\Cradle\CradleInterface;
+use Donquixote\Ock\Nursery\Cradle\FormulaToAnythingPartial_SmartChain;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 

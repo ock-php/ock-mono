@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula\Drilldown;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 
 interface Formula_DrilldownInterface extends FormulaInterface {
 

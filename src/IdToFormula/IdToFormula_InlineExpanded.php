@@ -5,8 +5,8 @@ namespace Donquixote\Ock\IdToFormula;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\FormulaToAnythingException;
-use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
+use Donquixote\Ock\Nursery\NurseryInterface;
 
 class IdToFormula_InlineExpanded implements IdToFormulaInterface {
 

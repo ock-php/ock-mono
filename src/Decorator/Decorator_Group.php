@@ -6,9 +6,9 @@ namespace Donquixote\Ock\Decorator;
 
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\Generator_Group;
+use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Discovery\FactoryToSTA;
 
-use Donquixote\Ock\Nursery\Cradle\CradleInterface;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
+use Donquixote\Ock\Nursery\Cradle\CradleInterface;
 
 interface FactoryToSTAInterface {
 

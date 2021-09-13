@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Discovery\FactoryToSTA;
 
-use Donquixote\Ock\Nursery\Cradle\CradleInterface;
 use Donquixote\FactoryReflection\Factory\ReflectionFactory;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
 use Donquixote\FactoryReflection\Util\FactoryUtil;
+use Donquixote\Ock\Nursery\Cradle\CradleInterface;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 

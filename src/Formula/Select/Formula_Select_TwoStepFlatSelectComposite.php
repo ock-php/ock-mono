@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 
 class Formula_Select_TwoStepFlatSelectComposite extends Formula_Select_TwoStepFlatSelectBase {
 

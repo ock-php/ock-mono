@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Reflection\CallbackBinder;
 
-use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
+use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class CallbackBinder implements CallbackBinderInterface {
 

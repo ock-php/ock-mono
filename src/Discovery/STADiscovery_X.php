@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Discovery;
 
-use Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTA;
-use Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactories;
 use Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactoriesInterface;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnType_Chain;
+use Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTA;
+use Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinder_PhpTokenParser;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 

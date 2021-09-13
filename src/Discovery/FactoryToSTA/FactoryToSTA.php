@@ -8,6 +8,8 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_Function;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
+use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
+use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
 use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Nursery\Cradle\Cradle_Callback;
@@ -15,8 +17,6 @@ use Donquixote\Ock\Nursery\Cradle\Cradle_CallbackNoHelper;
 use Donquixote\Ock\Nursery\Cradle\CradleInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\ReflectionUtil;
-use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
-use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 

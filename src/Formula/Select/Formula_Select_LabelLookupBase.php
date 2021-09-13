@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Select;
 
+use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\TextLookup\TextLookup;
 use Donquixote\Ock\TextLookup\TextLookupInterface;
-use Donquixote\Ock\Text\TextInterface;
 
 /**
  * Select formula using TextLookup* objects for option labels and group labels.
