@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin\Registry;
 
+use Donquixote\Ock\Exception\IncarnatorException;
+use Donquixote\Ock\Exception\PluginListException;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Group\Formula_Group;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
@@ -54,7 +56,12 @@ class PluginRegistry_Adapters implements PluginRegistryInterface {
     foreach ($this->adaptersRegistry->getPluginss() as $type => $plugins) {
       foreach ($plugins as $adapter_id => $adapter_plugin) {
         $formula = $adapter_plugin->getFormula();
-        $derived = Formula::replace($formula, $this->formulaToAnything);
+        try {
+          $derived = Formula::replace($formula, $this->formulaToAnything);
+        }
+        catch (IncarnatorException $e) {
+          throw new PluginListException($e->getMessage(), 0, $e);
+        }
         if ($derived instanceof Formula_GroupValInterface) {
           $v2v = $derived->getV2V();
           $derived = $derived->getDecorated();

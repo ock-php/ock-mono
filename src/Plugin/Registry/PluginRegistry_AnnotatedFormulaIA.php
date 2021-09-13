@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Plugin\Registry;
 
 use Donquixote\Ock\AnnotatedFormula\IA\AnnotatedFormulaIAInterface;
+use Donquixote\Ock\Exception\PluginListException;
 use Donquixote\Ock\Plugin\Plugin;
 use Donquixote\Ock\Text\Text;
 
@@ -40,8 +41,7 @@ class PluginRegistry_AnnotatedFormulaIA implements PluginRegistryInterface {
       $info = $annotated_formula->getInfo();
       $id = $info['id'] ?? $info[0] ?? NULL;
       if ($id === NULL) {
-        // @todo Log this.
-        continue;
+        throw new PluginListException('Missing id in plugin declaration.');
       }
       $pluginss[$annotated_formula->getType()][$id] = new Plugin(
         Text::tOrNull($info['label'] ?? $info[1] ?? NULL) ?? Text::s($id),

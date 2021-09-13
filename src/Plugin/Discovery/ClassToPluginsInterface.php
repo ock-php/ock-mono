@@ -17,7 +17,7 @@ interface ClassToPluginsInterface {
    * @return \Donquixote\Ock\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    *
-   * @throws \ReflectionException
+   * @throws \Donquixote\Ock\Exception\PluginListException
    *   Class cannot be loaded.
    */
   public function classGetPluginss(string $class, string $file): array;

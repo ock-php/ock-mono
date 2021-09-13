@@ -7,11 +7,11 @@ namespace Donquixote\Ock\Plugin\Registry;
 interface PluginRegistryInterface {
 
   /**
-   *
    * @return \Donquixote\Ock\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\PluginListException
+   *   A plugin is incorrectly defined.
    */
   public function getPluginss(): array;
 

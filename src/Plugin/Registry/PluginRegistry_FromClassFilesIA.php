@@ -40,12 +40,7 @@ class PluginRegistry_FromClassFilesIA implements PluginRegistryInterface {
      */
     $pluginsss = [];
     foreach ($this->classFilesIA as $file => $class) {
-      try {
-        $pluginsss[] = $this->classToPlugins->classGetPluginss($class, $file);
-      }
-      catch (\Exception $e) {
-        // @todo Log this.
-      }
+      $pluginsss[] = $this->classToPlugins->classGetPluginss($class, $file);
     }
     if (!$pluginsss) {
       return [];

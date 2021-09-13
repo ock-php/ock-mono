@@ -7,6 +7,7 @@ namespace Donquixote\Ock\Plugin\Discovery;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Discovery\DocToAnnotations\DocToAnnotations;
 use Donquixote\Ock\Discovery\DocToAnnotations\DocToAnnotationsInterface;
+use Donquixote\Ock\Exception\PluginListException;
 use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactory_StaticMethod;
 use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactory_Class;
 use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactory_StaticMethod;
@@ -65,7 +66,12 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
       return [];
     }
 
-    $reflectionClass = new \ReflectionClass($class);
+    try {
+      $reflectionClass = new \ReflectionClass($class);
+    }
+    catch (\ReflectionException $e) {
+      throw new PluginListException($e->getMessage(), 0, $e);
+    }
     if ($reflectionClass->isInterface() || $reflectionClass->isTrait()) {
       return [];
     }
