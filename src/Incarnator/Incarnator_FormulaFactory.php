@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -36,15 +37,20 @@ class Incarnator_FormulaFactory extends Incarnator_FormulaReplacerBase {
 
     /** @var \Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactoryInterface $formula */
 
-    $factory = $formula->getFormulaFactory();
+    try {
+      $factory = $formula->getFormulaFactory();
+    }
+    catch (\Exception $e) {
+      throw new IncarnatorException($e->getMessage(), 0, $e);
+    }
 
     $else = new \stdClass();
     $args = [];
     foreach ($factory->getReflectionParameters() as $param) {
       $arg = $this->paramToValue->paramGetValue($param, $else);
       if ($arg === $else) {
-        // @todo Throw or log.
-        return NULL;
+        throw new IncarnatorException(
+          'Cannot find a value for parameter of formula factory.');
       }
       $args[] = $arg;
     }
@@ -53,16 +59,18 @@ class Incarnator_FormulaFactory extends Incarnator_FormulaReplacerBase {
       $candidate = $factory->invokeArgs($args);
     }
     catch (\Exception $e) {
-      // @todo Throw or log.
+      throw new IncarnatorException($e->getMessage(), 0, $e);
+    }
+
+    if ($candidate === NULL) {
       return NULL;
     }
 
-    if ($candidate instanceof FormulaInterface) {
-      return $candidate;
+    if (!$candidate instanceof FormulaInterface) {
+      throw new IncarnatorException('Expected a formula.');
     }
 
-    // @todo Throw or log.
-    return NULL;
+    return $candidate;
   }
 
 }
