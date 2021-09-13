@@ -402,7 +402,7 @@ final class ReflectionUtil extends UtilBase {
    *
    * @throws \ReflectionException
    */
-  public static function createInstance(string $class, array $values, array $privateParentValues = []) {
+  public static function createInstance(string $class, array $values, array $privateParentValues = []): object {
 
     $reflClass = new \ReflectionClass($class);
     $object = $reflClass->newInstanceWithoutConstructor();

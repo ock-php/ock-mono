@@ -20,7 +20,7 @@ class CfContext implements CfContextInterface {
    *
    * @return static
    */
-  public static function create(array $values = []) {
+  public static function create(array $values = []): self {
     return new static($values);
   }
 
@@ -45,7 +45,7 @@ class CfContext implements CfContextInterface {
   /**
    * {@inheritdoc}
    */
-  public function paramValueExists(\ReflectionParameter $param) {
+  public function paramValueExists(\ReflectionParameter $param): bool {
     if ($typeHintReflClass = $param->getClass()) {
       if ($typeHintReflClass->getName() === CfContextInterface::class) {
         return TRUE;
@@ -69,7 +69,7 @@ class CfContext implements CfContextInterface {
   /**
    * {@inheritdoc}
    */
-  public function paramNameHasValue($paramName) {
+  public function paramNameHasValue($paramName): bool {
     return array_key_exists($paramName, $this->values);
   }
 
@@ -83,7 +83,7 @@ class CfContext implements CfContextInterface {
   /**
    * {@inheritdoc}
    */
-  public function getMachineName() {
+  public function getMachineName(): string {
     return $this->machineName
       ??= md5(serialize($this->values));
   }

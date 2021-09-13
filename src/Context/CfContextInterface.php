@@ -10,7 +10,7 @@ interface CfContextInterface {
    *
    * @return bool
    */
-  public function paramValueExists(\ReflectionParameter $param);
+  public function paramValueExists(\ReflectionParameter $param): bool;
 
   /**
    * @param \ReflectionParameter $param
@@ -24,7 +24,7 @@ interface CfContextInterface {
    *
    * @return bool
    */
-  public function paramNameHasValue(string $paramName);
+  public function paramNameHasValue(string $paramName): bool;
 
   /**
    * @param string $paramName
@@ -36,6 +36,6 @@ interface CfContextInterface {
   /**
    * @return string
    */
-  public function getMachineName();
+  public function getMachineName(): string;
 
 }

@@ -18,7 +18,7 @@ abstract class InlineDrilldown_DecoKey implements InlineDrilldownInterface {
    * @return \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function fromFormula(Formula_DecoKeyInterface $formula, NurseryInterface $formulaToAnything) {
+  public static function fromFormula(Formula_DecoKeyInterface $formula, NurseryInterface $formulaToAnything): InlineDrilldownInterface {
     return InlineDrilldown::fromFormula(
       $formula->getDecorated(),
       $formulaToAnything);

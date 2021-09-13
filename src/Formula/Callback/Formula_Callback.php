@@ -30,9 +30,9 @@ class Formula_Callback implements Formula_CallbackInterface {
   /**
    * @param string $class
    *
-   * @return \Donquixote\Ock\Formula\Callback\Formula_Callback
+   * @return self
    */
-  public static function fromClass(string $class): Formula_Callback {
+  public static function fromClass(string $class): self {
 
     return new self(
       CallbackReflection_ClassConstruction::create($class));
@@ -44,7 +44,7 @@ class Formula_Callback implements Formula_CallbackInterface {
    *
    * @return self
    */
-  public static function fromStaticMethod(string $class, string $methodName): Formula_Callback {
+  public static function fromStaticMethod(string $class, string $methodName): self {
 
     return new self(
       CallbackReflection_StaticMethod::create(
@@ -68,7 +68,7 @@ class Formula_Callback implements Formula_CallbackInterface {
    *
    * @return static
    */
-  public function withContext(CfContextInterface $context = NULL) {
+  public function withContext(CfContextInterface $context = NULL): self {
     $clone = clone $this;
     return $clone;
   }
@@ -80,7 +80,7 @@ class Formula_Callback implements Formula_CallbackInterface {
    *
    * @return static
    */
-  public function withParamFormula(int $index, FormulaInterface $formula, $label = NULL) {
+  public function withParamFormula(int $index, FormulaInterface $formula, $label = NULL): self {
     $clone = clone $this;
     $clone->explicitFormulas[$index] = $formula;
     if (NULL !== $label) {
@@ -95,7 +95,7 @@ class Formula_Callback implements Formula_CallbackInterface {
    *
    * @return static
    */
-  public function withParamLabel(int $index, string $label) {
+  public function withParamLabel(int $index, string $label): self {
     $clone = clone $this;
     $clone->explicitLabels[$index] = $label;
     return $clone;
@@ -108,7 +108,7 @@ class Formula_Callback implements Formula_CallbackInterface {
    *
    * @return static
    */
-  public function withParam_Iface(int $index, string $interface, $label = NULL) {
+  public function withParam_Iface(int $index, string $interface, $label = NULL): self {
     return $this->withParamFormula(
       $index,
       Formula::iface($interface),
@@ -122,7 +122,7 @@ class Formula_Callback implements Formula_CallbackInterface {
    *
    * @return static
    */
-  public function withParam_IfaceSequence(int $index, string $interface, $label = NULL) {
+  public function withParam_IfaceSequence(int $index, string $interface, $label = NULL): self {
     return $this->withParamFormula(
       $index,
       Formula::ifaceSequence($interface),
@@ -136,7 +136,7 @@ class Formula_Callback implements Formula_CallbackInterface {
    *
    * @return static
    */
-  public function withParam_IfaceOrNull(int $index, string $interface, $label = NULL) {
+  public function withParam_IfaceOrNull(int $index, string $interface, $label = NULL): self {
     return $this->withParamFormula(
       $index,
       Formula::ifaceOrNull($interface),
