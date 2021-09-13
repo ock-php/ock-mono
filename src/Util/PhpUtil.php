@@ -404,7 +404,7 @@ EOT;
 
     $php = '';
     if (array_keys($valuesPhp) === range(0, count($valuesPhp) - 1)) {
-      foreach ($valuesPhp as $k => $vPhp) {
+      foreach ($valuesPhp as $vPhp) {
         $php .= "\n  $vPhp,";
       }
     }
