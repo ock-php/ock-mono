@@ -1,6 +1,6 @@
 {
-    "name": "donquixote/obck",
-    "description": "Object Construction Kit",
+    "name": "donquixote/object-construction-kit",
+    "description": "Object Construction Kit (Ock)",
     "license": "GPL-2.0-or-later",
     "repositories": [
         {
