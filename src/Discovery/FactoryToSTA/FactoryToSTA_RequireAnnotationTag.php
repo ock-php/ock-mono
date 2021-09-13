@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Discovery\FactoryToSTA;
 
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
-use Donquixote\Ock\Nursery\Cradle\CradleInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
 
@@ -23,7 +23,7 @@ class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
   /**
    * {@inheritdoc}
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?CradleInterface {
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?IncarnatorInterface {
 
     if (!$this->factoryIsSTA($factory)) {
       return null;

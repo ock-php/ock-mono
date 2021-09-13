@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\DecoKey\Formula_DecoKey;
@@ -20,7 +20,7 @@ use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 /**
  * @STA
  */
-class Cradle_Iface extends Cradle_FormulaReplacerBase {
+class Incarnator_Iface extends Incarnator_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
-abstract class CradleZeroBase implements CradleInterface {
+abstract class IncarnatorZeroBase implements IncarnatorInterface {
 
   /**
    * {@inheritdoc}

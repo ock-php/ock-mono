@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
 
-abstract class Cradle_FormulaReplacerBase extends CradleBase {
+abstract class Incarnator_FormulaReplacerBase extends IncarnatorBase {
 
   /**
    * Constructor.

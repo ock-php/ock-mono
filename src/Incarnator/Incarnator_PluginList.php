@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
@@ -13,7 +13,7 @@ use Donquixote\Ock\Nursery\NurseryInterface;
 /**
  * @STA
  */
-class Cradle_PluginList extends Cradle_FormulaReplacerBase {
+class Incarnator_PluginList extends Incarnator_FormulaReplacerBase {
 
   /**
    * Constructor.

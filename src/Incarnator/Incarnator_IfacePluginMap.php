@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
@@ -14,7 +14,7 @@ use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 /**
  * @_STA
  */
-class Cradle_IfacePluginMap extends Cradle_FormulaReplacerBase {
+class Incarnator_IfacePluginMap extends Incarnator_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface

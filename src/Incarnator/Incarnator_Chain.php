@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\FormulaToAnythingException;
@@ -9,10 +9,10 @@ use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class Cradle_Chain extends CradleZeroBase {
+class Incarnator_Chain extends IncarnatorZeroBase {
 
   /**
-   * @var \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[]
    */
   private $partials;
 
@@ -29,7 +29,7 @@ class Cradle_Chain extends CradleZeroBase {
   }
 
   /**
-   * @param \Donquixote\Ock\Nursery\Cradle\CradleInterface[] $partials
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface[] $partials
    */
   public function __construct(array $partials) {
     $this->partials = $partials;

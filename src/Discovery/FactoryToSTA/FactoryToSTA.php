@@ -12,9 +12,9 @@ use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
 use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Nursery\Cradle\Cradle_Callback;
-use Donquixote\Ock\Nursery\Cradle\Cradle_CallbackNoHelper;
-use Donquixote\Ock\Nursery\Cradle\CradleInterface;
+use Donquixote\Ock\Incarnator\Incarnator_Callback;
+use Donquixote\Ock\Incarnator\Incarnator_CallbackNoHelper;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\ReflectionUtil;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface;
@@ -53,7 +53,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
   /**
    * {@inheritdoc}
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?CradleInterface {
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?IncarnatorInterface {
 
     $params = $factory->getParameters();
 
@@ -112,13 +112,13 @@ class FactoryToSTA implements FactoryToSTAInterface {
     }
 
     if ($hasStaParam) {
-      $sta = new Cradle_Callback(
+      $sta = new Incarnator_Callback(
         $callback,
         $formulaType,
         $returnTypeClass->getName());
     }
     else {
-      $sta = new Cradle_CallbackNoHelper(
+      $sta = new Incarnator_CallbackNoHelper(
         $callback,
         $formulaType,
         $returnTypeClass->getName());

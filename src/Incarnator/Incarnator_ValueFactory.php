@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
@@ -18,7 +18,7 @@ use Psr\Log\LoggerInterface;
 /**
  * @STA
  */
-class Cradle_ValueFactory extends Cradle_FormulaReplacerBase {
+class Incarnator_ValueFactory extends Incarnator_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\Ock\ParamToLabel\ParamToLabelInterface

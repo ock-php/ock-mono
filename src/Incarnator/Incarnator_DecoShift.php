@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\DecoShift\Formula_DecoShiftInterface;
@@ -16,7 +16,7 @@ use Donquixote\Ock\V2V\Group\V2V_Group_Deco;
 /**
  * @STA
  */
-class Cradle_DecoShift extends Cradle_FormulaReplacerBase {
+class Incarnator_DecoShift extends Incarnator_FormulaReplacerBase {
 
   /**
    * Constructor.

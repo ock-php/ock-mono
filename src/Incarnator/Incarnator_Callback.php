@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
@@ -12,7 +12,7 @@ use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\ReflectionUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class Cradle_Callback extends CradleBase {
+class Incarnator_Callback extends IncarnatorBase {
 
   /**
    * @var \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface
@@ -23,12 +23,12 @@ class Cradle_Callback extends CradleBase {
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
-   * @return \Donquixote\Ock\Nursery\Cradle\CradleBase|null
+   * @return \Donquixote\Ock\Incarnator\IncarnatorBase|null
    */
   public static function create(
     CallbackReflectionInterface $callback,
     ParamToValueInterface $paramToValue
-  ): ?CradleBase {
+  ): ?IncarnatorBase {
 
     $params = $callback->getReflectionParameters();
 
@@ -77,7 +77,7 @@ class Cradle_Callback extends CradleBase {
         $formulaType);
     }
     else {
-      $sta = new Cradle_CallbackNoHelper(
+      $sta = new Incarnator_CallbackNoHelper(
         $callback,
         $formulaType);
     }

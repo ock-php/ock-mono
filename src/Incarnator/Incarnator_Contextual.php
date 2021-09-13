@@ -1,25 +1,25 @@
 <?php
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\ContextProviding\Formula_ContextProvidingInterface;
+use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
 
-class Cradle_ContextProviding extends CradleZeroBase {
+class Incarnator_Contextual extends IncarnatorZeroBase {
 
   /**
    * {@inheritdoc}
    */
   public function breed(FormulaInterface $formula, string $interface, NurseryInterface $nursery): ?object {
-    if (!$formula instanceof Formula_ContextProvidingInterface) {
+
+    if (!$formula instanceof Formula_ContextualInterface) {
       return NULL;
     }
 
     return $nursery
-      # ->withContext($formula->getContext())
       ->breed(
-        $formula->getDecorated(),
+        $formula->getDecorated($nursery->getContext()),
         $interface);
   }
 
@@ -36,7 +36,7 @@ class Cradle_ContextProviding extends CradleZeroBase {
   public function acceptsFormulaClass(string $formulaClass): bool {
     return is_a(
       $formulaClass,
-      Formula_ContextProvidingInterface::class,
+      Formula_ContextualInterface::class,
       TRUE);
   }
 

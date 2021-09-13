@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
@@ -11,7 +11,7 @@ use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 /**
  * @STA
  */
-class Cradle_FormulaFactory extends Cradle_FormulaReplacerBase {
+class Incarnator_FormulaFactory extends Incarnator_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface

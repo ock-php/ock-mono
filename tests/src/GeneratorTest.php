@@ -4,12 +4,8 @@ namespace Donquixote\Ock\Tests;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\Ock\Formula\Drilldown\Option\DrilldownOption;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
-use Donquixote\Ock\Tests\Fixture\Plant\Plant_OakTree;
-use Donquixote\Ock\Text\Text_Translatable;
 use Symfony\Component\Yaml\Yaml;
 
 class GeneratorTest extends FormulaTestBase {

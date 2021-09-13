@@ -7,10 +7,10 @@ namespace Donquixote\Ock\Materialization;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Form\Common\FormatorCommonInterface;
 use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\Ock\Nursery\Cradle\CradleZeroBase;
+use Donquixote\Ock\Incarnator\IncarnatorZeroBase;
 use Donquixote\Ock\Nursery\NurseryInterface;
 
-class Materialization_ValueFactory extends CradleZeroBase {
+class Materialization_ValueFactory extends IncarnatorZeroBase {
 
   /**
    * {@inheritdoc}

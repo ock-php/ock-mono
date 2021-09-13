@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery\Cradle;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
@@ -9,28 +9,28 @@ use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class FormulaToAnythingPartial_SmartChain extends CradleZeroBase {
+class Incarnator_SmartChain extends IncarnatorZeroBase {
 
   /**
-   * @var \Donquixote\Ock\Nursery\Cradle\CradleInterface[][][]
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[][][]
    *   Format: $[$formulaType][$targetType] = $partials
    */
   private $partialsGrouped = [];
 
   /**
-   * @var \Donquixote\Ock\Nursery\Cradle\CradleInterface[][]
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[][]
    *   Format: $[$targetType] = $partials
    */
   private $partialsByTargetType = [];
 
   /**
-   * @var \Donquixote\Ock\Nursery\Cradle\CradleInterface[][]
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[][]
    *   Format: $[$formulaType] = $partials
    */
   private $partialsByFormulaType = [];
 
   /**
-   * @var \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[]
    */
   private $partials;
 
@@ -41,13 +41,13 @@ class FormulaToAnythingPartial_SmartChain extends CradleZeroBase {
    *
    * @throws \Donquixote\Ock\Exception\STABuilderException
    */
-  public static function create(ParamToValueInterface $paramToValue): FormulaToAnythingPartial_SmartChain {
+  public static function create(ParamToValueInterface $paramToValue): Incarnator_SmartChain {
     $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
     return new self($partials);
   }
 
   /**
-   * @param \Donquixote\Ock\Nursery\Cradle\CradleInterface[] $partials
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface[] $partials
    */
   public function __construct(array $partials) {
 
@@ -110,7 +110,7 @@ class FormulaToAnythingPartial_SmartChain extends CradleZeroBase {
    * @param string $formulaType
    * @param string $targetType
    *
-   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
+   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
    */
   private function formulaTypeAndTargetTypeGetPartials(string $formulaType, string $targetType): array {
 
@@ -124,7 +124,7 @@ class FormulaToAnythingPartial_SmartChain extends CradleZeroBase {
    * @param string $formulaType
    * @param string $targetType
    *
-   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
+   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
    */
   private function formulaTypeAndTargetTypeCollectPartials(string $formulaType, string $targetType): array {
 
@@ -136,7 +136,7 @@ class FormulaToAnythingPartial_SmartChain extends CradleZeroBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
+   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
    */
   private function targetTypeGetPartials(string $interface): array {
 
@@ -147,12 +147,12 @@ class FormulaToAnythingPartial_SmartChain extends CradleZeroBase {
   /**
    * @param string $targetType
    *
-   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
+   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
    */
   private function targetTypeCollectPartials(string $targetType): array {
 
     $partials = [];
-    /** @var \Donquixote\Ock\Nursery\Cradle\CradleInterface $partial */
+    /** @var \Donquixote\Ock\Incarnator\IncarnatorInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->providesResultType($targetType)) {
         // Preserve keys for array_intersect().
@@ -166,7 +166,7 @@ class FormulaToAnythingPartial_SmartChain extends CradleZeroBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
+   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
    */
   private function formulaTypeGetPartials(string $interface): array {
 
@@ -177,12 +177,12 @@ class FormulaToAnythingPartial_SmartChain extends CradleZeroBase {
   /**
    * @param string $formulaType
    *
-   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
+   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
    */
   private function formulaTypeCollectPartials(string $formulaType): array {
 
     $partials = [];
-    /** @var \Donquixote\Ock\Nursery\Cradle\CradleInterface $partial */
+    /** @var \Donquixote\Ock\Incarnator\IncarnatorInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->acceptsFormulaClass($formulaType)) {
         // Preserve keys for array_intersect().

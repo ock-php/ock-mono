@@ -8,15 +8,15 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\FormulaToAnythingException;
 use Donquixote\Ock\Formula\ContextProviding\Formula_ContextProvidingInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\Ock\Nursery\Cradle\CradleInterface;
-use Donquixote\Ock\Nursery\Cradle\FormulaToAnythingPartial_SmartChain;
+use Donquixote\Ock\Incarnator\Incarnator_SmartChain;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class Nursery_FromCradle extends NurseryBase {
 
   /**
-   * @var \Donquixote\Ock\Nursery\Cradle\CradleInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
   private $cradle;
 
@@ -34,24 +34,24 @@ class Nursery_FromCradle extends NurseryBase {
    * @throws \Donquixote\Ock\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue, string $cache_id): self {
-    return new self(FormulaToAnythingPartial_SmartChain::create($paramToValue), $cache_id);
+    return new self(Incarnator_SmartChain::create($paramToValue), $cache_id);
   }
 
   /**
-   * @param \Donquixote\Ock\Nursery\Cradle\CradleInterface[] $partials
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface[] $partials
    * @param string $cache_id
    *
    * @return self
    */
   public static function createFromPartials(array $partials, string $cache_id): self {
-    return new self(new FormulaToAnythingPartial_SmartChain($partials), $cache_id);
+    return new self(new Incarnator_SmartChain($partials), $cache_id);
   }
 
   /**
-   * @param \Donquixote\Ock\Nursery\Cradle\CradleInterface $partial
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $partial
    * @param string $cache_id
    */
-  public function __construct(CradleInterface $partial, string $cache_id) {
+  public function __construct(IncarnatorInterface $partial, string $cache_id) {
     $this->cradle = $partial;
     parent::__construct($cache_id);
   }
