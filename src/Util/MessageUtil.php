@@ -12,7 +12,7 @@ class MessageUtil extends UtilBase {
    * @return string
    */
   public static function formatValue($value): string {
-    switch ($type = gettype($value)) {
+    switch (gettype($value)) {
       case 'object':
         return get_class($value) . ' object';
       case 'array':
