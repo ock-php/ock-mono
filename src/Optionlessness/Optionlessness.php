@@ -49,7 +49,7 @@ class Optionlessness implements OptionlessnessInterface {
    */
   public static function fromFormula(FormulaInterface $formula, IncarnatorInterface $nursery): OptionlessnessInterface {
     /** @var \Donquixote\Ock\Optionlessness\OptionlessnessInterface $candidate */
-    $candidate = $nursery->breed($formula, OptionlessnessInterface::class);
+    $candidate = $nursery->incarnate($formula, OptionlessnessInterface::class);
     return $candidate;
   }
 

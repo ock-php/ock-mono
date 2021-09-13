@@ -25,7 +25,7 @@ class Materialization_ValueFactory extends IncarnatorPartialZeroBase {
       return NULL;
     }
 
-    return $nursery->breed($formula->getDecorated(), $interface);
+    return $nursery->incarnate($formula->getDecorated(), $interface);
   }
 
   /**

@@ -33,7 +33,7 @@ abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
       // Looks like recursion.
       return NULL;
     }
-    return $helper->breed($replacement, $interface);
+    return $helper->incarnate($replacement, $interface);
   }
 
   /**

@@ -55,7 +55,7 @@ final class Decorator extends UtilBase {
   ): DecoratorInterface {
 
     /** @var \Donquixote\Ock\Decorator\DecoratorInterface $candidate */
-    $candidate = $formulaToAnything->breed(
+    $candidate = $formulaToAnything->incarnate(
       $formula,
       DecoratorInterface::class);
 

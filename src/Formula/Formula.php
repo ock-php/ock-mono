@@ -85,7 +85,7 @@ final class Formula extends UtilBase {
    */
   public static function replace(FormulaInterface $formula, IncarnatorInterface $formula_to_anything): ?FormulaInterface {
 
-    $candidate = $formula_to_anything->breed(
+    $candidate = $formula_to_anything->incarnate(
       $formula,
       FormulaInterface::class);
 

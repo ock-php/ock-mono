@@ -28,7 +28,7 @@ final class InlineDrilldown extends UtilBase {
     IncarnatorInterface $formulaToAnything
   ): InlineDrilldownInterface {
 
-    $candidate = $formulaToAnything->breed(
+    $candidate = $formulaToAnything->incarnate(
       $formula,
       InlineDrilldownInterface::class);
 

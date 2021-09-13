@@ -54,7 +54,7 @@ final class Generator extends UtilBase {
   ): GeneratorInterface {
 
     /** @var \Donquixote\Ock\Generator\GeneratorInterface $candidate */
-    $candidate = $formulaToAnything->breed(
+    $candidate = $formulaToAnything->incarnate(
       $formula,
       GeneratorInterface::class);
 

@@ -26,7 +26,7 @@ class FormatorCommon_Contextual extends IncarnatorPartialZeroBase {
       return NULL;
     }
 
-    return $nursery->breed($formula->getDecorated(), $interface);
+    return $nursery->incarnate($formula->getDecorated(), $interface);
   }
 
   /**

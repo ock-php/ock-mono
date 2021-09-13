@@ -42,7 +42,7 @@ final class Summarizer extends UtilBase {
   ): SummarizerInterface {
 
     /** @var \Donquixote\Ock\Summarizer\SummarizerInterface $candidate */
-    $candidate = $formulaToAnything->breed(
+    $candidate = $formulaToAnything->incarnate(
       $formula,
       SummarizerInterface::class);
 

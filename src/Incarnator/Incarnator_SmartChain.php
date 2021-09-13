@@ -75,7 +75,7 @@ class Incarnator_SmartChain extends IncarnatorBase {
   /**
    * {@inheritdoc}
    */
-  public function breed(FormulaInterface $formula, string $interface): object {
+  public function incarnate(FormulaInterface $formula, string $interface): object {
 
     if ($formula instanceof $interface) {
       return $formula;

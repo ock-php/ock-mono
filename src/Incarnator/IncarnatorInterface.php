@@ -18,7 +18,7 @@ interface IncarnatorInterface {
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Object cannot be created for the given formula.
    */
-  public function breed(FormulaInterface $formula, string $interface): object;
+  public function incarnate(FormulaInterface $formula, string $interface): object;
 
   /**
    * Gets a cache id.

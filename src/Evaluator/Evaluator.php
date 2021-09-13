@@ -31,7 +31,7 @@ class Evaluator {
   ): EvaluatorInterface {
 
     /** @var \Donquixote\Ock\Evaluator\EvaluatorInterface $candidate */
-    $candidate = $formulaToAnything->breed(
+    $candidate = $formulaToAnything->incarnate(
       $formula,
       EvaluatorInterface::class);
 

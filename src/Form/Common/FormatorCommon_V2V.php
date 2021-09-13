@@ -26,7 +26,7 @@ class FormatorCommon_V2V extends IncarnatorPartialZeroBase {
       return NULL;
     }
 
-    return $nursery->breed($formula->getDecorated(), $interface);
+    return $nursery->incarnate($formula->getDecorated(), $interface);
   }
 
   /**

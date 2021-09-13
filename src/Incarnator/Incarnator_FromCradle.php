@@ -73,19 +73,19 @@ class Incarnator_FromCradle extends IncarnatorBase {
   /**
    * {@inheritdoc}
    */
-  public function breed(FormulaInterface $formula, string $interface): object {
+  public function incarnate(FormulaInterface $formula, string $interface): object {
 
     if ($formula instanceof Formula_ContextProvidingInterface) {
       return $this
         ->withContext($formula->getContext())
-        ->breed(
+        ->incarnate(
           $formula->getDecorated(),
           $interface);
     }
 
     if ($formula instanceof Formula_ContextualInterface) {
       return $this
-        ->breed(
+        ->incarnate(
           $formula->getDecorated($this->context),
           $interface);
     }

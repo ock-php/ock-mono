@@ -18,7 +18,7 @@ class Incarnator_Contextual extends IncarnatorPartialZeroBase {
     }
 
     return $nursery
-      ->breed(
+      ->incarnate(
         $formula->getDecorated($nursery->getContext()),
         $interface);
   }

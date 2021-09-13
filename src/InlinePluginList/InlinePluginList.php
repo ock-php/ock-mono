@@ -29,7 +29,7 @@ final class InlinePluginList extends UtilBase {
   ): InlinePluginListInterface {
 
     /** @var \Donquixote\Ock\InlinePluginList\InlinePluginListInterface $object */
-    $object = $formulaToAnything->breed(
+    $object = $formulaToAnything->incarnate(
       $formula,
       InlinePluginListInterface::class);
 
