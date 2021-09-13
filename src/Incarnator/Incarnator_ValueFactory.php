@@ -10,7 +10,7 @@ use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface;
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_Callback;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\ParamToLabel\ParamToLabelInterface;
 use Donquixote\Ock\Text\Text;
@@ -60,7 +60,7 @@ class Incarnator_ValueFactory extends Incarnator_FormulaReplacerBase {
     $params = $factory->getReflectionParameters();
 
     if ([] === $params) {
-      return new Formula_ValueProvider_Callback($factory);
+      return Formula_ValueProvider_FixedPhp::fromCallback($factory);
     }
 
     $builder = Formula::group();
