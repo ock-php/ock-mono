@@ -1,13 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Util;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Util\UtilBase;
 
-final class StaUtil extends UtilBase {
+final class Incarnator extends UtilBase {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $itemFormulas

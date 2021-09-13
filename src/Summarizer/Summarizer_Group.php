@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\Util\StaUtil;
 
 class Summarizer_Group implements SummarizerInterface {
 
@@ -34,7 +34,7 @@ class Summarizer_Group implements SummarizerInterface {
   public static function create(Formula_GroupInterface $formula, NurseryInterface $formulaToAnything): ?self {
 
     /** @var \Donquixote\Ock\Summarizer\SummarizerInterface[] $itemSummarizers */
-    $itemSummarizers = StaUtil::getMultiple(
+    $itemSummarizers = Incarnator::getMultiple(
       $formula->getItemFormulas(),
       $formulaToAnything,
       SummarizerInterface::class);
