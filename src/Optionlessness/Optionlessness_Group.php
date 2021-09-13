@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Optionlessness;
 
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 /**
@@ -16,11 +16,11 @@ final class Optionlessness_Group extends UtilBase {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $group
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface $incarnator
    *
    * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
    */
-  public static function fromFormula(Formula_GroupInterface $group, IncarnatorInterface $incarnator): OptionlessnessInterface {
+  public static function fromFormula(Formula_GroupInterface $group, IncarnatorPartialInterface $incarnator): OptionlessnessInterface {
     foreach ($group->getItemFormulas() as $item) {
       if (!Optionlessness::checkFormula($item, $incarnator)) {
         // At least one group item has config options.

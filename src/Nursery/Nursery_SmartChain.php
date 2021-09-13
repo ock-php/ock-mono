@@ -12,31 +12,31 @@ use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 class Nursery_SmartChain extends NurseryBase {
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[][][]
+   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[][][]
    *   Format: $[$formulaType][$targetType] = $partials
    */
   private $partialsGrouped = [];
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[][][]
+   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[][][]
    *   Format: $[$targetType][$formulaType] = $partials
    */
   private $partialsGroupedReverse = [];
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[][]
+   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[][]
    *   Format: $[$targetType] = $partials
    */
   private $partialsByTargetType = [];
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[][]
+   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[][]
    *   Format: $[$formulaType] = $partials
    */
   private $partialsByFormulaType = [];
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[]
+   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   private $partials;
 
@@ -52,7 +52,7 @@ class Nursery_SmartChain extends NurseryBase {
   }
 
   /**
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface[] $partials
+   * @param \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[] $partials
    * @param string $cache_id
    */
   public function __construct(array $partials, string $cache_id) {
@@ -123,7 +123,7 @@ class Nursery_SmartChain extends NurseryBase {
    * @param string $formulaType
    * @param string $targetType
    *
-   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   private function formulaTypeAndTargetTypeGetPartials(string $formulaType, string $targetType): array {
 
@@ -137,7 +137,7 @@ class Nursery_SmartChain extends NurseryBase {
    * @param string $formulaType
    * @param string $targetType
    *
-   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   private function formulaTypeAndTargetTypeCollectPartials(string $formulaType, string $targetType): array {
 
@@ -149,7 +149,7 @@ class Nursery_SmartChain extends NurseryBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   private function targetTypeGetPartials(string $interface): array {
 
@@ -160,12 +160,12 @@ class Nursery_SmartChain extends NurseryBase {
   /**
    * @param string $targetType
    *
-   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   private function targetTypeCollectPartials(string $targetType): array {
 
     $partials = [];
-    /** @var \Donquixote\Ock\Incarnator\IncarnatorInterface $partial */
+    /** @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->providesResultType($targetType)) {
         // Preserve keys for array_intersect().
@@ -179,7 +179,7 @@ class Nursery_SmartChain extends NurseryBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   private function formulaTypeGetPartials(string $interface): array {
 
@@ -190,12 +190,12 @@ class Nursery_SmartChain extends NurseryBase {
   /**
    * @param string $formulaType
    *
-   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   private function formulaTypeCollectPartials(string $formulaType): array {
 
     $partials = [];
-    /** @var \Donquixote\Ock\Incarnator\IncarnatorInterface $partial */
+    /** @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->acceptsFormulaClass($formulaType)) {
         // Preserve keys for array_intersect().

@@ -5,13 +5,13 @@ namespace Donquixote\Ock\Form\Common;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\Ock\Incarnator\IncarnatorZeroBase;
+use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialZeroBase;
 use Donquixote\Ock\Nursery\NurseryInterface;
 
 /**
  * @STA
  */
-class FormatorCommon_Contextual extends IncarnatorZeroBase {
+class FormatorCommon_Contextual extends IncarnatorPartialZeroBase {
 
   /**
    * {@inheritdoc}

@@ -9,7 +9,7 @@ interface ClassFileToSTAsInterface {
    * @param string $class
    * @param string $fileRealpath
    *
-   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   public function classFileGetPartials(string $class, string $fileRealpath): array;
 }

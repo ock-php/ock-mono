@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Incarnator;
+namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
@@ -9,10 +9,10 @@ use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class Incarnator_Chain extends IncarnatorZeroBase {
+class Incarnator_Chain extends IncarnatorPartialZeroBase {
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface[]
+   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   private $partials;
 
@@ -29,7 +29,7 @@ class Incarnator_Chain extends IncarnatorZeroBase {
   }
 
   /**
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface[] $partials
+   * @param \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[] $partials
    */
   public function __construct(array $partials) {
     $this->partials = $partials;

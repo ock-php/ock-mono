@@ -7,7 +7,7 @@ use Donquixote\FactoryReflection\Factory\ReflectionFactory;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
 use Donquixote\FactoryReflection\Util\FactoryUtil;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
@@ -57,7 +57,7 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
   /**
    * {@inheritdoc}
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?IncarnatorInterface {
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?IncarnatorPartialInterface {
 
     if (NULL !== $sta = $this->decorated->factoryGetPartial($factory)) {
       return $sta;
@@ -72,7 +72,7 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
       return NULL;
     }
 
-    if ($value instanceof IncarnatorInterface) {
+    if ($value instanceof IncarnatorPartialInterface) {
       return $value;
     }
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Incarnator;
+namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
 use Donquixote\Ock\Core\Formula\FormulaInterface;

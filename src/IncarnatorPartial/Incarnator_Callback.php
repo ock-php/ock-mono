@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Incarnator;
+namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
@@ -12,7 +12,7 @@ use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\ReflectionUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class Incarnator_Callback extends IncarnatorBase {
+class Incarnator_Callback extends IncarnatorPartialBase {
 
   /**
    * @var \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface
@@ -23,12 +23,12 @@ class Incarnator_Callback extends IncarnatorBase {
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
-   * @return \Donquixote\Ock\Incarnator\IncarnatorBase|null
+   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialBase|null
    */
   public static function create(
     CallbackReflectionInterface $callback,
     ParamToValueInterface $paramToValue
-  ): ?IncarnatorBase {
+  ): ?IncarnatorPartialBase {
 
     $params = $callback->getReflectionParameters();
 

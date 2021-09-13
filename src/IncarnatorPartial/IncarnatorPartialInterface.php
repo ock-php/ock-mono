@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Incarnator;
+namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
@@ -9,7 +9,7 @@ use Donquixote\Ock\Nursery\NurseryInterface;
 /**
  * @see \Donquixote\Ock\Nursery\NurseryInterface
  */
-interface IncarnatorInterface {
+interface IncarnatorPartialInterface {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula

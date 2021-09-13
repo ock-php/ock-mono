@@ -8,15 +8,15 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\ContextProviding\Formula_ContextProvidingInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\Ock\Incarnator\Incarnator_SmartChain;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\IncarnatorPartial\Incarnator_SmartChain;
+use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class Nursery_FromCradle extends NurseryBase {
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
+   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface
    */
   private $cradle;
 
@@ -38,7 +38,7 @@ class Nursery_FromCradle extends NurseryBase {
   }
 
   /**
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface[] $partials
+   * @param \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[] $partials
    * @param string $cache_id
    *
    * @return self
@@ -48,10 +48,10 @@ class Nursery_FromCradle extends NurseryBase {
   }
 
   /**
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $partial
+   * @param \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface $partial
    * @param string $cache_id
    */
-  public function __construct(IncarnatorInterface $partial, string $cache_id) {
+  public function __construct(IncarnatorPartialInterface $partial, string $cache_id) {
     $this->cradle = $partial;
     parent::__construct($cache_id);
   }

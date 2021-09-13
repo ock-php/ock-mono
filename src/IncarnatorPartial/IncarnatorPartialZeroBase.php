@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Incarnator;
+namespace Donquixote\Ock\IncarnatorPartial;
 
-abstract class IncarnatorZeroBase implements IncarnatorInterface {
+abstract class IncarnatorPartialZeroBase implements IncarnatorPartialInterface {
 
   /**
    * {@inheritdoc}

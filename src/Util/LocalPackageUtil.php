@@ -14,7 +14,7 @@ final class LocalPackageUtil extends UtilBase {
   /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
-   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   public static function collectIncarnators(ParamToValueInterface $paramToValue): array {
 

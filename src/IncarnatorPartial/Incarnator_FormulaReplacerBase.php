@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Incarnator;
+namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
 
-abstract class Incarnator_FormulaReplacerBase extends IncarnatorBase {
+abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
 
   /**
    * Constructor.
