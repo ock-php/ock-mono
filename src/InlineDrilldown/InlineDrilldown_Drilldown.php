@@ -11,7 +11,7 @@ use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\V2V\Drilldown\V2V_Drilldown_Trivial;
 use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 use Donquixote\Ock\V2V\Value\V2V_Value_DrilldownFixedId;
@@ -37,14 +37,14 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromDrilldownVal(
     Formula_DrilldownValInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): ?self {
     return self::create(
       $formula->getDecorated(),
@@ -56,14 +56,14 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromDrilldown(
     Formula_DrilldownInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): ?self {
     return self::create(
       $formula,
@@ -74,7 +74,7 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
   /**
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return static|null
    * @throws \Donquixote\Ock\Exception\IncarnatorException
@@ -82,7 +82,7 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
   public static function create(
     Formula_DrilldownInterface $formula,
     V2V_DrilldownInterface $v2v,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): ?self {
     $idFormula = Formula::replace(
       $formula->getIdFormula(),

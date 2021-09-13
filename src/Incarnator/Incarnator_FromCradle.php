@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Context\CfContextInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
@@ -13,7 +13,7 @@ use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class Nursery_FromCradle extends NurseryBase {
+class Incarnator_FromCradle extends IncarnatorBase {
 
   /**
    * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface

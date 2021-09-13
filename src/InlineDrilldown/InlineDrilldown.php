@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\InlineDrilldown;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class InlineDrilldown extends UtilBase {
@@ -14,7 +14,7 @@ final class InlineDrilldown extends UtilBase {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface
@@ -25,7 +25,7 @@ final class InlineDrilldown extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): InlineDrilldownInterface {
 
     $candidate = $formulaToAnything->breed(

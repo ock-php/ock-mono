@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\PhpUtil;
 
 class Generator_PluginList implements GeneratorInterface {
@@ -15,7 +15,7 @@ class Generator_PluginList implements GeneratorInterface {
   private $formula;
 
   /**
-   * @var \Donquixote\Ock\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
   private $formulaToAnything;
 
@@ -23,11 +23,11 @@ class Generator_PluginList implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self
    */
-  public static function createFromPluginListFormula(Formula_PluginListInterface $formula, NurseryInterface $formulaToAnything): self {
+  public static function createFromPluginListFormula(Formula_PluginListInterface $formula, IncarnatorInterface $formulaToAnything): self {
     return new self($formula, $formulaToAnything);
   }
 
@@ -35,9 +35,9 @@ class Generator_PluginList implements GeneratorInterface {
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    */
-  protected function __construct(Formula_PluginListInterface $formula, NurseryInterface $formulaToAnything) {
+  protected function __construct(Formula_PluginListInterface $formula, IncarnatorInterface $formulaToAnything) {
     $this->formula = $formula;
     $this->formulaToAnything = $formulaToAnything;
   }

@@ -6,8 +6,8 @@ namespace Donquixote\Ock\Formula\Select;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
-use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
@@ -24,21 +24,21 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
   private $idToFormula;
 
   /**
-   * @var \Donquixote\Ock\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private NurseryInterface $helper;
+  private IncarnatorInterface $helper;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $decorated
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
    */
   public function __construct(
     Formula_SelectInterface $decorated,
     IdToFormulaInterface $idToFormula,
-    NurseryInterface $helper
+    IncarnatorInterface $helper
   ) {
     $this->decorated = $decorated;
     $this->idToFormula = $idToFormula;

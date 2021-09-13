@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Generator extends UtilBase {
@@ -15,7 +15,7 @@ final class Generator extends UtilBase {
    *
    * @param string $interface
    *   Interface name.
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface
@@ -27,7 +27,7 @@ final class Generator extends UtilBase {
    */
   public static function fromIface(
     string $interface,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): GeneratorInterface {
     return self::fromFormula(
       Formula::iface($interface),
@@ -39,7 +39,7 @@ final class Generator extends UtilBase {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface
@@ -50,7 +50,7 @@ final class Generator extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): GeneratorInterface {
 
     /** @var \Donquixote\Ock\Generator\GeneratorInterface $candidate */

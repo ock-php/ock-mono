@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\DecoUtil;
 
 class Generator_DecoKey implements GeneratorInterface {
@@ -28,7 +28,7 @@ class Generator_DecoKey implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -36,7 +36,7 @@ class Generator_DecoKey implements GeneratorInterface {
    */
   public static function fromDecoKeyFormula(
     Formula_DecoKeyInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): ?self {
     return new self(
       Generator::fromFormula(

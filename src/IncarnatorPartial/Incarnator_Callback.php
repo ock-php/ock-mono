@@ -8,7 +8,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\ReflectionUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
@@ -54,7 +54,7 @@ class Incarnator_Callback extends IncarnatorPartialBase {
     if (1
       && isset($params[1])
       && NULL !== ($t1 = $params[1]->getClass())
-      && is_a(NurseryInterface::class, $t1->getName(), TRUE)
+      && is_a(IncarnatorInterface::class, $t1->getName(), TRUE)
     ) {
       $hasStaParam = TRUE;
       unset($params[1]);
@@ -108,7 +108,7 @@ class Incarnator_Callback extends IncarnatorPartialBase {
   protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    NurseryInterface $helper
+    IncarnatorInterface $helper
   ): ?object {
 
     try {

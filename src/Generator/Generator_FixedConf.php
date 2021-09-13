@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Formula\FixedConf\Formula_FixedConfInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class Generator_FixedConf implements GeneratorInterface {
 
@@ -22,13 +22,13 @@ class Generator_FixedConf implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\FixedConf\Formula_FixedConfInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_FixedConfInterface $formula, NurseryInterface $formulaToAnything): GeneratorInterface {
+  public static function create(Formula_FixedConfInterface $formula, IncarnatorInterface $formulaToAnything): GeneratorInterface {
     return new self(
       Generator::fromFormula($formula->getDecorated(), $formulaToAnything),
       $formula->getConf());

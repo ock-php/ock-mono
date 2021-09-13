@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Label\Formula_LabelInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
@@ -28,11 +28,11 @@ class Summarizer_Label implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Label\Formula_LabelInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    */
-  public static function create(Formula_LabelInterface $formula, NurseryInterface $formulaToAnything): ?Summarizer_Label {
+  public static function create(Formula_LabelInterface $formula, IncarnatorInterface $formulaToAnything): ?Summarizer_Label {
 
     try {
       $decorated = Summarizer::fromFormula(

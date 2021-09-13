@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -71,7 +71,7 @@ class Incarnator_SmartChain extends IncarnatorPartialZeroBase {
   public function breed(
     FormulaInterface $formula,
     string $interface,
-    NurseryInterface $nursery
+    IncarnatorInterface $nursery
   ): ?object {
 
     $partials = $this->formulaTypeAndTargetTypeGetPartials(

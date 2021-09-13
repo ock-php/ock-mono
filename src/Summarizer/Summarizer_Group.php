@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
@@ -25,13 +25,13 @@ class Summarizer_Group implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_GroupInterface $formula, NurseryInterface $formulaToAnything): ?self {
+  public static function create(Formula_GroupInterface $formula, IncarnatorInterface $formulaToAnything): ?self {
 
     /** @var \Donquixote\Ock\Summarizer\SummarizerInterface[] $itemSummarizers */
     $itemSummarizers = Incarnator::getMultiple(

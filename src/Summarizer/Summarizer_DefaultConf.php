@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Text\TextInterface;
 
 class Summarizer_DefaultConf implements SummarizerInterface {
@@ -23,7 +23,7 @@ class Summarizer_DefaultConf implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -31,7 +31,7 @@ class Summarizer_DefaultConf implements SummarizerInterface {
    */
   public static function create(
     Formula_DefaultConfInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): ?Summarizer_DefaultConf {
 
     $decorated = Summarizer::fromFormula(

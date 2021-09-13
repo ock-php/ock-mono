@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Summarizer;
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
@@ -21,7 +21,7 @@ class Summarizer_Drilldown implements SummarizerInterface {
   private $formula;
 
   /**
-   * @var \Donquixote\Ock\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
   private $formulaToAnything;
 
@@ -29,11 +29,11 @@ class Summarizer_Drilldown implements SummarizerInterface {
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    */
   public function __construct(
     Formula_DrilldownInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ) {
     $this->formula = $formula;
     $this->formulaToAnything = $formulaToAnything;

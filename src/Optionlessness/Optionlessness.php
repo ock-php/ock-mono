@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Optionlessness;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class Optionlessness implements OptionlessnessInterface {
 
@@ -25,11 +25,11 @@ class Optionlessness implements OptionlessnessInterface {
    * Determines whether a formula is optionless.
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
    *
    * @return bool
    */
-  public static function checkFormula(FormulaInterface $formula, NurseryInterface $nursery): bool {
+  public static function checkFormula(FormulaInterface $formula, IncarnatorInterface $nursery): bool {
     try {
       return self::fromFormula($formula, $nursery)->isOptionless();
     }
@@ -41,13 +41,13 @@ class Optionlessness implements OptionlessnessInterface {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
    *
    * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function fromFormula(FormulaInterface $formula, NurseryInterface $nursery): OptionlessnessInterface {
+  public static function fromFormula(FormulaInterface $formula, IncarnatorInterface $nursery): OptionlessnessInterface {
     /** @var \Donquixote\Ock\Optionlessness\OptionlessnessInterface $candidate */
     $candidate = $nursery->breed($formula, OptionlessnessInterface::class);
     return $candidate;

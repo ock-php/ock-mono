@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\Translator\TranslatorInterface;
@@ -20,7 +20,7 @@ class Summarizer_Sequence implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
    * @return \Donquixote\Ock\Summarizer\Summarizer_Sequence|null
@@ -29,7 +29,7 @@ class Summarizer_Sequence implements SummarizerInterface {
    */
   public static function create(
     Formula_SequenceInterface $formula,
-    NurseryInterface $formulaToAnything,
+    IncarnatorInterface $formulaToAnything,
     TranslatorInterface $translator
   ): ?Summarizer_Sequence {
 

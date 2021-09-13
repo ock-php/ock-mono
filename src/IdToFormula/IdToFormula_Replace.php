@@ -6,24 +6,24 @@ namespace Donquixote\Ock\IdToFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class IdToFormula_Replace implements IdToFormulaInterface {
 
   private IdToFormulaInterface $decorated;
 
   /**
-   * @var \Donquixote\Ock\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private NurseryInterface $formulaToAnything;
+  private IncarnatorInterface $formulaToAnything;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    */
-  public function __construct(IdToFormulaInterface $decorated, NurseryInterface $formulaToAnything) {
+  public function __construct(IdToFormulaInterface $decorated, IncarnatorInterface $formulaToAnything) {
     $this->decorated = $decorated;
     $this->formulaToAnything = $formulaToAnything;
   }

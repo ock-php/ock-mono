@@ -6,20 +6,19 @@ namespace Donquixote\Ock\Incarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Incarnator extends UtilBase {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $itemFormulas
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    * @param string $interface
    *
    * @return mixed[]|null
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function getMultiple(array $itemFormulas, NurseryInterface $formulaToAnything, string $interface): ?array {
+  public static function getMultiple(array $itemFormulas, IncarnatorInterface $formulaToAnything, string $interface): ?array {
 
     Formula::validateMultiple($itemFormulas);
 
@@ -37,14 +36,14 @@ final class Incarnator extends UtilBase {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    * @param string $interface
    *
    * @return object
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function getObject(FormulaInterface $formula, NurseryInterface $formulaToAnything, string $interface): object {
+  public static function getObject(FormulaInterface $formula, IncarnatorInterface $formulaToAnything, string $interface): object {
 
     $object = $formulaToAnything->breed($formula, $interface);
 

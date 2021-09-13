@@ -6,7 +6,7 @@ namespace Donquixote\Ock\IncarnatorPartial;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 /**
@@ -33,7 +33,7 @@ class Incarnator_FormulaFactory extends Incarnator_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface {
 
     /** @var \Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactoryInterface $formula */
 

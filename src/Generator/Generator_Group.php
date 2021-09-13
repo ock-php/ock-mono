@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
@@ -26,13 +26,13 @@ class Generator_Group implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function createFromGroupFormula(Formula_GroupInterface $formula, NurseryInterface $formulaToAnything): ?self {
+  public static function createFromGroupFormula(Formula_GroupInterface $formula, IncarnatorInterface $formulaToAnything): ?self {
     return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
   }
 
@@ -40,26 +40,26 @@ class Generator_Group implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function createFromGroupValFormula(Formula_GroupValInterface $formula, NurseryInterface $formulaToAnything): ?self {
+  public static function createFromGroupValFormula(Formula_GroupValInterface $formula, IncarnatorInterface $formulaToAnything): ?self {
     return self::create($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
   }
 
   /**
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $groupFormula
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, NurseryInterface $formulaToAnything): ?self {
+  public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, IncarnatorInterface $formulaToAnything): ?self {
 
     $itemGenerators = [];
     foreach ($groupFormula->getItemFormulas() as $k => $itemFormula) {

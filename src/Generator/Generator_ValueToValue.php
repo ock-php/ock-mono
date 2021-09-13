@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValueInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\V2V\Value\V2V_ValueInterface;
 
 class Generator_ValueToValue extends Generator_DecoratorBase {
@@ -19,11 +19,11 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValueInterface $valueToValueFormula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    */
-  public static function create(Formula_ValueToValueInterface $valueToValueFormula, NurseryInterface $formulaToAnything): ?self {
+  public static function create(Formula_ValueToValueInterface $valueToValueFormula, IncarnatorInterface $formulaToAnything): ?self {
 
     try {
       $decorated = Generator::fromFormula(

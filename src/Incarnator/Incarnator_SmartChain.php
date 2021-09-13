@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
@@ -9,7 +9,7 @@ use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class Nursery_SmartChain extends NurseryBase {
+class Incarnator_SmartChain extends IncarnatorBase {
 
   /**
    * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[][][]

@@ -12,7 +12,7 @@ use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\Ock\Formula\Iface\Formula_IfaceInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Plugin\Plugin;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
@@ -30,18 +30,18 @@ class PluginRegistry_Adapters implements PluginRegistryInterface {
   private PluginRegistryInterface $adaptersRegistry;
 
   /**
-   * @var \Donquixote\Ock\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private NurseryInterface $formulaToAnything;
+  private IncarnatorInterface $formulaToAnything;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $decorated
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $adaptersRegistry
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    */
-  public function __construct(PluginRegistryInterface $decorated, PluginRegistryInterface $adaptersRegistry, NurseryInterface $formulaToAnything) {
+  public function __construct(PluginRegistryInterface $decorated, PluginRegistryInterface $adaptersRegistry, IncarnatorInterface $formulaToAnything) {
     $this->decorated = $decorated;
     $this->adaptersRegistry = $adaptersRegistry;
     $this->formulaToAnything = $formulaToAnything;

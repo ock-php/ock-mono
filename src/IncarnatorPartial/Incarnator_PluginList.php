@@ -8,7 +8,7 @@ use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
 use Donquixote\Ock\Formula\Select\Formula_Select_FromPlugins;
 use Donquixote\Ock\IdToFormula\IdToFormula_FromPlugins;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 /**
  * @STA
@@ -25,7 +25,7 @@ class Incarnator_PluginList extends Incarnator_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface {
     /** @var \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula */
     $plugins = $formula->getPlugins();
     $ff = (new Formula_Drilldown(

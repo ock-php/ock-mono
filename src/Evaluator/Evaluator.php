@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Evaluator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\MessageUtil;
 
 class Evaluator {
@@ -16,7 +16,7 @@ class Evaluator {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
@@ -27,7 +27,7 @@ class Evaluator {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): EvaluatorInterface {
 
     /** @var \Donquixote\Ock\Evaluator\EvaluatorInterface $candidate */

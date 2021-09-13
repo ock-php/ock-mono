@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\Ock\Formula\SequenceVal\Formula_SequenceValInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\V2V\Sequence\V2V_Sequence_Trivial;
 use Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface;
@@ -26,13 +26,13 @@ class Generator_Sequence implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function createFromSequenceFormula(Formula_SequenceInterface $formula, NurseryInterface $formulaToAnything): ?Generator_Sequence {
+  public static function createFromSequenceFormula(Formula_SequenceInterface $formula, IncarnatorInterface $formulaToAnything): ?Generator_Sequence {
     return self::create($formula, new V2V_Sequence_Trivial(), $formulaToAnything);
   }
 
@@ -40,26 +40,26 @@ class Generator_Sequence implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\SequenceVal\Formula_SequenceValInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function createFromSequenceValFormula(Formula_SequenceValInterface $formula, NurseryInterface $formulaToAnything): ?Generator_Sequence {
+  public static function createFromSequenceValFormula(Formula_SequenceValInterface $formula, IncarnatorInterface $formulaToAnything): ?Generator_Sequence {
     return self::create($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
   }
 
   /**
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
    * @param \Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface $v2v
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  private static function create(Formula_SequenceInterface $formula, V2V_SequenceInterface $v2v, NurseryInterface $formulaToAnything): ?Generator_Sequence {
+  private static function create(Formula_SequenceInterface $formula, V2V_SequenceInterface $v2v, IncarnatorInterface $formulaToAnything): ?Generator_Sequence {
 
     $itemGenerator = Generator::fromFormula(
       $formula->getItemFormula(),

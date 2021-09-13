@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 /**
  * @see \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface
@@ -25,7 +25,7 @@ class Generator_DefaultConf implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -33,7 +33,7 @@ class Generator_DefaultConf implements GeneratorInterface {
    */
   public static function create(
     Formula_DefaultConfInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): ?self {
 
     $decorated = Generator::fromFormula(

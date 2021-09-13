@@ -5,8 +5,8 @@ namespace Donquixote\Ock\IdToFormula;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
-use Donquixote\Ock\Nursery\NurseryInterface;
 
 class IdToFormula_InlineExpanded implements IdToFormulaInterface {
 
@@ -16,15 +16,15 @@ class IdToFormula_InlineExpanded implements IdToFormulaInterface {
   private $decorated;
 
   /**
-   * @var \Donquixote\Ock\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private NurseryInterface $helper;
+  private IncarnatorInterface $helper;
 
   /**
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
    */
-  public function __construct(IdToFormulaInterface $decorated, NurseryInterface $helper) {
+  public function __construct(IdToFormulaInterface $decorated, IncarnatorInterface $helper) {
     $this->decorated = $decorated;
     $this->helper = $helper;
   }

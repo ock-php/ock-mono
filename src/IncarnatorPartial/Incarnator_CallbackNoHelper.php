@@ -7,7 +7,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class Incarnator_CallbackNoHelper extends IncarnatorPartialBase {
 
@@ -75,7 +75,7 @@ class Incarnator_CallbackNoHelper extends IncarnatorPartialBase {
   protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    NurseryInterface $helper
+    IncarnatorInterface $helper
   ): ?object {
 
     try {

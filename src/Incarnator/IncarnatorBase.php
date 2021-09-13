@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery;
+namespace Donquixote\Ock\Incarnator;
 
-abstract class NurseryBase implements NurseryInterface {
+abstract class IncarnatorBase implements IncarnatorInterface {
 
   private string $cacheId;
 

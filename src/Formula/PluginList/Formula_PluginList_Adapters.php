@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\PluginList;
 
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Plugin\Plugin;
 
 /**
@@ -18,17 +18,17 @@ class Formula_PluginList_Adapters implements Formula_PluginListInterface {
   private Formula_PluginListInterface $decorated;
 
   /**
-   * @var \Donquixote\Ock\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private NurseryInterface $helper;
+  private IncarnatorInterface $helper;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $decorated
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
    */
-  public function __construct(Formula_PluginListInterface $decorated, NurseryInterface $helper) {
+  public function __construct(Formula_PluginListInterface $decorated, IncarnatorInterface $helper) {
     $this->decorated = $decorated;
     $this->helper = $helper;
   }

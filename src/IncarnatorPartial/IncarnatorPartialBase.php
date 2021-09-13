@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
 
@@ -86,7 +86,7 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
   public function breed(
     FormulaInterface $formula,
     string $interface,
-    NurseryInterface $nursery
+    IncarnatorInterface $nursery
   ): ?object {
 
     if (NULL !== $this->formulaType && !$formula instanceof $this->formulaType) {
@@ -111,7 +111,7 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param string $interface
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
    *
    * @return null|object
    *   An instance of $interface, or NULL.
@@ -121,7 +121,7 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
   abstract protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    NurseryInterface $helper
+    IncarnatorInterface $helper
   ): ?object;
 
   /**

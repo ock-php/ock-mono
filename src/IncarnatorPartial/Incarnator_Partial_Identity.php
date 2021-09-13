@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 /**
  * @STA
@@ -14,7 +14,7 @@ class Incarnator_Partial_Identity implements IncarnatorPartialInterface {
   /**
    * {@inheritdoc}
    */
-  public function breed(FormulaInterface $formula, string $interface, NurseryInterface $nursery): ?object {
+  public function breed(FormulaInterface $formula, string $interface, IncarnatorInterface $nursery): ?object {
     return ($formula instanceof $interface)
       ? $formula
       : NULL;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\InlinePluginList;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class InlinePluginList extends UtilBase {
@@ -14,7 +14,7 @@ final class InlinePluginList extends UtilBase {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\InlinePluginList\InlinePluginListInterface
@@ -25,7 +25,7 @@ final class InlinePluginList extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): InlinePluginListInterface {
 
     /** @var \Donquixote\Ock\InlinePluginList\InlinePluginListInterface $object */

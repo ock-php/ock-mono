@@ -5,8 +5,8 @@ namespace Donquixote\Ock\Form\Common;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialZeroBase;
-use Donquixote\Ock\Nursery\NurseryInterface;
 
 /**
  * @STA
@@ -19,7 +19,7 @@ class FormatorCommon_Contextual extends IncarnatorPartialZeroBase {
   public function breed(
     FormulaInterface $formula,
     string $interface,
-    NurseryInterface $nursery
+    IncarnatorInterface $nursery
   ): ?object {
 
     if (!$formula instanceof Formula_ContextualInterface) {

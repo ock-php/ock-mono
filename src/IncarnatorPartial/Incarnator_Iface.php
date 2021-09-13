@@ -13,7 +13,7 @@ use Donquixote\Ock\Formula\Select\Formula_Select_InlineExpanded;
 use Donquixote\Ock\IdToFormula\IdToFormula_FromPlugins;
 use Donquixote\Ock\IdToFormula\IdToFormula_InlineExpanded;
 use Donquixote\Ock\IdToFormula\IdToFormula_Replace;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 
@@ -59,7 +59,7 @@ class Incarnator_Iface extends Incarnator_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface {
     /** @var \Donquixote\Ock\Formula\Iface\Formula_IfaceInterface $formula */
     return $this->typeGetFormula(
       $formula->getInterface(),
@@ -70,11 +70,11 @@ class Incarnator_Iface extends Incarnator_FormulaReplacerBase {
   /**
    * @param string $type
    * @param bool $or_null
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public function typeGetFormula(string $type, bool $or_null, NurseryInterface $helper): FormulaInterface {
+  public function typeGetFormula(string $type, bool $or_null, IncarnatorInterface $helper): FormulaInterface {
     $plugins = $this->pluginMap->typeGetPlugins($type);
     $inline_plugins = [];
     foreach ($plugins as $id => $plugin) {

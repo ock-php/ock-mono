@@ -10,7 +10,7 @@ use Donquixote\Ock\Formula\Group\Formula_Group;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\V2V\Group\V2V_Group_Deco;
 
 /**
@@ -28,19 +28,19 @@ class Incarnator_DecoShift extends Incarnator_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface {
     /** @var \Donquixote\Ock\Formula\DecoShift\Formula_DecoShiftInterface $formula */
     return $this->decoratedFormulaGetReplacement($formula->getDecorated(), $nursery);
   }
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  private function decoratedFormulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
+  private function decoratedFormulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $helper): ?FormulaInterface {
     if ($formula instanceof Formula_GroupValInterface) {
       $group_v2v = $formula->getV2V();
       $group_formula = $formula->getDecorated();

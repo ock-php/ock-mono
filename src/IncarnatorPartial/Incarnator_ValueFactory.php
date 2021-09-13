@@ -10,7 +10,7 @@ use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface;
 use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\ParamToLabel\ParamToLabelInterface;
 use Donquixote\Ock\Text\Text;
 
@@ -37,7 +37,7 @@ class Incarnator_ValueFactory extends Incarnator_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface {
 
     /** @var \Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface $formula */
 

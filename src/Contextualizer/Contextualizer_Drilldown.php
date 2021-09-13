@@ -8,7 +8,7 @@ use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\Ock\Generator\Generator;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\V2V\Drilldown\V2V_Drilldown_Trivial;
 use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
@@ -27,7 +27,7 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
   private $v2v;
 
   /**
-   * @var \Donquixote\Ock\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
   private $formulaToAnything;
 
@@ -35,11 +35,11 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self
    */
-  public static function createFromDrilldownValFormula(Formula_DrilldownValInterface $formula, NurseryInterface $formulaToAnything): self {
+  public static function createFromDrilldownValFormula(Formula_DrilldownValInterface $formula, IncarnatorInterface $formulaToAnything): self {
     return new self($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
   }
 
@@ -47,20 +47,20 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self
    */
-  public static function createFromDrilldownFormula(Formula_DrilldownInterface $formula, NurseryInterface $formulaToAnything): self {
+  public static function createFromDrilldownFormula(Formula_DrilldownInterface $formula, IncarnatorInterface $formulaToAnything): self {
     return new self($formula, new V2V_Drilldown_Trivial(), $formulaToAnything);
   }
 
   /**
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    */
-  protected function __construct(Formula_DrilldownInterface $formula, V2V_DrilldownInterface $v2v, NurseryInterface $formulaToAnything) {
+  protected function __construct(Formula_DrilldownInterface $formula, V2V_DrilldownInterface $v2v, IncarnatorInterface $formulaToAnything) {
     $this->formula = $formula;
     $this->v2v = $v2v;
     $this->formulaToAnything = $formulaToAnything;

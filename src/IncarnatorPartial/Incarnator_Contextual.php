@@ -4,14 +4,14 @@ namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class Incarnator_Contextual extends IncarnatorPartialZeroBase {
 
   /**
    * {@inheritdoc}
    */
-  public function breed(FormulaInterface $formula, string $interface, NurseryInterface $nursery): ?object {
+  public function breed(FormulaInterface $formula, string $interface, IncarnatorInterface $nursery): ?object {
 
     if (!$formula instanceof Formula_ContextualInterface) {
       return NULL;

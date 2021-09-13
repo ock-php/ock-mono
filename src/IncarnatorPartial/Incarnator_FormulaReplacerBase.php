@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
 
@@ -23,7 +23,7 @@ abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
   final protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    NurseryInterface $helper
+    IncarnatorInterface $helper
   ): ?object {
     $replacement = $this->formulaGetReplacement($formula, $helper);
     if ($replacement === NULL) {
@@ -39,13 +39,13 @@ abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Original formula.
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    *   Replacement formula.
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  abstract protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface;
+  abstract protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface;
 
 }

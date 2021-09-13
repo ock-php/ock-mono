@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Formula\Para\Formula_ParaInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\PhpUtil;
 
 class Generator_Para implements GeneratorInterface {
@@ -23,13 +23,13 @@ class Generator_Para implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Para\Formula_ParaInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_ParaInterface $formula, NurseryInterface $formulaToAnything): Generator_Para {
+  public static function create(Formula_ParaInterface $formula, IncarnatorInterface $formulaToAnything): Generator_Para {
     return new self(
       Generator::fromFormula($formula->getDecorated(), $formulaToAnything),
       Generator::fromFormula($formula->getParaFormula(), $formulaToAnything));

@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 /**
- * @see \Donquixote\Ock\Nursery\NurseryInterface
+ * @see \Donquixote\Ock\Incarnator\IncarnatorInterface
  */
 interface IncarnatorPartialInterface {
 
@@ -16,7 +16,7 @@ interface IncarnatorPartialInterface {
    *   Formula from which to breed a new object.
    * @param string $interface
    *   Interface for the return value.
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
    *   Nursery for nested breed calls.
    *
    * @return null|object
@@ -28,7 +28,7 @@ interface IncarnatorPartialInterface {
   public function breed(
     FormulaInterface $formula,
     string $interface,
-    NurseryInterface $nursery): ?object;
+    IncarnatorInterface $nursery): ?object;
 
   /**
    * @param string $resultInterface

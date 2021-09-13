@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface;
 use Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface;
-use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
@@ -35,13 +35,13 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, NurseryInterface $formulaToAnything): ?Generator_MoreArgs {
+  public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, IncarnatorInterface $formulaToAnything): ?Generator_MoreArgs {
     return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
   }
 
@@ -49,7 +49,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface $formula
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -57,7 +57,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    */
   public static function createFromMoreArgsValFormula(
     Formula_MoreArgsValInterface $formula,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): ?Generator_MoreArgs {
     return self::create(
       $formula->getDecorated(),
@@ -68,7 +68,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   /**
    * @param \Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
    *
    * @return self|null
    *
@@ -77,7 +77,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   public static function create(
     Formula_MoreArgsInterface $moreArgsFormula,
     V2V_GroupInterface $v2v,
-    NurseryInterface $formulaToAnything
+    IncarnatorInterface $formulaToAnything
   ): ?Generator_MoreArgs {
 
     $decoratedGenerator = Generator::fromFormula(

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Nursery;
+namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 
-interface NurseryInterface {
+interface IncarnatorInterface {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
