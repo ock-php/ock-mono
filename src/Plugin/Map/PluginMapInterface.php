@@ -8,6 +8,8 @@ interface PluginMapInterface {
 
   /**
    * @return string[]
+   *
+   * @throws \Donquixote\Ock\Exception\PluginListException
    */
   public function getTypes(): array;
 
@@ -16,6 +18,8 @@ interface PluginMapInterface {
    *
    * @return \Donquixote\Ock\Plugin\Plugin[]
    *   Format: $[$type] = $plugins.
+   *
+   * @throws \Donquixote\Ock\Exception\PluginListException
    */
   public function typeGetPlugins(string $type): array;
 
