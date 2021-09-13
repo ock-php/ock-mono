@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Discovery\DocToAnnotations;
+namespace Donquixote\Ock\Discovery\DocToAnnotations;
 
 interface DocToAnnotationsInterface {
 

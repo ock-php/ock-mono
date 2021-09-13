@@ -1,27 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery;
+namespace Donquixote\Ock\Nursery;
 
-use Donquixote\ObCK\Context\CfContextInterface;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\Formula\ContextProviding\Formula_ContextProvidingInterface;
-use Donquixote\ObCK\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\ObCK\Nursery\Cradle\FormulaToAnythingPartial_SmartChain;
-use Donquixote\ObCK\Nursery\Cradle\CradleInterface;
-use Donquixote\ObCK\Util\MessageUtil;
+use Donquixote\Ock\Context\CfContextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Formula\ContextProviding\Formula_ContextProvidingInterface;
+use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
+use Donquixote\Ock\Nursery\Cradle\FormulaToAnythingPartial_SmartChain;
+use Donquixote\Ock\Nursery\Cradle\CradleInterface;
+use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class Nursery_FromCradle extends NurseryBase {
 
   /**
-   * @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface
+   * @var \Donquixote\Ock\Nursery\Cradle\CradleInterface
    */
   private $cradle;
 
   /**
-   * @var \Donquixote\ObCK\Context\CfContextInterface|null
+   * @var \Donquixote\Ock\Context\CfContextInterface|null
    */
   private $context;
 
@@ -31,14 +31,14 @@ class Nursery_FromCradle extends NurseryBase {
    *
    * @return self
    *
-   * @throws \Donquixote\ObCK\Exception\STABuilderException
+   * @throws \Donquixote\Ock\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue, string $cache_id): self {
     return new self(FormulaToAnythingPartial_SmartChain::create($paramToValue), $cache_id);
   }
 
   /**
-   * @param \Donquixote\ObCK\Nursery\Cradle\CradleInterface[] $partials
+   * @param \Donquixote\Ock\Nursery\Cradle\CradleInterface[] $partials
    * @param string $cache_id
    *
    * @return self
@@ -48,7 +48,7 @@ class Nursery_FromCradle extends NurseryBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Nursery\Cradle\CradleInterface $partial
+   * @param \Donquixote\Ock\Nursery\Cradle\CradleInterface $partial
    * @param string $cache_id
    */
   public function __construct(CradleInterface $partial, string $cache_id) {
@@ -59,7 +59,7 @@ class Nursery_FromCradle extends NurseryBase {
   /**
    * Immutable setter. Sets a context.
    *
-   * @param \Donquixote\ObCK\Context\CfContextInterface|null $context
+   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
    *   Context to constrain available options.
    *
    * @return static

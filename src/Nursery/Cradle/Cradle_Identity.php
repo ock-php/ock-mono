@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery\Cradle;
+namespace Donquixote\Ock\Nursery\Cradle;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
 
 /**
  * @STA

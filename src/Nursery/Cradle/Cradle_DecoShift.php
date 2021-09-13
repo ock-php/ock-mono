@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery\Cradle;
+namespace Donquixote\Ock\Nursery\Cradle;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\DecoShift\Formula_DecoShiftInterface;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\Group\Formula_Group;
-use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\V2V\Group\V2V_Group_Deco;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\DecoShift\Formula_DecoShiftInterface;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Formula\Group\Formula_Group;
+use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\V2V\Group\V2V_Group_Deco;
 
 /**
  * @STA
@@ -29,16 +29,16 @@ class Cradle_DecoShift extends Cradle_FormulaReplacerBase {
    * {@inheritdoc}
    */
   protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
-    /** @var \Donquixote\ObCK\Formula\DecoShift\Formula_DecoShiftInterface $formula */
+    /** @var \Donquixote\Ock\Formula\DecoShift\Formula_DecoShiftInterface $formula */
     return $this->decoratedFormulaGetReplacement($formula->getDecorated(), $nursery);
   }
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   private function decoratedFormulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
     if ($formula instanceof Formula_GroupValInterface) {

@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\GroupVal;
+namespace Donquixote\Ock\Formula\GroupVal;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\ObCK\Formula\Group\Formula_Group;
-use Donquixote\ObCK\Util\UtilBase;
-use Donquixote\ObCK\V2V\Group\V2V_Group_Callback;
+use Donquixote\Ock\Formula\Group\Formula_Group;
+use Donquixote\Ock\Util\UtilBase;
+use Donquixote\Ock\V2V\Group\V2V_Group_Callback;
 
 final class Formula_GroupVal_Callback extends UtilBase {
 
   /**
    * @param string $class
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
-   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\Ock\Text\TextInterface[] $labels
    *
-   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function fromClass(string $class, array $formulas, array $labels): Formula_GroupValInterface {
 
@@ -31,10 +31,10 @@ final class Formula_GroupVal_Callback extends UtilBase {
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
-   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\Ock\Text\TextInterface[] $labels
    *
-   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function fromStaticMethod(string $class, string $methodName, array $formulas, array $labels): Formula_GroupValInterface {
 
@@ -48,10 +48,10 @@ final class Formula_GroupVal_Callback extends UtilBase {
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
-   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\Ock\Text\TextInterface[] $labels
    *
-   * @return \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface
+   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
    */
   public static function create(
     CallbackReflectionInterface $callbackReflection,

@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Boolean;
+namespace Donquixote\Ock\Formula\Boolean;
 
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Boolean implements Formula_BooleanInterface {
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface|null
+   * @var \Donquixote\Ock\Text\TextInterface|null
    */
   private $trueSummary;
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface|null
+   * @var \Donquixote\Ock\Text\TextInterface|null
    */
   private $falseSummary;
 
   /**
-   * @param \Donquixote\ObCK\Text\TextInterface|null $trueSummary
-   * @param \Donquixote\ObCK\Text\TextInterface|null $falseSummary
+   * @param \Donquixote\Ock\Text\TextInterface|null $trueSummary
+   * @param \Donquixote\Ock\Text\TextInterface|null $falseSummary
    */
   public function __construct(TextInterface $trueSummary, TextInterface $falseSummary) {
     $this->trueSummary = $trueSummary;

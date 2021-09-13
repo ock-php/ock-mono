@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin\Registry;
+namespace Donquixote\Ock\Plugin\Registry;
 
 class PluginRegistry_Buffer implements PluginRegistryInterface {
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Plugin[][]|null
+   * @var \Donquixote\Ock\Plugin\Plugin[][]|null
    */
   private $pluginss;
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface
+   * @var \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface
    */
   private $decorated;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface $decorated
+   * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $decorated
    */
   public function __construct(PluginRegistryInterface $decorated) {
     $this->decorated = $decorated;

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Summarizer;
+namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\ObCK\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
+use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 
 /**
  * @STA
@@ -16,20 +16,20 @@ use Donquixote\ObCK\Text\TextInterface;
 class Summarizer_Drilldown implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
+   * @var \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
    */
   private $formula;
 
   /**
-   * @var \Donquixote\ObCK\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Nursery\NurseryInterface
    */
   private $formulaToAnything;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    */
   public function __construct(
     Formula_DrilldownInterface $formula,

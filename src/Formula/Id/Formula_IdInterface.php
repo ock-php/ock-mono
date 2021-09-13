@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Id;
+namespace Donquixote\Ock\Formula\Id;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 /**
  * Base interface for formulas where the value is id-like (string or integer).

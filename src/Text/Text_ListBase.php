@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Text;
+namespace Donquixote\Ock\Text;
 
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 
 abstract class Text_ListBase extends TextBase {
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface[]
+   * @var \Donquixote\Ock\Text\TextInterface[]
    */
   private array $items;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Text\TextInterface[] $items
+   * @param \Donquixote\Ock\Text\TextInterface[] $items
    */
   public function __construct(array $items) {
     Text::validate(...$items);
@@ -24,7 +24,7 @@ abstract class Text_ListBase extends TextBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Text\TextInterface $item
+   * @param \Donquixote\Ock\Text\TextInterface $item
    *
    * @return static
    */
@@ -35,7 +35,7 @@ abstract class Text_ListBase extends TextBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Text\TextInterface $item
+   * @param \Donquixote\Ock\Text\TextInterface $item
    *
    * @return $this
    */

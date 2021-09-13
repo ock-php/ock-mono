@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Drilldown;
+namespace Donquixote\Ock\Formula\Drilldown;
 
 trait Formula_Drilldown_CustomKeysTrait {
 

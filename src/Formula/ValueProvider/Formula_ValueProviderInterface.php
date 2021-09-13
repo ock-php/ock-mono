@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\ValueProvider;
+namespace Donquixote\Ock\Formula\ValueProvider;
 
-use Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface;
+use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
 
 interface Formula_ValueProviderInterface extends Formula_OptionlessInterface {
 
   /**
    * @return mixed
    *
-   * @throws \Donquixote\ObCK\Exception\EvaluatorException
+   * @throws \Donquixote\Ock\Exception\EvaluatorException
    */
   public function getValue();
 

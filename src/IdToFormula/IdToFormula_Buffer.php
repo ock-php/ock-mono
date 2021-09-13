@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\IdToFormula;
+namespace Donquixote\Ock\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 class IdToFormula_Buffer implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface[]
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface[]
    */
   private $buffer = [];
 
   /**
-   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $decorated
+   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
    */
   public function __construct(IdToFormulaInterface $decorated) {
     $this->decorated = $decorated;

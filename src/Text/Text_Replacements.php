@@ -1,26 +1,26 @@
 <?php
 
-namespace Donquixote\ObCK\Text;
+namespace Donquixote\Ock\Text;
 
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 
 class Text_Replacements extends TextBuilderBase {
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface
+   * @var \Donquixote\Ock\Text\TextInterface
    */
   private TextInterface $source;
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface[]
+   * @var \Donquixote\Ock\Text\TextInterface[]
    */
   private array $replacements;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Text\TextInterface $source
-   * @param \Donquixote\ObCK\Text\TextInterface[] $replacements
+   * @param \Donquixote\Ock\Text\TextInterface $source
+   * @param \Donquixote\Ock\Text\TextInterface[] $replacements
    */
   public function __construct(TextInterface $source, array $replacements = []) {
     self::validateReplacements(...array_values($replacements));

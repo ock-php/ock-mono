@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Tests\Fixture\Callback;
+namespace Donquixote\Ock\Tests\Fixture\Callback;
 
 /**
  * @obck("greaterThan", "Greater than")

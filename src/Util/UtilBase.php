@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Util;
+namespace Donquixote\Ock\Util;
 
 abstract class UtilBase {
 

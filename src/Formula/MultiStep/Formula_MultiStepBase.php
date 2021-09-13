@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\MultiStep;
+namespace Donquixote\Ock\Formula\MultiStep;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 abstract class Formula_MultiStepBase implements Formula_MultiStepInterface {
 
   private string $key;
 
   /**
-   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   private FormulaInterface $formula;
 
@@ -18,7 +18,7 @@ abstract class Formula_MultiStepBase implements Formula_MultiStepInterface {
    * Constructor.
    *
    * @param string $key
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    */
   public function __construct(string $key, FormulaInterface $formula) {
     $this->key = $key;

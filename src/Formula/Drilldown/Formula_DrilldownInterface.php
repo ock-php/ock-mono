@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Drilldown;
+namespace Donquixote\Ock\Formula\Drilldown;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 
 interface Formula_DrilldownInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\ObCK\Formula\Id\Formula_IdInterface
+   * @return \Donquixote\Ock\Formula\Id\Formula_IdInterface
    */
   public function getIdFormula(): Formula_IdInterface;
 
   /**
-   * @return \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @return \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   public function getIdToFormula(): IdToFormulaInterface;
 

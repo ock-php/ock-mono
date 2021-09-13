@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\TextLookup;
+namespace Donquixote\Ock\TextLookup;
 
 /**
  * Helper object to provide labels in bulk.
@@ -10,14 +10,14 @@ namespace Donquixote\ObCK\TextLookup;
 class TextLookup_Fixed implements TextLookupInterface {
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface[]
+   * @var \Donquixote\Ock\Text\TextInterface[]
    */
   private array $labels;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
+   * @param \Donquixote\Ock\Text\TextInterface[] $labels
    */
   public function __construct(array $labels) {
     $this->labels = $labels;

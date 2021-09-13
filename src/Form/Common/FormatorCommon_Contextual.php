@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Form\Common;
+namespace Donquixote\Ock\Form\Common;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Nursery\Cradle\CradleZeroBase;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Nursery\Cradle\CradleZeroBase;
 
 /**
  * @STA

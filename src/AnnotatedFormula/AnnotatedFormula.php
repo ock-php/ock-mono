@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\AnnotatedFormula;
+namespace Donquixote\Ock\AnnotatedFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 class AnnotatedFormula implements AnnotatedFormulaInterface {
 
@@ -21,7 +21,7 @@ class AnnotatedFormula implements AnnotatedFormulaInterface {
    *   Type name(s), typically a single interface name.
    * @param array $info
    *   Data from annotation(s).
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
    */
   public function __construct(string $type, array $info, FormulaInterface $formula) {

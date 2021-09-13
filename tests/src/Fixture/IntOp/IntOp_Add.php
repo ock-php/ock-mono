@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Tests\Fixture\IntOp;
+namespace Donquixote\Ock\Tests\Fixture\IntOp;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\Primitive\Formula_Int;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Formula\Primitive\Formula_Int;
+use Donquixote\Ock\Text\Text;
 
 class IntOp_Add implements IntOpInterface {
 
@@ -19,7 +19,7 @@ class IntOp_Add implements IntOpInterface {
   /**
    * @obck("add", "Add")
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    *
    * @throws \ReflectionException
    */

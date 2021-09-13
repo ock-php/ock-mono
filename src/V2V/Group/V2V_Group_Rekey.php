@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\Group;
+namespace Donquixote\Ock\V2V\Group;
 
 class V2V_Group_Rekey implements V2V_GroupInterface {
 
   /**
-   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   private V2V_GroupInterface $decorated;
 
@@ -18,7 +18,7 @@ class V2V_Group_Rekey implements V2V_GroupInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $decorated
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $decorated
    * @param string[] $keys
    */
   public function __construct(V2V_GroupInterface $decorated, array $keys) {

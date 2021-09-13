@@ -1,28 +1,28 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\Plugin\Plugin;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Plugin\Plugin;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Plugin[]
+   * @var \Donquixote\Ock\Plugin\Plugin[]
    */
   private $plugins;
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface|\Donquixote\ObCK\Text\TextInterface[]
+   * @var \Donquixote\Ock\Text\TextInterface|\Donquixote\Ock\Text\TextInterface[]
    */
   private array $groupLabels;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Plugin[] $plugins
-   * @param \Donquixote\ObCK\Text\TextInterface[] $groupLabels
+   * @param \Donquixote\Ock\Plugin\Plugin[] $plugins
+   * @param \Donquixote\Ock\Text\TextInterface[] $groupLabels
    */
   public function __construct(array $plugins, array $groupLabels = []) {
     self::validatePlugins(...array_values($plugins));
@@ -31,7 +31,7 @@ class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Plugin\Plugin ...$plugins
+   * @param \Donquixote\Ock\Plugin\Plugin ...$plugins
    */
   private static function validatePlugins(Plugin ...$plugins): void {}
 

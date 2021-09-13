@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Optionlessness;
+namespace Donquixote\Ock\Optionlessness;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
+use Donquixote\Ock\Util\UtilBase;
 
 final class OptionlessnessSTAs extends UtilBase {
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface $formula
+   * @param \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface $formula
    *
-   * @return \Donquixote\ObCK\Optionlessness\OptionlessnessInterface
+   * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
    */
   public static function optionless(
     /** @noinspection PhpUnusedParameterInspection */ Formula_OptionlessInterface $formula
@@ -25,9 +25,9 @@ final class OptionlessnessSTAs extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Optionlessness\OptionlessnessInterface $formula
+   * @param \Donquixote\Ock\Optionlessness\OptionlessnessInterface $formula
    *
-   * @return \Donquixote\ObCK\Optionlessness\Optionlessness
+   * @return \Donquixote\Ock\Optionlessness\Optionlessness
    */
   public static function optionlessness(OptionlessnessInterface $formula): Optionlessness {
     return new Optionlessness($formula->isOptionless());
@@ -36,9 +36,9 @@ final class OptionlessnessSTAs extends UtilBase {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *
-   * @return \Donquixote\ObCK\Optionlessness\Optionlessness|null
+   * @return \Donquixote\Ock\Optionlessness\Optionlessness|null
    */
   public static function other(
     /** @noinspection PhpUnusedParameterInspection */ FormulaInterface $formula

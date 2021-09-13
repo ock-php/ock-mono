@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\ValueStubToPhp;
+namespace Donquixote\Ock\ValueStubToPhp;
 
-use Donquixote\ObCK\ValueStub\ValueStub_Group;
-use Donquixote\ObCK\ValueStub\ValueStub_GroupVal;
+use Donquixote\Ock\ValueStub\ValueStub_Group;
+use Donquixote\Ock\ValueStub\ValueStub_GroupVal;
 
 class ValueStubToPhp {
 
   /**
-   * @param \Donquixote\ObCK\ValueStub\ValueStub_Group $group
-   * @param \Donquixote\ObCK\ValueStubToPhp\ValueStubToPhpInterface $valueStubToPhp
+   * @param \Donquixote\Ock\ValueStub\ValueStub_Group $group
+   * @param \Donquixote\Ock\ValueStubToPhp\ValueStubToPhpInterface $valueStubToPhp
    *
    * @return string
    */
@@ -25,8 +25,8 @@ class ValueStubToPhp {
   }
 
   /**
-   * @param \Donquixote\ObCK\ValueStub\ValueStub_GroupVal $groupVal
-   * @param \Donquixote\ObCK\ValueStubToPhp\ValueStubToPhpInterface $valueStubToPhp
+   * @param \Donquixote\Ock\ValueStub\ValueStub_GroupVal $groupVal
+   * @param \Donquixote\Ock\ValueStubToPhp\ValueStubToPhpInterface $valueStubToPhp
    *
    * @return string
    */

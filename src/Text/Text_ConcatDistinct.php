@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\ObCK\Text;
+namespace Donquixote\Ock\Text;
 
 class Text_ConcatDistinct extends Text_ListConcat {
 

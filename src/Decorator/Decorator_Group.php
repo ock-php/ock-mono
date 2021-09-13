@@ -2,38 +2,38 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Decorator;
+namespace Donquixote\Ock\Decorator;
 
-use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Generator\Generator;
-use Donquixote\ObCK\Generator\Generator_Group;
-use Donquixote\ObCK\Util\PhpUtil;
-use Donquixote\ObCK\V2V\Group\V2V_Group_Trivial;
-use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
+use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Generator\Generator;
+use Donquixote\Ock\Generator\Generator_Group;
+use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
+use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
 class Decorator_Group implements DecoratorInterface {
 
   /**
-   * @var \Donquixote\ObCK\Generator\GeneratorInterface[]
+   * @var \Donquixote\Ock\Generator\GeneratorInterface[]
    */
   private $itemGenerators;
 
   /**
-   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function fromGroupFormula(
     Formula_GroupInterface $formula,
@@ -48,12 +48,12 @@ class Decorator_Group implements DecoratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function fromGroupValFormula(
     Formula_GroupValInterface $formula,
@@ -68,13 +68,13 @@ class Decorator_Group implements DecoratorInterface {
   /**
    * Static factory.
    *
-   * @param \Donquixote\ObCK\Formula\Group\Formula_GroupInterface $groupFormula
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $groupFormula
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, NurseryInterface $formulaToAnything): ?Generator_Group {
 
@@ -93,8 +93,8 @@ class Decorator_Group implements DecoratorInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Generator\GeneratorInterface[] $itemGenerators
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\Ock\Generator\GeneratorInterface[] $itemGenerators
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
    */
   protected function __construct(array $itemGenerators, V2V_GroupInterface $v2v) {
     $this->itemGenerators = $itemGenerators;

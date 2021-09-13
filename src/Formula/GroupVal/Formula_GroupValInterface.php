@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\GroupVal;
+namespace Donquixote\Ock\Formula\GroupVal;
 
-use Donquixote\ObCK\Formula\Group\Formula_GroupInterface;
-use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
+use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
+use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
 interface Formula_GroupValInterface extends Formula_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\ObCK\Formula\Group\Formula_GroupInterface
+   * @return \Donquixote\Ock\Formula\Group\Formula_GroupInterface
    */
   public function getDecorated(): Formula_GroupInterface;
 
   /**
-   * @return \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
+   * @return \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   public function getV2V(): V2V_GroupInterface;
 

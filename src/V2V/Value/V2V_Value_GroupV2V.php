@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\Value;
+namespace Donquixote\Ock\V2V\Value;
 
-use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
+use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
 class V2V_Value_GroupV2V implements V2V_ValueInterface {
 
   /**
-   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   private V2V_GroupInterface $groupV2V;
 
@@ -20,7 +20,7 @@ class V2V_Value_GroupV2V implements V2V_ValueInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $groupV2V
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $groupV2V
    * @param string $key
    */
   public function __construct(V2V_GroupInterface $groupV2V, string $key) {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin\Registry;
+namespace Donquixote\Ock\Plugin\Registry;
 
 interface PluginRegistryInterface {
 
   /**
    *
-   * @return \Donquixote\ObCK\Plugin\Plugin[][]
+   * @return \Donquixote\Ock\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public function getPluginss(): array;
 

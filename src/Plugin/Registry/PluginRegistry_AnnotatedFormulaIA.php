@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin\Registry;
+namespace Donquixote\Ock\Plugin\Registry;
 
-use Donquixote\ObCK\AnnotatedFormula\IA\AnnotatedFormulaIAInterface;
-use Donquixote\ObCK\Plugin\Plugin;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\AnnotatedFormula\IA\AnnotatedFormulaIAInterface;
+use Donquixote\Ock\Plugin\Plugin;
+use Donquixote\Ock\Text\Text;
 
 class PluginRegistry_AnnotatedFormulaIA implements PluginRegistryInterface {
 
@@ -17,14 +17,14 @@ class PluginRegistry_AnnotatedFormulaIA implements PluginRegistryInterface {
   ];
 
   /**
-   * @var \Donquixote\ObCK\AnnotatedFormula\IA\AnnotatedFormulaIAInterface
+   * @var \Donquixote\Ock\AnnotatedFormula\IA\AnnotatedFormulaIAInterface
    */
   private AnnotatedFormulaIAInterface $annotatedFormulaIA;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\AnnotatedFormula\IA\AnnotatedFormulaIAInterface $annotatedFormulaIA
+   * @param \Donquixote\Ock\AnnotatedFormula\IA\AnnotatedFormulaIAInterface $annotatedFormulaIA
    */
   public function __construct(AnnotatedFormulaIAInterface $annotatedFormulaIA) {
     $this->annotatedFormulaIA = $annotatedFormulaIA;
@@ -35,7 +35,7 @@ class PluginRegistry_AnnotatedFormulaIA implements PluginRegistryInterface {
    */
   public function getPluginss(): array {
     $pluginss = [];
-    /** @var \Donquixote\ObCK\AnnotatedFormula\AnnotatedFormulaInterface $annotated_formula */
+    /** @var \Donquixote\Ock\AnnotatedFormula\AnnotatedFormulaInterface $annotated_formula */
     foreach ($this->annotatedFormulaIA as $annotated_formula) {
       $info = $annotated_formula->getInfo();
       $id = $info['id'] ?? $info[0] ?? NULL;

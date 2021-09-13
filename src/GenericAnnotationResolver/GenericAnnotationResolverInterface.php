@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\ObCK\GenericAnnotationResolver;
+namespace Donquixote\Ock\GenericAnnotationResolver;
 
 interface GenericAnnotationResolverInterface {
 

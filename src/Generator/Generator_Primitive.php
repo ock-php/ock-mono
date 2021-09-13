@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Generator;
+namespace Donquixote\Ock\Generator;
 
-use Donquixote\ObCK\Formula\Primitive\Formula_PrimitiveInterface;
-use Donquixote\ObCK\Util\PhpUtil;
+use Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface;
+use Donquixote\Ock\Util\PhpUtil;
 
 class Generator_Primitive implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Primitive\Formula_PrimitiveInterface
+   * @var \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface
    */
   private $formula;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Primitive\Formula_PrimitiveInterface $formula
+   * @param \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface $formula
    *
    * @return self
    */
@@ -25,7 +25,7 @@ class Generator_Primitive implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\Primitive\Formula_PrimitiveInterface $formula
+   * @param \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface $formula
    */
   public function __construct(Formula_PrimitiveInterface $formula) {
     $this->formula = $formula;

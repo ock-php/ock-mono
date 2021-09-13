@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\MultiStep;
+namespace Donquixote\Ock\Formula\MultiStep;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 class Formula_MultiStep_Callback extends Formula_MultiStepBase {
 
@@ -16,7 +16,7 @@ class Formula_MultiStep_Callback extends Formula_MultiStepBase {
    * Constructor.
    *
    * @param string $key
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param callable $next
    */
   public function __construct(string $key, FormulaInterface $formula, callable $next) {

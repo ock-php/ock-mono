@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Exception;
+namespace Donquixote\Ock\Exception;
 
 /**
  * Conversion not supported / no suitable adapter.

@@ -1,10 +1,10 @@
 <?php
 
-namespace Donquixote\ObCK\Tests;
+namespace Donquixote\Ock\Tests;
 
-use Donquixote\ObCK\Tests\Translator\Translator_Test;
-use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Translator\Translator_Passthru;
+use Donquixote\Ock\Tests\Translator\Translator_Test;
+use Donquixote\Ock\Text\TextInterface;
+use Donquixote\Ock\Translator\Translator_Passthru;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 

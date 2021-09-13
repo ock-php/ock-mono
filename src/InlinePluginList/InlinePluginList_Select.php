@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\InlinePluginList;
+namespace Donquixote\Ock\InlinePluginList;
 
-use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\ObCK\Formula\Select\Formula_Select_FromFlatSelect;
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
-use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
-use Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface;
-use Donquixote\ObCK\Plugin\Plugin;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\Ock\Formula\Select\Formula_Select_FromFlatSelect;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
+use Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface;
+use Donquixote\Ock\Plugin\Plugin;
+use Donquixote\Ock\Text\Text;
 
 class InlinePluginList_Select implements InlinePluginListInterface {
 
   /**
-   * @var \Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface
+   * @var \Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface
    */
   private $formula;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface $formula
+   * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
    *
    * @return self
    */
@@ -34,7 +34,7 @@ class InlinePluginList_Select implements InlinePluginListInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $formula
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
    *
    * @return self
    */
@@ -43,7 +43,7 @@ class InlinePluginList_Select implements InlinePluginListInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface $formula
+   * @param \Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface $formula
    */
   public function __construct(FormulaBase_AbstractSelectInterface $formula) {
     $this->formula = $formula;

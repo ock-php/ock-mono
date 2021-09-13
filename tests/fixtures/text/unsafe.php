@@ -1,6 +1,6 @@
 <?php
 
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Text\Text;
 
 // Don't create global vars.
 return call_user_func(static function () {

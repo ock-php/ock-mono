@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Generator;
+namespace Donquixote\Ock\Generator;
 
-use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface;
 
 /**
  * @STA
@@ -11,12 +11,12 @@ use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface;
 class Generator_ValueProvider implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface
+   * @var \Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface
    */
   private $formula;
 
   /**
-   * @param \Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProviderInterface $formula
+   * @param \Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface $formula
    */
   public function __construct(Formula_ValueProviderInterface $formula) {
     $this->formula = $formula;

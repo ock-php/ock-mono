@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\String;
+namespace Donquixote\Ock\V2V\String;
 
 interface V2V_StringInterface {
 

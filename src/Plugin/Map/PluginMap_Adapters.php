@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin\Map;
+namespace Donquixote\Ock\Plugin\Map;
 
 class PluginMap_Adapters implements PluginMapInterface {
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface
    */
   private PluginMapInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface
    */
   private PluginMapInterface $adaptersMap;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $decorated
-   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $adaptersMap
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $decorated
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $adaptersMap
    */
   public function __construct(PluginMapInterface $decorated, PluginMapInterface $adaptersMap) {
     $this->decorated = $decorated;

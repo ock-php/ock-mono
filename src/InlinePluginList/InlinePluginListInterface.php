@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\InlinePluginList;
+namespace Donquixote\Ock\InlinePluginList;
 
-use Donquixote\ObCK\Plugin\Plugin;
+use Donquixote\Ock\Plugin\Plugin;
 
 interface InlinePluginListInterface {
 
@@ -22,7 +22,7 @@ interface InlinePluginListInterface {
    * @param string $id
    *   Id of the plugin.
    *
-   * @return \Donquixote\ObCK\Plugin\Plugin|null
+   * @return \Donquixote\Ock\Plugin\Plugin|null
    *   The plugin, or NULL if not found.
    */
   public function idGetPlugin(string $id): ?Plugin;

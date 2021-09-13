@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Fallback;
+namespace Donquixote\Ock\Formula\Fallback;
 
-use Donquixote\ObCK\FormulaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\Ock\FormulaBase\Decorator\Formula_DecoratorBase;
 
 class Formula_Fallback extends Formula_DecoratorBase implements Formula_FallbackInterface {
 

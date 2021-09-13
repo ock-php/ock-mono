@@ -1,28 +1,28 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula;
+namespace Donquixote\Ock\Formula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Group\GroupFormulaBuilder;
-use Donquixote\ObCK\Formula\Iface\Formula_Iface;
-use Donquixote\ObCK\Formula\Select\Flat\FlatSelectBuilderInterface;
-use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelect_Fixed;
-use Donquixote\ObCK\Formula\Sequence\Formula_Sequence;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Group\GroupFormulaBuilder;
+use Donquixote\Ock\Formula\Iface\Formula_Iface;
+use Donquixote\Ock\Formula\Select\Flat\FlatSelectBuilderInterface;
+use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
+use Donquixote\Ock\Formula\Sequence\Formula_Sequence;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Util\UtilBase;
 
 final class Formula extends UtilBase {
 
   /**
    * Validates one or more formulas.
    *
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface ...$formulas
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface ...$formulas
    */
   public static function validate(FormulaInterface ...$formulas) {}
 
   /**
-   * @return \Donquixote\ObCK\Formula\Select\Flat\FlatSelectBuilderInterface
+   * @return \Donquixote\Ock\Formula\Select\Flat\FlatSelectBuilderInterface
    */
   public static function flatSelect(): FlatSelectBuilderInterface {
     return new Formula_FlatSelect_Fixed([]);
@@ -31,7 +31,7 @@ final class Formula extends UtilBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function iface(string $interface): FormulaInterface {
     return new Formula_Iface($interface);
@@ -40,7 +40,7 @@ final class Formula extends UtilBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function ifaceOrNull(string $interface): FormulaInterface {
     return new Formula_Iface($interface, TRUE);
@@ -49,7 +49,7 @@ final class Formula extends UtilBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\ObCK\Formula\Sequence\Formula_Sequence
+   * @return \Donquixote\Ock\Formula\Sequence\Formula_Sequence
    */
   public static function ifaceSequence(string $interface): Formula_Sequence {
     return new Formula_Sequence(
@@ -57,18 +57,18 @@ final class Formula extends UtilBase {
   }
 
   /**
-   * @return \Donquixote\ObCK\Formula\Group\GroupFormulaBuilder
+   * @return \Donquixote\Ock\Formula\Group\GroupFormulaBuilder
    */
   public static function group(): GroupFormulaBuilder {
     return new GroupFormulaBuilder();
   }
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formula_to_anything
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formula_to_anything
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function replace(FormulaInterface $formula, NurseryInterface $formula_to_anything): ?FormulaInterface {
 

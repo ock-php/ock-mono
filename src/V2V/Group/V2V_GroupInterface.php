@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\Group;
+namespace Donquixote\Ock\V2V\Group;
 
 interface V2V_GroupInterface {
 

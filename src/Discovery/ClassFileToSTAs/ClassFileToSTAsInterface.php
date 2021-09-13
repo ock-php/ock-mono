@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Discovery\ClassFileToSTAs;
+namespace Donquixote\Ock\Discovery\ClassFileToSTAs;
 
 interface ClassFileToSTAsInterface {
 
@@ -9,7 +9,7 @@ interface ClassFileToSTAsInterface {
    * @param string $class
    * @param string $fileRealpath
    *
-   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
+   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
    */
   public function classFileGetPartials(string $class, string $fileRealpath): array;
 }

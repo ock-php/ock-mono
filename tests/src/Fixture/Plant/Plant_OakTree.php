@@ -1,11 +1,11 @@
 <?php
 
-namespace Donquixote\ObCK\Tests\Fixture\Plant;
+namespace Donquixote\Ock\Tests\Fixture\Plant;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\Textfield\Formula_Textfield_IntegerInRange;
-use Donquixote\ObCK\Text\Text_Translatable;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Formula\Textfield\Formula_Textfield_IntegerInRange;
+use Donquixote\Ock\Text\Text_Translatable;
 
 class Plant_OakTree implements PlantInterface {
 
@@ -15,7 +15,7 @@ class Plant_OakTree implements PlantInterface {
   private $height;
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(): FormulaInterface {
     return Formula::group()

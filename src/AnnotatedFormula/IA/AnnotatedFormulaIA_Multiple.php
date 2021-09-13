@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\AnnotatedFormula\IA;
+namespace Donquixote\Ock\AnnotatedFormula\IA;
 
 class AnnotatedFormulaIA_Multiple implements AnnotatedFormulaIAInterface {
 
   /**
-   * @var \Donquixote\ObCK\AnnotatedFormula\IA\AnnotatedFormulaIAInterface[]
+   * @var \Donquixote\Ock\AnnotatedFormula\IA\AnnotatedFormulaIAInterface[]
    */
   private $ias;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\AnnotatedFormula\IA\AnnotatedFormulaIAInterface[] $ias
+   * @param \Donquixote\Ock\AnnotatedFormula\IA\AnnotatedFormulaIAInterface[] $ias
    */
   public function __construct(array $ias) {
     $this->ias = $ias;

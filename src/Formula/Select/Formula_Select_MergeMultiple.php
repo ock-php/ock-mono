@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Select_MergeMultiple extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Select\Formula_SelectInterface[]
+   * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface[]
    */
   private array $formulas;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface[] $formulas
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface[] $formulas
    */
   public function __construct(array $formulas) {
     $this->formulas = $formulas;

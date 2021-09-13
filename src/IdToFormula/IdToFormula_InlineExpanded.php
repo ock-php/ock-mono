@@ -1,28 +1,28 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\IdToFormula;
+namespace Donquixote\Ock\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\InlineDrilldown\InlineDrilldown;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
 
 class IdToFormula_InlineExpanded implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Nursery\NurseryInterface
    */
   private NurseryInterface $helper;
 
   /**
-   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $decorated
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
+   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
    */
   public function __construct(IdToFormulaInterface $decorated, NurseryInterface $helper) {
     $this->decorated = $decorated;

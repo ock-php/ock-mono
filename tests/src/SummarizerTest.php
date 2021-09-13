@@ -1,12 +1,12 @@
 <?php
 
-namespace Donquixote\ObCK\Tests;
+namespace Donquixote\Ock\Tests;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Summarizer\Summarizer;
-use Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface;
-use Donquixote\ObCK\Tests\Translator\Translator_Test;
-use Donquixote\ObCK\Translator\Translator_Passthru;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Summarizer\Summarizer;
+use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\Ock\Tests\Translator\Translator_Test;
+use Donquixote\Ock\Translator\Translator_Passthru;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -20,7 +20,7 @@ class SummarizerTest extends FormulaTestBase {
    *
    * @dataProvider providerTestFormula()
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public function testFormula(string $base, string $case): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
@@ -75,7 +75,7 @@ class SummarizerTest extends FormulaTestBase {
    *
    * @dataProvider providerTestIfaceSummarizer()
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public function testIfaceSummarizer(string $type, string $name) {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);

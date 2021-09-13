@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery\Cradle;
+namespace Donquixote\Ock\Nursery\Cradle;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface;
-use Donquixote\ObCK\Formula\Select\Formula_Select_FromPlugins;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormula_FromPlugins;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
+use Donquixote\Ock\Formula\Select\Formula_Select_FromPlugins;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\IdToFormula\IdToFormula_FromPlugins;
 
 /**
  * @STA
@@ -26,7 +26,7 @@ class Cradle_PluginList extends Cradle_FormulaReplacerBase {
    * {@inheritdoc}
    */
   protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
-    /** @var \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface $formula */
+    /** @var \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula */
     $plugins = $formula->getPlugins();
     $ff = (new Formula_Drilldown(
       new Formula_Select_FromPlugins($plugins),

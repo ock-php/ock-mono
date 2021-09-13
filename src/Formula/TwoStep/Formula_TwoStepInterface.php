@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\TwoStep;
+namespace Donquixote\Ock\Formula\TwoStep;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 interface Formula_TwoStepInterface extends FormulaInterface {
 
@@ -18,7 +18,7 @@ interface Formula_TwoStepInterface extends FormulaInterface {
   public function getSecondStepKey(): string;
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function getFirstStepFormula(): FormulaInterface;
 
@@ -26,7 +26,7 @@ interface Formula_TwoStepInterface extends FormulaInterface {
    * @param mixed $firstStepValue
    *   Value from the first step of configuration.
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    *
    * @todo return NULL or throw exception?
    */

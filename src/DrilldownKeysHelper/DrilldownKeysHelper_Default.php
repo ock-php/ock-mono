@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\DrilldownKeysHelper;
+namespace Donquixote\Ock\DrilldownKeysHelper;
 
 class DrilldownKeysHelper_Default implements DrilldownKeysHelperInterface {
 

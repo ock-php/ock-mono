@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\IdToFormula;
+namespace Donquixote\Ock\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Plugin\Plugin;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Plugin\Plugin;
 
 class IdToFormula_FromPlugins implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Plugin[]
+   * @var \Donquixote\Ock\Plugin\Plugin[]
    */
   private $plugins;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Plugin[] $plugins
+   * @param \Donquixote\Ock\Plugin\Plugin[] $plugins
    */
   public function __construct(array $plugins) {
     self::validatePlugins(...array_values($plugins));
@@ -24,7 +24,7 @@ class IdToFormula_FromPlugins implements IdToFormulaInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Plugin\Plugin ...$plugins
+   * @param \Donquixote\Ock\Plugin\Plugin ...$plugins
    */
   private static function validatePlugins(Plugin ...$plugins): void {}
 

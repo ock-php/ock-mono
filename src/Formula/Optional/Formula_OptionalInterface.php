@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Optional;
+namespace Donquixote\Ock\Formula\Optional;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 interface Formula_OptionalInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    *   The non-optional version.
    */
   public function getDecorated(): FormulaInterface;
 
   /**
-   * @return \Donquixote\ObCK\Text\TextInterface|null
+   * @return \Donquixote\Ock\Text\TextInterface|null
    */
   public function getEmptySummary(): ?TextInterface;
 

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Discovery\FactoryToSTA;
+namespace Donquixote\Ock\Discovery\FactoryToSTA;
 
-use Donquixote\ObCK\Nursery\Cradle\CradleInterface;
+use Donquixote\Ock\Nursery\Cradle\CradleInterface;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 
 interface FactoryToSTAInterface {
@@ -11,7 +11,7 @@ interface FactoryToSTAInterface {
   /**
    * @param \Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface $factory
    *
-   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface|null
+   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface|null
    */
   public function factoryGetPartial(ReflectionFactoryInterface $factory): ?CradleInterface;
 }

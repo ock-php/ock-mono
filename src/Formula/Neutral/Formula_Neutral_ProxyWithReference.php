@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Neutral;
+namespace Donquixote\Ock\Formula\Neutral;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 class Formula_Neutral_ProxyWithReference extends Formula_Neutral_ProxyBase {
 
   /**
-   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface|null
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
   private $formulaRef;
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface|null $formulaRef
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface|null $formulaRef
    */
   public function __construct(FormulaInterface &$formulaRef = NULL) {
     $this->formulaRef =& $formulaRef;

@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\IdToFormula;
+namespace Donquixote\Ock\IdToFormula;
 
-use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_Null;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_Null;
+use Donquixote\Ock\Util\UtilBase;
 
 final class IdToFormula_Null extends UtilBase {
 
   /**
-   * @return \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @return \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   public static function create(): IdToFormulaInterface {
     return new IdToFormula_AlwaysTheSame(

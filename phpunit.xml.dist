@@ -11,7 +11,7 @@
          bootstrap="vendor/autoload.php"
 >
   <testsuites>
-    <testsuite name="ObCK (Object Composition UI) test suite">
+    <testsuite name="Ock (Object Composition UI) test suite">
       <directory>./tests/src</directory>
     </testsuite>
   </testsuites>

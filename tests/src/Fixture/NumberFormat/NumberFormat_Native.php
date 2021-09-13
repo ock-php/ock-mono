@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Tests\Fixture\NumberFormat;
+namespace Donquixote\Ock\Tests\Fixture\NumberFormat;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\Primitive\Formula_Int;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Formula\Primitive\Formula_Int;
+use Donquixote\Ock\Text\Text;
 
 /**
  * Calls PHP's built-in function number_format().
@@ -32,7 +32,7 @@ class NumberFormat_Native implements NumberFormatInterface {
   /**
    * @obck("native", "Call built-in number_format()")
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(): FormulaInterface {
     return Formula::group()

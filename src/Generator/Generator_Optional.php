@@ -1,32 +1,32 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Generator;
+namespace Donquixote\Ock\Generator;
 
-use Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
+use Donquixote\Ock\Formula\Optional\Formula_OptionalInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
 
 class Generator_Optional implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\ObCK\Generator\GeneratorInterface
+   * @var \Donquixote\Ock\Generator\GeneratorInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface
+   * @var \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface
    */
   private $formula;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
-   * @return \Donquixote\ObCK\Generator\GeneratorInterface|null
+   * @return \Donquixote\Ock\Generator\GeneratorInterface|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function create(Formula_OptionalInterface $formula, NurseryInterface $formulaToAnything): ?GeneratorInterface {
 
@@ -42,8 +42,8 @@ class Generator_Optional implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
    */
   public function __construct(GeneratorInterface $decorated, Formula_OptionalInterface $formula) {
     $this->decorated = $decorated;

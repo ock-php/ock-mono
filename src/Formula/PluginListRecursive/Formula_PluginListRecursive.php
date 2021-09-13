@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\PluginListRecursive;
+namespace Donquixote\Ock\Formula\PluginListRecursive;
 
-use Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface;
+use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
 
 /**
  * Default implementation.
@@ -12,7 +12,7 @@ use Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface;
 class Formula_PluginListRecursive implements Formula_PluginListRecursiveInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface
+   * @var \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface
    */
   private $pluginList;
 
@@ -24,7 +24,7 @@ class Formula_PluginListRecursive implements Formula_PluginListRecursiveInterfac
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface $pluginList
+   * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $pluginList
    *   Decorated formula.
    * @param bool $allowsNull
    *   TRUE if optional.

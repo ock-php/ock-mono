@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\AnnotatedFormula\IA;
+namespace Donquixote\Ock\AnnotatedFormula\IA;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\ObCK\AnnotatedFormula\AnnotatedFormula;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Discovery\DocToAnnotations\DocToAnnotationsInterface;
-use Donquixote\ObCK\Formula\FormulaFactory\Formula_FormulaFactory_StaticMethod;
-use Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactory_Class;
-use Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactory_StaticMethod;
-use Donquixote\ObCK\Util\DocUtil;
+use Donquixote\Ock\AnnotatedFormula\AnnotatedFormula;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Discovery\DocToAnnotations\DocToAnnotationsInterface;
+use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactory_StaticMethod;
+use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactory_Class;
+use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactory_StaticMethod;
+use Donquixote\Ock\Util\DocUtil;
 
 class AnnotatedFormulaIA_AnnotatedDiscovery implements AnnotatedFormulaIAInterface {
 
@@ -21,7 +21,7 @@ class AnnotatedFormulaIA_AnnotatedDiscovery implements AnnotatedFormulaIAInterfa
   private ClassFilesIAInterface $classFilesIA;
 
   /**
-   * @var \Donquixote\ObCK\Discovery\DocToAnnotations\DocToAnnotationsInterface
+   * @var \Donquixote\Ock\Discovery\DocToAnnotations\DocToAnnotationsInterface
    */
   private DocToAnnotationsInterface $docToAnnotations;
 
@@ -34,7 +34,7 @@ class AnnotatedFormulaIA_AnnotatedDiscovery implements AnnotatedFormulaIAInterfa
    * Constructor.
    *
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
-   * @param \Donquixote\ObCK\Discovery\DocToAnnotations\DocToAnnotationsInterface $docToAnnotations
+   * @param \Donquixote\Ock\Discovery\DocToAnnotations\DocToAnnotationsInterface $docToAnnotations
    * @param string $tagName
    */
   public function __construct(ClassFilesIAInterface $classFilesIA, DocToAnnotationsInterface $docToAnnotations, string $tagName) {
@@ -68,7 +68,7 @@ class AnnotatedFormulaIA_AnnotatedDiscovery implements AnnotatedFormulaIAInterfa
   /**
    * @param \ReflectionClass $class
    *
-   * @return \Iterator<\Donquixote\ObCK\AnnotatedFormula\AnnotatedFormulaInterface>
+   * @return \Iterator<\Donquixote\Ock\AnnotatedFormula\AnnotatedFormulaInterface>
    */
   private function checkClass(\ReflectionClass $class): \Iterator {
 
@@ -158,9 +158,9 @@ class AnnotatedFormulaIA_AnnotatedDiscovery implements AnnotatedFormulaIAInterfa
   /**
    * @param string[] $types
    * @param array $annotations
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *
-   * @return iterable<\Donquixote\ObCK\AnnotatedFormula\AnnotatedFormulaInterface>
+   * @return iterable<\Donquixote\Ock\AnnotatedFormula\AnnotatedFormulaInterface>
    */
   private static function buildAnnotatedFormulas(array $types, array $annotations, FormulaInterface $formula): iterable {
     foreach ($types as $type) {

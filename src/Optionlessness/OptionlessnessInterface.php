@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Optionlessness;
+namespace Donquixote\Ock\Optionlessness;
 
-use Donquixote\ObCK\Core\Formula\Base\FormulaBaseInterface;
-use Donquixote\ObCK\Form\Common\FormatorCommonInterface;
+use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
+use Donquixote\Ock\Form\Common\FormatorCommonInterface;
 
 interface OptionlessnessInterface extends FormatorCommonInterface, FormulaBaseInterface {
 

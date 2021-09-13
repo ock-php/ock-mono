@@ -1,31 +1,31 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Generator;
+namespace Donquixote\Ock\Generator;
 
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
-use Donquixote\ObCK\Formula\IdVal\Formula_IdValInterface;
-use Donquixote\ObCK\Util\ConfUtil;
-use Donquixote\ObCK\Util\PhpUtil;
-use Donquixote\ObCK\V2V\Id\V2V_Id_Trivial;
-use Donquixote\ObCK\V2V\Id\V2V_IdInterface;
+use Donquixote\Ock\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\Formula\IdVal\Formula_IdValInterface;
+use Donquixote\Ock\Util\ConfUtil;
+use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\Ock\V2V\Id\V2V_Id_Trivial;
+use Donquixote\Ock\V2V\Id\V2V_IdInterface;
 
 class Generator_Id implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Id\Formula_IdInterface
+   * @var \Donquixote\Ock\Formula\Id\Formula_IdInterface
    */
   private $formula;
 
   /**
-   * @var \Donquixote\ObCK\V2V\Id\V2V_IdInterface
+   * @var \Donquixote\Ock\V2V\Id\V2V_IdInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Id\Formula_IdInterface $formula
+   * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $formula
    *
    * @return self
    */
@@ -34,7 +34,7 @@ class Generator_Id implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\IdVal\Formula_IdValInterface $formula
+   * @param \Donquixote\Ock\Formula\IdVal\Formula_IdValInterface $formula
    *
    * @return self
    */
@@ -43,8 +43,8 @@ class Generator_Id implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\Id\Formula_IdInterface $formula
-   * @param \Donquixote\ObCK\V2V\Id\V2V_IdInterface $v2v
+   * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $formula
+   * @param \Donquixote\Ock\V2V\Id\V2V_IdInterface $v2v
    */
   public function __construct(Formula_IdInterface $formula, V2V_IdInterface $v2v) {
     $this->formula = $formula;

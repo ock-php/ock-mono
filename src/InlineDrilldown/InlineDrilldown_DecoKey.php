@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\InlineDrilldown;
+namespace Donquixote\Ock\InlineDrilldown;
 
-use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
+use Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
 
 abstract class InlineDrilldown_DecoKey implements InlineDrilldownInterface {
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
-   * @return \Donquixote\ObCK\InlineDrilldown\InlineDrilldownInterface
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @return \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function fromFormula(Formula_DecoKeyInterface $formula, NurseryInterface $formulaToAnything) {
     return InlineDrilldown::fromFormula(

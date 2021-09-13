@@ -1,10 +1,10 @@
 <?php
 
-namespace Donquixote\ObCK\Nursery\Cradle;
+namespace Donquixote\Ock\Nursery\Cradle;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\ContextProviding\Formula_ContextProvidingInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\ContextProviding\Formula_ContextProvidingInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
 
 class Cradle_ContextProviding extends CradleZeroBase {
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin\Discovery;
+namespace Donquixote\Ock\Plugin\Discovery;
 
 interface ClassToPluginsInterface {
 
@@ -14,7 +14,7 @@ interface ClassToPluginsInterface {
    * @param string $file
    *   File that defines the class.
    *
-   * @return \Donquixote\ObCK\Plugin\Plugin[][]
+   * @return \Donquixote\Ock\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    *
    * @throws \ReflectionException

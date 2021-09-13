@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery\Cradle;
+namespace Donquixote\Ock\Nursery\Cradle;
 
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\FormulaToAnythingException;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\ObCK\Core\Formula\Base\FormulaBaseInterface;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\ReflectionUtil;
+use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Util\ReflectionUtil;
 
 class Cradle_Callback extends CradleBase {
 
@@ -23,7 +23,7 @@ class Cradle_Callback extends CradleBase {
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
-   * @return \Donquixote\ObCK\Nursery\Cradle\CradleBase|null
+   * @return \Donquixote\Ock\Nursery\Cradle\CradleBase|null
    */
   public static function create(
     CallbackReflectionInterface $callback,

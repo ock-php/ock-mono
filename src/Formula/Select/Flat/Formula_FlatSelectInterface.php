@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select\Flat;
+namespace Donquixote\Ock\Formula\Select\Flat;
 
-use Donquixote\ObCK\Formula\IdToLabel\Formula_IdToLabelInterface;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 /**
  * @todo Maybe "Options" should be renamed to "Choice"?
@@ -12,7 +12,7 @@ use Donquixote\ObCK\Text\TextInterface;
 interface Formula_FlatSelectInterface extends Formula_IdToLabelInterface {
 
   /**
-   * @return \Donquixote\ObCK\Text\TextInterface[]
+   * @return \Donquixote\Ock\Text\TextInterface[]
    *   Format: $[$optionKey] = $optionLabel
    */
   public function getOptions(): array;

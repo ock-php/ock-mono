@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery\Cradle;
+namespace Donquixote\Ock\Nursery\Cradle;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\LocalPackageUtil;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 class Cradle_Chain extends CradleZeroBase {
 
   /**
-   * @var \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
+   * @var \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
    */
   private $partials;
 
@@ -21,7 +21,7 @@ class Cradle_Chain extends CradleZeroBase {
    *
    * @return self
    *
-   * @throws \Donquixote\ObCK\Exception\STABuilderException
+   * @throws \Donquixote\Ock\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue): self {
     $partials = LocalPackageUtil::collectSTAPartials($paramToValue);
@@ -29,7 +29,7 @@ class Cradle_Chain extends CradleZeroBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Nursery\Cradle\CradleInterface[] $partials
+   * @param \Donquixote\Ock\Nursery\Cradle\CradleInterface[] $partials
    */
   public function __construct(array $partials) {
     $this->partials = $partials;

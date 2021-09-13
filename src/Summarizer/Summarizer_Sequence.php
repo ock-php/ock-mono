@@ -1,31 +1,31 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Summarizer;
+namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 
 class Summarizer_Sequence implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\ObCK\Summarizer\SummarizerInterface
+   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
    */
   private $itemSummarizer;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
-   * @return \Donquixote\ObCK\Summarizer\Summarizer_Sequence|null
+   * @return \Donquixote\Ock\Summarizer\Summarizer_Sequence|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_SequenceInterface $formula,
@@ -43,7 +43,7 @@ class Summarizer_Sequence implements SummarizerInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Summarizer\SummarizerInterface $itemSummarizer
+   * @param \Donquixote\Ock\Summarizer\SummarizerInterface $itemSummarizer
    */
   public function __construct(SummarizerInterface $itemSummarizer) {
     $this->itemSummarizer = $itemSummarizer;

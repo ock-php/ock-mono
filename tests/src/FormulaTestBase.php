@@ -1,19 +1,19 @@
 <?php
 
-namespace Donquixote\ObCK\Tests;
+namespace Donquixote\Ock\Tests;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\ObCK\Exception\STABuilderException;
-use Donquixote\ObCK\Nursery\Nursery_FromCradle;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\ParamToLabel\ParamToLabel;
-use Donquixote\ObCK\Plugin\Discovery\ClassToPlugins_NativeReflection;
-use Donquixote\ObCK\Plugin\GroupLabels\PluginGroupLabels;
-use Donquixote\ObCK\Plugin\Map\PluginMap_Registry;
-use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
-use Donquixote\ObCK\Plugin\Registry\PluginRegistry_AnnotatedDiscovery;
-use Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface;
-use Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\Ock\Exception\STABuilderException;
+use Donquixote\Ock\Nursery\Nursery_FromCradle;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\ParamToLabel\ParamToLabel;
+use Donquixote\Ock\Plugin\Discovery\ClassToPlugins_NativeReflection;
+use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabels;
+use Donquixote\Ock\Plugin\Map\PluginMap_Registry;
+use Donquixote\Ock\Plugin\Map\PluginMapInterface;
+use Donquixote\Ock\Plugin\Registry\PluginRegistry_AnnotatedDiscovery;
+use Donquixote\Ock\Plugin\Registry\PluginRegistryInterface;
+use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\Test\TestLogger;
@@ -26,7 +26,7 @@ class FormulaTestBase extends TestCase {
    * @param object[] $objects
    *   Objects to pass to the constructors.
    *
-   * @return \Donquixote\ObCK\Nursery\NurseryInterface
+   * @return \Donquixote\Ock\Nursery\NurseryInterface
    *   The object.
    */
   protected function getFormulaToAnything(array $objects = []): NurseryInterface {
@@ -55,14 +55,14 @@ class FormulaTestBase extends TestCase {
   }
 
   /**
-   * @return \Donquixote\ObCK\Plugin\Map\PluginMap_Registry
+   * @return \Donquixote\Ock\Plugin\Map\PluginMap_Registry
    */
   protected function getPluginMap(): PluginMapInterface {
     return new PluginMap_Registry($this->getPluginRegistry());
   }
 
   /**
-   * @return \Donquixote\ObCK\Plugin\Registry\PluginRegistryInterface
+   * @return \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface
    */
   protected function getPluginRegistry(): PluginRegistryInterface {
     $classFilesIA = ClassFilesIA::psr4FromClass(IntOpInterface::class, 1);

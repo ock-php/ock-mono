@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin\Registry;
+namespace Donquixote\Ock\Plugin\Registry;
 
 class PluginRegistry_YamlDiscovery {
 

@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\IdToFormula;
+namespace Donquixote\Ock\IdToFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 
 class IdToFormula_FilterDecorator implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   private $idToFormula;
 
   /**
-   * @var \Donquixote\ObCK\Formula\Id\Formula_IdInterface
+   * @var \Donquixote\Ock\Formula\Id\Formula_IdInterface
    */
   private $condition;
 
   /**
-   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $decorated
-   * @param \Donquixote\ObCK\Formula\Id\Formula_IdInterface $condition
+   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
+   * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $condition
    *
    * @todo There should be a narrower interface for $condition parameter.
    */

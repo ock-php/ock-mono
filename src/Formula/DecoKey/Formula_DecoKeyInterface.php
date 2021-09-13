@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\DecoKey;
+namespace Donquixote\Ock\Formula\DecoKey;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\Ock\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
 
 interface Formula_DecoKeyInterface extends Formula_DecoratorBaseInterface {
 
   /**
-   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
+   * @return \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
    *
    * @todo Does this need to be a drilldown?
    */
@@ -23,7 +23,7 @@ interface Formula_DecoKeyInterface extends Formula_DecoratorBaseInterface {
   public function getDecoKey(): string;
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function getDecoratorFormula(): FormulaInterface;
 

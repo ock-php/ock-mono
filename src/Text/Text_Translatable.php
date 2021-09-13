@@ -1,8 +1,8 @@
 <?php
 
-namespace Donquixote\ObCK\Text;
+namespace Donquixote\Ock\Text;
 
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 
 class Text_Translatable extends TextBuilderBase {
 
@@ -18,7 +18,7 @@ class Text_Translatable extends TextBuilderBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
    * @return string
    */

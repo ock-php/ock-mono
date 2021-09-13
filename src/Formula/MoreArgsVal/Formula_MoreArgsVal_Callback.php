@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\MoreArgsVal;
+namespace Donquixote\Ock\Formula\MoreArgsVal;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\Util\CallbackUtil;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgs;
-use Donquixote\ObCK\Util\UtilBase;
-use Donquixote\ObCK\V2V\Group\V2V_Group_Callback;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgs;
+use Donquixote\Ock\Util\UtilBase;
+use Donquixote\Ock\V2V\Group\V2V_Group_Callback;
 
 final class Formula_MoreArgsVal_Callback extends UtilBase {
 
   /**
    * @param string $class
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface[] $more
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface[] $more
    *
-   * @return \Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface
+   * @return \Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface
    */
   public static function fromClass(
     string $class,
@@ -37,10 +37,10 @@ final class Formula_MoreArgsVal_Callback extends UtilBase {
   /**
    * @param string $class
    * @param string $methodName
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface[] $more
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface[] $more
    *
-   * @return \Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface
+   * @return \Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface
    */
   public static function fromStaticMethod(
     string $class,
@@ -59,10 +59,10 @@ final class Formula_MoreArgsVal_Callback extends UtilBase {
 
   /**
    * @param callable $callable
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface[] $more
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface[] $more
    *
-   * @return \Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface
+   * @return \Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface
    */
   public static function fromCallable(
     callable $callable,
@@ -78,10 +78,10 @@ final class Formula_MoreArgsVal_Callback extends UtilBase {
 
   /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface[] $more
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface[] $more
    *
-   * @return \Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface
+   * @return \Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface
    */
   public static function create(
     CallbackReflectionInterface $callbackReflection,

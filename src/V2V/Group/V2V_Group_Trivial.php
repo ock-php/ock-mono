@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\Group;
+namespace Donquixote\Ock\V2V\Group;
 
-use Donquixote\ObCK\Util\PhpUtil;
+use Donquixote\Ock\Util\PhpUtil;
 
 class V2V_Group_Trivial implements V2V_GroupInterface {
 

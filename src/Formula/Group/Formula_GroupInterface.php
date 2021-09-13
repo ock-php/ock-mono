@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Group;
+namespace Donquixote\Ock\Formula\Group;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 interface Formula_GroupInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface[]
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface[]
    *   Format: $[$groupItemKey] = $groupItemFormula
    */
   public function getItemFormulas(): array;
 
   /**
-   * @return \Donquixote\ObCK\Text\TextInterface[]
+   * @return \Donquixote\Ock\Text\TextInterface[]
    */
   public function getLabels(): array;
 

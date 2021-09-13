@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Text\Text;
 
 abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
 
   /**
    * Buffered optgroups.
    *
-   * @var \Donquixote\ObCK\Text\TextInterface[]
+   * @var \Donquixote\Ock\Text\TextInterface[]
    */
   private $groups = [];
 
   /**
    * Buffered grouped options, with '' for top-level options.
    *
-   * @var \Donquixote\ObCK\Text\TextInterface[][]|null
+   * @var \Donquixote\Ock\Text\TextInterface[][]|null
    */
   private $groupedOptions;
 
@@ -54,10 +54,10 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
   /**
    * Initializes grouped options and optgroup labels.
    *
-   * @param \Donquixote\ObCK\Text\TextInterface[][] $grouped_options
+   * @param \Donquixote\Ock\Text\TextInterface[][] $grouped_options
    *   Format: $[$group_id][$id] = $label,
    *   with $group_id === '' for top-level options.
-   * @param \Donquixote\ObCK\Text\TextInterface[] $group_labels
+   * @param \Donquixote\Ock\Text\TextInterface[] $group_labels
    *   Format: $[$optgroup_id] = $optgroup_label.
    */
   abstract protected function initialize(array &$grouped_options, array &$group_labels): void;

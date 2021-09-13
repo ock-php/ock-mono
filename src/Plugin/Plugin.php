@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin;
+namespace Donquixote\Ock\Plugin;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 class Plugin {
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface
+   * @var \Donquixote\Ock\Text\TextInterface
    */
   private $label;
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface|null
+   * @var \Donquixote\Ock\Text\TextInterface|null
    */
   private $description;
 
   /**
-   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   private FormulaInterface $formula;
 
@@ -32,9 +32,9 @@ class Plugin {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Text\TextInterface $label
-   * @param \Donquixote\ObCK\Text\TextInterface|null $description
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Text\TextInterface $label
+   * @param \Donquixote\Ock\Text\TextInterface|null $description
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param array $info
    */
   public function __construct(TextInterface $label, ?TextInterface $description, FormulaInterface $formula, array $info) {
@@ -47,14 +47,14 @@ class Plugin {
   /**
    * Gets a label for the plugin.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\Ock\Text\TextInterface
    */
   public function getLabel(): TextInterface {
     return $this->label;
   }
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *
    * @return static
    */
@@ -67,7 +67,7 @@ class Plugin {
   /**
    * Gets a description for the plugin.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface|null
+   * @return \Donquixote\Ock\Text\TextInterface|null
    */
   public function getDescription(): ?TextInterface {
     return $this->description;
@@ -79,7 +79,7 @@ class Plugin {
    * The formula defines the available configuration options, and the way that
    * factory code shall be generated for the plugin.
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function getFormula(): FormulaInterface {
     return $this->formula;

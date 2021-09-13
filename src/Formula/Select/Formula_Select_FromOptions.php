@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface;
-use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Translator\Translator;
+use Donquixote\Ock\Formula\Select\Option\SelectOptionInterface;
+use Donquixote\Ock\Text\TextInterface;
+use Donquixote\Ock\Translator\Translator;
 
 class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface[]
+   * @var \Donquixote\Ock\Formula\Select\Option\SelectOptionInterface[]
    */
   private $options;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface[] $options
+   * @param \Donquixote\Ock\Formula\Select\Option\SelectOptionInterface[] $options
    */
   public function __construct(array $options) {
     self::validateOptions(...array_values($options));
@@ -25,7 +25,7 @@ class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\Select\Option\SelectOptionInterface ...$options
+   * @param \Donquixote\Ock\Formula\Select\Option\SelectOptionInterface ...$options
    */
   private static function validateOptions(SelectOptionInterface ...$options): void {}
 

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Summarizer;
+namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\ObCK\Formula\IdToLabel\Formula_IdToLabelInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
-use Donquixote\ObCK\Util\ConfUtil;
+use Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
+use Donquixote\Ock\Util\ConfUtil;
 
 /**
  * @STA
@@ -14,14 +14,14 @@ use Donquixote\ObCK\Util\ConfUtil;
 class Summarizer_IdToLabel implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\IdToLabel\Formula_IdToLabelInterface
+   * @var \Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface
    */
   private Formula_IdToLabelInterface $formula;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\IdToLabel\Formula_IdToLabelInterface $formula
+   * @param \Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface $formula
    */
   public function __construct(Formula_IdToLabelInterface $formula) {
     $this->formula = $formula;

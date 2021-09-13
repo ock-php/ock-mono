@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Decorator;
+namespace Donquixote\Ock\Decorator;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Util\UtilBase;
 
 final class Decorator extends UtilBase {
 
@@ -16,14 +16,14 @@ final class Decorator extends UtilBase {
    *
    * @param string $interface
    *   Interface name.
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\ObCK\Decorator\DecoratorInterface|null
+   * @return \Donquixote\Ock\Decorator\DecoratorInterface|null
    *   Decorator. Evaluating the code of this Decorator should create an
    *   instance of $interface.
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    *   Cannot build a Decorator for the given interface.
    */
   public static function fromIface(
@@ -38,15 +38,15 @@ final class Decorator extends UtilBase {
   /**
    * Materializes a Decorator from a formula.
    *
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\ObCK\Decorator\DecoratorInterface
+   * @return \Donquixote\Ock\Decorator\DecoratorInterface
    *   Materialized Decorator.
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    *   Cannot build a Decorator for the given formula.
    */
   public static function fromFormula(
@@ -54,7 +54,7 @@ final class Decorator extends UtilBase {
     NurseryInterface $formulaToAnything
   ): DecoratorInterface {
 
-    /** @var \Donquixote\ObCK\Decorator\DecoratorInterface $candidate */
+    /** @var \Donquixote\Ock\Decorator\DecoratorInterface $candidate */
     $candidate = $formulaToAnything->breed(
       $formula,
       DecoratorInterface::class);

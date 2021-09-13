@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Exception;
+namespace Donquixote\Ock\Exception;
 
 /**
  * Any exception that happens when trying to create a runtime value, typically

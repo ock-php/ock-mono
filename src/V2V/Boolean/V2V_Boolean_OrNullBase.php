@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\Boolean;
+namespace Donquixote\Ock\V2V\Boolean;
 
 abstract class V2V_Boolean_OrNullBase implements V2V_BooleanInterface {
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Iface;
+namespace Donquixote\Ock\Formula\Iface;
 
 class Formula_Iface implements Formula_IfaceInterface {
 

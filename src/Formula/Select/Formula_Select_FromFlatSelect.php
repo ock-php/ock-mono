@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface
+   * @var \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface
    */
   private $decorated;
 
   /**
-   * @param \Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface $decorated
+   * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $decorated
    */
   public function __construct(Formula_FlatSelectInterface $decorated) {
     $this->decorated = $decorated;

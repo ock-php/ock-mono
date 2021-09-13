@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Util;
+namespace Donquixote\Ock\Util;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\Nursery\NurseryInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Nursery\NurseryInterface;
 
 final class StaUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $itemFormulas
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $itemFormulas
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    * @param string $interface
    *
    * @return mixed[]|null
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function getMultiple(array $itemFormulas, NurseryInterface $formulaToAnything, string $interface): ?array {
 
@@ -35,13 +35,13 @@ final class StaUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    * @param string $interface
    *
    * @return object
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function getObject(FormulaInterface $formula, NurseryInterface $formulaToAnything, string $interface): object {
 

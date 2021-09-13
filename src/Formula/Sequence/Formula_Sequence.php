@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Sequence;
+namespace Donquixote\Ock\Formula\Sequence;
 
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Sequence extends Formula_SequenceBase {
 

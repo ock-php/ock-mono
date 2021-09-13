@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\Group;
+namespace Donquixote\Ock\V2V\Group;
 
-use Donquixote\ObCK\Util\DecoUtil;
+use Donquixote\Ock\Util\DecoUtil;
 
 class V2V_Group_Deco implements V2V_GroupInterface {
 
   /**
-   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   private V2V_GroupInterface $decoratedV2V;
 
   /**
    * Static factory.
    *
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface|null $decorated_v2v
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface|null $decorated_v2v
    *
    * @return self
    */
@@ -26,7 +26,7 @@ class V2V_Group_Deco implements V2V_GroupInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $decorated_v2v
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $decorated_v2v
    */
   public function __construct(V2V_GroupInterface $decorated_v2v) {
     $this->decoratedV2V = $decorated_v2v;

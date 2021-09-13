@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Text;
+namespace Donquixote\Ock\Text;
 
 /**
  * Base class with additional convenience methods.
@@ -11,7 +11,7 @@ abstract class TextBase implements TextInterface {
 
   /**
    * @param string $token
-   * @param \Donquixote\ObCK\Text\TextInterface $wrapper
+   * @param \Donquixote\Ock\Text\TextInterface $wrapper
    *
    * @return self
    */
@@ -49,7 +49,7 @@ abstract class TextBase implements TextInterface {
   }
 
   /**
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\Ock\Text\TextInterface
    */
   protected function getThis(): TextInterface {
     return $this;

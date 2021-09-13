@@ -67,12 +67,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Donquixote\\ObCK\\": "src"
+            "Donquixote\\Ock\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Donquixote\\ObCK\\Tests\\": "tests/src"
+            "Donquixote\\Ock\\Tests\\": "tests/src"
         }
     }
 }

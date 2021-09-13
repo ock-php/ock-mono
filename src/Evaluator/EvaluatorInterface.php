@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Evaluator;
+namespace Donquixote\Ock\Evaluator;
 
 interface EvaluatorInterface {
 

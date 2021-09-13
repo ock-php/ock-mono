@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin\GroupLabels;
+namespace Donquixote\Ock\Plugin\GroupLabels;
 
 interface PluginGroupLabelsInterface {
 
   /**
-   * @return \Donquixote\ObCK\Text\TextInterface[]
+   * @return \Donquixote\Ock\Text\TextInterface[]
    */
   public function getLabels(): array;
 

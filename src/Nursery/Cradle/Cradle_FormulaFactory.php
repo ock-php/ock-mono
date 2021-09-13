@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery\Cradle;
+namespace Donquixote\Ock\Nursery\Cradle;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 /**
@@ -34,7 +34,7 @@ class Cradle_FormulaFactory extends Cradle_FormulaReplacerBase {
    */
   protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
 
-    /** @var \Donquixote\ObCK\Formula\FormulaFactory\Formula_FormulaFactoryInterface $formula */
+    /** @var \Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactoryInterface $formula */
 
     $factory = $formula->getFormulaFactory();
 

@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Sequence;
+namespace Donquixote\Ock\Formula\Sequence;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 abstract class Formula_SequenceBase implements Formula_SequenceInterface {
 
   /**
-   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   private $itemFormula;
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $itemFormula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $itemFormula
    */
   public function __construct(FormulaInterface $itemFormula) {
     $this->itemFormula = $itemFormula;

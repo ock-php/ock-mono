@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\TwoStepVal;
+namespace Donquixote\Ock\Formula\TwoStepVal;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
-use Donquixote\ObCK\V2V\TwoStep\V2V_TwoStepInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
+use Donquixote\Ock\V2V\TwoStep\V2V_TwoStepInterface;
 
 interface Formula_TwoStepValInterface extends Formula_DecoratorBaseInterface {
 
   /**
-   * @return \Donquixote\ObCK\Formula\TwoStep\Formula_TwoStepInterface
+   * @return \Donquixote\Ock\Formula\TwoStep\Formula_TwoStepInterface
    */
   public function getDecorated(): FormulaInterface;
 
   /**
-   * @return \Donquixote\ObCK\V2V\TwoStep\V2V_TwoStepInterface
+   * @return \Donquixote\Ock\V2V\TwoStep\V2V_TwoStepInterface
    */
   public function getV2V(): V2V_TwoStepInterface;
 

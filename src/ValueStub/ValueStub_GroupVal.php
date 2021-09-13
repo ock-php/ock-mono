@@ -1,34 +1,34 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\ValueStub;
+namespace Donquixote\Ock\ValueStub;
 
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface;
-use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\FormulaConfToAnything\FormulaConfToAnythingInterface;
+use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
 class ValueStub_GroupVal implements ValueStubInterface {
 
   /**
-   * @var \Donquixote\ObCK\ValueStub\ValueStub_Group
+   * @var \Donquixote\Ock\ValueStub\ValueStub_Group
    */
   private $group;
 
   /**
-   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
   /**
    * @SCTA
    *
-   * @param \Donquixote\ObCK\Formula\GroupVal\Formula_GroupValInterface $formula
+   * @param \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface $formula
    * @param mixed $conf
-   * @param \Donquixote\ObCK\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
+   * @param \Donquixote\Ock\FormulaConfToAnything\FormulaConfToAnythingInterface $scta
    *
-   * @return \Donquixote\ObCK\ValueStub\ValueStubInterface|null
+   * @return \Donquixote\Ock\ValueStub\ValueStubInterface|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function create(Formula_GroupValInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueStubInterface {
     return new self(
@@ -37,8 +37,8 @@ class ValueStub_GroupVal implements ValueStubInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\ValueStub\ValueStub_Group $group
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\Ock\ValueStub\ValueStub_Group $group
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
    */
   protected function __construct(ValueStub_Group $group, V2V_GroupInterface $v2v) {
     $this->group = $group;
@@ -46,14 +46,14 @@ class ValueStub_GroupVal implements ValueStubInterface {
   }
 
   /**
-   * @return \Donquixote\ObCK\ValueStub\ValueStub_Group
+   * @return \Donquixote\Ock\ValueStub\ValueStub_Group
    */
   public function getGroup(): ValueStub_Group {
     return $this->group;
   }
 
   /**
-   * @return \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
+   * @return \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   public function getV2v(): V2V_GroupInterface {
     return $this->v2v;

@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Plugin\Map\PluginMapInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface
    */
   private PluginMapInterface $pluginMap;
 
@@ -21,7 +21,7 @@ class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
    * @param string $type
    */
   public function __construct(PluginMapInterface $pluginMap, string $type) {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Discovery\DocToAnnotations;
+namespace Donquixote\Ock\Discovery\DocToAnnotations;
 
 use Donquixote\Annotation\Resolver\AnnotationResolver;
 use Donquixote\Annotation\Resolver\AnnotationResolverInterface;

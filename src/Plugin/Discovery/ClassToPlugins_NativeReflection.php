@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin\Discovery;
+namespace Donquixote\Ock\Plugin\Discovery;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Discovery\DocToAnnotations\DocToAnnotations;
-use Donquixote\ObCK\Discovery\DocToAnnotations\DocToAnnotationsInterface;
-use Donquixote\ObCK\Formula\FormulaFactory\Formula_FormulaFactory_StaticMethod;
-use Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactory_Class;
-use Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactory_StaticMethod;
-use Donquixote\ObCK\Plugin\Plugin;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Util\DocUtil;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Discovery\DocToAnnotations\DocToAnnotations;
+use Donquixote\Ock\Discovery\DocToAnnotations\DocToAnnotationsInterface;
+use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactory_StaticMethod;
+use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactory_Class;
+use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactory_StaticMethod;
+use Donquixote\Ock\Plugin\Plugin;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Util\DocUtil;
 
 class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
 
@@ -23,7 +23,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
   ];
 
   /**
-   * @var \Donquixote\ObCK\Discovery\DocToAnnotations\DocToAnnotationsInterface
+   * @var \Donquixote\Ock\Discovery\DocToAnnotations\DocToAnnotationsInterface
    */
   private $docToAnnotations;
 
@@ -44,7 +44,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Discovery\DocToAnnotations\DocToAnnotationsInterface $docToAnnotations
+   * @param \Donquixote\Ock\Discovery\DocToAnnotations\DocToAnnotationsInterface $docToAnnotations
    * @param string $tagName
    */
   public function __construct(DocToAnnotationsInterface $docToAnnotations, string $tagName) {
@@ -79,12 +79,12 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
   /**
    * @param \ReflectionClass $reflectionClass
    *
-   * @return \Donquixote\ObCK\Plugin\Plugin[][]
+   * @return \Donquixote\Ock\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    */
   private function reflectionClassGetPluginss(\ReflectionClass $reflectionClass): array {
 
-    /** @var \Donquixote\ObCK\Plugin\Plugin[][] $pluginss */
+    /** @var \Donquixote\Ock\Plugin\Plugin[][] $pluginss */
     $pluginss = [];
 
     if (!$reflectionClass->isAbstract()) {
@@ -114,7 +114,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
   /**
    * @param \ReflectionClass $reflectionClass
    *
-   * @return \Donquixote\ObCK\Plugin\Plugin[][]
+   * @return \Donquixote\Ock\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    */
   private function reflectionClassGetClassLevelPluginss(\ReflectionClass $reflectionClass): array {
@@ -144,7 +144,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
   /**
    * @param \ReflectionMethod $method
    *
-   * @return \Donquixote\ObCK\Plugin\Plugin[][]
+   * @return \Donquixote\Ock\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    */
   private function staticMethodGetPluginss(\ReflectionMethod $method): array {
@@ -183,7 +183,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
    * @param array[] $annotations
    *   E.g. [['id' => 'entityTitle', 'label' => 'Entity title'], ..]
    *
-   * @return \Donquixote\ObCK\Plugin\Plugin[][]
+   * @return \Donquixote\Ock\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    */
   private static function formulaFactoryGetPluginss(
@@ -207,7 +207,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param string[] $pluginTypeNames
    * @param array[] $annotations
    *

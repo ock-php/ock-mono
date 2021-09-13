@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\PluginListRecursive;
+namespace Donquixote\Ock\Formula\PluginListRecursive;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
 
 /**
  * Formula allowing a choice based on a plugin list.
@@ -15,7 +15,7 @@ interface Formula_PluginListRecursiveInterface extends FormulaInterface {
   /**
    * Gets the plugin list formula.
    *
-   * @return \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface
+   * @return \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface
    *   The actual plugin list formula.
    */
   public function getPluginListFormula(): Formula_PluginListInterface;

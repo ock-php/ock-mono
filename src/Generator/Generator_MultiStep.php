@@ -1,39 +1,39 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Generator;
+namespace Donquixote\Ock\Generator;
 
-use Donquixote\ObCK\Formula\MultiStep\Formula_MultiStepInterface;
-use Donquixote\ObCK\Formula\MultiStepVal\Formula_MultiStepValInterface;
-use Donquixote\ObCK\MultiStepKeysHelper\MultiStepKeysHelper;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\V2V\Group\V2V_Group_Trivial;
-use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
-use Donquixote\ObCK\V2V\MultiStep\V2V_MultiStep_Trivial;
-use Donquixote\ObCK\V2V\MultiStep\V2V_MultiStepInterface;
+use Donquixote\Ock\Formula\MultiStep\Formula_MultiStepInterface;
+use Donquixote\Ock\Formula\MultiStepVal\Formula_MultiStepValInterface;
+use Donquixote\Ock\MultiStepKeysHelper\MultiStepKeysHelper;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
+use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
+use Donquixote\Ock\V2V\MultiStep\V2V_MultiStep_Trivial;
+use Donquixote\Ock\V2V\MultiStep\V2V_MultiStepInterface;
 
 class Generator_MultiStep implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\MultiStep\Formula_MultiStepInterface
+   * @var \Donquixote\Ock\Formula\MultiStep\Formula_MultiStepInterface
    */
   private $formula;
 
   /**
-   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
   /**
-   * @var \Donquixote\ObCK\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Nursery\NurseryInterface
    */
   private $nursery;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\MultiStepVal\Formula_MultiStepValInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\MultiStepVal\Formula_MultiStepValInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self
    */
@@ -44,8 +44,8 @@ class Generator_MultiStep implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\MultiStep\Formula_MultiStepInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\MultiStep\Formula_MultiStepInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self
    */
@@ -56,9 +56,9 @@ class Generator_MultiStep implements GeneratorInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\MultiStep\Formula_MultiStepInterface $formula
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $nursery
+   * @param \Donquixote\Ock\Formula\MultiStep\Formula_MultiStepInterface $formula
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $nursery
    */
   protected function __construct(Formula_MultiStepInterface $formula, V2V_GroupInterface $v2v, NurseryInterface $nursery) {
     $this->formula = $formula;

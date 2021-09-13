@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 
 class Formula_Select_TwoStepFlatSelectComposite extends Formula_Select_TwoStepFlatSelectBase {
 
   /**
-   * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   private $idToSubFormula;
 
   /**
-   * @param \Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface $idFormula
-   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $idToSubFormula
+   * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $idFormula
+   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToSubFormula
    */
   public function __construct(
     Formula_FlatSelectInterface $idFormula,

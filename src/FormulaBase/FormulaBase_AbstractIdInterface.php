@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaBase;
+namespace Donquixote\Ock\FormulaBase;
 
 interface FormulaBase_AbstractIdInterface {
 

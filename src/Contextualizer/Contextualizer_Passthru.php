@@ -1,19 +1,19 @@
 <?php
 
-namespace Donquixote\ObCK\Contextualizer;
+namespace Donquixote\Ock\Contextualizer;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\ReflectionKit\Context\ContextInterface;
 
 class Contextualizer_Passthru implements ContextualizerInterface {
 
   /**
-   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   private $formula;
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    */
   protected function __construct(FormulaInterface $formula) {
     $this->formula = $formula;

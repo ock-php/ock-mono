@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\InlineDrilldown;
+namespace Donquixote\Ock\InlineDrilldown;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Util\UtilBase;
 
 final class InlineDrilldown extends UtilBase {
 
   /**
    * Materializes an InlineDrilldown object from a formula.
    *
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\ObCK\InlineDrilldown\InlineDrilldownInterface
+   * @return \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface
    *   Materialized PluginList.
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    *   Cannot build a PluginList for the given formula.
    */
   public static function fromFormula(
@@ -32,7 +32,7 @@ final class InlineDrilldown extends UtilBase {
       $formula,
       InlineDrilldownInterface::class);
 
-    /** @var \Donquixote\ObCK\InlineDrilldown\InlineDrilldownInterface $candidate */
+    /** @var \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface $candidate */
     return $candidate;
   }
 

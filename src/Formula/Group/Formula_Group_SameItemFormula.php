@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Group;
+namespace Donquixote\Ock\Formula\Group;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Text\Text;
 
 /**
  * Group where each item has the same type.
@@ -14,18 +14,18 @@ class Formula_Group_SameItemFormula implements Formula_GroupInterface {
   /**
    * Formula for each item.
    *
-   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   private FormulaInterface $formula;
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface[]
+   * @var \Donquixote\Ock\Text\TextInterface[]
    */
   private array $labels;
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Text\TextInterface[] $labels
    */
   public function __construct(FormulaInterface $formula, array $labels) {
     $this->formula = $formula;

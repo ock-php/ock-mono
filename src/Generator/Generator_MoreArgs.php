@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Generator;
+namespace Donquixote\Ock\Generator;
 
-use Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface;
-use Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\V2V\Group\V2V_Group_Trivial;
-use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
+use Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface;
+use Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
+use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
 class Generator_MoreArgs extends Generator_DecoratorBase {
 
   /**
-   * @var \Donquixote\ObCK\Generator\GeneratorInterface[]
+   * @var \Donquixote\Ock\Generator\GeneratorInterface[]
    */
   private $moreGenerators;
 
@@ -22,7 +22,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   private $specialKey;
 
   /**
-   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
@@ -34,12 +34,12 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, NurseryInterface $formulaToAnything): ?Generator_MoreArgs {
     return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
@@ -48,12 +48,12 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\MoreArgsVal\Formula_MoreArgsValInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function createFromMoreArgsValFormula(
     Formula_MoreArgsValInterface $formula,
@@ -66,13 +66,13 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_MoreArgsInterface $moreArgsFormula,
@@ -105,10 +105,10 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Generator\GeneratorInterface $decorated
-   * @param \Donquixote\ObCK\Generator\GeneratorInterface[] $moreGenerators
+   * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
+   * @param \Donquixote\Ock\Generator\GeneratorInterface[] $moreGenerators
    * @param string|int $specialKey
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
    */
   protected function __construct(
     GeneratorInterface $decorated,

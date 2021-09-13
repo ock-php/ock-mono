@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\IdVal;
+namespace Donquixote\Ock\Formula\IdVal;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\ObCK\V2V\Id\V2V_IdInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\V2V\Id\V2V_IdInterface;
 
 interface Formula_IdValInterface extends Formula_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\ObCK\Formula\Id\Formula_IdInterface
+   * @return \Donquixote\Ock\Formula\Id\Formula_IdInterface
    */
   public function getDecorated(): FormulaInterface;
 
   /**
-   * @return \Donquixote\ObCK\V2V\Id\V2V_IdInterface
+   * @return \Donquixote\Ock\V2V\Id\V2V_IdInterface
    */
   public function getV2V(): V2V_IdInterface;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Tests\Fixture\IntFormat;
+namespace Donquixote\Ock\Tests\Fixture\IntFormat;
 
 /**
  * Adapter from NumberFormat to IntFormat.

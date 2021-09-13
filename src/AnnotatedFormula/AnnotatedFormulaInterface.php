@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\AnnotatedFormula;
+namespace Donquixote\Ock\AnnotatedFormula;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 interface AnnotatedFormulaInterface {
 
@@ -27,7 +27,7 @@ interface AnnotatedFormulaInterface {
   /**
    * Gets the formula.
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function getFormula(): FormulaInterface;
 

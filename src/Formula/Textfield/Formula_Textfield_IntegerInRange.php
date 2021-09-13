@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Textfield;
+namespace Donquixote\Ock\Formula\Textfield;
 
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
 
@@ -62,7 +62,7 @@ class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
   /**
    * @param int $number
    *
-   * @return \Donquixote\ObCK\Text\TextInterface[]
+   * @return \Donquixote\Ock\Text\TextInterface[]
    */
   protected function numberGetValidationErrors(int $number): array {
 

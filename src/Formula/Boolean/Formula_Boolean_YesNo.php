@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Boolean;
+namespace Donquixote\Ock\Formula\Boolean;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConf;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConf;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Boolean_YesNo implements Formula_BooleanInterface {
 
   /**
    * @param bool $enabledByDefault
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function create($enabledByDefault = FALSE): FormulaInterface {
 

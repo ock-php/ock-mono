@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery\Cradle;
+namespace Donquixote\Ock\Nursery\Cradle;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\Iface\Formula_Iface;
-use Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactoryInterface;
-use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_Callback;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\ParamToLabel\ParamToLabelInterface;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Formula\Iface\Formula_Iface;
+use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_Callback;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\ParamToLabel\ParamToLabelInterface;
+use Donquixote\Ock\Text\Text;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -21,7 +21,7 @@ use Psr\Log\LoggerInterface;
 class Cradle_ValueFactory extends Cradle_FormulaReplacerBase {
 
   /**
-   * @var \Donquixote\ObCK\ParamToLabel\ParamToLabelInterface
+   * @var \Donquixote\Ock\ParamToLabel\ParamToLabelInterface
    */
   private $paramToLabel;
 
@@ -33,7 +33,7 @@ class Cradle_ValueFactory extends Cradle_FormulaReplacerBase {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\ParamToLabel\ParamToLabelInterface $paramToLabel
+   * @param \Donquixote\Ock\ParamToLabel\ParamToLabelInterface $paramToLabel
    * @param \Psr\Log\LoggerInterface $logger
    */
   public function __construct(ParamToLabelInterface $paramToLabel, LoggerInterface $logger) {
@@ -47,7 +47,7 @@ class Cradle_ValueFactory extends Cradle_FormulaReplacerBase {
    */
   protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
 
-    /** @var \Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactoryInterface $formula */
+    /** @var \Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface $formula */
 
     $factory = $formula->getValueFactory();
     $params = $factory->getReflectionParameters();
@@ -114,7 +114,7 @@ class Cradle_ValueFactory extends Cradle_FormulaReplacerBase {
   /**
    * @param \ReflectionParameter $param
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
   private function paramGetFormula(\ReflectionParameter $param): ?FormulaInterface {
 

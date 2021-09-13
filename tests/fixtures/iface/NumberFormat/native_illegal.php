@@ -1,8 +1,8 @@
 <?php
 
-use Donquixote\ObCK\Evaluator\Evaluator;
-use Donquixote\ObCK\Tests\Fixture\NumberFormat\NumberFormat_Native;
-use Donquixote\ObCK\Tests\Fixture\NumberFormat\NumberFormatInterface;
+use Donquixote\Ock\Evaluator\Evaluator;
+use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormat_Native;
+use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormatInterface;
 
 return static function (): NumberFormatInterface {
   return NumberFormat_Native::create(

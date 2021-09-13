@@ -1,11 +1,11 @@
 <?php
 
-namespace Donquixote\ObCK\ContextToFormula;
+namespace Donquixote\Ock\ContextToFormula;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\ObCK\Context\CfContextInterface;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Exception\FormulaCreationException;
+use Donquixote\Ock\Context\CfContextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\FormulaCreationException;
 
 class ContextToFormula_InstanceFactory implements ContextToFormulaInterface {
 

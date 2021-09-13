@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Sequence;
+namespace Donquixote\Ock\Formula\Sequence;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Sequence_ItemLabelCallback extends Formula_SequenceBase {
 
@@ -15,7 +15,7 @@ class Formula_Sequence_ItemLabelCallback extends Formula_SequenceBase {
   private $itemLabelCallback;
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $itemFormula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $itemFormula
    * @param callable $itemLabelCallback
    */
   public function __construct(FormulaInterface $itemFormula, callable $itemLabelCallback) {

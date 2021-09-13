@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\TextLookup\TextLookup;
-use Donquixote\ObCK\TextLookup\TextLookupInterface;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\TextLookup\TextLookup;
+use Donquixote\Ock\TextLookup\TextLookupInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 /**
  * Select formula using TextLookup* objects for option labels and group labels.
@@ -13,20 +13,20 @@ use Donquixote\ObCK\Text\TextInterface;
 abstract class Formula_Select_LabelLookupBase extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\ObCK\TextLookup\TextLookupInterface
+   * @var \Donquixote\Ock\TextLookup\TextLookupInterface
    */
   private TextLookupInterface $labelLookup;
 
   /**
-   * @var \Donquixote\ObCK\TextLookup\TextLookupInterface
+   * @var \Donquixote\Ock\TextLookup\TextLookupInterface
    */
   private TextLookupInterface $groupLabelLookup;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\TextLookup\TextLookupInterface $option_label_lookup
-   * @param \Donquixote\ObCK\TextLookup\TextLookupInterface $group_label_lookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $option_label_lookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $group_label_lookup
    */
   public function __construct(
     TextLookupInterface $option_label_lookup,

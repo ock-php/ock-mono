@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Generator;
+namespace Donquixote\Ock\Generator;
 
-use Donquixote\ObCK\Formula\StringVal\Formula_StringValInterface;
-use Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface;
-use Donquixote\ObCK\Util\PhpUtil;
-use Donquixote\ObCK\V2V\String\V2V_String_Trivial;
-use Donquixote\ObCK\V2V\String\V2V_StringInterface;
+use Donquixote\Ock\Formula\StringVal\Formula_StringValInterface;
+use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
+use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\Ock\V2V\String\V2V_String_Trivial;
+use Donquixote\Ock\V2V\String\V2V_StringInterface;
 
 class Generator_Textfield implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface
+   * @var \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface
    */
   private $formula;
 
   /**
-   * @var \Donquixote\ObCK\V2V\String\V2V_StringInterface
+   * @var \Donquixote\Ock\V2V\String\V2V_StringInterface
    */
   private $v2v;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface $formula
+   * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula
    *
    * @return self
    */
@@ -35,7 +35,7 @@ class Generator_Textfield implements GeneratorInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\StringVal\Formula_StringValInterface $formula
+   * @param \Donquixote\Ock\Formula\StringVal\Formula_StringValInterface $formula
    *
    * @return self
    */
@@ -44,8 +44,8 @@ class Generator_Textfield implements GeneratorInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\Textfield\Formula_TextfieldInterface $formula
-   * @param \Donquixote\ObCK\V2V\String\V2V_StringInterface $v2v
+   * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula
+   * @param \Donquixote\Ock\V2V\String\V2V_StringInterface $v2v
    */
   public function __construct(Formula_TextfieldInterface $formula, V2V_StringInterface $v2v) {
     $this->formula = $formula;

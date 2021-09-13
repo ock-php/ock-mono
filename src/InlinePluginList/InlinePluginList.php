@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\InlinePluginList;
+namespace Donquixote\Ock\InlinePluginList;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Util\UtilBase;
 
 final class InlinePluginList extends UtilBase {
 
   /**
    * Materializes a PluginList from a formula.
    *
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\ObCK\InlinePluginList\InlinePluginListInterface
+   * @return \Donquixote\Ock\InlinePluginList\InlinePluginListInterface
    *   Materialized PluginList.
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    *   Cannot build a PluginList for the given formula.
    */
   public static function fromFormula(
@@ -28,7 +28,7 @@ final class InlinePluginList extends UtilBase {
     NurseryInterface $formulaToAnything
   ): InlinePluginListInterface {
 
-    /** @var \Donquixote\ObCK\InlinePluginList\InlinePluginListInterface $object */
+    /** @var \Donquixote\Ock\InlinePluginList\InlinePluginListInterface $object */
     $object = $formulaToAnything->breed(
       $formula,
       InlinePluginListInterface::class);

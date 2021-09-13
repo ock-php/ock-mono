@@ -1,8 +1,8 @@
 <?php
 
-namespace Donquixote\ObCK\Text;
+namespace Donquixote\Ock\Text;
 
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 
 class Text_Sprintf extends TextBase {
 
@@ -12,7 +12,7 @@ class Text_Sprintf extends TextBase {
   private string $source;
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface
+   * @var \Donquixote\Ock\Text\TextInterface
    */
   private TextInterface $replacement;
 
@@ -20,7 +20,7 @@ class Text_Sprintf extends TextBase {
    * Constructor.
    *
    * @param string $source
-   * @param \Donquixote\ObCK\Text\TextInterface $replacement
+   * @param \Donquixote\Ock\Text\TextInterface $replacement
    */
   public function __construct(string $source, TextInterface $replacement) {
     $this->source = $source;

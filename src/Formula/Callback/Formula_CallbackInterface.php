@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Callback;
+namespace Donquixote\Ock\Formula\Callback;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 interface Formula_CallbackInterface extends FormulaInterface {
 
@@ -14,7 +14,7 @@ interface Formula_CallbackInterface extends FormulaInterface {
   public function getCallback(): CallbackReflectionInterface;
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface[]
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface[]
    */
   public function getExplicitParamFormulas(): array;
 

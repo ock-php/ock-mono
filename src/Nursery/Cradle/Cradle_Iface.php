@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery\Cradle;
+namespace Donquixote\Ock\Nursery\Cradle;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKey;
-use Donquixote\ObCK\Formula\DecoShift\Formula_DecoShift;
-use Donquixote\ObCK\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface;
-use Donquixote\ObCK\Formula\Select\Formula_Select_FromPlugins;
-use Donquixote\ObCK\Formula\Select\Formula_Select_InlineExpanded;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormula_FromPlugins;
-use Donquixote\ObCK\IdToFormula\IdToFormula_InlineExpanded;
-use Donquixote\ObCK\IdToFormula\IdToFormula_Replace;
-use Donquixote\ObCK\Plugin\GroupLabels\PluginGroupLabelsInterface;
-use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\DecoKey\Formula_DecoKey;
+use Donquixote\Ock\Formula\DecoShift\Formula_DecoShift;
+use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
+use Donquixote\Ock\Formula\Iface\Formula_IfaceInterface;
+use Donquixote\Ock\Formula\Select\Formula_Select_FromPlugins;
+use Donquixote\Ock\Formula\Select\Formula_Select_InlineExpanded;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\IdToFormula\IdToFormula_FromPlugins;
+use Donquixote\Ock\IdToFormula\IdToFormula_InlineExpanded;
+use Donquixote\Ock\IdToFormula\IdToFormula_Replace;
+use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
+use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 
 /**
  * @STA
@@ -23,20 +23,20 @@ use Donquixote\ObCK\Plugin\Map\PluginMapInterface;
 class Cradle_Iface extends Cradle_FormulaReplacerBase {
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface
    */
   private PluginMapInterface $pluginMap;
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface[]
+   * @var \Donquixote\Ock\Text\TextInterface[]
    */
   private array $groupLabels;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $pluginMap
-   * @param \Donquixote\ObCK\Plugin\GroupLabels\PluginGroupLabelsInterface $groupLabels
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface $groupLabels
    *
    * @return static
    */
@@ -47,8 +47,8 @@ class Cradle_Iface extends Cradle_FormulaReplacerBase {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $pluginMap
-   * @param \Donquixote\ObCK\Text\TextInterface[] $groupLabels
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Donquixote\Ock\Text\TextInterface[] $groupLabels
    */
   public function __construct(PluginMapInterface $pluginMap, array $groupLabels = []) {
     $this->pluginMap = $pluginMap;
@@ -60,7 +60,7 @@ class Cradle_Iface extends Cradle_FormulaReplacerBase {
    * {@inheritdoc}
    */
   protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface {
-    /** @var \Donquixote\ObCK\Formula\Iface\Formula_IfaceInterface $formula */
+    /** @var \Donquixote\Ock\Formula\Iface\Formula_IfaceInterface $formula */
     return $this->typeGetFormula(
       $formula->getInterface(),
       $formula->allowsNull(),
@@ -70,9 +70,9 @@ class Cradle_Iface extends Cradle_FormulaReplacerBase {
   /**
    * @param string $type
    * @param bool $or_null
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function typeGetFormula(string $type, bool $or_null, NurseryInterface $helper): FormulaInterface {
     $plugins = $this->pluginMap->typeGetPlugins($type);
@@ -114,7 +114,7 @@ class Cradle_Iface extends Cradle_FormulaReplacerBase {
   /**
    * @param string $type
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   private function buildDecoratorDrilldown(string $type): FormulaInterface {
 

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Cache\Offset;
+namespace Donquixote\Ock\Cache\Offset;
 
-use Donquixote\ObCK\Cache\CacheInterface;
+use Donquixote\Ock\Cache\CacheInterface;
 
 class CacheOffset implements CacheOffsetInterface {
 
   /**
-   * @var \Donquixote\ObCK\Cache\CacheInterface
+   * @var \Donquixote\Ock\Cache\CacheInterface
    */
   private $cache;
 
@@ -18,7 +18,7 @@ class CacheOffset implements CacheOffsetInterface {
   private $key;
 
   /**
-   * @param \Donquixote\ObCK\Cache\CacheInterface $cache
+   * @param \Donquixote\Ock\Cache\CacheInterface $cache
    * @param string $key
    */
   public function __construct(CacheInterface $cache, string $key) {

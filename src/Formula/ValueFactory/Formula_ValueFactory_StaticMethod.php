@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\ObCK\Formula\ValueFactory;
+namespace Donquixote\Ock\Formula\ValueFactory;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
@@ -24,7 +24,7 @@ class Formula_ValueFactory_StaticMethod implements Formula_ValueFactoryInterface
   /**
    * @param callable $callable
    *
-   * @return \Donquixote\ObCK\Formula\ValueFactory\Formula_ValueFactory_StaticMethod
+   * @return \Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactory_StaticMethod
    */
   public static function fromCallable(callable $callable): self {
     if (!is_array($callable) || !is_string($callable[0])) {

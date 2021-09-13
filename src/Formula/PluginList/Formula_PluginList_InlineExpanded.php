@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\PluginList;
+namespace Donquixote\Ock\Formula\PluginList;
 
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\InlinePluginList\InlinePluginList;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Plugin\Plugin;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\InlinePluginList\InlinePluginList;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Plugin\Plugin;
+use Donquixote\Ock\Text\Text;
 
 /**
  * Default implementation.
@@ -16,20 +16,20 @@ use Donquixote\ObCK\Text\Text;
 class Formula_PluginList_InlineExpanded implements Formula_PluginListInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface
+   * @var \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface
    */
   private Formula_PluginListInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Nursery\NurseryInterface
+   * @var \Donquixote\Ock\Nursery\NurseryInterface
    */
   private NurseryInterface $helper;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface $decorated
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $helper
+   * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $decorated
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
    */
   public function __construct(Formula_PluginListInterface $decorated, NurseryInterface $helper) {
     $this->decorated = $decorated;

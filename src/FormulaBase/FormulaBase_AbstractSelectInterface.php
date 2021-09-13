@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaBase;
+namespace Donquixote\Ock\FormulaBase;
 
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 /**
  * This is a base interface, which by itself does NOT extend FormulaInterface.
@@ -15,7 +15,7 @@ interface FormulaBase_AbstractSelectInterface {
   /**
    * Gets named select optgroups.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface[]
+   * @return \Donquixote\Ock\Text\TextInterface[]
    *   Format: $[$group_id] = $group_label.
    */
   public function getOptGroups(): array;
@@ -26,7 +26,7 @@ interface FormulaBase_AbstractSelectInterface {
    * @param string|null $group_id
    *   Id of the optgroup, or NULL for top-level options.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface[]
+   * @return \Donquixote\Ock\Text\TextInterface[]
    *   Format: $[$value] = $label.
    */
   public function getOptions(?string $group_id): array;
@@ -34,7 +34,7 @@ interface FormulaBase_AbstractSelectInterface {
   /**
    * @param string|int $id
    *
-   * @return \Donquixote\ObCK\Text\TextInterface|null
+   * @return \Donquixote\Ock\Text\TextInterface|null
    */
   public function idGetLabel($id): ?TextInterface;
 
@@ -43,7 +43,7 @@ interface FormulaBase_AbstractSelectInterface {
    *
    * @return bool
    *
-   * @see \Donquixote\ObCK\Formula\Id\Formula_IdInterface::idIsKnown()
+   * @see \Donquixote\Ock\Formula\Id\Formula_IdInterface::idIsKnown()
    */
   public function idIsKnown($id): bool;
 

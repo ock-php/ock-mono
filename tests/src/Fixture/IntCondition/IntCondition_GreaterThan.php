@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Tests\Fixture\IntCondition;
+namespace Donquixote\Ock\Tests\Fixture\IntCondition;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\ObCK\Formula\Primitive\Formula_Int;
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\Primitive\Formula_Int;
+use Donquixote\Ock\Text\Text;
 
 /**
  * Compares the number to a defined operand.
@@ -40,7 +40,7 @@ class IntCondition_GreaterThan implements IntConditionInterface {
   /**
    * @obck("greater_than", "Greater than")
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(): FormulaInterface {
     return Formula_GroupVal_Callback::fromClass(

@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\InlinePluginList;
+namespace Donquixote\Ock\InlinePluginList;
 
-use Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface;
-use Donquixote\ObCK\Plugin\Plugin;
+use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
+use Donquixote\Ock\Plugin\Plugin;
 
 class InlinePluginList_PluginList implements InlinePluginListInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface
+   * @var \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface
    */
   private Formula_PluginListInterface $formula;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\PluginList\Formula_PluginListInterface $formula
+   * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula
    */
   public function __construct(Formula_PluginListInterface $formula) {
     $this->formula = $formula;

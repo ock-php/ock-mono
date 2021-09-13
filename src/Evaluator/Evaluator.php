@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Evaluator;
+namespace Donquixote\Ock\Evaluator;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\MessageUtil;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Util\MessageUtil;
 
 class Evaluator {
 
   /**
    * Materializes an evaluator from a formula.
    *
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *   Service that can materialize other objects from formulas.
    *
-   * @return \Donquixote\ObCK\Evaluator\EvaluatorInterface
+   * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
    *   Materialized evaluator.
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    *   Cannot build a evaluator for the given formula.
    */
   public static function fromFormula(
@@ -30,7 +30,7 @@ class Evaluator {
     NurseryInterface $formulaToAnything
   ): EvaluatorInterface {
 
-    /** @var \Donquixote\ObCK\Evaluator\EvaluatorInterface $candidate */
+    /** @var \Donquixote\Ock\Evaluator\EvaluatorInterface $candidate */
     $candidate = $formulaToAnything->breed(
       $formula,
       EvaluatorInterface::class);
@@ -46,7 +46,7 @@ class Evaluator {
    *
    * @return never-return
    *
-   * @throws \Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration
+   * @throws \Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration
    */
   public static function incompatibleConfiguration(string $message) {
     throw new EvaluatorException_IncompatibleConfiguration($message);
@@ -62,7 +62,7 @@ class Evaluator {
    *
    * @return never-return
    *
-   * @throws \Donquixote\ObCK\Exception\EvaluatorException_IncompatibleConfiguration
+   * @throws \Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration
    */
   public static function expectedConfigButFound(string $expected, $conf) {
     $message = $expected . ', found ' . MessageUtil::formatValue($conf);

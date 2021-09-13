@@ -1,8 +1,8 @@
 <?php
 
-namespace Donquixote\ObCK\Text;
+namespace Donquixote\Ock\Text;
 
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 
 /**
  * Generic interface for values that can be used as text.
@@ -12,7 +12,7 @@ use Donquixote\ObCK\Translator\TranslatorInterface;
 interface TextInterface {
 
   /**
-   * @param \Donquixote\ObCK\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
    * @return string
    */

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery;
+namespace Donquixote\Ock\Nursery;
 
 abstract class NurseryBase implements NurseryInterface {
 

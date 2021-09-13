@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Optionless;
+namespace Donquixote\Ock\Formula\Optionless;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 /**
  * Common base interface for all formulas that are not configurable.

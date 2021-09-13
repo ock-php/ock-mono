@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\FixedConf;
+namespace Donquixote\Ock\Formula\FixedConf;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 class Formula_FixedConf implements Formula_FixedConfInterface {
 
   /**
-   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   private $decorated;
 
@@ -18,7 +18,7 @@ class Formula_FixedConf implements Formula_FixedConfInterface {
   private $conf;
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    * @param mixed $conf
    */
   public function __construct(FormulaInterface $decorated, $conf) {

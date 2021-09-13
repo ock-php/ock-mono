@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaBase\Decorator;
+namespace Donquixote\Ock\FormulaBase\Decorator;
 
-use Donquixote\ObCK\Core\Formula\Base\FormulaBaseInterface;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 interface Formula_DecoratorBaseInterface extends FormulaBaseInterface {
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function getDecorated(): FormulaInterface;
 

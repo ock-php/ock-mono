@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Text;
+namespace Donquixote\Ock\Text;
 
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 
 class Text_FluentDecorator extends TextBase {
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface
+   * @var \Donquixote\Ock\Text\TextInterface
    */
   private TextInterface $decorated;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Text\TextInterface $decorated
+   * @param \Donquixote\Ock\Text\TextInterface $decorated
    */
   public function __construct(TextInterface $decorated) {
     $this->decorated = $decorated;

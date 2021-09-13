@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Drilldown;
+namespace Donquixote\Ock\Formula\Drilldown;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
-use Donquixote\ObCK\Formula\Select\Formula_Select_Fixed;
-use Donquixote\ObCK\IdToFormula\IdToFormula_Fixed;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\Formula\Select\Formula_Select_Fixed;
+use Donquixote\Ock\IdToFormula\IdToFormula_Fixed;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Select\Formula_Select_Fixed
+   * @var \Donquixote\Ock\Formula\Select\Formula_Select_Fixed
    */
   private $idFormula;
 
   /**
-   * @var \Donquixote\ObCK\IdToFormula\IdToFormula_Fixed
+   * @var \Donquixote\Ock\IdToFormula\IdToFormula_Fixed
    */
   private $idToFormula;
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface[] $formulas
-   * @param \Donquixote\ObCK\Text\TextInterface[] $labels
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $formulas
+   * @param \Donquixote\Ock\Text\TextInterface[] $labels
    * @param bool $orNull
    *
    * @return self
@@ -39,8 +39,8 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\Select\Formula_Select_Fixed $idFormula
-   * @param \Donquixote\ObCK\IdToFormula\IdToFormula_Fixed $idToFormula
+   * @param \Donquixote\Ock\Formula\Select\Formula_Select_Fixed $idFormula
+   * @param \Donquixote\Ock\IdToFormula\IdToFormula_Fixed $idToFormula
    * @param bool $orNull
    */
   private function __construct(Formula_Select_Fixed $idFormula, IdToFormula_Fixed $idToFormula, $orNull = FALSE) {
@@ -51,10 +51,10 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
 
   /**
    * @param string $id
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Text\TextInterface $label
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Text\TextInterface $label
    * @param ?string $group_id
-   * @param ?\Donquixote\ObCK\Text\TextInterface $group_label
+   * @param ?\Donquixote\Ock\Text\TextInterface $group_label
    *
    * @return static
    */

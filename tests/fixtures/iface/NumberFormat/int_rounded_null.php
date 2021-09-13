@@ -1,7 +1,7 @@
 <?php
 
-use Donquixote\ObCK\Tests\Fixture\NumberFormat\NumberFormat_IntRounded;
-use Donquixote\ObCK\Tests\Fixture\NumberFormat\NumberFormatInterface;
+use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormat_IntRounded;
+use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormatInterface;
 
 return static function (): NumberFormatInterface {
   return new NumberFormat_IntRounded(NULL);

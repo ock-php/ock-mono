@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\PluginList;
+namespace Donquixote\Ock\Formula\PluginList;
 
-use Donquixote\ObCK\Plugin\Plugin;
+use Donquixote\Ock\Plugin\Plugin;
 
 /**
  * Default implementation.
@@ -12,7 +12,7 @@ use Donquixote\ObCK\Plugin\Plugin;
 class Formula_PluginList implements Formula_PluginListInterface {
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Plugin[]
+   * @var \Donquixote\Ock\Plugin\Plugin[]
    */
   private $plugins;
 
@@ -24,7 +24,7 @@ class Formula_PluginList implements Formula_PluginListInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Plugin[] $plugins
+   * @param \Donquixote\Ock\Plugin\Plugin[] $plugins
    *   List of plugins by machine name.
    * @param bool $allowsNull
    *   TRUE if this is optional.

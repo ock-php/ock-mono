@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Tests;
+namespace Donquixote\Ock\Tests;
 
-use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKey;
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\Ock\Formula\DecoKey\Formula_DecoKey;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 
 class FormulaTest extends FormulaTestBase {
 
   /**
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public function testFormula() {
     $formula = Formula::iface(IntOpInterface::class);

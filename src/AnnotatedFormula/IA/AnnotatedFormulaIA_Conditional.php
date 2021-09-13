@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\AnnotatedFormula\IA;
+namespace Donquixote\Ock\AnnotatedFormula\IA;
 
 class AnnotatedFormulaIA_Conditional implements AnnotatedFormulaIAInterface {
 
@@ -13,7 +13,7 @@ class AnnotatedFormulaIA_Conditional implements AnnotatedFormulaIAInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\AnnotatedFormula\IA\AnnotatedFormulaIAInterface $decorated
+   * @param \Donquixote\Ock\AnnotatedFormula\IA\AnnotatedFormulaIAInterface $decorated
    * @param array $conditions
    *   Format: $[$key] = $expected_value.
    */

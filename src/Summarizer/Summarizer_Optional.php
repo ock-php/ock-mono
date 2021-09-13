@@ -1,33 +1,33 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Summarizer;
+namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Formula\Optional\Formula_OptionalInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 class Summarizer_Optional implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface
+   * @var \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface
    */
   private $formula;
 
   /**
-   * @var \Donquixote\ObCK\Summarizer\SummarizerInterface
+   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
    */
   private $decorated;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
-   * @return \Donquixote\ObCK\Summarizer\SummarizerInterface|null
+   * @return \Donquixote\Ock\Summarizer\SummarizerInterface|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_OptionalInterface $formula,
@@ -44,8 +44,8 @@ class Summarizer_Optional implements SummarizerInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\ObCK\Summarizer\SummarizerInterface $decorated
+   * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Donquixote\Ock\Summarizer\SummarizerInterface $decorated
    */
   public function __construct(
     Formula_OptionalInterface $formula,

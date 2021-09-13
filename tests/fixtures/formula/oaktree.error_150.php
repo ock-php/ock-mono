@@ -1,6 +1,6 @@
 <?php
 
-use Donquixote\ObCK\Evaluator\Evaluator;
+use Donquixote\Ock\Evaluator\Evaluator;
 
 return Evaluator::expectedConfigButFound(
   'Configuration must be an array.',

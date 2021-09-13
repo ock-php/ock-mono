@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Discovery\FactoryToSTA;
+namespace Donquixote\Ock\Discovery\FactoryToSTA;
 
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
-use Donquixote\ObCK\Nursery\Cradle\CradleInterface;
+use Donquixote\Ock\Nursery\Cradle\CradleInterface;
 
 class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
 
   /**
-   * @var \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface
+   * @var \Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface
    */
   private $decorated;
 
   /**
-   * @param \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface $decorated
+   * @param \Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface $decorated
    */
   public function __construct(FactoryToSTAInterface $decorated) {
     $this->decorated = $decorated;

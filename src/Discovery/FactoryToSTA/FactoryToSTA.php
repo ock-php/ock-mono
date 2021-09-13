@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Discovery\FactoryToSTA;
+namespace Donquixote\Ock\Discovery\FactoryToSTA;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_Function;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\ObCK\Core\Formula\Base\FormulaBaseInterface;
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Nursery\Cradle\Cradle_Callback;
-use Donquixote\ObCK\Nursery\Cradle\Cradle_CallbackNoHelper;
-use Donquixote\ObCK\Nursery\Cradle\CradleInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\ReflectionUtil;
+use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Nursery\Cradle\Cradle_Callback;
+use Donquixote\Ock\Nursery\Cradle\Cradle_CallbackNoHelper;
+use Donquixote\Ock\Nursery\Cradle\CradleInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Util\ReflectionUtil;
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface;
@@ -32,7 +32,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
    * @param \Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface $contextFinder
    * @param \Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface $functionToReturnType
    *
-   * @return \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface
+   * @return \Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface
    */
   public static function createComposite(ParamToValueInterface $paramToValue, ContextFinderInterface $contextFinder, FunctionToReturnTypeInterface $functionToReturnType) {
     return new FactoryToSTA_RequireAnnotationTag(

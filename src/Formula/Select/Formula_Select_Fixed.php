@@ -1,36 +1,36 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Select_Fixed implements Formula_SelectInterface {
 
   /**
    * Optgroups.
    *
-   * @var \Donquixote\ObCK\Text\TextInterface[]
+   * @var \Donquixote\Ock\Text\TextInterface[]
    */
   private $groups;
 
   /**
    * Grouped options.
    *
-   * @var \Donquixote\ObCK\Text\TextInterface[][]
+   * @var \Donquixote\Ock\Text\TextInterface[][]
    */
   private $groupedOptions;
 
   /**
    * Flattened options.
    *
-   * @var \Donquixote\ObCK\Text\TextInterface[]
+   * @var \Donquixote\Ock\Text\TextInterface[]
    */
   private $flatOptions;
 
   /**
-   * @param \Donquixote\ObCK\Text\TextInterface[] $options
+   * @param \Donquixote\Ock\Text\TextInterface[] $options
    *
    * @return self
    */
@@ -41,10 +41,10 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Text\TextInterface[][] $grouped_options
+   * @param \Donquixote\Ock\Text\TextInterface[][] $grouped_options
    *   Format: $[$group_id][$option_value] = $option_label,
    *   with $group_id === '' for top-level options.
-   * @param \Donquixote\ObCK\Text\TextInterface[] $groups
+   * @param \Donquixote\Ock\Text\TextInterface[] $groups
    *   Optgroup labels, without the top-level group.
    */
   public function __construct(array $grouped_options, array $groups = []) {
@@ -57,9 +57,9 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
 
   /**
    * @param string $id
-   * @param \Donquixote\ObCK\Text\TextInterface $label
+   * @param \Donquixote\Ock\Text\TextInterface $label
    * @param string $group_id
-   * @param \Donquixote\ObCK\Text\TextInterface|null $group_label
+   * @param \Donquixote\Ock\Text\TextInterface|null $group_label
    *
    * @return static
    */

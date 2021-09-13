@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Tests\Translator;
+namespace Donquixote\Ock\Tests\Translator;
 
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 
 class Translator_Test implements TranslatorInterface {
 

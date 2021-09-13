@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Summarizer;
+namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\Formula\Label\Formula_LabelInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Formula\Label\Formula_LabelInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 
 /**
  * Decorator that prepends a "<label>: " to a summary.
@@ -15,20 +15,20 @@ use Donquixote\ObCK\Text\TextInterface;
 class Summarizer_Label implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\ObCK\Summarizer\SummarizerInterface
+   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface
+   * @var \Donquixote\Ock\Text\TextInterface
    */
   private $label;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Label\Formula_LabelInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\Label\Formula_LabelInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    */
@@ -49,8 +49,8 @@ class Summarizer_Label implements SummarizerInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Summarizer\SummarizerInterface $decorated
-   * @param \Donquixote\ObCK\Text\TextInterface $label
+   * @param \Donquixote\Ock\Summarizer\SummarizerInterface $decorated
+   * @param \Donquixote\Ock\Text\TextInterface $label
    */
   public function __construct(SummarizerInterface $decorated, TextInterface $label) {
     $this->decorated = $decorated;

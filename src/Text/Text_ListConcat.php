@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Text;
+namespace Donquixote\Ock\Text;
 
 class Text_ListConcat extends Text_ListBase {
 
@@ -11,7 +11,7 @@ class Text_ListConcat extends Text_ListBase {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Text\TextInterface[] $items
+   * @param \Donquixote\Ock\Text\TextInterface[] $items
    */
   public function __construct(array $items, string $separator = ', ') {
     parent::__construct($items);

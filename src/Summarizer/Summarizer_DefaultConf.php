@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Summarizer;
+namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 class Summarizer_DefaultConf implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\ObCK\Summarizer\SummarizerInterface
+   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
    */
   private $decorated;
 
@@ -22,12 +22,12 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_DefaultConfInterface $formula,
@@ -48,7 +48,7 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Summarizer\SummarizerInterface $decorated
+   * @param \Donquixote\Ock\Summarizer\SummarizerInterface $decorated
    * @param mixed $defaultConf
    */
   public function __construct(SummarizerInterface $decorated, $defaultConf) {

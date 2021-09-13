@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\Sequence;
+namespace Donquixote\Ock\V2V\Sequence;
 
-use Donquixote\ObCK\Util\DecoUtil;
+use Donquixote\Ock\Util\DecoUtil;
 
 class V2V_Sequence_Decorators implements V2V_SequenceInterface {
 

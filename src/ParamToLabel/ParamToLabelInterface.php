@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\ParamToLabel;
+namespace Donquixote\Ock\ParamToLabel;
 
 /**
  * A service to auto-generate a label from a reflection parameter.

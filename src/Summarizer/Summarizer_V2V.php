@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Summarizer;
+namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Util\UtilBase;
 
 final class Summarizer_V2V extends UtilBase {
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
-   * @return \Donquixote\ObCK\Summarizer\SummarizerInterface|null
+   * @return \Donquixote\Ock\Summarizer\SummarizerInterface|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function create(
     Formula_ValueToValueBaseInterface $formula,

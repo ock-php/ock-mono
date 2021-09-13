@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\MoreArgsVal;
+namespace Donquixote\Ock\Formula\MoreArgsVal;
 
-use Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface;
-use Donquixote\ObCK\V2V\Group\V2V_GroupInterface;
+use Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface;
+use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
 class Formula_MoreArgsVal extends Formula_MoreArgsValBase {
 
   /**
-   * @var \Donquixote\ObCK\V2V\Group\V2V_GroupInterface
+   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   private $v2v;
 
   /**
-   * @param \Donquixote\ObCK\Formula\MoreArgs\Formula_MoreArgsInterface $decorated
-   * @param \Donquixote\ObCK\V2V\Group\V2V_GroupInterface $v2v
+   * @param \Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface $decorated
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
    */
   public function __construct(Formula_MoreArgsInterface $decorated, V2V_GroupInterface $v2v) {
     parent::__construct($decorated);

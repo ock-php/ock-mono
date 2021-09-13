@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin\Map;
+namespace Donquixote\Ock\Plugin\Map;
 
 class PluginMap_Buffer implements PluginMapInterface {
 
@@ -12,19 +12,19 @@ class PluginMap_Buffer implements PluginMapInterface {
   private $types;
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Plugin[][]
+   * @var \Donquixote\Ock\Plugin\Plugin[][]
    */
   private $pluginss = [];
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Map\PluginMapInterface
+   * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface
    */
   private $decorated;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Plugin\Map\PluginMapInterface $decorated
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $decorated
    */
   public function __construct(PluginMapInterface $decorated) {
     $this->decorated = $decorated;

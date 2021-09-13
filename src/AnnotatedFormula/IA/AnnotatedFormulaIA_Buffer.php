@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\AnnotatedFormula\IA;
+namespace Donquixote\Ock\AnnotatedFormula\IA;
 
 class AnnotatedFormulaIA_Buffer implements AnnotatedFormulaIAInterface {
 
   /**
-   * @var \Donquixote\ObCK\AnnotatedFormula\IA\AnnotatedFormulaIAInterface
+   * @var \Donquixote\Ock\AnnotatedFormula\IA\AnnotatedFormulaIAInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\ObCK\AnnotatedFormula\AnnotatedFormulaInterface|null
+   * @var \Donquixote\Ock\AnnotatedFormula\AnnotatedFormulaInterface|null
    */
   private $buffer;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\AnnotatedFormula\IA\AnnotatedFormulaIAInterface $decorated
+   * @param \Donquixote\Ock\AnnotatedFormula\IA\AnnotatedFormulaIAInterface $decorated
    */
   public function __construct(AnnotatedFormulaIAInterface $decorated) {
     $this->decorated = $decorated;

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Optionlessness;
+namespace Donquixote\Ock\Optionlessness;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Exception\FormulaToAnythingException;
-use Donquixote\ObCK\Nursery\NurseryInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Nursery\NurseryInterface;
 
 class Optionlessness implements OptionlessnessInterface {
 
@@ -24,8 +24,8 @@ class Optionlessness implements OptionlessnessInterface {
   /**
    * Determines whether a formula is optionless.
    *
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $nursery
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $nursery
    *
    * @return bool
    */
@@ -40,15 +40,15 @@ class Optionlessness implements OptionlessnessInterface {
   }
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $nursery
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $nursery
    *
-   * @return \Donquixote\ObCK\Optionlessness\OptionlessnessInterface
+   * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function fromFormula(FormulaInterface $formula, NurseryInterface $nursery): OptionlessnessInterface {
-    /** @var \Donquixote\ObCK\Optionlessness\OptionlessnessInterface $candidate */
+    /** @var \Donquixote\Ock\Optionlessness\OptionlessnessInterface $candidate */
     $candidate = $nursery->breed($formula, OptionlessnessInterface::class);
     return $candidate;
   }

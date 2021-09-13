@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Nursery;
+namespace Donquixote\Ock\Nursery;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 interface NurseryInterface {
 
   /**
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula from which to breed a new object.
    * @param string $interface
    *   Interface for the return value.
    * @return object
    *   An instance of $interface.
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    *   Object cannot be created for the given formula.
    */
   public function breed(FormulaInterface $formula, string $interface): object;

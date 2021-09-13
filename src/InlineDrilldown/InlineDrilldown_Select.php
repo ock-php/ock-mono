@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\InlineDrilldown;
+namespace Donquixote\Ock\InlineDrilldown;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
-use Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\ObCK\Formula\Select\Formula_Select_FromFlatSelect;
-use Donquixote\ObCK\Formula\Select\Formula_SelectInterface;
-use Donquixote\ObCK\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\Ock\Formula\Select\Formula_Select_FromFlatSelect;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
 
 class InlineDrilldown_Select implements InlineDrilldownInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Select\Formula_SelectInterface
+   * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface
    */
   private Formula_SelectInterface $formula;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Select\Flat\Formula_FlatSelectInterface $formula
+   * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
    *
    * @return self
    */
@@ -33,7 +33,7 @@ class InlineDrilldown_Select implements InlineDrilldownInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $formula
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
    *
    * @return self
    */
@@ -44,7 +44,7 @@ class InlineDrilldown_Select implements InlineDrilldownInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $formula
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
    */
   public function __construct(Formula_SelectInterface $formula) {
     $this->formula = $formula;

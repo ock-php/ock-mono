@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Summarizer;
+namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 
 class Summarizer_DecoKey implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\ObCK\Summarizer\SummarizerInterface
+   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
    */
   private SummarizerInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Summarizer\SummarizerInterface
+   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
    */
   private SummarizerInterface $decorator;
 
@@ -25,12 +25,12 @@ class Summarizer_DecoKey implements SummarizerInterface {
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $formulaToAnything
+   * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self|null
    *
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function create(Formula_DecoKeyInterface $formula, NurseryInterface $formulaToAnything): ?self {
     return new self(
@@ -46,8 +46,8 @@ class Summarizer_DecoKey implements SummarizerInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Summarizer\SummarizerInterface $decorated
-   * @param \Donquixote\ObCK\Summarizer\SummarizerInterface $decorator
+   * @param \Donquixote\Ock\Summarizer\SummarizerInterface $decorated
+   * @param \Donquixote\Ock\Summarizer\SummarizerInterface $decorator
    * @param string $key
    */
   public function __construct(

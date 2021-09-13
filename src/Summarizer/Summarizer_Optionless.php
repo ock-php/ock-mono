@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Summarizer;
+namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface;
-use Donquixote\ObCK\Util\UtilBase;
+use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
+use Donquixote\Ock\Util\UtilBase;
 
 final class Summarizer_Optionless extends UtilBase {
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Formula\Optionless\Formula_OptionlessInterface $formula
+   * @param \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface $formula
    *
-   * @return \Donquixote\ObCK\Summarizer\SummarizerInterface
+   * @return \Donquixote\Ock\Summarizer\SummarizerInterface
    */
   public static function create(
     /** @noinspection PhpUnusedParameterInspection */ Formula_OptionlessInterface $formula

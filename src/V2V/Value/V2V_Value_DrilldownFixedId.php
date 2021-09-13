@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\Value;
+namespace Donquixote\Ock\V2V\Value;
 
-use Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface;
+use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 
 class V2V_Value_DrilldownFixedId implements V2V_ValueInterface {
 
   /**
-   * @var \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface
+   * @var \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface
    */
   private $v2vDrilldown;
 
@@ -18,7 +18,7 @@ class V2V_Value_DrilldownFixedId implements V2V_ValueInterface {
   private $id;
 
   /**
-   * @param \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface $v2vDrilldown
+   * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2vDrilldown
    * @param string|int $id
    */
   public function __construct(V2V_DrilldownInterface $v2vDrilldown, $id) {

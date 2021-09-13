@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Discovery;
+namespace Donquixote\Ock\Discovery;
 
-use Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTA;
-use Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface;
+use Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTA;
+use Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactories;
 use Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactoriesInterface;
@@ -21,7 +21,7 @@ class STADiscovery_X {
   private $classFileToFactories;
 
   /**
-   * @var \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface
+   * @var \Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface
    */
   private $factoryToSTA;
 
@@ -47,7 +47,7 @@ class STADiscovery_X {
 
   /**
    * @param \Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactoriesInterface $classFileToFactories
-   * @param \Donquixote\ObCK\Discovery\FactoryToSTA\FactoryToSTAInterface $factoryToSTA
+   * @param \Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface $factoryToSTA
    */
   public function __construct(
     ClassFileToFactoriesInterface $classFileToFactories,
@@ -60,7 +60,7 @@ class STADiscovery_X {
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
-   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
+   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
    */
   public function classFilesIAGetPartials(ClassFilesIAInterface $classFilesIA): array {
     try {
@@ -74,7 +74,7 @@ class STADiscovery_X {
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
-   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
+   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
    */
   private function classFilesIADoGetPartials(ClassFilesIAInterface $classFilesIA): array {
 

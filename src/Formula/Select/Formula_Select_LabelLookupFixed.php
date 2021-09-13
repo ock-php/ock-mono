@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\TextLookup\TextLookupInterface;
+use Donquixote\Ock\TextLookup\TextLookupInterface;
 
 /**
  * Select formula using TextLookup* objects for option labels and group labels.
@@ -27,8 +27,8 @@ class Formula_Select_LabelLookupFixed extends Formula_Select_LabelLookupBase {
    *
    * @param mixed[][] $grouped_ids_map
    *   Format: $[$group_id][$id] = $_anything.
-   * @param \Donquixote\ObCK\TextLookup\TextLookupInterface $labellookup
-   * @param \Donquixote\ObCK\TextLookup\TextLookupInterface $groupLabelProvider
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $labellookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $groupLabelProvider
    */
   public function __construct(array $grouped_ids_map, TextLookupInterface $labellookup, TextLookupInterface $groupLabelProvider) {
     $this->groupedIdsMap = $grouped_ids_map;

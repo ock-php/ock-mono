@@ -1,13 +1,13 @@
 <?php
 
-namespace Donquixote\ObCK\Text;
+namespace Donquixote\Ock\Text;
 
-use Donquixote\ObCK\Translator\TranslatorInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 
 class Text_ReplaceOne extends TextBase {
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface
+   * @var \Donquixote\Ock\Text\TextInterface
    */
   private TextInterface $source;
 
@@ -17,16 +17,16 @@ class Text_ReplaceOne extends TextBase {
   private string $token;
 
   /**
-   * @var \Donquixote\ObCK\Text\TextInterface
+   * @var \Donquixote\Ock\Text\TextInterface
    */
   private TextInterface $replacement;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Text\TextInterface $source
+   * @param \Donquixote\Ock\Text\TextInterface $source
    * @param string $token
-   * @param \Donquixote\ObCK\Text\TextInterface $replacement
+   * @param \Donquixote\Ock\Text\TextInterface $replacement
    */
   public function __construct(TextInterface $source, string $token, TextInterface $replacement) {
     $this->source = $source;

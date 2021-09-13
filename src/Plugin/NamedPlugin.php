@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin;
+namespace Donquixote\Ock\Plugin;
 
 class NamedPlugin {
 
@@ -15,7 +15,7 @@ class NamedPlugin {
    *
    * @param string $id
    *   Plugin id.
-   * @param \Donquixote\ObCK\Plugin\Plugin $plugin
+   * @param \Donquixote\Ock\Plugin\Plugin $plugin
    *   The actual plugin object.
    */
   public function __construct(string $id, Plugin $plugin) {
@@ -31,7 +31,7 @@ class NamedPlugin {
   }
 
   /**
-   * @return \Donquixote\ObCK\Plugin\Plugin
+   * @return \Donquixote\Ock\Plugin\Plugin
    */
   public function getPlugin(): Plugin {
     return $this->plugin;

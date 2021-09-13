@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\InlineDrilldown;
+namespace Donquixote\Ock\InlineDrilldown;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
-use Donquixote\ObCK\Formula\ValueToValue\Formula_ValueToValue;
-use Donquixote\ObCK\V2V\Value\V2V_ValueInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue;
+use Donquixote\Ock\V2V\Value\V2V_ValueInterface;
 
 class InlineDrilldown_V2V implements InlineDrilldownInterface {
 
   /**
-   * @var \Donquixote\ObCK\InlineDrilldown\InlineDrilldownInterface
+   * @var \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface
    */
   private InlineDrilldownInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\V2V\Value\V2V_ValueInterface
+   * @var \Donquixote\Ock\V2V\Value\V2V_ValueInterface
    */
   private V2V_ValueInterface $v2v;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\InlineDrilldown\InlineDrilldownInterface $decorated
-   * @param \Donquixote\ObCK\V2V\Value\V2V_ValueInterface $v2v
+   * @param \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface $decorated
+   * @param \Donquixote\Ock\V2V\Value\V2V_ValueInterface $v2v
    */
   public function __construct(InlineDrilldownInterface $decorated, V2V_ValueInterface $v2v) {
     $this->decorated = $decorated;
@@ -42,7 +42,7 @@ class InlineDrilldown_V2V implements InlineDrilldownInterface {
   /**
    * @param string $id
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
   public function idGetFormula(string $id): ?FormulaInterface {
     $formula = $this->decorated->idGetFormula($id);

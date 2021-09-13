@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Util;
+namespace Donquixote\Ock\Util;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\NamespaceDirectory;
-use Donquixote\ObCK\Discovery\STADiscovery_X;
+use Donquixote\Ock\Discovery\STADiscovery_X;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 final class LocalPackageUtil extends UtilBase {
@@ -14,7 +14,7 @@ final class LocalPackageUtil extends UtilBase {
   /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
-   * @return \Donquixote\ObCK\Nursery\Cradle\CradleInterface[]
+   * @return \Donquixote\Ock\Nursery\Cradle\CradleInterface[]
    */
   public static function collectSTAPartials(ParamToValueInterface $paramToValue): array {
 

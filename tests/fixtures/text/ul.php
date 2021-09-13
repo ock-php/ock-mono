@@ -1,6 +1,6 @@
 <?php
 
-use Donquixote\ObCK\Text\Text;
+use Donquixote\Ock\Text\Text;
 
 return Text::ul()
   ->add(Text::s('First item'))

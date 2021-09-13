@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\DrilldownVal;
+namespace Donquixote\Ock\Formula\DrilldownVal;
 
-use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\V2V\Drilldown\V2V_Drilldown_Arrify;
-use Donquixote\ObCK\V2V\Drilldown\V2V_Drilldown_Merge;
-use Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\Ock\V2V\Drilldown\V2V_Drilldown_Arrify;
+use Donquixote\Ock\V2V\Drilldown\V2V_Drilldown_Merge;
+use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 
 class Formula_DrilldownVal extends Formula_DrilldownValBase {
 
   /**
-   * @var \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface
+   * @var \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface
    */
   private $v2v;
 
   /**
-   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $decorated
+   * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $decorated
    * @param string|null $idKey
    * @param string|null $optionsKey
    *
@@ -38,7 +38,7 @@ class Formula_DrilldownVal extends Formula_DrilldownValBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $decorated
+   * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $decorated
    * @param string|null $idKey
    *
    * @return self
@@ -55,8 +55,8 @@ class Formula_DrilldownVal extends Formula_DrilldownValBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface $decorated
-   * @param \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface $v2v
+   * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $decorated
+   * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
    */
   public function __construct(Formula_DrilldownInterface $decorated, V2V_DrilldownInterface $v2v) {
     parent::__construct($decorated);

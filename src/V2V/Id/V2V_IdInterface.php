@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\Id;
+namespace Donquixote\Ock\V2V\Id;
 
 interface V2V_IdInterface {
 

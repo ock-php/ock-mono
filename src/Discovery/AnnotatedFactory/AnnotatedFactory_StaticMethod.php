@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Discovery\AnnotatedFactory;
+namespace Donquixote\Ock\Discovery\AnnotatedFactory;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\ObCK\Util\ReflectionUtil;
+use Donquixote\Ock\Util\ReflectionUtil;
 
 class AnnotatedFactory_StaticMethod implements AnnotatedFactoryInterface {
 

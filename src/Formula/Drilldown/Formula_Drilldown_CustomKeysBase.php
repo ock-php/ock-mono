@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Drilldown;
+namespace Donquixote\Ock\Formula\Drilldown;
 
 abstract class Formula_Drilldown_CustomKeysBase extends Formula_DrilldownBase {
 

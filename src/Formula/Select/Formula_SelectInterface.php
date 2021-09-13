@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
-use Donquixote\ObCK\FormulaBase\FormulaBase_AbstractSelectInterface;
+use Donquixote\Ock\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface;
 
 /**
  * @todo Maybe "Options" should be renamed to "Choice"?

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Tests\Fixture\IntCondition;
+namespace Donquixote\Ock\Tests\Fixture\IntCondition;
 
 /**
  * @obck("odd", "Number is odd")

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\TextLookup;
+namespace Donquixote\Ock\TextLookup;
 
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 
 /**
  * Static methods related to label providers.
@@ -14,9 +14,9 @@ class TextLookup {
 
   /**
    * @param string $id
-   * @param \Donquixote\ObCK\TextLookup\TextLookupInterface $lookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $lookup
    *
-   * @return \Donquixote\ObCK\Text\TextInterface
+   * @return \Donquixote\Ock\Text\TextInterface
    */
   public static function idGetLabel(string $id, TextLookupInterface $lookup): TextInterface {
     return $lookup->idsMapGetTexts([$id => TRUE])[$id]
@@ -25,9 +25,9 @@ class TextLookup {
 
   /**
    * @param string[] $ids
-   * @param \Donquixote\ObCK\TextLookup\TextLookupInterface $lookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $lookup
    *
-   * @return \Donquixote\ObCK\Text\TextInterface[]
+   * @return \Donquixote\Ock\Text\TextInterface[]
    */
   public static function idsGetLabels(array $ids, TextLookupInterface $lookup): array {
     return self::idMapGetLabels(
@@ -37,9 +37,9 @@ class TextLookup {
 
   /**
    * @param mixed[] $id_map
-   * @param \Donquixote\ObCK\TextLookup\TextLookupInterface $lookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $lookup
    *
-   * @return \Donquixote\ObCK\Text\TextInterface[]
+   * @return \Donquixote\Ock\Text\TextInterface[]
    */
   public static function idMapGetLabels(array $id_map, TextLookupInterface $lookup): array {
     $known_labels = $lookup->idsMapGetTexts($id_map);
@@ -53,10 +53,10 @@ class TextLookup {
   /**
    * @param mixed[][] $grouped_ids_map
    *   Format: $[$group_id][$id] = $_anything.
-   * @param \Donquixote\ObCK\TextLookup\TextLookupInterface $lookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $lookup
    *   Bulk label lookup.
    *
-   * @return \Donquixote\ObCK\Text\TextInterface[][]
+   * @return \Donquixote\Ock\Text\TextInterface[][]
    *   Format: $[$group_id][$id] = $label.
    */
   public static function groupedIdsMapGetLabelss(array $grouped_ids_map, TextLookupInterface $lookup): array {

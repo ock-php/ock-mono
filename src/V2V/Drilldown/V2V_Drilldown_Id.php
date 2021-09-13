@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\Drilldown;
+namespace Donquixote\Ock\V2V\Drilldown;
 
 class V2V_Drilldown_Id implements V2V_DrilldownInterface {
 

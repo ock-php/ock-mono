@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Select;
+namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\ObCK\Formula\DrilldownVal\Formula_DrilldownValInterface;
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface;
+use Donquixote\Ock\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Select\Formula_SelectInterface
+   * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface
    */
   private $decorated;
 
   /**
-   * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   private $idToFormula;
 
   /**
-   * @param \Donquixote\ObCK\Formula\Select\Formula_SelectInterface $decorated
-   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $idToFormula
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $decorated
+   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
    */
   public function __construct(
     Formula_SelectInterface $decorated,
@@ -100,7 +100,7 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
   /**
    * @param string|int $id
    *
-   * @return \Donquixote\ObCK\Formula\Select\Formula_SelectInterface|null
+   * @return \Donquixote\Ock\Formula\Select\Formula_SelectInterface|null
    */
   private function idGetSelectFormula($id): ?Formula_SelectInterface {
 
@@ -118,7 +118,7 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
   /**
    * @param string $id
    *
-   * @return \Donquixote\ObCK\Formula\Id\Formula_IdInterface|null
+   * @return \Donquixote\Ock\Formula\Id\Formula_IdInterface|null
    */
   private function idGetIdFormula(string $id): ?Formula_IdInterface {
 

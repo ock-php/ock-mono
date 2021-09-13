@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Textfield;
+namespace Donquixote\Ock\Formula\Textfield;
 
-use Donquixote\ObCK\Text\TextInterface;
+use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Textfield_NoValidation implements Formula_TextfieldInterface {
 

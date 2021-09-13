@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\DrilldownVal;
+namespace Donquixote\Ock\Formula\DrilldownVal;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 
 interface Formula_DrilldownValInterface extends Formula_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
+   * @return \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
    */
   public function getDecorated(): FormulaInterface;
 
   /**
-   * @return \Donquixote\ObCK\V2V\Drilldown\V2V_DrilldownInterface
+   * @return \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface
    */
   public function getV2V(): V2V_DrilldownInterface;
 

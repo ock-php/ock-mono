@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\V2V\TwoStep;
+namespace Donquixote\Ock\V2V\TwoStep;
 
 interface V2V_TwoStepInterface {
 

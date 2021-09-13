@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\DecoKey;
+namespace Donquixote\Ock\Formula\DecoKey;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 
 class Formula_DecoKey implements FormulaInterface, Formula_DecoKeyInterface {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Drilldown\Formula_DrilldownInterface
+   * @var \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
    */
   private FormulaInterface $decorated;
 
   /**
-   * @var \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   private FormulaInterface $decorator;
 
@@ -27,8 +27,8 @@ class Formula_DecoKey implements FormulaInterface, Formula_DecoKeyInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorated
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $decorator
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorator
    * @param string $key
    */
   public function __construct(

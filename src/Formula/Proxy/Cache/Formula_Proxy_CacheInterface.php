@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Proxy\Cache;
+namespace Donquixote\Ock\Formula\Proxy\Cache;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 interface Formula_Proxy_CacheInterface extends FormulaInterface {
 
@@ -15,7 +15,7 @@ interface Formula_Proxy_CacheInterface extends FormulaInterface {
   /**
    * @param mixed $data
    *
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface|null
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
   public function dataGetFormula($data): ?FormulaInterface;
 

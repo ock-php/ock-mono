@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Plugin\Registry;
+namespace Donquixote\Ock\Plugin\Registry;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\ObCK\Plugin\Discovery\ClassToPluginsInterface;
+use Donquixote\Ock\Plugin\Discovery\ClassToPluginsInterface;
 
 class PluginRegistry_AnnotatedDiscovery implements PluginRegistryInterface {
 
@@ -15,7 +15,7 @@ class PluginRegistry_AnnotatedDiscovery implements PluginRegistryInterface {
   private $classFilesIA;
 
   /**
-   * @var \Donquixote\ObCK\Plugin\Discovery\ClassToPluginsInterface
+   * @var \Donquixote\Ock\Plugin\Discovery\ClassToPluginsInterface
    */
   private $classToPlugins;
 
@@ -23,7 +23,7 @@ class PluginRegistry_AnnotatedDiscovery implements PluginRegistryInterface {
    * Constructor.
    *
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
-   * @param \Donquixote\ObCK\Plugin\Discovery\ClassToPluginsInterface $classToPlugins
+   * @param \Donquixote\Ock\Plugin\Discovery\ClassToPluginsInterface $classToPlugins
    */
   public function __construct(ClassFilesIAInterface $classFilesIA, ClassToPluginsInterface $classToPlugins) {
     $this->classFilesIA = $classFilesIA;

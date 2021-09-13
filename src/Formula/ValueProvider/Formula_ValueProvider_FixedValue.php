@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\ValueProvider;
+namespace Donquixote\Ock\Formula\ValueProvider;
 
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
 

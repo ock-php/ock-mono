@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\ValueStub;
+namespace Donquixote\Ock\ValueStub;
 
 interface ValueStubInterface {
 

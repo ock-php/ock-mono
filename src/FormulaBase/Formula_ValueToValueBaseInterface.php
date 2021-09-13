@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\FormulaBase;
+namespace Donquixote\Ock\FormulaBase;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 /**
  * Base interface for all formula types where the configuration form and summary
@@ -12,7 +12,7 @@ use Donquixote\ObCK\Core\Formula\FormulaInterface;
 interface Formula_ValueToValueBaseInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\ObCK\Core\Formula\FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function getDecorated(): FormulaInterface;
 

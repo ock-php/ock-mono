@@ -1,28 +1,28 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Drilldown;
+namespace Donquixote\Ock\Formula\Drilldown;
 
-use Donquixote\ObCK\IdToFormula\IdToFormula_FromOptions;
-use Donquixote\ObCK\Formula\Select\Formula_Select_FromOptions;
-use Donquixote\ObCK\IdToFormula\IdToFormulaInterface;
-use Donquixote\ObCK\Formula\Id\Formula_IdInterface;
+use Donquixote\Ock\IdToFormula\IdToFormula_FromOptions;
+use Donquixote\Ock\Formula\Select\Formula_Select_FromOptions;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 
 class Formula_Drilldown extends Formula_Drilldown_CustomKeysBase {
 
   /**
-   * @var \Donquixote\ObCK\Formula\Id\Formula_IdInterface
+   * @var \Donquixote\Ock\Formula\Id\Formula_IdInterface
    */
   private $idFormula;
 
   /**
-   * @var \Donquixote\ObCK\IdToFormula\IdToFormulaInterface
+   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
    */
   private $idToFormula;
 
   /**
-   * @param \Donquixote\ObCK\Formula\Id\Formula_IdInterface $idFormula
-   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $idToFormula
+   * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $idFormula
+   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
    * @param bool $orNull
    *
    * @return self
@@ -32,7 +32,7 @@ class Formula_Drilldown extends Formula_Drilldown_CustomKeysBase {
   }
 
   /**
-   * @param \Donquixote\ObCK\Formula\Drilldown\Option\DrilldownOptionInterface[] $options
+   * @param \Donquixote\Ock\Formula\Drilldown\Option\DrilldownOptionInterface[] $options
    * @param bool $orNull
    *
    * @return self
@@ -47,8 +47,8 @@ class Formula_Drilldown extends Formula_Drilldown_CustomKeysBase {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Formula\Id\Formula_IdInterface $idFormula
-   * @param \Donquixote\ObCK\IdToFormula\IdToFormulaInterface $idToFormula
+   * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $idFormula
+   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
    * @param bool $orNull
    */
   public function __construct(Formula_IdInterface $idFormula, IdToFormulaInterface $idToFormula, $orNull = FALSE) {

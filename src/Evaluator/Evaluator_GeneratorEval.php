@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Evaluator;
+namespace Donquixote\Ock\Evaluator;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\Generator\Generator;
-use Donquixote\ObCK\Generator\GeneratorInterface;
-use Donquixote\ObCK\Nursery\NurseryInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Generator\Generator;
+use Donquixote\Ock\Generator\GeneratorInterface;
+use Donquixote\Ock\Nursery\NurseryInterface;
 
 class Evaluator_GeneratorEval implements EvaluatorInterface {
 
   /**
-   * @var \Donquixote\ObCK\Generator\GeneratorInterface
+   * @var \Donquixote\Ock\Generator\GeneratorInterface
    */
   private GeneratorInterface $generator;
 
   /**
    * @STA
    *
-   * @param \Donquixote\ObCK\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\ObCK\Nursery\NurseryInterface $nursery
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Donquixote\Ock\Nursery\NurseryInterface $nursery
    *
-   * @return \Donquixote\ObCK\Evaluator\EvaluatorInterface
-   * @throws \Donquixote\ObCK\Exception\FormulaToAnythingException
+   * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
+   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
    */
   public static function create(FormulaInterface $formula, NurseryInterface $nursery): EvaluatorInterface {
     $generator = Generator::fromFormula($formula, $nursery);
@@ -33,7 +33,7 @@ class Evaluator_GeneratorEval implements EvaluatorInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ObCK\Generator\GeneratorInterface $generator
+   * @param \Donquixote\Ock\Generator\GeneratorInterface $generator
    */
   public function __construct(GeneratorInterface $generator) {
     $this->generator = $generator;

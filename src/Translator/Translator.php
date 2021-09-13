@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Translator;
+namespace Donquixote\Ock\Translator;
 
 class Translator {
 
   /**
-   * @return \Donquixote\ObCK\Translator\TranslatorInterface
+   * @return \Donquixote\Ock\Translator\TranslatorInterface
    */
   public static function passthru(): TranslatorInterface {
     return new Translator_Passthru();

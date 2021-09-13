@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\MultiStep;
+namespace Donquixote\Ock\Formula\MultiStep;
 
 class Formula_MultiStep_End extends Formula_MultiStepBase {
 

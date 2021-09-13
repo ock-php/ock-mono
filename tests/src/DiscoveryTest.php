@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Tests;
+namespace Donquixote\Ock\Tests;
 
-use Donquixote\ObCK\Formula\Formula;
-use Donquixote\ObCK\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\ObCK\Generator\Generator;
-use Donquixote\ObCK\Generator\Generator_Neutral;
-use Donquixote\ObCK\Plugin\Plugin;
-use Donquixote\ObCK\Tests\Fixture\IntCondition\IntCondition_GreaterThan;
-use Donquixote\ObCK\Tests\Fixture\IntCondition\IntConditionInterface;
-use Donquixote\ObCK\Tests\Fixture\IntOp\IntOpInterface;
-use Donquixote\ObCK\Text\Text;
-use Donquixote\ObCK\Util\LocalPackageUtil;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
+use Donquixote\Ock\Generator\Generator;
+use Donquixote\Ock\Generator\Generator_Neutral;
+use Donquixote\Ock\Plugin\Plugin;
+use Donquixote\Ock\Tests\Fixture\IntCondition\IntCondition_GreaterThan;
+use Donquixote\Ock\Tests\Fixture\IntCondition\IntConditionInterface;
+use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Util\LocalPackageUtil;
 
 class DiscoveryTest extends FormulaTestBase {
 

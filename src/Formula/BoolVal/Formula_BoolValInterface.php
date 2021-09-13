@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\BoolVal;
+namespace Donquixote\Ock\Formula\BoolVal;
 
-use Donquixote\ObCK\Core\Formula\FormulaInterface;
-use Donquixote\ObCK\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\ObCK\V2V\Boolean\V2V_BooleanInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\V2V\Boolean\V2V_BooleanInterface;
 
 interface Formula_BoolValInterface extends Formula_ValueToValueBaseInterface {
 
   /**
-   * @return \Donquixote\ObCK\Formula\Boolean\Formula_BooleanInterface
+   * @return \Donquixote\Ock\Formula\Boolean\Formula_BooleanInterface
    */
   public function getDecorated(): FormulaInterface;
 
   /**
-   * @return \Donquixote\ObCK\V2V\Boolean\V2V_BooleanInterface
+   * @return \Donquixote\Ock\V2V\Boolean\V2V_BooleanInterface
    */
   public function getV2V(): V2V_BooleanInterface;
 

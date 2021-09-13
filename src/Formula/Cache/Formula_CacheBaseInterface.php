@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\Cache;
+namespace Donquixote\Ock\Formula\Cache;
 
 interface Formula_CacheBaseInterface {
 

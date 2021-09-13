@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ObCK\Formula\DecoShift;
+namespace Donquixote\Ock\Formula\DecoShift;
 
-use Donquixote\ObCK\FormulaBase\Decorator\Formula_DecoratorBase;
+use Donquixote\Ock\FormulaBase\Decorator\Formula_DecoratorBase;
 
 class Formula_DecoShift extends Formula_DecoratorBase implements Formula_DecoShiftInterface {
 
