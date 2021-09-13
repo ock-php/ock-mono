@@ -30,7 +30,7 @@ class PluginRegistry_Buffer implements PluginRegistryInterface {
    */
   public function getPluginss(): array {
     return $this->pluginss
-      ?? ($this->pluginss = $this->decorated->getPluginss());
+      ??= $this->decorated->getPluginss();
   }
 
 }

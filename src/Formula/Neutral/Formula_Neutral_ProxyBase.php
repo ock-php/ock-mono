@@ -22,7 +22,7 @@ abstract class Formula_Neutral_ProxyBase implements Formula_NeutralInterface {
    */
   public function getDecorated(): FormulaInterface {
     return $this->decorated
-      ?? $this->decorated = $this->doGetDecorated();
+      ??= $this->doGetDecorated();
   }
 
   /**

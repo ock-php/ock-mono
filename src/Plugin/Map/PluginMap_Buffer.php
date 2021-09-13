@@ -35,7 +35,7 @@ class PluginMap_Buffer implements PluginMapInterface {
    */
   public function getTypes(): array {
     return $this->types
-      ?? ($this->types = $this->decorated->getTypes());
+      ??= $this->decorated->getTypes();
   }
 
   /**
@@ -43,7 +43,7 @@ class PluginMap_Buffer implements PluginMapInterface {
    */
   public function typeGetPlugins(string $type): array {
     return $this->pluginss[$type]
-      ?? ($this->pluginss[$type] = $this->decorated->typeGetPlugins($type));
+      ??= $this->decorated->typeGetPlugins($type);
   }
 
 }

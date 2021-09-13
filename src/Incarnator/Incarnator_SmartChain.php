@@ -115,9 +115,9 @@ class Incarnator_SmartChain extends IncarnatorZeroBase {
   private function formulaTypeAndTargetTypeGetPartials(string $formulaType, string $targetType): array {
 
     return $this->partialsGrouped[$formulaType][$targetType]
-      ?? ($this->partialsGrouped[$formulaType][$targetType] = $this->formulaTypeAndTargetTypeCollectPartials(
+      ??= $this->formulaTypeAndTargetTypeCollectPartials(
         $formulaType,
-        $targetType));
+        $targetType);
   }
 
   /**
@@ -141,7 +141,7 @@ class Incarnator_SmartChain extends IncarnatorZeroBase {
   private function targetTypeGetPartials(string $interface): array {
 
     return $this->partialsByTargetType[$interface]
-      ?? $this->partialsByTargetType[$interface] = $this->targetTypeCollectPartials($interface);
+      ??= $this->targetTypeCollectPartials($interface);
   }
 
   /**
@@ -171,7 +171,7 @@ class Incarnator_SmartChain extends IncarnatorZeroBase {
   private function formulaTypeGetPartials(string $interface): array {
 
     return $this->partialsByFormulaType[$interface]
-      ?? $this->partialsByFormulaType[$interface] = $this->formulaTypeCollectPartials($interface);
+      ??= $this->formulaTypeCollectPartials($interface);
   }
 
   /**

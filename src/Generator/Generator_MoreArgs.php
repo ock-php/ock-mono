@@ -138,7 +138,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    */
   private function getCommonValuesPhp(): array {
     return $this->commonValuesPhp
-      ?? $this->commonValuesPhp = $this->buildCommonValuesPhp();
+      ??= $this->buildCommonValuesPhp();
   }
 
   /**
