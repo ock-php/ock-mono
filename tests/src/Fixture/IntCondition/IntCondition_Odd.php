@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Tests\Fixture\IntCondition;
 
 /**
- * @obck("odd", "Number is odd")
+ * @ock("odd", "Number is odd")
  */
 class IntCondition_Odd implements IntConditionInterface {
 

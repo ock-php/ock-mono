@@ -30,7 +30,7 @@ class NumberFormat_Native implements NumberFormatInterface {
   private $thousandsSeparator;
 
   /**
-   * @obck("native", "Call built-in number_format()")
+   * @ock("native", "Call built-in number_format()")
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */

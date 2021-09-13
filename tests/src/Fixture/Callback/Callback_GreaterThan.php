@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Tests\Fixture\Callback;
 
 /**
- * @obck("greaterThan", "Greater than")
+ * @ock("greaterThan", "Greater than")
  */
 class Callback_GreaterThan {
 
@@ -15,7 +15,7 @@ class Callback_GreaterThan {
   private $inf;
 
   /**
-   * @obck("positive", "Number is positive")
+   * @ock("positive", "Number is positive")
    *
    * @return self
    */
@@ -24,7 +24,7 @@ class Callback_GreaterThan {
   }
 
   /**
-   * @obck("not_negative", "Number is not negative")
+   * @ock("not_negative", "Number is not negative")
    *
    * @return self
    */

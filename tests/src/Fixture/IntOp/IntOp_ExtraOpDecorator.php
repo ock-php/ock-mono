@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Tests\Fixture\IntOp;
 /**
  * Decorator which applies an additional operation.
  *
- * @obck(
+ * @ock(
  *   "extraOpDecorator",
  *   "Decorator with additional operation",
  *   decorator = true)

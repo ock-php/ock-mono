@@ -66,7 +66,7 @@ class FormulaTestBase extends TestCase {
    */
   protected function getPluginRegistry(): PluginRegistryInterface {
     $classFilesIA = ClassFilesIA::psr4FromClass(IntOpInterface::class, 1);
-    $classToPlugins = ClassToPlugins_NativeReflection::create('obck');
+    $classToPlugins = ClassToPlugins_NativeReflection::create('ock');
     return new PluginRegistry_AnnotatedDiscovery(
       $classFilesIA,
       $classToPlugins);

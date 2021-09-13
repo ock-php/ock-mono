@@ -17,7 +17,7 @@ class IntOp_Add implements IntOpInterface {
   private $increment;
 
   /**
-   * @obck("add", "Add")
+   * @ock("add", "Add")
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    *

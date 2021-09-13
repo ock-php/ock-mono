@@ -17,7 +17,7 @@ class IntOp_Multiply implements IntOpInterface {
   private $factor;
 
   /**
-   * @obck("multiply", "Multiply")
+   * @ock("multiply", "Multiply")
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */

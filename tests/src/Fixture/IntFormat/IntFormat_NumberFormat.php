@@ -9,7 +9,7 @@ use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormatInterface;
 /**
  * Adapter from NumberFormat to IntFormat.
  *
- * @obck("numberFormat", "Number format adapter", adapter = true)
+ * @ock("numberFormat", "Number format adapter", adapter = true)
  */
 class IntFormat_NumberFormat implements IntFormatInterface {
 

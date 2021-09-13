@@ -16,7 +16,7 @@ class IntOp_Sequence implements IntOpInterface {
   private $operations;
 
   /**
-   * @obck("sequence", "Sequence")
+   * @ock("sequence", "Sequence")
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */

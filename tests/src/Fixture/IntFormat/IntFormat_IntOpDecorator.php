@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Tests\Fixture\IntFormat;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 
 /**
- * @obck(
+ * @ock(
  *   "intOpDecorator",
  *    "Integer operation decorator",
  *    decorator = true)

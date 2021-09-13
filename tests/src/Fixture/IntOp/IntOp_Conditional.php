@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Tests\Fixture\IntOp;
 use Donquixote\Ock\Tests\Fixture\IntCondition\IntConditionInterface;
 
 /**
- * @obck("conditional", "Conditional")
+ * @ock("conditional", "Conditional")
  */
 class IntOp_Conditional implements IntOpInterface {
 

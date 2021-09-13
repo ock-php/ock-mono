@@ -20,7 +20,7 @@ class IntCondition_GreaterThan implements IntConditionInterface {
   private $operand;
 
   /**
-   * @obck("positive", "Number is positive")
+   * @ock("positive", "Number is positive")
    *
    * @return self
    */
@@ -29,7 +29,7 @@ class IntCondition_GreaterThan implements IntConditionInterface {
   }
 
   /**
-   * @obck("not_negative", "Number is not negative")
+   * @ock("not_negative", "Number is not negative")
    *
    * @return self
    */
@@ -38,7 +38,7 @@ class IntCondition_GreaterThan implements IntConditionInterface {
   }
 
   /**
-   * @obck("greater_than", "Greater than")
+   * @ock("greater_than", "Greater than")
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */

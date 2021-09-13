@@ -8,7 +8,7 @@ use Donquixote\Ock\Tests\Fixture\IntFormat\IntFormat_Trivial;
 use Donquixote\Ock\Tests\Fixture\IntFormat\IntFormatInterface;
 
 /**
- * @obck("intRounded", "Rounded as integer", adapter = true)
+ * @ock("intRounded", "Rounded as integer", adapter = true)
  */
 class NumberFormat_IntRounded implements NumberFormatInterface {
 
