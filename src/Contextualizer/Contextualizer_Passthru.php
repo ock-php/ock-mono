@@ -22,8 +22,8 @@ class Contextualizer_Passthru implements ContextualizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function contextGetFormula(?ContextInterface $context): string {
-    // TODO: Implement contextGetFormula() method.
+  public function contextGetFormula(?ContextInterface $context): FormulaInterface {
+    return $this->formula;
   }
 
 }

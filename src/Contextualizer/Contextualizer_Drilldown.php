@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Contextualizer;
 
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface;
@@ -65,7 +66,7 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
     $this->formulaToAnything = $formulaToAnything;
   }
 
-  public function contextGetFormula(?ContextInterface $context): string {
+  public function contextGetFormula(?ContextInterface $context): FormulaInterface {
 
   }
 
