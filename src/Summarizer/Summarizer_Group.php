@@ -29,7 +29,7 @@ class Summarizer_Group implements SummarizerInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_GroupInterface $formula, NurseryInterface $formulaToAnything): ?self {
 

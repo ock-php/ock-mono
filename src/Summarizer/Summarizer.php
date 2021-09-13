@@ -16,7 +16,7 @@ final class Summarizer extends UtilBase {
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromIface(
     string $interface,
@@ -33,7 +33,7 @@ final class Summarizer extends UtilBase {
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Cannot build a generator for the given formula.
    */
   public static function fromFormula(

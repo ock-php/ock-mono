@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Nursery;
 
 use Donquixote\Ock\Context\CfContextInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\ContextProviding\Formula_ContextProvidingInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
 use Donquixote\Ock\Incarnator\Incarnator_SmartChain;
@@ -103,7 +103,7 @@ class Nursery_FromCradle extends NurseryBase {
     ];
 
     if ($candidate === NULL) {
-      throw new FormulaToAnythingException(strtr(
+      throw new IncarnatorException(strtr(
         'Unsupported formula of class @formula_class: Expected @interface object, found @found.',
         $replacements));
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IdToFormula;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
 use Donquixote\Ock\Nursery\NurseryInterface;
 
@@ -49,7 +49,7 @@ class IdToFormula_InlineExpanded implements IdToFormulaInterface {
         $rawNestedFormula,
         $this->helper);
     }
-    catch (FormulaToAnythingException $e) {
+    catch (IncarnatorException $e) {
       // @todo Log this.
       return NULL;
     }

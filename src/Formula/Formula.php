@@ -68,7 +68,7 @@ final class Formula extends UtilBase {
    * @param \Donquixote\Ock\Nursery\NurseryInterface $formula_to_anything
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function replace(FormulaInterface $formula, NurseryInterface $formula_to_anything): ?FormulaInterface {
 

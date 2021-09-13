@@ -17,7 +17,7 @@ final class Summarizer_V2V extends UtilBase {
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(
     Formula_ValueToValueBaseInterface $formula,

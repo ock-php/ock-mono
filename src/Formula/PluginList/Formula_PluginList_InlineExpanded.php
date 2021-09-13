@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\PluginList;
 
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\InlinePluginList\InlinePluginList;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Plugin\Plugin;
@@ -50,7 +50,7 @@ class Formula_PluginList_InlineExpanded implements Formula_PluginListInterface {
           $plugin->getFormula(),
           $this->helper);
       }
-      catch (FormulaToAnythingException $e) {
+      catch (IncarnatorException $e) {
         // @todo Log this.
         continue;
       }

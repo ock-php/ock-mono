@@ -27,7 +27,7 @@ class Generator_Para implements GeneratorInterface {
    *
    * @return self
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_ParaInterface $formula, NurseryInterface $formulaToAnything): Generator_Para {
     return new self(

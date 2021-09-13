@@ -22,7 +22,7 @@ class Evaluator {
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
    *   Materialized evaluator.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Cannot build a evaluator for the given formula.
    */
   public static function fromFormula(

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Util;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Nursery\NurseryInterface;
 
 final class StaUtil extends UtilBase {
@@ -15,7 +15,7 @@ final class StaUtil extends UtilBase {
    * @param string $interface
    *
    * @return mixed[]|null
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function getMultiple(array $itemFormulas, NurseryInterface $formulaToAnything, string $interface): ?array {
 
@@ -41,14 +41,14 @@ final class StaUtil extends UtilBase {
    *
    * @return object
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function getObject(FormulaInterface $formula, NurseryInterface $formulaToAnything, string $interface): object {
 
     $object = $formulaToAnything->breed($formula, $interface);
 
     if (!$object instanceof $interface) {
-      throw new FormulaToAnythingException('Misbehaving STA.');
+      throw new IncarnatorException('Misbehaving STA.');
     }
 
     return $object;

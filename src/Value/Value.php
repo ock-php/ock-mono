@@ -24,7 +24,7 @@ class Value implements ValueInterface {
    * @return \Donquixote\Ock\Value\ValueInterface|null
    *
    * @throws \Donquixote\Ock\Exception\EvaluatorException
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function sequence(Formula_SequenceInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
 
@@ -50,7 +50,7 @@ class Value implements ValueInterface {
    * @return \Donquixote\Ock\Value\ValueInterface[]|null
    *
    * @throws \Donquixote\Ock\Exception\EvaluatorException
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function sequenceItems(Formula_SequenceInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?array {
 
@@ -81,7 +81,7 @@ class Value implements ValueInterface {
    *
    * @return \Donquixote\Ock\Value\ValueInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function group(Formula_GroupInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueInterface {
 
@@ -106,7 +106,7 @@ class Value implements ValueInterface {
    *
    * @return null|\Donquixote\Ock\Value\ValueInterface[]
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   private static function groupItems(Formula_GroupInterface $groupFormula, $conf, FormulaConfToAnythingInterface $scta): ?array {
 
@@ -135,7 +135,7 @@ class Value implements ValueInterface {
    *
    * @return \Donquixote\Ock\Value\ValueInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromFormulaConf(FormulaInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ValueInterface {
 

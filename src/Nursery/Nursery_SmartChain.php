@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Nursery;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -109,7 +109,7 @@ class Nursery_SmartChain extends NurseryBase {
     ];
 
     if ($candidate === NULL) {
-      throw new FormulaToAnythingException(strtr(
+      throw new IncarnatorException(strtr(
         'Unsupported formula of class @formula_class: Expected @interface object, found @found.',
         $replacements));
     }

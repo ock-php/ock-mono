@@ -26,7 +26,7 @@ class Generator_FixedConf implements GeneratorInterface {
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_FixedConfInterface $formula, NurseryInterface $formulaToAnything): GeneratorInterface {
     return new self(

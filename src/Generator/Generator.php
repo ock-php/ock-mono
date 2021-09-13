@@ -22,7 +22,7 @@ final class Generator extends UtilBase {
    *   Generator. Evaluating the code of this generator should create an
    *   instance of $interface.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Cannot build a generator for the given interface.
    */
   public static function fromIface(
@@ -45,7 +45,7 @@ final class Generator extends UtilBase {
    * @return \Donquixote\Ock\Generator\GeneratorInterface
    *   Materialized generator.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Cannot build a generator for the given formula.
    */
   public static function fromFormula(

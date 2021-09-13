@@ -15,7 +15,7 @@ class ValueStub {
    *
    * @return \Donquixote\Ock\ValueStub\ValueStubInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromFormulaConf(FormulaInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ValueStubInterface {
 

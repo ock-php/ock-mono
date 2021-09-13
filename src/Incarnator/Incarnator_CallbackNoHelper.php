@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Incarnator;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Nursery\NurseryInterface;
 
 class Incarnator_CallbackNoHelper extends IncarnatorBase {
@@ -82,7 +82,7 @@ class Incarnator_CallbackNoHelper extends IncarnatorBase {
       return $this->callback->invokeArgs([$formula]);
     }
     catch (\Exception $e) {
-      throw new FormulaToAnythingException("Exception in callback.", 0, $e);
+      throw new IncarnatorException("Exception in callback.", 0, $e);
     }
   }
 }

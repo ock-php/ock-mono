@@ -21,7 +21,7 @@ abstract class InlineDrilldown_Group implements InlineDrilldownInterface {
    *
    * @return \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromGroup(Formula_GroupInterface $formula, NurseryInterface $formulaToAnything): ?InlineDrilldownInterface {
     return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
@@ -35,7 +35,7 @@ abstract class InlineDrilldown_Group implements InlineDrilldownInterface {
    *
    * @return \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromGroupVal(Formula_GroupValInterface $formula, NurseryInterface $formulaToAnything): ?InlineDrilldownInterface {
     return self::create($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
@@ -48,7 +48,7 @@ abstract class InlineDrilldown_Group implements InlineDrilldownInterface {
    *
    * @return \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, NurseryInterface $formulaToAnything): ?InlineDrilldownInterface {
     $itemFormulas = $groupFormula->getItemFormulas();

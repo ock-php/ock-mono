@@ -28,7 +28,7 @@ class ValueStub_GroupVal implements ValueStubInterface {
    *
    * @return \Donquixote\Ock\ValueStub\ValueStubInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_GroupValInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueStubInterface {
     return new self(

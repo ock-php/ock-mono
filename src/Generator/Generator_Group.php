@@ -30,7 +30,7 @@ class Generator_Group implements GeneratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function createFromGroupFormula(Formula_GroupInterface $formula, NurseryInterface $formulaToAnything): ?self {
     return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
@@ -44,7 +44,7 @@ class Generator_Group implements GeneratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function createFromGroupValFormula(Formula_GroupValInterface $formula, NurseryInterface $formulaToAnything): ?self {
     return self::create($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
@@ -57,7 +57,7 @@ class Generator_Group implements GeneratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, NurseryInterface $formulaToAnything): ?self {
 

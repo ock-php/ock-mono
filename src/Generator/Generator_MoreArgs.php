@@ -39,7 +39,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, NurseryInterface $formulaToAnything): ?Generator_MoreArgs {
     return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
@@ -53,7 +53,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function createFromMoreArgsValFormula(
     Formula_MoreArgsValInterface $formula,
@@ -72,7 +72,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(
     Formula_MoreArgsInterface $moreArgsFormula,

@@ -40,7 +40,7 @@ class InlinePluginList_Drilldown implements InlinePluginListInterface {
    * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromDrilldownVal(
     Formula_DrilldownValInterface $formula,
@@ -59,7 +59,7 @@ class InlinePluginList_Drilldown implements InlinePluginListInterface {
    * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return self
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromDrilldown(
     Formula_DrilldownInterface $formula,
@@ -77,7 +77,7 @@ class InlinePluginList_Drilldown implements InlinePluginListInterface {
    * @param \Donquixote\Ock\Nursery\NurseryInterface $formulaToAnything
    *
    * @return static|null
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(
     Formula_DrilldownInterface $formula,

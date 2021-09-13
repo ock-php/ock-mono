@@ -29,7 +29,7 @@ class Generator_DefaultConf implements GeneratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(
     Formula_DefaultConfInterface $formula,

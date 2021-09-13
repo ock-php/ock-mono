@@ -16,7 +16,7 @@ class Generator_Neutral extends Generator_DecoratorBase {
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_SkipEvaluatorInterface $formula, NurseryInterface $formulaToAnything): ?GeneratorInterface {
 

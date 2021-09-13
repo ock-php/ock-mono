@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Label\Formula_LabelInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Text\Text;
@@ -39,7 +39,7 @@ class Summarizer_Label implements SummarizerInterface {
         $formula->getDecorated(),
         $formulaToAnything);
     }
-    catch (FormulaToAnythingException $e) {
+    catch (IncarnatorException $e) {
       return NULL;
     }
 

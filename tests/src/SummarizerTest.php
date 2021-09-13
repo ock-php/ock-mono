@@ -20,7 +20,7 @@ class SummarizerTest extends FormulaTestBase {
    *
    * @dataProvider providerTestFormula()
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public function testFormula(string $base, string $case): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
@@ -75,7 +75,7 @@ class SummarizerTest extends FormulaTestBase {
    *
    * @dataProvider providerTestIfaceSummarizer()
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public function testIfaceSummarizer(string $type, string $name) {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);

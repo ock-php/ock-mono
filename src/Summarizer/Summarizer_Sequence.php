@@ -25,7 +25,7 @@ class Summarizer_Sequence implements SummarizerInterface {
    *
    * @return \Donquixote\Ock\Summarizer\Summarizer_Sequence|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(
     Formula_SequenceInterface $formula,

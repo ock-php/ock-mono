@@ -18,7 +18,7 @@ class GeneratorTest extends FormulaTestBase {
    *
    * @dataProvider providerTestFormula()
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public function testFormula(string $file): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
@@ -68,7 +68,7 @@ class GeneratorTest extends FormulaTestBase {
    *
    * @dataProvider providerTestIfaceGenerator()
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public function testIfaceGenerator(string $type, string $name) {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);

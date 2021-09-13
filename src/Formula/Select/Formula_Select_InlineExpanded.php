@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Select;
 
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
@@ -141,7 +141,7 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
     try {
       $subtree = InlineDrilldown::fromFormula($nestedFormula, $this->helper);
     }
-    catch (FormulaToAnythingException $e) {
+    catch (IncarnatorException $e) {
       return NULL;
     }
 

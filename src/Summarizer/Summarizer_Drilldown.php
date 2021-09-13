@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Text\Text;
@@ -69,7 +69,7 @@ class Summarizer_Drilldown implements SummarizerInterface {
         $subFormula,
         $this->formulaToAnything);
     }
-    catch (FormulaToAnythingException $e) {
+    catch (IncarnatorException $e) {
       return Text::s($id)
         ->wrapT('@id', 'Undocumented id "@id"')
         ->wrapSprintf('- %s -');

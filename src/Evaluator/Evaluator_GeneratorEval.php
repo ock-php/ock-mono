@@ -23,7 +23,7 @@ class Evaluator_GeneratorEval implements EvaluatorInterface {
    * @param \Donquixote\Ock\Nursery\NurseryInterface $nursery
    *
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(FormulaInterface $formula, NurseryInterface $nursery): EvaluatorInterface {
     $generator = Generator::fromFormula($formula, $nursery);

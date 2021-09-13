@@ -11,7 +11,7 @@ use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 class FormulaTest extends FormulaTestBase {
 
   /**
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public function testFormula() {
     $formula = Formula::iface(IntOpInterface::class);

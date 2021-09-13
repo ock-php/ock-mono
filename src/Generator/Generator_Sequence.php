@@ -30,7 +30,7 @@ class Generator_Sequence implements GeneratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function createFromSequenceFormula(Formula_SequenceInterface $formula, NurseryInterface $formulaToAnything): ?Generator_Sequence {
     return self::create($formula, new V2V_Sequence_Trivial(), $formulaToAnything);
@@ -44,7 +44,7 @@ class Generator_Sequence implements GeneratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function createFromSequenceValFormula(Formula_SequenceValInterface $formula, NurseryInterface $formulaToAnything): ?Generator_Sequence {
     return self::create($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
@@ -57,7 +57,7 @@ class Generator_Sequence implements GeneratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   private static function create(Formula_SequenceInterface $formula, V2V_SequenceInterface $v2v, NurseryInterface $formulaToAnything): ?Generator_Sequence {
 

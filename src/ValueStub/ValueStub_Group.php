@@ -22,7 +22,7 @@ class ValueStub_Group implements ValueStubInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function createFromGroupFormula(Formula_GroupInterface $formula, $conf, FormulaConfToAnythingInterface $scta): ?ValueStub_Group {
     $itemStubs = self::createItemStubs($formula, $conf, $scta);
@@ -36,7 +36,7 @@ class ValueStub_Group implements ValueStubInterface {
    *
    * @return \Donquixote\Ock\ValueStub\ValueStubInterface[]|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   private static function createItemStubs(Formula_GroupInterface $groupFormula, $conf, FormulaConfToAnythingInterface $scta): ?array {
 

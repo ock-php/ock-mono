@@ -18,7 +18,7 @@ final class Summarizer_Neutral extends UtilBase {
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_NeutralInterface $formula, NurseryInterface $formulaToAnything): SummarizerInterface {
     return Summarizer::fromFormula($formula->getDecorated(), $formulaToAnything);

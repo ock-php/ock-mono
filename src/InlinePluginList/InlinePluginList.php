@@ -20,7 +20,7 @@ final class InlinePluginList extends UtilBase {
    * @return \Donquixote\Ock\InlinePluginList\InlinePluginListInterface
    *   Materialized PluginList.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Cannot build a PluginList for the given formula.
    */
   public static function fromFormula(

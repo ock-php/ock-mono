@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValueInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\V2V\Value\V2V_ValueInterface;
@@ -30,7 +30,7 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
         $valueToValueFormula->getDecorated(),
         $formulaToAnything);
     }
-    catch (FormulaToAnythingException $e) {
+    catch (IncarnatorException $e) {
       return NULL;
     }
 

@@ -26,7 +26,7 @@ class Generator_Optional implements GeneratorInterface {
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_OptionalInterface $formula, NurseryInterface $formulaToAnything): ?GeneratorInterface {
 

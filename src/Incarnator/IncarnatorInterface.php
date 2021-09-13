@@ -22,7 +22,7 @@ interface IncarnatorInterface {
    * @return null|object
    *   An instance of $interface, or NULL to try other cradles instead.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Malfunction in a formula replacer.
    */
   public function breed(

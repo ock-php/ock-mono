@@ -27,7 +27,7 @@ class Summarizer_Optional implements SummarizerInterface {
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(
     Formula_OptionalInterface $formula,

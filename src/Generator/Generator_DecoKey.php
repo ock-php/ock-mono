@@ -32,7 +32,7 @@ class Generator_DecoKey implements GeneratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromDecoKeyFormula(
     Formula_DecoKeyInterface $formula,

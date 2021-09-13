@@ -7,7 +7,7 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_BoundParameters;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\ReflectionUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -116,7 +116,7 @@ class Incarnator_Callback extends IncarnatorBase {
       return $this->callback->invokeArgs([$formula, $helper]);
     }
     catch (\Exception $e) {
-      throw new FormulaToAnythingException($e->getMessage(), 0, $e);
+      throw new IncarnatorException($e->getMessage(), 0, $e);
     }
   }
 }

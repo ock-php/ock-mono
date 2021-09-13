@@ -38,7 +38,7 @@ class Incarnator_DecoShift extends Incarnator_FormulaReplacerBase {
    * @param \Donquixote\Ock\Nursery\NurseryInterface $helper
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   private function decoratedFormulaGetReplacement(FormulaInterface $formula, NurseryInterface $helper): ?FormulaInterface {
     if ($formula instanceof Formula_GroupValInterface) {

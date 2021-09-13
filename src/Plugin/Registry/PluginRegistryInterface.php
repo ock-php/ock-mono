@@ -11,7 +11,7 @@ interface PluginRegistryInterface {
    * @return \Donquixote\Ock\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public function getPluginss(): array;
 

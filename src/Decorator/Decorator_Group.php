@@ -33,7 +33,7 @@ class Decorator_Group implements DecoratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromGroupFormula(
     Formula_GroupInterface $formula,
@@ -53,7 +53,7 @@ class Decorator_Group implements DecoratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromGroupValFormula(
     Formula_GroupValInterface $formula,
@@ -74,7 +74,7 @@ class Decorator_Group implements DecoratorInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, NurseryInterface $formulaToAnything): ?Generator_Group {
 

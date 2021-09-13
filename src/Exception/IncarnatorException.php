@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Exception;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 
-class FormulaToAnythingException extends \Exception implements UnsupportedFormulaExceptionInterface {
+class IncarnatorException extends \Exception implements UnsupportedFormulaExceptionInterface {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula

@@ -23,7 +23,7 @@ final class Decorator extends UtilBase {
    *   Decorator. Evaluating the code of this Decorator should create an
    *   instance of $interface.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Cannot build a Decorator for the given interface.
    */
   public static function fromIface(
@@ -46,7 +46,7 @@ final class Decorator extends UtilBase {
    * @return \Donquixote\Ock\Decorator\DecoratorInterface
    *   Materialized Decorator.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Cannot build a Decorator for the given formula.
    */
   public static function fromFormula(

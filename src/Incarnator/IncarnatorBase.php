@@ -116,7 +116,7 @@ abstract class IncarnatorBase implements IncarnatorInterface {
    * @return null|object
    *   An instance of $interface, or NULL.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   abstract protected function formulaDoGetObject(
     FormulaInterface $formula,

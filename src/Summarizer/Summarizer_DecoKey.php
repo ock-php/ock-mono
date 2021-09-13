@@ -30,7 +30,7 @@ class Summarizer_DecoKey implements SummarizerInterface {
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function create(Formula_DecoKeyInterface $formula, NurseryInterface $formulaToAnything): ?self {
     return new self(

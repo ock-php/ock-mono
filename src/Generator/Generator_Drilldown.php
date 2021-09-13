@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\Ock\Nursery\NurseryInterface;
@@ -103,7 +103,7 @@ class Generator_Drilldown implements GeneratorInterface {
     try {
       $subGenerator = Generator::fromFormula($subFormula, $this->formulaToAnything);
     }
-    catch (FormulaToAnythingException $e) {
+    catch (IncarnatorException $e) {
       return PhpUtil::unsupportedFormula($subFormula, "Unsupported formula for id '$id' in drilldown.");
     }
 

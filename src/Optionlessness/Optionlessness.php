@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Optionlessness;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Nursery\NurseryInterface;
 
 class Optionlessness implements OptionlessnessInterface {
@@ -33,7 +33,7 @@ class Optionlessness implements OptionlessnessInterface {
     try {
       return self::fromFormula($formula, $nursery)->isOptionless();
     }
-    catch (FormulaToAnythingException $e) {
+    catch (IncarnatorException $e) {
       // Assume it is not optionless.
       return FALSE;
     }
@@ -45,7 +45,7 @@ class Optionlessness implements OptionlessnessInterface {
    *
    * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromFormula(FormulaInterface $formula, NurseryInterface $nursery): OptionlessnessInterface {
     /** @var \Donquixote\Ock\Optionlessness\OptionlessnessInterface $candidate */

@@ -15,7 +15,7 @@ interface FormulaConfToAnythingInterface {
    * @return object
    *   An instance of $interface.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public function formula(FormulaInterface $formula, $conf, string $interface): object;
 

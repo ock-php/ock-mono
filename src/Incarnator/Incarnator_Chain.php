@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\FormulaToAnythingException;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -50,7 +50,7 @@ class Incarnator_Chain extends IncarnatorZeroBase {
         if ($candidate instanceof $interface) {
           return $candidate;
         }
-        throw new FormulaToAnythingException('Misbehaving STA.');
+        throw new IncarnatorException('Misbehaving STA.');
       }
     }
 

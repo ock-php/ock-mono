@@ -44,7 +44,7 @@ abstract class Incarnator_FormulaReplacerBase extends IncarnatorBase {
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    *   Replacement formula.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaToAnythingException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   abstract protected function formulaGetReplacement(FormulaInterface $formula, NurseryInterface $nursery): ?FormulaInterface;
 
