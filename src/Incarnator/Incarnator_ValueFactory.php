@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Incarnator;
 
-use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
@@ -14,7 +13,6 @@ use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
 use Donquixote\Ock\Nursery\NurseryInterface;
 use Donquixote\Ock\ParamToLabel\ParamToLabelInterface;
 use Donquixote\Ock\Text\Text;
-use Psr\Log\LoggerInterface;
 
 /**
  * @STA
@@ -27,20 +25,13 @@ class Incarnator_ValueFactory extends Incarnator_FormulaReplacerBase {
   private $paramToLabel;
 
   /**
-   * @var \Psr\Log\LoggerInterface
-   */
-  private $logger;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\ParamToLabel\ParamToLabelInterface $paramToLabel
-   * @param \Psr\Log\LoggerInterface $logger
    */
-  public function __construct(ParamToLabelInterface $paramToLabel, LoggerInterface $logger) {
+  public function __construct(ParamToLabelInterface $paramToLabel) {
     parent::__construct(Formula_ValueFactoryInterface::class);
     $this->paramToLabel = $paramToLabel;
-    $this->logger = $logger;
   }
 
   /**
@@ -64,21 +55,15 @@ class Incarnator_ValueFactory extends Incarnator_FormulaReplacerBase {
     }
 
     $builder = Formula::group();
-    foreach ($params as $i => $param) {
+    foreach ($params as $param) {
       $name = $param->getName();
       $param_formula = $this->paramGetFormula($param);
       if (!$param_formula) {
-        if ($param->isOptional()) {
-          // Ignore further parameters.
-          break;
-        }
-
-        // The callback has parameters that cannot be made configurable.
-        $this->logUnconfigurableParameter(
-          $factory,
-          $i);
-
-        return NULL;
+        throw new IncarnatorException(
+          sprintf(
+            'Cannot build formula for parameter $%s of %s.',
+            $param->getName(),
+            $factory->argsPhpGetPhp(['...'], new CodegenHelper())));
       }
 
       $param_label = $this->paramToLabel->paramGetLabel($param);
@@ -90,32 +75,6 @@ class Incarnator_ValueFactory extends Incarnator_FormulaReplacerBase {
     }
 
     return $builder->createWithCallback($factory);
-  }
-
-  /**
-   * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
-   * @param int $iParamUnconfigurable
-   *   Parameter index which is creating problems.
-   */
-  private function logUnconfigurableParameter(CallbackReflectionInterface $callback, int $iParamUnconfigurable): void {
-
-    $params = $callback->getReflectionParameters();
-
-    $badParam = $params[$iParamUnconfigurable];
-
-    $argsPhp = [];
-    foreach ($params as $i => $param) {
-      $argsPhp[$i] = '$' . $param->getName();
-    }
-
-    $callPhp = $callback->argsPhpGetPhp($argsPhp, new CodegenHelper());
-
-    $this->logger->warning(
-      'Parameter {param} of {callback} is not configurable.',
-      [
-        'param' => '$' . $badParam->getName(),
-        'callback' => $callPhp,
-      ]);
   }
 
   /**
