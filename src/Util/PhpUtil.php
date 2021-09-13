@@ -218,7 +218,7 @@ EOT;
 
   /**
    * @param callable $method
-   *   Static method.
+   *   Static method, as an array of two strings.
    * @param string[] $argsPhp
    *   Arguments as php expressions.
    *
@@ -234,7 +234,7 @@ EOT;
 
   /**
    * @param callable $callable
-   *   Static method.
+   *   Static method or function.
    * @param string[] $argsPhp
    *   Arguments as php expressions.
    *
@@ -265,7 +265,7 @@ EOT;
   }
 
   /**
-   * @param string $function
+   * @param string|callable $function
    * @param string[] $argsPhp
    *
    * @return string
