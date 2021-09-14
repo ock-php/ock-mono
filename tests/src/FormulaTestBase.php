@@ -21,7 +21,7 @@ use Psr\Log\Test\TestLogger;
 class FormulaTestBase extends TestCase {
 
   /**
-   * Gets a FormulaToAnything object.
+   * Gets an Incarnator* object.
    *
    * @param object[] $objects
    *   Objects to pass to the constructors.
