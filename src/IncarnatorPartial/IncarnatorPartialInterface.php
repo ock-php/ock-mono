@@ -28,7 +28,8 @@ interface IncarnatorPartialInterface {
   public function incarnate(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $incarnator): ?object;
+    IncarnatorInterface $incarnator
+  ): ?object;
 
   /**
    * @param string $resultInterface
