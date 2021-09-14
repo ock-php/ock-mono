@@ -27,12 +27,12 @@ class DiscoveryTest extends FormulaTestBase {
       LocalPackageUtil::getClassFilesIA()->withRealpathRoot(),
       TRUE);
 
-    self::assertSame($class_files[
-      $root . '/src/Generator/Generator_Neutral.php'] ?? NULL,
+    self::assertSame(
+      $class_files[$root . '/src/Generator/Generator_Neutral.php'] ?? NULL,
       Generator_Neutral::class);
 
-    self::assertSame($class_files[
-      $root . '/src/Formula/Sequence/Formula_SequenceInterface.php'] ?? NULL,
+    self::assertSame(
+      $class_files[$root . '/src/Formula/Sequence/Formula_SequenceInterface.php'] ?? NULL,
       Formula_SequenceInterface::class);
   }
 
