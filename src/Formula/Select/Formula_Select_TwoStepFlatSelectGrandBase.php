@@ -48,7 +48,7 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
       return FALSE;
     }
 
-    if (null === $subFormula = $this->idGetSubFormula($id0)) {
+    if (NULL === $subFormula = $this->idGetSubFormula($id0)) {
       return FALSE;
     }
 

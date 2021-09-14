@@ -108,7 +108,7 @@ class STADiscovery_X {
           continue;
         }
 
-        if (null === $partialOrNull) {
+        if (NULL === $partialOrNull) {
           continue;
         }
 
@@ -126,8 +126,8 @@ class STADiscovery_X {
    */
   private function factoryIsSTA(ReflectionFactoryInterface $factory): bool {
 
-    if (false === $docComment = $factory->getDocComment()) {
-      return false;
+    if (FALSE === $docComment = $factory->getDocComment()) {
+      return FALSE;
     }
 
     return self::docCommentHasArglessAnnotationName($docComment, 'STA');
@@ -141,8 +141,8 @@ class STADiscovery_X {
    */
   public static function docCommentHasArglessAnnotationName(string $docComment, string $name): bool {
 
-    if (false === strpos($docComment, '@' . $name)) {
-      return false;
+    if (FALSE === strpos($docComment, '@' . $name)) {
+      return FALSE;
     }
 
     $pattern = ''
@@ -151,9 +151,9 @@ class STADiscovery_X {
       . '(\(\)|)' . '(\h*\v|\h*\*/$)~';
 
     if (!preg_match($pattern, $docComment)) {
-      return false;
+      return FALSE;
     }
 
-    return true;
+    return TRUE;
   }
 }

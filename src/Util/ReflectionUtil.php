@@ -271,9 +271,9 @@ final class ReflectionUtil extends UtilBase {
    *
    * @return mixed
    */
-  public static function &objectGetPropertyValueRef(object $object, string $k, $context = null) {
+  public static function &objectGetPropertyValueRef(object $object, string $k, $context = NULL) {
 
-    if (null === $context) {
+    if (NULL === $context) {
       /** @var string|object|null $context */
       /** @noinspection CallableParameterUseCaseInTypeContextInspection */
       $context = $object;
@@ -285,7 +285,7 @@ final class ReflectionUtil extends UtilBase {
       return $object->$k;
     };
 
-    $bound = $closure->bindTo(null, $context);
+    $bound = $closure->bindTo(NULL, $context);
 
     /** @noinspection PhpPassByRefInspection */
     return $bound->__invoke($k);
@@ -321,9 +321,9 @@ final class ReflectionUtil extends UtilBase {
    *
    * @return mixed
    */
-  public static function objectGetPropertyValue(object $object, string $k, $context = null) {
+  public static function objectGetPropertyValue(object $object, string $k, $context = NULL) {
 
-    if (null === $context) {
+    if (NULL === $context) {
       /** @var string|object|null $context */
       /** @noinspection CallableParameterUseCaseInTypeContextInspection */
       $context = $object;
@@ -335,7 +335,7 @@ final class ReflectionUtil extends UtilBase {
       return $object->$k;
     };
 
-    $bound = $closure->bindTo(null, $context);
+    $bound = $closure->bindTo(NULL, $context);
 
     return $bound->__invoke($k);
   }
@@ -354,7 +354,7 @@ final class ReflectionUtil extends UtilBase {
       return $object->$k;
     };
 
-    $bound = $closure->bindTo(null, $object);
+    $bound = $closure->bindTo(NULL, $object);
 
     $reflObject = new \ReflectionObject($object);
 
@@ -375,7 +375,7 @@ final class ReflectionUtil extends UtilBase {
     $level = 0;
     while ($reflClass = $reflClass->getParentClass()) {
       ++$level;
-      $bound = $closure->bindTo(null, $reflClass->getName());
+      $bound = $closure->bindTo(NULL, $reflClass->getName());
       foreach ($reflClass->getProperties(\ReflectionProperty::IS_PRIVATE) as $property) {
 
         if ($property->isStatic()) {
@@ -414,7 +414,7 @@ final class ReflectionUtil extends UtilBase {
     };
 
     if ([] !== $values) {
-      $setValues = $setValuesUnbound->bindTo(null, $reflClass->getName());
+      $setValues = $setValuesUnbound->bindTo(NULL, $reflClass->getName());
       $setValues($values);
     }
 
@@ -426,7 +426,7 @@ final class ReflectionUtil extends UtilBase {
     while ($reflClass = $reflClass->getParentClass()) {
       ++$i;
       if (!empty($privateParentValues[$i])) {
-        $setValues = $setValuesUnbound->bindTo(null, $reflClass->getName());
+        $setValues = $setValuesUnbound->bindTo(NULL, $reflClass->getName());
         $setValues($privateParentValues[$i]);
       }
     }
@@ -444,9 +444,9 @@ final class ReflectionUtil extends UtilBase {
    *
    * @throws \ReflectionException
    */
-  public static function objectCallMethodArgs(object $object, string $methodName, array $args, $context = null) {
+  public static function objectCallMethodArgs(object $object, string $methodName, array $args, $context = NULL) {
 
-    if (null === $context) {
+    if (NULL === $context) {
       /** @var string|object|null $context */
       /** @noinspection CallableParameterUseCaseInTypeContextInspection */
       $context = $object;

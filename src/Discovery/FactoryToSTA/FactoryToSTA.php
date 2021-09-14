@@ -46,7 +46,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
   /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface|null $paramToValue
    */
-  public function __construct(ParamToValueInterface $paramToValue = null) {
+  public function __construct(ParamToValueInterface $paramToValue = NULL) {
     $this->paramToValue = $paramToValue;
   }
 
@@ -92,8 +92,8 @@ class FactoryToSTA implements FactoryToSTAInterface {
       $hasStaParam = FALSE;
     }
 
-    if (null === $callback = $this->reflectorGetCallback($factory->getReflector())) {
-      return null;
+    if (NULL === $callback = $this->reflectorGetCallback($factory->getReflector())) {
+      return NULL;
     }
 
     // Look at remaining parameters.
@@ -107,8 +107,8 @@ class FactoryToSTA implements FactoryToSTAInterface {
       $callback = new CallbackReflection_BoundParameters($callback, $boundArgs);
     }
 
-    if (null === $returnTypeClass = $factory->getReturnTypeClass()) {
-      return null;
+    if (NULL === $returnTypeClass = $factory->getReturnTypeClass()) {
+      return NULL;
     }
 
     if ($hasStaParam) {
@@ -139,7 +139,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
     if ($reflector instanceof \ReflectionClass) {
 
       if (!$reflector->isInstantiable()) {
-        return null;
+        return NULL;
       }
 
       return new CallbackReflection_ClassConstruction($reflector);
@@ -148,11 +148,11 @@ class FactoryToSTA implements FactoryToSTAInterface {
     if ($reflector instanceof \ReflectionMethod) {
 
       if ($reflector->isAbstract()) {
-        return null;
+        return NULL;
       }
 
       if (!$reflector->isStatic()) {
-        return null;
+        return NULL;
       }
 
       return new CallbackReflection_StaticMethod($reflector);
@@ -162,7 +162,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
       return new CallbackReflection_Function($reflector);
     }
 
-    return null;
+    return NULL;
   }
 
 }

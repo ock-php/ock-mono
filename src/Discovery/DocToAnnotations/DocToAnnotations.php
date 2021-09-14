@@ -43,7 +43,7 @@ class DocToAnnotations implements DocToAnnotationsInterface {
    */
   public function docGetAnnotations(string $docComment): array {
 
-    if (false === strpos($docComment, '@' . $this->tagName)) {
+    if (FALSE === strpos($docComment, '@' . $this->tagName)) {
       return [];
     }
 
@@ -57,7 +57,7 @@ class DocToAnnotations implements DocToAnnotationsInterface {
       $annotation = [];
       foreach ($object->getArguments() as $k => $v) {
         if ($v instanceof GenericAnnotationInterface) {
-          if (null === $v = $this->resolveAnnotation($v->getName(), $v->getArguments())) {
+          if (NULL === $v = $this->resolveAnnotation($v->getName(), $v->getArguments())) {
             continue;
           }
         }

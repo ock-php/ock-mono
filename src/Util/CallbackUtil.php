@@ -18,7 +18,7 @@ class CallbackUtil {
     switch (\gettype($callable)) {
 
       case 'array':
-        list($classOrObject, $methodName) = $callable + [null, null];
+        list($classOrObject, $methodName) = $callable + [NULL, NULL];
 
         if (\is_string($classOrObject) && \is_string($methodName)) {
           // @todo validate!

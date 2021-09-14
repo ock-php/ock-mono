@@ -59,7 +59,7 @@ class Generator_Optional implements GeneratorInterface {
       return $this->formula->getEmptyPhp();
     }
 
-    $subConf = $conf['options'] ?? null;
+    $subConf = $conf['options'] ?? NULL;
 
     return $this->decorated->confGetPhp($subConf);
   }

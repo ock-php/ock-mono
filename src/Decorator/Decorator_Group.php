@@ -114,7 +114,7 @@ class Decorator_Group implements DecoratorInterface {
     $phpStatements = [];
     foreach ($this->itemGenerators as $key => $itemGenerator) {
 
-      $itemConf = $conf[$key] ?? null;
+      $itemConf = $conf[$key] ?? NULL;
 
       $phpStatements[$key] = $itemGenerator->confGetPhp($itemConf);
     }

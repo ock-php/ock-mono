@@ -77,7 +77,7 @@ class CfContext implements CfContextInterface {
    * {@inheritdoc}
    */
   public function paramNameGetValue($paramName) {
-    return $this->values[$paramName] ?? null;
+    return $this->values[$paramName] ?? NULL;
   }
 
   /**

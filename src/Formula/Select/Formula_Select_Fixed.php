@@ -98,6 +98,6 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
    * {@inheritdoc}
    */
   public function idGetLabel($id): ?TextInterface {
-    return $this->flatOptions[$id] ?? null;
+    return $this->flatOptions[$id] ?? NULL;
   }
 }

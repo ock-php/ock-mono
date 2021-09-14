@@ -58,7 +58,7 @@ class ClassFileToSTAs implements ClassFileToSTAsInterface {
 
     $partials = [];
     foreach ($factories as $factory) {
-      if (null !== $partial = $this->factoryToSTA->factoryGetPartial($factory)) {
+      if (NULL !== $partial = $this->factoryToSTA->factoryGetPartial($factory)) {
         $partials[] = $partial;
       }
     }

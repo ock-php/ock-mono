@@ -67,7 +67,7 @@ class Summarizer_Group implements SummarizerInterface {
     $parts = [];
     foreach ($this->itemSummarizers as $key => $itemSummarizer) {
 
-      $itemSummary = $itemSummarizer->confGetSummary($conf[$key] ?? null);
+      $itemSummary = $itemSummarizer->confGetSummary($conf[$key] ?? NULL);
 
       if ($itemSummary === NULL) {
         continue;

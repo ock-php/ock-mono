@@ -95,8 +95,8 @@ final class Formula extends UtilBase {
       return $candidate;
     }
 
-    if (null === $candidate) {
-      return null;
+    if (NULL === $candidate) {
+      return NULL;
     }
 
     throw new \RuntimeException("Expected a FormulaInterface object or NULL.");

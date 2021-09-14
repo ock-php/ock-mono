@@ -68,7 +68,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string[]|string
    */
-  public static function camelCaseExplode(string $string, $lowercase = true, $example_string = 'AA Bc', $glue = false) {
+  public static function camelCaseExplode(string $string, $lowercase = TRUE, $example_string = 'AA Bc', $glue = FALSE) {
     static $regexp_by_example = [];
     if (!isset($regexp_by_example[$example_string])) {
       $regexp_by_example[$example_string] = self::camelCaseExplodeExampleToRegex($example_string);

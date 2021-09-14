@@ -64,6 +64,6 @@ class Summarizer_Optional implements SummarizerInterface {
       return $this->formula->getEmptySummary();
     }
 
-    return $this->decorated->confGetSummary($conf['options'] ?? null);
+    return $this->decorated->confGetSummary($conf['options'] ?? NULL);
   }
 }

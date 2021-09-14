@@ -26,7 +26,7 @@ class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
   public function factoryGetPartial(ReflectionFactoryInterface $factory): ?IncarnatorPartialInterface {
 
     if (!$this->factoryIsSTA($factory)) {
-      return null;
+      return NULL;
     }
 
     return $this->decorated->factoryGetPartial($factory);
@@ -39,8 +39,8 @@ class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
    */
   private function factoryIsSTA(ReflectionFactoryInterface $factory): bool {
 
-    if (false === $docComment = $factory->getDocComment()) {
-      return false;
+    if (FALSE === $docComment = $factory->getDocComment()) {
+      return FALSE;
     }
 
     return self::docCommentHasArglessAnnotationName($docComment, 'STA');
@@ -54,8 +54,8 @@ class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
    */
   public static function docCommentHasArglessAnnotationName(string $docComment, string $name): bool {
 
-    if (false === strpos($docComment, '@' . $name)) {
-      return false;
+    if (FALSE === strpos($docComment, '@' . $name)) {
+      return FALSE;
     }
 
     $pattern = ''
@@ -64,9 +64,9 @@ class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
       . '(\(\)|)' . '(\h*\v|\h*\*/$)~';
 
     if (!preg_match($pattern, $docComment)) {
-      return false;
+      return FALSE;
     }
 
-    return true;
+    return TRUE;
   }
 }
