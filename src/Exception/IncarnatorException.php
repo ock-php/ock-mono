@@ -68,9 +68,11 @@ class IncarnatorException extends \Exception implements UnsupportedFormulaExcept
     switch ($type = \gettype($value)) {
       case 'object':
         return \get_class($value) . ' object';
+
       case 'array':
       case 'resource':
         return $type;
+
       default:
         return $type . ' (' . var_export($value, TRUE) . ')';
     }

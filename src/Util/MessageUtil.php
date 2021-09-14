@@ -15,12 +15,16 @@ class MessageUtil extends UtilBase {
     switch (gettype($value)) {
       case 'object':
         return get_class($value) . ' object';
+
       case 'array':
         return $value ? 'array(..)' : 'array()';
+
       case 'resource':
         return 'resource';
+
       case 'integer':
         return '(int)' . $value;
+
       default:
         return var_export($value, TRUE);
     }
