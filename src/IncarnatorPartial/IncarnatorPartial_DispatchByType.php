@@ -9,7 +9,7 @@ use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class IncarnatorPartial_SmartChain extends IncarnatorPartialZeroBase {
+class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
 
   /**
    * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[][][]
@@ -41,7 +41,7 @@ class IncarnatorPartial_SmartChain extends IncarnatorPartialZeroBase {
    *
    * @throws \Donquixote\Ock\Exception\STABuilderException
    */
-  public static function create(ParamToValueInterface $paramToValue): IncarnatorPartial_SmartChain {
+  public static function create(ParamToValueInterface $paramToValue): self {
     $partials = LocalPackageUtil::collectIncarnators($paramToValue);
     return new self($partials);
   }

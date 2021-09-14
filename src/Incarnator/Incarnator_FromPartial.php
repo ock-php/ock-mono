@@ -5,7 +5,7 @@ namespace Donquixote\Ock\Incarnator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\IncarnatorPartial\IncarnatorPartial_SmartChain;
+use Donquixote\Ock\IncarnatorPartial\IncarnatorPartial_DispatchByType;
 use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -26,7 +26,7 @@ class Incarnator_FromPartial extends IncarnatorBase {
    * @throws \Donquixote\Ock\Exception\STABuilderException
    */
   public static function create(ParamToValueInterface $paramToValue, string $cache_id): self {
-    return new self(IncarnatorPartial_SmartChain::create($paramToValue), $cache_id);
+    return new self(IncarnatorPartial_DispatchByType::create($paramToValue), $cache_id);
   }
 
   /**
@@ -36,7 +36,7 @@ class Incarnator_FromPartial extends IncarnatorBase {
    * @return self
    */
   public static function createFromPartials(array $partials, string $cache_id): self {
-    return new self(new IncarnatorPartial_SmartChain($partials), $cache_id);
+    return new self(new IncarnatorPartial_DispatchByType($partials), $cache_id);
   }
 
   /**
