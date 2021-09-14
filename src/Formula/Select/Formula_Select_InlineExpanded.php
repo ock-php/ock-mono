@@ -26,23 +26,23 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
   /**
    * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private IncarnatorInterface $helper;
+  private IncarnatorInterface $incarnator;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $decorated
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
   public function __construct(
     Formula_SelectInterface $decorated,
     IdToFormulaInterface $idToFormula,
-    IncarnatorInterface $helper
+    IncarnatorInterface $incarnator
   ) {
     $this->decorated = $decorated;
     $this->idToFormula = $idToFormula;
-    $this->helper = $helper;
+    $this->incarnator = $incarnator;
   }
 
   /**
@@ -139,7 +139,7 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
     }
 
     try {
-      $subtree = InlineDrilldown::fromFormula($nestedFormula, $this->helper);
+      $subtree = InlineDrilldown::fromFormula($nestedFormula, $this->incarnator);
     }
     catch (IncarnatorException $e) {
       return NULL;

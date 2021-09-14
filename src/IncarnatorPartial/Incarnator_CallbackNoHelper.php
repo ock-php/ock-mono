@@ -75,7 +75,7 @@ class Incarnator_CallbackNoHelper extends IncarnatorPartialBase {
   protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $helper
+    IncarnatorInterface $incarnator
   ): ?object {
 
     try {

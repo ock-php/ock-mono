@@ -111,7 +111,7 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param string $interface
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return null|object
    *   An instance of $interface, or NULL.
@@ -121,7 +121,7 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
   abstract protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $helper
+    IncarnatorInterface $incarnator
   ): ?object;
 
   /**

@@ -35,12 +35,12 @@ class Incarnator_DecoShift extends Incarnator_FormulaReplacerBase {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  private function decoratedFormulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $helper): ?FormulaInterface {
+  private function decoratedFormulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
     if ($formula instanceof Formula_GroupValInterface) {
       $group_v2v = $formula->getV2V();
       $group_formula = $formula->getDecorated();
@@ -51,10 +51,10 @@ class Incarnator_DecoShift extends Incarnator_FormulaReplacerBase {
     }
     else {
       // Perhaps this is a group formula in disguise..
-      $derived_formula = Formula::replace($formula, $helper);
+      $derived_formula = Formula::replace($formula, $incarnator);
       if ($derived_formula) {
         // @todo Detect infinite loops!
-        return $this->decoratedFormulaGetReplacement($derived_formula, $helper);
+        return $this->decoratedFormulaGetReplacement($derived_formula, $incarnator);
       }
       // This is not a decorator formula.
       return NULL;

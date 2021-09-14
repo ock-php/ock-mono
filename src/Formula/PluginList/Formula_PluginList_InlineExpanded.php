@@ -23,17 +23,17 @@ class Formula_PluginList_InlineExpanded implements Formula_PluginListInterface {
   /**
    * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private IncarnatorInterface $helper;
+  private IncarnatorInterface $incarnator;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $decorated
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
-  public function __construct(Formula_PluginListInterface $decorated, IncarnatorInterface $helper) {
+  public function __construct(Formula_PluginListInterface $decorated, IncarnatorInterface $incarnator) {
     $this->decorated = $decorated;
-    $this->helper = $helper;
+    $this->incarnator = $incarnator;
   }
 
   /**
@@ -48,7 +48,7 @@ class Formula_PluginList_InlineExpanded implements Formula_PluginListInterface {
       try {
         $subtree = InlinePluginList::fromFormula(
           $plugin->getFormula(),
-          $this->helper);
+          $this->incarnator);
       }
       catch (IncarnatorException $e) {
         // @todo Log this.
@@ -87,7 +87,7 @@ class Formula_PluginList_InlineExpanded implements Formula_PluginListInterface {
       return NULL;
     }
 
-    $subtree = PluginListSubtree::fromFormula($plugin->getFormula(), $this->helper);
+    $subtree = PluginListSubtree::fromFormula($plugin->getFormula(), $this->incarnator);
 
     $subFormula = $subtree->getFormula();
 

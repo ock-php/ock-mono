@@ -23,9 +23,9 @@ abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
   final protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $helper
+    IncarnatorInterface $incarnator
   ): ?object {
-    $replacement = $this->formulaGetReplacement($formula, $helper);
+    $replacement = $this->formulaGetReplacement($formula, $incarnator);
     if ($replacement === NULL) {
       return NULL;
     }
@@ -33,7 +33,7 @@ abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
       // Looks like recursion.
       return NULL;
     }
-    return $helper->incarnate($replacement, $interface);
+    return $incarnator->incarnate($replacement, $interface);
   }
 
   /**

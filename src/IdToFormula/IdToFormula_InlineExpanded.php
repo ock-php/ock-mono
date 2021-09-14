@@ -18,15 +18,15 @@ class IdToFormula_InlineExpanded implements IdToFormulaInterface {
   /**
    * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private IncarnatorInterface $helper;
+  private IncarnatorInterface $incarnator;
 
   /**
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
-  public function __construct(IdToFormulaInterface $decorated, IncarnatorInterface $helper) {
+  public function __construct(IdToFormulaInterface $decorated, IncarnatorInterface $incarnator) {
     $this->decorated = $decorated;
-    $this->helper = $helper;
+    $this->incarnator = $incarnator;
   }
 
   /**
@@ -47,7 +47,7 @@ class IdToFormula_InlineExpanded implements IdToFormulaInterface {
     try {
       $subtree = InlineDrilldown::fromFormula(
         $rawNestedFormula,
-        $this->helper);
+        $this->incarnator);
     }
     catch (IncarnatorException $e) {
       // @todo Log this.

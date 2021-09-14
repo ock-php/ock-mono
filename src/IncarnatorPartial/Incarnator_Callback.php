@@ -108,12 +108,12 @@ class Incarnator_Callback extends IncarnatorPartialBase {
   protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $helper
+    IncarnatorInterface $incarnator
   ): ?object {
 
     try {
       // Other arguments, e.g. services, might already be part of the callback.
-      return $this->callback->invokeArgs([$formula, $helper]);
+      return $this->callback->invokeArgs([$formula, $incarnator]);
     }
     catch (\Exception $e) {
       throw new IncarnatorException($e->getMessage(), 0, $e);

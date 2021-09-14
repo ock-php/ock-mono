@@ -20,17 +20,17 @@ class Formula_PluginList_Adapters implements Formula_PluginListInterface {
   /**
    * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private IncarnatorInterface $helper;
+  private IncarnatorInterface $incarnator;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $decorated
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
-  public function __construct(Formula_PluginListInterface $decorated, IncarnatorInterface $helper) {
+  public function __construct(Formula_PluginListInterface $decorated, IncarnatorInterface $incarnator) {
     $this->decorated = $decorated;
-    $this->helper = $helper;
+    $this->incarnator = $incarnator;
   }
 
   /**
@@ -43,7 +43,7 @@ class Formula_PluginList_Adapters implements Formula_PluginListInterface {
       if (!$plugin->is('adapter')) {
         continue;
       }
-      $adapter_info = AdapterInfo::fromFormula($plugin->getFormula(), $this->helper);
+      $adapter_info = AdapterInfo::fromFormula($plugin->getFormula(), $this->incarnator);
       if (!$adapter_info) {
         continue;
       }

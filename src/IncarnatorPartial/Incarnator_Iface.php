@@ -70,11 +70,11 @@ class Incarnator_Iface extends Incarnator_FormulaReplacerBase {
   /**
    * @param string $type
    * @param bool $or_null
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $helper
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public function typeGetFormula(string $type, bool $or_null, IncarnatorInterface $helper): FormulaInterface {
+  public function typeGetFormula(string $type, bool $or_null, IncarnatorInterface $incarnator): FormulaInterface {
     $plugins = $this->pluginMap->typeGetPlugins($type);
     $inline_plugins = [];
     foreach ($plugins as $id => $plugin) {
@@ -87,16 +87,16 @@ class Incarnator_Iface extends Incarnator_FormulaReplacerBase {
     $idFormula = new Formula_Select_FromPlugins($plugins, $this->groupLabels);
     $idToFormula = new IdToFormula_FromPlugins($plugins);
 
-    $idToFormula = new IdToFormula_Replace($idToFormula, $helper);
+    $idToFormula = new IdToFormula_Replace($idToFormula, $incarnator);
 
     // Support "inline" plugins.
     $idFormula = new Formula_Select_InlineExpanded(
       $idFormula,
       new IdToFormula_FromPlugins($inline_plugins),
-      $helper);
+      $incarnator);
     $idToFormula = new IdToFormula_InlineExpanded(
       $idToFormula,
-      $helper);
+      $incarnator);
 
     // Build the drilldown formula.
     $drilldown = new Formula_Drilldown(
