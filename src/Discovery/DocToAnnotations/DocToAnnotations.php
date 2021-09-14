@@ -22,7 +22,7 @@ class DocToAnnotations implements DocToAnnotationsInterface {
   private $annotationResolver;
 
   /**
-   * @param string $tagName;
+   * @param string $tagName
    *
    * @return self
    */

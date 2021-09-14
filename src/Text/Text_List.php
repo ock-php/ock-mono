@@ -12,6 +12,7 @@ class Text_List extends Text_ListBase {
    * Constructor.
    *
    * @param \Donquixote\Ock\Text\TextInterface[] $items
+   * @param string $tag
    */
   public function __construct(array $items, string $tag = 'ul') {
     parent::__construct($items);

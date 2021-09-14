@@ -12,6 +12,7 @@ class Text_ListConcat extends Text_ListBase {
    * Constructor.
    *
    * @param \Donquixote\Ock\Text\TextInterface[] $items
+   * @param string $separator
    */
   public function __construct(array $items, string $separator = ', ') {
     parent::__construct($items);
