@@ -155,4 +155,5 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
 
     return $commonValuesPhp;
   }
+
 }

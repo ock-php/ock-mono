@@ -16,4 +16,5 @@ abstract class Formula_Group_V2VBase implements Formula_GroupInterface, V2V_Grou
   public function getValFormula(): Formula_GroupValInterface {
     return new Formula_GroupVal($this, $this);
   }
+
 }

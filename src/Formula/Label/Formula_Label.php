@@ -30,4 +30,5 @@ class Formula_Label extends Formula_DecoratorBase implements Formula_LabelInterf
   public function getLabel(): ?TextInterface {
     return $this->label;
   }
+
 }

@@ -40,4 +40,5 @@ class IdToFormula_FromPluginsDecorated implements IdToFormulaInterface {
 
     return $this->plugins[$id]->getFormula();
   }
+
 }

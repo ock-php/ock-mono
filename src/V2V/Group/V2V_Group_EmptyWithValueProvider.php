@@ -35,4 +35,5 @@ class V2V_Group_EmptyWithValueProvider implements V2V_GroupInterface {
 
     return $this->valueProvider->getPhp();
   }
+
 }

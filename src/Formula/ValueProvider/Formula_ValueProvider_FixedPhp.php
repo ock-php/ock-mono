@@ -82,4 +82,5 @@ class Formula_ValueProvider_FixedPhp implements Formula_ValueProviderInterface {
   public function getPhp(): string {
     return $this->php;
   }
+
 }

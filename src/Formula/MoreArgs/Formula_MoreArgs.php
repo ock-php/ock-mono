@@ -66,4 +66,5 @@ class Formula_MoreArgs extends Formula_DecoratorBase implements Formula_MoreArgs
   public function getSpecialKey(): string {
     return $this->specialKey;
   }
+
 }

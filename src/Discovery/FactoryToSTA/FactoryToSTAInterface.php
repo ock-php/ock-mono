@@ -15,4 +15,5 @@ interface FactoryToSTAInterface {
    * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface|null
    */
   public function factoryGetPartial(ReflectionFactoryInterface $factory): ?IncarnatorPartialInterface;
+
 }

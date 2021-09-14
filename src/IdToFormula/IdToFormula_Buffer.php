@@ -34,4 +34,5 @@ class IdToFormula_Buffer implements IdToFormulaInterface {
       ? $this->buffer[$id]
       : $this->buffer[$id] = $this->decorated->idGetFormula($id);
   }
+
 }

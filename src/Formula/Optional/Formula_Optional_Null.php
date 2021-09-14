@@ -30,4 +30,5 @@ class Formula_Optional_Null extends Formula_OptionalBase {
   final public function getEmptyPhp(): string {
     return 'NULL';
   }
+
 }

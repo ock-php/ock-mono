@@ -29,4 +29,5 @@ class Formula_MoreArgsVal extends Formula_MoreArgsValBase {
   public function getV2V(): V2V_GroupInterface {
     return $this->v2v;
   }
+
 }

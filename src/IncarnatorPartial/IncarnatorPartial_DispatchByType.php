@@ -207,4 +207,5 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
   public function acceptsFormulaClass(string $formulaClass): bool {
     return [] !== $this->formulaTypeGetPartials($formulaClass);
   }
+
 }

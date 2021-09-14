@@ -33,4 +33,5 @@ class IdToFormula_Callback implements IdToFormulaInterface {
 
     return $candidate;
   }
+
 }

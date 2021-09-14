@@ -41,4 +41,5 @@ class Formula_Select_TwoStepFlatSelectComposite extends Formula_Select_TwoStepFl
 
     return $subFormula;
   }
+
 }

@@ -12,4 +12,5 @@ class Formula_ValueProvider_Null implements Formula_ValueProviderInterface {
   public function getPhp(): string {
     return 'NULL';
   }
+
 }

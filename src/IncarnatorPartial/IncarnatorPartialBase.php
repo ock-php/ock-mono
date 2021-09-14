@@ -147,4 +147,5 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
   public function getSpecifity(): int {
     return $this->specifity;
   }
+
 }

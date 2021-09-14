@@ -38,4 +38,5 @@ class Formula_Boolean_YesNo implements Formula_BooleanInterface {
   public function getFalseSummary(): ?TextInterface {
     return Text::t('No');
   }
+
 }

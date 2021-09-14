@@ -12,4 +12,5 @@ class V2V_Drilldown_Trivial implements V2V_DrilldownInterface {
   public function idPhpGetPhp($id, string $php) {
     return $php;
   }
+
 }

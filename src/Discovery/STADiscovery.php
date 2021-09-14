@@ -45,4 +45,5 @@ class STADiscovery {
 
     return $partials;
   }
+
 }

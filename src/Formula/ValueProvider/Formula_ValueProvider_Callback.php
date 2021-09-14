@@ -51,4 +51,5 @@ class Formula_ValueProvider_Callback implements Formula_ValueProviderInterface {
     $helper = new CodegenHelper();
     return $this->callback->argsPhpGetPhp([], $helper);
   }
+
 }

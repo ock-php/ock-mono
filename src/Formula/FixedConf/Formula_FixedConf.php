@@ -40,4 +40,5 @@ class Formula_FixedConf implements Formula_FixedConfInterface {
   public function getConf() {
     return $this->conf;
   }
+
 }

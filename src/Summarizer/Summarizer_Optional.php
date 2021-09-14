@@ -67,4 +67,5 @@ class Summarizer_Optional implements SummarizerInterface {
 
     return $this->decorated->confGetSummary($conf['options'] ?? NULL);
   }
+
 }

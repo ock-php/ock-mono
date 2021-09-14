@@ -17,4 +17,5 @@ abstract class Formula_MoreArgsValBase extends Formula_DecoratorBase implements 
   public function __construct(Formula_MoreArgsInterface $decorated) {
     parent::__construct($decorated);
   }
+
 }

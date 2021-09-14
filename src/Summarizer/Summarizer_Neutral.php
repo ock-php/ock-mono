@@ -10,7 +10,6 @@ use Donquixote\Ock\Util\UtilBase;
 
 final class Summarizer_Neutral extends UtilBase {
 
-
   /**
    * @STA
    *
@@ -24,4 +23,5 @@ final class Summarizer_Neutral extends UtilBase {
   public static function create(Formula_NeutralInterface $formula, IncarnatorInterface $incarnator): SummarizerInterface {
     return Summarizer::fromFormula($formula->getDecorated(), $incarnator);
   }
+
 }

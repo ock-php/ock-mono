@@ -41,4 +41,5 @@ class Summarizer_Primitive implements SummarizerInterface {
     }
     return Text::s(var_export($conf, TRUE));
   }
+
 }

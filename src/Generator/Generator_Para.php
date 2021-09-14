@@ -62,4 +62,5 @@ class Generator_Para implements GeneratorInterface {
 
     return $this->paraGenerator->confGetPhp($paraConf);
   }
+
 }

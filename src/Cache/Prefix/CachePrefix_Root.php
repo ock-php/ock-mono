@@ -42,4 +42,5 @@ class CachePrefix_Root implements CachePrefixInterface {
   public function clear(): void {
     $this->cache->clear();
   }
+
 }

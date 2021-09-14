@@ -14,4 +14,5 @@ class V2V_Sequence_Trivial implements V2V_SequenceInterface {
   public function itemsPhpGetPhp(array $itemsPhp): string {
     return PhpUtil::phpArray($itemsPhp);
   }
+
 }

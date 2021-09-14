@@ -54,4 +54,5 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
     $php = parent::confGetPhp($conf);
     return $this->v2v->phpGetPhp($php);
   }
+
 }

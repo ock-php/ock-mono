@@ -40,4 +40,5 @@ class CacheOffset implements CacheOffsetInterface {
   public function set($value): void {
     $this->cache->set($this->key, $value);
   }
+
 }

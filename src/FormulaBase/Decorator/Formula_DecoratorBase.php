@@ -27,4 +27,5 @@ class Formula_DecoratorBase implements FormulaInterface {
   public function getDecorated(): FormulaInterface {
     return $this->decorated;
   }
+
 }

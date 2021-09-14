@@ -98,4 +98,5 @@ class DrilldownKeysHelper_Default implements DrilldownKeysHelperInterface {
     $optionsTrail[] = $this->optionsKey;
     return [$idTrail, $optionsTrail];
   }
+
 }

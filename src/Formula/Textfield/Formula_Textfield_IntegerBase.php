@@ -53,4 +53,5 @@ abstract class Formula_Textfield_IntegerBase extends Formula_TextfieldBase imple
 
     return var_export((int)$string, TRUE);
   }
+
 }

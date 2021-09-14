@@ -79,4 +79,5 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
   public function getIdToFormula(): IdToFormulaInterface {
     return $this->idToFormula;
   }
+
 }

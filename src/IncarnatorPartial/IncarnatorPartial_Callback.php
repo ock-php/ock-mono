@@ -120,4 +120,5 @@ class IncarnatorPartial_Callback extends IncarnatorPartialBase {
       throw new IncarnatorException($e->getMessage(), 0, $e);
     }
   }
+
 }

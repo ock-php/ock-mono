@@ -85,4 +85,5 @@ class Summarizer_Drilldown implements SummarizerInterface {
     // @todo Show just the label if subSummary produces empty string?
     return Text::label($idLabel, $subSummary);
   }
+
 }

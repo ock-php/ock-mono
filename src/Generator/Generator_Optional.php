@@ -64,4 +64,5 @@ class Generator_Optional implements GeneratorInterface {
 
     return $this->decorated->confGetPhp($subConf);
   }
+
 }

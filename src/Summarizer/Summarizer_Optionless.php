@@ -21,4 +21,5 @@ final class Summarizer_Optionless extends UtilBase {
   ): SummarizerInterface {
     return new Summarizer_Null();
   }
+
 }

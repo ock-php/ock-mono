@@ -38,4 +38,5 @@ final class LocalPackageUtil extends UtilBase {
     return NamespaceDirectory::create(__DIR__, __NAMESPACE__)
       ->basedir();
   }
+
 }

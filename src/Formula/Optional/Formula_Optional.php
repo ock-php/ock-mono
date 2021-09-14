@@ -53,4 +53,5 @@ class Formula_Optional extends Formula_OptionalBase {
   public function getEmptyPhp(): string {
     return $this->emptyPhp;
   }
+
 }

@@ -69,4 +69,5 @@ class Generator_Textfield implements GeneratorInterface {
 
     return $this->v2v->stringGetPhp($conf);
   }
+
 }

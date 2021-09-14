@@ -26,4 +26,5 @@ abstract class Formula_SequenceBase implements Formula_SequenceInterface {
   public function getItemFormula(): FormulaInterface {
     return $this->itemFormula;
   }
+
 }

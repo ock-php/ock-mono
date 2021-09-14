@@ -26,4 +26,5 @@ class IdToFormula_AlwaysTheSame implements IdToFormulaInterface {
   public function idGetFormula($id): ?FormulaInterface {
     return $this->sameFormula;
   }
+
 }

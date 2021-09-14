@@ -47,4 +47,5 @@ final class Formula_ValueToValue_CallbackMono extends UtilBase {
       $decorated,
       new V2V_Value_CallbackMono($callback));
   }
+
 }

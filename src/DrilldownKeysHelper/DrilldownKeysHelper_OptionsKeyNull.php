@@ -86,4 +86,5 @@ class DrilldownKeysHelper_OptionsKeyNull implements DrilldownKeysHelperInterface
     $idTrail[] = $this->idKey;
     return [$idTrail, $parentTrail];
   }
+
 }

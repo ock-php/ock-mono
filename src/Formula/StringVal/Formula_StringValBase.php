@@ -27,4 +27,5 @@ abstract class Formula_StringValBase implements Formula_StringValInterface {
   public function getDecorated(): FormulaInterface {
     return $this->decorated;
   }
+
 }

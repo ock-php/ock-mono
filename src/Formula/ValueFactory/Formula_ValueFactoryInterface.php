@@ -18,6 +18,4 @@ interface Formula_ValueFactoryInterface extends FormulaInterface {
    */
   public function getValueFactory(): CallbackReflectionInterface;
 
-
-
 }

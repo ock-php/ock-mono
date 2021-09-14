@@ -40,4 +40,5 @@ class Formula_Boolean implements Formula_BooleanInterface {
   public function getFalseSummary(): ?TextInterface {
     return $this->falseSummary;
   }
+
 }

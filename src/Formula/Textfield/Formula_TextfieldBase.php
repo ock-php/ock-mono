@@ -23,4 +23,5 @@ abstract class Formula_TextfieldBase implements Formula_TextfieldInterface {
   final public function textIsValid(string $text): bool {
     return [] !== $this->textGetValidationErrors($text);
   }
+
 }

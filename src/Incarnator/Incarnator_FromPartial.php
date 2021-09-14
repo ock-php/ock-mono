@@ -76,4 +76,5 @@ class Incarnator_FromPartial extends IncarnatorBase {
       'Misbehaving FTA for formula of class @formula_class: Expected @interface object, found @found.',
       $replacements));
   }
+
 }

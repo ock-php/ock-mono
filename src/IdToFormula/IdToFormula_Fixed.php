@@ -39,4 +39,5 @@ class IdToFormula_Fixed implements IdToFormulaInterface {
 
     return $this->formulas[$id] ?? NULL;
   }
+
 }

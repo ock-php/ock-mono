@@ -64,4 +64,5 @@ final class Formula_GroupVal_Callback extends UtilBase {
       new Formula_Group($formulas, $labels),
       new V2V_Group_Callback($callbackReflection));
   }
+
 }

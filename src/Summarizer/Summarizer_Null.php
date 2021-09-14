@@ -14,4 +14,5 @@ class Summarizer_Null implements SummarizerInterface {
   public function confGetSummary($conf): ?TextInterface {
     return NULL;
   }
+
 }

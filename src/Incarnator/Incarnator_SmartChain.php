@@ -224,4 +224,5 @@ class Incarnator_SmartChain extends IncarnatorBase {
   public function acceptsFormulaClass(string $interface): bool {
     return [] !== $this->formulaTypeGetPartials($interface);
   }
+
 }

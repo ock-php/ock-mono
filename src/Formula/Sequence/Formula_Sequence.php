@@ -19,4 +19,5 @@ class Formula_Sequence extends Formula_SequenceBase {
       : Text::s('#' . $delta)
         ->wrapT('!n', 'Item !n');
   }
+
 }

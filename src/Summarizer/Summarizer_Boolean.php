@@ -35,4 +35,5 @@ class Summarizer_Boolean implements SummarizerInterface {
       ? $this->formula->getTrueSummary()
       : $this->formula->getFalseSummary();
   }
+
 }

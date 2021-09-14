@@ -73,4 +73,5 @@ class Summarizer_Label implements SummarizerInterface {
       $this->label,
       $decorated);
   }
+
 }

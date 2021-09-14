@@ -157,4 +157,5 @@ class STADiscovery_X {
 
     return TRUE;
   }
+
 }

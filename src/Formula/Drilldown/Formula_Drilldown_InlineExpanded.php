@@ -44,4 +44,5 @@ final class Formula_Drilldown_InlineExpanded extends UtilBase {
       $idFormula,
       $idToFormula);
   }
+
 }

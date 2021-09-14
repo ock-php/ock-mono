@@ -88,4 +88,5 @@ class CfContext implements CfContextInterface {
     return $this->machineName
       ??= md5(serialize($this->values));
   }
+
 }

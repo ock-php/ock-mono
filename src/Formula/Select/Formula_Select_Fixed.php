@@ -101,4 +101,5 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
   public function idGetLabel($id): ?TextInterface {
     return $this->flatOptions[$id] ?? NULL;
   }
+
 }

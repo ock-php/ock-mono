@@ -81,4 +81,5 @@ class Summarizer_Group implements SummarizerInterface {
 
     return $parts ? Text::ul($parts) : NULL;
   }
+
 }

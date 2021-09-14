@@ -41,4 +41,5 @@ class IdToFormula_FilterDecorator implements IdToFormulaInterface {
 
     return $this->idToFormula->idGetFormula($id);
   }
+
 }

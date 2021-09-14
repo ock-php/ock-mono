@@ -42,4 +42,5 @@ class Summarizer_Textfield implements SummarizerInterface {
 
     return Text::s(var_export($conf, TRUE));
   }
+
 }

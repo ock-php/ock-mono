@@ -50,4 +50,5 @@ abstract class Formula_Proxy_Cache_SelectBase implements Formula_Proxy_CacheInte
    *   with $groupLabel === '' for toplevel options.
    */
   abstract protected function getGroupedOptions(): array;
+
 }

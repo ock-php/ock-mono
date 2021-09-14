@@ -43,4 +43,5 @@ class Formula_Group implements Formula_GroupInterface {
   public function getLabels(): array {
     return $this->labels;
   }
+
 }

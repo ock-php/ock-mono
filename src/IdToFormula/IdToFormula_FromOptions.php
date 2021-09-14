@@ -40,4 +40,5 @@ class IdToFormula_FromOptions implements IdToFormulaInterface {
 
     return $this->options[$id]->getFormula();
   }
+
 }

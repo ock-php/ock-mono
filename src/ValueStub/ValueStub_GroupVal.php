@@ -59,4 +59,5 @@ class ValueStub_GroupVal implements ValueStubInterface {
   public function getV2v(): V2V_GroupInterface {
     return $this->v2v;
   }
+
 }

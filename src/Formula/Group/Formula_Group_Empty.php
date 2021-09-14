@@ -19,4 +19,5 @@ class Formula_Group_Empty implements Formula_GroupInterface {
   public function getLabels(): array {
     return [];
   }
+
 }

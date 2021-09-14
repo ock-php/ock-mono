@@ -33,4 +33,5 @@ class IdToFormula_Class implements IdToFormulaInterface {
 
     return $candidate;
   }
+
 }

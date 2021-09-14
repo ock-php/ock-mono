@@ -106,4 +106,5 @@ class Generator_Group implements GeneratorInterface {
 
     return $this->v2v->itemsPhpGetPhp($phpStatements);
   }
+
 }

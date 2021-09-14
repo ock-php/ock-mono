@@ -29,4 +29,5 @@ class Formula_ValueToValue extends Formula_ValueToValueBase {
   public function getV2V(): V2V_ValueInterface {
     return $this->v2v;
   }
+
 }

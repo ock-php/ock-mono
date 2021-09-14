@@ -12,4 +12,5 @@ abstract class V2V_Boolean_OrNullBase implements V2V_BooleanInterface {
   public function getFalsePhp(): string {
     return 'NULL';
   }
+
 }

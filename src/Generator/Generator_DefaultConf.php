@@ -70,4 +70,5 @@ class Generator_DefaultConf implements GeneratorInterface {
 
     return $this->decorated->confGetPhp($conf);
   }
+
 }

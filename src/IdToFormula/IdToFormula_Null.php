@@ -16,4 +16,5 @@ final class IdToFormula_Null extends UtilBase {
     return new IdToFormula_AlwaysTheSame(
       new Formula_ValueProvider_Null());
   }
+
 }

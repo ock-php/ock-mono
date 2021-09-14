@@ -26,4 +26,5 @@ abstract class Formula_Select_TwoStepFlatSelectBase extends Formula_Select_TwoSt
   protected function getIdFormula(): Formula_FlatSelectInterface {
     return $this->idFormula;
   }
+
 }

@@ -122,4 +122,5 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
    * @return \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface|null
    */
   abstract protected function idGetSubFormula(string $id): ?Formula_FlatSelectInterface;
+
 }

@@ -31,4 +31,5 @@ class Formula_Neutral_ProxyWithReference extends Formula_Neutral_ProxyBase {
 
     return $this->formulaRef;
   }
+
 }

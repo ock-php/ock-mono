@@ -29,4 +29,5 @@ interface AnnotatedFactoryInterface {
    * @return string[]
    */
   public function getReturnTypeNames(): array;
+
 }

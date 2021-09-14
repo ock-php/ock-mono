@@ -70,4 +70,5 @@ class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
 
     return TRUE;
   }
+
 }

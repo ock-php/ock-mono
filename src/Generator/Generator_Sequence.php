@@ -108,4 +108,5 @@ class Generator_Sequence implements GeneratorInterface {
 
     return $this->v2v->itemsPhpGetPhp($phpStatements);
   }
+
 }

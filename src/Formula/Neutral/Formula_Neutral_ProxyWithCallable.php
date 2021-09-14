@@ -33,4 +33,5 @@ class Formula_Neutral_ProxyWithCallable extends Formula_Neutral_ProxyBase {
 
     return $formula;
   }
+
 }

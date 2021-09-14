@@ -76,4 +76,5 @@ class Summarizer_Sequence implements SummarizerInterface {
 
     return $summary;
   }
+
 }

@@ -23,4 +23,5 @@ class Generator_Neutral {
 
     return Generator::fromFormula($formula->getDecorated(), $incarnator);
   }
+
 }

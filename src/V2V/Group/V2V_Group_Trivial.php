@@ -14,4 +14,5 @@ class V2V_Group_Trivial implements V2V_GroupInterface {
   public function itemsPhpGetPhp(array $itemsPhp): string {
     return PhpUtil::phpArray($itemsPhp);
   }
+
 }

@@ -50,4 +50,5 @@ class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
   public function idIsKnown($id): bool {
     return $this->decorated->idIsKnown($id);
   }
+
 }

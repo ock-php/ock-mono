@@ -56,4 +56,5 @@ class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
         $this->placeholder => Text::i($delta),
       ]);
   }
+
 }

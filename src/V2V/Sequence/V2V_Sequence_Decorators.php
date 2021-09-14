@@ -18,4 +18,5 @@ class V2V_Sequence_Decorators implements V2V_SequenceInterface {
     }
     return $php;
   }
+
 }

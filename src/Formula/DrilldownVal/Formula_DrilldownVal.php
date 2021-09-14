@@ -70,4 +70,5 @@ class Formula_DrilldownVal extends Formula_DrilldownValBase {
   public function getV2V(): V2V_DrilldownInterface {
     return $this->v2v;
   }
+
 }

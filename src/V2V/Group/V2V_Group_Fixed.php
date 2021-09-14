@@ -26,4 +26,5 @@ class V2V_Group_Fixed implements V2V_GroupInterface {
   public function itemsPhpGetPhp(array $itemsPhp): string {
     return $this->php;
   }
+
 }

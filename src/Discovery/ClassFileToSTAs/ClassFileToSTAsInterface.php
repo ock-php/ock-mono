@@ -13,4 +13,5 @@ interface ClassFileToSTAsInterface {
    * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
    */
   public function classFileGetPartials(string $class, string $fileRealpath): array;
+
 }

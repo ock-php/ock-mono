@@ -19,4 +19,5 @@ class V2V_Boolean_Trivial implements V2V_BooleanInterface {
   public function getFalsePhp(): string {
     return 'FALSE';
   }
+
 }

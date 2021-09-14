@@ -24,4 +24,5 @@ abstract class Generator_DecoratorBase implements GeneratorInterface {
   public function confGetPhp($conf): string {
     return $this->decorated->confGetPhp($conf);
   }
+
 }

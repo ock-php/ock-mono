@@ -106,4 +106,5 @@ class Generator_PluginList implements GeneratorInterface {
 
     return $subGenerator->confGetPhp($conf ?? NULL);
   }
+
 }

@@ -30,4 +30,5 @@ abstract class Formula_Neutral_ProxyBase implements Formula_NeutralInterface {
    * @return FormulaInterface
    */
   abstract protected function doGetDecorated(): FormulaInterface;
+
 }

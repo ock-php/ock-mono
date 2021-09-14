@@ -29,4 +29,5 @@ class Formula_StringVal extends Formula_StringValBase {
   public function getV2V(): V2V_StringInterface {
     return $this->v2v;
   }
+
 }

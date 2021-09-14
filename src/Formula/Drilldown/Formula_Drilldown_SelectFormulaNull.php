@@ -20,4 +20,5 @@ final class Formula_Drilldown_SelectFormulaNull extends UtilBase {
       $optionsFormula,
       IdToFormula_Null::create());
   }
+
 }

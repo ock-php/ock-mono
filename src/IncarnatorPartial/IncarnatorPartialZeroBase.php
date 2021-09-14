@@ -12,4 +12,5 @@ abstract class IncarnatorPartialZeroBase implements IncarnatorPartialInterface {
   public function getSpecifity(): int {
     return 0;
   }
+
 }

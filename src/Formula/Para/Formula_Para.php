@@ -40,4 +40,5 @@ class Formula_Para implements Formula_ParaInterface {
   public function getParaFormula(): FormulaInterface {
     return $this->paraFormula;
   }
+
 }

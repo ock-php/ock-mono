@@ -46,4 +46,5 @@ class Summarizer_IdToLabel implements SummarizerInterface {
       ?? Text::s($id)
         ->wrapT('@id', 'Unnamed id "@id"');
   }
+
 }

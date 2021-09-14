@@ -86,4 +86,5 @@ class IncarnatorPartial_CallbackNoHelper extends IncarnatorPartialBase {
       throw new IncarnatorException("Exception in callback.", 0, $e);
     }
   }
+
 }

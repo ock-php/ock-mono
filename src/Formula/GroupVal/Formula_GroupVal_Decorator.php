@@ -29,4 +29,5 @@ class Formula_GroupVal_Decorator extends Formula_GroupValBase {
   public function getV2V(): V2V_GroupInterface {
     return $this->v2v;
   }
+
 }

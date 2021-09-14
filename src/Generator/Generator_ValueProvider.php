@@ -29,4 +29,5 @@ class Generator_ValueProvider implements GeneratorInterface {
   public function confGetPhp($conf): string {
     return $this->formula->getPhp();
   }
+
 }

@@ -37,4 +37,5 @@ class Formula_Sequence_ItemLabelCallback extends Formula_SequenceBase {
     }
     return Text::i($delta);
   }
+
 }

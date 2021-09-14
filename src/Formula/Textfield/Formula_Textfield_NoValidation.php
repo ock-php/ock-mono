@@ -28,4 +28,5 @@ class Formula_Textfield_NoValidation implements Formula_TextfieldInterface {
   public function textGetValidationErrors(string $text): array {
     return [];
   }
+
 }

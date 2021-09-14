@@ -49,4 +49,5 @@ class CachePrefix implements CachePrefixInterface {
   public function clear(): void {
     $this->cache->clear($this->prefix);
   }
+
 }

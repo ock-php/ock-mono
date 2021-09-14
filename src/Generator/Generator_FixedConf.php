@@ -50,4 +50,5 @@ class Generator_FixedConf implements GeneratorInterface {
   public function confGetPhp($conf): string {
     return $this->decorated->confGetPhp($this->conf);
   }
+
 }

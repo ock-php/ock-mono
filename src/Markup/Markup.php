@@ -24,4 +24,5 @@ class Markup implements MarkupInterface {
   public function __toString(): string {
     return $this->html;
   }
+
 }

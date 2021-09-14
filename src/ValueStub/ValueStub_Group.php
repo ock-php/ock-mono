@@ -69,4 +69,5 @@ class ValueStub_Group implements ValueStubInterface {
   public function getItems(): array {
     return $this->itemValueStubs;
   }
+
 }

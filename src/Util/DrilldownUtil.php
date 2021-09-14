@@ -103,4 +103,5 @@ final class DrilldownUtil extends UtilBase {
 
     return [$id, $conf[$k1]];
   }
+
 }

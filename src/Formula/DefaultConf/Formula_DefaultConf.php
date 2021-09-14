@@ -40,4 +40,5 @@ class Formula_DefaultConf implements Formula_DefaultConfInterface {
   public function getDefaultConf() {
     return $this->defaultConf;
   }
+
 }
