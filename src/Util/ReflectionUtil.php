@@ -11,7 +11,21 @@ final class ReflectionUtil extends UtilBase {
 
   private const FQCN_PATTERN = '@^(\\\\[a-zA-Z_][a-zA-Z_0-9]*)+$@';
 
-  private const PRIMITIVE_TYPES = ['boolean', 'bool', 'integer', 'double', 'float', 'string', 'array', 'object', 'resource', 'null', 'false', 'true', 'callable'];
+  private const PRIMITIVE_TYPES = [
+    'boolean',
+    'bool',
+    'integer',
+    'double',
+    'float',
+    'string',
+    'array',
+    'object',
+    'resource',
+    'null',
+    'false',
+    'true',
+    'callable',
+  ];
 
   /**
    * @param callable $callable
