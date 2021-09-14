@@ -9,7 +9,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
-class Incarnator_CallbackNoHelper extends IncarnatorPartialBase {
+class IncarnatorPartial_CallbackNoHelper extends IncarnatorPartialBase {
 
   /**
    * @var \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface

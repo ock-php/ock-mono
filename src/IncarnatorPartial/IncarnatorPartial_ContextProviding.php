@@ -8,7 +8,7 @@ use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\Incarnator_ContextProvidingDecorator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
-class Incarnator_ContextProviding extends IncarnatorPartialZeroBase {
+class IncarnatorPartial_ContextProviding extends IncarnatorPartialZeroBase {
 
   /**
    * {@inheritdoc}

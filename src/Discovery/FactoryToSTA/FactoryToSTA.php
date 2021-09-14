@@ -13,8 +13,8 @@ use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterf
 use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
-use Donquixote\Ock\IncarnatorPartial\Incarnator_Callback;
-use Donquixote\Ock\IncarnatorPartial\Incarnator_CallbackNoHelper;
+use Donquixote\Ock\IncarnatorPartial\IncarnatorPartial_Callback;
+use Donquixote\Ock\IncarnatorPartial\IncarnatorPartial_CallbackNoHelper;
 use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
 use Donquixote\Ock\Util\ReflectionUtil;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface;
@@ -112,13 +112,13 @@ class FactoryToSTA implements FactoryToSTAInterface {
     }
 
     if ($hasStaParam) {
-      $sta = new Incarnator_Callback(
+      $sta = new IncarnatorPartial_Callback(
         $callback,
         $formulaType,
         $returnTypeClass->getName());
     }
     else {
-      $sta = new Incarnator_CallbackNoHelper(
+      $sta = new IncarnatorPartial_CallbackNoHelper(
         $callback,
         $formulaType,
         $returnTypeClass->getName());

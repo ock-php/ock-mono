@@ -13,7 +13,7 @@ use Donquixote\Ock\Incarnator\IncarnatorInterface;
 /**
  * @STA
  */
-class Incarnator_PluginList extends Incarnator_FormulaReplacerBase {
+class IncarnatorPartial_PluginList extends IncarnatorPartial_FormulaReplacerBase {
 
   /**
    * Constructor.

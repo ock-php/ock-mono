@@ -12,7 +12,7 @@ use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 /**
  * @STA
  */
-class Incarnator_FormulaFactory extends Incarnator_FormulaReplacerBase {
+class IncarnatorPartial_FormulaFactory extends IncarnatorPartial_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface

@@ -12,7 +12,7 @@ use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\ReflectionUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class Incarnator_Callback extends IncarnatorPartialBase {
+class IncarnatorPartial_Callback extends IncarnatorPartialBase {
 
   /**
    * @var \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface
@@ -77,7 +77,7 @@ class Incarnator_Callback extends IncarnatorPartialBase {
         $formulaType);
     }
     else {
-      $sta = new Incarnator_CallbackNoHelper(
+      $sta = new IncarnatorPartial_CallbackNoHelper(
         $callback,
         $formulaType);
     }

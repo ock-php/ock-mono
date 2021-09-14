@@ -17,7 +17,7 @@ use Donquixote\Ock\Text\Text;
 /**
  * @STA
  */
-class Incarnator_ValueFactory extends Incarnator_FormulaReplacerBase {
+class IncarnatorPartial_ValueFactory extends IncarnatorPartial_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\Ock\ParamToLabel\ParamToLabelInterface

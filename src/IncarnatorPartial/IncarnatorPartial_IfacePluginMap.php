@@ -14,7 +14,7 @@ use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 /**
  * @_STA
  */
-class Incarnator_IfacePluginMap extends Incarnator_FormulaReplacerBase {
+class IncarnatorPartial_IfacePluginMap extends IncarnatorPartial_FormulaReplacerBase {
 
   /**
    * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface

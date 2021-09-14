@@ -9,7 +9,7 @@ use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class Incarnator_Chain extends IncarnatorPartialZeroBase {
+class IncarnatorPartial_Chain extends IncarnatorPartialZeroBase {
 
   /**
    * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]

@@ -9,7 +9,7 @@ use Donquixote\Ock\Incarnator\IncarnatorInterface;
 /**
  * @STA
  */
-class Incarnator_Partial_Identity implements IncarnatorPartialInterface {
+class IncarnatorPartial_Identity implements IncarnatorPartialInterface {
 
   /**
    * {@inheritdoc}

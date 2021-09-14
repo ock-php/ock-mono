@@ -16,7 +16,7 @@ use Donquixote\Ock\V2V\Group\V2V_Group_Deco;
 /**
  * @STA
  */
-class Incarnator_DecoShift extends Incarnator_FormulaReplacerBase {
+class IncarnatorPartial_DecoShift extends IncarnatorPartial_FormulaReplacerBase {
 
   /**
    * Constructor.

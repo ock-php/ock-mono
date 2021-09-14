@@ -7,7 +7,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
-abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
+abstract class IncarnatorPartial_FormulaReplacerBase extends IncarnatorPartialBase {
 
   /**
    * Constructor.
