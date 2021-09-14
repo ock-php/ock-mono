@@ -9,15 +9,18 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 interface IncarnatorInterface {
 
   /**
+   * Attempts to "incarnate" a formula as another type.
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   *   Formula from which to breed a new object.
+   *   Formula from which to incarnate a new object.
    * @param string $interface
    *   Interface for the return value.
+   *
    * @return object
    *   An instance of $interface.
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
-   *   Object cannot be created for the given formula.
+   *   Misbehaving incarnator, or unsupported formula.
    */
   public function incarnate(FormulaInterface $formula, string $interface): object;
 
