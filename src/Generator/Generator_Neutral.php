@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Generator;
 use Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
-class Generator_Neutral extends Generator_DecoratorBase {
+class Generator_Neutral {
 
   /**
    * @STA
