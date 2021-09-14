@@ -18,7 +18,7 @@ class Incarnator_FromPartial extends IncarnatorBase {
   /**
    * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface
    */
-  private $cradle;
+  private $partial;
 
   /**
    * @var \Donquixote\Ock\Context\CfContextInterface|null
@@ -52,7 +52,7 @@ class Incarnator_FromPartial extends IncarnatorBase {
    * @param string $cache_id
    */
   public function __construct(IncarnatorPartialInterface $partial, string $cache_id) {
-    $this->cradle = $partial;
+    $this->partial = $partial;
     parent::__construct($cache_id);
   }
 
@@ -90,7 +90,7 @@ class Incarnator_FromPartial extends IncarnatorBase {
           $interface);
     }
 
-    $candidate = $this->cradle->breed($formula, $interface, $this);
+    $candidate = $this->partial->breed($formula, $interface, $this);
 
     if ($candidate instanceof $interface) {
       return $candidate;
