@@ -15,7 +15,7 @@ class FormulaTest extends FormulaTestBase {
    */
   public function testFormula() {
     $formula = Formula::iface(IntOpInterface::class);
-    $formula_to_anything = $this->getFormulaToAnything();
+    $formula_to_anything = $this->getIncarnator();
     $derived_formula = Formula::replace($formula, $formula_to_anything);
     self::assertInstanceOf(Formula_DecoKey::class, $derived_formula);
     self::assertNotSame($derived_formula, $formula);

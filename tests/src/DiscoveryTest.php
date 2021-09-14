@@ -43,7 +43,7 @@ class DiscoveryTest extends FormulaTestBase {
     $registry = $this->getPluginRegistry();
     $pluginss = $registry->getPluginss();
 
-    $formula_to_anything = $this->getFormulaToAnything();
+    $formula_to_anything = $this->getIncarnator();
 
     foreach ($pluginss as $type => $plugins) {
       foreach ($plugins as $id => $plugin) {

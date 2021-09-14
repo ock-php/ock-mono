@@ -29,7 +29,7 @@ class FormulaTestBase extends TestCase {
    * @return \Donquixote\Ock\Incarnator\IncarnatorInterface
    *   The object.
    */
-  protected function getFormulaToAnything(array $objects = []): IncarnatorInterface {
+  protected function getIncarnator(array $objects = []): IncarnatorInterface {
     $logger = new TestLogger();
     $objects[] = new ParamToLabel();
     $objects[] = $logger;
