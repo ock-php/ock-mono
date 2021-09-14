@@ -5,7 +5,6 @@ namespace Donquixote\Ock\IncarnatorPartial;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
 use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\Incarnator_ContextProvidingDecorator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class IncarnatorPartial_ContextConsuming extends IncarnatorPartialZeroBase {
@@ -19,9 +18,7 @@ class IncarnatorPartial_ContextConsuming extends IncarnatorPartialZeroBase {
       return NULL;
     }
 
-    $context = $incarnator instanceof Incarnator_ContextProvidingDecorator
-      ? $incarnator->getContext()
-      : NULL;
+    $context = $incarnator->getContext();
 
     return Incarnator::getObject(
       $formula->getDecorated($context),

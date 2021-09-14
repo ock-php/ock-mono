@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Incarnator;
 
+use Donquixote\Ock\Context\CfContextInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 interface IncarnatorInterface {
@@ -33,5 +34,20 @@ interface IncarnatorInterface {
    * @return string
    */
   public function getCacheId(): string;
+
+  /**
+   * Immutable setter. Sets a context.
+   *
+   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
+   *   Context to constrain available options.
+   *
+   * @return static
+   */
+  public function withContext(?CfContextInterface $context): self;
+
+  /**
+   * @return \Donquixote\Ock\Context\CfContextInterface|null
+   */
+  public function getContext(): ?CfContextInterface;
 
 }

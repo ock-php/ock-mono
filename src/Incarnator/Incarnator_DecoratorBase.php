@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Incarnator;
 
+use Donquixote\Ock\Context\CfContextInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 class Incarnator_DecoratorBase implements IncarnatorInterface {
@@ -34,6 +35,22 @@ class Incarnator_DecoratorBase implements IncarnatorInterface {
    */
   public function getCacheId(): string {
     return $this->decorated->getCacheId();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function withContext(?CfContextInterface $context): self {
+    $instance = clone $this;
+    $instance->decorated = $this->decorated->withContext($context);
+    return $instance;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getContext(): ?CfContextInterface {
+    return $this->decorated->getContext();
   }
 
 }
