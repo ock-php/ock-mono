@@ -3,11 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Incarnator;
 
-use Donquixote\Ock\Context\CfContextInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\Formula\ContextProviding\Formula_ContextProvidingInterface;
-use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
 use Donquixote\Ock\IncarnatorPartial\Incarnator_SmartChain;
 use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
 use Donquixote\Ock\Util\MessageUtil;
@@ -19,11 +16,6 @@ class Incarnator_FromPartial extends IncarnatorBase {
    * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface
    */
   private $partial;
-
-  /**
-   * @var \Donquixote\Ock\Context\CfContextInterface|null
-   */
-  private $context;
 
   /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
@@ -57,40 +49,9 @@ class Incarnator_FromPartial extends IncarnatorBase {
   }
 
   /**
-   * Immutable setter. Sets a context.
-   *
-   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
-   *   Context to constrain available options.
-   *
-   * @return static
-   */
-  public function withContext(?CfContextInterface $context): self {
-    $instance = clone $this;
-    $instance->context = $context;
-    return $instance;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function incarnate(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): object {
-
-    if ($formula instanceof Formula_ContextProvidingInterface) {
-      $incarnator = $this->withContext($formula->getContext());
-      return $incarnator
-        ->incarnate(
-          $formula->getDecorated(),
-          $interface,
-          $incarnator);
-    }
-
-    if ($formula instanceof Formula_ContextualInterface) {
-      return $incarnator
-        ->incarnate(
-          $formula->getDecorated($this->context),
-          $interface,
-          $incarnator);
-    }
 
     $candidate = $this->partial->incarnate($formula, $interface, $incarnator);
 
