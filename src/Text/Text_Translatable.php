@@ -23,7 +23,7 @@ class Text_Translatable extends TextBuilderBase {
    * @return string
    */
   public function convert(TranslatorInterface $translator): string {
-     return $translator->translate($this->source);
+    return $translator->translate($this->source);
   }
 
 }
