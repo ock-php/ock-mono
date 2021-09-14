@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\InlineDrilldown;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\UtilBase;
 
@@ -28,11 +29,12 @@ final class InlineDrilldown extends UtilBase {
     IncarnatorInterface $incarnator
   ): InlineDrilldownInterface {
 
-    $candidate = $incarnator->incarnate(
-      $formula,
-      InlineDrilldownInterface::class);
-
     /** @var \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface $candidate */
+    $candidate = Incarnator::getObject(
+      $formula,
+      InlineDrilldownInterface::class,
+      $incarnator);
+
     return $candidate;
   }
 

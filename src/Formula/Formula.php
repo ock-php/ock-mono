@@ -9,6 +9,7 @@ use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Formula\Select\Flat\FlatSelectBuilderInterface;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
 use Donquixote\Ock\Formula\Sequence\Formula_Sequence;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\UtilBase;
 
@@ -85,9 +86,10 @@ final class Formula extends UtilBase {
    */
   public static function replace(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
 
-    $candidate = $formula_to_anything->incarnate(
+    $candidate = Incarnator::getObject(
       $formula,
-      FormulaInterface::class);
+      FormulaInterface::class,
+      $incarnator);
 
     if ($candidate instanceof FormulaInterface) {
       return $candidate;

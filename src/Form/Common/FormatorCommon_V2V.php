@@ -5,6 +5,7 @@ namespace Donquixote\Ock\Form\Common;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialZeroBase;
 
@@ -26,7 +27,10 @@ class FormatorCommon_V2V extends IncarnatorPartialZeroBase {
       return NULL;
     }
 
-    return $incarnator->incarnate($formula->getDecorated(), $interface);
+    return Incarnator::getObject(
+      $formula->getDecorated(),
+      $interface,
+      $incarnator);
   }
 
   /**

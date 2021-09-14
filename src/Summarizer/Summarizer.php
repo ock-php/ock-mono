@@ -5,6 +5,7 @@ namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\UtilBase;
 
@@ -42,9 +43,10 @@ final class Summarizer extends UtilBase {
   ): SummarizerInterface {
 
     /** @var \Donquixote\Ock\Summarizer\SummarizerInterface $candidate */
-    $candidate = $incarnator->incarnate(
+    $candidate = Incarnator::getObject(
       $formula,
-      SummarizerInterface::class);
+      SummarizerInterface::class,
+      $incarnator);
 
     return $candidate;
   }

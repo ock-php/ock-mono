@@ -4,6 +4,7 @@ namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class Incarnator_Contextual extends IncarnatorPartialZeroBase {
@@ -17,10 +18,10 @@ class Incarnator_Contextual extends IncarnatorPartialZeroBase {
       return NULL;
     }
 
-    return $incarnator
-      ->incarnate(
-        $formula->getDecorated($incarnator->getContext()),
-        $interface);
+    return Incarnator::getObject(
+      $formula->getDecorated($incarnator->getContext()),
+      $interface,
+      $incarnator);
   }
 
   /**

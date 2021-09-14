@@ -6,6 +6,7 @@ namespace Donquixote\Ock\Decorator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\UtilBase;
 
@@ -55,9 +56,10 @@ final class Decorator extends UtilBase {
   ): DecoratorInterface {
 
     /** @var \Donquixote\Ock\Decorator\DecoratorInterface $candidate */
-    $candidate = $incarnator->incarnate(
+    $candidate = Incarnator::getObject(
       $formula,
-      DecoratorInterface::class);
+      DecoratorInterface::class,
+      $incarnator);
 
     return $candidate;
   }

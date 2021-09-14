@@ -5,6 +5,7 @@ namespace Donquixote\Ock\Optionlessness;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class Optionlessness implements OptionlessnessInterface {
@@ -49,7 +50,10 @@ class Optionlessness implements OptionlessnessInterface {
    */
   public static function fromFormula(FormulaInterface $formula, IncarnatorInterface $incarnator): OptionlessnessInterface {
     /** @var \Donquixote\Ock\Optionlessness\OptionlessnessInterface $candidate */
-    $candidate = $incarnator->incarnate($formula, OptionlessnessInterface::class);
+    $candidate = Incarnator::getObject(
+      $formula,
+      OptionlessnessInterface::class,
+      $incarnator);
     return $candidate;
   }
 

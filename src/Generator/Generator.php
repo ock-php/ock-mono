@@ -5,6 +5,7 @@ namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\UtilBase;
 
@@ -54,9 +55,10 @@ final class Generator extends UtilBase {
   ): GeneratorInterface {
 
     /** @var \Donquixote\Ock\Generator\GeneratorInterface $candidate */
-    $candidate = $incarnator->incarnate(
+    $candidate = Incarnator::getObject(
       $formula,
-      GeneratorInterface::class);
+      GeneratorInterface::class,
+      $incarnator);
 
     return $candidate;
   }

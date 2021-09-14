@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\InlinePluginList;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\UtilBase;
 
@@ -29,9 +30,10 @@ final class InlinePluginList extends UtilBase {
   ): InlinePluginListInterface {
 
     /** @var \Donquixote\Ock\InlinePluginList\InlinePluginListInterface $object */
-    $object = $incarnator->incarnate(
+    $object = Incarnator::getObject(
       $formula,
-      InlinePluginListInterface::class);
+      InlinePluginListInterface::class,
+      $incarnator);
 
     return $object;
   }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
@@ -33,7 +34,10 @@ abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
       // Looks like recursion.
       return NULL;
     }
-    return $incarnator->incarnate($replacement, $interface);
+    return Incarnator::getObject(
+      $replacement,
+      $interface,
+      $incarnator);
   }
 
   /**

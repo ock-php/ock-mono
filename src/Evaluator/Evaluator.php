@@ -6,6 +6,7 @@ namespace Donquixote\Ock\Evaluator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration;
+use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\MessageUtil;
 
@@ -31,9 +32,10 @@ class Evaluator {
   ): EvaluatorInterface {
 
     /** @var \Donquixote\Ock\Evaluator\EvaluatorInterface $candidate */
-    $candidate = $incarnator->incarnate(
+    $candidate = Incarnator::getObject(
       $formula,
-      EvaluatorInterface::class);
+      EvaluatorInterface::class,
+      $incarnator);
 
     return $candidate;
   }
