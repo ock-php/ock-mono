@@ -16,6 +16,9 @@ abstract class IncarnatorBase implements IncarnatorInterface {
     $this->cacheId = $cache_id;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function getCacheId(): string {
     return $this->cacheId;
   }
