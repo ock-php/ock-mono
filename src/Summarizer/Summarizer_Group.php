@@ -36,8 +36,8 @@ class Summarizer_Group implements SummarizerInterface {
     /** @var \Donquixote\Ock\Summarizer\SummarizerInterface[] $itemSummarizers */
     $itemSummarizers = Incarnator::getMultiple(
       $formula->getItemFormulas(),
-      $incarnator,
-      SummarizerInterface::class);
+      SummarizerInterface::class,
+      $incarnator);
 
     if (NULL === $itemSummarizers) {
       return NULL;

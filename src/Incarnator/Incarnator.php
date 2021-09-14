@@ -11,14 +11,17 @@ use Donquixote\Ock\Util\UtilBase;
 final class Incarnator extends UtilBase {
 
   /**
+   * Incarnates multiple formulas.
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $itemFormulas
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    * @param string $interface
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return mixed[]|null
+   *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function getMultiple(array $itemFormulas, IncarnatorInterface $incarnator, string $interface): ?array {
+  public static function getMultiple(array $itemFormulas, string $interface, IncarnatorInterface $incarnator): ?array {
 
     Formula::validateMultiple($itemFormulas);
 
