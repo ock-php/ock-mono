@@ -12,7 +12,7 @@ final class Summarizer extends UtilBase {
 
   /**
    * @param string $interface
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface
    *
@@ -20,16 +20,16 @@ final class Summarizer extends UtilBase {
    */
   public static function fromIface(
     string $interface,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): SummarizerInterface {
     return self::fromFormula(
       Formula::iface($interface),
-      $formulaToAnything);
+      $incarnator);
   }
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface
    *
@@ -38,11 +38,11 @@ final class Summarizer extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): SummarizerInterface {
 
     /** @var \Donquixote\Ock\Summarizer\SummarizerInterface $candidate */
-    $candidate = $formulaToAnything->incarnate(
+    $candidate = $incarnator->incarnate(
       $formula,
       SummarizerInterface::class);
 

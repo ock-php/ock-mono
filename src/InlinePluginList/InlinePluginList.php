@@ -14,7 +14,7 @@ final class InlinePluginList extends UtilBase {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\InlinePluginList\InlinePluginListInterface
@@ -25,11 +25,11 @@ final class InlinePluginList extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): InlinePluginListInterface {
 
     /** @var \Donquixote\Ock\InlinePluginList\InlinePluginListInterface $object */
-    $object = $formulaToAnything->incarnate(
+    $object = $incarnator->incarnate(
       $formula,
       InlinePluginListInterface::class);
 

@@ -28,16 +28,16 @@ class Summarizer_Label implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Label\Formula_LabelInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    */
-  public static function create(Formula_LabelInterface $formula, IncarnatorInterface $formulaToAnything): ?Summarizer_Label {
+  public static function create(Formula_LabelInterface $formula, IncarnatorInterface $incarnator): ?Summarizer_Label {
 
     try {
       $decorated = Summarizer::fromFormula(
         $formula->getDecorated(),
-        $formulaToAnything);
+        $incarnator);
     }
     catch (IncarnatorException $e) {
       return NULL;

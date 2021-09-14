@@ -14,13 +14,13 @@ final class Summarizer_Neutral extends UtilBase {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Neutral\Formula_NeutralInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_NeutralInterface $formula, IncarnatorInterface $formulaToAnything): SummarizerInterface {
-    return Summarizer::fromFormula($formula->getDecorated(), $formulaToAnything);
+  public static function create(Formula_NeutralInterface $formula, IncarnatorInterface $incarnator): SummarizerInterface {
+    return Summarizer::fromFormula($formula->getDecorated(), $incarnator);
   }
 }

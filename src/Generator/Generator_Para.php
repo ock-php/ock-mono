@@ -23,16 +23,16 @@ class Generator_Para implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Para\Formula_ParaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_ParaInterface $formula, IncarnatorInterface $formulaToAnything): Generator_Para {
+  public static function create(Formula_ParaInterface $formula, IncarnatorInterface $incarnator): Generator_Para {
     return new self(
-      Generator::fromFormula($formula->getDecorated(), $formulaToAnything),
-      Generator::fromFormula($formula->getParaFormula(), $formulaToAnything));
+      Generator::fromFormula($formula->getDecorated(), $incarnator),
+      Generator::fromFormula($formula->getParaFormula(), $incarnator));
   }
 
   /**

@@ -25,18 +25,18 @@ class Summarizer_Group implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_GroupInterface $formula, IncarnatorInterface $formulaToAnything): ?self {
+  public static function create(Formula_GroupInterface $formula, IncarnatorInterface $incarnator): ?self {
 
     /** @var \Donquixote\Ock\Summarizer\SummarizerInterface[] $itemSummarizers */
     $itemSummarizers = Incarnator::getMultiple(
       $formula->getItemFormulas(),
-      $formulaToAnything,
+      $incarnator,
       SummarizerInterface::class);
 
     if (NULL === $itemSummarizers) {

@@ -32,19 +32,19 @@ class PluginRegistry_Adapters implements PluginRegistryInterface {
   /**
    * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private IncarnatorInterface $formulaToAnything;
+  private IncarnatorInterface $incarnator;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $decorated
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $adaptersRegistry
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
-  public function __construct(PluginRegistryInterface $decorated, PluginRegistryInterface $adaptersRegistry, IncarnatorInterface $formulaToAnything) {
+  public function __construct(PluginRegistryInterface $decorated, PluginRegistryInterface $adaptersRegistry, IncarnatorInterface $incarnator) {
     $this->decorated = $decorated;
     $this->adaptersRegistry = $adaptersRegistry;
-    $this->formulaToAnything = $formulaToAnything;
+    $this->incarnator = $incarnator;
   }
 
   /**
@@ -57,7 +57,7 @@ class PluginRegistry_Adapters implements PluginRegistryInterface {
       foreach ($plugins as $adapter_id => $adapter_plugin) {
         $formula = $adapter_plugin->getFormula();
         try {
-          $derived = Formula::replace($formula, $this->formulaToAnything);
+          $derived = Formula::replace($formula, $this->incarnator);
         }
         catch (IncarnatorException $e) {
           throw new PluginListException($e->getMessage(), 0, $e);

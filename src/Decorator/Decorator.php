@@ -16,7 +16,7 @@ final class Decorator extends UtilBase {
    *
    * @param string $interface
    *   Interface name.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Decorator\DecoratorInterface|null
@@ -28,11 +28,11 @@ final class Decorator extends UtilBase {
    */
   public static function fromIface(
     string $interface,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?DecoratorInterface {
     return self::fromFormula(
       Formula::iface($interface),
-      $formulaToAnything);
+      $incarnator);
   }
 
   /**
@@ -40,7 +40,7 @@ final class Decorator extends UtilBase {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Decorator\DecoratorInterface
@@ -51,11 +51,11 @@ final class Decorator extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): DecoratorInterface {
 
     /** @var \Donquixote\Ock\Decorator\DecoratorInterface $candidate */
-    $candidate = $formulaToAnything->incarnate(
+    $candidate = $incarnator->incarnate(
       $formula,
       DecoratorInterface::class);
 

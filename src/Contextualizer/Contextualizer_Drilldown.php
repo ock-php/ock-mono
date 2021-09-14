@@ -29,41 +29,41 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
   /**
    * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private $formulaToAnything;
+  private $incarnator;
 
   /**
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    */
-  public static function createFromDrilldownValFormula(Formula_DrilldownValInterface $formula, IncarnatorInterface $formulaToAnything): self {
-    return new self($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
+  public static function createFromDrilldownValFormula(Formula_DrilldownValInterface $formula, IncarnatorInterface $incarnator): self {
+    return new self($formula->getDecorated(), $formula->getV2V(), $incarnator);
   }
 
   /**
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    */
-  public static function createFromDrilldownFormula(Formula_DrilldownInterface $formula, IncarnatorInterface $formulaToAnything): self {
-    return new self($formula, new V2V_Drilldown_Trivial(), $formulaToAnything);
+  public static function createFromDrilldownFormula(Formula_DrilldownInterface $formula, IncarnatorInterface $incarnator): self {
+    return new self($formula, new V2V_Drilldown_Trivial(), $incarnator);
   }
 
   /**
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
-  protected function __construct(Formula_DrilldownInterface $formula, V2V_DrilldownInterface $v2v, IncarnatorInterface $formulaToAnything) {
+  protected function __construct(Formula_DrilldownInterface $formula, V2V_DrilldownInterface $v2v, IncarnatorInterface $incarnator) {
     $this->formula = $formula;
     $this->v2v = $v2v;
-    $this->formulaToAnything = $formulaToAnything;
+    $this->incarnator = $incarnator;
   }
 
   public function contextGetFormula(?ContextInterface $context): FormulaInterface {
@@ -99,7 +99,7 @@ class Contextualizer_Drilldown implements ContextualizerInterface {
       return PhpUtil::incompatibleConfiguration("Unknown id '$id' in drilldown.");
     }
 
-    $subGenerator = Generator::fromFormula($subFormula, $this->formulaToAnything);
+    $subGenerator = Generator::fromFormula($subFormula, $this->incarnator);
 
     if (NULL === $subGenerator) {
       return PhpUtil::unsupportedFormula($subFormula, "Unsupported formula for id '$id' in drilldown.");

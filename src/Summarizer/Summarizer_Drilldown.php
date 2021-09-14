@@ -23,20 +23,20 @@ class Summarizer_Drilldown implements SummarizerInterface {
   /**
    * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private $formulaToAnything;
+  private $incarnator;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
   public function __construct(
     Formula_DrilldownInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ) {
     $this->formula = $formula;
-    $this->formulaToAnything = $formulaToAnything;
+    $this->incarnator = $incarnator;
   }
 
   /**
@@ -67,7 +67,7 @@ class Summarizer_Drilldown implements SummarizerInterface {
     try {
       $subSummarizer = Summarizer::fromFormula(
         $subFormula,
-        $this->formulaToAnything);
+        $this->incarnator);
     }
     catch (IncarnatorException $e) {
       return Text::s($id)

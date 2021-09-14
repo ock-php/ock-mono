@@ -33,24 +33,24 @@ class Generator_MultiStep implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\MultiStepVal\Formula_MultiStepValInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    */
-  public static function fromV2V(Formula_MultiStepValInterface $formula, IncarnatorInterface $formulaToAnything): self {
-    return new self($formula->getDecorated(), $formula->getV2V(), $formulaToAnything);
+  public static function fromV2V(Formula_MultiStepValInterface $formula, IncarnatorInterface $incarnator): self {
+    return new self($formula->getDecorated(), $formula->getV2V(), $incarnator);
   }
 
   /**
    * @STA
    *
    * @param \Donquixote\Ock\Formula\MultiStep\Formula_MultiStepInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    */
-  public static function createFromMultiStepFormula(Formula_MultiStepInterface $formula, IncarnatorInterface $formulaToAnything): self {
-    return new self($formula, new V2V_Group_Trivial(), $formulaToAnything);
+  public static function createFromMultiStepFormula(Formula_MultiStepInterface $formula, IncarnatorInterface $incarnator): self {
+    return new self($formula, new V2V_Group_Trivial(), $incarnator);
   }
 
   /**

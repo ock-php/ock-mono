@@ -14,7 +14,7 @@ final class InlineDrilldown extends UtilBase {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface
@@ -25,10 +25,10 @@ final class InlineDrilldown extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): InlineDrilldownInterface {
 
-    $candidate = $formulaToAnything->incarnate(
+    $candidate = $incarnator->incarnate(
       $formula,
       InlineDrilldownInterface::class);
 

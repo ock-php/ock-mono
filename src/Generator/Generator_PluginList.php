@@ -17,29 +17,29 @@ class Generator_PluginList implements GeneratorInterface {
   /**
    * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private $formulaToAnything;
+  private $incarnator;
 
   /**
    * @STA
    *
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    */
-  public static function createFromPluginListFormula(Formula_PluginListInterface $formula, IncarnatorInterface $formulaToAnything): self {
-    return new self($formula, $formulaToAnything);
+  public static function createFromPluginListFormula(Formula_PluginListInterface $formula, IncarnatorInterface $incarnator): self {
+    return new self($formula, $incarnator);
   }
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
-  protected function __construct(Formula_PluginListInterface $formula, IncarnatorInterface $formulaToAnything) {
+  protected function __construct(Formula_PluginListInterface $formula, IncarnatorInterface $incarnator) {
     $this->formula = $formula;
-    $this->formulaToAnything = $formulaToAnything;
+    $this->incarnator = $incarnator;
   }
 
   /**
@@ -95,7 +95,7 @@ class Generator_PluginList implements GeneratorInterface {
 
     $subGenerator = Generator::fromFormula(
       $plugin->getFormula(),
-      $this->formulaToAnything);
+      $this->incarnator);
 
     if (NULL === $subGenerator) {
       return PhpUtil::unsupportedFormula(

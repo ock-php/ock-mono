@@ -16,7 +16,7 @@ class Evaluator {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
@@ -27,11 +27,11 @@ class Evaluator {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): EvaluatorInterface {
 
     /** @var \Donquixote\Ock\Evaluator\EvaluatorInterface $candidate */
-    $candidate = $formulaToAnything->incarnate(
+    $candidate = $incarnator->incarnate(
       $formula,
       EvaluatorInterface::class);
 

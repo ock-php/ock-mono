@@ -13,15 +13,15 @@ abstract class InlineDrilldown_DecoKey implements InlineDrilldownInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function fromFormula(Formula_DecoKeyInterface $formula, IncarnatorInterface $formulaToAnything): InlineDrilldownInterface {
+  public static function fromFormula(Formula_DecoKeyInterface $formula, IncarnatorInterface $incarnator): InlineDrilldownInterface {
     return InlineDrilldown::fromFormula(
       $formula->getDecorated(),
-      $formulaToAnything);
+      $incarnator);
   }
 
 }

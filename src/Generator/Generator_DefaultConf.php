@@ -25,7 +25,7 @@ class Generator_DefaultConf implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
@@ -33,12 +33,12 @@ class Generator_DefaultConf implements GeneratorInterface {
    */
   public static function create(
     Formula_DefaultConfInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?self {
 
     $decorated = Generator::fromFormula(
       $formula->getDecorated(),
-      $formulaToAnything);
+      $incarnator);
 
     if (NULL === $decorated) {
       return NULL;

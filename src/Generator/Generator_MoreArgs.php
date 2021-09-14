@@ -35,21 +35,21 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, IncarnatorInterface $formulaToAnything): ?Generator_MoreArgs {
-    return self::create($formula, new V2V_Group_Trivial(), $formulaToAnything);
+  public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, IncarnatorInterface $incarnator): ?Generator_MoreArgs {
+    return self::create($formula, new V2V_Group_Trivial(), $incarnator);
   }
 
   /**
    * @STA
    *
    * @param \Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
@@ -57,18 +57,18 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    */
   public static function createFromMoreArgsValFormula(
     Formula_MoreArgsValInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?Generator_MoreArgs {
     return self::create(
       $formula->getDecorated(),
       $formula->getV2V(),
-      $formulaToAnything);
+      $incarnator);
   }
 
   /**
    * @param \Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
@@ -77,12 +77,12 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   public static function create(
     Formula_MoreArgsInterface $moreArgsFormula,
     V2V_GroupInterface $v2v,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?Generator_MoreArgs {
 
     $decoratedGenerator = Generator::fromFormula(
       $moreArgsFormula->getDecorated(),
-      $formulaToAnything);
+      $incarnator);
 
     if (NULL === $decoratedGenerator) {
       return NULL;
@@ -90,7 +90,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
 
     $moreGenerators = [];
     foreach ($moreArgsFormula->getMoreArgs() as $k => $itemFormula) {
-      $itemGenerator = Generator::fromFormula($itemFormula, $formulaToAnything);
+      $itemGenerator = Generator::fromFormula($itemFormula, $incarnator);
       if (NULL === $itemGenerator) {
         return NULL;
       }

@@ -13,7 +13,7 @@ final class Summarizer_V2V extends UtilBase {
    * @STA
    *
    * @param \Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface|null
    *
@@ -21,11 +21,11 @@ final class Summarizer_V2V extends UtilBase {
    */
   public static function create(
     Formula_ValueToValueBaseInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?SummarizerInterface {
     return Summarizer::fromFormula(
       $formula->getDecorated(),
-      $formulaToAnything
+      $incarnator
     );
   }
 

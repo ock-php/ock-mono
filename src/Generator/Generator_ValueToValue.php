@@ -19,16 +19,16 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValueInterface $valueToValueFormula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    */
-  public static function create(Formula_ValueToValueInterface $valueToValueFormula, IncarnatorInterface $formulaToAnything): ?self {
+  public static function create(Formula_ValueToValueInterface $valueToValueFormula, IncarnatorInterface $incarnator): ?self {
 
     try {
       $decorated = Generator::fromFormula(
         $valueToValueFormula->getDecorated(),
-        $formulaToAnything);
+        $incarnator);
     }
     catch (IncarnatorException $e) {
       return NULL;

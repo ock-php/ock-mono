@@ -37,44 +37,44 @@ class InlinePluginList_Drilldown implements InlinePluginListInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromDrilldownVal(
     Formula_DrilldownValInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?self {
     return self::create(
       $formula->getDecorated(),
       $formula->getV2V(),
-      $formulaToAnything);
+      $incarnator);
   }
 
   /**
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
   public static function fromDrilldown(
     Formula_DrilldownInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?self {
     return self::create(
       $formula,
       new V2V_Drilldown_Trivial(),
-      $formulaToAnything);
+      $incarnator);
   }
 
   /**
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return static|null
    * @throws \Donquixote\Ock\Exception\IncarnatorException
@@ -82,11 +82,11 @@ class InlinePluginList_Drilldown implements InlinePluginListInterface {
   public static function create(
     Formula_DrilldownInterface $formula,
     V2V_DrilldownInterface $v2v,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?self {
     $idFormula = Formula::replace(
       $formula->getIdFormula(),
-      $formulaToAnything);
+      $incarnator);
     if (!$idFormula instanceof Formula_SelectInterface) {
       return NULL;
     }

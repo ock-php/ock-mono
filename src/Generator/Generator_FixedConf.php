@@ -22,15 +22,15 @@ class Generator_FixedConf implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\FixedConf\Formula_FixedConfInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_FixedConfInterface $formula, IncarnatorInterface $formulaToAnything): GeneratorInterface {
+  public static function create(Formula_FixedConfInterface $formula, IncarnatorInterface $incarnator): GeneratorInterface {
     return new self(
-      Generator::fromFormula($formula->getDecorated(), $formulaToAnything),
+      Generator::fromFormula($formula->getDecorated(), $incarnator),
       $formula->getConf());
   }
 

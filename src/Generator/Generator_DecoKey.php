@@ -28,7 +28,7 @@ class Generator_DecoKey implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
@@ -36,15 +36,15 @@ class Generator_DecoKey implements GeneratorInterface {
    */
   public static function fromDecoKeyFormula(
     Formula_DecoKeyInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): ?self {
     return new self(
       Generator::fromFormula(
         $formula->getDecorated(),
-        $formulaToAnything),
+        $incarnator),
       Generator::fromFormula(
         $formula->getDecoratorFormula(),
-        $formulaToAnything),
+        $incarnator),
       $formula->getDecoKey());
   }
 

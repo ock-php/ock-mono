@@ -22,15 +22,15 @@ class Generator_Optional implements GeneratorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_OptionalInterface $formula, IncarnatorInterface $formulaToAnything): ?GeneratorInterface {
+  public static function create(Formula_OptionalInterface $formula, IncarnatorInterface $incarnator): ?GeneratorInterface {
 
-    $decorated = Generator::fromFormula($formula->getDecorated(), $formulaToAnything);
+    $decorated = Generator::fromFormula($formula->getDecorated(), $incarnator);
 
     if (NULL === $decorated) {
       return NULL;

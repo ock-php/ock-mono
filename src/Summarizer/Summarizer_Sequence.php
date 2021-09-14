@@ -20,7 +20,7 @@ class Summarizer_Sequence implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
    * @return \Donquixote\Ock\Summarizer\Summarizer_Sequence|null
@@ -29,11 +29,11 @@ class Summarizer_Sequence implements SummarizerInterface {
    */
   public static function create(
     Formula_SequenceInterface $formula,
-    IncarnatorInterface $formulaToAnything,
+    IncarnatorInterface $incarnator,
     TranslatorInterface $translator
   ): ?Summarizer_Sequence {
 
-    $itemSummarizer = Summarizer::fromFormula($formula->getItemFormula(), $formulaToAnything);
+    $itemSummarizer = Summarizer::fromFormula($formula->getItemFormula(), $incarnator);
 
     if (NULL === $itemSummarizer) {
       return NULL;

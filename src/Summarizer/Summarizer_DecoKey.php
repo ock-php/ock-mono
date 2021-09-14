@@ -26,20 +26,20 @@ class Summarizer_DecoKey implements SummarizerInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_DecoKeyInterface $formula, IncarnatorInterface $formulaToAnything): ?self {
+  public static function create(Formula_DecoKeyInterface $formula, IncarnatorInterface $incarnator): ?self {
     return new self(
       Summarizer::fromFormula(
         $formula->getDecorated(),
-        $formulaToAnything),
+        $incarnator),
       Summarizer::fromFormula(
         $formula->getDecoratorFormula(),
-        $formulaToAnything),
+        $incarnator),
       $formula->getDecoKey());
   }
 

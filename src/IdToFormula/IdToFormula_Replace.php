@@ -15,17 +15,17 @@ class IdToFormula_Replace implements IdToFormulaInterface {
   /**
    * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private IncarnatorInterface $formulaToAnything;
+  private IncarnatorInterface $incarnator;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
-  public function __construct(IdToFormulaInterface $decorated, IncarnatorInterface $formulaToAnything) {
+  public function __construct(IdToFormulaInterface $decorated, IncarnatorInterface $incarnator) {
     $this->decorated = $decorated;
-    $this->formulaToAnything = $formulaToAnything;
+    $this->incarnator = $incarnator;
   }
 
   /**
@@ -37,7 +37,7 @@ class IdToFormula_Replace implements IdToFormulaInterface {
       return NULL;
     }
     try {
-      return Formula::replace($formula, $this->formulaToAnything);
+      return Formula::replace($formula, $this->incarnator);
     }
     catch (IncarnatorException $e) {
       // @todo Log this.

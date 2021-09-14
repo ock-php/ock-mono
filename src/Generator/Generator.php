@@ -15,7 +15,7 @@ final class Generator extends UtilBase {
    *
    * @param string $interface
    *   Interface name.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface
@@ -27,11 +27,11 @@ final class Generator extends UtilBase {
    */
   public static function fromIface(
     string $interface,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): GeneratorInterface {
     return self::fromFormula(
       Formula::iface($interface),
-      $formulaToAnything);
+      $incarnator);
   }
 
   /**
@@ -39,7 +39,7 @@ final class Generator extends UtilBase {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formulaToAnything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface
@@ -50,11 +50,11 @@ final class Generator extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    IncarnatorInterface $formulaToAnything
+    IncarnatorInterface $incarnator
   ): GeneratorInterface {
 
     /** @var \Donquixote\Ock\Generator\GeneratorInterface $candidate */
-    $candidate = $formulaToAnything->incarnate(
+    $candidate = $incarnator->incarnate(
       $formula,
       GeneratorInterface::class);
 
