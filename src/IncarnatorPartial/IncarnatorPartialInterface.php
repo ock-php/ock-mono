@@ -25,7 +25,7 @@ interface IncarnatorPartialInterface {
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Malfunction in a formula replacer.
    */
-  public function breed(
+  public function incarnate(
     FormulaInterface $formula,
     string $interface,
     IncarnatorInterface $incarnator): ?object;

@@ -15,7 +15,7 @@ class Materialization_ValueFactory extends IncarnatorPartialZeroBase {
   /**
    * {@inheritdoc}
    */
-  public function breed(
+  public function incarnate(
     FormulaInterface $formula,
     string $interface,
     IncarnatorInterface $incarnator

@@ -88,7 +88,7 @@ class Incarnator_SmartChain extends IncarnatorBase {
     $candidate = NULL;
     foreach ($partials as $partial) {
 
-      $candidate = $partial->breed($formula, $interface, $this);
+      $candidate = $partial->incarnate($formula, $interface, $this);
 
       if ($candidate === NULL) {
         continue;

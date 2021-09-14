@@ -14,7 +14,7 @@ class Incarnator_Partial_Identity implements IncarnatorPartialInterface {
   /**
    * {@inheritdoc}
    */
-  public function breed(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): ?object {
+  public function incarnate(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): ?object {
     return ($formula instanceof $interface)
       ? $formula
       : NULL;

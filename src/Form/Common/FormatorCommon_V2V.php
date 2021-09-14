@@ -16,7 +16,7 @@ class FormatorCommon_V2V extends IncarnatorPartialZeroBase {
   /**
    * {@inheritdoc}
    */
-  public function breed(
+  public function incarnate(
     FormulaInterface $formula,
     string $interface,
     IncarnatorInterface $incarnator

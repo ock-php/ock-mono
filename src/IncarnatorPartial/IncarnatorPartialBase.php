@@ -83,7 +83,7 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
   /**
    * {@inheritdoc}
    */
-  public function breed(
+  public function incarnate(
     FormulaInterface $formula,
     string $interface,
     IncarnatorInterface $incarnator

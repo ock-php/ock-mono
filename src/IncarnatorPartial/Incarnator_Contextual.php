@@ -11,7 +11,7 @@ class Incarnator_Contextual extends IncarnatorPartialZeroBase {
   /**
    * {@inheritdoc}
    */
-  public function breed(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): ?object {
+  public function incarnate(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): ?object {
 
     if (!$formula instanceof Formula_ContextualInterface) {
       return NULL;

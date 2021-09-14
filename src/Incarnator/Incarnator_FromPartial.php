@@ -90,7 +90,7 @@ class Incarnator_FromPartial extends IncarnatorBase {
           $interface);
     }
 
-    $candidate = $this->partial->breed($formula, $interface, $this);
+    $candidate = $this->partial->incarnate($formula, $interface, $this);
 
     if ($candidate instanceof $interface) {
       return $candidate;

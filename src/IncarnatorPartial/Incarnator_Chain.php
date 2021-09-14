@@ -38,14 +38,14 @@ class Incarnator_Chain extends IncarnatorPartialZeroBase {
   /**
    * {@inheritdoc}
    */
-  public function breed(
+  public function incarnate(
     FormulaInterface $formula,
     string $interface,
     IncarnatorInterface $incarnator
   ): ?object {
 
     foreach ($this->partials as $mapper) {
-      $candidate = $mapper->breed($formula, $interface, $incarnator);
+      $candidate = $mapper->incarnate($formula, $interface, $incarnator);
       if (NULL !== $candidate) {
         if ($candidate instanceof $interface) {
           return $candidate;

@@ -16,7 +16,7 @@ class FormatorCommon_Contextual extends IncarnatorPartialZeroBase {
   /**
    * {@inheritdoc}
    */
-  public function breed(
+  public function incarnate(
     FormulaInterface $formula,
     string $interface,
     IncarnatorInterface $incarnator

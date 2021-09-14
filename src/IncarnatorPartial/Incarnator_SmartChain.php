@@ -68,7 +68,7 @@ class Incarnator_SmartChain extends IncarnatorPartialZeroBase {
   /**
    * {@inheritdoc}
    */
-  public function breed(
+  public function incarnate(
     FormulaInterface $formula,
     string $interface,
     IncarnatorInterface $incarnator
@@ -80,7 +80,7 @@ class Incarnator_SmartChain extends IncarnatorPartialZeroBase {
 
     $candidate = NULL;
     foreach ($partials as $partial) {
-      $candidate = $partial->breed($formula, $interface, $incarnator);
+      $candidate = $partial->incarnate($formula, $interface, $incarnator);
       if ($candidate instanceof $interface) {
         return $candidate;
       }
