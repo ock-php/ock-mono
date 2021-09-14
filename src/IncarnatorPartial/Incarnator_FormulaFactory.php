@@ -33,7 +33,7 @@ class Incarnator_FormulaFactory extends Incarnator_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
 
     /** @var \Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactoryInterface $formula */
 

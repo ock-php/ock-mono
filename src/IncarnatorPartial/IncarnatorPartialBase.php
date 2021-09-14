@@ -86,14 +86,14 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
   public function breed(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $nursery
+    IncarnatorInterface $incarnator
   ): ?object {
 
     if (NULL !== $this->formulaType && !$formula instanceof $this->formulaType) {
       return NULL;
     }
 
-    $candidate = $this->formulaDoGetObject($formula, $interface, $nursery);
+    $candidate = $this->formulaDoGetObject($formula, $interface, $incarnator);
 
     if (NULL === $candidate) {
       return NULL;

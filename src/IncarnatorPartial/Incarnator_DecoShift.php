@@ -28,9 +28,9 @@ class Incarnator_DecoShift extends Incarnator_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
     /** @var \Donquixote\Ock\Formula\DecoShift\Formula_DecoShiftInterface $formula */
-    return $this->decoratedFormulaGetReplacement($formula->getDecorated(), $nursery);
+    return $this->decoratedFormulaGetReplacement($formula->getDecorated(), $incarnator);
   }
 
   /**

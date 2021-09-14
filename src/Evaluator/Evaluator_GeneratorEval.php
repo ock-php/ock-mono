@@ -20,13 +20,13 @@ class Evaluator_GeneratorEval implements EvaluatorInterface {
    * @STA
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(FormulaInterface $formula, IncarnatorInterface $nursery): EvaluatorInterface {
-    $generator = Generator::fromFormula($formula, $nursery);
+  public static function create(FormulaInterface $formula, IncarnatorInterface $incarnator): EvaluatorInterface {
+    $generator = Generator::fromFormula($formula, $incarnator);
     return new self($generator);
   }
 

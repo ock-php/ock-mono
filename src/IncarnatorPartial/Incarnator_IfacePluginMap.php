@@ -34,7 +34,7 @@ class Incarnator_IfacePluginMap extends Incarnator_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
     /** @var \Donquixote\Ock\Formula\Iface\Formula_IfaceInterface $formula */
     $plugins = $this->pluginMap->typeGetPlugins($formula->getInterface());
     $ff = new Formula_Drilldown(

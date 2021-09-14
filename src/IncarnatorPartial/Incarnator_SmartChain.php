@@ -71,7 +71,7 @@ class Incarnator_SmartChain extends IncarnatorPartialZeroBase {
   public function breed(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $nursery
+    IncarnatorInterface $incarnator
   ): ?object {
 
     $partials = $this->formulaTypeAndTargetTypeGetPartials(
@@ -80,7 +80,7 @@ class Incarnator_SmartChain extends IncarnatorPartialZeroBase {
 
     $candidate = NULL;
     foreach ($partials as $partial) {
-      $candidate = $partial->breed($formula, $interface, $nursery);
+      $candidate = $partial->breed($formula, $interface, $incarnator);
       if ($candidate instanceof $interface) {
         return $candidate;
       }

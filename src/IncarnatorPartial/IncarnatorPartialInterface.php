@@ -16,7 +16,7 @@ interface IncarnatorPartialInterface {
    *   Formula from which to breed a new object.
    * @param string $interface
    *   Interface for the return value.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *   Nursery for nested breed calls.
    *
    * @return null|object
@@ -28,7 +28,7 @@ interface IncarnatorPartialInterface {
   public function breed(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $nursery): ?object;
+    IncarnatorInterface $incarnator): ?object;
 
   /**
    * @param string $resultInterface

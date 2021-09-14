@@ -11,12 +11,12 @@ class Incarnator_ContextProviding extends IncarnatorPartialZeroBase {
   /**
    * {@inheritdoc}
    */
-  public function breed(FormulaInterface $formula, string $interface, IncarnatorInterface $nursery): ?object {
+  public function breed(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): ?object {
     if (!$formula instanceof Formula_ContextProvidingInterface) {
       return NULL;
     }
 
-    return $nursery
+    return $incarnator
       # ->withContext($formula->getContext())
       ->incarnate(
         $formula->getDecorated(),

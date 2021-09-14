@@ -59,12 +59,12 @@ class Incarnator_Iface extends Incarnator_FormulaReplacerBase {
   /**
    * {@inheritdoc}
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface {
+  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
     /** @var \Donquixote\Ock\Formula\Iface\Formula_IfaceInterface $formula */
     return $this->typeGetFormula(
       $formula->getInterface(),
       $formula->allowsNull(),
-      $nursery);
+      $incarnator);
   }
 
   /**

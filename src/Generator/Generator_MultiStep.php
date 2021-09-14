@@ -27,7 +27,7 @@ class Generator_MultiStep implements GeneratorInterface {
   /**
    * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
    */
-  private $nursery;
+  private $incarnator;
 
   /**
    * @STA
@@ -58,12 +58,12 @@ class Generator_MultiStep implements GeneratorInterface {
    *
    * @param \Donquixote\Ock\Formula\MultiStep\Formula_MultiStepInterface $formula
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
-  protected function __construct(Formula_MultiStepInterface $formula, V2V_GroupInterface $v2v, IncarnatorInterface $nursery) {
+  protected function __construct(Formula_MultiStepInterface $formula, V2V_GroupInterface $v2v, IncarnatorInterface $incarnator) {
     $this->formula = $formula;
     $this->v2v = $v2v;
-    $this->nursery = $nursery;
+    $this->incarnator = $incarnator;
   }
 
   /**
@@ -77,7 +77,7 @@ class Generator_MultiStep implements GeneratorInterface {
       $step_conf = $conf[$key] ?? NULL;
       $parts[$key] = Generator::fromFormula(
         $step->getFormula(),
-        $this->nursery)
+        $this->incarnator)
         ->confGetPhp($step_conf);
       $step = $step->next($step_conf);
     }

@@ -16,11 +16,11 @@ final class Formula_Drilldown_InlineExpanded extends UtilBase {
   /**
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $decorated
    * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $idIsInline
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface|null
    */
-  public static function create(Formula_DrilldownInterface $decorated, Formula_IdInterface $idIsInline, IncarnatorInterface $nursery): ?Formula_DrilldownInterface {
+  public static function create(Formula_DrilldownInterface $decorated, Formula_IdInterface $idIsInline, IncarnatorInterface $incarnator): ?Formula_DrilldownInterface {
 
     $decoratedIdFormula = $decorated->getIdFormula();
 
@@ -33,11 +33,11 @@ final class Formula_Drilldown_InlineExpanded extends UtilBase {
       new IdToFormula_FilterDecorator(
         $decorated->getIdToFormula(),
         $idIsInline),
-      $nursery);
+      $incarnator);
 
     $idToFormula = new IdToFormula_InlineExpanded(
       $decorated->getIdToFormula(),
-      $nursery);
+      $incarnator);
 
     return new Formula_Drilldown(
       $idFormula,

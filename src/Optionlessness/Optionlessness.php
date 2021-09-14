@@ -25,13 +25,13 @@ class Optionlessness implements OptionlessnessInterface {
    * Determines whether a formula is optionless.
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return bool
    */
-  public static function checkFormula(FormulaInterface $formula, IncarnatorInterface $nursery): bool {
+  public static function checkFormula(FormulaInterface $formula, IncarnatorInterface $incarnator): bool {
     try {
-      return self::fromFormula($formula, $nursery)->isOptionless();
+      return self::fromFormula($formula, $incarnator)->isOptionless();
     }
     catch (IncarnatorException $e) {
       // Assume it is not optionless.
@@ -41,15 +41,15 @@ class Optionlessness implements OptionlessnessInterface {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function fromFormula(FormulaInterface $formula, IncarnatorInterface $nursery): OptionlessnessInterface {
+  public static function fromFormula(FormulaInterface $formula, IncarnatorInterface $incarnator): OptionlessnessInterface {
     /** @var \Donquixote\Ock\Optionlessness\OptionlessnessInterface $candidate */
-    $candidate = $nursery->incarnate($formula, OptionlessnessInterface::class);
+    $candidate = $incarnator->incarnate($formula, OptionlessnessInterface::class);
     return $candidate;
   }
 

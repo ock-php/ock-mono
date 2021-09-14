@@ -39,13 +39,13 @@ abstract class Incarnator_FormulaReplacerBase extends IncarnatorPartialBase {
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Original formula.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $nursery
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    *   Replacement formula.
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  abstract protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $nursery): ?FormulaInterface;
+  abstract protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface;
 
 }

@@ -19,14 +19,14 @@ class FormatorCommon_Contextual extends IncarnatorPartialZeroBase {
   public function breed(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $nursery
+    IncarnatorInterface $incarnator
   ): ?object {
 
     if (!$formula instanceof Formula_ContextualInterface) {
       return NULL;
     }
 
-    return $nursery->incarnate($formula->getDecorated(), $interface);
+    return $incarnator->incarnate($formula->getDecorated(), $interface);
   }
 
   /**

@@ -18,14 +18,14 @@ class Materialization_ValueFactory extends IncarnatorPartialZeroBase {
   public function breed(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $nursery
+    IncarnatorInterface $incarnator
   ): ?object {
 
     if (!$formula instanceof Formula_ValueToValueBaseInterface) {
       return NULL;
     }
 
-    return $nursery->incarnate($formula->getDecorated(), $interface);
+    return $incarnator->incarnate($formula->getDecorated(), $interface);
   }
 
   /**
