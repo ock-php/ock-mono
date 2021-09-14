@@ -39,10 +39,6 @@ class Summarizer_Group implements SummarizerInterface {
       SummarizerInterface::class,
       $incarnator);
 
-    if (NULL === $itemSummarizers) {
-      return NULL;
-    }
-
     return new self($formula, $itemSummarizers);
   }
 

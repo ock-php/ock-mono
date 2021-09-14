@@ -17,21 +17,18 @@ final class Incarnator extends UtilBase {
    * @param string $interface
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
-   * @return mixed[]|null
+   * @return object[]
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
+   *   One of the item formulas is not supported.
    */
-  public static function getMultiple(array $itemFormulas, string $interface, IncarnatorInterface $incarnator): ?array {
+  public static function getMultiple(array $itemFormulas, string $interface, IncarnatorInterface $incarnator): array {
 
     Formula::validateMultiple($itemFormulas);
 
     $itemObjects = [];
     foreach ($itemFormulas as $k => $itemFormula) {
-      $itemCandidate = self::getObject($itemFormula, $interface, $incarnator);
-      if (NULL === $itemCandidate) {
-        return NULL;
-      }
-      $itemObjects[$k] = $itemCandidate;
+      $itemObjects[$k] = self::getObject($itemFormula, $interface, $incarnator);
     }
 
     return $itemObjects;
