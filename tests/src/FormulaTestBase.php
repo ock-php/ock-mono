@@ -37,7 +37,7 @@ class FormulaTestBase extends TestCase {
     $objects[] = new PluginGroupLabels([]);
     $param_to_value = new ParamToValue_ObjectsMatchType($objects);
     try {
-      $fta = Incarnator_FromPartial::create(
+      $incarnator = Incarnator_FromPartial::create(
         $param_to_value,
         'test_cid');
     }
@@ -51,7 +51,7 @@ class FormulaTestBase extends TestCase {
         'Message when creating FTA: %s.',
         $record['message']));
     }
-    return $fta;
+    return $incarnator;
   }
 
   /**
