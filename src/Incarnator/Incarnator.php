@@ -24,7 +24,7 @@ final class Incarnator extends UtilBase {
 
     $itemObjects = [];
     foreach ($itemFormulas as $k => $itemFormula) {
-      $itemCandidate = self::getObject($itemFormula, $incarnator, $interface);
+      $itemCandidate = self::getObject($itemFormula, $interface, $incarnator);
       if (NULL === $itemCandidate) {
         return NULL;
       }
@@ -36,14 +36,14 @@ final class Incarnator extends UtilBase {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    * @param string $interface
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return object
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function getObject(FormulaInterface $formula, IncarnatorInterface $incarnator, string $interface): object {
+  public static function getObject(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): object {
 
     $object = $incarnator->incarnate($formula, $interface);
 
