@@ -28,7 +28,7 @@ class IncarnatorException extends \Exception implements UnsupportedFormulaExcept
       $message .= strtr(
         "\nFound !instead instead.",
         [
-          '!instead' => self::formatValue($instead)
+          '!instead' => self::formatValue($instead),
         ]);
     }
 
