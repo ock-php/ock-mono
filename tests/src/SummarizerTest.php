@@ -137,6 +137,13 @@ class SummarizerTest extends FormulaTestBase {
       self::normalizeSummary($summary_str));
   }
 
+  /**
+   * Normalizes a summary string for comparison.
+   *
+   * @param string $summary
+   *
+   * @return string
+   */
   public static function normalizeSummary(string $summary): string {
     // Remove trailing blank line.
     $summary = rtrim($summary);
