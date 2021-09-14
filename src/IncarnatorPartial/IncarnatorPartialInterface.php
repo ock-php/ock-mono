@@ -20,7 +20,7 @@ interface IncarnatorPartialInterface {
    *   Nursery for nested breed calls.
    *
    * @return null|object
-   *   An instance of $interface, or NULL to try other cradles instead.
+   *   An instance of $interface, or NULL to try other partials instead.
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Malfunction in a formula replacer.
