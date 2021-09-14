@@ -75,7 +75,7 @@ class Incarnator_SmartChain extends IncarnatorBase {
   /**
    * {@inheritdoc}
    */
-  public function incarnate(FormulaInterface $formula, string $interface): object {
+  public function incarnate(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): object {
 
     if ($formula instanceof $interface) {
       return $formula;
@@ -88,7 +88,7 @@ class Incarnator_SmartChain extends IncarnatorBase {
     $candidate = NULL;
     foreach ($partials as $partial) {
 
-      $candidate = $partial->incarnate($formula, $interface, $this);
+      $candidate = $partial->incarnate($formula, $interface, $incarnator);
 
       if ($candidate === NULL) {
         continue;

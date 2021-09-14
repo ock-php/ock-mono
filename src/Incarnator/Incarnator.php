@@ -45,7 +45,7 @@ final class Incarnator extends UtilBase {
    */
   public static function getObject(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): object {
 
-    $object = $incarnator->incarnate($formula, $interface);
+    $object = $incarnator->incarnate($formula, $interface, $incarnator);
 
     if (!$object instanceof $interface) {
       throw new IncarnatorException('Misbehaving STA.');

@@ -73,24 +73,26 @@ class Incarnator_FromPartial extends IncarnatorBase {
   /**
    * {@inheritdoc}
    */
-  public function incarnate(FormulaInterface $formula, string $interface): object {
+  public function incarnate(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): object {
 
     if ($formula instanceof Formula_ContextProvidingInterface) {
-      return $this
-        ->withContext($formula->getContext())
+      $incarnator = $this->withContext($formula->getContext());
+      return $incarnator
         ->incarnate(
           $formula->getDecorated(),
-          $interface);
+          $interface,
+          $incarnator);
     }
 
     if ($formula instanceof Formula_ContextualInterface) {
-      return $this
+      return $incarnator
         ->incarnate(
           $formula->getDecorated($this->context),
-          $interface);
+          $interface,
+          $incarnator);
     }
 
-    $candidate = $this->partial->incarnate($formula, $interface, $this);
+    $candidate = $this->partial->incarnate($formula, $interface, $incarnator);
 
     if ($candidate instanceof $interface) {
       return $candidate;

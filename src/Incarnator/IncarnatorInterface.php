@@ -15,6 +15,9 @@ interface IncarnatorInterface {
    *   Formula from which to incarnate a new object.
    * @param string $interface
    *   Interface for the return value.
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   *   Top-level incarnator that supports a wide range of formulas and
+   *   destination types.
    *
    * @return object
    *   An instance of $interface.
@@ -22,7 +25,7 @@ interface IncarnatorInterface {
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Misbehaving incarnator, or unsupported formula.
    */
-  public function incarnate(FormulaInterface $formula, string $interface): object;
+  public function incarnate(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): object;
 
   /**
    * Gets a cache id.
