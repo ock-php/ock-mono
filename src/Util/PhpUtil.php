@@ -378,17 +378,6 @@ EOT;
    * @return string
    */
   public static function phpString(string $string): string {
-
-    /*
-    if (false !== strpos($string, '\\')) {
-      if (preg_match(self::REGEX_NAMESPACE, $string)) {
-        if (class_exists($string)) {
-          return '\\' . $string . '::class';
-        }
-      }
-    }
-    */
-
     return var_export($string, TRUE);
   }
 
