@@ -38,13 +38,13 @@ final class StaUtil extends UtilBase {
    * @param \Donquixote\OCUI\FormulaToAnything\FormulaToAnythingInterface $formulaToAnything
    * @param string $interface
    *
-   * @return mixed|null
+   * @return object|null
    */
-  public static function getObject(FormulaInterface $formula, FormulaToAnythingInterface $formulaToAnything, string $interface) {
+  public static function getObject(FormulaInterface $formula, FormulaToAnythingInterface $formulaToAnything, string $interface): ?object {
 
     $object = $formulaToAnything->formula($formula, $interface);
 
-    if (NULL === $object || !$object instanceof $interface) {
+    if (!$object instanceof $interface) {
       return NULL;
     }
 
