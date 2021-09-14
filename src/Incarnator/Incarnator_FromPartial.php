@@ -13,7 +13,7 @@ use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class Incarnator_FromCradle extends IncarnatorBase {
+class Incarnator_FromPartial extends IncarnatorBase {
 
   /**
    * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface

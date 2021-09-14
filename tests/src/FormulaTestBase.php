@@ -4,7 +4,7 @@ namespace Donquixote\Ock\Tests;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
 use Donquixote\Ock\Exception\STABuilderException;
-use Donquixote\Ock\Incarnator\Incarnator_FromCradle;
+use Donquixote\Ock\Incarnator\Incarnator_FromPartial;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\ParamToLabel\ParamToLabel;
 use Donquixote\Ock\Plugin\Discovery\ClassToPlugins_NativeReflection;
@@ -37,7 +37,7 @@ class FormulaTestBase extends TestCase {
     $objects[] = new PluginGroupLabels([]);
     $param_to_value = new ParamToValue_ObjectsMatchType($objects);
     try {
-      $fta = Incarnator_FromCradle::create(
+      $fta = Incarnator_FromPartial::create(
         $param_to_value,
         'test_cid');
     }
