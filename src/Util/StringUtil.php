@@ -55,14 +55,11 @@ final class StringUtil extends UtilBase {
    *
    * @param string $string
    *   The original string, that we want to explode.
-   *
    * @param bool $lowercase
    *   should the result be lowercased?
-   *
    * @param string $example_string
    *   Example to specify how to deal with multiple uppercase characters.
    *   Can be something like "AA Bc" or "A A Bc" or "AABc".
-   *
    * @param string|bool $glue
    *   Allows to implode the fragments with sth like "_" or "." or " ".
    *   If $glue is FALSE, it will just return an array.

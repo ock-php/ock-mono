@@ -8,7 +8,6 @@ namespace Donquixote\Ock\TextLookup;
  * Helper object to provide labels in bulk.
  *
  * It is recommended to call this indirectly via LabelLookup::*().
- *
  */
 interface TextLookupInterface {
 
