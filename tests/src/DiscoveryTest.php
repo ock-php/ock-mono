@@ -43,7 +43,7 @@ class DiscoveryTest extends FormulaTestBase {
     $registry = $this->getPluginRegistry();
     $pluginss = $registry->getPluginss();
 
-    $formula_to_anything = $this->getIncarnator();
+    $incarnator = $this->getIncarnator();
 
     foreach ($pluginss as $type => $plugins) {
       foreach ($plugins as $id => $plugin) {
@@ -52,7 +52,7 @@ class DiscoveryTest extends FormulaTestBase {
           $plugin,
           "\$pluginss['$type']['$id'] instanceof Plugin.");
         $formula = $plugin->getFormula();
-        $generator = Generator::fromFormula($formula, $formula_to_anything);
+        $generator = Generator::fromFormula($formula, $incarnator);
         static::assertNotNull(
           $generator,
           "Generator created for \$pluginss['$type']['$id'].");
@@ -68,7 +68,7 @@ class DiscoveryTest extends FormulaTestBase {
     $formula = $plugin->getFormula();
     $generator = Generator::fromFormula(
       $formula,
-      $formula_to_anything);
+      $incarnator);
 
     self::assertNotNull($generator, 'Generator not NULL.');
 
@@ -78,7 +78,7 @@ class DiscoveryTest extends FormulaTestBase {
 
     $formula = Formula::iface(IntOpInterface::class);
 
-    $generator = Generator::fromFormula($formula, $formula_to_anything);
+    $generator = Generator::fromFormula($formula, $incarnator);
 
     self::assertNotNull($generator, 'Generator not NULL.');
   }

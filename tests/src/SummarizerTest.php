@@ -29,11 +29,11 @@ class SummarizerTest extends FormulaTestBase {
       self::fail('Formula must implement FormulaInterface.');
     }
     $conf = Yaml::parseFile("$dir/$base.$case.yml");
-    $formula_to_anything = $this->getIncarnator();
+    $incarnator = $this->getIncarnator();
 
     $summarizer = Summarizer::fromFormula(
       $formula,
-      $formula_to_anything);
+      $incarnator);
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
 
@@ -81,11 +81,11 @@ class SummarizerTest extends FormulaTestBase {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
-    $formula_to_anything = $this->getIncarnator();
+    $incarnator = $this->getIncarnator();
 
     $summarizer = Summarizer::fromIface(
       $interface,
-      $formula_to_anything);
+      $incarnator);
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
 

@@ -78,12 +78,12 @@ final class Formula extends UtilBase {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $formula_to_anything
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function replace(FormulaInterface $formula, IncarnatorInterface $formula_to_anything): ?FormulaInterface {
+  public static function replace(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
 
     $candidate = $formula_to_anything->incarnate(
       $formula,

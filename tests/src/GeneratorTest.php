@@ -31,10 +31,10 @@ class GeneratorTest extends FormulaTestBase {
       self::fail('Formula must implement FormulaInterface.');
     }
     $conf = Yaml::parseFile("$dir/$base.$case.yml");
-    $formula_to_anything = $this->getIncarnator();
+    $incarnator = $this->getIncarnator();
     $generator = Generator::fromFormula(
       $formula,
-      $formula_to_anything);
+      $incarnator);
     $php_raw = $generator->confGetPhp($conf);
     $php_nice = CodegenUtil::autoIndent($php_raw, '  ');
     $php_statement = CodegenUtil::buildReturnStatement($php_nice);
@@ -74,10 +74,10 @@ class GeneratorTest extends FormulaTestBase {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
-    $formula_to_anything = $this->getIncarnator();
+    $incarnator = $this->getIncarnator();
     $generator = Generator::fromIface(
       $interface,
-      $formula_to_anything);
+      $incarnator);
     $php_raw = $generator->confGetPhp($conf);
     $php_nice = CodegenUtil::autoIndent($php_raw, '  ', '  ');
     $php_statement = CodegenUtil::buildReturnStatement($php_nice);
