@@ -3,54 +3,36 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Form\Common;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
 use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
-use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialZeroBase;
 
-/**
- * @STA
- */
-class FormatorCommon_V2V extends IncarnatorPartialZeroBase {
+class FormatorCommon_V2V {
 
   /**
-   * {@inheritdoc}
+   * @STA
+   *
+   * @param \Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface $formula
+   * @param string $interface
+   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   *
+   * @return \Donquixote\Ock\Form\Common\FormatorCommonInterface|null
+   *
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public function incarnate(
-    FormulaInterface $formula,
-    string $interface,
-    IncarnatorInterface $incarnator
-  ): ?object {
+  public static function create(Formula_SkipEvaluatorInterface $formula, string $interface, IncarnatorInterface $incarnator): ?FormatorCommonInterface {
 
-    if (!$formula instanceof Formula_ValueToValueBaseInterface) {
+    if (!is_a($interface, FormatorCommonInterface::class, TRUE)) {
       return NULL;
     }
 
-    return Incarnator::getObject(
+    /** @var \Donquixote\Ock\Form\Common\FormatorCommonInterface $candidate */
+    $candidate = Incarnator::getObject(
       $formula->getDecorated(),
       $interface,
       $incarnator);
-  }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function providesResultType(string $resultInterface): bool {
-    return is_a(
-      $resultInterface ,
-      FormatorCommonInterface::class,
-      TRUE);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function acceptsFormulaClass(string $formulaClass): bool {
-    return is_a(
-      $formulaClass,
-      Formula_ValueToValueBaseInterface::class,
-      TRUE);
+    return $candidate;
   }
 
 }
