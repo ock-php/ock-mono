@@ -39,7 +39,7 @@ class FormatorCommon_Contextual extends IncarnatorPartialZeroBase {
    */
   public function providesResultType(string $resultInterface): bool {
     return is_a(
-      $resultInterface ,
+      $resultInterface,
       FormatorCommonInterface::class,
       TRUE);
   }
