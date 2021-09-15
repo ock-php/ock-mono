@@ -19,7 +19,7 @@ class Formula_Boolean_YesNo implements Formula_BooleanInterface {
   public static function create($enabledByDefault = FALSE): FormulaInterface {
 
     if ($enabledByDefault) {
-      return new Formula_DefaultConf(new self, TRUE);
+      return new Formula_DefaultConf(new self(), TRUE);
     }
 
     return new self();
