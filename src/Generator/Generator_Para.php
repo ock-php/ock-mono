@@ -54,6 +54,7 @@ class Generator_Para implements GeneratorInterface {
 
     try {
       // @todo Use a service that can pass in variables!
+      // phpcs:ignore
       $paraConf = eval($paraConfPhp);
     }
     catch (\Exception $e) {

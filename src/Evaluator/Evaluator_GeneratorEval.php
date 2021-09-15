@@ -44,6 +44,7 @@ class Evaluator_GeneratorEval implements EvaluatorInterface {
    */
   public function confGetValue($conf) {
     $php = $this->generator->confGetPhp($conf);
+    // phpcs:ignore
     return eval($php);
   }
 
