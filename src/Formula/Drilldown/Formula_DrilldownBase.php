@@ -14,7 +14,7 @@ abstract class Formula_DrilldownBase implements Formula_DrilldownInterface {
   /**
    * Constructor.
    *
-   * @param false $orNull
+   * @param bool $orNull
    */
   public function __construct($orNull = FALSE) {
     $this->orNull = $orNull;
