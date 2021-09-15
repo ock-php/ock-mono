@@ -23,12 +23,10 @@ class Text_Replacements extends TextBuilderBase {
    * @param \Donquixote\Ock\Text\TextInterface[] $replacements
    */
   public function __construct(TextInterface $source, array $replacements = []) {
-    self::validateReplacements(...array_values($replacements));
+    Text::validateMultiple($replacements);
     $this->source = $source;
     $this->replacements = $replacements;
   }
-
-  private static function validateReplacements(TextInterface ...$args): void {}
 
   /**
    * {@inheritdoc}
