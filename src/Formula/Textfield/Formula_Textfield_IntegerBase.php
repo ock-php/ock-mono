@@ -30,7 +30,7 @@ abstract class Formula_Textfield_IntegerBase extends Formula_TextfieldBase imple
       return $errors;
     }
 
-    return $this->numberGetValidationErrors((int)$text);
+    return $this->numberGetValidationErrors((int) $text);
   }
 
   /**
@@ -51,7 +51,7 @@ abstract class Formula_Textfield_IntegerBase extends Formula_TextfieldBase imple
       return PhpUtil::incompatibleConfiguration(reset($errors));
     }
 
-    return var_export((int)$string, TRUE);
+    return var_export((int) $string, TRUE);
   }
 
 }
