@@ -94,13 +94,6 @@ class FactoryToSTA_ReturnValue implements FactoryToSTAInterface {
     catch (\ReflectionException $e) {
       throw new \RuntimeException('Impossible exception', 0, $e);
     }
-    catch (\Exception $e) {
-      throw new \RuntimeException('Impossible exception', 0, $e);
-    }
-
-    if (NULL === $factory) {
-      return NULL;
-    }
 
     return $this->decorated->factoryGetPartial($factory);
   }
