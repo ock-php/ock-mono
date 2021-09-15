@@ -43,6 +43,9 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
    * @param \Donquixote\Ock\Formula\Select\Formula_Select_Fixed $idFormula
    * @param \Donquixote\Ock\IdToFormula\IdToFormula_Fixed $idToFormula
    * @param bool $orNull
+   *
+   * @noinspection InterfacesAsConstructorDependenciesInspection
+   *   Allow a private constructor to depend on classes.
    */
   private function __construct(Formula_Select_Fixed $idFormula, IdToFormula_Fixed $idToFormula, $orNull = FALSE) {
     $this->idFormula = $idFormula;
