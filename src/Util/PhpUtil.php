@@ -127,7 +127,6 @@ EOT;
     return self::exceptionWithMessagePhp(
       EvaluatorException_UnsupportedFormula::class,
       $messagePhp);
-    
   }
 
   /**

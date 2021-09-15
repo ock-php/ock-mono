@@ -96,7 +96,6 @@ class Generator_Drilldown implements GeneratorInterface {
    */
   private function idConfGetSubValuePhp($id, $subConf): string {
 
-
     if (NULL === $subFormula = $this->formula->getIdToFormula()->idGetFormula($id)) {
       return PhpUtil::incompatibleConfiguration("Unknown id '$id' in drilldown.");
     }

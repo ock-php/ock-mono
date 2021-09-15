@@ -86,7 +86,6 @@ class Generator_PluginList implements GeneratorInterface {
       return PhpUtil::incompatibleConfiguration("Plugin is required.");
     }
 
-
     $plugins = $this->formula->getPlugins();
     $plugin = $plugins[$id] ?? NULL;
 
