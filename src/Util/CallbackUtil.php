@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Util;
 class CallbackUtil {
 
   /**
-   * @param $callable
+   * @param callable $callable
    * @param array $argsPhp
    *
    * @return string

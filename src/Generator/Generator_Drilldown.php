@@ -90,7 +90,7 @@ class Generator_Drilldown implements GeneratorInterface {
 
   /**
    * @param string|int|null $id
-   * @param $subConf
+   * @param mixed $subConf
    *
    * @return string
    */

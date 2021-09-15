@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Evaluator;
 interface EvaluatorInterface {
 
   /**
-   * @param $conf
+   * @param mixed $conf
    *   Configuration.
    *
    * @return mixed
