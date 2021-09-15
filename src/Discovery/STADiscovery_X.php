@@ -11,6 +11,7 @@ use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnType_Chain;
 use Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTA;
 use Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface;
+use Donquixote\Ock\Util\AnnotationUtil;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinder_PhpTokenParser;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
@@ -131,31 +132,7 @@ class STADiscovery_X {
       return FALSE;
     }
 
-    return self::docCommentHasArglessAnnotationName($docComment, 'STA');
-  }
-
-  /**
-   * @param string $docComment
-   * @param string $name
-   *
-   * @return bool
-   */
-  public static function docCommentHasArglessAnnotationName(string $docComment, string $name): bool {
-
-    if (FALSE === strpos($docComment, '@' . $name)) {
-      return FALSE;
-    }
-
-    $pattern = ''
-      . '~(' . '^/\*\*\h+' . '|' . '\v\h*(\*\h+|)' . ')@'
-      . preg_quote($name, '~')
-      . '(\(\)|)' . '(\h*\v|\h*\*/$)~';
-
-    if (!preg_match($pattern, $docComment)) {
-      return FALSE;
-    }
-
-    return TRUE;
+    return AnnotationUtil::docCommentHasArglessAnnotationName($docComment, 'STA');
   }
 
 }

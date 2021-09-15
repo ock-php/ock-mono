@@ -6,6 +6,7 @@ namespace Donquixote\Ock\Discovery\FactoryToSTA;
 
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
+use Donquixote\Ock\Util\AnnotationUtil;
 
 class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
 
@@ -44,31 +45,7 @@ class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
       return FALSE;
     }
 
-    return self::docCommentHasArglessAnnotationName($docComment, 'STA');
-  }
-
-  /**
-   * @param string $docComment
-   * @param string $name
-   *
-   * @return bool
-   */
-  public static function docCommentHasArglessAnnotationName(string $docComment, string $name): bool {
-
-    if (FALSE === strpos($docComment, '@' . $name)) {
-      return FALSE;
-    }
-
-    $pattern = ''
-      . '~(' . '^/\*\*\h+' . '|' . '\v\h*(\*\h+|)' . ')@'
-      . preg_quote($name, '~')
-      . '(\(\)|)' . '(\h*\v|\h*\*/$)~';
-
-    if (!preg_match($pattern, $docComment)) {
-      return FALSE;
-    }
-
-    return TRUE;
+    return AnnotationUtil::docCommentHasArglessAnnotationName($docComment, 'STA');
   }
 
 }
