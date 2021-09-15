@@ -62,7 +62,7 @@ class IncarnatorPartial_DecoShift extends IncarnatorPartial_FormulaReplacerBase 
     }
     $item_formulas = $group_formula->getItemFormulas();
     $item_labels = $group_formula->getLabels();
-    reset ($item_formulas);
+    reset($item_formulas);
     if (key($item_formulas) !== 'decorated') {
       return NULL;
     }
