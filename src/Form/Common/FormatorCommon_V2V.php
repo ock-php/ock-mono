@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Form\Common;
 
-use Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
+use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
@@ -13,7 +13,7 @@ class FormatorCommon_V2V {
   /**
    * @STA
    *
-   * @param \Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface $formula
+   * @param \Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface $formula
    * @param string $interface
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -21,7 +21,7 @@ class FormatorCommon_V2V {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_SkipEvaluatorInterface $formula, string $interface, IncarnatorInterface $incarnator): ?FormatorCommonInterface {
+  public static function create(Formula_ValueToValueBaseInterface $formula, string $interface, IncarnatorInterface $incarnator): ?FormatorCommonInterface {
 
     if (!is_a($interface, FormatorCommonInterface::class, TRUE)) {
       return NULL;
