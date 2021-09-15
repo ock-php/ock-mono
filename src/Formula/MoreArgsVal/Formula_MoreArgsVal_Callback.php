@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Formula\MoreArgsVal;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\CallbackReflection\Util\CallbackUtil;
+use Donquixote\CallbackReflection\CallbackReflection;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgs;
 use Donquixote\Ock\Util\UtilBase;
@@ -72,7 +72,7 @@ final class Formula_MoreArgsVal_Callback extends UtilBase {
   ): Formula_MoreArgsValInterface {
 
     return self::create(
-      CallbackUtil::callableGetCallback($callable),
+      CallbackReflection::fromCallable($callable),
       $decorated,
       $more);
   }

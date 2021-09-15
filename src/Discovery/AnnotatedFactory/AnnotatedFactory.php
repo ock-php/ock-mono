@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Discovery\AnnotatedFactory;
 
 use Donquixote\CallbackReflection\Callback\CallbackReflection_StaticMethod;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\CallbackReflection\Util\CallbackUtil;
+use Donquixote\CallbackReflection\CallbackReflection;
 use Donquixote\Ock\Util\ReflectionUtil;
 
 class AnnotatedFactory implements AnnotatedFactoryInterface {
@@ -89,7 +89,7 @@ class AnnotatedFactory implements AnnotatedFactoryInterface {
       $returnTypeNames = [];
     }
 
-    $callback = CallbackUtil::callableGetCallback($callable);
+    $callback = CallbackReflection::fromCallable($callable);
 
     if (NULL === $callback) {
       return NULL;
