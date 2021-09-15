@@ -11,7 +11,7 @@ use Donquixote\Ock\Discovery\ClassFileToSTAs\ClassFileToSTAsInterface;
 class STADiscovery {
 
   /**
-   * @var ClassFileToSTAsInterface
+   * @var \Donquixote\Ock\Discovery\ClassFileToSTAs\ClassFileToSTAsInterface
    */
   private $classFileToAdapters;
 
@@ -23,7 +23,7 @@ class STADiscovery {
   }
 
   /**
-   * @param ClassFileToSTAsInterface $classFileToAdapters
+   * @param \Donquixote\Ock\Discovery\ClassFileToSTAs\ClassFileToSTAsInterface $classFileToAdapters
    */
   public function __construct(ClassFileToSTAsInterface $classFileToAdapters) {
     $this->classFileToAdapters = $classFileToAdapters;

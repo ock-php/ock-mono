@@ -29,7 +29,7 @@ class Formula_Select_TwoStepFlatSelectComposite extends Formula_Select_TwoStepFl
   /**
    * @param string $id
    *
-   * @return Formula_FlatSelectInterface|null
+   * @return \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface|null
    */
   protected function idGetSubFormula(string $id): ?Formula_FlatSelectInterface {
 

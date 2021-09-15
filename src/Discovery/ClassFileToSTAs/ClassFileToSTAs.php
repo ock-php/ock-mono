@@ -37,7 +37,7 @@ class ClassFileToSTAs implements ClassFileToSTAsInterface {
   }
 
   /**
-   * @param ClassFileToFactoriesInterface $classFileFactories
+   * @param \Donquixote\FactoryReflection\ClassFileToFactories\ClassFileToFactoriesInterface $classFileFactories
    * @param \Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface $factoryToSTA
    */
   public function __construct(

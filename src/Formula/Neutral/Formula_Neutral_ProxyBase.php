@@ -14,7 +14,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 abstract class Formula_Neutral_ProxyBase implements Formula_NeutralInterface {
 
   /**
-   * @var FormulaInterface
+   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   private $decorated;
 
@@ -27,7 +27,7 @@ abstract class Formula_Neutral_ProxyBase implements Formula_NeutralInterface {
   }
 
   /**
-   * @return FormulaInterface
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   abstract protected function doGetDecorated(): FormulaInterface;
 
