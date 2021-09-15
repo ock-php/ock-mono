@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Exception;
 
 /**
- * Any exception that happens when trying to create a runtime value, typically
- * from a formula + setting.
+ * Exception to be thrown in generated code and in evaluators.
+ *
+ * @see \Donquixote\Ock\Evaluator\EvaluatorInterface
  */
 class EvaluatorException extends \Exception {
 

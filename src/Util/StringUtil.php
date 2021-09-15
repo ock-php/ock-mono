@@ -47,6 +47,8 @@ final class StringUtil extends UtilBase {
   }
 
   /**
+   * Splits a camel-case string into its parts.
+   *
    * Credits:
    *   - Charl van Niekerk,
    *     http://blog.charlvn.za.net/2007/11/php-camelcase-explode-20.html.

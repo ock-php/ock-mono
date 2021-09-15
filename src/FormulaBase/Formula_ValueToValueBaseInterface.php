@@ -7,8 +7,10 @@ namespace Donquixote\Ock\FormulaBase;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 
 /**
- * Base interface for all formula types where the configuration form and summary
- * is the same as for the decorated formula.
+ * Base interface for decorators that don't affect config form and summary.
+ *
+ * @see \Donquixote\Ock\Form\Common\FormatorCommon_V2V
+ * @see \Donquixote\Ock\Summarizer\Summarizer_V2V
  */
 interface Formula_ValueToValueBaseInterface extends FormulaInterface {
 
