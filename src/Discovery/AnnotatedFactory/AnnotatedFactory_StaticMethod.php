@@ -65,7 +65,7 @@ class AnnotatedFactory_StaticMethod implements AnnotatedFactoryInterface {
   public function createDefinition(string $prefix): ?array {
     return [
       $prefix . '_factory' => $this->method->getDeclaringClass()->getName()
-        . '::' .  $this->method->getName(),
+        . '::' . $this->method->getName(),
     ];
   }
 
