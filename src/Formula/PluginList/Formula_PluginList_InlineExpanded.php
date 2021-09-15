@@ -75,6 +75,9 @@ class Formula_PluginList_InlineExpanded implements Formula_PluginListInterface {
     return $plugins;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function idGetPlugin(string $id): ?Plugin {
 
     if (FALSE === strpos($id, '/')) {

@@ -25,6 +25,9 @@ class DrilldownOption extends SelectOption implements DrilldownOptionInterface {
     parent::__construct($label, $group_label);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function getFormula(): FormulaInterface {
     return $this->formula;
   }
