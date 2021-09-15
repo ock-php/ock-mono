@@ -178,7 +178,7 @@ final class ReflectionUtil extends UtilBase {
    * @param string $docComment
    * @param string|null $selfClassName
    * @param string[] $aliasMap
-   *   Format: $[$alias] = $class
+   *   Format: $[$alias] = $class.
    * @param string|null $namespace
    *
    * @return string[]
@@ -411,7 +411,7 @@ final class ReflectionUtil extends UtilBase {
    * @param string $class
    * @param mixed[] $values
    * @param mixed[][] $privateParentValues
-   *   Format: $[$level][$name] = $value
+   *   Format: $[$level][$name] = $value.
    *
    * @return object
    *

@@ -187,7 +187,7 @@ class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
   /**
    * @param \ReflectionMethod $method
    * @param array[] $annotations
-   *   E.g. [['id' => 'entityTitle', 'label' => 'Entity title'], ..]
+   *   E.g. [['id' => 'entityTitle', 'label' => 'Entity title'], ..].
    *
    * @return \Donquixote\Ock\Plugin\Plugin[][]
    *   Format: $[$type][$id] = $plugin
