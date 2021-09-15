@@ -65,7 +65,7 @@ class Formula_Callback implements Formula_CallbackInterface {
   }
 
   /**
-   * @param \Donquixote\Ock\Context\CfContextInterface|NULL $context
+   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
    *
    * @return static
    */
