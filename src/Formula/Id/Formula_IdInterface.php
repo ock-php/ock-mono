@@ -10,8 +10,6 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
  * Base interface for formulas where the value is id-like (string or integer).
  *
  * @todo Do we really need TextInterface here?
- *
- * @todo
  */
 interface Formula_IdInterface extends FormulaInterface {
 
