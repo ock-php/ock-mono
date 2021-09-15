@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\IncarnatorException;
+use Donquixote\Ock\Exception\PluginListException;
 use Donquixote\Ock\Formula\DecoKey\Formula_DecoKey;
 use Donquixote\Ock\Formula\DecoShift\Formula_DecoShift;
 use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
@@ -62,10 +64,15 @@ class IncarnatorPartial_Iface extends IncarnatorPartial_FormulaReplacerBase {
    */
   protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
     /** @var \Donquixote\Ock\Formula\Iface\Formula_IfaceInterface $formula */
-    return $this->typeGetFormula(
-      $formula->getInterface(),
-      $formula->allowsNull(),
-      $incarnator);
+    try {
+      return $this->typeGetFormula(
+        $formula->getInterface(),
+        $formula->allowsNull(),
+        $incarnator);
+    }
+    catch (PluginListException $e) {
+      throw new IncarnatorException($e->getMessage(), 0, $e);
+    }
   }
 
   /**
@@ -74,6 +81,8 @@ class IncarnatorPartial_Iface extends IncarnatorPartial_FormulaReplacerBase {
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\PluginListException
    */
   public function typeGetFormula(string $type, bool $or_null, IncarnatorInterface $incarnator): FormulaInterface {
     $plugins = $this->pluginMap->typeGetPlugins($type);
@@ -116,6 +125,8 @@ class IncarnatorPartial_Iface extends IncarnatorPartial_FormulaReplacerBase {
    * @param string $type
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\PluginListException
    */
   private function buildDecoratorDrilldown(string $type): FormulaInterface {
 
