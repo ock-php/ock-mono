@@ -46,4 +46,3 @@ class IncarnatorPartial_IfacePluginMap extends IncarnatorPartial_FormulaReplacer
   }
 
 }
-
