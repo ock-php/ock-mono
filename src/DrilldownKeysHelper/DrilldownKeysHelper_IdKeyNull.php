@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\DrilldownKeysHelper;
 
-class DrilldownKeysHelper_IdKeyNull implements DrilldownKeysHelperInterface  {
+class DrilldownKeysHelper_IdKeyNull implements DrilldownKeysHelperInterface {
 
   /**
    * {@inheritdoc}
