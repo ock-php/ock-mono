@@ -5,7 +5,6 @@ namespace Donquixote\Ock\Tests;
 use Donquixote\Ock\Tests\Translator\Translator_Test;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\Translator\Translator_Passthru;
-use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 
 class TextTest extends TestCase {
@@ -71,7 +70,7 @@ class TextTest extends TestCase {
    *
    * @throws \PHPUnit\Util\Xml\Exception
    * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-   * @throws ExpectationFailedException
+   * @throws \PHPUnit\Framework\ExpectationFailedException
    */
   public static function assertTextEqualsFile(string $file, string $summary_str) {
     // Remove trailing blank line.

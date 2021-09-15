@@ -7,7 +7,6 @@ use Donquixote\Ock\Summarizer\Summarizer;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Tests\Translator\Translator_Test;
 use Donquixote\Ock\Translator\Translator_Passthru;
-use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\Yaml\Yaml;
 
 class SummarizerTest extends FormulaTestBase {
@@ -126,7 +125,7 @@ class SummarizerTest extends FormulaTestBase {
    *
    * @throws \PHPUnit\Util\Xml\Exception
    * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-   * @throws ExpectationFailedException
+   * @throws \PHPUnit\Framework\ExpectationFailedException
    */
   public static function assertSummaryEqualsFile(string $file, string $summary_str) {
     // Remove trailing blank line.
