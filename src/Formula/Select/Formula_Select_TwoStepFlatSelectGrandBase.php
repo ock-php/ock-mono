@@ -117,7 +117,7 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
   abstract protected function getIdFormula(): Formula_FlatSelectInterface;
 
   /**
-* @param string $id
+   * @param string $id
    *
    * @return \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface|null
    */
