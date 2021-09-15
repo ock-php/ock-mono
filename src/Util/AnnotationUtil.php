@@ -18,10 +18,16 @@ class AnnotationUtil {
       return FALSE;
     }
 
-    $pattern = ''
-      . '~(' . '^/\*\*\h+' . '|' . '\v\h*(\*\h+|)' . ')@'
-      . preg_quote($name, '~')
-      . '(\(\)|)' . '(\h*\v|\h*\*/$)~';
+    $pattern = '~'
+      // Start the doc with '/**', or start the line with  '*' or ''.
+      . '(' . '^/\*\*\h+' . '|' . '\v\h*(\*\h+|)' . ')'
+      // Annotation name starting with '@'.
+      . preg_quote('@' . $name, '~')
+      // Empty '()' or empty string.
+      . '(\(\)|)'
+      // End the line, or end the doc with '*/'.
+      . '(\h*\v|\h*\*/$)'
+      . '~';
 
     if (!preg_match($pattern, $docComment)) {
       return FALSE;
