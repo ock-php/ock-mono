@@ -37,10 +37,16 @@ class Formula_Select_LabelLookupFixed extends Formula_Select_LabelLookupBase {
     parent::__construct($labellookup, $groupLabelProvider);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function idIsKnown($id): bool {
     return isset($this->idsMap[$id]);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   protected function getGroupedIdsMap(): array {
     return $this->groupedIdsMap;
   }

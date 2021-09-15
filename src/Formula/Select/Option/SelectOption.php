@@ -27,10 +27,16 @@ class SelectOption implements SelectOptionInterface {
     $this->groupLabel = $groupLabel;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function getLabel(): ?TextInterface {
     return $this->label;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function getGroupLabel(): ?TextInterface {
     return $this->groupLabel;
   }
