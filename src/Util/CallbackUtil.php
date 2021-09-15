@@ -12,7 +12,7 @@ class CallbackUtil {
    *
    * @return string
    */
-  public static function callableGetPhp($callable, array $argsPhp): ?string {
+  public static function callableGetPhp(callable $callable, array $argsPhp): ?string {
 
     $arglistPhp = implode(', ', $argsPhp);
 
