@@ -49,9 +49,9 @@ final class StringUtil extends UtilBase {
   /**
    * Credits:
    *   - Charl van Niekerk,
-   *     http://blog.charlvn.za.net/2007/11/php-camelcase-explode-20.html
+   *     http://blog.charlvn.za.net/2007/11/php-camelcase-explode-20.html.
    *   - Andreas Hennings / dqxtech
-   *     http://dqxtech.net/blog/2011-03-04/php-camelcaseexplode-xl-version
+   *     http://dqxtech.net/blog/2011-03-04/php-camelcaseexplode-xl-version.
    *
    * @param string $string
    *   The original string, that we want to explode.
