@@ -54,8 +54,8 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
    * @param string $id
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param \Donquixote\Ock\Text\TextInterface $label
-   * @param ?string $group_id
-   * @param ?\Donquixote\Ock\Text\TextInterface $group_label
+   * @param string|null $group_id
+   * @param \Donquixote\Ock\Text\TextInterface|null $group_label
    *
    * @return static
    */
