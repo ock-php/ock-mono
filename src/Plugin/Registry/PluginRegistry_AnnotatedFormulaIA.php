@@ -12,8 +12,8 @@ use Donquixote\Ock\Text\Text;
 class PluginRegistry_AnnotatedFormulaIA implements PluginRegistryInterface {
 
   const KEYS_TO_REMOVE = [
-    TRUE, 'id' => TRUE,
-    TRUE, 'label' => TRUE,
+    0 => TRUE, 'id' => TRUE,
+    1 => TRUE, 'label' => TRUE,
     'description' => TRUE,
   ];
 

@@ -18,8 +18,8 @@ use Donquixote\Ock\Util\DocUtil;
 class ClassToPlugins_NativeReflection implements ClassToPluginsInterface {
 
   const KEYS_TO_REMOVE = [
-    TRUE, 'id' => TRUE,
-    TRUE, 'label' => TRUE,
+    0 => TRUE, 'id' => TRUE,
+    1 => TRUE, 'label' => TRUE,
     'description' => TRUE,
   ];
 
