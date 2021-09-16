@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\Ock\Util\MessageUtil;
 
 class Generator_Primitive implements GeneratorInterface {
 
@@ -38,12 +39,11 @@ class Generator_Primitive implements GeneratorInterface {
   public function confGetPhp($conf): string {
     $type = gettype($conf);
     if (!in_array($type, $this->formula->getAllowedTypes())) {
-      return PhpUtil::expectedConfigButFound(
+      throw new GeneratorException_IncompatibleConfiguration(
         sprintf(
-          'Incompatible type: Expected %s',
+          'Expected %s, but found %s.',
           implode('|', $this->formula->getAllowedTypes()),
-        ),
-        $conf);
+          MessageUtil::formatValue($conf)));
     }
     return var_export($conf, TRUE);
   }

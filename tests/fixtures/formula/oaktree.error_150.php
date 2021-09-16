@@ -1,7 +1,9 @@
 <?php
 
-use Donquixote\Ock\Evaluator\Evaluator;
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 
-return Evaluator::expectedConfigButFound(
-  'Configuration must be an array.',
-  '150');
+// Exception thrown in generator.
+return static function () {
+  throw new GeneratorException_IncompatibleConfiguration(
+    'Expected an array, found \'150\'.');
+};

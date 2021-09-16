@@ -10,6 +10,8 @@ interface V2V_GroupInterface {
    * @param string[] $itemsPhp
    *
    * @return string
+   *
+   * @throws \Donquixote\Ock\Exception\GeneratorException
    */
   public function itemsPhpGetPhp(array $itemsPhp): string;
 

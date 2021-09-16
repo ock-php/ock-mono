@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\V2V\Group;
 
-use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\Ock\Exception\GeneratorException_UnsupportedConfiguration;
 use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\Ock\Util\MessageUtil;
 
 class V2V_Group_EmptyWithValueProvider implements V2V_GroupInterface {
 
@@ -28,9 +28,10 @@ class V2V_Group_EmptyWithValueProvider implements V2V_GroupInterface {
   public function itemsPhpGetPhp(array $itemsPhp): string {
 
     if ([] !== $itemsPhp) {
-      return PhpUtil::exception(
-        EvaluatorException::class,
-        "Values must be an empty array.");
+      throw new GeneratorException_UnsupportedConfiguration(
+        sprintf(
+          'Expected an empty array, found %s.',
+          MessageUtil::formatValue($itemsPhp)));
     }
 
     return $this->valueProvider->getPhp();

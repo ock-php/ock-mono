@@ -72,6 +72,9 @@ class GroupFormulaBuilder {
    * @param mixed $value
    *
    * @return $this
+   *
+   * @throws \Exception
+   *   Value is not supported for export.
    */
   public function addValue(string $key, $value): self {
     return $this->addDependentVal(

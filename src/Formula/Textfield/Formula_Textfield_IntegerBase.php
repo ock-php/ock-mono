@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Textfield;
 
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\StringVal\Formula_StringVal;
 use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\V2V\String\V2V_StringInterface;
 
 abstract class Formula_Textfield_IntegerBase extends Formula_TextfieldBase implements V2V_StringInterface {
@@ -48,7 +48,7 @@ abstract class Formula_Textfield_IntegerBase extends Formula_TextfieldBase imple
   public function stringGetPhp(string $string): string {
 
     if ([] !== $errors = $this->textGetValidationErrors($string)) {
-      return PhpUtil::incompatibleConfiguration(reset($errors));
+      throw new GeneratorException_IncompatibleConfiguration(reset($errors));
     }
 
     return var_export((int) $string, TRUE);

@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
+use Donquixote\Ock\Exception\GeneratorException_UnsupportedConfiguration;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
-use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\V2V\Drilldown\V2V_Drilldown_Trivial;
 use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 
@@ -80,7 +81,8 @@ class Generator_Drilldown implements GeneratorInterface {
         return 'NULL';
       }
 
-      return PhpUtil::incompatibleConfiguration("Required id for drilldown is missing.");
+      throw new GeneratorException_IncompatibleConfiguration(
+        "Required id for drilldown is missing.");
     }
 
     $subValuePhp = $this->idConfGetSubValuePhp($id, $subConf);
@@ -93,18 +95,23 @@ class Generator_Drilldown implements GeneratorInterface {
    * @param mixed $subConf
    *
    * @return string
+   *
+   * @throws \Donquixote\Ock\Exception\GeneratorException
+   *   Configuration is incompatible or not supported.
    */
   private function idConfGetSubValuePhp($id, $subConf): string {
 
     if (NULL === $subFormula = $this->formula->getIdToFormula()->idGetFormula($id)) {
-      return PhpUtil::incompatibleConfiguration("Unknown id '$id' in drilldown.");
+      throw new GeneratorException_IncompatibleConfiguration(
+        "Unknown id '$id' in drilldown.");
     }
 
     try {
       $subGenerator = Generator::fromFormula($subFormula, $this->incarnator);
     }
     catch (IncarnatorException $e) {
-      return PhpUtil::unsupportedFormula($subFormula, "Unsupported formula for id '$id' in drilldown.");
+      throw new GeneratorException_UnsupportedConfiguration(
+        "Unsupported formula for id '$id' in drilldown.", 0, $e);
     }
 
     return $subGenerator->confGetPhp($subConf);

@@ -1,12 +1,9 @@
 <?php
 
-use Donquixote\Ock\Evaluator\Evaluator;
-use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormat_Native;
-use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormatInterface;
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 
-return static function (): NumberFormatInterface {
-  return NumberFormat_Native::create(
-    3,
-    Evaluator::incompatibleConfiguration(
-      'Unknown id \',:\' for id formula.'));
+// Exception thrown in generator.
+return static function () {
+  throw new GeneratorException_IncompatibleConfiguration(
+    'Unknown id \',:\' for id formula.');
 };

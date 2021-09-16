@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\Ock\Formula\SequenceVal\Formula_SequenceValInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\Ock\V2V\Sequence\V2V_Sequence_Trivial;
 use Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface;
 
@@ -92,17 +93,23 @@ class Generator_Sequence implements GeneratorInterface {
       $conf = [];
     }
     elseif (!\is_array($conf)) {
-      return PhpUtil::expectedConfigButFound("Configuration must be an array or NULL.", $conf);
+      throw new GeneratorException_IncompatibleConfiguration(
+        sprintf(
+          'Expected an array or NULL, but found %s.',
+          MessageUtil::formatValue($conf)));
+    }
+    elseif ($conf) {
+      $keys = array_keys($conf);
+      if ($keys !== array_keys($keys)) {
+        throw new GeneratorException_IncompatibleConfiguration(
+          sprintf(
+            'Expected an array with purely sequential keys, found %s.',
+            MessageUtil::formatValue($conf)));
+      }
     }
 
     $phpStatements = [];
-    foreach ($conf as $delta => $itemConf) {
-
-      if ((string) (int) $delta !== (string) $delta || $delta < 0) {
-        // Fail on non-numeric and negative keys.
-        return PhpUtil::expectedConfigButFound("Sequence array keys must be non-negative integers.", $conf);
-      }
-
+    foreach ($conf as $itemConf) {
       $phpStatements[] = $this->itemGenerator->confGetPhp($itemConf);
     }
 

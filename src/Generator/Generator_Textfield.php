@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\StringVal\Formula_StringValInterface;
 use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Translator\Translator;
+use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\Ock\V2V\String\V2V_String_Trivial;
 use Donquixote\Ock\V2V\String\V2V_StringInterface;
 
@@ -59,12 +62,18 @@ class Generator_Textfield implements GeneratorInterface {
   public function confGetPhp($conf): string {
 
     if (!\is_string($conf)) {
-      return PhpUtil::expectedConfigButFound("Value must be a string", $conf);
+      throw new GeneratorException_IncompatibleConfiguration(
+        sprintf(
+          'Expected a string, found %s.',
+          MessageUtil::formatValue($conf)));
     }
 
     if ([] !== $errors = $this->formula->textGetValidationErrors($conf)) {
-      // @todo Produce a comment from the errors text!
-      return PhpUtil::expectedConfigButFound(count($errors) . ' errors in text component.', $conf);
+      throw new GeneratorException_IncompatibleConfiguration(
+        sprintf(
+          'Text %s fails validation: %s.',
+          MessageUtil::formatValue($conf),
+          Text::concat($errors, ', ')->convert(Translator::passthru())));
     }
 
     return $this->v2v->stringGetPhp($conf);

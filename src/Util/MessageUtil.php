@@ -7,6 +7,22 @@ namespace Donquixote\Ock\Util;
 class MessageUtil extends UtilBase {
 
   /**
+   * @param string $expected
+   *   Message part to describe expected value.
+   * @param mixed $value
+   *   Actual value found.
+   *
+   * @return string
+   *   Formatted message.
+   */
+  public static function expectedButFound(string $expected, $value): string {
+    return sprintf(
+      'Expected %s, but found %s.',
+      $expected,
+      self::formatValue($value));
+  }
+
+  /**
    * @param mixed $value
    *
    * @return string

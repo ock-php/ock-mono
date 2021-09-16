@@ -38,6 +38,10 @@ class DiscoveryTest extends FormulaTestBase {
 
   /**
    * Tests plugin discovery.
+   *
+   * @throws \Donquixote\Ock\Exception\GeneratorException
+   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Ock\Exception\PluginListException
    */
   public function testPluginDiscovery() {
     $registry = $this->getPluginRegistry();

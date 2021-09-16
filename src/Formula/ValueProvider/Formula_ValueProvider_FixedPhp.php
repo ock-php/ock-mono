@@ -49,9 +49,29 @@ class Formula_ValueProvider_FixedPhp implements Formula_ValueProviderInterface {
   }
 
   /**
+   * Static factory. Creates an instance from a given value.
+   *
+   * Throws an "unchecked" exception on failure.
+   *
    * @param mixed $value
+   *   Simple value that is known to be safe for export.
    *
    * @return self
+   */
+  public static function fromValueSimple($value): self {
+    return new self(PhpUtil::phpValueSimple($value));
+  }
+
+  /**
+   * Static factory. Creates an instance from a given value.
+   *
+   * @param mixed $value
+   *   Value that is hoped to be safe for export.
+   *
+   * @return self
+   *
+   * @throws \Exception
+   *   Value is not supported for export.
    */
   public static function fromValue($value): self {
     return new self(PhpUtil::phpValue($value));

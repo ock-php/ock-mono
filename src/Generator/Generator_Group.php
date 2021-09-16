@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
@@ -91,7 +92,10 @@ class Generator_Group implements GeneratorInterface {
     if (!\is_array($conf)) {
       if ($this->itemGenerators) {
         // At least one configurable item exists in the group.
-        return PhpUtil::expectedConfigButFound('Configuration must be an array.', $conf);
+        throw new GeneratorException_IncompatibleConfiguration(
+          sprintf(
+            'Expected an array, found %s.',
+            MessageUtil::formatValue($conf)));
       }
     }
 

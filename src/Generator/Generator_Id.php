@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\Formula\IdVal\Formula_IdValInterface;
 use Donquixote\Ock\Util\ConfUtil;
-use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\V2V\Id\V2V_Id_Trivial;
 use Donquixote\Ock\V2V\Id\V2V_IdInterface;
 
@@ -58,11 +58,13 @@ class Generator_Id implements GeneratorInterface {
   public function confGetPhp($conf): string {
 
     if (NULL === $id = ConfUtil::confGetId($conf)) {
-      return PhpUtil::incompatibleConfiguration('Required id empty for id formula.');
+      throw new GeneratorException_IncompatibleConfiguration(
+        'Required id empty for id formula.');
     }
 
     if (!$this->formula->idIsKnown($id)) {
-      return PhpUtil::incompatibleConfiguration("Unknown id '$id' for id formula.");
+      throw new GeneratorException_IncompatibleConfiguration(
+        "Unknown id '$id' for id formula.");
     }
 
     return $this->v2v->idGetPhp($id);

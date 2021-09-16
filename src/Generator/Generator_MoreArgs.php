@@ -136,6 +136,8 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
 
   /**
    * @return string[]
+   *
+   * @throws \Donquixote\Ock\Exception\GeneratorException
    */
   private function getCommonValuesPhp(): array {
     return $this->commonValuesPhp
@@ -144,6 +146,8 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
 
   /**
    * @return string[]
+   *
+   * @throws \Donquixote\Ock\Exception\GeneratorException
    */
   private function buildCommonValuesPhp(): array {
 

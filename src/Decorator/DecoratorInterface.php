@@ -19,6 +19,9 @@ interface DecoratorInterface {
    *
    * @return string
    *   PHP code with decoration.
+   *
+   * @throws \Donquixote\Ock\Exception\GeneratorException
+   *   Incompatible or unsupported configuration.
    */
   public function confDecoratePhp($conf, string $php): string;
 

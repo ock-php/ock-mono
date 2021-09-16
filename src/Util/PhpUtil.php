@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Util;
 
-use Donquixote\CallbackReflection\Exception\GeneratedCodeException;
 use Donquixote\CallbackReflection\Util\CodegenUtil;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Evaluator\Evaluator;
-use Donquixote\Ock\Exception\EvaluatorException_UnsupportedFormula;
 
 final class PhpUtil extends UtilBase {
 
@@ -62,147 +58,6 @@ EOT;
 $php
 EOT;
 
-  }
-
-  /**
-   * @param string $message
-   *   Message describing the problem.
-   *
-   * @return string
-   *   Generated PHP code.
-   */
-  public static function incompatibleConfiguration(string $message): string {
-    return self::phpCallStatic([Evaluator::class, 'incompatibleConfiguration'], [
-      self::export($message),
-    ]);
-  }
-
-  /**
-   * @param string $expected
-   *   Message describing the expected configuration.
-   * @param mixed $conf
-   *   Failing configuration.
-   *
-   * @return string
-   *   Generated PHP code.
-   */
-  public static function expectedConfigButFound(string $expected, $conf): string {
-    return self::phpCallStatic([Evaluator::class, 'expectedConfigButFound'], [
-      self::export($expected),
-      self::export($conf),
-    ]);
-  }
-
-  /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param string $expectedClass
-   * @param mixed $foundValue
-   *
-   * @return string
-   */
-  public static function misbehavingSTA(FormulaInterface $formula, string $expectedClass, $foundValue): string {
-
-    $formulaClass = \get_class($formula);
-
-    $messagePhp = <<<EOT
-''
-. 'Attempted to create a ' . \\$expectedClass::class . ' object' . "\\n"
-. 'from formula of class ' . \\$formulaClass::class . '.' . "\\n"
-EOT;
-
-    if (\is_object($foundValue)) {
-      $valueClass = \get_class($foundValue);
-      $messagePhp .= <<<EOT
-. 'Found a ' . \\$valueClass::class . ' object instead.'
-EOT;
-    }
-    else {
-      $valueType = \gettype($foundValue);
-      $messagePhp .= <<<EOT
-
-. 'Found a $valueType value instead.'
-EOT;
-    }
-
-    return self::exceptionWithMessagePhp(
-      EvaluatorException_UnsupportedFormula::class,
-      $messagePhp);
-  }
-
-  /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param string $destinationClass
-   *
-   * @return string
-   */
-  public static function unableToSTA(FormulaInterface $formula, string $destinationClass): string {
-
-    $formulaClass = \get_class($formula);
-
-    $messagePhp = <<<EOT
-''
-. 'Unable to create a ' . \\$destinationClass::class . ' object' . "\\n"
-. 'from formula of class ' . \\$formulaClass::class . '.'
-EOT;
-
-    return self::exceptionWithMessagePhp(
-      EvaluatorException_UnsupportedFormula::class,
-      $messagePhp);
-  }
-
-  /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param string|null $message
-   *
-   * @return string
-   */
-  public static function unsupportedFormula(FormulaInterface $formula, string $message = NULL): string {
-
-    $formulaClass = \get_class($formula);
-
-    $messagePhp = <<<EOT
-
-'Unsupported formula of class ' . \\$formulaClass::class
-EOT;
-
-    if (NULL !== $message) {
-      $messagePhp .= ''
-        . "\n" . self::export($message);
-    }
-
-    return self::exceptionWithMessagePhp(
-      EvaluatorException_UnsupportedFormula::class,
-      $messagePhp);
-  }
-
-  /**
-   * @param string $exceptionClass
-   * @param string $message
-   *
-   * @return string
-   */
-  public static function exception(string $exceptionClass, string $message): string {
-
-    $messagePhp = var_export($message, TRUE);
-
-    return self::exceptionWithMessagePhp($exceptionClass, $messagePhp);
-  }
-
-  /**
-   * @param string $exceptionClass
-   * @param string $messagePhp
-   *
-   * @return string
-   */
-  private static function exceptionWithMessagePhp(string $exceptionClass, string $messagePhp): string {
-
-    return <<<EOT
-// @todo Fix the generated code manually.
-call_user_func(
-  static function () {
-    throw new \\$exceptionClass($messagePhp);
-  })
-EOT;
   }
 
   /**
@@ -305,9 +160,44 @@ EOT;
   }
 
   /**
+   * Exports a simple value as a php value expression.
+   *
+   * Throws an "unchecked" exception on failure.
+   *
    * @param mixed $value
+   *   Simple value that is known to be safe for export.
    *
    * @return string
+   *   PHP value expression.
+   */
+  public static function phpValueSimple($value): string {
+    try {
+      return self::phpValue($value);
+    }
+    catch (\Exception $e) {
+      // Convert to an "unchecked" exception.
+      throw new \InvalidArgumentException(
+        sprintf(
+          'Value %s was not as simple as expected.',
+          MessageUtil::formatValue($value)),
+        0,
+        $e);
+    }
+  }
+
+  /**
+   * Attempts to exports a value as a PHP value expression.
+   *
+   * Throws a "checked" exception on failure.
+   *
+   * @param mixed $value
+   *   Value that is hoped to be safe for export.
+   *
+   * @return string
+   *   PHP value expression.
+   *
+   * @throws \Exception
+   *   Value cannot be exported.
    */
   public static function phpValue($value): string {
 
@@ -336,6 +226,9 @@ EOT;
    * @param object $object
    *
    * @return string
+   *
+   * @throws \Exception
+   *   Object cannot be exported.
    */
   public static function phpObject(object $object): string {
 
@@ -348,9 +241,7 @@ EOT;
     }
 
     if ($object instanceof \Closure) {
-      return self::exception(
-        GeneratedCodeException::class,
-        'Cannot export closure.');
+      throw new \Exception('Cannot export closure.');
     }
 
     $valuess = ReflectionUtil::objectGetPropertyValuesDeep($object) + [0 => []];
@@ -405,15 +296,6 @@ EOT;
     }
 
     return "[$php\n]";
-  }
-
-  /**
-   * @param mixed $value
-   *
-   * @return string
-   */
-  private static function export($value): string {
-    return var_export($value, TRUE);
   }
 
 }

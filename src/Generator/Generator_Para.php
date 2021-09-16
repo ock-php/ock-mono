@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Exception\GeneratorException;
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Para\Formula_ParaInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
-use Donquixote\Ock\Util\PhpUtil;
 
 class Generator_Para implements GeneratorInterface {
 
@@ -58,7 +59,15 @@ class Generator_Para implements GeneratorInterface {
       $paraConf = eval($paraConfPhp);
     }
     catch (\Exception $e) {
-      return PhpUtil::incompatibleConfiguration($e->getMessage());
+      // Use 'if' instead of separate 'catch' to avoid false inspection.
+      // See https://youtrack.jetbrains.com/issue/WI-62853.
+      if ($e instanceof GeneratorException) {
+        // Exception already has the correct type.
+        throw $e;
+      }
+      // Wrong exception type. Convert.
+      throw new GeneratorException_IncompatibleConfiguration(
+        $e->getMessage(), 0, $e);
     }
 
     return $this->paraGenerator->confGetPhp($paraConf);

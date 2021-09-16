@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Evaluator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
@@ -43,7 +45,12 @@ class Evaluator_GeneratorEval implements EvaluatorInterface {
    * {@inheritdoc}
    */
   public function confGetValue($conf) {
-    $php = $this->generator->confGetPhp($conf);
+    try {
+      $php = $this->generator->confGetPhp($conf);
+    }
+    catch (GeneratorException $e) {
+      throw new EvaluatorException($e->getMessage(), 0, $e);
+    }
     // phpcs:ignore
     return eval($php);
   }

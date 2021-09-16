@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
+use Donquixote\Ock\Exception\GeneratorException_UnsupportedConfiguration;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\Ock\Util\MessageUtil;
 
 class Generator_PluginList implements GeneratorInterface {
 
@@ -52,7 +55,10 @@ class Generator_PluginList implements GeneratorInterface {
       $conf = [];
     }
     elseif (!is_array($conf)) {
-      return PhpUtil::expectedConfigButFound("Configuration must be an array.", $conf);
+      throw new GeneratorException_IncompatibleConfiguration(
+        sprintf(
+          'Expected an array, but found %s.',
+          MessageUtil::formatValue($conf)));
     }
 
     // Look for 'decorator' notation.
@@ -83,24 +89,31 @@ class Generator_PluginList implements GeneratorInterface {
         return 'NULL';
       }
 
-      return PhpUtil::incompatibleConfiguration("Plugin is required.");
+      throw new GeneratorException_IncompatibleConfiguration(
+        "Plugin is required.");
     }
 
     $plugins = $this->formula->getPlugins();
     $plugin = $plugins[$id] ?? NULL;
 
     if ($plugin === NULL) {
-      return PhpUtil::incompatibleConfiguration("No plugin found with id '$id'.");
+      throw new GeneratorException_IncompatibleConfiguration(
+        "No plugin found with id '$id'.");
     }
 
-    $subGenerator = Generator::fromFormula(
-      $plugin->getFormula(),
-      $this->incarnator);
-
-    if (NULL === $subGenerator) {
-      return PhpUtil::unsupportedFormula(
+    try {
+      $subGenerator = Generator::fromFormula(
         $plugin->getFormula(),
-        "No generator could be created for plugin '$id'.");
+        $this->incarnator);
+    }
+    catch (IncarnatorException $e) {
+      throw new GeneratorException_UnsupportedConfiguration(
+        sprintf(
+          'Unsupported plugin id %s: %s',
+          var_export($id, TRUE),
+          $e->getMessage()),
+        0,
+        $e);
     }
 
     return $subGenerator->confGetPhp($conf ?? NULL);

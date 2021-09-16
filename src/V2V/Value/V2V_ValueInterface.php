@@ -10,6 +10,8 @@ interface V2V_ValueInterface {
    * @param string $php
    *
    * @return string
+   *
+   * @throws \Donquixote\Ock\Exception\GeneratorException
    */
   public function phpGetPhp(string $php): string;
 

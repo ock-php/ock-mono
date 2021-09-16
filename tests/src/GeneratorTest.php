@@ -4,7 +4,9 @@ namespace Donquixote\Ock\Tests;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Generator\Generator;
+use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Symfony\Component\Yaml\Yaml;
 
@@ -16,16 +18,17 @@ class GeneratorTest extends FormulaTestBase {
    * @param string $file
    *   File containing the expected generated code.
    *
-   * @dataProvider providerTestFormula()
-   *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
+   *   (unexpected) Failure to create generator for formula.
+   *
+   * @dataProvider providerTestFormula()
    */
   public function testFormula(string $file): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
     if (!preg_match('@^(\w+)\.(\w+)\.php$@', $file, $m)) {
       self::fail("Unexpected file name '$file'.");
     }
-    list(, $base, $case) = $m;
+    [, $base, $case] = $m;
     $formula = include "$dir/$base.php";
     if (!$formula instanceof FormulaInterface) {
       self::fail('Formula must implement FormulaInterface.');
@@ -35,12 +38,11 @@ class GeneratorTest extends FormulaTestBase {
     $generator = Generator::fromFormula(
       $formula,
       $incarnator);
-    $php_raw = $generator->confGetPhp($conf);
-    $php_nice = CodegenUtil::autoIndent($php_raw, '  ');
-    $php_statement = CodegenUtil::buildReturnStatement($php_nice);
-    $php_actual = CodegenUtil::formatAsFile($php_statement);
-    $php_expected = file_get_contents("$dir/$file");
-    self::assertSame($php_expected, $php_actual);
+    $this->doTestGenerator(
+      $generator,
+      $conf,
+      "$dir/$base.$case.php",
+      NULL);
   }
 
   /**
@@ -66,11 +68,12 @@ class GeneratorTest extends FormulaTestBase {
    * @param string $name
    *   Name of the test case.
    *
-   * @dataProvider providerTestIfaceGenerator()
-   *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
+   *   (unexpected) Failure to create generator for interface formula.
+   *
+   * @dataProvider providerTestIfaceGenerator()
    */
-  public function testIfaceGenerator(string $type, string $name) {
+  public function testIfaceGenerator(string $type, string $name): void {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
@@ -78,17 +81,11 @@ class GeneratorTest extends FormulaTestBase {
     $generator = Generator::fromIface(
       $interface,
       $incarnator);
-    $php_raw = $generator->confGetPhp($conf);
-    $php_nice = CodegenUtil::autoIndent($php_raw, '  ', '  ');
-    $php_statement = CodegenUtil::buildReturnStatement($php_nice);
-    $php_statement = <<<EOT
-return static function (): \\$interface {
-  $php_statement
-};
-EOT;
-    $php_actual = CodegenUtil::formatAsFile($php_statement);
-    $php_expected = file_get_contents($filebase . '.php');
-    self::assertSame($php_expected, $php_actual);
+    $this->doTestGenerator(
+      $generator,
+      $conf,
+      $filebase . '.php',
+      $interface);
   }
 
   /**
@@ -109,6 +106,75 @@ EOT;
         }
       }
     }
+  }
+
+  /**
+   * @param \Donquixote\Ock\Generator\GeneratorInterface $generator
+   * @param mixed $conf
+   * @param string $file_expected
+   * @param string|null $interface
+   */
+  private function doTestGenerator(GeneratorInterface $generator, $conf, string $file_expected, ?string $interface): void {
+    try {
+      $php_raw = $generator->confGetPhp($conf);
+    }
+    catch (GeneratorException $e) {
+      self::assertExceptionPhpFile($e, $file_expected);
+      return;
+    }
+    self::assertValuePhpFile($php_raw, $interface, $file_expected);
+  }
+
+  /**
+   * @param \Donquixote\Ock\Exception\GeneratorException $e
+   * @param string $file_expected
+   */
+  private static function assertExceptionPhpFile(GeneratorException $e, string $file_expected): void {
+    $class = get_class($e);
+    $message_php = var_export($e->getMessage(), TRUE);
+    $php_statement = <<<EOT
+// Exception thrown in generator.
+return static function () {
+  throw new $class(
+    $message_php);
+};
+EOT;
+    $php_actual = CodegenUtil::formatAsFile($php_statement);
+    self::assertPhpFile($php_actual, $file_expected);
+  }
+
+  /**
+   * @param string $expression
+   *   PHP value expression.
+   * @param string|null $interface
+   *   Interface of the value.
+   * @param string $file_expected
+   *   Php file containing the expected php code.
+   */
+  private static function assertValuePhpFile(string $expression, ?string $interface, string $file_expected): void {
+    $php_nice = CodegenUtil::autoIndent(
+      $expression,
+      '  ',
+      $interface !== NULL ? '  ' : '');
+    $php_statement = CodegenUtil::buildReturnStatement($php_nice);
+    if ($interface !== NULL) {
+      $php_statement = <<<EOT
+return static function (): \\$interface {
+  $php_statement
+};
+EOT;
+    }
+    $php_actual = CodegenUtil::formatAsFile($php_statement);
+    self::assertPhpFile($php_actual, $file_expected);
+  }
+
+  /**
+   * @param string $php_actual
+   * @param string $file_expected
+   */
+  private static function assertPhpFile(string $php_actual, string $file_expected): void {
+    $php_expected = file_get_contents($file_expected);
+    self::assertSame($php_expected, $php_actual);
   }
 
 }

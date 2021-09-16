@@ -1,7 +1,9 @@
 <?php
 
-use Donquixote\Ock\Evaluator\Evaluator;
+use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 
-return Evaluator::expectedConfigButFound(
-  '1 errors in text component.',
-  '150');
+// Exception thrown in generator.
+return static function () {
+  throw new GeneratorException_IncompatibleConfiguration(
+    'Text \'150\' fails validation: Value must be no greater than 100..');
+};

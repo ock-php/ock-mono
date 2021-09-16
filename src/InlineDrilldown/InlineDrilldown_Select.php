@@ -61,7 +61,7 @@ class InlineDrilldown_Select implements InlineDrilldownInterface {
    * {@inheritdoc}
    */
   public function idGetFormula(string $id): ?FormulaInterface {
-    return Formula_ValueProvider_FixedPhp::fromValue($id);
+    return Formula_ValueProvider_FixedPhp::fromValueSimple($id);
   }
 
 }
