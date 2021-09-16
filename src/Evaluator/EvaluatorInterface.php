@@ -12,6 +12,9 @@ interface EvaluatorInterface {
    *
    * @return mixed
    *   Object or value.
+   *
+   * @throws \Donquixote\Ock\Exception\EvaluatorException
+   *   Failed to generate value.
    */
   public function confGetValue($conf);
 
