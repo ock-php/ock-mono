@@ -20,6 +20,11 @@ class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
   private string $type;
 
   /**
+   * @var \Donquixote\Ock\Plugin\Plugin[]|null
+   */
+  private ?array $plugins;
+
+  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
@@ -34,7 +39,8 @@ class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
    * {@inheritdoc}
    */
   protected function initialize(array &$grouped_options, array &$group_labels): void {
-    foreach ($this->pluginMap->typeGetPlugins($this->type) as $id => $plugin) {
+    $plugins = $this->getPlugins();
+    foreach ($plugins as $id => $plugin) {
       $label = $plugin->getLabel();
       // @todo Do something for the group label.
       $grouped_options[''][$id] = $label;
@@ -45,7 +51,7 @@ class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
    * {@inheritdoc}
    */
   public function idGetLabel($id): ?TextInterface {
-    $plugins = $this->pluginMap->typeGetPlugins($this->type);
+    $plugins = $this->getPlugins();
     if (!isset($plugins[$id])) {
       return NULL;
     }
@@ -56,8 +62,18 @@ class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
    * {@inheritdoc}
    */
   public function idIsKnown($id): bool {
-    $plugins = $this->pluginMap->typeGetPlugins($this->type);
+    $plugins = $this->getPlugins();
     return isset($plugins[$id]);
+  }
+
+  /**
+   * @return \Donquixote\Ock\Plugin\Plugin[]
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
+   */
+  private function getPlugins(): array {
+    return $this->plugins
+      ??= $this->pluginMap->typeGetPlugins($this->type);
   }
 
 }
