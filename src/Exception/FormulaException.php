@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Donquixote\Ock\Exception;
+
+/**
+ * Malfunction in a formula.
+ */
+class FormulaException extends \Exception {
+
+}

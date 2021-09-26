@@ -18,6 +18,9 @@ interface FormulaBase_AbstractSelectInterface {
    *
    * @return \Donquixote\Ock\Text\TextInterface[]
    *   Format: $[$group_id] = $group_label.
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
+   *   Failure to get options.
    */
   public function getOptGroups(): array;
 
@@ -29,6 +32,9 @@ interface FormulaBase_AbstractSelectInterface {
    *
    * @return \Donquixote\Ock\Text\TextInterface[]
    *   Format: $[$value] = $label.
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
+   *   Failure to get options.
    */
   public function getOptions(?string $group_id): array;
 
@@ -36,6 +42,8 @@ interface FormulaBase_AbstractSelectInterface {
    * @param string|int $id
    *
    * @return \Donquixote\Ock\Text\TextInterface|null
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public function idGetLabel($id): ?TextInterface;
 
@@ -43,6 +51,8 @@ interface FormulaBase_AbstractSelectInterface {
    * @param string|int $id
    *
    * @return bool
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    *
    * @see \Donquixote\Ock\Formula\Id\Formula_IdInterface::idIsKnown()
    */

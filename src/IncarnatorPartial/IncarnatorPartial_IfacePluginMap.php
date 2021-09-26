@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\IncarnatorException;
+use Donquixote\Ock\Exception\PluginListException;
 use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\Ock\Formula\Iface\Formula_IfaceInterface;
 use Donquixote\Ock\Formula\Select\Formula_Select_FromPlugins;
@@ -37,7 +39,12 @@ class IncarnatorPartial_IfacePluginMap extends IncarnatorPartial_FormulaReplacer
    */
   protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
     /** @var \Donquixote\Ock\Formula\Iface\Formula_IfaceInterface $formula */
-    $plugins = $this->pluginMap->typeGetPlugins($formula->getInterface());
+    try {
+      $plugins = $this->pluginMap->typeGetPlugins($formula->getInterface());
+    }
+    catch (PluginListException $e) {
+      throw new IncarnatorException($e->getMessage(), 0, $e);
+    }
     $ff = new Formula_Drilldown(
       new Formula_Select_FromPlugins($plugins),
       new IdToFormula_FromPlugins($plugins),

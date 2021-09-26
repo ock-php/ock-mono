@@ -40,6 +40,9 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
 
   /**
    * Initializes buffered options and groups.
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
+   *   Failure to initialize the formula.
    */
   private function init(): void {
     if ($this->groupedOptions !== NULL) {
@@ -60,6 +63,9 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
    *   with $group_id === '' for top-level options.
    * @param \Donquixote\Ock\Text\TextInterface[] $group_labels
    *   Format: $[$optgroup_id] = $optgroup_label.
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
+   *   Failure to initialize the formula.
    */
   abstract protected function initialize(array &$grouped_options, array &$group_labels): void;
 

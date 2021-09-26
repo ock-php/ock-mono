@@ -17,6 +17,8 @@ interface Formula_PluginListInterface extends FormulaInterface {
    *
    * @return \Donquixote\Ock\Plugin\Plugin[]
    *   List of plugins by machine name.
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public function getPlugins(): array;
 

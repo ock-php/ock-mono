@@ -7,6 +7,6 @@ namespace Donquixote\Ock\Exception;
 /**
  * A plugin is incorrectly defined.
  */
-class PluginListException extends \Exception {
+class PluginListException extends FormulaException {
 
 }

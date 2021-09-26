@@ -13,6 +13,8 @@ interface InlinePluginListInterface {
    *
    * @return string[]
    *   List of plugins machine names.
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public function getIds(): array;
 
