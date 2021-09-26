@@ -3,6 +3,7 @@
 namespace Donquixote\Ock\Tests;
 
 use Donquixote\Ock\Tests\Translator\Translator_Test;
+use Donquixote\Ock\Tests\Util\TestUtil;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\Translator\Translator_Passthru;
 use PHPUnit\Framework\TestCase;
@@ -24,12 +25,12 @@ class TextTest extends TestCase {
       self::fail('Text must implement TextInterface.');
     }
 
-    self::assertTextEqualsFile(
+    TestUtil::assertXmlFileContents(
       "$dir/$name.html",
       $text->convert(new Translator_Passthru()));
 
     if (file_exists($file = "$dir/$name.t.html")) {
-      self::assertTextEqualsFile(
+      TestUtil::assertXmlFileContents(
         $file,
         $text->convert(new Translator_Test()));
     }
@@ -62,34 +63,6 @@ class TextTest extends TestCase {
     foreach ($complete_names as $name) {
       yield [$name];
     }
-  }
-
-  /**
-   * @param string $file
-   * @param string $summary_str
-   *
-   * @throws \PHPUnit\Util\Xml\Exception
-   * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-   * @throws \PHPUnit\Framework\ExpectationFailedException
-   */
-  public static function assertTextEqualsFile(string $file, string $summary_str) {
-    // Remove trailing blank line.
-    $expected = rtrim(file_get_contents($file));
-    // Use additional wrapper div to cover pure text.
-    self::assertXmlStringEqualsXmlString(
-      self::normalizeText($expected),
-      self::normalizeText($summary_str));
-  }
-
-  /**
-   * @param string $summary
-   *
-   * @return string
-   */
-  public static function normalizeText(string $summary): string {
-    // Remove trailing blank line.
-    $summary = rtrim($summary);
-    return "<div>\n$summary\n</div>";
   }
 
 }

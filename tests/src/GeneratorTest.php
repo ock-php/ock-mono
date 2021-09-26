@@ -8,6 +8,7 @@ use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\Ock\Tests\Util\TestUtil;
 use Symfony\Component\Yaml\Yaml;
 
 class GeneratorTest extends FormulaTestBase {
@@ -140,7 +141,7 @@ return static function () {
 };
 EOT;
     $php_actual = CodegenUtil::formatAsFile($php_statement);
-    self::assertPhpFile($php_actual, $file_expected);
+    TestUtil::assertFileContents($file_expected, $php_actual);
   }
 
   /**
@@ -165,16 +166,7 @@ return static function (): \\$interface {
 EOT;
     }
     $php_actual = CodegenUtil::formatAsFile($php_statement);
-    self::assertPhpFile($php_actual, $file_expected);
-  }
-
-  /**
-   * @param string $php_actual
-   * @param string $file_expected
-   */
-  private static function assertPhpFile(string $php_actual, string $file_expected): void {
-    $php_expected = file_get_contents($file_expected);
-    self::assertSame($php_expected, $php_actual);
+    TestUtil::assertFileContents($file_expected, $php_actual);
   }
 
 }

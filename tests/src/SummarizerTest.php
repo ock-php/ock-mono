@@ -6,6 +6,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Summarizer\Summarizer;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Tests\Translator\Translator_Test;
+use Donquixote\Ock\Tests\Util\TestUtil;
 use Donquixote\Ock\Translator\Translator_Passthru;
 use Symfony\Component\Yaml\Yaml;
 
@@ -36,12 +37,12 @@ class SummarizerTest extends FormulaTestBase {
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
 
-    self::assertSummaryEqualsFile(
+    TestUtil::assertXmlFileContents(
       "$dir/$base.$case.html",
       $summary->convert(new Translator_Passthru()));
 
     if (file_exists($file = "$dir/$base.$case.t.html")) {
-      self::assertSummaryEqualsFile(
+      TestUtil::assertXmlFileContents(
         $file,
         $summary->convert(new Translator_Test()));
     }
@@ -88,12 +89,12 @@ class SummarizerTest extends FormulaTestBase {
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
 
-    self::assertSummaryEqualsFile(
+    TestUtil::assertXmlFileContents(
       "$filebase.html",
       $summary->convert(new Translator_Passthru()));
 
     if (file_exists($file = "$filebase.t.html")) {
-      self::assertSummaryEqualsFile(
+      TestUtil::assertXmlFileContents(
         $file,
         $summary->convert(new Translator_Test()));
     }
@@ -117,36 +118,6 @@ class SummarizerTest extends FormulaTestBase {
         }
       }
     }
-  }
-
-  /**
-   * @param string $file
-   * @param string $summary_str
-   *
-   * @throws \PHPUnit\Util\Xml\Exception
-   * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-   * @throws \PHPUnit\Framework\ExpectationFailedException
-   */
-  public static function assertSummaryEqualsFile(string $file, string $summary_str) {
-    // Remove trailing blank line.
-    $expected = rtrim(file_get_contents($file));
-    // Use additional wrapper div to cover pure text.
-    self::assertXmlStringEqualsXmlString(
-      self::normalizeSummary($expected),
-      self::normalizeSummary($summary_str));
-  }
-
-  /**
-   * Normalizes a summary string for comparison.
-   *
-   * @param string $summary
-   *
-   * @return string
-   */
-  public static function normalizeSummary(string $summary): string {
-    // Remove trailing blank line.
-    $summary = rtrim($summary);
-    return "<div>\n$summary\n</div>";
   }
 
 }
