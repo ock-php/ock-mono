@@ -3,7 +3,7 @@
 namespace Donquixote\Ock\Tests;
 
 use Donquixote\Ock\Tests\Translator\Translator_Test;
-use Donquixote\Ock\Tests\Util\TestUtil;
+use Donquixote\Ock\Tests\Util\XmlTestUtil;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\Translator\Translator_Passthru;
 use PHPUnit\Framework\TestCase;
@@ -25,12 +25,12 @@ class TextTest extends TestCase {
       self::fail('Text must implement TextInterface.');
     }
 
-    TestUtil::assertXmlFileContents(
+    XmlTestUtil::assertXmlFileContents(
       "$dir/$name.html",
       $text->convert(new Translator_Passthru()));
 
     if (file_exists($file = "$dir/$name.t.html")) {
-      TestUtil::assertXmlFileContents(
+      XmlTestUtil::assertXmlFileContents(
         $file,
         $text->convert(new Translator_Test()));
     }

@@ -6,7 +6,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Summarizer\Summarizer;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Tests\Translator\Translator_Test;
-use Donquixote\Ock\Tests\Util\TestUtil;
+use Donquixote\Ock\Tests\Util\XmlTestUtil;
 use Donquixote\Ock\Translator\Translator_Passthru;
 use Symfony\Component\Yaml\Yaml;
 
@@ -37,15 +37,13 @@ class SummarizerTest extends FormulaTestBase {
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
 
-    TestUtil::assertXmlFileContents(
+    XmlTestUtil::assertXmlFileContents(
       "$dir/$base.$case.html",
       $summary->convert(new Translator_Passthru()));
 
-    if (file_exists($file = "$dir/$base.$case.t.html")) {
-      TestUtil::assertXmlFileContents(
-        $file,
-        $summary->convert(new Translator_Test()));
-    }
+    XmlTestUtil::assertXmlFileContents(
+      "$dir/$base.$case.t.html",
+      $summary->convert(new Translator_Test()));
   }
 
   /**
@@ -89,12 +87,12 @@ class SummarizerTest extends FormulaTestBase {
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
 
-    TestUtil::assertXmlFileContents(
+    XmlTestUtil::assertXmlFileContents(
       "$filebase.html",
       $summary->convert(new Translator_Passthru()));
 
     if (file_exists($file = "$filebase.t.html")) {
-      TestUtil::assertXmlFileContents(
+      XmlTestUtil::assertXmlFileContents(
         $file,
         $summary->convert(new Translator_Test()));
     }

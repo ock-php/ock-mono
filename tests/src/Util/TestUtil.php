@@ -41,45 +41,4 @@ class TestUtil {
     }
   }
 
-  /**
-   * @param string $file
-   * @param string $xml_actual
-   *
-   * @throws \PHPUnit\Util\Xml\Exception
-   * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-   * @throws \PHPUnit\Framework\ExpectationFailedException
-   */
-  public static function assertXmlFileContents(string $file, string $xml_actual) {
-    $xml_actual = rtrim($xml_actual) . "\n";
-    try {
-      if (!is_file($file)) {
-        Assert::fail("File '$file' is missing.");
-      }
-      $xml_expected = file_get_contents($file);
-      // Use additional wrapper div to cover pure text.
-      Assert::assertXmlStringEqualsXmlString(
-        self::normalizeXml($xml_expected),
-        self::normalizeXml($xml_actual));
-    }
-    catch (AssertionFailedError $e) {
-      if (self::updateTestsEnabled()) {
-        file_put_contents($file, $xml_actual);
-      }
-      throw $e;
-    }
-  }
-
-  /**
-   * Prepares an xml fragment for assertXmlStringEqualsXmlString().
-   *
-   * @param string $xml
-   *   XML fragment that might lack wrapper tags.
-   *
-   * @return string
-   *   XML fragment with guaranteed wrapper tags.
-   */
-  public static function normalizeXml(string $xml): string {
-    return "<div>\n$xml\n</div>";
-  }
-
 }
