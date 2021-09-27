@@ -71,11 +71,11 @@ class SummarizerTest extends FormulaTestBase {
    * @param string $name
    *   Name of the test case.
    *
-   * @dataProvider providerTestIfaceSummarizer()
+   * @dataProvider providerTestIface()
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public function testIfaceSummarizer(string $type, string $name) {
+  public function testIface(string $type, string $name) {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
@@ -104,7 +104,7 @@ class SummarizerTest extends FormulaTestBase {
    * @return \Iterator|array[]
    *   Argument combos.
    */
-  public function providerTestIfaceSummarizer(): \Iterator {
+  public function providerTestIface(): \Iterator {
     $dir = dirname(__DIR__) . '/fixtures/iface';
     foreach (scandir($dir) as $dir_candidate) {
       if ($dir_candidate === '.' || $dir_candidate === '..') {

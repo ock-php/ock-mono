@@ -72,9 +72,9 @@ class GeneratorTest extends FormulaTestBase {
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   (unexpected) Failure to create generator for interface formula.
    *
-   * @dataProvider providerTestIfaceGenerator()
+   * @dataProvider providerTestIface()
    */
-  public function testIfaceGenerator(string $type, string $name): void {
+  public function testIface(string $type, string $name): void {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
@@ -95,7 +95,7 @@ class GeneratorTest extends FormulaTestBase {
    * @return \Iterator|array[]
    *   Argument combos.
    */
-  public function providerTestIfaceGenerator(): \Iterator {
+  public function providerTestIface(): \Iterator {
     $dir = dirname(__DIR__) . '/fixtures/iface';
     foreach (scandir($dir) as $dir_candidate) {
       if ($dir_candidate === '.' || $dir_candidate === '..') {
