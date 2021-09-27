@@ -45,6 +45,13 @@ class Plugin {
   }
 
   /**
+   * Helper method to validate an array of plugins.
+   *
+   * @param self ...$plugins
+   */
+  public static function validate(self ...$plugins): void {}
+
+  /**
    * Gets a label for the plugin.
    *
    * @return \Donquixote\Ock\Text\TextInterface

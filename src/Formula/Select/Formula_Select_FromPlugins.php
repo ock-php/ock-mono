@@ -26,15 +26,10 @@ class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
    * @param \Donquixote\Ock\Text\TextInterface[] $groupLabels
    */
   public function __construct(array $plugins, array $groupLabels = []) {
-    self::validatePlugins(...array_values($plugins));
+    Plugin::validate(...array_values($plugins));
     $this->plugins = $plugins;
     $this->groupLabels = $groupLabels;
   }
-
-  /**
-   * @param \Donquixote\Ock\Plugin\Plugin ...$plugins
-   */
-  private static function validatePlugins(Plugin ...$plugins): void {}
 
   /**
    * {@inheritdoc}
