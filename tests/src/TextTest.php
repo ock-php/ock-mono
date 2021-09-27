@@ -44,23 +44,13 @@ class TextTest extends TestCase {
    */
   public function providerText(): \Iterator {
     $dir = dirname(__DIR__) . '/fixtures/text';
-    $by_ext = ['html' => [], 'php' => []];
-    $by_name = [];
+    $names_map = [];
     foreach (scandir($dir) as $candidate) {
-      if (preg_match('@^(\w+)\.(html|php)$@', $candidate, $m)) {
-        [, $name, $ext] = $m;
-        $by_ext[$ext][$name] = $name;
-        $by_name[$name][$ext] = $candidate;
+      if (preg_match('@^(\w+)\.\w+$@', $candidate, $m)) {
+        $names_map[$m[1]] = TRUE;
       }
     }
-    $complete_names = array_intersect_key(...array_values($by_ext));
-    $orphan_candidates = array_diff_key($by_name, $complete_names);
-    if ($orphan_candidates) {
-      self::fail('Found orphan files: ' . implode(
-        ', ',
-        array_replace(...array_values($orphan_candidates))));
-    }
-    foreach ($complete_names as $name) {
+    foreach ($names_map as $name => $_) {
       yield [$name];
     }
   }

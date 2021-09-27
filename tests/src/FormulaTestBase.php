@@ -72,4 +72,54 @@ class FormulaTestBase extends TestCase {
       $classToPlugins);
   }
 
+  /**
+   * Data provider.
+   *
+   * @return \Iterator
+   *   Parameter combos.
+   */
+  public function providerTestFormula(): \Iterator {
+    $dir = dirname(__DIR__) . '/fixtures/formula';
+    $candidates = scandir($dir);
+    // Prevent duplicates, but detect orphan files.
+    $comboss_map = [];
+    foreach ($candidates as $candidate) {
+      if (preg_match('@^(\w+)\.(\w+)\.\w+$@', $candidate, $m)) {
+        [, $base, $case] = $m;
+        $comboss_map[$base][$case] = TRUE;
+      }
+    }
+    foreach ($comboss_map as $base => $cases_map) {
+      $base = (string) $base;
+      foreach ($cases_map as $case => $_) {
+        yield [$base, (string) $case];
+      }
+    }
+  }
+
+  /**
+   * Data provider.
+   *
+   * @return \Iterator|array[]
+   *   Argument combos.
+   */
+  public function providerTestIface(): \Iterator {
+    $dir = dirname(__DIR__) . '/fixtures/iface';
+    foreach (scandir($dir) as $dir_candidate) {
+      if ($dir_candidate === '.' || $dir_candidate === '..') {
+        continue;
+      }
+      // Prevent duplicates, but detect orphan files.
+      $names_map = [];
+      foreach (scandir($dir . '/' . $dir_candidate) as $file_candidate) {
+        if (preg_match('@^(\w+)\.\w+$@', $file_candidate, $m)) {
+          $names_map[$m[1]] = TRUE;
+        }
+      }
+      foreach ($names_map as $name => $_) {
+        yield [$dir_candidate, $name];
+      }
+    }
+  }
+
 }

@@ -16,20 +16,16 @@ class GeneratorTest extends FormulaTestBase {
   /**
    * Tests various formulas.
    *
-   * @param string $file
-   *   File containing the expected generated code.
+   * @param string $base
+   * @param string $case
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   (unexpected) Failure to create generator for formula.
    *
    * @dataProvider providerTestFormula()
    */
-  public function testFormula(string $file): void {
+  public function testFormula(string $base, string $case): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
-    if (!preg_match('@^(\w+)\.(\w+)\.php$@', $file, $m)) {
-      self::fail("Unexpected file name '$file'.");
-    }
-    [, $base, $case] = $m;
     $formula = include "$dir/$base.php";
     if (!$formula instanceof FormulaInterface) {
       self::fail('Formula must implement FormulaInterface.');
@@ -44,21 +40,6 @@ class GeneratorTest extends FormulaTestBase {
       $conf,
       "$dir/$base.$case.php",
       NULL);
-  }
-
-  /**
-   * Data provider.
-   *
-   * @return \Iterator
-   *   Parameter combos.
-   */
-  public function providerTestFormula(): \Iterator {
-    $dir = dirname(__DIR__) . '/fixtures/formula';
-    $candidates = scandir($dir);
-    $candidates = preg_grep('@^(\w+)\.(\w+)\.php$@', $candidates);
-    foreach ($candidates as $candidate) {
-      yield [$candidate];
-    }
   }
 
   /**
@@ -87,26 +68,6 @@ class GeneratorTest extends FormulaTestBase {
       $conf,
       $filebase . '.php',
       $interface);
-  }
-
-  /**
-   * Data provider.
-   *
-   * @return \Iterator|array[]
-   *   Argument combos.
-   */
-  public function providerTestIface(): \Iterator {
-    $dir = dirname(__DIR__) . '/fixtures/iface';
-    foreach (scandir($dir) as $dir_candidate) {
-      if ($dir_candidate === '.' || $dir_candidate === '..') {
-        continue;
-      }
-      foreach (scandir($dir . '/' . $dir_candidate) as $file_candidate) {
-        if (preg_match('@^(\w+)\.php$@', $file_candidate, $m)) {
-          yield [$dir_candidate, $m[1]];
-        }
-      }
-    }
   }
 
   /**

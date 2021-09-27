@@ -47,23 +47,6 @@ class SummarizerTest extends FormulaTestBase {
   }
 
   /**
-   * Data provider.
-   *
-   * @return \Iterator
-   *   Parameter combos.
-   */
-  public function providerTestFormula(): \Iterator {
-    $dir = dirname(__DIR__) . '/fixtures/formula';
-    $candidates = scandir($dir);
-    foreach ($candidates as $candidate) {
-      if (preg_match('@^(\w+)\.(\w+)\.html$@', $candidate, $m)) {
-        [, $base, $case] = $m;
-        yield [$base, $case];
-      }
-    }
-  }
-
-  /**
    * Tests an interface generator with a specific example.
    *
    * @param string $type
@@ -95,26 +78,6 @@ class SummarizerTest extends FormulaTestBase {
       XmlTestUtil::assertXmlFileContents(
         $file,
         $summary->convert(new Translator_Test()));
-    }
-  }
-
-  /**
-   * Data provider.
-   *
-   * @return \Iterator|array[]
-   *   Argument combos.
-   */
-  public function providerTestIface(): \Iterator {
-    $dir = dirname(__DIR__) . '/fixtures/iface';
-    foreach (scandir($dir) as $dir_candidate) {
-      if ($dir_candidate === '.' || $dir_candidate === '..') {
-        continue;
-      }
-      foreach (scandir($dir . '/' . $dir_candidate) as $file_candidate) {
-        if (preg_match('@^(\w+)\.html$@', $file_candidate, $m)) {
-          yield [$dir_candidate, $m[1]];
-        }
-      }
     }
   }
 
