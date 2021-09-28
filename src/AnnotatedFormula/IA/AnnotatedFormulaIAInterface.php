@@ -9,8 +9,8 @@ interface AnnotatedFormulaIAInterface extends \IteratorAggregate {
   /**
    * Finds annotated formulas.
    *
-   * @return iterable<\Donquixote\Ock\AnnotatedFormula\AnnotatedFormulaInterface>
+   * @return \Iterator<\Donquixote\Ock\AnnotatedFormula\AnnotatedFormulaInterface>
    */
-  public function getIterator(): iterable;
+  public function getIterator(): \Iterator;
 
 }
