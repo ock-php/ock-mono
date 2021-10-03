@@ -101,7 +101,7 @@ return static function () {
     $message_php);
 };
 EOT;
-    $php_actual = CodegenUtil::formatAsFile($php_statement);
+    $php_actual = self::formatAsFile($php_statement);
     TestUtil::assertFileContents($file_expected, $php_actual);
   }
 
@@ -126,8 +126,29 @@ return static function (): \\$interface {
 };
 EOT;
     }
-    $php_actual = CodegenUtil::formatAsFile($php_statement);
+    $php_actual = self::formatAsFile($php_statement);
     TestUtil::assertFileContents($file_expected, $php_actual);
+  }
+
+  /**
+   * Formats PHP code as a PHP file.
+   *
+   * @param string $php
+   *   PHP code.
+   *
+   * @return string
+   *   PHP code suitable for export into a file.
+   */
+  private static function formatAsFile(string $php) {
+    $aliases = CodegenUtil::aliasify($php);
+    $php = rtrim($php, "\n ");
+    $aliases_php = CodegenUtil::formatAliases($aliases);
+    return <<<EOT
+<?php /** @noinspection PhpUnused */
+$aliases_php
+$php
+
+EOT;
   }
 
 }

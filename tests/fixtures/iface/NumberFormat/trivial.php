@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnused */
 
 use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormat_Trivial;
 use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormatInterface;

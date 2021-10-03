@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnused */
 
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOp_Add;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOp_Multiply;

@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnused */
 
 use Donquixote\Ock\Tests\Fixture\Plant\Plant_OakTree;
 

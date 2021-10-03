@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnused */
 
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 
