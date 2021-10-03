@@ -56,6 +56,7 @@
         "donquixote/reflectionkit": "*",
         "ondrejmirtes/better-reflection": "dev-master",
         "psr/log": "^1.1",
+        "spiral/attributes": "^2.8",
         "symfony/polyfill-php80": "^1.23"
     },
     "require-dev": {
