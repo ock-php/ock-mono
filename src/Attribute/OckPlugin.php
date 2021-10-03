@@ -21,22 +21,21 @@ class OckPlugin {
   private string $label;
 
   /**
-   * @var mixed[]
+   * @var array
    */
-  private array $args;
+  private array $args = [];
 
   /**
    * Constructor.
    *
    * @param string $id
    * @param string $label
-   * @param mixed ...$args
-   *   Additional arguments.
+   * @param bool $decorator
    */
-  public function __construct(string $id, string $label, ...$args) {
+  public function __construct(string $id, string $label, bool $inline = FALSE, bool $decorator = FALSE) {
     $this->id = $id;
     $this->label = $label;
-    $this->args = $args;
+    $this->args['decorator'] = $decorator;
   }
 
   /**
