@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\Formula\IdVal\Formula_IdValInterface;
@@ -24,12 +25,11 @@ class Generator_Id implements GeneratorInterface {
   private $v2v;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $formula
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function createFromIdFormula(Formula_IdInterface $formula): Generator_Id {
     return new self($formula, new V2V_Id_Trivial());
   }

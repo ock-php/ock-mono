@@ -100,6 +100,31 @@ final class ReflectionUtil extends UtilBase {
   }
 
   /**
+   * @param \ReflectionMethod $reflectionMethod
+   * @param bool $requireStatic
+   *
+   * @return string
+   * @throws \Exception
+   */
+  public static function methodGetReturnClass(\ReflectionMethod $reflectionMethod, bool $requireStatic = FALSE): string {
+    if ($requireStatic && !$reflectionMethod->isStatic()) {
+      throw new \Exception('Method must be static.');
+    }
+    $type = $reflectionMethod->getReturnType();
+    if (!$type) {
+      throw new \Exception('Method must have a return type declaration.');
+    }
+    if (!$type instanceof \ReflectionNamedType || $type->isBuiltin()) {
+      throw new \Exception('Method return type must be a single class.');
+    }
+    $class = $type->getName();
+    if ($class === 'self' || $class === 'static') {
+      $class = $reflectionMethod->getDeclaringClass()->getName();
+    }
+    return $class;
+  }
+
+  /**
    * @param \ReflectionFunctionAbstract $function
    *
    * @return string[]
@@ -505,6 +530,33 @@ final class ReflectionUtil extends UtilBase {
   }
 
   /**
+   * @param \ReflectionParameter[] $params
+   * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
+   *
+   * @return mixed[]
+   *
+   * @throws \Exception
+   */
+  public static function paramsDemandValues(array $params, ParamToValueInterface $paramToValue): ?array {
+
+    $else = new \stdClass();
+
+    $argValues = [];
+    foreach ($params as $i => $param) {
+      if ($else === $argValue = $paramToValue->paramGetValue($param, $else)) {
+        throw new \Exception(\vsprintf('Cannot resolve parameter #%s ($%s) of %s.', [
+          $param->getPosition(),
+          $param->getName(),
+          MessageUtil::formatReflectionFunction($param->getDeclaringFunction()),
+        ]));
+      }
+      $argValues[$i] = $argValue;
+    }
+
+    return $argValues;
+  }
+
+  /**
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    * @param mixed $else
@@ -535,6 +587,21 @@ final class ReflectionUtil extends UtilBase {
     }
 
     return $callback->invokeArgs($args);
+  }
+
+  /**
+   * @param \ReflectionClass $reflectionClass
+   *   Class or interface.
+   *
+   * @return string[]
+   *   All parent interfaces, including the class itself if it is an interface.
+   */
+  public static function reflectionClassGetInterfaceNames(\ReflectionClass $reflectionClass): array {
+    $interfaces = $reflectionClass->getInterfaceNames();
+    if ($reflectionClass->isInterface()) {
+      $interfaces[] = $reflectionClass->getName();
+    }
+    return $interfaces;
   }
 
 }

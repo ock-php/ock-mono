@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
@@ -35,10 +36,15 @@ abstract class IncarnatorPartial_FormulaReplacerBase extends IncarnatorPartialBa
       // Looks like recursion.
       return NULL;
     }
-    return Incarnator::getObject(
-      $replacement,
-      $interface,
-      $incarnator);
+    try {
+      return Incarnator::getObject(
+        $replacement,
+        $interface,
+        $incarnator);
+    }
+    catch (IncarnatorException $e) {
+      throw IncarnatorException::create($formula, $interface, $e->getMessage());
+    }
   }
 
   /**

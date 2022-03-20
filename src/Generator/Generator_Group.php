@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
@@ -25,8 +26,6 @@ class Generator_Group implements GeneratorInterface {
   private $v2v;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -34,13 +33,12 @@ class Generator_Group implements GeneratorInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function createFromGroupFormula(Formula_GroupInterface $formula, IncarnatorInterface $incarnator): ?self {
     return self::create($formula, new V2V_Group_Trivial(), $incarnator);
   }
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -48,6 +46,7 @@ class Generator_Group implements GeneratorInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function createFromGroupValFormula(Formula_GroupValInterface $formula, IncarnatorInterface $incarnator): ?self {
     return self::create($formula->getDecorated(), $formula->getV2V(), $incarnator);
   }

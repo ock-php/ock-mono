@@ -12,15 +12,17 @@ interface IncarnatorInterface {
   /**
    * Attempts to "incarnate" a formula as another type.
    *
+   * @template T
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula from which to incarnate a new object.
-   * @param string $interface
+   * @param class-string<T> $interface
    *   Interface for the return value.
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *   Top-level incarnator that supports a wide range of formulas and
    *   destination types.
    *
-   * @return object
+   * @return T
    *   An instance of $interface.
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException

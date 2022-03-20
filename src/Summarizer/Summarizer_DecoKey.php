@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Text\Text;
@@ -24,8 +25,6 @@ class Summarizer_DecoKey implements SummarizerInterface {
   private string $key;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -33,6 +32,7 @@ class Summarizer_DecoKey implements SummarizerInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function create(Formula_DecoKeyInterface $formula, IncarnatorInterface $incarnator): ?self {
     return new self(
       Summarizer::fromFormula(

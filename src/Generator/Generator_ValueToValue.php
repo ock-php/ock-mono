@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValueInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
@@ -17,13 +18,12 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
   private $v2v;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValueInterface $valueToValueFormula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    */
+  #[OckIncarnator]
   public static function create(Formula_ValueToValueInterface $valueToValueFormula, IncarnatorInterface $incarnator): ?self {
 
     try {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IncarnatorPartial;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Exception\PluginListException;
@@ -20,9 +21,7 @@ use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 
-/**
- * @STA
- */
+# #[OckIncarnator]
 class IncarnatorPartial_Iface extends IncarnatorPartial_FormulaReplacerBase {
 
   /**
@@ -36,13 +35,12 @@ class IncarnatorPartial_Iface extends IncarnatorPartial_FormulaReplacerBase {
   private array $groupLabels;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
    * @param \Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface $groupLabels
    *
-   * @return static
+   * @return self
    */
+  #[OckIncarnator]
   public static function create(PluginMapInterface $pluginMap, PluginGroupLabelsInterface $groupLabels): self {
     return new self($pluginMap, $groupLabels->getLabels());
   }

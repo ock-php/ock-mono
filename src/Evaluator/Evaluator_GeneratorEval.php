@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Evaluator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\EvaluatorException;
 use Donquixote\Ock\Exception\GeneratorException;
@@ -19,14 +20,13 @@ class Evaluator_GeneratorEval implements EvaluatorInterface {
   private GeneratorInterface $generator;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function create(FormulaInterface $formula, IncarnatorInterface $incarnator): EvaluatorInterface {
     $generator = Generator::fromFormula($formula, $incarnator);
     return new self($generator);

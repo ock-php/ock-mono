@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntOp;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Tests\Fixture\IntCondition\IntConditionInterface;
 
-/**
- * @ock("conditional", "Conditional")
- */
+#[OckPluginInstance('conditional', 'Conditional')]
 class IntOp_Conditional implements IntOpInterface {
 
   /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\InlinePluginList;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Formula\Select\Formula_Select_FromFlatSelect;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
@@ -20,24 +21,22 @@ class InlinePluginList_Select implements InlinePluginListInterface {
   private $formula;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function createFlat(Formula_FlatSelectInterface $formula): self {
     return new self(
       new Formula_Select_FromFlatSelect($formula));
   }
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function create(Formula_SelectInterface $formula): self {
     return new self($formula);
   }

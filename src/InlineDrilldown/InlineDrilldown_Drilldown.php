@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\InlineDrilldown;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface;
@@ -34,14 +35,13 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
   private V2V_DrilldownInterface $v2v;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function fromDrilldownVal(
     Formula_DrilldownValInterface $formula,
     IncarnatorInterface $incarnator
@@ -53,14 +53,13 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
   }
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function fromDrilldown(
     Formula_DrilldownInterface $formula,
     IncarnatorInterface $incarnator

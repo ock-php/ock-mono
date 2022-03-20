@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntFormat;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormatInterface;
 
 /**
  * Adapter from NumberFormat to IntFormat.
- *
- * @ock("numberFormat", "Number format adapter", adapter = true)
  */
+#[OckPluginInstance("numberFormat", "Number format adapter")]
+// @todo Mark as adapter.
 class IntFormat_NumberFormat implements IntFormatInterface {
 
   /**

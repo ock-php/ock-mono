@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntOp;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Primitive\Formula_Int;
@@ -17,12 +18,11 @@ class IntOp_Add implements IntOpInterface {
   private $increment;
 
   /**
-   * @ock("add", "Add")
-   *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    *
    * @throws \ReflectionException
    */
+  #[OckPluginFormula("add", "Add")]
   public static function formula(): FormulaInterface {
     return Formula::group()
       ->add('increment', new Formula_Int(), Text::t('Increment'))

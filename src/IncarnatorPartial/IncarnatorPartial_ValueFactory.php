@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Formula;
@@ -15,9 +16,7 @@ use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\ParamToLabel\ParamToLabelInterface;
 use Donquixote\Ock\Text\Text;
 
-/**
- * @STA
- */
+#[OckIncarnator]
 class IncarnatorPartial_ValueFactory extends IncarnatorPartial_FormulaReplacerBase {
 
   /**
@@ -85,13 +84,12 @@ class IncarnatorPartial_ValueFactory extends IncarnatorPartial_FormulaReplacerBa
    */
   private function paramGetFormula(\ReflectionParameter $param): ?FormulaInterface {
 
-    if (NULL === $reflClassLike = $param->getClass()) {
+    $rtype = $param->getType();
+    if (!$rtype instanceof \ReflectionNamedType || $rtype->isBuiltin()) {
       return NULL;
     }
 
-    $formula = new Formula_Iface(
-      $reflClassLike->getName(),
-      $param->allowsNull());
+    $formula = new Formula_Iface($rtype->getName(), $param->allowsNull());
 
     if (!$param->isOptional()) {
       return $formula;
@@ -101,16 +99,18 @@ class IncarnatorPartial_ValueFactory extends IncarnatorPartial_FormulaReplacerBa
       $default = $param->getDefaultValue();
     }
     catch (\ReflectionException $e) {
+      // This should be unreachable code.
+      // Convert exception to unchecked.
       throw new \RuntimeException($e->getMessage(), 0, $e);
     }
 
-    if ($default === NULL) {
-      return $formula;
+    if ($default !== NULL) {
+      // Unsupported default value.
+      // @todo Log this.
+      return NULL;
     }
 
-    // Unsupported default value.
-    // @todo Log this.
-    return NULL;
+    return $formula;
   }
 
 }

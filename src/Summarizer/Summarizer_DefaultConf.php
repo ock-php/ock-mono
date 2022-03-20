@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Text\TextInterface;
@@ -21,8 +22,6 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   private $defaultConf;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -30,6 +29,7 @@ class Summarizer_DefaultConf implements SummarizerInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function create(
     Formula_DefaultConfInterface $formula,
     IncarnatorInterface $incarnator

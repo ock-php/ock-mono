@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IncarnatorPartial;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
@@ -11,9 +12,7 @@ use Donquixote\Ock\Formula\Select\Formula_Select_FromPlugins;
 use Donquixote\Ock\IdToFormula\IdToFormula_FromPlugins;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
-/**
- * @STA
- */
+#[OckIncarnator]
 class IncarnatorPartial_PluginList extends IncarnatorPartial_FormulaReplacerBase {
 
   /**

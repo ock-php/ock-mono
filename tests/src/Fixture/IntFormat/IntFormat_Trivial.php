@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntFormat;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
+
 /**
  * Adapter from NumberFormat to IntFormat.
- *
- * @ock("trivial", "Trivial - print integer as-is")
  */
+#[OckPluginInstance("trivial", "Trivial - print integer as-is")]
 class IntFormat_Trivial implements IntFormatInterface {
 
   /**

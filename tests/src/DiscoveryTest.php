@@ -43,12 +43,13 @@ class DiscoveryTest extends FormulaTestBase {
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    * @throws \Donquixote\Ock\Exception\PluginListException
    */
-  public function testPluginDiscovery() {
+  public function testPluginDiscovery(): void {
     $registry = $this->getPluginRegistry();
     $pluginss = $registry->getPluginss();
 
     $incarnator = $this->getIncarnator();
 
+    $pluginss_by_id = [];
     foreach ($pluginss as $type => $plugins) {
       foreach ($plugins as $id => $plugin) {
         static::assertInstanceOf(
@@ -60,10 +61,15 @@ class DiscoveryTest extends FormulaTestBase {
         static::assertNotNull(
           $generator,
           "Generator created for \$pluginss['$type']['$id'].");
+        $pluginss_by_id[$id][$type] = $plugin;
       }
     }
 
-    $plugin = $pluginss[IntConditionInterface::class]['positive'];
+    $plugin = $pluginss[IntConditionInterface::class]['positive'] ?? NULL;
+
+    # self::assertSame([], $pluginss_by_id['positive']);
+
+    self::assertNotNull($plugin, 'Plugin for IntConditionInterface/positive.');
 
     self::assertEquals(
       Text::t('Number is positive'),
@@ -73,8 +79,6 @@ class DiscoveryTest extends FormulaTestBase {
     $generator = Generator::fromFormula(
       $formula,
       $incarnator);
-
-    self::assertNotNull($generator, 'Generator not NULL.');
 
     self::assertSame(
       '\\' . IntCondition_GreaterThan::class . '::positive()',

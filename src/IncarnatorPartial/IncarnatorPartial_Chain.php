@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\LocalPackageUtil;

@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\InlinePluginList;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialBase;
+use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 use Donquixote\Ock\V2V\Value\V2V_Value_GroupV2V;
@@ -14,8 +18,6 @@ use Donquixote\Ock\V2V\Value\V2V_Value_GroupV2V;
 abstract class InlinePluginList_Group implements InlinePluginListInterface {
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -23,13 +25,12 @@ abstract class InlinePluginList_Group implements InlinePluginListInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function fromGroup(Formula_GroupInterface $formula, IncarnatorInterface $incarnator): ?InlinePluginListInterface {
     return self::create($formula, new V2V_Group_Trivial(), $incarnator);
   }
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -37,6 +38,7 @@ abstract class InlinePluginList_Group implements InlinePluginListInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function fromGroupVal(Formula_GroupValInterface $formula, IncarnatorInterface $incarnator): ?InlinePluginListInterface {
     return self::create($formula->getDecorated(), $formula->getV2V(), $incarnator);
   }

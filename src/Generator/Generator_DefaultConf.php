@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
@@ -23,8 +24,6 @@ class Generator_DefaultConf implements GeneratorInterface {
   private $defaultConf;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -32,6 +31,7 @@ class Generator_DefaultConf implements GeneratorInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function create(
     Formula_DefaultConfInterface $formula,
     IncarnatorInterface $incarnator

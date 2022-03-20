@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntOp;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Text\Text;
@@ -16,10 +17,9 @@ class IntOp_Sequence implements IntOpInterface {
   private $operations;
 
   /**
-   * @ock("sequence", "Sequence")
-   *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
+  #[OckPluginFormula("sequence", "Sequence")]
   public static function formula(): FormulaInterface {
     return Formula::group()
       ->add(

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\NumberFormat;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Primitive\Formula_Int;
@@ -30,10 +31,9 @@ class NumberFormat_Native implements NumberFormatInterface {
   private $thousandsSeparator;
 
   /**
-   * @ock("native", "Call built-in number_format()")
-   *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
+  #[OckPluginFormula("native", "Call built-in number_format()")]
   public static function formula(): FormulaInterface {
     return Formula::group()
       ->add('decimals', new Formula_Int(), Text::t('Decimals'))

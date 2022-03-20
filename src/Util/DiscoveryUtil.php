@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Util;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\Ock\Discovery\AnnotatedFactory\AnnotatedFactory;
+use Donquixote\Ock\TraverseFactories\AnnotatedFactories;
 use Donquixote\Ock\Translator\Translator;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -54,7 +54,7 @@ final class DiscoveryUtil extends UtilBase {
    * @param \ReflectionClass $reflClass
    * @param string $annotationTagName
    *
-   * @return \Iterator<\Donquixote\Ock\Discovery\AnnotatedFactory\AnnotatedFactory>
+   * @return \Iterator<\Donquixote\Ock\TraverseFactories\AnnotatedFactories>
    */
   public static function classFindAnnotatedFactories(
     \ReflectionClass $reflClass,
@@ -66,7 +66,7 @@ final class DiscoveryUtil extends UtilBase {
       && FALSE !== ($classDoc = $reflClass->getDocComment())
       && FALSE !== strpos($classDoc, '@' . $annotationTagName)
     ) {
-      yield AnnotatedFactory::createFromClass($reflClass);
+      yield AnnotatedFactories::createFromClass($reflClass);
     }
 
     foreach ($reflClass->getMethods(\ReflectionMethod::IS_STATIC) as $reflectionMethod) {
@@ -74,7 +74,7 @@ final class DiscoveryUtil extends UtilBase {
         && FALSE !== ($methodDoc = $reflectionMethod->getDocComment())
         && FALSE !== strpos($methodDoc, '@' . $annotationTagName)
       ) {
-        yield AnnotatedFactory::createFromStaticMethod($reflectionMethod);
+        yield AnnotatedFactories::createFromStaticMethod($reflectionMethod);
       }
     }
   }

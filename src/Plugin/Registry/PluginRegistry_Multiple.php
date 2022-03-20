@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin\Registry;
 
+/**
+ * Combines multiple registries.
+ */
 class PluginRegistry_Multiple implements PluginRegistryInterface {
 
   /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Decorator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
@@ -27,8 +28,6 @@ class Decorator_Group implements DecoratorInterface {
   private $v2v;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -36,10 +35,11 @@ class Decorator_Group implements DecoratorInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function fromGroupFormula(
     Formula_GroupInterface $formula,
     IncarnatorInterface $incarnator
-  ): ?Generator_Group {
+  ): ?self {
     return self::create(
       $formula,
       new V2V_Group_Trivial(),
@@ -47,8 +47,6 @@ class Decorator_Group implements DecoratorInterface {
   }
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -56,10 +54,11 @@ class Decorator_Group implements DecoratorInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function fromGroupValFormula(
     Formula_GroupValInterface $formula,
     IncarnatorInterface $incarnator
-  ): ?Generator_Group {
+  ): ?self {
     return self::create(
       $formula->getDecorated(),
       $formula->getV2V(),
@@ -77,7 +76,7 @@ class Decorator_Group implements DecoratorInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
-  public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, IncarnatorInterface $incarnator): ?Generator_Group {
+  public static function create(Formula_GroupInterface $groupFormula, V2V_GroupInterface $v2v, IncarnatorInterface $incarnator): ?self {
 
     $itemGenerators = [];
     foreach ($groupFormula->getItemFormulas() as $k => $itemFormula) {

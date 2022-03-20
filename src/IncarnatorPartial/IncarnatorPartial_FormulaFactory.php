@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IncarnatorPartial;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-/**
- * @STA
- */
+#[OckIncarnator]
 class IncarnatorPartial_FormulaFactory extends IncarnatorPartial_FormulaReplacerBase {
 
   /**

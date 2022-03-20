@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Label\Formula_LabelInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
@@ -26,13 +27,12 @@ class Summarizer_Label implements SummarizerInterface {
   private $label;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Label\Formula_LabelInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self|null
    */
+  #[OckIncarnator]
   public static function create(Formula_LabelInterface $formula, IncarnatorInterface $incarnator): ?Summarizer_Label {
 
     try {

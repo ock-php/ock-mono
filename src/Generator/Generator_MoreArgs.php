@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Plugin\ActAsIncarnator;
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface;
 use Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
@@ -33,8 +35,6 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   private $commonValuesPhp;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -42,13 +42,12 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, IncarnatorInterface $incarnator): ?Generator_MoreArgs {
     return self::create($formula, new V2V_Group_Trivial(), $incarnator);
   }
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -56,6 +55,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function createFromMoreArgsValFormula(
     Formula_MoreArgsValInterface $formula,
     IncarnatorInterface $incarnator

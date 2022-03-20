@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Para\Formula_ParaInterface;
@@ -22,8 +23,6 @@ class Generator_Para implements GeneratorInterface {
   private $paraGenerator;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Para\Formula_ParaInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -31,6 +30,7 @@ class Generator_Para implements GeneratorInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function create(Formula_ParaInterface $formula, IncarnatorInterface $incarnator): Generator_Para {
     return new self(
       Generator::fromFormula($formula->getDecorated(), $incarnator),

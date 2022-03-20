@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Exception\GeneratorException_UnsupportedConfiguration;
@@ -32,25 +33,23 @@ class Generator_Drilldown implements GeneratorInterface {
   private $incarnator;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function createFromDrilldownValFormula(Formula_DrilldownValInterface $formula, IncarnatorInterface $incarnator): self {
     return new self($formula->getDecorated(), $formula->getV2V(), $incarnator);
   }
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function createFromDrilldownFormula(Formula_DrilldownInterface $formula, IncarnatorInterface $incarnator): self {
     return new self($formula, new V2V_Drilldown_Trivial(), $incarnator);
   }

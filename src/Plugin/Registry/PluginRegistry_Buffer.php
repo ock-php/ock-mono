@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin\Registry;
 
+/**
+ * Buffers plugins to prevent repeated discovery.
+ */
 class PluginRegistry_Buffer implements PluginRegistryInterface {
 
   /**

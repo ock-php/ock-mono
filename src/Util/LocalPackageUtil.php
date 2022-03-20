@@ -7,7 +7,10 @@ namespace Donquixote\Ock\Util;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\NamespaceDirectory;
-use Donquixote\Ock\Discovery\STADiscovery_X;
+use Donquixote\Ock\FindIn\Factory\FindInAnnotatedFactory_IncarnatorPartial;
+use Donquixote\Ock\IncarnatorPartial\Registry\IncarnatorPartialsRegistry_Discovery;
+use Donquixote\Ock\TraverseFactories\TraverseFactories_ClassFilesIA;
+use Donquixote\Ock\TraverseFactories\TraverseFactoriesInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 final class LocalPackageUtil extends UtilBase {
@@ -16,11 +19,22 @@ final class LocalPackageUtil extends UtilBase {
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
    * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   *
+   * @throws \Exception
    */
   public static function collectIncarnators(ParamToValueInterface $paramToValue): array {
+    $partialsRegistry = IncarnatorPartialsRegistry_Discovery::fromClassFilesIA(
+      self::getClassFilesIA(),
+      $paramToValue);
+    return $partialsRegistry->getPartials();
+  }
 
-    return STADiscovery_X::create($paramToValue)
-      ->classFilesIAGetPartials(self::getClassFilesIA());
+  /**
+   * @return \Donquixote\Ock\TraverseFactories\TraverseFactoriesInterface
+   */
+  public static function createTraverseFactories(): TraverseFactoriesInterface {
+    return TraverseFactories_ClassFilesIA::create(
+      self::getClassFilesIA());
   }
 
   /**

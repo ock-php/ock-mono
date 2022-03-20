@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Form\Common;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
 use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialZeroBase;
 
-/**
- * @STA
- */
+#[OckIncarnator]
 class FormatorCommon_Contextual extends IncarnatorPartialZeroBase {
 
   /**

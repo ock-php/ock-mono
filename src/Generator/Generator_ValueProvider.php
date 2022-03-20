@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface;
 
-/**
- * @STA
- */
+#[OckIncarnator]
 class Generator_ValueProvider implements GeneratorInterface {
 
   /**

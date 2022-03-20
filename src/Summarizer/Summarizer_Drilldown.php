@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
@@ -11,9 +12,7 @@ use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
-/**
- * @STA
- */
+#[OckIncarnator]
 class Summarizer_Drilldown implements SummarizerInterface {
 
   /**

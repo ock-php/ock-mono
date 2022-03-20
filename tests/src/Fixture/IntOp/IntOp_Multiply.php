@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntOp;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Primitive\Formula_Int;
@@ -17,10 +18,9 @@ class IntOp_Multiply implements IntOpInterface {
   private $factor;
 
   /**
-   * @ock("multiply", "Multiply")
-   *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
+  #[OckPluginFormula("multiply", "Multiply")]
   public static function formula(): FormulaInterface {
     return Formula::group()
       ->add('factor', new Formula_Int(), Text::t('Factor'))

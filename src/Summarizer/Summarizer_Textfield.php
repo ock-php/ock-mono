@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
-/**
- * @STA
- */
+#[OckIncarnator]
 class Summarizer_Textfield implements SummarizerInterface {
 
   /**

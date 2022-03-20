@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IncarnatorPartial;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
-/**
- * @STA
- */
+#[OckIncarnator]
 class IncarnatorPartial_Identity implements IncarnatorPartialInterface {
 
   /**

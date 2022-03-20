@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\Ock\Formula\SequenceVal\Formula_SequenceValInterface;
@@ -25,8 +26,6 @@ class Generator_Sequence implements GeneratorInterface {
   private $v2v;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -34,13 +33,12 @@ class Generator_Sequence implements GeneratorInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function createFromSequenceFormula(Formula_SequenceInterface $formula, IncarnatorInterface $incarnator): ?Generator_Sequence {
     return self::create($formula, new V2V_Sequence_Trivial(), $incarnator);
   }
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\SequenceVal\Formula_SequenceValInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -48,6 +46,7 @@ class Generator_Sequence implements GeneratorInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function createFromSequenceValFormula(Formula_SequenceValInterface $formula, IncarnatorInterface $incarnator): ?Generator_Sequence {
     return self::create($formula->getDecorated(), $formula->getV2V(), $incarnator);
   }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\InlineDrilldown;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
@@ -19,24 +20,22 @@ class InlineDrilldown_Select implements InlineDrilldownInterface {
   private Formula_SelectInterface $formula;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function createFlat(Formula_FlatSelectInterface $formula): self {
     return new self(
       new Formula_Select_FromFlatSelect($formula));
   }
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function create(Formula_SelectInterface $formula): self {
     return new self($formula);
   }

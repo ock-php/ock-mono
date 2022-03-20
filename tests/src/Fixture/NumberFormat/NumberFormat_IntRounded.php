@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\NumberFormat;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Tests\Fixture\IntFormat\IntFormat_Trivial;
 use Donquixote\Ock\Tests\Fixture\IntFormat\IntFormatInterface;
 
-/**
- * @ock("intRounded", "Rounded as integer", adapter = true)
- */
+#[OckPluginInstance("intRounded", "Rounded as integer")]
+// @todo Mark as adapter.
 class NumberFormat_IntRounded implements NumberFormatInterface {
 
   /**

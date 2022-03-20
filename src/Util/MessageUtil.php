@@ -46,4 +46,23 @@ class MessageUtil extends UtilBase {
     }
   }
 
+  /**
+   * @param \ReflectionFunctionAbstract $function
+   *
+   * @return string
+   */
+  public static function formatReflectionFunction(\ReflectionFunctionAbstract $function): string {
+    $name = $function->getName() . '()';
+    if ($function instanceof \ReflectionMethod) {
+      $class = $function->getDeclaringClass();
+      if ($function->isStatic()) {
+        $name = $class->getName() . '::' . $name;
+      }
+      else {
+        $name = $class->getName() . '->' . $name;
+      }
+    }
+    return $name;
+  }
+
 }

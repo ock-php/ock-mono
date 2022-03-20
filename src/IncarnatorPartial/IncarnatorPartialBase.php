@@ -49,12 +49,16 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
     return $clone;
   }
 
+  public function setSpecifity(int $specifity): void {
+    $this->specifity = $specifity;
+  }
+
   /**
-   * @param string $formulaType
+   * @param string|null $formulaType
    *
    * @return static
    */
-  public function withFormulaType(string $formulaType): self {
+  public function withFormulaType(?string $formulaType): self {
 
     if ($formulaType === $this->formulaType) {
       return $this;
@@ -65,12 +69,16 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
     return $clone;
   }
 
+  public function setFormulaType(?string $formulaType): void {
+    $this->formulaType = $formulaType;
+  }
+
   /**
-   * @param string $resultType
+   * @param string|null $resultType
    *
    * @return static
    */
-  public function withResultType(string $resultType): self {
+  public function withResultType(?string $resultType): self {
 
     if ($resultType === $this->resultType) {
       return $this;
@@ -79,6 +87,10 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
     $clone = clone $this;
     $clone->resultType = $resultType;
     return $clone;
+  }
+
+  public function setResultType(?string $resultType): void {
+    $this->resultType = $resultType;
   }
 
   /**
@@ -110,11 +122,13 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
   }
 
   /**
+   * @template T
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param string $interface
+   * @param class-string<T> $interface
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
-   * @return null|object
+   * @return T|null
    *   An instance of $interface, or NULL.
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException

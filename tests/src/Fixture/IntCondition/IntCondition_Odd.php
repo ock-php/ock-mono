@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntCondition;
 
-use Donquixote\Ock\Annotation\OckPlugin;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 
-/**
- * @ock("odd", "Number is odd")
- */
-#[OckPlugin("odd", "Number is odd")]
+#[OckPluginInstance("odd", "Number is odd")]
 class IntCondition_Odd implements IntConditionInterface {
 
   /**

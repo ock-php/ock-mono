@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\Util\ConfUtil;
 
-/**
- * @STA
- */
+#[OckIncarnator]
 class Summarizer_IdToLabel implements SummarizerInterface {
 
   /**

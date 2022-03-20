@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Formula\Boolean\Formula_BooleanInterface;
 use Donquixote\Ock\Formula\BoolVal\Formula_BoolValInterface;
 use Donquixote\Ock\V2V\Boolean\V2V_Boolean_Trivial;
@@ -17,12 +18,11 @@ class Generator_Boolean implements GeneratorInterface {
   private $v2v;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Boolean\Formula_BooleanInterface $formula
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function createFromBooleanFormula(
     /** @noinspection PhpUnusedParameterInspection */ Formula_BooleanInterface $formula
   ): Generator_Boolean {
@@ -30,12 +30,11 @@ class Generator_Boolean implements GeneratorInterface {
   }
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\BoolVal\Formula_BoolValInterface $formula
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function createFromBooleanValFormula(Formula_BoolValInterface $formula): Generator_Boolean {
     return new self($formula->getV2V());
   }

@@ -123,4 +123,16 @@ class Plugin {
     return $this->info[$key];
   }
 
+  /**
+   * @param string $key
+   * @param mixed $value
+   *
+   * @return static
+   */
+  public function withSetting(string $key, $value): static {
+    $clone = clone $this;
+    $clone->info[$key] = $value;
+    return $clone;
+  }
+
 }

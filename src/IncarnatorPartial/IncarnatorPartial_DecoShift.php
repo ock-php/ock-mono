@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IncarnatorPartial;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\DecoShift\Formula_DecoShiftInterface;
 use Donquixote\Ock\Formula\Formula;
@@ -14,9 +15,7 @@ use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\V2V\Group\V2V_Group_Deco;
 
-/**
- * @STA
- */
+#[OckIncarnator]
 class IncarnatorPartial_DecoShift extends IncarnatorPartial_FormulaReplacerBase {
 
   /**

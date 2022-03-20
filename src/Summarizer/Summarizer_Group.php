@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
@@ -23,8 +24,6 @@ class Summarizer_Group implements SummarizerInterface {
   private $itemSummarizers;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
@@ -32,6 +31,7 @@ class Summarizer_Group implements SummarizerInterface {
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */
+  #[OckIncarnator]
   public static function create(Formula_GroupInterface $formula, IncarnatorInterface $incarnator): ?self {
 
     /** @var \Donquixote\Ock\Summarizer\SummarizerInterface[] $itemSummarizers */

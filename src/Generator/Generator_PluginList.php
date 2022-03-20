@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Exception\GeneratorException_UnsupportedConfiguration;
 use Donquixote\Ock\Exception\IncarnatorException;
@@ -24,13 +25,12 @@ class Generator_PluginList implements GeneratorInterface {
   private $incarnator;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function createFromPluginListFormula(Formula_PluginListInterface $formula, IncarnatorInterface $incarnator): self {
     return new self($formula, $incarnator);
   }

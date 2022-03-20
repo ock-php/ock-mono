@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface;
 use Donquixote\Ock\Util\MessageUtil;
@@ -16,12 +17,11 @@ class Generator_Primitive implements GeneratorInterface {
   private $formula;
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface $formula
    *
    * @return self
    */
+  #[OckIncarnator]
   public static function fromFormula(Formula_PrimitiveInterface $formula): Generator_Primitive {
     return new self($formula);
   }

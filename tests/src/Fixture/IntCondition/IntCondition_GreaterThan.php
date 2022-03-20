@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntCondition;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
 use Donquixote\Ock\Formula\Primitive\Formula_Int;
@@ -20,28 +22,25 @@ class IntCondition_GreaterThan implements IntConditionInterface {
   private $operand;
 
   /**
-   * @ock("positive", "Number is positive")
-   *
    * @return self
    */
+  #[OckPluginInstance('positive', 'Number is positive')]
   public static function positive(): self {
     return new self(0);
   }
 
   /**
-   * @ock("not_negative", "Number is not negative")
-   *
    * @return self
    */
+  #[OckPluginInstance('not_negative', 'Number is not negative')]
   public static function notNegative(): self {
     return new self(-1);
   }
 
   /**
-   * @ock("greater_than", "Greater than")
-   *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
+  #[OckPluginFormula('greater_than', 'Greater than')]
   public static function formula(): FormulaInterface {
     return Formula_GroupVal_Callback::fromClass(
       self::class,

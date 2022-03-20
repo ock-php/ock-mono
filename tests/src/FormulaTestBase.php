@@ -7,13 +7,13 @@ use Donquixote\Ock\Exception\STABuilderException;
 use Donquixote\Ock\Incarnator\Incarnator_FromPartial;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\ParamToLabel\ParamToLabel;
-use Donquixote\Ock\Plugin\Discovery\ClassToPlugins_NativeReflection;
 use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabels;
 use Donquixote\Ock\Plugin\Map\PluginMap_Registry;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
-use Donquixote\Ock\Plugin\Registry\PluginRegistry_FromClassFilesIA;
+use Donquixote\Ock\Plugin\Registry\PluginRegistry_Discovery;
 use Donquixote\Ock\Plugin\Registry\PluginRegistryInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\Ock\Translator\Translator_Passthru;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\Test\TestLogger;
@@ -30,11 +30,12 @@ class FormulaTestBase extends TestCase {
    *   The object.
    */
   protected function getIncarnator(array $objects = []): IncarnatorInterface {
-    $logger = new TestLogger();
+    # $logger = new TestLogger();
     $objects[] = new ParamToLabel();
-    $objects[] = $logger;
+    # $objects[] = $logger;
     $objects[] = $this->getPluginMap();
     $objects[] = new PluginGroupLabels([]);
+    $objects[] = new Translator_Passthru();
     $param_to_value = new ParamToValue_ObjectsMatchType($objects);
     try {
       $incarnator = Incarnator_FromPartial::create(
@@ -46,7 +47,7 @@ class FormulaTestBase extends TestCase {
         'Exception creating the FTA: %s.',
         $e->getMessage()));
     }
-    foreach ($logger->records as $record) {
+    if (false) foreach ($logger->records as $record) {
       self::fail(sprintf(
         'Message when creating FTA: %s.',
         $record['message']));
@@ -66,10 +67,7 @@ class FormulaTestBase extends TestCase {
    */
   protected function getPluginRegistry(): PluginRegistryInterface {
     $classFilesIA = ClassFilesIA::psr4FromClass(IntOpInterface::class, 1);
-    $classToPlugins = ClassToPlugins_NativeReflection::create('ock');
-    return new PluginRegistry_FromClassFilesIA(
-      $classFilesIA,
-      $classToPlugins);
+    return PluginRegistry_Discovery::fromClassFilesIA($classFilesIA);
   }
 
   /**
@@ -90,8 +88,10 @@ class FormulaTestBase extends TestCase {
       }
     }
     foreach ($comboss_map as $base => $cases_map) {
+      /** @psalm-suppress RedundantCast */
       $base = (string) $base;
       foreach ($cases_map as $case => $_) {
+        /* @psalm-suppress RedundantCast */
         yield [$base, (string) $case];
       }
     }

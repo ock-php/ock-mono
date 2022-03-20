@@ -6,8 +6,6 @@
 
     errorLevel="8"
     hoistConstants="true"
-    resolveFromConfigFile="true"
-    allowPhpStormGenerics="true"
     findUnusedPsalmSuppress="true"
     findUnusedVariablesAndParams="true"
     ensureArrayStringOffsetsExist="true"
@@ -15,8 +13,17 @@
 >
   <projectFiles>
     <directory name="src" />
+    <directory name="tests/src" />
     <ignoreFiles>
       <directory name="vendor" />
     </ignoreFiles>
   </projectFiles>
+
+  <issueHandlers>
+    <PropertyNotSetInConstructor>
+      <errorLevel type="suppress">
+        <directory name="tests/src"/>
+      </errorLevel>
+    </PropertyNotSetInConstructor>
+  </issueHandlers>
 </psalm>
