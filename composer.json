@@ -1,0 +1,58 @@
+{
+  "name": "donquixote/adaptism",
+  "type": "library",
+  "description": "Library to map adapter classes.",
+  "homepage": "https://github.com/donquixote/adaptism",
+  "license": "MIT",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../phplib/annotation-parser"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/callback-reflection"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/class-discovery"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/factory-discovery"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/factory-reflection"
+    },
+    {
+      "type": "path",
+      "url": "../../phplib/reflectionkit"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Andreas Hennings",
+      "email": "andreas@dqxtech.net"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "donquixote/class-discovery": "dev-master",
+    "psr/container": "2.0.x-dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5",
+    "vimeo/psalm": "^4.22"
+  },
+  "autoload": {
+    "psr-4": {
+      "Donquixote\\Adaptism\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Donquixote\\Adaptism\\Tests\\": "tests/src/"
+    }
+  }
+}
