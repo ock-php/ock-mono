@@ -9,20 +9,28 @@ class ReflectionTypeUtil {
 
   /**
    * @param \ReflectionParameter|\ReflectionFunctionAbstract $reflector
+   * @param bool $allowObject
+   *   TRUE, to allow 'object' return type.
    *
-   * @return string
+   * @return class-string|null
+   *   The type, or NULL for 'object'.
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
    */
   public static function requireGetClassLikeType(
     \ReflectionParameter|\ReflectionFunctionAbstract $reflector,
-  ): string {
+    bool $allowObject = false,
+  ): ?string {
     $type = $reflector instanceof \ReflectionParameter
       ? $reflector->getType()
       : $reflector->getReturnType();
     if (!$type instanceof \ReflectionNamedType || $type->isBuiltin()) {
+      if ($allowObject && $type instanceof \ReflectionNamedType && $type->getName() === 'object') {
+        return null;
+      }
       throw new MalformedAdapterDeclarationException(\sprintf(
-        'Expected a class-like type declaration on %s.',
+        'Expected a class-like %s declaration on %s.',
+        $reflector instanceof \ReflectionParameter ? 'type' : 'return type',
         ReflectionUtil::reflectorDebugName($reflector),
       ));
     }
@@ -45,13 +53,13 @@ class ReflectionTypeUtil {
 
   /**
    * @param \ReflectionParameter|\ReflectionFunctionAbstract $reflector
-   * @param class-string $expected
+   * @param class-string|null $expected
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
    */
   public static function requireClassLikeType(
     \ReflectionParameter|\ReflectionFunctionAbstract $reflector,
-    string $expected,
+    ?string $expected,
   ): void {
     $name = self::requireGetClassLikeType($reflector);
     if ($name !== $expected) {

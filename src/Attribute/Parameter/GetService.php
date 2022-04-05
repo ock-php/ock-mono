@@ -7,7 +7,7 @@ namespace Donquixote\Adaptism\Attribute\Parameter;
 /**
  * Marks a parameter to expect a service from the container.
  */
-#[\Attribute(\Attribute::TARGET_PARAMETER)]
+#[\Attribute(\Attribute::TARGET_PARAMETER|\Attribute::TARGET_PROPERTY)]
 class GetService {
 
   /**

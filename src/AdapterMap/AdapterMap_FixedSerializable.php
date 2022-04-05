@@ -149,10 +149,6 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
     return array_combine($parents, $parents);
   }
 
-  public function __sleep(): array {
-    return ['truthsById', ''];
-  }
-
   public function __serialize(): array {
     return [
       'ids' => $this->truthsById,

@@ -5,6 +5,7 @@ namespace Donquixote\Adaptism\Tests;
 
 use Donquixote\Adaptism\AdapterDefinition\AdapterDefinition_Simple;
 use Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainer_Callback;
+use Donquixote\Adaptism\Tests\Fixtures\Color\Colored;
 use Donquixote\Adaptism\Tests\Fixtures\Color\Hex\HexColor;
 use Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface;
 use Donquixote\Adaptism\Tests\Fixtures\Countable\Countable_Traversable;
@@ -42,9 +43,23 @@ class DiscoveryTest extends TestCase {
       ),
     );
 
+    $expected[Colored::class . '::adapt'] = new AdapterDefinition_Simple(
+      Colored::class,
+      null,
+      0,
+      new AdapterFromContainer_Callback(
+        [Colored::class, 'adapt'],
+        true,
+        true,
+        [],
+      ),
+    );
+
     self::assertSameExportAndSort(
       $expected,
-      FixturesUtil::getDefinitionList()->getDefinitions());
+      \array_intersect_key(
+        FixturesUtil::getDefinitionList()->getDefinitions(),
+        $expected));
   }
 
   /**

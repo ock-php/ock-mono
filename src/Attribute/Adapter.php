@@ -127,7 +127,7 @@ final class Adapter {
         $constructorServiceIds,
       );
     }
-    $returnClass = ReflectionTypeUtil::requireGetClassLikeType($reflectionMethod);
+    $returnClass = ReflectionTypeUtil::requireGetClassLikeType($reflectionMethod, true);
     return new AdapterDefinition_Simple(
       $sourceType,
       $returnClass,
@@ -141,11 +141,11 @@ final class Adapter {
    * @param int|null $specifity
    * @param string $where
    *
-   * @return string
+   * @return string|null
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
    */
-  private function extractSourceType(array &$parameters, ?int &$specifity, string $where): string {
+  private function extractSourceType(array &$parameters, ?int &$specifity, string $where): ?string {
     $parameter = \array_shift($parameters);
     if ($parameter === null) {
       throw new MalformedAdapterDeclarationException(\sprintf(
@@ -154,7 +154,11 @@ final class Adapter {
       ));
     }
     AttributesUtil::requireHasSingle($parameter, Adaptee::class);
-    $type = ReflectionTypeUtil::requireGetClassLikeType($parameter);
+    $type = ReflectionTypeUtil::requireGetClassLikeType($parameter, true);
+    if ($type === null) {
+      $specifity = -1;
+      return $type;
+    }
     try {
       $reflectionClass = new \ReflectionClass($type);
     }

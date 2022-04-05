@@ -37,7 +37,9 @@ class FixturesUtil {
     return new UniversalAdapter(
       new SpecificAdapter_DispatchByType(
         self::getAdapterMap(
-          $container ?? self::getContainer([]),
+          $container ?? self::getContainer([
+            \DateTimeZone::class => new \DateTimeZone('America/New_York'),
+          ]),
         ),
       ),
     );
