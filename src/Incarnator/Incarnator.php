@@ -12,13 +12,15 @@ use Donquixote\Ock\Util\UtilBase;
 final class Incarnator extends UtilBase {
 
   /**
+   * @template<T as object>
+   *
    * Incarnates multiple formulas.
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $itemFormulas
-   * @param string $interface
+   * @param class-string<T> $interface
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
-   * @return object[]
+   * @return T[]
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   One of the item formulas is not supported.
@@ -36,11 +38,13 @@ final class Incarnator extends UtilBase {
   }
 
   /**
+   * @template T as object
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param string $interface
+   * @param class-string<T> $interface
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
-   * @return object
+   * @return T
    *
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    */

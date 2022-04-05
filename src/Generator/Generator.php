@@ -54,14 +54,10 @@ final class Generator extends UtilBase {
     FormulaInterface $formula,
     IncarnatorInterface $incarnator
   ): GeneratorInterface {
-
-    /** @var \Donquixote\Ock\Generator\GeneratorInterface $candidate */
-    $candidate = Incarnator::getObject(
+    return Incarnator::getObject(
       $formula,
       GeneratorInterface::class,
       $incarnator);
-
-    return $candidate;
   }
 
 }

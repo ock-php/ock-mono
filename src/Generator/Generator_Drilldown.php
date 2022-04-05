@@ -18,28 +18,16 @@ use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 class Generator_Drilldown implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
-   */
-  private $formula;
-
-  /**
-   * @var \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface
-   */
-  private $v2v;
-
-  /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
-   */
-  private $incarnator;
-
-  /**
    * @param \Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface $formula
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    *
    * @return self
    */
   #[OckIncarnator]
-  public static function createFromDrilldownValFormula(Formula_DrilldownValInterface $formula, IncarnatorInterface $incarnator): self {
+  public static function createFromDrilldownValFormula(
+    Formula_DrilldownValInterface $formula,
+    IncarnatorInterface $incarnator,
+  ): self {
     return new self($formula->getDecorated(), $formula->getV2V(), $incarnator);
   }
 
@@ -50,7 +38,10 @@ class Generator_Drilldown implements GeneratorInterface {
    * @return self
    */
   #[OckIncarnator]
-  public static function createFromDrilldownFormula(Formula_DrilldownInterface $formula, IncarnatorInterface $incarnator): self {
+  public static function createFromDrilldownFormula(
+    Formula_DrilldownInterface $formula,
+    IncarnatorInterface $incarnator,
+  ): self {
     return new self($formula, new V2V_Drilldown_Trivial(), $incarnator);
   }
 
@@ -61,11 +52,11 @@ class Generator_Drilldown implements GeneratorInterface {
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
    * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
    */
-  protected function __construct(Formula_DrilldownInterface $formula, V2V_DrilldownInterface $v2v, IncarnatorInterface $incarnator) {
-    $this->formula = $formula;
-    $this->v2v = $v2v;
-    $this->incarnator = $incarnator;
-  }
+  protected function __construct(
+    private Formula_DrilldownInterface $formula,
+    private V2V_DrilldownInterface $v2v,
+    private IncarnatorInterface $incarnator,
+  ) {}
 
   /**
    * {@inheritdoc}

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Incarnator\Incarnator;
 use Donquixote\Ock\Incarnator\IncarnatorInterface;
@@ -43,20 +42,10 @@ final class Summarizer extends UtilBase {
     FormulaInterface $formula,
     IncarnatorInterface $incarnator
   ): SummarizerInterface {
-
-    /** @var \Donquixote\Ock\Summarizer\SummarizerInterface $candidate */
-    try {
-      $candidate = Incarnator::getObject(
-        $formula,
-        SummarizerInterface::class,
-        $incarnator);
-    }
-    catch (IncarnatorException $e) {
-      var_export($e);
-      throw $e;
-    }
-
-    return $candidate;
+    return Incarnator::getObject(
+      $formula,
+      SummarizerInterface::class,
+      $incarnator);
   }
 
 }

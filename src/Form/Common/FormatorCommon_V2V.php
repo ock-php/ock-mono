@@ -30,12 +30,10 @@ class FormatorCommon_V2V {
     }
 
     /** @var \Donquixote\Ock\Form\Common\FormatorCommonInterface $candidate */
-    $candidate = Incarnator::getObject(
+    return Incarnator::getObject(
       $formula->getDecorated(),
       $interface,
       $incarnator);
-
-    return $candidate;
   }
 
 }

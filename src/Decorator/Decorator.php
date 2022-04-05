@@ -54,14 +54,10 @@ final class Decorator extends UtilBase {
     FormulaInterface $formula,
     IncarnatorInterface $incarnator
   ): DecoratorInterface {
-
-    /** @var \Donquixote\Ock\Decorator\DecoratorInterface $candidate */
-    $candidate = Incarnator::getObject(
+    return Incarnator::getObject(
       $formula,
       DecoratorInterface::class,
       $incarnator);
-
-    return $candidate;
   }
 
 }

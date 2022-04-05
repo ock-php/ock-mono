@@ -30,14 +30,10 @@ class Evaluator {
     FormulaInterface $formula,
     IncarnatorInterface $incarnator
   ): EvaluatorInterface {
-
-    /** @var \Donquixote\Ock\Evaluator\EvaluatorInterface $candidate */
-    $candidate = Incarnator::getObject(
+    return Incarnator::getObject(
       $formula,
       EvaluatorInterface::class,
       $incarnator);
-
-    return $candidate;
   }
 
   /**

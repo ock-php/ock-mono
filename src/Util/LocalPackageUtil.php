@@ -7,10 +7,7 @@ namespace Donquixote\Ock\Util;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\NamespaceDirectory;
-use Donquixote\Ock\FindIn\Factory\FindInAnnotatedFactory_IncarnatorPartial;
 use Donquixote\Ock\IncarnatorPartial\Registry\IncarnatorPartialsRegistry_Discovery;
-use Donquixote\Ock\TraverseFactories\TraverseFactories_ClassFilesIA;
-use Donquixote\Ock\TraverseFactories\TraverseFactoriesInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
 final class LocalPackageUtil extends UtilBase {
@@ -27,14 +24,6 @@ final class LocalPackageUtil extends UtilBase {
       self::getClassFilesIA(),
       $paramToValue);
     return $partialsRegistry->getPartials();
-  }
-
-  /**
-   * @return \Donquixote\Ock\TraverseFactories\TraverseFactoriesInterface
-   */
-  public static function createTraverseFactories(): TraverseFactoriesInterface {
-    return TraverseFactories_ClassFilesIA::create(
-      self::getClassFilesIA());
   }
 
   /**

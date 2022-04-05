@@ -28,7 +28,11 @@ interface IncarnatorInterface {
    * @throws \Donquixote\Ock\Exception\IncarnatorException
    *   Misbehaving incarnator, or unsupported formula.
    */
-  public function incarnate(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): object;
+  public function incarnate(
+    FormulaInterface $formula,
+    string $interface,
+    IncarnatorInterface $incarnator,
+  ): object;
 
   /**
    * Gets a cache id.

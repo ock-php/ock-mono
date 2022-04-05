@@ -10,36 +10,17 @@ use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 class Formula_DecoKey implements FormulaInterface, Formula_DecoKeyInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
-   */
-  private FormulaInterface $decorated;
-
-  /**
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  private FormulaInterface $decorator;
-
-  /**
-   * @var string
-   */
-  private string $key;
-
-  /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
+   * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $decorated
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorator
    * @param string $key
    */
   public function __construct(
-    FormulaInterface $decorated,
-    FormulaInterface $decorator,
-    string $key
-  ) {
-    $this->decorated = $decorated;
-    $this->decorator = $decorator;
-    $this->key = $key;
-  }
+    private Formula_DrilldownInterface $decorated,
+    private FormulaInterface $decorator,
+    private string $key,
+  ) {}
 
   /**
    * {@inheritdoc}

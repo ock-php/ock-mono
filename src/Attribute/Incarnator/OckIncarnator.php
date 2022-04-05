@@ -50,14 +50,20 @@ class OckIncarnator {
    */
   public function methodGetPartial(\ReflectionMethod $reflectionMethod, ParamToValueInterface $paramToValue): IncarnatorPartialInterface {
     if (!$reflectionMethod->isStatic()) {
-      throw new \Exception('Method must be static.');
+      throw new \Exception('Method must be static: '
+        . $reflectionMethod->getDeclaringClass()->getName()
+        . '::' . $reflectionMethod->getName());
     }
     $rtype = $reflectionMethod->getReturnType();
     if (!$rtype) {
-      throw new \Exception('Method must have a return type declaration.');
+      throw new \Exception('Method must have a return type declaration: '
+        . $reflectionMethod->getDeclaringClass()->getName()
+        . '::' . $reflectionMethod->getName());
     }
     if (!$rtype instanceof \ReflectionNamedType || $rtype->isBuiltin()) {
-      throw new \Exception('Method return type must be a single class.');
+      throw new \Exception('Method return type must be a single class: '
+        . $reflectionMethod->getDeclaringClass()->getName()
+        . '::' . $reflectionMethod->getName());
     }
     /** @var class-string|'self'|'static' $class */
     $class = $rtype->getName();

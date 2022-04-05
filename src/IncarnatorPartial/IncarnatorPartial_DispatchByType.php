@@ -115,7 +115,7 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
    */
   private function formulaTypeAndTargetTypeGetPartials(string $formulaType, string $targetType): array {
 
-    return $this->partialsGrouped[$formulaType][$targetType]
+    return $this->partialsGrouped[$formulaType][$teargetType]
       ??= $this->formulaTypeAndTargetTypeCollectPartials(
         $formulaType,
         $targetType);
