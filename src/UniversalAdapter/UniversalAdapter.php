@@ -21,17 +21,17 @@ class UniversalAdapter implements UniversalAdapterInterface {
    */
   public function adapt(
     object $original,
-    string $destinationInterface,
+    string $resultType,
     UniversalAdapterInterface $universalAdapter = null,
   ): ?object {
 
-    if ($original instanceof $destinationInterface) {
+    if ($original instanceof $resultType) {
       return $original;
     }
 
     return $this->specificAdapter->adapt(
       $original,
-      $destinationInterface,
+      $resultType,
       $universalAdapter ?? $this,
     );
   }
