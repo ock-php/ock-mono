@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\AdapterMap;
 
-use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
+use Donquixote\Adaptism\Exception\AdapterNotAvailableException;
 use Donquixote\Adaptism\Exception\MissingAdapterException;
 use Psr\Container\ContainerInterface;
 
@@ -64,7 +64,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
           }
         }
         catch (\ReflectionException $e) {
-          throw new MalformedAdapterDeclarationException(\sprintf(
+          throw new AdapterNotAvailableException(\sprintf(
             'Unknown result type on %s: %s',
             $id,
             $e->getMessage(),

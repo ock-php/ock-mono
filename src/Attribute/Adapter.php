@@ -12,6 +12,7 @@ use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
 use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Adaptism\Exception\AdapterNotAvailableException;
 use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Adaptism\Util\AttributesUtil;
@@ -163,7 +164,7 @@ final class Adapter {
       $reflectionClass = new \ReflectionClass($type);
     }
     catch (\ReflectionException $e) {
-      throw new MalformedAdapterDeclarationException(\sprintf(
+      throw new AdapterNotAvailableException(\sprintf(
         'Unknown type on %s: %s',
         ReflectionUtil::reflectorDebugName($parameter),
         $e->getMessage(),
