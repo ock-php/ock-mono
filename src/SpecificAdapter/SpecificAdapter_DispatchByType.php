@@ -23,22 +23,22 @@ class SpecificAdapter_DispatchByType implements SpecificAdapterInterface {
    */
   public function adapt(
     object $adaptee,
-    string $interface,
+    string $resultType,
     UniversalAdapterInterface $universalAdapter
   ): ?object {
     $adapters = $this->adapterMap->getSuitableAdapters(
       \get_class($adaptee),
-      $interface);
+      $resultType);
 
     foreach ($adapters as $adapter) {
-      $candidate = $adapter->adapt($adaptee, $interface, $universalAdapter);
-      if ($candidate instanceof $interface) {
+      $candidate = $adapter->adapt($adaptee, $resultType, $universalAdapter);
+      if ($candidate instanceof $resultType) {
         return $candidate;
       }
       if ($candidate !== null) {
         throw new MisbehavingAdapterException(\sprintf(
           'Expected %s object, found %s.',
-          $interface,
+          $resultType,
           \is_object($candidate)
             ? \get_class($candidate) . ' object'
             : \gettype($candidate) . ' value'

@@ -11,7 +11,7 @@ interface SpecificAdapterInterface {
    * @template T as object
    *
    * @param object $adaptee
-   * @param class-string<T> $interface
+   * @param class-string<T> $resultType
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return object|null
@@ -21,7 +21,7 @@ interface SpecificAdapterInterface {
    */
   public function adapt(
     object $adaptee,
-    string $interface,
+    string $resultType,
     UniversalAdapterInterface $universalAdapter,
   ): ?object;
 

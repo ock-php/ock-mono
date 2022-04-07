@@ -28,12 +28,12 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
 
   public function adapt(
     object $adaptee,
-    string $interface,
+    string $resultType,
     UniversalAdapterInterface $universalAdapter,
   ): ?object {
     $args = [$adaptee];
     if ($this->hasResultTypeParameter) {
-      $args[] = $interface;
+      $args[] = $resultType;
     }
     if ($this->hasUniversalAdapterParameter) {
       $args[] = $universalAdapter;
