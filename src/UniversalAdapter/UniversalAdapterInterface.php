@@ -8,7 +8,7 @@ interface UniversalAdapterInterface {
   /**
    * @template T as object
    *
-   * @param object $original
+   * @param object $adaptee
    * @param class-string<T> $resultType
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface|null $universalAdapter
    *
@@ -19,7 +19,7 @@ interface UniversalAdapterInterface {
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   public function adapt(
-    object $original,
+    object $adaptee,
     string $resultType,
     UniversalAdapterInterface $universalAdapter = null,
   ): ?object;

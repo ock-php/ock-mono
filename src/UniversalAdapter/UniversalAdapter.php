@@ -20,17 +20,17 @@ class UniversalAdapter implements UniversalAdapterInterface {
    * {@inheritdoc}
    */
   public function adapt(
-    object $original,
+    object $adaptee,
     string $resultType,
     UniversalAdapterInterface $universalAdapter = null,
   ): ?object {
 
-    if ($original instanceof $resultType) {
-      return $original;
+    if ($adaptee instanceof $resultType) {
+      return $adaptee;
     }
 
     return $this->specificAdapter->adapt(
-      $original,
+      $adaptee,
       $resultType,
       $universalAdapter ?? $this,
     );
