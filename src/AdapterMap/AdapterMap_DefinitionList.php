@@ -16,7 +16,7 @@ class AdapterMap_DefinitionList implements AdapterMapInterface {
     private ContainerInterface $container,
   ) {}
 
-  public function getSuitableAdapters(?string $adapteeType, ?string $resultType): array {
+  public function getSuitableAdapters(?string $adapteeType, ?string $resultType): \Iterator {
     // @todo Cache the proxy.
     $proxy = $this->proxy
       ??= new AdapterMap_FixedSerializable(

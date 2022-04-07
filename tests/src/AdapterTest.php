@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\Tests;
 
+use Donquixote\Adaptism\Tests\Fixtures\Color\AltRgbColor;
 use Donquixote\Adaptism\Tests\Fixtures\Color\Colored;
 use Donquixote\Adaptism\Tests\Fixtures\Color\Hex\HexColor;
 use Donquixote\Adaptism\Tests\Fixtures\Color\Hex\HexColorInterface;
@@ -48,6 +49,11 @@ class AdapterTest extends TestCase {
 
     self::assertSame('red', $adapter->adapt(
       new RgbColor(255, 0, 0),
+      NamedColor::class,
+    )->getColor());
+
+    self::assertSame('blue', $adapter->adapt(
+      new AltRgbColor(0, 0, 255),
       NamedColor::class,
     )->getColor());
 

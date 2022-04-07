@@ -19,33 +19,6 @@ class HexColor implements HexColorInterface {
     private string $hexCode,
   ) {}
 
-  #[Adapter(-2)]
-  public static function bridge(
-    #[Adaptee] object $adaptee,
-    #[AdapterTargetType] string $targetType,
-    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
-  ): ?object {
-    static $recursion = 0;
-    if ($recursion > 1) {
-      return null;
-    }
-    ++$recursion;
-    try {
-      $bridge = $universalAdapter->adapt(
-        $adaptee,
-        HexColorInterface::class);
-      if ($bridge === null) {
-        return null;
-      }
-      return $universalAdapter->adapt(
-        $bridge,
-        $targetType);
-    }
-    finally {
-      --$recursion;
-    }
-  }
-
   /**
    * @param \Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface $rgbColor
    *

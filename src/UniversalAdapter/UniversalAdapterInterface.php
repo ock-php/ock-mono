@@ -11,6 +11,7 @@ interface UniversalAdapterInterface {
    * @param object $adaptee
    * @param class-string<T> $resultType
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface|null $universalAdapter
+   *   Top-level universal adapter, or NULL to use the object itself.
    *
    * @return T|null
    *   An instance of $destinationInterface, or

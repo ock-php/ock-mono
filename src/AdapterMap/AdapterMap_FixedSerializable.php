@@ -6,14 +6,10 @@ namespace Donquixote\Adaptism\AdapterMap;
 
 use Donquixote\Adaptism\Exception\AdapterNotAvailableException;
 use Donquixote\Adaptism\Exception\MissingAdapterException;
+use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Bridge;
 use Psr\Container\ContainerInterface;
 
 class AdapterMap_FixedSerializable implements AdapterMapInterface {
-
-  /**
-   * @var array<string, true>
-   */
-  private array $truthsById;
 
   /**
    * @var array<class-string, array<string, true>>
@@ -29,6 +25,11 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
    * @var array<class-string|'object', array<string, true>>
    */
   private array $idsByResultType = ['object' => []];
+
+  /**
+   * @var array<string, array<class-string|'object', true>>
+   */
+  private array $resultTypesById = [];
 
   /**
    * @var \Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface[]
@@ -52,6 +53,8 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
     array $definitions,
     private ContainerInterface $container,
   ) {
+    $ids = \array_keys($definitions);
+    $this->resultTypesById = \array_fill_keys($ids, []);
     $specifities = [];
     foreach ($definitions as $id => $definition) {
       $specifities[$id] = $definition->getSpecifity();
@@ -60,6 +63,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
       if ($resultType !== null) {
         try {
           foreach ($this->typeExpandParents($resultType, false) as $resultParentType) {
+            $this->resultTypesById[$id][$resultParentType] = true;
             $this->idsByResultType[$resultParentType][$id] = $id;
           }
         }
@@ -72,38 +76,47 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
         }
       }
       else {
+        $this->resultTypesById[$id]['object'] = true;
         $this->idsByResultType['object'][$id] = $id;
       }
       $this->idsBySourceType[$definition->getSourceType() ?? 'object'][$id] = $id;
     }
-    $ids = \array_keys($definitions);
-    $this->truthsById = \array_combine($ids, $ids);
-    \array_multisort($specifities, $this->truthsById);
+    \array_multisort($specifities, $this->resultTypesById);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getSuitableAdapters(?string $adapteeType, ?string $resultType): array {
-    $ids = $this->truthsById;
-    if ($adapteeType !== null) {
-      $ids = \array_intersect_key(
-        $ids,
+  public function getSuitableAdapters(?string $adapteeType, ?string $resultType): \Iterator {
+    $resultTypesById = $this->resultTypesById;
+    $resultTypesById1 = ($adapteeType !== null)
+      ? \array_intersect_key(
+        $resultTypesById,
         $this->idsBySourceTypeExpanded[$adapteeType]
-          ??= $this->sourceTypeCollectIds($adapteeType)
-      );
-    }
-    if ($resultType !== null) {
-      $ids = \array_intersect_key(
-        $ids,
-        $this->idsByResultType[$resultType] + $this->idsByResultType['object']);
-    }
-    $adapters = [];
-    foreach ($ids as $id => $_) {
-      $adapters[$id] = $this->adapters[$id]
+          ??= $this->sourceTypeCollectIds($adapteeType),
+      )
+      : $resultTypesById;
+    $resultTypesById2 = ($resultType !== null)
+      ? \array_intersect_key(
+        $resultTypesById1,
+        ($this->idsByResultType[$resultType] ?? []) + $this->idsByResultType['object'],
+      )
+      : $resultTypesById1;
+    foreach ($resultTypesById2 as $id => $_) {
+      yield $id => $this->adapters[$id]
         ??= $this->factories[$id]->createAdapter($this->container);
     }
-    return $adapters;
+    foreach ($resultTypesById1 as $id => $bridgeTypes) {
+      $bridgeTypes1 = \array_intersect_key($bridgeTypes, $this->idsBySourceType);
+      if (!$bridgeTypes1) {
+        continue;
+      }
+      $decorated = $this->adapters[$id]
+        ??= $this->factories[$id]->createAdapter($this->container);
+      foreach ($bridgeTypes1 as $bridgeType => $_) {
+        yield $id . ':' . $bridgeType => new SpecificAdapter_Bridge($decorated, $bridgeType);
+      }
+    }
   }
 
   /**
@@ -151,7 +164,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
 
   public function __serialize(): array {
     return [
-      'ids' => $this->truthsById,
+      'resultTypesById' => $this->resultTypesById,
       'idsBySourceType' => $this->idsBySourceType,
       'idsByResultType' => $this->idsByResultType,
       'factories' => $this->factories,
@@ -160,7 +173,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
 
   public function __unserialize(array $data): void {
     [
-      'ids' => $this->truthsById,
+      'resultTypesById' => $this->resultTypesById,
       'idsBySourceType' => $this->idsBySourceType,
       'idsByResultType' => $this->idsByResultType,
       'factories' => $this->factories,
