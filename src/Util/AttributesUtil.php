@@ -78,7 +78,7 @@ class AttributesUtil {
   }
 
   /**
-   * @template T
+   * @template T as object
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
    * @param class-string<T> $name
@@ -93,7 +93,7 @@ class AttributesUtil {
     string $name,
     bool $require,
   ): ?\ReflectionAttribute {
-    $attributes = $reflector->getAttributes($name);
+    $attributes = $reflector->getAttributes($name, \ReflectionAttribute::IS_INSTANCEOF);
     if (!$attributes && !$require) {
       return null;
     }
