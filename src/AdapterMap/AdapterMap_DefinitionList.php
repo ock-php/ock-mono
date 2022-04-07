@@ -16,13 +16,13 @@ class AdapterMap_DefinitionList implements AdapterMapInterface {
     private ContainerInterface $container,
   ) {}
 
-  public function getSuitableAdapters(?string $source_type, ?string $result_type): array {
+  public function getSuitableAdapters(?string $adapteeType, ?string $resultType): array {
     // @todo Cache the proxy.
     $proxy = $this->proxy
       ??= new AdapterMap_FixedSerializable(
       $this->definitionList->getDefinitions(),
       $this->container);
-    return $proxy->getSuitableAdapters($source_type, $result_type);
+    return $proxy->getSuitableAdapters($adapteeType, $resultType);
   }
 
 }

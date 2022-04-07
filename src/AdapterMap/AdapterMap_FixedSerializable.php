@@ -84,19 +84,19 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
   /**
    * {@inheritdoc}
    */
-  public function getSuitableAdapters(?string $source_type, ?string $result_type): array {
+  public function getSuitableAdapters(?string $adapteeType, ?string $resultType): array {
     $ids = $this->truthsById;
-    if ($source_type !== null) {
+    if ($adapteeType !== null) {
       $ids = \array_intersect_key(
         $ids,
-        $this->idsBySourceTypeExpanded[$source_type]
-          ??= $this->sourceTypeCollectIds($source_type)
+        $this->idsBySourceTypeExpanded[$adapteeType]
+          ??= $this->sourceTypeCollectIds($adapteeType)
       );
     }
-    if ($result_type !== null) {
+    if ($resultType !== null) {
       $ids = \array_intersect_key(
         $ids,
-        $this->idsByResultType[$result_type] + $this->idsByResultType['object']);
+        $this->idsByResultType[$resultType] + $this->idsByResultType['object']);
     }
     $adapters = [];
     foreach ($ids as $id => $_) {

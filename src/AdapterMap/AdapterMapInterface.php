@@ -7,13 +7,13 @@ namespace Donquixote\Adaptism\AdapterMap;
 interface AdapterMapInterface {
 
   /**
-   * @param class-string|null $source_type
-   * @param class-string|null $result_type
+   * @param class-string|null $adapteeType
+   * @param class-string|null $resultType
    *
    * @return \Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface[]
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  public function getSuitableAdapters(?string $source_type, ?string $result_type): array;
+  public function getSuitableAdapters(?string $adapteeType, ?string $resultType): array;
 
 }
