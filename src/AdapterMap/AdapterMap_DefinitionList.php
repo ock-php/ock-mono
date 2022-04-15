@@ -9,7 +9,7 @@ use Psr\Container\ContainerInterface;
 
 class AdapterMap_DefinitionList implements AdapterMapInterface {
 
-  private ?AdapterMapInterface $proxy;
+  private ?AdapterMapInterface $proxy = null;
 
   public function __construct(
     private AdapterDefinitionListInterface $definitionList,
