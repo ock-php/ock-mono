@@ -160,7 +160,7 @@ final class Adapter {
     if ($type === null) {
       // The type is 'object'.
       $specifity = -1;
-      return $type;
+      return null;
     }
     try {
       $reflectionClass = new \ReflectionClass($type);
