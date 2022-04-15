@@ -53,6 +53,41 @@ class ReflectionTypeUtil {
 
   /**
    * @param \ReflectionParameter|\ReflectionFunctionAbstract $reflector
+   *
+   * @return class-string|null
+   */
+  public static function getClassLikeType(
+    \ReflectionParameter|\ReflectionFunctionAbstract $reflector,
+  ): ?string {
+    $type = $reflector instanceof \ReflectionParameter
+      ? $reflector->getType()
+      : $reflector->getReturnType();
+    if (!$type instanceof \ReflectionNamedType || $type->isBuiltin()) {
+      return null;
+    }
+    return $type->getName();
+  }
+
+  /**
+   * @param \ReflectionParameter|\ReflectionFunctionAbstract $reflector
+   *
+   * @return string|null
+   *   Name of a built-in type, or null.
+   */
+  public static function getBuiltinType(
+    \ReflectionParameter|\ReflectionFunctionAbstract $reflector,
+  ): ?string {
+    $type = $reflector instanceof \ReflectionParameter
+      ? $reflector->getType()
+      : $reflector->getReturnType();
+    if (!$type instanceof \ReflectionNamedType || !$type->isBuiltin()) {
+      return null;
+    }
+    return $type->getName();
+  }
+
+  /**
+   * @param \ReflectionParameter|\ReflectionFunctionAbstract $reflector
    * @param class-string|null $expected
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException

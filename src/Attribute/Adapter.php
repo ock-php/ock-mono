@@ -155,7 +155,14 @@ final class Adapter {
         $where,
       ));
     }
-    AttributesUtil::requireHasSingle($parameter, Adaptee::class);
+    if (!AttributesUtil::getSingle($parameter, Adaptee::class)
+      && $parameter->getAttributes() !== []
+    ) {
+      throw new MalformedAdapterDeclarationException(\sprintf(
+        'Expected either no attribute, or #[Adaptee] attribute, on %s.',
+        ReflectionUtil::reflectorDebugName($parameter),
+      ));
+    }
     $type = ReflectionTypeUtil::requireGetClassLikeType($parameter, true);
     if ($type === null) {
       // The type is 'object'.
@@ -188,11 +195,16 @@ final class Adapter {
     if ($parameter === null) {
       return false;
     }
-    if (!AttributesUtil::hasSingle($parameter, AdapterTargetType::class)) {
+    if (ReflectionTypeUtil::getBuiltinType($parameter) !== 'string') {
       \array_unshift($parameters, $parameter);
       return false;
     }
-    ReflectionTypeUtil::requireBuiltinType($parameter, 'string');
+    if (!AttributesUtil::hasSingle($parameter, AdapterTargetType::class)
+      && $parameter->getAttributes() !== []
+    ) {
+      \array_unshift($parameters, $parameter);
+      return false;
+    }
     return true;
   }
 
@@ -208,7 +220,13 @@ final class Adapter {
     if ($parameter === null) {
       return false;
     }
-    if (!AttributesUtil::hasSingle($parameter, UniversalAdapter::class)) {
+    if (ReflectionTypeUtil::getClassLikeType($parameter) !== UniversalAdapterInterface::class) {
+      \array_unshift($parameters, $parameter);
+      return false;
+    }
+    if (!AttributesUtil::hasSingle($parameter, UniversalAdapter::class)
+      && $parameter->getAttributes() !== []
+    ) {
       \array_unshift($parameters, $parameter);
       return false;
     }
