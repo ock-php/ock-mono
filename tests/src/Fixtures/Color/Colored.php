@@ -30,7 +30,7 @@ class Colored {
     #[Adaptee] Colored $colored,
     #[AdapterTargetType] string $targetType,
     #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
-  ): object {
+  ): ?object {
     return $universalAdapter->adapt($colored->getColor(), $targetType);
   }
 
