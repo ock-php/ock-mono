@@ -104,7 +104,7 @@ class AttributesUtil {
         $require ? 'exactly' : 'up to',
         $name,
         ReflectionUtil::reflectorDebugName($reflector),
-        count($attributes)
+        count($attributes),
       ));
     }
     return $attributes[0];
