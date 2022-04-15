@@ -93,6 +93,7 @@ class AttributesUtil {
     string $name,
     bool $require,
   ): ?\ReflectionAttribute {
+    /** @var \ReflectionAttribute<T>[] $attributes */
     $attributes = $reflector->getAttributes($name, \ReflectionAttribute::IS_INSTANCEOF);
     if (!$attributes && !$require) {
       return null;

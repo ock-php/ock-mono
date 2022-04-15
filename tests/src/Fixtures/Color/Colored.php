@@ -15,6 +15,14 @@ use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 class Colored {
 
   /**
+   * @template T as object
+   *
+   * @param \Donquixote\Adaptism\Tests\Fixtures\Color\Colored $colored
+   * @param class-string<T> $targetType
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
+   *
+   * @return T|null
+   *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   #[Adapter]

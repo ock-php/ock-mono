@@ -44,7 +44,7 @@ final class Adapter {
    *
    * @return \Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   public function onClass(\ReflectionClass $reflectionClass): AdapterDefinitionInterface {
     $class = $reflectionClass->getName();
@@ -82,7 +82,7 @@ final class Adapter {
    *
    * @return \Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   public function onMethod(
     \ReflectionClass $reflectionClass,
@@ -140,11 +140,12 @@ final class Adapter {
   /**
    * @param \ReflectionParameter[] $parameters
    * @param int|null $specifity
+   * @param-out int $specifity
    * @param string $where
    *
    * @return string|null
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   private function extractSourceType(array &$parameters, ?int &$specifity, string $where): ?string {
     $parameter = \array_shift($parameters);
@@ -157,6 +158,7 @@ final class Adapter {
     AttributesUtil::requireHasSingle($parameter, Adaptee::class);
     $type = ReflectionTypeUtil::requireGetClassLikeType($parameter, true);
     if ($type === null) {
+      // The type is 'object'.
       $specifity = -1;
       return $type;
     }
@@ -175,7 +177,7 @@ final class Adapter {
   }
 
   /**
-   * @param array $parameters
+   * @param \ReflectionParameter[] $parameters
    *
    * @return bool
    *
@@ -195,7 +197,7 @@ final class Adapter {
   }
 
   /**
-   * @param array $parameters
+   * @param \ReflectionParameter[] $parameters
    *
    * @return bool
    *

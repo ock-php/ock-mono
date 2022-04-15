@@ -8,6 +8,14 @@ use Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface;
 
 class AdapterDefinition_Simple implements AdapterDefinitionInterface {
 
+  /**
+   * Constructor.
+   *
+   * @param class-string|null $sourceType
+   * @param class-string|null $resultType
+   * @param int $specifity
+   * @param \Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface $adapterFromContainer
+   */
   public function __construct(
     private ?string $sourceType,
     private ?string $resultType,
