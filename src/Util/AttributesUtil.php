@@ -71,10 +71,8 @@ class AttributesUtil {
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
   ): ?object {
-    $reflectionAttribute = self::getOrRequireSingle($reflector, $name, false);
-    return ($reflectionAttribute !== null)
-      ? $reflectionAttribute->newInstance()
-      : null;
+    return self::getOrRequireSingle($reflector, $name, false)
+      ?->newInstance();
   }
 
   /**
