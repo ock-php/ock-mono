@@ -44,7 +44,7 @@ class InlineDrilldown_V2V implements InlineDrilldownInterface {
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
-  public function idGetFormula(string $id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
     $formula = $this->decorated->idGetFormula($id);
     if ($formula === NULL) {
       return NULL;

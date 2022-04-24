@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
 use Donquixote\Ock\Util\UtilBase;
 
@@ -15,7 +15,7 @@ final class Summarizer_Optionless extends UtilBase {
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface
    */
-  #[OckIncarnator]
+  #[Adapter]
   public static function create(
     /** @noinspection PhpUnusedParameterInspection */ Formula_OptionlessInterface $formula
   ): SummarizerInterface {

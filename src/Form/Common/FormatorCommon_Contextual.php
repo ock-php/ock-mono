@@ -4,53 +4,39 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Form\Common;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
-use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialZeroBase;
+use Donquixote\Ock\FormulaAdapter;
 
-#[OckIncarnator]
-class FormatorCommon_Contextual extends IncarnatorPartialZeroBase {
+class FormatorCommon_Contextual {
 
   /**
-   * {@inheritdoc}
+   * @template T as \Donquixote\Ock\Form\Common\FormatorCommonInterface
+   *
+   * @param \Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface $formula
+   * @param class-string<T> $interface
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
+   *
+   * @return T|null
+   *
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  public function incarnate(
-    FormulaInterface $formula,
-    string $interface,
-    IncarnatorInterface $incarnator
-  ): ?object {
-
-    if (!$formula instanceof Formula_ContextualInterface) {
-      return NULL;
+  #[Adapter]
+  public static function adapt(
+    #[Adaptee] Formula_ContextualInterface $formula,
+    #[AdapterTargetType] string $interface,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
+  ): ?FormatorCommonInterface {
+    if (!\is_a($interface, FormatorCommonInterface::class, true)) {
+      // @todo Throw exception?
+      return null;
     }
-
-    return Incarnator::getObject(
-      $formula->getDecorated(),
-      $interface,
-      $incarnator);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function providesResultType(string $resultInterface): bool {
-    return is_a(
-      $resultInterface,
-      FormatorCommonInterface::class,
-      TRUE);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function acceptsFormulaClass(string $formulaClass): bool {
-    return is_a(
-      $formulaClass,
-      Formula_ContextualInterface::class,
-      TRUE);
+    /** @var class-string<T> $interface */
+    return $universalAdapter->adapt($formula->getDecorated(), $interface);
   }
 
 }

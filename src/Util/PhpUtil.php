@@ -110,7 +110,7 @@ EOT;
   }
 
   /**
-   * @param string $class
+   * @param class-string $class
    * @param string[] $argsPhp
    *
    * @return string
@@ -120,7 +120,7 @@ EOT;
   }
 
   /**
-   * @param string|callable $function
+   * @param callable-string $function
    * @param string[] $argsPhp
    *
    * @return string
@@ -131,13 +131,16 @@ EOT;
 
   /**
    * @param string $fqn
-   * @param string[] $argsPhp
+   * @param list<string> $argsPhp
    *
    * @return string
    */
   public static function phpCallFqn(string $fqn, array $argsPhp): string {
+    if ($argsPhp === []) {
+      return $fqn . '()';
+    }
     $php = $fqn . self::phpCallArglist($argsPhp);
-    if (strlen($php) > 80 || FALSE !== strpos($php, "\n")) {
+    if (strlen($php) > 80 || str_contains($php, "\n")) {
       // Code is too long for a single line, or already contains line breaks.
       // Insert line breaks between arguments.
       // This is a temporary solution to make tests pass.
@@ -148,15 +151,21 @@ EOT;
   }
 
   /**
-   * @param string[] $argsPhp
+   * @param list<string> $argsPhp
    * @param bool $break
    *
    * @return string
    */
   public static function phpCallArglist(array $argsPhp, bool $break = FALSE): string {
-    return ($break ? "(\n" : '(')
-      . implode($break ? ",\n" : ", ", $argsPhp)
-      . ')';
+    if ($argsPhp === []) {
+      return '()';
+    }
+    if (!$break) {
+      return '(' . implode(', ', $argsPhp) . ')';
+    }
+    return "(\n"
+      . implode(",\n", $argsPhp)
+      . ",\n)";
   }
 
   /**

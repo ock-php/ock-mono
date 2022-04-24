@@ -6,12 +6,12 @@ namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\Ock\Util\ReflectionUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-abstract class IncarnatorPartial_FactoryBase extends IncarnatorPartialBase {
+abstract class SpecificAdapter_FactoryBase extends SpecificAdapterBase {
 
   /**
    * @var bool
@@ -83,7 +83,7 @@ abstract class IncarnatorPartial_FactoryBase extends IncarnatorPartialBase {
     // Look at next parameter, if exists.
     if (isset($params[$i])
       && ($t1 = $params[$i]->getType())
-      && $t1->getName() === IncarnatorInterface::class
+      && $t1->getName() === UniversalAdapterInterface::class
       && !$t1->allowsNull()
     ) {
       $this->passIncarnator = TRUE;
@@ -104,14 +104,14 @@ abstract class IncarnatorPartial_FactoryBase extends IncarnatorPartialBase {
   protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): ?object {
     $args = [$formula];
     if ($this->passInterface) {
       $args[] = $interface;
     }
     if ($this->passIncarnator) {
-      $args[] = $incarnator;
+      $args[] = $universalAdapter;
     }
     if ($this->moreArgs) {
       $args = [...$args, ...$this->moreArgs];
@@ -125,7 +125,7 @@ abstract class IncarnatorPartial_FactoryBase extends IncarnatorPartialBase {
    * @return object|null
    *   An instance of $interface, or NULL.
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   abstract protected function invokeArgs(array $arguments): ?object;
 

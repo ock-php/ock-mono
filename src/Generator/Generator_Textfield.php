@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\StringVal\Formula_StringValInterface;
 use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
@@ -31,7 +31,7 @@ class Generator_Textfield implements GeneratorInterface {
    *
    * @return self
    */
-  #[OckIncarnator]
+  #[Adapter]
   public static function createFromStringFormula(Formula_TextfieldInterface $formula): Generator_Textfield {
     return new self($formula, new V2V_String_Trivial());
   }
@@ -41,7 +41,7 @@ class Generator_Textfield implements GeneratorInterface {
    *
    * @return self
    */
-  #[OckIncarnator]
+  #[Adapter]
   public static function createFromStringValFormula(Formula_StringValInterface $formula): Generator_Textfield {
     return new self($formula->getDecorated(), $formula->getV2V());
   }

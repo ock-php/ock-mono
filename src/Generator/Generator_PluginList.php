@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Exception\GeneratorException_UnsupportedConfiguration;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\MessageUtil;
 
 class Generator_PluginList implements GeneratorInterface {
@@ -20,30 +20,30 @@ class Generator_PluginList implements GeneratorInterface {
   private $formula;
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
+   * @var \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface
    */
-  private $incarnator;
+  private $universalAdapter;
 
   /**
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self
    */
-  #[OckIncarnator]
-  public static function createFromPluginListFormula(Formula_PluginListInterface $formula, IncarnatorInterface $incarnator): self {
-    return new self($formula, $incarnator);
+  #[Adapter]
+  public static function createFromPluginListFormula(Formula_PluginListInterface $formula, UniversalAdapterInterface $universalAdapter): self {
+    return new self($formula, $universalAdapter);
   }
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
-  protected function __construct(Formula_PluginListInterface $formula, IncarnatorInterface $incarnator) {
+  protected function __construct(Formula_PluginListInterface $formula, UniversalAdapterInterface $universalAdapter) {
     $this->formula = $formula;
-    $this->incarnator = $incarnator;
+    $this->incarnator = $universalAdapter;
   }
 
   /**

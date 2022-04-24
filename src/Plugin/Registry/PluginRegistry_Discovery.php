@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin\Registry;
 
+use Donquixote\Adaptism\Util\AttributesUtil;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
@@ -49,36 +50,29 @@ class PluginRegistry_Discovery implements PluginRegistryInterface {
   }
 
   /**
-   * @param array<string, array<string, \Donquixote\Ock\Plugin\Plugin>> $pluginss
+   * @param array<string, array<string, \Donquixote\Ock\Plugin\Plugin>>
+   *   $pluginss
    * @param \ReflectionClass|\ReflectionMethod $reflector
+   *
+   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
    */
   private function collectPlugins(array &$pluginss, \ReflectionClass|\ReflectionMethod $reflector): void {
-    foreach ($reflector->getAttributes(
-      PluginAttributeInterface::class,
-      \ReflectionAttribute::IS_INSTANCEOF
-    ) as $rProviderAttribute) {
-      /**
-       * @var PluginAttributeInterface $provider
-       * @psalm-ignore-var
-       */
-      $provider = $rProviderAttribute->newInstance();
-      $typedNamedPlugin = ($reflector instanceof \ReflectionClass)
-        ? $provider->fromClass($reflector)
-        : $provider->fromMethod($reflector);
-      foreach ($reflector->getAttributes(
-        PluginModifierAttributeInterface::class,
-        \ReflectionAttribute::IS_INSTANCEOF
-      ) as $rModifierAttribute) {
-        /**
-         * @var PluginModifierAttributeInterface $modifier
-         * @psalm-ignore-var
-         */
-        $modifier = $rModifierAttribute->newInstance();
-        $typedNamedPlugin = $modifier->modifyPlugin($typedNamedPlugin);
-      }
-      foreach ($typedNamedPlugin->getTypes() as $type) {
-        $pluginss[$type][$typedNamedPlugin->getId()] = $typedNamedPlugin->getPlugin();
-      }
+    $provider = AttributesUtil::getSingle($reflector, PluginAttributeInterface::class);
+    if ($provider === null) {
+      return;
+    }
+    $declaration = ($reflector instanceof \ReflectionClass)
+      ? $provider->fromClass($reflector)
+      : $provider->fromMethod($reflector);
+    /**
+     * @var PluginModifierAttributeInterface $modifier
+     * @psalm-ignore-var
+     */
+    foreach (AttributesUtil::getInstances($reflector, PluginModifierAttributeInterface::class) as $modifier) {
+      $declaration = $modifier->modifyPlugin($declaration);
+    }
+    foreach ($declaration->getTypes() as $type) {
+      $pluginss[$type][$declaration->getId()] = $declaration->getPlugin();
     }
   }
 

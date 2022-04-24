@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
-abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
+abstract class SpecificAdapterBase implements SpecificAdapterInterface {
 
   /**
    * @var null|string
@@ -99,14 +99,14 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
   public function incarnate(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): ?object {
 
     if (NULL !== $this->formulaType && !$formula instanceof $this->formulaType) {
       return NULL;
     }
 
-    $candidate = $this->formulaDoGetObject($formula, $interface, $incarnator);
+    $candidate = $this->formulaDoGetObject($formula, $interface, $universalAdapter);
 
     if (NULL === $candidate) {
       return NULL;
@@ -126,17 +126,17 @@ abstract class IncarnatorPartialBase implements IncarnatorPartialInterface {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param class-string<T> $interface
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return T|null
    *   An instance of $interface, or NULL.
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   abstract protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): ?object;
 
   /**

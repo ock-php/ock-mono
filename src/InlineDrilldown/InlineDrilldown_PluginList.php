@@ -36,7 +36,7 @@ class InlineDrilldown_PluginList implements InlineDrilldownInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetFormula(string $id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
     $plugin = $this->formula->idGetPlugin($id);
     if ($plugin === NULL) {
       return NULL;

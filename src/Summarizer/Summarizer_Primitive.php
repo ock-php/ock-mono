@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
-#[OckIncarnator]
+#[Adapter]
 class Summarizer_Primitive implements SummarizerInterface {
 
   /**

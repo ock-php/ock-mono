@@ -13,10 +13,10 @@ use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
 use Donquixote\FactoryReflection\FunctionToReturnType\FunctionToReturnTypeInterface;
 use Donquixote\Ock\Core\Formula\Base\FormulaBaseInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
-use Donquixote\Ock\IncarnatorPartial\IncarnatorPartial_Callback;
-use Donquixote\Ock\IncarnatorPartial\IncarnatorPartial_CallbackNoHelper;
-use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\IncarnatorPartial\SpecificAdapter_Callback;
+use Donquixote\Ock\IncarnatorPartial\SpecificAdapter_CallbackNoHelper;
+use Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface;
 use Donquixote\Ock\Util\ReflectionUtil;
 use Donquixote\ReflectionKit\ContextFinder\ContextFinderInterface;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
@@ -54,7 +54,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
   /**
    * {@inheritdoc}
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?IncarnatorPartialInterface {
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?SpecificAdapterInterface {
 
     $params = $factory->getParameters();
 
@@ -84,7 +84,7 @@ class FactoryToSTA implements FactoryToSTAInterface {
     if (1
       && isset($params[1])
       && NULL !== ($t1 = $params[1]->getClass())
-      && is_a(IncarnatorInterface::class, $t1->getName(), TRUE)
+      && is_a(UniversalAdapterInterface::class, $t1->getName(), TRUE)
     ) {
       $hasStaParam = TRUE;
       unset($params[1]);
@@ -113,13 +113,13 @@ class FactoryToSTA implements FactoryToSTAInterface {
     }
 
     if ($hasStaParam) {
-      $sta = new IncarnatorPartial_Callback(
+      $sta = new SpecificAdapter_Callback(
         $callback,
         $formulaType,
         $returnTypeClass->getName());
     }
     else {
-      $sta = new IncarnatorPartial_CallbackNoHelper(
+      $sta = new SpecificAdapter_CallbackNoHelper(
         $callback,
         $formulaType,
         $returnTypeClass->getName());

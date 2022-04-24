@@ -5,33 +5,33 @@ declare(strict_types=1);
 namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
+class IncarnatorPartial_DispatchByType extends SpecificAdapterZeroBase {
 
   /**
-   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[][][]
+   * @var \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[][][]
    *   Format: $[$formulaType][$targetType] = $partials
    */
   private $partialsGrouped = [];
 
   /**
-   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[][]
+   * @var \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[][]
    *   Format: $[$targetType] = $partials
    */
   private $partialsByTargetType = [];
 
   /**
-   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[][]
+   * @var \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[][]
    *   Format: $[$formulaType] = $partials
    */
   private $partialsByFormulaType = [];
 
   /**
-   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   * @var \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[]
    */
   private $partials;
 
@@ -48,7 +48,7 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
   }
 
   /**
-   * @param \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[] $partials
+   * @param \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[] $partials
    */
   public function __construct(array $partials) {
 
@@ -72,7 +72,7 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
   public function incarnate(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): ?object {
 
     $partials = $this->formulaTypeAndTargetTypeGetPartials(
@@ -81,7 +81,7 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
 
     $candidate = NULL;
     foreach ($partials as $partial) {
-      $candidate = $partial->incarnate($formula, $interface, $incarnator);
+      $candidate = $partial->incarnate($formula, $interface, $universalAdapter);
       if ($candidate instanceof $interface) {
         return $candidate;
       }
@@ -111,7 +111,7 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
    * @param string $formulaType
    * @param string $targetType
    *
-   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[]
    */
   private function formulaTypeAndTargetTypeGetPartials(string $formulaType, string $targetType): array {
 
@@ -125,7 +125,7 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
    * @param string $formulaType
    * @param string $targetType
    *
-   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[]
    */
   private function formulaTypeAndTargetTypeCollectPartials(string $formulaType, string $targetType): array {
 
@@ -137,7 +137,7 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[]
    */
   private function targetTypeGetPartials(string $interface): array {
 
@@ -148,12 +148,12 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
   /**
    * @param string $targetType
    *
-   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[]
    */
   private function targetTypeCollectPartials(string $targetType): array {
 
     $partials = [];
-    /** @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface $partial */
+    /** @var \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->providesResultType($targetType)) {
         // Preserve keys for array_intersect().
@@ -167,7 +167,7 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
   /**
    * @param string $interface
    *
-   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[]
    */
   private function formulaTypeGetPartials(string $interface): array {
 
@@ -178,12 +178,12 @@ class IncarnatorPartial_DispatchByType extends IncarnatorPartialZeroBase {
   /**
    * @param string $formulaType
    *
-   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[]
    */
   private function formulaTypeCollectPartials(string $formulaType): array {
 
     $partials = [];
-    /** @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface $partial */
+    /** @var \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface $partial */
     foreach ($this->partials as $k => $partial) {
       if ($partial->acceptsFormulaClass($formulaType)) {
         // Preserve keys for array_intersect().

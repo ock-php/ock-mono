@@ -4,26 +4,23 @@ namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Contextual\Formula_ContextualInterface;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
-class IncarnatorPartial_ContextConsuming extends IncarnatorPartialZeroBase {
+class IncarnatorPartial_ContextConsuming extends SpecificAdapterZeroBase {
 
   /**
    * {@inheritdoc}
    */
-  public function incarnate(FormulaInterface $formula, string $interface, IncarnatorInterface $incarnator): ?object {
+  public function incarnate(FormulaInterface $formula, string $interface, UniversalAdapterInterface $universalAdapter): ?object {
 
     if (!$formula instanceof Formula_ContextualInterface) {
       return NULL;
     }
 
-    $context = $incarnator->getContext();
+    $context = $universalAdapter->getContext();
 
-    return Incarnator::getObject(
-      $formula->getDecorated($context),
-      $interface,
-      $incarnator);
+    return $universalAdapter->adapt($formula->getDecorated($context), $interface);
   }
 
   /**

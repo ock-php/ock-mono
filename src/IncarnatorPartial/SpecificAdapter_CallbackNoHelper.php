@@ -8,9 +8,9 @@ use Donquixote\CallbackReflection\Callback\CallbackReflection_ClassConstruction;
 use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
-class IncarnatorPartial_CallbackNoHelper extends IncarnatorPartialBase {
+class SpecificAdapter_CallbackNoHelper extends SpecificAdapterBase {
 
   /**
    * @var \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface
@@ -35,9 +35,9 @@ class IncarnatorPartial_CallbackNoHelper extends IncarnatorPartialBase {
    * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
    * @param string|null $resultType
    *
-   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface|null
+   * @return \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface|null
    */
-  public static function create(CallbackReflectionInterface $callback, $resultType = NULL): ?IncarnatorPartialInterface {
+  public static function create(CallbackReflectionInterface $callback, $resultType = NULL): ?SpecificAdapterInterface {
 
     $params = $callback->getReflectionParameters();
 
@@ -76,7 +76,7 @@ class IncarnatorPartial_CallbackNoHelper extends IncarnatorPartialBase {
   protected function formulaDoGetObject(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): ?object {
 
     try {

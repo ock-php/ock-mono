@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IncarnatorPartial;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Adaptism\Exception\AdapterException;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Exception\PluginListException;
 use Donquixote\Ock\Formula\DecoKey\Formula_DecoKey;
 use Donquixote\Ock\Formula\DecoShift\Formula_DecoShift;
@@ -17,72 +21,49 @@ use Donquixote\Ock\Formula\Select\Formula_Select_InlineExpanded;
 use Donquixote\Ock\IdToFormula\IdToFormula_FromPlugins;
 use Donquixote\Ock\IdToFormula\IdToFormula_InlineExpanded;
 use Donquixote\Ock\IdToFormula\IdToFormula_Replace;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 
-# #[OckIncarnator]
-class IncarnatorPartial_Iface extends IncarnatorPartial_FormulaReplacerBase {
-
-  /**
-   * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface
-   */
-  private PluginMapInterface $pluginMap;
-
-  /**
-   * @var \Donquixote\Ock\Text\TextInterface[]
-   */
-  private array $groupLabels;
-
-  /**
-   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
-   * @param \Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface $groupLabels
-   *
-   * @return self
-   */
-  #[OckIncarnator]
-  public static function create(PluginMapInterface $pluginMap, PluginGroupLabelsInterface $groupLabels): self {
-    return new self($pluginMap, $groupLabels->getLabels());
-  }
+class SpecificAdapter_Iface {
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
-   * @param \Donquixote\Ock\Text\TextInterface[] $groupLabels
+   * @param \Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface $groupLabels
    */
-  public function __construct(PluginMapInterface $pluginMap, array $groupLabels = []) {
-    $this->pluginMap = $pluginMap;
-    parent::__construct(Formula_IfaceInterface::class);
-    $this->groupLabels = $groupLabels;
-  }
+  public function __construct(
+    #[GetService] private PluginMapInterface $pluginMap,
+    #[GetService] private PluginGroupLabelsInterface $groupLabels,
+  ) {}
 
   /**
-   * {@inheritdoc}
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
-    /** @var \Donquixote\Ock\Formula\Iface\Formula_IfaceInterface $formula */
+  #[Adapter]
+  public function adapt(
+    #[Adaptee] Formula_IfaceInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
+  ): ?FormulaInterface {
     try {
       return $this->typeGetFormula(
         $formula->getInterface(),
         $formula->allowsNull(),
-        $incarnator);
+        $universalAdapter);
     }
     catch (PluginListException $e) {
-      throw new IncarnatorException($e->getMessage(), 0, $e);
+      throw new AdapterException($e->getMessage(), 0, $e);
     }
   }
 
   /**
-   * @param string $type
-   * @param bool $or_null
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   *
    * @throws \Donquixote\Ock\Exception\PluginListException
    */
-  public function typeGetFormula(string $type, bool $or_null, IncarnatorInterface $incarnator): FormulaInterface {
+  protected function typeGetFormula(
+    string $type,
+    bool $or_null,
+    UniversalAdapterInterface $universalAdapter,
+  ): FormulaInterface {
     $plugins = $this->pluginMap->typeGetPlugins($type);
     $inline_plugins = [];
     foreach ($plugins as $id => $plugin) {
@@ -92,19 +73,27 @@ class IncarnatorPartial_Iface extends IncarnatorPartial_FormulaReplacerBase {
     }
 
     // Regular plugins.
-    $idFormula = new Formula_Select_FromPlugins($plugins, $this->groupLabels);
+    $idFormula = new Formula_Select_FromPlugins(
+      $plugins,
+      $this->groupLabels->getLabels(),
+    );
     $idToFormula = new IdToFormula_FromPlugins($plugins);
 
-    $idToFormula = new IdToFormula_Replace($idToFormula, $incarnator);
+    $idToFormula = new IdToFormula_Replace(
+      $idToFormula,
+      $universalAdapter,
+    );
 
     // Support "inline" plugins.
     $idFormula = new Formula_Select_InlineExpanded(
       $idFormula,
       new IdToFormula_FromPlugins($inline_plugins),
-      $incarnator);
+      $universalAdapter,
+    );
     $idToFormula = new IdToFormula_InlineExpanded(
       $idToFormula,
-      $incarnator);
+      $universalAdapter,
+    );
 
     // Build the drilldown formula.
     $drilldown = new Formula_Drilldown(
@@ -116,14 +105,11 @@ class IncarnatorPartial_Iface extends IncarnatorPartial_FormulaReplacerBase {
     return new Formula_DecoKey(
       $drilldown,
       $this->buildDecoratorDrilldown($type),
-      'decorators');
+      'decorators',
+    );
   }
 
   /**
-   * @param string $type
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   *
    * @throws \Donquixote\Ock\Exception\PluginListException
    */
   private function buildDecoratorDrilldown(string $type): FormulaInterface {
@@ -138,7 +124,10 @@ class IncarnatorPartial_Iface extends IncarnatorPartial_FormulaReplacerBase {
     }
 
     $drilldown = new Formula_Drilldown(
-      new Formula_Select_FromPlugins($decorator_plugins, $this->groupLabels),
+      new Formula_Select_FromPlugins(
+        $decorator_plugins,
+        $this->groupLabels->getLabels(),
+      ),
       new IdToFormula_FromPlugins($decorator_plugins),
       FALSE);
 

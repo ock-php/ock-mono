@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
-#[OckIncarnator]
+#[Adapter]
 class Summarizer_Drilldown implements SummarizerInterface {
 
   /**
@@ -21,22 +21,22 @@ class Summarizer_Drilldown implements SummarizerInterface {
   private $formula;
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
+   * @var \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface
    */
-  private $incarnator;
+  private $universalAdapter;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
   public function __construct(
     Formula_DrilldownInterface $formula,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ) {
     $this->formula = $formula;
-    $this->incarnator = $incarnator;
+    $this->incarnator = $universalAdapter;
   }
 
   /**

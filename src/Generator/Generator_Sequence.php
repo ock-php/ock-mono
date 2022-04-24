@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\Ock\Formula\SequenceVal\Formula_SequenceValInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\Ock\V2V\Sequence\V2V_Sequence_Trivial;
 use Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface;
@@ -27,44 +27,44 @@ class Generator_Sequence implements GeneratorInterface {
 
   /**
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function createFromSequenceFormula(Formula_SequenceInterface $formula, IncarnatorInterface $incarnator): ?Generator_Sequence {
-    return self::create($formula, new V2V_Sequence_Trivial(), $incarnator);
+  #[Adapter]
+  public static function createFromSequenceFormula(Formula_SequenceInterface $formula, UniversalAdapterInterface $universalAdapter): ?Generator_Sequence {
+    return self::create($formula, new V2V_Sequence_Trivial(), $universalAdapter);
   }
 
   /**
    * @param \Donquixote\Ock\Formula\SequenceVal\Formula_SequenceValInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function createFromSequenceValFormula(Formula_SequenceValInterface $formula, IncarnatorInterface $incarnator): ?Generator_Sequence {
-    return self::create($formula->getDecorated(), $formula->getV2V(), $incarnator);
+  #[Adapter]
+  public static function createFromSequenceValFormula(Formula_SequenceValInterface $formula, UniversalAdapterInterface $universalAdapter): ?Generator_Sequence {
+    return self::create($formula->getDecorated(), $formula->getV2V(), $universalAdapter);
   }
 
   /**
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
    * @param \Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface $v2v
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  private static function create(Formula_SequenceInterface $formula, V2V_SequenceInterface $v2v, IncarnatorInterface $incarnator): ?Generator_Sequence {
+  private static function create(Formula_SequenceInterface $formula, V2V_SequenceInterface $v2v, UniversalAdapterInterface $universalAdapter): ?Generator_Sequence {
 
     $itemGenerator = Generator::fromFormula(
       $formula->getItemFormula(),
-      $incarnator
+      $universalAdapter
     );
 
     if (NULL === $itemGenerator) {

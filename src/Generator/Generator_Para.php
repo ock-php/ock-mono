@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Para\Formula_ParaInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class Generator_Para implements GeneratorInterface {
 
@@ -24,17 +24,17 @@ class Generator_Para implements GeneratorInterface {
 
   /**
    * @param \Donquixote\Ock\Formula\Para\Formula_ParaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function create(Formula_ParaInterface $formula, IncarnatorInterface $incarnator): Generator_Para {
+  #[Adapter]
+  public static function create(Formula_ParaInterface $formula, UniversalAdapterInterface $universalAdapter): Generator_Para {
     return new self(
-      Generator::fromFormula($formula->getDecorated(), $incarnator),
-      Generator::fromFormula($formula->getParaFormula(), $incarnator));
+      Generator::fromFormula($formula->getDecorated(), $universalAdapter),
+      Generator::fromFormula($formula->getParaFormula(), $universalAdapter));
   }
 
   /**

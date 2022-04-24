@@ -10,5 +10,6 @@ return static function (): IntOpInterface {
     [
       new IntOp_Add(5),
       new IntOp_Multiply(7),
-    ]);
+    ],
+  );
 };

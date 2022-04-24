@@ -17,9 +17,9 @@ class Formula_DecoKey implements FormulaInterface, Formula_DecoKeyInterface {
    * @param string $key
    */
   public function __construct(
-    private Formula_DrilldownInterface $decorated,
-    private FormulaInterface $decorator,
-    private string $key,
+    private readonly Formula_DrilldownInterface $decorated,
+    private readonly FormulaInterface $decorator,
+    private readonly string $key,
   ) {}
 
   /**

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Formula\Boolean\Formula_BooleanInterface;
 use Donquixote\Ock\Text\TextInterface;
 
-#[OckIncarnator]
+#[Adapter]
 class Summarizer_Boolean implements SummarizerInterface {
 
   /**

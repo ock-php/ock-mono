@@ -32,7 +32,7 @@ class IdToFormula_FromOptions implements IdToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetFormula($id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
 
     if (!isset($this->options[$id])) {
       return NULL;

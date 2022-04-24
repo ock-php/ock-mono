@@ -6,7 +6,7 @@ namespace Donquixote\Ock\IncarnatorPartial;
 
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class IncarnatorPartial_Callable extends IncarnatorPartial_FactoryBase {
+class IncarnatorPartial_Callable extends SpecificAdapter_FactoryBase {
 
   /**
    * @var callable

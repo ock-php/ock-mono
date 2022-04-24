@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula\PluginList;
 
 use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\InlinePluginList\InlinePluginList;
 use Donquixote\Ock\Plugin\Plugin;
 use Donquixote\Ock\Text\Text;
@@ -21,19 +21,19 @@ class Formula_PluginList_InlineExpanded implements Formula_PluginListInterface {
   private Formula_PluginListInterface $decorated;
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
+   * @var \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface
    */
-  private IncarnatorInterface $incarnator;
+  private UniversalAdapterInterface $universalAdapter;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $decorated
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
-  public function __construct(Formula_PluginListInterface $decorated, IncarnatorInterface $incarnator) {
+  public function __construct(Formula_PluginListInterface $decorated, UniversalAdapterInterface $universalAdapter) {
     $this->decorated = $decorated;
-    $this->incarnator = $incarnator;
+    $this->incarnator = $universalAdapter;
   }
 
   /**

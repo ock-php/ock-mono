@@ -6,7 +6,7 @@ namespace Donquixote\Ock\IdToFormula;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
 
 class IdToFormula_InlineExpanded implements IdToFormulaInterface {
@@ -17,23 +17,23 @@ class IdToFormula_InlineExpanded implements IdToFormulaInterface {
   private $decorated;
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
+   * @var \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface
    */
-  private IncarnatorInterface $incarnator;
+  private UniversalAdapterInterface $universalAdapter;
 
   /**
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
-  public function __construct(IdToFormulaInterface $decorated, IncarnatorInterface $incarnator) {
+  public function __construct(IdToFormulaInterface $decorated, UniversalAdapterInterface $universalAdapter) {
     $this->decorated = $decorated;
-    $this->incarnator = $incarnator;
+    $this->incarnator = $universalAdapter;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function idGetFormula(string $id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
 
     if (FALSE === /* $pos = */ strpos($id, '/')) {
       return $this->decorated->idGetFormula($id);

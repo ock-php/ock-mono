@@ -33,16 +33,32 @@ class MessageUtil extends UtilBase {
         return get_class($value) . ' object';
 
       case 'array':
-        return $value ? 'array(..)' : 'array()';
+        if ($value === []) {
+          return '[]';
+        }
+        if (\count($value) < 3 && \array_is_list($value)) {
+          return '['
+            . implode(', ', \array_map(
+              [self::class, 'formatValue'],
+              $value,
+            ))
+            . ']';
+        }
+        return '[..]';
+
+      case 'boolean':
+      case 'integer':
+      case 'double':
+      case 'string':
+      case 'NULL':
+        return \var_export($value, true);
 
       case 'resource':
-        return 'resource';
-
-      case 'integer':
-        return '(int)' . $value;
+      case 'resource (closed)':
+        return \gettype($value);
 
       default:
-        return var_export($value, TRUE);
+        return \get_debug_type($value) . ' value';
     }
   }
 

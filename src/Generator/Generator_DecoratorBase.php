@@ -7,16 +7,11 @@ namespace Donquixote\Ock\Generator;
 abstract class Generator_DecoratorBase implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface
-   */
-  private $decorated;
-
-  /**
    * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
    */
-  protected function __construct(GeneratorInterface $decorated) {
-    $this->decorated = $decorated;
-  }
+  protected function __construct(
+    private GeneratorInterface $decorated,
+  ) {}
 
   /**
    * {@inheritdoc}

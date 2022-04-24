@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Discovery\FactoryToSTA;
 
 use Donquixote\FactoryReflection\Factory\ReflectionFactoryInterface;
-use Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface;
+use Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface;
 use Donquixote\Ock\Util\AnnotationUtil;
 
 class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
@@ -25,7 +25,7 @@ class FactoryToSTA_RequireAnnotationTag implements FactoryToSTAInterface {
   /**
    * {@inheritdoc}
    */
-  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?IncarnatorPartialInterface {
+  public function factoryGetPartial(ReflectionFactoryInterface $factory): ?SpecificAdapterInterface {
 
     if (!$this->factoryIsSTA($factory)) {
       return NULL;

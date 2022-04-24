@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
@@ -25,20 +25,20 @@ class Summarizer_Group implements SummarizerInterface {
 
   /**
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function create(Formula_GroupInterface $formula, IncarnatorInterface $incarnator): ?self {
+  #[Adapter]
+  public static function create(Formula_GroupInterface $formula, UniversalAdapterInterface $universalAdapter): ?self {
 
     /** @var \Donquixote\Ock\Summarizer\SummarizerInterface[] $itemSummarizers */
-    $itemSummarizers = Incarnator::getMultiple(
+    $itemSummarizers = FormulaAdapter::getMultiple(
       $formula->getItemFormulas(),
       SummarizerInterface::class,
-      $incarnator);
+      $universalAdapter);
 
     return new self($formula, $itemSummarizers);
   }

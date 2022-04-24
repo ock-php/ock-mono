@@ -4,48 +4,34 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IncarnatorPartial;
 
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface;
 use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\ParamToLabel\ParamToLabelInterface;
 use Donquixote\Ock\Text\Text;
 
-#[OckIncarnator]
-class IncarnatorPartial_ValueFactory extends IncarnatorPartial_FormulaReplacerBase {
+class SpecificAdapter_ValueFactory {
 
   /**
-   * @var \Donquixote\Ock\ParamToLabel\ParamToLabelInterface
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  private $paramToLabel;
-
-  /**
-   * Constructor.
-   *
-   * @param \Donquixote\Ock\ParamToLabel\ParamToLabelInterface $paramToLabel
-   */
-  public function __construct(ParamToLabelInterface $paramToLabel) {
-    parent::__construct(Formula_ValueFactoryInterface::class);
-    $this->paramToLabel = $paramToLabel;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
-
-    /** @var \Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface $formula */
-
+  #[Adapter]
+  public static function adapt(
+    #[Adaptee] Formula_ValueFactoryInterface $formula,
+    #[GetService] ParamToLabelInterface $paramToLabel,
+  ): ?FormulaInterface {
     try {
       $factory = $formula->getValueFactory();
     }
     catch (\Exception $e) {
-      throw new IncarnatorException($e->getMessage(), 0, $e);
+      throw new AdapterException($e->getMessage(), 0, $e);
     }
 
     $params = $factory->getReflectionParameters();
@@ -57,16 +43,16 @@ class IncarnatorPartial_ValueFactory extends IncarnatorPartial_FormulaReplacerBa
     $builder = Formula::group();
     foreach ($params as $param) {
       $name = $param->getName();
-      $param_formula = $this->paramGetFormula($param);
+      $param_formula = self::paramGetFormula($param);
       if (!$param_formula) {
-        throw new IncarnatorException(
+        throw new AdapterException(
           sprintf(
             'Cannot build formula for parameter $%s of %s.',
             $param->getName(),
             $factory->argsPhpGetPhp(['...'], new CodegenHelper())));
       }
 
-      $param_label = $this->paramToLabel->paramGetLabel($param);
+      $param_label = $paramToLabel->paramGetLabel($param);
 
       $builder->add(
         $name,
@@ -82,7 +68,7 @@ class IncarnatorPartial_ValueFactory extends IncarnatorPartial_FormulaReplacerBa
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
-  private function paramGetFormula(\ReflectionParameter $param): ?FormulaInterface {
+  private static function paramGetFormula(\ReflectionParameter $param): ?FormulaInterface {
 
     $rtype = $param->getType();
     if (!$rtype instanceof \ReflectionNamedType || $rtype->isBuiltin()) {

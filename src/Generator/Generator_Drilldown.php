@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Adaptism\Exception\AdapterException;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Exception\GeneratorException_UnsupportedConfiguration;
-use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\V2V\Drilldown\V2V_Drilldown_Trivial;
 use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 
@@ -19,30 +21,30 @@ class Generator_Drilldown implements GeneratorInterface {
 
   /**
    * @param \Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self
    */
-  #[OckIncarnator]
+  #[Adapter]
   public static function createFromDrilldownValFormula(
-    Formula_DrilldownValInterface $formula,
-    IncarnatorInterface $incarnator,
+    #[Adaptee] Formula_DrilldownValInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
   ): self {
-    return new self($formula->getDecorated(), $formula->getV2V(), $incarnator);
+    return new self($formula->getDecorated(), $formula->getV2V(), $universalAdapter);
   }
 
   /**
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self
    */
-  #[OckIncarnator]
+  #[Adapter]
   public static function createFromDrilldownFormula(
-    Formula_DrilldownInterface $formula,
-    IncarnatorInterface $incarnator,
+    #[Adaptee] Formula_DrilldownInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
   ): self {
-    return new self($formula, new V2V_Drilldown_Trivial(), $incarnator);
+    return new self($formula, new V2V_Drilldown_Trivial(), $universalAdapter);
   }
 
   /**
@@ -50,12 +52,12 @@ class Generator_Drilldown implements GeneratorInterface {
    *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
   protected function __construct(
     private Formula_DrilldownInterface $formula,
     private V2V_DrilldownInterface $v2v,
-    private IncarnatorInterface $incarnator,
+    private UniversalAdapterInterface $universalAdapter,
   ) {}
 
   /**
@@ -81,7 +83,7 @@ class Generator_Drilldown implements GeneratorInterface {
   }
 
   /**
-   * @param string|int|null $id
+   * @param string|int $id
    * @param mixed $subConf
    *
    * @return string
@@ -89,7 +91,7 @@ class Generator_Drilldown implements GeneratorInterface {
    * @throws \Donquixote\Ock\Exception\GeneratorException
    *   Configuration is incompatible or not supported.
    */
-  private function idConfGetSubValuePhp($id, $subConf): string {
+  private function idConfGetSubValuePhp(string|int $id, mixed $subConf): string {
 
     if (NULL === $subFormula = $this->formula->getIdToFormula()->idGetFormula($id)) {
       throw new GeneratorException_IncompatibleConfiguration(
@@ -97,9 +99,9 @@ class Generator_Drilldown implements GeneratorInterface {
     }
 
     try {
-      $subGenerator = Generator::fromFormula($subFormula, $this->incarnator);
+      $subGenerator = Generator::fromFormula($subFormula, $this->universalAdapter);
     }
-    catch (IncarnatorException $e) {
+    catch (AdapterException $e) {
       throw new GeneratorException_UnsupportedConfiguration(
         "Unsupported formula for id '$id' in drilldown.", 0, $e);
     }

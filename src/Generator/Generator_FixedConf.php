@@ -4,34 +4,29 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Ock\Formula\FixedConf\Formula_FixedConfInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class Generator_FixedConf implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface
-   */
-  private $decorated;
-
-  /**
-   * @var mixed
-   */
-  private $conf;
-
-  /**
    * @param \Donquixote\Ock\Formula\FixedConf\Formula_FixedConfInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function create(Formula_FixedConfInterface $formula, IncarnatorInterface $incarnator): GeneratorInterface {
+  #[Adapter]
+  public static function create(
+    #[Adaptee] Formula_FixedConfInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
+  ): GeneratorInterface {
     return new self(
-      Generator::fromFormula($formula->getDecorated(), $incarnator),
+      Generator::fromFormula($formula->getDecorated(), $universalAdapter),
       $formula->getConf());
   }
 
@@ -39,10 +34,10 @@ class Generator_FixedConf implements GeneratorInterface {
    * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
    * @param mixed $conf
    */
-  public function __construct(GeneratorInterface $decorated, $conf) {
-    $this->decorated = $decorated;
-    $this->conf = $conf;
-  }
+  public function __construct(
+    private GeneratorInterface $decorated,
+    private mixed $conf,
+  ) {}
 
   /**
    * {@inheritdoc}

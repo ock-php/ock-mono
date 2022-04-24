@@ -15,7 +15,7 @@ final class LocalPackageUtil extends UtilBase {
   /**
    * @param \Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface $paramToValue
    *
-   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[]
    *
    * @throws \Exception
    */

@@ -7,14 +7,14 @@ namespace Donquixote\Ock\IncarnatorPartial;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Discovery\FactoryToSTA\FactoryToSTAInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\LocalPackageUtil;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 
-class IncarnatorPartial_Chain extends IncarnatorPartialZeroBase {
+class IncarnatorPartial_Chain extends SpecificAdapterZeroBase {
 
   /**
-   * @var \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   * @var \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[]
    */
   private $partials;
 
@@ -31,7 +31,7 @@ class IncarnatorPartial_Chain extends IncarnatorPartialZeroBase {
   }
 
   /**
-   * @param \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[] $partials
+   * @param \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[] $partials
    */
   public function __construct(array $partials) {
     $this->partials = $partials;
@@ -43,11 +43,11 @@ class IncarnatorPartial_Chain extends IncarnatorPartialZeroBase {
   public function incarnate(
     FormulaInterface $formula,
     string $interface,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): ?object {
 
     foreach ($this->partials as $mapper) {
-      $candidate = $mapper->incarnate($formula, $interface, $incarnator);
+      $candidate = $mapper->incarnate($formula, $interface, $universalAdapter);
       if (NULL !== $candidate) {
         if ($candidate instanceof $interface) {
           return $candidate;

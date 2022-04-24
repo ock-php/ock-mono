@@ -6,46 +6,47 @@ namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Summarizer extends UtilBase {
 
   /**
    * @param string $interface
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   public static function fromIface(
     string $interface,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): SummarizerInterface {
     return self::fromFormula(
       Formula::iface($interface),
-      $incarnator);
+      $universalAdapter);
   }
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Summarizer\SummarizerInterface
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    *   Cannot build a generator for the given formula.
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): SummarizerInterface {
-    return Incarnator::getObject(
+    return FormulaAdapter::requireObject(
       $formula,
       SummarizerInterface::class,
-      $incarnator);
+      $universalAdapter,
+    );
   }
 
 }

@@ -23,7 +23,7 @@ class IdToFormula_Class implements IdToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetFormula($id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
 
     $candidate = new $this->class($id);
 

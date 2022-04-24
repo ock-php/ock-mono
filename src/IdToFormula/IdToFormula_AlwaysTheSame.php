@@ -23,7 +23,7 @@ class IdToFormula_AlwaysTheSame implements IdToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetFormula($id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
     return $this->sameFormula;
   }
 

@@ -55,9 +55,12 @@ class NumberFormat_Native implements NumberFormatInterface {
    * @param string $format
    *   One of 'de', 'us'.
    *
-   * @return static
+   * @return self
    */
-  public static function create(int $decimals, string $format): self {
+  public static function create(
+    int $decimals,
+    string $format,
+  ): self {
     return new self(
       $decimals,
       $format[0] ?? '.',

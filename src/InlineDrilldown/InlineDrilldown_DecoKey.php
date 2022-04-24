@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\InlineDrilldown;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 abstract class InlineDrilldown_DecoKey implements InlineDrilldownInterface {
 
   /**
    * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function fromFormula(Formula_DecoKeyInterface $formula, IncarnatorInterface $incarnator): InlineDrilldownInterface {
+  #[Adapter]
+  public static function fromFormula(Formula_DecoKeyInterface $formula, UniversalAdapterInterface $universalAdapter): InlineDrilldownInterface {
     return InlineDrilldown::fromFormula(
       $formula->getDecorated(),
-      $incarnator);
+      $universalAdapter);
   }
 
 }

@@ -10,8 +10,8 @@ use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Formula\Select\Flat\FlatSelectBuilderInterface;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
 use Donquixote\Ock\Formula\Sequence\Formula_Sequence;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Formula extends UtilBase {
@@ -80,27 +80,13 @@ final class Formula extends UtilBase {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  public static function replace(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
-
-    $candidate = Incarnator::getObject(
-      $formula,
-      FormulaInterface::class,
-      $incarnator);
-
-    if ($candidate instanceof FormulaInterface) {
-      return $candidate;
-    }
-
-    if (NULL === $candidate) {
-      return NULL;
-    }
-
-    throw new \RuntimeException("Expected a FormulaInterface object or NULL.");
+  public static function replace(FormulaInterface $formula, UniversalAdapterInterface $universalAdapter): ?FormulaInterface {
+    return $universalAdapter->adapt($formula, FormulaInterface::class);
   }
 
 }

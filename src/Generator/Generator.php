@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapter;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Generator extends UtilBase {
@@ -17,23 +18,23 @@ final class Generator extends UtilBase {
    *
    * @param string $interface
    *   Interface name.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface
    *   Generator. Evaluating the code of this generator should create an
    *   instance of $interface.
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    *   Cannot build a generator for the given interface.
    */
   public static function fromIface(
     string $interface,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): GeneratorInterface {
     return self::fromFormula(
       Formula::iface($interface),
-      $incarnator);
+      $universalAdapter);
   }
 
   /**
@@ -41,23 +42,24 @@ final class Generator extends UtilBase {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface
    *   Materialized generator.
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    *   Cannot build a generator for the given formula.
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): GeneratorInterface {
-    return Incarnator::getObject(
+    return FormulaAdapter::requireObject(
       $formula,
       GeneratorInterface::class,
-      $incarnator);
+      $universalAdapter,
+    );
   }
 
 }

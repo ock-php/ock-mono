@@ -6,8 +6,8 @@ namespace Donquixote\Ock\Evaluator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\MessageUtil;
 
 class Evaluator {
@@ -17,23 +17,23 @@ class Evaluator {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
    *   Materialized evaluator.
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    *   Cannot build a evaluator for the given formula.
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): EvaluatorInterface {
-    return Incarnator::getObject(
+    return FormulaAdapter::requireObject(
       $formula,
       EvaluatorInterface::class,
-      $incarnator);
+      $universalAdapter);
   }
 
   /**

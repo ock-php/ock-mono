@@ -9,16 +9,11 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class Formula_DecoratorBase implements FormulaInterface {
 
   /**
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  private $decorated;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    */
-  public function __construct(FormulaInterface $decorated) {
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    private FormulaInterface $decorated,
+  ) {}
 
   /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface

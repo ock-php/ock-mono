@@ -6,8 +6,8 @@ namespace Donquixote\Ock\Optionlessness;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class Optionlessness implements OptionlessnessInterface {
 
@@ -27,13 +27,13 @@ class Optionlessness implements OptionlessnessInterface {
    * Determines whether a formula is optionless.
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return bool
    */
-  public static function checkFormula(FormulaInterface $formula, IncarnatorInterface $incarnator): bool {
+  public static function checkFormula(FormulaInterface $formula, UniversalAdapterInterface $universalAdapter): bool {
     try {
-      return self::fromFormula($formula, $incarnator)->isOptionless();
+      return self::fromFormula($formula, $universalAdapter)->isOptionless();
     }
     catch (IncarnatorException $e) {
       // Assume it is not optionless.
@@ -43,19 +43,18 @@ class Optionlessness implements OptionlessnessInterface {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  public static function fromFormula(FormulaInterface $formula, IncarnatorInterface $incarnator): OptionlessnessInterface {
-    /** @var \Donquixote\Ock\Optionlessness\OptionlessnessInterface $candidate */
-    $candidate = Incarnator::getObject(
+  public static function fromFormula(FormulaInterface $formula, UniversalAdapterInterface $universalAdapter): OptionlessnessInterface {
+    return FormulaAdapter::requireObject(
       $formula,
       OptionlessnessInterface::class,
-      $incarnator);
-    return $candidate;
+      $universalAdapter,
+    );
   }
 
   /**

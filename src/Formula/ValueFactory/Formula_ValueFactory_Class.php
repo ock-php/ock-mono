@@ -8,21 +8,14 @@ use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 class Formula_ValueFactory_Class implements Formula_ValueFactoryInterface {
 
   /**
-   * The class.
-   *
-   * @var string
-   */
-  private $class;
-
-  /**
    * Constructor.
    *
-   * @param string $class
+   * @param class-string $class
    *   Qualified class name, e.g. 'Acme\Animal\Frog'.
    */
-  public function __construct(string $class) {
-    $this->class = $class;
-  }
+  public function __construct(
+    private string $class,
+  ) {}
 
   /**
    * {@inheritdoc}

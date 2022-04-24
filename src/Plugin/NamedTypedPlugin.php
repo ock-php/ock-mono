@@ -53,7 +53,7 @@ class NamedTypedPlugin {
   /**
    * @param \Donquixote\Ock\Plugin\Plugin $plugin
    *
-   * @return $this
+   * @return static
    */
   public function withPlugin(Plugin $plugin): static {
     $clone = clone $this;
@@ -65,7 +65,7 @@ class NamedTypedPlugin {
    * @param string $key
    * @param mixed $value
    *
-   * @return $this
+   * @return static
    */
   public function withSetting(string $key, $value): static {
     $clone = clone $this;

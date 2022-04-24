@@ -1,23 +1,34 @@
 <?php
 
+/**
+ * @noinspection PhpUnhandledExceptionInspection
+ * @noinspection PhpDocMissingThrowsInspection
+ */
+
 namespace Donquixote\Ock\Tests;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\Ock\Exception\STABuilderException;
-use Donquixote\Ock\Incarnator\Incarnator_FromPartial;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
 use Donquixote\Ock\ParamToLabel\ParamToLabel;
+use Donquixote\Ock\ParamToLabel\ParamToLabelInterface;
 use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabels;
+use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
 use Donquixote\Ock\Plugin\Map\PluginMap_Registry;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 use Donquixote\Ock\Plugin\Registry\PluginRegistry_Discovery;
 use Donquixote\Ock\Plugin\Registry\PluginRegistryInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Translator\Translator_Passthru;
-use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
+use Donquixote\Ock\Translator\TranslatorInterface;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\Test\TestLogger;
+use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
+/**
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class FormulaTestBase extends TestCase {
 
   /**
@@ -26,33 +37,43 @@ class FormulaTestBase extends TestCase {
    * @param object[] $objects
    *   Objects to pass to the constructors.
    *
-   * @return \Donquixote\Ock\Incarnator\IncarnatorInterface
+   * @return \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface
    *   The object.
    */
-  protected function getIncarnator(array $objects = []): IncarnatorInterface {
-    # $logger = new TestLogger();
-    $objects[] = new ParamToLabel();
+  protected function getAdapter(array $objects = []): UniversalAdapterInterface {
+    $objects[ParamToLabelInterface::class] = new ParamToLabel();
     # $objects[] = $logger;
-    $objects[] = $this->getPluginMap();
-    $objects[] = new PluginGroupLabels([]);
-    $objects[] = new Translator_Passthru();
-    $param_to_value = new ParamToValue_ObjectsMatchType($objects);
-    try {
-      $incarnator = Incarnator_FromPartial::create(
-        $param_to_value,
-        'test_cid');
-    }
-    catch (STABuilderException $e) {
-      static::fail(sprintf(
-        'Exception creating the FTA: %s.',
-        $e->getMessage()));
-    }
-    if (false) foreach ($logger->records as $record) {
-      self::fail(sprintf(
-        'Message when creating FTA: %s.',
-        $record['message']));
-    }
-    return $incarnator;
+    $objects[PluginMapInterface::class] = $this->getPluginMap();
+    $objects[PluginGroupLabelsInterface::class] = new PluginGroupLabels([]);
+    $objects[TranslatorInterface::class] = new Translator_Passthru();
+    $container = $this->fixedObjectsContainer($objects);
+    /** @noinspection PhpUnhandledExceptionInspection */
+    return UniversalAdapter::fromClassFilesIA(
+      ClassFilesIA::psr4FromClass(FormulaAdapter::class),
+      $container,
+    );
+  }
+
+  protected function fixedObjectsContainer(array $objects): ContainerInterface {
+    return new class($objects) implements ContainerInterface {
+      public function __construct(
+        private readonly array $objects,
+      ) {}
+
+      public function get(string $id) {
+        if (!isset($this->objects[$id])) {
+          throw new class(sprintf(
+            'Service %s not found.',
+            $id,
+          )) extends \Exception implements NotFoundExceptionInterface {};
+        }
+        return $this->objects[$id];
+      }
+
+      public function has(string $id): bool {
+        return isset($this->objects[$id]);
+      }
+    };
   }
 
   /**
@@ -88,10 +109,10 @@ class FormulaTestBase extends TestCase {
       }
     }
     foreach ($comboss_map as $base => $cases_map) {
-      /** @psalm-suppress RedundantCast */
+      /** @psalm-var array-key $base */
       $base = (string) $base;
       foreach ($cases_map as $case => $_) {
-        /* @psalm-suppress RedundantCast */
+        /** @psalm-var array-key $case */
         yield [$base, (string) $case];
       }
     }
@@ -100,7 +121,7 @@ class FormulaTestBase extends TestCase {
   /**
    * Data provider.
    *
-   * @return \Iterator|array[]
+   * @return \Iterator<int, array>
    *   Argument combos.
    */
   public function providerTestIface(): \Iterator {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IncarnatorPartial;
 
-abstract class IncarnatorPartialZeroBase implements IncarnatorPartialInterface {
+abstract class SpecificAdapterZeroBase implements SpecificAdapterInterface {
 
   /**
    * {@inheritdoc}

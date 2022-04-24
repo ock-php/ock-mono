@@ -9,6 +9,8 @@ return static function (): IntOpInterface {
   return new IntOp_ExtraOpDecorator(
     new IntOp_ExtraOpDecorator(
       new IntOp_Multiply(5),
-      new IntOp_Add(1)),
-    new IntOp_Add(2));
+      new IntOp_Add(1),
+    ),
+    new IntOp_Add(2),
+  );
 };

@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\Translator\TranslatorInterface;
 
 class Summarizer_Sequence implements SummarizerInterface {
 
@@ -20,21 +21,22 @@ class Summarizer_Sequence implements SummarizerInterface {
 
   /**
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Summarizer\Summarizer_Sequence|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
+  #[Adapter]
   public static function create(
-    Formula_SequenceInterface $formula,
-    IncarnatorInterface $incarnator,
-    TranslatorInterface $translator
+    #[Adaptee] Formula_SequenceInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
   ): ?Summarizer_Sequence {
 
-    $itemSummarizer = Summarizer::fromFormula($formula->getItemFormula(), $incarnator);
+    $itemSummarizer = Summarizer::fromFormula(
+      $formula->getItemFormula(),
+      $universalAdapter,
+    );
 
     if (NULL === $itemSummarizer) {
       return NULL;

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @noinspection PhpDocMissingThrowsInspection
+ * @noinspection PhpUnhandledExceptionInspection
+ */
+
 namespace Donquixote\Ock\Tests;
 
 use Donquixote\CallbackReflection\Util\CodegenUtil;
@@ -11,6 +16,9 @@ use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Tests\Util\TestUtil;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class GeneratorTest extends FormulaTestBase {
 
   /**
@@ -19,19 +27,17 @@ class GeneratorTest extends FormulaTestBase {
    * @param string $base
    * @param string $case
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
-   *   (unexpected) Failure to create generator for formula.
-   *
    * @dataProvider providerTestFormula()
    */
   public function testFormula(string $base, string $case): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
+    /** @psalm-suppress UnresolvableInclude */
     $formula = include "$dir/$base.php";
     if (!$formula instanceof FormulaInterface) {
       self::fail('Formula must implement FormulaInterface.');
     }
     $conf = Yaml::parseFile("$dir/$base.$case.yml");
-    $incarnator = $this->getIncarnator();
+    $incarnator = $this->getAdapter();
     $generator = Generator::fromFormula(
       $formula,
       $incarnator);
@@ -50,16 +56,13 @@ class GeneratorTest extends FormulaTestBase {
    * @param string $name
    *   Name of the test case.
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
-   *   (unexpected) Failure to create generator for interface formula.
-   *
    * @dataProvider providerTestIface()
    */
   public function testIface(string $type, string $name): void {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
-    $incarnator = $this->getIncarnator();
+    $incarnator = $this->getAdapter();
     $generator = Generator::fromIface(
       $interface,
       $incarnator);

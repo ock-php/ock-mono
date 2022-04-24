@@ -4,24 +4,29 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class Generator_Neutral {
 
   /**
    * @param \Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function create(Formula_SkipEvaluatorInterface $formula, IncarnatorInterface $incarnator): ?GeneratorInterface {
-
-    return Generator::fromFormula($formula->getDecorated(), $incarnator);
+  #[Adapter]
+  public static function create(
+    #[Adaptee] Formula_SkipEvaluatorInterface $formula,
+    #[UniversalAdapter]  UniversalAdapterInterface $universalAdapter,
+  ): ?GeneratorInterface {
+    return Generator::fromFormula($formula->getDecorated(), $universalAdapter);
   }
 
 }

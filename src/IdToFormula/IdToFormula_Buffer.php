@@ -28,7 +28,7 @@ class IdToFormula_Buffer implements IdToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetFormula($id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
     // @todo Optimize with isset()? But allow NULL values?
     return array_key_exists($id, $this->buffer)
       ? $this->buffer[$id]

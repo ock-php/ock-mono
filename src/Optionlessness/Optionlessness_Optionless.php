@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Optionlessness;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
 use Donquixote\Ock\Util\UtilBase;
 
@@ -18,7 +18,7 @@ final class Optionlessness_Optionless extends UtilBase {
    *
    * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
    */
-  #[OckIncarnator]
+  #[Adapter]
   public static function fromFormula(Formula_OptionlessInterface $formula): OptionlessnessInterface {
     return new Optionlessness(TRUE);
   }

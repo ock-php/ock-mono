@@ -9,10 +9,10 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 interface IdToFormulaInterface {
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */
-  public function idGetFormula(string $id): ?FormulaInterface;
+  public function idGetFormula(string|int $id): ?FormulaInterface;
 
 }

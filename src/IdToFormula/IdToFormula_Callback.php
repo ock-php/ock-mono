@@ -23,7 +23,7 @@ class IdToFormula_Callback implements IdToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetFormula($id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
 
     $candidate = \call_user_func($this->callback, $id);
 

@@ -4,36 +4,40 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Form\Common;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class FormatorCommon_V2V {
 
   /**
-   * @template T of \Donquixote\Ock\Form\Common\FormatorCommonInterface
+   * @template T as \Donquixote\Ock\Form\Common\FormatorCommonInterface
    *
    * @param \Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface $formula
    * @param class-string<T> $interface
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return T|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function create(Formula_ValueToValueBaseInterface $formula, string $interface, IncarnatorInterface $incarnator): ?FormatorCommonInterface {
+  #[Adapter]
+  public static function create(
+    #[Adaptee] Formula_ValueToValueBaseInterface $formula,
+    #[AdapterTargetType] string $interface,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
+  ): ?FormatorCommonInterface {
 
     if (!is_a($interface, FormatorCommonInterface::class, TRUE)) {
       return NULL;
     }
 
-    /** @var \Donquixote\Ock\Form\Common\FormatorCommonInterface $candidate */
-    return Incarnator::getObject(
-      $formula->getDecorated(),
-      $interface,
-      $incarnator);
+    /** @var class-string<T> $interface */
+    return $universalAdapter->adapt($formula->getDecorated(), $interface);
   }
 
 }

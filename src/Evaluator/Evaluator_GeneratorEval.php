@@ -4,31 +4,31 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Evaluator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\EvaluatorException;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\GeneratorInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class Evaluator_GeneratorEval implements EvaluatorInterface {
 
   /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface
-   */
-  private GeneratorInterface $generator;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function create(FormulaInterface $formula, IncarnatorInterface $incarnator): EvaluatorInterface {
-    $generator = Generator::fromFormula($formula, $incarnator);
+  #[Adapter]
+  public static function create(
+    #[Adaptee] FormulaInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
+  ): EvaluatorInterface {
+    $generator = Generator::fromFormula($formula, $universalAdapter);
     return new self($generator);
   }
 
@@ -37,9 +37,9 @@ class Evaluator_GeneratorEval implements EvaluatorInterface {
    *
    * @param \Donquixote\Ock\Generator\GeneratorInterface $generator
    */
-  public function __construct(GeneratorInterface $generator) {
-    $this->generator = $generator;
-  }
+  public function __construct(
+    private GeneratorInterface $generator,
+  ) {}
 
   /**
    * {@inheritdoc}

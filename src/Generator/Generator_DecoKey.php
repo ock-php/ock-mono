@@ -4,48 +4,37 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\DecoUtil;
 
 class Generator_DecoKey implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface
-   */
-  private GeneratorInterface $decorated;
-
-  /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface
-   */
-  private GeneratorInterface $decorator;
-
-  /**
-   * @var string
-   */
-  private string $key;
-
-  /**
    * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
+  #[Adapter]
   public static function fromDecoKeyFormula(
-    Formula_DecoKeyInterface $formula,
-    IncarnatorInterface $incarnator
+    #[Adaptee] Formula_DecoKeyInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter
   ): ?self {
     return new self(
       Generator::fromFormula(
         $formula->getDecorated(),
-        $incarnator),
+        $universalAdapter,
+      ),
       Generator::fromFormula(
         $formula->getDecoratorFormula(),
-        $incarnator),
+        $universalAdapter,
+      ),
       $formula->getDecoKey());
   }
 
@@ -57,14 +46,10 @@ class Generator_DecoKey implements GeneratorInterface {
    * @param string $key
    */
   protected function __construct(
-    GeneratorInterface $decorated,
-    GeneratorInterface $decorator,
-    string $key
-  ) {
-    $this->decorated = $decorated;
-    $this->decorator = $decorator;
-    $this->key = $key;
-  }
+    private readonly GeneratorInterface $decorated,
+    private readonly GeneratorInterface $decorator,
+    private readonly string $key,
+  ) {}
 
   /**
    * {@inheritdoc}

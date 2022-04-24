@@ -4,86 +4,80 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Plugin\ActAsIncarnator;
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface;
 use Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
-class Generator_MoreArgs extends Generator_DecoratorBase {
-
-  /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface[]
-   */
-  private $moreGenerators;
-
-  /**
-   * @var int|string
-   */
-  private $specialKey;
-
-  /**
-   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
-   */
-  private $v2v;
+class Generator_MoreArgs implements GeneratorInterface {
 
   /**
    * @var string[]|null
    */
-  private $commonValuesPhp;
+  private ?array $commonValuesPhp = null;
 
   /**
    * @param \Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function createFromMoreArgsFormula(Formula_MoreArgsInterface $formula, IncarnatorInterface $incarnator): ?Generator_MoreArgs {
-    return self::create($formula, new V2V_Group_Trivial(), $incarnator);
+  #[Adapter]
+  public static function createFromMoreArgsFormula(
+    #[Adaptee] Formula_MoreArgsInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
+  ): ?self {
+    return self::create(
+      $formula,
+      new V2V_Group_Trivial(),
+      $universalAdapter,
+    );
   }
 
   /**
    * @param \Donquixote\Ock\Formula\MoreArgsVal\Formula_MoreArgsValInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
+  #[Adapter]
   public static function createFromMoreArgsValFormula(
-    Formula_MoreArgsValInterface $formula,
-    IncarnatorInterface $incarnator
-  ): ?Generator_MoreArgs {
+    #[Adaptee] Formula_MoreArgsValInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter
+  ): ?self {
     return self::create(
       $formula->getDecorated(),
       $formula->getV2V(),
-      $incarnator);
+      $universalAdapter,
+    );
   }
 
   /**
    * @param \Donquixote\Ock\Formula\MoreArgs\Formula_MoreArgsInterface $moreArgsFormula
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   public static function create(
     Formula_MoreArgsInterface $moreArgsFormula,
     V2V_GroupInterface $v2v,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): ?Generator_MoreArgs {
 
     $decoratedGenerator = Generator::fromFormula(
       $moreArgsFormula->getDecorated(),
-      $incarnator);
+      $universalAdapter);
 
     if (NULL === $decoratedGenerator) {
       return NULL;
@@ -91,7 +85,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
 
     $moreGenerators = [];
     foreach ($moreArgsFormula->getMoreArgs() as $k => $itemFormula) {
-      $itemGenerator = Generator::fromFormula($itemFormula, $incarnator);
+      $itemGenerator = Generator::fromFormula($itemFormula, $universalAdapter);
       if (NULL === $itemGenerator) {
         return NULL;
       }
@@ -108,20 +102,16 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   /**
    * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
    * @param \Donquixote\Ock\Generator\GeneratorInterface[] $moreGenerators
+   *   Generators that accept NULL as configuration.
    * @param string|int $specialKey
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
    */
   protected function __construct(
-    GeneratorInterface $decorated,
-    array $moreGenerators,
-    $specialKey,
-    V2V_GroupInterface $v2v
-  ) {
-    parent::__construct($decorated);
-    $this->moreGenerators = $moreGenerators;
-    $this->specialKey = $specialKey;
-    $this->v2v = $v2v;
-  }
+    private GeneratorInterface $decorated,
+    private array $moreGenerators,
+    private string|int $specialKey,
+    private V2V_GroupInterface $v2v
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -129,7 +119,7 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   public function confGetPhp($conf): string {
 
     $valuesPhp = $this->getCommonValuesPhp();
-    $valuesPhp[$this->specialKey] = parent::confGetPhp($conf);
+    $valuesPhp[$this->specialKey] = $this->decorated->confGetPhp($conf);
 
     return $this->v2v->itemsPhpGetPhp($valuesPhp);
   }
@@ -152,9 +142,9 @@ class Generator_MoreArgs extends Generator_DecoratorBase {
   private function buildCommonValuesPhp(): array {
 
     $commonValuesPhp = [];
-    $commonValuesPhp[$this->specialKey] = NULL;
-    foreach ($this->moreGenerators as $k => $evaluator) {
-      $commonValuesPhp[$k] = $evaluator->confGetPhp(NULL);
+    $commonValuesPhp[$this->specialKey] = 'NULL';
+    foreach ($this->moreGenerators as $k => $generator) {
+      $commonValuesPhp[$k] = $generator->confGetPhp(NULL);
     }
 
     return $commonValuesPhp;

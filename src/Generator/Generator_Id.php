@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\Formula\IdVal\Formula_IdValInterface;
@@ -15,22 +16,14 @@ use Donquixote\Ock\V2V\Id\V2V_IdInterface;
 class Generator_Id implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Id\Formula_IdInterface
-   */
-  private $formula;
-
-  /**
-   * @var \Donquixote\Ock\V2V\Id\V2V_IdInterface
-   */
-  private $v2v;
-
-  /**
    * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $formula
    *
    * @return self
    */
-  #[OckIncarnator]
-  public static function createFromIdFormula(Formula_IdInterface $formula): Generator_Id {
+  #[Adapter]
+  public static function createFromIdFormula(
+    #[Adaptee] Formula_IdInterface $formula,
+  ): self {
     return new self($formula, new V2V_Id_Trivial());
   }
 
@@ -39,7 +32,7 @@ class Generator_Id implements GeneratorInterface {
    *
    * @return self
    */
-  public static function createFromIdValFormula(Formula_IdValInterface $formula): Generator_Id {
+  public static function createFromIdValFormula(Formula_IdValInterface $formula): self {
     return new self($formula->getDecorated(), $formula->getV2V());
   }
 
@@ -47,10 +40,10 @@ class Generator_Id implements GeneratorInterface {
    * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $formula
    * @param \Donquixote\Ock\V2V\Id\V2V_IdInterface $v2v
    */
-  public function __construct(Formula_IdInterface $formula, V2V_IdInterface $v2v) {
-    $this->formula = $formula;
-    $this->v2v = $v2v;
-  }
+  public function __construct(
+    private Formula_IdInterface $formula,
+    private V2V_IdInterface $v2v,
+  ) {}
 
   /**
    * {@inheritdoc}

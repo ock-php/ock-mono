@@ -32,7 +32,7 @@ class STADiscovery {
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
-   * @return \Donquixote\Ock\IncarnatorPartial\IncarnatorPartialInterface[]
+   * @return \Donquixote\Ock\IncarnatorPartial\SpecificAdapterInterface[]
    */
   public function classFilesIAGetPartials(ClassFilesIAInterface $classFilesIA): array {
 

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 /**
  * @see \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface
@@ -14,32 +16,22 @@ use Donquixote\Ock\Incarnator\IncarnatorInterface;
 class Generator_DefaultConf implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface
-   */
-  private $decorated;
-
-  /**
-   * @var mixed
-   */
-  private $defaultConf;
-
-  /**
    * @param \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
+  #[Adapter]
   public static function create(
-    Formula_DefaultConfInterface $formula,
-    IncarnatorInterface $incarnator
+    #[Adaptee] Formula_DefaultConfInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter
   ): ?self {
 
     $decorated = Generator::fromFormula(
       $formula->getDecorated(),
-      $incarnator);
+      $universalAdapter);
 
     if (NULL === $decorated) {
       return NULL;
@@ -54,21 +46,16 @@ class Generator_DefaultConf implements GeneratorInterface {
    * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
    * @param mixed $defaultConf
    */
-  public function __construct(GeneratorInterface $decorated, $defaultConf) {
-    $this->decorated = $decorated;
-    $this->defaultConf = $defaultConf;
-  }
+  public function __construct(
+    private GeneratorInterface $decorated,
+    private $defaultConf,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
   public function confGetPhp($conf): string {
-
-    if (NULL === $conf) {
-      $conf = $this->defaultConf;
-    }
-
-    return $this->decorated->confGetPhp($conf);
+    return $this->decorated->confGetPhp($conf ?? $this->defaultConf);
   }
 
 }

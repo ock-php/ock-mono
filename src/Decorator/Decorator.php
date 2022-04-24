@@ -6,8 +6,8 @@ namespace Donquixote\Ock\Decorator;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Decorator extends UtilBase {
@@ -17,23 +17,23 @@ final class Decorator extends UtilBase {
    *
    * @param string $interface
    *   Interface name.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Decorator\DecoratorInterface|null
    *   Decorator. Evaluating the code of this Decorator should create an
    *   instance of $interface.
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    *   Cannot build a Decorator for the given interface.
    */
   public static function fromIface(
     string $interface,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): ?DecoratorInterface {
     return self::fromFormula(
       Formula::iface($interface),
-      $incarnator);
+      $universalAdapter);
   }
 
   /**
@@ -41,23 +41,23 @@ final class Decorator extends UtilBase {
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *   Formula.
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *   Service that can materialize other objects from formulas.
    *
    * @return \Donquixote\Ock\Decorator\DecoratorInterface
    *   Materialized Decorator.
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    *   Cannot build a Decorator for the given formula.
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ): DecoratorInterface {
-    return Incarnator::getObject(
+    return FormulaAdapter::requireObject(
       $formula,
       DecoratorInterface::class,
-      $incarnator);
+      $universalAdapter);
   }
 
 }

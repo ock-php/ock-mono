@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Formula\Select;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
@@ -25,25 +25,25 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
   private $idToFormula;
 
   /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
+   * @var \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface
    */
-  private IncarnatorInterface $incarnator;
+  private UniversalAdapterInterface $universalAdapter;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $decorated
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
   public function __construct(
     Formula_SelectInterface $decorated,
     IdToFormulaInterface $idToFormula,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $universalAdapter
   ) {
     $this->decorated = $decorated;
     $this->idToFormula = $idToFormula;
-    $this->incarnator = $incarnator;
+    $this->incarnator = $universalAdapter;
   }
 
   /**

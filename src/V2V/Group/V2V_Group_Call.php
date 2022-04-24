@@ -18,7 +18,7 @@ class V2V_Group_Call implements V2V_GroupInterface {
   /**
    * @param string $class
    *
-   * @return static
+   * @return self
    */
   public static function fromClass(string $class): self {
     return new self('new \\' . $class);
@@ -70,7 +70,7 @@ class V2V_Group_Call implements V2V_GroupInterface {
    * @param string $objectPhp
    * @param string $method
    *
-   * @return static
+   * @return self
    */
   public static function fromObjectMethod(string $objectPhp, string $method): self {
     return new self($objectPhp . '->' . $method);

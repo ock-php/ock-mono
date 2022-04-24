@@ -9,5 +9,6 @@ return static function (): IntOpInterface {
   return new IntOp_Conditional(
     new IntCondition_Odd(),
     new IntOp_Add(7),
-    NULL);
+    NULL,
+  );
 };

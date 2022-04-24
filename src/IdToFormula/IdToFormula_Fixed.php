@@ -35,7 +35,7 @@ class IdToFormula_Fixed implements IdToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetFormula($id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
 
     return $this->formulas[$id] ?? NULL;
   }

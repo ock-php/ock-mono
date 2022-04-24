@@ -4,29 +4,23 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IncarnatorPartial;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
 use Donquixote\Ock\Formula\Select\Formula_Select_FromPlugins;
 use Donquixote\Ock\IdToFormula\IdToFormula_FromPlugins;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
-#[OckIncarnator]
-class IncarnatorPartial_PluginList extends IncarnatorPartial_FormulaReplacerBase {
+class SpecificAdapter_PluginList {
 
   /**
-   * Constructor.
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  public function __construct() {
-    parent::__construct(Formula_PluginListInterface::class);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function formulaGetReplacement(FormulaInterface $formula, IncarnatorInterface $incarnator): ?FormulaInterface {
-    /** @var \Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface $formula */
+  #[Adapter]
+  public static function formulaGetReplacement(
+    #[Adaptee] Formula_PluginListInterface $formula,
+  ): ?FormulaInterface {
     $plugins = $formula->getPlugins();
     $ff = (new Formula_Drilldown(
       new Formula_Select_FromPlugins($plugins),

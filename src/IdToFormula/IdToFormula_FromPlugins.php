@@ -27,7 +27,7 @@ class IdToFormula_FromPlugins implements IdToFormulaInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetFormula($id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
 
     if (!isset($this->plugins[$id])) {
       return NULL;

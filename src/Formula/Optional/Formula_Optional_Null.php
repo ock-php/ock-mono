@@ -16,14 +16,6 @@ class Formula_Optional_Null extends Formula_OptionalBase {
   }
 
   /**
-   * @return mixed
-   *   Typically NULL.
-   */
-  final public function getEmptyValue() {
-    return NULL;
-  }
-
-  /**
    * @return string
    *   Typically 'NULL'.
    */

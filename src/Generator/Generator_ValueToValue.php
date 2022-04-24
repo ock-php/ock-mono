@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValueInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\V2V\Value\V2V_ValueInterface;
 
 class Generator_ValueToValue extends Generator_DecoratorBase {
@@ -19,17 +19,17 @@ class Generator_ValueToValue extends Generator_DecoratorBase {
 
   /**
    * @param \Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValueInterface $valueToValueFormula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    */
-  #[OckIncarnator]
-  public static function create(Formula_ValueToValueInterface $valueToValueFormula, IncarnatorInterface $incarnator): ?self {
+  #[Adapter]
+  public static function create(Formula_ValueToValueInterface $valueToValueFormula, UniversalAdapterInterface $universalAdapter): ?self {
 
     try {
       $decorated = Generator::fromFormula(
         $valueToValueFormula->getDecorated(),
-        $incarnator);
+        $universalAdapter);
     }
     catch (IncarnatorException $e) {
       return NULL;

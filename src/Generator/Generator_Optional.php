@@ -4,34 +4,29 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Generator;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\Optional\Formula_OptionalInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 
 class Generator_Optional implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface
-   */
-  private $decorated;
-
-  /**
-   * @var \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface
-   */
-  private $formula;
-
-  /**
    * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  #[OckIncarnator]
-  public static function create(Formula_OptionalInterface $formula, IncarnatorInterface $incarnator): ?GeneratorInterface {
+  #[Adapter]
+  public static function create(
+    #[Adaptee] Formula_OptionalInterface $formula,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
+  ): ?GeneratorInterface {
 
-    $decorated = Generator::fromFormula($formula->getDecorated(), $incarnator);
+    $decorated = Generator::fromFormula($formula->getDecorated(), $universalAdapter);
 
     if (NULL === $decorated) {
       return NULL;
@@ -46,10 +41,10 @@ class Generator_Optional implements GeneratorInterface {
    * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
    * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
    */
-  public function __construct(GeneratorInterface $decorated, Formula_OptionalInterface $formula) {
-    $this->decorated = $decorated;
-    $this->formula = $formula;
-  }
+  public function __construct(
+    private GeneratorInterface $decorated,
+    private Formula_OptionalInterface $formula,
+  ) {}
 
   /**
    * {@inheritdoc}

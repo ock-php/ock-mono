@@ -20,7 +20,7 @@ class SummarizerTest extends FormulaTestBase {
    *
    * @dataProvider providerTestFormula()
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   public function testFormula(string $base, string $case): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
@@ -29,7 +29,7 @@ class SummarizerTest extends FormulaTestBase {
       self::fail('Formula must implement FormulaInterface.');
     }
     $conf = Yaml::parseFile("$dir/$base.$case.yml");
-    $incarnator = $this->getIncarnator();
+    $incarnator = $this->getAdapter();
 
     $summarizer = Summarizer::fromFormula(
       $formula,
@@ -56,13 +56,13 @@ class SummarizerTest extends FormulaTestBase {
    *
    * @dataProvider providerTestIface()
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   public function testIface(string $type, string $name) {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
-    $incarnator = $this->getIncarnator();
+    $incarnator = $this->getAdapter();
 
     $summarizer = Summarizer::fromIface(
       $interface,

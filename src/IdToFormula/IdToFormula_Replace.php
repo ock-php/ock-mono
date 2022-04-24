@@ -7,38 +7,31 @@ namespace Donquixote\Ock\IdToFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class IdToFormula_Replace implements IdToFormulaInterface {
-
-  private IdToFormulaInterface $decorated;
-
-  /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
-   */
-  private IncarnatorInterface $incarnator;
 
   /**
    * Constructor.
    *
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
-  public function __construct(IdToFormulaInterface $decorated, IncarnatorInterface $incarnator) {
-    $this->decorated = $decorated;
-    $this->incarnator = $incarnator;
-  }
+  public function __construct(
+    private IdToFormulaInterface $decorated,
+    private UniversalAdapterInterface $universalAdapter,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
-  public function idGetFormula(string $id): ?FormulaInterface {
+  public function idGetFormula(string|int $id): ?FormulaInterface {
     $formula = $this->decorated->idGetFormula($id);
     if ($formula === NULL) {
       return NULL;
     }
     try {
-      return Formula::replace($formula, $this->incarnator);
+      return Formula::replace($formula, $this->universalAdapter);
     }
     catch (IncarnatorException $e) {
       // @todo Log this.

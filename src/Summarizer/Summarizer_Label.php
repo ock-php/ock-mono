@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Summarizer;
 
-use Donquixote\Ock\Attribute\Incarnator\OckIncarnator;
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Label\Formula_LabelInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
@@ -28,17 +28,17 @@ class Summarizer_Label implements SummarizerInterface {
 
   /**
    * @param \Donquixote\Ock\Formula\Label\Formula_LabelInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return self|null
    */
-  #[OckIncarnator]
-  public static function create(Formula_LabelInterface $formula, IncarnatorInterface $incarnator): ?Summarizer_Label {
+  #[Adapter]
+  public static function create(Formula_LabelInterface $formula, UniversalAdapterInterface $universalAdapter): ?Summarizer_Label {
 
     try {
       $decorated = Summarizer::fromFormula(
         $formula->getDecorated(),
-        $incarnator);
+        $universalAdapter);
     }
     catch (IncarnatorException $e) {
       return NULL;
