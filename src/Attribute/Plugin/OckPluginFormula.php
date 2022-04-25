@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Attribute\Plugin;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactory_StaticMethod;
-use Donquixote\Ock\Plugin\NamedTypedPlugin;
+use Donquixote\Ock\Plugin\PluginDeclaration;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
 class OckPluginFormula extends PluginAttributeBase {
@@ -21,7 +21,7 @@ class OckPluginFormula extends PluginAttributeBase {
   /**
    * {@inheritdoc}
    */
-  public function fromMethod(\ReflectionMethod $reflectionMethod): NamedTypedPlugin {
+  public function fromMethod(\ReflectionMethod $reflectionMethod): PluginDeclaration {
     if (!$reflectionMethod->isStatic()) {
       throw new \RuntimeException(\sprintf(
         'Method %s must be static.',

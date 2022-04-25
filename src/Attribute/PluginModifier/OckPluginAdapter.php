@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Donquixote\Ock\Attribute\PluginModifier;
 
-use Donquixote\Ock\Plugin\NamedTypedPlugin;
+use Donquixote\Ock\Plugin\PluginDeclaration;
 
 /**
  * Attribute to
@@ -15,7 +15,7 @@ class OckPluginAdapter implements PluginModifierAttributeInterface {
   /**
    * {@inheritdoc}
    */
-  public function modifyPlugin(NamedTypedPlugin $plugin): NamedTypedPlugin {
+  public function modifyPlugin(PluginDeclaration $plugin): PluginDeclaration {
     // @todo Do something for adapters.
     return $plugin;
   }

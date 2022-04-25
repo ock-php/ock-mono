@@ -9,7 +9,7 @@ declare(strict_types = 1);
 namespace Donquixote\Ock\Attribute\Plugin;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Plugin\NamedTypedPlugin;
+use Donquixote\Ock\Plugin\PluginDeclaration;
 use Donquixote\Ock\Plugin\Plugin;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
@@ -56,11 +56,11 @@ abstract class PluginAttributeBase implements PluginAttributeInterface {
    * @param FormulaInterface $formula
    * @param list<string> $types
    *
-   * @return NamedTypedPlugin
+   * @return PluginDeclaration
    */
-  protected function formulaGetNamedPlugin(FormulaInterface $formula, array $types): NamedTypedPlugin {
+  protected function formulaGetNamedPlugin(FormulaInterface $formula, array $types): PluginDeclaration {
     $plugin = new Plugin($this->label, null, $formula, []);
-    return new NamedTypedPlugin($this->id, $types, $plugin);
+    return new PluginDeclaration($this->id, $types, $plugin);
   }
 
 }

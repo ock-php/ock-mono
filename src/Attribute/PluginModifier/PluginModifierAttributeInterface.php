@@ -4,15 +4,15 @@ declare(strict_types = 1);
 
 namespace Donquixote\Ock\Attribute\PluginModifier;
 
-use Donquixote\Ock\Plugin\NamedTypedPlugin;
+use Donquixote\Ock\Plugin\PluginDeclaration;
 
 interface PluginModifierAttributeInterface {
 
   /**
-   * @param \Donquixote\Ock\Plugin\NamedTypedPlugin $plugin
+   * @param \Donquixote\Ock\Plugin\PluginDeclaration $plugin
    *
-   * @return \Donquixote\Ock\Plugin\NamedTypedPlugin
+   * @return \Donquixote\Ock\Plugin\PluginDeclaration
    */
-  public function modifyPlugin(NamedTypedPlugin $plugin): NamedTypedPlugin;
+  public function modifyPlugin(PluginDeclaration $plugin): PluginDeclaration;
 
 }

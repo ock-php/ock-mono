@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Attribute\Plugin;
 
 use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactory_Class;
 use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactory_StaticMethod;
-use Donquixote\Ock\Plugin\NamedTypedPlugin;
+use Donquixote\Ock\Plugin\PluginDeclaration;
 
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
 class OckPluginInstance extends PluginAttributeBase {
@@ -14,7 +14,7 @@ class OckPluginInstance extends PluginAttributeBase {
   /**
    * {@inheritdoc}
    */
-  public function fromClass(\ReflectionClass $reflectionClass): NamedTypedPlugin {
+  public function fromClass(\ReflectionClass $reflectionClass): PluginDeclaration {
     if ($reflectionClass->isAbstract()) {
       throw new \RuntimeException(\sprintf(
         'Class %s must not be abstract.',
@@ -27,7 +27,7 @@ class OckPluginInstance extends PluginAttributeBase {
   /**
    * {@inheritdoc}
    */
-  public function fromMethod(\ReflectionMethod $reflectionMethod): NamedTypedPlugin {
+  public function fromMethod(\ReflectionMethod $reflectionMethod): PluginDeclaration {
     if (!$reflectionMethod->isStatic()) {
       throw new \RuntimeException(\sprintf(
         'Method %s must be static.',

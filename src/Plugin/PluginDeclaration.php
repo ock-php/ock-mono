@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin;
 
-class NamedTypedPlugin {
+class PluginDeclaration {
 
   /**
    * Constructor.

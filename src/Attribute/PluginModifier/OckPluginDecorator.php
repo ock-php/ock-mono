@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Donquixote\Ock\Attribute\PluginModifier;
 
 use Donquixote\Ock\Attribute\PluginModifier\PluginModifierAttributeInterface;
-use Donquixote\Ock\Plugin\NamedTypedPlugin;
+use Donquixote\Ock\Plugin\PluginDeclaration;
 use Donquixote\Ock\Plugin\Plugin;
 
 /**
@@ -20,7 +20,7 @@ use Donquixote\Ock\Plugin\Plugin;
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class OckPluginDecorator implements PluginModifierAttributeInterface {
 
-  public function modifyPlugin(NamedTypedPlugin $plugin): NamedTypedPlugin {
+  public function modifyPlugin(PluginDeclaration $plugin): PluginDeclaration {
     $types = [];
     foreach ($plugin->getTypes() as $type) {
       $types[] = "decorator<$type>";
