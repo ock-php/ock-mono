@@ -50,7 +50,7 @@
     ],
     "require": {
         "php": ">=8.1",
-        "donquixote/adaptism": "dev-master",
+        "donquixote/adaptism": "*",
         "donquixote/annotation-parser": "@dev",
         "donquixote/callback-reflection": "@dev",
         "donquixote/class-discovery": "@dev",
