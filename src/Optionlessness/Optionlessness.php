@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Optionlessness;
 
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\FormulaAdapter;
@@ -35,7 +36,7 @@ class Optionlessness implements OptionlessnessInterface {
     try {
       return self::fromFormula($formula, $universalAdapter)->isOptionless();
     }
-    catch (IncarnatorException $e) {
+    catch (AdapterException) {
       // Assume it is not optionless.
       return FALSE;
     }
