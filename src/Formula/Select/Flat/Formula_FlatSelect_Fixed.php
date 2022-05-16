@@ -47,14 +47,14 @@ class Formula_FlatSelect_Fixed implements Formula_FlatSelectInterface, FlatSelec
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?TextInterface {
+  public function idGetLabel(string|int $id): ?TextInterface {
     return $this->options[$id] ?? NULL;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     return isset($this->options[$id]);
   }
 

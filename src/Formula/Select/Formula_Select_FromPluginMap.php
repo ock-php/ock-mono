@@ -50,7 +50,7 @@ class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?TextInterface {
+  public function idGetLabel(string|int $id): ?TextInterface {
     $plugins = $this->getPlugins();
     if (!isset($plugins[$id])) {
       return NULL;
@@ -61,7 +61,7 @@ class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     $plugins = $this->getPlugins();
     return isset($plugins[$id]);
   }

@@ -21,6 +21,6 @@ interface Formula_FlatSelectInterface extends Formula_IdToLabelInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?TextInterface;
+  public function idGetLabel(string|int $id): ?TextInterface;
 
 }

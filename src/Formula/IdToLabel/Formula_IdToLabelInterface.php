@@ -18,6 +18,6 @@ interface Formula_IdToLabelInterface extends Formula_IdInterface {
    * @return \Donquixote\Ock\Text\TextInterface|null
    *   The label as a string or stringable object.
    */
-  public function idGetLabel($id): ?TextInterface;
+  public function idGetLabel(string|int $id): ?TextInterface;
 
 }

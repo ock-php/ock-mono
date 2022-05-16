@@ -40,14 +40,14 @@ class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?TextInterface {
+  public function idGetLabel(string|int $id): ?TextInterface {
     return $this->decorated->idGetLabel($id);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     return $this->decorated->idIsKnown($id);
   }
 

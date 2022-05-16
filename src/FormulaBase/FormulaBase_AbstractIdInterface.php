@@ -11,13 +11,13 @@ interface FormulaBase_AbstractIdInterface {
    *
    * @return string|null
    */
-  public function idGetLabel($id): ?string;
+  public function idGetLabel(string|int $id): ?string;
 
   /**
    * @param string|int $id
    *
    * @return bool
    */
-  public function idIsKnown($id): bool;
+  public function idIsKnown(string|int $id): bool;
 
 }

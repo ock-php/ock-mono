@@ -40,7 +40,7 @@ abstract class Formula_Select_LabelLookupBase extends Formula_Select_BufferedBas
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?TextInterface {
+  public function idGetLabel(string|int $id): ?TextInterface {
     return $this->idIsKnown($id)
       ? TextLookup::idGetLabel($id, $this->labelLookup)
       : NULL;

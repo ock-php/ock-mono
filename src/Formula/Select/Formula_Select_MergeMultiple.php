@@ -25,7 +25,7 @@ class Formula_Select_MergeMultiple extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?TextInterface {
+  public function idGetLabel(string|int $id): ?TextInterface {
     foreach ($this->formulas as $formula) {
       $label = $formula->idGetLabel($id);
       if ($label !== NULL) {
@@ -38,7 +38,7 @@ class Formula_Select_MergeMultiple extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     foreach ($this->formulas as $formula) {
       if ($formula->idIsKnown($id)) {
         return TRUE;

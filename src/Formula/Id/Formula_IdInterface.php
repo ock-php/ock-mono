@@ -21,6 +21,6 @@ interface Formula_IdInterface extends FormulaInterface {
    *
    * @return bool
    */
-  public function idIsKnown($id): bool;
+  public function idIsKnown(string|int $id): bool;
 
 }

@@ -65,7 +65,7 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id): ?TextInterface {
+  public function idGetLabel(string|int $id): ?TextInterface {
 
     if (FALSE === /* $pos = */ strpos($id, '/')) {
       return $this->decorated->idGetLabel($id);
@@ -83,7 +83,7 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
 
     if (FALSE === /* $pos = */ strpos($id, '/')) {
       return $this->decorated->idIsKnown($id);

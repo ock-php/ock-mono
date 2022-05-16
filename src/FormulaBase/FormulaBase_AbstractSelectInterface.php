@@ -45,7 +45,7 @@ interface FormulaBase_AbstractSelectInterface {
    *
    * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  public function idGetLabel($id): ?TextInterface;
+  public function idGetLabel(string|int $id): ?TextInterface;
 
   /**
    * @param string|int $id
@@ -56,6 +56,6 @@ interface FormulaBase_AbstractSelectInterface {
    *
    * @see \Donquixote\Ock\Formula\Id\Formula_IdInterface::idIsKnown()
    */
-  public function idIsKnown($id): bool;
+  public function idIsKnown(string|int $id): bool;
 
 }

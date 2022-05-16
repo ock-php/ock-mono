@@ -40,7 +40,7 @@ class Formula_Select_LabelLookupFixed extends Formula_Select_LabelLookupBase {
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     return isset($this->idsMap[$id]);
   }
 
