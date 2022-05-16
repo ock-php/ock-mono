@@ -50,8 +50,7 @@ class PluginRegistry_Discovery implements PluginRegistryInterface {
   }
 
   /**
-   * @param array<string, array<string, \Donquixote\Ock\Plugin\Plugin>>
-   *   $pluginss
+   * @param array<string, array<string, \Donquixote\Ock\Plugin\Plugin>> $pluginss
    * @param \ReflectionClass|\ReflectionMethod $reflector
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException

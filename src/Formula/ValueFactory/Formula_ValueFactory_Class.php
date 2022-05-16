@@ -22,7 +22,8 @@ class Formula_ValueFactory_Class implements Formula_ValueFactoryInterface {
    */
   public function getValueFactory(): CallbackReflectionInterface {
     return new CallbackReflection_ClassConstruction(
-      new \ReflectionClass($this->class));
+      new \ReflectionClass($this->class),
+    );
   }
 
 }

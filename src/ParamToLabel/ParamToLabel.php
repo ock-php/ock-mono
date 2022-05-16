@@ -15,8 +15,8 @@ class ParamToLabel implements ParamToLabelInterface {
    */
   public function paramGetLabel(\ReflectionParameter $param): ?TextInterface {
     return Text::t(
-      StringUtil::methodNameGenerateLabel(
-        $param->getName()));
+      StringUtil::methodNameGenerateLabel($param->getName()),
+    );
   }
 
 }
