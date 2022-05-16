@@ -14,7 +14,7 @@ class Formula_ValueFactory_Class implements Formula_ValueFactoryInterface {
    *   Qualified class name, e.g. 'Acme\Animal\Frog'.
    */
   public function __construct(
-    private string $class,
+    private readonly string $class,
   ) {}
 
   /**
