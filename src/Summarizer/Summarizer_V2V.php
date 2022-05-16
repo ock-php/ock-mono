@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Summarizer_V2V extends UtilBase {

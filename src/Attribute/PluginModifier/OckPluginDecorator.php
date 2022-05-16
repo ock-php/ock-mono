@@ -4,9 +4,7 @@ declare(strict_types = 1);
 
 namespace Donquixote\Ock\Attribute\PluginModifier;
 
-use Donquixote\Ock\Attribute\PluginModifier\PluginModifierAttributeInterface;
 use Donquixote\Ock\Plugin\PluginDeclaration;
-use Donquixote\Ock\Plugin\Plugin;
 
 /**
  * Marks the annotated plugin as a decorator.

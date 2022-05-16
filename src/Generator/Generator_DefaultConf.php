@@ -7,8 +7,8 @@ namespace Donquixote\Ock\Generator;
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
-use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
 
 /**
  * @see \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface

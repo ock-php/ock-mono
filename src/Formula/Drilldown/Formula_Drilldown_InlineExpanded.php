@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Drilldown;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\Formula\Select\Formula_Select_InlineExpanded;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Donquixote\Ock\IdToFormula\IdToFormula_FilterDecorator;
 use Donquixote\Ock\IdToFormula\IdToFormula_InlineExpanded;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Formula_Drilldown_InlineExpanded extends UtilBase {

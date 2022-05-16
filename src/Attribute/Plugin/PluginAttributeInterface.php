@@ -8,7 +8,6 @@ declare(strict_types = 1);
 
 namespace Donquixote\Ock\Attribute\Plugin;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Plugin\PluginDeclaration;
 use Donquixote\Ock\Text\TextInterface;
 

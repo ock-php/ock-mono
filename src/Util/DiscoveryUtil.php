@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Util;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\Ock\TraverseFactories\AnnotatedFactories;
 use Donquixote\Ock\Translator\Translator;
+use Donquixote\Ock\TraverseFactories\AnnotatedFactories;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValue_ObjectsMatchType;
 use Donquixote\ReflectionKit\ParamToValue\ParamToValueInterface;
 

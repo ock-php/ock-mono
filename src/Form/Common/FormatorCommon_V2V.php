@@ -8,9 +8,8 @@ use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
-use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
-use Donquixote\Ock\FormulaAdapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
 
 class FormatorCommon_V2V {
 

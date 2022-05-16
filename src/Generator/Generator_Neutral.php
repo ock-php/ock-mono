@@ -7,9 +7,8 @@ namespace Donquixote\Ock\Generator;
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
 
 class Generator_Neutral {
 

@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Exception\GeneratorException_UnsupportedConfiguration;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\PluginList\Formula_PluginListInterface;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\MessageUtil;
 
 class Generator_PluginList implements GeneratorInterface {

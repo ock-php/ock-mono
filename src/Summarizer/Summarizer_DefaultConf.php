@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
 use Donquixote\Ock\Text\TextInterface;
 
 class Summarizer_DefaultConf implements SummarizerInterface {

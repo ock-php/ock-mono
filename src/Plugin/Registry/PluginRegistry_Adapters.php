@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin\Registry;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Exception\PluginListException;
 use Donquixote\Ock\Formula\Formula;
@@ -12,7 +13,6 @@ use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\Ock\Formula\Iface\Formula_IfaceInterface;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Plugin\Plugin;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;

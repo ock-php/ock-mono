@@ -7,8 +7,8 @@ namespace Donquixote\Ock\Generator;
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
-use Donquixote\Ock\Formula\FixedConf\Formula_FixedConfInterface;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\Formula\FixedConf\Formula_FixedConfInterface;
 
 class Generator_FixedConf implements GeneratorInterface {
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\PluginList;
 
-use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\InlinePluginList\InlinePluginList;
 use Donquixote\Ock\Plugin\Plugin;
 use Donquixote\Ock\Text\Text;

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Para\Formula_ParaInterface;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class Generator_Para implements GeneratorInterface {
 

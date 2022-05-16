@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IdToFormula;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class IdToFormula_Replace implements IdToFormulaInterface {
 

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\Ock\Formula\SequenceVal\Formula_SequenceValInterface;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\MessageUtil;
 use Donquixote\Ock\V2V\Sequence\V2V_Sequence_Trivial;
 use Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface;

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Decorator;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\FormulaAdapter;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Decorator extends UtilBase {

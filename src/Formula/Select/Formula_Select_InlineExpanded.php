@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Select;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;

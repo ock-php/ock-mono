@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Evaluator;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Ock\FormulaAdapter;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Util\MessageUtil;
 
 class Evaluator {
