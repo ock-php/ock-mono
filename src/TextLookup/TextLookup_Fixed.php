@@ -10,18 +10,13 @@ namespace Donquixote\Ock\TextLookup;
 class TextLookup_Fixed implements TextLookupInterface {
 
   /**
-   * @var \Donquixote\Ock\Text\TextInterface[]
-   */
-  private array $labels;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Text\TextInterface[] $labels
    */
-  public function __construct(array $labels) {
-    $this->labels = $labels;
-  }
+  public function __construct(
+    private readonly array $labels,
+  ) {}
 
   /**
    * {@inheritdoc}

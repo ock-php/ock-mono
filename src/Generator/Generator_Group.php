@@ -11,7 +11,7 @@ use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Util\MessageUtil;
+use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
@@ -81,7 +81,7 @@ class Generator_Group implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
 
     if (!\is_array($conf)) {
       if ($this->itemGenerators) {

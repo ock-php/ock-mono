@@ -7,18 +7,13 @@ namespace Donquixote\Ock\V2V\Group;
 class V2V_Group_Fixed implements V2V_GroupInterface {
 
   /**
-   * @var string
-   */
-  private $php;
-
-  /**
    * Constructor.
    *
    * @param string $php
    */
-  public function __construct(string $php) {
-    $this->php = $php;
-  }
+  public function __construct(
+    private readonly string $php,
+  ) {}
 
   /**
    * {@inheritdoc}

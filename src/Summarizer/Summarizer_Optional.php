@@ -12,16 +12,6 @@ use Donquixote\Ock\Text\TextInterface;
 class Summarizer_Optional implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface
-   */
-  private $formula;
-
-  /**
-   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
-   */
-  private $decorated;
-
-  /**
    * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
@@ -32,15 +22,15 @@ class Summarizer_Optional implements SummarizerInterface {
   #[Adapter]
   public static function create(
     Formula_OptionalInterface $formula,
-    UniversalAdapterInterface $universalAdapter
+    UniversalAdapterInterface $universalAdapter,
   ): ?SummarizerInterface {
-
-    $decorated = Summarizer::fromFormula($formula->getDecorated(), $universalAdapter);
-
-    if (NULL === $decorated) {
+    $decorated = $universalAdapter->adapt(
+      $formula->getDecorated(),
+      SummarizerInterface::class,
+    );
+    if ($decorated === NULL) {
       return NULL;
     }
-
     return new self($formula, $decorated);
   }
 
@@ -49,22 +39,17 @@ class Summarizer_Optional implements SummarizerInterface {
    * @param \Donquixote\Ock\Summarizer\SummarizerInterface $decorated
    */
   public function __construct(
-    Formula_OptionalInterface $formula,
-    SummarizerInterface $decorated
-  ) {
-    $this->formula = $formula;
-    $this->decorated = $decorated;
-  }
+    private readonly Formula_OptionalInterface $formula,
+    private readonly SummarizerInterface $decorated,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
   public function confGetSummary($conf): ?TextInterface {
-
     if (!\is_array($conf) || empty($conf['enabled'])) {
       return $this->formula->getEmptySummary();
     }
-
     return $this->decorated->confGetSummary($conf['options'] ?? NULL);
   }
 

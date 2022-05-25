@@ -25,16 +25,13 @@ class Generator_Optional implements GeneratorInterface {
     #[Adaptee] Formula_OptionalInterface $formula,
     #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
   ): ?GeneratorInterface {
-
-    $decorated = Generator::fromFormula($formula->getDecorated(), $universalAdapter);
-
-    if (NULL === $decorated) {
-      return NULL;
-    }
-
     return new self(
-      $decorated,
-      $formula);
+      Generator::fromFormula(
+        $formula->getDecorated(),
+        $universalAdapter,
+      ),
+      $formula,
+    );
   }
 
   /**
@@ -49,7 +46,7 @@ class Generator_Optional implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
 
     if (!\is_array($conf) || empty($conf['enabled'])) {
       return $this->formula->getEmptyPhp();

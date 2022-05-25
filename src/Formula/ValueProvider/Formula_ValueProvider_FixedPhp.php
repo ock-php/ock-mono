@@ -4,19 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\ValueProvider;
 
-use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
-use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
 use Donquixote\Ock\Util\PhpUtil;
 
 class Formula_ValueProvider_FixedPhp implements Formula_ValueProviderInterface {
 
   /**
-   * @var string
-   */
-  private string $php;
-
-  /**
-   * @param string $class
+   * @param class-string $class
    * @param array $argsPhp
    *
    * @return self
@@ -38,7 +31,7 @@ class Formula_ValueProvider_FixedPhp implements Formula_ValueProviderInterface {
   }
 
   /**
-   * @param string|callable $function
+   * @param callable-string $function
    * @param array $argsPhp
    *
    * @return self
@@ -78,23 +71,14 @@ class Formula_ValueProvider_FixedPhp implements Formula_ValueProviderInterface {
   }
 
   /**
-   * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callback
-   *
-   * @return self
-   */
-  public static function fromCallback(CallbackReflectionInterface $callback): self {
-    return new self($callback->argsPhpGetPhp([], new CodegenHelper()));
-  }
-
-  /**
    * Constructor.
    *
    * @param string $php
    *   PHP value expression.
    */
-  public function __construct(string $php) {
-    $this->php = $php;
-  }
+  public function __construct(
+    private readonly string $php,
+  ) {}
 
   /**
    * {@inheritdoc}

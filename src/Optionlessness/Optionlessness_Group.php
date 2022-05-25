@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Optionlessness;
 
 use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 /**

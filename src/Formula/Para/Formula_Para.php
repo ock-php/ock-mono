@@ -9,23 +9,13 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class Formula_Para implements Formula_ParaInterface {
 
   /**
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  private $decorated;
-
-  /**
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  private $paraFormula;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $paraFormula
    */
-  public function __construct(FormulaInterface $decorated, FormulaInterface $paraFormula) {
-    $this->decorated = $decorated;
-    $this->paraFormula = $paraFormula;
-  }
+  public function __construct(
+    private readonly FormulaInterface $decorated,
+    private readonly FormulaInterface $paraFormula,
+  ) {}
 
   /**
    * {@inheritdoc}

@@ -32,7 +32,7 @@ class Formula_Transform_Rekey extends Formula_TransformBase {
    *
    * @return static
    */
-  public function withKey(?string $packed_key, ?string $unpacked_key): self {
+  public function withKey(?string $packed_key, ?string $unpacked_key): static {
     $clone = clone $this;
     if ($packed_key === NULL) {
       if ($unpacked_key === NULL) {

@@ -11,17 +11,14 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Label extends Formula_DecoratorBase implements Formula_LabelInterface {
 
   /**
-   * @var \Donquixote\Ock\Text\TextInterface|null
-   */
-  private $label;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    * @param \Donquixote\Ock\Text\TextInterface|null $label
    */
-  public function __construct(FormulaInterface $decorated, ?TextInterface $label) {
+  public function __construct(
+    FormulaInterface $decorated,
+    private readonly ?TextInterface $label,
+  ) {
     parent::__construct($decorated);
-    $this->label = $label;
   }
 
   /**

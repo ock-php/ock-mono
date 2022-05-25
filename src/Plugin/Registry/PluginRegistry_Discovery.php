@@ -53,7 +53,7 @@ class PluginRegistry_Discovery implements PluginRegistryInterface {
    * @param array<string, array<string, \Donquixote\Ock\Plugin\Plugin>> $pluginss
    * @param \ReflectionClass|\ReflectionMethod $reflector
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   private function collectPlugins(array &$pluginss, \ReflectionClass|\ReflectionMethod $reflector): void {
     $provider = AttributesUtil::getSingle($reflector, PluginAttributeInterface::class);
@@ -61,8 +61,8 @@ class PluginRegistry_Discovery implements PluginRegistryInterface {
       return;
     }
     $declaration = ($reflector instanceof \ReflectionClass)
-      ? $provider->fromClass($reflector)
-      : $provider->fromMethod($reflector);
+      ? $provider->onClass($reflector)
+      : $provider->onMethod($reflector);
     /**
      * @var PluginModifierAttributeInterface $modifier
      * @psalm-ignore-var

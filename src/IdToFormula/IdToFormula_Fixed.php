@@ -9,16 +9,11 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class IdToFormula_Fixed implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface[]
-   */
-  private $formulas;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $formulas
    */
-  public function __construct(array $formulas) {
-    $this->formulas = $formulas;
-  }
+  public function __construct(
+    private array $formulas,
+  ) {}
 
   /**
    * @param string $id
@@ -36,7 +31,6 @@ class IdToFormula_Fixed implements IdToFormulaInterface {
    * {@inheritdoc}
    */
   public function idGetFormula(string|int $id): ?FormulaInterface {
-
     return $this->formulas[$id] ?? NULL;
   }
 

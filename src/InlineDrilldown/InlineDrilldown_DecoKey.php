@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\Ock\InlineDrilldown;
 
 use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface;
 
 abstract class InlineDrilldown_DecoKey implements InlineDrilldownInterface {
 

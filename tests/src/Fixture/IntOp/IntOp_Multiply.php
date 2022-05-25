@@ -20,7 +20,7 @@ class IntOp_Multiply implements IntOpInterface {
   /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  #[OckPluginFormula("multiply", "Multiply")]
+  #[OckPluginFormula(self::class, "multiply", "Multiply")]
   public static function formula(): FormulaInterface {
     return Formula::group()
       ->add('factor', new Formula_Int(), Text::t('Factor'))

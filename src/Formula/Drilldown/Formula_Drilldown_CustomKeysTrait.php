@@ -22,7 +22,7 @@ trait Formula_Drilldown_CustomKeysTrait {
    *
    * @return static
    */
-  public function withKeys(string $idKey, ?string $optionsKey): self {
+  public function withKeys(string $idKey, ?string $optionsKey): static {
     $clone = clone $this;
     $clone->idKey = $idKey;
     $clone->optionsKey = $optionsKey;

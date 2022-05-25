@@ -7,25 +7,15 @@ use Donquixote\Ock\Text\TextInterface;
 class SelectOption implements SelectOptionInterface {
 
   /**
-   * @var \Donquixote\Ock\Text\TextInterface|null
-   */
-  private $label;
-
-  /**
-   * @var \Donquixote\Ock\Text\TextInterface|null
-   */
-  private $groupLabel;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Text\TextInterface|null $label
    * @param \Donquixote\Ock\Text\TextInterface|null $groupLabel
    */
-  public function __construct(?TextInterface $label, ?TextInterface $groupLabel) {
-    $this->label = $label;
-    $this->groupLabel = $groupLabel;
-  }
+  public function __construct(
+    private readonly ?TextInterface $label,
+    private readonly ?TextInterface $groupLabel,
+  ) {}
 
   /**
    * {@inheritdoc}

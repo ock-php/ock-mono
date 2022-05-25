@@ -9,11 +9,6 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class IdToFormula_Buffer implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
-   */
-  private $decorated;
-
-  /**
    * @var \Donquixote\Ock\Core\Formula\FormulaInterface[]
    */
   private $buffer = [];
@@ -21,9 +16,9 @@ class IdToFormula_Buffer implements IdToFormulaInterface {
   /**
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
    */
-  public function __construct(IdToFormulaInterface $decorated) {
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    private readonly IdToFormulaInterface $decorated,
+  ) {}
 
   /**
    * {@inheritdoc}

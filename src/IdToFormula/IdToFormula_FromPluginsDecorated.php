@@ -10,18 +10,14 @@ use Donquixote\Ock\Plugin\Plugin;
 class IdToFormula_FromPluginsDecorated implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\Ock\Plugin\Plugin[]
-   */
-  private array $plugins;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Plugin[] $plugins
    */
-  public function __construct(array $plugins) {
+  public function __construct(
+    private readonly array $plugins,
+  ) {
     Plugin::validate(...array_values($plugins));
-    $this->plugins = $plugins;
   }
 
   /**

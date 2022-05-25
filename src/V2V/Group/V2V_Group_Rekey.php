@@ -7,25 +7,15 @@ namespace Donquixote\Ock\V2V\Group;
 class V2V_Group_Rekey implements V2V_GroupInterface {
 
   /**
-   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
-   */
-  private V2V_GroupInterface $decorated;
-
-  /**
-   * @var string[]
-   */
-  private array $keys;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $decorated
    * @param string[] $keys
    */
-  public function __construct(V2V_GroupInterface $decorated, array $keys) {
-    $this->decorated = $decorated;
-    $this->keys = $keys;
-  }
+  public function __construct(
+    private readonly V2V_GroupInterface $decorated,
+    private readonly array $keys,
+  ) {}
 
   /**
    * {@inheritdoc}

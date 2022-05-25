@@ -11,6 +11,9 @@ use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 
+/**
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class FormulaTest extends FormulaTestBase {
 
   /**

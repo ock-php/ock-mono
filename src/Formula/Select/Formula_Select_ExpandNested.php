@@ -14,26 +14,13 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface
-   */
-  private $decorated;
-
-  /**
-   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
-   */
-  private $idToFormula;
-
-  /**
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $decorated
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
    */
   public function __construct(
-    Formula_SelectInterface $decorated,
-    IdToFormulaInterface $idToFormula
-  ) {
-    $this->decorated = $decorated;
-    $this->idToFormula = $idToFormula;
-  }
+    private readonly Formula_SelectInterface $decorated,
+    private readonly IdToFormulaInterface $idToFormula
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -47,7 +34,7 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
           $group_labels[$group_id] = $group_label;
         }
         else {
-          foreach ($inline_formula->getOptGroups() as $inline_group_id => $inline_group_label) {
+          foreach ($inline_formula->getOptGroups() as $inline_group_id => $_) {
             foreach ($inline_formula->getOptions($inline_group_id) as $inline_id => $inline_label) {
               $grouped_options[$inline_group_id]["$id/$inline_id"] = Text::builder()
                 ->replace('@label', $label)
@@ -67,7 +54,7 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
    */
   public function idGetLabel(string|int $id): ?TextInterface {
 
-    if (FALSE === /* $pos = */ strpos($id, '/')) {
+    if (!str_contains((string) $id, '/')) {
       return $this->decorated->idGetLabel($id);
     }
 
@@ -85,11 +72,11 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
    */
   public function idIsKnown(string|int $id): bool {
 
-    if (FALSE === /* $pos = */ strpos($id, '/')) {
+    if (!str_contains((string) $id, '/')) {
       return $this->decorated->idIsKnown($id);
     }
 
-    [$prefix, $suffix] = explode('/', $id, 2);
+    [$prefix, $suffix] = explode('/', (string) $id, 2);
 
     if (NULL === $subFormula = $this->idGetSelectFormula($prefix)) {
       return FALSE;
@@ -117,11 +104,11 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return \Donquixote\Ock\Formula\Id\Formula_IdInterface|null
    */
-  private function idGetIdFormula(string $id): ?Formula_IdInterface {
+  private function idGetIdFormula(string|int $id): ?Formula_IdInterface {
 
     if (NULL === $nestedFormula = $this->idToFormula->idGetFormula($id)) {
       return NULL;

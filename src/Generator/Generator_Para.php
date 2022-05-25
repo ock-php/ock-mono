@@ -13,16 +13,6 @@ use Donquixote\Ock\Formula\Para\Formula_ParaInterface;
 class Generator_Para implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface
-   */
-  private $decorated;
-
-  /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface
-   */
-  private $paraGenerator;
-
-  /**
    * @param \Donquixote\Ock\Formula\Para\Formula_ParaInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
@@ -41,15 +31,15 @@ class Generator_Para implements GeneratorInterface {
    * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
    * @param \Donquixote\Ock\Generator\GeneratorInterface $paraGenerator
    */
-  public function __construct(GeneratorInterface $decorated, GeneratorInterface $paraGenerator) {
-    $this->decorated = $decorated;
-    $this->paraGenerator = $paraGenerator;
-  }
+  public function __construct(
+    private readonly GeneratorInterface $decorated,
+    private readonly GeneratorInterface $paraGenerator,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
 
     $paraConfPhp = $this->decorated->confGetPhp($conf);
 

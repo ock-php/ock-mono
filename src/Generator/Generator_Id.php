@@ -48,7 +48,7 @@ class Generator_Id implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
 
     if (NULL === $id = ConfUtil::confGetId($conf)) {
       throw new GeneratorException_IncompatibleConfiguration(

@@ -11,22 +11,20 @@ use Donquixote\Ock\Translator\Translator;
 class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\Ock\Formula\Select\Option\SelectOptionInterface[]
-   */
-  private $options;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Select\Option\SelectOptionInterface[] $options
    */
-  public function __construct(array $options) {
-    self::validateOptions(...array_values($options));
-    $this->options = $options;
+  public function __construct(
+    private readonly array $options,
+  ) {
+    self::validateOptions(...$options);
   }
 
   /**
    * @param \Donquixote\Ock\Formula\Select\Option\SelectOptionInterface ...$options
+   *
+   * @psalm-suppress UnusedParam
    */
   private static function validateOptions(SelectOptionInterface ...$options): void {}
 

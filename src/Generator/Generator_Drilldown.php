@@ -63,7 +63,7 @@ class Generator_Drilldown implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
 
     list($id, $subConf) = DrilldownKeysHelper::fromFormula($this->formula)
       ->unpack($conf);

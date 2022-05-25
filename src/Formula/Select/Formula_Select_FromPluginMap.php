@@ -10,19 +10,9 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface
-   */
-  private PluginMapInterface $pluginMap;
-
-  /**
-   * @var string
-   */
-  private string $type;
-
-  /**
    * @var \Donquixote\Ock\Plugin\Plugin[]|null
    */
-  private ?array $plugins;
+  private ?array $plugins = null;
 
   /**
    * Constructor.
@@ -30,10 +20,10 @@ class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
    * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
    * @param string $type
    */
-  public function __construct(PluginMapInterface $pluginMap, string $type) {
-    $this->pluginMap = $pluginMap;
-    $this->type = $type;
-  }
+  public function __construct(
+    private readonly PluginMapInterface $pluginMap,
+    private readonly string $type,
+  ) {}
 
   /**
    * {@inheritdoc}

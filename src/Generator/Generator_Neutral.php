@@ -23,7 +23,7 @@ class Generator_Neutral {
   #[Adapter]
   public static function create(
     #[Adaptee] Formula_SkipEvaluatorInterface $formula,
-    #[UniversalAdapter]  UniversalAdapterInterface $universalAdapter,
+    #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
   ): ?GeneratorInterface {
     return Generator::fromFormula($formula->getDecorated(), $universalAdapter);
   }

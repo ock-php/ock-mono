@@ -10,24 +10,15 @@ use Donquixote\Ock\Text\Text;
 class Formula_Group implements Formula_GroupInterface {
 
   /**
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface[]
-   */
-  private array $formulas;
-
-  /**
-   * @var \Donquixote\Ock\Text\TextInterface[]
-   */
-  private array $labels;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $formulas
    * @param \Donquixote\Ock\Text\TextInterface[] $labels
    */
-  public function __construct(array $formulas, array $labels) {
+  public function __construct(
+    private readonly array $formulas,
+    private readonly array $labels,
+  ) {
     Formula::validateMultiple($formulas);
     Text::validateMultiple($labels);
-    $this->formulas = $formulas;
-    $this->labels = $labels;
   }
 
   /**

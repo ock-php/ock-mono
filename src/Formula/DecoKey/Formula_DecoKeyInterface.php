@@ -8,6 +8,9 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
 
+/**
+ * @see \Donquixote\Ock\Formula\DecoShift\Formula_DecoShiftInterface
+ */
 interface Formula_DecoKeyInterface extends Formula_DecoratorBaseInterface {
 
   /**

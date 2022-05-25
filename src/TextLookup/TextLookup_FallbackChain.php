@@ -10,18 +10,13 @@ namespace Donquixote\Ock\TextLookup;
 class TextLookup_FallbackChain implements TextLookupInterface {
 
   /**
-   * @var \Donquixote\Ock\TextLookup\TextLookupInterface[]
-   */
-  private array $lookups;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\TextLookup\TextLookupInterface[] $lookups
    */
-  public function __construct(array $lookups) {
-    $this->lookups = $lookups;
-  }
+  public function __construct(
+    private readonly array $lookups,
+  ) {}
 
   /**
    * {@inheritdoc}

@@ -17,18 +17,13 @@ class PluginMap_Buffer implements PluginMapInterface {
   private $pluginss = [];
 
   /**
-   * @var \Donquixote\Ock\Plugin\Map\PluginMapInterface
-   */
-  private $decorated;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $decorated
    */
-  public function __construct(PluginMapInterface $decorated) {
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    private readonly PluginMapInterface $decorated,
+  ) {}
 
   /**
    * {@inheritdoc}

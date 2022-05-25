@@ -7,13 +7,13 @@
 
 namespace Donquixote\Ock\Tests;
 
-use Donquixote\CallbackReflection\Util\CodegenUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Tests\Util\TestUtil;
+use Donquixote\Ock\Util\PhpUtil;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -27,7 +27,7 @@ class GeneratorTest extends FormulaTestBase {
    * @param string $base
    * @param string $case
    *
-   * @dataProvider providerTestFormula()
+   * @dataProvider providerTestFormulaCases()
    */
   public function testFormula(string $base, string $case): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
@@ -117,11 +117,11 @@ EOT;
    *   Php file containing the expected php code.
    */
   private static function assertValuePhpFile(string $expression, ?string $interface, string $file_expected): void {
-    $php_nice = CodegenUtil::autoIndent(
+    $php_nice = PhpUtil::autoIndent(
       $expression,
       '  ',
       $interface !== NULL ? '  ' : '');
-    $php_statement = CodegenUtil::buildReturnStatement($php_nice);
+    $php_statement = PhpUtil::buildReturnStatement($php_nice);
     if ($interface !== NULL) {
       $php_statement = <<<EOT
 return static function (): \\$interface {
@@ -143,9 +143,9 @@ EOT;
    *   PHP code suitable for export into a file.
    */
   private static function formatAsFile(string $php) {
-    $aliases = CodegenUtil::aliasify($php);
+    $aliases = PhpUtil::aliasify($php);
     $php = rtrim($php, "\n ");
-    $aliases_php = CodegenUtil::formatAliases($aliases);
+    $aliases_php = PhpUtil::formatAliases($aliases);
     return <<<EOT
 <?php /** @noinspection PhpUnused */
 $aliases_php

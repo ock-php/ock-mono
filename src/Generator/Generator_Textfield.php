@@ -10,21 +10,11 @@ use Donquixote\Ock\Formula\StringVal\Formula_StringValInterface;
 use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Translator\Translator;
-use Donquixote\Ock\Util\MessageUtil;
+use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\Ock\V2V\String\V2V_String_Trivial;
 use Donquixote\Ock\V2V\String\V2V_StringInterface;
 
 class Generator_Textfield implements GeneratorInterface {
-
-  /**
-   * @var \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface
-   */
-  private $formula;
-
-  /**
-   * @var \Donquixote\Ock\V2V\String\V2V_StringInterface
-   */
-  private $v2v;
 
   /**
    * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula
@@ -50,15 +40,15 @@ class Generator_Textfield implements GeneratorInterface {
    * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula
    * @param \Donquixote\Ock\V2V\String\V2V_StringInterface $v2v
    */
-  public function __construct(Formula_TextfieldInterface $formula, V2V_StringInterface $v2v) {
-    $this->formula = $formula;
-    $this->v2v = $v2v;
-  }
+  public function __construct(
+    private readonly Formula_TextfieldInterface $formula,
+    private readonly V2V_StringInterface $v2v,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
 
     if (!\is_string($conf)) {
       throw new GeneratorException_IncompatibleConfiguration(

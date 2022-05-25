@@ -12,7 +12,7 @@ use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
 use Donquixote\Ock\Generator\Generator;
-use Donquixote\Ock\Util\MessageUtil;
+use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
@@ -74,11 +74,7 @@ class Decorator_Group implements DecoratorInterface {
   ): ?self {
     $itemGenerators = [];
     foreach ($groupFormula->getItemFormulas() as $k => $itemFormula) {
-      $itemGenerator = Generator::fromFormula($itemFormula, $universalAdapter);
-      if (NULL === $itemGenerator) {
-        return NULL;
-      }
-      $itemGenerators[$k] = $itemGenerator;
+      $itemGenerators[$k] = Generator::fromFormula($itemFormula, $universalAdapter);
     }
 
     return new self($itemGenerators, $v2v);

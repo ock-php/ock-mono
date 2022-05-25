@@ -10,17 +10,14 @@ use Donquixote\Ock\V2V\String\V2V_StringInterface;
 class Formula_StringVal extends Formula_StringValBase {
 
   /**
-   * @var \Donquixote\Ock\V2V\String\V2V_StringInterface
-   */
-  private $v2v;
-
-  /**
    * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $decorated
    * @param \Donquixote\Ock\V2V\String\V2V_StringInterface $v2v
    */
-  public function __construct(Formula_TextfieldInterface $decorated, V2V_StringInterface $v2v) {
+  public function __construct(
+    Formula_TextfieldInterface $decorated,
+    private readonly V2V_StringInterface $v2v,
+  ) {
     parent::__construct($decorated);
-    $this->v2v = $v2v;
   }
 
   /**

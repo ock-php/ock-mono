@@ -9,18 +9,13 @@ use Donquixote\Ock\Translator\TranslatorInterface;
 class Text_FluentDecorator extends TextBase {
 
   /**
-   * @var \Donquixote\Ock\Text\TextInterface
-   */
-  private TextInterface $decorated;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Text\TextInterface $decorated
    */
-  public function __construct(TextInterface $decorated) {
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    private readonly TextInterface $decorated,
+  ) {}
 
   /**
    * {@inheritdoc}

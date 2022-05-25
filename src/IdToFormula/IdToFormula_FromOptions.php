@@ -10,18 +10,14 @@ use Donquixote\Ock\Formula\Drilldown\Option\DrilldownOptionInterface;
 class IdToFormula_FromOptions implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Drilldown\Option\DrilldownOptionInterface[]
-   */
-  private $options;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Drilldown\Option\DrilldownOptionInterface[] $options
    */
-  public function __construct(array $options) {
+  public function __construct(
+    private readonly array $options,
+  ) {
     self::validateOptions(...array_values($options));
-    $this->options = $options;
   }
 
   /**

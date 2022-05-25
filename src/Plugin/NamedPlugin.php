@@ -6,10 +6,6 @@ namespace Donquixote\Ock\Plugin;
 
 class NamedPlugin {
 
-  private string $id;
-
-  private Plugin $plugin;
-
   /**
    * Constructor.
    *
@@ -18,10 +14,10 @@ class NamedPlugin {
    * @param \Donquixote\Ock\Plugin\Plugin $plugin
    *   The actual plugin object.
    */
-  public function __construct(string $id, Plugin $plugin) {
-    $this->id = $id;
-    $this->plugin = $plugin;
-  }
+  public function __construct(
+    private readonly string $id,
+    private readonly Plugin $plugin,
+  ) {}
 
   /**
    * @return string

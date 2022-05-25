@@ -15,11 +15,6 @@ use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
 class InlineDrilldown_Select implements InlineDrilldownInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface
-   */
-  private Formula_SelectInterface $formula;
-
-  /**
    * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
    *
    * @return self
@@ -45,9 +40,9 @@ class InlineDrilldown_Select implements InlineDrilldownInterface {
    *
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
    */
-  public function __construct(Formula_SelectInterface $formula) {
-    $this->formula = $formula;
-  }
+  public function __construct(
+    private readonly Formula_SelectInterface $formula,
+  ) {}
 
   /**
    * {@inheritdoc}

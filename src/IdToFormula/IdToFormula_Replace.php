@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IdToFormula;
 
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Formula;
 
 class IdToFormula_Replace implements IdToFormulaInterface {
@@ -18,8 +18,8 @@ class IdToFormula_Replace implements IdToFormulaInterface {
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
   public function __construct(
-    private IdToFormulaInterface $decorated,
-    private UniversalAdapterInterface $universalAdapter,
+    private readonly IdToFormulaInterface $decorated,
+    private readonly UniversalAdapterInterface $universalAdapter,
   ) {}
 
   /**
@@ -33,7 +33,7 @@ class IdToFormula_Replace implements IdToFormulaInterface {
     try {
       return Formula::replace($formula, $this->universalAdapter);
     }
-    catch (IncarnatorException $e) {
+    catch (AdapterException) {
       // @todo Log this.
       return NULL;
     }

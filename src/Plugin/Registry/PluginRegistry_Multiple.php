@@ -10,18 +10,13 @@ namespace Donquixote\Ock\Plugin\Registry;
 class PluginRegistry_Multiple implements PluginRegistryInterface {
 
   /**
-   * @var \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface[]
-   */
-  private $registries;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface[] $registries
    */
-  public function __construct(array $registries) {
-    $this->registries = $registries;
-  }
+  public function __construct(
+    private readonly array $registries,
+  ) {}
 
   /**
    * {@inheritdoc}

@@ -22,7 +22,7 @@ class IntOp_Add implements IntOpInterface {
    *
    * @throws \ReflectionException
    */
-  #[OckPluginFormula("add", "Add")]
+  #[OckPluginFormula(self::class, "add", "Add")]
   public static function formula(): FormulaInterface {
     return Formula::group()
       ->add('increment', new Formula_Int(), Text::t('Increment'))

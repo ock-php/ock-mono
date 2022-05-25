@@ -14,16 +14,6 @@ use Donquixote\Ock\Text\TextInterface;
 class Summarizer_Group implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Group\Formula_GroupInterface
-   */
-  private $formula;
-
-  /**
-   * @var \Donquixote\Ock\Summarizer\SummarizerInterface[]
-   */
-  private $itemSummarizers;
-
-  /**
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
@@ -34,7 +24,6 @@ class Summarizer_Group implements SummarizerInterface {
   #[Adapter]
   public static function create(Formula_GroupInterface $formula, UniversalAdapterInterface $universalAdapter): ?self {
 
-    /** @var \Donquixote\Ock\Summarizer\SummarizerInterface[] $itemSummarizers */
     $itemSummarizers = FormulaAdapter::getMultiple(
       $formula->getItemFormulas(),
       SummarizerInterface::class,
@@ -49,10 +38,10 @@ class Summarizer_Group implements SummarizerInterface {
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
    * @param \Donquixote\Ock\Summarizer\SummarizerInterface[] $itemSummarizers
    */
-  public function __construct(Formula_GroupInterface $formula, array $itemSummarizers) {
-    $this->formula = $formula;
-    $this->itemSummarizers = $itemSummarizers;
-  }
+  public function __construct(
+    private readonly Formula_GroupInterface $formula,
+    private readonly  array $itemSummarizers,
+  ) {}
 
   /**
    * {@inheritdoc}

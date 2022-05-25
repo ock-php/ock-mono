@@ -12,25 +12,15 @@ use Donquixote\Ock\V2V\Value\V2V_ValueInterface;
 class InlineDrilldown_V2V implements InlineDrilldownInterface {
 
   /**
-   * @var \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface
-   */
-  private InlineDrilldownInterface $decorated;
-
-  /**
-   * @var \Donquixote\Ock\V2V\Value\V2V_ValueInterface
-   */
-  private V2V_ValueInterface $v2v;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface $decorated
    * @param \Donquixote\Ock\V2V\Value\V2V_ValueInterface $v2v
    */
-  public function __construct(InlineDrilldownInterface $decorated, V2V_ValueInterface $v2v) {
-    $this->decorated = $decorated;
-    $this->v2v = $v2v;
-  }
+  public function __construct(
+    private readonly InlineDrilldownInterface $decorated,
+    private readonly V2V_ValueInterface $v2v,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -40,7 +30,7 @@ class InlineDrilldown_V2V implements InlineDrilldownInterface {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    */

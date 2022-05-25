@@ -9,18 +9,13 @@ use Donquixote\Ock\TextLookup\TextLookupInterface;
 class TextLookupMap_Fixed implements TextLookupMapInterface {
 
   /**
-   * @var \Donquixote\Ock\TextLookup\TextLookupInterface[]
-   */
-  private array $lookups;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\TextLookup\TextLookupInterface[] $lookups
    */
-  public function __construct(array $lookups) {
-    $this->lookups = $lookups;
-  }
+  public function __construct(
+    private readonly array $lookups,
+  ) {}
 
   /**
    * {@inheritdoc}

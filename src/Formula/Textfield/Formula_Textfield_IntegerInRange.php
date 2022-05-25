@@ -10,23 +10,13 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
 
   /**
-   * @var int|null
-   */
-  private ?int $min;
-
-  /**
-   * @var int|null
-   */
-  private ?int $max;
-
-  /**
    * @param int|null $min
    * @param int|null $max
    */
-  public function __construct(?int $min = NULL, ?int $max = NULL) {
-    $this->min = $min;
-    $this->max = $max;
-  }
+  public function __construct(
+    private readonly ?int $min = NULL,
+    private readonly ?int $max = NULL,
+  ) {}
 
   /**
    * {@inheritdoc}

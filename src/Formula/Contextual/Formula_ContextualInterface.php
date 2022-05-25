@@ -6,6 +6,9 @@ use Donquixote\Ock\Context\CfContextInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
 
+/**
+ * @see \Donquixote\Ock\Todo\ContextTodo
+ */
 interface Formula_ContextualInterface extends Formula_SkipEvaluatorInterface {
 
   /**

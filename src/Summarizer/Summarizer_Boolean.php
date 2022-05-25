@@ -12,16 +12,11 @@ use Donquixote\Ock\Text\TextInterface;
 class Summarizer_Boolean implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Boolean\Formula_BooleanInterface
-   */
-  private $formula;
-
-  /**
    * @param \Donquixote\Ock\Formula\Boolean\Formula_BooleanInterface $formula
    */
-  public function __construct(Formula_BooleanInterface $formula) {
-    $this->formula = $formula;
-  }
+  public function __construct(
+    private readonly Formula_BooleanInterface $formula,
+  ) {}
 
   /**
    * {@inheritdoc}

@@ -84,7 +84,10 @@ final class Formula extends UtilBase {
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  public static function replace(FormulaInterface $formula, UniversalAdapterInterface $universalAdapter): ?FormulaInterface {
+  public static function replace(
+    FormulaInterface $formula,
+    UniversalAdapterInterface $universalAdapter,
+  ): ?FormulaInterface {
     return $universalAdapter->adapt($formula, FormulaInterface::class);
   }
 

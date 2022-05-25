@@ -9,18 +9,14 @@ use Donquixote\Ock\Translator\TranslatorInterface;
 abstract class Text_ListBase extends TextBase {
 
   /**
-   * @var \Donquixote\Ock\Text\TextInterface[]
-   */
-  private array $items;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Text\TextInterface[] $items
    */
-  public function __construct(array $items) {
+  public function __construct(
+    private array $items,
+  ) {
     Text::validate(...$items);
-    $this->items = $items;
   }
 
   /**
@@ -28,7 +24,7 @@ abstract class Text_ListBase extends TextBase {
    *
    * @return static
    */
-  public function withAdded(TextInterface $item): self {
+  public function withAdded(TextInterface $item): static {
     $clone = clone $this;
     $clone->items[] = $item;
     return $clone;

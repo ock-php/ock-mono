@@ -23,7 +23,7 @@ class Formula_Optional extends Formula_OptionalBase {
    *
    * @return static
    */
-  public function withEmptySummary(TextInterface $emptySummary): self {
+  public function withEmptySummary(TextInterface $emptySummary): static {
     $clone = clone $this;
     $clone->emptySummary = $emptySummary;
     return $clone;
@@ -34,7 +34,7 @@ class Formula_Optional extends Formula_OptionalBase {
    *
    * @return static
    */
-  public function withEmptyPhp(string $emptyPhp): self {
+  public function withEmptyPhp(string $emptyPhp): static {
     $clone = clone $this;
     $clone->emptyPhp = $emptyPhp;
     return $clone;

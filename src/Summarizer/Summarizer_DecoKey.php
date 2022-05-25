@@ -13,18 +13,6 @@ use Donquixote\Ock\Text\TextInterface;
 class Summarizer_DecoKey implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
-   */
-  private SummarizerInterface $decorated;
-
-  /**
-   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
-   */
-  private SummarizerInterface $decorator;
-
-  private string $key;
-
-  /**
    * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
@@ -52,14 +40,10 @@ class Summarizer_DecoKey implements SummarizerInterface {
    * @param string $key
    */
   public function __construct(
-    SummarizerInterface $decorated,
-    SummarizerInterface $decorator,
-    string $key
-  ) {
-    $this->decorated = $decorated;
-    $this->decorator = $decorator;
-    $this->key = $key;
-  }
+    private readonly SummarizerInterface $decorated,
+    private readonly SummarizerInterface $decorator,
+    private readonly string $key,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -81,7 +65,9 @@ class Summarizer_DecoKey implements SummarizerInterface {
       ->add(
         Text::label(
           Text::t('Plugin'),
-          $main_summary))
+          $main_summary,
+        ),
+      )
       ->add(
         (count($decorator_summaries) <= 1)
           ? Text::label(
@@ -89,7 +75,9 @@ class Summarizer_DecoKey implements SummarizerInterface {
           reset($decorator_summaries))
           : Text::label(
           Text::t('Decorators'),
-          Text::ul($decorator_summaries)));
+          Text::ul($decorator_summaries),
+        ),
+      );
   }
 
 }

@@ -15,11 +15,6 @@ use Donquixote\Ock\Text\TextInterface;
 class Summarizer_Sequence implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
-   */
-  private $itemSummarizer;
-
-  /**
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
@@ -32,10 +27,9 @@ class Summarizer_Sequence implements SummarizerInterface {
     #[Adaptee] Formula_SequenceInterface $formula,
     #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
   ): ?Summarizer_Sequence {
-
-    $itemSummarizer = Summarizer::fromFormula(
+    $itemSummarizer = $universalAdapter->adapt(
       $formula->getItemFormula(),
-      $universalAdapter,
+      SummarizerInterface::class,
     );
 
     if (NULL === $itemSummarizer) {
@@ -48,9 +42,9 @@ class Summarizer_Sequence implements SummarizerInterface {
   /**
    * @param \Donquixote\Ock\Summarizer\SummarizerInterface $itemSummarizer
    */
-  public function __construct(SummarizerInterface $itemSummarizer) {
-    $this->itemSummarizer = $itemSummarizer;
-  }
+  public function __construct(
+    private readonly SummarizerInterface $itemSummarizer,
+  ) {}
 
   /**
    * {@inheritdoc}

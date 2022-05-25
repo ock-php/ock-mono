@@ -10,20 +10,14 @@ use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 class Formula_Select_TwoStepFlatSelectComposite extends Formula_Select_TwoStepFlatSelectBase {
 
   /**
-   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
-   */
-  private $idToSubFormula;
-
-  /**
    * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $idFormula
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToSubFormula
    */
   public function __construct(
     Formula_FlatSelectInterface $idFormula,
-    IdToFormulaInterface $idToSubFormula
+    private readonly IdToFormulaInterface $idToSubFormula
   ) {
     parent::__construct($idFormula);
-    $this->idToSubFormula = $idToSubFormula;
   }
 
   /**

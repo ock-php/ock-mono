@@ -9,26 +9,13 @@ use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 abstract class Formula_Group_V2VDecoratorBase extends Formula_Group_V2VBase {
 
   /**
-   * @var \Donquixote\Ock\Formula\Group\Formula_GroupInterface
-   */
-  private $decoratedFormula;
-
-  /**
-   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
-   */
-  private $decoratedV2V;
-
-  /**
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $decoratedFormula
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $decoratedV2V
    */
   public function __construct(
-    Formula_GroupInterface $decoratedFormula,
-    V2V_GroupInterface $decoratedV2V
-  ) {
-    $this->decoratedFormula = $decoratedFormula;
-    $this->decoratedV2V = $decoratedV2V;
-  }
+    private readonly Formula_GroupInterface $decoratedFormula,
+    private readonly V2V_GroupInterface $decoratedV2V
+  ) {}
 
   /**
    * {@inheritdoc}

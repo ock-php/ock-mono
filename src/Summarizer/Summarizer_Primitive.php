@@ -13,18 +13,13 @@ use Donquixote\Ock\Text\TextInterface;
 class Summarizer_Primitive implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface
-   */
-  private Formula_PrimitiveInterface $formula;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface $formula
    */
-  public function __construct(Formula_PrimitiveInterface $formula) {
-    $this->formula = $formula;
-  }
+  public function __construct(
+    private readonly Formula_PrimitiveInterface $formula,
+  ) {}
 
   /**
    * {@inheritdoc}

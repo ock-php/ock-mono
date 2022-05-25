@@ -10,19 +10,16 @@ use Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface;
 class Formula_SequenceVal extends Formula_SequenceValBase {
 
   /**
-   * @var \Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface
-   */
-  private V2V_SequenceInterface $v2v;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $decorated
    * @param \Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface $v2v
    */
-  public function __construct(Formula_SequenceInterface $decorated, V2V_SequenceInterface $v2v) {
+  public function __construct(
+    Formula_SequenceInterface $decorated,
+    private readonly V2V_SequenceInterface $v2v,
+  ) {
     parent::__construct($decorated);
-    $this->v2v = $v2v;
   }
 
   /**

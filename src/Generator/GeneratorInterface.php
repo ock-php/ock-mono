@@ -14,6 +14,6 @@ interface GeneratorInterface {
    * @throws \Donquixote\Ock\Exception\GeneratorException
    *   Configuration is incompatible or not supported.
    */
-  public function confGetPhp($conf): string;
+  public function confGetPhp(mixed $conf): string;
 
 }

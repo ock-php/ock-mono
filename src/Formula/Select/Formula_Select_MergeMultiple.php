@@ -9,18 +9,13 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Select_MergeMultiple extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface[]
-   */
-  private array $formulas;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface[] $formulas
    */
-  public function __construct(array $formulas) {
-    $this->formulas = $formulas;
-  }
+  public function __construct(
+    private readonly array $formulas,
+  ) {}
 
   /**
    * {@inheritdoc}

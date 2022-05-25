@@ -28,18 +28,13 @@ class Generator_DefaultConf implements GeneratorInterface {
     #[Adaptee] Formula_DefaultConfInterface $formula,
     #[UniversalAdapter] UniversalAdapterInterface $universalAdapter
   ): ?self {
-
-    $decorated = Generator::fromFormula(
-      $formula->getDecorated(),
-      $universalAdapter);
-
-    if (NULL === $decorated) {
-      return NULL;
-    }
-
     return new self(
-      $decorated,
-      $formula->getDefaultConf());
+      Generator::fromFormula(
+        $formula->getDecorated(),
+        $universalAdapter,
+      ),
+      $formula->getDefaultConf(),
+    );
   }
 
   /**
@@ -54,7 +49,7 @@ class Generator_DefaultConf implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
     return $this->decorated->confGetPhp($conf ?? $this->defaultConf);
   }
 

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Context;
 
+/**
+ * @see \Donquixote\Ock\Todo\ContextTodo
+ */
 interface CfContextInterface {
 
   /**
@@ -18,7 +21,7 @@ interface CfContextInterface {
    *
    * @return mixed
    */
-  public function paramGetValue(\ReflectionParameter $param);
+  public function paramGetValue(\ReflectionParameter $param): mixed;
 
   /**
    * @param string $paramName
@@ -32,7 +35,7 @@ interface CfContextInterface {
    *
    * @return mixed
    */
-  public function paramNameGetValue(string $paramName);
+  public function paramNameGetValue(string $paramName): mixed;
 
   /**
    * @return string

@@ -4,42 +4,32 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IdToFormula;
 
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
 
 class IdToFormula_InlineExpanded implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
-   */
-  private $decorated;
-
-  /**
-   * @var \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface
-   */
-  private UniversalAdapterInterface $universalAdapter;
-
-  /**
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
-  public function __construct(IdToFormulaInterface $decorated, UniversalAdapterInterface $universalAdapter) {
-    $this->decorated = $decorated;
-    $this->incarnator = $universalAdapter;
-  }
+  public function __construct(
+    private readonly IdToFormulaInterface $decorated,
+    private readonly UniversalAdapterInterface $universalAdapter,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
   public function idGetFormula(string|int $id): ?FormulaInterface {
 
-    if (FALSE === /* $pos = */ strpos($id, '/')) {
+    if (!str_contains((string) $id, '/')) {
       return $this->decorated->idGetFormula($id);
     }
 
-    list($prefix, $suffix) = explode('/', $id, 2);
+    list($prefix, $suffix) = explode('/', (string) $id, 2);
 
     if (NULL === $rawNestedFormula = $this->decorated->idGetFormula($prefix)) {
       return NULL;
@@ -48,14 +38,10 @@ class IdToFormula_InlineExpanded implements IdToFormulaInterface {
     try {
       $subtree = InlineDrilldown::fromFormula(
         $rawNestedFormula,
-        $this->incarnator);
+        $this->universalAdapter);
     }
-    catch (IncarnatorException $e) {
+    catch (AdapterException) {
       // @todo Log this.
-      return NULL;
-    }
-
-    if ($subtree === NULL) {
       return NULL;
     }
 

@@ -62,13 +62,14 @@ final class StringUtil extends UtilBase {
    * @param string $example_string
    *   Example to specify how to deal with multiple uppercase characters.
    *   Can be something like "AA Bc" or "A A Bc" or "AABc".
-   * @param string|bool $glue
+   * @param string|false $glue
    *   Allows to implode the fragments with sth like "_" or "." or " ".
    *   If $glue is FALSE, it will just return an array.
    *
-   * @return string[]|string
+   * @return string|string[]
+   * @psalm-return ($glue is false ? string[] : string)
    */
-  public static function camelCaseExplode(string $string, $lowercase = TRUE, $example_string = 'AA Bc', $glue = FALSE) {
+  public static function camelCaseExplode(string $string, $lowercase = TRUE, $example_string = 'AA Bc', $glue = FALSE): array|string {
     static $regexp_by_example = [];
     if (!isset($regexp_by_example[$example_string])) {
       $regexp_by_example[$example_string] = self::camelCaseExplodeExampleToRegex($example_string);
@@ -123,7 +124,7 @@ final class StringUtil extends UtilBase {
     if (FALSE !== $pos = strrpos($title, '\\')) {
       $title = substr($title, $pos + 1);
     }
-    if ('Interface' === substr($title, -9) && 'Interface' !== $title) {
+    if (\str_ends_with($title, 'Interface') && 'Interface' !== $title) {
       $title = substr($title, 0, -9);
     }
     return self::methodNameGenerateLabel($title);

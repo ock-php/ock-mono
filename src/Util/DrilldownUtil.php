@@ -30,9 +30,9 @@ final class DrilldownUtil extends UtilBase {
    * @param string $k0
    * @param string|null $k1
    *
-   * @return array|null
+   * @return array
    */
-  public static function buildConf($id, $options, string $k0 = 'id', ?string $k1 = 'options'): ?array {
+  public static function buildConf($id, $options, string $k0 = 'id', ?string $k1 = 'options'): array {
 
     if (NULL === $k1) {
       $conf = \is_array($options)

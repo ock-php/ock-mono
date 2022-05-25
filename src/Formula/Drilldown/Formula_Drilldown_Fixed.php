@@ -14,16 +14,6 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
 
   /**
-   * @var \Donquixote\Ock\Formula\Select\Formula_Select_Fixed
-   */
-  private $idFormula;
-
-  /**
-   * @var \Donquixote\Ock\IdToFormula\IdToFormula_Fixed
-   */
-  private $idToFormula;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface[] $formulas
    * @param \Donquixote\Ock\Text\TextInterface[] $labels
    * @param bool $orNull
@@ -45,11 +35,12 @@ class Formula_Drilldown_Fixed extends Formula_Drilldown_CustomKeysBase {
    * @param bool $orNull
    *
    * @noinspection InterfacesAsConstructorDependenciesInspection
-   *   Allow a private constructor to depend on classes.
    */
-  private function __construct(Formula_Select_Fixed $idFormula, IdToFormula_Fixed $idToFormula, $orNull = FALSE) {
-    $this->idFormula = $idFormula;
-    $this->idToFormula = $idToFormula;
+  private function __construct(
+    private Formula_Select_Fixed $idFormula,
+    private IdToFormula_Fixed $idToFormula,
+    bool $orNull = FALSE,
+  ) {
     parent::__construct($orNull);
   }
 

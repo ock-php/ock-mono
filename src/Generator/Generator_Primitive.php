@@ -7,14 +7,9 @@ namespace Donquixote\Ock\Generator;
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface;
-use Donquixote\Ock\Util\MessageUtil;
+use Donquixote\Adaptism\Util\MessageUtil;
 
 class Generator_Primitive implements GeneratorInterface {
-
-  /**
-   * @var \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface
-   */
-  private $formula;
 
   /**
    * @param \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface $formula
@@ -29,14 +24,14 @@ class Generator_Primitive implements GeneratorInterface {
   /**
    * @param \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface $formula
    */
-  public function __construct(Formula_PrimitiveInterface $formula) {
-    $this->formula = $formula;
-  }
+  public function __construct(
+    private readonly Formula_PrimitiveInterface $formula,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
     $type = gettype($conf);
     if (!in_array($type, $this->formula->getAllowedTypes())) {
       throw new GeneratorException_IncompatibleConfiguration(

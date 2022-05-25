@@ -12,16 +12,6 @@ use Donquixote\Ock\Text\TextInterface;
 class Summarizer_DefaultConf implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
-   */
-  private $decorated;
-
-  /**
-   * @var mixed
-   */
-  private $defaultConf;
-
-  /**
    * @param \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
@@ -34,39 +24,33 @@ class Summarizer_DefaultConf implements SummarizerInterface {
     Formula_DefaultConfInterface $formula,
     UniversalAdapterInterface $universalAdapter
   ): ?Summarizer_DefaultConf {
-
-    $decorated = Summarizer::fromFormula(
+    $decorated = $universalAdapter->adapt(
       $formula->getDecorated(),
-      $universalAdapter);
-
-    if (NULL === $decorated) {
+      SummarizerInterface::class,
+    );
+    if ($decorated === NULL) {
       return NULL;
     }
-
     return new self(
       $decorated,
-      $formula->getDefaultConf());
+      $formula->getDefaultConf(),
+    );
   }
 
   /**
    * @param \Donquixote\Ock\Summarizer\SummarizerInterface $decorated
    * @param mixed $defaultConf
    */
-  public function __construct(SummarizerInterface $decorated, $defaultConf) {
-    $this->decorated = $decorated;
-    $this->defaultConf = $defaultConf;
-  }
+  public function __construct(
+    private readonly SummarizerInterface $decorated,
+    private readonly mixed $defaultConf,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
   public function confGetSummary($conf): ?TextInterface {
-
-    if (NULL === $conf) {
-      $conf = $this->defaultConf;
-    }
-
-    return $this->decorated->confGetSummary($conf);
+    return $this->decorated->confGetSummary($conf ?? $this->defaultConf);
   }
 
 }

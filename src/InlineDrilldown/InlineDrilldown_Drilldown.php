@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\InlineDrilldown;
 
 use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface;
@@ -12,7 +13,6 @@ use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\V2V\Drilldown\V2V_Drilldown_Trivial;
 use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 use Donquixote\Ock\V2V\Value\V2V_Value_DrilldownFixedId;
@@ -20,25 +20,11 @@ use Donquixote\Ock\V2V\Value\V2V_Value_DrilldownFixedId;
 class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface
-   */
-  private Formula_SelectInterface $idFormula;
-
-  /**
-   * @var \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
-   */
-  private Formula_DrilldownInterface $formula;
-
-  /**
-   * @var \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface
-   */
-  private V2V_DrilldownInterface $v2v;
-
-  /**
    * @param \Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
-   * @return self
+   * @return self|null
+   *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   #[Adapter]
@@ -56,7 +42,8 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
-   * @return self
+   * @return self|null
+   *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   #[Adapter]
@@ -75,7 +62,8 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
-   * @return static|null
+   * @return self|null
+   *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   public static function create(
@@ -103,14 +91,10 @@ class InlineDrilldown_Drilldown implements InlineDrilldownInterface {
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
    */
   public function __construct(
-    Formula_SelectInterface $idFormula,
-    Formula_DrilldownInterface $formula,
-    V2V_DrilldownInterface $v2v
-  ) {
-    $this->idFormula = $idFormula;
-    $this->formula = $formula;
-    $this->v2v = $v2v;
-  }
+    private readonly Formula_SelectInterface $idFormula,
+    private readonly Formula_DrilldownInterface $formula,
+    private readonly V2V_DrilldownInterface $v2v
+  ) {}
 
   /**
    * {@inheritdoc}

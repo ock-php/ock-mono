@@ -10,17 +10,14 @@ use Donquixote\Ock\V2V\Value\V2V_ValueInterface;
 class Formula_ValueToValue extends Formula_ValueToValueBase {
 
   /**
-   * @var \Donquixote\Ock\V2V\Value\V2V_ValueInterface
-   */
-  private $v2v;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    * @param \Donquixote\Ock\V2V\Value\V2V_ValueInterface $v2v
    */
-  public function __construct(FormulaInterface $decorated, V2V_ValueInterface $v2v) {
+  public function __construct(
+    FormulaInterface $decorated,
+    private readonly V2V_ValueInterface $v2v,
+  ) {
     parent::__construct($decorated);
-    $this->v2v = $v2v;
   }
 
   /**

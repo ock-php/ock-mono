@@ -12,12 +12,6 @@ use Donquixote\Ock\TextLookup\TextLookupInterface;
 class Formula_Select_LabelLookupFixed extends Formula_Select_LabelLookupBase {
 
   /**
-   * @var mixed[][]
-   *   Format: $[$group_id][$id] = $_anything.
-   */
-  private array $groupedIdsMap;
-
-  /**
    * @var mixed[]
    *   Format: $[$id] = $_anything.
    */
@@ -26,15 +20,18 @@ class Formula_Select_LabelLookupFixed extends Formula_Select_LabelLookupBase {
   /**
    * Constructor.
    *
-   * @param mixed[][] $grouped_ids_map
+   * @param mixed[][] $groupedIdsMap
    *   Format: $[$group_id][$id] = $_anything.
-   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $labellookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $labelLookup
    * @param \Donquixote\Ock\TextLookup\TextLookupInterface $groupLabelProvider
    */
-  public function __construct(array $grouped_ids_map, TextLookupInterface $labellookup, TextLookupInterface $groupLabelProvider) {
-    $this->groupedIdsMap = $grouped_ids_map;
-    $this->idsMap = array_replace(...$grouped_ids_map);
-    parent::__construct($labellookup, $groupLabelProvider);
+  public function __construct(
+    private readonly array $groupedIdsMap,
+    TextLookupInterface $labelLookup,
+    TextLookupInterface $groupLabelProvider,
+  ) {
+    $this->idsMap = array_replace(...$groupedIdsMap);
+    parent::__construct($labelLookup, $groupLabelProvider);
   }
 
   /**

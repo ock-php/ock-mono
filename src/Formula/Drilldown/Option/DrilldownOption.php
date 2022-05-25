@@ -9,19 +9,17 @@ use Donquixote\Ock\Text\TextInterface;
 class DrilldownOption extends SelectOption implements DrilldownOptionInterface {
 
   /**
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  private $formula;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param \Donquixote\Ock\Text\TextInterface|null $label
    * @param \Donquixote\Ock\Text\TextInterface|null $group_label
    */
-  public function __construct(FormulaInterface $formula, ?TextInterface $label, ?TextInterface $group_label) {
-    $this->formula = $formula;
+  public function __construct(
+    private readonly FormulaInterface $formula,
+    ?TextInterface $label,
+    ?TextInterface $group_label,
+  ) {
     parent::__construct($label, $group_label);
   }
 

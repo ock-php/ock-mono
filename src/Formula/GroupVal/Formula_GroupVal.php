@@ -13,16 +13,11 @@ use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 class Formula_GroupVal extends Formula_GroupValBase {
 
   /**
-   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
-   */
-  private $v2v;
-
-  /**
    * @param \Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface $valueProvider
    *
    * @return self
    */
-  public static function createEmpty(Formula_ValueProviderInterface $valueProvider): Formula_GroupVal {
+  public static function createEmpty(Formula_ValueProviderInterface $valueProvider): self {
     return new self(
       new Formula_Group_Empty(),
       new V2V_Group_EmptyWithValueProvider(
@@ -33,9 +28,11 @@ class Formula_GroupVal extends Formula_GroupValBase {
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $decorated
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
    */
-  public function __construct(Formula_GroupInterface $decorated, V2V_GroupInterface $v2v) {
+  public function __construct(
+    Formula_GroupInterface $decorated,
+    private readonly V2V_GroupInterface $v2v,
+  ) {
     parent::__construct($decorated);
-    $this->v2v = $v2v;
   }
 
   /**

@@ -30,7 +30,7 @@ class PluginDeclaration {
   /**
    * @param list<string> $types
    */
-  public function withTypes(array $types): self {
+  public function withTypes(array $types): static {
     $clone = clone $this;
     $clone->types = $types;
     return $clone;

@@ -8,7 +8,7 @@ use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Ock\FormulaAdapter;
-use Donquixote\Ock\Util\MessageUtil;
+use Donquixote\Adaptism\Util\MessageUtil;
 
 class Evaluator {
 

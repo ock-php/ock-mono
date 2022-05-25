@@ -54,7 +54,7 @@ class Generator_DecoKey implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
     $php = $this->decorated->confGetPhp($conf);
     if (is_array($conf)) {
       foreach ($conf[$this->key] ?? [] as $decorator_conf) {

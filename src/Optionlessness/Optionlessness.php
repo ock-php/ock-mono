@@ -5,24 +5,18 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Optionlessness;
 
 use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\FormulaAdapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\FormulaAdapter;
 
 class Optionlessness implements OptionlessnessInterface {
 
   /**
-   * @var bool
-   */
-  private $optionless;
-
-  /**
    * @param bool $optionless
    */
-  public function __construct(bool $optionless) {
-    $this->optionless = $optionless;
-  }
+  public function __construct(
+    private readonly bool $optionless,
+  ) {}
 
   /**
    * Determines whether a formula is optionless.

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Ock\IncarnatorPartial;
+namespace Donquixote\Ock\Adapter;
 
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
@@ -33,8 +33,8 @@ class SpecificAdapter_Iface {
    * @param \Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface $groupLabels
    */
   public function __construct(
-    #[GetService] private PluginMapInterface $pluginMap,
-    #[GetService] private PluginGroupLabelsInterface $groupLabels,
+    #[GetService] private readonly PluginMapInterface $pluginMap,
+    #[GetService] private readonly PluginGroupLabelsInterface $groupLabels,
   ) {}
 
   /**
@@ -57,6 +57,12 @@ class SpecificAdapter_Iface {
   }
 
   /**
+   * @param class-string $type
+   * @param bool $or_null
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
+   *
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
    * @throws \Donquixote\Ock\Exception\PluginListException
    */
   protected function typeGetFormula(

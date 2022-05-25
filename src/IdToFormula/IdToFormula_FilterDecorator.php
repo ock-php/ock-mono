@@ -10,25 +10,15 @@ use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 class IdToFormula_FilterDecorator implements IdToFormulaInterface {
 
   /**
-   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
-   */
-  private $idToFormula;
-
-  /**
-   * @var \Donquixote\Ock\Formula\Id\Formula_IdInterface
-   */
-  private $condition;
-
-  /**
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
    * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $condition
    *
    * @todo There should be a narrower interface for $condition parameter.
    */
-  public function __construct(IdToFormulaInterface $decorated, Formula_IdInterface $condition) {
-    $this->idToFormula = $decorated;
-    $this->condition = $condition;
-  }
+  public function __construct(
+    private readonly IdToFormulaInterface $decorated,
+    private readonly Formula_IdInterface $condition,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -39,7 +29,7 @@ class IdToFormula_FilterDecorator implements IdToFormulaInterface {
       return NULL;
     }
 
-    return $this->idToFormula->idGetFormula($id);
+    return $this->decorated->idGetFormula($id);
   }
 
 }

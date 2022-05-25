@@ -19,7 +19,7 @@ class IntOp_Sequence implements IntOpInterface {
   /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  #[OckPluginFormula("sequence", "Sequence")]
+  #[OckPluginFormula(self::class, "sequence", "Sequence")]
   public static function formula(): FormulaInterface {
     return Formula::group()
       ->add(

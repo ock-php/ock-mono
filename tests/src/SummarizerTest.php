@@ -18,7 +18,7 @@ class SummarizerTest extends FormulaTestBase {
    * @param string $base
    * @param string $case
    *
-   * @dataProvider providerTestFormula()
+   * @dataProvider providerTestFormulaCases()
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */

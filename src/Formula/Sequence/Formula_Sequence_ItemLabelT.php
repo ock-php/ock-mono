@@ -12,21 +12,6 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
 
   /**
-   * @var \Donquixote\Ock\Text\TextInterface
-   */
-  private $newItemLabel;
-
-  /**
-   * @var \Donquixote\Ock\Text\TextInterface
-   */
-  private $itemLabelN;
-
-  /**
-   * @var string
-   */
-  private $placeholder;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $itemFormula
@@ -36,14 +21,11 @@ class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
    */
   public function __construct(
     FormulaInterface $itemFormula,
-    TextInterface $newItemLabel,
-    TextInterface $itemLabelN,
-    $placeholder = '!n'
+    private readonly TextInterface $newItemLabel,
+    private readonly TextInterface $itemLabelN,
+    private readonly string $placeholder = '!n'
   ) {
     parent::__construct($itemFormula);
-    $this->newItemLabel = $newItemLabel;
-    $this->itemLabelN = $itemLabelN;
-    $this->placeholder = $placeholder;
   }
 
   /**

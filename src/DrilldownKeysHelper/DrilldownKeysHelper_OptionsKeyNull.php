@@ -7,16 +7,13 @@ namespace Donquixote\Ock\DrilldownKeysHelper;
 class DrilldownKeysHelper_OptionsKeyNull implements DrilldownKeysHelperInterface {
 
   /**
-   * @var string
-   */
-  private $idKey;
-
-  /**
+   * Constructor.
+   *
    * @param string $idKey
    */
-  public function __construct(string $idKey) {
-    $this->idKey = $idKey;
-  }
+  public function __construct(
+    private readonly string $idKey,
+  ) {}
 
   /**
    * {@inheritdoc}

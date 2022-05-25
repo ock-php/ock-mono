@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Label\Formula_LabelInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
@@ -15,16 +15,6 @@ use Donquixote\Ock\Text\TextInterface;
  * Decorator that prepends a "<label>: " to a summary.
  */
 class Summarizer_Label implements SummarizerInterface {
-
-  /**
-   * @var \Donquixote\Ock\Summarizer\SummarizerInterface
-   */
-  private $decorated;
-
-  /**
-   * @var \Donquixote\Ock\Text\TextInterface
-   */
-  private $label;
 
   /**
    * @param \Donquixote\Ock\Formula\Label\Formula_LabelInterface $formula
@@ -40,7 +30,7 @@ class Summarizer_Label implements SummarizerInterface {
         $formula->getDecorated(),
         $universalAdapter);
     }
-    catch (IncarnatorException $e) {
+    catch (AdapterException) {
       return NULL;
     }
 
@@ -53,25 +43,20 @@ class Summarizer_Label implements SummarizerInterface {
    * @param \Donquixote\Ock\Summarizer\SummarizerInterface $decorated
    * @param \Donquixote\Ock\Text\TextInterface $label
    */
-  public function __construct(SummarizerInterface $decorated, TextInterface $label) {
-    $this->decorated = $decorated;
-    $this->label = $label;
-  }
+  public function __construct(
+    private readonly SummarizerInterface $decorated,
+    private readonly TextInterface $label,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
   public function confGetSummary($conf): ?TextInterface {
-
     $decorated = $this->decorated->confGetSummary($conf);
-
-    if ('' === $decorated || NULL === $decorated) {
-      return $decorated;
+    if ($decorated === null) {
+      return null;
     }
-
-    return Text::label(
-      $this->label,
-      $decorated);
+    return Text::label($this->label, $decorated);
   }
 
 }

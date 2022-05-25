@@ -10,16 +10,11 @@ use Donquixote\Ock\Formula\Select\Formula_Select_Fixed;
 abstract class Formula_Proxy_Cache_SelectBase implements Formula_Proxy_CacheInterface {
 
   /**
-   * @var string
-   */
-  private $cacheId;
-
-  /**
    * @param string $cacheId
    */
-  public function __construct(string $cacheId) {
-    $this->cacheId = $cacheId;
-  }
+  public function __construct(
+    private readonly string $cacheId,
+  ) {}
 
   /**
    * @return string

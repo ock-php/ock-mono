@@ -7,25 +7,15 @@ namespace Donquixote\Ock\V2V\Group;
 class V2V_Group_Partials implements V2V_GroupInterface {
 
   /**
-   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface
-   */
-  private V2V_GroupInterface $decorated;
-
-  /**
-   * @var \Donquixote\Ock\V2V\Group\V2V_GroupInterface[]
-   */
-  private array $partials;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $decorated
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface[] $partials
    */
-  public function __construct(V2V_GroupInterface $decorated, array $partials) {
-    $this->decorated = $decorated;
-    $this->partials = $partials;
-  }
+  public function __construct(
+    private readonly V2V_GroupInterface $decorated,
+    private readonly array $partials,
+  ) {}
 
   /**
    * {@inheritdoc}

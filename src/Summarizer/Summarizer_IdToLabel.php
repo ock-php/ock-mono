@@ -14,18 +14,13 @@ use Donquixote\Ock\Util\ConfUtil;
 class Summarizer_IdToLabel implements SummarizerInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface
-   */
-  private Formula_IdToLabelInterface $formula;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface $formula
    */
-  public function __construct(Formula_IdToLabelInterface $formula) {
-    $this->formula = $formula;
-  }
+  public function __construct(
+    private readonly Formula_IdToLabelInterface $formula,
+  ) {}
 
   /**
    * {@inheritdoc}

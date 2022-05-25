@@ -9,7 +9,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 interface Formula_IfaceInterface extends FormulaInterface {
 
   /**
-   * @return string
+   * @return class-string
    */
   public function getInterface(): string;
 

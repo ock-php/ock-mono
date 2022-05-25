@@ -11,21 +11,16 @@ use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface;
 class Generator_ValueProvider implements GeneratorInterface {
 
   /**
-   * @var \Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface
-   */
-  private $formula;
-
-  /**
    * @param \Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface $formula
    */
-  public function __construct(Formula_ValueProviderInterface $formula) {
-    $this->formula = $formula;
-  }
+  public function __construct(
+    private readonly Formula_ValueProviderInterface $formula,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
     return $this->formula->getPhp();
   }
 

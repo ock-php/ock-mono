@@ -42,7 +42,7 @@ class Generator_FixedConf implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
     return $this->decorated->confGetPhp($this->conf);
   }
 

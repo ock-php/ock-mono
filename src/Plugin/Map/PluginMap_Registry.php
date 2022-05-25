@@ -9,18 +9,13 @@ use Donquixote\Ock\Plugin\Registry\PluginRegistryInterface;
 class PluginMap_Registry implements PluginMapInterface {
 
   /**
-   * @var \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface
-   */
-  private $registry;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $registry
    */
-  public function __construct(PluginRegistryInterface $registry) {
-    $this->registry = $registry;
-  }
+  public function __construct(
+    private readonly PluginRegistryInterface $registry,
+  ) {}
 
   /**
    * {@inheritdoc}

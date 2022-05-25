@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin\Registry;
 
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Exception\PluginListException;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Group\Formula_Group;
@@ -20,32 +20,17 @@ use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
 class PluginRegistry_Adapters implements PluginRegistryInterface {
 
   /**
-   * @var \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface
-   */
-  private PluginRegistryInterface $decorated;
-
-  /**
-   * @var \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface
-   */
-  private PluginRegistryInterface $adaptersRegistry;
-
-  /**
-   * @var \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface
-   */
-  private UniversalAdapterInterface $universalAdapter;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $decorated
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $adaptersRegistry
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
-  public function __construct(PluginRegistryInterface $decorated, PluginRegistryInterface $adaptersRegistry, UniversalAdapterInterface $universalAdapter) {
-    $this->decorated = $decorated;
-    $this->adaptersRegistry = $adaptersRegistry;
-    $this->incarnator = $universalAdapter;
-  }
+  public function __construct(
+    private readonly PluginRegistryInterface $decorated,
+    private readonly PluginRegistryInterface $adaptersRegistry,
+    private readonly UniversalAdapterInterface $universalAdapter,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -57,9 +42,9 @@ class PluginRegistry_Adapters implements PluginRegistryInterface {
       foreach ($plugins as $adapter_id => $adapter_plugin) {
         $formula = $adapter_plugin->getFormula();
         try {
-          $derived = Formula::replace($formula, $this->incarnator);
+          $derived = Formula::replace($formula, $this->universalAdapter);
         }
-        catch (IncarnatorException $e) {
+        catch (AdapterException $e) {
           throw new PluginListException($e->getMessage(), 0, $e);
         }
         if ($derived instanceof Formula_GroupValInterface) {
@@ -78,6 +63,7 @@ class PluginRegistry_Adapters implements PluginRegistryInterface {
         if (!$first_item_formula instanceof Formula_IfaceInterface) {
           continue;
         }
+        \assert($first_item_key !== null);
         $source_type = $first_item_formula->getInterface();
         foreach ($pluginss[$source_type] as $source_id => $source_plugin) {
           $source_formula = $source_plugin->getFormula();

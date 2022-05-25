@@ -14,28 +14,15 @@ use Donquixote\Ock\TextLookup\TextLookupInterface;
 abstract class Formula_Select_LabelLookupBase extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\Ock\TextLookup\TextLookupInterface
-   */
-  private TextLookupInterface $labelLookup;
-
-  /**
-   * @var \Donquixote\Ock\TextLookup\TextLookupInterface
-   */
-  private TextLookupInterface $groupLabelLookup;
-
-  /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $option_label_lookup
-   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $group_label_lookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $labelLookup
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $groupLabelLookup
    */
   public function __construct(
-    TextLookupInterface $option_label_lookup,
-    TextLookupInterface $group_label_lookup
-  ) {
-    $this->labelLookup = $option_label_lookup;
-    $this->groupLabelLookup = $group_label_lookup;
-  }
+    private readonly TextLookupInterface $labelLookup,
+    private readonly TextLookupInterface $groupLabelLookup,
+  ) {}
 
   /**
    * {@inheritdoc}

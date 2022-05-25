@@ -7,16 +7,11 @@ namespace Donquixote\Ock\Markup;
 class Markup implements MarkupInterface {
 
   /**
-   * @var string
-   */
-  private $html;
-
-  /**
    * @param string $html
    */
-  public function __construct(string $html) {
-    $this->html = $html;
-  }
+  public function __construct(
+    private readonly string $html,
+  ) {}
 
   /**
    * @return string

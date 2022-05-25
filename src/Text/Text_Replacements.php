@@ -7,25 +7,16 @@ use Donquixote\Ock\Translator\TranslatorInterface;
 class Text_Replacements extends TextBuilderBase {
 
   /**
-   * @var \Donquixote\Ock\Text\TextInterface
-   */
-  private TextInterface $source;
-
-  /**
-   * @var \Donquixote\Ock\Text\TextInterface[]
-   */
-  private array $replacements;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Text\TextInterface $source
    * @param \Donquixote\Ock\Text\TextInterface[] $replacements
    */
-  public function __construct(TextInterface $source, array $replacements = []) {
+  public function __construct(
+    private readonly TextInterface $source,
+    private array $replacements = [],
+  ) {
     Text::validateMultiple($replacements);
-    $this->source = $source;
-    $this->replacements = $replacements;
   }
 
   /**

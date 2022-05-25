@@ -6,16 +6,14 @@ use Donquixote\Ock\Translator\TranslatorInterface;
 
 class Text_Translatable extends TextBuilderBase {
 
-  private string $source;
-
   /**
    * Constructor.
    *
    * @param string $source
    */
-  public function __construct(string $source) {
-    $this->source = $source;
-  }
+  public function __construct(
+    private readonly string $source,
+  ) {}
 
   /**
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator

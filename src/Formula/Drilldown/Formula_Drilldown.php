@@ -12,16 +12,6 @@ use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 class Formula_Drilldown extends Formula_Drilldown_CustomKeysBase {
 
   /**
-   * @var \Donquixote\Ock\Formula\Id\Formula_IdInterface
-   */
-  private $idFormula;
-
-  /**
-   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
-   */
-  private $idToFormula;
-
-  /**
    * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $idFormula
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
    * @param bool $orNull
@@ -52,9 +42,11 @@ class Formula_Drilldown extends Formula_Drilldown_CustomKeysBase {
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
    * @param bool $orNull
    */
-  public function __construct(Formula_IdInterface $idFormula, IdToFormulaInterface $idToFormula, $orNull = FALSE) {
-    $this->idFormula = $idFormula;
-    $this->idToFormula = $idToFormula;
+  public function __construct(
+    private readonly Formula_IdInterface $idFormula,
+    private readonly IdToFormulaInterface $idToFormula,
+    $orNull = FALSE,
+  ) {
     parent::__construct($orNull);
   }
 

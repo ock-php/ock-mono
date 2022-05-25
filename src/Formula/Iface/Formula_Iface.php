@@ -7,25 +7,15 @@ namespace Donquixote\Ock\Formula\Iface;
 class Formula_Iface implements Formula_IfaceInterface {
 
   /**
-   * @var string
-   */
-  private $interface;
-
-  /**
-   * @var bool
-   */
-  private $orNull;
-
-  /**
    * Constructor.
    *
-   * @param string $interface
+   * @param class-string $interface
    * @param bool $orNull
    */
-  public function __construct(string $interface, bool $orNull = FALSE) {
-    $this->interface = $interface;
-    $this->orNull = $orNull;
-  }
+  public function __construct(
+    private readonly string $interface,
+    private readonly bool $orNull = FALSE,
+  ) {}
 
   /**
    * {@inheritdoc}

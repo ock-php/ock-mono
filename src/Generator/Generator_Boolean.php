@@ -38,7 +38,7 @@ class Generator_Boolean implements GeneratorInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
 
     $boolean = !empty($conf);
 

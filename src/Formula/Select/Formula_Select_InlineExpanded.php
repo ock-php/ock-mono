@@ -4,30 +4,15 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Select;
 
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
 use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
-use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
+use Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
 class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
-
-  /**
-   * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface
-   */
-  private $decorated;
-
-  /**
-   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
-   */
-  private $idToFormula;
-
-  /**
-   * @var \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface
-   */
-  private UniversalAdapterInterface $universalAdapter;
 
   /**
    * Constructor.
@@ -37,14 +22,10 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
   public function __construct(
-    Formula_SelectInterface $decorated,
-    IdToFormulaInterface $idToFormula,
-    UniversalAdapterInterface $universalAdapter
-  ) {
-    $this->decorated = $decorated;
-    $this->idToFormula = $idToFormula;
-    $this->incarnator = $universalAdapter;
-  }
+    private readonly Formula_SelectInterface $decorated,
+    private readonly IdToFormulaInterface $idToFormula,
+    private readonly UniversalAdapterInterface $universalAdapter,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -79,7 +60,7 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
    */
   public function idGetLabel(string|int $id): ?TextInterface {
 
-    if (FALSE === /* $pos = */ strpos($id, '/')) {
+    if (!str_contains((string) $id, '/')) {
       return $this->decorated->idGetLabel($id);
     }
 
@@ -97,11 +78,11 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
    */
   public function idIsKnown(string|int $id): bool {
 
-    if (FALSE === /* $pos = */ strpos($id, '/')) {
+    if (!\str_contains((string) $id, '/')) {
       return $this->decorated->idIsKnown($id);
     }
 
-    [$prefix, $suffix] = explode('/', $id, 2);
+    [$prefix, $suffix] = explode('/', (string) $id, 2);
 
     if (NULL === $subFormula = $this->idGetSelectFormula($prefix)) {
       return FALSE;
@@ -115,7 +96,7 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
    *
    * @return \Donquixote\Ock\Formula\Select\Formula_SelectInterface|null
    */
-  private function idGetSelectFormula($id): ?Formula_SelectInterface {
+  private function idGetSelectFormula(string|int $id): ?Formula_SelectInterface {
 
     if (NULL === $idFormula = $this->idGetIdFormula($id)) {
       return NULL;
@@ -129,24 +110,26 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return \Donquixote\Ock\Formula\Id\Formula_IdInterface|null
    */
-  private function idGetIdFormula(string $id): ?Formula_IdInterface {
-
+  private function idGetIdFormula(string|int $id): ?Formula_IdInterface {
     if (NULL === $nestedFormula = $this->idToFormula->idGetFormula($id)) {
+      // This id has no children.
       return NULL;
     }
 
     try {
-      $subtree = InlineDrilldown::fromFormula($nestedFormula, $this->incarnator);
+      return $this->universalAdapter->adapt(
+        $nestedFormula,
+        InlineDrilldownInterface::class,
+      )?->getIdFormula();
     }
-    catch (IncarnatorException $e) {
+    catch (AdapterException) {
+      // @todo Log this.
       return NULL;
     }
-
-    return $subtree->getIdFormula();
   }
 
 }

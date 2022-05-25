@@ -4,51 +4,77 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Attribute\Plugin;
 
+use Donquixote\Adaptism\Exception\MalformedDeclarationException;
+use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\Adaptism\Util\ReflectionTypeUtil;
+use Donquixote\Adaptism\Util\ServiceAttributesUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactory_StaticMethod;
+use Donquixote\Ock\Formula\FromContainer\Formula_FromContainer_StaticMethod;
 use Donquixote\Ock\Plugin\PluginDeclaration;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
 class OckPluginFormula extends PluginAttributeBase {
 
   /**
+   * Constructor.
+   *
+   * @param class-string $type
+   *   The instance type produced by the plugin formula.
+   * @param string $id
+   *   The id under which to register the plugin.
+   * @param string $label
+   *   Label for the plugin.
+   * @param bool $translate
+   *   TRUE to translate the label.
+   */
+  public function __construct(
+    private readonly string $type,
+    string $id,
+    string $label,
+    bool $translate = TRUE,
+  ) {
+    parent::__construct($id, $label, $translate);
+  }
+
+  /**
    * {@inheritdoc}
    */
-  public function fromClass(\ReflectionClass $reflectionClass): never {
+  public function onClass(\ReflectionClass $reflectionClass): never {
     throw new \RuntimeException('This attribute cannot be used on a class.');
   }
 
   /**
    * {@inheritdoc}
    */
-  public function fromMethod(\ReflectionMethod $reflectionMethod): PluginDeclaration {
+  public function onMethod(\ReflectionMethod $reflectionMethod): PluginDeclaration {
     if (!$reflectionMethod->isStatic()) {
-      throw new \RuntimeException(\sprintf(
+      throw new MalformedDeclarationException(\sprintf(
         'Method %s must be static.',
-        $reflectionMethod->getDeclaringClass()->getName()
-        . '::' . $reflectionMethod->getName() . '()'));
+        MessageUtil::formatReflector($reflectionMethod),
+      ));
     }
-    $rtype = $reflectionMethod->getReturnType();
-    if (!$rtype instanceof \ReflectionNamedType || $rtype->isBuiltin()) {
-      throw new \RuntimeException(\sprintf(
-        'Missing or unexpected return type on %s.',
-        $reflectionMethod->getDeclaringClass()->getName()
-        . '::' . $reflectionMethod->getName() . '()'));
-    }
-    $class = $rtype->getName();
-    /** @psalm-suppress TypeDoesNotContainType */
-    if ($class === 'self' || $class === 'static') {
-      $class = $reflectionMethod->getDeclaringClass()->getName();
-    }
-    if (!\is_a($class, FormulaInterface::class, true)) {
-      throw new \RuntimeException(\sprintf(
+    $returnClass = ReflectionTypeUtil::requireGetClassLikeType($reflectionMethod, true);
+    if (!\is_a($returnClass, FormulaInterface::class, true)) {
+      throw new MalformedDeclarationException(\sprintf(
         'Unexpected return type on %s.',
-        $reflectionMethod->getDeclaringClass()->getName()
-        . '::' . $reflectionMethod->getName() . '()'));
+        MessageUtil::formatReflector($reflectionMethod),
+      ));
+    }
+    $serviceIds = ServiceAttributesUtil::paramsGetServiceIds($reflectionMethod->getParameters());
+    $formula = new Formula_FromContainer_StaticMethod(
+      [$reflectionMethod->getDeclaringClass()->getName(), $reflectionMethod->getName()],
+      $serviceIds,
+    );
+    try {
+      $rclass = new \ReflectionClass($this->type);
+    }
+    catch (\ReflectionException $e) {
+      throw new MalformedDeclarationException($e->getMessage(), 0, $e);
     }
     return $this->formulaGetNamedPlugin(
-      Formula_FormulaFactory_StaticMethod::fromReflectionMethod($reflectionMethod),
-      $reflectionMethod->getDeclaringClass()->getInterfaceNames());
+      $formula,
+      $rclass->getInterfaceNames(),
+    );
   }
 
 }

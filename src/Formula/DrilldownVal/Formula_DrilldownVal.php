@@ -12,11 +12,6 @@ use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 class Formula_DrilldownVal extends Formula_DrilldownValBase {
 
   /**
-   * @var \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface
-   */
-  private $v2v;
-
-  /**
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $decorated
    * @param string|null $idKey
    * @param string|null $optionsKey
@@ -59,9 +54,11 @@ class Formula_DrilldownVal extends Formula_DrilldownValBase {
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $decorated
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
    */
-  public function __construct(Formula_DrilldownInterface $decorated, V2V_DrilldownInterface $v2v) {
+  public function __construct(
+    Formula_DrilldownInterface $decorated,
+    private readonly V2V_DrilldownInterface $v2v,
+  ) {
     parent::__construct($decorated);
-    $this->v2v = $v2v;
   }
 
   /**

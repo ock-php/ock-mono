@@ -9,18 +9,13 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_FlatSelect_Fixed implements Formula_FlatSelectInterface, FlatSelectBuilderInterface {
 
   /**
-   * @var \Donquixote\Ock\Text\TextInterface[]
-   */
-  private $options;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Text\TextInterface[] $options
    */
-  public function __construct(array $options) {
-    $this->options = $options;
-  }
+  public function __construct(
+    private array $options,
+  ) {}
 
   /**
    * {@inheritdoc}

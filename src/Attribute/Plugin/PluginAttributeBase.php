@@ -17,26 +17,17 @@ use Donquixote\Ock\Text\TextInterface;
 abstract class PluginAttributeBase implements PluginAttributeInterface {
 
   /**
-   * @var string
-   */
-  private string $id;
-
-  /**
-   * @var TextInterface
-   */
-  private TextInterface $label;
-
-  /**
    * Constructor.
    *
    * @param string $id
    * @param string $label
    * @param bool $translate
    */
-  public function __construct(string $id, string $label, bool $translate = TRUE) {
-    $this->id = $id;
-    $this->label = $translate ? Text::t($label) : Text::s($label);
-  }
+  public function __construct(
+    private string $id,
+    private string $label,
+    private bool $translate = TRUE,
+  ) {}
 
   /**
    * @return string
@@ -46,10 +37,12 @@ abstract class PluginAttributeBase implements PluginAttributeInterface {
   }
 
   /**
-   * @return TextInterface
+   * {@inheritdoc}
    */
   public function getLabel(): TextInterface {
-    return $this->label;
+    return $this->translate
+      ? Text::t($this->label)
+      : Text::s($this->label);
   }
 
   /**
@@ -59,7 +52,7 @@ abstract class PluginAttributeBase implements PluginAttributeInterface {
    * @return PluginDeclaration
    */
   protected function formulaGetNamedPlugin(FormulaInterface $formula, array $types): PluginDeclaration {
-    $plugin = new Plugin($this->label, null, $formula, []);
+    $plugin = new Plugin($this->getLabel(), null, $formula, []);
     return new PluginDeclaration($this->id, $types, $plugin);
   }
 

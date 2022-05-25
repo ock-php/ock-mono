@@ -10,26 +10,6 @@ use Donquixote\Ock\Text\TextInterface;
 class Plugin {
 
   /**
-   * @var \Donquixote\Ock\Text\TextInterface
-   */
-  private $label;
-
-  /**
-   * @var \Donquixote\Ock\Text\TextInterface|null
-   */
-  private $description;
-
-  /**
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  private FormulaInterface $formula;
-
-  /**
-   * @var array
-   */
-  private array $info;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Text\TextInterface $label
@@ -37,12 +17,12 @@ class Plugin {
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param array $info
    */
-  public function __construct(TextInterface $label, ?TextInterface $description, FormulaInterface $formula, array $info) {
-    $this->label = $label;
-    $this->description = $description;
-    $this->formula = $formula;
-    $this->info = $info;
-  }
+  public function __construct(
+    private readonly TextInterface $label,
+    private readonly ?TextInterface $description,
+    private FormulaInterface $formula,
+    private array $info,
+  ) {}
 
   /**
    * Helper method to validate an array of plugins.
@@ -65,7 +45,7 @@ class Plugin {
    *
    * @return static
    */
-  public function withFormula(FormulaInterface $formula): self {
+  public function withFormula(FormulaInterface $formula): static {
     $clone = clone $this;
     $clone->formula = $formula;
     return $clone;

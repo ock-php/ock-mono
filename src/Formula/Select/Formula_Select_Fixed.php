@@ -10,20 +10,6 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Select_Fixed implements Formula_SelectInterface {
 
   /**
-   * Optgroups.
-   *
-   * @var \Donquixote\Ock\Text\TextInterface[]
-   */
-  private $groups;
-
-  /**
-   * Grouped options.
-   *
-   * @var \Donquixote\Ock\Text\TextInterface[][]
-   */
-  private $groupedOptions;
-
-  /**
    * Flattened options.
    *
    * @var \Donquixote\Ock\Text\TextInterface[]
@@ -42,17 +28,18 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Text\TextInterface[][] $grouped_options
+   * @param \Donquixote\Ock\Text\TextInterface[][] $groupedOptions
    *   Format: $[$group_id][$option_value] = $option_label,
    *   with $group_id === '' for top-level options.
    * @param \Donquixote\Ock\Text\TextInterface[] $groups
    *   Optgroup labels, without the top-level group.
    */
-  public function __construct(array $grouped_options, array $groups = []) {
-    $this->groupedOptions = $grouped_options;
-    $this->groups = $groups;
-    $this->flatOptions = $grouped_options
-      ? array_replace(...array_values($grouped_options))
+  public function __construct(
+    private array $groupedOptions,
+    private array $groups = [],
+  ) {
+    $this->flatOptions = $groupedOptions
+      ? array_replace(...array_values($groupedOptions))
       : [];
   }
 
@@ -64,7 +51,7 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
    *
    * @return static
    */
-  public function withOption(string $id, TextInterface $label, string $group_id = '', TextInterface $group_label = NULL): self {
+  public function withOption(string $id, TextInterface $label, string $group_id = '', TextInterface $group_label = NULL): static {
     $clone = clone $this;
     $clone->groupedOptions[$group_id][$id] = $label;
     $clone->flatOptions[$id] = $label;

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Donquixote\Ock\InlineDrilldown;
 
 use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\V2V\Group\V2V_Group_Trivial;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 use Donquixote\Ock\V2V\Value\V2V_Value_GroupV2V;
@@ -23,8 +23,15 @@ abstract class InlineDrilldown_Group implements InlineDrilldownInterface {
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   #[Adapter]
-  public static function fromGroup(Formula_GroupInterface $formula, UniversalAdapterInterface $universalAdapter): ?InlineDrilldownInterface {
-    return self::create($formula, new V2V_Group_Trivial(), $universalAdapter);
+  public static function fromGroup(
+    Formula_GroupInterface $formula,
+    UniversalAdapterInterface $universalAdapter,
+  ): ?InlineDrilldownInterface {
+    return self::create(
+      $formula,
+      new V2V_Group_Trivial(),
+      $universalAdapter,
+    );
   }
 
   /**
@@ -36,8 +43,15 @@ abstract class InlineDrilldown_Group implements InlineDrilldownInterface {
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   #[Adapter]
-  public static function fromGroupVal(Formula_GroupValInterface $formula, UniversalAdapterInterface $universalAdapter): ?InlineDrilldownInterface {
-    return self::create($formula->getDecorated(), $formula->getV2V(), $universalAdapter);
+  public static function fromGroupVal(
+    Formula_GroupValInterface $formula,
+    UniversalAdapterInterface $universalAdapter,
+  ): ?InlineDrilldownInterface {
+    return self::create(
+      $formula->getDecorated(),
+      $formula->getV2V(),
+      $universalAdapter,
+    );
   }
 
   /**
@@ -54,15 +68,13 @@ abstract class InlineDrilldown_Group implements InlineDrilldownInterface {
     if (count($itemFormulas) !== 1) {
       return NULL;
     }
-    $itemDrilldown = InlineDrilldown::fromFormula(
-      reset($itemFormulas),
-      $universalAdapter);
-    if ($itemDrilldown === NULL) {
-      return NULL;
-    }
     return new InlineDrilldown_V2V(
-      $itemDrilldown,
-      new V2V_Value_GroupV2V($v2v, key($itemFormulas)));
+      InlineDrilldown::fromFormula(
+        reset($itemFormulas),
+        $universalAdapter,
+      ),
+      new V2V_Value_GroupV2V($v2v, key($itemFormulas)),
+    );
   }
 
 }

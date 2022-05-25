@@ -13,25 +13,14 @@ use Donquixote\Ock\Text\Text;
 class Formula_Group_SameItemFormula implements Formula_GroupInterface {
 
   /**
-   * Formula for each item.
-   *
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  private FormulaInterface $formula;
-
-  /**
-   * @var \Donquixote\Ock\Text\TextInterface[]
-   */
-  private array $labels;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param \Donquixote\Ock\Text\TextInterface[] $labels
    */
-  public function __construct(FormulaInterface $formula, array $labels) {
-    $this->formula = $formula;
+  public function __construct(
+    private readonly FormulaInterface $formula,
+    private readonly array $labels,
+  ) {
     Text::validate(...$labels);
-    $this->labels = $labels;
   }
 
   /**

@@ -7,16 +7,11 @@ namespace Donquixote\Ock\V2V\Drilldown;
 class V2V_Drilldown_Merge implements V2V_DrilldownInterface {
 
   /**
-   * @var string
-   */
-  private $idKey;
-
-  /**
    * @param string $idKey
    */
-  public function __construct($idKey = 'id') {
-    $this->idKey = $idKey;
-  }
+  public function __construct(
+    private readonly string $idKey = 'id',
+  ) {}
 
   /**
    * {@inheritdoc}

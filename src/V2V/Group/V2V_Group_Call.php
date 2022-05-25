@@ -9,14 +9,7 @@ use Donquixote\Ock\Util\PhpUtil;
 class V2V_Group_Call implements V2V_GroupInterface {
 
   /**
-   * Function name, or static method with '::'.
-   *
-   * @var string
-   */
-  private string $fqn;
-
-  /**
-   * @param string $class
+   * @param class-string $class
    *
    * @return self
    */
@@ -25,25 +18,25 @@ class V2V_Group_Call implements V2V_GroupInterface {
   }
 
   /**
-   * @param callable $method
+   * @param callable&array{string, string} $method
    *
    * @return self
    */
-  public static function fromStaticMethod(callable $method): self {
-    if (!is_array($method) || !is_string($method[0]) || !isset($method[1])) {
+  public static function fromStaticMethod(array $method): self {
+    if (!is_callable($method) || !is_string($method[0])) {
       throw new \InvalidArgumentException('Must be a static method.');
     }
     return new self('\\' . $method[0] . '::' . $method[1]);
   }
 
   /**
-   * @param callable $function
+   * @param callable-string $function
    *
    * @return self
    */
-  public static function fromFunction(callable $function): self {
-    if (!is_string($function)) {
-      throw new \InvalidArgumentException('Must be a string function name.');
+  public static function fromFunction(string $function): self {
+    if (!\function_exists($function)) {
+      throw new \InvalidArgumentException(\sprintf('Function %s not found.', $function));
     }
     return new self('\\' . $function);
   }
@@ -81,9 +74,9 @@ class V2V_Group_Call implements V2V_GroupInterface {
    *
    * @param string $fqn
    */
-  private function __construct(string $fqn) {
-    $this->fqn = $fqn;
-  }
+  private function __construct(
+    private readonly string $fqn,
+  ) {}
 
   /**
    * {@inheritdoc}

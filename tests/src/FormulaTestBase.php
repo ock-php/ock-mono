@@ -94,10 +94,26 @@ class FormulaTestBase extends TestCase {
   /**
    * Data provider.
    *
-   * @return \Iterator
+   * @return \Iterator<array{string}>
    *   Parameter combos.
    */
   public function providerTestFormula(): \Iterator {
+    $dir = dirname(__DIR__) . '/fixtures/formula';
+    $candidates = scandir($dir);
+    foreach ($candidates as $candidate) {
+      if (preg_match('@^(\w+)\.php$@', $candidate, $m)) {
+        yield [$m[1]];
+      }
+    }
+  }
+
+  /**
+   * Data provider.
+   *
+   * @return \Iterator<array{string, string}>
+   *   Parameter combos.
+   */
+  public function providerTestFormulaCases(): \Iterator {
     $dir = dirname(__DIR__) . '/fixtures/formula';
     $candidates = scandir($dir);
     // Prevent duplicates, but detect orphan files.
@@ -109,10 +125,10 @@ class FormulaTestBase extends TestCase {
       }
     }
     foreach ($comboss_map as $base => $cases_map) {
-      /** @psalm-var array-key $base */
+      /** @psalm-suppress RedundantCast */
       $base = (string) $base;
       foreach ($cases_map as $case => $_) {
-        /** @psalm-var array-key $case */
+        /** @psalm-suppress RedundantCast */
         yield [$base, (string) $case];
       }
     }
@@ -121,7 +137,7 @@ class FormulaTestBase extends TestCase {
   /**
    * Data provider.
    *
-   * @return \Iterator<int, array>
+   * @return \Iterator<int, array{string, string}>
    *   Argument combos.
    */
   public function providerTestIface(): \Iterator {

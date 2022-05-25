@@ -8,12 +8,6 @@ use Donquixote\Ock\Util\PhpUtil;
 
 class V2V_Group_ObjectMethodCall implements V2V_GroupInterface {
 
-  private string $objectKey;
-
-  private string $method;
-
-  private array $paramKeys;
-
   /**
    * Constructor.
    *
@@ -21,11 +15,11 @@ class V2V_Group_ObjectMethodCall implements V2V_GroupInterface {
    * @param string $method
    * @param array $paramKeys
    */
-  public function __construct(string $objectKey, string $method, array $paramKeys) {
-    $this->objectKey = $objectKey;
-    $this->method = $method;
-    $this->paramKeys = $paramKeys;
-  }
+  public function __construct(
+    private readonly string $objectKey,
+    private readonly string $method,
+    private readonly array $paramKeys,
+  ) {}
 
   /**
    * {@inheritdoc}

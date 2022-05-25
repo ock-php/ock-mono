@@ -9,23 +9,13 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class Formula_FixedConf implements Formula_FixedConfInterface {
 
   /**
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  private $decorated;
-
-  /**
-   * @var mixed
-   */
-  private $conf;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    * @param mixed $conf
    */
-  public function __construct(FormulaInterface $decorated, $conf) {
-    $this->decorated = $decorated;
-    $this->conf = $conf;
-  }
+  public function __construct(
+    private readonly FormulaInterface $decorated,
+    private readonly mixed $conf,
+  ) {}
 
   /**
    * {@inheritdoc}

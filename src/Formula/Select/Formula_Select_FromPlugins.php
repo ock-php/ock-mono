@@ -10,25 +10,16 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
 
   /**
-   * @var \Donquixote\Ock\Plugin\Plugin[]
-   */
-  private $plugins;
-
-  /**
-   * @var \Donquixote\Ock\Text\TextInterface|\Donquixote\Ock\Text\TextInterface[]
-   */
-  private array $groupLabels;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Plugin[] $plugins
    * @param \Donquixote\Ock\Text\TextInterface[] $groupLabels
    */
-  public function __construct(array $plugins, array $groupLabels = []) {
+  public function __construct(
+    private readonly array $plugins,
+    private readonly array $groupLabels = [],
+  ) {
     Plugin::validate(...array_values($plugins));
-    $this->plugins = $plugins;
-    $this->groupLabels = $groupLabels;
   }
 
   /**
@@ -63,7 +54,7 @@ class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
    * {@inheritdoc}
    */
   public function idIsKnown(string|int $id): bool {
-    return isset($this->options[$id]);
+    return isset($this->plugins[$id]);
   }
 
 }

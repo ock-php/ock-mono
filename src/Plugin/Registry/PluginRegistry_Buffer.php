@@ -15,18 +15,13 @@ class PluginRegistry_Buffer implements PluginRegistryInterface {
   private $pluginss;
 
   /**
-   * @var \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface
-   */
-  private $decorated;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $decorated
    */
-  public function __construct(PluginRegistryInterface $decorated) {
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    private readonly PluginRegistryInterface $decorated,
+  ) {}
 
   /**
    * {@inheritdoc}

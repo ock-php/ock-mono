@@ -7,6 +7,9 @@ namespace Donquixote\Ock\DrilldownKeysHelper;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\Util\UtilBase;
 
+/**
+ * Static methods related to DrilldownKeysHelperInterface.
+ */
 final class DrilldownKeysHelper extends UtilBase {
 
   /**
@@ -21,12 +24,12 @@ final class DrilldownKeysHelper extends UtilBase {
   }
 
   /**
-   * @param string|int|null $idKey
-   * @param string|int|null $optionsKey
+   * @param array-key|null $idKey
+   * @param array-key|null $optionsKey
    *
    * @return \Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface
    */
-  public static function fromKeys($idKey, $optionsKey): DrilldownKeysHelperInterface {
+  public static function fromKeys(string|int|null $idKey, string|int|null $optionsKey): DrilldownKeysHelperInterface {
 
     if (NULL === $idKey) {
       return new DrilldownKeysHelper_IdKeyNull();

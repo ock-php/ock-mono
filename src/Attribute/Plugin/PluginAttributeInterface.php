@@ -17,15 +17,19 @@ interface PluginAttributeInterface {
    * @param \ReflectionClass $reflectionClass
    *
    * @return \Donquixote\Ock\Plugin\PluginDeclaration
+   *
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
-  public function fromClass(\ReflectionClass $reflectionClass): PluginDeclaration;
+  public function onClass(\ReflectionClass $reflectionClass): PluginDeclaration;
 
   /**
    * @param \ReflectionMethod $reflectionMethod
    *
    * @return \Donquixote\Ock\Plugin\PluginDeclaration
+   *
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
-  public function fromMethod(\ReflectionMethod $reflectionMethod): PluginDeclaration;
+  public function onMethod(\ReflectionMethod $reflectionMethod): PluginDeclaration;
 
   /**
    * @return string

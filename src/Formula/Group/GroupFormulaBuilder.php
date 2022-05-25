@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Group;
 
-use Donquixote\CallbackReflection\Callback\CallbackReflectionInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal;
 use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
@@ -12,7 +11,6 @@ use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\V2V\Group\V2V_Group_Call;
-use Donquixote\Ock\V2V\Group\V2V_Group_Callback;
 use Donquixote\Ock\V2V\Group\V2V_Group_Fixed;
 use Donquixote\Ock\V2V\Group\V2V_Group_ObjectMethodCall;
 use Donquixote\Ock\V2V\Group\V2V_Group_Partials;
@@ -183,16 +181,6 @@ class GroupFormulaBuilder {
    */
   public function callObjectMethod(string $objectKey, string $method, array $paramKeys): FormulaInterface {
     return $this->val(new V2V_Group_ObjectMethodCall($objectKey, $method, $paramKeys));
-  }
-
-  /**
-   * @param \Donquixote\CallbackReflection\Callback\CallbackReflectionInterface $callbackReflection
-   * @param string[]|null $keys
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public function createWithCallback(CallbackReflectionInterface $callbackReflection, array $keys = NULL): FormulaInterface {
-    return $this->val(new V2V_Group_Callback($callbackReflection), $keys);
   }
 
   /**

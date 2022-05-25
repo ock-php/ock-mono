@@ -9,23 +9,13 @@ use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 class V2V_Value_DrilldownFixedId implements V2V_ValueInterface {
 
   /**
-   * @var \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface
-   */
-  private $v2vDrilldown;
-
-  /**
-   * @var string
-   */
-  private $id;
-
-  /**
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2vDrilldown
    * @param string|int $id
    */
-  public function __construct(V2V_DrilldownInterface $v2vDrilldown, $id) {
-    $this->v2vDrilldown = $v2vDrilldown;
-    $this->id = $id;
-  }
+  public function __construct(
+    private readonly V2V_DrilldownInterface $v2vDrilldown,
+    private readonly string|int $id,
+  ) {}
 
   /**
    * {@inheritdoc}

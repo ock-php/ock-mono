@@ -9,21 +9,11 @@ use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\Ock\Formula\SequenceVal\Formula_SequenceValInterface;
-use Donquixote\Ock\Util\MessageUtil;
+use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\Ock\V2V\Sequence\V2V_Sequence_Trivial;
 use Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface;
 
 class Generator_Sequence implements GeneratorInterface {
-
-  /**
-   * @var \Donquixote\Ock\Generator\GeneratorInterface
-   */
-  private $itemGenerator;
-
-  /**
-   * @var \Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface
-   */
-  private $v2v;
 
   /**
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $formula
@@ -56,37 +46,37 @@ class Generator_Sequence implements GeneratorInterface {
    * @param \Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface $v2v
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
-   * @return self|null
+   * @return self
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  private static function create(Formula_SequenceInterface $formula, V2V_SequenceInterface $v2v, UniversalAdapterInterface $universalAdapter): ?Generator_Sequence {
-
-    $itemGenerator = Generator::fromFormula(
-      $formula->getItemFormula(),
-      $universalAdapter
+  private static function create(
+    Formula_SequenceInterface $formula,
+    V2V_SequenceInterface $v2v,
+    UniversalAdapterInterface $universalAdapter,
+  ): self {
+    return new self(
+      Generator::fromFormula(
+        $formula->getItemFormula(),
+        $universalAdapter,
+      ),
+      $v2v,
     );
-
-    if (NULL === $itemGenerator) {
-      return NULL;
-    }
-
-    return new self($itemGenerator, $v2v);
   }
 
   /**
    * @param \Donquixote\Ock\Generator\GeneratorInterface $itemGenerator
    * @param \Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface $v2v
    */
-  protected function __construct(GeneratorInterface $itemGenerator, V2V_SequenceInterface $v2v) {
-    $this->itemGenerator = $itemGenerator;
-    $this->v2v = $v2v;
-  }
+  protected function __construct(
+    private readonly GeneratorInterface $itemGenerator,
+    private readonly V2V_SequenceInterface $v2v,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
 
     if (NULL === $conf) {
       $conf = [];

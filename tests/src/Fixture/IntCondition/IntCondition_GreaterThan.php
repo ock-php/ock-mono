@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Tests\Fixture\IntCondition;
 use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Primitive\Formula_Int;
 use Donquixote\Ock\Text\Text;
 
@@ -40,12 +40,11 @@ class IntCondition_GreaterThan implements IntConditionInterface {
   /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  #[OckPluginFormula('greater_than', 'Greater than')]
+  #[OckPluginFormula(self::class, 'greater_than', 'Greater than')]
   public static function formula(): FormulaInterface {
-    return Formula_GroupVal_Callback::fromClass(
-      self::class,
-      ['operand' => new Formula_Int()],
-      ['operand' => Text::t('Operand')]);
+    return Formula::group()
+      ->add('operand', new Formula_Int(), Text::t('Operand'))
+      ->construct(self::class);
   }
 
   /**
