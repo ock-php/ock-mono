@@ -35,15 +35,14 @@ class SummarizerTest extends FormulaTestBase {
       $formula,
       $incarnator);
     $summary = $summarizer->confGetSummary($conf);
-    self::assertNotNull($summary);
 
     XmlTestUtil::assertXmlFileContents(
       "$dir/$base.$case.html",
-      $summary->convert(new Translator_Passthru()));
+      $summary?->convert(new Translator_Passthru()) ?? '?');
 
     XmlTestUtil::assertXmlFileContents(
       "$dir/$base.$case.t.html",
-      $summary->convert(new Translator_Test()));
+      $summary?->convert(new Translator_Test()) ?? '?');
   }
 
   /**
