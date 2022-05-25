@@ -35,7 +35,7 @@ class XmlTestUtil {
    * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
    * @throws \PHPUnit\Framework\ExpectationFailedException
    */
-  public static function assertXmlFileContents(string $file, string $xml_fragment_actual) {
+  public static function assertXmlFileContents(string $file, string $xml_fragment_actual): void {
     $xml_fragment_normalized = self::normalizeXmlFragment($xml_fragment_actual);
     TestUtil::assertFileContents($file, $xml_fragment_normalized);
   }
