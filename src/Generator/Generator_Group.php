@@ -83,7 +83,10 @@ class Generator_Group implements GeneratorInterface {
    */
   public function confGetPhp(mixed $conf): string {
 
-    if (!\is_array($conf)) {
+    if ($conf === null) {
+      $conf = [];
+    }
+    elseif (!\is_array($conf)) {
       if ($this->itemGenerators) {
         // At least one configurable item exists in the group.
         throw new GeneratorException_IncompatibleConfiguration(
