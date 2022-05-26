@@ -10,7 +10,7 @@ use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 /**
- * Incarnator from Formula_Group* to Optionlessness*.
+ * Adapter from Formula_Group* to Optionlessness*.
  */
 final class Optionlessness_Group extends UtilBase {
 
@@ -21,7 +21,10 @@ final class Optionlessness_Group extends UtilBase {
    * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
    */
   #[Adapter]
-  public static function fromFormula(Formula_GroupInterface $group, UniversalAdapterInterface $universalAdapter): OptionlessnessInterface {
+  public static function fromFormula(
+    Formula_GroupInterface $group,
+    UniversalAdapterInterface $universalAdapter,
+  ): OptionlessnessInterface {
     foreach ($group->getItemFormulas() as $item) {
       if (!Optionlessness::checkFormula($item, $universalAdapter)) {
         // At least one group item has config options.

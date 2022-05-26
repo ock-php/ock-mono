@@ -32,7 +32,7 @@ use Psr\Container\NotFoundExceptionInterface;
 class FormulaTestBase extends TestCase {
 
   /**
-   * Gets an Incarnator* object.
+   * Gets a universal adapter to convert formulas.
    *
    * @param object[] $objects
    *   Objects to pass to the constructors.

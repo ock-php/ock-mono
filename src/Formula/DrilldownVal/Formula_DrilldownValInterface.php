@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\DrilldownVal;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
 use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 
@@ -13,7 +13,7 @@ interface Formula_DrilldownValInterface extends Formula_ValueToValueBaseInterfac
   /**
    * @return \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
    */
-  public function getDecorated(): FormulaInterface;
+  public function getDecorated(): Formula_DrilldownInterface;
 
   /**
    * @return \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface

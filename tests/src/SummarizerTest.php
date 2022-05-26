@@ -29,20 +29,20 @@ class SummarizerTest extends FormulaTestBase {
       self::fail('Formula must implement FormulaInterface.');
     }
     $conf = Yaml::parseFile("$dir/$base.$case.yml");
-    $incarnator = $this->getAdapter();
+    $adapter = $this->getAdapter();
 
-    $summarizer = Summarizer::fromFormula(
-      $formula,
-      $incarnator);
+    $summarizer = Summarizer::fromFormula($formula, $adapter);
     $summary = $summarizer->confGetSummary($conf);
 
     XmlTestUtil::assertXmlFileContents(
       "$dir/$base.$case.html",
-      $summary?->convert(new Translator_Passthru()) ?? '?');
+      $summary?->convert(new Translator_Passthru()) ?? '?',
+    );
 
     XmlTestUtil::assertXmlFileContents(
       "$dir/$base.$case.t.html",
-      $summary?->convert(new Translator_Test()) ?? '?');
+      $summary?->convert(new Translator_Test()) ?? '?',
+    );
   }
 
   /**
@@ -61,22 +61,22 @@ class SummarizerTest extends FormulaTestBase {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
-    $incarnator = $this->getAdapter();
+    $adapter = $this->getAdapter();
 
-    $summarizer = Summarizer::fromIface(
-      $interface,
-      $incarnator);
+    $summarizer = Summarizer::fromIface($interface, $adapter);
     $summary = $summarizer->confGetSummary($conf);
     self::assertNotNull($summary);
 
     XmlTestUtil::assertXmlFileContents(
       "$filebase.html",
-      $summary->convert(new Translator_Passthru()));
+      $summary->convert(new Translator_Passthru()),
+    );
 
     if (file_exists($file = "$filebase.t.html")) {
       XmlTestUtil::assertXmlFileContents(
         $file,
-        $summary->convert(new Translator_Test()));
+        $summary->convert(new Translator_Test()),
+      );
     }
   }
 

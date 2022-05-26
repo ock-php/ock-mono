@@ -37,15 +37,14 @@ class GeneratorTest extends FormulaTestBase {
       self::fail('Formula must implement FormulaInterface.');
     }
     $conf = Yaml::parseFile("$dir/$base.$case.yml");
-    $incarnator = $this->getAdapter();
-    $generator = Generator::fromFormula(
-      $formula,
-      $incarnator);
+    $adapter = $this->getAdapter();
+    $generator = Generator::fromFormula($formula, $adapter);
     $this->doTestGenerator(
       $generator,
       $conf,
       "$dir/$base.$case.php",
-      NULL);
+      null,
+    );
   }
 
   /**
@@ -62,10 +61,8 @@ class GeneratorTest extends FormulaTestBase {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
-    $incarnator = $this->getAdapter();
-    $generator = Generator::fromIface(
-      $interface,
-      $incarnator);
+    $adapter = $this->getAdapter();
+    $generator = Generator::fromIface($interface, $adapter);
     $this->doTestGenerator(
       $generator,
       $conf,

@@ -9,7 +9,7 @@ use Donquixote\Ock\V2V\Drilldown\V2V_Drilldown_Arrify;
 use Donquixote\Ock\V2V\Drilldown\V2V_Drilldown_Merge;
 use Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface;
 
-class Formula_DrilldownVal extends Formula_DrilldownValBase {
+class Formula_DrilldownVal implements Formula_DrilldownValInterface {
 
   /**
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $decorated
@@ -55,17 +55,22 @@ class Formula_DrilldownVal extends Formula_DrilldownValBase {
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
    */
   public function __construct(
-    Formula_DrilldownInterface $decorated,
+    private readonly Formula_DrilldownInterface $decorated,
     private readonly V2V_DrilldownInterface $v2v,
-  ) {
-    parent::__construct($decorated);
-  }
+  ) {}
 
   /**
    * {@inheritdoc}
    */
   public function getV2V(): V2V_DrilldownInterface {
     return $this->v2v;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDecorated(): Formula_DrilldownInterface {
+    return $this->decorated;
   }
 
 }

@@ -9,16 +9,11 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class Formula_Neutral_ProxyWithReference extends Formula_Neutral_ProxyBase {
 
   /**
-   * @var \Donquixote\Ock\Core\Formula\FormulaInterface|null
-   */
-  private $formulaRef;
-
-  /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface|null $formulaRef
    */
-  public function __construct(FormulaInterface &$formulaRef = NULL) {
-    $this->formulaRef =& $formulaRef;
-  }
+  public function __construct(
+    private ?FormulaInterface &$formulaRef = null,
+  ) {}
 
   /**
    * {@inheritdoc}

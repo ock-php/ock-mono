@@ -8,6 +8,7 @@ use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\Generator_Neutral;
+use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Plugin\Plugin;
 use Donquixote\Ock\Tests\Fixture\IntCondition\IntCondition_GreaterThan;
 use Donquixote\Ock\Tests\Fixture\IntCondition\IntConditionInterface;
@@ -47,7 +48,7 @@ class DiscoveryTest extends FormulaTestBase {
     $registry = $this->getPluginRegistry();
     $pluginss = $registry->getPluginss();
 
-    $incarnator = $this->getAdapter();
+    $adapter = $this->getAdapter();
 
     $pluginss_by_id = [];
     foreach ($pluginss as $type => $plugins) {
@@ -55,12 +56,13 @@ class DiscoveryTest extends FormulaTestBase {
         static::assertInstanceOf(
           Plugin::class,
           $plugin,
-          "\$pluginss['$type']['$id'] instanceof Plugin.");
-        $formula = $plugin->getFormula();
-        $generator = Generator::fromFormula($formula, $incarnator);
+          "\$pluginss['$type']['$id'] instanceof Plugin.",
+        );
+        $generator = $adapter->adapt($plugin->getFormula(), GeneratorInterface::class);
         static::assertNotNull(
           $generator,
-          "Generator created for \$pluginss['$type']['$id'].");
+          "Generator created for \$pluginss['$type']['$id'].",
+        );
         $pluginss_by_id[$id][$type] = $plugin;
       }
     }
@@ -78,7 +80,7 @@ class DiscoveryTest extends FormulaTestBase {
     $formula = $plugin->getFormula();
     $generator = Generator::fromFormula(
       $formula,
-      $incarnator);
+      $adapter);
 
     self::assertSame(
       '\\' . IntCondition_GreaterThan::class . '::positive()',
@@ -86,7 +88,7 @@ class DiscoveryTest extends FormulaTestBase {
 
     $formula = Formula::iface(IntOpInterface::class);
 
-    $generator = Generator::fromFormula($formula, $incarnator);
+    $generator = Generator::fromFormula($formula, $adapter);
 
     self::assertNotNull($generator, 'Generator not NULL.');
   }

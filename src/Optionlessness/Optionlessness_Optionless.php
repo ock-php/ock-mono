@@ -9,7 +9,7 @@ use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 /**
- * Incarnator from Formula_Optionless* to Optionlessness*.
+ * Adapter from Formula_Optionless* to Optionlessness*.
  */
 final class Optionlessness_Optionless extends UtilBase {
 
@@ -19,7 +19,9 @@ final class Optionlessness_Optionless extends UtilBase {
    * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
    */
   #[Adapter]
-  public static function fromFormula(Formula_OptionlessInterface $formula): OptionlessnessInterface {
+  public static function fromFormula(
+    Formula_OptionlessInterface $formula,
+  ): OptionlessnessInterface {
     return new Optionlessness(TRUE);
   }
 

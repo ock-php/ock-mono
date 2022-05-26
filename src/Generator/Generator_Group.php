@@ -89,19 +89,17 @@ class Generator_Group implements GeneratorInterface {
     elseif (!\is_array($conf)) {
       if ($this->itemGenerators) {
         // At least one configurable item exists in the group.
-        throw new GeneratorException_IncompatibleConfiguration(
-          sprintf(
-            'Expected an array, found %s.',
-            MessageUtil::formatValue($conf)));
+        throw new GeneratorException_IncompatibleConfiguration(sprintf(
+          'Expected an array, found %s.',
+          MessageUtil::formatValue($conf),
+        ));
       }
     }
 
     $phpStatements = [];
     foreach ($this->itemGenerators as $key => $itemGenerator) {
-
       // @todo Complain if setting is missing, instead of assuming NULL.
       $itemConf = $conf[$key] ?? NULL;
-
       $phpStatements[$key] = $itemGenerator->confGetPhp($itemConf);
     }
 
