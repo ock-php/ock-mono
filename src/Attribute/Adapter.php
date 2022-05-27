@@ -87,6 +87,12 @@ final class Adapter {
     \ReflectionClass $reflectionClass,
     \ReflectionMethod $reflectionMethod
   ): AdapterDefinitionInterface {
+    if (!$reflectionMethod->isPublic()) {
+      throw new MalformedDeclarationException(\sprintf(
+        'Method %s must be public.',
+        MessageUtil::formatReflector($reflectionMethod),
+      ));
+    }
     $class = $reflectionClass->getName();
     $method = $reflectionMethod->getName();
     $where = $class . '::' . $method . '()';
