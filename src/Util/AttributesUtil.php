@@ -120,7 +120,7 @@ class AttributesUtil {
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
    */
-  public static function getOrRequireSingle(
+  private static function getOrRequireSingle(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
     bool $require,
