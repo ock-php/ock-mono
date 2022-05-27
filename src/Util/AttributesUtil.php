@@ -9,6 +9,26 @@ use Donquixote\Adaptism\Exception\MalformedDeclarationException;
 class AttributesUtil {
 
   /**
+   * @template T as object
+   *
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
+   * @param class-string<T> $name
+   *
+   * @return list<T>
+   */
+  public static function getInstances(
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
+    string $name,
+  ): array {
+    $instances = [];
+    /** @var \ReflectionAttribute<T> $attribute */
+    foreach ($reflector->getAttributes($name, \ReflectionAttribute::IS_INSTANCEOF) as $attribute) {
+      $instances[] = $attribute->newInstance();
+    }
+    return $instances;
+  }
+
+  /**
    * @template T
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
