@@ -7,12 +7,10 @@ use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
 use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface;
 use Donquixote\Adaptism\AdapterMap\AdapterMap_DefinitionList;
 use Donquixote\Adaptism\AdapterMap\AdapterMapInterface;
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_DispatchByType;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
 use Psr\Container\ContainerInterface;
 
 class FixturesUtil {
@@ -34,14 +32,11 @@ class FixturesUtil {
   }
 
   public static function getUniversalAdapter(ContainerInterface $container = null): UniversalAdapterInterface {
-    return new UniversalAdapter(
-      new SpecificAdapter_DispatchByType(
-        self::getAdapterMap(
-          $container ?? self::getContainer([
-            \DateTimeZone::class => new \DateTimeZone('America/New_York'),
-          ]),
-        ),
-      ),
+    return UniversalAdapter::fromClassFilesIA(
+      self::getClassFilesIA(),
+      $container ?? self::getContainer([
+        \DateTimeZone::class => new \DateTimeZone('America/New_York'),
+      ]),
     );
   }
 
@@ -53,10 +48,8 @@ class FixturesUtil {
   }
 
   public static function getDefinitionList(): AdapterDefinitionListInterface {
-    return new AdapterDefinitionList_Discovery(
-      new ReflectionClassesIA_ClassFilesIA(
-        self::getClassFilesIA(),
-      ),
+    return AdapterDefinitionList_Discovery::fromClassFilesIA(
+      self::getClassFilesIA(),
     );
   }
 

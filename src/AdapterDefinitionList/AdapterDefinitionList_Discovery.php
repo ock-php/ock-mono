@@ -8,6 +8,8 @@ use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
 use Donquixote\Adaptism\Exception\MalformedDeclarationException;
 use Donquixote\Adaptism\Util\AttributesUtil;
+use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 
 class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface {
@@ -15,6 +17,12 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
   public function __construct(
     private readonly ReflectionClassesIAInterface $reflectionClassesIA,
   ) {}
+
+  public static function fromClassFilesIA(ClassFilesIAInterface $classFilesIA): self {
+    return new self(
+      new ReflectionClassesIA_ClassFilesIA($classFilesIA),
+    );
+  }
 
   /**
    * {@inheritdoc}

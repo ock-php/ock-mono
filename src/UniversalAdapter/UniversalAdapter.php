@@ -3,7 +3,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\UniversalAdapter;
 
+use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
+use Donquixote\Adaptism\AdapterMap\AdapterMap_DefinitionList;
+use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_DispatchByType;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface;
+use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Psr\Container\ContainerInterface;
 
 class UniversalAdapter implements UniversalAdapterInterface {
 
@@ -15,6 +20,16 @@ class UniversalAdapter implements UniversalAdapterInterface {
   public function __construct(
     private readonly SpecificAdapterInterface $specificAdapter,
   ) {}
+
+  public static function fromClassFilesIA(
+    ClassFilesIAInterface $classFilesIA,
+    ContainerInterface $container,
+  ): self {
+    $dl = AdapterDefinitionList_Discovery::fromClassFilesIA($classFilesIA);
+    $am = new AdapterMap_DefinitionList($dl, $container);
+    $sa = new SpecificAdapter_DispatchByType($am);
+    return new self($sa);
+  }
 
   /**
    * {@inheritdoc}
