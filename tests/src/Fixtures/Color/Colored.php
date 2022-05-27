@@ -32,7 +32,7 @@ class Colored {
   }
 
   public function __construct(
-    private HexColorInterface|RgbColorInterface $color,
+    private readonly HexColorInterface|RgbColorInterface $color,
   ) {}
 
   public function getColor(): HexColorInterface|RgbColorInterface {

@@ -36,7 +36,7 @@ use Donquixote\Adaptism\Util\ReflectionUtil;
 final class Adapter {
 
   public function __construct(
-    private ?int $specifity = null
+    private readonly ?int $specifity = null
   ) {}
 
   /**

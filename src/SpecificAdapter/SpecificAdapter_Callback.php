@@ -19,9 +19,9 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
    */
   public function __construct(
     callable $callback,
-    private bool $hasResultTypeParameter,
-    private bool $hasUniversalAdapterParameter,
-    private array $moreArgs,
+    private readonly bool $hasResultTypeParameter,
+    private readonly bool $hasUniversalAdapterParameter,
+    private readonly array $moreArgs,
   ) {
     $this->callback = $callback;
   }

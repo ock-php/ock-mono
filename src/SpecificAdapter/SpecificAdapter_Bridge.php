@@ -14,8 +14,8 @@ class SpecificAdapter_Bridge implements SpecificAdapterInterface {
    * @param class-string $bridgeType
    */
   public function __construct(
-    private SpecificAdapterInterface $first,
-    private string $bridgeType,
+    private readonly SpecificAdapterInterface $first,
+    private readonly string $bridgeType,
   ) {}
 
   /**

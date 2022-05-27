@@ -51,7 +51,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
    */
   public function __construct(
     array $definitions,
-    private ContainerInterface $container,
+    private readonly ContainerInterface $container,
   ) {
     $ids = \array_keys($definitions);
     $this->resultTypesById = \array_fill_keys($ids, []);

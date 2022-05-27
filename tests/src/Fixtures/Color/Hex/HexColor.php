@@ -16,7 +16,7 @@ class HexColor implements HexColorInterface {
    * @param string $hexCode
    */
   public function __construct(
-    private string $hexCode,
+    private readonly string $hexCode,
   ) {}
 
   /**

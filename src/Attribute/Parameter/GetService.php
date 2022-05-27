@@ -17,7 +17,7 @@ class GetService {
    *   Id of the service, or NULL to use interface name.
    */
   public function __construct(
-    private ?string $id = NULL,
+    private readonly ?string $id = NULL,
   ) {}
 
   public function getId(): ?string {

@@ -20,7 +20,7 @@ class NamedColor {
   ];
 
   public function __construct(
-    private string $color,
+    private readonly string $color,
   ) {}
 
   #[Adapter]

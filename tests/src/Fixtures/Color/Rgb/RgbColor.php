@@ -6,9 +6,9 @@ namespace Donquixote\Adaptism\Tests\Fixtures\Color\Rgb;
 class RgbColor implements RgbColorInterface {
 
   public function __construct(
-    private int $r,
-    private int $g,
-    private int $b,
+    private readonly int $r,
+    private readonly int $g,
+    private readonly int $b,
   ) {}
 
   /**

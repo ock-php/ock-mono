@@ -17,10 +17,10 @@ class AdapterDefinition_Simple implements AdapterDefinitionInterface {
    * @param \Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface $adapterFromContainer
    */
   public function __construct(
-    private ?string $sourceType,
-    private ?string $resultType,
-    private int $specifity,
-    private AdapterFromContainerInterface $adapterFromContainer,
+    private readonly ?string $sourceType,
+    private readonly ?string $resultType,
+    private readonly int $specifity,
+    private readonly AdapterFromContainerInterface $adapterFromContainer,
   ) {}
 
   public function getResultType(): ?string {

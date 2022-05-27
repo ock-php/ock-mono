@@ -20,7 +20,7 @@ class FixturesUtil {
   public static function getContainer(array $objects): ContainerInterface {
     return new class($objects) implements ContainerInterface {
       public function __construct(
-        private array $objects,
+        private readonly array $objects,
       ) {}
 
       public function get(string $id) {

@@ -12,8 +12,8 @@ class AdapterMap_DefinitionList implements AdapterMapInterface {
   private ?AdapterMapInterface $proxy = null;
 
   public function __construct(
-    private AdapterDefinitionListInterface $definitionList,
-    private ContainerInterface $container,
+    private readonly AdapterDefinitionListInterface $definitionList,
+    private readonly ContainerInterface $container,
   ) {}
 
   public function getSuitableAdapters(?string $adapteeType, ?string $resultType): \Iterator {

@@ -11,7 +11,7 @@ use Donquixote\Adaptism\Attribute\Parameter\GetService;
 class TimeConverter {
 
   public function __construct(
-    #[GetService] private \DateTimeZone $timeZone,
+    #[GetService] private readonly \DateTimeZone $timeZone,
   ) {}
 
   #[Adapter]

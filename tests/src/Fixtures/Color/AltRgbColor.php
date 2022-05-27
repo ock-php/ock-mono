@@ -16,9 +16,9 @@ use Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColor;
 class AltRgbColor {
 
   public function __construct(
-    private int $r,
-    private int $g,
-    private int $b,
+    private readonly int $r,
+    private readonly int $g,
+    private readonly int $b,
   ) {}
 
   #[Adapter]

@@ -11,7 +11,7 @@ use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface {
 
   public function __construct(
-    private ReflectionClassesIAInterface $reflectionClassesIA,
+    private readonly ReflectionClassesIAInterface $reflectionClassesIA,
   ) {}
 
   /**

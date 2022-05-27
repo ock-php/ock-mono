@@ -25,10 +25,10 @@ class AdapterFromContainer_ObjectMethod implements AdapterFromContainerInterface
    */
   public function __construct(
     callable $factoryCallback,
-    private string $method,
-    private bool $hasResultTypeParameter,
-    private bool $hasUniversalAdapterParameter,
-    private array $factoryServiceIds,
+    private readonly string $method,
+    private readonly bool $hasResultTypeParameter,
+    private readonly bool $hasUniversalAdapterParameter,
+    private readonly array $factoryServiceIds,
   ) {
     $this->factoryCallback = $factoryCallback;
   }

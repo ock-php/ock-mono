@@ -23,10 +23,10 @@ class AdapterFromContainer_Callback implements AdapterFromContainerInterface {
    * @noinspection PhpDocSignatureInspection
    */
   public function __construct(
-    private array|object|string $callback,
-    private bool $hasResultTypeParameter,
-    private bool $hasUniversalAdapterParameter,
-    private array $serviceIds,
+    private readonly array|object|string $callback,
+    private readonly bool $hasResultTypeParameter,
+    private readonly bool $hasUniversalAdapterParameter,
+    private readonly array $serviceIds,
   ) {}
 
   /**

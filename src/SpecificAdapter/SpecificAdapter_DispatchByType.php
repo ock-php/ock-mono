@@ -15,7 +15,7 @@ class SpecificAdapter_DispatchByType implements SpecificAdapterInterface {
    * @param \Donquixote\Adaptism\AdapterMap\AdapterMapInterface $adapterMap
    */
   public function __construct(
-    private AdapterMapInterface $adapterMap,
+    private readonly AdapterMapInterface $adapterMap,
   ) {}
 
   /**

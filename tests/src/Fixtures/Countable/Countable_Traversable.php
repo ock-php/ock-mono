@@ -13,7 +13,7 @@ class Countable_Traversable implements \Countable {
    * @param \Traversable $iterator
    */
   public function __construct(
-    #[Adaptee] private \Traversable $iterator,
+    #[Adaptee] private readonly \Traversable $iterator,
   ) {}
 
   /**

@@ -13,7 +13,7 @@ class UniversalAdapter implements UniversalAdapterInterface {
    * @param \Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface $specificAdapter
    */
   public function __construct(
-    private SpecificAdapterInterface $specificAdapter,
+    private readonly SpecificAdapterInterface $specificAdapter,
   ) {}
 
   /**

@@ -11,7 +11,7 @@ use Donquixote\Adaptism\Attribute\Parameter\GetService;
 class Timestamp {
 
   public function __construct(
-    private int $timestamp,
+    private readonly int $timestamp,
   ) {}
 
   #[Adapter]

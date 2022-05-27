@@ -10,7 +10,7 @@ use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 class LocalDateTimeString {
 
   public function __construct(
-    private string $dateTimeString,
+    private readonly string $dateTimeString,
   ) {}
 
   #[Adapter]
