@@ -204,9 +204,7 @@ final class Adapter {
       \array_unshift($parameters, $parameter);
       return false;
     }
-    if (!AttributesUtil::hasSingle($parameter, AdapterTargetType::class)
-      && $parameter->getAttributes() !== []
-    ) {
+    if (!AttributesUtil::hasSingle($parameter, AdapterTargetType::class)) {
       \array_unshift($parameters, $parameter);
       return false;
     }
