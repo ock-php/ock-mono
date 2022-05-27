@@ -6,6 +6,7 @@ namespace Donquixote\Adaptism\SpecificAdapter;
 use Donquixote\Adaptism\AdapterMap\AdapterMapInterface;
 use Donquixote\Adaptism\Exception\MisbehavingAdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Adaptism\Util\MessageUtil;
 
 class SpecificAdapter_DispatchByType implements SpecificAdapterInterface {
 
@@ -39,9 +40,7 @@ class SpecificAdapter_DispatchByType implements SpecificAdapterInterface {
         throw new MisbehavingAdapterException(\sprintf(
           'Expected %s object, found %s.',
           $resultType,
-          \is_object($candidate)
-            ? \get_class($candidate) . ' object'
-            : \gettype($candidate) . ' value'
+          MessageUtil::formatValue($candidate),
         ));
       }
     }
