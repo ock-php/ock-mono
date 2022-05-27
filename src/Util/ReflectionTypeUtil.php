@@ -31,7 +31,7 @@ class ReflectionTypeUtil {
       throw new MalformedAdapterDeclarationException(\sprintf(
         'Expected a class-like %s declaration on %s.',
         $reflector instanceof \ReflectionParameter ? 'type' : 'return type',
-        ReflectionUtil::reflectorDebugName($reflector),
+        MessageUtil::formatReflector($reflector),
       ));
     }
     $name = $type->getName();
@@ -45,7 +45,7 @@ class ReflectionTypeUtil {
       throw new MalformedAdapterDeclarationException(\sprintf(
         'Unexpected %s outside class context, in type declaration for %s.',
         "'$name'",
-        ReflectionUtil::reflectorDebugName($reflector),
+        MessageUtil::formatReflector($reflector),
       ));
     }
     return $reflectionFunction->getDeclaringClass()->getName();
@@ -101,7 +101,7 @@ class ReflectionTypeUtil {
       throw new MalformedAdapterDeclarationException(\sprintf(
         'Expected a %s type declaration on %s.',
         $expected,
-        ReflectionUtil::reflectorDebugName($reflector),
+        MessageUtil::formatReflector($reflector),
       ));
     }
   }
@@ -123,7 +123,7 @@ class ReflectionTypeUtil {
       throw new MalformedAdapterDeclarationException(\sprintf(
         'Expected a %s type declaration on %s.',
         $expected,
-        ReflectionUtil::reflectorDebugName($reflector),
+        MessageUtil::formatReflector($reflector),
       ));
     }
   }

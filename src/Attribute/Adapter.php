@@ -16,9 +16,9 @@ use Donquixote\Adaptism\Exception\AdapterNotAvailableException;
 use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Adaptism\Util\AttributesUtil;
+use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\Adaptism\Util\NewInstance;
 use Donquixote\Adaptism\Util\ReflectionTypeUtil;
-use Donquixote\Adaptism\Util\ReflectionUtil;
 
 /**
  * Marks a class or method as an adapter.
@@ -160,7 +160,7 @@ final class Adapter {
     ) {
       throw new MalformedAdapterDeclarationException(\sprintf(
         'Expected either no attribute, or #[Adaptee] attribute, on %s.',
-        ReflectionUtil::reflectorDebugName($parameter),
+        MessageUtil::formatReflector($parameter),
       ));
     }
     $type = ReflectionTypeUtil::requireGetClassLikeType($parameter, true);
@@ -175,7 +175,7 @@ final class Adapter {
     catch (\ReflectionException $e) {
       throw new AdapterNotAvailableException(\sprintf(
         'Unknown type on %s: %s',
-        ReflectionUtil::reflectorDebugName($parameter),
+        MessageUtil::formatReflector($parameter),
         $e->getMessage(),
       ));
     }

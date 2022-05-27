@@ -101,7 +101,7 @@ class AttributesUtil {
         'Expected %s one #[%s] attribute on %s, found %s',
         $require ? 'exactly' : 'up to',
         $name,
-        ReflectionUtil::reflectorDebugName($reflector),
+        MessageUtil::formatReflector($reflector),
         count($attributes),
       ));
     }
