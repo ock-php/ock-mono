@@ -12,7 +12,10 @@ use Psr\Container\ContainerInterface;
 
 class AdapterFromContainer_ObjectMethod implements AdapterFromContainerInterface {
 
-  private array|string|object $factoryCallback;
+  /**
+   * @var callable
+   */
+  private readonly mixed $factoryCallback;
 
   /**
    * Constructor.

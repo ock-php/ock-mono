@@ -13,21 +13,26 @@ use Psr\Container\ContainerInterface;
 class AdapterFromContainer_Callback implements AdapterFromContainerInterface {
 
   /**
+   * @var callable
+   */
+  private readonly mixed $callback;
+
+  /**
    * Constructor.
    *
    * @param callable $callback
    * @param bool $hasResultTypeParameter
    * @param bool $hasUniversalAdapterParameter
    * @param list<string> $serviceIds
-   *
-   * @noinspection PhpDocSignatureInspection
    */
   public function __construct(
-    private readonly array|object|string $callback,
+    callable $callback,
     private readonly bool $hasResultTypeParameter,
     private readonly bool $hasUniversalAdapterParameter,
     private readonly array $serviceIds,
-  ) {}
+  ) {
+    $this->callback = $callback;
+  }
 
   /**
    * {@inheritdoc}

@@ -7,7 +7,10 @@ use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class SpecificAdapter_Callback implements SpecificAdapterInterface {
 
-  private string|array|object $callback;
+  /**
+   * @var callable
+   */
+  private readonly mixed $callback;
 
   /**
    * Constructor.
