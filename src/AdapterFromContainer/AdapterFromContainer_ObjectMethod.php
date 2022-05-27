@@ -7,6 +7,7 @@ namespace Donquixote\Adaptism\AdapterFromContainer;
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface;
+use Donquixote\Adaptism\Util\MessageUtil;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
@@ -46,10 +47,23 @@ class AdapterFromContainer_ObjectMethod implements AdapterFromContainerInterface
         $args[] = $container->get($id);
       }
       catch (ContainerExceptionInterface $e) {
-        throw new AdapterException($e->getMessage(), 0, $e);
+        throw new AdapterException(sprintf(
+          'Missing service %s for callback %s: %s.',
+          var_export($id, true),
+          MessageUtil::formatValue($this->factoryCallback),
+          $e->getMessage(),
+        ), 0, $e);
       }
     }
     $object = ($this->factoryCallback)(...$args);
+    if (!\is_callable([$object, $this->method])) {
+      throw new AdapterException(\sprintf(
+        'Expected an object with ->%s() method, found %s, returned from %s',
+        $this->method,
+        MessageUtil::formatValue($object),
+        MessageUtil::formatValue($this->factoryCallback),
+      ));
+    }
     return new SpecificAdapter_Callback(
       [$object, $this->method],
       $this->hasResultTypeParameter,

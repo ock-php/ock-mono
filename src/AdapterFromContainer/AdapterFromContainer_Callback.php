@@ -7,6 +7,7 @@ namespace Donquixote\Adaptism\AdapterFromContainer;
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface;
+use Donquixote\Adaptism\Util\MessageUtil;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
@@ -45,11 +46,24 @@ class AdapterFromContainer_Callback implements AdapterFromContainerInterface {
         continue;
       }
       try {
-        $args[] = $container->get($id);
+        $arg = $container->get($id);
       }
       catch (ContainerExceptionInterface $e) {
-        throw new AdapterException($e->getMessage(), 0, $e);
+        throw new AdapterException(sprintf(
+          'Service %s needed for %s: %s',
+          $id,
+          MessageUtil::formatValue($this->callback),
+          $e->getMessage(),
+        ), 0, $e);
       }
+      if ($arg === null) {
+        throw new AdapterException(sprintf(
+          'Service %s needed for %s is NULL.',
+          $id,
+          MessageUtil::formatValue($this->callback),
+        ));
+      }
+      $args[] = $arg;
     }
     return new SpecificAdapter_Callback(
       $this->callback,
