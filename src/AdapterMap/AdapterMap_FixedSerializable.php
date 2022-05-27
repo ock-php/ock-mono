@@ -29,7 +29,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
   /**
    * @var array<string, array<class-string|'object', true>>
    */
-  private array $resultTypesById = [];
+  private array $resultTypesById;
 
   /**
    * @var \Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface[]
