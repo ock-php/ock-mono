@@ -40,6 +40,10 @@ class AdapterFromContainer_Callback implements AdapterFromContainerInterface {
   public function createAdapter(ContainerInterface $container): SpecificAdapterInterface {
     $args = [];
     foreach ($this->serviceIds as $id) {
+      if ($container instanceof $id) {
+        $args[] = $container;
+        continue;
+      }
       try {
         $args[] = $container->get($id);
       }
