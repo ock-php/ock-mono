@@ -28,7 +28,10 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
       foreach ($reflectionClass->getMethods() as $reflectionMethod) {
         $adapterAttribute = AttributesUtil::getSingle($reflectionMethod, Adapter::class);
         if ($adapterAttribute) {
-          $definitions[$reflectionClass->getName() . '::' . $reflectionMethod->getName()] = $adapterAttribute->onMethod($reflectionClass, $reflectionMethod);
+          $definitions[$reflectionClass->getName() . '::' . $reflectionMethod->getName()] = $adapterAttribute->onMethod(
+            $reflectionClass,
+            $reflectionMethod,
+          );
         }
       }
     }
