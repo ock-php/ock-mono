@@ -13,6 +13,7 @@ class ReflectionTypeUtil {
    *   TRUE, to allow 'object' return type.
    *
    * @return class-string|null
+   * @psalm-return ($allowObject is true ? (class-string|null) : class-string)
    *   The type, or NULL for 'object'.
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException

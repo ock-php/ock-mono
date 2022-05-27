@@ -20,6 +20,10 @@ class GetService {
     private readonly ?string $id = NULL,
   ) {}
 
+  /**
+   * @return string|null
+   *   A service id, or NULL to use the parameter type.
+   */
   public function getId(): ?string {
     return $this->id;
   }

@@ -49,6 +49,9 @@ class AttributesUtil {
    * @param class-string $name
    *
    * @return bool
+   *   TRUE, if exactly one attribute of the given type exists.
+   *   FALSE, if no attribute of the given type exists.
+   *   Exception otherwise.
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
@@ -67,6 +70,7 @@ class AttributesUtil {
    * @param class-string<T> $name
    *
    * @return T
+   *   Instance from the single attribute.
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    *   None or more than one attribute of the given type.
@@ -87,6 +91,7 @@ class AttributesUtil {
    * @param class-string<T> $name
    *
    * @return T|null
+   *   Instance from the attribute, or NULL if no matching attribute found.
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
@@ -107,6 +112,7 @@ class AttributesUtil {
    * @param bool $require
    *
    * @return \ReflectionAttribute<T>|null
+   * @psalm-return ($require is true ? \ReflectionAttribute<T> : \ReflectionAttribute<T>|null)
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
