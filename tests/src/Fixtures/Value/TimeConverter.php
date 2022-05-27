@@ -18,6 +18,7 @@ class TimeConverter {
   public function convert(
     #[Adaptee] Timestamp $timestamp,
   ): LocalDateTimeString {
+    /** @noinspection PhpUnhandledExceptionInspection */
     $date = new \DateTime('now', $this->timeZone);
     $date->setTimestamp($timestamp->getTimestamp());
     return new LocalDateTimeString($date->format('Y-m-d\TH:i:s'));
