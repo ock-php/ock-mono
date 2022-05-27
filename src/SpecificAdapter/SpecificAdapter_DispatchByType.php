@@ -26,10 +26,11 @@ class SpecificAdapter_DispatchByType implements SpecificAdapterInterface {
     string $resultType,
     UniversalAdapterInterface $universalAdapter
   ): ?object {
-    foreach ($this->adapterMap->getSuitableAdapters(
+    $adapters = $this->adapterMap->getSuitableAdapters(
       \get_class($adaptee),
       $resultType,
-    ) as $adapter) {
+    );
+    foreach ($adapters as $adapter) {
       $candidate = $adapter->adapt($adaptee, $resultType, $universalAdapter);
       if ($candidate instanceof $resultType) {
         return $candidate;
