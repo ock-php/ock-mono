@@ -79,8 +79,11 @@ class AttributesUtil {
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
   ): object {
+    /**
+     * @var \ReflectionAttribute<T> $reflectionAttribute
+     * @psalm-ignore-var
+     */
     $reflectionAttribute = self::getOrRequireSingle($reflector, $name, true);
-    \assert($reflectionAttribute !== null);
     return $reflectionAttribute->newInstance();
   }
 
