@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\Util;
 
-use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
+use Donquixote\Adaptism\Exception\MalformedDeclarationException;
 
 class AttributesUtil {
 
@@ -14,7 +14,8 @@ class AttributesUtil {
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
    * @param class-string<T> $name
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   *   None or more than one attribute of the given type.
    */
   public static function requireHasSingle(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
@@ -29,7 +30,8 @@ class AttributesUtil {
    *
    * @return bool
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   *   More than one attribute of the given type.
    */
   public static function hasSingle(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
@@ -46,7 +48,8 @@ class AttributesUtil {
    *
    * @return T
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   *   None or more than one attribute of the given type.
    */
   public static function requireGetSingle(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
@@ -65,7 +68,8 @@ class AttributesUtil {
    *
    * @return T|null
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   *   More than one attribute of the given type.
    */
   public static function getSingle(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
@@ -84,7 +88,8 @@ class AttributesUtil {
    *
    * @return \ReflectionAttribute<T>|null
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   *   More than one attribute of the given type.
    */
   public static function getOrRequireSingle(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
@@ -97,7 +102,7 @@ class AttributesUtil {
       return null;
     }
     if (\array_keys($attributes) !== [0]) {
-      throw new MalformedAdapterDeclarationException(\sprintf(
+      throw new MalformedDeclarationException(\sprintf(
         'Expected %s one #[%s] attribute on %s, found %s',
         $require ? 'exactly' : 'up to',
         $name,

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\Util;
 
-use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
+use Donquixote\Adaptism\Exception\MalformedDeclarationException;
 
 class ReflectionTypeUtil {
 
@@ -15,7 +15,7 @@ class ReflectionTypeUtil {
    * @return class-string|null
    *   The type, or NULL for 'object'.
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   public static function requireGetClassLikeType(
     \ReflectionParameter|\ReflectionFunctionAbstract $reflector,
@@ -28,7 +28,7 @@ class ReflectionTypeUtil {
       if ($allowObject && $type instanceof \ReflectionNamedType && $type->getName() === 'object') {
         return null;
       }
-      throw new MalformedAdapterDeclarationException(\sprintf(
+      throw new MalformedDeclarationException(\sprintf(
         'Expected a class-like %s declaration on %s.',
         $reflector instanceof \ReflectionParameter ? 'type' : 'return type',
         MessageUtil::formatReflector($reflector),
@@ -42,7 +42,7 @@ class ReflectionTypeUtil {
       ? $reflector->getDeclaringFunction()
       : $reflector;
     if (!$reflectionFunction instanceof \ReflectionMethod) {
-      throw new MalformedAdapterDeclarationException(\sprintf(
+      throw new MalformedDeclarationException(\sprintf(
         'Unexpected %s outside class context, in type declaration for %s.',
         "'$name'",
         MessageUtil::formatReflector($reflector),
@@ -90,7 +90,7 @@ class ReflectionTypeUtil {
    * @param \ReflectionParameter|\ReflectionFunctionAbstract $reflector
    * @param class-string|null $expected
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   public static function requireClassLikeType(
     \ReflectionParameter|\ReflectionFunctionAbstract $reflector,
@@ -98,7 +98,7 @@ class ReflectionTypeUtil {
   ): void {
     $name = self::requireGetClassLikeType($reflector);
     if ($name !== $expected) {
-      throw new MalformedAdapterDeclarationException(\sprintf(
+      throw new MalformedDeclarationException(\sprintf(
         'Expected a %s type declaration on %s.',
         $expected,
         MessageUtil::formatReflector($reflector),
@@ -110,7 +110,7 @@ class ReflectionTypeUtil {
    * @param \ReflectionParameter|\ReflectionFunctionAbstract $reflector
    * @param string $expected
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   public static function requireBuiltinType(
     \ReflectionParameter|\ReflectionFunctionAbstract $reflector,
@@ -120,7 +120,7 @@ class ReflectionTypeUtil {
       ? $reflector->getType()
       : $reflector->getReturnType();
     if (!$type instanceof \ReflectionNamedType || !$type->isBuiltin() || $type->getName() !== $expected) {
-      throw new MalformedAdapterDeclarationException(\sprintf(
+      throw new MalformedDeclarationException(\sprintf(
         'Expected a %s type declaration on %s.',
         $expected,
         MessageUtil::formatReflector($reflector),

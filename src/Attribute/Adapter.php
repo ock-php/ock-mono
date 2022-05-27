@@ -12,8 +12,7 @@ use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
 use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
-use Donquixote\Adaptism\Exception\AdapterNotAvailableException;
-use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
+use Donquixote\Adaptism\Exception\MalformedDeclarationException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Adaptism\Util\AttributesUtil;
 use Donquixote\Adaptism\Util\MessageUtil;
@@ -44,13 +43,13 @@ final class Adapter {
    *
    * @return \Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   public function onClass(\ReflectionClass $reflectionClass): AdapterDefinitionInterface {
     $class = $reflectionClass->getName();
     $constructor = $reflectionClass->getConstructor();
     if ($constructor === null) {
-      throw new MalformedAdapterDeclarationException(\sprintf(
+      throw new MalformedDeclarationException(\sprintf(
         'Expected a constructor on %s.',
         $reflectionClass->getName(),
       ));
@@ -82,7 +81,7 @@ final class Adapter {
    *
    * @return \Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   public function onMethod(
     \ReflectionClass $reflectionClass,
@@ -105,7 +104,7 @@ final class Adapter {
     }
     else {
       if ($parameters !== []) {
-        throw new MalformedAdapterDeclarationException(\sprintf(
+        throw new MalformedDeclarationException(\sprintf(
           'Leftover parameters %s on %s.',
           \implode(', ', \array_map(
             static function (\ReflectionParameter $parameter) {
@@ -145,12 +144,12 @@ final class Adapter {
    *
    * @return string|null
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   private function extractSourceType(array &$parameters, ?int &$specifity, string $where): ?string {
     $parameter = \array_shift($parameters);
     if ($parameter === null) {
-      throw new MalformedAdapterDeclarationException(\sprintf(
+      throw new MalformedDeclarationException(\sprintf(
         'Expected at least one parameter in %s.',
         $where,
       ));
@@ -158,7 +157,7 @@ final class Adapter {
     if (!AttributesUtil::getSingle($parameter, Adaptee::class)
       && $parameter->getAttributes() !== []
     ) {
-      throw new MalformedAdapterDeclarationException(\sprintf(
+      throw new MalformedDeclarationException(\sprintf(
         'Expected either no attribute, or #[Adaptee] attribute, on %s.',
         MessageUtil::formatReflector($parameter),
       ));
@@ -173,7 +172,7 @@ final class Adapter {
       $reflectionClass = new \ReflectionClass($type);
     }
     catch (\ReflectionException $e) {
-      throw new AdapterNotAvailableException(\sprintf(
+      throw new MalformedDeclarationException(\sprintf(
         'Unknown type on %s: %s',
         MessageUtil::formatReflector($parameter),
         $e->getMessage(),
@@ -188,7 +187,7 @@ final class Adapter {
    *
    * @return bool
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   private function extractHasResultTypeParameter(array &$parameters): bool {
     $parameter = \array_shift($parameters);
@@ -213,7 +212,7 @@ final class Adapter {
    *
    * @return bool
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   private function extractHasUniversalAdapterParameter(array &$parameters): bool {
     $parameter = \array_shift($parameters);
@@ -264,7 +263,7 @@ final class Adapter {
    *
    * @return string
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   private function extractServiceId(\ReflectionParameter $parameter): string {
     return AttributesUtil::requireGetSingle($parameter, GetService::class)->getId()

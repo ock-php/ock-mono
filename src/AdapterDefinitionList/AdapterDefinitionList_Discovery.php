@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Donquixote\Adaptism\AdapterDefinitionList;
 
 use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
+use Donquixote\Adaptism\Exception\MalformedDeclarationException;
 use Donquixote\Adaptism\Util\AttributesUtil;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 
@@ -18,6 +20,20 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
    * {@inheritdoc}
    */
   public function getDefinitions(): array {
+    try {
+      return $this->discoverDefinitions();
+    }
+    catch (MalformedDeclarationException $e) {
+      throw new MalformedAdapterDeclarationException($e->getMessage(), 0, $e);
+    }
+  }
+
+  /**
+   * @return \Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface[]
+   *
+   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   */
+  protected function discoverDefinitions(): array {
     $definitions = [];
     /** @var \ReflectionClass $reflectionClass */
     foreach ($this->reflectionClassesIA as $reflectionClass) {
