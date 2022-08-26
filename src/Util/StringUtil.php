@@ -23,16 +23,6 @@ final class StringUtil extends UtilBase {
    * @param string $haystack
    * @param string $needle
    *
-   * @return bool
-   */
-  public static function startsWith(string $haystack, string $needle): bool {
-    return 0 === strncmp($haystack, $needle, \strlen($needle));
-  }
-
-  /**
-   * @param string $haystack
-   * @param string $needle
-   *
    * @return string|false
    */
   public static function clipPrefixOrFalse(string $haystack, string $needle) {
@@ -44,6 +34,58 @@ final class StringUtil extends UtilBase {
     }
 
     return substr($haystack, $l);
+  }
+
+  /**
+   * @param callable(string): list<string> $split
+   * @param string $glue
+   * @param ?callable(string): string $each
+   *
+   * @return callable(string): string
+   */
+  public static function fnSplitJoin(callable $split, string $glue, callable $each = null) {
+    return static function (string $string) use ($split, $glue, $each): string {
+      $parts = $split($string);
+      if ($each) {
+        $parts = \array_map($each, $parts);
+      }
+      return \implode($glue, $parts);
+    };
+  }
+
+  /**
+   * @param string $example_string
+   *
+   * @return callable(string): list<string>
+   */
+  public static function fnCamelExplode(string $example_string = 'AA Bc'): callable {
+    static $fn_by_example = [];
+    return $fn_by_example[$example_string] ??= self::fnCamelExplodeByRegex(
+      self::camelCaseExplodeExampleToRegex($example_string),
+    );
+  }
+
+  /**
+   * @param string $regex
+   *
+   * @return callable(string): list<string>
+   */
+  private static function fnCamelExplodeByRegex(string $regex): callable {
+    return static fn (string $string) => preg_split(
+      $regex,
+      $string,
+      -1,
+      PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE,
+    );
+  }
+
+  /**
+   * @param string $glue
+   *
+   * @return callable(string): list<string>
+   */
+  public function fnExplode(string $glue): callable {
+    return static fn(string $string) => explode($glue, $string);
   }
 
   /**
@@ -69,7 +111,7 @@ final class StringUtil extends UtilBase {
    * @return string|string[]
    * @psalm-return ($glue is false ? string[] : string)
    */
-  public static function camelCaseExplode(string $string, $lowercase = TRUE, $example_string = 'AA Bc', $glue = FALSE): array|string {
+  public static function camelCaseExplode(string $string, bool $lowercase = true, $example_string = 'AA Bc', $glue = false): array|string {
     static $regexp_by_example = [];
     if (!isset($regexp_by_example[$example_string])) {
       $regexp_by_example[$example_string] = self::camelCaseExplodeExampleToRegex($example_string);
@@ -147,7 +189,21 @@ final class StringUtil extends UtilBase {
    * @return string
    */
   public static function methodNameGenerateLabel(string $methodName): string {
-    return ucfirst(self::camelCaseExplode($methodName, TRUE, 'AA Bc', ' '));
+    $parts = \explode('_', $methodName);
+    foreach ($parts as &$part) {
+      if ($part === '') {
+        $part = '-';
+      }
+      else {
+        $part = \strtolower(\implode(' ', \preg_split(
+          '/([A-Z][^A-Z]+)/',
+          $part,
+          -1,
+          \PREG_SPLIT_NO_EMPTY | \PREG_SPLIT_DELIM_CAPTURE,
+        )));
+      }
+    }
+    return \ucfirst(\implode(' ', $parts));
   }
 
 }

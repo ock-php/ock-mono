@@ -5,15 +5,18 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Attribute\Plugin;
 
 use Donquixote\Adaptism\Exception\MalformedDeclarationException;
+use Donquixote\Adaptism\Util\AttributesUtil;
 use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\Adaptism\Util\ReflectionTypeUtil;
+use Donquixote\Ock\Contract\FormulaHavingInterface;
+use Donquixote\Ock\Contract\LabelHavingInterface;
+use Donquixote\Ock\Contract\NameHavingInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Group\GroupFormulaBuilder;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Plugin\PluginDeclaration;
-use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Util\StringUtil;
+use Donquixote\Ock\Util\TextUtil;
 
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
 class OckPluginInstance extends PluginAttributeBase {
@@ -72,19 +75,23 @@ class OckPluginInstance extends PluginAttributeBase {
   private function buildGroupFormula(array $parameters): GroupFormulaBuilder {
     $builder = Formula::group();
     foreach ($parameters as $parameter) {
-      $name = $parameter->getName();
-      $param_formula = self::paramGetFormula($parameter);
-      if (!$param_formula) {
-        throw new MalformedDeclarationException(\sprintf(
-          'Cannot build formula for parameter $%s.',
-          MessageUtil::formatReflector($parameter),
-        ));
-      }
-      $param_label = Text::t(
-        StringUtil::methodNameGenerateLabel($name),
-      );
-
-      $builder->add($name, $param_formula, $param_label);
+      $name = AttributesUtil::getSingle($parameter, NameHavingInterface::class)
+        ?->getName()
+        ?? $parameter->getName();
+      $label = AttributesUtil::getSingle(
+          $parameter,
+          LabelHavingInterface::class,
+        )?->getLabel()
+        ?? TextUtil::fromInterface($name);
+      $formula = AttributesUtil::getSingle(
+          $parameter,
+          FormulaHavingInterface::class,
+        )?->getFormula()
+        ?? new Formula_Iface(
+          ReflectionTypeUtil::requireGetClassLikeType($parameter),
+          $parameter->allowsNull(),
+        );
+      $builder->add($name, $formula, $label);
     }
     return $builder;
   }
@@ -97,32 +104,6 @@ class OckPluginInstance extends PluginAttributeBase {
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    */
   private static function paramGetFormula(\ReflectionParameter $param): ?FormulaInterface {
-    $rtype = $param->getType();
-    if (!$rtype instanceof \ReflectionNamedType || $rtype->isBuiltin()) {
-      return NULL;
-    }
-
-    $formula = new Formula_Iface($rtype->getName(), $param->allowsNull());
-
-    if (!$param->isOptional()) {
-      return $formula;
-    }
-
-    try {
-      $default = $param->getDefaultValue();
-    }
-    catch (\ReflectionException $e) {
-      // This should be unreachable code.
-      // Convert exception to unchecked.
-      throw new \RuntimeException($e->getMessage(), 0, $e);
-    }
-
-    if ($default !== NULL) {
-      // Unsupported default value.
-      throw new MalformedDeclarationException('Optional parameters must have default NULL.');
-    }
-
-    return $formula;
   }
 
 }
