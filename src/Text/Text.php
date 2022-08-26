@@ -98,6 +98,12 @@ class Text {
     return $text;
   }
 
+  public static function tIf(string $string, bool $translate, array $replacements = []) {
+    return $translate
+      ? static::t($string, $replacements)
+      : static::s($string, $replacements);
+  }
+
   /**
    * Builds a text object for an integer number.
    *

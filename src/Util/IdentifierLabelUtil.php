@@ -7,7 +7,10 @@ namespace Donquixote\Ock\Util;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
-final class TextUtil extends UtilBase {
+/**
+ * Helper methods to generate labels from PHP identifiers.
+ */
+final class IdentifierLabelUtil extends UtilBase {
 
   public static function fromInterface(string $interface, bool $translate = true): TextInterface {
     if (\str_ends_with($interface, 'Interface')) {
@@ -25,10 +28,10 @@ final class TextUtil extends UtilBase {
   }
 
   public static function fromIdentifier(string $identifier, bool $translate = true): TextInterface {
-    $string = StringUtil::methodNameGenerateLabel($identifier);
-    return $translate
-      ? Text::t($string)
-      : Text::s($string);
+    return Text::tIf(
+      StringUtil::methodNameGenerateLabel($identifier),
+      $translate,
+    );
   }
 
 }

@@ -16,7 +16,7 @@ use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Group\GroupFormulaBuilder;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Plugin\PluginDeclaration;
-use Donquixote\Ock\Util\TextUtil;
+use Donquixote\Ock\Util\IdentifierLabelUtil;
 
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
 class OckPluginInstance extends PluginAttributeBase {
@@ -82,7 +82,7 @@ class OckPluginInstance extends PluginAttributeBase {
           $parameter,
           LabelHavingInterface::class,
         )?->getLabel()
-        ?? TextUtil::fromInterface($name);
+        ?? IdentifierLabelUtil::fromInterface($name);
       $formula = AttributesUtil::getSingle(
           $parameter,
           FormulaHavingInterface::class,
