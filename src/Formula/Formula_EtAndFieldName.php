@@ -7,7 +7,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\Ock\Formula\DrilldownVal\Formula_DrilldownVal;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
 use Donquixote\Ock\Text\Text;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
@@ -71,7 +71,7 @@ final class Formula_EtAndFieldName extends UtilBase {
         // Use an optionless formula for the entity type.
         ->add(
           'entity_type',
-          new Formula_ValueProvider_FixedValue($entity_type_id),
+          Formula_ValueProvider_FixedPhp::fromValue($entity_type_id),
           Text::t('Entity type'))
         ->add(
           'field_name',

@@ -7,6 +7,7 @@ use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_Null;
 use Donquixote\Ock\IdToFormula\IdToFormula_Callback;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Link;
 use Drupal\ock\Formator\FormatorD8Interface;
 
@@ -40,7 +41,7 @@ class Formula_ViewsDisplayEditLink extends Formula_ValueProvider_Null implements
    */
   public static function fromCompositeId($id): ?self {
 
-    list($viewId, $displayId) = explode(':', $id) + ['', ''];
+    [$viewId, $displayId] = explode(':', $id) + ['', ''];
 
     if ('' === $viewId || '' === $displayId) {
       return NULL;
@@ -60,11 +61,11 @@ class Formula_ViewsDisplayEditLink extends Formula_ValueProvider_Null implements
 
   /**
    * @param mixed $conf
-   * @param string $label
+   * @param \Drupal\Component\Render\MarkupInterface|string|null $label
    *
    * @return array
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     return [
       '#children' => Link::createFromRoute(

@@ -56,11 +56,11 @@ class Formula_EntityViewModeName implements Formula_SelectInterface {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return bool
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
 
     $options = $this->entityDisplayRepository
       ->getViewModeOptions($this->entityType);

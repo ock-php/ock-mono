@@ -40,11 +40,11 @@ class Formula_ImageStyleName extends Formula_Select_BufferedBase {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return bool
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     if (empty($id)) {
       return TRUE;
     }

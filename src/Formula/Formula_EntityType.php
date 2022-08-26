@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
@@ -41,17 +42,17 @@ class Formula_EntityType implements Formula_DrupalSelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel(string|int $id): string|MarkupInterface|null {
     $options = $this->entityTypeRepository->getEntityTypeLabels();
     return $options[$id] ?? null;
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return bool
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     $options = $this->entityTypeRepository->getEntityTypeLabels();
     return isset($options[$id]);
   }

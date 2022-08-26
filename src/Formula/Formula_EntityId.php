@@ -7,6 +7,7 @@ use Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\ock\Formator\FormatorD8Interface;
 
@@ -29,7 +30,7 @@ class Formula_EntityId implements Formula_IdToLabelInterface, FormatorD8Interfac
    *
    * @return bool
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     return NULL !== $this->idGetEntity($id);
   }
 
@@ -47,11 +48,11 @@ class Formula_EntityId implements Formula_IdToLabelInterface, FormatorD8Interfac
 
   /**
    * @param mixed $conf
-   * @param string $label
+   * @param \Drupal\Component\Render\MarkupInterface|string|null $label
    *
    * @return array
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     $entity = NULL;
     if (\is_string($conf) || \is_int($conf)) {

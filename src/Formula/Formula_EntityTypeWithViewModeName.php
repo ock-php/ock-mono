@@ -91,7 +91,7 @@ class Formula_EntityTypeWithViewModeName implements Formula_SelectInterface {
    * {@inheritdoc}
    */
   public function idGetLabel($id) {
-    list($type, $mode) = explode(':', $id . ':');
+    [$type, $mode] = explode(':', $id . ':');
 
     if ('' === $type || '' === $mode) {
       return NULL;
@@ -117,12 +117,12 @@ class Formula_EntityTypeWithViewModeName implements Formula_SelectInterface {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return bool
    */
-  public function idIsKnown($id): bool {
-    list($type, $mode) = explode(':', $id . ':');
+  public function idIsKnown(string|int $id): bool {
+    [$type, $mode] = explode(':', $id . ':');
 
     if ('' === $type || '' === $mode) {
       return FALSE;

@@ -60,7 +60,7 @@ class Formula_LayoutId extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     return $this->layoutManager->hasDefinition($id);
   }
 

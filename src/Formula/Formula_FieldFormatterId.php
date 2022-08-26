@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Field\FormatterPluginManager;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
@@ -54,7 +55,7 @@ class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel(string|int $id): string|MarkupInterface|null {
 
     if (NULL === $definition = $this->idGetDefinition($id)) {
       return NULL;
@@ -64,11 +65,11 @@ class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return bool
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
 
     return NULL !== $this->idGetDefinition($id);
   }

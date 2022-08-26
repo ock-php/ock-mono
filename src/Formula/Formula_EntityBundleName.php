@@ -72,7 +72,7 @@ class Formula_EntityBundleName implements Formula_FlatSelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
 
     $bundles = $this->bundleInfo->getBundleInfo($this->entityType);
 

@@ -104,7 +104,7 @@ class Formula_EtDotFieldName_StorageCondition implements Formula_SelectInterface
    * {@inheritdoc}
    */
   public function idGetLabel($etAndFieldName) {
-    list($et, $fieldName) = explode('.', $etAndFieldName . '.');
+    [$et, $fieldName] = explode('.', $etAndFieldName . '.');
 
     if (NULL !== $this->entityType) {
       if ($et !== $this->entityType) {
@@ -141,13 +141,13 @@ class Formula_EtDotFieldName_StorageCondition implements Formula_SelectInterface
   }
 
   /**
-   * @param string $etAndFieldName
+   * @param string|int $id
    *   Format: $entityType . '.' . $fieldName
    *
    * @return bool
    */
-  public function idIsKnown($etAndFieldName): bool {
-    list($et, $fieldName) = explode('.', $etAndFieldName . '.');
+  public function idIsKnown(string|int $id): bool {
+    [$et, $fieldName] = explode('.', $id . '.');
 
     if (NULL !== $this->entityType) {
       if ($et !== $this->entityType) {

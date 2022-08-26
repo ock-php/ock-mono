@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
-class Formula_EntityType_WithGroupLabels implements Formula_SelectInterface {
+class Formula_EntityType_WithGroupLabels implements Formula_DrupalSelectInterface {
 
   /**
    * @var \Drupal\Core\Entity\EntityTypeRepositoryInterface
@@ -89,7 +90,7 @@ class Formula_EntityType_WithGroupLabels implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel(string|int $id): string|MarkupInterface|null {
 
     $options = $this->entityTypeRepository->getEntityTypeLabels();
 
@@ -97,11 +98,11 @@ class Formula_EntityType_WithGroupLabels implements Formula_SelectInterface {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return bool
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
 
     $options = $this->entityTypeRepository->getEntityTypeLabels();
 

@@ -7,7 +7,7 @@ use Donquixote\Ock\Context\CfContext;
 use Donquixote\Ock\Context\CfContextInterface;
 use Donquixote\Ock\Exception\EvaluatorException;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\ock\Form\Form_GenericRedirectGET;
+use Drupal\ock\UI\Form\Form_GenericRedirectGET;
 
 class EntityDisplay_PreviewForm extends EntityDisplayBase {
 

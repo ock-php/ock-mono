@@ -5,7 +5,8 @@ namespace Drupal\renderkit\Formula;
 
 use Donquixote\Ock\Formula\Group\Formula_Group;
 use Donquixote\Ock\Formula\Label\Formula_Label;
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
+use Donquixote\Ock\Text\Text;
 use Drupal\renderkit\IdToFormula\IdToFormula_Et_FieldAndFormatterSettings;
 use Drupal\renderkit\Util\UtilBase;
 
@@ -22,12 +23,12 @@ final class Formula_EtAndFieldNameAndFormatterSettings extends UtilBase {
     if (NULL === $entityType) {
       $formula = IdToFormula_Et_FieldAndFormatterSettings::createDrilldownValFormula();
 
-      return new Formula_Label($formula, t('Entity type'));
+      return new Formula_Label($formula, Text::t('Entity type'));
     }
 
     return new Formula_Group(
       [
-        'entity_type' => new Formula_ValueProvider_FixedValue($entityType),
+        'entity_type' => Formula_ValueProvider_FixedPhp::fromValue($entityType),
         'field_and_formatter' => Formula_FieldNameWithFormatter_SpecificEt::create(
           $entityType,
           $bundleName),

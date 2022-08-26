@@ -84,11 +84,11 @@ class Formula_EntityType_WithFields implements Formula_FlatSelectInterface {
   }
 
   /**
-   * @param string|mixed $id
+   * @param string|int $id
    *
    * @return bool
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
 
     /**
      * @var array[][] $map

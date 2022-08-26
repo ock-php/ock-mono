@@ -6,6 +6,7 @@ namespace Drupal\renderkit\Formula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Summarizer\SummarizerInterface;
 use Donquixote\Ock\Text\TextInterface;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\DrupalText;
@@ -35,11 +36,11 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
 
   /**
    * @param mixed $conf
-   * @param string $label
+   * @param \Drupal\Component\Render\MarkupInterface|string|null $label
    *
    * @return array
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     $formatter = $this->getFormatterWithSettings($conf);
 

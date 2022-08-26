@@ -7,6 +7,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Summarizer\SummarizerInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\Util\PhpUtil;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\ock\Formator\FormatorD8Interface;
 use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
 
@@ -19,11 +20,11 @@ class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterf
 
   /**
    * @param mixed $conf
-   * @param string $label
+   * @param \Drupal\Component\Render\MarkupInterface|string|null $label
    *
    * @return array
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     $form = [
       '#type' => 'container',

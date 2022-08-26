@@ -82,11 +82,11 @@ class Formula_ViewDisplayId_Condition implements Formula_FlatSelectInterface {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return bool
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
 
     $displays = $this->view->get('display');
 

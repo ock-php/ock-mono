@@ -145,7 +145,7 @@ class Formula_FieldName extends Formula_Select_LabelLookupBase {
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     $definition = $this->entityFieldManager->getFieldStorageDefinitions($this->entityTypeId)[$id] ?? NULL;
     if ($definition === NULL) {
       return FALSE;

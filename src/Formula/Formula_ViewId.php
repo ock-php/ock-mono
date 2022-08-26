@@ -57,11 +57,11 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
   }
 
   /**
-   * @param string $id
+   * @param string|int $id
    *
    * @return bool
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     return NULL !== $this->idGetView($id);
   }
 

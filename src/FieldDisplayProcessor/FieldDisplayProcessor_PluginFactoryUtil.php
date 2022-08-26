@@ -5,7 +5,7 @@ namespace Drupal\renderkit\FieldDisplayProcessor;
 
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedValue;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
 use Drupal\renderkit\Formula\Formula_FieldDisplayProcessor_Label;
 use Drupal\renderkit\Formula\Formula_FieldDisplayProcessor_OuterContainer;
 use Drupal\renderkit\Util\UtilBase;
@@ -62,8 +62,8 @@ abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implemen
    */
   private static function bare(): Formula_GroupValInterface {
     return Formula_GroupVal::createEmpty(
-      new Formula_ValueProvider_FixedValue(
-        new FieldDisplayProcessor_Bare()));
+      Formula_ValueProvider_FixedPhp::fromClass(
+        FieldDisplayProcessor_Bare::class));
   }
 
 }
