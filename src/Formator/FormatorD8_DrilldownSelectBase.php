@@ -3,13 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
-use Donquixote\Ock\Formula\Select\Formula_Select_Fixed;
+use Donquixote\Ock\Formula\Select\Formula_Select_CustomLabelDecorator;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\TextLookup\TextLookup_Fixed;
 use Donquixote\Ock\Translator\Translator;
 use Donquixote\Ock\Util\ConfUtil;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 use Drupal\ock\Formator\Util\D8FormUtil;
@@ -63,9 +65,9 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
   /**
    * {@inheritdoc}
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
-    list($id, $optionsConf) = $this->keysHelper->unpack($conf);
+    [$id, $optionsConf] = $this->keysHelper->unpack($conf);
 
     $conf = $this->keysHelper->pack($id, $optionsConf);
 
@@ -74,10 +76,17 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
     try {
       $select_formula = $this->buildEnhancedSelectFormula();
     }
-    catch (IncarnatorException $e) {
+    catch (AdapterException $e) {
       // @todo More sophisticated error handling.
       return [
-        '#markup' => t('Failure.'),
+        'message' => [
+          '#markup' => t('Failure: @message.', [
+            '@message' => $e->getMessage(),
+          ]),
+        ],
+        'trace' => [
+          '#markup' => '<pre>' . $e->getTraceAsString() . '</pre>',
+        ],
       ];
     }
 
@@ -132,33 +141,19 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
    *
    * @return \Donquixote\Ock\Formula\Select\Formula_SelectInterface
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   private function buildEnhancedSelectFormula(): Formula_SelectInterface {
-    $grouped_options = [];
-    $grouped_options[''] = $this->buildEnhancedOptionsInGroup(NULL);
-    $groups = $this->idSelectFormula->getOptGroups();
-    foreach ($groups as $group_id => $group_label) {
-      $grouped_options[$group_id] = $this->buildEnhancedOptionsInGroup($group_id);
+    $labels = [];
+    foreach ($this->idSelectFormula->getOptionsMap() as $id => $groupId) {
+      if (!$this->idIsOptionless($id)) {
+        $label = $this->idSelectFormula->idGetLabel($id) ?? Text::s($id);
+        $labels[$id] = Text::sprintf('%s…', $label);
+      }
     }
-    return new Formula_Select_Fixed($grouped_options, $groups);
-  }
-
-  /**
-   * @param string|null $group_id
-   *
-   * @return \Donquixote\Ock\Text\TextInterface[]
-   *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
-   */
-  private function buildEnhancedOptionsInGroup(?string $group_id): array {
-    $options = [];
-    foreach ($this->idSelectFormula->getOptions($group_id) as $id => $option_label) {
-      $options[$id] = $this->idIsOptionless($id)
-        ? $option_label
-        : Text::s('@label…', ['@label' => $option_label]);
-    }
-    return $options;
+    return (new Formula_Select_CustomLabelDecorator($this->idSelectFormula))
+      ->withCustomLabelLookup(new TextLookup_Fixed($labels));
   }
 
   /**
@@ -168,7 +163,7 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
    * @return bool
    *   TRUE, if the sub-formula is optionless.
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   abstract protected function idIsOptionless(string $id): bool;
 
@@ -188,11 +183,11 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
   ): array {
 
     $value = $element['#value'];
-    list($id /*, $options */) = $this->keysHelper->unpack($value);
+    [$id /*, $options */] = $this->keysHelper->unpack($value);
 
-    list($k0, $k1) = $this->keysHelper->getKeys();
+    [$k0, $k1] = $this->keysHelper->getKeys();
 
-    list($parents0, $parents1) = $this->keysHelper->buildTrails($element['#parents']);
+    [$parents0, $parents1] = $this->keysHelper->buildTrails($element['#parents']);
 
     $element['_id']['#parents'] = $parents0;
 

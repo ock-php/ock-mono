@@ -100,7 +100,7 @@ class D8FormUtil extends UtilBase {
   public static function dependedElementAjaxCallback(
     /** @noinspection PhpUnusedParameterInspection */ array $form,
     FormStateInterface $formState
-  ) {
+  ): mixed {
 
     return $formState->getTriggeringElement()['#depending_element_reference'];
   }

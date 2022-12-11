@@ -6,15 +6,12 @@ namespace Drupal\ock\Formula\DrupalPluginSettings;
 
 class Formula_DrupalPluginSettings implements Formula_DrupalPluginSettingsInterface {
 
-  private object $plugin;
-
   /**
    * Constructor.
    *
    * @param object $plugin
    */
-  public function __construct(object $plugin) {
-    $this->plugin = $plugin;
+  public function __construct(private readonly object $plugin) {
   }
 
   /**

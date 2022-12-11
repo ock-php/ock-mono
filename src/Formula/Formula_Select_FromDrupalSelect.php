@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula;
 
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Ock\Formula\Select\Formula_Select_BufferedBase;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
@@ -14,21 +16,18 @@ use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
  *
  * @see \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelect_FromCommonSelect
  */
+#[Adapter]
 class Formula_Select_FromDrupalSelect extends Formula_Select_BufferedBase {
-
-  /**
-   * @var \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface
-   */
-  private Formula_DrupalSelectInterface $formula;
 
   /**
    * Constructor.
    *
    * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
    */
-  public function __construct(Formula_DrupalSelectInterface $formula) {
-    $this->formula = $formula;
-  }
+  public function __construct(
+    #[Adaptee]
+    private readonly Formula_DrupalSelectInterface $formula,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -44,17 +43,18 @@ class Formula_Select_FromDrupalSelect extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     return $this->formula->idIsKnown($id);
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function initialize(array &$grouped_options, array &$group_labels): void {
-    foreach ($this->formula->getGroupedOptions() as $group_label => $labels_in_group) {
-      $grouped_options[$group_label] = DrupalText::multiple($labels_in_group);
-      $group_labels[$group_label] = Text::s($group_label);
+  protected function initialize(array &$map, array &$labels, array &$groupLabels): void {
+    foreach ($this->formula->getGroupedOptions() as $groupLabel => $labelsInGroup) {
+      $groupLabels[$groupLabel] = Text::s($groupLabel);
+      $labels += DrupalText::multiple($labelsInGroup);
+      $map += array_fill_keys(array_keys($labelsInGroup), $groupLabel);
     }
   }
 

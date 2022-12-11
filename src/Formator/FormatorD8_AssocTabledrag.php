@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\ock\Formator;
 
 /**
@@ -16,7 +18,7 @@ class FormatorD8_AssocTabledrag extends FormatorD8_TabledragBase {
    *
    * @see \form_validate_machine_name()
    */
-  protected function deltaGetValidationError($delta) {
+  protected function deltaGetValidationError($delta): ?string {
 
     if ('' === $delta) {
       return t("Empty machine name '' encountered.");

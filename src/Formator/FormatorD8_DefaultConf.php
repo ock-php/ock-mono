@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Drupal\Component\Render\MarkupInterface;
 
 class FormatorD8_DefaultConf implements FormatorD8Interface {
 
@@ -14,28 +16,22 @@ class FormatorD8_DefaultConf implements FormatorD8Interface {
   private $decorated;
 
   /**
-   * @var mixed
-   */
-  private $defaultConf;
-
-  /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
+  #[Adapter]
   public static function create(
     Formula_DefaultConfInterface $formula,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $adapter,
   ): ?FormatorD8_DefaultConf {
 
     $decorated = FormatorD8::fromFormula(
       $formula->getDecorated(),
-      $incarnator);
+      $adapter);
 
     if (NULL === $decorated) {
       return NULL;
@@ -50,15 +46,14 @@ class FormatorD8_DefaultConf implements FormatorD8Interface {
    * @param \Drupal\ock\Formator\FormatorD8Interface $decorated
    * @param mixed $defaultConf
    */
-  public function __construct(FormatorD8Interface $decorated, $defaultConf) {
+  public function __construct(FormatorD8Interface $decorated, private $defaultConf) {
     $this->decorated = $decorated;
-    $this->defaultConf = $defaultConf;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     if (NULL === $conf) {
       $conf = $this->defaultConf;

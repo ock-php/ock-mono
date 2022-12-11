@@ -3,8 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Ock\Exception\IncarnatorException;
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Adaptism\Exception\AdapterException;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormFactoryInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
@@ -15,20 +18,26 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class FormatorD8_DrupalPluginSettings implements FormatorD8Interface {
 
   /**
-   * @var \Drupal\Core\Plugin\PluginFormInterface
+   * Constructor.
+   *
+   * @param \Drupal\Core\Plugin\PluginFormInterface $pluginForm
    */
-  private PluginFormInterface $pluginForm;
+  public function __construct(
+    private readonly PluginFormInterface $pluginForm,
+  ) {}
 
   /**
-   * @STA
-   *
    * @param \Drupal\ock\Formula\DrupalPluginSettings\Formula_DrupalPluginSettingsInterface $formula
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  public static function fromFormula(Formula_DrupalPluginSettingsInterface $formula, ContainerInterface $container): FormatorD8Interface {
+  #[Adapter]
+  public static function fromFormula(
+    Formula_DrupalPluginSettingsInterface $formula,
+    #[GetService] ContainerInterface $container,
+  ): FormatorD8Interface {
     /** @var \Drupal\Core\Plugin\PluginFormFactoryInterface $pluginFormFactory */
     $pluginFormFactory = $container->get('plugin_form.factory');
     return self::fromPlugin(
@@ -41,7 +50,7 @@ class FormatorD8_DrupalPluginSettings implements FormatorD8Interface {
    * @param \Drupal\Core\Plugin\PluginFormFactoryInterface $pluginFormFactory
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   public static function fromPlugin(object $plugin, PluginFormFactoryInterface $pluginFormFactory): FormatorD8Interface {
     if ($plugin instanceof PluginWithFormsInterface) {
@@ -49,7 +58,7 @@ class FormatorD8_DrupalPluginSettings implements FormatorD8Interface {
         $plugin = $pluginFormFactory->createInstance($plugin, 'configure');
       }
       catch (InvalidPluginDefinitionException $e) {
-        throw new IncarnatorException($e->getMessage(), 0, $e);
+        throw new AdapterException($e->getMessage(), 0, $e);
       }
       return new self($plugin);
     }
@@ -59,16 +68,7 @@ class FormatorD8_DrupalPluginSettings implements FormatorD8Interface {
     return new FormatorD8_Optionless();
   }
 
-  /**
-   * Constructor.
-   *
-   * @param \Drupal\Core\Plugin\PluginFormInterface $pluginForm
-   */
-  public function __construct(PluginFormInterface $pluginForm) {
-    $this->pluginForm = $pluginForm;
-  }
-
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
     return [
       '#tree' => TRUE,
       '#process' => function (array $element, FormStateInterface $form_state, $complete_form): array {

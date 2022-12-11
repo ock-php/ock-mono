@@ -3,63 +3,50 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\Optional\Formula_OptionalInterface;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Util\ConfUtil;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 
 class FormatorD8_Optional implements FormatorD8Interface {
 
   /**
-   * @var \Drupal\ock\Formator\FormatorD8Interface
-   */
-  private $decorated;
-
-  /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
+  #[Adapter]
   public static function create(
     Formula_OptionalInterface $formula,
-    IncarnatorInterface $incarnator
+    UniversalAdapterInterface $adapter
   ): ?FormatorD8Interface {
-
-    if (NULL !== $emptiness = Incarnator::emptinessOrNull(
-      $formula->getDecorated(),
-      $incarnator)
-    ) {
-      return FormatorD8::optional(
-        $formula->getDecorated(),
-        $incarnator
-      );
+    $optionable = $adapter->adapt($formula, OptionableFormatorD8Interface::class);
+    if ($optionable !== NULL) {
+      return $optionable->getOptionalFormator();
     }
-
-    $decorated = FormatorD8::fromFormula(
+    return new self(FormatorD8::fromFormula(
       $formula->getDecorated(),
-      $incarnator
-    );
-
-    return new self($decorated);
+      $adapter
+    ));
   }
 
   /**
    * @param \Drupal\ock\Formator\FormatorD8Interface $decorated
    */
-  public function __construct(FormatorD8Interface $decorated) {
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    private readonly FormatorD8Interface $decorated,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     if (!\is_array($conf)) {
       $conf = [];
@@ -120,4 +107,5 @@ class FormatorD8_Optional implements FormatorD8Interface {
 
     return $form;
   }
+
 }

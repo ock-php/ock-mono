@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula\DrupalSelect;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Optionlessness\Optionlessness;
+use Drupal\Component\Render\MarkupInterface;
 
 /**
  * Decorator which appends .
@@ -14,36 +15,17 @@ use Donquixote\Ock\Optionlessness\Optionlessness;
 class Formula_DrupalSelect_AppendSubformDots implements Formula_DrupalSelectInterface {
 
   /**
-   * @var \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface
-   */
-  private Formula_DrupalSelectInterface $decorated;
-
-  /**
-   * @var \Donquixote\Ock\IdToFormula\IdToFormulaInterface
-   */
-  private IdToFormulaInterface $idToFormula;
-
-  /**
-   * @var \Donquixote\Ock\Incarnator\IncarnatorInterface
-   */
-  private IncarnatorInterface $incarnator;
-
-  /**
    * Constructor.
    *
    * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $decorated
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    */
   public function __construct(
-    Formula_DrupalSelectInterface $decorated,
-    IdToFormulaInterface $idToFormula,
-    IncarnatorInterface $incarnator
-  ) {
-    $this->decorated = $decorated;
-    $this->idToFormula = $idToFormula;
-    $this->incarnator = $incarnator;
-  }
+    private readonly Formula_DrupalSelectInterface $decorated,
+    private readonly IdToFormulaInterface $idToFormula,
+    private readonly UniversalAdapterInterface $adapter,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -57,7 +39,7 @@ class Formula_DrupalSelect_AppendSubformDots implements Formula_DrupalSelectInte
           unset($options_in_group[$id]);
           continue;
         }
-        if (!Optionlessness::checkFormula($formula, $this->incarnator)) {
+        if (!Optionlessness::checkFormula($formula, $this->adapter)) {
           $label = t('@label…', ['@label' => $label]);
         }
       }
@@ -68,14 +50,14 @@ class Formula_DrupalSelect_AppendSubformDots implements Formula_DrupalSelectInte
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel(string|int $id): string|MarkupInterface|null {
     return $this->decorated->idGetLabel($id);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     if (!$this->decorated->idIsKnown($id)) {
       return FALSE;
     }

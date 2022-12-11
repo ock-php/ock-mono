@@ -28,7 +28,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string[]|string
    */
-  public static function camelCaseExplode($string, $lowercase = true, $example_string = 'AA Bc', $glue = false) {
+  public static function camelCaseExplode($string, $lowercase = true, $example_string = 'AA Bc', $glue = false): array|string {
     static $regexp_by_example = [];
     if (!isset($regexp_by_example[$example_string])) {
       $regexp_by_example[$example_string] = self::camelCaseExplodeExampleToRegex($example_string);
@@ -83,7 +83,7 @@ final class StringUtil extends UtilBase {
     if (FALSE !== $pos = strrpos($title, '\\')) {
       $title = substr($title, $pos + 1);
     }
-    if ('Interface' === substr($title, -9) && 'Interface' !== $title) {
+    if (str_ends_with($title, 'Interface') && 'Interface' !== $title) {
       $title = substr($title, 0, -9);
     }
     return self::methodNameGenerateLabel($title);
@@ -107,6 +107,52 @@ final class StringUtil extends UtilBase {
    */
   public static function methodNameGenerateLabel($methodName): string {
     return ucfirst(self::camelCaseExplode($methodName, TRUE, 'AA Bc', ' '));
+  }
+
+  /**
+   * @param callable&array{string, string} $class_and_method
+   *
+   * @return string
+   */
+  public static function methodGetRouteName(array $class_and_method): string {
+    [$class, $method] = $class_and_method;
+    return self::classNameGetRouteBasename($class)
+      . '.'
+      . self::camelCaseExplode(
+        $method,
+        true,
+        'AA Aa',
+        '_');
+  }
+
+  /**
+   * @param class-string $class
+   *
+   * @return string
+   */
+  public static function classNameGetRouteBasename(string $class): string {
+    $parts = \explode('\\', $class);
+    $lastpart = \array_pop($parts);
+    $parts = \array_diff($parts, ['Drupal', 'UI', 'Controller']);
+    $parts[] = \preg_replace(
+      [
+        '@^Controller_(.+)$@',
+        '@^(.+)Controller$@',
+      ],
+      [
+        '\\1',
+        '\\1',
+      ],
+      $lastpart);
+    foreach ($parts as &$part) {
+      $part = self::camelCaseExplode(
+        $part,
+        true,
+        'AA Bc',
+        '_');
+      $part = \trim($part, '_');
+    }
+    return \implode('.', $parts);
   }
 
 }

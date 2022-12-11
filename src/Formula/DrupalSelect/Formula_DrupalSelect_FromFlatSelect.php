@@ -6,16 +6,12 @@ namespace Drupal\ock\Formula\DrupalSelect;
 
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Translator\TranslatorInterface;
+use Drupal\Component\Render\MarkupInterface;
 
 /**
  * Alternative select formula with Drupal label types.
  */
 class Formula_DrupalSelect_FromFlatSelect implements Formula_DrupalSelectInterface {
-
-  /**
-   * @var \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface
-   */
-  private Formula_FlatSelectInterface $decorated;
 
   /**
    * @var \Donquixote\Ock\Translator\TranslatorInterface
@@ -28,8 +24,7 @@ class Formula_DrupalSelect_FromFlatSelect implements Formula_DrupalSelectInterfa
    * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $decorated
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
-  public function __construct(Formula_FlatSelectInterface $decorated, TranslatorInterface $translator) {
-    $this->decorated = $decorated;
+  public function __construct(private readonly Formula_FlatSelectInterface $decorated, TranslatorInterface $translator) {
     $this->translator = $translator;
   }
 
@@ -47,7 +42,7 @@ class Formula_DrupalSelect_FromFlatSelect implements Formula_DrupalSelectInterfa
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel(string|int $id): string|MarkupInterface|null {
     if (NULL === $label = $this->decorated->idGetLabel($id)) {
       return NULL;
     }
@@ -57,7 +52,7 @@ class Formula_DrupalSelect_FromFlatSelect implements Formula_DrupalSelectInterfa
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
     return $this->decorated->idIsKnown($id);
   }
 

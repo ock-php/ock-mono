@@ -11,19 +11,14 @@ use Drupal\Core\StringTranslation\TranslationInterface;
 class TextToDrupal_Default implements TextToDrupalInterface {
 
   /**
-   * @var \Drupal\Core\StringTranslation\TranslationInterface
-   */
-  private TranslationInterface $translation;
-
-  /**
    * Constructor.
    *
    * @param \Drupal\Core\StringTranslation\TranslationInterface $translation
    *   String translation service.
    */
-  public function __construct(TranslationInterface $translation) {
-    $this->translation = $translation;
-  }
+  public function __construct(
+    private readonly TranslationInterface $translation,
+  ) {}
 
   /**
    * {@inheritdoc}

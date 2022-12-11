@@ -1,5 +1,2 @@
-ock_annotations:
-  path: ''
-  options:
-    type: annotation
-    module: ock
+route_callbacks:
+  - Drupal\ock\UI\OckRouteProvider::routes

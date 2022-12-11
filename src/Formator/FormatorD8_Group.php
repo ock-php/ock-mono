@@ -3,43 +3,30 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
-use Donquixote\Ock\Incarnator\Incarnator;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
+use Donquixote\Ock\FormulaAdapter;
 use Donquixote\Ock\Translator\Translator;
+use Drupal\Component\Render\MarkupInterface;
 
 class FormatorD8_Group implements FormatorD8Interface {
 
   /**
-   * @var \Drupal\ock\Formator\FormatorD8Interface[]
-   */
-  private $itemFormators;
-
-  /**
-   * @var \Donquixote\Ock\Text\TextInterface[]
-   */
-  private $labels;
-
-  /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
-   * @return self|null
+   * @return self
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  public static function create(Formula_GroupInterface $formula, IncarnatorInterface $incarnator): ?self {
-
-    if (NULL === $itemFormators = Incarnator::multiple(
-        $formula->getItemFormulas(),
-        FormatorD8Interface::class,
-        $incarnator)
-    ) {
-      return NULL;
-    }
-
+  #[Adapter]
+  public static function create(Formula_GroupInterface $formula, UniversalAdapterInterface $adapter): self {
+    $itemFormators = FormulaAdapter::getMultiple(
+      $formula->getItemFormulas(),
+      FormatorD8Interface::class,
+      $adapter,
+    );
     return new self($itemFormators, $formula->getLabels());
   }
 
@@ -47,15 +34,15 @@ class FormatorD8_Group implements FormatorD8Interface {
    * @param \Drupal\ock\Formator\FormatorD8Interface[] $itemFormators
    * @param \Donquixote\Ock\Text\TextInterface[] $labels
    */
-  public function __construct(array $itemFormators, array $labels) {
-    $this->itemFormators = $itemFormators;
-    $this->labels = $labels;
-  }
+  public function __construct(
+    private readonly array $itemFormators,
+    private readonly array $labels,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     if (!\is_array($conf)) {
       $conf = [];

@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 
-/**
- * @STA
- */
+#[Adapter]
 class FormatorD8_Textfield implements FormatorD8Interface {
 
   /**
@@ -26,7 +26,7 @@ class FormatorD8_Textfield implements FormatorD8Interface {
   /**
    * {@inheritdoc}
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     if (!\is_string($conf)) {
       $conf = '';

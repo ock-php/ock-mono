@@ -7,6 +7,7 @@ use Donquixote\CallbackReflection\Util\CodegenUtil;
 use Donquixote\Ock\Util\HtmlUtil;
 use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\Util\StringUtil as CfStringUtil;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\Markup;
 
 // See https://bugs.php.net/bug.php?id=66773
@@ -68,9 +69,14 @@ final class UiCodeUtil extends UtilBase {
    *
    * @return string|\Drupal\Component\Render\MarkupInterface
    */
-  public static function exportHighlightWrap($value) {
+  public static function exportHighlightWrap($value): MarkupInterface|string {
 
-    $text = PhpUtil::phpValue($value);
+    try {
+      $text = PhpUtil::phpValue($value);
+    }
+    catch (\Exception $e) {
+      return '(' . get_debug_type($value) . ')';
+    }
 
     return self::highlightAndWrap($text);
   }
@@ -81,9 +87,9 @@ final class UiCodeUtil extends UtilBase {
    *
    * @return \Drupal\Component\Render\MarkupInterface|string
    */
-  public static function highlightAndWrap(string $php, bool $tmp_prepend_opening_tag = TRUE) {
+  public static function highlightAndWrap(string $php, bool $tmp_prepend_opening_tag = TRUE): MarkupInterface|string {
 
-    $php = CodegenUtil::autoIndent($php,'  ');
+    $php = PhpUtil::autoIndent($php,'  ');
 
     if ($tmp_prepend_opening_tag) {
       $php = "<?php\n" . $php;

@@ -4,26 +4,21 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Donquixote\Ock\Util\HtmlUtil;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 class FormatorD8_Broken implements FormatorD8Interface {
 
   /**
-   * @var string
-   */
-  private $message;
-
-  /**
    * @param string $message
    */
-  public function __construct($message) {
-    $this->message = $message;
+  public function __construct(private $message) {
   }
 
   /**
    * {@inheritdoc}
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     $form = [];
 

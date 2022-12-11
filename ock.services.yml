@@ -1,32 +1,12 @@
 services:
-  Drupal\ock\NamespaceDirectoriesIA\NamespaceDirectoriesIA_ModuleNamespaces:
-    arguments: ['@extension.list.module', '@container.namespaces']
-  Donquixote\Ock\Plugin\Discovery\ClassToPluginsInterface:
-    factory: [Donquixote\Ock\Plugin\Discovery\ClassToPlugins_NativeReflection, create]
-    arguments: [ock]
-  Donquixote\Ock\Plugin\Registry\PluginRegistryInterface:
-    class: Donquixote\Ock\Plugin\Registry\PluginRegistry_ExtensionNamespaces
-    arguments:
-      - '@Drupal\ock\NamespaceDirectoriesIA\NamespaceDirectoriesIA_ModuleNamespaces'
-      - '@Donquixote\Ock\Plugin\Discovery\ClassToPluginsInterface'
-  Donquixote\Ock\Plugin\Map\PluginMapInterface:
-    class: Donquixote\Ock\Plugin\Map\PluginMap_Registry
-    autowire: true
   logger.channel.ock:
     parent: logger.channel_base
     arguments: ['ock']
-  Donquixote\Ock\Incarnator\IncarnatorInterface:
-    factory: [Drupal\ock\CuServices, Incarnator]
-    arguments:
-      - '@service_container'
-      - '@logger.channel.ock'
-      - '@Donquixote\Ock\Plugin\Map\PluginMapInterface'
-      - '@Donquixote\Ock\Translator\TranslatorInterface'
-  Drupal\ock\ParamConverter\ParamConverter_Iface:
+  Drupal\ock\UI\ParamConverter\ParamConverter_Iface:
     autowire: true
     tags:
       - { name: paramconverter }
-  Drupal\ock\ParamConverter\ParamConverter_Plugin:
+  Drupal\ock\UI\ParamConverter\ParamConverter_Plugin:
     autowire: true
     tags:
       - { name: paramconverter }

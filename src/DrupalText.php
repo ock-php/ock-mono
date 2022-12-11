@@ -6,6 +6,7 @@ namespace Drupal\ock;
 
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
@@ -15,6 +16,33 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  * @see \Donquixote\Ock\Text\Text
  */
 class DrupalText {
+
+  /**
+   * @param array[] $definitions
+   *
+   * @return \Donquixote\Ock\Text\TextInterface[]s
+   */
+  public static function fromArrays(array $definitions, string $key = 'label'): array {
+    $texts = [];
+    foreach ($definitions as $id => $definition) {
+      $texts[$id] = self::fromVarOr($definitions[$key] ?? NULL, $id);
+    }
+    return $texts;
+  }
+
+  /**
+   * @param object[] $definitions
+   * @param string $method
+   *
+   * @return \Donquixote\Ock\Text\TextInterface[]s
+   */
+  public static function fromObjects(array $definitions, string $method = 'getLabel'): array {
+    $texts = [];
+    foreach ($definitions as $id => $definition) {
+      $texts[$id] = self::fromVarOr($definitions->$method(), $id);
+    }
+    return $texts;
+  }
 
   /**
    * @param mixed[] $sources
@@ -114,7 +142,26 @@ class DrupalText {
   public static function fromT(TranslatableMarkup $source): TextInterface {
     return Text::t(
       $source->getUntranslatedString(),
-      $source->getArguments());
+      $source->getArguments(),
+    );
+  }
+
+  /**
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *
+   * @return \Donquixote\Ock\Text\TextInterface
+   */
+  public static function fromEntity(EntityInterface $entity): TextInterface {
+    return self::fromVarOr($entity->label(), $entity->id());
+  }
+
+  /**
+   * @param \Drupal\Core\Entity\EntityInterface|null $entity
+   *
+   * @return \Donquixote\Ock\Text\TextInterface|null
+   */
+  public static function fromEntityOrNull(?EntityInterface $entity): ?TextInterface {
+    return $entity ? self::fromEntity($entity) : NULL;
   }
 
 }

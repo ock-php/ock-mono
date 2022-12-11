@@ -3,48 +3,35 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface;
 use Donquixote\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Text\Text;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\ock\AjaxCallback\AjaxCallback_ElementWithProperty;
+use Drupal\ock\UI\AjaxCallback\AjaxCallback_ElementWithProperty;
 
 class FormatorD8_DecoKey implements FormatorD8Interface {
 
   /**
-   * @var \Drupal\ock\Formator\FormatorD8Interface
-   */
-  private FormatorD8Interface $decorated;
-
-  /**
-   * @var \Drupal\ock\Formator\FormatorD8Interface
-   */
-  private FormatorD8Interface $decorator;
-
-  private string $key;
-
-  /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\DecoKey\Formula_DecoKeyInterface $formula
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return self|null
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  public static function create(Formula_DecoKeyInterface $formula, IncarnatorInterface $incarnator): ?self {
+  #[Adapter]
+  public static function create(Formula_DecoKeyInterface $formula, UniversalAdapterInterface $adapter): ?self {
     return new self(
-      FormatorD8::fromFormula(
-        $formula->getDecorated(),
-        $incarnator),
+      FormatorD8::fromFormula($formula->getDecorated(), $adapter),
       FormatorD8::fromFormula(
         new Formula_Sequence_ItemLabelT(
           $formula->getDecoratorFormula(),
           Text::t('New decorator'),
           Text::t('Decorator #!n')),
-        $incarnator),
+        $adapter),
       $formula->getDecoKey());
   }
 
@@ -56,27 +43,21 @@ class FormatorD8_DecoKey implements FormatorD8Interface {
    * @param string $key
    */
   public function __construct(
-    FormatorD8Interface $decorated,
-    FormatorD8Interface $decorator,
-    string $key
+    private readonly FormatorD8Interface $decorated,
+    private readonly FormatorD8Interface $decorator,
+    private readonly string $key
   ) {
-    $this->decorated = $decorated;
-    $this->decorator = $decorator;
-    $this->key = $key;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function confGetD8Form($conf, $label): array {
-
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
     return [
       '#type' => 'themekit_container',
       '#attributes' => ['class' => ['ock-decorator']],
       // Use closures so that the actual methods can remain private.
-      '#process' => [function (array $element, FormStateInterface $form_state, array $form) use ($conf, $label) {
-        return $this->elementProcess($element, $form_state, $form, $conf, $label);
-      }],
+      '#process' => [$this->f_elementProcess($conf, $label)],
       '#after_build' => [function (array $element, FormStateInterface $form_state) {
         return $this->elementAfterBuild($element, $form_state);
       }],
@@ -116,32 +97,27 @@ class FormatorD8_DecoKey implements FormatorD8Interface {
   }
 
   /**
-   * Called from a '#process' callback.
+   * Creates a callback for '#process'.
    *
-   * @param array $element
-   *   The form element for this configurator.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The form state.
-   * @param array $form
-   *   The complete form.
    * @param mixed $conf
-   * @param string|null $label
+   * @param string|null|\Drupal\Component\Render\MarkupInterface $label
    *
-   * @return array
-   *   Processed element.
+   * @return callable(array, FormStateInterface, array): array
+   *   Process callback.
    */
-  private function elementProcess(array $element, FormStateInterface $form_state, array $form, $conf, $label): array {
+  private function f_elementProcess(mixed $conf, string|MarkupInterface|null $label): callable {
+    return function (array $element, FormStateInterface $form_state, array $form) use ($conf, $label) {
+      $element['_main'] = $this->decorated->confGetD8Form($conf, $label);
+      $element['_main']['#parents'] = $parents = $element['#parents'];
 
-    $element['_main'] = $this->decorated->confGetD8Form($conf, $label);
-    $element['_main']['#parents'] = $parents = $element['#parents'];
+      // @todo Allow to hide the decorators.
+      $element['_decorators'] = $this->decorator->confGetD8Form(
+        $conf[$this->key] ?? [],
+        t('Decorators for @plugin', ['@plugin' => $label]));
+      $element['_decorators']['#parents'] = [...$parents, $this->key];
 
-    // @todo Allow to hide the decorators.
-    $element['_decorators'] = $this->decorator->confGetD8Form(
-      $conf[$this->key] ?? [],
-      t('Decorators for @plugin', ['@plugin' => $label]));
-    $element['_decorators']['#parents'] = [...$parents, $this->key];
-
-    return $element;
+      return $element;
+    };
   }
 
   /**

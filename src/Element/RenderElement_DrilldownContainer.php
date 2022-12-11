@@ -5,7 +5,7 @@ namespace Drupal\ock\Element;
 
 use Donquixote\Ock\Util\StringUtil;
 use Drupal\Core\Render\Element\RenderElement;
-use Drupal\ock\Controller\Controller_ReportIface;
+use Drupal\ock\UI\Controller\Controller_ReportIface;
 
 /**
  * @RenderElement("ock_drilldown_container")
@@ -51,7 +51,7 @@ class RenderElement_DrilldownContainer extends RenderElement {
 
     # $tools[]['#markup'] = '<strong>' . check_plain($interface_label) . '</strong>';
 
-    if (\Drupal::currentUser()->hasPermission('view ock report')) {
+    if (\Drupal::currentUser()->hasPermission('view ock reports')) {
 
       $tools['inspect'] = [
         '#type' => 'link',

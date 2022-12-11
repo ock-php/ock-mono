@@ -3,65 +3,58 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\Ock\Incarnator\IncarnatorInterface;
 use Donquixote\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
-use Drupal\ock\AjaxCallback\AjaxCallback_ElementWithProperty;
 use Drupal\ock\Formator\Util\ArrayMode;
+use Drupal\ock\UI\AjaxCallback\AjaxCallback_ElementWithProperty;
 
 class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface
-   */
-  private $sequence;
-
-  /**
-   * @var \Drupal\ock\Formator\FormatorD8Interface
-   */
-  private $itemFormator;
-
-  /**
+   * One of the array modes for serial, mixed or assoc.
+   *
+   * @see ArrayMode::SERIAL
+   * @see ArrayMode::MIXED
+   * @see ArrayMode::ASSOC
+   *
    * @var int
    */
-  private $arrayMode;
-
-  /**
-   * @var \Donquixote\Ock\Translator\TranslatorInterface
-   */
-  private TranslatorInterface $translator;
+  private $arrayMode = 0;
 
   /**
    * @var array
    */
-  private array $minStubConf;
+  private array $minStubConf = [];
 
   /**
-   * @STA
-   *
    * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $sequence
-   * @param \Donquixote\Ock\Incarnator\IncarnatorInterface $incarnator
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
    * @return self
    *   Created instance.
    *
-   * @throws \Donquixote\Ock\Exception\IncarnatorException Cannot create the item formator.
+   * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
+  #[Adapter]
   public static function create(
     Formula_SequenceInterface $sequence,
-    IncarnatorInterface $incarnator,
-    TranslatorInterface $translator
+    UniversalAdapterInterface $adapter,
+    #[GetService] TranslatorInterface $translator,
   ): self {
     return new self(
       $sequence,
       FormatorD8::fromFormula(
         $sequence->getItemFormula(),
-        $incarnator),
+        $adapter,
+      ),
       $translator);
   }
 
@@ -73,24 +66,16 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
-    Formula_SequenceInterface $sequence,
-    FormatorD8Interface $itemFormator,
-    TranslatorInterface $translator
-  ) {
-    $this->sequence = $sequence;
-    $this->itemFormator = $itemFormator;
-    $this->translator = $translator;
-    // @todo Support other array modes (assoc, mixed).
-    $this->arrayMode = 0;
-    // @todo Make this flexible, allow for minimum number of items.
-    $this->minStubConf = [];
-  }
+    private readonly Formula_SequenceInterface $sequence,
+    private readonly FormatorD8Interface $itemFormator,
+    private readonly TranslatorInterface $translator,
+  ) {}
 
 
   /**
    * {@inheritdoc}
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     if (!\is_array($conf)) {
       $conf = $this->minStubConf;

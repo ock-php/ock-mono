@@ -3,10 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Ock\Formula\Select\Formula_Select_BufferedBase;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\user\PermissionHandlerInterface;
 use Psr\Container\ContainerInterface;
 
@@ -15,17 +18,8 @@ use Psr\Container\ContainerInterface;
  *
  * @see \views_plugin_access_perm
  */
-class Formula_PermissionId extends Formula_Select_BufferedBase {
-
-  /**
-   * @var \Drupal\user\PermissionHandlerInterface
-   */
-  private $permissionHandler;
-
-  /**
-   * @var \Drupal\Core\Extension\ModuleHandlerInterface
-   */
-  private $moduleHandler;
+#[RegisterService]
+class Formula_PermissionId implements Formula_SelectInterface {
 
   /**
    * @param \Psr\Container\ContainerInterface $container
@@ -45,48 +39,40 @@ class Formula_PermissionId extends Formula_Select_BufferedBase {
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
    */
   public function __construct(
-    PermissionHandlerInterface $permissionHandler,
-    ModuleHandlerInterface $moduleHandler
-  ) {
-    $this->permissionHandler = $permissionHandler;
-    $this->moduleHandler = $moduleHandler;
+    #[GetService('user.permissions')]
+    private readonly PermissionHandlerInterface $permissionHandler,
+    #[GetService('module_handler')]
+    private readonly ModuleHandlerInterface $moduleHandler
+  ) {}
+
+  public function getOptionsMap(): array {
+    $map = [];
+    foreach ($this->permissionHandler->getPermissions() as $id => $permission) {
+      $map[$id] = $permission['provider'];
+    }
+    return $map;
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  protected function initialize(array &$grouped_options, array &$group_labels): void {
-
-    foreach ($this->permissionHandler->getPermissions() as $id => $permission) {
-      $grouped_options[$permission['provider']][$id] = Text::t(
-        strip_tags($permission['title']));
-    }
-
-    foreach ($grouped_options as $provider => $provider_options) {
-      $group_labels[$provider] = Text::s(
-        $this->moduleHandler->getName($provider));
-    }
+  public function groupIdGetLabel(int|string $groupId): ?TextInterface {
+    return Text::s($this->moduleHandler->getName($groupId));
   }
 
   /**
    * {@inheritdoc}
    */
   public function idGetLabel($id): ?TextInterface {
-
-    $permissions = $this->permissionHandler->getPermissions();
-
-    if (isset($permissions[$id])) {
-      return Text::t(
-        strip_tags($permissions[$id]['title']));
+    $permission = $this->permissionHandler->getPermissions()[$id] ?? NULL;
+    if ($permission === NULL) {
+      return NULL;
     }
-
-    return NULL;
+    // @todo What is the actual value of 'title'?
+    return Text::t(strip_tags($permission['title']));
   }
 
   /**
    * {@inheritdoc}
    */
-  public function idIsKnown($id): bool {
+  public function idIsKnown(string|int $id): bool {
 
     $permissions = $this->permissionHandler->getPermissions();
 

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\ock_example\Plant;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\ock_example\Animal\AnimalInterface;
 
-/**
- * @ock("enchantedCreature", "Enchanted creature", inline = true)
- */
+// @todo Mark as 'inline'?
+#[OckPluginInstance('enchantedCreature', 'Enchanted creature')]
 class Plant_EnchantedCreature implements PlantInterface {
 
   /**

@@ -164,7 +164,7 @@ final class UiDumpUtil extends UtilBase {
     /** @var \Drupal\devel\DevelDumperManagerInterface $dumper */
     $dumper = \Drupal::service('devel.dumper');
     if ($dumper instanceof DevelDumperManagerInterface) {
-      return (string) $dumper->export($v);
+      return $dumper->export($v);
     }
 
     if (\is_object($v)) {

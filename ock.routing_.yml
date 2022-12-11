@@ -1,9 +1,0 @@
-ock.admin_reports_overview:
-  path: '/admin/reports/ock'
-  defaults:
-    _controller: '\Drupal\ock\Controller\Controller_ReportOverview::overview'
-    _title: 'Composition UI'
-  requirements:
-    _permission: 'view ock reports'
-  options:
-    _admin_route: TRUE

@@ -3,16 +3,41 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator\Util;
 
-use Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface;
+use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface;
 use Donquixote\Ock\Translator\TranslatorInterface;
 use Donquixote\Ock\Util\UtilBase;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
 final class D8SelectUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface $formula
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param string|null $value
+   * @param string $label
+   * @param bool $required
+   *
+   * @return array
+   *   Drupal form element array.
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
+   */
+  public static function selectElementFromCommonSelectFormula(
+    Formula_SelectInterface $formula,
+    TranslatorInterface $translator,
+    ?string $value,
+    string $label,
+    bool $required = TRUE
+  ): array {
+    $options = self::selectOptionsFromCommonSelectFormula($formula, $translator);
+    return self::selectElementFromOptions($options, $value, $label, $required);
+  }
+
+  /**
+   * @param \Donquixote\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface $formula
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    * @param string|null $value
    * @param string $label
@@ -20,14 +45,14 @@ final class D8SelectUtil extends UtilBase {
    *
    * @return array
    */
-  public static function selectElementFromCommonSelectFormula(
-    FormulaBase_AbstractSelectInterface $formula,
+  public static function selectElementFromGroupedSelectFormula(
+    Formula_GroupedSelectInterface $formula,
     TranslatorInterface $translator,
     ?string $value,
     string $label,
     bool $required = TRUE
   ): array {
-    $options = self::selectOptionsFromCommonSelectFormula($formula, $translator);
+    $options = self::selectOptionsFromGroupedSelectFormula($formula, $translator);
     return self::selectElementFromOptions($options, $value, $label, $required);
   }
 
@@ -103,30 +128,77 @@ final class D8SelectUtil extends UtilBase {
   /**
    * Gets select options in a format suitable for Drupal 8.
    *
-   * @param \Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface $formula
+   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    *
    * @return string[][]|string[]
    *   Options to be used in '#options' in a '#type' => 'select' element.
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public static function selectOptionsFromCommonSelectFormula(
-    FormulaBase_AbstractSelectInterface $formula,
+    Formula_SelectInterface $formula,
     TranslatorInterface $translator
   ): array {
-    $options = [];
-    // Get the top-level options first.
-    foreach ($formula->getOptions(NULL) as $id => $option_label_obj) {
-      $options[$id] = $option_label_obj->convert($translator);
+    $optionsByGroupId = [];
+    foreach ($formula->getOptionsMap() as $id => $groupId) {
+      $optionsByGroupId[$groupId][$id] = $formula->idGetLabel($id)->convert($translator);
     }
-    // Build the opt groups.
-    foreach ($formula->getOptGroups() as $group_id => $group_label_obj) {
-      $group_label_str = $group_label_obj->convert($translator);
-      while (isset($options[$group_label_str])) {
-        $group_label_obj .= ' ';
+    $options = $optionsByGroupId[''] ?? [];
+    unset($options['']);
+    asort($options);
+    $groupLabels = [];
+    foreach ($optionsByGroupId as $groupId => $optionsInGroup) {
+      $groupLabels[$groupId] = $formula->groupIdGetLabel($groupId)
+        ?->convert($translator)
+        ?? '';
+    }
+    asort($groupLabels);
+    foreach ($groupLabels as $groupId => $groupLabelStr) {
+      // Prevent collisions.
+      while (isset($options[$groupLabelStr])) {
+        $groupLabelStr .= ' ';
       }
-      foreach ($formula->getOptions($group_id) as $id => $option_label_obj) {
-        $options[$group_label_str][$id] = $option_label_obj->convert($translator);
+      $options[$groupLabelStr] = $optionsByGroupId[$groupId];
+      asort($options[$groupLabelStr]);
+    }
+    return $options;
+  }
+
+  /**
+   * Gets select options in a format suitable for Drupal.
+   *
+   * @param \Donquixote\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface $formula
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   *
+   * @return (string|string[])[]
+   */
+  public static function selectOptionsFromGroupedSelectFormula(
+    Formula_GroupedSelectInterface $formula,
+    TranslatorInterface $translator
+  ): array {
+    $toplevel_options = [];
+    $grouped_options = [];
+    foreach ($formula->getOptGroups() as $optgroup) {
+      $group_label_obj = $optgroup->getLabel();
+      if ($group_label_obj === NULL) {
+        foreach ($optgroup->getOptions() as $id => $option) {
+          $toplevel_options[$id] = $option->convert($translator);
+        }
       }
+      else {
+        $group_label = $group_label_obj->convert($translator);
+        foreach ($optgroup->getOptions() as $id => $option) {
+          $grouped_options[$group_label][$id] = $option->convert($translator);
+        }
+      }
+    }
+    $options = $toplevel_options;
+    foreach ($grouped_options as $group_label => $options_in_group) {
+      while (isset($toplevel_options[$group_label])) {
+        $group_label .= ' ';
+      }
+      $options[$group_label] = $options_in_group;
     }
     return $options;
   }
@@ -134,9 +206,9 @@ final class D8SelectUtil extends UtilBase {
   /**
    * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
    *
-   * @return \Drupal\Component\Render\MarkupInterface[]|\Drupal\Component\Render\MarkupInterface[][]|string|string[]|\string[][]
+   * @return ((string|MarkupInterface)[]|string|MarkupInterface)[]
    */
-  public static function selectOptionsFromDrupalSelectFormula(Formula_DrupalSelectInterface $formula) {
+  public static function selectOptionsFromDrupalSelectFormula(Formula_DrupalSelectInterface $formula): array {
     // Get rid of empty groups.
     $grouped_options = array_filter($formula->getGroupedOptions());
     $toplevel_options = $grouped_options[''] ?? NULL;

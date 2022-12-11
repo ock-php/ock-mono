@@ -11,11 +11,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class Translator_Drupal implements TranslatorInterface {
 
   /**
-   * @var \Drupal\Core\StringTranslation\TranslationInterface
-   */
-  private TranslationInterface $translation;
-
-  /**
    * Static factory.
    *
    * @param \Symfony\Component\DependencyInjection\ContainerInterface|null $container
@@ -40,8 +35,7 @@ class Translator_Drupal implements TranslatorInterface {
    * @param \Drupal\Core\StringTranslation\TranslationInterface $translation
    *   String translation service.
    */
-  public function __construct(TranslationInterface $translation) {
-    $this->translation = $translation;
+  public function __construct(private readonly TranslationInterface $translation) {
   }
 
   /**

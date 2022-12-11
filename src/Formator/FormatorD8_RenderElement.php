@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Drupal\Component\Render\MarkupInterface;
+
 class FormatorD8_RenderElement implements FormatorD8Interface {
 
   /**
@@ -20,7 +22,7 @@ class FormatorD8_RenderElement implements FormatorD8Interface {
   /**
    * {@inheritdoc}
    */
-  public function confGetD8Form($conf, $label): array {
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
 
     return $this->element;
   }

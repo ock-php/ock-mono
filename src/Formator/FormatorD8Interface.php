@@ -4,15 +4,16 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Donquixote\Ock\Form\Common\FormatorCommonInterface;
+use Drupal\Component\Render\MarkupInterface;
 
 interface FormatorD8Interface extends FormatorCommonInterface {
 
   /**
    * @param mixed $conf
-   * @param string|null $label
+   * @param \Drupal\Component\Render\MarkupInterface|string|null $label
    *
    * @return array
    */
-  public function confGetD8Form($conf, $label): array;
+  public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array;
 
 }

@@ -1,0 +1,4 @@
+view ock reports:
+  title: 'View OCK reports'
+  description: 'View reports for Object Construction Kit (OCK)'
+  restrict access: true

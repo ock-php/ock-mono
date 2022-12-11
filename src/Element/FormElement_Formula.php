@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Element;
 
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\IncarnatorException;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element\FormElement;
-use Drupal\ock\DrupalIncarnator;
 use Drupal\ock\Formator\FormatorD8;
 
 /**
@@ -36,16 +35,10 @@ class FormElement_Formula extends FormElement {
 
   /**
    * @param array $element
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   * @param array $complete_form
    *
    * @return array
    */
-  public static function process(
-    array &$element,
-    /** @noinspection PhpUnusedParameterInspection */ FormStateInterface $form_state,
-    /** @noinspection PhpUnusedParameterInspection */ array &$complete_form
-  ): array {
+  public static function process(array &$element): array {
 
     if (!isset($element['#cf_formula'])) {
       $element['line']['#markup'] = '<div>Line ' . __LINE__ . '</div>';
@@ -60,12 +53,10 @@ class FormElement_Formula extends FormElement {
     }
 
     try {
-      $formator = FormatorD8::fromFormula(
-        $formula,
-        DrupalIncarnator::fromContainer());
+      $formator = FormatorD8::fromFormula($formula);
     }
-    catch (IncarnatorException $e) {
-      $element['#markup'] = \t('Unsupported formula: @message', [
+    catch (AdapterException $e) {
+      $element['message']['#markup'] = \t('Unsupported formula: @message', [
         '@message' => $e->getMessage(),
       ]);
       return $element;
@@ -91,7 +82,7 @@ class FormElement_Formula extends FormElement {
     &$element,
     $input,
     FormStateInterface $form_state
-  ) {
+  ): mixed {
     if ($input !== FALSE) {
       return $input;
     }
