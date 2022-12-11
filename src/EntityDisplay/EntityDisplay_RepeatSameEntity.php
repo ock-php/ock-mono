@@ -19,11 +19,6 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
   private $entitiesListFormat;
 
   /**
-   * @var int
-   */
-  private $n;
-
-  /**
    * @CfrPlugin("repeatSameEntity", "Repeat the same entity")
    *
    * @param \Donquixote\Ock\Context\CfContextInterface|null $context
@@ -59,9 +54,8 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
    * @param \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
    * @param int $n
    */
-  public function __construct(EntitiesListFormatInterface $entitiesListFormat, $n) {
+  public function __construct(EntitiesListFormatInterface $entitiesListFormat, private $n) {
     $this->entitiesListFormat = $entitiesListFormat;
-    $this->n = $n;
   }
 
   /**

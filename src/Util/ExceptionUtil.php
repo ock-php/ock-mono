@@ -29,7 +29,7 @@ final class ExceptionUtil extends UtilBase {
    *
    * @return mixed|string
    */
-  public static function formatValue($value) {
+  public static function formatValue($value): mixed {
 
     switch ($type = \gettype($value)) {
 

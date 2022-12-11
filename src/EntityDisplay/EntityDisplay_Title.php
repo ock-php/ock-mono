@@ -38,13 +38,13 @@ class EntityDisplay_Title extends EntityDisplayBase {
     return Formula::group()
       ->add(
         'tag_name',
+        Text::t('Wrapper'),
         Formula_TagName::createOptional(
-          ['h1', 'h2', 'h3', 'h4', 'strong']),
-        Text::t('Wrapper'))
+          ['h1', 'h2', 'h3', 'h4', 'strong']))
       ->add(
         'link',
-        new Formula_Boolean_YesNo(),
-        Text::t('Link to entity'))
+        Text::t('Link to entity'),
+        new Formula_Boolean_YesNo())
       ->call([self::class, 'create']);
   }
 

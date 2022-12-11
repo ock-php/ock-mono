@@ -45,37 +45,11 @@ class Formula_FieldDisplayProcessor_Label extends Formula_Group_V2VDecoratorBase
   }
 
   /**
-   * @param mixed[] $values
-   *
-   * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
-   *
-   * @throws \Donquixote\Ock\Exception\EvaluatorException
-   */
-  public function valuesGetValue(array $values): FieldDisplayProcessorInterface {
-
-    $fdp = parent::valuesGetValue($values);
-
-    if (!$fdp instanceof FieldDisplayProcessorInterface) {
-      throw new EvaluatorException("Expected a FieldDisplayProcessorInterface object.");
-    }
-
-    $fdp = new FieldDisplayProcessor_Label($fdp);
-
-    if ($values['lb-col']) {
-      $fdp = $fdp->withoutLabelColon();
-    }
-
-    if ('' !== $values['label']) {
-      $fdp = $fdp->withCustomLabel($values['label']);
-    }
-
-    return $fdp;
-  }
-
-  /**
    * @param string[] $itemsPhp
    *
    * @return string
+   *
+   * @throws \Donquixote\Ock\Exception\GeneratorException
    */
   public function itemsPhpGetPhp(array $itemsPhp): string {
 

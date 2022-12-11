@@ -6,15 +6,9 @@ namespace Drupal\renderkit\Formula\Misc\ViewsDisplayCondition;
 class ViewsDisplayCondition_EntityIdArg implements ViewsDisplayConditionInterface {
 
   /**
-   * @var null|string
-   */
-  private $entityTypeId;
-
-  /**
    * @param string|null $entityTypeId
    */
-  public function __construct($entityTypeId = NULL) {
-    $this->entityTypeId = $entityTypeId;
+  public function __construct(private $entityTypeId = NULL) {
   }
 
   /**

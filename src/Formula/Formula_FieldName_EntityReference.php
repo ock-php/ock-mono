@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Proxy\Cache\Formula_Proxy_Cache_SelectBase;
 use Donquixote\Ock\IdToFormula\IdToFormula_Callback;
 use Donquixote\Ock\IdToFormula\IdToFormula_Fixed;
@@ -13,56 +12,28 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 
 /**
- * Formula where the value is like 'body' for field 'node.body'.
+ * Formula to choose entity reference fields.
  */
 class Formula_FieldName_EntityReference extends Formula_Proxy_Cache_SelectBase {
 
   /**
-   * @var string
-   */
-  private $entityTypeId;
-
-  /**
-   * @var null|string
-   */
-  private $bundleName;
-
-  /**
-   * @var null|string
-   */
-  private $targetTypeId;
-
-  /**
-   * @param string|null $entityTypeId
-   * @param string|null $bundle
+   * @param string $entityTypeId
+   * @param string|null $bundleName
    * @param string|null $targetTypeId
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public static function createEtDotFieldNameFormula(
-    $entityTypeId = NULL,
-    $bundle = NULL,
-    $targetTypeId = NULL
-  ): FormulaInterface {
-
-    $etToFormula = self::createEtToFormula(
-      $entityTypeId,
-      $bundle,
-      $targetTypeId);
-
+  public function __construct(
+    private readonly string $entityTypeId,
+    private readonly ?string $bundleName = NULL,
+    private readonly ?string $targetTypeId = NULL
+  ) {
     $signatureData = [
       $entityTypeId,
-      $bundle,
+      $bundleName,
       $targetTypeId,
     ];
-
     $signature = sha1(serialize($signatureData));
-
-    $cacheId = 'renderkit:formula:et_dot_field_name:entity_reference:' . $signature;
-
-    return new Formula_EtDotFieldName_EntityReference(
-      $cacheId,
-      $etToFormula);
+    $cacheId = 'renderkit:formula:field_name:entity_reference_field:' . $signature;
+    parent::__construct($cacheId);
   }
 
   /**
@@ -84,8 +55,10 @@ class Formula_FieldName_EntityReference extends Formula_Proxy_Cache_SelectBase {
           return new self(
             $selectedEntityTypeId,
             NULL,
-            $targetTypeId);
-        });
+            $targetTypeId,
+          );
+        },
+      );
     }
 
     // Only allow this one entity type.
@@ -96,33 +69,6 @@ class Formula_FieldName_EntityReference extends Formula_Proxy_Cache_SelectBase {
           $bundle,
           $targetTypeId)
       ]);
-  }
-
-  /**
-   * @param string $entityTypeId
-   * @param string|null $bundleName
-   * @param string|null $targetTypeId
-   */
-  public function __construct(
-    $entityTypeId,
-    $bundleName = NULL,
-    $targetTypeId = NULL
-  ) {
-    $this->entityTypeId = $entityTypeId;
-    $this->bundleName = $bundleName;
-    $this->targetTypeId = $targetTypeId;
-
-    $signatureData = [
-      $entityTypeId,
-      $bundleName,
-      $targetTypeId,
-    ];
-
-    $signature = sha1(serialize($signatureData));
-
-    $cacheId = 'renderkit:formula:field_name:entity_reference_field:' . $signature;
-
-    parent::__construct($cacheId);
   }
 
   /**

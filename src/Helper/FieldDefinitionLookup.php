@@ -6,26 +6,26 @@ namespace Drupal\renderkit\Helper;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\ock\Attribute\DI\RegisterService;
 
 class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
 
-  /**
-   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
-   */
-  private $entityFieldManager;
+  const SERVICE_ID = 'renderkit.field_definition_lookup';
 
   /**
    * @return \Drupal\renderkit\Helper\FieldDefinitionLookupInterface
    */
-  public static function createBuffered() {
+  #[RegisterService(self::SERVICE_ID)]
+  public static function createBuffered(): FieldDefinitionLookupInterface {
     return new FieldDefinitionLookup_Buffer(
-      self::createBufferless());
+      self::createBufferless(),
+    );
   }
 
   /**
    * @return \Drupal\renderkit\Helper\FieldDefinitionLookupInterface
    */
-  public static function createBufferless() {
+  public static function createBufferless(): FieldDefinitionLookupInterface {
 
     return new self(
       \Drupal::service('entity_field.manager'));
@@ -34,9 +34,9 @@ class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
   /**
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    */
-  public function __construct(EntityFieldManagerInterface $entityFieldManager) {
-    $this->entityFieldManager = $entityFieldManager;
-  }
+  public function __construct(
+    private readonly EntityFieldManagerInterface $entityFieldManager,
+  ) {}
 
   /**
    * {@inheritdoc}

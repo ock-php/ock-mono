@@ -14,17 +14,11 @@ class BuildProcessor_ClassAttribute implements BuildProcessorInterface {
   private $classes;
 
   /**
-   * @var string
-   */
-  private $attributesKey;
-
-  /**
    * @param string[] $classes
    * @param string $attributesKey
    */
-  public function __construct(array $classes = [], $attributesKey = '#attributes') {
+  public function __construct(array $classes = [], private $attributesKey = '#attributes') {
     $this->classes = $classes;
-    $this->attributesKey = $attributesKey;
   }
 
   /**

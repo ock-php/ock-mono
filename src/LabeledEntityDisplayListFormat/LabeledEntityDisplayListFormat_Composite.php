@@ -51,7 +51,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    *
    * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
    */
-  public static function createFromLabeledFormat(LabeledEntityBuildProcessorInterface $labeledFormat = NULL) {
+  public static function createFromLabeledFormat(LabeledEntityBuildProcessorInterface $labeledFormat = NULL): LabeledEntityDisplayListFormat_Composite|LabeledEntityDisplayListFormatInterface {
     return new self(NULL, $labeledFormat, NULL, NULL);
   }
 
@@ -66,7 +66,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    *
    * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
    */
-  public static function createFromListFormat(EntityDisplayListFormatInterface $listFormat = NULL) {
+  public static function createFromListFormat(EntityDisplayListFormatInterface $listFormat = NULL): LabeledEntityDisplayListFormat_Composite|LabeledEntityDisplayListFormatInterface {
     return new self(NULL, NULL, NULL, $listFormat);
   }
 
@@ -84,7 +84,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
   public static function createSimple(
     LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
     EntityDisplayListFormatInterface $listFormat = NULL
-  ) {
+  ): LabeledEntityDisplayListFormat_Composite|LabeledEntityDisplayListFormatInterface {
     return new self(NULL, $labeledFormat, NULL, $listFormat);
   }
 

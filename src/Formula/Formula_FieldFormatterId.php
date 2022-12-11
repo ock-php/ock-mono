@@ -3,43 +3,35 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Field\FormatterPluginManager;
+use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
+#[RegisterService]
 class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
 
-  /**
-   * @var \Drupal\Core\Field\FormatterPluginManager
-   */
-  private $formatterPluginManager;
-
-  /**
-   * @var string
-   */
-  private $fieldTypeName;
-
-  /**
-   * @param string $fieldTypeName
-   *
-   * @return self
-   */
-  public static function create($fieldTypeName): self {
-
-    /* @var \Drupal\Core\Field\FormatterPluginManager $formatterPluginManager */
-    $formatterPluginManager = \Drupal::service('plugin.manager.field.formatter');
-
-    return new self($formatterPluginManager, $fieldTypeName);
-  }
+  private ?string $fieldTypeName;
 
   /**
    * @param \Drupal\Core\Field\FormatterPluginManager $formatterPluginManager
-   * @param string $fieldTypeName
    */
-  public function __construct(FormatterPluginManager $formatterPluginManager, $fieldTypeName) {
-    $this->formatterPluginManager = $formatterPluginManager;
-    $this->fieldTypeName = $fieldTypeName;
+  public function __construct(
+    #[GetService('plugin.manager.field.formatter')]
+    private readonly FormatterPluginManager $formatterPluginManager,
+  ) {}
+
+  /**
+   * @param string $fieldType
+   *
+   * @return static
+   */
+  public function withFieldType(string $fieldType): static {
+    $clone = clone $this;
+    $clone->fieldTypeName = $fieldType;
+    return $clone;
   }
 
   /**

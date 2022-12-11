@@ -13,11 +13,6 @@ use Drupal\renderkit\Formula\Formula_ListSeparator;
 class ListFormat_Separator implements ListFormatInterface {
 
   /**
-   * @var string
-   */
-  private $separator;
-
-  /**
    * @CfrPlugin(
    *   id = "separator",
    *   label = @t("Separator")
@@ -40,8 +35,7 @@ class ListFormat_Separator implements ListFormatInterface {
   /**
    * @param string $separator
    */
-  public function __construct($separator = '') {
-    $this->separator = $separator;
+  public function __construct(private $separator = '') {
   }
 
   /**

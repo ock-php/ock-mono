@@ -13,23 +13,13 @@ use Drupal\Core\Field\FieldItemListInterface;
 abstract class EntityDisplay_FieldItemsBase extends EntityDisplayBase {
 
   /**
-   * @var string
+   * @param string $entityType
+   * @param string $fieldName
    */
-  private $entityType;
-
-  /**
-   * @var string
-   */
-  private $fieldName;
-
-  /**
-   * @param string $entity_type
-   * @param string $field_name
-   */
-  public function __construct($entity_type, $field_name) {
-    $this->entityType = $entity_type;
-    $this->fieldName = $field_name;
-  }
+  public function __construct(
+    private readonly string $entityType,
+    private readonly string $fieldName,
+  ) {}
 
   /**
    * Same as ->buildEntities(), just for a single entity.

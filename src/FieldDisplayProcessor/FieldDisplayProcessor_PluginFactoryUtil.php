@@ -17,7 +17,7 @@ abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implemen
    *
    * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
-  public static function minimalDefault() {
+  public static function minimalDefault(): FieldDisplayProcessor_OuterContainer|FieldDisplayProcessorInterface {
     $fdp = self::fullResetDefault();
     $fdp = new FieldDisplayProcessor_OuterContainer($fdp);
     return $fdp;
@@ -28,7 +28,7 @@ abstract class FieldDisplayProcessor_PluginFactoryUtil extends UtilBase implemen
    *
    * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
-  public static function fullResetDefault() {
+  public static function fullResetDefault(): FieldDisplayProcessor_Label|FieldDisplayProcessorInterface {
     $fdp = new FieldDisplayProcessor_Bare();
     $fdp = new FieldDisplayProcessor_Label($fdp);
     return $fdp;

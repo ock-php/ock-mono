@@ -3,20 +3,46 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
-use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
-use Drupal\renderkit\IdToFormula\IdToFormula_Et_EntityId;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
+use Donquixote\Ock\Text\Text;
+use Drupal\ock\Attribute\DI\DrupalServiceFromType;
+use Drupal\ock\Attribute\DI\DrupalService;
+use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\renderkit\Util\UtilBase;
 
 final class Formula_EntityTypeAndId extends UtilBase {
 
+  const SERVICE_ID = 'renderkit.formula.entity_type_and_id';
+
   /**
-   * @return \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
+   * @param \Drupal\renderkit\Formula\Formula_EntityType $entityTypeFormula
+   * @param callable(string): \Drupal\renderkit\Formula\Formula_EntityIdAutocomplete $entityIdFormulaMap
+   *
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  public static function create(): Formula_DrilldownInterface {
-    return Formula_Drilldown::create(
-      Formula_EntityType::create(),
-      new IdToFormula_Et_EntityId())
-      ->withKeys('entity_type', 'entity_id');
+  #[RegisterService(self::SERVICE_ID)]
+  public static function create(
+    #[DrupalServiceFromType]
+    Formula_EntityType $entityTypeFormula,
+    #[DrupalService(Formula_EntityIdAutocomplete::MAP_SERVICE_ID)]
+    callable $entityIdFormulaMap,
+  ): FormulaInterface {
+    return Formula::group()
+      ->add(
+        'entity_type',
+        Text::t('Entity type'),
+        Formula_EntityType::proxy(),
+      )
+      ->addDynamicFormula(
+        'entity_id',
+        Text::t('Entity'),
+        ['entity_type'],
+        $entityIdFormulaMap,
+      )
+      ->buildGroupFormula();
   }
 }

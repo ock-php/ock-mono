@@ -7,7 +7,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Layout\LayoutInterface;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
-use Drupal\renderkit\IdToFormula\IdToFormula_LayoutAndRegions;
+use Drupal\renderkit\Formula\Formula_LayoutAndRegions;
 
 /**
  * Show a view (from "views" module) for the entity.
@@ -47,10 +47,11 @@ class EntityDisplay_Layout extends EntityDisplayBase {
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(LayoutPluginManagerInterface $layoutManager): FormulaInterface {
-    return IdToFormula_LayoutAndRegions::formula(
-      EntityDisplay::formula(),
+    return Formula_LayoutAndRegions::create(
       $layoutManager,
-      [self::class, 'create']);
+      EntityDisplay::formula(),
+      [self::class, 'create'],
+    );
   }
 
   /**

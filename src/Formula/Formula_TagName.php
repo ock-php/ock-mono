@@ -7,6 +7,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Optional\Formula_Optional;
 use Donquixote\Ock\Formula\Optional\Formula_Optional_Null;
 use Donquixote\Ock\Formula\Select\Formula_Select_Fixed;
+use Donquixote\Ock\Text\Text;
 use Drupal\renderkit\Util\UtilBase;
 
 final class Formula_TagName extends UtilBase {
@@ -16,7 +17,7 @@ final class Formula_TagName extends UtilBase {
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public static function createFree() {
+  public static function createFree(): FormulaInterface {
     return new Formula_TagNameFree();
   }
 
@@ -61,10 +62,11 @@ final class Formula_TagName extends UtilBase {
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public static function createOptional(array $allowedTagNames) {
-
-    $optionsFlat = array_combine($allowedTagNames, $allowedTagNames);
-
+  public static function createOptional(array $allowedTagNames): FormulaInterface {
+    $optionsFlat = [];
+    foreach ($allowedTagNames as $tagName) {
+      $optionsFlat[$tagName] = Text::s($tagName);
+    }
     $formula = Formula_Select_Fixed::createFlat($optionsFlat);
 
     $formula = new Formula_Optional_Null($formula);
@@ -79,17 +81,15 @@ final class Formula_TagName extends UtilBase {
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function create(array $allowedTagNames, $defaultTagName = NULL): FormulaInterface {
-
-    $optionsFlat = array_combine($allowedTagNames, $allowedTagNames);
-
+    $optionsFlat = [];
+    foreach ($allowedTagNames as $tagName) {
+      $optionsFlat[$tagName] = Text::s($tagName);
+    }
     $formula = Formula_Select_Fixed::createFlat($optionsFlat);
-
     if (NULL !== $defaultTagName) {
       $formula = (new Formula_Optional($formula))
-        ->withEmptyValue($defaultTagName)
-        ->withEmptySummary($defaultTagName);
+        ->withEmptySummary(Text::s($defaultTagName));
     }
-
     return $formula;
   }
 

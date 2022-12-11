@@ -3,44 +3,29 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
 /**
  * Formula where the value is like 'node.body', and everything is in one select element.
  */
-class Formula_EtDotFieldName_StorageCondition implements Formula_SelectInterface {
-
-  /**
-   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
-   */
-  private $entityFieldManager;
-
-  /**
-   * @var null|string[]
-   */
-  private $allowedFieldTypes;
-
-  /**
-   * @var null|string
-   */
-  private $entityType;
-
-  /**
-   * @var null|string
-   */
-  private $bundleName;
+class Formula_EtDotFieldName_StorageCondition implements Formula_DrupalSelectInterface {
 
   /**
    * @param null|string[] $allowedFieldTypes
-   * @param string $entityType
+   * @param string|null $entityType
    *   Contextual parameter.
-   * @param string $bundleName
+   * @param string|null $bundleName
    *   Contextual parameter.
    *
    * @return self
    */
-  public static function create(array $allowedFieldTypes = NULL, string $entityType = NULL, string $bundleName = NULL): self {
+  public static function create(
+    array $allowedFieldTypes = NULL,
+    string $entityType = NULL,
+    string $bundleName = NULL,
+  ): self {
 
     // @todo Real dependency injection.
 
@@ -51,8 +36,8 @@ class Formula_EtDotFieldName_StorageCondition implements Formula_SelectInterface
       $entityFieldManager,
       $allowedFieldTypes,
       $entityType,
-      $bundleName);
-
+      $bundleName,
+    );
   }
 
   /**
@@ -64,16 +49,11 @@ class Formula_EtDotFieldName_StorageCondition implements Formula_SelectInterface
    *   Contextual parameter.
    */
   public function __construct(
-    EntityFieldManagerInterface $entityFieldManager,
-    array $allowedFieldTypes = NULL,
-    $entityType = NULL,
-    $bundleName = NULL
-  ) {
-    $this->entityFieldManager = $entityFieldManager;
-    $this->allowedFieldTypes = $allowedFieldTypes;
-    $this->entityType = $entityType;
-    $this->bundleName = $bundleName;
-  }
+    private readonly EntityFieldManagerInterface $entityFieldManager,
+    private readonly ?array $allowedFieldTypes = NULL,
+    private readonly ?string $entityType = NULL,
+    private readonly ?string $bundleName = NULL
+  ) {}
 
   /**
    * @return string[][]
@@ -103,8 +83,8 @@ class Formula_EtDotFieldName_StorageCondition implements Formula_SelectInterface
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($etAndFieldName) {
-    [$et, $fieldName] = explode('.', $etAndFieldName . '.');
+  public function idGetLabel($id): string|MarkupInterface|null {
+    [$et, $fieldName] = explode('.', $id . '.');
 
     if (NULL !== $this->entityType) {
       if ($et !== $this->entityType) {
@@ -137,7 +117,7 @@ class Formula_EtDotFieldName_StorageCondition implements Formula_SelectInterface
     }
 
     // @todo Look up real field name.
-    return $etAndFieldName;
+    return $id;
   }
 
   /**
@@ -189,7 +169,7 @@ class Formula_EtDotFieldName_StorageCondition implements Formula_SelectInterface
   private function getFieldsGrouped(): array {
 
     /**
-     * @var array[][] $map
+     * @var array<string, array<string, array{type: string, bundles: array<string, string>}>> $map
      *   Format: $[$entity_type][$field_name] = ['type' => $field_type, 'bundles' => $bundles]
      */
     $map = $this->entityFieldManager->getFieldMap();
@@ -198,12 +178,10 @@ class Formula_EtDotFieldName_StorageCondition implements Formula_SelectInterface
       if (!isset($map[$this->entityType])) {
         return [];
       }
-
       $map = [$this->entityType => $map[$this->entityType]];
     }
 
     if (NULL !== $this->bundleName) {
-
       $filteredMap = [];
       foreach ($map as $entityTypeId => $fields) {
         foreach ($fields as $fieldName => $fieldInfo) {

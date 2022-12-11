@@ -40,7 +40,7 @@ class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface
    *
    * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
-  public static function create(ListFormatInterface $listFormat, $withFieldClasses = FALSE) {
+  public static function create(ListFormatInterface $listFormat, $withFieldClasses = FALSE): FieldDisplayProcessor_ListFormat|FieldDisplayProcessorInterface|FieldDisplayProcessor_FieldClasses {
     $fieldDisplayProcessor = new self($listFormat);
     if ($withFieldClasses) {
       $fieldDisplayProcessor = new FieldDisplayProcessor_FieldClasses($fieldDisplayProcessor);

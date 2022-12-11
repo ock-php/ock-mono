@@ -9,29 +9,11 @@ use Drupal\renderkit\Util\EntityUtil;
 class EntityToRelatedIds_ReverseEntityReferenceField extends EntityToRelatedIds_MultipleBase {
 
   /**
-   * @var string
-   */
-  private $fieldSourceType;
-
-  /**
-   * @var string
-   */
-  private $fieldName;
-
-  /**
-   * @var string
-   */
-  private $fieldTargetType;
-
-  /**
    * @param string $fieldSourceType
    * @param string $fieldName
    * @param string $fieldTargetType
    */
-  public function __construct($fieldSourceType, $fieldName, $fieldTargetType) {
-    $this->fieldSourceType = $fieldSourceType;
-    $this->fieldName = $fieldName;
-    $this->fieldTargetType = $fieldTargetType;
+  public function __construct(private $fieldSourceType, private $fieldName, private $fieldTargetType) {
   }
 
   /**

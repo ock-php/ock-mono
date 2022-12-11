@@ -30,7 +30,7 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
-  public static function create(EntityImageInterface $entityImageProvider, ImageProcessorInterface $imageProcessor = NULL) {
+  public static function create(EntityImageInterface $entityImageProvider, ImageProcessorInterface $imageProcessor = NULL): EntityImageInterface|\Drupal\renderkit\EntityDisplay\EntityDisplayInterface {
     return NULL !== $imageProcessor
       ? new static($entityImageProvider, $imageProcessor)
       : $entityImageProvider;

@@ -3,18 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityToEntity;
 
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\user\UserInterface;
 
-/**
- * @CfrPlugin(
- *   id = "author",
- *   label = @t("Entity author")
- * )
- */
+#[OckPluginInstance('author', 'Entity author')]
 class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
 
   /**
@@ -25,6 +21,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
    *
    * @return \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
    */
+  #[OckPluginInstance('userEntityOrAuthor', 'User entity or author')]
   public static function userEntityOrAuthor(): EntityToEntityInterface {
     return new EntityToEntity_SelfOrOther(new self());
   }
@@ -63,7 +60,7 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
       return NULL;
     }
 
-    $user = $item->entity;
+    $user = $item->__get('entity');
 
     if (!$user instanceof UserInterface) {
       return NULL;

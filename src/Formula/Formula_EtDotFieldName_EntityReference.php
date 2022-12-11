@@ -6,11 +6,6 @@ namespace Drupal\renderkit\Formula;
 class Formula_EtDotFieldName_EntityReference extends Formula_EtDotFieldName_ProxyCacheBase {
 
   /**
-   * @var null|string
-   */
-  private $targetTypeId;
-
-  /**
    * @param string|null $entityTypeId
    * @param string|null $bundleName
    * @param string|null $targetTypeId
@@ -18,20 +13,17 @@ class Formula_EtDotFieldName_EntityReference extends Formula_EtDotFieldName_Prox
   public function __construct(
     $entityTypeId = NULL,
     $bundleName = NULL,
-    $targetTypeId = NULL
+    private $targetTypeId = NULL
   ) {
-    $this->targetTypeId = $targetTypeId;
-
     $extraCacheId = 'entity_reference';
-
     if (NULL !== $targetTypeId) {
       $extraCacheId .= ':' . $targetTypeId;
     }
-
     parent::__construct(
       $entityTypeId,
       $bundleName,
-      $extraCacheId);
+      $extraCacheId,
+    );
   }
 
   /**
@@ -41,13 +33,12 @@ class Formula_EtDotFieldName_EntityReference extends Formula_EtDotFieldName_Prox
    * @return string[][]
    *   Format: $[$groupLabel][$fieldName] = $fieldLabel
    */
-  protected function etGetGroupedOptions($entityTypeId, $bundleName = NULL): array {
-
+  protected function etGetGroupedOptions(string $entityTypeId, string $bundleName = NULL): array {
     $formula = new Formula_FieldName_EntityReference(
       $entityTypeId,
       $bundleName,
-      $this->targetTypeId);
-
+      $this->targetTypeId,
+    );
     return $formula->getData();
   }
 }

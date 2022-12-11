@@ -13,16 +13,6 @@ use Drupal\renderkit\Formula\Formula_EtAndFieldName;
 class EntityToFieldItem_Field implements EntityToFieldItemInterface {
 
   /**
-   * @var string
-   */
-  private $entityTypeId;
-
-  /**
-   * @var string
-   */
-  private $fieldName;
-
-  /**
    * @CfrPlugin("field", "Field", inline = true)
    *
    * @param string[]|null $allowedFieldTypes
@@ -61,9 +51,7 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
    * @param string $entityTypeId
    * @param string $fieldName
    */
-  public function __construct($entityTypeId, $fieldName) {
-    $this->entityTypeId = $entityTypeId;
-    $this->fieldName = $fieldName;
+  public function __construct(private $entityTypeId, private $fieldName) {
   }
 
   /**

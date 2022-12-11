@@ -13,16 +13,6 @@ use Drupal\views\Views;
 class BuildProvider_ViewsDisplay implements BuildProviderInterface {
 
   /**
-   * @var string
-   */
-  private $viewName;
-
-  /**
-   * @var string
-   */
-  private $displayId;
-
-  /**
    * @var \Drupal\renderkit\LabeledFormat\LabeledFormatInterface
    */
   private $labeledFormat;
@@ -54,7 +44,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    * @return self|null
    */
   public static function doCreate($viewNameWithDisplayId, LabeledFormatInterface $labeledFormat = NULL): ?self {
-    list($view_name, $display_id) = explode(':', $viewNameWithDisplayId . ':');
+    [$view_name, $display_id] = explode(':', $viewNameWithDisplayId . ':');
     if ('' === $view_name || '' === $display_id) {
       return NULL;
     }
@@ -68,9 +58,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
    * @param string $displayId
    * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
    */
-  public function __construct($viewName, $displayId, LabeledFormatInterface $labeledFormat = NULL) {
-    $this->viewName = $viewName;
-    $this->displayId = $displayId;
+  public function __construct(private $viewName, private $displayId, LabeledFormatInterface $labeledFormat = NULL) {
     $this->labeledFormat = $labeledFormat;
   }
 

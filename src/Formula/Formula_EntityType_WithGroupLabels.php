@@ -64,23 +64,12 @@ class Formula_EntityType_WithGroupLabels implements Formula_DrupalSelectInterfac
 
     $groupedOptions = [];
     foreach ($grouped as $groupId => $labelsInGroup) {
-
       asort($labelsInGroup);
-
-      switch ($groupId) {
-
-        case 'content':
-          $groupLabel = (string)t('Content entity types');
-          break;
-
-        case 'config':
-          $groupLabel = (string)t('Config entity types');
-          break;
-
-        default:
-          $groupLabel = (string)t('Other');
-      }
-
+      $groupLabel = match ($groupId) {
+        'content' => (string) t('Content entity types'),
+        'config' => (string) t('Config entity types'),
+        default => (string) t('Other'),
+      };
       $groupedOptions[$groupLabel] = $labelsInGroup;
     }
 

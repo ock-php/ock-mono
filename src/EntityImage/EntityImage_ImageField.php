@@ -3,69 +3,68 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImage;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldItemsBase;
-use Drupal\renderkit\Formula\Formula_EtDotFieldName_AllowedTypes;
+use Drupal\renderkit\Formula\Formula_EtDotFieldName;
 use Drupal\renderkit\Util\ImageFieldUtil;
 
 class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements EntityImageInterface {
 
   /**
-   * @var bool
-   */
-  private $useDefaultImage;
-
-  /**
-   * @CfrPlugin("entityImageField", @t("Entity image field"))
-   *
-   * @param string $entityType
-   * @param string $bundleName
+   * @param \Drupal\renderkit\Formula\Formula_EtDotFieldName $fieldNameFormula
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public static function createFormula(string $entityType = NULL, string $bundleName = NULL): FormulaInterface {
-
-    return Formula_GroupVal_Callback::fromStaticMethod(
-      __CLASS__,
-      'create',
-      [
-        new Formula_EtDotFieldName_AllowedTypes(
-          $entityType,
-          $bundleName,
-          ['image']),
+  #[OckPluginFormula(self::class, 'entityImageField', 'Entity image field')]
+  public static function formula(
+    #[GetService]
+    Formula_EtDotFieldName $fieldNameFormula,
+  ): FormulaInterface {
+    return Formula::group()
+      ->add(
+        'image_field',
+        Text::t('Image field'),
+        $fieldNameFormula->withAllowedFieldTypes(['image']),
+      )
+      ->addDynamicValues(
+        ['entity_type', 'field_name'],
+        ['image_field'],
+        fn (string $etDotFieldName) => explode('.', $etDotFieldName),
+      )
+      ->add(
+        'use_default_image',
+        Text::t('Use default image as fallback'),
         Formula_Boolean_YesNo::create(TRUE),
-      ],
-      [
-        t('Image field'),
-        t('Use default image as fallback'),
+      )
+      ->construct(self::class, [
+        'entity_type',
+        'field_name',
+        'use_default_image',
       ]);
   }
 
   /**
-   * @param string $etDotFieldName
-   * @param bool $useDefaultImage
+   * Constructor.
    *
-   * @return self
-   */
-  public static function create(string $etDotFieldName, bool $useDefaultImage = TRUE): self {
-    list($et, $fieldName) = explode('.', $etDotFieldName . '.');
-    return new self($et, $fieldName, $useDefaultImage);
-  }
-
-  /**
    * @param string $entity_type
    * @param string $field_name
    * @param bool $useDefaultImage
    */
-  public function __construct($entity_type, $field_name, $useDefaultImage = TRUE) {
+  public function __construct(
+    string $entity_type,
+    string $field_name,
+    private readonly bool $useDefaultImage = TRUE,
+  ) {
     parent::__construct($entity_type, $field_name);
-    $this->useDefaultImage = $useDefaultImage;
   }
 
   /**

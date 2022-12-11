@@ -10,11 +10,6 @@ use Drupal\renderkit\Formula\Formula_ImageStyleName;
 class ImageProcessor_ImageStyle implements ImageProcessorInterface {
 
   /**
-   * @var string
-   */
-  private $styleName;
-
-  /**
    * @CfrPlugin(
    *   id = "imageStyle",
    *   label = @t("Image style")
@@ -38,8 +33,7 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
    * @param string $styleName
    *   The image style name.
    */
-  public function __construct($styleName) {
-    $this->styleName = $styleName;
+  public function __construct(private $styleName) {
   }
 
   /**

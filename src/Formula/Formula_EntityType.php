@@ -3,39 +3,42 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\FreeParameters\Formula_FreeParameters;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
+use Drupal\ock\Attribute\DI\DrupalService;
+use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
+#[RegisterService(self::SERVICE_ID)]
 class Formula_EntityType implements Formula_DrupalSelectInterface {
 
-  /**
-   * @var \Drupal\Core\Entity\EntityTypeRepositoryInterface
-   */
-  private $entityTypeRepository;
+  const SERVICE_ID = 'renderkit.formula.entity_type';
 
   /**
-   * @return self
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  public static function create(): self {
-    /** @var \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository */
-    $entityTypeRepository = \Drupal::service('entity_type.repository');
-    return new self($entityTypeRepository);
+  public static function proxy(): FormulaInterface {
+    return Formula_FreeParameters::fromClass(self::class);
   }
 
   /**
    * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
    */
-  public function __construct(EntityTypeRepositoryInterface $entityTypeRepository) {
-    $this->entityTypeRepository = $entityTypeRepository;
-  }
+  public function __construct(
+    #[DrupalService('entity_type.repository')]
+    private readonly EntityTypeRepositoryInterface $entityTypeRepository,
+  ) {}
 
   /**
    * @return string[]
    */
   public function getGroupedOptions(): array {
     $options = $this->entityTypeRepository->getEntityTypeLabels();
-    asort($options);
     return ['' => $options];
   }
 

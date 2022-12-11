@@ -16,17 +16,11 @@ class EntityToRelatedIds_EntityReferenceField extends EntityToRelatedIdsBase {
   private $field;
 
   /**
-   * @var string
-   */
-  private $targetType;
-
-  /**
    * @param \Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface $field
    * @param string $targetType
    */
-  public function __construct(EntityToFieldItemListInterface $field, $targetType) {
+  public function __construct(EntityToFieldItemListInterface $field, private $targetType) {
     $this->field = $field;
-    $this->targetType = $targetType;
   }
 
   /**

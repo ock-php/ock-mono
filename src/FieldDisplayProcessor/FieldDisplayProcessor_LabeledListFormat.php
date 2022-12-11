@@ -41,7 +41,7 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
    *
    * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
-  public static function create(LabeledListFormatInterface $labeledListFormat, $withFieldClasses = FALSE) {
+  public static function create(LabeledListFormatInterface $labeledListFormat, $withFieldClasses = FALSE): FieldDisplayProcessor_LabeledListFormat|FieldDisplayProcessorInterface|FieldDisplayProcessor_FieldClasses {
     $fieldDisplayProcessor = new self($labeledListFormat);
     if ($withFieldClasses) {
       $fieldDisplayProcessor = new FieldDisplayProcessor_FieldClasses($fieldDisplayProcessor);

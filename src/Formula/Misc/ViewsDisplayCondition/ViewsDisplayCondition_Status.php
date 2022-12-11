@@ -6,15 +6,9 @@ namespace Drupal\renderkit\Formula\Misc\ViewsDisplayCondition;
 class ViewsDisplayCondition_Status implements ViewsDisplayConditionInterface {
 
   /**
-   * @var bool
-   */
-  private $status;
-
-  /**
    * @param bool $status
    */
-  public function __construct($status = TRUE) {
-    $this->status = $status;
+  public function __construct(private $status = TRUE) {
   }
 
   /**

@@ -13,17 +13,11 @@ class EntityDisplayListFormat_Labeled implements EntityDisplayListFormatInterfac
   private $labeledEntityDisplayListFormat;
 
   /**
-   * @var string
-   */
-  private $label;
-
-  /**
    * @param \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat
    * @param string $label
    */
-  public function __construct(LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat, $label) {
+  public function __construct(LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat, private $label) {
     $this->labeledEntityDisplayListFormat = $labeledEntityDisplayListFormat;
-    $this->label = $label;
   }
 
   /**

@@ -9,15 +9,9 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 class FieldStorageDefinitionCondition_FieldItemClass implements FieldStorageDefinitionConditionInterface {
 
   /**
-   * @var string
-   */
-  private $classOrInterface;
-
-  /**
    * @param string $classOrInterface
    */
-  public function __construct($classOrInterface) {
-    $this->classOrInterface = $classOrInterface;
+  public function __construct(private $classOrInterface) {
   }
 
   /**

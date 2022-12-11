@@ -9,11 +9,6 @@ use Drupal\renderkit\Formula\Misc\SelectByEt\SelectByEtInterface;
 class Formula_SelectByEt extends Formula_Proxy_Cache_SelectBase {
 
   /**
-   * @var string
-   */
-  private $entityTypeId;
-
-  /**
    * @var null|string[]
    */
   private $bundleNames;
@@ -28,8 +23,7 @@ class Formula_SelectByEt extends Formula_Proxy_Cache_SelectBase {
    * @param string[]|null $bundleNames
    * @param \Drupal\renderkit\Formula\Misc\SelectByEt\SelectByEtInterface $selectByEt
    */
-  public function __construct($entityTypeId, array $bundleNames = NULL, SelectByEtInterface $selectByEt) {
-    $this->entityTypeId = $entityTypeId;
+  public function __construct(private $entityTypeId, array $bundleNames = NULL, SelectByEtInterface $selectByEt) {
     $this->bundleNames = $bundleNames;
     $this->selectByEt = $selectByEt;
 

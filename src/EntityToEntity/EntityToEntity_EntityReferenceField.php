@@ -3,94 +3,87 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityToEntity;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Text\Text;
+use Donquixote\Ock\Util\PhpUtil;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\TypedData\Exception\MissingDataException;
-use Drupal\renderkit\Formula\Formula_EtDotFieldName_EntityReference;
+use Drupal\ock\Util\DrupalPhpUtil;
+use Drupal\renderkit\Formula\Formula_EtDotFieldName;
 
 class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
 
   /**
-   * @var string
-   */
-  private $entityTypeId;
-
-  /**
-   * @var string
-   */
-  private $fieldName;
-
-  /**
-   * @var string
-   */
-  private $targetType;
-
-  /**
-   * @CfrPlugin("entityReferenceField", "Entity reference field")
+   * Construct.
    *
-   * @param string $entityType
-   *   (optional) Contextual parameter.
-   * @param string $bundleName
-   *   (optional) Contextual parameter.
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public static function createFormula($entityType = NULL, $bundleName = NULL): FormulaInterface {
-
-    $etDotFieldNameFormula = new Formula_EtDotFieldName_EntityReference(
-      $entityType,
-      $bundleName,
-      NULL);
-
-    return Formula_ValueToValue_CallbackMono::fromStaticMethod(
-      __CLASS__,
-      'create',
-      $etDotFieldNameFormula);
-  }
-
-  /**
-   * @param string $etDotFieldName
-   *
-   * @return self|null
-   */
-  public static function create($etDotFieldName): ?self {
-
-    list($entityTypeId, $fieldName) = explode('.', $etDotFieldName) + [NULL, NULL];
-
-    if (NULL === $fieldName || '' === $entityTypeId || '' === $fieldName) {
-      return NULL;
-    }
-
-    /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
-    $efm = \Drupal::service('entity_field.manager');
-
-    $storages = $efm->getFieldStorageDefinitions($entityTypeId);
-
-    if (!isset($storages[$fieldName])) {
-      return NULL;
-    }
-
-    $storage = $storages[$fieldName];
-
-    if (NULL === $targetTypeId = $storage->getSetting('target_type')) {
-      return NULL;
-    }
-
-    return new self($entityTypeId, $fieldName, $targetTypeId);
-  }
-
-  /**
    * @param string $entityTypeId
    * @param string $fieldName
    * @param string $targetType
    */
-  public function __construct($entityTypeId, $fieldName, $targetType) {
-    $this->entityTypeId = $entityTypeId;
-    $this->fieldName = $fieldName;
-    $this->targetType = $targetType;
+  public function __construct(
+    private readonly string $entityTypeId,
+    private readonly string $fieldName,
+    private readonly string $targetType,
+  ) {}
+
+  /**
+   * @CfrPlugin("entityReferenceField", "Entity reference field")
+   *
+   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
+   * @param \Drupal\renderkit\Formula\Formula_EtDotFieldName $fieldNameFormula
+   *
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   */
+  #[OckPluginInstance('entityReferenceField', 'Entity reference field')]
+  public static function createFormula(
+    #[GetService('entity_field.manager')]
+    EntityFieldManagerInterface $entityFieldManager,
+    #[GetService]
+    Formula_EtDotFieldName $fieldNameFormula,
+  ): FormulaInterface {
+    return Formula::group()
+      ->add(
+        'reference_field',
+        Text::t('Reference field'),
+        // @todo Only allow reference fields!
+        $fieldNameFormula->withAllowedFieldTypes(['image']),
+      )
+      ->callPhp([self::class, 'create'], [
+        DrupalPhpUtil::service('entity_field.manager'),
+        PhpUtil::phpPlaceholder('reference_field'),
+      ]);
+  }
+
+  /**
+   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
+   * @param string $etDotFieldName
+   *
+   * @return self|null
+   */
+  public static function create(
+    EntityFieldManagerInterface $entityFieldManager,
+    string $etDotFieldName,
+  ): ?self {
+    [$entityTypeId, $fieldName] = explode('.', $etDotFieldName) + [NULL, NULL];
+    if (NULL === $fieldName || '' === $entityTypeId || '' === $fieldName) {
+      // @todo Throw an exception instead.
+      return NULL;
+    }
+
+    $targetTypeId = ($entityFieldManager->getFieldStorageDefinitions(
+      $entityTypeId,
+    )[$fieldName] ?? NULL)?->getSetting('target_type');
+    if ($targetTypeId === NULL) {
+      return NULL;
+    }
+
+    return new self($entityTypeId, $fieldName, $targetTypeId);
   }
 
   /**
@@ -130,16 +123,16 @@ class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
       return NULL;
     }
 
-    $targetEntity = $item->entity;
+    $referencedEntity = $item->__get('entity');
 
-    if (!$targetEntity instanceof EntityInterface) {
+    if (!$referencedEntity instanceof EntityInterface) {
       return NULL;
     }
 
-    if ($this->targetType !== $targetEntity->getEntityTypeId()) {
+    if ($this->targetType !== $referencedEntity->getEntityTypeId()) {
       return NULL;
     }
 
-    return $targetEntity;
+    return $referencedEntity;
   }
 }

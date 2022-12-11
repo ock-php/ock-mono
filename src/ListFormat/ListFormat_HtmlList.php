@@ -17,11 +17,6 @@ class ListFormat_HtmlList implements ListFormatInterface {
   use HtmlAttributesTrait;
 
   /**
-   * @var string
-   */
-  private $tagName;
-
-  /**
    * @CfrPlugin("htmlList", @t("HTML list"))
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
@@ -47,7 +42,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  public static function create($tagName = 'ul', array $classes = []) {
+  public static function create($tagName = 'ul', array $classes = []): ListFormat_HtmlList|ListFormatInterface {
 
     $format = new self($tagName);
 
@@ -63,7 +58,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  public static function ul(array $classes = []) {
+  public static function ul(array $classes = []): ListFormat_HtmlList|ListFormatInterface {
     return self::create('ul', $classes);
   }
 
@@ -72,15 +67,14 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  public static function ol(array $classes = []) {
+  public static function ol(array $classes = []): ListFormat_HtmlList|ListFormatInterface {
     return self::create('ol', $classes);
   }
 
   /**
    * @param string $tagName
    */
-  public function __construct($tagName = 'ul') {
-    $this->tagName = $tagName;
+  public function __construct(private $tagName = 'ul') {
   }
 
   /**

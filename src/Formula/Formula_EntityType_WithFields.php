@@ -3,7 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\FreeParameters\Formula_FreeParameters;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 
@@ -12,41 +16,32 @@ use Drupal\Core\Entity\EntityTypeRepositoryInterface;
  */
 class Formula_EntityType_WithFields implements Formula_FlatSelectInterface {
 
-  /**
-   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
-   */
-  private $entityFieldManager;
+  const SERVICE_ID = 'renderkit.formula.entity_type_with_fields';
 
   /**
-   * @var \Drupal\Core\Entity\EntityTypeRepositoryInterface
-   */
-  private $entityTypeRepository;
-
-  /**
-   * @return self
-   */
-  public static function create(): self {
-    return new self(
-      \Drupal::service('entity_field.manager'),
-      \Drupal::service('entity_type.repository'));
-  }
-
-  /**
+   * Constructor.
+   *
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
    */
   public function __construct(
-    EntityFieldManagerInterface $entityFieldManager,
-    EntityTypeRepositoryInterface $entityTypeRepository
-  ) {
-    $this->entityFieldManager = $entityFieldManager;
-    $this->entityTypeRepository = $entityTypeRepository;
+    #[GetService('entity_field.manager')]
+    private readonly EntityFieldManagerInterface $entityFieldManager,
+    #[GetService('entity_type.repository')]
+    private readonly EntityTypeRepositoryInterface $entityTypeRepository,
+  ) {}
+
+  /**
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
+   */
+  public static function proxy(): FormulaInterface {
+    return Formula_FreeParameters::fromClass(self::class);
   }
 
   /**
-   * @return string[][]
-   *   Format: $[$groupLabel][$optionKey] = $optionLabel,
-   *   with $groupLabel === '' for toplevel options.
+   * {@inheritdoc}
    */
   public function getOptions(): array {
 
@@ -66,7 +61,7 @@ class Formula_EntityType_WithFields implements Formula_FlatSelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($id) {
+  public function idGetLabel(string|int $id): ?TextInterface {
 
     /**
      * @var array[][] $map

@@ -18,11 +18,6 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   private static $inProgress = [];
 
   /**
-   * @var string
-   */
-  private $queryKey;
-
-  /**
    * @CfrPlugin("previewForm", "Preview form")
    *
    * @return self
@@ -34,8 +29,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   /**
    * @param string $queryKey
    */
-  public function __construct($queryKey) {
-    $this->queryKey = $queryKey;
+  public function __construct(private $queryKey) {
   }
 
   /**

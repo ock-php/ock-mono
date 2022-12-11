@@ -51,7 +51,7 @@ class FieldDisplayProcessor_LabeledEntityDisplayListFormat implements FieldDispl
    *
    * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
-  public static function create(LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat, $withFieldClasses = FALSE) {
+  public static function create(LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat, $withFieldClasses = FALSE): FieldDisplayProcessorInterface|FieldDisplayProcessor_FieldClasses|FieldDisplayProcessor_LabeledEntityDisplayListFormat {
     $fieldDisplayProcessor = new self($labeledEntityDisplayListFormat);
     if ($withFieldClasses) {
       $fieldDisplayProcessor = new FieldDisplayProcessor_FieldClasses($fieldDisplayProcessor);

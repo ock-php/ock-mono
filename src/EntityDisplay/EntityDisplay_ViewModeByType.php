@@ -19,11 +19,6 @@ class EntityDisplay_ViewModeByType extends EntityDisplay_ViewModeBase {
   private $viewModesByType;
 
   /**
-   * @var string|null
-   */
-  private $defaultViewModeName;
-
-  /**
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    * @param string[] $viewModesByType
    *   Format: $[$entity_type] = $view_mode
@@ -32,10 +27,9 @@ class EntityDisplay_ViewModeByType extends EntityDisplay_ViewModeBase {
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
     array $viewModesByType,
-    $defaultViewModeName = NULL
+    private $defaultViewModeName = NULL
   ) {
     $this->viewModesByType = $viewModesByType;
-    $this->defaultViewModeName = $defaultViewModeName;
     parent::__construct($entityTypeManager);
   }
 

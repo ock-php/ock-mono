@@ -6,15 +6,9 @@ namespace Drupal\renderkit\Formula\Misc\EntityTypeCondition;
 class EntityTypeCondition_EntityTypeId implements EntityTypeConditionInterface {
 
   /**
-   * @var string
-   */
-  private $entityTypeId;
-
-  /**
    * @param string $entityTypeId
    */
-  public function __construct($entityTypeId) {
-    $this->entityTypeId = $entityTypeId;
+  public function __construct(private $entityTypeId) {
   }
 
   /**

@@ -3,20 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Exception\EvaluatorException;
 use Donquixote\Ock\Formula\Group\Formula_Group_V2VDecoratorBase;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Zoo\V2V\Group\V2V_GroupInterface;
+use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessor_OuterContainer;
-use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
 class Formula_FieldDisplayProcessor_OuterContainer extends Formula_Group_V2VDecoratorBase {
-
-  /**
-   * @var bool
-   */
-  private $withClassesOption;
 
   /**
    * @param \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface $decoratedValFormula
@@ -26,7 +19,7 @@ class Formula_FieldDisplayProcessor_OuterContainer extends Formula_Group_V2VDeco
    */
   public static function create(
     Formula_GroupValInterface $decoratedValFormula,
-    $withClassesOption
+    bool $withClassesOption
   ): self {
     return new self(
       $decoratedValFormula->getDecorated(),
@@ -36,20 +29,19 @@ class Formula_FieldDisplayProcessor_OuterContainer extends Formula_Group_V2VDeco
 
   /**
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $decoratedFormula
-   * @param \Donquixote\Ock\Zoo\V2V\Group\V2V_GroupInterface $decoratedV2V
+   * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $decoratedV2V
    * @param bool $withClassesOption
    */
   public function __construct(
     Formula_GroupInterface $decoratedFormula,
     V2V_GroupInterface $decoratedV2V,
-    $withClassesOption
+    private readonly bool $withClassesOption
   ) {
     parent::__construct($decoratedFormula, $decoratedV2V);
-    $this->withClassesOption = $withClassesOption;
   }
 
   /**
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface[]
+   * {@inheritdoc}
    */
   public function getItemFormulas(): array {
 
@@ -63,7 +55,7 @@ class Formula_FieldDisplayProcessor_OuterContainer extends Formula_Group_V2VDeco
   }
 
   /**
-   * @return string[]
+   * {@inheritdoc}
    */
   public function getLabels(): array {
 
@@ -77,33 +69,7 @@ class Formula_FieldDisplayProcessor_OuterContainer extends Formula_Group_V2VDeco
   }
 
   /**
-   * @param mixed[] $values
-   *
-   * @return mixed
-   *
-   * @throws \Donquixote\Ock\Exception\EvaluatorException
-   */
-  public function valuesGetValue(array $values) {
-
-    $fdp = parent::valuesGetValue($values);
-
-    if (!$fdp instanceof FieldDisplayProcessorInterface) {
-      throw new EvaluatorException("Expected a FieldDisplayProcessorInterface object.");
-    }
-
-    $fdp = new FieldDisplayProcessor_OuterContainer($fdp);
-
-    if ($this->withClassesOption && [] !== $values['classes']) {
-      $fdp = $fdp->withAdditionalClasses($values['classes']);
-    }
-
-    return $fdp;
-  }
-
-  /**
-   * @param string[] $itemsPhp
-   *
-   * @return string
+   * {@inheritdoc}
    */
   public function itemsPhpGetPhp(array $itemsPhp): string {
 

@@ -63,7 +63,6 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
       foreach ($deltaRelatedIds as $id => $relatedEntity) {
         if (!empty($relatedEntitiesHaveQuality[$id])) {
           $entitiesHaveQuality[$delta] = TRUE;
-          continue;
         }
       }
     }

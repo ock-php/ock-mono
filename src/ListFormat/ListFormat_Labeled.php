@@ -13,17 +13,11 @@ class ListFormat_Labeled implements ListFormatInterface {
   private $labeledListFormat;
 
   /**
-   * @var string
-   */
-  private $label;
-
-  /**
    * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    * @param string $label
    */
-  public function __construct(LabeledListFormatInterface $labeledListFormat, $label) {
+  public function __construct(LabeledListFormatInterface $labeledListFormat, private $label) {
     $this->labeledListFormat = $labeledListFormat;
-    $this->label = $label;
   }
 
   /**

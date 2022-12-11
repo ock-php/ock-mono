@@ -3,39 +3,43 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\AccountAccess;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\ock\Formula\Formula_PermissionId;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class AccountAccess_Permission implements AccountAccessInterface {
 
   /**
-   * @var string
-   */
-  private string $permission;
-
-  /**
-   * @CfrPlugin("permission", @t("Permission"))
-   *
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public static function formula(ContainerInterface $container): FormulaInterface {
-    return Formula_ValueToValue_CallbackMono::fromClass(
-      self::class,
-      Formula_PermissionId::fromContainer($container));
+  #[OckPluginFormula(self::class, 'permission', 'Permission')]
+  public static function formula(
+    #[GetService]
+    Formula_PermissionId $permissionFormula,
+  ): FormulaInterface {
+    return Formula::group()
+      ->add(
+        'permission',
+        Text::t('Permission'),
+        $permissionFormula,
+      )
+      ->construct(self::class);
   }
 
   /**
    * @param string $permission
    */
-  public function __construct(string $permission) {
-    $this->permission = $permission;
-  }
+  public function __construct(
+    private readonly string $permission,
+  ) {}
 
   /**
    * @param \Drupal\Core\Session\AccountInterface $account

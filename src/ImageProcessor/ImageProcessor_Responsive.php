@@ -12,13 +12,6 @@ use Drupal\image\Entity\ImageStyle;
 class ImageProcessor_Responsive implements ImageProcessorInterface {
 
   /**
-   * The image style name to use for the src attribute itself.
-   *
-   * @var string|null
-   */
-  private $fallbackStyleName;
-
-  /**
    * @var string[]
    */
   private $sizes = [];
@@ -36,9 +29,8 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *   Image style for the fallback image (src attribute), for browsers that
    *   don't understand srcset.
    */
-  public function __construct($fallbackStyleName = NULL) {
+  public function __construct(private $fallbackStyleName = NULL) {
     // @todo Load the image styles here, instead of later!
-    $this->fallbackStyleName = $fallbackStyleName;
     $this->styleNames[] = $fallbackStyleName;
   }
 

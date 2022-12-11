@@ -3,78 +3,91 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Controller;
 
+use Donquixote\Adaptism\Exception\AdapterException;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Evaluator\Evaluator;
 use Donquixote\Ock\Exception\EvaluatorException;
-use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Plugin\Map\PluginMapInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 use Drupal\controller_annotations\Configuration\Cache;
-use Drupal\controller_annotations\Configuration\Route;
-use Drupal\controller_annotations\Configuration\RouteIsAdmin;
-use Drupal\controller_annotations\Configuration\RouteRequirePermission;
-use Drupal\controller_annotations\Configuration\RouteTitle;
-use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
-use Drupal\controller_annotations\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\ock\Attribute\Routing\Route;
+use Drupal\ock\Attribute\Routing\RouteIsAdmin;
+use Drupal\ock\Attribute\Routing\RouteMenuLink;
+use Drupal\ock\Attribute\Routing\RouteRequirePermission;
+use Drupal\ock\Attribute\Routing\RouteTitle;
+use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
+use Drupal\ock\UI\Controller\ControllerRouteNameInterface;
+use Drupal\ock\UI\Controller\ControllerRouteNameTrait;
+use Drupal\ock\UI\Form\Form_IfaceDemo;
+use Drupal\ock\Util\UiDumpUtil;
 use Drupal\renderkit\BuildProvider\BuildProviderInterface;
-use Drupal\routelink\RouteModifier\RouteMenuLink;
 
 /**
- * @Route("/admin/reports/renderkit")
  * @Cache(expires="tomorrow")
- * @RouteIsAdmin
- * @RouteRequirePermission("view renderkit report pages")
+ * @todo Define cache via attributes.
  */
+#[Route('/admin/report/renderkit')]
+#[RouteIsAdmin]
+#[RouteRequirePermission('view renderkit report pages')]
 class Controller_Report extends ControllerBase implements ControllerRouteNameInterface {
 
   use ControllerRouteNameTrait;
+  use ContainerInjectionViaAttributesTrait;
 
   /**
-   * @Route
-   * @RouteTitle("Renderkit")
-   * @RouteMenuLink
+   * Constructor.
    *
-   * @return array
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
+  public function __construct(
+    private readonly PluginMapInterface $pluginMap,
+    private readonly UniversalAdapterInterface $adapter,
+    private readonly TranslatorInterface $translator,
+  ) {}
+
+  #[Route]
+  #[RouteTitle('Renderkit')]
+  #[RouteMenuLink]
   public function index(): array {
     return [
       '#markup' => __METHOD__,
     ];
   }
 
-  /**
-   * @Route("/build-provider-demo")
-   * @RouteTitle("Build provider demo")
-   * @RouteMenuLink
-   *
-   * @return array
-   */
+  #[Route('/build-provider-demo')]
+  #[RouteTitle('Build provider demo')]
+  #[RouteMenuLink]
   public function demo(): array {
 
-    $settings = $_GET['plugin'] ?? [];
+    $settings = $_GET[Form_IfaceDemo::KEY] ?? [];
 
     $out = [];
 
-    /** @noinspection PhpMethodParametersCountMismatchInspection */
     $out['form'] = $this->formBuilder()->getForm(
       Form_IfaceDemo::class,
-      BuildProviderInterface::class);
+      BuildProviderInterface::class,
+    );
 
     if (!empty($_GET['noshow']) || !empty($_POST)) {
       return $out;
     }
 
-    $container = CfrPluginHub::getContainer();
-    $sta = $container->incarnator;
+    $sta = $this->adapter;
 
     if (!$settings) {
       return $out;
     }
 
-    $formula = new Formula_IfaceWithContext(BuildProviderInterface::class);
+    $formula = Formula::iface(BuildProviderInterface::class);
 
-    $evaluator = Evaluator::fromFormula($formula, $sta);
-
-    if (null === $evaluator) {
-
+    try {
+      $evaluator = Evaluator::fromFormula($formula, $sta);
+    }
+    catch (AdapterException) {
       $out['problem'] = [
         '#type' => 'fieldset',
         '#title' => t('Problem'),
@@ -104,12 +117,12 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
           'warning');
       }
       $out['exception'] = [
-          '#type' => 'fieldset',
-          '#title' => t('Exception'),
-          '#description' => '<p>' . t('Cfrplugin was unable to generate a behavior object for the given configuration.') . '</p>',
-          '#id' => '_',
-        ]
-        + UiDumpUtil::displayException($e);
+        '#type' => 'fieldset',
+        '#title' => t('Exception'),
+        '#description' => '<p>' . t('Cfrplugin was unable to generate a behavior object for the given configuration.') . '</p>',
+        '#id' => '_',
+      ];
+      $out['exception'] += UiDumpUtil::displayException($e);
 
       return $out;
     }

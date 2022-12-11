@@ -27,7 +27,9 @@ final class EntityToFieldItemList extends UtilBase {
       FieldContext::get(
         $allowedFieldTypes,
         $entityType,
-        $bundle));
+        $bundle,
+      ),
+    );
   }
 
 }

@@ -9,22 +9,12 @@ use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
-use Drupal\renderkit\Formula\Formula_EntityTypeWithViewModeName;
+use Drupal\renderkit\Formula\Formula_EntityViewMode;
 
 /**
  * Renders the entity with a view mode, but only if it has the expected type.
  */
 class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
-
-  /**
-   * @var string
-   */
-  private $entityType;
-
-  /**
-   * @var string
-   */
-  private $viewMode;
 
   /**
    * @CfrPlugin(
@@ -66,7 +56,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
     return Formula_ValueToValue_CallbackMono::fromStaticMethod(
       __CLASS__,
       'createFromId',
-      new Formula_EntityTypeWithViewModeName(
+      new Formula_EntityViewMode(
         $entityDisplayRepository,
         $entityTypeRepository,
         $entityType));
@@ -92,7 +82,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
         "Id must not be empty.");
     }
 
-    list($type, $mode) = explode(':', $id . ':');
+    [$type, $mode] = explode(':', $id . ':');
 
     if ('' === $type) {
       throw new EvaluatorException_IncompatibleConfiguration(
@@ -120,12 +110,10 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    $entityType,
-    $viewMode
+    private $entityType,
+    private $viewMode
   ) {
     parent::__construct($entityTypeManager);
-    $this->entityType = $entityType;
-    $this->viewMode = $viewMode;
   }
 
   /**

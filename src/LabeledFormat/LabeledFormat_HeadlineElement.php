@@ -11,11 +11,6 @@ use Drupal\Component\Utility\Html;
 class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
 
   /**
-   * @var string
-   */
-  private $tagName;
-
-  /**
    * @CfrPlugin(
    *   id = "headlineElement",
    *   label = "Headline element"
@@ -46,8 +41,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
   /**
    * @param string $tagName
    */
-  public function __construct($tagName = 'h2') {
-    $this->tagName = $tagName;
+  public function __construct(private $tagName = 'h2') {
   }
 
   /**

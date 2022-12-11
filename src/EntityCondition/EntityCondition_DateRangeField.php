@@ -23,11 +23,6 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
   private $field;
 
   /**
-   * @var int|string
-   */
-  private $referenceTimestamp;
-
-  /**
    * @CfrPlugin("dateRangeField", "Date range field")
    *
    * @param string $entityType
@@ -64,10 +59,9 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
    */
   public function __construct(
     EntityToFieldItemListInterface $field,
-    $referenceTimestamp
+    private $referenceTimestamp
   ) {
     $this->field = $field;
-    $this->referenceTimestamp = $referenceTimestamp;
   }
 
   /**

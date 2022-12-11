@@ -17,17 +17,11 @@ class EntityDisplay_RecursionDetectionDecorator extends EntityDisplay_NeutralDec
   private static $recursionDepth = 0;
 
   /**
-   * @var int
-   */
-  private $recursionLimit;
-
-  /**
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
    * @param int $recursionLimit
    */
-  public function __construct(EntityDisplayInterface $decorated, $recursionLimit = 20) {
+  public function __construct(EntityDisplayInterface $decorated, private $recursionLimit = 20) {
     parent::__construct($decorated);
-    $this->recursionLimit = $recursionLimit;
   }
 
   /**

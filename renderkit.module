@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 /* @see _renderkit_pop_parent() */
 
-define('RENDERKIT_POP_PARENT', '_renderkit_pop_parent');
+const RENDERKIT_POP_PARENT = '_renderkit_pop_parent';
 
 /**
  * @param array $element

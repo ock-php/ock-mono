@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Summarizer\SummarizerInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\Util\PhpUtil;
@@ -16,7 +17,7 @@ use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
  *
  * @see \Drupal\renderkit\ListFormat\ListFormat_ElementDefaults
  */
-class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterface, FormulaInterface {
+class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterface, GeneratorInterface, FormulaInterface {
 
   /**
    * @param mixed $conf
@@ -130,6 +131,8 @@ class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterf
    * @param mixed $conf
    *
    * @return string
+   *
+   * @throws \Exception
    */
   public function confGetPhp($conf): string {
     $defaults = $this->confGetElementDefaults($conf);

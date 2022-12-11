@@ -6,43 +6,23 @@ namespace Drupal\renderkit\EntityDisplay;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
+/**
+ * Gets a referenced entity.
+ *
+ * @todo Register this with ock somehow.
+ */
 class EntityDisplay_Reference implements EntityDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
-   */
-  private $decorated;
-
-  /**
-   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
-   */
-  private $reference;
-
-  /**
-   * @param string $entityType
+   * Constructor.
    *
-   * @return array|bool
-   */
-  public static function author($entityType) {
-    switch ($entityType) {
-      case 'node':
-        return [
-          'propertyKey' => 'uid',
-          'targetType' => 'user',
-        ];
-    }
-
-    return FALSE;
-  }
-
-  /**
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $decorated
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $reference
    */
-  public function __construct(EntityDisplayInterface $decorated, EntityToEntityInterface $reference) {
-    $this->decorated = $decorated;
-    $this->reference = $reference;
-  }
+  public function __construct(
+    private readonly EntityDisplayInterface $decorated,
+    private readonly EntityToEntityInterface $reference,
+  ) {}
 
   /**
    * Builds render arrays from the entities provided.

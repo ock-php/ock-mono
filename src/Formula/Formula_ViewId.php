@@ -13,19 +13,14 @@ use Drupal\views\Views;
 class Formula_ViewId implements Formula_FlatSelectInterface {
 
   /**
-   * @var bool|null
-   */
-  private $status;
-
-  /**
    * Constructor.
    *
    * @param bool|null $status
-   *   Status to filter by.
+   *   TRUE for only enabled views, FALSE for only disabled views.
    */
-  public function __construct(?bool $status = true) {
-    $this->status = $status;
-  }
+  public function __construct(
+    private readonly ?bool $status = TRUE,
+  ) {}
 
   /**
    * @return string[][]
@@ -33,14 +28,11 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
    *   with $groupLabel === '' for toplevel options.
    */
   public function getOptions(): array {
-
     $options = [];
-    foreach ($this->getViews() as $key => $view) {
+    foreach ($this->getViews() as $view) {
       $options[$view->id()] = $view->label();
     }
-
     ksort($options);
-
     return $options;
   }
 
@@ -48,12 +40,10 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
    * {@inheritdoc}
    */
   public function idGetLabel($id): ?TextInterface {
-
     if (NULL === $view = $this->idGetView($id)) {
       return NULL;
     }
-
-    return DrupalText::fromVar($view->label());
+    return DrupalText::fromEntity($view);
   }
 
   /**
@@ -70,7 +60,7 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
    *
    * @return \Drupal\views\Entity\View|null
    */
-  private function idGetView($id): ?View {
+  private function idGetView(string $id): ?View {
 
     /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
     $etm = \Drupal::service('entity_type.manager');
@@ -90,10 +80,7 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
       return NULL;
     }
 
-    if (1
-      && NULL !== $this->status
-      && $view->status() !== $this->status
-    ) {
+    if ($this->status !== NULL && $view->status() !== $this->status) {
       return NULL;
     }
 

@@ -5,7 +5,7 @@ namespace Drupal\renderkit\Formula;
 
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Formula\Select\Formula_Select_TwoStepFlatSelectGrandBase;
-use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayCondition_And;
 use Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayCondition_EntityIdArg;
 use Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayCondition_NoArgs;
@@ -14,19 +14,14 @@ use Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInt
 use Drupal\views\Entity\View;
 
 /**
- * Formula for values of the structure $view_id . ':' . $view_display_id
+ * Formula for values of the structure "$view_id:$view_display_id".
  */
 class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandBase {
 
   /**
    * @var \Drupal\renderkit\Formula\Formula_ViewId
    */
-  private $idFormula;
-
-  /**
-   * @var \Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface
-   */
-  private $condition;
+  private Formula_ViewId $idFormula;
 
   /**
    * @return self
@@ -53,24 +48,25 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
    * @return self
    */
   public static function createWithDisplayCondition(ViewsDisplayConditionInterface $condition): self {
-
     return new self(
       TRUE,
-      new ViewsDisplayCondition_And(
-        [
-          new ViewsDisplayCondition_Status(TRUE),
-          # new ViewsDisplayCondition_DisplayTypeWhitelist([]),
-          $condition,
-        ]));
+      new ViewsDisplayCondition_And([
+        new ViewsDisplayCondition_Status(TRUE),
+        # new ViewsDisplayCondition_DisplayTypeWhitelist([]),
+        $condition,
+      ]),
+    );
   }
 
   /**
-   * @param bool|null $status
+   * @param bool $status
    * @param \Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface $condition
    */
-  public function __construct($status = TRUE, ViewsDisplayConditionInterface $condition) {
+  public function __construct(
+    $status = TRUE,
+    private readonly ViewsDisplayConditionInterface $condition,
+  ) {
     $this->idFormula = new Formula_ViewId($status);
-    $this->condition = $condition;
   }
 
   /**
@@ -85,7 +81,7 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
    *
    * @return \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface|null
    */
-  protected function idGetSubFormula($id): ?Formula_FlatSelectInterface {
+  protected function idGetSubFormula(string $id): ?Formula_FlatSelectInterface {
 
     if (NULL === $view = $this->idGetView($id)) {
       return NULL;
@@ -101,7 +97,7 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
    *
    * @return \Drupal\views\Entity\View|null
    */
-  private function idGetView($id): ?View {
+  private function idGetView(string $id): ?View {
 
     /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
     $etm = \Drupal::service('entity_type.manager');
@@ -110,7 +106,7 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
     try {
       $storage = $etm->getStorage('view');
     }
-    catch (InvalidPluginDefinitionException $e) {
+    catch (PluginException $e) {
       // @todo Log this.
       unset($e);
       return null;

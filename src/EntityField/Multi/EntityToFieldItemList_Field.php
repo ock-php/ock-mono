@@ -3,67 +3,56 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Multi;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\renderkit\Formula\Formula_EtAndFieldName;
+use Drupal\renderkit\Formula\Formula_EtDotFieldName;
 
 class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
 
   /**
-   * @var string
-   */
-  private $entityTypeId;
-
-  /**
-   * @var string
-   */
-  private $fieldName;
-
-  /**
-   * @CfrPlugin("field", "Field", inline = true)
-   *
+   * @param \Drupal\renderkit\Formula\Formula_EtDotFieldName $etDotFieldNameFormula
    * @param string[]|null $allowedFieldTypes
-   * @param string|null $entityType
-   * @param string|null $bundle
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
+  #[OckPluginFormula(self::class, 'field', 'Field')]
   public static function formula(
+    #[GetService]
+    Formula_EtDotFieldName $etDotFieldNameFormula,
     array $allowedFieldTypes = NULL,
-    $entityType = NULL,
-    $bundle = NULL
   ): FormulaInterface {
-
-    return Formula_ValueToValue_CallbackMono::fromStaticMethod(
-      __CLASS__,
-      'create',
-      Formula_EtAndFieldName::create(
-        $allowedFieldTypes,
-        $entityType,
-        $bundle));
+    return Formula::group()
+      ->add(
+        'field',
+        Text::t('Field'),
+        $etDotFieldNameFormula->withAllowedFieldTypes($allowedFieldTypes),
+      )
+      ->addDynamicValues(
+        ['entity_type', 'field_name'],
+        ['field'],
+        fn (string $etDotFieldName) => explode('.', $etDotFieldName),
+      )
+      ->construct(self::class, [
+        'entity_type',
+        'field_name',
+      ]);
   }
 
   /**
-   * @param array $settings
+   * Constructor.
    *
-   * @return self
-   */
-  public static function create(array $settings): self {
-    return new self(
-      $settings['entity_type'],
-      $settings['field_name']);
-  }
-
-  /**
    * @param string $entityTypeId
    * @param string $fieldName
    */
-  public function __construct($entityTypeId, $fieldName) {
-    $this->entityTypeId = $entityTypeId;
-    $this->fieldName = $fieldName;
-  }
+  public function __construct(
+    private readonly string $entityTypeId,
+    private readonly string $fieldName
+  ) {}
 
   /**
    * @param \Drupal\Core\Entity\FieldableEntityInterface $entity

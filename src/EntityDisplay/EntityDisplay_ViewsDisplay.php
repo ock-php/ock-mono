@@ -17,16 +17,6 @@ use Drupal\views\Views;
 class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
 
   /**
-   * @var string
-   */
-  private $viewName;
-
-  /**
-   * @var string
-   */
-  private $displayId;
-
-  /**
    * @var \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface
    */
   private $labeledDisplay;
@@ -64,7 +54,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    */
   public static function create($id, LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL): ?self {
 
-    list($view_name, $display_id) = explode(':', $id) + [NULL, NULL];
+    [$view_name, $display_id] = explode(':', $id) + [NULL, NULL];
 
     if (NULL === $display_id) {
       return NULL;
@@ -82,9 +72,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    * @param string $displayId
    * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledDisplay
    */
-  public function __construct($viewName, $displayId, LabeledEntityBuildProcessorInterface $labeledDisplay = NULL) {
-    $this->viewName = $viewName;
-    $this->displayId = $displayId;
+  public function __construct(private $viewName, private $displayId, LabeledEntityBuildProcessorInterface $labeledDisplay = NULL) {
     $this->labeledDisplay = $labeledDisplay;
   }
 

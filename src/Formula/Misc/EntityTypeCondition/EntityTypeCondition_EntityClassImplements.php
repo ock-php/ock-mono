@@ -6,15 +6,9 @@ namespace Drupal\renderkit\Formula\Misc\EntityTypeCondition;
 class EntityTypeCondition_EntityClassImplements implements EntityTypeConditionInterface {
 
   /**
-   * @var string
-   */
-  private $classOrInterface;
-
-  /**
    * @param string $classOrInterface
    */
-  public function __construct($classOrInterface) {
-    $this->classOrInterface = $classOrInterface;
+  public function __construct(private $classOrInterface) {
   }
 
   /**

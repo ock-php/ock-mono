@@ -3,178 +3,144 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
+use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\ock\Attribute\DI\RegisterService;
+use Drupal\renderkit\TextLookup\TextLookup_EntityField;
+use Drupal\renderkit\TextLookup\TextLookup_FieldType;
 
 /**
- * Formula where the value is like 'node.body', and everything is in one select element.
+ * Select formula where the value is like 'node.body'.
  */
+#[RegisterService]
 class Formula_EtDotFieldName implements Formula_SelectInterface {
-
-  /**
-   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
-   */
-  private $entityFieldManager;
 
   /**
    * @var null|string[]
    */
-  private $allowedFieldTypes;
+  private ?array $allowedFieldTypes = NULL;
 
   /**
    * @var null|string
    */
-  private $entityType;
+  private ?string $entityType = NULL;
 
   /**
    * @var null|string
    */
-  private $bundleName;
+  private ?string $bundleName = NULL;
 
   /**
-   * @param null|string[] $allowedFieldTypes
-   * @param string $entityType
-   *   Contextual parameter.
-   * @param string $bundleName
-   *   Contextual parameter.
+   * Constructor.
    *
-   * @return self
-   */
-  public static function create(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL): self {
-
-    // @todo Real dependency injection.
-
-    /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager */
-    $entityFieldManager = \Drupal::service('entity_field.manager');
-
-    return new self(
-      $entityFieldManager,
-      $allowedFieldTypes,
-      $entityType,
-      $bundleName);
-
-  }
-
-  /**
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
-   * @param null|string[] $allowedFieldTypes
-   * @param string|null $entityType
-   *   Contextual parameter.
-   * @param string|null $bundleName
-   *   Contextual parameter.
+   * @param \Drupal\renderkit\TextLookup\TextLookup_FieldType $fieldTypeLabelLookup
+   * @param \Drupal\renderkit\TextLookup\TextLookup_EntityField $fieldLabelLookup
    */
   public function __construct(
-    EntityFieldManagerInterface $entityFieldManager,
-    array $allowedFieldTypes = NULL,
-    $entityType = NULL,
-    $bundleName = NULL
-  ) {
-    $this->entityFieldManager = $entityFieldManager;
-    $this->allowedFieldTypes = $allowedFieldTypes;
-    $this->entityType = $entityType;
-    $this->bundleName = $bundleName;
+    #[GetService('entity_field.manager')]
+    private readonly EntityFieldManagerInterface $entityFieldManager,
+    #[GetService]
+    private readonly TextLookup_FieldType $fieldTypeLabelLookup,
+    #[GetService]
+    private TextLookup_EntityField $fieldLabelLookup,
+  ) {}
+
+  /**
+   * @param string[]|null $allowedTypes
+   *
+   * @return $this
+   */
+  public function withAllowedFieldTypes(?array $allowedTypes): static {
+    $clone = clone $this;
+    $clone->allowedFieldTypes = $allowedTypes;
+    return $clone;
   }
 
   /**
-   * @return string[][]
-   *   Format: $[$groupLabel][$optionKey] = $optionLabel,
-   *   with $groupLabel === '' for toplevel options.
+   * @param string|null $entity_type
+   * @param string|null $bundle
+   *
+   * @return $this
    */
-  public function getGroupedOptions(): array {
+  public function withEntityType(?string $entity_type, string $bundle = NULL): static {
+    if ($entity_type === NULL && $bundle !== NULL) {
+      throw new \InvalidArgumentException('Bundle must be NULL if entity type is NULL.');
+    }
+    $clone = clone $this;
+    $clone->entityType = $entity_type;
+    $clone->bundleName = $bundle;
+    $clone->fieldLabelLookup = $clone->fieldLabelLookup->withEntityBundles(
+      $entity_type,
+      [$bundle => TRUE],
+    );
+    return $clone;
+  }
 
+  public function getOptionsMap(): array {
     /**
-     * @var string[][] $options
-     *   Format: $[$groupLabel][$optionKey] = $optionLabel
+     * @var array[][] $map
+     *   Format: $[$entity_type][$field_name] = ['type' => $field_type, 'bundles' => $bundles]
      */
-    $options = [];
-    foreach ($this->getFieldsGrouped() as $field_type => $fields_by_et) {
-      // @todo Human-readable field type label!
-      $type_label = $field_type;
-      foreach ($fields_by_et as $et => $fields) {
-        // @todo Human-readable entity type label!
-        $et_label = $et;
-        foreach ($fields as $field_name => $bundles) {
-          // @todo Human-readable field label from field instances!
-          $field_label = $field_name;
-          $options[$type_label][$et . '.' . $field_name] = $et_label . ': ' . $field_label;
+    $fmap = $this->entityFieldManager->getFieldMap();
+    $map = [];
+    foreach ($fmap as $entityType => $fields) {
+      if ($this->entityType !== NULL && $this->entityType !== $entityType) {
+        continue;
+      }
+      foreach ($fields as $fieldName => $fieldInfo) {
+        if ($this->bundleName !== NULL && !isset($fieldInfo['bundles'][$this->bundleName])) {
+          continue;
         }
+        $map[$entityType . '.' . $fieldName] = $fieldInfo['type'];
       }
     }
-
-    return $options;
+    if ($this->allowedFieldTypes !== NULL) {
+      $map = array_intersect($map, $this->allowedFieldTypes);
+    }
+    return $map;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function idGetLabel($etAndFieldName) {
-    [$et, $fieldName] = explode('.', $etAndFieldName . '.');
-
-    if (NULL !== $this->entityType) {
-      if ($et !== $this->entityType) {
-        return NULL;
-      }
-    }
-
-    /**
-     * @var array[][] $map
-     *   Format: $[$entity_type][$field_name] = ['type' => $field_type, 'bundles' => $bundles]
-     */
-    $map = $this->entityFieldManager->getFieldMap();
-
-    if (!isset($map[$et][$fieldName])) {
-      return NULL;
-    }
-
-    $fieldInfo = $map[$et][$fieldName];
-
-    if (NULL !== $this->bundleName) {
-      if (!isset($fieldInfo['bundles'][$this->bundleName])) {
-        return NULL;
-      }
-    }
-
-    if (NULL !== $this->allowedFieldTypes) {
-      if (!\in_array($fieldInfo['type'], $this->allowedFieldTypes, TRUE)) {
-        return NULL;
-      }
-    }
-
-    // @todo Look up real field name.
-    return $etAndFieldName;
+  public function groupIdGetLabel(int|string $groupId): ?TextInterface {
+    return $this->fieldTypeLabelLookup->idGetText($groupId);
   }
 
   /**
-   * @param string|int $id
-   *   Format: $entityType . '.' . $fieldName
-   *
-   * @return bool
+   * {@inheritdoc}
+   */
+  public function idGetLabel(string|int $id): ?TextInterface {
+    return $this->fieldLabelLookup->idGetText($id);
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public function idIsKnown(string|int $id): bool {
-    [$et, $fieldName] = explode('.', $id . '.');
+    [$entityType, $fieldName] = explode('.', $id . '.');
 
-    if (NULL !== $this->entityType) {
-      if ($et !== $this->entityType) {
-        return FALSE;
-      }
+    if ($this->entityType !== NULL && $this->entityType !== $entityType) {
+      return FALSE;
     }
 
     /**
-     * @var array[][] $map
+     * @var array<string, array<string, array{type: string, bundles: array<string, string>}>> $map
      *   Format: $[$entity_type][$field_name] = ['type' => $field_type, 'bundles' => $bundles]
      */
     $map = $this->entityFieldManager->getFieldMap();
 
-    if (!isset($map[$et][$fieldName])) {
+    if (!isset($map[$entityType][$fieldName])) {
       return FALSE;
     }
 
-    $fieldInfo = $map[$et][$fieldName];
+    $fieldInfo = $map[$entityType][$fieldName];
 
-    if (NULL !== $this->bundleName) {
-      if (!isset($fieldInfo['bundles'][$this->bundleName])) {
-        return FALSE;
-      }
+    if ($this->bundleName !== NULL && !isset($fieldInfo['bundles'][$this->bundleName])) {
+      return FALSE;
     }
 
     if (NULL !== $this->allowedFieldTypes) {
@@ -186,65 +152,4 @@ class Formula_EtDotFieldName implements Formula_SelectInterface {
     return TRUE;
   }
 
-  /**
-   * @return string[][][][]
-   *   Format: $[$field_type][$entity_type][$field_name][$bundle_name] = $bundle_name
-   */
-  private function getFieldsGrouped(): array {
-
-    /**
-     * @var array[][] $map
-     *   Format: $[$entity_type][$field_name] = ['type' => $field_type, 'bundles' => $bundles]
-     */
-    $map = $this->entityFieldManager->getFieldMap();
-
-    if (NULL !== $this->entityType) {
-      if (!isset($map[$this->entityType])) {
-        return [];
-      }
-
-      $map = [$this->entityType => $map[$this->entityType]];
-    }
-
-    if (NULL !== $this->bundleName) {
-
-      $filteredMap = [];
-      foreach ($map as $entityTypeId => $fields) {
-        foreach ($fields as $fieldName => $fieldInfo) {
-          if (isset($fieldInfo['bundles'][$this->bundleName])) {
-            $filteredMap[$entityTypeId][$fieldName] = $fieldInfo;
-          }
-        }
-      }
-      $map = $filteredMap;
-    }
-
-    /**
-     * @var string[][][][] $grouped
-     *   Format: $[$field_type][$entity_type][$field_name][$bundle_name] = $bundle_name
-     */
-    $grouped = [];
-    if (NULL !== $this->allowedFieldTypes) {
-      $allowedTypesMap = array_fill_keys($this->allowedFieldTypes, TRUE);
-
-      foreach ($map as $entityTypeId => $fields) {
-        foreach ($fields as $fieldName => $fieldInfo) {
-          $type = $fieldInfo['type'];
-          if (isset($allowedTypesMap[$type])) {
-            $grouped[$type][$entityTypeId][$fieldName] = $fieldInfo['bundles'];
-          }
-        }
-      }
-    }
-    else {
-      foreach ($map as $entityTypeId => $fields) {
-        foreach ($fields as $fieldName => $fieldInfo) {
-          $type = $fieldInfo['type'];
-          $grouped[$type][$entityTypeId][$fieldName] = $fieldInfo['bundles'];
-        }
-      }
-    }
-
-    return $grouped;
-  }
 }
