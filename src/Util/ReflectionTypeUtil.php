@@ -66,7 +66,21 @@ class ReflectionTypeUtil {
     if (!$type instanceof \ReflectionNamedType || $type->isBuiltin()) {
       return null;
     }
-    return $type->getName();
+    $name = $type->getName();
+    if ($name !== 'self' && $name !== 'static') {
+      return $name;
+    }
+    $reflectionFunction = $reflector instanceof \ReflectionParameter
+      ? $reflector->getDeclaringFunction()
+      : $reflector;
+    if (!$reflectionFunction instanceof \ReflectionMethod) {
+      throw new MalformedDeclarationException(\sprintf(
+        'Unexpected %s outside class context, in type declaration for %s.',
+        "'$name'",
+        MessageUtil::formatReflector($reflector),
+      ));
+    }
+    return $reflectionFunction->getDeclaringClass()->getName();
   }
 
   /**

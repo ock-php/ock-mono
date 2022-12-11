@@ -10,7 +10,7 @@ namespace Donquixote\Adaptism\Attribute\Parameter;
  *
  * @see \Donquixote\Adaptism\Attribute\Adapter
  */
-#[\Attribute(\Attribute::TARGET_PARAMETER)]
+#[\Attribute(\Attribute::TARGET_PARAMETER|\Attribute::TARGET_PROPERTY)]
 final class Adaptee {
 
 }

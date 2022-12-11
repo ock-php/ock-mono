@@ -6,9 +6,14 @@ namespace Donquixote\Adaptism\Util;
 
 use Donquixote\Adaptism\Exception\MalformedDeclarationException;
 
+/**
+ * Helper methods to read attributes from reflectors.
+ */
 class AttributesUtil {
 
   /**
+   * Finds and instantiates all attributes of a given type.
+   *
    * @template T as object
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
@@ -29,6 +34,8 @@ class AttributesUtil {
   }
 
   /**
+   * Asserts that axactly one
+   *
    * @template T
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
@@ -64,6 +71,8 @@ class AttributesUtil {
   }
 
   /**
+   * Gets and instantiates the only attribute of a given type.
+   *
    * @template T
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
@@ -88,13 +97,21 @@ class AttributesUtil {
   }
 
   /**
+   * Gets and instantiates the first attribute of a given type, if exists.
+   *
    * @template T
+   * @template force as bool
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
+   *   Element that has the attribute.
    * @param class-string<T> $name
+   *   Expected attribute type/name.
+   * @param bool $force
+   * @psalm-param force $force
    *
    * @return T|null
    *   Instance from the attribute, or NULL if no matching attribute found.
+   * @psalm-return (force is true ? T : (T|null))
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
@@ -102,8 +119,9 @@ class AttributesUtil {
   public static function getSingle(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
+    bool $force = FALSE,
   ): ?object {
-    return self::getOrRequireSingle($reflector, $name, false)
+    return self::getOrRequireSingle($reflector, $name, $force)
       ?->newInstance();
   }
 

@@ -18,6 +18,7 @@ use Donquixote\Adaptism\Util\AttributesUtil;
 use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\Adaptism\Util\NewInstance;
 use Donquixote\Adaptism\Util\ReflectionTypeUtil;
+use Donquixote\Adaptism\Util\ServiceAttributesUtil;
 
 /**
  * Marks a class or method as an adapter.
@@ -37,6 +38,13 @@ final class Adapter {
   public function __construct(
     private readonly ?int $specifity = null
   ) {}
+
+  /**
+   * @return int|null
+   */
+  public function getSpecifity(): ?int {
+    return $this->specifity;
+  }
 
   /**
    * @param \ReflectionClass $reflectionClass
@@ -85,7 +93,7 @@ final class Adapter {
    */
   public function onMethod(
     \ReflectionClass $reflectionClass,
-    \ReflectionMethod $reflectionMethod
+    \ReflectionMethod $reflectionMethod,
   ): AdapterDefinitionInterface {
     if (!$reflectionMethod->isPublic()) {
       throw new MalformedDeclarationException(\sprintf(
@@ -121,8 +129,7 @@ final class Adapter {
           $where,
         ));
       }
-      $constructorServiceIds = \array_map(
-        [$this, 'extractServiceId'],
+      $constructorServiceIds = ServiceAttributesUtil::paramsRequireServiceIds(
         $reflectionClass->getConstructor()?->getParameters() ?? [],
       );
       $factory = new AdapterFromContainer_ObjectMethod(
@@ -252,7 +259,7 @@ final class Adapter {
     array $parameters,
   ): AdapterFromContainerInterface {
     $serviceIds = $parameters
-      ? \array_map([$this, 'extractServiceId'], $parameters)
+      ? ServiceAttributesUtil::paramsRequireServiceIds($parameters)
       : [];
     return new AdapterFromContainer_Callback(
       $callback,
@@ -260,18 +267,6 @@ final class Adapter {
       $hasUniversalAdapterParameter,
       $serviceIds,
     );
-  }
-
-  /**
-   * @param \ReflectionParameter $parameter
-   *
-   * @return string
-   *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
-   */
-  private function extractServiceId(\ReflectionParameter $parameter): string {
-    return AttributesUtil::requireGetSingle($parameter, GetService::class)->getId()
-      ?? ReflectionTypeUtil::requireGetClassLikeType($parameter);
   }
 
 }
