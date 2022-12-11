@@ -28,7 +28,7 @@ class Optionlessness implements OptionlessnessInterface {
    */
   public static function checkFormula(FormulaInterface $formula, UniversalAdapterInterface $universalAdapter): bool {
     try {
-      return self::fromFormula($formula, $universalAdapter)->isOptionless();
+      return self::fromFormula($formula, $universalAdapter)?->isOptionless() ?? FALSE;
     }
     catch (AdapterException) {
       // Assume it is not optionless.
@@ -40,12 +40,12 @@ class Optionlessness implements OptionlessnessInterface {
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
-   * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
+   * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface|null
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  public static function fromFormula(FormulaInterface $formula, UniversalAdapterInterface $universalAdapter): OptionlessnessInterface {
-    return FormulaAdapter::requireObject(
+  public static function fromFormula(FormulaInterface $formula, UniversalAdapterInterface $universalAdapter): ?OptionlessnessInterface {
+    return FormulaAdapter::getObject(
       $formula,
       OptionlessnessInterface::class,
       $universalAdapter,

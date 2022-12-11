@@ -74,8 +74,8 @@ class Generator_Group implements GeneratorInterface {
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
    */
   protected function __construct(
-    private array $itemGenerators,
-    private V2V_GroupInterface $v2v,
+    private readonly array $itemGenerators,
+    private readonly V2V_GroupInterface $v2v,
   ) {}
 
   /**

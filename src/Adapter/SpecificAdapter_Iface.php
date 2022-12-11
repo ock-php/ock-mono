@@ -49,7 +49,8 @@ class SpecificAdapter_Iface {
       return $this->typeGetFormula(
         $formula->getInterface(),
         $formula->allowsNull(),
-        $universalAdapter);
+        $universalAdapter,
+      );
     }
     catch (PluginListException $e) {
       throw new AdapterException($e->getMessage(), 0, $e);

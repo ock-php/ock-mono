@@ -4,27 +4,28 @@ namespace Donquixote\Ock\Text;
 
 use Donquixote\Ock\Translator\TranslatorInterface;
 
-class Text_Sprintf extends TextBase {
+class Text_Vsprintf extends TextBase {
 
   /**
    * Constructor.
    *
    * @param string $source
-   * @param \Donquixote\Ock\Text\TextInterface $replacement
+   * @param \Donquixote\Ock\Text\TextInterface[] $replacements
    */
   public function __construct(
     private readonly string $source,
-    private readonly TextInterface $replacement,
+    private readonly array $replacements,
   ) {}
 
   /**
    * {@inheritdoc}
    */
   public function convert(TranslatorInterface $translator): string {
-    return sprintf(
-      $this->source,
-      $this->replacement->convert($translator),
-    );
+    $replacements = [];
+    foreach ($this->replacements as $replacement) {
+      $replacements[] = $replacement->convert($translator);
+    }
+    return vsprintf($this->source, $replacements);
   }
 
 }

@@ -18,7 +18,7 @@ class V2V_Group_Call implements V2V_GroupInterface {
   }
 
   /**
-   * @param callable&array{string, string} $method
+   * @param callable&array{class-string, string} $method
    *
    * @return self
    */

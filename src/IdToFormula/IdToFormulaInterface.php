@@ -6,12 +6,15 @@ namespace Donquixote\Ock\IdToFormula;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 
+/**
+ * @template T of \Donquixote\Ock\Core\Formula\FormulaInterface
+ */
 interface IdToFormulaInterface {
 
   /**
    * @param string|int $id
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
+   * @return T|null
    */
   public function idGetFormula(string|int $id): ?FormulaInterface;
 

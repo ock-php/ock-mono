@@ -19,13 +19,11 @@ class IntOp_Add implements IntOpInterface {
 
   /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   *
-   * @throws \ReflectionException
    */
   #[OckPluginFormula(self::class, "add", "Add")]
   public static function formula(): FormulaInterface {
     return Formula::group()
-      ->add('increment', new Formula_Int(), Text::t('Increment'))
+      ->add('increment', Text::t('Increment'), new Formula_Int())
       ->construct(self::class);
   }
 

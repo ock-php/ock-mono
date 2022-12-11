@@ -8,7 +8,12 @@ use Donquixote\Ock\Formula\Select\Option\SelectOptionInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\Translator\Translator;
 
-class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
+class Formula_Select_FromOptions implements Formula_SelectInterface {
+
+  /**
+   * @var \Donquixote\Ock\Text\TextInterface[]|null
+   */
+  private ?array $groupLabels = NULL;
 
   /**
    * Constructor.
@@ -31,33 +36,40 @@ class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  protected function initialize(array &$grouped_options, array &$group_labels): void {
-
+  public function getOptionsMap(): array {
     // Use a simple translator to build group ids.
     $translator = Translator::passthru();
-
+    $map = [];
     foreach ($this->options as $id => $option) {
-      $label = $option->getLabel();
-      $group_label = $option->getGroupLabel();
-      if ($group_label !== NULL) {
-        $group_id = $group_label->convert($translator);
-        $groups[$group_id] = $group_label;
-        $grouped_options[$group_id][$id] = $label;
-      }
-      else {
-        $grouped_options[''][$id] = $label;
+      $map[$id] = $option->getGroupLabel()?->convert($translator) ?? '';
+    }
+    return $map;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function groupIdGetLabel(int|string $groupId): ?TextInterface {
+    if ($this->groupLabels === NULL) {
+      // Use a simple translator to build group ids.
+      $translator = Translator::passthru();
+      $this->groupLabels = [];
+      foreach ($this->options as $option) {
+        $groupLabel = $option->getGroupLabel();
+        if ($groupLabel === NULL) {
+          continue;
+        }
+        $this->groupLabels[$groupLabel->convert($translator)] = $groupLabel;
       }
     }
+    return $this->groupLabels[$groupId] ?? NULL;
   }
 
   /**
    * {@inheritdoc}
    */
   public function idGetLabel(string|int $id): ?TextInterface {
-    if (!isset($this->options[$id])) {
-      return NULL;
-    }
-    return $this->options[$id]->getLabel();
+    return ($this->options[$id] ?? NULL)?->getLabel();
   }
 
   /**

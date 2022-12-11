@@ -24,8 +24,8 @@ class IntOp_Sequence implements IntOpInterface {
     return Formula::group()
       ->add(
         'operations',
-        Formula::ifaceSequence(IntOpInterface::class),
-        Text::t('Operations'))
+        Text::t('Operations'),
+        Formula::ifaceSequence(IntOpInterface::class))
       ->construct(self::class);
   }
 

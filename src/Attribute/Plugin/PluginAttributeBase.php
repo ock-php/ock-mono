@@ -24,9 +24,9 @@ abstract class PluginAttributeBase implements PluginAttributeInterface {
    * @param bool $translate
    */
   public function __construct(
-    private string $id,
-    private string $label,
-    private bool $translate = TRUE,
+    private readonly string $id,
+    private readonly string $label,
+    private readonly bool $translate = TRUE,
   ) {}
 
   /**

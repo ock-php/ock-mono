@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula\Select;
 
 use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\TextLookup\TextLookup;
 use Donquixote\Ock\TextLookup\TextLookupInterface;
 
 /**
  * Select formula using TextLookup* objects for option labels and group labels.
  */
-abstract class Formula_Select_LabelLookupBase extends Formula_Select_BufferedBase {
+abstract class Formula_Select_LabelLookupBase implements Formula_SelectInterface {
 
   /**
    * Constructor.
@@ -29,29 +28,15 @@ abstract class Formula_Select_LabelLookupBase extends Formula_Select_BufferedBas
    */
   public function idGetLabel(string|int $id): ?TextInterface {
     return $this->idIsKnown($id)
-      ? TextLookup::idGetLabel($id, $this->labelLookup)
+      ? $this->labelLookup->idGetText($id)
       : NULL;
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function initialize(array &$grouped_options, array &$group_labels): void {
-    $grouped_ids_map = $this->getGroupedIdsMap();
-    $grouped_options = TextLookup::groupedIdsMapGetLabelss(
-      $grouped_ids_map,
-      $this->labelLookup);
-    $group_labels = TextLookup::idMapGetLabels(
-      $grouped_ids_map,
-      $this->groupLabelLookup);
+  public function groupIdGetLabel(int|string $groupId): ?TextInterface {
+    return $this->groupLabelLookup->idGetText($groupId);
   }
-
-  /**
-   * Gets grouped ids without labels.
-   *
-   * @return true[][]
-   *   Format: $[$group_id][$id] = TRUE.
-   */
-  abstract protected function getGroupedIdsMap(): array;
 
 }

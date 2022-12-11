@@ -13,7 +13,7 @@ class V2V_Group_ObjectMethodCall implements V2V_GroupInterface {
    *
    * @param string $objectKey
    * @param string $method
-   * @param array $paramKeys
+   * @param list<string> $paramKeys
    */
   public function __construct(
     private readonly string $objectKey,

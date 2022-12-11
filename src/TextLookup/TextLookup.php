@@ -19,7 +19,7 @@ class TextLookup {
    * @return \Donquixote\Ock\Text\TextInterface
    */
   public static function idGetLabel(string $id, TextLookupInterface $lookup): TextInterface {
-    return $lookup->idsMapGetTexts([$id => TRUE])[$id]
+    return $lookup->findTexts([$id => TRUE])[$id]
       ?? Text::s($id);
   }
 
@@ -42,7 +42,7 @@ class TextLookup {
    * @return \Donquixote\Ock\Text\TextInterface[]
    */
   public static function idMapGetLabels(array $id_map, TextLookupInterface $lookup): array {
-    $known_labels = $lookup->idsMapGetTexts($id_map);
+    $known_labels = $lookup->findTexts($id_map);
     $labels = [];
     foreach ($id_map as $id => $_) {
       $labels[$id] = $known_labels[$id] ?? Text::s($id);
@@ -60,7 +60,7 @@ class TextLookup {
    *   Format: $[$group_id][$id] = $label.
    */
   public static function groupedIdsMapGetLabelss(array $grouped_ids_map, TextLookupInterface $lookup): array {
-    $known_labels = $lookup->idsMapGetTexts(array_replace(...$grouped_ids_map));
+    $known_labels = $lookup->findTexts(array_replace(...$grouped_ids_map));
     $labelss = [];
     foreach ($grouped_ids_map as $group_id => $ids_map) {
       foreach ($ids_map as $id => $_) {

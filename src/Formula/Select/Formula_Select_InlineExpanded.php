@@ -12,7 +12,7 @@ use Donquixote\Ock\InlineDrilldown\InlineDrilldownInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
-class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
+class Formula_Select_InlineExpanded implements Formula_SelectInterface {
 
   /**
    * Constructor.
@@ -30,47 +30,44 @@ class Formula_Select_InlineExpanded extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  protected function initialize(array &$grouped_options, array &$group_labels): void {
-    foreach (['' => NULL] + $this->decorated->getOptGroups() as $group_id => $group_label) {
-      foreach ($this->decorated->getOptions($group_id) as $id => $label) {
-        $inline_formula = $this->idGetSelectFormula($id);
-        if ($inline_formula === NULL) {
-          $grouped_options[$group_id][$id] = $label;
-          if ($group_label !== NULL) {
-            $group_labels[$group_id] = $group_label;
-          }
-        }
-        else {
-          foreach (['' => NULL] + $inline_formula->getOptGroups() as $inline_group_id => $inline_group_label) {
-            foreach ($inline_formula->getOptions($inline_group_id) as $inline_id => $inline_label) {
-              $grouped_options[$inline_group_id]["$id/$inline_id"] = Text::label(
-                $label,
-                $inline_label);
-            }
-          }
-          $grouped_options[$group_id][$id] = Text::fluent($label)
-            ->wrapT('@label', '@label - ALL');
+  public function getOptionsMap(): array {
+    $map = [];
+    foreach ($this->decorated->getOptionsMap() as $id => $groupId) {
+      $inlineFormula = $this->idGetSelectFormula($id);
+      if ($inlineFormula !== null) {
+        foreach ($inlineFormula->getOptionsMap() as $inlineId => $inlineGroupId) {
+          // Ignore groups from the inline selects.
+          $map["$id/$inlineId"] = $groupId;
         }
       }
+      $map[$id] = $groupId;
     }
+    return $map;
+  }
+
+  public function groupIdGetLabel(int|string $groupId): ?TextInterface {
+    // Ignore groups from the inline selects.
+    return $this->decorated->groupIdGetLabel($groupId);
   }
 
   /**
    * {@inheritdoc}
    */
   public function idGetLabel(string|int $id): ?TextInterface {
-
     if (!str_contains((string) $id, '/')) {
       return $this->decorated->idGetLabel($id);
     }
-
-    [$prefix, $suffix] = explode('/', $id, 2);
-
-    if (NULL === $subFormula = $this->idGetSelectFormula($prefix)) {
+    [$decoratedId, $inlineId] = explode('/', $id, 2);
+    if (NULL === $decoratedLabel = $this->decorated->idGetLabel($decoratedId)) {
       return NULL;
     }
-
-    return $subFormula->idGetLabel($suffix);
+    if (NULL === $subFormula = $this->idGetSelectFormula($decoratedId)) {
+      return NULL;
+    }
+    if (NULL === $inlineLabel = $subFormula->idGetLabel($inlineId)) {
+      return NULL;
+    }
+    return Text::label($decoratedLabel, $inlineLabel);
   }
 
   /**

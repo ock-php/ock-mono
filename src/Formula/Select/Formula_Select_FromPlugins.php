@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Formula\Select;
 use Donquixote\Ock\Plugin\Plugin;
 use Donquixote\Ock\Text\TextInterface;
 
-class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
+class Formula_Select_FromPlugins implements Formula_SelectInterface {
 
   /**
    * Constructor.
@@ -25,29 +25,34 @@ class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  protected function initialize(array &$grouped_options, array &$group_labels): void {
+  public function getOptionsMap(): array {
     $sortme = array_keys($this->groupLabels + $this->plugins);
     sort($sortme);
-    $group_id = '';
+    $groupId = '';
+    $map = [];
     foreach ($sortme as $id) {
       if (isset($this->groupLabels[$id])) {
-        $group_id = $id;
+        $groupId = $id;
       }
       if (isset($this->plugins[$id])) {
-        $grouped_options[$group_id][$id] = $this->plugins[$id]->getLabel();
+        $map[$id] = $groupId;
       }
     }
-    $group_labels = array_intersect_key($this->groupLabels, $grouped_options);
+    return $map;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function groupIdGetLabel(int|string $groupId): ?TextInterface {
+    return $this->groupLabels[$groupId] ?? NULL;
   }
 
   /**
    * {@inheritdoc}
    */
   public function idGetLabel(string|int $id): ?TextInterface {
-    if (!isset($this->plugins[$id])) {
-      return NULL;
-    }
-    return $this->plugins[$id]->getLabel();
+    return ($this->plugins[$id] ?? NULL)?->getLabel();
   }
 
   /**

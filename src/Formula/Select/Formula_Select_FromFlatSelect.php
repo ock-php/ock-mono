@@ -19,17 +19,8 @@ class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
   /**
    * {@inheritdoc}
    */
-  public function getOptGroups(): array {
-    return [];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOptions(?string $group_id): array {
-    return $group_id === NULL
-      ? $this->decorated->getOptions()
-      : [];
+  public function getOptionsMap(): array {
+    return array_fill_keys(array_keys($this->decorated->getOptions()), '');
   }
 
   /**
@@ -44,6 +35,10 @@ class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
    */
   public function idIsKnown(string|int $id): bool {
     return $this->decorated->idIsKnown($id);
+  }
+
+  public function groupIdGetLabel(int|string $groupId): ?TextInterface {
+    return NULL;
   }
 
 }

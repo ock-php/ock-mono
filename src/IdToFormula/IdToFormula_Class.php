@@ -20,7 +20,7 @@ class IdToFormula_Class implements IdToFormulaInterface {
    */
   public function idGetFormula(string|int $id): ?FormulaInterface {
 
-    $candidate = new $this->class($id);
+    $candidate = new ($this->class)($id);
 
     if (!$candidate instanceof FormulaInterface) {
       return NULL;

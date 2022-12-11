@@ -8,9 +8,12 @@ use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Group\GroupFormulaBuilder;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
+use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
 use Donquixote\Ock\Formula\Select\Flat\FlatSelectBuilderInterface;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
 use Donquixote\Ock\Formula\Sequence\Formula_Sequence;
+use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
+use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Formula extends UtilBase {
@@ -36,6 +39,8 @@ final class Formula extends UtilBase {
   }
 
   /**
+   * Starts a builder for a select formula.
+   *
    * @return \Donquixote\Ock\Formula\Select\Flat\FlatSelectBuilderInterface
    */
   public static function flatSelect(): FlatSelectBuilderInterface {
@@ -43,6 +48,8 @@ final class Formula extends UtilBase {
   }
 
   /**
+   * Creates a formula where the value is an interface instance.
+   *
    * @param string $interface
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
@@ -52,6 +59,8 @@ final class Formula extends UtilBase {
   }
 
   /**
+   * Creates a formula where the value is an interface instance or NULL.
+   *
    * @param string $interface
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
@@ -61,6 +70,8 @@ final class Formula extends UtilBase {
   }
 
   /**
+   * Creates a formula where the value is an array of interface instances.
+   *
    * @param string $interface
    *
    * @return \Donquixote\Ock\Formula\Sequence\Formula_Sequence
@@ -71,6 +82,8 @@ final class Formula extends UtilBase {
   }
 
   /**
+   * Starts a fluent builder for a group formula.
+   *
    * @return \Donquixote\Ock\Formula\Group\GroupFormulaBuilder
    */
   public static function group(): GroupFormulaBuilder {
@@ -78,10 +91,13 @@ final class Formula extends UtilBase {
   }
 
   /**
+   * Converts a formula to a less abstract version.
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
+   *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
   public static function replace(
@@ -89,6 +105,36 @@ final class Formula extends UtilBase {
     UniversalAdapterInterface $universalAdapter,
   ): ?FormulaInterface {
     return $universalAdapter->adapt($formula, FormulaInterface::class);
+  }
+
+  /**
+   * @param mixed $value
+   *
+   * @return \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface
+   *
+   * @throws \Exception
+   *   Value cannot be exported.
+   */
+  public static function value($value): Formula_OptionlessInterface {
+    return self::valuePhp(PhpUtil::phpValue($value));
+  }
+
+  /**
+   * @param mixed $value
+   *
+   * @return \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface
+   */
+  public static function valueSimple($value): Formula_OptionlessInterface {
+    return self::valuePhp(PhpUtil::phpValueSimple($value));
+  }
+
+  /**
+   * @param mixed $php
+   *
+   * @return \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface
+   */
+  public static function valuePhp($php): Formula_OptionlessInterface {
+    return new Formula_ValueProvider_FixedPhp($php);
   }
 
 }

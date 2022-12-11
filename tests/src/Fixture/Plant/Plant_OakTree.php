@@ -21,8 +21,8 @@ class Plant_OakTree implements PlantInterface {
     return Formula::group()
       ->add(
         'height',
-        new Formula_Textfield_IntegerInRange(0, 100),
-        new Text_Translatable('Height in meters'))
+        new Text_Translatable('Height in meters'),
+        new Formula_Textfield_IntegerInRange(0, 100))
       ->construct(self::class);
   }
 

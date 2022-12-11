@@ -28,6 +28,8 @@ abstract class Formula_Neutral_ProxyBase implements Formula_NeutralInterface {
 
   /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   abstract protected function doGetDecorated(): FormulaInterface;
 

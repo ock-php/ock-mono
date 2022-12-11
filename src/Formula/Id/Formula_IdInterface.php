@@ -20,6 +20,8 @@ interface Formula_IdInterface extends FormulaInterface {
    *   The id.
    *
    * @return bool
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public function idIsKnown(string|int $id): bool;
 

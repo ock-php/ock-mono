@@ -23,7 +23,7 @@ class IntOp_Multiply implements IntOpInterface {
   #[OckPluginFormula(self::class, "multiply", "Multiply")]
   public static function formula(): FormulaInterface {
     return Formula::group()
-      ->add('factor', new Formula_Int(), Text::t('Factor'))
+      ->add('factor', Text::t('Factor'), new Formula_Int())
       ->construct(self::class);
   }
 

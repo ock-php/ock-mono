@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Ock\Formula\Select;
+namespace Donquixote\Ock\Formula\SelectOld;
 
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;

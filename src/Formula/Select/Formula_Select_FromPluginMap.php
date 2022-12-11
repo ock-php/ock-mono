@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Formula\Select;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 use Donquixote\Ock\Text\TextInterface;
 
-class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
+class Formula_Select_FromPluginMap implements Formula_SelectInterface {
 
   /**
    * @var \Donquixote\Ock\Plugin\Plugin[]|null
@@ -28,32 +28,31 @@ class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  protected function initialize(array &$grouped_options, array &$group_labels): void {
-    $plugins = $this->getPlugins();
-    foreach ($plugins as $id => $plugin) {
-      $label = $plugin->getLabel();
-      // @todo Do something for the group label.
-      $grouped_options[''][$id] = $label;
-    }
+  public function getOptionsMap(): array {
+    // @todo Do something for the group label.
+    return array_fill_keys(array_keys($this->getPlugins()), '');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function groupIdGetLabel(int|string $groupId): ?TextInterface {
+    // @todo Do something for the group label.
+    return NULL;
   }
 
   /**
    * {@inheritdoc}
    */
   public function idGetLabel(string|int $id): ?TextInterface {
-    $plugins = $this->getPlugins();
-    if (!isset($plugins[$id])) {
-      return NULL;
-    }
-    return $plugins[$id]->getLabel();
+    return ($this->getPlugins()[$id] ?? NULL)?->getLabel();
   }
 
   /**
    * {@inheritdoc}
    */
   public function idIsKnown(string|int $id): bool {
-    $plugins = $this->getPlugins();
-    return isset($plugins[$id]);
+    return NULL !== ($this->getPlugins()[$id] ?? NULL);
   }
 
   /**

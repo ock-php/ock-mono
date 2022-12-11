@@ -43,7 +43,7 @@ class IntCondition_GreaterThan implements IntConditionInterface {
   #[OckPluginFormula(self::class, 'greater_than', 'Greater than')]
   public static function formula(): FormulaInterface {
     return Formula::group()
-      ->add('operand', new Formula_Int(), Text::t('Operand'))
+      ->add('operand', Text::t('Operand'), new Formula_Int())
       ->construct(self::class);
   }
 

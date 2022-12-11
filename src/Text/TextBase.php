@@ -45,7 +45,7 @@ abstract class TextBase implements TextInterface {
    * @return self
    */
   public function wrapSprintf(string $wrapper): self {
-    return new Text_Sprintf($wrapper, $this->getThis());
+    return new Text_SprintfOne($wrapper, $this->getThis());
   }
 
   /**

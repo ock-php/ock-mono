@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Formula\Select;
 
 use Donquixote\Ock\Text\TextInterface;
 
-class Formula_Select_MergeMultiple extends Formula_Select_BufferedBase {
+class Formula_Select_MergeMultiple implements Formula_SelectInterface {
 
   /**
    * Constructor.
@@ -22,8 +22,7 @@ class Formula_Select_MergeMultiple extends Formula_Select_BufferedBase {
    */
   public function idGetLabel(string|int $id): ?TextInterface {
     foreach ($this->formulas as $formula) {
-      $label = $formula->idGetLabel($id);
-      if ($label !== NULL) {
+      if (NULL !== $label = $formula->idGetLabel($id)) {
         return $label;
       }
     }
@@ -45,15 +44,26 @@ class Formula_Select_MergeMultiple extends Formula_Select_BufferedBase {
   /**
    * {@inheritdoc}
    */
-  protected function initialize(array &$grouped_options, array &$group_labels): void {
+  public function getOptionsMap(): array {
+    $map = [];
     foreach ($this->formulas as $formula) {
-      foreach ($formula->getOptGroups() as $group_id => $group_label) {
-        $group_labels[$group_id] = $group_label;
-        foreach ($formula->getOptions($group_id) as $id => $label) {
-          $grouped_options[$group_id][$id] = $label;
-        }
+      foreach ($formula->getOptionsMap() as $id => $groupId) {
+        $map[$id] = $groupId;
       }
     }
+    return $map;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function groupIdGetLabel(int|string $groupId): ?TextInterface {
+    foreach ($this->formulas as $formula) {
+      if (NULL !== $groupLabel = $formula->groupIdGetLabel($groupId)) {
+        return $groupLabel;
+      }
+    }
+    return NULL;
   }
 
 }

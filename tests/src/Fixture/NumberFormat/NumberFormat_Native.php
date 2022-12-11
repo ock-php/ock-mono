@@ -36,14 +36,14 @@ class NumberFormat_Native implements NumberFormatInterface {
   #[OckPluginFormula(self::class, "native", "Call built-in number_format()")]
   public static function formula(): FormulaInterface {
     return Formula::group()
-      ->add('decimals', new Formula_Int(), Text::t('Decimals'))
+      ->add('decimals', Text::t('Decimals'), new Formula_Int())
       ->add(
         'format',
+        Text::t('Format'),
         Formula::flatSelect()
           ->add('.,', Text::t('US'))
           ->add(',.', Text::t('German'))
-          ->create(),
-        Text::t('Format'))
+          ->create())
       ->call([self::class, 'create']);
   }
 

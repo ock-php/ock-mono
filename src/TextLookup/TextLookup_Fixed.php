@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\TextLookup;
 
+use Donquixote\Ock\Text\TextInterface;
+
 /**
  * Helper object to provide labels in bulk.
  */
@@ -21,8 +23,8 @@ class TextLookup_Fixed implements TextLookupInterface {
   /**
    * {@inheritdoc}
    */
-  public function idsMapGetTexts(array $ids_map): array {
-    return array_intersect_key($this->labels, $ids_map);
+  public function idGetText(int|string $id): ?TextInterface {
+    return $this->labels[$id] ?? NULL;
   }
 
 }

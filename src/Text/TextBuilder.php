@@ -70,7 +70,7 @@ class TextBuilder {
    */
   public function wrapSprintf(string $wrapper): self {
     $this->wrapperOps[] = static function (TextInterface $text) use ($wrapper) {
-      return new Text_Sprintf($wrapper, $text);
+      return new Text_SprintfOne($wrapper, $text);
     };
     return $this;
   }

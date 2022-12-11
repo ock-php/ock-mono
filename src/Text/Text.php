@@ -98,7 +98,11 @@ class Text {
     return $text;
   }
 
-  public static function tIf(string $string, bool $translate, array $replacements = []) {
+  public static function sprintf(string $string, TextInterface ...$replacements): TextBase {
+    return new Text_Vsprintf($string, $replacements);
+  }
+
+  public static function tIf(string $string, bool $translate, array $replacements = []): TextBuilderBase {
     return $translate
       ? static::t($string, $replacements)
       : static::s($string, $replacements);

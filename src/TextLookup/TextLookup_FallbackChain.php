@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\TextLookup;
 
+use Donquixote\Ock\Text\TextInterface;
+
 /**
  * Helper object to provide labels in bulk.
  */
@@ -21,15 +23,14 @@ class TextLookup_FallbackChain implements TextLookupInterface {
   /**
    * {@inheritdoc}
    */
-  public function idsMapGetTexts(array $ids_map): array {
-    $labels = [];
-    $remaining = $ids_map;
+  public function idGetText(int|string $id): ?TextInterface {
     foreach ($this->lookups as $lookup) {
-      $new_labels = $lookup->idsMapGetTexts($remaining);
-      $remaining = array_diff_key($remaining, $new_labels);
-      $labels += $new_labels;
+      $text = $lookup->idGetText($id);
+      if ($text !== NULL) {
+        return $text;
+      }
     }
-    return $labels;
+    return NULL;
   }
 
 }

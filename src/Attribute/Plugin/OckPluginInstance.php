@@ -11,7 +11,6 @@ use Donquixote\Adaptism\Util\ReflectionTypeUtil;
 use Donquixote\Ock\Contract\FormulaHavingInterface;
 use Donquixote\Ock\Contract\LabelHavingInterface;
 use Donquixote\Ock\Contract\NameHavingInterface;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Group\GroupFormulaBuilder;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
@@ -78,32 +77,18 @@ class OckPluginInstance extends PluginAttributeBase {
       $name = AttributesUtil::getSingle($parameter, NameHavingInterface::class)
         ?->getName()
         ?? $parameter->getName();
-      $label = AttributesUtil::getSingle(
-          $parameter,
-          LabelHavingInterface::class,
-        )?->getLabel()
+      $label = AttributesUtil::getSingle($parameter, LabelHavingInterface::class)
+        ?->getLabel()
         ?? IdentifierLabelUtil::fromInterface($name);
-      $formula = AttributesUtil::getSingle(
-          $parameter,
-          FormulaHavingInterface::class,
-        )?->getFormula()
+      $formula = AttributesUtil::getSingle($parameter, FormulaHavingInterface::class)
+        ?->getFormula()
         ?? new Formula_Iface(
           ReflectionTypeUtil::requireGetClassLikeType($parameter),
           $parameter->allowsNull(),
         );
-      $builder->add($name, $formula, $label);
+      $builder->add($name, $label, $formula);
     }
     return $builder;
-  }
-
-  /**
-   * @param \ReflectionParameter $param
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
-   *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
-   */
-  private static function paramGetFormula(\ReflectionParameter $param): ?FormulaInterface {
   }
 
 }

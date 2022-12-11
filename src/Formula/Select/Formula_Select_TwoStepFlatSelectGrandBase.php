@@ -13,72 +13,62 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
   /**
    * {@inheritdoc}
    */
-  public function getOptGroups(): array {
-    return $this->getIdFormula()->getOptions();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOptions(?string $group_id): array {
-    $subFormula = $this->idGetSubFormula($group_id);
-    if ($subFormula === NULL) {
-      return [];
+  public function getOptionsMap(): array {
+    $map = [];
+    foreach ($this->getIdFormula()->getOptions() as $groupId => $groupLabel) {
+      if (NULL === $subFormula = $this->idGetSubFormula($groupId)) {
+        continue;
+      }
+      foreach ($subFormula->getOptions() as $subId => $subLabel) {
+        $combinedId = $this->combineIds($groupId, $subId);
+        $map[$combinedId] = $groupId;
+      }
     }
-    $group_label = $this->getIdFormula()->idGetLabel($group_id)
-      ?? Text::s($group_id);
-    $options = [];
-    foreach ($subFormula->getOptions() as $sub_id => $sub_label) {
-      $combinedId = $this->combineIds($group_id, $sub_id);
-      $options[$group_id][$combinedId] = $this->combineLabels($group_label, $sub_label);
-    }
-    return $options;
+    return $map;
   }
 
   /**
    * {@inheritdoc}
    */
   public function idIsKnown(string|int $id): bool {
-    [$id0, $id1] = $this->splitId($id) + [NULL, NULL];
-
-    if (NULL === $id1) {
+    [$groupId, $subId] = $this->splitId($id) + [NULL, NULL];
+    if (NULL === $subId) {
       return FALSE;
     }
-
-    if (!$this->getIdFormula()->idIsKnown($id0)) {
+    if (!$this->getIdFormula()->idIsKnown($groupId)) {
       return FALSE;
     }
-
-    if (NULL === $subFormula = $this->idGetSubFormula($id0)) {
+    if (NULL === $subFormula = $this->idGetSubFormula($groupId)) {
       return FALSE;
     }
+    return $subFormula->idIsKnown($subId);
+  }
 
-    return $subFormula->idIsKnown($id1);
+  /**
+   * {@inheritdoc}
+   */
+  public function groupIdGetLabel(int|string $groupId): ?TextInterface {
+    return $this->getIdFormula()->idGetLabel($groupId);
   }
 
   /**
    * {@inheritdoc}
    */
   public function idGetLabel(string|int $id): ?TextInterface {
-    [$id0, $id1] = $this->splitId($id) + [NULL, NULL];
-
-    if (NULL === $id1) {
+    [$groupId, $subId] = $this->splitId($id) + [NULL, NULL];
+    if (NULL === $subId) {
       return NULL;
     }
-
-    if (NULL === $label0 = $this->getIdFormula()->idGetLabel($id0)) {
+    if (NULL === $groupLabel = $this->getIdFormula()->idGetLabel($groupId)) {
       return NULL;
     }
-
-    if (NULL === $subFormula = $this->idGetSubFormula($id0)) {
+    if (NULL === $subFormula = $this->idGetSubFormula($groupId)) {
       return NULL;
     }
-
-    if (NULL === $label1 = $subFormula->idGetLabel($id1)) {
+    if (NULL === $subLabel = $subFormula->idGetLabel($subId)) {
       return NULL;
     }
-
-    return $this->combineLabels($label0, $label1);
+    return $this->combineLabels($groupLabel, $subLabel);
   }
 
   /**
@@ -108,7 +98,7 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
    *   Format: [$id0, $id1]
    */
   protected function splitId(string $combinedId): array {
-    return explode(':', $combinedId);
+    return explode(':', $combinedId, 2);
   }
 
   /**

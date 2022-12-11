@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\TextLookup;
 
+use Donquixote\Ock\Text\TextInterface;
+
 /**
  * Helper object to provide labels in bulk.
  *
@@ -12,16 +14,10 @@ namespace Donquixote\Ock\TextLookup;
 interface TextLookupInterface {
 
   /**
-   * Attempts to find labels for ids.
+   * @param string|int $id
    *
-   * @param mixed[] $ids_map
-   *   Format: $[$id] = $_anything.
-   *
-   * @return \Donquixote\Ock\Text\TextInterface[]
-   *   Format: $[$id] = $text.
-   *   This only includes ids for which a label was found.
-   *   The order is not guaranteed.
+   * @return \Donquixote\Ock\Text\TextInterface|null
    */
-  public function idsMapGetTexts(array $ids_map): array;
+  public function idGetText(string|int $id): ?TextInterface;
 
 }

@@ -96,7 +96,7 @@ EOT;
    * @return string
    *   Php expression that calls the static method.
    */
-  public static function phpCall(callable $callable, array $argsPhp): string {
+  public static function phpCall(callable $callable, array $argsPhp = []): string {
     if (is_array($callable)) {
       if (!is_string($callable[0])) {
         throw new \InvalidArgumentException('Parameter must be a static method.');
@@ -248,12 +248,63 @@ EOT;
       throw new \Exception('Cannot export closure.');
     }
 
+    if ($object instanceof \Reflector) {
+      return self::phpReflector($object);
+    }
+
     // Attempt to serialize.
     // If the class does not support it, an exception will be thrown.
-    return \sprintf(
-      '\\unserialize(%s)',
-      self::phpString(\serialize($object)),
-    );
+    try {
+      return \sprintf(
+        '\\unserialize(%s)',
+        self::phpString(\serialize($object)),
+      );
+    }
+    catch (\Exception $e) {
+      throw $e;
+    }
+  }
+
+  /**
+   * @param \Reflector $reflector
+   *
+   * @return string
+   *
+   * @throws \Exception
+   */
+  public static function phpReflector(\Reflector $reflector): string {
+    $args = match (get_class($reflector)) {
+      \ReflectionClass::class => [$reflector->getName()],
+      \ReflectionFunction::class => $reflector->isClosure()
+        ? NULL
+        : [$reflector->getName()],
+      \ReflectionMethod::class,
+      \ReflectionProperty::class,
+      \ReflectionClassConstant::class => [
+        $reflector->getDeclaringClass()->getName(),
+        $reflector->getName(),
+      ],
+      \ReflectionParameter::class => NULL,
+      default => NULL,
+    };
+    if ($args !== null) {
+      return self::phpNewClass(
+        get_class($reflector),
+        array_map([self::class, 'phpValue'], $args),
+      );
+    }
+    if ($reflector instanceof \ReflectionParameter) {
+      return self::phpCallMethod(
+        self::phpReflector($reflector->getDeclaringFunction()),
+        'getParameter',
+        $reflector->getName(),
+      );
+    }
+    throw new \Exception(sprintf('Cannot export %s object.', get_class($reflector)));
+  }
+
+  private static function phpObjectFail(object $object): never {
+    throw new \Exception(sprintf('Cannot export %s object.', get_class($object)));
   }
 
   /**
@@ -331,7 +382,7 @@ EOT;
     $tokens[] = '#';
 
     /**
-     * @var int[] = $candidates
+     * @var int[] $candidates
      *   Format: $[] = $i0.
      */
     $i0s = [];
@@ -469,7 +520,7 @@ EOT;
       $i_alias_variation = 0;
       foreach ($classes as $name => $indices_by_position) {
         $alias_map[$name] = (0 === $i_alias_variation) ? TRUE : $alias;
-        foreach ($indices_by_position as list($i0, $i1)) {
+        foreach ($indices_by_position as [$i0, $i1]) {
           $tokens[$i1] = $alias;
           /**
            * @var int $i0
@@ -488,7 +539,7 @@ EOT;
     ksort($alias_map, SORT_STRING | SORT_FLAG_CASE);
 
     foreach ($abs as $qcn_or_fqcn => $indices_by_position) {
-      foreach ($indices_by_position as list($i0, $i1)) {
+      foreach ($indices_by_position as [$i0, $i1]) {
         $tokens[$i1] = $qcn_or_fqcn;
         for ($i = $i0; $i < $i1; ++$i) {
           if (T_WHITESPACE !== $tokens[$i][0]) {
@@ -757,6 +808,26 @@ EOT;
       $statement_full .= $token[1];
     }
     return substr($statement_full, 6) . ';';
+  }
+
+  /**
+   * @param int|string $key
+   *
+   * @return string
+   */
+  public static function phpPlaceholder(int|string $key): string {
+    return self::phpCallStatic([self::class, 'pl'], [
+      \var_export($key, TRUE),
+    ]);
+  }
+
+  /**
+   * @param int|string $key
+   *
+   * @return string
+   */
+  private static function pl(int|string $key): string {
+    throw new \RuntimeException('This method is not meant to be called.');
   }
 
 }

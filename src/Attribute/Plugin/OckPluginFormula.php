@@ -7,9 +7,9 @@ namespace Donquixote\Ock\Attribute\Plugin;
 use Donquixote\Adaptism\Exception\MalformedDeclarationException;
 use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\Adaptism\Util\ReflectionTypeUtil;
-use Donquixote\Adaptism\Util\ServiceAttributesUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\FromContainer\Formula_FromContainer_StaticMethod;
+use Donquixote\Ock\Formula\FreeParameters\Formula_FreeParameters;
+use Donquixote\Ock\Formula\Neutral\Formula_Neutral_FormulaFactory;
 use Donquixote\Ock\Plugin\PluginDeclaration;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
@@ -60,11 +60,10 @@ class OckPluginFormula extends PluginAttributeBase {
         MessageUtil::formatReflector($reflectionMethod),
       ));
     }
-    $serviceIds = ServiceAttributesUtil::paramsGetServiceIds($reflectionMethod->getParameters());
-    $formula = new Formula_FromContainer_StaticMethod(
-      [$reflectionMethod->getDeclaringClass()->getName(), $reflectionMethod->getName()],
-      $serviceIds,
-    );
+    $formula = new Formula_Neutral_FormulaFactory([
+      $reflectionMethod->getDeclaringClass()->getName(),
+      $reflectionMethod->getName(),
+    ]);
     try {
       $rclass = new \ReflectionClass($this->type);
     }
