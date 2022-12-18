@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Donquixote\Ock\Formula\Contextual;
 
 use Donquixote\Ock\Context\CfContextInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
+use Donquixote\Ock\Formula\SkipEvaluator\Formula_ValuePassthruInterface;
 
 /**
  * @see \Donquixote\Ock\Todo\ContextTodo
  */
-interface Formula_ContextualInterface extends Formula_SkipEvaluatorInterface {
+interface Formula_ContextualInterface extends Formula_ValuePassthruInterface {
 
   /**
    * Gets a formula with a context applied.

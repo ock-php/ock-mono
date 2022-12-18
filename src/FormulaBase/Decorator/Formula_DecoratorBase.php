@@ -12,7 +12,7 @@ class Formula_DecoratorBase implements FormulaInterface {
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    */
   public function __construct(
-    private FormulaInterface $decorated,
+    private readonly FormulaInterface $decorated,
   ) {}
 
   /**

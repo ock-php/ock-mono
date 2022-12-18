@@ -80,8 +80,9 @@ class V2V_Group_Call implements V2V_GroupInterface {
 
   /**
    * {@inheritdoc}
+   * @param array $conf
    */
-  public function itemsPhpGetPhp(array $itemsPhp): string {
+  public function itemsPhpGetPhp(array $itemsPhp, array $conf): string {
     return PhpUtil::phpCallFqn($this->fqn, $itemsPhp);
   }
 

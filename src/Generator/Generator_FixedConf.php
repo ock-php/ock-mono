@@ -35,8 +35,8 @@ class Generator_FixedConf implements GeneratorInterface {
    * @param mixed $conf
    */
   public function __construct(
-    private GeneratorInterface $decorated,
-    private mixed $conf,
+    private readonly GeneratorInterface $decorated,
+    private readonly mixed $conf,
   ) {}
 
   /**

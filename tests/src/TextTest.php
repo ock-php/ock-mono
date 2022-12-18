@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Donquixote\Ock\Tests;
 
 use Donquixote\Ock\Tests\Translator\Translator_Test;

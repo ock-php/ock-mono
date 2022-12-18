@@ -86,6 +86,7 @@ class Formula_Select_ExpandNested implements Formula_SelectInterface {
    * @param string|int $id
    *
    * @return \Donquixote\Ock\Formula\Select\Formula_SelectInterface|null
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   private function idGetSelectFormula(string|int $id): ?Formula_SelectInterface {
 
@@ -104,6 +105,7 @@ class Formula_Select_ExpandNested implements Formula_SelectInterface {
    * @param string|int $id
    *
    * @return \Donquixote\Ock\Formula\Id\Formula_IdInterface|null
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   private function idGetIdFormula(string|int $id): ?Formula_IdInterface {
 

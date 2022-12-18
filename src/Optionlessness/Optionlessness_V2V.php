@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Optionlessness;
 
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\FormulaBase\Formula_ConfPassthruInterface;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Optionlessness_V2V extends UtilBase {
@@ -21,7 +21,7 @@ final class Optionlessness_V2V extends UtilBase {
    */
   #[Adapter]
   public static function fromFormula(
-    Formula_ValueToValueBaseInterface $formula,
+    Formula_ConfPassthruInterface $formula,
     UniversalAdapterInterface $universalAdapter,
   ): ?OptionlessnessInterface {
     return $universalAdapter->adapt($formula->getDecorated(), OptionlessnessInterface::class);

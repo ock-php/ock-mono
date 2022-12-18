@@ -27,7 +27,7 @@ class Formula_DefaultConf implements Formula_DefaultConfInterface {
   /**
    * {@inheritdoc}
    */
-  public function getDefaultConf() {
+  public function getDefaultConf(): mixed {
     return $this->defaultConf;
   }
 

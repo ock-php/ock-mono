@@ -1,5 +1,7 @@
 <?php
 
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
+declare(strict_types = 1);
 
-return new Formula_ValueProvider_FixedPhp('5');
+use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp;
+
+return new Formula_FixedPhp('5');

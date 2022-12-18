@@ -5,37 +5,45 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula\Sequence;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
-class Formula_Sequence_ItemLabelCallback extends Formula_SequenceBase {
+class Formula_Sequence_ItemLabelCallback implements Formula_SequenceInterface {
 
   /**
-   * @var callable
-   */
-  private $itemLabelCallback;
-
-  /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $itemFormula
-   * @param callable $itemLabelCallback
+   * @param callable(int|null): (TextInterface|string) $itemLabelCallback
    */
-  public function __construct(FormulaInterface $itemFormula, callable $itemLabelCallback) {
-    parent::__construct($itemFormula);
-    $this->itemLabelCallback = $itemLabelCallback;
+  public function __construct(
+    private readonly FormulaInterface $itemFormula,
+    private readonly mixed $itemLabelCallback,
+  ) {}
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getItemFormula(): FormulaInterface {
+    return $this->itemFormula;
   }
 
   /**
    * {@inheritdoc}
    */
   public function deltaGetItemLabel(?int $delta): TextInterface {
-    $label = \call_user_func($this->itemLabelCallback, $delta);
+    $label = ($this->itemLabelCallback)($delta);
     if ($label instanceof TextInterface) {
       return $label;
     }
     if (is_string($label)) {
       return Text::s($label);
     }
-    return Text::i($delta);
+    if (is_int($label)) {
+      return Text::i($label);
+    }
+    throw new FormulaException('Misbehaving item label callback.');
   }
 
 }

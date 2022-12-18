@@ -5,67 +5,70 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Summarizer;
 
 use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
-use Donquixote\Ock\FormulaAdapter;
+use Donquixote\Ock\Formula\Group\GroupHelper;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 
+#[Adapter]
 class Summarizer_Group implements SummarizerInterface {
 
   /**
-   * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
+   * @var \Donquixote\Ock\Formula\Group\GroupHelper
    *
-   * @return self|null
-   *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @todo Make this a service?
    */
-  #[Adapter]
-  public static function create(Formula_GroupInterface $formula, UniversalAdapterInterface $universalAdapter): ?self {
-
-    $itemSummarizers = FormulaAdapter::getMultiple(
-      $formula->getItemFormulas(),
-      SummarizerInterface::class,
-      $universalAdapter);
-
-    return new self($formula, $itemSummarizers);
-  }
+  private GroupHelper $groupHelper;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $formula
-   * @param \Donquixote\Ock\Summarizer\SummarizerInterface[] $itemSummarizers
+   * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $groupFormula
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
   public function __construct(
-    private readonly Formula_GroupInterface $formula,
-    private readonly  array $itemSummarizers,
-  ) {}
+    private readonly Formula_GroupInterface $groupFormula,
+    UniversalAdapterInterface $universalAdapter,
+  ) {
+    $this->groupHelper = new GroupHelper($universalAdapter);
+  }
 
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
 
     if (!\is_array($conf)) {
       $conf = [];
     }
 
-    $labels = $this->formula->getLabels();
+    $resolvedGroup = $this->groupHelper
+      ->withOriginalItems($this->groupFormula->getItems())
+      ->withConf($conf);
 
     $parts = [];
-    foreach ($this->itemSummarizers as $key => $itemSummarizer) {
-
-      $itemSummary = $itemSummarizer->confGetSummary($conf[$key] ?? NULL);
-
-      if ($itemSummary === NULL) {
-        continue;
+    foreach ($resolvedGroup->getKeys() as $key) {
+      try {
+        $itemSummary = $resolvedGroup
+          ->keyGetObject($key, SummarizerInterface::class)
+          ->confGetSummary($conf[$key] ?? NULL);
+        if ($itemSummary === NULL) {
+          continue;
+        }
       }
-
-      $parts[] = Text::label(
-        $labels[$key] ?? Text::s($key),
-        $itemSummary);
+      catch (AdapterException|FormulaException) {
+        $itemSummary = Text::t('summary not available')->wrapSprintf('(%s)');
+      }
+      try {
+        $label = $resolvedGroup->keyGetLabel($key);
+      }
+      catch (FormulaException) {
+        $label = Text::s($key);
+      }
+      $parts[] = Text::label($label, $itemSummary);
     }
 
     return $parts ? Text::ul($parts) : NULL;

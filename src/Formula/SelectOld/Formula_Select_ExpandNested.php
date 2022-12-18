@@ -86,11 +86,12 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
   }
 
   /**
-   * @param string|int $id
+   * @param int|string $id
    *
    * @return \Donquixote\Ock\Formula\SelectOld\Formula_SelectInterface|null
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  private function idGetSelectFormula($id): ?Formula_SelectInterface {
+  private function idGetSelectFormula(int|string $id): ?Formula_SelectInterface {
 
     if (NULL === $idFormula = $this->idGetIdFormula($id)) {
       return NULL;
@@ -107,6 +108,7 @@ class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
    * @param string|int $id
    *
    * @return \Donquixote\Ock\Formula\Id\Formula_IdInterface|null
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   private function idGetIdFormula(string|int $id): ?Formula_IdInterface {
 

@@ -12,7 +12,7 @@ use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
 use Donquixote\Ock\Formula\Select\Flat\FlatSelectBuilderInterface;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
 use Donquixote\Ock\Formula\Sequence\Formula_Sequence;
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
+use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp;
 use Donquixote\Ock\Util\PhpUtil;
 use Donquixote\Ock\Util\UtilBase;
 
@@ -115,7 +115,7 @@ final class Formula extends UtilBase {
    * @throws \Exception
    *   Value cannot be exported.
    */
-  public static function value($value): Formula_OptionlessInterface {
+  public static function value(mixed $value): Formula_OptionlessInterface {
     return self::valuePhp(PhpUtil::phpValue($value));
   }
 
@@ -124,7 +124,7 @@ final class Formula extends UtilBase {
    *
    * @return \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface
    */
-  public static function valueSimple($value): Formula_OptionlessInterface {
+  public static function valueSimple(mixed $value): Formula_OptionlessInterface {
     return self::valuePhp(PhpUtil::phpValueSimple($value));
   }
 
@@ -133,8 +133,36 @@ final class Formula extends UtilBase {
    *
    * @return \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface
    */
-  public static function valuePhp($php): Formula_OptionlessInterface {
-    return new Formula_ValueProvider_FixedPhp($php);
+  public static function valuePhp(mixed $php): Formula_OptionlessInterface {
+    return new Formula_FixedPhp($php);
+  }
+
+  /**
+   * @param string $serviceId
+   *
+   * @return \Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp
+   */
+  public static function serviceExpression(string $serviceId): Formula_FixedPhp {
+    return new Formula_FixedPhp(PhpUtil::phpCallMethod(
+      '$container',
+      'get',
+      [var_export($serviceId, TRUE)],
+    ));
+  }
+
+  /**
+   * @param string $serviceId
+   * @param string $method
+   * @param array $args
+   *
+   * @return \Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp
+   */
+  public static function serviceMethodCallExpression(string $serviceId, string $method, array $args): Formula_FixedPhp {
+    return new Formula_FixedPhp(PhpUtil::phpCallMethod(
+      '$container',
+      'get',
+      [var_export($serviceId, TRUE)],
+    ));
   }
 
 }

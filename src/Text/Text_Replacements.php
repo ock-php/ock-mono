@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Donquixote\Ock\Text;
 
 use Donquixote\Ock\Translator\TranslatorInterface;
@@ -17,6 +19,10 @@ class Text_Replacements extends TextBuilderBase {
     private array $replacements = [],
   ) {
     Text::validateMultiple($replacements);
+  }
+
+  public function __toString(): string {
+    throw new \RuntimeException('Cannot print this.');
   }
 
   /**

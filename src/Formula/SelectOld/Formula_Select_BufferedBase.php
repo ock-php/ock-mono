@@ -13,14 +13,14 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
    *
    * @var \Donquixote\Ock\Text\TextInterface[]
    */
-  private $groups = [];
+  private array $groups = [];
 
   /**
    * Buffered grouped options, with '' for top-level options.
    *
    * @var \Donquixote\Ock\Text\TextInterface[][]|null
    */
-  private $groupedOptions;
+  private ?array $groupedOptions;
 
   /**
    * {@inheritdoc}

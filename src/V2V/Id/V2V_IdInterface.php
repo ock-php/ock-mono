@@ -7,10 +7,10 @@ namespace Donquixote\Ock\V2V\Id;
 interface V2V_IdInterface {
 
   /**
-   * @param string|int $id
+   * @param int|string $id
    *
    * @return string
    */
-  public function idGetPhp($id): string;
+  public function idGetPhp(int|string $id): string;
 
 }

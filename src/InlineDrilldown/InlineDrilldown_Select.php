@@ -10,7 +10,7 @@ use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Formula\Select\Formula_Select_FromFlatSelect;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_FixedPhp;
+use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp;
 
 class InlineDrilldown_Select implements InlineDrilldownInterface {
 
@@ -55,7 +55,7 @@ class InlineDrilldown_Select implements InlineDrilldownInterface {
    * {@inheritdoc}
    */
   public function idGetFormula(string|int $id): ?FormulaInterface {
-    return Formula_ValueProvider_FixedPhp::fromValueSimple($id);
+    return Formula_FixedPhp::fromValueSimple($id);
   }
 
 }

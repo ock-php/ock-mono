@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntCondition;
 
-use Donquixote\Ock\Attribute\Parameter\ListOfObjects;
+use Donquixote\Ock\Attribute\Parameter\OckListOfObjects;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
 use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 
-#[OckPluginInstance("and", "Logical AND")]
+#[OckPluginInstance('and', 'Logical AND')]
 class IntCondition_And implements IntConditionInterface {
 
   /**
@@ -16,8 +17,9 @@ class IntCondition_And implements IntConditionInterface {
    * @param \Donquixote\Ock\Tests\Fixture\IntCondition\IntConditionInterface[] $conditions
    */
   public function __construct(
-    #[ListOfObjects(IntConditionInterface::class, 'condition')]
-    private array $conditions,
+    #[OckOption('conditions', 'Conditions')]
+    #[OckListOfObjects(IntConditionInterface::class, 'condition')]
+    private readonly array $conditions,
   ) {}
 
   /**

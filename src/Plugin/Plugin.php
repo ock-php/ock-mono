@@ -99,7 +99,7 @@ class Plugin {
    *
    * @return mixed
    */
-  public function get(string $key) {
+  public function get(string $key): mixed {
     return $this->info[$key];
   }
 
@@ -109,7 +109,7 @@ class Plugin {
    *
    * @return static
    */
-  public function withSetting(string $key, $value): static {
+  public function withSetting(string $key, mixed $value): static {
     $clone = clone $this;
     $clone->info[$key] = $value;
     return $clone;

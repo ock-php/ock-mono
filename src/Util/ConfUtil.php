@@ -14,7 +14,7 @@ final class ConfUtil extends UtilBase {
    * @return array
    *   Format: [$enabled, $options]
    */
-  public static function confGetStatusAndOptions($conf, $k0 = 'enabled', $k1 = 'options'): array {
+  public static function confGetStatusAndOptions(mixed $conf, string $k0 = 'enabled', string $k1 = 'options'): array {
 
     if (!\is_array($conf) || empty($conf[$k0])) {
       return [FALSE, NULL];
@@ -32,7 +32,7 @@ final class ConfUtil extends UtilBase {
    *
    * @return string|null
    */
-  public static function confGetId($conf): ?string {
+  public static function confGetId(mixed $conf): ?string {
 
     if (is_numeric($conf)) {
       return (string) $conf;
@@ -51,7 +51,7 @@ final class ConfUtil extends UtilBase {
    *
    * @return mixed
    */
-  public static function confExtractNestedValue(&$conf, array $parents) {
+  public static function confExtractNestedValue(mixed &$conf, array $parents): mixed {
     if ([] === $parents) {
       return $conf;
     }
@@ -108,7 +108,7 @@ final class ConfUtil extends UtilBase {
    * @return bool
    *   TRUE on success, FALSE on failure.
    */
-  public static function confSetNestedValue(&$conf, array $parents, $value): bool {
+  public static function confSetNestedValue(mixed &$conf, array $parents, mixed $value): bool {
     if ([] === $parents) {
       $conf = $value;
       return TRUE;
@@ -133,7 +133,7 @@ final class ConfUtil extends UtilBase {
    *
    * @return bool
    */
-  public static function confUnsetNestedValue(&$conf, array $parents): bool {
+  public static function confUnsetNestedValue(mixed &$conf, array $parents): bool {
     if ([] === $parents) {
       $conf = [];
       return TRUE;

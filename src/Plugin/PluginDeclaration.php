@@ -16,9 +16,10 @@ class PluginDeclaration {
    *   The actual plugin object.
    */
   public function __construct(
-    private string $id,
+    private readonly string $id,
     private array $types,
-    private Plugin $plugin) {}
+    private Plugin $plugin,
+  ) {}
 
   /**
    * @return string
@@ -67,7 +68,7 @@ class PluginDeclaration {
    *
    * @return static
    */
-  public function withSetting(string $key, $value): static {
+  public function withSetting(string $key, mixed $value): static {
     $clone = clone $this;
     $clone->plugin = $this->plugin->withSetting($key, $value);
     return $clone;

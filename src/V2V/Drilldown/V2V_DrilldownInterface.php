@@ -7,11 +7,11 @@ namespace Donquixote\Ock\V2V\Drilldown;
 interface V2V_DrilldownInterface {
 
   /**
-   * @param string|int $id
+   * @param int|string $id
    * @param string $php
    *
    * @return mixed
    */
-  public function idPhpGetPhp($id, string $php);
+  public function idPhpGetPhp(int|string $id, string $php): mixed;
 
 }

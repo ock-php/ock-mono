@@ -16,7 +16,7 @@ class Formula_Boolean_YesNo implements Formula_BooleanInterface {
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public static function create($enabledByDefault = FALSE): FormulaInterface {
+  public static function create(bool $enabledByDefault = FALSE): FormulaInterface {
 
     if ($enabledByDefault) {
       return new Formula_DefaultConf(new self(), TRUE);

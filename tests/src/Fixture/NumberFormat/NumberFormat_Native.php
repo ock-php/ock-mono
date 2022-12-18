@@ -16,21 +16,6 @@ use Donquixote\Ock\Text\Text;
 class NumberFormat_Native implements NumberFormatInterface {
 
   /**
-   * @var int
-   */
-  private $decimals;
-
-  /**
-   * @var string
-   */
-  private $decimalSeparator;
-
-  /**
-   * @var string
-   */
-  private $thousandsSeparator;
-
-  /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   #[OckPluginFormula(self::class, "native", "Call built-in number_format()")]
@@ -43,7 +28,8 @@ class NumberFormat_Native implements NumberFormatInterface {
         Formula::flatSelect()
           ->add('.,', Text::t('US'))
           ->add(',.', Text::t('German'))
-          ->create())
+          ->create()
+      )
       ->call([self::class, 'create']);
   }
 
@@ -77,18 +63,15 @@ class NumberFormat_Native implements NumberFormatInterface {
    * @param string $thousandsSeparator
    *   Thousands separator.
    */
-  public function __construct(int $decimals = 0, string $decimalSeparator = '.', string $thousandsSeparator = ',') {
-    $this->decimals = $decimals;
-    $this->decimalSeparator = $decimalSeparator;
-    $this->thousandsSeparator = $thousandsSeparator;
+  public function __construct(private readonly int $decimals = 0, private readonly string $decimalSeparator = '.', private readonly string $thousandsSeparator = ',') {
   }
 
   /**
-   * @param float|int $number
+   * @param int|float $number
    *
    * @return string
    */
-  public function format($number): string {
+  public function format(int|float $number): string {
     return number_format(
       $number,
       $this->decimals,

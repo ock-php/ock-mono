@@ -29,7 +29,7 @@ class Summarizer_Drilldown implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
 
     [$id, $subConf] = DrilldownKeysHelper::fromFormula($this->formula)
       ->unpack($conf);

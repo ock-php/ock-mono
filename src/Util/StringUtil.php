@@ -25,7 +25,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string|false
    */
-  public static function clipPrefixOrFalse(string $haystack, string $needle) {
+  public static function clipPrefixOrFalse(string $haystack, string $needle): bool|string {
 
     $l = \strlen($needle);
 
@@ -43,7 +43,7 @@ final class StringUtil extends UtilBase {
    *
    * @return callable(string): string
    */
-  public static function fnSplitJoin(callable $split, string $glue, callable $each = null) {
+  public static function fnSplitJoin(callable $split, string $glue, callable $each = null): callable {
     return static function (string $string) use ($split, $glue, $each): string {
       $parts = $split($string);
       if ($each) {
@@ -104,14 +104,14 @@ final class StringUtil extends UtilBase {
    * @param string $example_string
    *   Example to specify how to deal with multiple uppercase characters.
    *   Can be something like "AA Bc" or "A A Bc" or "AABc".
-   * @param string|false $glue
+   * @param bool|string $glue
    *   Allows to implode the fragments with sth like "_" or "." or " ".
    *   If $glue is FALSE, it will just return an array.
    *
    * @return string|string[]
    * @psalm-return ($glue is false ? string[] : string)
    */
-  public static function camelCaseExplode(string $string, bool $lowercase = true, $example_string = 'AA Bc', $glue = false): array|string {
+  public static function camelCaseExplode(string $string, bool $lowercase = true, string $example_string = 'AA Bc', bool|string $glue = false): array|string {
     static $regexp_by_example = [];
     if (!isset($regexp_by_example[$example_string])) {
       $regexp_by_example[$example_string] = self::camelCaseExplodeExampleToRegex($example_string);

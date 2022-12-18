@@ -12,7 +12,7 @@ class PluginRegistry_Buffer implements PluginRegistryInterface {
   /**
    * @var \Donquixote\Ock\Plugin\Plugin[][]|null
    */
-  private $pluginss;
+  private ?array $pluginss;
 
   /**
    * Constructor.

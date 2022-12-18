@@ -15,7 +15,7 @@ final class DrilldownUtil extends UtilBase {
    *
    * @return array
    */
-  public static function formulaBuildConf(Formula_DrilldownInterface $formula, string $id, $options): array {
+  public static function formulaBuildConf(Formula_DrilldownInterface $formula, string $id, mixed $options): array {
 
     return self::buildConf(
       $id,
@@ -25,14 +25,14 @@ final class DrilldownUtil extends UtilBase {
   }
 
   /**
-   * @param string|int|null $id
+   * @param int|string|null $id
    * @param mixed $options
    * @param string $k0
    * @param string|null $k1
    *
    * @return array
    */
-  public static function buildConf($id, $options, string $k0 = 'id', ?string $k1 = 'options'): array {
+  public static function buildConf(int|string|null $id, mixed $options, string $k0 = 'id', ?string $k1 = 'options'): array {
 
     if (NULL === $k1) {
       $conf = \is_array($options)
@@ -58,7 +58,7 @@ final class DrilldownUtil extends UtilBase {
    *
    * @return array
    */
-  public static function drilldownConfGetIdOptions(Formula_DrilldownInterface $formula, $conf): array {
+  public static function drilldownConfGetIdOptions(Formula_DrilldownInterface $formula, mixed $conf): array {
     return self::confGetIdOptions(
       $conf,
       $formula->getIdKey(),
@@ -74,7 +74,7 @@ final class DrilldownUtil extends UtilBase {
    * @return array
    *   Format: array($id, $options)
    */
-  public static function confGetIdOptions($conf, string $k0 = 'id', ?string $k1 = 'options'): array {
+  public static function confGetIdOptions(mixed $conf, string $k0 = 'id', ?string $k1 = 'options'): array {
 
     if (!\is_array($conf)) {
       return [NULL, NULL];

@@ -9,7 +9,7 @@ use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\Text_Replacements;
 use Donquixote\Ock\Text\TextInterface;
 
-class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
+class Formula_Sequence_ItemLabelT implements Formula_SequenceInterface {
 
   /**
    * Constructor.
@@ -20,12 +20,17 @@ class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
    * @param string $placeholder
    */
   public function __construct(
-    FormulaInterface $itemFormula,
+    private readonly FormulaInterface $itemFormula,
     private readonly TextInterface $newItemLabel,
     private readonly TextInterface $itemLabelN,
     private readonly string $placeholder = '!n'
-  ) {
-    parent::__construct($itemFormula);
+  ) {}
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getItemFormula(): FormulaInterface {
+    return $this->itemFormula;
   }
 
   /**
@@ -35,7 +40,7 @@ class Formula_Sequence_ItemLabelT extends Formula_SequenceBase {
     return (NULL === $delta)
       ? $this->newItemLabel
       : new Text_Replacements($this->itemLabelN, [
-        $this->placeholder => Text::i($delta),
+        $this->placeholder => Text::i($delta + 1),
       ]);
   }
 

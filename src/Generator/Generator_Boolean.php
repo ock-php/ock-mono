@@ -32,7 +32,7 @@ class Generator_Boolean implements GeneratorInterface {
    * @param \Donquixote\Ock\V2V\Boolean\V2V_BooleanInterface $v2v
    */
   public function __construct(
-    private V2V_BooleanInterface $v2v,
+    private readonly V2V_BooleanInterface $v2v,
   ) {}
 
   /**

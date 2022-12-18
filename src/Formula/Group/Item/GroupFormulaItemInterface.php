@@ -10,20 +10,24 @@ use Donquixote\Ock\Text\TextInterface;
 interface GroupFormulaItemInterface {
 
   /**
-   * @return \Donquixote\Ock\Text\TextInterface
-   */
-  public function getLabel(): TextInterface;
-
-  /**
    * @return string[]
    *   Other keys in the group that this formula depends on.
    */
   public function dependsOnKeys(): array;
 
   /**
+   * @param array $args
+   *
+   * @return \Donquixote\Ock\Text\TextInterface
+   */
+  public function getLabel(array $args = []): TextInterface;
+
+  /**
    * @param mixed[] $args
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public function getFormula(array $args = []): FormulaInterface;
 

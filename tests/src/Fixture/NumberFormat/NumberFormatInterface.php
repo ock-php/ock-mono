@@ -15,6 +15,6 @@ interface NumberFormatInterface {
    * @return string
    *   Formatted string.
    */
-  public function format($number): string;
+  public function format(int|float $number): string;
 
 }

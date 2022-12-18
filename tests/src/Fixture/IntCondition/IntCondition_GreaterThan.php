@@ -17,9 +17,13 @@ use Donquixote\Ock\Text\Text;
 class IntCondition_GreaterThan implements IntConditionInterface {
 
   /**
-   * @var int
+   * Constructor.
+   *
+   * @param int $operand
    */
-  private $operand;
+  public function __construct(
+    private readonly int $operand,
+  ) {}
 
   /**
    * @return self
@@ -39,21 +43,14 @@ class IntCondition_GreaterThan implements IntConditionInterface {
 
   /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   #[OckPluginFormula(self::class, 'greater_than', 'Greater than')]
   public static function formula(): FormulaInterface {
     return Formula::group()
       ->add('operand', Text::t('Operand'), new Formula_Int())
       ->construct(self::class);
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param int $operand
-   */
-  public function __construct(int $operand) {
-    $this->operand = $operand;
   }
 
   /**

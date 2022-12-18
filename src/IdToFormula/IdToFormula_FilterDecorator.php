@@ -24,11 +24,9 @@ class IdToFormula_FilterDecorator implements IdToFormulaInterface {
    * {@inheritdoc}
    */
   public function idGetFormula(string|int $id): ?FormulaInterface {
-
     if (!$this->condition->idIsKnown($id)) {
       return NULL;
     }
-
     return $this->decorated->idGetFormula($id);
   }
 

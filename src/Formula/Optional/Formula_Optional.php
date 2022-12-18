@@ -11,12 +11,12 @@ class Formula_Optional extends Formula_OptionalBase {
   /**
    * @var \Donquixote\Ock\Text\TextInterface|null
    */
-  private $emptySummary;
+  private ?TextInterface $emptySummary;
 
   /**
    * @var string
    */
-  private $emptyPhp = 'NULL';
+  private string $emptyPhp = 'NULL';
 
   /**
    * @param \Donquixote\Ock\Text\TextInterface $emptySummary

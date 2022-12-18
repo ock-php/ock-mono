@@ -12,8 +12,6 @@ use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\PluginListException;
-use Donquixote\Ock\Formula\DecoKey\Formula_DecoKey;
-use Donquixote\Ock\Formula\DecoShift\Formula_DecoShift;
 use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;
 use Donquixote\Ock\Formula\Iface\Formula_IfaceInterface;
 use Donquixote\Ock\Formula\Select\Formula_Select_FromPlugins;
@@ -108,36 +106,7 @@ class SpecificAdapter_Iface {
       $idToFormula,
       $or_null);
 
-    // Support decorator plugins.
-    return new Formula_DecoKey(
-      $drilldown,
-      $this->buildDecoratorDrilldown($type),
-      'decorators',
-    );
-  }
-
-  /**
-   * @throws \Donquixote\Ock\Exception\PluginListException
-   */
-  private function buildDecoratorDrilldown(string $type): FormulaInterface {
-
-    $raw_decorator_plugins = $this->pluginMap->typeGetPlugins("decorator<$type>");
-
-    $decorator_plugins = [];
-    foreach ($raw_decorator_plugins as $id => $plugin) {
-      $decorator_plugins[$id] = $plugin->withFormula(
-        new Formula_DecoShift(
-          $plugin->getFormula()));
-    }
-
-    $drilldown = new Formula_Drilldown(
-      new Formula_Select_FromPlugins(
-        $decorator_plugins,
-        $this->groupLabels->getLabels(),
-      ),
-      new IdToFormula_FromPlugins($decorator_plugins),
-      FALSE);
-
+    // @todo Support decorators.
     return $drilldown;
   }
 

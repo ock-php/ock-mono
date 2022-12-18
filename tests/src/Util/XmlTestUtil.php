@@ -77,7 +77,7 @@ class XmlTestUtil {
    *
    * @return string
    */
-  public static function formatChildren(\DOMNode $node, string $indent) {
+  public static function formatChildren(\DOMNode $node, string $indent): string {
     $parts = [];
     foreach ($node->childNodes as $childNode) {
       $parts[] = self::formatNode($childNode, $indent);
@@ -94,7 +94,7 @@ class XmlTestUtil {
    *
    * @return array|false|string|string[]
    */
-  public static function formatNode(\DOMNode $node, string $indent) {
+  public static function formatNode(\DOMNode $node, string $indent): array|bool|string {
     if (!$node instanceof \DOMElement) {
       return $node->ownerDocument->saveXML($node);
     }

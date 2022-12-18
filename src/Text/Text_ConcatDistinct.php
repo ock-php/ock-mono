@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Donquixote\Ock\Text;
 
 class Text_ConcatDistinct extends Text_ListConcat {

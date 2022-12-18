@@ -14,7 +14,7 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
    *
    * @var \Donquixote\Ock\Text\TextInterface[]
    */
-  private $flatOptions;
+  private array $flatOptions;
 
   /**
    * @param \Donquixote\Ock\Text\TextInterface[] $options

@@ -19,8 +19,9 @@ class V2V_Group_PhpPlaceholders implements V2V_GroupInterface {
 
   /**
    * {@inheritdoc}
+   * @param array $conf
    */
-  public function itemsPhpGetPhp(array $itemsPhp): string {
+  public function itemsPhpGetPhp(array $itemsPhp, array $conf): string {
     $replacements = [];
     foreach ($itemsPhp as $key => $itemPhp) {
       $replacements[PhpUtil::phpPlaceholder($key)] = $itemPhp;

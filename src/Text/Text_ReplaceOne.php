@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Donquixote\Ock\Text;
 
 use Donquixote\Ock\Translator\TranslatorInterface;

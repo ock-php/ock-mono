@@ -11,7 +11,7 @@ class Summarizer_Null implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
     return NULL;
   }
 

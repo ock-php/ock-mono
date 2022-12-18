@@ -9,7 +9,7 @@ class DrilldownKeysHelper_IdKeyNull implements DrilldownKeysHelperInterface {
   /**
    * {@inheritdoc}
    */
-  public function unpack($conf): array {
+  public function unpack(mixed $conf): array {
 
     if (!\is_string($conf) && !\is_int($conf)) {
       return [NULL, NULL];
@@ -21,8 +21,7 @@ class DrilldownKeysHelper_IdKeyNull implements DrilldownKeysHelperInterface {
   /**
    * {@inheritdoc}
    */
-  public function pack($id, $options) {
-
+  public function pack(string|int $id, mixed $options): string|int {
     return $id;
   }
 

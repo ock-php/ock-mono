@@ -1,5 +1,9 @@
-<?php /** @noinspection PhpUnused */
+<?php
 
-[
-  return 'a' => 1,
+declare(strict_types = 1);
+
+/** @noinspection PhpUnused */
+
+return [
+  'a' => 1,
 ];

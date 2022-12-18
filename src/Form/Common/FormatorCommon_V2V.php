@@ -9,14 +9,14 @@ use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\FormulaBase\Formula_ConfPassthruInterface;
 
 class FormatorCommon_V2V {
 
   /**
    * @template T as \Donquixote\Ock\Form\Common\FormatorCommonInterface
    *
-   * @param \Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface $formula
+   * @param \Donquixote\Ock\FormulaBase\Formula_ConfPassthruInterface $formula
    * @param class-string<T> $interface
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
@@ -26,7 +26,7 @@ class FormatorCommon_V2V {
    */
   #[Adapter]
   public static function create(
-    #[Adaptee] Formula_ValueToValueBaseInterface $formula,
+    #[Adaptee] Formula_ConfPassthruInterface $formula,
     #[AdapterTargetType] string $interface,
     #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
   ): ?FormatorCommonInterface {

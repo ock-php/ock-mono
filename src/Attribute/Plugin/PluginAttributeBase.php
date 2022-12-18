@@ -51,7 +51,7 @@ abstract class PluginAttributeBase implements PluginAttributeInterface {
    *
    * @return PluginDeclaration
    */
-  protected function formulaGetNamedPlugin(FormulaInterface $formula, array $types): PluginDeclaration {
+  protected function formulaGetPluginDeclaration(FormulaInterface $formula, array $types): PluginDeclaration {
     $plugin = new Plugin($this->getLabel(), null, $formula, []);
     return new PluginDeclaration($this->id, $types, $plugin);
   }

@@ -24,7 +24,7 @@ class Summarizer_Primitive implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
     $type = gettype($conf);
     if (!in_array($type, $this->formula->getAllowedTypes())) {
       return Text::builder()

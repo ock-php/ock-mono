@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula\FreeParameters;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Util\ReflectionUtil;
 
 class Formula_FreeParameters extends Formula_FreeParametersBase {
@@ -23,7 +22,7 @@ class Formula_FreeParameters extends Formula_FreeParametersBase {
     $reflectionClass = new \ReflectionClass($class);
     return self::create(
       [$reflectionClass, 'newInstance'],
-      $reflectionClass->getConstructor()?->getParameters(),
+      $reflectionClass->getConstructor()?->getParameters() ?? [],
       $knownArgs,
     );
   }

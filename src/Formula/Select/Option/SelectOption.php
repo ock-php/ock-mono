@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Donquixote\Ock\Formula\Select\Option;
 
 use Donquixote\Ock\Text\TextInterface;

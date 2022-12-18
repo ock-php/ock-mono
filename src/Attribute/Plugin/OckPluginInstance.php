@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Attribute\Plugin;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\Exception\MalformedDeclarationException;
 use Donquixote\Adaptism\Util\AttributesUtil;
 use Donquixote\Adaptism\Util\MessageUtil;
@@ -11,10 +12,12 @@ use Donquixote\Adaptism\Util\ReflectionTypeUtil;
 use Donquixote\Ock\Contract\FormulaHavingInterface;
 use Donquixote\Ock\Contract\LabelHavingInterface;
 use Donquixote\Ock\Contract\NameHavingInterface;
+use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Group\GroupFormulaBuilder;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Plugin\PluginDeclaration;
+use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Util\IdentifierLabelUtil;
 
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
@@ -27,11 +30,12 @@ class OckPluginInstance extends PluginAttributeBase {
     if ($reflectionClass->isAbstract()) {
       throw new \RuntimeException(\sprintf(
         'Class %s must not be abstract.',
-        $reflectionClass->getName()));
+        $reflectionClass->getName(),
+      ));
     }
     $formula = $this->buildGroupFormula($reflectionClass->getConstructor()?->getParameters() ?? [])
       ->construct($reflectionClass->getName());
-    return $this->formulaGetNamedPlugin(
+    return $this->formulaGetPluginDeclaration(
       $formula,
       $reflectionClass->getInterfaceNames());
   }
@@ -58,9 +62,11 @@ class OckPluginInstance extends PluginAttributeBase {
         $reflectionMethod->getDeclaringClass()->getName(),
         $reflectionMethod->getName(),
       ]);
-    return $this->formulaGetNamedPlugin(
+    return $this->formulaGetPluginDeclaration(
       $formula,
-      $reflectionReturnClass->getInterfaceNames(),
+      $reflectionReturnClass->isInterface()
+        ? [$reflectionReturnClass->getName(), ...$reflectionReturnClass->getInterfaceNames()]
+        : $reflectionReturnClass->getInterfaceNames(),
     );
   }
 
@@ -70,13 +76,23 @@ class OckPluginInstance extends PluginAttributeBase {
    * @return \Donquixote\Ock\Formula\Group\GroupFormulaBuilder
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   private function buildGroupFormula(array $parameters): GroupFormulaBuilder {
     $builder = Formula::group();
-    foreach ($parameters as $parameter) {
-      $name = AttributesUtil::getSingle($parameter, NameHavingInterface::class)
-        ?->getName()
-        ?? $parameter->getName();
+    foreach ($parameters as $i => $parameter) {
+      if ($attribute = AttributesUtil::getSingle($parameter, GetService::class)) {
+        $serviceId = $attribute->getId()
+          ?? ReflectionTypeUtil::requireGetClassLikeType($parameter);
+        $builder->add(
+          'service.' . $i,
+          Text::i($i),
+          Formula::serviceExpression($serviceId),
+        );
+        continue;
+      }
+      $name = AttributesUtil::requireGetSingle($parameter, NameHavingInterface::class)
+        ->getName();
       $label = AttributesUtil::getSingle($parameter, LabelHavingInterface::class)
         ?->getLabel()
         ?? IdentifierLabelUtil::fromInterface($name);
@@ -86,7 +102,16 @@ class OckPluginInstance extends PluginAttributeBase {
           ReflectionTypeUtil::requireGetClassLikeType($parameter),
           $parameter->allowsNull(),
         );
-      $builder->add($name, $label, $formula);
+      try {
+        $builder->add($name, $label, $formula);
+      }
+      catch (FormulaException $e) {
+        throw new MalformedDeclarationException(sprintf(
+          'Problem on %s: %s.',
+          MessageUtil::formatReflector($parameter),
+          $e->getMessage(),
+        ), 0, $e);
+      }
     }
     return $builder;
   }

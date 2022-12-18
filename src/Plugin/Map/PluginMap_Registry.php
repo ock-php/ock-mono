@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin\Map;
 
+use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\Adaptism\Attribute\Service;
 use Donquixote\Ock\Plugin\Registry\PluginRegistryInterface;
 
+#[Service]
 class PluginMap_Registry implements PluginMapInterface {
 
   /**
@@ -14,6 +17,7 @@ class PluginMap_Registry implements PluginMapInterface {
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $registry
    */
   public function __construct(
+    #[GetService]
     private readonly PluginRegistryInterface $registry,
   ) {}
 

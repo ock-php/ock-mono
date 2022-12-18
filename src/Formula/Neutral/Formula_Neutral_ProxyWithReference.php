@@ -6,13 +6,13 @@ namespace Donquixote\Ock\Formula\Neutral;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 
-class Formula_Neutral_ProxyWithReference extends Formula_Neutral_ProxyBase {
+class Formula_Neutral_ProxyWithReference extends Formula_Passthru_ProxyBase {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface|null $formulaRef
    */
   public function __construct(
-    private ?FormulaInterface &$formulaRef = null,
+    private readonly ?FormulaInterface &$formulaRef = null,
   ) {}
 
   /**

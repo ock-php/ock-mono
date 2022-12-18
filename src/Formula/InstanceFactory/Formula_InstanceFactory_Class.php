@@ -15,6 +15,8 @@ class Formula_InstanceFactory_Class implements Formula_InstanceFactoryInterface 
 
   /**
    * @return \ReflectionParameter[]
+   *
+   * @throws \ReflectionException
    */
   public function getParameters(): array {
     return (new \ReflectionClass($this->class))

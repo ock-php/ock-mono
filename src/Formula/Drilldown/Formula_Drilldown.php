@@ -18,7 +18,7 @@ class Formula_Drilldown extends Formula_Drilldown_CustomKeysBase {
    *
    * @return self
    */
-  public static function create(Formula_IdInterface $idFormula, IdToFormulaInterface $idToFormula, $orNull = FALSE): self {
+  public static function create(Formula_IdInterface $idFormula, IdToFormulaInterface $idToFormula, bool $orNull = FALSE): self {
     return new self($idFormula, $idToFormula, $orNull);
   }
 
@@ -28,7 +28,7 @@ class Formula_Drilldown extends Formula_Drilldown_CustomKeysBase {
    *
    * @return self
    */
-  public static function fromOptions(array $options, $orNull = FALSE): self {
+  public static function fromOptions(array $options, bool $orNull = FALSE): self {
     return new self(
       new Formula_Select_FromOptions($options),
       new IdToFormula_FromOptions($options),
@@ -45,7 +45,7 @@ class Formula_Drilldown extends Formula_Drilldown_CustomKeysBase {
   public function __construct(
     private readonly Formula_IdInterface $idFormula,
     private readonly IdToFormulaInterface $idToFormula,
-    $orNull = FALSE,
+    bool $orNull = FALSE,
   ) {
     parent::__construct($orNull);
   }

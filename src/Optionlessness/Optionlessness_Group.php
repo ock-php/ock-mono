@@ -19,14 +19,19 @@ final class Optionlessness_Group extends UtilBase {
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Optionlessness\OptionlessnessInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   #[Adapter]
   public static function fromFormula(
     Formula_GroupInterface $group,
     UniversalAdapterInterface $universalAdapter,
   ): OptionlessnessInterface {
-    foreach ($group->getItemFormulas() as $item) {
-      if (!Optionlessness::checkFormula($item, $universalAdapter)) {
+    foreach ($group->getItems() as $item) {
+      if ($item->dependsOnKeys()) {
+        continue;
+      }
+      if (!Optionlessness::checkFormula($item->getFormula(), $universalAdapter)) {
         // At least one group item has config options.
         return new Optionlessness(FALSE);
       }

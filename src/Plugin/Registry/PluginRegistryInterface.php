@@ -12,8 +12,6 @@ interface PluginRegistryInterface {
    *
    * @throws \Donquixote\Ock\Exception\PluginListException
    *   A plugin is incorrectly defined.
-   *
-   * @throws \Exception
    */
   public function getPluginss(): array;
 

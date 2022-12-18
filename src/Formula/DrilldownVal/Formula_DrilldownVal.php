@@ -18,7 +18,7 @@ class Formula_DrilldownVal implements Formula_DrilldownValInterface {
    *
    * @return self
    */
-  public static function createArrify(Formula_DrilldownInterface $decorated, $idKey = NULL, $optionsKey = NULL): Formula_DrilldownVal {
+  public static function createArrify(Formula_DrilldownInterface $decorated, string $idKey = NULL, string $optionsKey = NULL): Formula_DrilldownVal {
 
     if (NULL === $idKey) {
       $idKey = $decorated->getIdKey();
@@ -39,7 +39,7 @@ class Formula_DrilldownVal implements Formula_DrilldownValInterface {
    *
    * @return self
    */
-  public static function createMerge(Formula_DrilldownInterface $decorated, $idKey = NULL): Formula_DrilldownVal {
+  public static function createMerge(Formula_DrilldownInterface $decorated, string $idKey = NULL): Formula_DrilldownVal {
 
     if (NULL === $idKey) {
       $idKey = $decorated->getIdKey();

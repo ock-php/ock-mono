@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\Generator_Neutral;
 use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Plugin\Plugin;
+use Donquixote\Ock\Plugin\Registry\PluginRegistryInterface;
 use Donquixote\Ock\Tests\Fixture\IntCondition\IntCondition_GreaterThan;
 use Donquixote\Ock\Tests\Fixture\IntCondition\IntConditionInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\Ock\Tests\Util\TestingServices;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Util\LocalPackageUtil;
 
@@ -45,10 +48,11 @@ class DiscoveryTest extends FormulaTestBase {
    * @throws \Donquixote\Ock\Exception\PluginListException
    */
   public function testPluginDiscovery(): void {
-    $registry = $this->getPluginRegistry();
+    $container = TestingServices::getContainer();
+    $registry = $container->get(PluginRegistryInterface::class);
     $pluginss = $registry->getPluginss();
 
-    $adapter = $this->getAdapter();
+    $adapter = $container->get(UniversalAdapterInterface::class);
 
     $pluginss_by_id = [];
     foreach ($pluginss as $type => $plugins) {

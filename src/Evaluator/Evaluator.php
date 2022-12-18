@@ -4,13 +4,61 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Evaluator;
 
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration;
-use Donquixote\Ock\FormulaAdapter;
 use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\FormulaAdapter;
 
 class Evaluator {
+
+  /**
+   * @template T as object
+   *
+   * @param class-string<T> $interface
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   *
+   * @return \Donquixote\Ock\Evaluator\EvaluatorInterface<T>
+   *
+   * @throws \Donquixote\Ock\Exception\EvaluatorException
+   */
+  public static function iface(string $interface, UniversalAdapterInterface $adapter): EvaluatorInterface {
+    $formula = Formula::iface($interface);
+    try {
+      $evaluator = $adapter->adapt($formula, EvaluatorInterface::class);
+    }
+    catch (AdapterException $e) {
+      throw new EvaluatorException(\sprintf(
+        'Failed to obtain evaluator for %s',
+        MessageUtil::formatValue($interface),
+      ), 0, $e);
+    }
+    if (!$evaluator) {
+      throw new EvaluatorException(\sprintf(
+        'Failed to obtain evaluator for %s',
+        MessageUtil::formatValue($interface),
+      ));
+    }
+    return $evaluator;
+  }
+
+  /**
+   * @template T
+   *
+   * @param class-string<T> $interface
+   * @param mixed $conf
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   *
+   * @return T
+   *
+   * @throws \Donquixote\Ock\Exception\EvaluatorException
+   */
+  public static function objectFromConf(string $interface, mixed $conf, UniversalAdapterInterface $adapter): object {
+    return self::iface($interface, $adapter)->confGetValue($conf);
+  }
 
   /**
    * Materializes an evaluator from a formula.
@@ -33,7 +81,8 @@ class Evaluator {
     return FormulaAdapter::requireObject(
       $formula,
       EvaluatorInterface::class,
-      $universalAdapter);
+      $universalAdapter,
+    );
   }
 
   /**
@@ -62,7 +111,7 @@ class Evaluator {
    *
    * @throws \Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration
    */
-  public static function expectedConfigButFound(string $expected, $conf) {
+  public static function expectedConfigButFound(string $expected, mixed $conf) {
     $message = $expected . ', found ' . MessageUtil::formatValue($conf);
     throw new EvaluatorException_IncompatibleConfiguration($message);
   }

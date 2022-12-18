@@ -13,11 +13,6 @@ use Donquixote\Ock\Text\Text;
 class IntOp_Multiply implements IntOpInterface {
 
   /**
-   * @var int
-   */
-  private $factor;
-
-  /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   #[OckPluginFormula(self::class, "multiply", "Multiply")]
@@ -32,8 +27,7 @@ class IntOp_Multiply implements IntOpInterface {
    *
    * @param int $factor
    */
-  public function __construct(int $factor) {
-    $this->factor = $factor;
+  public function __construct(private readonly int $factor) {
   }
 
   /**

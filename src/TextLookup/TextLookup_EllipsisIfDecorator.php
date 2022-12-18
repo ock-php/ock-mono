@@ -29,7 +29,7 @@ class TextLookup_EllipsisIfDecorator implements TextLookupInterface {
   public function idGetText(int|string $id): ?TextInterface {
     $text = $this->decorated->idGetText($id);
     if ($text === NULL) {
-      return $text;
+      return NULL;
     }
     if (($this->idNeedsEllipsis)($id)) {
       $text = Text::sprintf('%s…', $text);

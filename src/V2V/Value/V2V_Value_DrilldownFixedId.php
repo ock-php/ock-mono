@@ -19,8 +19,9 @@ class V2V_Value_DrilldownFixedId implements V2V_ValueInterface {
 
   /**
    * {@inheritdoc}
+   * @param mixed $conf
    */
-  public function phpGetPhp(string $php): string {
+  public function phpGetPhp(string $php, mixed $conf): string {
     return $this->v2vDrilldown->idPhpGetPhp($this->id, $php);
   }
 

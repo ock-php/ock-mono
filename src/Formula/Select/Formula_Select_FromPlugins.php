@@ -26,17 +26,10 @@ class Formula_Select_FromPlugins implements Formula_SelectInterface {
    * {@inheritdoc}
    */
   public function getOptionsMap(): array {
-    $sortme = array_keys($this->groupLabels + $this->plugins);
-    sort($sortme);
-    $groupId = '';
     $map = [];
-    foreach ($sortme as $id) {
-      if (isset($this->groupLabels[$id])) {
-        $groupId = $id;
-      }
-      if (isset($this->plugins[$id])) {
-        $map[$id] = $groupId;
-      }
+    foreach ($this->plugins as $id => $plugin) {
+      $parts = explode('.', $id, 2);
+      $map[$id] = isset($parts[1]) ? $parts[0] : '';
     }
     return $map;
   }

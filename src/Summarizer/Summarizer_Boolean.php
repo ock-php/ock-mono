@@ -21,7 +21,7 @@ class Summarizer_Boolean implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
 
     $boolean = !empty($conf);
 

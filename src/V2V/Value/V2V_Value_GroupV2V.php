@@ -21,9 +21,10 @@ class V2V_Value_GroupV2V implements V2V_ValueInterface {
 
   /**
    * {@inheritdoc}
+   * @param mixed $conf
    */
-  public function phpGetPhp(string $php): string {
-    return $this->groupV2V->itemsPhpGetPhp([$this->key => $php]);
+  public function phpGetPhp(string $php, mixed $conf): string {
+    return $this->groupV2V->itemsPhpGetPhp([$this->key => $php], [$this->key => $conf]);
   }
 
 }

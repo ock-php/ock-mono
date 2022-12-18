@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Donquixote\Ock\DrilldownOptionsByType;
 
 class DrilldownOptionsByType_Buffer implements DrilldownOptionsByTypeInterface {

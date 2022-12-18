@@ -49,7 +49,7 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
     return $this->decorated->confGetSummary($conf ?? $this->defaultConf);
   }
 

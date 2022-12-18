@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Util;
 
 use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\Ock\Exception\EvaluatorException;
 
 final class PhpUtil extends UtilBase {
 
@@ -20,7 +21,7 @@ final class PhpUtil extends UtilBase {
    *
    * @return string
    */
-  public static function formatAsFile(string $php, $namespace = NULL): string {
+  public static function formatAsFile(string $php, string $namespace = NULL): string {
 
     $php = self::autoIndent($php, '  ');
     $aliases = self::aliasify($php);
@@ -80,7 +81,7 @@ EOT;
    * @return string
    *   Php expression that calls the static method.
    */
-  public static function phpCallStatic(callable $method, array $argsPhp): string {
+  public static function phpCallStatic(callable $method, array $argsPhp = []): string {
     if (!is_array($method) || !is_string($method[0])) {
       throw new \InvalidArgumentException('Parameter $method must be a static method.');
     }
@@ -115,7 +116,7 @@ EOT;
    *
    * @return string
    */
-  public static function phpNewClass(string $class, array $argsPhp): string {
+  public static function phpConstruct(string $class, array $argsPhp = []): string {
     return self::phpCallFqn('new \\' . $class, $argsPhp);
   }
 
@@ -179,7 +180,7 @@ EOT;
    * @return string
    *   PHP value expression.
    */
-  public static function phpValueSimple($value): string {
+  public static function phpValueSimple(mixed $value): string {
     try {
       return self::phpValue($value);
     }
@@ -208,7 +209,7 @@ EOT;
    * @throws \Exception
    *   Value cannot be exported.
    */
-  public static function phpValue($value): string {
+  public static function phpValue(mixed $value): string {
 
     if (\is_array($value)) {
 
@@ -261,7 +262,7 @@ EOT;
       );
     }
     catch (\Exception $e) {
-      throw $e;
+      throw new \Exception('Cannot serialize the given object.', 0, $e);
     }
   }
 
@@ -284,11 +285,10 @@ EOT;
         $reflector->getDeclaringClass()->getName(),
         $reflector->getName(),
       ],
-      \ReflectionParameter::class => NULL,
       default => NULL,
     };
     if ($args !== null) {
-      return self::phpNewClass(
+      return self::phpConstruct(
         get_class($reflector),
         array_map([self::class, 'phpValue'], $args),
       );
@@ -301,10 +301,6 @@ EOT;
       );
     }
     throw new \Exception(sprintf('Cannot export %s object.', get_class($reflector)));
-  }
-
-  private static function phpObjectFail(object $object): never {
-    throw new \Exception(sprintf('Cannot export %s object.', get_class($object)));
   }
 
   /**
@@ -648,7 +644,7 @@ EOT;
    *
    * @return string
    */
-  public static function autoIndent($php, $indent_level, $indent_base = '') {
+  public static function autoIndent(string $php, string $indent_level, string $indent_base = ''): string {
     $tokens = token_get_all('<?php' . "\n" . $php);
     $tokens[] = [T_WHITESPACE, "\n"];
     $tokens[] = '#';
@@ -668,7 +664,7 @@ EOT;
    *
    * @return array
    */
-  private static function prepareTokens(array $tokens_original) {
+  private static function prepareTokens(array $tokens_original): array {
 
     $tokens_prepared = [];
     for ($i = 0; TRUE; ++$i) {
@@ -784,30 +780,27 @@ EOT;
   public static function buildReturnStatement(string $expression): string {
     $php_full = '<?php ' . $expression;
     $tokens = token_get_all($php_full);
-    # array_shift($tokens);
-    $statement_full = '';
-    $return_added = FALSE;
+    $prefix = '';
     foreach ($tokens as $token) {
       if (is_string($token)) {
-        $statement_full .= $token;
-        continue;
+        break;
       }
-      if (!$return_added) {
-        switch ($token[0]) {
-          case T_WHITESPACE:
-          case T_COMMENT:
-          case T_DOC_COMMENT:
-          case T_OPEN_TAG:
-            break;
+      switch ($token[0]) {
+        case T_WHITESPACE:
+        case T_COMMENT:
+        case T_DOC_COMMENT:
+        case T_OPEN_TAG:
+          break;
 
-          default:
-            $statement_full .= 'return ';
-            $return_added = TRUE;
-        }
+        default:
+          break 2;
       }
-      $statement_full .= $token[1];
+      $prefix .= $token[1];
     }
-    return substr($statement_full, 6) . ';';
+    return substr($prefix, 6)
+      . 'return '
+      . substr($php_full, strlen($prefix))
+      . ';';
   }
 
   /**
@@ -824,9 +817,33 @@ EOT;
   /**
    * @param int|string $key
    *
+   * @return never
+   *
+   * @throws \Donquixote\Ock\Exception\EvaluatorException
+   */
+  public static function pl(int|string $key): never {
+    throw new EvaluatorException(sprintf("Unresolved placeholder for '%s'.", $key));
+  }
+
+  public static function phpDecorate(string $decoratedPhp, string $decoratorPhp): string {
+    return str_replace(
+      self::phpPlaceholderDecorated(),
+      $decoratedPhp,
+      $decoratorPhp,
+    );
+  }
+
+  /**
    * @return string
    */
-  private static function pl(int|string $key): string {
+  public static function phpPlaceholderDecorated(): string {
+    return self::phpCallStatic([self::class, 'dec']);
+  }
+
+  /**
+   * @return never
+   */
+  private static function dec(): never {
     throw new \RuntimeException('This method is not meant to be called.');
   }
 

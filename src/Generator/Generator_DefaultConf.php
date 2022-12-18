@@ -42,8 +42,8 @@ class Generator_DefaultConf implements GeneratorInterface {
    * @param mixed $defaultConf
    */
   public function __construct(
-    private GeneratorInterface $decorated,
-    private $defaultConf,
+    private readonly GeneratorInterface $decorated,
+    private readonly mixed $defaultConf,
   ) {}
 
   /**

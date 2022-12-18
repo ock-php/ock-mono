@@ -20,7 +20,7 @@ class DrilldownKeysHelper_Default implements DrilldownKeysHelperInterface {
   /**
    * {@inheritdoc}
    */
-  public function unpack($conf): array {
+  public function unpack(mixed $conf): array {
 
     if (!\is_array($conf)) {
       return [NULL, NULL];
@@ -48,7 +48,7 @@ class DrilldownKeysHelper_Default implements DrilldownKeysHelperInterface {
   /**
    * {@inheritdoc}
    */
-  public function pack($id, $options) {
+  public function pack($id, $options): array {
 
     if (NULL === $id) {
       $options = NULL;

@@ -31,6 +31,6 @@ interface Formula_TwoStepInterface extends FormulaInterface {
    *
    * @todo return NULL or throw exception?
    */
-  public function firstStepValueGetSecondStepFormula($firstStepValue): ?FormulaInterface;
+  public function firstStepValueGetSecondStepFormula(mixed $firstStepValue): ?FormulaInterface;
 
 }

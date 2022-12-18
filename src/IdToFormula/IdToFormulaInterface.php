@@ -15,6 +15,8 @@ interface IdToFormulaInterface {
    * @param string|int $id
    *
    * @return T|null
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public function idGetFormula(string|int $id): ?FormulaInterface;
 

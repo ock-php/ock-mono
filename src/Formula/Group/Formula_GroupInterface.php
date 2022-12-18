@@ -9,14 +9,10 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 interface Formula_GroupInterface extends FormulaInterface {
 
   /**
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface[]
-   *   Format: $[$groupItemKey] = $groupItemFormula
+   * @return \Donquixote\Ock\Formula\Group\Item\GroupFormulaItemInterface[]
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  public function getItemFormulas(): array;
-
-  /**
-   * @return \Donquixote\Ock\Text\TextInterface[]
-   */
-  public function getLabels(): array;
+  public function getItems(): array;
 
 }

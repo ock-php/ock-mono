@@ -9,7 +9,7 @@ class V2V_Drilldown_Trivial implements V2V_DrilldownInterface {
   /**
    * {@inheritdoc}
    */
-  public function idPhpGetPhp($id, string $php) {
+  public function idPhpGetPhp(int|string $id, string $php): string {
     return $php;
   }
 

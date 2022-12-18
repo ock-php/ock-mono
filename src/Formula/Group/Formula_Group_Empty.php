@@ -9,14 +9,7 @@ class Formula_Group_Empty implements Formula_GroupInterface {
   /**
    * {@inheritdoc}
    */
-  public function getItemFormulas(): array {
-    return [];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getLabels(): array {
+  public function getItems(): array {
     return [];
   }
 

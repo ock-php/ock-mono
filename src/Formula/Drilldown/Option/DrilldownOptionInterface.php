@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Donquixote\Ock\Formula\Drilldown\Option;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;

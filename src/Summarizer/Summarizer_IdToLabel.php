@@ -25,7 +25,7 @@ class Summarizer_IdToLabel implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
 
     if (NULL === $id = ConfUtil::confGetId($conf)) {
       return Text::t('Required id missing.');

@@ -68,7 +68,11 @@ final class FormulaAdapter extends UtilBase {
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  public static function requireObject(FormulaInterface $formula, string $interface, UniversalAdapterInterface $universalAdapter): object {
+  public static function requireObject(
+    FormulaInterface $formula,
+    string $interface,
+    UniversalAdapterInterface $universalAdapter,
+  ): object {
     $object = $universalAdapter->adapt($formula, $interface);
     if ($object === null) {
       throw new AdapterException(\sprintf(

@@ -13,11 +13,6 @@ use Donquixote\Ock\Text\Text;
 class IntOp_Add implements IntOpInterface {
 
   /**
-   * @var int
-   */
-  private $increment;
-
-  /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   #[OckPluginFormula(self::class, "add", "Add")]
@@ -32,8 +27,7 @@ class IntOp_Add implements IntOpInterface {
    *
    * @param int $increment
    */
-  public function __construct(int $increment) {
-    $this->increment = $increment;
+  public function __construct(private readonly int $increment) {
   }
 
   /**

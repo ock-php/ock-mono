@@ -8,7 +8,6 @@ use Donquixote\Adaptism\Exception\MalformedDeclarationException;
 use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\Adaptism\Util\ReflectionTypeUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\FreeParameters\Formula_FreeParameters;
 use Donquixote\Ock\Formula\Neutral\Formula_Neutral_FormulaFactory;
 use Donquixote\Ock\Plugin\PluginDeclaration;
 
@@ -70,7 +69,7 @@ class OckPluginFormula extends PluginAttributeBase {
     catch (\ReflectionException $e) {
       throw new MalformedDeclarationException($e->getMessage(), 0, $e);
     }
-    return $this->formulaGetNamedPlugin(
+    return $this->formulaGetPluginDeclaration(
       $formula,
       $rclass->getInterfaceNames(),
     );

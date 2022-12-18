@@ -9,12 +9,12 @@ class PluginMap_Buffer implements PluginMapInterface {
   /**
    * @var string[]|null
    */
-  private $types;
+  private ?array $types;
 
   /**
    * @var \Donquixote\Ock\Plugin\Plugin[][]
    */
-  private $pluginss = [];
+  private array $pluginss = [];
 
   /**
    * Constructor.

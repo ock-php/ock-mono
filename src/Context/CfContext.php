@@ -38,7 +38,7 @@ class CfContext implements CfContextInterface {
    *
    * @return $this
    */
-  public function paramNameSetValue(string $paramName, $value): self {
+  public function paramNameSetValue(string $paramName, mixed $value): self {
     $this->values[$paramName] = $value;
     return $this;
   }
@@ -56,6 +56,8 @@ class CfContext implements CfContextInterface {
 
   /**
    * {@inheritdoc}
+   *
+   * @noinspection PhpMixedReturnTypeCanBeReducedInspection
    */
   public function paramGetValue(\ReflectionParameter $param): mixed {
     $class = ReflectionTypeUtil::getClassLikeType($param);

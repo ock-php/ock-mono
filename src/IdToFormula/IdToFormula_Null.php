@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\IdToFormula;
 
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_Null;
+use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp_Null;
 use Donquixote\Ock\Util\UtilBase;
 
 final class IdToFormula_Null extends UtilBase {
@@ -14,7 +14,7 @@ final class IdToFormula_Null extends UtilBase {
    */
   public static function create(): IdToFormulaInterface {
     return new IdToFormula_AlwaysTheSame(
-      new Formula_ValueProvider_Null());
+      new Formula_FixedPhp_Null());
   }
 
 }

@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula\SequenceVal;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
 use Donquixote\Ock\V2V\Sequence\V2V_SequenceInterface;
 
-interface Formula_SequenceValInterface extends Formula_DecoratorBaseInterface {
+interface Formula_SequenceValInterface {
 
   /**
    * @return \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface

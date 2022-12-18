@@ -1,4 +1,8 @@
-<?php /** @noinspection PhpUnused */
+<?php
+
+declare(strict_types = 1);
+
+/** @noinspection PhpUnused */
 
 use Donquixote\Ock\Tests\Fixture\IntFormat\IntFormat_NumberFormat;
 use Donquixote\Ock\Tests\Fixture\IntFormat\IntFormatInterface;

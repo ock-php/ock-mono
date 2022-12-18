@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 /**
  * @noinspection PhpDocMissingThrowsInspection
  * @noinspection PhpUnhandledExceptionInspection
@@ -7,11 +9,13 @@
 
 namespace Donquixote\Ock\Tests;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\Ock\Tests\Util\TestingServices;
 use Donquixote\Ock\Tests\Util\TestUtil;
 use Donquixote\Ock\Util\PhpUtil;
 use Symfony\Component\Yaml\Yaml;
@@ -37,7 +41,10 @@ class GeneratorTest extends FormulaTestBase {
       self::fail('Formula must implement FormulaInterface.');
     }
     $conf = Yaml::parseFile("$dir/$base.$case.yml");
-    $adapter = $this->getAdapter();
+
+    $container = TestingServices::getContainer();
+    $adapter = $container->get(UniversalAdapterInterface::class);
+
     $generator = Generator::fromFormula($formula, $adapter);
     $this->doTestGenerator(
       $generator,
@@ -61,7 +68,10 @@ class GeneratorTest extends FormulaTestBase {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
-    $adapter = $this->getAdapter();
+
+    $container = TestingServices::getContainer();
+    $adapter = $container->get(UniversalAdapterInterface::class);
+
     $generator = Generator::fromIface($interface, $adapter);
     $this->doTestGenerator(
       $generator,
@@ -76,7 +86,7 @@ class GeneratorTest extends FormulaTestBase {
    * @param string $file_expected
    * @param string|null $interface
    */
-  private function doTestGenerator(GeneratorInterface $generator, $conf, string $file_expected, ?string $interface): void {
+  private function doTestGenerator(GeneratorInterface $generator, mixed $conf, string $file_expected, ?string $interface): void {
     try {
       $php_raw = $generator->confGetPhp($conf);
     }
@@ -139,12 +149,16 @@ EOT;
    * @return string
    *   PHP code suitable for export into a file.
    */
-  private static function formatAsFile(string $php) {
+  private static function formatAsFile(string $php): string {
     $aliases = PhpUtil::aliasify($php);
     $php = rtrim($php, "\n ");
     $aliases_php = PhpUtil::formatAliases($aliases);
     return <<<EOT
-<?php /** @noinspection PhpUnused */
+<?php
+
+declare(strict_types = 1);
+
+/** @noinspection PhpUnused */
 $aliases_php
 $php
 

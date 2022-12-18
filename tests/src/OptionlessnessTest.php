@@ -1,20 +1,14 @@
 <?php
 
-/**
- * @noinspection PhpDocMissingThrowsInspection
- * @noinspection PhpUnhandledExceptionInspection
- */
+declare(strict_types = 1);
 
 namespace Donquixote\Ock\Tests;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\GeneratorException;
-use Donquixote\Ock\Generator\Generator;
-use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Optionlessness\Optionlessness;
-use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
+use Donquixote\Ock\Tests\Util\TestingServices;
 use Donquixote\Ock\Tests\Util\TestUtil;
-use Donquixote\Ock\Util\PhpUtil;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -34,7 +28,11 @@ class OptionlessnessTest extends FormulaTestBase {
     /** @psalm-suppress UnresolvableInclude */
     $formula = include "$dir/$base.php";
     self::assertInstanceOf(FormulaInterface::class, $formula);
-    $optionless = Optionlessness::checkFormula($formula, $this->getAdapter());
+
+    $container = TestingServices::getContainer();
+    $adapter = $container->get(UniversalAdapterInterface::class);
+
+    $optionless = Optionlessness::checkFormula($formula, $adapter);
     TestUtil::assertFileContents(
       "$dir/$base.is.optionless.yml",
       Yaml::dump($optionless),

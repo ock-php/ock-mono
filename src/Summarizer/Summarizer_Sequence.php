@@ -49,7 +49,7 @@ class Summarizer_Sequence implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
 
     if (!\is_array($conf)) {
       $conf = [];

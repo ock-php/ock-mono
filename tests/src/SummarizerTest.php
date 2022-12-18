@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Donquixote\Ock\Tests;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Summarizer\Summarizer;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Tests\Translator\Translator_Test;
+use Donquixote\Ock\Tests\Util\TestingServices;
 use Donquixote\Ock\Tests\Util\XmlTestUtil;
 use Donquixote\Ock\Translator\Translator_Passthru;
 use Symfony\Component\Yaml\Yaml;
@@ -29,7 +33,9 @@ class SummarizerTest extends FormulaTestBase {
       self::fail('Formula must implement FormulaInterface.');
     }
     $conf = Yaml::parseFile("$dir/$base.$case.yml");
-    $adapter = $this->getAdapter();
+
+    $container = TestingServices::getContainer();
+    $adapter = $container->get(UniversalAdapterInterface::class);
 
     $summarizer = Summarizer::fromFormula($formula, $adapter);
     $summary = $summarizer->confGetSummary($conf);
@@ -61,7 +67,9 @@ class SummarizerTest extends FormulaTestBase {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
     $filebase = dirname(__DIR__) . '/fixtures/iface/' . $type . '/' . $name;
     $conf = Yaml::parseFile($filebase . '.yml');
-    $adapter = $this->getAdapter();
+
+    $container = TestingServices::getContainer();
+    $adapter = $container->get(UniversalAdapterInterface::class);
 
     $summarizer = Summarizer::fromIface($interface, $adapter);
     $summary = $summarizer->confGetSummary($conf);

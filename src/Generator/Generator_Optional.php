@@ -39,8 +39,8 @@ class Generator_Optional implements GeneratorInterface {
    * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
    */
   public function __construct(
-    private GeneratorInterface $decorated,
-    private Formula_OptionalInterface $formula,
+    private readonly GeneratorInterface $decorated,
+    private readonly Formula_OptionalInterface $formula,
   ) {}
 
   /**

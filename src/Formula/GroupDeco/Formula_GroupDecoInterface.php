@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula\GroupDeco;
 
 use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
-use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\FormulaBase\Formula_ConfPassthruInterface;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
-interface Formula_GroupDecoInterface extends Formula_ValueToValueBaseInterface {
+interface Formula_GroupDecoInterface extends Formula_ConfPassthruInterface {
 
   /**
    * @return \Donquixote\Ock\Formula\Group\Formula_GroupInterface

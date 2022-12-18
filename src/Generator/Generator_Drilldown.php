@@ -10,6 +10,8 @@ use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
+use Donquixote\Ock\Exception\FormulaException;
+use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Exception\GeneratorException_UnsupportedConfiguration;
 use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
@@ -55,9 +57,9 @@ class Generator_Drilldown implements GeneratorInterface {
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */
   protected function __construct(
-    private Formula_DrilldownInterface $formula,
-    private V2V_DrilldownInterface $v2v,
-    private UniversalAdapterInterface $universalAdapter,
+    private readonly Formula_DrilldownInterface $formula,
+    private readonly V2V_DrilldownInterface $v2v,
+    private readonly UniversalAdapterInterface $universalAdapter,
   ) {}
 
   /**
@@ -65,7 +67,7 @@ class Generator_Drilldown implements GeneratorInterface {
    */
   public function confGetPhp(mixed $conf): string {
 
-    list($id, $subConf) = DrilldownKeysHelper::fromFormula($this->formula)
+    [$id, $subConf] = DrilldownKeysHelper::fromFormula($this->formula)
       ->unpack($conf);
 
     if (NULL === $id) {
@@ -92,12 +94,17 @@ class Generator_Drilldown implements GeneratorInterface {
    *   Configuration is incompatible or not supported.
    */
   private function idConfGetSubValuePhp(string|int $id, mixed $subConf): string {
-
-    if (NULL === $subFormula = $this->formula->getIdToFormula()->idGetFormula($id)) {
-      throw new GeneratorException_IncompatibleConfiguration(
-        "Unknown id '$id' in drilldown.");
+    try {
+      $subFormula = $this->formula->getIdToFormula()->idGetFormula($id);
     }
-
+    catch (FormulaException $e) {
+      throw new GeneratorException($e->getMessage(), 0, $e);
+    }
+    if ($subFormula === NULL) {
+      throw new GeneratorException_IncompatibleConfiguration(
+        "Unknown id '$id' in drilldown."
+      );
+    }
     try {
       $subGenerator = Generator::fromFormula($subFormula, $this->universalAdapter);
     }
@@ -105,7 +112,6 @@ class Generator_Drilldown implements GeneratorInterface {
       throw new GeneratorException_UnsupportedConfiguration(
         "Unsupported formula for id '$id' in drilldown.", 0, $e);
     }
-
     return $subGenerator->confGetPhp($subConf);
   }
 

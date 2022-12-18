@@ -9,22 +9,22 @@ class Formula_Transform_Rekey extends Formula_TransformBase {
   /**
    * @var string[]
    */
-  private $map = [];
+  private array $map = [];
 
   /**
    * @var string[]
    */
-  private $unmap = [];
+  private array $unmap = [];
 
   /**
    * @var string|null
    */
-  private $packedNullKey;
+  private ?string $packedNullKey;
 
   /**
    * @var string|null
    */
-  private $unpackedNullKey;
+  private ?string $unpackedNullKey;
 
   /**
    * @param string|null $packed_key
@@ -53,7 +53,7 @@ class Formula_Transform_Rekey extends Formula_TransformBase {
   /**
    * {@inheritdoc}
    */
-  public function unpack($packed_conf) {
+  public function unpack(mixed $packed_conf): mixed {
     if ($packed_conf === NULL) {
       $packed_conf = [];
     }
@@ -78,7 +78,7 @@ class Formula_Transform_Rekey extends Formula_TransformBase {
   /**
    * {@inheritdoc}
    */
-  public function pack($unpacked_conf) {
+  public function pack(mixed $unpacked_conf): mixed {
     if ($unpacked_conf === NULL) {
       $unpacked_conf = [];
     }

@@ -23,18 +23,13 @@ use Donquixote\Ock\Util\IdentifierLabelUtil;
 class SpecificAdapter_InstanceFactory {
 
   /**
-   * Constructor.
-   */
-  public function __construct(
-  ) {}
-
-  /**
    * @param \Donquixote\Ock\Formula\InstanceFactory\Formula_InstanceFactoryInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   #[Adapter]
   public function adapt(
@@ -52,6 +47,7 @@ class SpecificAdapter_InstanceFactory {
    * @return \Donquixote\Ock\Formula\Group\GroupFormulaBuilder
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   private function buildGroupFormula(array $parameters): GroupFormulaBuilder {
     $builder = Formula::group();

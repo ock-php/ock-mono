@@ -22,7 +22,7 @@ class Summarizer_Textfield implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
 
     if (!\is_string($conf)) {
       return Text::t('Value is not a string.');

@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Evaluator;
 
+/**
+ * @template T as mixed
+ */
 interface EvaluatorInterface {
 
   /**
    * @param mixed $conf
    *   Configuration.
    *
-   * @return mixed
+   * @return T
    *   Object or value.
    *
    * @throws \Donquixote\Ock\Exception\EvaluatorException
    *   Failed to generate value.
    */
-  public function confGetValue($conf);
+  public function confGetValue(mixed $conf): mixed;
 
 }

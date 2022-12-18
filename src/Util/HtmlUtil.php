@@ -7,11 +7,11 @@ namespace Donquixote\Ock\Util;
 class HtmlUtil {
 
   /**
-   * @param string|object $text
+   * @param object|string $text
    *
    * @return string
    */
-  public static function sanitize($text): string {
+  public static function sanitize(object|string $text): string {
     return is_string($text)
       ? htmlspecialchars($text, ENT_QUOTES)
       : (string) $text;

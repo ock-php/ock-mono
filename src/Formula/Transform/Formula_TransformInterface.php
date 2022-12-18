@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Transform;
 
-use Donquixote\Ock\FormulaBase\Decorator\Formula_DecoratorBaseInterface;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
 
-interface Formula_TransformInterface extends Formula_DecoratorBaseInterface {
+interface Formula_TransformInterface {
 
   /**
    * Unpacks and validates stored configuration.
@@ -20,7 +20,7 @@ interface Formula_TransformInterface extends Formula_DecoratorBaseInterface {
    * @throws \Exception
    *   Stored configuration is invalid.
    */
-  public function unpack($packed_conf);
+  public function unpack(mixed $packed_conf): mixed;
 
   /**
    * Packs configuration for storage.
@@ -34,6 +34,11 @@ interface Formula_TransformInterface extends Formula_DecoratorBaseInterface {
    * @throws \Exception
    *   Unpacked configuration is invalid.
    */
-  public function pack($unpacked_conf);
+  public function pack(mixed $unpacked_conf): mixed;
+
+  /**
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   */
+  public function getDecorated(): FormulaInterface;
 
 }

@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Generator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface;
+use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhpInterface;
 
 #[Adapter]
 class Generator_ValueProvider implements GeneratorInterface {
 
   /**
-   * @param \Donquixote\Ock\Formula\ValueProvider\Formula_ValueProviderInterface $formula
+   * @param \Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhpInterface $formula
    */
   public function __construct(
-    private readonly Formula_ValueProviderInterface $formula,
+    private readonly Formula_FixedPhpInterface $formula,
   ) {}
 
   /**

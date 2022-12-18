@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula\FreeParameters;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\FormulaException;
-use Donquixote\Ock\Util\ReflectionUtil;
 
 abstract class Formula_FreeParametersBase implements Formula_FreeParametersInterface {
 
   /**
    * @var array<int, mixed>
    */
-  private $knownArgs = [];
+  private array $knownArgs = [];
 
   /**
    * Constructor.
    *
-   * @param callable $callback
    * @param \ReflectionParameter[] $freeParameters
    */
   public function __construct(

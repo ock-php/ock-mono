@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Donquixote\Ock\Text;
 
 /**
@@ -83,7 +85,7 @@ class Text {
    * Gets a non-translatable text object.
    *
    * @param string $string
-   *   Original untranslated text with placeholders.
+   *   Original language-neutral text with placeholders.
    * @param \Donquixote\Ock\Text\TextInterface[] $replacements
    *   Replacements.
    *

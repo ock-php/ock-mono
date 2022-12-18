@@ -1,4 +1,8 @@
-<?php /** @noinspection PhpUnused */
+<?php
+
+declare(strict_types = 1);
+
+/** @noinspection PhpUnused */
 
 use Donquixote\Ock\Tests\Fixture\IntFormat\IntFormat_Trivial;
 use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormat_IntRounded;

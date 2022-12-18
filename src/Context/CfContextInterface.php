@@ -13,6 +13,8 @@ interface CfContextInterface {
    * @param \ReflectionParameter $param
    *
    * @return bool
+   *
+   * @throws \Exception
    */
   public function paramValueExists(\ReflectionParameter $param): bool;
 
@@ -20,6 +22,8 @@ interface CfContextInterface {
    * @param \ReflectionParameter $param
    *
    * @return mixed
+   *
+   * @throws \Exception
    */
   public function paramGetValue(\ReflectionParameter $param): mixed;
 

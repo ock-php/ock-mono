@@ -50,7 +50,7 @@ class Generator_ValueToValue implements GeneratorInterface {
    */
   public function confGetPhp(mixed $conf): string {
     $php = $this->decorated->confGetPhp($conf);
-    return $this->v2v->phpGetPhp($php);
+    return $this->v2v->phpGetPhp($php, $conf);
   }
 
 }

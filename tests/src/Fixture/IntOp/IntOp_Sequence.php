@@ -12,12 +12,9 @@ use Donquixote\Ock\Text\Text;
 class IntOp_Sequence implements IntOpInterface {
 
   /**
-   * @var \Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface[]
-   */
-  private $operations;
-
-  /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   #[OckPluginFormula(self::class, "sequence", "Sequence")]
   public static function formula(): FormulaInterface {
@@ -34,8 +31,7 @@ class IntOp_Sequence implements IntOpInterface {
    *
    * @param \Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface[] $operations
    */
-  public function __construct(array $operations) {
-    $this->operations = $operations;
+  public function __construct(private readonly array $operations) {
   }
 
   /**

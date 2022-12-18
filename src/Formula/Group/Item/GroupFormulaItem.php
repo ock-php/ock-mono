@@ -17,15 +17,15 @@ class GroupFormulaItem implements GroupFormulaItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function getLabel(): TextInterface {
-    return $this->label;
+  public function dependsOnKeys(): array {
+    return [];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function dependsOnKeys(): array {
-    return [];
+  public function getLabel(array $args = []): TextInterface {
+    return $this->label;
   }
 
   /**

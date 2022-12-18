@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Formula\Neutral;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 
-class Formula_Neutral_ProxyWithCallable extends Formula_Neutral_ProxyBase {
+class Formula_Neutral_ProxyWithCallable extends Formula_Passthru_ProxyBase {
 
   /**
    * @var callable

@@ -43,9 +43,9 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
     $this->map = [];
     $this->initialize($this->map, $this->labels, $this->groupLabels);
     // Validate.
-    (fn (string ...$args) => null)(...$this->map);
-    (fn (TextInterface ...$args) => null)(...$this->labels);
-    (fn (TextInterface ...$args) => null)(...$this->groupLabels);
+    (static fn (string ...$args) => null)(...$this->map);
+    (static fn (TextInterface ...$args) => null)(...$this->labels);
+    (static fn (TextInterface ...$args) => null)(...$this->groupLabels);
   }
 
   /**

@@ -27,7 +27,7 @@ class Formula_FixedConf implements Formula_FixedConfInterface {
   /**
    * {@inheritdoc}
    */
-  public function getConf() {
+  public function getConf(): mixed {
     return $this->conf;
   }
 

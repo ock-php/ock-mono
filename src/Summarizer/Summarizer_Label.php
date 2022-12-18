@@ -51,7 +51,7 @@ class Summarizer_Label implements SummarizerInterface {
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
     $decorated = $this->decorated->confGetSummary($conf);
     if ($decorated === null) {
       return null;

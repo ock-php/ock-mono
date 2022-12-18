@@ -19,6 +19,7 @@ interface PluginAttributeInterface {
    * @return \Donquixote\Ock\Plugin\PluginDeclaration
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public function onClass(\ReflectionClass $reflectionClass): PluginDeclaration;
 
@@ -28,6 +29,7 @@ interface PluginAttributeInterface {
    * @return \Donquixote\Ock\Plugin\PluginDeclaration
    *
    * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public function onMethod(\ReflectionMethod $reflectionMethod): PluginDeclaration;
 

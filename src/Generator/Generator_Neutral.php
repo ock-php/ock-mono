@@ -8,12 +8,12 @@ use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface;
+use Donquixote\Ock\Formula\SkipEvaluator\Formula_ValuePassthruInterface;
 
 class Generator_Neutral {
 
   /**
-   * @param \Donquixote\Ock\Formula\SkipEvaluator\Formula_SkipEvaluatorInterface $formula
+   * @param \Donquixote\Ock\Formula\SkipEvaluator\Formula_ValuePassthruInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return \Donquixote\Ock\Generator\GeneratorInterface|null
@@ -22,7 +22,7 @@ class Generator_Neutral {
    */
   #[Adapter]
   public static function create(
-    #[Adaptee] Formula_SkipEvaluatorInterface $formula,
+    #[Adaptee] Formula_ValuePassthruInterface $formula,
     #[UniversalAdapter] UniversalAdapterInterface $universalAdapter,
   ): ?GeneratorInterface {
     return Generator::fromFormula($formula->getDecorated(), $universalAdapter);
