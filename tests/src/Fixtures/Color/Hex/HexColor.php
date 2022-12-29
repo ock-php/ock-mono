@@ -5,10 +5,7 @@ namespace Donquixote\Adaptism\Tests\Fixtures\Color\Hex;
 
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
-use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class HexColor implements HexColorInterface {
 

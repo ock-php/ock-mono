@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\AdapterDefinition;
 
-use Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface;
+use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
 
 class AdapterDefinition_Simple implements AdapterDefinitionInterface {
 
@@ -14,13 +14,13 @@ class AdapterDefinition_Simple implements AdapterDefinitionInterface {
    * @param class-string|null $sourceType
    * @param class-string|null $resultType
    * @param int $specifity
-   * @param \Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface $adapterFromContainer
+   * @param ContainerToValueInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface> $adapterCTV
    */
   public function __construct(
     private readonly ?string $sourceType,
     private readonly ?string $resultType,
     private readonly int $specifity,
-    private readonly AdapterFromContainerInterface $adapterFromContainer,
+    private readonly ContainerToValueInterface $adapterCTV,
   ) {}
 
   public function getResultType(): ?string {
@@ -35,8 +35,8 @@ class AdapterDefinition_Simple implements AdapterDefinitionInterface {
     return $this->specifity;
   }
 
-  public function getFactory(): AdapterFromContainerInterface {
-    return $this->adapterFromContainer;
+  public function getAdapterCTV(): ContainerToValueInterface {
+    return $this->adapterCTV;
   }
 
 }

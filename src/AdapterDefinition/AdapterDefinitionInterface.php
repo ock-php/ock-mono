@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\AdapterDefinition;
 
-use Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface;
+use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
 
 interface AdapterDefinitionInterface {
 
@@ -26,8 +26,8 @@ interface AdapterDefinitionInterface {
   public function getSpecifity(): int;
 
   /**
-   * @return \Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface
+   * @return \Donquixote\DID\ContainerToValue\ContainerToValueInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>
    */
-  public function getFactory(): AdapterFromContainerInterface;
+  public function getAdapterCTV(): ContainerToValueInterface;
 
 }

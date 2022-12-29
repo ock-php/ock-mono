@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\AdapterMap;
 
+use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\Exception\AdapterNotAvailableException;
+use Donquixote\DID\Exception\ContainerToValueException;
 use Donquixote\Adaptism\Exception\MissingAdapterException;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Bridge;
 use Psr\Container\ContainerInterface;
@@ -27,14 +29,14 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
   private array $idsByResultType = ['object' => []];
 
   /**
-   * @var array<string, array<class-string|'object', true>>
+   * @var array<string, array<(class-string|"object"), true>>
    */
   private array $resultTypesById;
 
   /**
-   * @var \Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface[]
+   * @var \Donquixote\DID\ContainerToValue\ContainerToValueInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>[]
    */
-  private array $factories = [];
+  private array $adapterCTVs = [];
 
   /**
    * @var \Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface[]
@@ -59,7 +61,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
     foreach ($definitions as $id => $definition) {
       $specifities[$id] = $definition->getSpecifity();
       $resultType = $definition->getResultType();
-      $this->factories[$id] = $definition->getFactory();
+      $this->adapterCTVs[$id] = $definition->getAdapterCTV();
       if ($resultType !== null) {
         try {
           foreach ($this->typeExpandParents($resultType, false) as $resultParentType) {
@@ -102,20 +104,25 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
         ($this->idsByResultType[$resultType] ?? []) + $this->idsByResultType['object'],
       )
       : $resultTypesById1;
-    foreach ($resultTypesById2 as $id => $_) {
-      yield $id => $this->adapters[$id]
-        ??= $this->factories[$id]->createAdapter($this->container);
+    try {
+      foreach ($resultTypesById2 as $id => $_) {
+        yield $id => $this->adapters[$id]
+          ??= $this->adapterCTVs[$id]->containerGetValue($this->container);
+      }
+      foreach ($resultTypesById1 as $id => $bridgeTypes) {
+        $bridgeTypes1 = \array_intersect_key($bridgeTypes, $this->idsBySourceType);
+        if (!$bridgeTypes1) {
+          continue;
+        }
+        $decorated = $this->adapters[$id]
+          ??= $this->adapterCTVs[$id]->containerGetValue($this->container);
+        foreach ($bridgeTypes1 as $bridgeType => $_) {
+          yield $id . ':' . $bridgeType => new SpecificAdapter_Bridge($decorated, $bridgeType);
+        }
+      }
     }
-    foreach ($resultTypesById1 as $id => $bridgeTypes) {
-      $bridgeTypes1 = \array_intersect_key($bridgeTypes, $this->idsBySourceType);
-      if (!$bridgeTypes1) {
-        continue;
-      }
-      $decorated = $this->adapters[$id]
-        ??= $this->factories[$id]->createAdapter($this->container);
-      foreach ($bridgeTypes1 as $bridgeType => $_) {
-        yield $id . ':' . $bridgeType => new SpecificAdapter_Bridge($decorated, $bridgeType);
-      }
+    catch (ContainerToValueException $e) {
+      throw new AdapterException($e->getMessage(), 0, $e);
     }
   }
 
@@ -167,7 +174,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
       'resultTypesById' => $this->resultTypesById,
       'idsBySourceType' => $this->idsBySourceType,
       'idsByResultType' => $this->idsByResultType,
-      'factories' => $this->factories,
+      'factories' => $this->adapterCTVs,
     ];
   }
 
@@ -176,7 +183,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
       'resultTypesById' => $this->resultTypesById,
       'idsBySourceType' => $this->idsBySourceType,
       'idsByResultType' => $this->idsByResultType,
-      'factories' => $this->factories,
+      'factories' => $this->adapterCTVs,
     ] = $data;
   }
 

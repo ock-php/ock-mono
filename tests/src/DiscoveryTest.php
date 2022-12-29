@@ -4,17 +4,22 @@ declare(strict_types=1);
 namespace Donquixote\Adaptism\Tests;
 
 use Donquixote\Adaptism\AdapterDefinition\AdapterDefinition_Simple;
-use Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainer_Callback;
+use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface;
+use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
+use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
 use Donquixote\Adaptism\Tests\Fixtures\Color\Colored;
 use Donquixote\Adaptism\Tests\Fixtures\Color\Hex\HexColor;
 use Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface;
 use Donquixote\Adaptism\Tests\Fixtures\Countable\Countable_Traversable;
 use Donquixote\Adaptism\Tests\Fixtures\FixturesUtil;
-use Donquixote\Adaptism\Util\NewInstance;
 use PHPUnit\Framework\TestCase;
 
 class DiscoveryTest extends TestCase {
 
+  /**
+   * @throws \Donquixote\DID\Exception\ContainerToValueException
+   * @throws \Donquixote\DID\Exception\DiscoveryException
+   */
   public function testDefinitionList(): void {
 
     $expected = [];
@@ -23,9 +28,8 @@ class DiscoveryTest extends TestCase {
       \Traversable::class,
       Countable_Traversable::class,
       0,
-      new AdapterFromContainer_Callback(
-        [NewInstance::class, Countable_Traversable::class],
-        false,
+      SpecificAdapter_Construct::ctv(
+        Countable_Traversable::class,
         false,
         [],
       ),
@@ -35,7 +39,7 @@ class DiscoveryTest extends TestCase {
       RgbColorInterface::class,
       HexColor::class,
       1,
-      new AdapterFromContainer_Callback(
+      SpecificAdapter_Callback::ctv(
         [HexColor::class, 'fromRgb'],
         false,
         false,
@@ -47,7 +51,7 @@ class DiscoveryTest extends TestCase {
       Colored::class,
       null,
       0,
-      new AdapterFromContainer_Callback(
+      SpecificAdapter_Callback::ctv(
         [Colored::class, 'adapt'],
         true,
         true,
@@ -55,11 +59,17 @@ class DiscoveryTest extends TestCase {
       ),
     );
 
+    /** @var AdapterDefinitionListInterface $adapterDefinitionList */
+    $adapterDefinitionList = FixturesUtil::getContainer()
+      ->get(AdapterDefinitionListInterface::class);
+
     self::assertSameExportAndSort(
       $expected,
       \array_intersect_key(
-        FixturesUtil::getDefinitionList()->getDefinitions(),
-        $expected));
+        $adapterDefinitionList->getDefinitions(),
+        $expected,
+      ),
+    );
   }
 
   /**

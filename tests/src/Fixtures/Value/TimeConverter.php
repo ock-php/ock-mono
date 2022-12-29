@@ -6,7 +6,7 @@ namespace Donquixote\Adaptism\Tests\Fixtures\Value;
 
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
 
 class TimeConverter {
 

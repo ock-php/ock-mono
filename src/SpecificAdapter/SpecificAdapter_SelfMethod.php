@@ -7,32 +7,28 @@ use Donquixote\DID\ContainerToValue\ContainerToValue_Construct;
 use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
-class SpecificAdapter_Callback implements SpecificAdapterInterface {
-
-  /**
-   * @var callable
-   */
-  private readonly mixed $callback;
+class SpecificAdapter_SelfMethod implements SpecificAdapterInterface {
 
   /**
    * Constructor.
    *
-   * @param callable $callback
+   * @param class-string $class
+   * @param string $method
    * @param bool $hasResultTypeParameter
    * @param bool $hasUniversalAdapterParameter
    * @param list<mixed> $moreArgs
    */
   public function __construct(
-    callable $callback,
+    private readonly string $class,
+    private readonly string $method,
     private readonly bool $hasResultTypeParameter,
     private readonly bool $hasUniversalAdapterParameter,
     private readonly array $moreArgs,
-  ) {
-    $this->callback = $callback;
-  }
+  ) {}
 
   /**
-   * @param \Donquixote\DID\ContainerToValue\ContainerToValueInterface|callable $callbackCTV
+   * @param class-string $class
+   * @param string $method
    * @param bool $hasResultTypeParameter
    * @param bool $hasUniversalAdapterParameter
    * @param list<\Donquixote\DID\ContainerToValue\ContainerToValueInterface|mixed> $moreArgCTVs
@@ -40,13 +36,21 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
    * @return \Donquixote\DID\ContainerToValue\ContainerToValueInterface<self>
    */
   public static function ctv(
-    ContainerToValueInterface|callable $callbackCTV,
+    string $class,
+    string $method,
     bool $hasResultTypeParameter,
     bool $hasUniversalAdapterParameter,
     array $moreArgCTVs,
   ): ContainerToValueInterface {
+    if (!method_exists($class, $method)) {
+      throw new \InvalidArgumentException(sprintf(
+        'Method not found: %s.',
+        $class . '::' . $method . '()',
+      ));
+    }
     return new ContainerToValue_Construct(self::class, [
-      $callbackCTV,
+      $class,
+      $method,
       $hasResultTypeParameter,
       $hasUniversalAdapterParameter,
       $moreArgCTVs,
@@ -54,49 +58,24 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
   }
 
   /**
-   * @param class-string|\Donquixote\DID\ContainerToValue\ContainerToValueInterface $classOrObjectCTV
-   * @param string $method
-   * @param bool $hasResultTypeParameter
-   * @param bool $hasUniversalAdapterParameter
-   * @param array $moreArgsCTVs
-   *
-   * @return \Donquixote\DID\ContainerToValue\ContainerToValueInterface<self>
-   */
-  public static function ctvMethodCall(
-    string|ContainerToValueInterface $classOrObjectCTV,
-    string $method,
-    bool $hasResultTypeParameter,
-    bool $hasUniversalAdapterParameter,
-    array $moreArgsCTVs,
-  ): ContainerToValueInterface {
-    return new ContainerToValue_Construct(self::class, [
-      [$classOrObjectCTV, $method],
-      $hasResultTypeParameter,
-      $hasUniversalAdapterParameter,
-      $moreArgsCTVs,
-    ]);
-  }
-
-  /**
-   * @param object $adaptee
-   * @param string $resultType
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
-   *
-   * @return object|null
+   * {@inheritdoc}
    */
   public function adapt(
     object $adaptee,
     string $resultType,
     UniversalAdapterInterface $universalAdapter,
   ): ?object {
-    $args = [$adaptee];
+    if (!$adaptee instanceof $this->class) {
+      return null;
+    }
+    $args = [];
     if ($this->hasResultTypeParameter) {
       $args[] = $resultType;
     }
     if ($this->hasUniversalAdapterParameter) {
       $args[] = $universalAdapter;
     }
-    return ($this->callback)(...$args, ...$this->moreArgs);
+    return $adaptee->{$this->method}(...$args, ...$this->moreArgs);
   }
 
 }

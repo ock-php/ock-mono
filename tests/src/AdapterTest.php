@@ -12,15 +12,17 @@ use Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColor;
 use Donquixote\Adaptism\Tests\Fixtures\FixturesUtil;
 use Donquixote\Adaptism\Tests\Fixtures\Value\LocalDateTimeString;
 use Donquixote\Adaptism\Tests\Fixtures\Value\Timestamp;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use PHPUnit\Framework\TestCase;
 
 class AdapterTest extends TestCase {
 
   /**
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Donquixote\DID\Exception\ContainerToValueException
+   * @throws \Donquixote\DID\Exception\DiscoveryException
    */
   public function test(): void {
-    $adapter = FixturesUtil::getUniversalAdapter();
+    $adapter = FixturesUtil::getContainer()->get(UniversalAdapterInterface::class);
 
     self::assertSame(2, $adapter->adapt(
       (static function () {yield 'a'; yield 'b';})(),

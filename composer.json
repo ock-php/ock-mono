@@ -7,27 +7,11 @@
   "repositories": [
     {
       "type": "path",
-      "url": "../../phplib/annotation-parser"
-    },
-    {
-      "type": "path",
-      "url": "../../phplib/callback-reflection"
-    },
-    {
-      "type": "path",
       "url": "../../phplib/class-discovery"
     },
     {
       "type": "path",
-      "url": "../../phplib/factory-discovery"
-    },
-    {
-      "type": "path",
-      "url": "../../phplib/factory-reflection"
-    },
-    {
-      "type": "path",
-      "url": "../../phplib/reflectionkit"
+      "url": "../../phplib/di-discovery"
     }
   ],
   "authors": [
@@ -39,6 +23,7 @@
   "minimum-stability": "dev",
   "require": {
     "donquixote/class-discovery": "dev-master",
+    "donquixote/di-discovery": "@dev",
     "psr/container": "^1.0|^2.0"
   },
   "require-dev": {

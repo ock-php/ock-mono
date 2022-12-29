@@ -7,7 +7,6 @@ namespace Donquixote\Adaptism\Tests\Fixtures\Color;
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Tests\Fixtures\Color\Hex\HexColorInterface;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface;
 
 class NamedColor {
 

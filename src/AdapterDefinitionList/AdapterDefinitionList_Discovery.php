@@ -6,36 +6,61 @@ namespace Donquixote\Adaptism\AdapterDefinitionList;
 
 use Donquixote\Adaptism\AdapterDefinition\AdapterDefinition_Simple;
 use Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface;
-use Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainer_Callback;
-use Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainer_ObjectMethod;
-use Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface;
-use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\AdapterAttributeInterface;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Donquixote\Adaptism\Attribute\SelfAdapter;
+use Donquixote\DID\ClassToCTV\ClassToCTVInterface;
+use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
+use Donquixote\DID\Exception\DiscoveryException;
 use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
-use Donquixote\Adaptism\Exception\MalformedDeclarationException;
+use Donquixote\DID\Exception\MalformedDeclarationException;
+use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
+use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
+use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_SelfMethod;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Adaptism\Util\AttributesUtil;
-use Donquixote\Adaptism\Util\MessageUtil;
-use Donquixote\Adaptism\Util\NewInstance;
-use Donquixote\Adaptism\Util\ReflectionTypeUtil;
-use Donquixote\Adaptism\Util\ServiceAttributesUtil;
+use Donquixote\DID\Util\AttributesUtil;
+use Donquixote\DID\Util\MessageUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
+use Donquixote\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 
-class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface {
+/**
+ * The annotated service is an empty definition list.
+ */
+#[Service(self::class)]
+class AdapterDefinitionList_Discovery extends ReflectionClassesIAHavingBase implements AdapterDefinitionListInterface {
 
+  /**
+   * Constructor.
+   *
+   * @param \Donquixote\DID\ClassToCTV\ClassToCTVInterface $classToCTV
+   * @param \Donquixote\DID\ParamToCTV\ParamToCTVInterface $paramToCTV
+   */
   public function __construct(
-    private readonly ReflectionClassesIAInterface $reflectionClassesIA,
+    #[GetService]
+    private readonly ClassToCTVInterface $classToCTV,
+    #[GetService]
+    private readonly ParamToCTVInterface $paramToCTV,
   ) {}
 
-  public static function fromClassFilesIA(ClassFilesIAInterface $classFilesIA): self {
-    return new self(
-      new ReflectionClassesIA_ClassFilesIA($classFilesIA),
-    );
+  /**
+   * @param \Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery $emptyDefinitionList
+   * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
+   *
+   * @return self
+   */
+  #[Service]
+  public static function create(
+    #[GetService]
+    self $emptyDefinitionList,
+    #[GetService(serviceIdSuffix: self::class)]
+    ClassFilesIAInterface $classFilesIA,
+  ): self {
+    return $emptyDefinitionList->withClassFilesIA($classFilesIA);
   }
 
   /**
@@ -45,7 +70,7 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
     try {
       return $this->discoverDefinitions();
     }
-    catch (MalformedDeclarationException $e) {
+    catch (DiscoveryException $e) {
       throw new MalformedAdapterDeclarationException($e->getMessage(), 0, $e);
     }
   }
@@ -53,13 +78,13 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
   /**
    * @return \Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface[]
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\DiscoveryException
    */
-  protected function discoverDefinitions(): array {
+  private function discoverDefinitions(): array {
     $definitions = [];
     /** @var \ReflectionClass $reflectionClass */
-    foreach ($this->reflectionClassesIA as $reflectionClass) {
-      $adapterAttribute = AttributesUtil::getSingle($reflectionClass, Adapter::class);
+    foreach ($this->itReflectionClasses() as $reflectionClass) {
+      $adapterAttribute = AttributesUtil::getSingle($reflectionClass, AdapterAttributeInterface::class);
       if ($adapterAttribute !== null) {
         $definitions[$reflectionClass->getName()] = $this->onClass(
           $adapterAttribute,
@@ -67,7 +92,7 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
         );
       }
       foreach ($reflectionClass->getMethods() as $reflectionMethod) {
-        $adapterAttribute = AttributesUtil::getSingle($reflectionMethod, Adapter::class);
+        $adapterAttribute = AttributesUtil::getSingle($reflectionMethod, AdapterAttributeInterface::class);
         if ($adapterAttribute) {
           $definitions[$reflectionClass->getName() . '::' . $reflectionMethod->getName()] = $this->onMethod(
             $adapterAttribute,
@@ -86,10 +111,10 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
    *
    * @return \Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\DiscoveryException
    */
   private function onClass(
-    Adapter $attribute,
+    AdapterAttributeInterface $attribute,
     \ReflectionClass $reflectionClass,
   ): AdapterDefinitionInterface {
     $class = $reflectionClass->getName();
@@ -107,31 +132,31 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
       $class . '::__construct()',
     );
     $hasUniversalAdapterParameter = $this->extractHasUniversalAdapterParameter($parameters);
-    $factory = $this->createFactory(
-      [NewInstance::class, $class],
-      false,
+    $argCTVs = $this->buildArgCTVs($parameters);
+    $adapterCTV = SpecificAdapter_Construct::ctv(
+      $class,
       $hasUniversalAdapterParameter,
-      $parameters,
+      $argCTVs,
     );
     return new AdapterDefinition_Simple(
       $sourceType,
       $class,
       $attribute->getSpecifity() ?? $specifity,
-      $factory,
+      $adapterCTV,
     );
   }
 
   /**
-   * @param \Donquixote\Adaptism\Attribute\Adapter $attribute
+   * @param \Donquixote\Adaptism\Attribute\AdapterAttributeInterface $attribute
    * @param \ReflectionClass $reflectionClass
    * @param \ReflectionMethod $reflectionMethod
    *
    * @return \Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\DiscoveryException
    */
   private function onMethod(
-    Adapter $attribute,
+    AdapterAttributeInterface $attribute,
     \ReflectionClass $reflectionClass,
     \ReflectionMethod $reflectionMethod,
   ): AdapterDefinitionInterface {
@@ -141,52 +166,67 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
         MessageUtil::formatReflector($reflectionMethod),
       ));
     }
+    if ($reflectionMethod->isConstructor()) {
+      // @todo Allow adapter attribute on the constructor?
+      throw new MalformedDeclarationException(\sprintf(
+        'Method %s is a constructor, and cannot have an adapter attribute. Put the attribute on the class instead.',
+        MessageUtil::formatReflector($reflectionMethod),
+      ));
+    }
     $class = $reflectionClass->getName();
     $method = $reflectionMethod->getName();
     $where = $class . '::' . $method . '()';
     $parameters = $reflectionMethod->getParameters();
-    $sourceType = $this->extractSourceType($parameters, $specifity, $where);
-    $hasResultTypeParameter = $this->extractHasResultTypeParameter($parameters);
-    $hasUniversalAdapterParameter = $this->extractHasUniversalAdapterParameter($parameters);
-    if ($reflectionMethod->isStatic()) {
-      $factory = $this->createFactory(
-        [$class, $method],
-        $hasResultTypeParameter,
-        $hasUniversalAdapterParameter,
-        $parameters,
-      );
+    if (!$attribute->isSelfAdapter()) {
+      $sourceType = $this->extractSourceType($parameters, $specifity, $where);
     }
     else {
-      if ($parameters !== []) {
+      $sourceType = $reflectionClass->getName();
+    }
+    $hasResultTypeParameter = $this->extractHasResultTypeParameter($parameters);
+    $hasUniversalAdapterParameter = $this->extractHasUniversalAdapterParameter($parameters);
+    $moreArgCTVs = $this->buildArgCTVs($parameters);
+    if ($reflectionMethod->isStatic()) {
+      if ($attribute instanceof SelfAdapter) {
         throw new MalformedDeclarationException(\sprintf(
-          'Leftover parameters %s on %s.',
-          \implode(', ', \array_map(
-            static function (\ReflectionParameter $parameter) {
-              return '$' . $parameter->getName();
-            },
-            $parameters,
-          )),
-          $where,
+          'Self-adapter method cannot be static: %s.',
+          MessageUtil::formatReflector($reflectionMethod),
         ));
       }
-      $parameters = $reflectionClass->getConstructor()?->getParameters() ?? [];
-      $constructorServiceIds = $parameters
-        ? ServiceAttributesUtil::paramsRequireServiceIds($parameters)
-        : [];
-      $factory = new AdapterFromContainer_ObjectMethod(
-        [NewInstance::class, $class],
+      $adapterCTV = SpecificAdapter_Callback::ctvMethodCall(
+        $class,
         $method,
         $hasResultTypeParameter,
         $hasUniversalAdapterParameter,
-        $constructorServiceIds,
+        $moreArgCTVs,
+      );
+    }
+    elseif ($attribute instanceof SelfAdapter) {
+      $adapterCTV = SpecificAdapter_SelfMethod::ctv(
+        $class,
+        $method,
+        $hasResultTypeParameter,
+        $hasUniversalAdapterParameter,
+        $moreArgCTVs,
+      );
+    }
+    else {
+      // Method is not static, and is not a self-adapter.
+      $adapterCTV = SpecificAdapter_Callback::ctvMethodCall(
+        $this->classToCTV->classGetCTV($reflectionClass),
+        $method,
+        $hasResultTypeParameter,
+        $hasUniversalAdapterParameter,
+        $moreArgCTVs,
       );
     }
     $returnClass = ReflectionTypeUtil::requireGetClassLikeType($reflectionMethod, true);
     return new AdapterDefinition_Simple(
       $sourceType,
       $returnClass,
-      $attribute->getSpecifity() ?? \count($reflectionClass->getInterfaceNames()),
-      $factory,
+      $attribute->getSpecifity()
+        ?? \count($reflectionClass->getInterfaceNames()),
+      $adapterCTV,
     );
   }
 
@@ -198,7 +238,7 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
    *
    * @return string|null
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    */
   private function extractSourceType(array &$parameters, ?int &$specifity, string $where): ?string {
     $parameter = \array_shift($parameters);
@@ -241,7 +281,7 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
    *
    * @return bool
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    */
   private function extractHasResultTypeParameter(array &$parameters): bool {
     $parameter = \array_shift($parameters);
@@ -264,7 +304,7 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
    *
    * @return bool
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    */
   private function extractHasUniversalAdapterParameter(array &$parameters): bool {
     $parameter = \array_shift($parameters);
@@ -286,30 +326,25 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
   }
 
   /**
-   * @param callable $callback
-   * @param bool $hasResultTypeParameter
-   * @param bool $hasUniversalAdapterParameter
-   * @param array $parameters
+   * @param \ReflectionParameter[] $parameters
    *
-   * @return \Donquixote\Adaptism\AdapterFromContainer\AdapterFromContainerInterface
+   * @return list<\Donquixote\DID\ContainerToValue\ContainerToValueInterface>
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\DiscoveryException
    */
-  private function createFactory(
-    callable $callback,
-    bool $hasResultTypeParameter,
-    bool $hasUniversalAdapterParameter,
-    array $parameters,
-  ): AdapterFromContainerInterface {
-    $serviceIds = $parameters
-      ? ServiceAttributesUtil::paramsRequireServiceIds($parameters)
-      : [];
-    return new AdapterFromContainer_Callback(
-      $callback,
-      $hasResultTypeParameter,
-      $hasUniversalAdapterParameter,
-      $serviceIds,
-    );
+  private function buildArgCTVs(array $parameters): array {
+    $argCTVs = [];
+    foreach ($parameters as $parameter) {
+      $ctv = $this->paramToCTV->paramGetCTV($parameter);
+      if ($ctv === NULL) {
+        throw new DiscoveryException(sprintf(
+          'Cannot resolve %s.',
+          MessageUtil::formatReflector($parameter),
+        ));
+      }
+      $argCTVs[] = $ctv;
+    }
+    returN $argCTVs;
   }
 
 }

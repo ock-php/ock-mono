@@ -1,5 +1,10 @@
 <?php
-declare(strict_types=1);
+
+/**
+ * @file
+ */
+
+declare(strict_types = 1);
 
 namespace Donquixote\Adaptism\Attribute;
 
@@ -15,30 +20,16 @@ namespace Donquixote\Adaptism\Attribute;
  * If the method is not static, then an instance will be constructed based on
  * annotated constructor parameters.
  */
-#[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
-final class Adapter implements AdapterAttributeInterface {
+interface AdapterAttributeInterface {
 
   /**
-   * Constructor.
-   *
-   * @param int|null $specifity
+   * @return int|null
    */
-  public function __construct(
-    private readonly ?int $specifity = null
-  ) {}
+  public function getSpecifity(): ?int;
 
   /**
-   * {@inheritdoc}
+   * @return bool
    */
-  public function getSpecifity(): ?int {
-    return $this->specifity;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isSelfAdapter(): bool {
-    return false;
-  }
+  public function isSelfAdapter(): bool;
 
 }

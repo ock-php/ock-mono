@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\Util;
 
-use Donquixote\Adaptism\Exception\MalformedDeclarationException;
+use Donquixote\DID\Exception\MalformedDeclarationException;
+use Donquixote\DID\Attribute\ReflectorAwareAttributeInterface;
+use Donquixote\DID\Util\MessageUtil;
 
 /**
  * Helper methods to read attributes from reflectors.
@@ -21,34 +23,19 @@ class AttributesUtil {
    *
    * @return list<T>
    */
-  public static function getInstances(
+  public static function getAll(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
   ): array {
     $instances = [];
     /** @var \ReflectionAttribute<T> $attribute */
     foreach ($reflector->getAttributes($name, \ReflectionAttribute::IS_INSTANCEOF) as $attribute) {
-      $instances[] = $attribute->newInstance();
+      $instances[] = $instance = $attribute->newInstance();
+      if ($instance instanceof ReflectorAwareAttributeInterface) {
+        $instance->setReflector($reflector);
+      }
     }
     return $instances;
-  }
-
-  /**
-   * Asserts that axactly one
-   *
-   * @template T
-   *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
-   * @param class-string<T> $name
-   *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
-   *   None or more than one attribute of the given type.
-   */
-  public static function requireHasSingle(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
-    string $name,
-  ): void {
-    self::getOrRequireSingle($reflector, $name, true);
   }
 
   /**
@@ -60,14 +47,14 @@ class AttributesUtil {
    *   FALSE, if no attribute of the given type exists.
    *   Exception otherwise.
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
    */
   public static function hasSingle(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
   ): bool {
-    return self::getOrRequireSingle($reflector, $name, false) !== null;
+    return self::getSingleAttribute($reflector, $name) !== null;
   }
 
   /**
@@ -81,80 +68,85 @@ class AttributesUtil {
    * @return T
    *   Instance from the single attribute.
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    *   None or more than one attribute of the given type.
    */
-  public static function requireGetSingle(
+  public static function requireSingle(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
   ): object {
-    /**
-     * @var \ReflectionAttribute<T> $reflectionAttribute
-     * @psalm-ignore-var
-     */
-    $reflectionAttribute = self::getOrRequireSingle($reflector, $name, true);
-    return $reflectionAttribute->newInstance();
+    $instance = self::getSingle($reflector, $name);
+    if ($instance === NULL) {
+      throw new MalformedDeclarationException(sprintf(
+        'Required attribute %s missing on %s.',
+        $name,
+        MessageUtil::formatReflector($reflector),
+      ));
+    }
+    return $instance;
   }
 
   /**
    * Gets and instantiates the first attribute of a given type, if exists.
    *
    * @template T
-   * @template force as bool
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
    *   Element that has the attribute.
    * @param class-string<T> $name
    *   Expected attribute type/name.
-   * @param bool $force
-   * @psalm-param force $force
    *
    * @return T|null
    *   Instance from the attribute, or NULL if no matching attribute found.
-   * @psalm-return (force is true ? T : (T|null))
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
    */
   public static function getSingle(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
-    bool $force = FALSE,
   ): ?object {
-    return self::getOrRequireSingle($reflector, $name, $force)
-      ?->newInstance();
+    $attribute = self::getSingleAttribute($reflector, $name);
+    if ($attribute === NULL) {
+      return NULL;
+    }
+    $instance = $attribute->newInstance();
+    if ($instance instanceof ReflectorAwareAttributeInterface) {
+      $instance->setReflector($reflector);
+    }
+    return $instance;
   }
 
   /**
-   * @template T as object
+   * Gets and instantiates the first attribute of a given type, if exists.
+   *
+   * @template T
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
+   *   Element that has the attribute.
    * @param class-string<T> $name
-   * @param bool $require
+   *   Expected attribute type/name.
    *
    * @return \ReflectionAttribute<T>|null
-   * @psalm-return ($require is true ? \ReflectionAttribute<T> : \ReflectionAttribute<T>|null)
+   *   Instance from the attribute, or NULL if no matching attribute found.
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
    */
-  private static function getOrRequireSingle(
+  private static function getSingleAttribute(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
-    bool $require,
   ): ?\ReflectionAttribute {
     /** @var \ReflectionAttribute<T>[] $attributes */
     $attributes = $reflector->getAttributes($name, \ReflectionAttribute::IS_INSTANCEOF);
-    if (!$attributes && !$require) {
+    if (!$attributes) {
       return null;
     }
     if (\array_keys($attributes) !== [0]) {
       throw new MalformedDeclarationException(\sprintf(
-        'Expected %s one #[%s] attribute on %s, found %s',
-        $require ? 'exactly' : 'up to',
+        'More than one %s attribute found on %s.',
         $name,
         MessageUtil::formatReflector($reflector),
-        count($attributes),
       ));
     }
     return $attributes[0];
