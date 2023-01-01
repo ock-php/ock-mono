@@ -1,0 +1,19 @@
+## New c already aliased
+
+Original PHP:
+
+```php
+use Donquixote\DID\Tests\Fixtures\C;
+
+return new C();
+```
+
+Exception:
+
+```php
+use Donquixote\DID\Exception\CodegenException;
+
+throw new CodegenException(
+  'Cannot aliasify code that already contains imports.',
+);
+```
