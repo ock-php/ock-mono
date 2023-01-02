@@ -11,7 +11,6 @@ function f(\Aa\Bb $arg): \Aa\Dd {
 Aliasified code:
 
 ```php
-
 use Aa\Bb;
 use Aa\Dd;
 

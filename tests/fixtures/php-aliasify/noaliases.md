@@ -9,6 +9,5 @@ f();
 Aliasified code:
 
 ```php
-
 f();
 ```

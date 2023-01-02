@@ -15,6 +15,7 @@ Aliasified code:
 ```php
 
 
-
 f();
+
+
 ```

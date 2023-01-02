@@ -9,12 +9,11 @@ declare(strict_types = 1);
  *   Original php snippet.
  */
 
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\DID\CodegenTools\Aliasifier;
 
 $orig = $php;
-$aliases = PhpUtil::aliasify($php);
-$aliases_php = PhpUtil::formatAliases($aliases);
-$actual = $aliases_php . "\n" . $php;
+$importsPhp = (new Aliasifier())->aliasify($php)->getImportsPhp();
+$actual = $importsPhp . $php;
 
 ?>
 ## <?=$title . "\n" ?>

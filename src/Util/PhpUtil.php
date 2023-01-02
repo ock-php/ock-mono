@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\DID\Util;
 
+use Donquixote\DID\CodegenTools\Aliasifier;
 use Donquixote\DID\Exception\CodegenException;
-use Donquixote\DID\Exception\EvaluatorException;
 
 final class PhpUtil {
 
@@ -43,21 +43,12 @@ final class PhpUtil {
    * @param string|null $namespace
    *
    * @return string
+   *
+   * @throws \Donquixote\DID\Exception\CodegenException
    */
   public static function formatAsSnippet(string $php, string $namespace = NULL): string {
     $php = self::autoIndent($php, '  ');
-    $aliases = self::aliasify($php);
-
-    $aliasesPhp = '';
-    foreach ($aliases as $class => $alias) {
-      $aliasesPhp .= ($alias === TRUE)
-        ? "use $class;\n"
-        : "use $class as $alias;\n";
-    }
-
-    if ($aliasesPhp !== '') {
-      $php = $aliasesPhp . "\n" . $php;
-    }
+    $php = (new Aliasifier())->aliasify($php)->getImportsPhp() . $php;
 
     if (NULL !== $namespace) {
       $php = 'namespace ' . $namespace . ";\n\n" . $php;
@@ -398,13 +389,10 @@ final class PhpUtil {
     $tokens = token_get_all($php_full);
     $tokens[] = '#';
 
-    /**
-     * @var int[] $i0s
-     *   Format: $[] = $i0.
-     */
-    $i0s = [];
-    $i0 = NULL;
-    $add_next = NULL;
+    $type = NULL;
+    $iLast = -1;
+    /** @var array<int, string|null> $map */
+    $map = [];
     foreach ($tokens as $i => $token) {
       switch ($token[0]) {
         case \T_USE:
@@ -417,16 +405,14 @@ final class PhpUtil {
 
         case \T_STRING:
         case \T_NS_SEPARATOR:
-        case \T_NAME_FULLY_QUALIFIED:
         case \T_NAME_QUALIFIED:
-          if ($i0 === NULL) {
-            // A new qcn or fqcn starts here.
-            if ($add_next) {
-              $i0s[] = $i;
-              $add_next = FALSE;
-            }
-            $i0 = $i;
-          }
+          $type = NULL;
+          $iLast = -1;
+          break;
+
+        case \T_NAME_FULLY_QUALIFIED:
+          $map[$iLast = $i] = $type;
+          $type = NULL;
           break;
 
         case \T_NEW:
@@ -434,10 +420,8 @@ final class PhpUtil {
         case ':':
         case '?':
         case \T_ATTRIBUTE:
-          // Next qcn or fqcn must be a class name.
-          $add_next = TRUE;
-          // Any old class name must have ended.
-          $i0 = NULL;
+          $type = 'class';
+          $iLast = -1;
           break;
 
         case \T_WHITESPACE:
@@ -445,13 +429,14 @@ final class PhpUtil {
           break;
 
         case \T_DOUBLE_COLON:
+          $type = NULL;
+          $map[$iLast] ??= 'class';
+          $iLast = -1;
+          break;
+
         case \T_VARIABLE:
         case '&':
-          if ($i0 !== NULL) {
-            $i0s[] = $i0;
-            $i0 = NULL;
-          }
-          $add_next = FALSE;
+          $type = NULL;
           break;
 
         default:
@@ -459,6 +444,8 @@ final class PhpUtil {
           $add_next = FALSE;
       }
     }
+
+    unset($map[-1]);
 
     /**
      * @var array<string,list<array{int,int}>> $map

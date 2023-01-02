@@ -9,9 +9,7 @@ return new Donquixote\DID\Tests\Fixtures\C();
 Formatted as snippet:
 
 ```php
-use Donquixote\DID\Tests\Fixtures\C;
-
-return new C();
+return new Donquixote\DID\Tests\Fixtures\C();
 ```
 
 Formatted as file:
@@ -21,7 +19,5 @@ Formatted as file:
 
 declare(strict_types=1);
 
-use Donquixote\DID\Tests\Fixtures\C;
-
-return new C();
+return new Donquixote\DID\Tests\Fixtures\C();
 ```

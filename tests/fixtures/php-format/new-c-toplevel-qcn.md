@@ -9,7 +9,7 @@ return new C();
 Formatted as snippet:
 
 ```php
-return new \C();
+return new C();
 ```
 
 Formatted as file:
@@ -19,5 +19,5 @@ Formatted as file:
 
 declare(strict_types=1);
 
-return new \C();
+return new C();
 ```
