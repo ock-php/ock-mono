@@ -8,7 +8,6 @@ use Donquixote\DID\ContainerToValue\ContainerToValue_Construct;
 use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Construct;
 use Donquixote\DID\ValueDefinition\ValueDefinitionInterface;
-use http\Exception\UnexpectedValueException;
 
 /**
  * @template T as mixed

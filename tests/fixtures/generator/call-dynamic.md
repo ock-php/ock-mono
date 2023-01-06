@@ -17,8 +17,5 @@ Generated code:
 ```php
 use Donquixote\DID\Tests\Fixtures\C;
 
-return [
-  C::getClassName(),
-  C::getMethodName(),
-]();
+return [C::getClassName(), C::getMethodName()]();
 ```

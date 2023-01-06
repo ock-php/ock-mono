@@ -11,9 +11,9 @@ use Donquixote\DID\ValueDefinition\ValueDefinition_CallObjectMethod;
 use Donquixote\DID\ValueDefinition\ValueDefinition_ClassName;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Construct;
 use Donquixote\DID\ValueDefinition\ValueDefinition_GetArgument;
-use Donquixote\DID\ValueDefinition\ValueDefinition_Parametric;
 use Donquixote\DID\ValueDefinition\ValueDefinition_GetContainer;
 use Donquixote\DID\ValueDefinition\ValueDefinition_GetService;
+use Donquixote\DID\ValueDefinition\ValueDefinition_Parametric;
 use Donquixote\DID\ValueDefinition\ValueDefinitionInterface;
 
 class GeneratorX implements GeneratorInterface {

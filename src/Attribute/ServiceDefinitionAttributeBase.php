@@ -10,7 +10,6 @@ use Donquixote\DID\Util\AttributesUtil;
 use Donquixote\DID\Util\MessageUtil;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Call;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Construct;
-use Donquixote\DID\ValueDefinition\ValueDefinition_CurryCallback;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Parametric;
 
 /**
@@ -81,7 +80,7 @@ abstract class ServiceDefinitionAttributeBase implements ServiceDefinitionAttrib
     $realServiceId = $this->getRealServiceId($type);
     $args = $this->buildArgumentDefinitions($parameters);
     $valueDefinition = $this->isParametric()
-      ? new ValueDefinition_CurryCallback(
+      ? new ValueDefinition_Parametric(
         [$reflectionMethod->getDeclaringClass()->getName(), $reflectionMethod->getName()],
         $args,
       )

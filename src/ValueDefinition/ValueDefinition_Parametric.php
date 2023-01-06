@@ -10,6 +10,7 @@ class ValueDefinition_Parametric implements ValueDefinitionInterface {
    * Constructor.
    *
    * @param mixed|\Donquixote\DID\ValueDefinition\ValueDefinitionInterface $value
+   *   Value definition that may contain free arguments.
    */
   public function __construct(
     public readonly mixed $value,

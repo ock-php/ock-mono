@@ -21,7 +21,11 @@ return new ValueDefinition_CallObjectMethod(
 Generated code:
 
 ```php
-return $container->get('some_service')->foo('x', 'y', $container->get('other_service'));
+return $container->get('some_service')->foo(
+  'x',
+  'y',
+  $container->get('other_service'),
+);
 ```
 
 Flattened definition generated code:

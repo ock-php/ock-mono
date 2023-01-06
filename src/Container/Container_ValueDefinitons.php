@@ -9,6 +9,7 @@ use Donquixote\DID\ContainerToValue\ContainerToValue_Container;
 use Donquixote\DID\CTVList\CTVList_Discovery_ServiceAttribute;
 use Donquixote\DID\Exception\ContainerToValueException;
 use Donquixote\DID\ParamToCTV\ParamToCTV;
+use Donquixote\DID\ServiceDefinition\ServiceDefinitionListInterface;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Call;
 use Donquixote\DID\ValueDefinition\ValueDefinition_CallObjectMethod;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Construct;
@@ -34,21 +35,17 @@ class Container_ValueDefinitons implements ContainerInterface {
   ) {}
 
   /**
-   * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
+   * @param \Donquixote\DID\ServiceDefinition\ServiceDefinitionListInterface $serviceDefinitionList
    *
-   * @return \Psr\Container\ContainerInterface
+   * @return static
    * @throws \Donquixote\DID\Exception\DiscoveryException
    */
-  public static function fromClassFilesIAs(array $classFilesIAs): ContainerInterface {
-    $containerDiscoveryClassFilesIA = ClassFilesIA::multiple($classFilesIAs);
-    $emptyCtvList = new CTVList_Discovery_ServiceAttribute(
-      ParamToCTV::create(),
-    );
-    $ctvs = $emptyCtvList
-      ->withClassFilesIA($containerDiscoveryClassFilesIA)
-      ->getCTVs();
-    $ctvs[ContainerInterface::class] = new ContainerToValue_Container();
-    return new Container_CTVs($ctvs);
+  public static function fromServiceDefinitionList(ServiceDefinitionListInterface $serviceDefinitionList): self {
+    $definitions = [];
+    foreach ($serviceDefinitionList->getDefinitions() as $serviceDefinition) {
+      $definitions[$serviceDefinition->id] = $serviceDefinition->valueDefinition;
+    }
+    return new self($definitions);
   }
 
   /**

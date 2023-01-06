@@ -7,6 +7,7 @@ namespace Donquixote\DID\CTVList;
 use Donquixote\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
 use Donquixote\DID\Attribute\Parameter\CallServiceMethodWithArguments;
 use Donquixote\DID\Attribute\Parameter\CallServiceWithArguments;
+use Donquixote\DID\Attribute\Parameter\GetArgument;
 use Donquixote\DID\Attribute\ServiceDefinitionAttributeInterface;
 use Donquixote\DID\Callback\CurryCall;
 use Donquixote\DID\Callback\CurryConstruct;
@@ -18,7 +19,6 @@ use Donquixote\DID\Exception\DiscoveryException;
 use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
 use Donquixote\DID\Util\AttributesUtil;
 use Donquixote\DID\Util\MessageUtil;
-use Donquixote\DID\Attribute\Parameter\GetArgument;
 
 class CTVList_Discovery_ServiceAttribute extends ReflectionClassesIAHavingBase implements CTVListInterface {
 

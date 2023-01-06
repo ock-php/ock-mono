@@ -19,7 +19,5 @@ Generated code:
 use Donquixote\DID\Tests\Fixtures\C;
 use Donquixote\DID\Tests\Fixtures\GenericObject;
 
-return (new GenericObject())->{C::getMethodName()}(
-  5,
-);
+return (new GenericObject())->{C::getMethodName()}(5);
 ```

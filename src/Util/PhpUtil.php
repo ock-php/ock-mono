@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\DID\Util;
 
 use Donquixote\DID\CodegenTools\Aliasifier;
+use Donquixote\DID\CodegenTools\LineBreaker;
 use Donquixote\DID\Exception\CodegenException;
 
 final class PhpUtil {
@@ -53,6 +54,8 @@ final class PhpUtil {
     if (NULL !== $namespace) {
       $php = 'namespace ' . $namespace . ";\n\n" . $php;
     }
+
+    $php = (new LineBreaker())->breakLongLines($php);
 
     return $php;
   }

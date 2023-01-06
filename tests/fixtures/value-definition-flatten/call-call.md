@@ -22,11 +22,10 @@ Generated code:
 ```php
 use Donquixote\DID\Tests\Fixtures\C;
 
-return C::create(
-  $container->get('some_service'),
-  C::create('x'),
-  [$container->get('other_service'), 'foo'](),
-);
+return C::create($container->get('some_service'), C::create('x'), [
+  $container->get('other_service'),
+  'foo',
+]());
 ```
 
 Flattened definition generated code:
