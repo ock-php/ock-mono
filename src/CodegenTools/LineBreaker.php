@@ -374,7 +374,8 @@ class LineBreaker {
     // Check last line length.
     $ret0 = $position + strpos($php, "\n") <= $this->limit;
     $ret1 = strlen($php) - $lastbrpos <= $this->shortLimit;
-    return $ret0 && $ret1;
+    $ret2 = strpos($php, "\n") <= $this->shortLimit;
+    return $ret0 && $ret1 && $ret2;
   }
 
 }
