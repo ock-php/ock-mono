@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Donquixote\CodegenTools\Util;
 
-use Donquixote\CodegenTools\Exception\CodegenException;
+use Donquixote\CodegenTools\ValueExporter;
 
 final class CodeGen {
 
   /**
-   * @param string $objectPhp
+   * @param string $enclosedObjectPhp
    * @param string $method
    * @param string[] $argsPhp
    *
    * @return string
    *   PHP expression.
    */
-  public static function phpCallMethod(string $objectPhp, string $method, array $argsPhp): string {
-    return self::phpCallFqn($objectPhp . '->' . $method, $argsPhp);
+  public static function phpCallMethod(string $enclosedObjectPhp, string $method, array $argsPhp): string {
+    return self::phpCallFqn($enclosedObjectPhp . '->' . $method, $argsPhp);
   }
 
   /**
@@ -48,7 +48,7 @@ final class CodeGen {
   public static function phpCall(callable $callable, array $argsPhp = []): string {
     if (is_array($callable)) {
       if (!is_string($callable[0])) {
-        throw new \InvalidArgumentException('Parameter must be a static method.');
+        throw new \InvalidArgumentException('Parameter must be a static method or a function.');
       }
       return self::phpCallFqn('\\' . $callable[0] . '::' . $callable[1], $argsPhp);
     }
@@ -184,12 +184,7 @@ final class CodeGen {
     }
     catch (\Exception $e) {
       // Convert to an "unchecked" exception.
-      throw new \InvalidArgumentException(
-        sprintf(
-          'Value %s was not as simple as expected.',
-          MessageUtil::formatValue($value)),
-        0,
-        $e);
+      throw new \InvalidArgumentException($e->getMessage(), 0, $e);
     }
   }
 
@@ -208,101 +203,22 @@ final class CodeGen {
    *   Value cannot be exported.
    */
   public static function phpValue(mixed $value): string {
-
-    if (\is_array($value)) {
-
-      $valuesPhp = [];
-      foreach ($value as $k => $v) {
-        $valuesPhp[$k] = self::phpValue($v);
-      }
-
-      return self::phpArray($valuesPhp);
-    }
-
-    if (\is_object($value)) {
-      return self::phpObject($value);
-    }
-
-    return var_export($value, TRUE);
+    return (new ValueExporter())->export($value);
   }
 
   /**
-   * @param object $object
+   * Exports a value that is scalar or null.
    *
-   * @return string
+   * This is a dedicated function because:
+   * - Scalar values are guaranteed exportable, no exception will occur.
+   * - No if/else needed.
+   * - Function can be passed as a callable, unlike var_export().
    *
-   * @throws \Exception
-   *   Object cannot be exported.
-   */
-  public static function phpObject(object $object): string {
-    if ($object instanceof \stdClass) {
-      return '(object) ' . self::phpArray((array) $object);
-    }
-
-    if ($object instanceof \Closure) {
-      throw new \Exception('Cannot export closure.');
-    }
-
-    if ($object instanceof \Reflector) {
-      return self::phpReflector($object);
-    }
-
-    // Attempt to serialize.
-    // If the class does not support it, an exception will be thrown.
-    try {
-      return \sprintf(
-        '\\unserialize(%s)',
-        self::phpString(\serialize($object)),
-      );
-    }
-    catch (\Throwable $e) {
-      throw new CodegenException('Cannot serialize the given object.', 0, $e);
-    }
-  }
-
-  /**
-   * @param \Reflector $reflector
-   *
-   * @return string
-   *
-   * @throws \Exception
-   */
-  public static function phpReflector(\Reflector $reflector): string {
-    $args = match (get_class($reflector)) {
-      \ReflectionClass::class => [$reflector->getName()],
-      \ReflectionFunction::class => $reflector->isClosure()
-        ? NULL
-        : [$reflector->name],
-      \ReflectionMethod::class,
-      \ReflectionProperty::class,
-      \ReflectionClassConstant::class => [
-        $reflector->class,
-        $reflector->name,
-      ],
-      default => NULL,
-    };
-    if ($args !== null) {
-      return self::phpConstruct(
-        get_class($reflector),
-        array_map([self::class, 'phpValue'], $args),
-      );
-    }
-    if ($reflector instanceof \ReflectionParameter) {
-      return self::phpCallMethod(
-        self::phpReflector($reflector->getDeclaringFunction()),
-        'getParameter',
-        $reflector->getName(),
-      );
-    }
-    throw new CodegenException(sprintf('Cannot export %s object.', get_class($reflector)));
-  }
-
-  /**
-   * @param string $string
+   * @param string|int|bool|float|null $string
    *
    * @return string
    */
-  public static function phpString(string $string): string {
+  public static function phpScalar(string|int|bool|null|float $string): string {
     return var_export($string, TRUE);
   }
 
@@ -322,9 +238,16 @@ final class CodeGen {
       $parts = $valuesPhp;
     }
     else {
+      $i = 0;
       foreach ($valuesPhp as $k => $vPhp) {
-        $kPhp = var_export($k, TRUE);
-        $parts[] = $kPhp . ' => ' . $vPhp;
+        if ($k === $i) {
+          $parts[] = $vPhp;
+          ++$i;
+        }
+        else {
+          $kPhp = var_export($k, TRUE);
+          $parts[] = $kPhp . ' => ' . $vPhp;
+        }
       }
     }
 
@@ -336,187 +259,6 @@ final class CodeGen {
     $php = implode(",\n  ", $parts);
 
     return "[\n$php,\n]";
-  }
-
-  /**
-   * Checks if a given type name is built-in.
-   *
-   * @param string $type
-   *   The type name.
-   *
-   * @return bool
-   *   TRUE for e.g. 'string', 'int' etc, FALSE for class names.
-   */
-  public static function typeIsBuiltin(string $type): bool {
-    static $types_map = [
-      // These values are not safe with the detection mechanism.
-      'null' => true,
-      'false' => true,
-      'true' => true,
-      // The 'resource' type will be interpreted as a class.
-      'resource' => false,
-      // Add some known types to speed things up.
-      'int' => true,
-      'bool' => true,
-      'float' => true,
-      'string' => true,
-      'array' => true,
-    ];
-    return $types_map[$type]
-      ??= $types_map[strtolower($type)]
-      ??= self::determineIfTypeIsBuiltin($type);
-  }
-
-  /**
-   * Checks if a given type name is built-in.
-   *
-   * @param string $type
-   *   The type name.
-   *
-   * @return bool
-   *   TRUE for e.g. 'string', 'int' etc, FALSE for class names.
-   */
-  private static function determineIfTypeIsBuiltin(string $type): bool {
-    if (!preg_match('@^[a-zA-Z]+$@', $type)) {
-      // The type name is not safe to use in eval().
-      return FALSE;
-    }
-    $eval = "return static function (): $type {};";
-    $f = eval($eval);
-    try {
-      $rf = new \ReflectionFunction($f);
-    }
-    catch (\ReflectionException) {
-      return FALSE;
-    }
-    $rt = $rf->getReturnType();
-    if (!$rt) {
-      return FALSE;
-    }
-    return $rt->isBuiltin();
-  }
-
-  /**
-   * Formats aliases as imports.
-   *
-   * @param mixed[] $aliases
-   *   Format: $[$class] = $alias|true
-   * @param string $prepend
-   *   String to prepend if the list is not empty.
-   *   This is useful to add line breaks.
-   *
-   * @return string
-   *   Formatted PHP.
-   */
-  public static function formatAliases(array $aliases, string $prepend = "\n"): string {
-    if (!$aliases) {
-      return '';
-    }
-    ksort($aliases, \SORT_STRING | \SORT_FLAG_CASE);
-
-    $aliases_php = '';
-    foreach ($aliases as $class => $alias) {
-      if (TRUE === $alias) {
-        $aliases_php .= 'use ' . $class . ";\n";
-      }
-      else {
-        $aliases_php .= 'use ' . $class . ' as ' . $alias . ";\n";
-      }
-    }
-
-    return $prepend . $aliases_php;
-  }
-
-  /**
-   * Prepends a 'return ' to a PHP value expression.
-   *
-   * @param string $expression
-   *  PHP value expression.
-   *
-   * @return string
-   *   PHP statement with added 'return ' statement.
-   */
-  public static function buildReturnStatement(string $expression): string {
-    $php_full = '<?php ' . $expression;
-    $tokens = token_get_all($php_full);
-    $prefix = '';
-    foreach ($tokens as $token) {
-      if (is_string($token)) {
-        break;
-      }
-      switch ($token[0]) {
-        case \T_WHITESPACE:
-        case \T_COMMENT:
-        case \T_DOC_COMMENT:
-        case \T_OPEN_TAG:
-          break;
-
-        default:
-          break 2;
-      }
-      $prefix .= $token[1];
-    }
-    return substr($prefix, 6)
-      . 'return '
-      . substr($php_full, strlen($prefix))
-      . ';';
-  }
-
-  /**
-   * @param int|string $key
-   *
-   * @return string
-   */
-  public static function phpPlaceholder(int|string $key): string {
-    return self::phpCallStatic([Expr::class, 'pl'], [
-      \var_export($key, TRUE),
-    ]);
-  }
-
-  /**
-   * @param string $decoratedPhp
-   *   Php decorated expresssion.
-   * @param string $decoratorPhp
-   *   Php expression that contains a placeholder for a decorated expression.
-   *
-   * @return string
-   */
-  public static function phpDecorate(string $decoratedPhp, string $decoratorPhp): string {
-    return str_replace(
-      self::phpPlaceholderDecorated(),
-      $decoratedPhp,
-      $decoratorPhp,
-    );
-  }
-
-  /**
-   * @param string $adapteePhp
-   *   Php adaptee expresssion.
-   * @param string $adapterPhp
-   *   Php expression that contains a placeholder for a adaptee expression.
-   *
-   * @return string
-   */
-  public static function phpAdapt(string $adapteePhp, string $adapterPhp): string {
-    return str_replace(
-      self::phpPlaceholderAdaptee(),
-      $adapteePhp,
-      $adapterPhp,
-    );
-  }
-
-  /**
-   * @return string
-   */
-  public static function phpPlaceholderDecorated(): string {
-    return self::phpCallStatic([Expr::class, 'plDecorated']);
-  }
-
-  /**
-   * @return string
-   */
-  public static function phpPlaceholderAdaptee(): string {
-    return self::phpCallStatic([Expr::class, 'plAdaptee']);
   }
 
 }

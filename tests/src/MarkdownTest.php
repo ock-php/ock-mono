@@ -79,7 +79,7 @@ class MarkdownTest extends TestCase {
         }
         $hasFailingSnippets = true;
         $expression = CodeGen::phpConstruct(get_class($e), [
-          var_export($e->getMessage(), TRUE),
+          var_export($this->sanitizeExceptionMessage($e->getMessage()), TRUE),
         ]);
         $snippet = CodeFormatUtil::formatAsSnippet('throw ' . $expression . ';');
         $actualMarkdown .= <<<EOT
@@ -100,6 +100,15 @@ EOT;
       $markdownFile,
       $actualMarkdown,
     );
+  }
+
+  private function sanitizeExceptionMessage(string $message): string {
+    $message = strtr($message, [
+      realpath(dirname(__DIR__, 2)) => '<project root>',
+      dirname(__DIR__, 2) => '<project root>',
+    ]);
+    $message = preg_replace('@, called in .* eval\(\)\'d code on line (\d+)$@', ', called in [..] eval()\'d code on line $1', $message);
+    return $message;
   }
 
   /**

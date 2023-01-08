@@ -14,22 +14,44 @@ class LineBreaker {
 
   private const MODE_LIST_MULTILINE = 'list_multiline';
 
-  private const MODE_OTHER_INLINE = 'curly_inline';
+  private const MODE_OTHER_INLINE = 'other_inline';
 
-  private const MODE_OTHER_MULTILINE = 'curly_multiline';
+  private const MODE_OTHER_MULTILINE = 'other_multiline';
 
   private string $indentLevel = '  ';
 
+  /**
+   * Overall limit for line length.
+   *
+   * @var int
+   */
   private int $limit = 80;
 
+  /**
+   * Line length limit that applies in special cases.
+   *
+   * The limit controls whether an inline array or argument list is allowed to
+   * contain a nested multiline array or argument list. This is allowed only if
+   * the first line and last line of that structure don't exceed the short
+   * limit.
+   *
+   * E.g.
+   *
+   *   return ['a', [
+   *     'b',
+   *   ], 'c'];
+   *
+   * The code above is only allowed if the `['a', [` and the `], 'c']` don't
+   * exceed the short limit.
+   *
+   * @var int
+   */
   private int $shortLimit = 40;
 
   /**
    * Operators that will be considered for line breaks, ordered by precedence.
    *
    * See https://www.php.net/manual/en/language.operators.precedence.php
-   *
-   * @var array
    */
   const OPERATORS = [
     [],
@@ -52,11 +74,33 @@ class LineBreaker {
     ['or'],
   ];
 
+  /**
+   * Don't linebreak on these operators.
+   */
+  const IGNORE_OPERATORS = ['='];
+
+  /**
+   * @var array<string|int, int>
+   */
   private array $operatorMap = [];
 
   public function withMaxLineLength(int $limit): static {
     $clone = clone $this;
     $clone->limit = $limit;
+    return $clone;
+  }
+
+  /**
+   * Immutable setter. Sets the spaces per indentation level.
+   *
+   * @param string $level
+   *
+   * @return $this
+   */
+  public function withIndentLevel(string $level): static {
+    assert(trim($level, ' ') === '');
+    $clone = clone $this;
+    $clone->indentLevel = $level;
     return $clone;
   }
 
@@ -109,21 +153,22 @@ class LineBreaker {
         case ')':
         case ']':
           for ($j = $i - 1; $tokens[$j]->isIgnorable(); --$j) {}
-          if (in_array($tokens[$j]->getTokenName(), [',', ';', '[', '('])) {
+          if (in_array($tokens[$j]->getTokenName(), [',', ';', '[', '('], true)) {
             // Don't add a trailing comma here.
             break;
           }
+          ++$linesOffset;
           // Add a trailing comma. See if it blows up later.
           $commaPositions[$token->line + $linesOffset] = strlen($phpNew);
           // Add a line break so that we can later find it by line number.
-          $phpNew .= ",\n";
-          ++ $linesOffset;
+          $phpNew .= "\n,";
           break;
       }
       $phpNew .= $token;
     }
     $posshift = 0;
     $lineshift = 0;
+    $versions = ['<?php ' . $php];
     for (;;) {
       try {
         /** @noinspection PhpExpressionResultUnusedInspection */
@@ -131,7 +176,8 @@ class LineBreaker {
         // Remove remaining line breaks.
         foreach ($commaPositions as $pos) {
           // Remove just the line break, but keep the comma.
-          $phpNew = substr_replace($phpNew, '', $pos - $posshift + 1, 1);
+          $phpNew = substr_replace($phpNew, '', $pos - $posshift, 1);
+          $versions[] = $phpNew;
           $posshift += 1;
         }
         return token_get_all($phpNew, TOKEN_PARSE);
@@ -143,28 +189,39 @@ class LineBreaker {
           if ($line === $eLine) {
             // Remove the comma and line break.
             $phpNew = substr_replace($phpNew, '', $pos - $posshift, 2);
+            $versions[] = $phpNew;
             $posshift += 2;
             ++$lineshift;
-            break;
+            continue 2;
           }
           if ($line >= $eLine) {
-            // Give up, return the original php.
-            return token_get_all('<?php ' . $php);
+            break;
           }
           // Remove just the line break, but keep the comma.
-          $phpNew = substr_replace($phpNew, '', $pos - $posshift + 1, 1);
+          $phpNew = substr_replace($phpNew, '', $pos - $posshift, 1);
+          $versions[] = $phpNew;
           ++$lineshift;
           ++$posshift;
         }
+
+        // Give up, return the original php.
+        return token_get_all('<?php ' . $php);
       }
     }
   }
 
+  /**
+   * @return array<string|int, int>
+   */
   private function buildOperatorMap(): array {
+    $ignoreOperatorsMap = array_fill_keys(self::IGNORE_OPERATORS, true);
     $map = [];
     $php = '<?php ';
     foreach (self::OPERATORS as $precedence => $operators) {
       foreach ($operators as $operator) {
+        if (isset($ignoreOperatorsMap[$operator])) {
+          continue;
+        }
         $map[$operator] = $precedence;
         $php .= $operator . ' ';
       }
@@ -211,23 +268,23 @@ class LineBreaker {
     };
     // Multiple attempts to format the enclosed snippet.
     for ($iSnippetAttempt = 0;; ++$iSnippetAttempt) {
-      if ($iSnippetAttempt >= 5) {
-        throw new \RuntimeException("Infinite loop in snippet.");
-      }
+      // Detect infinite loop if assertions enabled.
+      // If it happens, this would be a programming error in this class.
+      assert ($iSnippetAttempt < 5);
       $php = '';
       $i = $iStart;
       // Iterate over the segments.
       for ($iSegment = 0;; ++$iSegment) {
-        assert(in_array($tokens[$i][0], [',', ';', '(', '[', '{', T_OPEN_TAG]));
+        assert(in_array($tokens[$i][0], [',', ';', '(', '[', '{', T_OPEN_TAG], true));
         $iCommaOrStart = $i;
         $phpAtSegmentStart = $php;
         $phpIfSegmentEmpty = $php;
         $breakOnOperator = 99;
         // Multiple attempts to format the segment.
         for ($iSegmentAttempt = 0;; ++$iSegmentAttempt) {
-          if ($iSegmentAttempt >= 5) {
-            throw new \RuntimeException("Infinite loop in segment $iSegment.");
-          }
+          // Detect infinite loop if assertions enabled.
+          // If it happens, this would be a programming error in this class.
+          assert ($iSegmentAttempt < 5);
           $indent = $indentSection = match ($mode) {
             self::MODE_OTHER_MULTILINE,
             self::MODE_LIST_MULTILINE => $indentBase . $this->indentLevel,
@@ -237,6 +294,9 @@ class LineBreaker {
           $i = $iCommaOrStart;
           if ($iSegment > 0) {
             $php .= $tokens[$iCommaOrStart];
+            if (!in_array($mode, [self::MODE_LIST_MULTILINE, self::MODE_LIST_INLINE], true)) {
+              $phpIfSegmentEmpty = $php;
+            }
           }
           ++$i;
           if ($tokens[$i][0] === T_WHITESPACE) {
@@ -246,15 +306,21 @@ class LineBreaker {
                 $mode = self::MODE_OTHER_MULTILINE;
                 continue;
               }
+              else {
+                $php .= ' ';
+              }
             }
             elseif (in_array($mode, [
               self::MODE_OTHER_MULTILINE,
               self::MODE_FILE,
-            ])) {
+            ], true)) {
               if ($nBr = substr_count($tokens[$i][1], "\n")) {
                 $php .= str_repeat("\n", $nBr);
                 $phpIfSegmentEmpty = $php . $indentBase;
                 $php .= $indentSection;
+              }
+              else {
+                $php .= ' ';
               }
             }
             ++$i;
@@ -305,17 +371,23 @@ class LineBreaker {
 
               case ';':
                 // This could be part of a `for (*;*;*)`.
+                // Or it could be a regular code block.
                 // Don't insert linebreaks.
                 if ($mode === self::MODE_LIST_INLINE) {
-                  // Start over.
+                  // An "inline list" cannot contain semicolons.
+                  // Start over. Assume something like `(*;*;*)`.
                   $mode = self::MODE_OTHER_INLINE;
                   continue 5;
                 }
                 elseif ($mode === self::MODE_LIST_MULTILINE) {
-                  $mode = self::MODE_OTHER_MULTILINE;
+                  // A "multiline list" cannot contain semicolons.
+                  // Start over, as if this is a regular code block.
+                  $mode = self::MODE_OTHER_INLINE;
                   continue 5;
                 }
                 elseif ($mode === self::MODE_ENCLOSED_VALUE) {
+                  // An "enclosed value" cannot contain semicolons.
+                  // Start over. Assume something like `(*;*;*)`.
                   $mode = self::MODE_OTHER_INLINE;
                   continue 5;
                 }
@@ -383,7 +455,7 @@ class LineBreaker {
                 if (in_array($mode, [
                   self::MODE_OTHER_MULTILINE,
                   self::MODE_FILE,
-                ])) {
+                ], true)) {
                   if ($nBr = substr_count($token[1], "\n")) {
                     $php .= str_repeat("\n", $nBr) . $indent;
                   }
@@ -499,9 +571,6 @@ class LineBreaker {
    *   TRUE if the lines are short enough to keep this as inline.
    */
   private function checkLastLineLength(int $position, string $php): bool {
-    if ($php === '') {
-      return true;
-    }
     if (false === $lastbrpos = strrpos($php, "\n")) {
       // Snippet has only one line.
       // Check line length.
@@ -521,9 +590,6 @@ class LineBreaker {
    *   TRUE if the lines are short enough to keep this as inline.
    */
   private function checkLineLengths(int $position, string $php): bool {
-    if ($php === '') {
-      return true;
-    }
     if (false === $lastbrpos = strrpos($php, "\n")) {
       // Snippet has only one line.
       // Check line length.
