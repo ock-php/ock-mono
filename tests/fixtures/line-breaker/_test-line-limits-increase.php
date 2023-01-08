@@ -7,7 +7,7 @@ declare(strict_types = 1);
  *   Original php snippet.
  */
 
-use Donquixote\DID\CodegenTools\LineBreaker;
+use Donquixote\CodegenTools\LineBreaker;
 use PHPUnit\Framework\Assert;
 
 $lineBreaker = new LineBreaker();

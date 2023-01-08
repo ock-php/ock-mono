@@ -13,7 +13,7 @@ use PHPUnit\Framework\AssertionFailedError;
 $definition = eval($php);
 $evaluator = TestUtil::createDummyEvaluator();
 $container = $evaluator->evaluate(new ValueDefinition_GetContainer());
-$generator = new \Donquixote\DID\Generator\ValueDefinitionToPhp();
+$generator = new \Donquixote\DID\ValueDefinitionToPhp\ValueDefinitionToPhp();
 
 $definitionValue = $evaluator->evaluate($definition);
 $definitionExpression = $generator->generate($definition);

@@ -2,19 +2,19 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ServiceDefinition;
+namespace Donquixote\DID\ServiceDefinitionList;
 
 /**
  * Decorator that uses service id as array key, and removes duplicate entries.
  *
- * @template-extends \Donquixote\DID\ServiceDefinition\ServiceDefinitionListInterface<true>
+ * @template-extends \Donquixote\DID\ServiceDefinitionList\ServiceDefinitionListInterface<true>
  */
 class ServiceDefinitionList_RekeyAndDedupe implements ServiceDefinitionListInterface {
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\DID\ServiceDefinition\ServiceDefinitionListInterface $decorated
+   * @param \Donquixote\DID\ServiceDefinitionList\ServiceDefinitionListInterface $decorated
    */
   public function __construct(
     private readonly ServiceDefinitionListInterface $decorated,

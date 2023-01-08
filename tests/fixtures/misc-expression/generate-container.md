@@ -3,15 +3,15 @@
 Executed PHP:
 
 ```php
-use Donquixote\DID\Exception\ServiceNotFoundException;
-use Donquixote\DID\ServiceDefinition\ServiceDefinitionList_Discovery;
+use Donquixote\CodegenTools\Util\CodeFormatUtil;use Donquixote\DID\Exception\ServiceNotFoundException;
+use Donquixote\DID\ServiceDefinitionList\ServiceDefinitionList_Discovery;
 use Donquixote\DID\Tests\Fixtures\Services\EntryPoints;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\CodeGen;
 use PHPUnit\Framework\Assert;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-$generator = new \Donquixote\DID\Generator\ValueDefinitionToPhp('$this');
+$generator = new \Donquixote\DID\ValueDefinitionToPhp\ValueDefinitionToPhp('$this');
 
 $definitions = EntryPoints::getServiceDefinitionList()->getDefinitions();
 $getServicePhp = '';
@@ -62,7 +62,7 @@ try {
 }
 catch (ServiceNotFoundException) {}
 
-return PhpUtil::formatExpressionAsSnippet($expression);
+return CodeFormatUtil::formatExpressionAsSnippet($expression);
 ```
 
 Return value:

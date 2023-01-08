@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\DID\Contract;
+namespace Donquixote\DID\Attribute;
 
 /**
  * The object can provide a service id for a container.
  */
-interface ServiceIdHavingInterface {
+interface ServiceIdHavingAttributeInterface {
 
   /**
    * Gets a service id for a DI container.

@@ -4,8 +4,9 @@ declare(strict_types = 1);
 
 namespace Donquixote\DID\Tests;
 
+use Donquixote\CodegenTools\Util\CodeFormatUtil;
 use Donquixote\DID\Tests\Util\TestUtil;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\CodeGen;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
@@ -133,10 +134,10 @@ class MarkdownTest extends TestCase {
           throw $e;
         }
         $hasFailingSnippets = true;
-        $expression = PhpUtil::phpConstruct(get_class($e), [
+        $expression = CodeGen::phpConstruct(get_class($e), [
           var_export($e->getMessage(), TRUE),
         ]);
-        $snippet = PhpUtil::formatAsSnippet('throw ' . $expression . ';');
+        $snippet = CodeFormatUtil::formatAsSnippet('throw ' . $expression . ';');
         $actualMarkdown .= <<<EOT
 
 Exception:

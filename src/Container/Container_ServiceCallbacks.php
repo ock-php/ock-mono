@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Donquixote\DID\Container;
 
 use Donquixote\DID\Exception\ContainerToValueException;
-use Donquixote\DID\ServiceDefinition\ServiceDefinitionListInterface;
+use Donquixote\DID\ServiceDefinitionList\ServiceDefinitionListInterface;
 use Psr\Container\ContainerInterface;
 
 class Container_ServiceCallbacks implements ContainerInterface {
@@ -25,7 +25,7 @@ class Container_ServiceCallbacks implements ContainerInterface {
   ) {}
 
   /**
-   * @param \Donquixote\DID\ServiceDefinition\ServiceDefinitionListInterface $serviceDefinitionList
+   * @param \Donquixote\DID\ServiceDefinitionList\ServiceDefinitionListInterface $serviceDefinitionList
    *
    * @return static
    * @throws \Donquixote\DID\Exception\DiscoveryException

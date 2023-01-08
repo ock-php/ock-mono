@@ -7,13 +7,14 @@ declare(strict_types = 1);
  *   Original php snippet.
  */
 
-use Donquixote\DID\Generator\ValueDefinitionToPhp;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\CodeFormatUtil;
+use Donquixote\DID\ValueDefinitionToPhp\ValueDefinitionToPhp;
+use Donquixote\CodegenTools\Util\CodeGen;
 
 $definition = eval($php);
 $expression = (new ValueDefinitionToPhp())->generate($definition);
 /** @noinspection PhpUnhandledExceptionInspection */
-$snippet = PhpUtil::formatAsSnippet('return ' . $expression . ';');
+$snippet = CodeFormatUtil::formatAsSnippet('return ' . $expression . ';');
 
 ?>
 

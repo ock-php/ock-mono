@@ -9,20 +9,21 @@ declare(strict_types = 1);
  *   Original php snippet.
  */
 
-use Donquixote\DID\Generator\ValueDefinitionToPhp;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\CodeFormatUtil;
+use Donquixote\DID\ValueDefinitionToPhp\ValueDefinitionToPhp;
+use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\DID\ValueDefinitionProcessor\ValueDefinitionProcessor_FlatServiceDefinition;
 
 $definition = eval($php);
 $generator = new ValueDefinitionToPhp();
 
 $expression = $generator->generate($definition);
-$snippet = PhpUtil::formatExpressionAsSnippet($expression);
+$snippet = CodeFormatUtil::formatExpressionAsSnippet($expression);
 
 $processor = new ValueDefinitionProcessor_FlatServiceDefinition();
 $flatDefinition = $processor->process($definition);
 $flatExpression = $generator->generate($flatDefinition);
-$flatSnippet = PhpUtil::formatExpressionAsSnippet($flatExpression);
+$flatSnippet = CodeFormatUtil::formatExpressionAsSnippet($flatExpression);
 
 ?>
 ## <?=$title . "\n" ?>

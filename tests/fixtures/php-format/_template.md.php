@@ -11,8 +11,9 @@ declare(strict_types = 1);
  *   TRUE if this example is expected to fail.
  */
 
+use Donquixote\CodegenTools\Util\CodeFormatUtil;
 use Donquixote\DID\Tests\Util\TestUtil;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\CodeGen;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\AssertionFailedError;
 
@@ -33,12 +34,12 @@ Original PHP:
 try {
   print TestUtil::formatMarkdownSection(
     'Formatted as snippet',
-    PhpUtil::formatAsSnippet($php),
+    CodeFormatUtil::formatAsSnippet($php),
   );
   print "\n";
   print TestUtil::formatMarkdownSection(
     'Formatted as file',
-    PhpUtil::formatAsFile($php),
+    CodeFormatUtil::formatAsFile($php),
   );
   if ($fail) {
     Assert::fail('Expected an exception.');
@@ -51,11 +52,11 @@ catch (\Throwable $e) {
   if (!$fail) {
     throw $e;
   }
-  $expression = PhpUtil::phpConstruct(get_class($e), [
+  $expression = CodeGen::phpConstruct(get_class($e), [
     var_export($e->getMessage(), TRUE),
   ]);
   print TestUtil::formatMarkdownSection(
     'Exception',
-    PhpUtil::formatAsSnippet('throw ' . $expression . ';'),
+    CodeFormatUtil::formatAsSnippet('throw ' . $expression . ';'),
   );
 }

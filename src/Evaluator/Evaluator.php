@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Donquixote\DID\Evaluator;
 
+use Donquixote\DID\Container\Container_Empty;
 use Donquixote\DID\Exception\ContainerToValueException;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Call;
 use Donquixote\DID\ValueDefinition\ValueDefinition_CallObjectMethod;
@@ -18,23 +19,31 @@ use Psr\Container\ContainerInterface;
 
 class Evaluator implements EvaluatorInterface {
 
+  private ContainerInterface $container;
+
   private ?array $parametricArgs = NULL;
 
   /**
    * Constructor.
    *
-   * @param \Psr\Container\ContainerInterface $container
+   * @param \Psr\Container\ContainerInterface|null $container
+   *   The container, or NULL for empty container.
    */
-  public function __construct(
-    private readonly ContainerInterface $container,
-  ) {}
+  public function __construct(?ContainerInterface $container) {
+    $this->container = $container ?? new Container_Empty();
+  }
 
   /**
-   * @param mixed $definition
-   *
-   * @return mixed
-   *
-   * @throws \Psr\Container\ContainerExceptionInterface
+   * {@inheritdoc}
+   */
+  public function withContainer(ContainerInterface $container): static {
+    $clone = clone $this;
+    $clone->container = $container;
+    return $clone;
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public function evaluate(mixed $definition): mixed {
     if (is_array($definition)) {
@@ -94,12 +103,23 @@ class Evaluator implements EvaluatorInterface {
     );
   }
 
-  private function withParametricArgs(array $args) {
+  /**
+   * @param array $args
+   *
+   * @return \Donquixote\DID\Evaluator\Evaluator
+   */
+  private function withParametricArgs(array $args): Evaluator {
     $clone = clone $this;
     $clone->parametricArgs = $args;
     return $clone;
   }
 
+  /**
+   * @param string $message
+   *
+   * @return never
+   * @throws \Donquixote\DID\Exception\ContainerToValueException
+   */
   private function fail(string $message): never {
     throw new ContainerToValueException($message);
   }

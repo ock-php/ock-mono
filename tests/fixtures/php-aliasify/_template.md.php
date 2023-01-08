@@ -9,7 +9,7 @@ declare(strict_types = 1);
  *   Original php snippet.
  */
 
-use Donquixote\DID\CodegenTools\Aliasifier;
+use Donquixote\CodegenTools\Aliasifier;
 
 $orig = $php;
 $importsPhp = (new Aliasifier())->aliasify($php)->getImportsPhp();

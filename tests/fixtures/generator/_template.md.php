@@ -11,8 +11,9 @@ declare(strict_types = 1);
  *   TRUE if this example is expected to fail.
  */
 
-use Donquixote\DID\Generator\ValueDefinitionToPhp;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\CodeFormatUtil;
+use Donquixote\DID\ValueDefinitionToPhp\ValueDefinitionToPhp;
+use Donquixote\CodegenTools\Util\CodeGen;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\AssertionFailedError;
 
@@ -34,7 +35,7 @@ catch (\Exception $e) {
   if (!$fail) {
     throw $e;
   }
-  $expression = PhpUtil::phpConstruct(get_class($e), [
+  $expression = CodeGen::phpConstruct(get_class($e), [
     var_export($e->getMessage(), TRUE),
   ]);
   $statement = 'throw ' . $expression . ';';
@@ -52,5 +53,5 @@ Value definition:
 <?= $fail ? 'Exception' : 'Generated code' ?>:
 
 ```php
-<?=PhpUtil::formatAsSnippet($statement) . "\n" ?>
+<?= CodeFormatUtil::formatAsSnippet($statement) . "\n" ?>
 ```

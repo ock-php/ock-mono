@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\Generator;
+namespace Donquixote\DID\ValueDefinitionToPhp;
 
-use Donquixote\DID\Exception\CodegenException;
-use Donquixote\DID\Util\MessageUtil;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Exception\CodegenException;
+use Donquixote\CodegenTools\Util\MessageUtil;
+use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Call;
 use Donquixote\DID\ValueDefinition\ValueDefinition_CallObjectMethod;
 use Donquixote\DID\ValueDefinition\ValueDefinition_ClassName;
@@ -45,7 +45,7 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
   public function generate(mixed $definition, bool $enclose = FALSE): string {
     /** @noinspection PhpVoidFunctionResultUsedInspection */
     return match (gettype($definition)) {
-      'array' => PhpUtil::phpArray(
+      'array' => CodeGen::phpArray(
         $this->generateMultiple($definition),
       ),
       'boolean',
@@ -58,15 +58,15 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
       'object' => match (get_class($definition)) {
         ValueDefinition_GetService::class => $this->containerPlaceholder
           . '->get(' . var_export($definition->id, TRUE) . ')',
-        ValueDefinition_Call::class => PhpUtil::phpCallFqn(
+        ValueDefinition_Call::class => CodeGen::phpCallFqn(
           $this->generateCallFqn($definition->callback),
           $this->generateMultiple($definition->args),
         ),
-        ValueDefinition_Parametric::class => PhpUtil::phpEncloseIf(
+        ValueDefinition_Parametric::class => CodeGen::phpEncloseIf(
           'static fn (...$args) => ' . $this->generate($definition->value),
           $enclose,
         ),
-        ValueDefinition_Construct::class => PhpUtil::phpCallFqn(
+        ValueDefinition_Construct::class => CodeGen::phpCallFqn(
           is_string($definition->class)
             ? '\\' . $definition->class
             : $this->generate($definition->class),
@@ -76,7 +76,7 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
         ValueDefinition_GetArgument::class => '$args[' . $definition->position . ']',
         ValueDefinition_ClassName::class => '\\' . $definition->class . '::class',
         ValueDefinition_GetContainer::class => $this->containerPlaceholder,
-        ValueDefinition_CallObjectMethod::class => PhpUtil::phpCallMethod(
+        ValueDefinition_CallObjectMethod::class => CodeGen::phpCallMethod(
           $this->generate($definition->object, true),
           is_string($definition->method)
             ? $definition->method
@@ -106,7 +106,7 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
    *   Definition for a callable value.
    *
    * @return string
-   * @throws \Donquixote\DID\Exception\CodegenException
+   * @throws \Donquixote\CodegenTools\Exception\CodegenException
    */
   private function generateCallFqn(mixed $definition): string {
     if (is_string($definition)) {
@@ -131,7 +131,7 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
       return "$classOrObjectPhp->$methodPhp";
     }
     // Use generic callable syntax, because it could be static or not.
-    return PhpUtil::phpArray([
+    return CodeGen::phpArray([
       $this->generate($classOrObjectDefinition),
       $this->generate($methodDefinition),
     ]);
@@ -147,7 +147,7 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
   }
 
   /**
-   * @throws \Donquixote\DID\Exception\CodegenException
+   * @throws \Donquixote\CodegenTools\Exception\CodegenException
    */
   private function fail(string $message): never {
     throw new CodegenException($message);

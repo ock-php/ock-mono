@@ -13,7 +13,7 @@ use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
 use Donquixote\DID\Exception\DiscoveryException;
 use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
 use Donquixote\DID\Util\AttributesUtil;
-use Donquixote\DID\Util\MessageUtil;
+use Donquixote\CodegenTools\Util\MessageUtil;
 
 class CTVList_Discovery_ParameterizedServiceAttribute extends ReflectionClassesIAHavingBase implements CTVListInterface {
 

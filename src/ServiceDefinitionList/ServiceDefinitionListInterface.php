@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ServiceDefinition;
+namespace Donquixote\DID\ServiceDefinitionList;
 
 /**
  * @template KeyedById as bool

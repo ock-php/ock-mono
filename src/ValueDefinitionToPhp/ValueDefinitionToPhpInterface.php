@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\Generator;
+namespace Donquixote\DID\ValueDefinitionToPhp;
 
 use Donquixote\DID\ValueDefinition\ValueDefinitionInterface;
 
@@ -17,7 +17,7 @@ interface ValueDefinitionToPhpInterface {
    * @return string
    *   PHP expression that produces the value described in the definition.
    *
-   * @throws \Donquixote\DID\Exception\CodegenException
+   * @throws \Donquixote\CodegenTools\Exception\CodegenException
    *   The value contains parts that cannot be exported.
    */
   public function generate(ValueDefinitionInterface $definition, bool $enclose = FALSE): string;

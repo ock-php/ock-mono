@@ -6,7 +6,7 @@ namespace Donquixote\DID\Attribute\Parameter;
 
 use Donquixote\DID\Attribute\ReflectorAwareAttributeInterface;
 use Donquixote\DID\Exception\MalformedDeclarationException;
-use Donquixote\DID\Util\MessageUtil;
+use Donquixote\CodegenTools\Util\MessageUtil;
 use Donquixote\DID\Util\ReflectionTypeUtil;
 
 /**

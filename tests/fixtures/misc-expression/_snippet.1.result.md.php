@@ -11,7 +11,7 @@ declare(strict_types = 1);
  *   TRUE if this example is expected to fail.
  */
 
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\CodeGen;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\AssertionFailedError;
 

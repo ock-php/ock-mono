@@ -4,12 +4,10 @@ declare(strict_types = 1);
 
 namespace Donquixote\DID\Container;
 
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\DID\ContainerToValue\ContainerToValue_Container;
-use Donquixote\DID\CTVList\CTVList_Discovery_ServiceAttribute;
+use Donquixote\DID\Evaluator\Evaluator_Empty;
+use Donquixote\DID\Evaluator\EvaluatorInterface;
 use Donquixote\DID\Exception\ContainerToValueException;
-use Donquixote\DID\ParamToCTV\ParamToCTV;
-use Donquixote\DID\ServiceDefinition\ServiceDefinitionListInterface;
+use Donquixote\DID\ServiceDefinitionList\ServiceDefinitionListInterface;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Call;
 use Donquixote\DID\ValueDefinition\ValueDefinition_CallObjectMethod;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Construct;
@@ -26,26 +24,46 @@ class Container_ValueDefinitons implements ContainerInterface {
   private array $cache = [];
 
   /**
+   * @var \Donquixote\DID\Evaluator\EvaluatorInterface
+   */
+  private EvaluatorInterface $evaluator;
+
+  /**
    * Constructor.
    *
    * @param array<string, \Donquixote\DID\ValueDefinition\ValueDefinitionInterface> $definitions
    */
   public function __construct(
-    private readonly array $definitions,
-  ) {}
+    private array $definitions,
+    ?EvaluatorInterface $evaluator,
+  ) {
+    $this->evaluator = $evaluator?->withContainer($this)
+      ?? new Evaluator_Empty();
+  }
 
   /**
-   * @param \Donquixote\DID\ServiceDefinition\ServiceDefinitionListInterface $serviceDefinitionList
+   * @param \Donquixote\DID\Evaluator\EvaluatorInterface $evaluator
    *
    * @return static
-   * @throws \Donquixote\DID\Exception\DiscoveryException
    */
-  public static function fromServiceDefinitionList(ServiceDefinitionListInterface $serviceDefinitionList): self {
-    $definitions = [];
-    foreach ($serviceDefinitionList->getDefinitions() as $serviceDefinition) {
-      $definitions[$serviceDefinition->id] = $serviceDefinition->valueDefinition;
-    }
-    return new self($definitions);
+  public function withEvaluator(EvaluatorInterface $evaluator): static {
+    $clone = clone $this;
+    $clone->evaluator = $evaluator->withContainer($clone);
+    $clone->cache = [];
+    return $clone;
+  }
+
+  /**
+   * @param \Donquixote\DID\Evaluator\EvaluatorInterface $evaluator
+   *
+   * @return static
+   */
+  public function withValueDefinitions(array $definitions): static {
+    $clone = clone $this;
+    $clone->evaluator = $this->evaluator->withContainer($clone);
+    $clone->definitions = $definitions;
+    $clone->cache = [];
+    return $clone;
   }
 
   /**
@@ -54,11 +72,12 @@ class Container_ValueDefinitons implements ContainerInterface {
    * @param class-string<T>|string $id
    *
    * @return T|mixed
+   *
    * @throws \Donquixote\DID\Exception\ContainerToValueException
    */
   public function get(string $id): mixed {
     return $this->cache[$id]
-      ??= $this->build($this->definitions[$id] ?? $this->fail($id));
+      ??= $this->evaluator->evaluate($this->definitions[$id] ?? $this->fail($id));
   }
 
   /**

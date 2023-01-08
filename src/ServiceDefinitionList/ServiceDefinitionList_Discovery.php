@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ServiceDefinition;
+namespace Donquixote\DID\ServiceDefinitionList;
 
 use Donquixote\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
 use Donquixote\DID\Attribute\ServiceDefinitionAttributeInterface;
 use Donquixote\DID\Util\AttributesUtil;
 
 /**
- * @template-extends \Donquixote\DID\ServiceDefinition\ServiceDefinitionListInterface<false>
+ * @template-extends \Donquixote\DID\ServiceDefinitionList\ServiceDefinitionListInterface<false>
  */
 class ServiceDefinitionList_Discovery extends ReflectionClassesIAHavingBase implements ServiceDefinitionListInterface {
 
