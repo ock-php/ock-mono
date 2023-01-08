@@ -1,0 +1,28 @@
+{
+    "name": "donquixote/codegen-tools",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Hennings",
+            "email": "andreas@dqxtech.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "symfony/yaml": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Donquixote\\CodegenTools\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Donquixote\\CodegenTools\\Tests\\": "tests/src"
+        }
+    }
+}
