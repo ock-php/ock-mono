@@ -1,0 +1,11 @@
+language: php
+php:
+  - 8.1
+
+install: composer install
+
+script:
+  - vendor/bin/phpunit --coverage-clover clover.xml
+
+after_script:
+  - php vendor/bin/coveralls --exclude-no-stmt
