@@ -4,7 +4,8 @@ Value definition:
 
 ```php
 use Donquixote\DID\Tests\Fixtures\C;
-use Donquixote\DID\Tests\Fixtures\GenericObject;use Donquixote\DID\ValueDefinition\ValueDefinition_Call;
+use Donquixote\DID\Tests\Fixtures\GenericObject;
+use Donquixote\DID\ValueDefinition\ValueDefinition_Call;
 
 return new ValueDefinition_Call([
   GenericObject::class,

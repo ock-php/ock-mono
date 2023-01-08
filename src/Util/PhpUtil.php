@@ -17,6 +17,8 @@ final class PhpUtil {
    * @param string|null $namespace
    *
    * @return string
+   *
+   * @throws \Donquixote\DID\Exception\CodegenException
    */
   public static function formatAsFile(string $php, string $namespace = NULL): string {
     return "<?php\n\ndeclare(strict_types=1);\n\n"
@@ -29,6 +31,8 @@ final class PhpUtil {
    * @param string $phpExpression
    *
    * @return string
+   *
+   * @throws \Donquixote\DID\Exception\CodegenException
    */
   public static function formatExpressionAsSnippet(string $phpExpression): string {
     $statement = 'return ' . $phpExpression . ';';
@@ -112,11 +116,30 @@ final class PhpUtil {
   /**
    * @param class-string $class
    * @param string[] $argsPhp
+   * @param bool $enclose
+   *   TRUE to wrap in ().
    *
    * @return string
    */
-  public static function phpConstruct(string $class, array $argsPhp = []): string {
-    return self::phpCallFqn('new \\' . $class, $argsPhp);
+  public static function phpConstruct(string $class, array $argsPhp = [], bool $enclose = false): string {
+    return self::phpCallFqn('new \\' . $class, $argsPhp, $enclose);
+  }
+
+  /**
+   * @param string $classExpression
+   *   Dynamic expression for the class name.
+   * @param string[] $argsPhp
+   * @param bool $enclose
+   *   TRUE to wrap in ().
+   *
+   * @return string
+   */
+  public static function phpConstructDynamic(string $classExpression, array $argsPhp = [], bool $enclose = false): string {
+    return self::phpCallFqn('new (' . $classExpression . ')', $argsPhp, $enclose);
+  }
+
+  public static function phpEncloseIf(string $php, bool $enclose): string {
+    return $enclose ? "($php)" : $php;
   }
 
   /**
@@ -135,14 +158,16 @@ final class PhpUtil {
    *
    * @return string
    */
-  public static function phpCallFqn(string $fqn, array $argsPhp): string {
+  public static function phpCallFqn(string $fqn, array $argsPhp, $enclose = false): string {
     if ($argsPhp === []) {
       return $fqn . '()';
     }
-    return $fqn . self::phpArglistLimit(
-      $argsPhp,
-      80 - strlen($fqn) + strrpos($fqn, "\n"),
+    $php = $fqn
+      . self::phpArglistLimit(
+        $argsPhp,
+        80 - strlen($fqn) + strrpos($fqn, "\n"),
       );
+    return $enclose ? "($php)" : $php;
   }
 
   /**
@@ -286,12 +311,12 @@ final class PhpUtil {
       \ReflectionClass::class => [$reflector->getName()],
       \ReflectionFunction::class => $reflector->isClosure()
         ? NULL
-        : [$reflector->getName()],
+        : [$reflector->name],
       \ReflectionMethod::class,
       \ReflectionProperty::class,
       \ReflectionClassConstant::class => [
-        $reflector->getDeclaringClass()->getName(),
-        $reflector->getName(),
+        $reflector->class,
+        $reflector->name,
       ],
       default => NULL,
     };

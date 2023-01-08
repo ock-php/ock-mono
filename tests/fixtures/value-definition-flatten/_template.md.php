@@ -9,12 +9,12 @@ declare(strict_types = 1);
  *   Original php snippet.
  */
 
-use Donquixote\DID\Generator\Generator;
+use Donquixote\DID\Generator\ValueDefinitionToPhp;
 use Donquixote\DID\Util\PhpUtil;
 use Donquixote\DID\ValueDefinitionProcessor\ValueDefinitionProcessor_FlatServiceDefinition;
 
 $definition = eval($php);
-$generator = new Generator();
+$generator = new ValueDefinitionToPhp();
 
 $expression = $generator->generate($definition);
 $snippet = PhpUtil::formatExpressionAsSnippet($expression);

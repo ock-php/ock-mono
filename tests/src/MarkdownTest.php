@@ -12,41 +12,6 @@ use PHPUnit\Framework\TestCase;
 
 class MarkdownTest extends TestCase {
 
-  /**
-   * @param string $dirname
-   * @param string $testCaseFileName
-   * @param string $markdownFileName
-   *
-   * @throws \Exception
-   *
-   * @dataProvider providerTestOther
-   */
-  public function testOther(string $dirname, string $testCaseFileName, string $markdownFileName): void {
-    $dir = $this->getFixturesDir() . '/' . $dirname;
-    $markdownFile = $dir . '/' . $markdownFileName;
-    $originalMarkdown = file_get_contents($markdownFile);
-    $parts = preg_split(
-      '@^```(\w*)\n(.*?)\n```$@sm',
-      $originalMarkdown,
-      -1,
-      PREG_SPLIT_DELIM_CAPTURE,
-    );
-    if (!isset($parts[2])) {
-      throw new \Exception(sprintf('No original code found in %s.', $markdownFile));
-    }
-    $testCaseFile = $dir . '/' . $testCaseFileName;
-    if (!is_file($testCaseFile)) {
-      throw new \Exception(sprintf(
-        'Missing template file %s.',
-        $testCaseFile,
-      ));
-    }
-    $this->includeFile($testCaseFile, [
-      'php' => $parts[2],
-      'first' => $parts[2],
-    ]);
-  }
-
   private function includeFile(): void {
     extract(func_get_arg(1));
     try {
@@ -205,6 +170,41 @@ EOT;
     finally {
       ob_end_clean();
     }
+  }
+
+  /**
+   * @param string $dirname
+   * @param string $testCaseFileName
+   * @param string $markdownFileName
+   *
+   * @throws \Exception
+   *
+   * @dataProvider providerTestOther
+   */
+  public function testOther(string $dirname, string $testCaseFileName, string $markdownFileName): void {
+    $dir = $this->getFixturesDir() . '/' . $dirname;
+    $markdownFile = $dir . '/' . $markdownFileName;
+    $originalMarkdown = file_get_contents($markdownFile);
+    $parts = preg_split(
+      '@^```(\w*)\n(.*?)\n```$@sm',
+      $originalMarkdown,
+      -1,
+      PREG_SPLIT_DELIM_CAPTURE,
+    );
+    if (!isset($parts[2])) {
+      throw new \Exception(sprintf('No original code found in %s.', $markdownFile));
+    }
+    $testCaseFile = $dir . '/' . $testCaseFileName;
+    if (!is_file($testCaseFile)) {
+      throw new \Exception(sprintf(
+        'Missing template file %s.',
+        $testCaseFile,
+      ));
+    }
+    $this->includeFile($testCaseFile, [
+      'php' => $parts[2],
+      'first' => $parts[2],
+    ]);
   }
 
   /**

@@ -4,7 +4,8 @@ Value definition:
 
 ```php
 use Donquixote\DID\Tests\Fixtures\C;
-use Donquixote\DID\ValueDefinition\ValueDefinition_Construct;use Donquixote\DID\ValueDefinition\ValueDefinition_GetService;
+use Donquixote\DID\ValueDefinition\ValueDefinition_Construct;
+use Donquixote\DID\ValueDefinition\ValueDefinition_GetService;
 
 return new ValueDefinition_Construct(C::class, [
   5,

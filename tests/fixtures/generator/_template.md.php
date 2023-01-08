@@ -11,14 +11,14 @@ declare(strict_types = 1);
  *   TRUE if this example is expected to fail.
  */
 
-use Donquixote\DID\Generator\Generator;
+use Donquixote\DID\Generator\ValueDefinitionToPhp;
 use Donquixote\DID\Util\PhpUtil;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\AssertionFailedError;
 
 $orig = $php;
 $definition = eval($php);
-$generator = new Generator();
+$generator = new ValueDefinitionToPhp();
 
 try {
   $expression = $generator->generate($definition);

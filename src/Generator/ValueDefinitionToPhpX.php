@@ -16,7 +16,7 @@ use Donquixote\DID\ValueDefinition\ValueDefinition_GetService;
 use Donquixote\DID\ValueDefinition\ValueDefinition_Parametric;
 use Donquixote\DID\ValueDefinition\ValueDefinitionInterface;
 
-class Generator implements GeneratorInterface {
+class ValueDefinitionToPhpX implements ValueDefinitionToPhpInterface {
 
   /**
    * Constructor.
@@ -26,6 +26,31 @@ class Generator implements GeneratorInterface {
   public function __construct(
     private readonly string $containerPlaceholder = '$container',
   ) {}
+
+  public static function getFunctions(): array {
+    return [
+      'service' => fn (string $id) => $this->containerPlaceholder . '->get(' . var_export($id, TRUE) . ')',
+      'container' => fn () => $this->containerPlaceholder,
+      'classname' => static fn (string $class) => '\\' . $class . '::class',
+      'construct' => static fn (string $class, array $args) => 0,
+    ];
+  }
+
+  public static function getFunctionsX(): array {
+    return [
+      function (ValueDefinition_Construct $definition, bool $enclose): string {
+        $argsPhp = $this->generateMultiple($definition->args);
+        if (is_string($definition->class)) {
+          $php = PhpUtil::phpCallFqn('new \\' . $definition->class, $argsPhp);
+        }
+        else {
+          $classPhp = $this->generate($definition->class, true);
+          $php = PhpUtil::phpCallFqn('new (' . $classPhp . ')', $argsPhp);
+        }
+        return $enclose ? "($php)" : $php;
+      },
+    ];
+  }
 
   /**
    * {@inheritdoc}

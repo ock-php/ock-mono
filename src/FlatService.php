@@ -74,7 +74,7 @@ class FlatService {
    */
   private static function unpackArg(array $arg, callable $lookup): mixed {
     /** @noinspection PhpVoidFunctionResultUsedInspection */
-    return match($arg['op'] ?? NULL) {
+    return match ($arg['op'] ?? NULL) {
       'value' => $arg['value'],
       'array' => array_map($lookup, $arg['array']),
       'call' => $lookup($arg['callback'])(

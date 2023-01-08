@@ -11,7 +11,7 @@
 
 declare(strict_types = 1);
 
-use Donquixote\DID\Generator\Generator;
+use Donquixote\DID\Generator\ValueDefinitionToPhp;
 use Donquixote\DID\Tests\Util\TestUtil;
 use Donquixote\DID\Util\PhpUtil;
 
