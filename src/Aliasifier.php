@@ -8,14 +8,20 @@ use Donquixote\CodegenTools\Exception\CodegenException;
 
 class Aliasifier {
 
+  private const TYPE_CLASS = '';
+
+  private const TYPE_FUNCTION = 'function ';
+
+  private const TYPE_CONST = 'const ';
+
   /**
    * @var array<string, array<string, string>>
    *   Format: $[$type][$qcn] = $alias.
    */
   private array $aliasesByType = [
-    '' => [],
-    'function ' => [],
-    'const ' => [],
+    self::TYPE_CLASS => [],
+    self::TYPE_FUNCTION => [],
+    self::TYPE_CONST => [],
   ];
 
   /**
@@ -23,9 +29,9 @@ class Aliasifier {
    *   Format: $[$type][$alias] = $qcn.
    */
   private array $importsByType = [
-    '' => [],
-    'function ' => [],
-    'const ' => [],
+    self::TYPE_CLASS => [],
+    self::TYPE_FUNCTION => [],
+    self::TYPE_CONST => [],
   ];
 
   /**
@@ -66,28 +72,18 @@ class Aliasifier {
    */
   private function doAliasify(string &$php): void {
     $tokens = \PhpToken::tokenize('<?php ' . $php);
-    array_shift($tokens);
-
     $type = NULL;
     $iLast = -1;
     /** @var array<int, string|null> $fqcnMap */
     $fqcnMap = [];
-    foreach ($tokens as $i => $token) {
+    for ($i = 0; $token = $tokens[$i] ?? null; ++$i) {
       switch ($token->id) {
         case \T_USE:
           // Note: Trait usage is not supported either.
           throw new CodegenException('Cannot aliasify code that already contains imports.');
 
         case \T_NAMESPACE:
-          // Note: Trait usage is not supported either.
           throw new CodegenException('Cannot aliasify code that is already in a namespace.');
-
-        case \T_STRING:
-        case \T_NS_SEPARATOR:
-        case \T_NAME_QUALIFIED:
-          $type = NULL;
-          $iLast = -1;
-          break;
 
         case \T_NAME_FULLY_QUALIFIED:
           $fqcnMap[$iLast = $i] = $type;
@@ -96,8 +92,8 @@ class Aliasifier {
 
         case \T_NEW:
         case \T_INSTANCEOF:
-        case ord(':'):
-        case ord('?'):
+        case \T_EXTENDS:
+        case \T_IMPLEMENTS:
         case \T_ATTRIBUTE:
           $type = '';
           $iLast = -1;
@@ -109,10 +105,13 @@ class Aliasifier {
 
         case \T_DOUBLE_COLON:
         case \T_VARIABLE:
-        case ord('&'):
           $type = NULL;
-          $fqcnMap[$iLast] ??= '';
+          $fqcnMap[$iLast] ??= self::TYPE_CLASS;
           $iLast = -1;
+          break;
+
+        case ord('(') . '_':
+          $fqcnMap[$iLast] ??= self::TYPE_FUNCTION;
           break;
 
         default:
@@ -125,13 +124,13 @@ class Aliasifier {
 
     foreach ($fqcnMap as $i => $type) {
       if ($type === NULL) {
-        continue;
+        $type = $this->determineFqcnType($tokens, $i);
       }
       $fqcn = (string) $tokens[$i];
       $qcn = substr($fqcn, 1);
-      $pos = strrpos($qcn, '\\');
-      if ($pos === FALSE) {
-        // This is a top-level name.
+      $pos = strrpos($qcn, '\\') ?: -1;
+      if ($pos === -1) {
+        // This is a top-level class name.
         continue;
       }
       $alias = $this->aliasesByType[$type][$qcn] ?? NULL;
@@ -139,8 +138,8 @@ class Aliasifier {
         $alias = substr($qcn, $pos + 1);
         $import = 'use ' . $type . $qcn;
         if (isset($this->importsByType[$type][$alias])) {
-          for ($iAliasVarition = 0; isset($aliasesByType[$type][$alias]); ++$i) {
-            $alias = substr($qcn, $pos + 1) . '_' . $iAliasVarition;
+          for ($iAliasVariation = 0; isset($this->importsByType[$type][$alias]); ++$iAliasVariation) {
+            $alias = substr($qcn, $pos + 1) . '_' . $iAliasVariation;
           }
           $import .= ' as ' . $alias;
         }
@@ -150,7 +149,26 @@ class Aliasifier {
       $tokens[$i] = $alias;
     }
 
+    array_shift($tokens);
     $php = implode('', $tokens);
+  }
+
+  private function determineFqcnType(array $tokens, int $i): string {
+    try {
+      $tokens[$i] = ' 5 ';
+      /** @noinspection PhpExpressionResultUnusedInspection */
+      token_get_all(implode('', $tokens), TOKEN_PARSE);
+      return self::TYPE_CONST;
+    }
+    catch (\ParseError) {}
+    try {
+      $tokens[$i] = ' C::f ';
+      /** @noinspection PhpExpressionResultUnusedInspection */
+      token_get_all(implode('', $tokens), TOKEN_PARSE);
+      return self::TYPE_FUNCTION;
+    }
+    catch (\ParseError) {}
+    return self::TYPE_CLASS;
   }
 
 }

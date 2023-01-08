@@ -69,7 +69,6 @@ class LineBreaker {
     if ($this->operatorMap === []) {
       $this->operatorMap = $this->buildOperatorMap();
     }
-    $orig = $php;
     $tokens = $this->tokenizeWithTrailingCommas($php);
     // Append two terminating tokens to allow lookaheads.
     $tokens[] = '#';
@@ -125,7 +124,6 @@ class LineBreaker {
     }
     $posshift = 0;
     $lineshift = 0;
-    $versions = ['<?php ' . $php, $phpNew];
     for (;;) {
       try {
         /** @noinspection PhpExpressionResultUnusedInspection */
@@ -134,7 +132,6 @@ class LineBreaker {
         foreach ($commaPositions as $pos) {
           // Remove just the line break, but keep the comma.
           $phpNew = substr_replace($phpNew, '', $pos - $posshift + 1, 1);
-          $versions[] = $phpNew;
           $posshift += 1;
         }
         return token_get_all($phpNew, TOKEN_PARSE);
@@ -146,7 +143,6 @@ class LineBreaker {
           if ($line === $eLine) {
             // Remove the comma and line break.
             $phpNew = substr_replace($phpNew, '', $pos - $posshift, 2);
-            $versions[] = $phpNew;
             $posshift += 2;
             ++$lineshift;
             break;
@@ -157,7 +153,6 @@ class LineBreaker {
           }
           // Remove just the line break, but keep the comma.
           $phpNew = substr_replace($phpNew, '', $pos - $posshift + 1, 1);
-          $versions[] = $phpNew;
           ++$lineshift;
           ++$posshift;
         }
@@ -421,16 +416,11 @@ class LineBreaker {
             $breakOnOperator = $breakOnOperatorCandidate;
             continue;
           }
-          if (true || $mode === self::MODE_LIST_INLINE) {
-            if (!$this->checkLastLineLength($position, $php)) {
-              if ($breakOnOperatorCandidate > 0) {
-                // Try again.
-                $breakOnOperator = $breakOnOperatorCandidate;
-                continue;
-              }
-            }
-            else {
-              $x = 5;
+          if (!$this->checkLastLineLength($position, $php)) {
+            if ($breakOnOperatorCandidate > 0) {
+              // Try again.
+              $breakOnOperator = $breakOnOperatorCandidate;
+              continue;
             }
           }
           if ($token === ',' || $token === ';') {

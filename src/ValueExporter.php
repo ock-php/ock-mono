@@ -25,7 +25,6 @@ class ValueExporter implements ValueExporterInterface {
 
   /**
    * @param array $array
-   * @param bool $enclose
    *
    * @return string
    *
@@ -34,7 +33,7 @@ class ValueExporter implements ValueExporterInterface {
   private function exportArray(array $array): string {
     $valuesPhp = [];
     foreach ($array as $k => $v) {
-      $valuesPhp[$k] = $this->export($v, false);
+      $valuesPhp[$k] = $this->export($v);
     }
     return CodeGen::phpArray($valuesPhp);
   }
@@ -54,35 +53,10 @@ class ValueExporter implements ValueExporterInterface {
 
     $class = get_class($object);
 
-    /** @noinspection PhpVoidFunctionResultUsedInspection */
-    // @todo Use the $class variable once PhpStorm fixes static analysis. See
-    //   https://youtrack.jetbrains.com/issue/WI-70695/Type-recognition-with-getclass-vs-getdebugtype-in-match
-    $php = match (get_class($object)) {
-      // Support some known classes.
-      // @todo Make this pluggable.
-      \Closure::class => $this->fail('Cannot export closure.'),
-      \ReflectionClass::class => $object->isAnonymous()
-        ? $this->fail('Cannot export ReflectionClass for anonymous class.')
-        : $this->construct($class, [$object->name]),
-      \ReflectionFunction::class => $object->isClosure()
-        ? $this->fail('Cannot export ReflectionFunction for closure.')
-        : $this->construct($class, [$object->name]),
-      \ReflectionMethod::class,
-      \ReflectionProperty::class,
-      \ReflectionClassConstant::class => $object->getDeclaringClass()->isAnonymous()
-        ? $this->fail(sprintf(
-          'Cannot export %s for anonymous class.',
-          get_class($object),
-        ))
-        : $this->construct($class, [$object->class, $object->name]),
-      \ReflectionAttribute::class => $this->fail('Cannot export reflection attribute.'),
-      \ReflectionParameter::class => $this->export($object->getDeclaringFunction(), true)
-        . '->getParameter(' . var_export($object->name, TRUE) . ')',
-      default => NULL,
-    };
+    $constructorArgsPhp = $this->extractConstructorArgsPhp($object);
 
-    if ($php !== null) {
-      return $php;
+    if ($constructorArgsPhp !== null) {
+      return CodeGen::phpConstruct($class, $constructorArgsPhp, $enclose);
     }
 
     $rc = new \ReflectionClass($object);
@@ -105,22 +79,51 @@ class ValueExporter implements ValueExporterInterface {
         var_export(\serialize($object), TRUE),
       );
     }
-    catch (\Exception $e) {
+    catch (\Throwable $e) {
       throw new CodegenException('Cannot serialize the given object.', 0, $e);
     }
   }
 
   /**
-   * @param class-string $class
-   * @param array $args
+   * @param object $object
    *
-   * @return string
+   * @return string[]|null
+   *
+   * @throws \Donquixote\CodegenTools\Exception\CodegenException
    */
-  private function construct(string $class, array $args): string {
-    return CodeGen::phpConstruct($class, array_map(
-      fn ($arg) => var_export($arg, TRUE),
-      $args,
-    ));
+  private function extractConstructorArgsPhp(object $object): ?array {
+    /** @noinspection PhpVoidFunctionResultUsedInspection */
+    return match (get_class($object)) {
+      // Support some known classes.
+      // @todo Make this pluggable.
+      \Closure::class => $this->fail('Cannot export closure.'),
+      \ReflectionClass::class => $object->isAnonymous()
+        ? $this->fail('Cannot export ReflectionClass for anonymous class.')
+        : ['\\' . $object->name . '::class'],
+      \ReflectionFunction::class => $object->isClosure()
+        ? $this->fail('Cannot export ReflectionFunction for closure.')
+        : [var_export($object->name, TRUE)],
+      \ReflectionMethod::class => [
+        $this->extractConstructorArgsPhp($object->getDeclaringClass())[0],
+        $object->isClosure()
+          ? $this->fail('Cannot export ReflectionMethod for closure.')
+          : var_export($object->name, TRUE),
+      ],
+      \ReflectionProperty::class,
+      \ReflectionClassConstant::class => [
+        $this->extractConstructorArgsPhp($object->getDeclaringClass())[0],
+        var_export($object->name, TRUE),
+      ],
+      \ReflectionAttribute::class => $this->fail('Cannot export reflection attribute.'),
+      \ReflectionParameter::class => [
+        match (get_class($rf = $object->getDeclaringFunction())) {
+          \ReflectionMethod::class => CodeGen::phpArray($this->extractConstructorArgsPhp($rf)),
+          \ReflectionFunction::class => $this->extractConstructorArgsPhp($rf)[0],
+        },
+        $object->getPosition(),
+      ],
+      default => NULL,
+    };
   }
 
   /**

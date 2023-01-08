@@ -1,27 +1,22 @@
 <?php
 
+/**
+ * @noinspection PhpDocMissingThrowsInspection
+ * @noinspection PhpUnhandledExceptionInspection
+ */
+
 declare(strict_types = 1);
 
 namespace Donquixote\CodegenTools\Tests;
 
-use Donquixote\CodegenTools\Util\CodeFormatUtil;
 use Donquixote\CodegenTools\Tests\Util\TestUtil;
+use Donquixote\CodegenTools\Util\CodeFormatUtil;
 use Donquixote\CodegenTools\Util\CodeGen;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
 
 class MarkdownTest extends TestCase {
-
-  private function includeFile(): void {
-    extract(func_get_arg(1));
-    try {
-      include func_get_arg(0);
-    }
-    catch (\Throwable $e) {
-      throw $e;
-    }
-  }
 
   /**
    * @param string $dirname
@@ -32,57 +27,6 @@ class MarkdownTest extends TestCase {
    * @dataProvider providerTestSelfUpdating
    */
   public function testSelfUpdating(string $dirname, string $markdownFileName): void {
-    if (!preg_match('@^(0\.|)(.+)\.md$@', $markdownFileName, $m)) {
-      Assert::fail('File name does not match.');
-    }
-    [, $fail, $name] = $m;
-    $markdownFile = dirname(__DIR__) . '/fixtures/' . $dirname . '/' . $markdownFileName;
-    $originalMarkdown = file_get_contents($markdownFile);
-    $parts = preg_split(
-      '@^```(\w*)\n(.*?)\n```$@sm',
-      $originalMarkdown,
-      -1,
-      PREG_SPLIT_DELIM_CAPTURE,
-    );
-    $partss = [];
-    foreach ($parts as $i => $part) {
-      $partss[$i % 3][] = $part;
-    }
-    [$texts, $types, $snippets] = $partss;
-    if (!isset($parts[2])) {
-      throw new \Exception(sprintf('No original code found in %s.', $markdownFile));
-    }
-    $templateFile = dirname($markdownFile) . '/_template.md.php';
-    if (!is_file($templateFile)) {
-      throw new \Exception(sprintf(
-        'Missing template file %s.',
-        $templateFile,
-      ));
-    }
-    $actualMarkdown = $this->includeTemplateFile($templateFile, [
-      'title' => ucfirst(str_replace('-', ' ', basename($name, '.md'))),
-      'php' => $parts[2],
-      'first' => $parts[2],
-      'types' => $types,
-      'texts' => $texts,
-      'snippets' => $snippets,
-      'fail' => !!$fail,
-    ]);
-    TestUtil::assertFileContents(
-      $markdownFile,
-      $actualMarkdown,
-    );
-  }
-
-  /**
-   * @param string $dirname
-   * @param string $markdownFileName
-   *
-   * @throws \Exception
-   *
-   * @dataProvider providerTestSelfUpdating1
-   */
-  public function testSelfUpdating1(string $dirname, string $markdownFileName): void {
     $snippetFileNames = $this->getSnippetFileNames($dirname);
     if (!preg_match('@^(0\.|)(.+)\.md$@', $markdownFileName, $m)) {
       Assert::fail('File name does not match.');
@@ -159,17 +103,18 @@ EOT;
   }
 
   /**
-   * @return string
+   * @return \Iterator
    */
-  private function includeTemplateFile(): string {
-    extract(func_get_arg(1));
-    ob_start();
-    try {
-      include func_get_arg(0);
-      return ob_get_contents();
-    }
-    finally {
-      ob_end_clean();
+  public function providerTestSelfUpdating(): \Iterator {
+    foreach ($this->getDirNames() as $dirname) {
+      $markdownFileNames = $this->getMarkdownFileNames($dirname);
+      $snippetFileNames = $this->getSnippetFileNames($dirname);
+      if (!$snippetFileNames) {
+        continue;
+      }
+      foreach ($markdownFileNames as $markdownFileName) {
+        yield $dirname . '/' . $markdownFileName => [$dirname, $markdownFileName];
+      }
     }
   }
 
@@ -177,8 +122,6 @@ EOT;
    * @param string $dirname
    * @param string $testCaseFileName
    * @param string $markdownFileName
-   *
-   * @throws \Exception
    *
    * @dataProvider providerTestOther
    */
@@ -202,9 +145,18 @@ EOT;
         $testCaseFile,
       ));
     }
+    $partss = [];
+    foreach ($parts as $i => $part) {
+      $partss[$i % 3][] = $part;
+    }
+    [$texts, $types, $snippets] = $partss;
     $this->includeFile($testCaseFile, [
       'php' => $parts[2],
       'first' => $parts[2],
+      'title' => ucfirst(str_replace('-', ' ', basename($markdownFileName, '.md'))),
+      'types' => $types,
+      'texts' => $texts,
+      'snippets' => $snippets,
     ]);
   }
 
@@ -226,33 +178,30 @@ EOT;
   }
 
   /**
-   * @return \Iterator
+   * @return string
    */
-  public function providerTestSelfUpdating(): \Iterator {
-    $fixturesDir = $this->getFixturesDir();
-    foreach ($this->getDirNames() as $dirname) {
-      if (!is_file($fixturesDir . '/' . $dirname . '/_template.md.php')) {
-        continue;
-      }
-      foreach ($this->getMarkdownFileNames($dirname) as $name) {
-        yield $dirname . '/' . $name => [$dirname, $name];
-      }
+  private function includeTemplateFile(): string {
+    extract(func_get_arg(1));
+    ob_start();
+    try {
+      include func_get_arg(0);
+      return ob_get_contents();
+    }
+    finally {
+      ob_end_clean();
     }
   }
 
   /**
-   * @return \Iterator
+   * @noinspection PhpExceptionImmediatelyRethrownInspection
    */
-  public function providerTestSelfUpdating1(): \Iterator {
-    foreach ($this->getDirNames() as $dirname) {
-      $markdownFileNames = $this->getMarkdownFileNames($dirname);
-      $snippetFileNames = $this->getSnippetFileNames($dirname);
-      if (!$snippetFileNames) {
-        continue;
-      }
-      foreach ($markdownFileNames as $markdownFileName) {
-        yield $dirname . '/' . $markdownFileName => [$dirname, $markdownFileName];
-      }
+  private function includeFile(): void {
+    extract(func_get_arg(1));
+    try {
+      include func_get_arg(0);
+    }
+    catch (\Throwable $e) {
+      throw $e;
     }
   }
 

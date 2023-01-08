@@ -10,6 +10,8 @@ interface ExportableAttributeInterface {
 
   /**
    * @param object $object
+   * @param \Donquixote\CodegenTools\ValueExporterInterface $exporter
+   * @param bool $enclose
    *
    * @return string
    *   Php expression.

@@ -4,9 +4,8 @@ declare(strict_types = 1);
 
 namespace Donquixote\CodegenTools\Attribute;
 
-use Donquixote\CodegenTools\Attribute\ExportableAttributeInterface;
-use Donquixote\CodegenTools\ValueExporterInterface;
 use Donquixote\CodegenTools\Util\CodeGen;
+use Donquixote\CodegenTools\ValueExporterInterface;
 
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class TrivialExport implements ExportableAttributeInterface {
