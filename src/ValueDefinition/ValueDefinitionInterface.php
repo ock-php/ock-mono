@@ -8,6 +8,8 @@ namespace Donquixote\DID\ValueDefinition;
  * Abstract interface with no methods.
  *
  * Every implementation will have its own methods.
+ * Calling code needs to provide dedicated code branches for different
+ * implementations.
  */
 interface ValueDefinitionInterface {
 

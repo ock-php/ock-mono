@@ -72,8 +72,9 @@ use Donquixote\DID\Exception\ServiceNotFoundException;
 use Donquixote\DID\Tests\Fixtures\Services\SiteConfig;
 use Donquixote\DID\Tests\Fixtures\Services\Translator\Translator;
 use Donquixote\DID\Tests\Fixtures\Services\WordLookup;
+use Psr\Container\ContainerInterface;
 
-return new class implements \Psr\Container\ContainerInterface {
+return new class implements ContainerInterface {
 
   private array $cache = [];
 

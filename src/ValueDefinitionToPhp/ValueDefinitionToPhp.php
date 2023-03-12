@@ -54,7 +54,7 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
       'double',
       'NULL' => var_export($definition, TRUE),
       'resource',
-      'resource (closed)' => $this->fail('Cannot export resources'),
+      'resource (closed)' => $this->fail('Cannot export resources.'),
       'object' => match (get_class($definition)) {
         ValueDefinition_GetService::class => $this->containerPlaceholder
           . '->get(' . var_export($definition->id, TRUE) . ')',
@@ -68,8 +68,8 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
         ),
         ValueDefinition_Construct::class => CodeGen::phpCallFqn(
           is_string($definition->class)
-            ? '\\' . $definition->class
-            : $this->generate($definition->class),
+            ? 'new \\' . $definition->class
+            : 'new (' . $this->generate($definition->class) . ')',
           $this->generateMultiple($definition->args),
           $enclose,
         ),
