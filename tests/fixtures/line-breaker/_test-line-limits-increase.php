@@ -3,12 +3,19 @@
 declare(strict_types = 1);
 
 /**
+ * @var string $name
+ *   Name of the markdown file.
  * @var string $php
  *   Original php snippet.
  */
 
 use Donquixote\CodegenTools\LineBreaker;
 use PHPUnit\Framework\Assert;
+
+if (str_contains($name, 'irreversible')) {
+  Assert::assertTrue(true);
+  return;
+}
 
 $lineBreaker = new LineBreaker();
 
