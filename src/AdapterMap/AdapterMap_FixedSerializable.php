@@ -6,9 +6,9 @@ namespace Donquixote\Adaptism\AdapterMap;
 
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\Exception\AdapterNotAvailableException;
-use Donquixote\DID\Exception\ContainerToValueException;
 use Donquixote\Adaptism\Exception\MissingAdapterException;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Bridge;
+use Donquixote\DID\Exception\ContainerToValueException;
 use Psr\Container\ContainerInterface;
 
 class AdapterMap_FixedSerializable implements AdapterMapInterface {

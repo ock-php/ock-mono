@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\SpecificAdapter;
 
-use Donquixote\DID\ContainerToValue\ContainerToValue_Construct;
-use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\DID\ContainerToValue\ContainerToValue_Construct;
+use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
 
 class SpecificAdapter_Construct implements SpecificAdapterInterface {
 

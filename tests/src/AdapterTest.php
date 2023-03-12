@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @noinspection PhpUnhandledExceptionInspection
+ */
+
 declare(strict_types=1);
 
 namespace Donquixote\Adaptism\Tests;
@@ -17,10 +22,7 @@ use PHPUnit\Framework\TestCase;
 
 class AdapterTest extends TestCase {
 
-  /**
-   * @throws \Donquixote\DID\Exception\ContainerToValueException
-   * @throws \Donquixote\DID\Exception\DiscoveryException
-   */
+
   public function test(): void {
     $adapter = FixturesUtil::getContainer()->get(UniversalAdapterInterface::class);
 

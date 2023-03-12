@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\SpecificAdapter;
 
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\DID\ContainerToValue\ContainerToValue_Construct;
 use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class SpecificAdapter_SelfMethod implements SpecificAdapterInterface {
 
