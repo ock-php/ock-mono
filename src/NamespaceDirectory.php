@@ -2,25 +2,27 @@
 
 namespace Donquixote\ClassDiscovery;
 
-final class NamespaceDirectory {
+use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+
+/**
+ * Value object representing a single namespace directory.
+ */
+final class NamespaceDirectory implements ClassFilesIAInterface {
 
   /**
-   * @var string
+   * See http://php.net/manual/en/language.oop5.basic.php
    */
-  private $directory;
+  const CLASS_NAME_REGEX = /** @lang RegExp */ '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/';
 
-  /**
-   * @var string
-   */
-  private $terminatedNamespace;
+  const CANDIDATE_REGEX = /** @lang RegExp */ '/^([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(\.php|)$/';
 
   /**
    * @param string $directory
    * @param string $namespace
    *
-   * @return \Donquixote\ClassDiscovery\NamespaceDirectory
+   * @return self
    */
-  public static function create($directory, $namespace) {
+  public static function create($directory, $namespace): self {
 
     NsDirUtil::requireUnslashedDirectory($directory);
 
@@ -30,11 +32,12 @@ final class NamespaceDirectory {
   }
 
   /**
-   * @param string $class
+   * @param class-string $class
    *
-   * @return \Donquixote\ClassDiscovery\NamespaceDirectory
+   * @return self
+   * @throws \ReflectionException
    */
-  public static function createFromClass($class) {
+  public static function createFromClass(string $class): self {
 
     $reflClass = new \ReflectionClass($class);
 
@@ -47,11 +50,10 @@ final class NamespaceDirectory {
    * @param string $directory
    * @param string $terminatedNamespace
    */
-  private function __construct($directory, $terminatedNamespace) {
-
-    $this->directory = $directory;
-    $this->terminatedNamespace = $terminatedNamespace;
-  }
+  private function __construct(
+    private string $directory,
+    private string $terminatedNamespace,
+  ) {}
 
   /**
    * @return self
@@ -63,42 +65,47 @@ final class NamespaceDirectory {
   }
 
   /**
+   * Gets a version where all base paths are sent through ->realpath().
+   *
+   * @return static
+   */
+  public function withRealpathRoot(): static {
+    $clone = clone $this;
+    $clone->directory = realpath($this->directory);
+    return $clone;
+  }
+
+  /**
    * @param string $namespace
    *
    * @return self|null
    */
-  public function findNamespace($namespace) {
-
+  public function findNamespace(string $namespace): ?self {
     $namespace = NsDirUtil::terminateNamespace($namespace);
-
-    if (0 !== strpos($namespace, $this->terminatedNamespace)) {
+    if (!str_starts_with($namespace, $this->terminatedNamespace)) {
       return NULL;
     }
-
     if ($namespace === $this->terminatedNamespace) {
       return $this;
     }
-
     $l = strlen($this->terminatedNamespace);
-
-    $directory = $this->directory . '/' . str_replace(
+    $directory = $this->directory
+      . '/' . str_replace(
         '\\',
         '/',
-        substr($namespace, $l, -1));
-
+        substr($namespace, $l, -1),
+      );
     return new self($directory, $namespace);
   }
 
   /**
    * @return self
    */
-  public function basedir() {
-
+  public function basedir(): self {
     $base = $this;
     while (null !== $parent = $base->parent()) {
       $base = $parent;
     }
-
     return $base;
   }
 
@@ -109,7 +116,7 @@ final class NamespaceDirectory {
    *
    * @throws \RuntimeException
    */
-  public function requireParentN($nLevelsUp) {
+  public function requireParentN($nLevelsUp): self {
 
     if (null === $parent = $this->parentN($nLevelsUp)) {
       throw new \RuntimeException("No parent-!n namespace directory found for !dir / !nsp.");
@@ -130,8 +137,8 @@ final class NamespaceDirectory {
         strtr(
           "No parent namespace directory found for !dir / !nsp.",
           [
-            '!dir' => json_encode($this->getDirectory()),
-            '!nsp' => json_encode($this->getNamespace()),
+            '!dir' => var_export($this->getDirectory(), TRUE),
+            '!nsp' => var_export($this->getNamespace(), TRUE),
           ]));
     }
 
@@ -145,12 +152,18 @@ final class NamespaceDirectory {
    */
   public function parentN($nLevelsUp) {
 
-    if (0 === $nLevelsUp) {
+    if ($nLevelsUp === 0) {
       return $this;
     }
 
-    if (0 > $nLevelsUp) {
-      throw new \InvalidArgumentException('Parameter $nLevelsUp must not be negative.');
+    if ($nLevelsUp < 0) {
+      $nLevelsUp += substr_count($this->terminatedNamespace, '\\');
+      if ($nLevelsUp === 0) {
+        return $this;
+      }
+      if ($nLevelsUp < 0) {
+        return null;
+      }
     }
 
     if (null === $parent = $this->parent()) {
@@ -163,12 +176,10 @@ final class NamespaceDirectory {
   /**
    * @return self|null
    */
-  public function parent() {
-
+  public function parent(): ?self {
     if ('' === $this->terminatedNamespace || '' === $this->directory) {
       return NULL;
     }
-
     if (FALSE === $pos = strrpos($this->directory, '/')) {
       $parentDir = '';
       $subdirName = $this->directory;
@@ -177,20 +188,20 @@ final class NamespaceDirectory {
       $parentDir = substr($this->directory, 0, $pos);
       $subdirName = substr($this->directory, $pos + 1);
     }
-
     if ($subdirName . '\\' === $this->terminatedNamespace) {
       return new self($parentDir, '');
     }
-
     $l = strlen($subdirName);
-
+    if (!str_ends_with($this->terminatedNamespace, '\\' . $subdirName . '\\')) {
+      return NULL;
+    }
     if ('\\' . $subdirName . '\\' !== substr($this->terminatedNamespace, -$l - 2)) {
       return NULL;
     }
-
     return new self(
       $parentDir,
-      substr($this->terminatedNamespace, 0, -($l + 1)));
+      substr($this->terminatedNamespace, 0, -($l + 1)),
+    );
   }
 
   /**
@@ -201,27 +212,145 @@ final class NamespaceDirectory {
   public function subdir($fragment) {
     return new self(
       $this->directory . '/' . $fragment,
-      $this->terminatedNamespace . '\\' . $fragment);
+      $this->terminatedNamespace . $fragment . '\\',
+    );
   }
 
   /**
    * @return string
    */
-  public function getNamespace() {
+  public function getNamespace(): string {
     return rtrim($this->terminatedNamespace);
   }
 
   /**
    * @return string
    */
-  public function getTerminatedNamespace() {
+  public function getTerminatedNamespace(): string {
     return $this->terminatedNamespace;
   }
 
   /**
    * @return string
    */
-  public function getDirectory() {
+  public function getDirectory(): string {
     return $this->directory;
   }
+
+  /**
+   * @return \Iterator<string, class-string>
+   *   Format: $[$file] = $class
+   */
+  public function getIterator(): \Iterator {
+    return self::scan($this->directory, $this->terminatedNamespace);
+  }
+
+  /**
+   * @return array{array<string, class-string>, array<string, static>}
+   */
+  public function getElements(): array {
+    $classes = [];
+    $subdirs = [];
+    foreach (\scandir($this->directory, \SCANDIR_SORT_ASCENDING) as $candidate) {
+      if (!preg_match(self::CANDIDATE_REGEX, $candidate, $m)) {
+        continue;
+      }
+      [, $name, $ext] = $m;
+      $path = $this->directory . '/' . $candidate;
+      if ($ext) {
+        if (is_file($path)) {
+          // @todo Make the $candidate available as a variable?
+          $classes[$path] = $this->terminatedNamespace . $name;
+        }
+      }
+      else {
+        if (is_dir($path)) {
+          $subdirs[$candidate] = $this->subdir($candidate);
+        }
+      }
+    }
+    return [$classes, $subdirs];
+  }
+
+  /**
+   * @return array<string, class-string>
+   */
+  public function getClassFilesHere(): array {
+    $classFiles = [];
+    foreach (\scandir($this->directory, \SCANDIR_SORT_ASCENDING) as $candidate) {
+      if ('.' === $candidate[0]
+        || !\str_ends_with($candidate, '.php')
+      ) {
+        continue;
+      }
+      $path = $this->directory . '/' . $candidate;
+      if (!\is_file($path)) {
+        continue;
+      }
+      $name = \substr($candidate, 0, -4);
+      if (!\preg_match(self::CLASS_NAME_REGEX, $name)) {
+        continue;
+      }
+      // @todo Make the $candidate available as a variable?
+      $classFiles[$path] = $this->terminatedNamespace . $name;
+    }
+    return $classFiles;
+  }
+
+  /**
+   * @return \Iterator<string, static>
+   */
+  public function getSubdirsHere(): \Iterator {
+    foreach (\scandir($this->directory, \SCANDIR_SORT_ASCENDING) as $candidate) {
+      if (!preg_match(self::CLASS_NAME_REGEX, $candidate)) {
+        continue;
+      }
+      $path = $this->directory . '/' . $candidate;
+      if (!\is_dir($path)) {
+        continue;
+      }
+      yield $candidate => $this->subdir($candidate);
+    }
+  }
+
+  /**
+   * @param string $dir
+   * @param string $terminatedNamespace
+   *
+   * @return \Iterator<string, class-string>
+   *   Format: $[$file] = $class
+   *
+   * @psalm-suppress MoreSpecificReturnType
+   */
+  private static function scan(string $dir, string $terminatedNamespace): \Iterator {
+    foreach (\scandir($dir, \SCANDIR_SORT_ASCENDING) as $candidate) {
+      if ('.' === $candidate[0]) {
+        continue;
+      }
+      $path = $dir . '/' . $candidate;
+      if (\str_ends_with($candidate, '.php')) {
+        if (!is_file($path)) {
+          continue;
+        }
+        $name = substr($candidate, 0, -4);
+        if (!preg_match(self::CLASS_NAME_REGEX, $name)) {
+          continue;
+        }
+        yield $path => $terminatedNamespace . $name;
+      }
+      else {
+        if (!is_dir($path)) {
+          continue;
+        }
+        if (!preg_match(self::CLASS_NAME_REGEX, $candidate)) {
+          continue;
+        }
+        yield from self::scan(
+          $path,
+          $terminatedNamespace . $candidate . '\\',
+        );
+      }
+    }
+  }
+
 }

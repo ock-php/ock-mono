@@ -9,9 +9,14 @@ use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\GreySquirrel;
 use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\PlantInterface;
 use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\Tree\Fig;
 use PHPUnit\Framework\TestCase;
+use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel;
+use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
 
 class ClassFilesIATest extends TestCase {
 
+  /**
+   * @throws \ReflectionException
+   */
   public function testClassFilesIA() {
 
     $classFilesIA = ClassFilesIA_NamespaceDirectoryPsr4::createFromClass(
@@ -24,11 +29,11 @@ class ClassFilesIATest extends TestCase {
 
     $this->assertSame(
       [
-        __DIR__ . '/Fixtures/Acme/Animal/GreySquirrel.php' => 'Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\GreySquirrel',
-        __DIR__ . '/Fixtures/Acme/Animal/RedSquirrel.php' => 'Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel',
-        __DIR__ . '/Fixtures/Acme/Plant/PlantInterface.php' => 'Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\PlantInterface',
-        __DIR__ . '/Fixtures/Acme/Plant/Tree/Fig.php' => 'Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\Tree\Fig',
-        __DIR__ . '/Fixtures/Acme/Plant/VenusFlyTrap.php' => 'Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap',
+        __DIR__ . '/Fixtures/Acme/Animal/GreySquirrel.php' => GreySquirrel::class,
+        __DIR__ . '/Fixtures/Acme/Animal/RedSquirrel.php' => RedSquirrel::class,
+        __DIR__ . '/Fixtures/Acme/Plant/PlantInterface.php' => PlantInterface::class,
+        __DIR__ . '/Fixtures/Acme/Plant/Tree/Fig.php' => Fig::class,
+        __DIR__ . '/Fixtures/Acme/Plant/VenusFlyTrap.php' => VenusFlyTrap::class,
       ],
       $classFiles);
   }
@@ -44,6 +49,9 @@ class ClassFilesIATest extends TestCase {
     $this->assertSame([], $classFiles);
   }
 
+  /**
+   * @throws \ReflectionException
+   */
   public function testClassFilesIAMultiple() {
 
     $classFilesIAs = [];
@@ -60,9 +68,9 @@ class ClassFilesIATest extends TestCase {
 
     $this->assertSame(
       [
-        __DIR__ . '/Fixtures/Acme/Animal/GreySquirrel.php' => 'Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\GreySquirrel',
-        __DIR__ . '/Fixtures/Acme/Animal/RedSquirrel.php' => 'Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel',
-        __DIR__ . '/Fixtures/Acme/Plant/Tree/Fig.php' => 'Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\Tree\Fig',
+        __DIR__ . '/Fixtures/Acme/Animal/GreySquirrel.php' => GreySquirrel::class,
+        __DIR__ . '/Fixtures/Acme/Animal/RedSquirrel.php' => RedSquirrel::class,
+        __DIR__ . '/Fixtures/Acme/Plant/Tree/Fig.php' => Fig::class,
       ],
       $classFiles);
   }

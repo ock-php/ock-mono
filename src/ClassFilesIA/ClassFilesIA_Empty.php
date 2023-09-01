@@ -5,19 +5,16 @@ namespace Donquixote\ClassDiscovery\ClassFilesIA;
 class ClassFilesIA_Empty implements ClassFilesIAInterface {
 
   /**
-   * @return \Traversable|string[]
-   *   Format: $[$file] = $class
+   * {@inheritdoc}
    */
-  public function getIterator() {
+  public function getIterator(): \Traversable {
     return new \EmptyIterator();
   }
 
   /**
-   * Gets a version where all base paths are sent through ->realpath().
-   *
-   * @return static
+   * {@inheritdoc}
    */
-  public function withRealpathRoot() {
+  public function withRealpathRoot(): static {
     return $this;
   }
 }

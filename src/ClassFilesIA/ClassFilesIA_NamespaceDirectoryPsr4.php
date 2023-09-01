@@ -51,12 +51,13 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
   }
 
   /**
-   * @param string $class
+   * @param class-string $class
    * @param int $nLevelsUp
    *
    * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @throws \ReflectionException
    */
-  public static function createFromClass($class, $nLevelsUp = 0) {
+  public static function createFromClass(string $class, int $nLevelsUp = 0) {
 
     $nsDir = NamespaceDirectory::createFromClass($class)
       ->requireParentN($nLevelsUp);
@@ -90,26 +91,18 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
   }
 
   /**
-   * Gets a version where all base paths are sent through ->realpath().
-   *
-   * This is useful when comparing the path to \ReflectionClass::getFileName().
-   * Note that this does NOT send all discovered file paths through realpath(),
-   * only the base path. E.g. if there is a symlink in a subfolder somewhere,
-   * the resulting paths will not match up with \ReflectionClass::getFileName().
-   *
-   * @return static
+   * {@inheritdoc}
    */
-  public function withRealpathRoot() {
+  public function withRealpathRoot(): static {
     $clone = clone $this;
     $clone->directory = realpath($this->directory);
     return $clone;
   }
 
   /**
-   * @return \Traversable|string[]
-   *   Format: $[$file] = $class
+   * {@inheritdoc}
    */
-  public function getIterator() {
+  public function getIterator(): \Iterator {
     return self::scan($this->directory, $this->terminatedNamespace);
   }
 
@@ -117,12 +110,12 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @param string $dir
    * @param string $terminatedNamespace
    *
-   * @return \Traversable|string[]
+   * @return \Iterator<string, class-string>
    *   Format: $[$file] = $class
    */
-  private static function scan($dir, $terminatedNamespace) {
+  private static function scan($dir, $terminatedNamespace): \Iterator {
 
-    foreach (scandir($dir) as $candidate) {
+    foreach (\scandir($dir, \SCANDIR_SORT_ASCENDING) as $candidate) {
 
       if ('.' === $candidate[0]) {
         continue;
@@ -130,7 +123,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
 
       $path = $dir . '/' . $candidate;
 
-      if ('.php' === substr($candidate, -4)) {
+      if (str_ends_with($candidate, '.php')) {
 
         if (!is_file($path)) {
           continue;
@@ -155,12 +148,9 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
         }
 
         // @todo Make PHP 7 version with "yield from".
-        foreach (self::scan(
+        yield from self::scan(
           $path,
-          $terminatedNamespace . $candidate . '\\') as $file => $class) {
-
-          yield $file => $class;
-        }
+          $terminatedNamespace . $candidate . '\\');
       }
       
     }

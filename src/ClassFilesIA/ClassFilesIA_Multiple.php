@@ -7,7 +7,7 @@ class ClassFilesIA_Multiple implements ClassFilesIAInterface {
   /**
    * @var \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[]
    */
-  private $classFilesIAs;
+  private array $classFilesIAs;
 
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
@@ -17,24 +17,18 @@ class ClassFilesIA_Multiple implements ClassFilesIAInterface {
   }
 
   /**
-   * @return \Traversable|string[]
-   *   Format: $[$file] = $class
+   * {@inheritdoc}
    */
-  public function getIterator() {
+  public function getIterator(): \Iterator {
     foreach ($this->classFilesIAs as $classFilesIA) {
-      // @todo Use "yield from" in PHP 7!
-      foreach ($classFilesIA as $file => $class) {
-        yield $file => $class;
-      }
+      yield from $classFilesIA;
     }
   }
 
   /**
-   * Gets a version where all base paths are sent through ->realpath().
-   *
-   * @return self
+   * {@inheritdoc}
    */
-  public function withRealpathRoot() {
+  public function withRealpathRoot(): static {
     $clone = clone $this;
     foreach ($clone->classFilesIAs as $i => $classFilesIA) {
       $clone->classFilesIAs[$i] = $classFilesIA->withRealpathRoot();
