@@ -54,7 +54,7 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
       'double',
       'NULL' => var_export($definition, TRUE),
       'resource',
-      'resource (closed)' => $this->fail('Cannot export resources.'),
+      'resource (closed)' => throw new CodegenException('Cannot export resources.'),
       'object' => match (get_class($definition)) {
         ValueDefinition_GetService::class => $this->containerPlaceholder
           . '->get(' . var_export($definition->id, TRUE) . ')',
@@ -84,17 +84,17 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
           $this->generateMultiple($definition->args),
         ),
         default => $definition instanceof ValueDefinitionInterface
-          ? $this->fail(sprintf(
+          ? throw new CodegenException(sprintf(
             'Unknown value definition type %s.',
             get_class($definition),
           ))
-          : $this->fail(sprintf(
+          : throw new CodegenException(sprintf(
             'Objects must implement %s. Found %s.',
             ValueDefinitionInterface::class,
             MessageUtil::formatValue($definition),
           )),
       },
-      default => $this->fail(sprintf(
+      default => throw new CodegenException(sprintf(
         'Unexpected value %s.',
         MessageUtil::formatValue($definition),
       )),
@@ -144,13 +144,6 @@ class ValueDefinitionToPhp implements ValueDefinitionToPhpInterface {
    */
   private function generateMultiple(array $definitions): array {
     return array_map([$this, 'generate'], $definitions);
-  }
-
-  /**
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
-   */
-  private function fail(string $message): never {
-    throw new CodegenException($message);
   }
 
 }
