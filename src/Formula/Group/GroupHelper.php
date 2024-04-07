@@ -8,7 +8,7 @@ use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Evaluator\Evaluator;
-use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\DID\Exception\EvaluatorException;
 use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Formula\Group\Item\GroupFormulaItemInterface;
 use Donquixote\Ock\FormulaAdapter;

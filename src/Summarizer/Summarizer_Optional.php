@@ -35,6 +35,8 @@ class Summarizer_Optional implements SummarizerInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
    * @param \Donquixote\Ock\Summarizer\SummarizerInterface $decorated
    */

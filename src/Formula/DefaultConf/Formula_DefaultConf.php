@@ -9,6 +9,8 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class Formula_DefaultConf implements Formula_DefaultConfInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    * @param mixed $defaultConf
    */

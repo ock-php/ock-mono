@@ -6,26 +6,28 @@ namespace Donquixote\Ock\Generator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
-use Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface;
-use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\Ock\Formula\Primitive\Formula_ScalarInterface;
+use Donquixote\DID\Util\MessageUtil;
 
 class Generator_Primitive implements GeneratorInterface {
 
   /**
-   * @param \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface $formula
+   * @param \Donquixote\Ock\Formula\Primitive\Formula_ScalarInterface $formula
    *
    * @return self
    */
   #[Adapter]
-  public static function fromFormula(Formula_PrimitiveInterface $formula): Generator_Primitive {
+  public static function fromFormula(Formula_ScalarInterface $formula): Generator_Primitive {
     return new self($formula);
   }
 
   /**
-   * @param \Donquixote\Ock\Formula\Primitive\Formula_PrimitiveInterface $formula
+   * Constructor.
+   *
+   * @param \Donquixote\Ock\Formula\Primitive\Formula_ScalarInterface $formula
    */
   public function __construct(
-    private readonly Formula_PrimitiveInterface $formula,
+    private readonly Formula_ScalarInterface $formula,
   ) {}
 
   /**

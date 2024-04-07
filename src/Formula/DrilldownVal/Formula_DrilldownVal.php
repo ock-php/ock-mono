@@ -51,6 +51,8 @@ class Formula_DrilldownVal implements Formula_DrilldownValInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $decorated
    * @param \Donquixote\Ock\V2V\Drilldown\V2V_DrilldownInterface $v2v
    */

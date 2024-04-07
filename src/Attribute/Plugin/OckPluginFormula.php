@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Attribute\Plugin;
 
-use Donquixote\Adaptism\Exception\MalformedDeclarationException;
-use Donquixote\Adaptism\Util\MessageUtil;
-use Donquixote\Adaptism\Util\ReflectionTypeUtil;
+use Donquixote\CodegenTools\Util\MessageUtil;
+use Donquixote\DID\Exception\MalformedDeclarationException;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Neutral\Formula_Neutral_FormulaFactory;
+use Donquixote\Ock\Formula\Neutral\Formula_Passthru_FormulaFactory;
 use Donquixote\Ock\Plugin\PluginDeclaration;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
@@ -59,7 +59,7 @@ class OckPluginFormula extends PluginAttributeBase {
         MessageUtil::formatReflector($reflectionMethod),
       ));
     }
-    $formula = new Formula_Neutral_FormulaFactory([
+    $formula = new Formula_Passthru_FormulaFactory([
       $reflectionMethod->getDeclaringClass()->getName(),
       $reflectionMethod->getName(),
     ]);

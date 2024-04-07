@@ -38,6 +38,8 @@ class Generator_DefaultConf implements GeneratorInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
    * @param mixed $defaultConf
    */

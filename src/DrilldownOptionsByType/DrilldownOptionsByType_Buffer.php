@@ -12,6 +12,8 @@ class DrilldownOptionsByType_Buffer implements DrilldownOptionsByTypeInterface {
   private ?array $buffer = null;
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\DrilldownOptionsByType\DrilldownOptionsByTypeInterface $decorated
    */
   public function __construct(

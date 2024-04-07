@@ -6,22 +6,22 @@ namespace Donquixote\Ock\Evaluator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Containerkit\Container\ContainerInterface;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\DID\Exception\EvaluatorException;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\GeneratorInterface;
+use Psr\Container\ContainerInterface;
 
 class Evaluator_GeneratorEval implements EvaluatorInterface {
 
   /**
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
-   * @param \Donquixote\Containerkit\Container\ContainerInterface $container
+   * @param \Psr\Container\ContainerInterface $container
    *
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface
    * @throws \Donquixote\Adaptism\Exception\AdapterException
@@ -64,7 +64,12 @@ class Evaluator_GeneratorEval implements EvaluatorInterface {
       return $closure( $this->container);
     }
     catch (\Throwable $e) {
-      throw new EvaluatorException('Error in eval().', 0, $e);
+      throw new EvaluatorException(sprintf(
+        "Error in line %d of eval'd code.\nMessage: %s\nExpression: %s",
+        $e->getLine(),
+        $e->getMessage(),
+        $php,
+      ), 0, $e);
     }
   }
 

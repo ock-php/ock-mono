@@ -46,11 +46,13 @@ class DiscoveryTest extends FormulaTestBase {
    * @throws \Donquixote\Ock\Exception\GeneratorException
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    * @throws \Donquixote\Ock\Exception\PluginListException
+   * @throws \Donquixote\DID\Exception\ContainerToValueException
    */
   public function testPluginDiscovery(): void {
     $container = TestingServices::getContainer();
+    /** @var \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $registry */
     $registry = $container->get(PluginRegistryInterface::class);
-    $pluginss = $registry->getPluginss();
+    $pluginss = $registry->getPluginsByType();
 
     $adapter = $container->get(UniversalAdapterInterface::class);
 

@@ -10,6 +10,8 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
 
   /**
+   * Constructor.
+   *
    * @param int|null $min
    * @param int|null $max
    */

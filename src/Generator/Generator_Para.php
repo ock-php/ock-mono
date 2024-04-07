@@ -28,6 +28,8 @@ class Generator_Para implements GeneratorInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
    * @param \Donquixote\Ock\Generator\GeneratorInterface $paraGenerator
    */

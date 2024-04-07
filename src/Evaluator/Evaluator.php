@@ -6,9 +6,9 @@ namespace Donquixote\Ock\Evaluator;
 
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\DID\Exception\EvaluatorException;
+use Donquixote\DID\Util\MessageUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\EvaluatorException;
 use Donquixote\Ock\Exception\EvaluatorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\FormulaAdapter;
@@ -23,7 +23,7 @@ class Evaluator {
    *
    * @return \Donquixote\Ock\Evaluator\EvaluatorInterface<T>
    *
-   * @throws \Donquixote\Ock\Exception\EvaluatorException
+   * @throws \Donquixote\DID\Exception\EvaluatorException
    */
   public static function iface(string $interface, UniversalAdapterInterface $adapter): EvaluatorInterface {
     $formula = Formula::iface($interface);
@@ -54,7 +54,7 @@ class Evaluator {
    *
    * @return T
    *
-   * @throws \Donquixote\Ock\Exception\EvaluatorException
+   * @throws \Donquixote\DID\Exception\EvaluatorException
    */
   public static function objectFromConf(string $interface, mixed $conf, UniversalAdapterInterface $adapter): object {
     return self::iface($interface, $adapter)->confGetValue($conf);

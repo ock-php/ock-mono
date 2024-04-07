@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin\Map;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
+
+#[Service]
 class PluginMap_Buffer implements PluginMapInterface {
 
   /**
@@ -22,6 +26,7 @@ class PluginMap_Buffer implements PluginMapInterface {
    * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $decorated
    */
   public function __construct(
+    #[GetService(PluginMap_Registry::class)]
     private readonly PluginMapInterface $decorated,
   ) {}
 

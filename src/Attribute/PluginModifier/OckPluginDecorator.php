@@ -18,12 +18,15 @@ use Donquixote\Ock\Plugin\PluginDeclaration;
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class OckPluginDecorator implements PluginModifierAttributeInterface {
 
-  public function modifyPlugin(PluginDeclaration $plugin): PluginDeclaration {
+  /**
+   * {@inheritdoc}
+   */
+  public function modifyPlugin(PluginDeclaration $declaration): PluginDeclaration {
     $types = [];
-    foreach ($plugin->getTypes() as $type) {
+    foreach ($declaration->getTypes() as $type) {
       $types[] = "decorator<$type>";
     }
-    return $plugin->withTypes($types);
+    return $declaration->withTypes($types);
   }
 
 }

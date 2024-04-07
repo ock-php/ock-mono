@@ -15,9 +15,9 @@ class OckPluginAdapter implements PluginModifierAttributeInterface {
   /**
    * {@inheritdoc}
    */
-  public function modifyPlugin(PluginDeclaration $plugin): PluginDeclaration {
+  public function modifyPlugin(PluginDeclaration $declaration): PluginDeclaration {
     // @todo Do something for adapters.
-    return $plugin;
+    return $declaration;
   }
 
 }

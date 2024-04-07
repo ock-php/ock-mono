@@ -14,6 +14,8 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\SelectOld\Formula_SelectInterface $decorated
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
    */

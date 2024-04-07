@@ -13,6 +13,8 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Select_ExpandNested implements Formula_SelectInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $decorated
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
    */

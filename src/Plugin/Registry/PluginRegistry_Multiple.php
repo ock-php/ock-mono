@@ -21,10 +21,10 @@ class PluginRegistry_Multiple implements PluginRegistryInterface {
   /**
    * {@inheritdoc}
    */
-  public function getPluginss(): array {
+  public function getPluginsByType(): array {
     $pluginss = [];
     foreach ($this->registries as $registry) {
-      foreach ($registry->getPluginss() as $type => $plugins) {
+      foreach ($registry->getPluginsByType() as $type => $plugins) {
         foreach ($plugins as $id => $plugin) {
           $pluginss[$type][$id] = $plugin;
         }

@@ -13,7 +13,7 @@ use Donquixote\Ock\Formula\Select\Flat\FlatSelectBuilderInterface;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
 use Donquixote\Ock\Formula\Sequence\Formula_Sequence;
 use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Formula extends UtilBase {

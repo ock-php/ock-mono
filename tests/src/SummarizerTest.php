@@ -22,9 +22,10 @@ class SummarizerTest extends FormulaTestBase {
    * @param string $base
    * @param string $case
    *
-   * @dataProvider providerTestFormulaCases()
+   * @throws \Exception
+   * @throws \Psr\Container\ContainerExceptionInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @dataProvider providerTestFormulaCases()
    */
   public function testFormula(string $base, string $case): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
@@ -59,9 +60,10 @@ class SummarizerTest extends FormulaTestBase {
    * @param string $name
    *   Name of the test case.
    *
-   * @dataProvider providerTestIface()
+   * @throws \Exception
+   * @throws \Psr\Container\ContainerExceptionInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @dataProvider providerTestIface()
    */
   public function testIface(string $type, string $name) {
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);

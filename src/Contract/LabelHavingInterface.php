@@ -11,6 +11,9 @@ use Donquixote\Ock\Text\TextInterface;
  */
 interface LabelHavingInterface {
 
+  /**
+   * @return \Donquixote\Ock\Text\TextInterface
+   */
   public function getLabel(): TextInterface;
 
 }

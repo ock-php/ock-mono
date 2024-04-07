@@ -40,6 +40,8 @@ Generator_Id implements GeneratorInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $formula
    * @param \Donquixote\Ock\V2V\Id\V2V_IdInterface $v2v
    */

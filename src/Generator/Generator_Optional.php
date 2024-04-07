@@ -35,6 +35,8 @@ class Generator_Optional implements GeneratorInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
    * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
    */

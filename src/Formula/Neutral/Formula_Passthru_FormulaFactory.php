@@ -8,7 +8,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Formula\FreeParameters\Formula_FreeParameters;
 
-class Formula_Neutral_FormulaFactory extends Formula_Passthru_ProxyBase {
+class Formula_Passthru_FormulaFactory extends Formula_Passthru_ProxyBase {
 
   /**
    * Constructor.

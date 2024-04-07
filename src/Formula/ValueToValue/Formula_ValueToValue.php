@@ -10,6 +10,8 @@ use Donquixote\Ock\V2V\Value\V2V_ValueInterface;
 class Formula_ValueToValue extends Formula_ValueToValueBase {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    * @param \Donquixote\Ock\V2V\Value\V2V_ValueInterface $v2v
    */

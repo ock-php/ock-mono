@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Attribute\Parameter;
 
 use Donquixote\Ock\Contract\FormulaHavingInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Neutral\Formula_Neutral_FormulaFactory;
+use Donquixote\Ock\Formula\Neutral\Formula_Passthru_FormulaFactory;
 
 #[\Attribute(\Attribute::TARGET_PARAMETER|\Attribute::TARGET_PROPERTY)]
 class OckFormulaFromCall implements FormulaHavingInterface {
@@ -26,7 +26,7 @@ class OckFormulaFromCall implements FormulaHavingInterface {
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function getFormula(): FormulaInterface {
-    return new Formula_Neutral_FormulaFactory($this->formulaCallback, $this->args);
+    return new Formula_Passthru_FormulaFactory($this->formulaCallback, $this->args);
   }
 
 }

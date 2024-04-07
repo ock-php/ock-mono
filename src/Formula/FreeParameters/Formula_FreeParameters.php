@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula\FreeParameters;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Util\ReflectionUtil;
+use Donquixote\DID\Util\ReflectionUtil;
 
 class Formula_FreeParameters extends Formula_FreeParametersBase {
 

@@ -9,7 +9,9 @@ use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
 abstract class Formula_GroupValBase implements Formula_GroupValInterface {
 
   /**
-   * Same as parent, but must be a group formula.
+   * Constructor.
+   *
+   * Same as the parent, but must be a group formula.
    *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $decorated
    */

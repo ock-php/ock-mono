@@ -13,7 +13,7 @@ interface SummarizerInterface {
    *
    * @return null|\Donquixote\Ock\Text\TextInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Donquixote\Ock\Exception\SummarizerException
    */
   public function confGetSummary(mixed $conf): ?TextInterface;
 

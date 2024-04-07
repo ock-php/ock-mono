@@ -12,6 +12,8 @@ use Donquixote\Ock\FormulaAdapter;
 class Optionlessness implements OptionlessnessInterface {
 
   /**
+   * Constructor.
+   *
    * @param bool $optionless
    */
   public function __construct(

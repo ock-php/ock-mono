@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Donquixote\Ock\Formula\ServiceProxy;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\Attribute\SelfAdapter;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Psr\Container\ContainerInterface;
 

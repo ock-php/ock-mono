@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\V2V\Value;
 
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 
 class V2V_Value_CallSingleParam implements V2V_ValueInterface {
 

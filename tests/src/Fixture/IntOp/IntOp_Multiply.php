@@ -14,6 +14,9 @@ class IntOp_Multiply implements IntOpInterface {
 
   /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \ReflectionException
    */
   #[OckPluginFormula(self::class, "multiply", "Multiply")]
   public static function formula(): FormulaInterface {
@@ -27,8 +30,9 @@ class IntOp_Multiply implements IntOpInterface {
    *
    * @param int $factor
    */
-  public function __construct(private readonly int $factor) {
-  }
+  public function __construct(
+    private readonly int $factor,
+  ) {}
 
   /**
    * {@inheritdoc}

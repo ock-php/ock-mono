@@ -11,6 +11,9 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
  */
 interface FormulaHavingInterface {
 
+  /**
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   */
   public function getFormula(): FormulaInterface;
 
 }

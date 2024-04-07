@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\InstanceFactory;
 
+use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\V2V\Group\V2V_Group_Call;
 use Donquixote\Ock\V2V\Group\V2V_GroupInterface;
 
@@ -32,7 +33,12 @@ class Formula_InstanceFactory_StaticMethod implements Formula_InstanceFactoryInt
    * @return \Donquixote\Ock\V2V\Group\V2V_GroupInterface
    */
   public function getV2V(): V2V_GroupInterface {
-    return V2V_Group_Call::fromStaticMethod($this->method);
+    try {
+      return V2V_Group_Call::fromCallable($this->method);
+    }
+    catch (\ReflectionException $e) {
+      throw new FormulaException($e->getMessage(), 0, $e);
+    }
   }
 
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\ValueProvider;
 
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 
 class Formula_FixedPhp implements Formula_FixedPhpInterface {
 

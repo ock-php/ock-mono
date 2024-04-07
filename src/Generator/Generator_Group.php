@@ -9,7 +9,7 @@ use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\DID\Util\MessageUtil;
 use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
@@ -57,6 +57,8 @@ class Generator_Group implements GeneratorInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $groupFormula
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter

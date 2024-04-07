@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Formula\Primitive;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 
-interface Formula_PrimitiveInterface extends FormulaInterface {
+interface Formula_ScalarInterface extends FormulaInterface {
 
   /**
    * @return string[]

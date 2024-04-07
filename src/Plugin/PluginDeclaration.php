@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin;
 
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+
 class PluginDeclaration {
 
   /**
@@ -71,6 +73,17 @@ class PluginDeclaration {
   public function withSetting(string $key, mixed $value): static {
     $clone = clone $this;
     $clone->plugin = $this->plugin->withSetting($key, $value);
+    return $clone;
+  }
+
+  /**
+   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   *
+   * @return static
+   */
+  public function withFormula(FormulaInterface $formula): static {
+    $clone = clone $this;
+    $clone->plugin = $this->plugin->withFormula($formula);
     return $clone;
   }
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntFormat;
 
+use Donquixote\Ock\Attribute\Parameter\OckDecorated;
 use Donquixote\Ock\Attribute\Parameter\OckOption;
 use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Attribute\PluginModifier\OckPluginDecorator;
@@ -20,7 +21,7 @@ class IntFormat_IntOpDecorator implements IntFormatInterface {
    * @param \Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface $intOp
    */
   public function __construct(
-    #[OckOption('decorated', 'Decorated number format')]
+    #[OckDecorated]
     private readonly ?IntFormatInterface $decorated,
     #[OckOption('operation', 'Operation')]
     private readonly IntOpInterface $intOp,

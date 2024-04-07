@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Primitive;
 
-class Formula_Bool implements Formula_PrimitiveInterface {
+class Formula_Bool implements Formula_ScalarInterface {
 
   /**
    * {@inheritdoc}

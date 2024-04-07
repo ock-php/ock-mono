@@ -12,6 +12,8 @@ use Donquixote\Ock\Text\TextInterface;
 class Summarizer_Boolean implements SummarizerInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Boolean\Formula_BooleanInterface $formula
    */
   public function __construct(

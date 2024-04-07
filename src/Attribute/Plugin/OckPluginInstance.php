@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Attribute\Plugin;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
-use Donquixote\Adaptism\Exception\MalformedDeclarationException;
-use Donquixote\Adaptism\Util\AttributesUtil;
-use Donquixote\Adaptism\Util\MessageUtil;
-use Donquixote\Adaptism\Util\ReflectionTypeUtil;
+use Donquixote\DID\Exception\MalformedDeclarationException;
+use Donquixote\DID\Util\AttributesUtil;
+use Donquixote\DID\Util\MessageUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
+use Donquixote\DID\Attribute\Parameter\GetServiceInterface;
+use Donquixote\DID\Attribute\ReflectorAwareAttributeInterface;
+use Donquixote\Ock\Attribute\PluginModifier\PluginModifierAttributeInterface;
 use Donquixote\Ock\Contract\FormulaHavingInterface;
 use Donquixote\Ock\Contract\LabelHavingInterface;
 use Donquixote\Ock\Contract\NameHavingInterface;
@@ -33,11 +35,10 @@ class OckPluginInstance extends PluginAttributeBase {
         $reflectionClass->getName(),
       ));
     }
-    $formula = $this->buildGroupFormula($reflectionClass->getConstructor()?->getParameters() ?? [])
+    $types = $reflectionClass->getInterfaceNames();
+    $formula = $this->buildGroupFormula($reflectionClass->getConstructor()?->getParameters() ?? [], $types)
       ->construct($reflectionClass->getName());
-    return $this->formulaGetPluginDeclaration(
-      $formula,
-      $reflectionClass->getInterfaceNames());
+    return $this->formulaGetPluginDeclaration($formula, $types);
   }
 
   /**
@@ -45,8 +46,14 @@ class OckPluginInstance extends PluginAttributeBase {
    */
   public function onMethod(\ReflectionMethod $reflectionMethod): PluginDeclaration {
     if (!$reflectionMethod->isStatic()) {
+      if ($reflectionMethod->isConstructor()) {
+        throw new MalformedDeclarationException(\sprintf(
+          'This attribute is not allowed on constructor %s. Put it on the class instead.',
+          MessageUtil::formatReflector($reflectionMethod),
+        ));
+      }
       throw new MalformedDeclarationException(\sprintf(
-        'Method %s must be static.',
+        'This attribute is not allowed on non-static method %s. Consider making the method static.',
         MessageUtil::formatReflector($reflectionMethod),
       ));
     }
@@ -57,33 +64,33 @@ class OckPluginInstance extends PluginAttributeBase {
     catch (\ReflectionException) {
       throw new MalformedDeclarationException('Undefined class ' . $returnClass);
     }
-    $formula = $this->buildGroupFormula($reflectionMethod->getParameters())
+    $types = $reflectionReturnClass->getInterfaceNames();
+    if ($reflectionReturnClass->isInterface()) {
+      $types = [$reflectionReturnClass->getName(), ...$types];
+    }
+    $formula = $this->buildGroupFormula($reflectionMethod->getParameters(), $types)
       ->call([
         $reflectionMethod->getDeclaringClass()->getName(),
         $reflectionMethod->getName(),
       ]);
-    return $this->formulaGetPluginDeclaration(
-      $formula,
-      $reflectionReturnClass->isInterface()
-        ? [$reflectionReturnClass->getName(), ...$reflectionReturnClass->getInterfaceNames()]
-        : $reflectionReturnClass->getInterfaceNames(),
-    );
+    return $this->formulaGetPluginDeclaration($formula, $types);
   }
 
   /**
    * @param \ReflectionParameter[] $parameters
+   * @param list<string> $types
    *
    * @return \Donquixote\Ock\Formula\Group\GroupFormulaBuilder
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  private function buildGroupFormula(array $parameters): GroupFormulaBuilder {
+  private function buildGroupFormula(array $parameters, ?array &$modifiers): GroupFormulaBuilder {
     $builder = Formula::group();
     foreach ($parameters as $i => $parameter) {
-      if ($attribute = AttributesUtil::getSingle($parameter, GetService::class)) {
-        $serviceId = $attribute->getId()
-          ?? ReflectionTypeUtil::requireGetClassLikeType($parameter);
+      $attribute = AttributesUtil::getSingle($parameter, GetServiceInterface::class);
+      if ($attribute !== NULL) {
+        $serviceId = $attribute->paramGetServiceId($parameter);
         $builder->add(
           'service.' . $i,
           Text::i($i),
@@ -91,7 +98,7 @@ class OckPluginInstance extends PluginAttributeBase {
         );
         continue;
       }
-      $name = AttributesUtil::requireGetSingle($parameter, NameHavingInterface::class)
+      $name = AttributesUtil::requireSingle($parameter, NameHavingInterface::class)
         ->getName();
       $label = AttributesUtil::getSingle($parameter, LabelHavingInterface::class)
         ?->getLabel()
@@ -111,6 +118,13 @@ class OckPluginInstance extends PluginAttributeBase {
           MessageUtil::formatReflector($parameter),
           $e->getMessage(),
         ), 0, $e);
+      }
+      /** @var ReflectorAwareAttributeInterface $attribute */
+      foreach (AttributesUtil::getAll($parameter, ReflectorAwareAttributeInterface::class) as $attribute) {
+        $attribute->setReflector($parameter);
+      }
+      foreach (AttributesUtil::getAll($parameter, PluginModifierAttributeInterface::class) as $attribute) {
+
       }
     }
     return $builder;

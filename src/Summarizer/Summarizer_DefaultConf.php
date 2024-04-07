@@ -38,6 +38,8 @@ class Summarizer_DefaultConf implements SummarizerInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Summarizer\SummarizerInterface $decorated
    * @param mixed $defaultConf
    */

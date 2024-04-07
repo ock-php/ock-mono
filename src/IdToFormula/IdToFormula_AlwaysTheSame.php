@@ -9,6 +9,8 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class IdToFormula_AlwaysTheSame implements IdToFormulaInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $sameFormula
    */
   public function __construct(

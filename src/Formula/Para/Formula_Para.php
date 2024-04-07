@@ -9,6 +9,8 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class Formula_Para implements Formula_ParaInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $paraFormula
    */

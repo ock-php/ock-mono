@@ -40,6 +40,8 @@ class Summarizer_Sequence implements SummarizerInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Summarizer\SummarizerInterface $itemSummarizer
    */
   public function __construct(
@@ -57,17 +59,16 @@ class Summarizer_Sequence implements SummarizerInterface {
 
     $summary = Text::ol();
     foreach ($conf as $delta => $itemConf) {
-
       if ((string) (int) $delta !== (string) $delta || $delta < 0) {
         // Fail on non-numeric and negative keys.
         return Text::t('Noisy configuration.')
           ->wrapSprintf('(%s)');
       }
-
       $summary->add(
         $this->itemSummarizer->confGetSummary($itemConf)
         ?? Text::t('Undocumented item.')
-          ->wrapSprintf('(%s)'));
+          ->wrapSprintf('(%s)'),
+      );
     }
 
     return $summary;

@@ -14,6 +14,8 @@ class IdToFormula_Buffer implements IdToFormulaInterface {
   private array $buffer = [];
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
    */
   public function __construct(

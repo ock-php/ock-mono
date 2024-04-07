@@ -17,7 +17,7 @@ use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Tests\Util\TestingServices;
 use Donquixote\Ock\Tests\Util\TestUtil;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 use Symfony\Component\Yaml\Yaml;
 
 /**

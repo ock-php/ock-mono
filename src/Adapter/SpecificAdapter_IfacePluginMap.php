@@ -6,8 +6,8 @@ namespace Donquixote\Ock\Adapter;
 
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\Exception\AdapterException;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\PluginListException;
 use Donquixote\Ock\Formula\Drilldown\Formula_Drilldown;

@@ -10,6 +10,8 @@ use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 class Formula_Select_TwoStepFlatSelectComposite extends Formula_Select_TwoStepFlatSelectBase {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\SelectOld\Flat\Formula_FlatSelectInterface $idFormula
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToSubFormula
    */

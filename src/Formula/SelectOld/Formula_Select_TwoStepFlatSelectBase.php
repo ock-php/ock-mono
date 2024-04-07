@@ -9,6 +9,8 @@ use Donquixote\Ock\Formula\SelectOld\Flat\Formula_FlatSelectInterface;
 abstract class Formula_Select_TwoStepFlatSelectBase extends Formula_Select_TwoStepFlatSelectGrandBase {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\SelectOld\Flat\Formula_FlatSelectInterface $idFormula
    */
   public function __construct(

@@ -9,6 +9,9 @@ namespace Donquixote\Ock\Contract;
  */
 interface NameHavingInterface {
 
+  /**
+   * @return string
+   */
   public function getName(): string;
 
 }

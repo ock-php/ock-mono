@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Donquixote\Ock\EvaluatorLookup;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\DID\Util\MessageUtil;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Evaluator\EvaluatorInterface;
 use Donquixote\Ock\Formula\Formula;
 

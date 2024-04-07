@@ -13,6 +13,8 @@ use Donquixote\Ock\Text\TextInterface;
 class Summarizer_Textfield implements SummarizerInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula
    */
   public function __construct(

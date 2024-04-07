@@ -10,6 +10,8 @@ use Donquixote\Ock\Formula\Id\Formula_IdInterface;
 class IdToFormula_FilterDecorator implements IdToFormulaInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
    * @param \Donquixote\Ock\Formula\Id\Formula_IdInterface $condition
    *

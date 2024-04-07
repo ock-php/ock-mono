@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Tests\Fixture\IntOp;
 
 use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Parameter\OckDecorated;
 use Donquixote\Ock\Attribute\PluginModifier\OckPluginDecorator;
 use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 
@@ -24,9 +25,9 @@ class IntOp_ExtraOpDecorator implements IntOpInterface {
    *   Additional operation to run afterwards.
    */
   public function __construct(
-    #[OckOption('decorated', 'Decorated')]
+    #[OckDecorated]
     private readonly IntOpInterface $decorated,
-    #[OckOption('operation', 'Operation')]
+    #[OckOption('extraOp', 'Extra op')]
     private readonly IntOpInterface $extraOp,
   ) {}
 

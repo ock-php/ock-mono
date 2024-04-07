@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\V2V\Group;
 
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 
 class V2V_Group_ObjectMethodCall implements V2V_GroupInterface {
 

@@ -9,6 +9,8 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class IdToFormula_Class implements IdToFormulaInterface {
 
   /**
+   * Constructor.
+   *
    * @param string $class
    */
   public function __construct(

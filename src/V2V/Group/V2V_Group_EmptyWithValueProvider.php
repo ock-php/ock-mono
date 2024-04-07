@@ -6,11 +6,13 @@ namespace Donquixote\Ock\V2V\Group;
 
 use Donquixote\Ock\Exception\GeneratorException_UnsupportedConfiguration;
 use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhpInterface;
-use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\DID\Util\MessageUtil;
 
 class V2V_Group_EmptyWithValueProvider implements V2V_GroupInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhpInterface $valueProvider
    */
   public function __construct(

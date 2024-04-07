@@ -10,6 +10,8 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\SelectOld\Flat\Formula_FlatSelectInterface $decorated
    */
   public function __construct(

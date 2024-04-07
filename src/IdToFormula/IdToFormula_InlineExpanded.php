@@ -12,6 +12,8 @@ use Donquixote\Ock\InlineDrilldown\InlineDrilldown;
 class IdToFormula_InlineExpanded implements IdToFormulaInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $decorated
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    */

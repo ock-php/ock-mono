@@ -9,10 +9,10 @@ use Donquixote\Ock\Plugin\PluginDeclaration;
 interface PluginModifierAttributeInterface {
 
   /**
-   * @param \Donquixote\Ock\Plugin\PluginDeclaration $plugin
+   * @param \Donquixote\Ock\Plugin\PluginDeclaration $declaration
    *
    * @return \Donquixote\Ock\Plugin\PluginDeclaration
    */
-  public function modifyPlugin(PluginDeclaration $plugin): PluginDeclaration;
+  public function modifyPlugin(PluginDeclaration $declaration): PluginDeclaration;
 
 }

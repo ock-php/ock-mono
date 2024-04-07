@@ -5,19 +5,19 @@ declare(strict_types = 1);
 namespace Donquixote\Ock\Tests\Util;
 
 use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
-use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface;
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
-use Donquixote\Adaptism\Attribute\Service;
-use Donquixote\Adaptism\DI\DefaultContainer;
-use Donquixote\Adaptism\Exception\ContainerToValueException;
-use Donquixote\Adaptism\Exception\DiscoveryException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
+use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Multiple;
+use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Donquixote\DID\Attribute\Service;
+use Donquixote\DID\Container\Container_CTVs;
+use Donquixote\DID\Exception\ContainerToValueException;
+use Donquixote\DID\Exception\DiscoveryException;
 use Donquixote\Ock\Exception\FormulaException;
+use Donquixote\Ock\OckPackage;
 use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabels;
 use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
 use Donquixote\Ock\Plugin\Registry\PluginRegistry_Discovery;
-use Donquixote\Ock\Plugin\Registry\PluginRegistryInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Translator\Translator_Passthru;
 use Donquixote\Ock\Translator\TranslatorInterface;
@@ -28,11 +28,11 @@ class TestingServices {
   /**
    * @return \Psr\Container\ContainerInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\ContainerToValueException
+   * @throws \Donquixote\DID\Exception\ContainerToValueException
    */
   public static function getContainer(): ContainerInterface {
     try {
-      return DefaultContainer::fromClassFilesIAs([
+      return Container_CTVs::fromClassFilesIAs([
         // Discover in object-construction-kit.
         ClassFilesIA::psr4FromClass(FormulaException::class, 1),
         // Discover in object-construction-kit/tests.
@@ -47,14 +47,29 @@ class TestingServices {
   }
 
   /**
-   * @return \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface
+   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    *
    * @throws \ReflectionException
    */
-  #[Service]
-  public static function getPluginRegistry(): PluginRegistryInterface {
-    $classFilesIA = ClassFilesIA::psr4FromClass(IntOpInterface::class, 1);
-    return PluginRegistry_Discovery::fromClassFilesIA($classFilesIA);
+  public static function getServiceDiscoveryLocations(): ClassFilesIAInterface {
+    return new ClassFilesIA_Multiple([
+      // Discover in object-construction-kit.
+      ClassFilesIA::psr4FromClass(FormulaException::class, 1),
+      // Discover in object-construction-kit/tests.
+      ClassFilesIA::psr4FromClass(self::class),
+      // Discover in adaptism.
+      ClassFilesIA::psr4FromClass(UniversalAdapterInterface::class, 1),
+    ]);
+  }
+
+  /**
+   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @throws \ReflectionException
+   */
+  #[Service(serviceIdSuffix: PluginRegistry_Discovery::class)]
+  public static function getPluginClassFiles(): ClassFilesIAInterface {
+    // Discover in fixtures dir only.
+    return ClassFilesIA::psr4FromClass(IntOpInterface::class, 1);
   }
 
   /**
@@ -73,13 +88,13 @@ class TestingServices {
     return new Translator_Passthru();
   }
 
-  #[Service]
-  public static function getAdapterDefinitionList(
-    #[GetService]
-    AdapterDefinitionList_Discovery $emptyDefinitionList,
-  ): AdapterDefinitionListInterface {
-    $classFilesIA = ClassFilesIA::psr4FromClass(FormulaException::class, 1);
-    return $emptyDefinitionList->withClassFilesIA($classFilesIA);
+  /**
+   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @throws \ReflectionException
+   */
+  #[Service(serviceIdSuffix: AdapterDefinitionList_Discovery::class)]
+  public static function getAdapterClassFilesIA(): ClassFilesIAInterface {
+    return ClassFilesIA::psr4FromClass(OckPackage::class);
   }
 
 }

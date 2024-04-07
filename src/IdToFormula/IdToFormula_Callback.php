@@ -14,6 +14,8 @@ class IdToFormula_Callback implements IdToFormulaInterface {
   private $callback;
 
   /**
+   * Constructor.
+   *
    * @param callable $callback
    */
   public function __construct(callable $callback) {

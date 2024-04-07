@@ -9,6 +9,8 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 class Formula_Neutral_ProxyWithReference extends Formula_Passthru_ProxyBase {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface|null $formulaRef
    */
   public function __construct(

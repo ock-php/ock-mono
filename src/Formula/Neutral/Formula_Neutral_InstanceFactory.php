@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Neutral;
 
-use Donquixote\Adaptism\Exception\MalformedDeclarationException;
-use Donquixote\Adaptism\Util\AttributesUtil;
-use Donquixote\Adaptism\Util\ReflectionTypeUtil;
+use Donquixote\DID\Exception\MalformedDeclarationException;
+use Donquixote\DID\Util\AttributesUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 use Donquixote\Ock\Contract\FormulaHavingInterface;
 use Donquixote\Ock\Contract\LabelHavingInterface;
 use Donquixote\Ock\Contract\NameHavingInterface;
@@ -16,7 +16,7 @@ use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Group\GroupFormulaBuilder;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
 use Donquixote\Ock\Util\IdentifierLabelUtil;
-use Donquixote\Ock\Util\ReflectionUtil;
+use Donquixote\DID\Util\ReflectionUtil;
 
 class Formula_Neutral_InstanceFactory extends Formula_Passthru_ProxyBase {
 
@@ -49,7 +49,7 @@ class Formula_Neutral_InstanceFactory extends Formula_Passthru_ProxyBase {
    *
    * @return \Donquixote\Ock\Formula\Group\GroupFormulaBuilder
    *
-   * @throws \Donquixote\Adaptism\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    * @throws \Donquixote\Ock\Exception\FormulaException
    */
   private function buildGroupFormula(array $parameters): GroupFormulaBuilder {

@@ -10,6 +10,8 @@ use Donquixote\Ock\V2V\String\V2V_StringInterface;
 class Formula_StringVal extends Formula_StringValBase {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $decorated
    * @param \Donquixote\Ock\V2V\String\V2V_StringInterface $v2v
    */

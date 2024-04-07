@@ -9,6 +9,8 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Boolean implements Formula_BooleanInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Text\TextInterface|null $trueSummary
    * @param \Donquixote\Ock\Text\TextInterface|null $falseSummary
    */

@@ -10,6 +10,8 @@ use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
 abstract class Formula_StringValBase implements Formula_StringValInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $decorated
    */
   public function __construct(

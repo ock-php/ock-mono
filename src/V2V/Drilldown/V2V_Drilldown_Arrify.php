@@ -7,6 +7,8 @@ namespace Donquixote\Ock\V2V\Drilldown;
 class V2V_Drilldown_Arrify implements V2V_DrilldownInterface {
 
   /**
+   * Constructor.
+   *
    * @param string $idKey
    * @param string $optionsKey
    */

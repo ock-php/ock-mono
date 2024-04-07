@@ -29,6 +29,8 @@ class Generator_Boolean implements GeneratorInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\V2V\Boolean\V2V_BooleanInterface $v2v
    */
   public function __construct(

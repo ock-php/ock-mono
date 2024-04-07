@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Context;
 
-use Donquixote\Adaptism\Util\ReflectionTypeUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 
 /**
  * @see \Donquixote\Ock\Todo\ContextTodo
@@ -26,6 +26,8 @@ class CfContext implements CfContextInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param mixed[] $values
    */
   public function __construct(

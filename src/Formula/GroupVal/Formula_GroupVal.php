@@ -25,6 +25,8 @@ class Formula_GroupVal extends Formula_GroupValBase {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $decorated
    * @param \Donquixote\Ock\V2V\Group\V2V_GroupInterface $v2v
    */

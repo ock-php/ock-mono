@@ -14,6 +14,8 @@ class Formula_Neutral_ProxyWithCallable extends Formula_Passthru_ProxyBase {
   private $formulaCallback;
 
   /**
+   * Constructor.
+   *
    * @param callable $formulaCallback
    */
   public function __construct(callable $formulaCallback) {

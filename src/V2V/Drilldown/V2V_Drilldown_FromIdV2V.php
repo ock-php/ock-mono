@@ -9,6 +9,8 @@ use Donquixote\Ock\V2V\Id\V2V_IdInterface;
 class V2V_Drilldown_FromIdV2V implements V2V_DrilldownInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\V2V\Id\V2V_IdInterface $v2vId
    */
   public function __construct(

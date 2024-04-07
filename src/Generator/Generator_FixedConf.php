@@ -31,6 +31,8 @@ class Generator_FixedConf implements GeneratorInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Generator\GeneratorInterface $decorated
    * @param mixed $conf
    */

@@ -10,7 +10,7 @@ use Donquixote\Ock\Formula\StringVal\Formula_StringValInterface;
 use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Translator\Translator;
-use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\DID\Util\MessageUtil;
 use Donquixote\Ock\V2V\String\V2V_String_Trivial;
 use Donquixote\Ock\V2V\String\V2V_StringInterface;
 
@@ -37,6 +37,8 @@ class Generator_Textfield implements GeneratorInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula
    * @param \Donquixote\Ock\V2V\String\V2V_StringInterface $v2v
    */

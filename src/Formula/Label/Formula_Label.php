@@ -11,6 +11,8 @@ use Donquixote\Ock\Text\TextInterface;
 class Formula_Label extends Formula_DecoratorBase implements Formula_LabelInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $decorated
    * @param \Donquixote\Ock\Text\TextInterface|null $label
    */

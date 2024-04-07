@@ -11,6 +11,8 @@ use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhpInterface;
 class Generator_ValueProvider implements GeneratorInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhpInterface $formula
    */
   public function __construct(
