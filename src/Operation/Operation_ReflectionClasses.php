@@ -19,7 +19,7 @@ class Operation_ReflectionClasses implements OperationInterface {
   /**
    * Executes the operation.
    */
-  public function execute() {
+  public function execute(): void {
     foreach ($this->reflectionClassesIA as $reflectionClass) {
       $this->operation->execute($reflectionClass);
     }

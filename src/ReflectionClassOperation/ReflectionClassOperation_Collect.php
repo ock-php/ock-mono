@@ -7,12 +7,12 @@ class ReflectionClassOperation_Collect implements ReflectionClassOperationInterf
   /**
    * @var \ReflectionClass[]
    */
-  private $reflClasses = [];
+  private array $reflClasses = [];
 
   /**
    * @return \ReflectionClass[]
    */
-  public function getCollected() {
+  public function getCollected(): array {
     return $this->reflClasses;
   }
 
@@ -21,7 +21,7 @@ class ReflectionClassOperation_Collect implements ReflectionClassOperationInterf
    *
    * @param \ReflectionClass $reflClass
    */
-  public function execute(\ReflectionClass $reflClass) {
+  public function execute(\ReflectionClass $reflClass): void {
     $this->reflClasses[] = $reflClass;
   }
 }

@@ -7,6 +7,6 @@ interface OperationInterface {
   /**
    * Executes the operation.
    */
-  public function execute();
+  public function execute(): void;
 
 }

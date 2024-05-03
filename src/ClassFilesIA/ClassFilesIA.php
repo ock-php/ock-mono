@@ -13,7 +13,7 @@ class ClassFilesIA {
    *
    * @return ClassFilesIA_NamespaceDirectoryPsr4
    */
-  public static function psr4($dir, $namespace): ClassFilesIAInterface {
+  public static function psr4(string $dir, string $namespace): ClassFilesIAInterface {
     return new ClassFilesIA_NamespaceDirectoryPsr4(
       $dir,
       NsDirUtil::terminateNamespace($namespace),
@@ -27,7 +27,7 @@ class ClassFilesIA {
    *
    * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
-  public static function psr4Up($dir, $namespace, $nLevelsUp = 0): ClassFilesIAInterface {
+  public static function psr4Up(string $dir, string $namespace, int $nLevelsUp = 0): ClassFilesIAInterface {
     $nsDir = NamespaceDirectory::create($dir, $namespace)
       ->requireParentN($nLevelsUp);
     return ClassFilesIA_NamespaceDirectoryPsr4::createFromNsdirObject($nsDir);
@@ -42,7 +42,7 @@ class ClassFilesIA {
    * @throws \ReflectionException
    *   Class does not exist.
    */
-  public static function psr4FromClass($class, $nLevelsUp = 0): ClassFilesIAInterface {
+  public static function psr4FromClass(string $class, int $nLevelsUp = 0): ClassFilesIAInterface {
     $nsDir = NamespaceDirectory::createFromClass($class)
       ->requireParentN($nLevelsUp);
     return ClassFilesIA_NamespaceDirectoryPsr4::createFromNsdirObject($nsDir);

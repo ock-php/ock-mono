@@ -18,7 +18,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    *
    * @return self
    */
-  public static function create($dir, $namespace) {
+  public static function create(string $dir, string $namespace): self {
     return new self(
       $dir,
       NsDirUtil::terminateNamespace($namespace),
@@ -32,7 +32,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    *
    * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
-  public static function createN($dir, $namespace, $nLevelsUp = 0) {
+  public static function createN(string $dir, string $namespace, int $nLevelsUp = 0): ClassFilesIAInterface {
     $nsDir = NamespaceDirectory::create($dir, $namespace)
       ->requireParentN($nLevelsUp);
     return self::createFromNsdirObject($nsDir);
@@ -45,7 +45,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    * @throws \ReflectionException
    */
-  public static function createFromClass(string $class, int $nLevelsUp = 0) {
+  public static function createFromClass(string $class, int $nLevelsUp = 0): ClassFilesIAInterface {
     $nsDir = NamespaceDirectory::createFromClass($class)
       ->requireParentN($nLevelsUp);
     return self::createFromNsdirObject($nsDir);
@@ -56,7 +56,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    *
    * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
-  public static function createFromNsdirObject(NamespaceDirectory $nsdir) {
+  public static function createFromNsdirObject(NamespaceDirectory $nsdir): ClassFilesIAInterface {
     if (!is_dir($nsdir->getDirectory())) {
       return new ClassFilesIA_Empty();
     }
@@ -98,7 +98,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @return \Iterator<string, class-string>
    *   Format: $[$file] = $class
    */
-  private static function scan($dir, $terminatedNamespace): \Iterator {
+  private static function scan(string $dir, string $terminatedNamespace): \Iterator {
 
     foreach (\scandir($dir, \SCANDIR_SORT_ASCENDING) as $candidate) {
 

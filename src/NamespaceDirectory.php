@@ -22,7 +22,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *
    * @return self
    */
-  public static function create($directory, $namespace): self {
+  public static function create(string $directory, string $namespace): self {
     NsDirUtil::requireUnslashedDirectory($directory);
     $namespace = NsDirUtil::terminateNamespace($namespace);
     return new self($directory, $namespace);
@@ -114,7 +114,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *
    * @throws \RuntimeException
    */
-  public function requireParentN($nLevelsUp): self {
+  public function requireParentN(int $nLevelsUp): self {
     if (null === $parent = $this->parentN($nLevelsUp)) {
       throw new \RuntimeException("No parent-!n namespace directory found for !dir / !nsp.");
     }
@@ -126,7 +126,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *
    * @throws \RuntimeException
    */
-  public function requireParent() {
+  public function requireParent(): ?self {
     if (null === $parent = $this->parent()) {
       throw new \RuntimeException(strtr(
         "No parent namespace directory found for !dir / !nsp.",
@@ -144,7 +144,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *
    * @return self|null
    */
-  public function parentN($nLevelsUp) {
+  public function parentN(int $nLevelsUp): ?static {
     if ($nLevelsUp === 0) {
       return $this;
     }
@@ -207,7 +207,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *
    * @return self
    */
-  public function subdir($fragment) {
+  public function subdir(string $fragment): self {
     return new self(
       $this->directory . '/' . $fragment,
       $this->terminatedNamespace . $fragment . '\\',

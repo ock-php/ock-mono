@@ -19,7 +19,7 @@ class Operation_ClassFiles implements OperationInterface {
   /**
    * Executes the operation.
    */
-  public function execute() {
+  public function execute(): void {
     foreach ($this->classFilesIA as $file => $class) {
       $this->operation->execute($file, $class);
     }

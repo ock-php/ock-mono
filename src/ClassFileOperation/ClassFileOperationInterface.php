@@ -12,6 +12,6 @@ interface ClassFileOperationInterface {
    *
    * @throws \Exception
    */
-  public function execute($filepath, $class);
+  public function execute(string $filepath, string $class);
 
 }
