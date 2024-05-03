@@ -8,7 +8,7 @@ class NsDirUtil {
    * @param string $directory
    */
   public static function requireUnslashedDirectory(string &$directory): void {
-    if ('/' === substr($directory, -1)) {
+    if (str_ends_with($directory, '/')) {
       throw new \InvalidArgumentException('Path must be provided without trailing slash or backslash.');
     }
   }
@@ -24,7 +24,7 @@ class NsDirUtil {
     if ('' === $namespace) {
       return '';
     }
-    if ('\\' === substr($namespace, -1)) {
+    if (str_ends_with($namespace, '\\')) {
       throw new \InvalidArgumentException('Namespace must be provided without trailing backslash.');
     }
     if ('\\' === $namespace[0]) {
