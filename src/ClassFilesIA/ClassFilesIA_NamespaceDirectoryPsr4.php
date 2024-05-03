@@ -19,10 +19,10 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @return self
    */
   public static function create($dir, $namespace) {
-
     return new self(
       $dir,
-      NsDirUtil::terminateNamespace($namespace));
+      NsDirUtil::terminateNamespace($namespace),
+    );
   }
 
   /**
@@ -33,10 +33,8 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
   public static function createN($dir, $namespace, $nLevelsUp = 0) {
-
     $nsDir = NamespaceDirectory::create($dir, $namespace)
       ->requireParentN($nLevelsUp);
-
     return self::createFromNsdirObject($nsDir);
   }
 
@@ -48,10 +46,8 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @throws \ReflectionException
    */
   public static function createFromClass(string $class, int $nLevelsUp = 0) {
-
     $nsDir = NamespaceDirectory::createFromClass($class)
       ->requireParentN($nLevelsUp);
-
     return self::createFromNsdirObject($nsDir);
   }
 
@@ -61,14 +57,13 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
   public static function createFromNsdirObject(NamespaceDirectory $nsdir) {
-
     if (!is_dir($nsdir->getDirectory())) {
       return new ClassFilesIA_Empty();
     }
-
     return new self(
       $nsdir->getDirectory(),
-      $nsdir->getTerminatedNamespace());
+      $nsdir->getTerminatedNamespace(),
+    );
   }
 
   /**
@@ -138,9 +133,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
         }
 
         // @todo Make PHP 7 version with "yield from".
-        yield from self::scan(
-          $path,
-          $terminatedNamespace . $candidate . '\\');
+        yield from self::scan($path, $terminatedNamespace . $candidate . '\\');
       }
       
     }

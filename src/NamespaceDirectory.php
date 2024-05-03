@@ -23,11 +23,8 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @return self
    */
   public static function create($directory, $namespace): self {
-
     NsDirUtil::requireUnslashedDirectory($directory);
-
     $namespace = NsDirUtil::terminateNamespace($namespace);
-
     return new self($directory, $namespace);
   }
 
@@ -38,12 +35,11 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @throws \ReflectionException
    */
   public static function createFromClass(string $class): self {
-
     $reflClass = new \ReflectionClass($class);
-
     return self::create(
       dirname($reflClass->getFileName()),
-      $reflClass->getNamespaceName());
+      $reflClass->getNamespaceName(),
+    );
   }
 
   /**
@@ -61,7 +57,8 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   public function withRealpath() {
     return new self(
       realpath($this->directory),
-      $this->terminatedNamespace);
+      $this->terminatedNamespace,
+    );
   }
 
   /**
@@ -90,7 +87,8 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
     }
     $l = strlen($this->terminatedNamespace);
     $directory = $this->directory
-      . '/' . str_replace(
+      . '/'
+      . str_replace(
         '\\',
         '/',
         substr($namespace, $l, -1),
@@ -117,11 +115,9 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @throws \RuntimeException
    */
   public function requireParentN($nLevelsUp): self {
-
     if (null === $parent = $this->parentN($nLevelsUp)) {
       throw new \RuntimeException("No parent-!n namespace directory found for !dir / !nsp.");
     }
-
     return $parent;
   }
 
@@ -131,17 +127,15 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @throws \RuntimeException
    */
   public function requireParent() {
-
     if (null === $parent = $this->parent()) {
-      throw new \RuntimeException(
-        strtr(
-          "No parent namespace directory found for !dir / !nsp.",
-          [
-            '!dir' => var_export($this->getDirectory(), TRUE),
-            '!nsp' => var_export($this->getNamespace(), TRUE),
-          ]));
+      throw new \RuntimeException(strtr(
+        "No parent namespace directory found for !dir / !nsp.",
+        [
+          '!dir' => var_export($this->getDirectory(), TRUE),
+          '!nsp' => var_export($this->getNamespace(), TRUE),
+        ],
+      ));
     }
-
     return $parent;
   }
 
@@ -151,7 +145,6 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @return self|null
    */
   public function parentN($nLevelsUp) {
-
     if ($nLevelsUp === 0) {
       return $this;
     }
@@ -180,6 +173,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
     if ('' === $this->terminatedNamespace || '' === $this->directory) {
       return NULL;
     }
+
     if (FALSE === $pos = strrpos($this->directory, '/')) {
       $parentDir = '';
       $subdirName = $this->directory;
@@ -188,16 +182,20 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
       $parentDir = substr($this->directory, 0, $pos);
       $subdirName = substr($this->directory, $pos + 1);
     }
+
     if ($subdirName . '\\' === $this->terminatedNamespace) {
       return new self($parentDir, '');
     }
+
     $l = strlen($subdirName);
     if (!str_ends_with($this->terminatedNamespace, '\\' . $subdirName . '\\')) {
       return NULL;
     }
+
     if ('\\' . $subdirName . '\\' !== substr($this->terminatedNamespace, -$l - 2)) {
       return NULL;
     }
+
     return new self(
       $parentDir,
       substr($this->terminatedNamespace, 0, -($l + 1)),
