@@ -81,7 +81,7 @@ class ClassFilesIA {
    */
   public static function psr4FromClasses(array $classes): ClassFilesIAInterface {
     return self::multiple(array_map(
-      [self::class, 'psr4FromClass'],
+      self::psr4FromClass(...),
       $classes,
     ));
   }
