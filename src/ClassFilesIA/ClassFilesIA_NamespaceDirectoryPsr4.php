@@ -13,16 +13,6 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
   const CLASS_NAME_REGEX = /** @lang RegExp */ '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/';
 
   /**
-   * @var string
-   */
-  private $directory;
-
-  /**
-   * @var string
-   */
-  private $terminatedNamespace;
-
-  /**
    * @param string $dir
    * @param string $namespace
    *
@@ -85,10 +75,10 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @param string $directory
    * @param string $terminatedNamespace
    */
-  public function __construct($directory, $terminatedNamespace) {
-    $this->directory = $directory;
-    $this->terminatedNamespace = $terminatedNamespace;
-  }
+  public function __construct(
+    private string $directory,
+    private readonly string $terminatedNamespace,
+  ) {}
 
   /**
    * {@inheritdoc}

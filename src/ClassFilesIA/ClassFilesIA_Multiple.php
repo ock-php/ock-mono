@@ -5,16 +5,11 @@ namespace Donquixote\ClassDiscovery\ClassFilesIA;
 class ClassFilesIA_Multiple implements ClassFilesIAInterface {
 
   /**
-   * @var \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[]
-   */
-  private array $classFilesIAs;
-
-  /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
    */
-  public function __construct(array $classFilesIAs) {
-    $this->classFilesIAs = $classFilesIAs;
-  }
+  public function __construct(
+    private array $classFilesIAs,
+  ) {}
 
   /**
    * {@inheritdoc}

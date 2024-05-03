@@ -7,16 +7,11 @@ use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 class ReflectionClassesIA_ClassFilesIA implements ReflectionClassesIAInterface {
 
   /**
-   * @var \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
-   */
-  private $classFilesIA;
-
-  /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    */
-  public function __construct(ClassFilesIAInterface $classFilesIA) {
-    $this->classFilesIA = $classFilesIA;
-  }
+  public function __construct(
+    private readonly ClassFilesIAInterface $classFilesIA,
+  ) {}
 
   /**
    * @return \Traversable<int, \ReflectionClass<object>>

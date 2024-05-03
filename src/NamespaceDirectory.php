@@ -52,7 +52,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    */
   private function __construct(
     private string $directory,
-    private string $terminatedNamespace,
+    private readonly string $terminatedNamespace,
   ) {}
 
   /**
