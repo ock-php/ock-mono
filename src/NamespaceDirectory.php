@@ -23,7 +23,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @return self
    */
   public static function create(string $directory, string $namespace): self {
-    NsDirUtil::requireUnslashedDirectory($directory);
+    assert(!str_ends_with($directory, '/'), "Directory '$directory' must not end with slash.");
     $namespace = NsDirUtil::terminateNamespace($namespace);
     return new self($directory, $namespace);
   }
