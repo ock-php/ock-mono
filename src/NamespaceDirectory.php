@@ -52,16 +52,6 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   ) {}
 
   /**
-   * @return self
-   */
-  public function withRealpath() {
-    return new self(
-      realpath($this->directory),
-      $this->terminatedNamespace,
-    );
-  }
-
-  /**
    * Gets a version where all base paths are sent through ->realpath().
    *
    * @return static
