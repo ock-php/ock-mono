@@ -7,7 +7,7 @@ class ClassFilesIA_Empty implements ClassFilesIAInterface {
   /**
    * {@inheritdoc}
    */
-  public function getIterator(): \Traversable {
+  public function getIterator(): \Iterator {
     return new \EmptyIterator();
   }
 
