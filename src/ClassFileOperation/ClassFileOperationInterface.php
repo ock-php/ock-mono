@@ -8,7 +8,7 @@ interface ClassFileOperationInterface {
    * Executes an operation for a given class / file.
    *
    * @param string $filepath
-   * @param string $class
+   * @param class-string $class
    *
    * @throws \Exception
    */

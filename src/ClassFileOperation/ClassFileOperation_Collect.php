@@ -11,12 +11,7 @@ class ClassFileOperation_Collect implements ClassFileOperationInterface {
   private array $classFiles = [];
 
   /**
-   * Executes an operation for a given class / file.
-   *
-   * @param string $filepath
-   * @param string $class
-   *
-   * @throws \Exception
+   * {@inheritdoc}
    */
   public function execute(string $filepath, string $class): void {
     if (isset($this->classFiles[$filepath])) {

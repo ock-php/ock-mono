@@ -9,7 +9,7 @@ interface NamespaceDirectoriesIAInterface extends \IteratorAggregate {
   /**
    * Iterates over namespace directories.
    *
-   * @return \Iterator|\Donquixote\ClassDiscovery\NamespaceDirectory[]
+   * @return \Iterator<string, \Donquixote\ClassDiscovery\NamespaceDirectory>
    *   Format: $[$name] = $nsdir.
    */
   public function getIterator(): \Iterator;

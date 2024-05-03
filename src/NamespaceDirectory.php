@@ -112,7 +112,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
-   * @return \Donquixote\ClassDiscovery\NamespaceDirectory
+   * @return self|null
    *
    * @throws \RuntimeException
    */
@@ -132,7 +132,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   /**
    * @param int $nLevelsUp
    *
-   * @return self|null
+   * @return static|null
    */
   public function parentN(int $nLevelsUp): ?static {
     if ($nLevelsUp === 0) {
