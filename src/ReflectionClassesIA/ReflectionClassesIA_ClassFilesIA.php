@@ -22,7 +22,7 @@ class ReflectionClassesIA_ClassFilesIA implements ReflectionClassesIAInterface {
       try {
         $reflectionClass = new \ReflectionClass($class);
       }
-      catch (\ReflectionException $e) {
+      catch (\ReflectionException) {
         // Skip non-existing classes / interfaces / traits.
         continue;
       }
