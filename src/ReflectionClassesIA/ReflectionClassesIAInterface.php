@@ -10,9 +10,9 @@ namespace Donquixote\ClassDiscovery\ReflectionClassesIA;
 interface ReflectionClassesIAInterface extends \IteratorAggregate {
 
   /**
-   * @return \Traversable<int, \ReflectionClass<object>>
+   * @return \Iterator<int, \ReflectionClass<object>>
    *   Format: $[$file] = $class
    */
-  public function getIterator(): \Traversable;
+  public function getIterator(): \Iterator;
 
 }

@@ -14,10 +14,10 @@ class ReflectionClassesIA_ClassFilesIA implements ReflectionClassesIAInterface {
   ) {}
 
   /**
-   * @return \Traversable<int, \ReflectionClass<object>>
+   * @return \Iterator<int, \ReflectionClass<object>>
    *   Format: $[$file] = $class
    */
-  public function getIterator(): \Traversable {
+  public function getIterator(): \Iterator {
     foreach ($this->classFilesIA->withRealpathRoot() as $file => $class) {
       try {
         $reflectionClass = new \ReflectionClass($class);
