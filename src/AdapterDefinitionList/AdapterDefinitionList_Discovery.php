@@ -18,7 +18,7 @@ use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_SelfMethod;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
-use Donquixote\CodegenTools\Util\MessageUtil;
+use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\DID\Attribute\Service;
 use Donquixote\DID\ClassToCTV\ClassToCTVInterface;

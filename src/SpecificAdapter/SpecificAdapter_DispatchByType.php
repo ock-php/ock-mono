@@ -6,7 +6,7 @@ namespace Donquixote\Adaptism\SpecificAdapter;
 use Donquixote\Adaptism\AdapterMap\AdapterMapInterface;
 use Donquixote\Adaptism\Exception\MisbehavingAdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\CodegenTools\Util\MessageUtil;
+use Donquixote\Adaptism\Util\MessageUtil;
 
 class SpecificAdapter_DispatchByType implements SpecificAdapterInterface {
 
