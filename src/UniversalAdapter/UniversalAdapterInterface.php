@@ -6,7 +6,7 @@ namespace Donquixote\Adaptism\UniversalAdapter;
 interface UniversalAdapterInterface {
 
   /**
-   * @template T as object
+   * @template T of object
    *
    * @param object $adaptee
    * @param class-string<T> $resultType
