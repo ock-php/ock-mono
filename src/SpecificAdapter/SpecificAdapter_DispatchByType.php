@@ -33,16 +33,17 @@ class SpecificAdapter_DispatchByType implements SpecificAdapterInterface {
     );
     foreach ($adapters as $adapter) {
       $candidate = $adapter->adapt($adaptee, $resultType, $universalAdapter);
-      if ($candidate instanceof $resultType) {
-        return $candidate;
+      if ($candidate === null) {
+        continue;
       }
-      if ($candidate !== null) {
-        throw new MisbehavingAdapterException(\sprintf(
-          'Expected %s object, found %s.',
-          $resultType,
-          MessageUtil::formatValue($candidate),
-        ));
-      }
+      assert($candidate instanceof $resultType, sprintf(
+        'Misbehaving adapter %s: Expected %s object or NULL, found %s, for %s .',
+        MessageUtil::formatValue($adapter),
+        $resultType,
+        MessageUtil::formatValue($candidate),
+        MessageUtil::formatValue($adaptee),
+      ));
+      return $candidate;
     }
 
     // No successful adapter.
