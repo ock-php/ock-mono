@@ -16,9 +16,8 @@ use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_SelfMethod;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
 use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\DID\Attribute\Service;
 use Donquixote\DID\ClassToCTV\ClassToCTVInterface;
@@ -27,12 +26,13 @@ use Donquixote\DID\Exception\MalformedDeclarationException;
 use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
 use Donquixote\DID\Util\AttributesUtil;
 use Donquixote\DID\Util\ReflectionTypeUtil;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
 /**
  * The annotated service is an empty definition list.
  */
-#[Service(self::class)]
-class AdapterDefinitionList_Discovery extends ReflectionClassesIAHavingBase implements AdapterDefinitionListInterface {
+#[AsAlias]
+class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface {
 
   /**
    * Constructor.
