@@ -28,7 +28,8 @@
     "require": {
         "donquixote/class-discovery": "dev-master",
         "donquixote/di-discovery": "@dev",
-        "psr/container": "^1.0|^2.0"
+        "psr/container": "^1.0|^2.0",
+        "php": ">=8.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.0",
