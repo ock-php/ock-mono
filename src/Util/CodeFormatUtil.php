@@ -20,8 +20,13 @@ class CodeFormatUtil {
    * @throws \Donquixote\CodegenTools\Exception\CodegenException
    */
   public static function formatAsFile(string $php, string $namespace = NULL): string {
-    return "<?php\n\ndeclare(strict_types=1);\n\n"
+    $filePhp = "<?php\n\ndeclare(strict_types=1);\n\n"
       . self::formatAsSnippet($php, $namespace);
+    if (!str_ends_with($filePhp, "\n")) {
+      // Files should always end with a line break.
+      $filePhp .= "\n";
+    }
+    return $filePhp;
   }
 
   /**

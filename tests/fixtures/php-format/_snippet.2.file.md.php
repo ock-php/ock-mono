@@ -16,7 +16,17 @@ use Donquixote\CodegenTools\Util\CodeFormatUtil;
 
 print "\n";
 
+$filePhp = CodeFormatUtil::formatAsFile($php);
+
+if (!str_ends_with($filePhp, "\n")) {
+  $filePhp .= "\n# MISSING LINE BREAK";
+}
+else {
+  // Don't print the trailing line break in markdown.
+  $filePhp = substr($filePhp, 0, -1);
+}
+
 print TestUtil::formatMarkdownSection(
   'Formatted as file',
-  CodeFormatUtil::formatAsFile($php),
+  $filePhp,
 );
