@@ -91,7 +91,7 @@ class AttributesUtil {
   /**
    * Gets and instantiates the first attribute of a given type, if exists.
    *
-   * @template T
+   * @template T of object
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
    *   Element that has the attribute.
