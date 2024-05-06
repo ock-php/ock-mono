@@ -43,7 +43,7 @@ class Aliasifier {
   public function getImportsPhp(bool $appendLineBreak = true): string {
     $importsPhp = '';
     foreach ($this->importsByType as $importsForType) {
-      sort($importsForType);
+      sort($importsForType, SORT_FLAG_CASE | SORT_STRING);
       $importsPhp .= implode('', $importsForType);
     }
     if ($appendLineBreak && $importsPhp !== '') {
