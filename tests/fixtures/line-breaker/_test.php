@@ -19,8 +19,9 @@ try {
 catch (\Throwable $e) {
   Assert::fail(sprintf(
     '%s in pretty php: %s',
-    get_class($e), $e->getMessage()),
-  );
+    get_class($e),
+    $e->getMessage(),
+  ));
 }
 
 Assert::assertSame(
