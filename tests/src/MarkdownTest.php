@@ -166,7 +166,7 @@ EOT;
       'types' => $types,
       'texts' => $texts,
       'snippets' => $snippets,
-      'name' => $testCaseFileName,
+      'name' => $markdownFileName,
     ]);
   }
 
