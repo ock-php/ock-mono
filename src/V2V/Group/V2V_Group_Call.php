@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\V2V\Group;
 
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\CodeGen;
 
 class V2V_Group_Call implements V2V_GroupInterface {
 
@@ -97,7 +97,7 @@ class V2V_Group_Call implements V2V_GroupInterface {
         $argPhp = $this->argNames[$i] . ': ' . $argPhp;
       }
     }
-    return PhpUtil::phpCallFqn($this->fqn, $itemsPhp);
+    return CodeGen::phpCallFqn($this->fqn, $itemsPhp);
   }
 
 }

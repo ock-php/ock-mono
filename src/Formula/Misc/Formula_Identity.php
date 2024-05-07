@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Misc;
 
+use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Generator\GeneratorInterface;
@@ -19,7 +20,7 @@ final class Formula_Identity implements FormulaInterface, GeneratorInterface, Su
    */
   public function confGetPhp(mixed $conf): string {
     try {
-      return PhpUtil::phpValue($conf);
+      return CodeGen::phpValue($conf);
     }
     catch (\Exception $e) {
       throw new GeneratorException_IncompatibleConfiguration($e->getMessage(), 0, $e);

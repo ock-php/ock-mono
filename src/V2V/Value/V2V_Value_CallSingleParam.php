@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\V2V\Value;
 
+use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\DID\Util\PhpUtil;
 
 class V2V_Value_CallSingleParam implements V2V_ValueInterface {
@@ -20,7 +21,7 @@ class V2V_Value_CallSingleParam implements V2V_ValueInterface {
    * @param mixed $conf
    */
   public function phpGetPhp(string $php, mixed $conf): string {
-    return PhpUtil::phpCallFqn($this->fqn, [$php]);
+    return CodeGen::phpCallFqn($this->fqn, [$php]);
   }
 
 }

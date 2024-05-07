@@ -8,7 +8,7 @@ use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\DID\Util\MessageUtil;
+use Donquixote\DID\CodegenTools\MessageUtil;
 use Donquixote\Ock\Util\UtilBase;
 
 final class FormulaAdapter extends UtilBase {

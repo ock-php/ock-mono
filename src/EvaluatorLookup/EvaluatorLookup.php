@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Donquixote\Ock\EvaluatorLookup;
 
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\DID\Util\MessageUtil;
+use Donquixote\CodegenTools\Util\MessageUtil;
 use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Evaluator\EvaluatorInterface;
 use Donquixote\Ock\Formula\Formula;

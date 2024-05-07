@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\ValueProvider;
 
+use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\DID\Util\PhpUtil;
 
 class Formula_FixedPhp implements Formula_FixedPhpInterface {
@@ -16,7 +17,7 @@ class Formula_FixedPhp implements Formula_FixedPhpInterface {
    */
   public static function fromClass(string $class, array $argsPhp = []): self {
     return new self(
-      PhpUtil::phpConstruct($class, $argsPhp));
+      CodeGen::phpConstruct($class, $argsPhp));
   }
 
   /**
@@ -27,7 +28,7 @@ class Formula_FixedPhp implements Formula_FixedPhpInterface {
    */
   public static function fromStaticMethod(callable $method, array $argsPhp = []): self {
     return new self(
-      PhpUtil::phpCallStatic($method, $argsPhp));
+      CodeGen::phpCallStatic($method, $argsPhp));
   }
 
   /**
@@ -38,7 +39,7 @@ class Formula_FixedPhp implements Formula_FixedPhpInterface {
    */
   public static function fromFunction(string $function, array $argsPhp = []): self {
     return new self(
-      PhpUtil::phpCallFunction($function, $argsPhp));
+      CodeGen::phpCallFunction($function, $argsPhp));
   }
 
   /**
@@ -52,7 +53,7 @@ class Formula_FixedPhp implements Formula_FixedPhpInterface {
    * @return self
    */
   public static function fromValueSimple(mixed $value): self {
-    return new self(PhpUtil::phpValueSimple($value));
+    return new self(CodeGen::phpValueUnchecked($value));
   }
 
   /**
@@ -67,7 +68,7 @@ class Formula_FixedPhp implements Formula_FixedPhpInterface {
    *   Value is not supported for export.
    */
   public static function fromValue(mixed $value): self {
-    return new self(PhpUtil::phpValue($value));
+    return new self(CodeGen::phpValue($value));
   }
 
   /**

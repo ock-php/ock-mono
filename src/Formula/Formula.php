@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula;
 
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Group\GroupFormulaBuilder;
 use Donquixote\Ock\Formula\Iface\Formula_Iface;
@@ -13,7 +14,6 @@ use Donquixote\Ock\Formula\Select\Flat\FlatSelectBuilderInterface;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
 use Donquixote\Ock\Formula\Sequence\Formula_Sequence;
 use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp;
-use Donquixote\DID\Util\PhpUtil;
 use Donquixote\Ock\Util\UtilBase;
 
 final class Formula extends UtilBase {
@@ -116,7 +116,7 @@ final class Formula extends UtilBase {
    *   Value cannot be exported.
    */
   public static function value(mixed $value): Formula_OptionlessInterface {
-    return self::valuePhp(PhpUtil::phpValue($value));
+    return self::valuePhp(CodeGen::phpValue($value));
   }
 
   /**
@@ -125,7 +125,7 @@ final class Formula extends UtilBase {
    * @return \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface
    */
   public static function valueSimple(mixed $value): Formula_OptionlessInterface {
-    return self::valuePhp(PhpUtil::phpValueSimple($value));
+    return self::valuePhp(CodeGen::phpValueUnchecked($value));
   }
 
   /**
@@ -143,7 +143,7 @@ final class Formula extends UtilBase {
    * @return \Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp
    */
   public static function serviceExpression(string $serviceId): Formula_FixedPhp {
-    return new Formula_FixedPhp(PhpUtil::phpCallMethod(
+    return new Formula_FixedPhp(CodeGen::phpCallMethod(
       '$container',
       'get',
       [var_export($serviceId, TRUE)],
@@ -158,7 +158,7 @@ final class Formula extends UtilBase {
    * @return \Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp
    */
   public static function serviceMethodCallExpression(string $serviceId, string $method, array $args): Formula_FixedPhp {
-    return new Formula_FixedPhp(PhpUtil::phpCallMethod(
+    return new Formula_FixedPhp(CodeGen::phpCallMethod(
       '$container',
       'get',
       [var_export($serviceId, TRUE)],

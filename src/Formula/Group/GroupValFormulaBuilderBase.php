@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Group;
 
+use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal;
@@ -180,7 +181,7 @@ abstract class GroupValFormulaBuilderBase {
    *   Value is not supported for export.
    */
   public function addValue(string $key, mixed $value): GroupValFormulaBuilder {
-    return $this->addValuePhp($key, PhpUtil::phpValue($value));
+    return $this->addValuePhp($key, CodeGen::phpValue($value));
   }
 
   /**
@@ -194,7 +195,7 @@ abstract class GroupValFormulaBuilderBase {
    * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public function addScalar(string $key, string|int|bool|float $value): GroupValFormulaBuilder {
-    return $this->addValuePhp($key, PhpUtil::phpValueSimple($value));
+    return $this->addValuePhp($key, CodeGen::phpValueUnchecked($value));
   }
 
   /**
@@ -206,7 +207,7 @@ abstract class GroupValFormulaBuilderBase {
    * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public function addValueCall(string $key, callable $callback): GroupValFormulaBuilder {
-    return $this->addValuePhp($key, PhpUtil::phpCall($callback));
+    return $this->addValuePhp($key, CodeGen::phpCall($callback));
   }
 
   /**
@@ -291,7 +292,7 @@ abstract class GroupValFormulaBuilderBase {
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function constructPhp(string $class, array $phpArgsWithPlaceholders): FormulaInterface {
-    return $this->buildPhp(PhpUtil::phpConstruct(
+    return $this->buildPhp(CodeGen::phpConstruct(
       $class,
       $phpArgsWithPlaceholders,
     ));
@@ -304,7 +305,7 @@ abstract class GroupValFormulaBuilderBase {
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public function callPhp(callable $callback, array $phpArgsWithPlaceholders): FormulaInterface {
-    return $this->buildPhp(PhpUtil::phpCall(
+    return $this->buildPhp(CodeGen::phpCall(
       $callback,
       $phpArgsWithPlaceholders,
     ));

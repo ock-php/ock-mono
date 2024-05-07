@@ -6,6 +6,7 @@ namespace Donquixote\Ock\Generator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Validator\Formula_ConstrainedValueInterface;
@@ -35,7 +36,7 @@ class Generator_ConstrainedValue implements GeneratorInterface {
       );
     }
     try {
-      return PhpUtil::phpValue($conf);
+      return CodeGen::phpValue($conf);
     }
     catch (\Exception $e) {
       throw new GeneratorException($e->getMessage(), 0, $e);

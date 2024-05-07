@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Fixture\IntFormat;
 
-use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Parameter\OckAdaptee;
 use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Attribute\PluginModifier\OckPluginAdapter;
 use Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormatInterface;
@@ -23,7 +22,7 @@ class IntFormat_NumberFormat implements IntFormatInterface {
    * @param \Donquixote\Ock\Tests\Fixture\NumberFormat\NumberFormatInterface $numberFormat
    */
   public function __construct(
-    #[Adaptee]
+    #[OckAdaptee]
     private readonly NumberFormatInterface $numberFormat,
   ) {}
 

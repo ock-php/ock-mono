@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\V2V\Sequence;
 
+use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\DID\Util\PhpUtil;
 
 class V2V_Sequence_Trivial implements V2V_SequenceInterface {
@@ -12,7 +13,7 @@ class V2V_Sequence_Trivial implements V2V_SequenceInterface {
    * {@inheritdoc}
    */
   public function itemsPhpGetPhp(array $itemsPhp): string {
-    return PhpUtil::phpArray($itemsPhp);
+    return CodeGen::phpArray($itemsPhp);
   }
 
 }

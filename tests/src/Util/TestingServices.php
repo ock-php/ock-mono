@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests\Util;
 
@@ -22,28 +22,57 @@ use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Translator\Translator_Passthru;
 use Donquixote\Ock\Translator\TranslatorInterface;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 class TestingServices {
 
   /**
-   * @return \Psr\Container\ContainerInterface
+   * @var \Psr\Container\ContainerInterface|null
+   */
+  private static ?ContainerInterface $container;
+
+  /**
+   * Builds a container with services for adaptism tests.
    *
-   * @throws \Donquixote\DID\Exception\ContainerToValueException
+   * @return \Psr\Container\ContainerInterface
+   *   New container.
    */
   public static function getContainer(): ContainerInterface {
-    try {
-      return Container_CTVs::fromClassFilesIAs([
-        // Discover in object-construction-kit.
-        ClassFilesIA::psr4FromClass(FormulaException::class, 1),
-        // Discover in object-construction-kit/tests.
-        ClassFilesIA::psr4FromClass(self::class),
-        // Discover in adaptism.
-        ClassFilesIA::psr4FromClass(UniversalAdapterInterface::class, 1),
-      ]);
-    }
-    catch (\ReflectionException|DiscoveryException $e) {
-      throw new ContainerToValueException($e->getMessage(), 0, $e);
-    }
+    return self::$container ??= self::buildContainer();
+  }
+
+  /**
+   * @return \Psr\Container\ContainerInterface
+   */
+  private static function buildContainer(): ContainerInterface {
+    $container = new ContainerBuilder();
+    $root = dirname(__DIR__, 3);
+    static::loadPackageServicesPhp($container, $root . '/vendor/donquixote/di-discovery');
+    static::loadPackageServicesPhp($container, $root . '/vendor/donquixote/adaptism');
+    static::loadPackageServicesPhp($container, $root);
+    static::loadPackageServicesPhp($container, $root . '/tests', 'services.test.php');
+    $container->setAlias(ContainerInterface::class, 'service_container');
+
+    $container->compile();
+
+    return $container;
+  }
+
+  /**
+   * Loads services from a services.php in a package directory.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+   * @param string $dir
+   *   Directory where the services.php is found.
+   * @param string $file
+   *   File name.
+   */
+  protected static function loadPackageServicesPhp(ContainerBuilder $container, string $dir, string $file = 'services.php'): void {
+    $locator = new FileLocator($dir);
+    $loader = new PhpFileLoader($container, $locator);
+    $loader->load($file);
   }
 
   /**

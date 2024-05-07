@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Donquixote\Ock\Formula\Validator;
 
-use Donquixote\DID\Util\MessageUtil;
+use Donquixote\CodegenTools\Util\MessageUtil;
 use Donquixote\Ock\Text\Text;
 
 class Formula_ConstrainedValue_NativeTypeList implements Formula_ConstrainedValueInterface {

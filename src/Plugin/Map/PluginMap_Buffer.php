@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin\Map;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireDecorated;
 
-#[Service]
+#[AsDecorator(PluginMapInterface::class)]
 class PluginMap_Buffer implements PluginMapInterface {
 
   /**
@@ -26,7 +26,7 @@ class PluginMap_Buffer implements PluginMapInterface {
    * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $decorated
    */
   public function __construct(
-    #[GetService(PluginMap_Registry::class)]
+    #[AutowireDecorated]
     private readonly PluginMapInterface $decorated,
   ) {}
 

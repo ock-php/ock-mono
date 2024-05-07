@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\V2V\Group;
 
+use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\DID\Util\PhpUtil;
 
 class V2V_Group_ObjectMethodCall implements V2V_GroupInterface {
@@ -30,7 +31,7 @@ class V2V_Group_ObjectMethodCall implements V2V_GroupInterface {
     foreach ($this->paramKeys as $paramPos => $sourceKey) {
       $paramsPhp[$paramPos] = $itemsPhp[$sourceKey];
     }
-    return PhpUtil::phpCallMethod($itemsPhp[$this->objectKey], $this->method, $paramsPhp);
+    return CodeGen::phpCallMethod($itemsPhp[$this->objectKey], $this->method, $paramsPhp);
   }
 
 }

@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types = 1);
-
-/** @noinspection PhpUnused */
+declare(strict_types=1);
 
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOp_Multiply;
 

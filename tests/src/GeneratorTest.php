@@ -1,15 +1,12 @@
 <?php
 
-declare(strict_types = 1);
-
-/**
- * @noinspection PhpDocMissingThrowsInspection
- * @noinspection PhpUnhandledExceptionInspection
- */
+declare(strict_types=1);
 
 namespace Donquixote\Ock\Tests;
 
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\CodegenTools\CodeFormatter;
+use Donquixote\DID\Util\PhpUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Generator\Generator;
@@ -17,7 +14,6 @@ use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Tests\Util\TestingServices;
 use Donquixote\Ock\Tests\Util\TestUtil;
-use Donquixote\DID\Util\PhpUtil;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -107,7 +103,7 @@ class GeneratorTest extends FormulaTestBase {
     $php_statement = <<<EOT
 // Exception thrown in generator.
 return static function () {
-  throw new $class(
+  throw new \\$class(
     $message_php);
 };
 EOT;
@@ -124,11 +120,7 @@ EOT;
    *   Php file containing the expected php code.
    */
   private static function assertValuePhpFile(string $expression, ?string $interface, string $file_expected): void {
-    $php_nice = PhpUtil::autoIndent(
-      $expression,
-      '  ',
-      $interface !== NULL ? '  ' : '');
-    $php_statement = PhpUtil::buildReturnStatement($php_nice);
+    $php_statement = PhpUtil::buildReturnStatement($expression);
     if ($interface !== NULL) {
       $php_statement = <<<EOT
 return static function (): \\$interface {
@@ -150,19 +142,9 @@ EOT;
    *   PHP code suitable for export into a file.
    */
   private static function formatAsFile(string $php): string {
-    $aliases = PhpUtil::aliasify($php);
-    $php = rtrim($php, "\n ");
-    $aliases_php = PhpUtil::formatAliases($aliases);
-    return <<<EOT
-<?php
-
-declare(strict_types = 1);
-
-/** @noinspection PhpUnused */
-$aliases_php
-$php
-
-EOT;
+    return CodeFormatter::create()
+      ->withMaxLineLength(60)
+      ->formatAsFile($php);
   }
 
 }

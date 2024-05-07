@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Plugin\Map;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Plugin\Registry\PluginRegistryInterface;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
-#[Service(self::class)]
+#[AsAlias(public: true)]
 class PluginMap_Registry implements PluginMapInterface {
 
   /**
@@ -17,7 +16,6 @@ class PluginMap_Registry implements PluginMapInterface {
    * @param \Donquixote\Ock\Plugin\Registry\PluginRegistryInterface $registry
    */
   public function __construct(
-    #[GetService]
     private readonly PluginRegistryInterface $registry,
   ) {}
 
