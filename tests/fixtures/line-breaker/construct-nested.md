@@ -13,6 +13,8 @@ $long = new ClassWithLongName(new ClassWithLongName('abc'));
 
 $longer = new ClassTheNameOfWhichIsEvenLonger(new ClassTheNameOfWhichIsEvenLonger('abc'));
 
+$longMultiArg = new ClassWithLongName(new ClassWithLongName('abc'), new ClassWithLongName('def'));
+
 $complex1 = new ClassWithLongName(
   new ClassWithLongName(
         new ClassWithLongName(5),
@@ -20,6 +22,8 @@ $complex1 = new ClassWithLongName(
   ),
   new ClassWithLongName(2),
 );
+
+$complex1Inline = new ClassWithLongName(new ClassWithLongName(new ClassWithLongName(5), new ClassWithLongName(1)), new ClassWithLongName(2));
 
 $complex2 = new ClassWithLongName(
   new ClassWithLongName(2),
@@ -45,7 +49,17 @@ $longer = new ClassTheNameOfWhichIsEvenLonger(
   new ClassTheNameOfWhichIsEvenLonger('abc'),
 );
 
+$longMultiArg = new ClassWithLongName(
+  new ClassWithLongName('abc'),
+  new ClassWithLongName('def'),
+);
+
 $complex1 = new ClassWithLongName(new ClassWithLongName(
+  new ClassWithLongName(5),
+  new ClassWithLongName(1),
+), new ClassWithLongName(2));
+
+$complex1Inline = new ClassWithLongName(new ClassWithLongName(
   new ClassWithLongName(5),
   new ClassWithLongName(1),
 ), new ClassWithLongName(2));
