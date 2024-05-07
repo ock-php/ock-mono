@@ -84,6 +84,13 @@ class LineBreaker {
    */
   private array $operatorMap = [];
 
+  /**
+   * Immutable setter. Sets the maximum line length.
+   *
+   * @param int $limit
+   *
+   * @return $this
+   */
   public function withMaxLineLength(int $limit): static {
     $clone = clone $this;
     $clone->limit = $limit;
