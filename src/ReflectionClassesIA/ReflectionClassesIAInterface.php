@@ -3,15 +3,12 @@
 namespace Donquixote\ClassDiscovery\ReflectionClassesIA;
 
 /**
- * @template TKey
- * @template-covariant TValue
- * @template-implements \IteratorAggregate<TKey, TValue>
+ * @template-implements \IteratorAggregate<mixed, \ReflectionClass>
  */
 interface ReflectionClassesIAInterface extends \IteratorAggregate {
 
   /**
-   * @return \Iterator<int, \ReflectionClass<object>>
-   *   Format: $[$file] = $class
+   * @return \Iterator<int, \ReflectionClass>
    */
   public function getIterator(): \Iterator;
 
