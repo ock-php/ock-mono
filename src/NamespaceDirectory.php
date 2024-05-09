@@ -33,6 +33,22 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
+   * Creates a namespace directory based on a known class name.
+   *
+   * @param class-string $class
+   *
+   * @return self
+   */
+  public static function fromKnownClass(string $class): self {
+    try {
+      return self::createFromClass($class);
+    }
+    catch (\ReflectionException $e) {
+      throw new \RuntimeException($e->getMessage(), 0, $e);
+    }
+  }
+
+  /**
    * Creates a namespace directory based on a class name.
    *
    * @param class-string|string $class
