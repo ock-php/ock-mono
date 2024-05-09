@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Attribute\Plugin;
 
-use Donquixote\CodegenTools\Util\MessageUtil;
+use Donquixote\ClassDiscovery\Util\MessageUtil;
 use Donquixote\DID\Attribute\Parameter\GetServiceInterface;
 use Donquixote\DID\Attribute\ReflectorAwareAttributeInterface;
-use Donquixote\DID\Exception\MalformedDeclarationException;
-use Donquixote\DID\Util\AttributesUtil;
-use Donquixote\DID\Util\ReflectionTypeUtil;
-use Donquixote\Ock\Attribute\PluginModifier\PluginModifierAttributeInterface;
+use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
+use Donquixote\ClassDiscovery\Util\AttributesUtil;
+use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
 use Donquixote\Ock\Contract\FormulaHavingInterface;
 use Donquixote\Ock\Contract\LabelHavingInterface;
 use Donquixote\Ock\Contract\NameHavingInterface;
@@ -22,6 +21,18 @@ use Donquixote\Ock\Plugin\PluginDeclaration;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Util\IdentifierLabelUtil;
 
+/**
+ * Marks a method or a class as producing a plugin instance.
+ *
+ * The target must be one of:
+ * - An instantiable class.
+ * - A public non-abstract static method with a return type that specifies a
+ *   single class or interface name.
+ *
+ * At the moment, non-static methods are not supported.
+ *
+ * @see \Donquixote\Ock\Inspector\FactoryInspector_OckInstanceAttribute
+ */
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
 class OckPluginInstance extends PluginAttributeBase {
 
@@ -82,10 +93,10 @@ class OckPluginInstance extends PluginAttributeBase {
    *
    * @return \Donquixote\Ock\Formula\Group\GroupFormulaBuilder
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  private function buildGroupFormula(array $parameters, ?array &$modifiers): GroupFormulaBuilder {
+  private function buildGroupFormula(array $parameters): GroupFormulaBuilder {
     $builder = Formula::group();
     foreach ($parameters as $i => $parameter) {
       $attribute = AttributesUtil::getSingle($parameter, GetServiceInterface::class);
@@ -122,9 +133,6 @@ class OckPluginInstance extends PluginAttributeBase {
       /** @var ReflectorAwareAttributeInterface $attribute */
       foreach (AttributesUtil::getAll($parameter, ReflectorAwareAttributeInterface::class) as $attribute) {
         $attribute->setReflector($parameter);
-      }
-      foreach (AttributesUtil::getAll($parameter, PluginModifierAttributeInterface::class) as $attribute) {
-
       }
     }
     return $builder;

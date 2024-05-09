@@ -8,7 +8,7 @@ use Donquixote\CodegenTools\Util\CodeGen;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\PhpUtil;
 use Donquixote\Ock\V2V\Group\V2V_Group_Call;
 use Donquixote\Ock\V2V\Group\V2V_Group_ExpressionCallback;
 use Donquixote\Ock\V2V\Group\V2V_Group_Fixed;
@@ -229,7 +229,9 @@ abstract class GroupValFormulaBuilderBase {
    * @param string[]|null $keys
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
    * @throws \ReflectionException
+   *   Class does not exist.
    */
   public function construct(string $class, array $keys = NULL): FormulaInterface {
     return $this->val(V2V_Group_Call::fromClass($class), $keys);

@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Donquixote\Ock;
 
 use Donquixote\Adaptism\AdaptismPackage;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\CurrentNamespaceBase;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 

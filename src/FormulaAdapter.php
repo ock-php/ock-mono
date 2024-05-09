@@ -6,9 +6,9 @@ namespace Donquixote\Ock;
 
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\ClassDiscovery\Util\MessageUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\DID\CodegenTools\MessageUtil;
 use Donquixote\Ock\Util\UtilBase;
 
 final class FormulaAdapter extends UtilBase {

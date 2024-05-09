@@ -33,10 +33,13 @@ class V2V_Group_Call implements V2V_GroupInterface {
   }
 
   /**
-   * @param class-string $class
+   * @param string|class-string $class
+   *   Class name which may or may not be verified to exist.
    *
    * @return self
+   *
    * @throws \ReflectionException
+   *   Class not found.
    */
   public static function fromClass(string $class): self {
     return self::fromFqn(

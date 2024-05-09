@@ -6,7 +6,7 @@ namespace Donquixote\Ock\Tests;
 
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\CodegenTools\CodeFormatter;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\PhpUtil;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Generator\Generator;

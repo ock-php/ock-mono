@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Formula\ValueProvider;
 
 use Donquixote\CodegenTools\Util\CodeGen;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\PhpUtil;
 
 class Formula_FixedPhp implements Formula_FixedPhpInterface {
 

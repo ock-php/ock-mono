@@ -6,6 +6,7 @@ namespace Donquixote\Ock\Formula\Group;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Exception\FormulaException;
+use Donquixote\Ock\Exception\GroupFormulaDuplicateKeyException;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Group\Item\GroupFormulaItem;
 use Donquixote\Ock\Formula\Group\Item\GroupFormulaItem_Callback;
@@ -31,7 +32,7 @@ class GroupFormulaBuilder extends GroupValFormulaBuilderBase {
    *
    * @return $this
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Donquixote\Ock\Exception\GroupFormulaDuplicateKeyException
    */
   public function add(string $key, TextInterface $label, FormulaInterface $formula): static {
     return $this->addItem($key, new GroupFormulaItem($label, $formula));
@@ -43,11 +44,12 @@ class GroupFormulaBuilder extends GroupValFormulaBuilderBase {
    *
    * @return $this
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Donquixote\Ock\Exception\GroupFormulaDuplicateKeyException
+   *   A key already exists.
    */
   private function addItem(string|int $key, GroupFormulaItemInterface $item): static {
     if (isset($this->items[$key])) {
-      throw new FormulaException("Key '$key' already exists.");
+      throw new GroupFormulaDuplicateKeyException("Key '$key' already exists.");
     }
     $this->items[$key] = $item;
     return $this;

@@ -12,7 +12,7 @@ use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\DID\Attribute\Service;
 use Donquixote\DID\Container\Container_CTVs;
 use Donquixote\DID\Exception\ContainerToValueException;
-use Donquixote\DID\Exception\DiscoveryException;
+use Donquixote\ClassDiscovery\Exception\DiscoveryException;
 use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\OckPackage;
 use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabels;

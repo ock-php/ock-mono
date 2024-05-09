@@ -20,13 +20,16 @@ abstract class PluginAttributeBase implements PluginAttributeInterface {
    * Constructor.
    *
    * @param string $id
+   *   Plugin id relative to the package.
    * @param string $label
+   *   Label for the plugin.
    * @param bool $translate
+   *   TRUE if the label should be translatable, FALSE if not.
    */
   public function __construct(
-    private readonly string $id,
-    private readonly string $label,
-    private readonly bool $translate = TRUE,
+    public readonly string $id,
+    public readonly string $label,
+    public readonly bool $translate = TRUE,
   ) {}
 
   /**

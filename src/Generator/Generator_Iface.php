@@ -15,7 +15,7 @@ use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Exception\PluginListException;
 use Donquixote\Ock\Formula\Iface\Formula_IfaceInterface;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\PhpUtil;
 
 #[Adapter]
 class Generator_Iface implements GeneratorInterface {

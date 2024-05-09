@@ -7,11 +7,11 @@ namespace Donquixote\Ock\Summarizer;
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\CodegenTools\Util\CodeGen;
-use Donquixote\CodegenTools\Util\MessageUtil;
+use Donquixote\ClassDiscovery\Util\MessageUtil;
 use Donquixote\Ock\Formula\Validator\Formula_ConstrainedValueInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\PhpUtil;
 
 #[Adapter]
 class Summarizer_ConstrainedValue implements SummarizerInterface {
@@ -40,7 +40,7 @@ class Summarizer_ConstrainedValue implements SummarizerInterface {
       return Text::s(CodeGen::phpValue($conf));
     }
     catch (\Exception $e) {
-      return Text::s(\Donquixote\CodegenTools\Util\MessageUtil::formatValue($conf));
+      return Text::s(MessageUtil::formatValue($conf));
     }
   }
 

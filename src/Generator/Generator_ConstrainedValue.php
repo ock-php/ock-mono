@@ -11,7 +11,7 @@ use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Donquixote\Ock\Formula\Validator\Formula_ConstrainedValueInterface;
 use Donquixote\Ock\Translator\Translator_Passthru;
-use Donquixote\DID\Util\PhpUtil;
+use Donquixote\CodegenTools\Util\PhpUtil;
 
 #[Adapter]
 class Generator_ConstrainedValue implements GeneratorInterface {
