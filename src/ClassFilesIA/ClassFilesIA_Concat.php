@@ -2,7 +2,7 @@
 
 namespace Donquixote\ClassDiscovery\ClassFilesIA;
 
-class ClassFilesIA_Multiple implements ClassFilesIAInterface {
+class ClassFilesIA_Concat implements ClassFilesIAInterface {
 
   /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs

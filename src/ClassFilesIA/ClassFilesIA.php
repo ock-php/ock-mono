@@ -55,7 +55,7 @@ class ClassFilesIA {
    * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
   public static function multiple(array $classFilesIAs): ClassFilesIAInterface {
-    return new ClassFilesIA_Multiple($classFilesIAs);
+    return new ClassFilesIA_Concat($classFilesIAs);
   }
 
   /**

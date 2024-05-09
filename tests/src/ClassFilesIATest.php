@@ -3,8 +3,8 @@
 namespace Donquixote\ClassDiscovery\Tests;
 
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
+use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Concat;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Empty;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Multiple;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
 use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\GreySquirrel;
 use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel;
@@ -47,7 +47,7 @@ class ClassFilesIATest extends TestCase {
     $classFilesIAs = [];
     $classFilesIAs[] = ClassFilesIA::psr4FromClass(Fig::class);
     $classFilesIAs[] = ClassFilesIA::psr4FromClass(GreySquirrel::class);
-    $classFilesIA = new ClassFilesIA_Multiple($classFilesIAs);
+    $classFilesIA = new ClassFilesIA_Concat($classFilesIAs);
     $classFiles = iterator_to_array($classFilesIA->getIterator());
     asort($classFiles);
     $this->assertSame([
