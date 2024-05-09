@@ -6,11 +6,11 @@ use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Empty;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Multiple;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
 use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\GreySquirrel;
+use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel;
 use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\PlantInterface;
 use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\Tree\Fig;
-use PHPUnit\Framework\TestCase;
-use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel;
 use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
+use PHPUnit\Framework\TestCase;
 
 class ClassFilesIATest extends TestCase {
 
