@@ -22,9 +22,9 @@ use PHPUnit\Framework\TestCase;
 
 class AdapterTest extends TestCase {
 
-
   public function test(): void {
-    $adapter = FixturesUtil::getContainer()->get(UniversalAdapterInterface::class);
+    $container = FixturesUtil::getContainer();
+    $adapter = $container->get(UniversalAdapterInterface::class);
 
     self::assertSame(2, $adapter->adapt(
       (static function () {yield 'a'; yield 'b';})(),

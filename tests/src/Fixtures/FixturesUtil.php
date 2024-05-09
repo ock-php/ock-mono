@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\Tests\Fixtures;
 
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\DID\Container\Container_CTVs;
-use Donquixote\DID\Exception\ContainerToValueException;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 class FixturesUtil {
 
@@ -17,9 +16,10 @@ class FixturesUtil {
   private static ?ContainerInterface $container;
 
   /**
+   * Builds a container with services for adaptism tests.
+   *
    * @return \Psr\Container\ContainerInterface
-   * @throws \Donquixote\DID\Exception\ContainerToValueException
-   * @throws \Donquixote\DID\Exception\DiscoveryException
+   *   New container.
    */
   public static function getContainer(): ContainerInterface {
     return self::$container ??= self::buildContainer();
@@ -27,19 +27,33 @@ class FixturesUtil {
 
   /**
    * @return \Psr\Container\ContainerInterface
-   * @throws \Donquixote\DID\Exception\ContainerToValueException
-   * @throws \Donquixote\DID\Exception\DiscoveryException
    */
   private static function buildContainer(): ContainerInterface {
-    try {
-      return Container_CTVs::fromClassFilesIAs([
-        ClassFilesIA::psr4FromClass(self::class),
-        ClassFilesIA::psr4FromClass(UniversalAdapterInterface::class, 1),
-      ]);
-    }
-    catch (\ReflectionException $e) {
-      throw new ContainerToValueException($e->getMessage(), 0, $e);
-    }
+    $container = new ContainerBuilder();
+    $root = dirname(__DIR__, 3);
+    static::loadPackageServicesPhp($container, $root . '/vendor/donquixote/di-discovery');
+    static::loadPackageServicesPhp($container, $root);
+    static::loadPackageServicesPhp($container, $root . '/tests', 'services.test.php');
+    $container->setAlias(ContainerInterface::class, 'service_container');
+
+    $container->compile();
+
+    return $container;
+  }
+
+  /**
+   * Loads services from a services.php in a package directory.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+   * @param string $dir
+   *   Directory where the services.php is found.
+   * @param string $file
+   *   File name.
+   */
+  protected static function loadPackageServicesPhp(ContainerBuilder $container, string $dir, string $file = 'services.php'): void {
+    $locator = new FileLocator($dir);
+    $loader = new PhpFileLoader($container, $locator);
+    $loader->load($file);
   }
 
 }

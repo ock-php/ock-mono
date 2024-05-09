@@ -5,31 +5,10 @@ namespace Donquixote\Adaptism\Attribute;
 
 /**
  * Marks a method as a self-adapter.
+ *
+ * This means that the `$this` object will be treated as the adaptee.
  */
 #[\Attribute(\Attribute::TARGET_METHOD)]
-final class SelfAdapter implements AdapterAttributeInterface {
-
-  /**
-   * Constructor.
-   *
-   * @param int|null $specifity
-   */
-  public function __construct(
-    private readonly ?int $specifity = null,
-  ) {}
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSpecifity(): ?int {
-    return $this->specifity;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isSelfAdapter(): bool {
-    return true;
-  }
+final class SelfAdapter extends AdapterAttributeBase {
 
 }

@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace Donquixote\Adaptism\SpecificAdapter;
 
 use Donquixote\Adaptism\AdapterMap\AdapterMapInterface;
-use Donquixote\Adaptism\Exception\MisbehavingAdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Adaptism\Util\MessageUtil;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
+#[AsAlias]
 class SpecificAdapter_DispatchByType implements SpecificAdapterInterface {
 
   /**

@@ -4,10 +4,9 @@ declare(strict_types=1);
 namespace Donquixote\Adaptism\Attribute\Parameter;
 
 /**
- * Marks a parameter to act as the target type specifier.
+ * Marks a parameter to receive the universal adapter object.
  *
- * The parameter type must be 'string', and it should expect interface names or
- * class names as value.
+ * This is needed if the adapter method wants to call other adapters.
  */
 #[\Attribute(\Attribute::TARGET_PARAMETER)]
 final class UniversalAdapter {

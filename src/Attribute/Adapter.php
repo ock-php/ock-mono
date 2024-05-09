@@ -16,29 +16,6 @@ namespace Donquixote\Adaptism\Attribute;
  * annotated constructor parameters.
  */
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
-final class Adapter implements AdapterAttributeInterface {
-
-  /**
-   * Constructor.
-   *
-   * @param int|null $specifity
-   */
-  public function __construct(
-    private readonly ?int $specifity = null
-  ) {}
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getSpecifity(): ?int {
-    return $this->specifity;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isSelfAdapter(): bool {
-    return false;
-  }
+final class Adapter extends AdapterAttributeBase {
 
 }

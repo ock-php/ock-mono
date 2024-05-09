@@ -13,9 +13,12 @@ interface UniversalAdapterInterface {
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface|null $universalAdapter
    *   Top-level universal adapter, or NULL to use the object itself.
    *
-   * @return T|null
+   * @return object|null
    *   An instance of $destinationInterface, or
    *   NULL, if adaption is not supported for the given types.
+   *
+   * @phpstan-return T|null
+   * @psalm-return T|null
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */

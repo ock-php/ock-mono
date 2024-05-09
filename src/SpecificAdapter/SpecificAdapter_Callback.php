@@ -78,11 +78,7 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
   }
 
   /**
-   * @param object $adaptee
-   * @param string $resultType
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
-   *
-   * @return object|null
+   * {@inheritdoc}
    */
   public function adapt(
     object $adaptee,

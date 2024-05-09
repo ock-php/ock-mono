@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Donquixote\Adaptism\AdapterMap;
 
 use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
-#[Service]
+#[AsAlias]
 class AdapterMap_DefinitionList implements AdapterMapInterface {
 
   /**
@@ -24,9 +23,7 @@ class AdapterMap_DefinitionList implements AdapterMapInterface {
    * @param \Psr\Container\ContainerInterface $container
    */
   public function __construct(
-    #[GetService]
     private readonly AdapterDefinitionListInterface $definitionList,
-    #[GetService]
     private readonly ContainerInterface $container,
   ) {}
 

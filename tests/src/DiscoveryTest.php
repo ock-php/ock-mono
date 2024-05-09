@@ -21,6 +21,17 @@ use PHPUnit\Framework\TestCase;
 
 class DiscoveryTest extends TestCase {
 
+  public function testDefinitionListNotEmpty(): void {
+
+    /** @var AdapterDefinitionListInterface $adapterDefinitionList */
+    $adapterDefinitionList = FixturesUtil::getContainer()
+      ->get(AdapterDefinitionListInterface::class);
+
+    $definitions = $adapterDefinitionList->getDefinitions();
+
+    self::assertNotEmpty($definitions);
+  }
+
   public function testDefinitionList(): void {
 
     $expected = [];
@@ -39,7 +50,7 @@ class DiscoveryTest extends TestCase {
     $expected[HexColor::class . '::fromRgb'] = new AdapterDefinition_Simple(
       RgbColorInterface::class,
       HexColor::class,
-      1,
+      0,
       SpecificAdapter_Callback::ctv(
         [HexColor::class, 'fromRgb'],
         false,

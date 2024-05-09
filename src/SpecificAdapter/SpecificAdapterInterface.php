@@ -8,7 +8,7 @@ use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 interface SpecificAdapterInterface {
 
   /**
-   * @template T as object
+   * @template T of object
    *
    * @param object $adaptee
    * @param class-string<T> $resultType
@@ -16,6 +16,9 @@ interface SpecificAdapterInterface {
    *
    * @return object|null
    *   An instance of $interface, or NULL if not found.
+   *
+   * @phpstan-return T|null
+   * @psalm-return T|null
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */

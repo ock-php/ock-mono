@@ -3,14 +3,10 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\UniversalAdapter;
 
-use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface;
-use Donquixote\Adaptism\AdapterMap\AdapterMap_DefinitionList;
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_DispatchByType;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
-use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
+#[AsAlias(public: true)]
 class UniversalAdapter implements UniversalAdapterInterface {
 
   /**
@@ -21,24 +17,6 @@ class UniversalAdapter implements UniversalAdapterInterface {
   public function __construct(
     private readonly SpecificAdapterInterface $specificAdapter,
   ) {}
-
-  /**
-   * @param \Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface $adapterDefinitionList
-   * @param \Psr\Container\ContainerInterface $container
-   *
-   * @return self
-   */
-  #[Service]
-  public static function create(
-    #[GetService]
-    AdapterDefinitionListInterface $adapterDefinitionList,
-    #[GetService]
-    ContainerInterface $container,
-  ): self {
-    $adapterMap = new AdapterMap_DefinitionList($adapterDefinitionList, $container);
-    $specificAdapter = new SpecificAdapter_DispatchByType($adapterMap);
-    return new self($specificAdapter);
-  }
 
   /**
    * {@inheritdoc}
