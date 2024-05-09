@@ -17,8 +17,12 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   const CANDIDATE_REGEX = /** @lang RegExp */ '/^([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(\.php|)$/';
 
   /**
+   * Creates a new instance.
+   *
    * @param string $directory
+   *   Directory without trailing slash.
    * @param string $namespace
+   *   Namespace without trailing separator, or '' for the root namespace.
    *
    * @return self
    */
@@ -29,8 +33,10 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
+   * Creates a namespace directory based on a class name.
+   *
    * @param class-string|string $class
-   *   A class name.
+   *   A class in the namespace directory.
    *
    * @return self
    *   Namespace directory of this very class file.
@@ -47,8 +53,12 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
+   * Constructor.
+   *
    * @param string $directory
+   *   Directory without trailing slash.
    * @param string $terminatedNamespace
+   *   Namespace ending with separator, or '' for the root namespace.
    */
   private function __construct(
     private string $directory,
@@ -102,6 +112,8 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
+   * Gets the nth parent directory, expecting it to exist.
+   *
    * @param int $nLevelsUp
    *
    * @return self
@@ -116,6 +128,8 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
+   * Gets the parent directory, expecting it to exist.
+   *
    * @return self|null
    *
    * @throws \RuntimeException
@@ -134,6 +148,8 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
+   * Gets the nth parent directory, if it exists.
+   *
    * @param int $nLevelsUp
    *
    * @return static|null
@@ -161,7 +177,10 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
+   * Gets the parent namespace directory, if it exists.
+   *
    * @return self|null
+   *   The parent, or NULL if it does not exist.
    */
   public function parent(): ?self {
     if ('' === $this->terminatedNamespace || '' === $this->directory) {
