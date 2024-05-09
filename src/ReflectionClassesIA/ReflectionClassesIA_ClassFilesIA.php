@@ -14,8 +14,7 @@ class ReflectionClassesIA_ClassFilesIA implements ReflectionClassesIAInterface {
   ) {}
 
   /**
-   * @return \Iterator<int, \ReflectionClass<object>>
-   *   Format: $[$file] = $class
+   * {@inheritdoc}
    */
   public function getIterator(): \Iterator {
     foreach ($this->classFilesIA->withRealpathRoot() as $file => $class) {
