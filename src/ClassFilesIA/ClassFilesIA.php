@@ -42,8 +42,11 @@ class ClassFilesIA {
    *   Class does not exist.
    */
   public static function psr4FromClass(string $class, int $nLevelsUp = 0): NamespaceDirectory {
-    return NamespaceDirectory::createFromClass($class)
-      ->requireParentN($nLevelsUp);
+    $result = NamespaceDirectory::createFromClass($class);
+    if ($nLevelsUp !== 0) {
+      $result = $result->requireParentN($nLevelsUp);
+    }
+    return $result;
   }
 
   /**
