@@ -12,6 +12,6 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
  * Classes to scan for adapter definitions.
  */
 #[AutoconfigureTag(AdaptismPackage::DISCOVERY_TAG_NAME)]
-class OckAdapterDiscoveryClasses extends CurrentNamespaceBase {
+class OckNamespace extends CurrentNamespaceBase {
 
 }
