@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Donquixote\Ock\Tests;
 
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\ClassDiscovery\NamespaceDirectory;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\Generator_Neutral;
 use Donquixote\Ock\Generator\GeneratorInterface;
+use Donquixote\Ock\OckNamespace;
 use Donquixote\Ock\Plugin\Plugin;
 use Donquixote\Ock\Plugin\Registry\PluginRegistryInterface;
 use Donquixote\Ock\Tests\Fixture\IntCondition\IntCondition_GreaterThan;
@@ -17,7 +19,6 @@ use Donquixote\Ock\Tests\Fixture\IntCondition\IntConditionInterface;
 use Donquixote\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Donquixote\Ock\Tests\Util\TestingServices;
 use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Util\LocalPackageUtil;
 
 class DiscoveryTest extends FormulaTestBase {
 
@@ -26,10 +27,8 @@ class DiscoveryTest extends FormulaTestBase {
    */
   public function testClassFilesIA() {
     $root = dirname(__DIR__, 2);
-
-    $class_files = iterator_to_array(
-      LocalPackageUtil::getClassFilesIA()->withRealpathRoot(),
-      TRUE);
+    $classFilesIA = NamespaceDirectory::fromKnownClass(OckNamespace::class);
+    $class_files = iterator_to_array($classFilesIA);
 
     self::assertSame(
       $class_files[$root . '/src/Generator/Generator_Neutral.php'] ?? NULL,
