@@ -29,10 +29,14 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
-   * @param class-string $class
+   * @param class-string|string $class
+   *   A class name.
    *
    * @return self
+   *   Namespace directory of this very class file.
+   *
    * @throws \ReflectionException
+   *   Class does not exist.
    */
   public static function createFromClass(string $class): self {
     $reflClass = new \ReflectionClass($class);
