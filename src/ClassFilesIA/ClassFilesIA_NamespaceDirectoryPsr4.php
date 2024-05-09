@@ -26,19 +26,6 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
   }
 
   /**
-   * @param string $dir
-   * @param string $namespace
-   * @param int $nLevelsUp
-   *
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
-   */
-  public static function createN(string $dir, string $namespace, int $nLevelsUp = 0): ClassFilesIAInterface {
-    $nsDir = NamespaceDirectory::create($dir, $namespace)
-      ->requireParentN($nLevelsUp);
-    return self::createFromNsdirObject($nsDir);
-  }
-
-  /**
    * @param class-string $class
    * @param int $nLevelsUp
    *
@@ -99,43 +86,31 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    *   Format: $[$file] = $class
    */
   private static function scan(string $dir, string $terminatedNamespace): \Iterator {
-
     foreach (\scandir($dir, \SCANDIR_SORT_ASCENDING) as $candidate) {
-
       if ('.' === $candidate[0]) {
         continue;
       }
-
       $path = $dir . '/' . $candidate;
-
       if (str_ends_with($candidate, '.php')) {
-
         if (!is_file($path)) {
           continue;
         }
-
         $name = substr($candidate, 0, -4);
-
         if (!preg_match(self::CLASS_NAME_REGEX, $name)) {
           continue;
         }
-
         yield $path => $terminatedNamespace . $name;
       }
       else {
-
         if (!is_dir($path)) {
           continue;
         }
-
         if (!preg_match(self::CLASS_NAME_REGEX, $candidate)) {
           continue;
         }
-
         // @todo Make PHP 7 version with "yield from".
         yield from self::scan($path, $terminatedNamespace . $candidate . '\\');
       }
-      
     }
   }
 }

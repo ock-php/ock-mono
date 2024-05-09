@@ -28,38 +28,22 @@ class ClassFilesIA {
    * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
   public static function psr4Up(string $dir, string $namespace, int $nLevelsUp = 0): ClassFilesIAInterface {
-    $nsDir = NamespaceDirectory::create($dir, $namespace)
+    return NamespaceDirectory::create($dir, $namespace)
       ->requireParentN($nLevelsUp);
-    return ClassFilesIA_NamespaceDirectoryPsr4::createFromNsdirObject($nsDir);
   }
 
   /**
    * @param string $class
    * @param int $nLevelsUp
    *
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Donquixote\ClassDiscovery\NamespaceDirectory
    *
    * @throws \ReflectionException
    *   Class does not exist.
    */
-  public static function psr4FromClass(string $class, int $nLevelsUp = 0): ClassFilesIAInterface {
-    $nsDir = NamespaceDirectory::createFromClass($class)
+  public static function psr4FromClass(string $class, int $nLevelsUp = 0): NamespaceDirectory {
+    return NamespaceDirectory::createFromClass($class)
       ->requireParentN($nLevelsUp);
-    return ClassFilesIA_NamespaceDirectoryPsr4::createFromNsdirObject($nsDir);
-  }
-
-  /**
-   * @param \Donquixote\ClassDiscovery\NamespaceDirectory $nsdir
-   *
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
-   */
-  public static function psr4FromNsdirObject(NamespaceDirectory $nsdir): ClassFilesIAInterface {
-    if (!is_dir($nsdir->getDirectory())) {
-      return new ClassFilesIA_Empty();
-    }
-    return new ClassFilesIA_NamespaceDirectoryPsr4(
-      $nsdir->getDirectory(),
-      $nsdir->getTerminatedNamespace());
   }
 
   /**
