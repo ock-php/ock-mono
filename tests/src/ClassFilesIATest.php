@@ -2,6 +2,7 @@
 
 namespace Donquixote\ClassDiscovery\Tests;
 
+use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Empty;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Multiple;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
@@ -44,10 +45,8 @@ class ClassFilesIATest extends TestCase {
    */
   public function testClassFilesIAMultiple() {
     $classFilesIAs = [];
-    $classFilesIAs[] = ClassFilesIA_NamespaceDirectoryPsr4::createFromClass(
-      Fig::class);
-    $classFilesIAs[] = ClassFilesIA_NamespaceDirectoryPsr4::createFromClass(
-      GreySquirrel::class);
+    $classFilesIAs[] = ClassFilesIA::psr4FromClass(Fig::class);
+    $classFilesIAs[] = ClassFilesIA::psr4FromClass(GreySquirrel::class);
     $classFilesIA = new ClassFilesIA_Multiple($classFilesIAs);
     $classFiles = iterator_to_array($classFilesIA->getIterator());
     asort($classFiles);
