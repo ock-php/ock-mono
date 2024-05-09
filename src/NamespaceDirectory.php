@@ -146,11 +146,11 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   /**
    * Gets the parent directory, expecting it to exist.
    *
-   * @return self|null
+   * @return self
    *
    * @throws \RuntimeException
    */
-  public function requireParent(): ?self {
+  public function requireParent(): self {
     if (null === $parent = $this->parent()) {
       throw new \RuntimeException(strtr(
         "No parent namespace directory found for !dir / !nsp.",
