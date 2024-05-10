@@ -129,7 +129,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
   /**
    * @param class-string $sourceType
    *
-   * @return array<string, string>
+   * @return array<string, true>
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
