@@ -8,9 +8,9 @@ use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\Discovery\DiscoveryInterface;
 use Donquixote\ClassDiscovery\Discovery\FactoryDiscovery;
-use Donquixote\ClassDiscovery\Inspector\FactoryInspector_Multiple;
+use Donquixote\ClassDiscovery\Inspector\FactoryInspector_Concat;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Multiple;
+use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Concat;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 use Donquixote\DID\ClassToCTV\ClassToCTV_Construct;
 use Donquixote\DID\ClassToCTV\ClassToCTVInterface;
@@ -43,14 +43,14 @@ class OckPackage {
 
     $discoveryClassesServiceId = ReflectionClassesIAInterface::class . ' $' . self::DISCOVERY_TARGET;
     $services->set($discoveryClassesServiceId)
-      ->class(ReflectionClassesIA_Multiple::class)
-      ->factory([ReflectionClassesIA_Multiple::class, 'fromCandidateObjects'])
+      ->class(ReflectionClassesIA_Concat::class)
+      ->factory([ReflectionClassesIA_Concat::class, 'fromCandidateObjects'])
       ->arg(0, tagged_iterator(self::DISCOVERY_TAG_NAME));
 
     $discoveryInspectorServiceId = FactoryInspectorInterface::class . ' $' . self::DISCOVERY_TARGET;
     $services->set($discoveryInspectorServiceId)
-      ->class(FactoryInspector_Multiple::class)
-      ->factory([FactoryInspector_Multiple::class, 'fromCandidateObjects'])
+      ->class(FactoryInspector_Concat::class)
+      ->factory([FactoryInspector_Concat::class, 'fromCandidateObjects'])
       ->arg(0, tagged_iterator(self::DISCOVERY_TAG_NAME));
 
     $services->set(DiscoveryInterface::class . ' $' . self::DISCOVERY_TARGET)

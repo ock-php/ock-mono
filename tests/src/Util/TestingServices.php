@@ -7,7 +7,7 @@ namespace Donquixote\Ock\Tests\Util;
 use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Multiple;
+use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Concat;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Exception\FormulaException;
@@ -78,7 +78,7 @@ class TestingServices {
    * @throws \ReflectionException
    */
   public static function getServiceDiscoveryLocations(): ClassFilesIAInterface {
-    return new ClassFilesIA_Multiple([
+    return new ClassFilesIA_Concat([
       // Discover in object-construction-kit.
       ClassFilesIA::psr4FromClass(FormulaException::class, 1),
       // Discover in object-construction-kit/tests.
