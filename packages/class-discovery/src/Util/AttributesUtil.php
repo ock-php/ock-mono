@@ -6,7 +6,7 @@ namespace Donquixote\ClassDiscovery\Util;
 
 use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Donquixote\Helpers\Util\MessageUtil;
-use Donquixote\DID\Attribute\ReflectorAwareAttributeInterface;
+use Donquixote\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
 use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
 
 /**

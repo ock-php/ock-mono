@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\Attribute;
+namespace Donquixote\ClassDiscovery\Attribute;
 
 interface ReflectorAwareAttributeInterface {
 
