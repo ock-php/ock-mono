@@ -4,13 +4,12 @@ declare(strict_types = 1);
 
 namespace Donquixote\DID\ClassToCTV;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
 use Donquixote\DID\ContainerToValue\ContainerToValue_Construct;
 use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
 use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
-#[Service]
+#[AsAlias]
 class ClassToCTV_Construct implements ClassToCTVInterface {
 
   /**
@@ -19,7 +18,6 @@ class ClassToCTV_Construct implements ClassToCTVInterface {
    * @param \Donquixote\DID\ParamToCTV\ParamToCTVInterface $paramToCTV
    */
   public function __construct(
-    #[GetService]
     private readonly ParamToCTVInterface $paramToCTV,
   ) {}
 
