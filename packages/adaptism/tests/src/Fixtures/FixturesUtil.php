@@ -54,7 +54,15 @@ class FixturesUtil {
   protected static function loadPackageServicesPhp(ContainerBuilder $container, string $dir, string $file = 'services.php'): void {
     $locator = new FileLocator($dir);
     $loader = new PhpFileLoader($container, $locator);
-    $loader->load($file);
+    try {
+      $loader->load($file);
+    }
+    catch (\Exception $e) {
+      // A service definition file is broken or missing.
+      // This must be a programming error in this package.
+      // Convert to unhandled exception type.
+      throw new \RuntimeException($e->getMessage(), 0, $e);
+    }
   }
 
 }
