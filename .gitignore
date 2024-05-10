@@ -4,3 +4,4 @@
 /.phpunit.result.cache
 /.phpunit.cache
 /build/
+/packages/*/composer.lock
