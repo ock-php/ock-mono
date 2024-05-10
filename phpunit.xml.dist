@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         bootstrap="vendor/autoload.php"
+>
+  <coverage>
+    <include>
+      <directory>src</directory>
+    </include>
+    <report>
+      <clover outputFile="build/coverage/clover.xml"/>
+      <php outputFile="build/coverage/coverage.php"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="Ock Monorepo test suite">
+      <directory>./packages/*/tests/src</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <ini name="error_reporting" value="-1"/>
+    <ini name="memory_limit" value="-1"/>
+  </php>
+  <!-- <logging>
+    <coverage-clover target="build/logs/clover.xml"/>
+    <junit target="build/logs/junit.xml"/>
+    <coverage-php target="build/cov/coverage.cov"/>
+  </logging> -->
+  <logging>
+    <junit outputFile="build/logs/junit.xml"/>
+  </logging>
+</phpunit>
