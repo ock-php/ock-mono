@@ -15,6 +15,7 @@
         "php": ">=8.2",
         "donquixote/class-discovery": "@dev",
         "donquixote/di-discovery": "@dev",
+        "donquixote/helpers": "@dev",
         "psr/container": "^2.0",
         "symfony/dependency-injection": "^6.4"
     },

@@ -29,6 +29,7 @@
             "Donquixote\\ClassDiscovery\\": "packages/class-discovery/src",
             "Donquixote\\CodegenTools\\": "packages/codegen-tools/src",
             "Donquixote\\DID\\": "packages/di-discovery/src",
+            "Donquixote\\Helpers\\": "packages/helpers/src",
             "Donquixote\\Ock\\": "packages/object-construction-kit/src"
         }
     },
@@ -38,6 +39,7 @@
             "Donquixote\\ClassDiscovery\\Tests\\": "packages/class-discovery/tests/src",
             "Donquixote\\CodegenTools\\Tests\\": "packages/codegen-tools/tests/src",
             "Donquixote\\DID\\Tests\\": "packages/di-discovery/tests/src",
+            "Donquixote\\Helpers\\Tests\\": "packages/helpers/tests/src",
             "Donquixote\\Ock\\Tests\\": "packages/object-construction-kit/tests/src"
         }
     },
@@ -49,6 +51,7 @@
         "donquixote/class-discovery": "self.version",
         "donquixote/codegen-tools": "self.version",
         "donquixote/di-discovery": "self.version",
+        "donquixote/helpers": "self.version",
         "donquixote/object-construction-kit": "self.version"
     },
     "minimum-stability": "dev",

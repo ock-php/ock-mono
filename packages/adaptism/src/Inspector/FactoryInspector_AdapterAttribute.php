@@ -10,7 +10,7 @@ use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
-use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\Helpers\Util\MessageUtil;
 use Donquixote\DID\Exception\MalformedDeclarationException;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Donquixote\ClassDiscovery\Reflection\ClassReflection;

@@ -7,7 +7,7 @@ namespace Donquixote\Adaptism\AdapterFromContainer;
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface;
-use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\Helpers\Util\MessageUtil;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 

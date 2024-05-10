@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Util;
+namespace Donquixote\Helpers\Util;
 
 class MessageUtil {
 

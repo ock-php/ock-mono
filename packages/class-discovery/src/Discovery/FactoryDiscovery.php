@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Donquixote\ClassDiscovery\Discovery;
 
-use Donquixote\Adaptism\Util\MessageUtil;
+use Donquixote\Helpers\Util\MessageUtil;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspector_Concat;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Donquixote\ClassDiscovery\Reflection\ClassReflection;
