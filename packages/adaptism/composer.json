@@ -26,10 +26,10 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "donquixote/class-discovery": "dev-master",
-        "donquixote/di-discovery": "@dev",
-        "psr/container": "^1.0|^2.0",
         "php": ">=8.2",
+        "donquixote/class-discovery": "@dev",
+        "donquixote/di-discovery": "@dev",
+        "psr/container": "^2.0",
         "symfony/dependency-injection": "7.1.x-dev"
     },
     "require-dev": {
