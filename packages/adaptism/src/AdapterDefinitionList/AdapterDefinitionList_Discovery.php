@@ -8,7 +8,7 @@ use Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface;
 use Donquixote\Adaptism\AdaptismPackage;
 use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
 use Donquixote\ClassDiscovery\Discovery\DiscoveryInterface;
-use Donquixote\DID\Exception\DiscoveryException;
+use Donquixote\ClassDiscovery\Exception\DiscoveryException;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 

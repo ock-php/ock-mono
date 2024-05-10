@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\Exception;
+namespace Donquixote\ClassDiscovery\Exception;
 
 /**
  * Something went wrong during discovery.

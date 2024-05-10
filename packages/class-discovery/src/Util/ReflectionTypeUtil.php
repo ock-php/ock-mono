@@ -5,7 +5,7 @@ namespace Donquixote\ClassDiscovery\Util;
 
 use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Donquixote\Helpers\Util\MessageUtil;
-use Donquixote\DID\Exception\MalformedDeclarationException;
+use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
 
 class ReflectionTypeUtil {
 
@@ -19,7 +19,7 @@ class ReflectionTypeUtil {
    * @phpstan-return ($allowObject is true ? (class-string|null) : class-string)
    *   The type, or NULL for 'object'.
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    *   The return type does not match the expectation.
    */
   public static function requireGetClassLikeType(
@@ -127,7 +127,7 @@ class ReflectionTypeUtil {
    * @param \ReflectionParameter|\ReflectionFunctionAbstract $reflector
    * @param class-string|null $expected
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    */
   public static function requireClassLikeType(
     \ReflectionParameter|\ReflectionFunctionAbstract $reflector,
@@ -147,7 +147,7 @@ class ReflectionTypeUtil {
    * @param \ReflectionParameter|\ReflectionFunctionAbstract $reflector
    * @param string $expected
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    */
   public static function requireBuiltinType(
     \ReflectionParameter|\ReflectionFunctionAbstract $reflector,

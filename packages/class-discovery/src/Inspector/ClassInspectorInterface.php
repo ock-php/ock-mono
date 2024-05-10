@@ -20,7 +20,7 @@ interface ClassInspectorInterface {
    *
    * @return \Iterator<TNeedle>
    *
-   * @throws \Donquixote\DID\Exception\DiscoveryException
+   * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
    */
   public function findInClass(ClassReflection $classReflection): \Iterator;
 

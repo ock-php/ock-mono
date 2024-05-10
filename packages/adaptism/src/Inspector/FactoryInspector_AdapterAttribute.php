@@ -11,7 +11,7 @@ use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
 use Donquixote\Helpers\Util\MessageUtil;
-use Donquixote\DID\Exception\MalformedDeclarationException;
+use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Donquixote\ClassDiscovery\Reflection\ClassReflection;
 use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
@@ -111,7 +111,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
    *
    * @return string|null
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    */
   private function extractAdapteeType(array &$parameters, ?int &$specifity, string $where): ?string {
     $parameter = \array_shift($parameters);

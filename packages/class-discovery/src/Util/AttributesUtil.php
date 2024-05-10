@@ -7,7 +7,7 @@ namespace Donquixote\ClassDiscovery\Util;
 use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Donquixote\Helpers\Util\MessageUtil;
 use Donquixote\DID\Attribute\ReflectorAwareAttributeInterface;
-use Donquixote\DID\Exception\MalformedDeclarationException;
+use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
 
 /**
  * Helper methods to read attributes from reflectors.
@@ -24,7 +24,7 @@ class AttributesUtil {
    *
    * @return list<T>
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    */
   public static function getAll(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
@@ -50,7 +50,7 @@ class AttributesUtil {
    *   FALSE, if no attribute of the given type exists.
    *   Exception otherwise.
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
    */
   public static function hasSingle(
@@ -73,7 +73,7 @@ class AttributesUtil {
    * @psalm-return T
    *   Instance from the single attribute.
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    *   None or more than one attribute of the given type.
    */
   public static function requireSingle(
@@ -107,7 +107,7 @@ class AttributesUtil {
    * @psalm-return T|null
    * @phpstan-return T|null
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
    */
   public static function getSingle(
@@ -138,7 +138,7 @@ class AttributesUtil {
    * @return \ReflectionAttribute<T>|null
    *   Instance from the attribute, or NULL if no matching attribute found.
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
    */
   private static function getSingleAttribute(

@@ -20,7 +20,7 @@ interface FactoryInspectorInterface {
    * @return \Iterator<TNeedle>
    *   Declarations.
    *
-   * @throws \Donquixote\DID\Exception\DiscoveryException
+   * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
    *   Something went wrong, e.g. a bad declaration was found.
    */
   public function findInFactory(FactoryReflectionInterface $reflector): \Iterator;

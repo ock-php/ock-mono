@@ -8,7 +8,7 @@ use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Helpers\Util\MessageUtil;
-use Donquixote\DID\Exception\DiscoveryException;
+use Donquixote\ClassDiscovery\Exception\DiscoveryException;
 use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
 use Donquixote\ClassDiscovery\Util\AttributesUtil;
 use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
@@ -25,7 +25,7 @@ trait AdapterFactoryInspectorTrait {
    *
    * @return bool
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    */
   private function extractHasResultTypeParameter(array &$parameters): bool {
     $parameter = \array_shift($parameters);
@@ -48,7 +48,7 @@ trait AdapterFactoryInspectorTrait {
    *
    * @return bool
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    */
   private function extractHasUniversalAdapterParameter(array &$parameters): bool {
     $parameter = \array_shift($parameters);
@@ -74,7 +74,7 @@ trait AdapterFactoryInspectorTrait {
    *
    * @return list<\Donquixote\DID\ContainerToValue\ContainerToValueInterface>
    *
-   * @throws \Donquixote\DID\Exception\DiscoveryException
+   * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
    */
   private function buildArgCTVs(array $parameters): array {
     $argCTVs = [];
