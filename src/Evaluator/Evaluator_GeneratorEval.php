@@ -10,7 +10,7 @@ use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\DID\Exception\EvaluatorException;
+use Donquixote\Ock\Exception\EvaluatorException;
 use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Generator\GeneratorInterface;
