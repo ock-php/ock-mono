@@ -2,10 +2,13 @@
 
 namespace Donquixote\ClassDiscovery\ClassFilesIA;
 
+use Donquixote\ClassDiscovery\ClassNamesIA\ClassNamesIAInterface;
+
 /**
+ * @template-extends ClassNamesIAInterface<string>
  * @template-extends \IteratorAggregate<string, class-string>
  */
-interface ClassFilesIAInterface extends \IteratorAggregate {
+interface ClassFilesIAInterface extends ClassNamesIAInterface {
 
   /**
    * Iterates through class files.
