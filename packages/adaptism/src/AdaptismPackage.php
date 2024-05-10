@@ -15,6 +15,8 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_it
 
 class AdaptismPackage {
 
+  const DIR = __DIR__;
+
   const DISCOVERY_TARGET = 'adaptismDiscovery';
 
   const DISCOVERY_TAG_NAME = 'adaptism.discovery';

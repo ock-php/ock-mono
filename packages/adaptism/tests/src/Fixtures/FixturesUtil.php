@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\Tests\Fixtures;
 
+use Donquixote\Adaptism\AdaptismPackage;
+use Donquixote\DID\DidNamespace;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -30,10 +32,9 @@ class FixturesUtil {
    */
   private static function buildContainer(): ContainerInterface {
     $container = new ContainerBuilder();
-    $root = dirname(__DIR__, 3);
-    static::loadPackageServicesPhp($container, $root . '/vendor/donquixote/di-discovery');
-    static::loadPackageServicesPhp($container, $root);
-    static::loadPackageServicesPhp($container, $root . '/tests', 'services.test.php');
+    static::loadPackageServicesPhp($container, dirname(DidNamespace::DIR));
+    static::loadPackageServicesPhp($container, dirname(AdaptismPackage::DIR));
+    static::loadPackageServicesPhp($container, dirname(__DIR__, 2), 'services.test.php');
     $container->setAlias(ContainerInterface::class, 'service_container');
 
     $container->compile();
