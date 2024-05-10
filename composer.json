@@ -1,4 +1,7 @@
 {
+    "name": "donquixote/ock-mono",
+    "description": "Monorepo for 'Object Construction Kit' packages (Ock)",
+    "license": "MIT",
     "authors": [
         {
             "name": "Andreas Hennings",
