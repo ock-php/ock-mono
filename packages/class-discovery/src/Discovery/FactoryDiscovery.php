@@ -47,10 +47,10 @@ class FactoryDiscovery implements DiscoveryInterface {
    * {@inheritdoc}
    */
   public function getIterator(): \Iterator {
-    foreach ($this->classes as $reflectionClass) {
-      yield from $this->inspector->findInFactory($reflectionClass);
-      foreach ($reflectionClass->getMethods() as $reflectionMethod) {
-        yield from $this->inspector->findInFactory($reflectionMethod);
+    foreach ($this->classes as $classReflection) {
+      yield from $this->inspector->findInFactory($classReflection);
+      foreach ($classReflection->getMethods() as $methodReflection) {
+        yield from $this->inspector->findInFactory($methodReflection);
       }
     }
   }
