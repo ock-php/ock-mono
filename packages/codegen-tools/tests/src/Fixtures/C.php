@@ -25,7 +25,7 @@ class C {
   /**
    * @throws \Exception
    */
-  public static function create(...$args): mixed {
+  public static function create(...$args): GenericObject {
     return new GenericObject(
       class: self::class,
       method: 'create',
@@ -36,7 +36,7 @@ class C {
   /**
    * @throws \Exception
    */
-  public function foo(...$args): mixed {
+  public function foo(...$args): GenericObject {
     return new GenericObject(
       object: $this,
       method: 'foo',
