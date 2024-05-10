@@ -156,14 +156,18 @@ class Aliasifier {
   private function determineFqcnType(array $tokens, int $i): string {
     try {
       $tokens[$i] = ' 5 ';
+      // Call token_get_all() to possibly trigger an error. Ignore the result.
       /** @noinspection PhpExpressionResultUnusedInspection */
+      // @phpstan-ignore-next-line
       token_get_all(implode('', $tokens), TOKEN_PARSE);
       return self::TYPE_CONST;
     }
     catch (\ParseError) {}
     try {
       $tokens[$i] = ' C::f ';
+      // Call token_get_all() to possibly trigger an error. Ignore the result.
       /** @noinspection PhpExpressionResultUnusedInspection */
+      // @phpstan-ignore-next-line
       token_get_all(implode('', $tokens), TOKEN_PARSE);
       return self::TYPE_FUNCTION;
     }
