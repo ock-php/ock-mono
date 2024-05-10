@@ -19,7 +19,9 @@ class Colored {
    * @param class-string<T> $targetType
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
-   * @return T|null
+   * @return object|null
+   * @phpstan-return T|null
+   * @psalm-return T|null
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
