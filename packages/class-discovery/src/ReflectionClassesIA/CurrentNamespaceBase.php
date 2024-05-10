@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace Donquixote\ClassDiscovery\ReflectionClassesIA;
 
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Donquixote\ClassDiscovery\NamespaceDirectory;
 
-abstract class CurrentNamespaceBase extends ReflectionClassesIABase {
+/**
+ * Base class to declare a discovery namespace in the current directory.
+ */
+abstract class CurrentNamespaceBase extends ReflectionClassesIA_ClassFilesIA {
 
   /**
-   * {@inheritdoc}
+   * Constructor.
    */
-  protected function getClassfilesIA(): ClassFilesIAInterface {
-    try {
-      return ClassFilesIA::psr4FromClass(static::class);
-    }
-    catch (\ReflectionException $e) {
-      // Unreachable code.
-      throw new \RuntimeException($e->getMessage(), 0, $e);
-    }
+  public function __construct() {
+    $classFilesIA = NamespaceDirectory::fromKnownClass(static::class);
+    parent::__construct($classFilesIA);
   }
 
 }
