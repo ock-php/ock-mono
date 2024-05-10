@@ -12,7 +12,9 @@ class CodeFormatter {
   ) {}
 
   public static function create(): static {
-    return new self(new LineBreaker(), new Aliasifier());
+    // Extend at your own risk.
+    // @phpstan-ignore-next-line
+    return new static(new LineBreaker(), new Aliasifier());
   }
 
   public function withMaxLineLength(int $limit): static {

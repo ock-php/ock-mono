@@ -43,6 +43,8 @@ class IA_Concat implements \IteratorAggregate {
         $parts[] = $candidate;
       }
     }
+    // Extend at your own risk.
+    // @phpstan-ignore-next-line
     return new static($parts);
   }
 

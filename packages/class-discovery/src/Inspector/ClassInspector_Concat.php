@@ -40,6 +40,8 @@ class ClassInspector_Concat implements ClassInspectorInterface {
         $inspectors[] = $candidate;
       }
     }
+    // Extend at your own risk.
+    // @phpstan-ignore-next-line
     return new static($inspectors);
   }
 

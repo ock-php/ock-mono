@@ -44,6 +44,8 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    */
   public static function createKnown(string $name): self {
     try {
+      // Extend at your own risk.
+      // @phpstan-ignore-next-line
       return new static($name);
     }
     catch (\ReflectionException|\Error $e) {
@@ -65,6 +67,8 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    */
   public static function createIfExists(string $name): self|null {
     try {
+      // Extend at your own risk.
+      // @phpstan-ignore-next-line
       return new static($name);
     }
     catch (\ReflectionException|\Error) {
