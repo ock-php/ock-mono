@@ -11,7 +11,6 @@ use Donquixote\ClassDiscovery\Util\MessageUtil;
 use Donquixote\Ock\Formula\Validator\Formula_ConstrainedValueInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
-use Donquixote\CodegenTools\Util\PhpUtil;
 
 #[Adapter]
 class Summarizer_ConstrainedValue implements SummarizerInterface {

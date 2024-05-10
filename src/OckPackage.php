@@ -8,7 +8,6 @@ use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
 use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Donquixote\ClassDiscovery\Discovery\DiscoveryInterface;
 use Donquixote\ClassDiscovery\Discovery\FactoryDiscovery;
-use Donquixote\ClassDiscovery\Discovery\ObjectDiscovery;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspector_Multiple;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Multiple;
