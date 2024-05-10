@@ -1,0 +1,51 @@
+{
+    "name": "donquixote/adaptism",
+    "type": "library",
+    "description": "Library to map adapter classes.",
+    "homepage": "https://github.com/donquixote/adaptism",
+    "license": "MIT",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../phplib/class-discovery"
+        },
+        {
+            "type": "path",
+            "url": "../../phplib/codegen-tools"
+        },
+        {
+            "type": "path",
+            "url": "../../phplib/di-discovery"
+        }
+    ],
+    "authors": [
+        {
+            "name": "Andreas Hennings",
+            "email": "andreas@dqxtech.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "donquixote/class-discovery": "dev-master",
+        "donquixote/di-discovery": "@dev",
+        "psr/container": "^1.0|^2.0",
+        "php": ">=8.2",
+        "symfony/dependency-injection": "7.1.x-dev"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "2.0.x-dev",
+        "phpunit/phpunit": "^11.2@dev",
+        "symfony/yaml": "7.1.x-dev",
+        "symfony/config": "7.1.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Donquixote\\Adaptism\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Donquixote\\Adaptism\\Tests\\": "tests/src/"
+        }
+    }
+}
