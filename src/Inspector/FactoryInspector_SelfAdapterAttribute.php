@@ -8,11 +8,11 @@ use Donquixote\Adaptism\AdapterDefinition\AdapterDefinition_Simple;
 use Donquixote\Adaptism\AdaptismPackage;
 use Donquixote\Adaptism\Attribute\SelfAdapter;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_SelfMethod;
-use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
+use Donquixote\DID\Exception\MalformedDeclarationException;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
-use Donquixote\ClassDiscovery\Util\AttributesUtil;
-use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
+use Donquixote\DID\Util\AttributesUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 

@@ -11,13 +11,13 @@ use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
 use Donquixote\Adaptism\Util\MessageUtil;
-use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
+use Donquixote\DID\Exception\MalformedDeclarationException;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Donquixote\ClassDiscovery\Reflection\ClassReflection;
 use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Donquixote\ClassDiscovery\Reflection\MethodReflection;
-use Donquixote\ClassDiscovery\Util\AttributesUtil;
-use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
+use Donquixote\DID\Util\AttributesUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 use Donquixote\DID\ClassToCTV\ClassToCTVInterface;
 use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
@@ -111,7 +111,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
    *
    * @return string|null
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    */
   private function extractAdapteeType(array &$parameters, ?int &$specifity, string $where): ?string {
     $parameter = \array_shift($parameters);
