@@ -16,7 +16,7 @@ $origValue = eval($php);
 try {
   $prettyValue = eval($prettyPhp);
 }
-catch (\Throwable $e) {
+catch (Throwable $e) {
   Assert::fail(sprintf(
     '%s in pretty php: %s',
     get_class($e),
