@@ -10,6 +10,7 @@ interface ReflectorAwareAttributeInterface {
    * Sets the reflector where the attribute was found.
    *
    * @param \Reflector $reflector
+   *   The place where the attribute was found.
    *
    * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    */
