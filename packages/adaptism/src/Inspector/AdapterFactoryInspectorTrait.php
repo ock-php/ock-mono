@@ -10,7 +10,7 @@ use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Helpers\Util\MessageUtil;
 use Donquixote\DID\Exception\DiscoveryException;
 use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
-use Donquixote\DID\Util\AttributesUtil;
+use Donquixote\ClassDiscovery\Util\AttributesUtil;
 use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
 
 trait AdapterFactoryInspectorTrait {

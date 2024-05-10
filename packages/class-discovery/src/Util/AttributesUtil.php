@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\DID\Util;
+namespace Donquixote\ClassDiscovery\Util;
 
 use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Donquixote\Helpers\Util\MessageUtil;
