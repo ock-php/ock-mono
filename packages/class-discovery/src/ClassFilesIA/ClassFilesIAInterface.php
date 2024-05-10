@@ -2,6 +2,9 @@
 
 namespace Donquixote\ClassDiscovery\ClassFilesIA;
 
+/**
+ * @template-extends \IteratorAggregate<string, class-string>
+ */
 interface ClassFilesIAInterface extends \IteratorAggregate {
 
   /**
