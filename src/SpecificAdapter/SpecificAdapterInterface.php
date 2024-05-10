@@ -5,9 +5,14 @@ namespace Donquixote\Adaptism\SpecificAdapter;
 
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
+/**
+ * A specific adapter can adapt some objects to some target types.
+ */
 interface SpecificAdapterInterface {
 
   /**
+   * Finds an adapter for an adaptee object.
+   *
    * @template TResult of object
    *
    * @param object $adaptee
