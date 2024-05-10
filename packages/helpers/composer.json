@@ -1,0 +1,29 @@
+{
+    "name": "donquixote/helpers",
+    "description": "Helper classes that don't belong into a specific package.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Hennings",
+            "email": "andreas@dqxtech.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Donquixote\\Helpers\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Donquixote\\Helpers\\Tests\\": "tests/src"
+        }
+    },
+    "require": {
+        "php": ">=8.2",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
