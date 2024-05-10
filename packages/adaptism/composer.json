@@ -4,20 +4,6 @@
     "description": "Library to map adapter classes.",
     "homepage": "https://github.com/donquixote/adaptism",
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../../phplib/class-discovery"
-        },
-        {
-            "type": "path",
-            "url": "../../phplib/codegen-tools"
-        },
-        {
-            "type": "path",
-            "url": "../../phplib/di-discovery"
-        }
-    ],
     "authors": [
         {
             "name": "Andreas Hennings",
