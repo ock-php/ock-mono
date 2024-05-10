@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace Donquixote\ClassDiscovery\Discovery;
 
+use Donquixote\Adaptism\Util\MessageUtil;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspector_Concat;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
+use Donquixote\ClassDiscovery\Reflection\ClassReflection;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Concat;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 
@@ -48,6 +50,11 @@ class FactoryDiscovery implements DiscoveryInterface {
    */
   public function getIterator(): \Iterator {
     foreach ($this->classes as $classReflection) {
+      assert($classReflection instanceof ClassReflection, sprintf(
+        'Expected only ClassReflection objects from %s, found %s.',
+        MessageUtil::formatValue($this->classes),
+        MessageUtil::formatValue($classReflection),
+      ));
       yield from $this->inspector->findInFactory($classReflection);
       foreach ($classReflection->getMethods() as $methodReflection) {
         yield from $this->inspector->findInFactory($methodReflection);
