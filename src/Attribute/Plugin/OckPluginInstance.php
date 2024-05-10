@@ -7,9 +7,9 @@ namespace Donquixote\Ock\Attribute\Plugin;
 use Donquixote\ClassDiscovery\Util\MessageUtil;
 use Donquixote\DID\Attribute\Parameter\GetServiceInterface;
 use Donquixote\DID\Attribute\ReflectorAwareAttributeInterface;
-use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
-use Donquixote\ClassDiscovery\Util\AttributesUtil;
-use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
+use Donquixote\DID\Exception\MalformedDeclarationException;
+use Donquixote\DID\Util\AttributesUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 use Donquixote\Ock\Contract\FormulaHavingInterface;
 use Donquixote\Ock\Contract\LabelHavingInterface;
 use Donquixote\Ock\Contract\NameHavingInterface;
@@ -93,7 +93,7 @@ class OckPluginInstance extends PluginAttributeBase {
    *
    * @return \Donquixote\Ock\Formula\Group\GroupFormulaBuilder
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    * @throws \Donquixote\Ock\Exception\FormulaException
    */
   private function buildGroupFormula(array $parameters): GroupFormulaBuilder {

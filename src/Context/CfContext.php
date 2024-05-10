@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Context;
 
-use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 
 /**
  * @see \Donquixote\Ock\Todo\ContextTodo

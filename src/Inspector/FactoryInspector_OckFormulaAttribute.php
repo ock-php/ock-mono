@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Inspector;
 
-use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
+use Donquixote\DID\Exception\MalformedDeclarationException;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Donquixote\ClassDiscovery\Reflection\MethodReflection;
-use Donquixote\ClassDiscovery\Util\AttributesUtil;
-use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
+use Donquixote\DID\Util\AttributesUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Attribute\PluginModifier\PluginModifierAttributeInterface;
 use Donquixote\Ock\Core\Formula\FormulaInterface;

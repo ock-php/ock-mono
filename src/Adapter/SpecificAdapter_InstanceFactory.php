@@ -8,8 +8,8 @@ use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\ClassDiscovery\Util\AttributesUtil;
-use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
+use Donquixote\DID\Util\AttributesUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 use Donquixote\Ock\Contract\FormulaHavingInterface;
 use Donquixote\Ock\Contract\LabelHavingInterface;
 use Donquixote\Ock\Contract\NameHavingInterface;
@@ -28,7 +28,7 @@ class SpecificAdapter_InstanceFactory {
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface|null
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    * @throws \Donquixote\Ock\Exception\FormulaException
    */
   #[Adapter]
@@ -46,7 +46,7 @@ class SpecificAdapter_InstanceFactory {
    *
    * @return \Donquixote\Ock\Formula\Group\GroupFormulaBuilder
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    * @throws \Donquixote\Ock\Exception\FormulaException
    */
   private function buildGroupFormula(array $parameters): GroupFormulaBuilder {

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Donquixote\Ock\Inspector;
 
-use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
+use Donquixote\DID\Exception\MalformedDeclarationException;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Donquixote\ClassDiscovery\Reflection\ClassReflection;
 use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Donquixote\ClassDiscovery\Reflection\MethodReflection;
-use Donquixote\ClassDiscovery\Util\AttributesUtil;
-use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
+use Donquixote\DID\Util\AttributesUtil;
+use Donquixote\DID\Util\ReflectionTypeUtil;
 use Donquixote\ClassDiscovery\Util\MessageUtil;
 use Donquixote\DID\Attribute\Parameter\GetServiceInterface;
 use Donquixote\DID\Attribute\ReflectorAwareAttributeInterface;
@@ -102,7 +102,7 @@ class FactoryInspector_OckInstanceAttribute implements FactoryInspectorInterface
    *
    * @return \Donquixote\Ock\Formula\Group\GroupFormulaBuilder
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
+   * @throws \Donquixote\DID\Exception\DiscoveryException
    */
   private function buildGroupFormula(array $parameters): GroupFormulaBuilder {
     $builder = Formula::group();
