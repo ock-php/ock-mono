@@ -63,12 +63,14 @@ class AttributesUtil {
   /**
    * Gets and instantiates the only attribute of a given type.
    *
-   * @template T
+   * @template T of object
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    * @param class-string<T> $name
    *
-   * @return T
+   * @return object
+   * @phpstan-return T
+   * @psalm-return T
    *   Instance from the single attribute.
    *
    * @throws \Donquixote\DID\Exception\MalformedDeclarationException
@@ -99,8 +101,11 @@ class AttributesUtil {
    * @param class-string<T> $name
    *   Expected attribute type/name.
    *
-   * @return T|null
+   * @return object|null
    *   Instance from the attribute, or NULL if no matching attribute found.
+   *
+   * @psalm-return T|null
+   * @phpstan-return T|null
    *
    * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
@@ -123,7 +128,7 @@ class AttributesUtil {
   /**
    * Gets and instantiates the first attribute of a given type, if exists.
    *
-   * @template T
+   * @template T of object
    *
    * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    *   Element that has the attribute.
