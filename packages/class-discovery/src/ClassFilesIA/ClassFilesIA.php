@@ -5,13 +5,16 @@ namespace Donquixote\ClassDiscovery\ClassFilesIA;
 use Donquixote\ClassDiscovery\NamespaceDirectory;
 use Donquixote\ClassDiscovery\NsDirUtil;
 
+/**
+ * Static factories for ClassFilesIAInterface objects.
+ */
 class ClassFilesIA {
 
   /**
    * @param string $dir
    * @param string $namespace
    *
-   * @return ClassFilesIA_NamespaceDirectoryPsr4
+   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
   public static function psr4(string $dir, string $namespace): ClassFilesIAInterface {
     return new ClassFilesIA_NamespaceDirectoryPsr4(
