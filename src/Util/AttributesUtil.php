@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\DID\Util;
 
+use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Donquixote\CodegenTools\Util\MessageUtil;
 use Donquixote\DID\Attribute\ReflectorAwareAttributeInterface;
 use Donquixote\DID\Exception\MalformedDeclarationException;
@@ -18,7 +19,7 @@ class AttributesUtil {
    *
    * @template T as object
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    * @param class-string<T> $name
    *
    * @return list<T>
@@ -26,7 +27,7 @@ class AttributesUtil {
    * @throws \Donquixote\DID\Exception\MalformedDeclarationException
    */
   public static function getAll(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
     string $name,
   ): array {
     $instances = [];
@@ -41,7 +42,7 @@ class AttributesUtil {
   }
 
   /**
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    * @param class-string $name
    *
    * @return bool
@@ -53,7 +54,7 @@ class AttributesUtil {
    *   More than one attribute of the given type.
    */
   public static function hasSingle(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
     string $name,
   ): bool {
     return self::getSingleAttribute($reflector, $name) !== null;
@@ -64,7 +65,7 @@ class AttributesUtil {
    *
    * @template T
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    * @param class-string<T> $name
    *
    * @return T
@@ -74,7 +75,7 @@ class AttributesUtil {
    *   None or more than one attribute of the given type.
    */
   public static function requireSingle(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
     string $name,
   ): object {
     $instance = self::getSingle($reflector, $name);
@@ -93,7 +94,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    *   Element that has the attribute.
    * @param class-string<T> $name
    *   Expected attribute type/name.
@@ -105,7 +106,7 @@ class AttributesUtil {
    *   More than one attribute of the given type.
    */
   public static function getSingle(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
     string $name,
   ): ?object {
     $attribute = self::getSingleAttribute($reflector, $name);
@@ -124,7 +125,7 @@ class AttributesUtil {
    *
    * @template T
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    *   Element that has the attribute.
    * @param class-string<T> $name
    *   Expected attribute type/name.
@@ -136,7 +137,7 @@ class AttributesUtil {
    *   More than one attribute of the given type.
    */
   private static function getSingleAttribute(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
     string $name,
   ): ?\ReflectionAttribute {
     /** @var \ReflectionAttribute<T>[] $attributes */
