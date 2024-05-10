@@ -159,7 +159,7 @@ class LineBreaker {
       switch ($token->getTokenName()) {
         case ')':
         case ']':
-          for ($j = $i - 1; $tokens[$j]->isIgnorable(); --$j) {}
+          for ($j = $i - 1; $tokens[$j]->isIgnorable(); --$j);
           if (in_array($tokens[$j]->getTokenName(), [',', ';', '[', '('], true)) {
             // Don't add a trailing comma here.
             break;
