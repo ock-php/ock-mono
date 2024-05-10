@@ -1,8 +1,54 @@
 {
+    "authors": [
+        {
+            "name": "Andreas Hennings",
+            "email": "andreas@dqxtech.net"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "ext-json": "*",
+        "psr/container": "^2.0",
+        "psr/log": "^1.1.4|^2.0|^3.0",
+        "symfony/config": "^6.4",
+        "symfony/dependency-injection": "^6.4"
+    },
     "require-dev": {
+        "composer/installers": "^2.0",
+        "phpstan/phpstan": "2.0.x-dev",
+        "phpunit/phpunit": "^9.5",
+        "symfony/expression-language": "^6.4",
+        "symfony/yaml": "^6.2",
         "symplify/monorepo-builder": "^11.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Donquixote\\Adaptism\\": "packages/adaptism/src/",
+            "Donquixote\\ClassDiscovery\\": "packages/class-discovery/src",
+            "Donquixote\\CodegenTools\\": "packages/codegen-tools/src",
+            "Donquixote\\DID\\": "packages/di-discovery/src",
+            "Donquixote\\Ock\\": "packages/object-construction-kit/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Donquixote\\Adaptism\\Tests\\": "packages/adaptism/tests/src/",
+            "Donquixote\\ClassDiscovery\\Tests\\": "packages/class-discovery/tests/src",
+            "Donquixote\\CodegenTools\\Tests\\": "packages/codegen-tools/tests/src",
+            "Donquixote\\DID\\Tests\\": "packages/di-discovery/tests/src",
+            "Donquixote\\Ock\\Tests\\": "packages/object-construction-kit/tests/src"
+        }
     },
     "config": {
         "sort-packages": true
-    }
+    },
+    "replace": {
+        "donquixote/adaptism": "self.version",
+        "donquixote/class-discovery": "self.version",
+        "donquixote/codegen-tools": "self.version",
+        "donquixote/di-discovery": "self.version",
+        "donquixote/object-construction-kit": "self.version"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
