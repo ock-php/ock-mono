@@ -6,7 +6,6 @@ use Donquixote\ClassDiscovery\ClassNamesIA\ClassNamesIAInterface;
 
 /**
  * @template-extends ClassNamesIAInterface<string>
- * @template-extends \IteratorAggregate<string, class-string>
  */
 interface ClassFilesIAInterface extends ClassNamesIAInterface {
 
