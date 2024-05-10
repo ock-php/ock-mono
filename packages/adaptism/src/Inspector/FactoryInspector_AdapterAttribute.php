@@ -17,7 +17,7 @@ use Donquixote\ClassDiscovery\Reflection\ClassReflection;
 use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Donquixote\ClassDiscovery\Reflection\MethodReflection;
 use Donquixote\DID\Util\AttributesUtil;
-use Donquixote\DID\Util\ReflectionTypeUtil;
+use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
 use Donquixote\DID\ClassToCTV\ClassToCTVInterface;
 use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
