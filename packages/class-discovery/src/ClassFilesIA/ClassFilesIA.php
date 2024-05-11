@@ -53,6 +53,20 @@ class ClassFilesIA {
   }
 
   /**
+   * @param string $class
+   * @param int $nLevelsUp
+   *
+   * @return \Donquixote\ClassDiscovery\NamespaceDirectory
+   */
+  public static function psr4FromKnownClass(string $class, int $nLevelsUp = 0): NamespaceDirectory {
+    $result = NamespaceDirectory::fromKnownClass($class);
+    if ($nLevelsUp !== 0) {
+      $result = $result->requireParentN($nLevelsUp);
+    }
+    return $result;
+  }
+
+  /**
    * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
    *
    * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface

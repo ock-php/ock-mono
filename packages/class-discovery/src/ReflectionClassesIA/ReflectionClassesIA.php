@@ -60,6 +60,17 @@ class ReflectionClassesIA {
   }
 
   /**
+   * @param string $class
+   * @param int $nLevelsUp
+   *
+   * @return \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
+   */
+  public static function psr4FromKnownClass(string $class, int $nLevelsUp = 0): ReflectionClassesIAInterface {
+    $classFilesIA = ClassFilesIA::psr4FromKnownClass($class, $nLevelsUp);
+    return new ReflectionClassesIA_ClassFilesIA($classFilesIA);
+  }
+
+  /**
    * @param \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface[] $parts
    *
    * @return \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
