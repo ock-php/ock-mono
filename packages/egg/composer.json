@@ -1,5 +1,5 @@
 {
-    "name": "donquixote/egg",
+    "name": "ock/egg",
     "description": "Egg: Objects that grow to become bigger.",
     "license": "MIT",
     "authors": [
@@ -11,12 +11,12 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Donquixote\\Egg\\": "src"
+            "Ock\\Egg\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Donquixote\\Egg\\Tests\\": "tests/src"
+            "Ock\\Egg\\Tests\\": "tests/src"
         }
     },
     "require": {
