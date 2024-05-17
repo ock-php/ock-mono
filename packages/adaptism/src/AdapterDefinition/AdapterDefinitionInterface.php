@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Donquixote\Adaptism\AdapterDefinition;
 
-use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
+use Ock\Egg\Egg\EggInterface;
 
 interface AdapterDefinitionInterface {
 
@@ -26,8 +26,8 @@ interface AdapterDefinitionInterface {
   public function getSpecifity(): int;
 
   /**
-   * @return \Donquixote\DID\ContainerToValue\ContainerToValueInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>
+   * @return \Ock\Egg\Egg\EggInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>
    */
-  public function getAdapterCTV(): ContainerToValueInterface;
+  public function getAdapterCTV(): EggInterface;
 
 }

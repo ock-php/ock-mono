@@ -2,16 +2,16 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ContainerToValue;
+namespace Ock\Egg\Egg;
 
 use Psr\Container\ContainerInterface;
 
-class ContainerToValue_Array extends ContainerToValue_ArgumentsBase {
+class Egg_Array extends Egg_ArgumentsBase {
 
   /**
    * Constructor.
    *
-   * @param (mixed|\Donquixote\DID\ContainerToValue\ContainerToValueInterface)[] $args
+   * @param (mixed|\Ock\Egg\Egg\EggInterface)[] $args
    */
   public function __construct(
     array $args,

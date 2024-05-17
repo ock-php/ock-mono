@@ -34,7 +34,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
   private array $resultTypesById;
 
   /**
-   * @var \Donquixote\DID\ContainerToValue\ContainerToValueInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>[]
+   * @var \Ock\Egg\Egg\EggInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>[]
    */
   private array $adapterCTVs = [];
 

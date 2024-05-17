@@ -2,24 +2,24 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ContainerToValue;
+namespace Ock\Egg\Egg;
 
 use Psr\Container\ContainerInterface;
 
 /**
  * Treats the service itself as a callable.
  */
-class ContainerToValue_ObjectMethodCall extends ContainerToValue_ArgumentsBase {
+class Egg_ObjectMethodCall extends Egg_ArgumentsBase {
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\DID\ContainerToValue\ContainerToValueInterface $containerToObject
+   * @param \Ock\Egg\Egg\EggInterface $containerToObject
    * @param string $method
-   * @param (mixed|\Donquixote\DID\ContainerToValue\ContainerToValueInterface)[] $args
+   * @param (mixed|\Ock\Egg\Egg\EggInterface)[] $args
    */
   public function __construct(
-    private readonly ContainerToValueInterface $containerToObject,
+    private readonly EggInterface $containerToObject,
     private readonly string $method,
     array $args,
   ) {

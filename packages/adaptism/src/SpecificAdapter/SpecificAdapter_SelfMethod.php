@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Donquixote\Adaptism\SpecificAdapter;
 
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\DID\ContainerToValue\ContainerToValue_Construct;
-use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
+use Ock\Egg\Egg\Egg_Construct;
+use Ock\Egg\Egg\EggInterface;
 
 class SpecificAdapter_SelfMethod implements SpecificAdapterInterface {
 
@@ -31,9 +31,9 @@ class SpecificAdapter_SelfMethod implements SpecificAdapterInterface {
    * @param string $method
    * @param bool $hasResultTypeParameter
    * @param bool $hasUniversalAdapterParameter
-   * @param list<\Donquixote\DID\ContainerToValue\ContainerToValueInterface|mixed> $moreArgCTVs
+   * @param list<\Ock\Egg\Egg\EggInterface|mixed> $moreArgCTVs
    *
-   * @return \Donquixote\DID\ContainerToValue\ContainerToValueInterface<self>
+   * @return \Ock\Egg\Egg\EggInterface<self>
    */
   public static function ctv(
     string $class,
@@ -41,14 +41,14 @@ class SpecificAdapter_SelfMethod implements SpecificAdapterInterface {
     bool $hasResultTypeParameter,
     bool $hasUniversalAdapterParameter,
     array $moreArgCTVs,
-  ): ContainerToValueInterface {
+  ): EggInterface {
     if (!method_exists($class, $method)) {
       throw new \InvalidArgumentException(sprintf(
         'Method not found: %s.',
         $class . '::' . $method . '()',
       ));
     }
-    return new ContainerToValue_Construct(self::class, [
+    return new Egg_Construct(self::class, [
       $class,
       $method,
       $hasResultTypeParameter,

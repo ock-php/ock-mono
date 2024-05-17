@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ContainerToValue;
+namespace Ock\Egg\Egg;
 
 use Psr\Container\ContainerInterface;
 
-class ContainerToValue_Fixed implements ContainerToValueInterface {
+class Egg_Fixed implements EggInterface {
 
   /**
    * Constructor.

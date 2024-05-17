@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ContainerToValue;
+namespace Ock\Egg\Egg;
 
 use Donquixote\DID\Exception\ContainerToValueException;
 use Psr\Container\ContainerInterface;
@@ -10,15 +10,15 @@ use Psr\Container\ContainerInterface;
 /**
  * @template T
  *
- * @template-extends ContainerToValue_ArgumentsBase<T>
+ * @template-extends Egg_ArgumentsBase<T>
  */
-class ContainerToValue_Construct extends ContainerToValue_ArgumentsBase {
+class Egg_Construct extends Egg_ArgumentsBase {
 
   /**
    * Constructor.
    *
    * @param class-string<T> $class
-   * @param (mixed|\Donquixote\DID\ContainerToValue\ContainerToValueInterface)[] $args
+   * @param (mixed|\Ock\Egg\Egg\EggInterface)[] $args
    */
   public function __construct(
     private readonly string $class,

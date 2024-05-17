@@ -5,8 +5,8 @@ namespace Donquixote\Adaptism\SpecificAdapter;
 
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\DID\ContainerToValue\ContainerToValue_Construct;
-use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
+use Ock\Egg\Egg\Egg_Construct;
+use Ock\Egg\Egg\EggInterface;
 
 class SpecificAdapter_Construct implements SpecificAdapterInterface {
 
@@ -26,16 +26,16 @@ class SpecificAdapter_Construct implements SpecificAdapterInterface {
   /**
    * @param class-string $class
    * @param bool $hasUniversalAdapterParameter
-   * @param list<\Donquixote\DID\ContainerToValue\ContainerToValueInterface|mixed> $moreArgCTVs
+   * @param list<\Ock\Egg\Egg\EggInterface|mixed> $moreArgCTVs
    *
-   * @return \Donquixote\DID\ContainerToValue\ContainerToValueInterface<self>
+   * @return \Ock\Egg\Egg\EggInterface<self>
    */
   public static function ctv(
     string $class,
     bool $hasUniversalAdapterParameter,
     array $moreArgCTVs,
-  ): ContainerToValueInterface {
-    return new ContainerToValue_Construct(self::class, [
+  ): EggInterface {
+    return new Egg_Construct(self::class, [
       $class,
       $hasUniversalAdapterParameter,
       $moreArgCTVs,

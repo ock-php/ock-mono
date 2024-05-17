@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ContainerToValue;
+namespace Ock\Egg\Egg;
 
 use Donquixote\DID\Exception\ContainerToValueException;
 use Donquixote\DID\ValueDefinition\ValueDefinition_GetService;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
-class ContainerToValue_ServiceId implements ContainerToValueInterface {
+class Egg_ServiceId implements EggInterface {
 
   /**
    * Constructor.

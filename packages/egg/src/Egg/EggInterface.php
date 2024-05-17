@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ContainerToValue;
+namespace Ock\Egg\Egg;
 
 use Psr\Container\ContainerInterface;
 
 /**
  * @template T
  */
-interface ContainerToValueInterface {
+interface EggInterface {
 
   /**
    * @param \Psr\Container\ContainerInterface $container

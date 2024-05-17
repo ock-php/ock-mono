@@ -72,7 +72,7 @@ trait AdapterFactoryInspectorTrait {
   /**
    * @param \ReflectionParameter[] $parameters
    *
-   * @return list<\Donquixote\DID\ContainerToValue\ContainerToValueInterface>
+   * @return list<\Ock\Egg\Egg\EggInterface>
    *
    * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
    */

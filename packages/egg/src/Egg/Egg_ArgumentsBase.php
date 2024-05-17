@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ContainerToValue;
+namespace Ock\Egg\Egg;
 
 use Donquixote\DID\Exception\ContainerToValueException;
 use Psr\Container\ContainerInterface;
@@ -10,12 +10,12 @@ use Psr\Container\ContainerInterface;
 /**
  * Treats the service itself as a callable.
  */
-abstract class ContainerToValue_ArgumentsBase implements ContainerToValueInterface {
+abstract class Egg_ArgumentsBase implements EggInterface {
 
   /**
    * Constructor.
    *
-   * @param (mixed|\Donquixote\DID\ContainerToValue\ContainerToValueInterface)[] $args
+   * @param (mixed|\Ock\Egg\Egg\EggInterface)[] $args
    */
   public function __construct(
     private readonly array $args,
@@ -45,7 +45,7 @@ abstract class ContainerToValue_ArgumentsBase implements ContainerToValueInterfa
   private static function processArray(ContainerInterface $container, array $in): array {
     $out = [];
     foreach ($in as $k => $v) {
-      if ($v instanceof ContainerToValueInterface) {
+      if ($v instanceof EggInterface) {
         $v = $v->containerGetValue($container);
       }
       elseif (is_array($v) && $v) {
