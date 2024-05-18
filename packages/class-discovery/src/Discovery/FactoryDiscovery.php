@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace Donquixote\ClassDiscovery\Discovery;
 
-use Donquixote\Helpers\Util\MessageUtil;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspector_Concat;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Donquixote\ClassDiscovery\Reflection\ClassReflection;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Concat;
 use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
+use Donquixote\Helpers\Util\MessageUtil;
 
 /**
  * @template TNeedle

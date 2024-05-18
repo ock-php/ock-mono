@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Donquixote\ClassDiscovery\Util;
 
-use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
-use Donquixote\Helpers\Util\MessageUtil;
 use Donquixote\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
 use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
+use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Donquixote\Helpers\Util\MessageUtil;
 
 /**
  * Helper methods to read attributes from reflectors.
