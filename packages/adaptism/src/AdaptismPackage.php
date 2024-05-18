@@ -6,8 +6,8 @@ namespace Donquixote\Adaptism;
 
 use Donquixote\ClassDiscovery\Discovery\DiscoveryInterface;
 use Donquixote\ClassDiscovery\Discovery\FactoryDiscovery;
-use Donquixote\DID\ClassToCTV\ClassToCTV_Construct;
-use Donquixote\DID\ClassToCTV\ClassToCTVInterface;
+use Ock\Egg\ClassToEgg\ClassToEgg_Construct;
+use Ock\Egg\ClassToEgg\ClassToEggInterface;
 use Ock\Egg\ParamToEgg\ParamToEgg_Chain;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -42,8 +42,8 @@ class AdaptismPackage {
       ->factory([FactoryDiscovery::class, 'fromCandidateObjects'])
       ->arg(0, tagged_iterator(self::DISCOVERY_TAG_NAME));
 
-    $services->set(ClassToCTVInterface::class)
-      ->class(ClassToCTV_Construct::class);
+    $services->set(ClassToEggInterface::class)
+      ->class(ClassToEgg_Construct::class);
 
     $services->set(ParamToEggInterface::class)
       ->class(ParamToEgg_Chain::class);

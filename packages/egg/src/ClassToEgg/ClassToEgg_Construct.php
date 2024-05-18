@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ClassToCTV;
+namespace Ock\Egg\ClassToEgg;
 
 use Ock\Egg\Egg\Egg_Construct;
 use Ock\Egg\Egg\EggInterface;
@@ -10,7 +10,7 @@ use Ock\Egg\ParamToEgg\ParamToEggInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
 #[AsAlias]
-class ClassToCTV_Construct implements ClassToCTVInterface {
+class ClassToEgg_Construct implements ClassToEggInterface {
 
   /**
    * Constructor.

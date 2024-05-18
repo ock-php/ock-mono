@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ClassToCTV;
+namespace Ock\Egg\ClassToEgg;
 
 use Ock\Egg\Egg\EggInterface;
 
-interface ClassToCTVInterface {
+interface ClassToEggInterface {
 
   /**
    * @param \ReflectionClass $reflectionClass
