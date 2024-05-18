@@ -7,6 +7,10 @@ namespace Ock\Egg\Egg;
 use Psr\Container\ContainerInterface;
 
 /**
+ * An egg can produce an object or value given a container.
+ *
+ * It is serializable by convention.
+ *
  * @template T
  */
 interface EggInterface {
