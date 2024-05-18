@@ -32,7 +32,7 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
   }
 
   /**
-   * @param \Ock\Egg\Egg\EggInterface|callable $callbackCTV
+   * @param \Ock\Egg\Egg\EggInterface|callable $callbackOrEgg
    * @param bool $hasResultTypeParameter
    * @param bool $hasUniversalAdapterParameter
    * @param list<\Ock\Egg\Egg\EggInterface|mixed> $moreArgCTVs
@@ -40,13 +40,13 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
    * @return \Ock\Egg\Egg\EggInterface<self>
    */
   public static function ctv(
-    EggInterface|callable $callbackCTV,
+    EggInterface|callable $callbackOrEgg,
     bool $hasResultTypeParameter,
     bool $hasUniversalAdapterParameter,
     array $moreArgCTVs,
   ): EggInterface {
     return new Egg_Construct(self::class, [
-      $callbackCTV,
+      $callbackOrEgg,
       $hasResultTypeParameter,
       $hasUniversalAdapterParameter,
       $moreArgCTVs,
@@ -54,7 +54,7 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
   }
 
   /**
-   * @param class-string|\Ock\Egg\Egg\EggInterface $classOrObjectCTV
+   * @param class-string|\Ock\Egg\Egg\EggInterface $classOrEgg
    * @param string $method
    * @param bool $hasResultTypeParameter
    * @param bool $hasUniversalAdapterParameter
@@ -63,14 +63,14 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
    * @return \Ock\Egg\Egg\EggInterface<self>
    */
   public static function ctvMethodCall(
-    string|EggInterface $classOrObjectCTV,
+    string|EggInterface $classOrEgg,
     string $method,
     bool $hasResultTypeParameter,
     bool $hasUniversalAdapterParameter,
     array $moreArgsCTVs,
   ): EggInterface {
     return new Egg_Construct(self::class, [
-      [$classOrObjectCTV, $method],
+      [$classOrEgg, $method],
       $hasResultTypeParameter,
       $hasUniversalAdapterParameter,
       $moreArgsCTVs,

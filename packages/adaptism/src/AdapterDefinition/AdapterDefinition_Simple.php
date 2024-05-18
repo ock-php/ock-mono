@@ -14,13 +14,13 @@ class AdapterDefinition_Simple implements AdapterDefinitionInterface {
    * @param class-string|null $sourceType
    * @param class-string|null $resultType
    * @param int $specifity
-   * @param EggInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface> $adapterCTV
+   * @param EggInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface> $adapterEgg
    */
   public function __construct(
     private readonly ?string $sourceType,
     private readonly ?string $resultType,
     private readonly int $specifity,
-    private readonly EggInterface $adapterCTV,
+    private readonly EggInterface $adapterEgg,
   ) {}
 
   public function getResultType(): ?string {
@@ -36,7 +36,7 @@ class AdapterDefinition_Simple implements AdapterDefinitionInterface {
   }
 
   public function getAdapterCTV(): EggInterface {
-    return $this->adapterCTV;
+    return $this->adapterEgg;
   }
 
 }
