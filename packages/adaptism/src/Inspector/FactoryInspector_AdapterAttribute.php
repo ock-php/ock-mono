@@ -10,7 +10,6 @@ use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
 use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
-use Donquixote\Helpers\Util\MessageUtil;
 use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
 use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Donquixote\ClassDiscovery\Reflection\ClassReflection;
@@ -20,6 +19,7 @@ use Donquixote\ClassDiscovery\Util\AttributesUtil;
 use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
 use Donquixote\DID\ClassToCTV\ClassToCTVInterface;
 use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
+use Donquixote\Helpers\Util\MessageUtil;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 /**
