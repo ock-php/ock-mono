@@ -20,7 +20,7 @@ interface EggInterface {
    *
    * @return T
    *
-   * @throws \Donquixote\DID\Exception\ContainerToValueException
+   * @throws \Psr\Container\ContainerExceptionInterface
    */
   public function hatch(ContainerInterface $container): mixed;
 

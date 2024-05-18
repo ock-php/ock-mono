@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Ock\Egg\Egg;
 
-use Donquixote\DID\Exception\ContainerToValueException;
+use Ock\Egg\Exception\EggHatchException;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -30,7 +30,7 @@ abstract class Egg_ArgumentsBase implements EggInterface {
       return $this->getWithArgs($container, $args);
     }
     catch (\Throwable $e) {
-      throw new ContainerToValueException($e->getMessage(), 0, $e);
+      throw new EggHatchException($e->getMessage(), 0, $e);
     }
   }
 
@@ -40,7 +40,7 @@ abstract class Egg_ArgumentsBase implements EggInterface {
    *
    * @return array
    *
-   * @throws \Donquixote\DID\Exception\ContainerToValueException
+   * @throws \Psr\Container\ContainerExceptionInterface
    */
   private static function processArray(ContainerInterface $container, array $in): array {
     $out = [];
@@ -62,7 +62,7 @@ abstract class Egg_ArgumentsBase implements EggInterface {
    *
    * @return mixed
    *
-   * @throws \Donquixote\DID\Exception\ContainerToValueException
+   * @throws \Psr\Container\ContainerExceptionInterface
    */
   abstract protected function getWithArgs(ContainerInterface $container, array $args): mixed;
 

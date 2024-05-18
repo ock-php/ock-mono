@@ -4,9 +4,7 @@ declare(strict_types = 1);
 
 namespace Ock\Egg\Egg;
 
-use Donquixote\DID\Exception\ContainerToValueException;
 use Donquixote\DID\ValueDefinition\ValueDefinition_GetService;
-use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 class Egg_ServiceId implements EggInterface {
@@ -33,12 +31,7 @@ class Egg_ServiceId implements EggInterface {
    * {@inheritdoc}
    */
   public function hatch(ContainerInterface $container): mixed {
-    try {
-      return $container->get($this->serviceId);
-    }
-    catch (ContainerExceptionInterface $e) {
-      throw new ContainerToValueException($e->getMessage(), 0, $e);
-    }
+    return $container->get($this->serviceId);
   }
 
 }

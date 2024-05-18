@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Ock\Egg\Egg;
 
-use Donquixote\DID\Exception\ContainerToValueException;
+use Ock\Egg\Exception\EggHatchException;
 use Psr\Container\ContainerInterface;
 
 class Egg_CallableCall extends Egg_ArgumentsBase {
@@ -44,7 +44,7 @@ class Egg_CallableCall extends Egg_ArgumentsBase {
       return $callback(...$args);
     }
     catch (\Throwable $e) {
-      throw new ContainerToValueException($e->getMessage(), 0, $e);
+      throw new EggHatchException($e->getMessage(), 0, $e);
     }
   }
 
