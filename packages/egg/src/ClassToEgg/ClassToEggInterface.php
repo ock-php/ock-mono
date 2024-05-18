@@ -13,7 +13,7 @@ interface ClassToEggInterface {
    *
    * @return \Ock\Egg\Egg\EggInterface
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
+   * @throws \Ock\Egg\Exception\ToEggException
    */
   public function classGetEgg(\ReflectionClass $reflectionClass): EggInterface;
 

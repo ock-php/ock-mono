@@ -17,7 +17,7 @@ interface ParamToEggInterface {
    *
    * @return \Ock\Egg\Egg\EggInterface|null
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
+   * @throws \Ock\Egg\Exception\ToEggException
    */
   public function paramGetEgg(\ReflectionParameter $parameter): ?EggInterface;
 
