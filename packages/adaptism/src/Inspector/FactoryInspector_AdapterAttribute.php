@@ -33,11 +33,11 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
   /**
    * Constructor.
    *
-   * @param \Ock\Egg\ClassToEgg\ClassToEggInterface $classToCTV
+   * @param \Ock\Egg\ClassToEgg\ClassToEggInterface $classToEgg
    * @param \Ock\Egg\ParamToEgg\ParamToEggInterface $paramToEgg
    */
   public function __construct(
-    private readonly ClassToEggInterface $classToCTV,
+    private readonly ClassToEggInterface $classToEgg,
     protected readonly ParamToEggInterface $paramToEgg,
   ) {}
 
@@ -79,7 +79,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
         $classOrEgg = $reflector->originalClass;
       }
       else {
-        $classOrEgg = $this->classToCTV->classGetCTV($reflector->getClass());
+        $classOrEgg = $this->classToEgg->classGetCTV($reflector->getClass());
       }
       $adapterEgg = SpecificAdapter_Callback::ctvMethodCall(
         $classOrEgg,
