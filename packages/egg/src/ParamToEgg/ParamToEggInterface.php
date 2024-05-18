@@ -19,6 +19,6 @@ interface ParamToEggInterface {
    *
    * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
    */
-  public function paramGetCTV(\ReflectionParameter $parameter): ?EggInterface;
+  public function paramGetEgg(\ReflectionParameter $parameter): ?EggInterface;
 
 }

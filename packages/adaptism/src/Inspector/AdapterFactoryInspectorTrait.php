@@ -79,7 +79,7 @@ trait AdapterFactoryInspectorTrait {
   private function buildArgCTVs(array $parameters): array {
     $argEggs = [];
     foreach ($parameters as $parameter) {
-      $egg = $this->paramToEgg->paramGetCTV($parameter);
+      $egg = $this->paramToEgg->paramGetEgg($parameter);
       if ($egg === NULL) {
         throw new DiscoveryException(sprintf(
           'Cannot resolve %s.',

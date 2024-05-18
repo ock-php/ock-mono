@@ -24,9 +24,9 @@ class ParamToEgg_Chain implements ParamToEggInterface {
   /**
    * {@inheritdoc}
    */
-  public function paramGetCTV(\ReflectionParameter $parameter): ?EggInterface {
+  public function paramGetEgg(\ReflectionParameter $parameter): ?EggInterface {
     foreach ($this->paramToEggs as $paramToEgg) {
-      $egg = $paramToEgg->paramGetCTV($parameter);
+      $egg = $paramToEgg->paramGetEgg($parameter);
       if ($egg !== NULL) {
         return $egg;
       }

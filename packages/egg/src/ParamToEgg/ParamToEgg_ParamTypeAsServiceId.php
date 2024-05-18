@@ -16,7 +16,7 @@ class ParamToEgg_ParamTypeAsServiceId implements ParamToEggInterface {
    * @return \Ock\Egg\Egg\EggInterface|null
    * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
    */
-  public function paramGetCTV(\ReflectionParameter $parameter): ?EggInterface {
+  public function paramGetEgg(\ReflectionParameter $parameter): ?EggInterface {
     $class = ReflectionTypeUtil::getClassLikeType($parameter);
     if ($class === NULL) {
       return NULL;
