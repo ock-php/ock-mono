@@ -5,6 +5,7 @@ namespace Donquixote\Adaptism\Tests\Fixtures;
 
 use Donquixote\Adaptism\AdaptismPackage;
 use Donquixote\DID\DidNamespace;
+use Ock\Egg\EggNamespace;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -33,6 +34,7 @@ class FixturesUtil {
   private static function buildContainer(): ContainerInterface {
     $container = new ContainerBuilder();
     static::loadPackageServicesPhp($container, dirname(DidNamespace::DIR));
+    static::loadPackageServicesPhp($container, dirname(EggNamespace::DIR));
     static::loadPackageServicesPhp($container, dirname(AdaptismPackage::DIR));
     static::loadPackageServicesPhp($container, dirname(__DIR__, 2), 'services.test.php');
     $container->setAlias(ContainerInterface::class, 'service_container');
