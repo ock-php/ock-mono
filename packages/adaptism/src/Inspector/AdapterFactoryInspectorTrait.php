@@ -18,7 +18,7 @@ trait AdapterFactoryInspectorTrait {
   /**
    * This property should be set in the constructor.
    */
-  protected readonly ParamToCTVInterface $paramToCTV;
+  protected readonly ParamToCTVInterface $paramToEgg;
 
   /**
    * @param \ReflectionParameter[] $parameters
@@ -77,18 +77,18 @@ trait AdapterFactoryInspectorTrait {
    * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
    */
   private function buildArgCTVs(array $parameters): array {
-    $argCTVs = [];
+    $argEggs = [];
     foreach ($parameters as $parameter) {
-      $ctv = $this->paramToCTV->paramGetCTV($parameter);
-      if ($ctv === NULL) {
+      $egg = $this->paramToCTV->paramGetCTV($parameter);
+      if ($egg === NULL) {
         throw new DiscoveryException(sprintf(
           'Cannot resolve %s.',
           MessageUtil::formatReflector($parameter),
         ));
       }
-      $argCTVs[] = $ctv;
+      $argEggs[] = $egg;
     }
-    return $argCTVs;
+    return $argEggs;
   }
 
 }

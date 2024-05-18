@@ -26,19 +26,19 @@ class SpecificAdapter_Construct implements SpecificAdapterInterface {
   /**
    * @param class-string $class
    * @param bool $hasUniversalAdapterParameter
-   * @param list<\Ock\Egg\Egg\EggInterface|mixed> $moreArgCTVs
+   * @param list<\Ock\Egg\Egg\EggInterface|mixed> $moreArgEggs
    *
    * @return \Ock\Egg\Egg\EggInterface<self>
    */
   public static function ctv(
     string $class,
     bool $hasUniversalAdapterParameter,
-    array $moreArgCTVs,
+    array $moreArgEggs,
   ): EggInterface {
     return new Egg_Construct(self::class, [
       $class,
       $hasUniversalAdapterParameter,
-      $moreArgCTVs,
+      $moreArgEggs,
     ]);
   }
 

@@ -36,7 +36,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
   /**
    * @var \Ock\Egg\Egg\EggInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>[]
    */
-  private array $adapterCTVs = [];
+  private array $adapterEggs = [];
 
   /**
    * @var \Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface[]
@@ -61,7 +61,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
     foreach ($definitions as $id => $definition) {
       $specifities[$id] = $definition->getSpecifity();
       $resultType = $definition->getResultType();
-      $this->adapterCTVs[$id] = $definition->getAdapterCTV();
+      $this->adapterEggs[$id] = $definition->getAdapterCTV();
       if ($resultType !== null) {
         try {
           foreach ($this->typeExpandParents($resultType, false) as $resultParentType) {
@@ -107,7 +107,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
     try {
       foreach ($resultTypesById2 as $id => $_) {
         yield $id => $this->adapters[$id]
-          ??= $this->adapterCTVs[$id]->hatch($this->container);
+          ??= $this->adapterEggs[$id]->hatch($this->container);
       }
       foreach ($resultTypesById1 as $id => $bridgeTypes) {
         $bridgeTypes1 = \array_intersect_key($bridgeTypes, $this->idsBySourceType);
@@ -115,7 +115,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
           continue;
         }
         $decorated = $this->adapters[$id]
-          ??= $this->adapterCTVs[$id]->hatch($this->container);
+          ??= $this->adapterEggs[$id]->hatch($this->container);
         foreach ($bridgeTypes1 as $bridgeType => $_) {
           yield $id . ':' . $bridgeType => new SpecificAdapter_Bridge($decorated, $bridgeType);
         }
@@ -174,7 +174,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
       'resultTypesById' => $this->resultTypesById,
       'idsBySourceType' => $this->idsBySourceType,
       'idsByResultType' => $this->idsByResultType,
-      'factories' => $this->adapterCTVs,
+      'factories' => $this->adapterEggs,
     ];
   }
 
@@ -183,7 +183,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
       'resultTypesById' => $this->resultTypesById,
       'idsBySourceType' => $this->idsBySourceType,
       'idsByResultType' => $this->idsByResultType,
-      'factories' => $this->adapterCTVs,
+      'factories' => $this->adapterEggs,
     ] = $data;
   }
 

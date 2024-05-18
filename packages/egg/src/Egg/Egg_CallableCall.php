@@ -12,11 +12,11 @@ class Egg_CallableCall extends Egg_ArgumentsBase {
   /**
    * Constructor.
    *
-   * @param \Ock\Egg\Egg\EggInterface $containerToCallback
+   * @param \Ock\Egg\Egg\EggInterface $callbackEgg
    * @param (mixed|\Ock\Egg\Egg\EggInterface)[] $args
    */
   public function __construct(
-    private readonly EggInterface $containerToCallback,
+    private readonly EggInterface $callbackEgg,
     array $args,
   ) {
     parent::__construct($args);
@@ -39,7 +39,7 @@ class Egg_CallableCall extends Egg_ArgumentsBase {
    * {@inheritdoc}
    */
   protected function getWithArgs(ContainerInterface $container, array $args): mixed {
-    $callback = $this->containerToCallback->hatch($container);
+    $callback = $this->callbackEgg->hatch($container);
     try {
       return $callback(...$args);
     }

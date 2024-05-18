@@ -64,13 +64,13 @@ class FactoryInspector_SelfAdapterAttribute implements FactoryInspectorInterface
     $parameters = $reflector->getParameters();
     $hasResultTypeParameter = $this->extractHasResultTypeParameter($parameters);
     $hasUniversalAdapterParameter = $this->extractHasUniversalAdapterParameter($parameters);
-    $moreArgCTVs = $this->buildArgCTVs($parameters);
-    $adapterCTV = SpecificAdapter_SelfMethod::ctv(
+    $moreArgEggs = $this->buildArgCTVs($parameters);
+    $adapterEgg = SpecificAdapter_SelfMethod::ctv(
       $reflector->class,
       $reflector->name,
       $hasResultTypeParameter,
       $hasUniversalAdapterParameter,
-      $moreArgCTVs,
+      $moreArgEggs,
     );
     $returnClass = ReflectionTypeUtil::requireGetClassLikeType($reflector, true);
     $specifity = $attribute->specifity
@@ -79,7 +79,7 @@ class FactoryInspector_SelfAdapterAttribute implements FactoryInspectorInterface
       $reflector->class,
       $returnClass,
       $specifity,
-      $adapterCTV,
+      $adapterEgg,
     );
     yield $reflector->getFullName() => $definition;
   }

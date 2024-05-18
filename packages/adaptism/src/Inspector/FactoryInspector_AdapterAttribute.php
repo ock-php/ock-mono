@@ -66,27 +66,27 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
     $hasResultTypeParameter = $reflector->isMethod()
       && $this->extractHasResultTypeParameter($parameters);
     $hasUniversalAdapterParameter = $this->extractHasUniversalAdapterParameter($parameters);
-    $argCTVs = $this->buildArgCTVs($parameters);
+    $argEggs = $this->buildArgCTVs($parameters);
     if ($reflector instanceof ClassReflection) {
-      $adapterCTV = SpecificAdapter_Construct::ctv(
+      $adapterEgg = SpecificAdapter_Construct::ctv(
         $reflector->name,
         $hasUniversalAdapterParameter,
-        $argCTVs,
+        $argEggs,
       );
     }
     elseif ($reflector instanceof MethodReflection) {
       if ($reflector->isStatic()) {
-        $classOrObjectCTV = $reflector->originalClass;
+        $classOrEgg = $reflector->originalClass;
       }
       else {
-        $classOrObjectCTV = $this->classToCTV->classGetCTV($reflector->getClass());
+        $classOrEgg = $this->classToCTV->classGetCTV($reflector->getClass());
       }
-      $adapterCTV = SpecificAdapter_Callback::ctvMethodCall(
-        $classOrObjectCTV,
+      $adapterEgg = SpecificAdapter_Callback::ctvMethodCall(
+        $classOrEgg,
         $reflector->name,
         $hasResultTypeParameter,
         $hasUniversalAdapterParameter,
-        $argCTVs,
+        $argEggs,
       );
     }
     else {
@@ -98,7 +98,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
       $sourceType,
       $resultClass,
       $attribute->specifity ?? $specifity,
-      $adapterCTV,
+      $adapterEgg,
     );
     yield $reflector->getFullName() => $definition;
   }

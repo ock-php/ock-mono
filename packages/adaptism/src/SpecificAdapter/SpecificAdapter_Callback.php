@@ -35,7 +35,7 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
    * @param \Ock\Egg\Egg\EggInterface|callable $callbackOrEgg
    * @param bool $hasResultTypeParameter
    * @param bool $hasUniversalAdapterParameter
-   * @param list<\Ock\Egg\Egg\EggInterface|mixed> $moreArgCTVs
+   * @param list<\Ock\Egg\Egg\EggInterface|mixed> $moreArgEggs
    *
    * @return \Ock\Egg\Egg\EggInterface<self>
    */
@@ -43,13 +43,13 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
     EggInterface|callable $callbackOrEgg,
     bool $hasResultTypeParameter,
     bool $hasUniversalAdapterParameter,
-    array $moreArgCTVs,
+    array $moreArgEggs,
   ): EggInterface {
     return new Egg_Construct(self::class, [
       $callbackOrEgg,
       $hasResultTypeParameter,
       $hasUniversalAdapterParameter,
-      $moreArgCTVs,
+      $moreArgEggs,
     ]);
   }
 
@@ -58,7 +58,7 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
    * @param string $method
    * @param bool $hasResultTypeParameter
    * @param bool $hasUniversalAdapterParameter
-   * @param array $moreArgsCTVs
+   * @param array $moreArgsEggs
    *
    * @return \Ock\Egg\Egg\EggInterface<self>
    */
@@ -67,13 +67,13 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
     string $method,
     bool $hasResultTypeParameter,
     bool $hasUniversalAdapterParameter,
-    array $moreArgsCTVs,
+    array $moreArgsEggs,
   ): EggInterface {
     return new Egg_Construct(self::class, [
       [$classOrEgg, $method],
       $hasResultTypeParameter,
       $hasUniversalAdapterParameter,
-      $moreArgsCTVs,
+      $moreArgsEggs,
     ]);
   }
 

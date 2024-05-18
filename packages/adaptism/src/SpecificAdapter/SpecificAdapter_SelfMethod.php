@@ -31,7 +31,7 @@ class SpecificAdapter_SelfMethod implements SpecificAdapterInterface {
    * @param string $method
    * @param bool $hasResultTypeParameter
    * @param bool $hasUniversalAdapterParameter
-   * @param list<\Ock\Egg\Egg\EggInterface|mixed> $moreArgCTVs
+   * @param list<\Ock\Egg\Egg\EggInterface|mixed> $moreArgEggs
    *
    * @return \Ock\Egg\Egg\EggInterface<self>
    */
@@ -40,7 +40,7 @@ class SpecificAdapter_SelfMethod implements SpecificAdapterInterface {
     string $method,
     bool $hasResultTypeParameter,
     bool $hasUniversalAdapterParameter,
-    array $moreArgCTVs,
+    array $moreArgEggs,
   ): EggInterface {
     if (!method_exists($class, $method)) {
       throw new \InvalidArgumentException(sprintf(
@@ -53,7 +53,7 @@ class SpecificAdapter_SelfMethod implements SpecificAdapterInterface {
       $method,
       $hasResultTypeParameter,
       $hasUniversalAdapterParameter,
-      $moreArgCTVs,
+      $moreArgEggs,
     ]);
   }
 

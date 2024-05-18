@@ -14,12 +14,12 @@ class Egg_ObjectMethodCall extends Egg_ArgumentsBase {
   /**
    * Constructor.
    *
-   * @param \Ock\Egg\Egg\EggInterface $containerToObject
+   * @param \Ock\Egg\Egg\EggInterface $objectEgg
    * @param string $method
    * @param (mixed|\Ock\Egg\Egg\EggInterface)[] $args
    */
   public function __construct(
-    private readonly EggInterface $containerToObject,
+    private readonly EggInterface $objectEgg,
     private readonly string $method,
     array $args,
   ) {
@@ -30,7 +30,7 @@ class Egg_ObjectMethodCall extends Egg_ArgumentsBase {
    * {@inheritdoc}
    */
   protected function getWithArgs(ContainerInterface $container, array $args): mixed {
-    $object = $this->containerToObject->hatch($container);
+    $object = $this->objectEgg->hatch($container);
     return $object->{$this->method}(...$args);
   }
 
