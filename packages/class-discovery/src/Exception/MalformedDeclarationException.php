@@ -6,7 +6,9 @@ namespace Donquixote\ClassDiscovery\Exception;
 
 /**
  * A declaration, typically one with attributes, is malformed.
+ *
+ * This is a programming error and must be fixed.
  */
-class MalformedDeclarationException extends DiscoveryException {
+class MalformedDeclarationException extends \RuntimeException {
 
 }
