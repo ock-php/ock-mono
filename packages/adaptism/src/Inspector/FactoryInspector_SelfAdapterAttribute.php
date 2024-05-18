@@ -64,7 +64,7 @@ class FactoryInspector_SelfAdapterAttribute implements FactoryInspectorInterface
     $parameters = $reflector->getParameters();
     $hasResultTypeParameter = $this->extractHasResultTypeParameter($parameters);
     $hasUniversalAdapterParameter = $this->extractHasUniversalAdapterParameter($parameters);
-    $moreArgEggs = $this->buildArgCTVs($parameters);
+    $moreArgEggs = $this->buildArgEggs($parameters);
     $adapterEgg = SpecificAdapter_SelfMethod::ctv(
       $reflector->class,
       $reflector->name,

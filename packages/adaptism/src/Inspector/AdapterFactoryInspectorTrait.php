@@ -76,7 +76,7 @@ trait AdapterFactoryInspectorTrait {
    *
    * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
    */
-  private function buildArgCTVs(array $parameters): array {
+  private function buildArgEggs(array $parameters): array {
     $argEggs = [];
     foreach ($parameters as $parameter) {
       $egg = $this->paramToEgg->paramGetEgg($parameter);
