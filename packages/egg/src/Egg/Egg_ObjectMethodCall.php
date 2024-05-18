@@ -30,7 +30,7 @@ class Egg_ObjectMethodCall extends Egg_ArgumentsBase {
    * {@inheritdoc}
    */
   protected function getWithArgs(ContainerInterface $container, array $args): mixed {
-    $object = $this->containerToObject->containerGetValue($container);
+    $object = $this->containerToObject->hatch($container);
     return $object->{$this->method}(...$args);
   }
 

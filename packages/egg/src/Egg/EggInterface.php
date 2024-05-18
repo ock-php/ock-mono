@@ -22,6 +22,6 @@ interface EggInterface {
    *
    * @throws \Donquixote\DID\Exception\ContainerToValueException
    */
-  public function containerGetValue(ContainerInterface $container): mixed;
+  public function hatch(ContainerInterface $container): mixed;
 
 }

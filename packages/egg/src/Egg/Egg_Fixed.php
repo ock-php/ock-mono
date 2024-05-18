@@ -17,7 +17,7 @@ class Egg_Fixed implements EggInterface {
     private readonly mixed $value,
   ) {}
 
-  public function containerGetValue(ContainerInterface $container): mixed {
+  public function hatch(ContainerInterface $container): mixed {
     return $this->value;
   }
 

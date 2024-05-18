@@ -107,7 +107,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
     try {
       foreach ($resultTypesById2 as $id => $_) {
         yield $id => $this->adapters[$id]
-          ??= $this->adapterCTVs[$id]->containerGetValue($this->container);
+          ??= $this->adapterCTVs[$id]->hatch($this->container);
       }
       foreach ($resultTypesById1 as $id => $bridgeTypes) {
         $bridgeTypes1 = \array_intersect_key($bridgeTypes, $this->idsBySourceType);
@@ -115,7 +115,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
           continue;
         }
         $decorated = $this->adapters[$id]
-          ??= $this->adapterCTVs[$id]->containerGetValue($this->container);
+          ??= $this->adapterCTVs[$id]->hatch($this->container);
         foreach ($bridgeTypes1 as $bridgeType => $_) {
           yield $id . ':' . $bridgeType => new SpecificAdapter_Bridge($decorated, $bridgeType);
         }

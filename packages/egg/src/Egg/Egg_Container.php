@@ -11,7 +11,7 @@ class Egg_Container implements EggInterface {
   /**
    * {@inheritdoc}
    */
-  public function containerGetValue(ContainerInterface $container): ContainerInterface {
+  public function hatch(ContainerInterface $container): ContainerInterface {
     return $container;
   }
 

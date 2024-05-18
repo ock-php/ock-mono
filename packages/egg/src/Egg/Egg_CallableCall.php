@@ -39,7 +39,7 @@ class Egg_CallableCall extends Egg_ArgumentsBase {
    * {@inheritdoc}
    */
   protected function getWithArgs(ContainerInterface $container, array $args): mixed {
-    $callback = $this->containerToCallback->containerGetValue($container);
+    $callback = $this->containerToCallback->hatch($container);
     try {
       return $callback(...$args);
     }

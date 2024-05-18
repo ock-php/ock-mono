@@ -32,7 +32,7 @@ class Egg_ServiceId implements EggInterface {
   /**
    * {@inheritdoc}
    */
-  public function containerGetValue(ContainerInterface $container): mixed {
+  public function hatch(ContainerInterface $container): mixed {
     try {
       return $container->get($this->serviceId);
     }

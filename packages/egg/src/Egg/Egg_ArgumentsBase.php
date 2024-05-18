@@ -24,7 +24,7 @@ abstract class Egg_ArgumentsBase implements EggInterface {
   /**
    * {@inheritdoc}
    */
-  public function containerGetValue(ContainerInterface $container): mixed {
+  public function hatch(ContainerInterface $container): mixed {
     $args = self::processArray($container, $this->args);
     try {
       return $this->getWithArgs($container, $args);
@@ -46,7 +46,7 @@ abstract class Egg_ArgumentsBase implements EggInterface {
     $out = [];
     foreach ($in as $k => $v) {
       if ($v instanceof EggInterface) {
-        $v = $v->containerGetValue($container);
+        $v = $v->hatch($container);
       }
       elseif (is_array($v) && $v) {
         $v = self::processArray($container, $v);
