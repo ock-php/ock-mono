@@ -24,7 +24,7 @@ class ClassToEgg_Construct implements ClassToEggInterface {
   /**
    * {@inheritdoc}
    */
-  public function classGetCTV(\ReflectionClass $reflectionClass): EggInterface {
+  public function classGetEgg(\ReflectionClass $reflectionClass): EggInterface {
     $argEggs = [];
     foreach ($reflectionClass->getConstructor()?->getParameters() ?? [] as $parameter) {
       $argEggs[] = $this->paramToEgg->paramGetEgg($parameter);

@@ -15,6 +15,6 @@ interface ClassToEggInterface {
    *
    * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
    */
-  public function classGetCTV(\ReflectionClass $reflectionClass): EggInterface;
+  public function classGetEgg(\ReflectionClass $reflectionClass): EggInterface;
 
 }

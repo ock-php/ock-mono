@@ -79,7 +79,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
         $classOrEgg = $reflector->originalClass;
       }
       else {
-        $classOrEgg = $this->classToEgg->classGetCTV($reflector->getClass());
+        $classOrEgg = $this->classToEgg->classGetEgg($reflector->getClass());
       }
       $adapterEgg = SpecificAdapter_Callback::ctvMethodCall(
         $classOrEgg,
