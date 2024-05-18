@@ -28,6 +28,6 @@ interface AdapterDefinitionInterface {
   /**
    * @return \Ock\Egg\Egg\EggInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>
    */
-  public function getAdapterCTV(): EggInterface;
+  public function getAdapterEgg(): EggInterface;
 
 }

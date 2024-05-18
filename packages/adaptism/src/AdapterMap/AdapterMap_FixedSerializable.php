@@ -61,7 +61,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
     foreach ($definitions as $id => $definition) {
       $specifities[$id] = $definition->getSpecifity();
       $resultType = $definition->getResultType();
-      $this->adapterEggs[$id] = $definition->getAdapterCTV();
+      $this->adapterEggs[$id] = $definition->getAdapterEgg();
       if ($resultType !== null) {
         try {
           foreach ($this->typeExpandParents($resultType, false) as $resultParentType) {

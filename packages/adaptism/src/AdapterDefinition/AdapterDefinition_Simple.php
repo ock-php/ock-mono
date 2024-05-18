@@ -35,7 +35,7 @@ class AdapterDefinition_Simple implements AdapterDefinitionInterface {
     return $this->specifity;
   }
 
-  public function getAdapterCTV(): EggInterface {
+  public function getAdapterEgg(): EggInterface {
     return $this->adapterEgg;
   }
 
