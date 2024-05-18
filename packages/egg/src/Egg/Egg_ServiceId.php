@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Ock\Egg\Egg;
 
-use Donquixote\DID\ValueDefinition\ValueDefinition_GetService;
 use Psr\Container\ContainerInterface;
 
 class Egg_ServiceId implements EggInterface {
@@ -17,15 +16,6 @@ class Egg_ServiceId implements EggInterface {
   public function __construct(
     private readonly string $serviceId,
   ) {}
-
-  /**
-   * @param \Donquixote\DID\ValueDefinition\ValueDefinition_GetService $definition
-   *
-   * @return self
-   */
-  public static function fromValueDefinition(ValueDefinition_GetService $definition): self {
-    return new self($definition->id);
-  }
 
   /**
    * {@inheritdoc}
