@@ -15,10 +15,10 @@ class ClassToEgg_Construct implements ClassToEggInterface {
   /**
    * Constructor.
    *
-   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface $paramToCTV
+   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface $paramToEgg
    */
   public function __construct(
-    private readonly ParamToEggInterface $paramToCTV,
+    private readonly ParamToEggInterface $paramToEgg,
   ) {}
 
   /**
@@ -27,7 +27,7 @@ class ClassToEgg_Construct implements ClassToEggInterface {
   public function classGetCTV(\ReflectionClass $reflectionClass): EggInterface {
     $argEggs = [];
     foreach ($reflectionClass->getConstructor()?->getParameters() ?? [] as $parameter) {
-      $argEggs[] = $this->paramToCTV->paramGetCTV($parameter);
+      $argEggs[] = $this->paramToEgg->paramGetCTV($parameter);
     }
     return new Egg_Construct(
       $reflectionClass->getName(),

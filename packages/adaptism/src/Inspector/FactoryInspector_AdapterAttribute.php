@@ -34,11 +34,11 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
    * Constructor.
    *
    * @param \Ock\Egg\ClassToEgg\ClassToEggInterface $classToCTV
-   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface $paramToCTV
+   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface $paramToEgg
    */
   public function __construct(
     private readonly ClassToEggInterface $classToCTV,
-    protected readonly ParamToEggInterface $paramToCTV,
+    protected readonly ParamToEggInterface $paramToEgg,
   ) {}
 
   /**

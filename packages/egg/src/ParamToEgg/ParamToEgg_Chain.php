@@ -14,19 +14,19 @@ class ParamToEgg_Chain implements ParamToEggInterface {
   /**
    * Constructor.
    *
-   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface[] $p2CTVs
+   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface[] $paramToEggs
    */
   public function __construct(
     #[AutowireIterator(ParamToEggInterface::SERVICE_TAG)]
-    private readonly iterable $p2CTVs,
+    private readonly iterable $paramToEggs,
   ) {}
 
   /**
    * {@inheritdoc}
    */
   public function paramGetCTV(\ReflectionParameter $parameter): ?EggInterface {
-    foreach ($this->p2CTVs as $paramToCTV) {
-      $egg = $paramToCTV->paramGetCTV($parameter);
+    foreach ($this->paramToEggs as $paramToEgg) {
+      $egg = $paramToEgg->paramGetCTV($parameter);
       if ($egg !== NULL) {
         return $egg;
       }

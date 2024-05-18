@@ -31,10 +31,10 @@ class FactoryInspector_SelfAdapterAttribute implements FactoryInspectorInterface
   /**
    * Constructor.
    *
-   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface $paramToCTV
+   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface $paramToEgg
    */
   public function __construct(
-    protected readonly ParamToEggInterface $paramToCTV,
+    protected readonly ParamToEggInterface $paramToEgg,
   ) {}
 
   /**
