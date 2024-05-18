@@ -40,7 +40,7 @@ class DiscoveryTest extends TestCase {
       \Traversable::class,
       Countable_Traversable::class,
       0,
-      SpecificAdapter_Construct::ctv(
+      SpecificAdapter_Construct::egg(
         Countable_Traversable::class,
         false,
         [],
@@ -51,7 +51,7 @@ class DiscoveryTest extends TestCase {
       RgbColorInterface::class,
       HexColor::class,
       0,
-      SpecificAdapter_Callback::ctv(
+      SpecificAdapter_Callback::egg(
         [HexColor::class, 'fromRgb'],
         false,
         false,
@@ -63,7 +63,7 @@ class DiscoveryTest extends TestCase {
       Colored::class,
       null,
       0,
-      SpecificAdapter_Callback::ctv(
+      SpecificAdapter_Callback::egg(
         [Colored::class, 'adapt'],
         true,
         true,

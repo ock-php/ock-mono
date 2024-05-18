@@ -30,7 +30,7 @@ class SpecificAdapter_Construct implements SpecificAdapterInterface {
    *
    * @return \Ock\Egg\Egg\EggInterface<self>
    */
-  public static function ctv(
+  public static function egg(
     string $class,
     bool $hasUniversalAdapterParameter,
     array $moreArgEggs,

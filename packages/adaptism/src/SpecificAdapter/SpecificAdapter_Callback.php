@@ -39,7 +39,7 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
    *
    * @return \Ock\Egg\Egg\EggInterface<self>
    */
-  public static function ctv(
+  public static function egg(
     EggInterface|callable $callbackOrEgg,
     bool $hasResultTypeParameter,
     bool $hasUniversalAdapterParameter,
@@ -62,7 +62,7 @@ class SpecificAdapter_Callback implements SpecificAdapterInterface {
    *
    * @return \Ock\Egg\Egg\EggInterface<self>
    */
-  public static function ctvMethodCall(
+  public static function eggMethodCall(
     string|EggInterface $classOrEgg,
     string $method,
     bool $hasResultTypeParameter,

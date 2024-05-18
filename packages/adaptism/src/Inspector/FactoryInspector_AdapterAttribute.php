@@ -68,7 +68,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
     $hasUniversalAdapterParameter = $this->extractHasUniversalAdapterParameter($parameters);
     $argEggs = $this->buildArgEggs($parameters);
     if ($reflector instanceof ClassReflection) {
-      $adapterEgg = SpecificAdapter_Construct::ctv(
+      $adapterEgg = SpecificAdapter_Construct::egg(
         $reflector->name,
         $hasUniversalAdapterParameter,
         $argEggs,
@@ -81,7 +81,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
       else {
         $classOrEgg = $this->classToEgg->classGetEgg($reflector->getClass());
       }
-      $adapterEgg = SpecificAdapter_Callback::ctvMethodCall(
+      $adapterEgg = SpecificAdapter_Callback::eggMethodCall(
         $classOrEgg,
         $reflector->name,
         $hasResultTypeParameter,

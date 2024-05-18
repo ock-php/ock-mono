@@ -35,7 +35,7 @@ class SpecificAdapter_SelfMethod implements SpecificAdapterInterface {
    *
    * @return \Ock\Egg\Egg\EggInterface<self>
    */
-  public static function ctv(
+  public static function egg(
     string $class,
     string $method,
     bool $hasResultTypeParameter,
