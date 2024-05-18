@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ParamToCTV;
+namespace Ock\Egg\ParamToEgg;
 
 use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
 use Ock\Egg\Egg\Egg_ServiceId;
 use Ock\Egg\Egg\EggInterface;
 
-class ParamToCTV_ParamTypeAsServiceId implements ParamToCTVInterface {
+class ParamToEgg_ParamTypeAsServiceId implements ParamToEggInterface {
 
   /**
    * @param \ReflectionParameter $parameter

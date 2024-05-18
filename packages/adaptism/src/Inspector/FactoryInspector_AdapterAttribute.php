@@ -18,8 +18,8 @@ use Donquixote\ClassDiscovery\Reflection\MethodReflection;
 use Donquixote\ClassDiscovery\Util\AttributesUtil;
 use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
 use Donquixote\DID\ClassToCTV\ClassToCTVInterface;
-use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
 use Donquixote\Helpers\Util\MessageUtil;
+use Ock\Egg\ParamToEgg\ParamToEggInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 /**
@@ -34,11 +34,11 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
    * Constructor.
    *
    * @param \Donquixote\DID\ClassToCTV\ClassToCTVInterface $classToCTV
-   * @param \Donquixote\DID\ParamToCTV\ParamToCTVInterface $paramToCTV
+   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface $paramToCTV
    */
   public function __construct(
     private readonly ClassToCTVInterface $classToCTV,
-    protected readonly ParamToCTVInterface $paramToCTV,
+    protected readonly ParamToEggInterface $paramToCTV,
   ) {}
 
   /**

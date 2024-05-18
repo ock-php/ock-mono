@@ -10,15 +10,15 @@ use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\ClassDiscovery\Exception\DiscoveryException;
 use Donquixote\ClassDiscovery\Util\AttributesUtil;
 use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
-use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
 use Donquixote\Helpers\Util\MessageUtil;
+use Ock\Egg\ParamToEgg\ParamToEggInterface;
 
 trait AdapterFactoryInspectorTrait {
 
   /**
    * This property should be set in the constructor.
    */
-  protected readonly ParamToCTVInterface $paramToEgg;
+  protected readonly ParamToEggInterface $paramToEgg;
 
   /**
    * @param \ReflectionParameter[] $parameters

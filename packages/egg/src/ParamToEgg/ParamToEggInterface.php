@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ParamToCTV;
+namespace Ock\Egg\ParamToEgg;
 
 use Ock\Egg\Egg\EggInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag(self::SERVICE_TAG)]
-interface ParamToCTVInterface {
+interface ParamToEggInterface {
 
   const SERVICE_TAG = self::class;
 

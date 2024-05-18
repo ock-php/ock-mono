@@ -8,8 +8,8 @@ use Donquixote\ClassDiscovery\Discovery\DiscoveryInterface;
 use Donquixote\ClassDiscovery\Discovery\FactoryDiscovery;
 use Donquixote\DID\ClassToCTV\ClassToCTV_Construct;
 use Donquixote\DID\ClassToCTV\ClassToCTVInterface;
-use Donquixote\DID\ParamToCTV\ParamToCTV_Chain;
-use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
+use Ock\Egg\ParamToEgg\ParamToEgg_Chain;
+use Ock\Egg\ParamToEgg\ParamToEggInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
@@ -45,8 +45,8 @@ class AdaptismPackage {
     $services->set(ClassToCTVInterface::class)
       ->class(ClassToCTV_Construct::class);
 
-    $services->set(ParamToCTVInterface::class)
-      ->class(ParamToCTV_Chain::class);
+    $services->set(ParamToEggInterface::class)
+      ->class(ParamToEgg_Chain::class);
   }
 
 }

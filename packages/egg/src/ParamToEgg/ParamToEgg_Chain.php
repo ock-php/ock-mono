@@ -2,22 +2,22 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\DID\ParamToCTV;
+namespace Ock\Egg\ParamToEgg;
 
 use Ock\Egg\Egg\EggInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 
 #[AsAlias]
-class ParamToCTV_Chain implements ParamToCTVInterface {
+class ParamToEgg_Chain implements ParamToEggInterface {
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\DID\ParamToCTV\ParamToCTVInterface[] $p2CTVs
+   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface[] $p2CTVs
    */
   public function __construct(
-    #[AutowireIterator(ParamToCTVInterface::SERVICE_TAG)]
+    #[AutowireIterator(ParamToEggInterface::SERVICE_TAG)]
     private readonly iterable $p2CTVs,
   ) {}
 
