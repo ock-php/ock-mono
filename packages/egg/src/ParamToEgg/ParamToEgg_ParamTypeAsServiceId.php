@@ -11,10 +11,7 @@ use Ock\Egg\Egg\EggInterface;
 class ParamToEgg_ParamTypeAsServiceId implements ParamToEggInterface {
 
   /**
-   * @param \ReflectionParameter $parameter
-   *
-   * @return \Ock\Egg\Egg\EggInterface|null
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * {@inheritdoc}
    */
   public function paramGetEgg(\ReflectionParameter $parameter): ?EggInterface {
     $class = ReflectionTypeUtil::getClassLikeType($parameter);
