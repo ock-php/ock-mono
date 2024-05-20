@@ -1,0 +1,72 @@
+# Based on config suggested here:
+# https://github.com/danharrin/monorepo-split-github-action
+name: Split packages
+
+on:
+  push:
+    branches:
+      # @todo Decide to use either master or main.
+      - main
+      - master
+
+    # see https://github.community/t/how-to-run-github-actions-workflow-only-for-new-tags/16075/10?u=tomasvotruba
+    tags:
+      - '*'
+
+  pull_request: null
+
+  release:
+    types: [created]
+
+env:
+  # 1. for Github split
+  GITHUB_TOKEN: ${{ secrets.SPLIT_PACKAGES_TOKEN }}
+
+jobs:
+  packages_split:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        # define package to repository map
+        package:
+          # - adaptism
+          - class-discovery
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # no tag
+      -
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        uses: "symplify/monorepo-split-github-action@v2.3.0"
+        with:
+          # ↓ split "packages/easy-coding-standard" directory
+          package_directory: 'packages/${{ matrix.package }}'
+
+          # ↓ into https://github.com/symplify/easy-coding-standard repository
+          repository_organization: 'ock-php'
+          repository_name: '${{ matrix.package }}'
+
+          # ↓ the user signed under the split commit
+          user_name: "ock-ci"
+          user_email: "ock-ci@dqxtech.net"
+
+      # with tag
+      -
+        if: "startsWith(github.ref, 'refs/tags/')"
+        uses: "symplify/monorepo-split-github-action@v2.3.0"
+        with:
+          tag: ${GITHUB_REF#refs/tags/}
+
+          # ↓ split "packages/easy-coding-standard" directory
+          package_directory: 'packages/${{ matrix.package }}'
+
+          # ↓ into https://github.com/symplify/easy-coding-standard repository
+          repository_organization: 'ock-php'
+          repository_name: '${{ matrix.package }}'
+
+          # ↓ the user signed under the split commit
+          user_name: "ock-ci"
+          user_email: "ock-ci@dqxtech.net"
