@@ -8,7 +8,7 @@ use Ock\Adaptism\Exception\AdapterException;
 use Ock\Adaptism\Exception\AdapterNotAvailableException;
 use Ock\Adaptism\Exception\MissingAdapterException;
 use Ock\Adaptism\SpecificAdapter\SpecificAdapter_Bridge;
-use Ock\DID\Exception\ContainerToValueException;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 class AdapterMap_FixedSerializable implements AdapterMapInterface {
@@ -121,7 +121,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
         }
       }
     }
-    catch (ContainerToValueException $e) {
+    catch (ContainerExceptionInterface $e) {
       throw new AdapterException($e->getMessage(), 0, $e);
     }
   }
