@@ -1,5 +1,5 @@
 {
-    "name": "donquixote/ock-mono",
+    "name": "ock/ock-mono",
     "description": "Monorepo for 'Object Construction Kit' packages (Ock)",
     "license": "MIT",
     "authors": [
@@ -52,13 +52,13 @@
         "sort-packages": true
     },
     "replace": {
-        "donquixote/adaptism": "self.version",
-        "donquixote/class-discovery": "self.version",
-        "donquixote/codegen-tools": "self.version",
-        "donquixote/di-discovery": "self.version",
+        "ock/adaptism": "self.version",
+        "ock/class-discovery": "self.version",
+        "ock/codegen-tools": "self.version",
+        "ock/di-discovery": "self.version",
         "ock/egg": "self.version",
-        "donquixote/helpers": "self.version",
-        "donquixote/object-construction-kit": "self.version"
+        "ock/helpers": "self.version",
+        "ock/object-construction-kit": "self.version"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

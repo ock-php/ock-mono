@@ -1,8 +1,8 @@
 {
-    "name": "donquixote/adaptism",
+    "name": "ock/adaptism",
     "type": "library",
     "description": "Library to map adapter classes.",
-    "homepage": "https://github.com/donquixote/adaptism",
+    "homepage": "https://github.com/ock/adaptism",
     "license": "MIT",
     "authors": [
         {
@@ -13,9 +13,9 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=8.2",
-        "donquixote/class-discovery": "@dev",
-        "donquixote/di-discovery": "@dev",
-        "donquixote/helpers": "@dev",
+        "ock/class-discovery": "@dev",
+        "ock/di-discovery": "@dev",
+        "ock/helpers": "@dev",
         "psr/container": "^2.0",
         "symfony/dependency-injection": "^6.4"
     },

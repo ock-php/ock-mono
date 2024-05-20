@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/donquixote/class-discovery.png)](https://travis-ci.org/donquixote/class-discovery)
+[![Build Status](https://secure.travis-ci.org/ock/class-discovery.png)](https://travis-ci.org/ock/class-discovery)
 
 # Class discovery
 

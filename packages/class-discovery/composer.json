@@ -1,5 +1,5 @@
 {
-    "name": "donquixote/class-discovery",
+    "name": "ock/class-discovery",
     "license": "MIT",
     "authors": [
         {
@@ -20,7 +20,7 @@
     },
     "require": {
         "php": ">=8.2",
-        "donquixote/helpers": "@dev",
+        "ock/helpers": "@dev",
         "ext-json": "*"
     },
     "require-dev": {

@@ -1,5 +1,5 @@
-[![Build Status](https://secure.travis-ci.org/donquixote/adaptism.png)](https://travis-ci.org/donquixote/adaptism)
-[![Coverage Status](https://coveralls.io/repos/donquixote/adaptism/badge.png)](https://coveralls.io/r/donquixote/adaptism)
+[![Build Status](https://secure.travis-ci.org/ock/adaptism.png)](https://travis-ci.org/ock/adaptism)
+[![Coverage Status](https://coveralls.io/repos/ock/adaptism/badge.png)](https://coveralls.io/r/ock/adaptism)
 
 # Adaptism
 Adaptism is a package that finds adapters for objects using a dispatch map.
