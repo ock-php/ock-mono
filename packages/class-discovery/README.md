@@ -1,5 +1,3 @@
-[![Build Status](https://secure.travis-ci.org/ock/class-discovery.png)](https://travis-ci.org/ock/class-discovery)
-
 # Class discovery
 
 This package provides components and abstractions to help with all kinds of discovery operations across php class files.
