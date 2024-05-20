@@ -7,11 +7,11 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\CodegenTools\Tests;
+namespace Ock\CodegenTools\Tests;
 
-use Donquixote\CodegenTools\Tests\Util\TestUtil;
-use Donquixote\CodegenTools\Util\CodeFormatUtil;
-use Donquixote\CodegenTools\Util\CodeGen;
+use Ock\CodegenTools\Tests\Util\TestUtil;
+use Ock\CodegenTools\Util\CodeFormatUtil;
+use Ock\CodegenTools\Util\CodeGen;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;

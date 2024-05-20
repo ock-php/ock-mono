@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Reflection;
+namespace Ock\ClassDiscovery\Reflection;
 
 /**
  * Reflection type class that works if it is instantiated normally.

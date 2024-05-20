@@ -3,7 +3,7 @@
 Value:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\C;use Donquixote\CodegenTools\Tests\Fixtures\ExampleExportable;
+use Ock\CodegenTools\Tests\Fixtures\C;use Ock\CodegenTools\Tests\Fixtures\ExampleExportable;
 
 return [
   new C(5, 'eight'),
@@ -21,12 +21,12 @@ return [
 Exported value:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\C;
-use Donquixote\CodegenTools\Tests\Fixtures\ExampleExportable;
+use Ock\CodegenTools\Tests\Fixtures\C;
+use Ock\CodegenTools\Tests\Fixtures\ExampleExportable;
 
 return [
   \unserialize(
-    'O:40:"Donquixote\\CodegenTools\\Tests\\Fixtures\\C":1:{s:6:"values";a:2:{i:0;i:5;i:1;s:5:"eight";}}',
+    'O:33:"Ock\\CodegenTools\\Tests\\Fixtures\\C":1:{s:6:"values";a:2:{i:0;i:5;i:1;s:5:"eight";}}',
   ),
   new \ReflectionClass(C::class),
   new \ReflectionFunction('strtolower'),
@@ -36,7 +36,7 @@ return [
   new \ReflectionParameter('strtolower', 0),
   new \ReflectionParameter([C::class, 'foo'], 0),
   new ExampleExportable(5, 'hello', \unserialize(
-    'O:40:"Donquixote\\CodegenTools\\Tests\\Fixtures\\C":1:{s:6:"values";a:0:{}}',
+    'O:33:"Ock\\CodegenTools\\Tests\\Fixtures\\C":1:{s:6:"values";a:0:{}}',
   )),
 ];
 ```

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\CodegenTools;
+namespace Ock\CodegenTools;
 
 class CodeFormatter {
 
@@ -42,7 +42,7 @@ class CodeFormatter {
    *
    * @return string
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   public function formatAsFile(string $php, string $namespace = NULL): string {
     $filePhp = "<?php\n\ndeclare(strict_types=1);\n\n"
@@ -61,7 +61,7 @@ class CodeFormatter {
    *
    * @return string
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   public function formatExpressionAsSnippet(string $phpExpression): string {
     $statement = 'return ' . $phpExpression . ';';
@@ -78,7 +78,7 @@ class CodeFormatter {
    *
    * @return string
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   public function formatAsSnippet(string $php, string $namespace = NULL): string {
     $php = $this->aliasifier->aliasify($php)->getImportsPhp() . $php;

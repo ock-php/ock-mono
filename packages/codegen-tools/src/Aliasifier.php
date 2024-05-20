@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\CodegenTools;
+namespace Ock\CodegenTools;
 
-use Donquixote\CodegenTools\Exception\CodegenException;
+use Ock\CodegenTools\Exception\CodegenException;
 
 class Aliasifier {
 
@@ -57,7 +57,7 @@ class Aliasifier {
    *
    * @return static
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   public function aliasify(string &$php): static {
     $clone = clone $this;
@@ -68,7 +68,7 @@ class Aliasifier {
   /**
    * @param string $php
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   private function doAliasify(string &$php): void {
     $tokens = \PhpToken::tokenize('<?php ' . $php);

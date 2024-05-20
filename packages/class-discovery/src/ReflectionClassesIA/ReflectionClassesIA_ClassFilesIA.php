@@ -1,16 +1,16 @@
 <?php
 
-namespace Donquixote\ClassDiscovery\ReflectionClassesIA;
+namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\ClassDiscovery\Reflection\ClassReflection;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Ock\ClassDiscovery\Reflection\ClassReflection;
 
 class ReflectionClassesIA_ClassFilesIA implements ReflectionClassesIAInterface {
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
+   * @param \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    */
   public function __construct(
     private readonly ClassFilesIAInterface $classFilesIA,

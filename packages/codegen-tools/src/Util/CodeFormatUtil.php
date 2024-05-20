@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\CodegenTools\Util;
+namespace Ock\CodegenTools\Util;
 
-use Donquixote\CodegenTools\CodeFormatter;
+use Ock\CodegenTools\CodeFormatter;
 
 class CodeFormatUtil {
 
@@ -16,7 +16,7 @@ class CodeFormatUtil {
    *
    * @return string
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   public static function formatAsFile(string $php, string $namespace = NULL): string {
     return CodeFormatter::create()->formatAsFile($php, $namespace);
@@ -29,7 +29,7 @@ class CodeFormatUtil {
    *
    * @return string
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   public static function formatExpressionAsSnippet(string $phpExpression): string {
     return CodeFormatter::create()->formatExpressionAsSnippet($phpExpression);
@@ -45,7 +45,7 @@ class CodeFormatUtil {
    *
    * @return string
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   public static function formatAsSnippet(string $php, string $namespace = NULL): string {
     return CodeFormatter::create()->formatAsSnippet($php, $namespace);

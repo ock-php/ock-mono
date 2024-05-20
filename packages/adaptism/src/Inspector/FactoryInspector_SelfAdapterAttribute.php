@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Inspector;
+namespace Ock\Adaptism\Inspector;
 
-use Donquixote\Adaptism\AdapterDefinition\AdapterDefinition_Simple;
-use Donquixote\Adaptism\AdaptismPackage;
-use Donquixote\Adaptism\Attribute\SelfAdapter;
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_SelfMethod;
-use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
-use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
-use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
-use Donquixote\ClassDiscovery\Util\AttributesUtil;
-use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
+use Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple;
+use Ock\Adaptism\AdaptismPackage;
+use Ock\Adaptism\Attribute\SelfAdapter;
+use Ock\Adaptism\SpecificAdapter\SpecificAdapter_SelfMethod;
+use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
+use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
+use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\Util\AttributesUtil;
+use Ock\ClassDiscovery\Util\ReflectionTypeUtil;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 /**
  * Finds adapter methods where the `$this` object is the adaptee.
  *
- * @see \Donquixote\Adaptism\Attribute\SelfAdapter
+ * @see \Ock\Adaptism\Attribute\SelfAdapter
  *
- * @template-implements FactoryInspectorInterface<\Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface>
+ * @template-implements FactoryInspectorInterface<\Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface>
  */
 #[AutoconfigureTag(AdaptismPackage::DISCOVERY_TAG_NAME)]
 class FactoryInspector_SelfAdapterAttribute implements FactoryInspectorInterface {

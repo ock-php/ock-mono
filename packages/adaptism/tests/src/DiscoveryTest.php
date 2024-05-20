@@ -6,17 +6,17 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Tests;
+namespace Ock\Adaptism\Tests;
 
-use Donquixote\Adaptism\AdapterDefinition\AdapterDefinition_Simple;
-use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface;
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Colored;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Hex\HexColor;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface;
-use Donquixote\Adaptism\Tests\Fixtures\Countable\Countable_Traversable;
-use Donquixote\Adaptism\Tests\Fixtures\FixturesUtil;
+use Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple;
+use Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface;
+use Ock\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
+use Ock\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
+use Ock\Adaptism\Tests\Fixtures\Color\Colored;
+use Ock\Adaptism\Tests\Fixtures\Color\Hex\HexColor;
+use Ock\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface;
+use Ock\Adaptism\Tests\Fixtures\Countable\Countable_Traversable;
+use Ock\Adaptism\Tests\Fixtures\FixturesUtil;
 use PHPUnit\Framework\TestCase;
 
 class DiscoveryTest extends TestCase {

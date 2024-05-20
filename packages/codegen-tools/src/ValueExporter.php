@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\CodegenTools;
+namespace Ock\CodegenTools;
 
-use Donquixote\CodegenTools\Attribute\ExportableAttributeInterface;
-use Donquixote\CodegenTools\Exception\CodegenException;
-use Donquixote\CodegenTools\Util\CodeGen;
+use Ock\CodegenTools\Attribute\ExportableAttributeInterface;
+use Ock\CodegenTools\Exception\CodegenException;
+use Ock\CodegenTools\Util\CodeGen;
 
 class ValueExporter implements ValueExporterInterface {
 
@@ -28,7 +28,7 @@ class ValueExporter implements ValueExporterInterface {
    *
    * @return string
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   private function exportArray(array $array): string {
     $valuesPhp = [];
@@ -44,7 +44,7 @@ class ValueExporter implements ValueExporterInterface {
    *
    * @return string
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   private function exportObject(object $object, bool $enclose): string {
     if ($object instanceof \stdClass) {
@@ -89,7 +89,7 @@ class ValueExporter implements ValueExporterInterface {
    *
    * @return string[]|null
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   private function extractConstructorArgsPhp(object $object): ?array {
     /** @noinspection PhpVoidFunctionResultUsedInspection */
@@ -131,7 +131,7 @@ class ValueExporter implements ValueExporterInterface {
    *
    * @return never
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   private function fail(string $message): never {
     throw new CodegenException($message);

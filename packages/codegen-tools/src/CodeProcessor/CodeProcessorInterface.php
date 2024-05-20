@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\CodegenTools\CodeProcessor;
+namespace Ock\CodegenTools\CodeProcessor;
 
 interface CodeProcessorInterface {
 

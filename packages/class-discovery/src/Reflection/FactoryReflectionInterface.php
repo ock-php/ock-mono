@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Reflection;
+namespace Ock\ClassDiscovery\Reflection;
 
 /**
  * @template T of object
@@ -40,7 +40,7 @@ interface FactoryReflectionInterface {
    * This will be different from ->getDeclaringClass(), if the method is
    * declared in a parent class.
    *
-   * @return \Donquixote\ClassDiscovery\Reflection\ClassReflection<T>
+   * @return \Ock\ClassDiscovery\Reflection\ClassReflection<T>
    *   Object reflecting the original class.
    *   If this is already a class reflector, it returns the reflector itself.
    */
@@ -127,7 +127,7 @@ interface FactoryReflectionInterface {
   /**
    * Gets the return value class, if it is unique.
    *
-   * @return \Donquixote\ClassDiscovery\Reflection\ClassReflection|null
+   * @return \Ock\ClassDiscovery\Reflection\ClassReflection|null
    *   The returned class, or NULL if no single return class can be determined.
    *
    * @throws \ReflectionException
@@ -138,7 +138,7 @@ interface FactoryReflectionInterface {
   /**
    * Gets the return value class, if it is unique.
    *
-   * @return \Donquixote\ClassDiscovery\Reflection\ClassReflection|null
+   * @return \Ock\ClassDiscovery\Reflection\ClassReflection|null
    *   The returned class, or NULL if no single return class can be determined.
    */
   public function getReturnClassIfExists(): ?ClassReflection;

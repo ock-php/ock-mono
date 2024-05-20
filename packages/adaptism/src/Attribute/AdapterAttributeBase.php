@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Attribute;
+namespace Ock\Adaptism\Attribute;
 
 abstract class AdapterAttributeBase {
 

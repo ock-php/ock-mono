@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal;
+namespace Ock\ClassDiscovery\Tests\Fixtures\Acme\Animal;
 
 class RedSquirrel {
 

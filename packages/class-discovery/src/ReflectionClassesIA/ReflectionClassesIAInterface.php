@@ -1,14 +1,14 @@
 <?php
 
-namespace Donquixote\ClassDiscovery\ReflectionClassesIA;
+namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
 /**
- * @template-implements \IteratorAggregate<mixed, \Donquixote\ClassDiscovery\Reflection\ClassReflection>
+ * @template-implements \IteratorAggregate<mixed, \Ock\ClassDiscovery\Reflection\ClassReflection>
  */
 interface ReflectionClassesIAInterface extends \IteratorAggregate {
 
   /**
-   * @return \Iterator<int, \Donquixote\ClassDiscovery\Reflection\ClassReflection>
+   * @return \Iterator<int, \Ock\ClassDiscovery\Reflection\ClassReflection>
    */
   public function getIterator(): \Iterator;
 

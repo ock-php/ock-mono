@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Inspector;
+namespace Ock\Adaptism\Inspector;
 
-use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
-use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\ClassDiscovery\Exception\DiscoveryException;
-use Donquixote\ClassDiscovery\Util\AttributesUtil;
-use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
-use Donquixote\Helpers\Util\MessageUtil;
+use Ock\Adaptism\Attribute\Parameter\AdapterTargetType;
+use Ock\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\ClassDiscovery\Exception\DiscoveryException;
+use Ock\ClassDiscovery\Util\AttributesUtil;
+use Ock\ClassDiscovery\Util\ReflectionTypeUtil;
+use Ock\Helpers\Util\MessageUtil;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
 
 trait AdapterFactoryInspectorTrait {
@@ -25,7 +25,7 @@ trait AdapterFactoryInspectorTrait {
    *
    * @return bool
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
    */
   private function extractHasResultTypeParameter(array &$parameters): bool {
     $parameter = \array_shift($parameters);
@@ -48,7 +48,7 @@ trait AdapterFactoryInspectorTrait {
    *
    * @return bool
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
    */
   private function extractHasUniversalAdapterParameter(array &$parameters): bool {
     $parameter = \array_shift($parameters);
@@ -74,7 +74,7 @@ trait AdapterFactoryInspectorTrait {
    *
    * @return list<\Ock\Egg\Egg\EggInterface>
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
+   * @throws \Ock\ClassDiscovery\Exception\DiscoveryException
    */
   private function buildArgEggs(array $parameters): array {
     $argEggs = [];

@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\SpecificAdapter;
+namespace Ock\Adaptism\SpecificAdapter;
 
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class SpecificAdapter_Bridge implements SpecificAdapterInterface {
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface $first
+   * @param \Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface $first
    * @param class-string $bridgeType
    */
   public function __construct(

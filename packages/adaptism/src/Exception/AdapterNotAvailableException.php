@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Exception;
+namespace Ock\Adaptism\Exception;
 
 /**
  * An adapter is not available, e.g. due to unmatched dependencies.

@@ -3,13 +3,13 @@
 Original PHP:
 
 ```php
-return new \Donquixote\CodegenTools\Tests\Fixtures\C();
+return new \Ock\CodegenTools\Tests\Fixtures\C();
 ```
 
 Formatted as snippet:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\C;
+use Ock\CodegenTools\Tests\Fixtures\C;
 
 return new C();
 ```
@@ -21,7 +21,7 @@ Formatted as file:
 
 declare(strict_types=1);
 
-use Donquixote\CodegenTools\Tests\Fixtures\C;
+use Ock\CodegenTools\Tests\Fixtures\C;
 
 return new C();
 ```

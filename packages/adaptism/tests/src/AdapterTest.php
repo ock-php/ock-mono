@@ -6,18 +6,18 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Tests;
+namespace Ock\Adaptism\Tests;
 
-use Donquixote\Adaptism\Tests\Fixtures\Color\AltRgbColor;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Colored;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Hex\HexColor;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Hex\HexColorInterface;
-use Donquixote\Adaptism\Tests\Fixtures\Color\NamedColor;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColor;
-use Donquixote\Adaptism\Tests\Fixtures\FixturesUtil;
-use Donquixote\Adaptism\Tests\Fixtures\Value\LocalDateTimeString;
-use Donquixote\Adaptism\Tests\Fixtures\Value\Timestamp;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Adaptism\Tests\Fixtures\Color\AltRgbColor;
+use Ock\Adaptism\Tests\Fixtures\Color\Colored;
+use Ock\Adaptism\Tests\Fixtures\Color\Hex\HexColor;
+use Ock\Adaptism\Tests\Fixtures\Color\Hex\HexColorInterface;
+use Ock\Adaptism\Tests\Fixtures\Color\NamedColor;
+use Ock\Adaptism\Tests\Fixtures\Color\Rgb\RgbColor;
+use Ock\Adaptism\Tests\Fixtures\FixturesUtil;
+use Ock\Adaptism\Tests\Fixtures\Value\LocalDateTimeString;
+use Ock\Adaptism\Tests\Fixtures\Value\Timestamp;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use PHPUnit\Framework\TestCase;
 
 class AdapterTest extends TestCase {

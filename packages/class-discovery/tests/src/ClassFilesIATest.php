@@ -1,16 +1,16 @@
 <?php
 
-namespace Donquixote\ClassDiscovery\Tests;
+namespace Ock\ClassDiscovery\Tests;
 
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Concat;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Empty;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
-use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\GreySquirrel;
-use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel;
-use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\PlantInterface;
-use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\Tree\Fig;
-use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_Concat;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_Empty;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
+use Ock\ClassDiscovery\Tests\Fixtures\Acme\Animal\GreySquirrel;
+use Ock\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel;
+use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\PlantInterface;
+use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\Tree\Fig;
+use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
 use PHPUnit\Framework\TestCase;
 
 class ClassFilesIATest extends TestCase {

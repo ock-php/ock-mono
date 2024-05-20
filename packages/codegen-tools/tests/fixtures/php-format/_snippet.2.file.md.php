@@ -11,8 +11,8 @@ declare(strict_types = 1);
  *   TRUE if this example is expected to fail.
  */
 
-use Donquixote\CodegenTools\Tests\Util\TestUtil;
-use Donquixote\CodegenTools\Util\CodeFormatUtil;
+use Ock\CodegenTools\Tests\Util\TestUtil;
+use Ock\CodegenTools\Util\CodeFormatUtil;
 
 print "\n";
 

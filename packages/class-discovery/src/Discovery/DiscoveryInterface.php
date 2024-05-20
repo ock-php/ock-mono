@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Discovery;
+namespace Ock\ClassDiscovery\Discovery;
 
 /**
  * @template TNeedle
@@ -14,7 +14,7 @@ interface DiscoveryInterface extends \IteratorAggregate {
   /**
    * @return \Iterator<TNeedle>
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
+   * @throws \Ock\ClassDiscovery\Exception\DiscoveryException
    */
   public function getIterator(): \Iterator;
 

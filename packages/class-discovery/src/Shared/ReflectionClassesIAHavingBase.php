@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Shared;
+namespace Ock\ClassDiscovery\Shared;
 
 /**
  * Shared base class on top of the trait.

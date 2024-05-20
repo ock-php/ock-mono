@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ClassDiscovery\ReflectionClassesIA;
+namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
-use Donquixote\ClassDiscovery\NamespaceDirectory;
+use Ock\ClassDiscovery\NamespaceDirectory;
 
 /**
  * Base class to declare a discovery namespace in the current directory.

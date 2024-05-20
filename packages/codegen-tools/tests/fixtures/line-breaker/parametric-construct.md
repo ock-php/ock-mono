@@ -3,8 +3,8 @@
 Original php code:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\C;
-use Donquixote\CodegenTools\Tests\Fixtures\GenericObject;
+use Ock\CodegenTools\Tests\Fixtures\C;
+use Ock\CodegenTools\Tests\Fixtures\GenericObject;
 
 $container = new GenericObject();
 
@@ -15,8 +15,8 @@ return (static fn (...$args) => new C(
 Prettified code:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\C;
-use Donquixote\CodegenTools\Tests\Fixtures\GenericObject;
+use Ock\CodegenTools\Tests\Fixtures\C;
+use Ock\CodegenTools\Tests\Fixtures\GenericObject;
 
 $container = new GenericObject();
 

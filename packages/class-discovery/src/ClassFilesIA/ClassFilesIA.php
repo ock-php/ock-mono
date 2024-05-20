@@ -1,9 +1,9 @@
 <?php
 
-namespace Donquixote\ClassDiscovery\ClassFilesIA;
+namespace Ock\ClassDiscovery\ClassFilesIA;
 
-use Donquixote\ClassDiscovery\NamespaceDirectory;
-use Donquixote\ClassDiscovery\NsDirUtil;
+use Ock\ClassDiscovery\NamespaceDirectory;
+use Ock\ClassDiscovery\NsDirUtil;
 
 /**
  * Static factories for ClassFilesIAInterface objects.
@@ -14,7 +14,7 @@ class ClassFilesIA {
    * @param string $dir
    * @param string $namespace
    *
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
   public static function psr4(string $dir, string $namespace): ClassFilesIAInterface {
     return new ClassFilesIA_NamespaceDirectoryPsr4(
@@ -28,7 +28,7 @@ class ClassFilesIA {
    * @param string $namespace
    * @param int $nLevelsUp
    *
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
   public static function psr4Up(string $dir, string $namespace, int $nLevelsUp = 0): ClassFilesIAInterface {
     return NamespaceDirectory::create($dir, $namespace)
@@ -39,7 +39,7 @@ class ClassFilesIA {
    * @param string $class
    * @param int $nLevelsUp
    *
-   * @return \Donquixote\ClassDiscovery\NamespaceDirectory
+   * @return \Ock\ClassDiscovery\NamespaceDirectory
    *
    * @throws \ReflectionException
    *   Class does not exist.
@@ -56,7 +56,7 @@ class ClassFilesIA {
    * @param string $class
    * @param int $nLevelsUp
    *
-   * @return \Donquixote\ClassDiscovery\NamespaceDirectory
+   * @return \Ock\ClassDiscovery\NamespaceDirectory
    */
   public static function psr4FromKnownClass(string $class, int $nLevelsUp = 0): NamespaceDirectory {
     $result = NamespaceDirectory::fromKnownClass($class);
@@ -67,9 +67,9 @@ class ClassFilesIA {
   }
 
   /**
-   * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
+   * @param \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
    *
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
   public static function multiple(array $classFilesIAs): ClassFilesIAInterface {
     return new ClassFilesIA_Concat($classFilesIAs);
@@ -78,7 +78,7 @@ class ClassFilesIA {
   /**
    * @param class-string[] $classes
    *
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    *
    * @throws \ReflectionException
    *   One of the classes does not exist.

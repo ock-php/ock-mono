@@ -2,21 +2,21 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Inspector;
+namespace Ock\ClassDiscovery\Inspector;
 
-use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
 
 /**
  * @template TNeedle
  *
- * @template-implements \Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface<TNeedle>
+ * @template-implements \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TNeedle>
  */
 class FactoryInspector_Concat implements FactoryInspectorInterface {
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface[] $inspectors
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface[] $inspectors
    *   Inspectors to dispatch the call to.
    */
   public function __construct(

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\AdapterMap;
+namespace Ock\Adaptism\AdapterMap;
 
-use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface;
+use Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
@@ -12,14 +12,14 @@ use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 class AdapterMap_DefinitionList implements AdapterMapInterface {
 
   /**
-   * @var \Donquixote\Adaptism\AdapterMap\AdapterMapInterface|null
+   * @var \Ock\Adaptism\AdapterMap\AdapterMapInterface|null
    */
   private ?AdapterMapInterface $realAdapterMap = null;
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface $definitionList
+   * @param \Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface $definitionList
    * @param \Psr\Container\ContainerInterface $container
    */
   public function __construct(

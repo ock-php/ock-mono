@@ -2,23 +2,23 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Inspector;
+namespace Ock\ClassDiscovery\Inspector;
 
-use Donquixote\ClassDiscovery\Reflection\ClassReflection;
+use Ock\ClassDiscovery\Reflection\ClassReflection;
 
 /**
  * Inspector that inspects the class and the methods.
  *
  * @template TNeedle
  *
- * @template-implements \Donquixote\ClassDiscovery\Inspector\ClassInspectorInterface<TNeedle>
+ * @template-implements \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<TNeedle>
  */
 class ClassInspector_Factories implements ClassInspectorInterface {
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface $factoryInspector
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface $factoryInspector
    */
   public function __construct(
     private readonly FactoryInspectorInterface $factoryInspector,

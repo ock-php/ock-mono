@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\AdapterDefinitionList;
+namespace Ock\Adaptism\AdapterDefinitionList;
 
 interface AdapterDefinitionListInterface {
 
   /**
-   * @return \Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface[]
+   * @return \Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface[]
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public function getDefinitions(): array;
 

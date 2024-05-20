@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\AdapterMap;
+namespace Ock\Adaptism\AdapterMap;
 
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Adaptism\Exception\AdapterNotAvailableException;
-use Donquixote\Adaptism\Exception\MissingAdapterException;
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Bridge;
-use Donquixote\DID\Exception\ContainerToValueException;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Adaptism\Exception\AdapterNotAvailableException;
+use Ock\Adaptism\Exception\MissingAdapterException;
+use Ock\Adaptism\SpecificAdapter\SpecificAdapter_Bridge;
+use Ock\DID\Exception\ContainerToValueException;
 use Psr\Container\ContainerInterface;
 
 class AdapterMap_FixedSerializable implements AdapterMapInterface {
@@ -34,22 +34,22 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
   private array $resultTypesById;
 
   /**
-   * @var \Ock\Egg\Egg\EggInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>[]
+   * @var \Ock\Egg\Egg\EggInterface<\Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface>[]
    */
   private array $adapterEggs = [];
 
   /**
-   * @var \Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface[]
+   * @var \Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface[]
    */
   private array $adapters = [];
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface[] $definitions
+   * @param \Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface[] $definitions
    * @param \Psr\Container\ContainerInterface $container
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public function __construct(
     array $definitions,
@@ -131,7 +131,7 @@ class AdapterMap_FixedSerializable implements AdapterMapInterface {
    *
    * @return array<string, true>
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   private function sourceTypeCollectIds(string $sourceType): array {
     try {

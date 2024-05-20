@@ -1,11 +1,11 @@
 <?php
 
-namespace Donquixote\ClassDiscovery\ClassFilesIA;
+namespace Ock\ClassDiscovery\ClassFilesIA;
 
 class ClassFilesIA_Concat implements ClassFilesIAInterface {
 
   /**
-   * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
+   * @param \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
    */
   public function __construct(
     private array $classFilesIAs,

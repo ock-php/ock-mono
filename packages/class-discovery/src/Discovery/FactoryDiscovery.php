@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Discovery;
+namespace Ock\ClassDiscovery\Discovery;
 
-use Donquixote\ClassDiscovery\Inspector\FactoryInspector_Concat;
-use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
-use Donquixote\ClassDiscovery\Reflection\ClassReflection;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Concat;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
-use Donquixote\Helpers\Util\MessageUtil;
+use Ock\ClassDiscovery\Inspector\FactoryInspector_Concat;
+use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
+use Ock\ClassDiscovery\Reflection\ClassReflection;
+use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Concat;
+use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
+use Ock\Helpers\Util\MessageUtil;
 
 /**
  * @template TNeedle
@@ -21,8 +21,8 @@ class FactoryDiscovery implements DiscoveryInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $classes
-   * @param \Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface<TNeedle> $inspector
+   * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $classes
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TNeedle> $inspector
    */
   public function __construct(
     private readonly ReflectionClassesIAInterface $classes,

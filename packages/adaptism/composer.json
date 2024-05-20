@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Donquixote\\Adaptism\\": "src/"
+            "Ock\\Adaptism\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Donquixote\\Adaptism\\Tests\\": "tests/src/"
+            "Ock\\Adaptism\\Tests\\": "tests/src/"
         }
     }
 }

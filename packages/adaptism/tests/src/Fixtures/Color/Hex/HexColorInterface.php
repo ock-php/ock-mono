@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Tests\Fixtures\Color\Hex;
+namespace Ock\Adaptism\Tests\Fixtures\Color\Hex;
 
 interface HexColorInterface {
 

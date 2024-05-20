@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\Adaptism\Tests\Fixtures;
+namespace Ock\Adaptism\Tests\Fixtures;
 
 class FixturesContainerUtil {
 

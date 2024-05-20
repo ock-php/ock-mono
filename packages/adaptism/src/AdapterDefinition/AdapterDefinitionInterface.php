@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\AdapterDefinition;
+namespace Ock\Adaptism\AdapterDefinition;
 
 use Ock\Egg\Egg\EggInterface;
 
@@ -26,7 +26,7 @@ interface AdapterDefinitionInterface {
   public function getSpecifity(): int;
 
   /**
-   * @return \Ock\Egg\Egg\EggInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>
+   * @return \Ock\Egg\Egg\EggInterface<\Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface>
    */
   public function getAdapterEgg(): EggInterface;
 

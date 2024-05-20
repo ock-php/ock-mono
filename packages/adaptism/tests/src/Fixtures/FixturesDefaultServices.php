@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\Adaptism\Tests\Fixtures;
+namespace Ock\Adaptism\Tests\Fixtures;
 
-use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\DID\Attribute\Service;
+use Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Ock\DID\Attribute\Service;
 
 class FixturesDefaultServices {
 
@@ -17,7 +17,7 @@ class FixturesDefaultServices {
   }
 
   /**
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    *
    * @throws \ReflectionException
    */

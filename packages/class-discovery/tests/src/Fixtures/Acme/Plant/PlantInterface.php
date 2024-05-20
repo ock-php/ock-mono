@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant;
+namespace Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant;
 
 interface PlantInterface {
 

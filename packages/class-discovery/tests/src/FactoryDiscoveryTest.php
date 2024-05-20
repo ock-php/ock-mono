@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ClassDiscovery\Tests;
+namespace Ock\ClassDiscovery\Tests;
 
-use Donquixote\ClassDiscovery\Discovery\FactoryDiscovery;
-use Donquixote\ClassDiscovery\Inspector\FactoryInspector_Closure;
-use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA;
-use Donquixote\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
+use Ock\ClassDiscovery\Discovery\FactoryDiscovery;
+use Ock\ClassDiscovery\Inspector\FactoryInspector_Closure;
+use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA;
+use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Donquixote\ClassDiscovery\Discovery\FactoryDiscovery
+ * @coversDefaultClass \Ock\ClassDiscovery\Discovery\FactoryDiscovery
  */
 class FactoryDiscoveryTest extends TestCase {
 

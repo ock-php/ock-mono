@@ -6,7 +6,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\CodegenTools;
+namespace Ock\CodegenTools;
 
 interface ValueExporterInterface {
 
@@ -17,7 +17,7 @@ interface ValueExporterInterface {
    * @return string
    *   PHP expression.
    *
-   * @throws \Donquixote\CodegenTools\Exception\CodegenException
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    */
   public function export(mixed $value, bool $enclose = false): string;
 

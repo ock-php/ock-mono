@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\Adaptism;
+namespace Ock\Adaptism;
 
-use Donquixote\ClassDiscovery\Discovery\DiscoveryInterface;
-use Donquixote\ClassDiscovery\Discovery\FactoryDiscovery;
+use Ock\ClassDiscovery\Discovery\DiscoveryInterface;
+use Ock\ClassDiscovery\Discovery\FactoryDiscovery;
 use Ock\Egg\ClassToEgg\ClassToEgg_Construct;
 use Ock\Egg\ClassToEgg\ClassToEggInterface;
 use Ock\Egg\ParamToEgg\ParamToEgg_Chain;

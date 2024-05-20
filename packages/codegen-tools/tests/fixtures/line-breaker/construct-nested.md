@@ -3,9 +3,9 @@
 Original php code:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\C;
-use Donquixote\CodegenTools\Tests\Fixtures\ClassWithLongName;
-use Donquixote\CodegenTools\Tests\Fixtures\ClassTheNameOfWhichIsEvenLonger;
+use Ock\CodegenTools\Tests\Fixtures\C;
+use Ock\CodegenTools\Tests\Fixtures\ClassWithLongName;
+use Ock\CodegenTools\Tests\Fixtures\ClassTheNameOfWhichIsEvenLonger;
 
 $short = new C(new C(new C('abc')));
 
@@ -37,9 +37,9 @@ $complex2 = new ClassWithLongName(
 Prettified code:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\C;
-use Donquixote\CodegenTools\Tests\Fixtures\ClassWithLongName;
-use Donquixote\CodegenTools\Tests\Fixtures\ClassTheNameOfWhichIsEvenLonger;
+use Ock\CodegenTools\Tests\Fixtures\C;
+use Ock\CodegenTools\Tests\Fixtures\ClassWithLongName;
+use Ock\CodegenTools\Tests\Fixtures\ClassTheNameOfWhichIsEvenLonger;
 
 $short = new C(new C(new C('abc')));
 

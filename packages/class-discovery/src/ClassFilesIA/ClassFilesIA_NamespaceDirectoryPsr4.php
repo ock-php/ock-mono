@@ -1,9 +1,9 @@
 <?php
 
-namespace Donquixote\ClassDiscovery\ClassFilesIA;
+namespace Ock\ClassDiscovery\ClassFilesIA;
 
-use Donquixote\ClassDiscovery\NamespaceDirectory;
-use Donquixote\ClassDiscovery\NsDirUtil;
+use Ock\ClassDiscovery\NamespaceDirectory;
+use Ock\ClassDiscovery\NsDirUtil;
 
 class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
 
@@ -29,7 +29,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @param class-string $class
    * @param int $nLevelsUp
    *
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    * @throws \ReflectionException
    */
   public static function createFromClass(string $class, int $nLevelsUp = 0): ClassFilesIAInterface {
@@ -39,9 +39,9 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
   }
 
   /**
-   * @param \Donquixote\ClassDiscovery\NamespaceDirectory $nsdir
+   * @param \Ock\ClassDiscovery\NamespaceDirectory $nsdir
    *
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
   public static function createFromNsdirObject(NamespaceDirectory $nsdir): ClassFilesIAInterface {
     if (!is_dir($nsdir->getDirectory())) {

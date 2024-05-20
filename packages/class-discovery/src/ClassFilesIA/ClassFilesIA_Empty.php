@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\ClassDiscovery\ClassFilesIA;
+namespace Ock\ClassDiscovery\ClassFilesIA;
 
 class ClassFilesIA_Empty implements ClassFilesIAInterface {
 

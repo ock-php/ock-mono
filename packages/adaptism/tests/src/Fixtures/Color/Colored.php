@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Tests\Fixtures\Color;
+namespace Ock\Adaptism\Tests\Fixtures\Color;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\AdapterTargetType;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Hex\HexColorInterface;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\Attribute\Parameter\AdapterTargetType;
+use Ock\Adaptism\Tests\Fixtures\Color\Hex\HexColorInterface;
+use Ock\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 class Colored {
 
   /**
    * @template T as object
    *
-   * @param \Donquixote\Adaptism\Tests\Fixtures\Color\Colored $colored
+   * @param \Ock\Adaptism\Tests\Fixtures\Color\Colored $colored
    * @param class-string<T> $targetType
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return object|null
    * @phpstan-return T|null
    * @psalm-return T|null
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   #[Adapter]
   public static function adapt(

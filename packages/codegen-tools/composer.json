@@ -17,12 +17,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Donquixote\\CodegenTools\\": "src"
+            "Ock\\CodegenTools\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Donquixote\\CodegenTools\\Tests\\": "tests/src"
+            "Ock\\CodegenTools\\Tests\\": "tests/src"
         }
     }
 }

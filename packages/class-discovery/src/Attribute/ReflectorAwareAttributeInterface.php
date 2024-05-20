@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Attribute;
+namespace Ock\ClassDiscovery\Attribute;
 
 interface ReflectorAwareAttributeInterface {
 
@@ -12,7 +12,7 @@ interface ReflectorAwareAttributeInterface {
    * @param \Reflector $reflector
    *   The place where the attribute was found.
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
    */
   public function setReflector(\Reflector $reflector): void;
 

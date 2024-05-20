@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\CodegenTools\Util;
+namespace Ock\CodegenTools\Util;
 
-use Donquixote\CodegenTools\ValueExporter;
+use Ock\CodegenTools\ValueExporter;
 
 final class CodeGen {
 

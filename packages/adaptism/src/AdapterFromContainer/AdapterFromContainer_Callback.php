@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\AdapterFromContainer;
+namespace Ock\Adaptism\AdapterFromContainer;
 
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface;
-use Donquixote\Helpers\Util\MessageUtil;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
+use Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface;
+use Ock\Helpers\Util\MessageUtil;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Tests\Fixtures;
+namespace Ock\Adaptism\Tests\Fixtures;
 
-use Donquixote\Adaptism\AdaptismPackage;
-use Donquixote\DID\DidNamespace;
+use Ock\Adaptism\AdaptismPackage;
+use Ock\DID\DidNamespace;
 use Ock\Egg\EggNamespace;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Config\FileLocator;

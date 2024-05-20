@@ -3,7 +3,7 @@
 Original php code:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\C;
+use Ock\CodegenTools\Tests\Fixtures\C;
 
 return new C('long text in first argument',
  
@@ -22,7 +22,7 @@ return new C('long text in first argument',
 Prettified code:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\C;
+use Ock\CodegenTools\Tests\Fixtures\C;
 
 return new C(
   'long text in first argument',

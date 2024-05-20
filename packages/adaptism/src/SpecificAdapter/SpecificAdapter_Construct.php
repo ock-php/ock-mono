@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\SpecificAdapter;
+namespace Ock\Adaptism\SpecificAdapter;
 
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Egg\Egg\Egg_Construct;
 use Ock\Egg\Egg\EggInterface;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Donquixote\ClassDiscovery\ClassFilesIA;
+namespace Ock\ClassDiscovery\ClassFilesIA;
 
-use Donquixote\ClassDiscovery\ClassNamesIA\ClassNamesIAInterface;
+use Ock\ClassDiscovery\ClassNamesIA\ClassNamesIAInterface;
 
 /**
  * @template-extends ClassNamesIAInterface<string>

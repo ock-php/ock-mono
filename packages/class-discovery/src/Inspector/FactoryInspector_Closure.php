@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Inspector;
+namespace Ock\ClassDiscovery\Inspector;
 
-use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
 
 /**
  * Factory inspector based on a generator closure.
@@ -16,7 +16,7 @@ use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
  *
  * @template TNeedle
  *
- * @template-implements \Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface<TNeedle>
+ * @template-implements \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TNeedle>
  */
 class FactoryInspector_Closure implements FactoryInspectorInterface {
 

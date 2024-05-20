@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Helpers\IA;
+namespace Ock\Helpers\IA;
 
 /**
  * Iterator aggregate based on an array.

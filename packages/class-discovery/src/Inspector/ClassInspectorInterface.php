@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Inspector;
+namespace Ock\ClassDiscovery\Inspector;
 
-use Donquixote\ClassDiscovery\Reflection\ClassReflection;
+use Ock\ClassDiscovery\Reflection\ClassReflection;
 
 /**
  * Inspector for a reflection class.
@@ -20,7 +20,7 @@ interface ClassInspectorInterface {
    *
    * @return \Iterator<TNeedle>
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\DiscoveryException
+   * @throws \Ock\ClassDiscovery\Exception\DiscoveryException
    */
   public function findInClass(ClassReflection $classReflection): \Iterator;
 

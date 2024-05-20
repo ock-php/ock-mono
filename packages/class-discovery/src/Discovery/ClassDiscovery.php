@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Discovery;
+namespace Ock\ClassDiscovery\Discovery;
 
-use Donquixote\ClassDiscovery\Inspector\ClassInspector_Concat;
-use Donquixote\ClassDiscovery\Inspector\ClassInspectorInterface;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Concat;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
+use Ock\ClassDiscovery\Inspector\ClassInspector_Concat;
+use Ock\ClassDiscovery\Inspector\ClassInspectorInterface;
+use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Concat;
+use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 
 /**
  * Finds results in reflection classes.
@@ -24,8 +24,8 @@ class ClassDiscovery implements DiscoveryInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $reflectionClasses
-   * @param \Donquixote\ClassDiscovery\Inspector\ClassInspectorInterface<TNeedle> $classInspector
+   * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $reflectionClasses
+   * @param \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<TNeedle> $classInspector
    */
   public function __construct(
     private readonly ReflectionClassesIAInterface $reflectionClasses,

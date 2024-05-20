@@ -3,9 +3,9 @@
 Executed PHP:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\GenericObject;
-use Donquixote\CodegenTools\Util\CodeFormatUtil;
-use Donquixote\CodegenTools\Util\CodeGen;
+use Ock\CodegenTools\Tests\Fixtures\GenericObject;
+use Ock\CodegenTools\Util\CodeFormatUtil;
+use Ock\CodegenTools\Util\CodeGen;
 
 $expression = CodeGen::phpArray([
   CodeGen::phpArray(["'a'", "'b'"]),
@@ -47,7 +47,7 @@ return CodeFormatUtil::formatExpressionAsSnippet($expression);
 Return value:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\GenericObject;
+use Ock\CodegenTools\Tests\Fixtures\GenericObject;
 
 return [
   ['a', 'b'],

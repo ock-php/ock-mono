@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\UniversalAdapter;
+namespace Ock\Adaptism\UniversalAdapter;
 
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface;
+use Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
 #[AsAlias(public: true)]
@@ -12,7 +12,7 @@ class UniversalAdapter implements UniversalAdapterInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface $specificAdapter
+   * @param \Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface $specificAdapter
    */
   public function __construct(
     private readonly SpecificAdapterInterface $specificAdapter,

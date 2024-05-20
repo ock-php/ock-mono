@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Inspector;
+namespace Ock\Adaptism\Inspector;
 
-use Donquixote\Adaptism\AdapterDefinition\AdapterDefinition_Simple;
-use Donquixote\Adaptism\AdaptismPackage;
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
-use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
-use Donquixote\ClassDiscovery\Inspector\FactoryInspectorInterface;
-use Donquixote\ClassDiscovery\Reflection\ClassReflection;
-use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
-use Donquixote\ClassDiscovery\Reflection\MethodReflection;
-use Donquixote\ClassDiscovery\Util\AttributesUtil;
-use Donquixote\ClassDiscovery\Util\ReflectionTypeUtil;
-use Donquixote\Helpers\Util\MessageUtil;
+use Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple;
+use Ock\Adaptism\AdaptismPackage;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\Attribute\Parameter\Adaptee;
+use Ock\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
+use Ock\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
+use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
+use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
+use Ock\ClassDiscovery\Reflection\ClassReflection;
+use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\Reflection\MethodReflection;
+use Ock\ClassDiscovery\Util\AttributesUtil;
+use Ock\ClassDiscovery\Util\ReflectionTypeUtil;
+use Ock\Helpers\Util\MessageUtil;
 use Ock\Egg\ClassToEgg\ClassToEggInterface;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 /**
- * @template-implements FactoryInspectorInterface<\Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface>
+ * @template-implements FactoryInspectorInterface<\Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface>
  */
 #[AutoconfigureTag(AdaptismPackage::DISCOVERY_TAG_NAME)]
 class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
@@ -111,7 +111,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
    *
    * @return string|null
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
    */
   private function extractAdapteeType(array &$parameters, ?int &$specifity, string $where): ?string {
     $parameter = \array_shift($parameters);

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ClassDiscovery\Util;
+namespace Ock\ClassDiscovery\Util;
 
-use Donquixote\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
-use Donquixote\ClassDiscovery\Exception\MalformedDeclarationException;
-use Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface;
-use Donquixote\Helpers\Util\MessageUtil;
+use Ock\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
+use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
+use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\Helpers\Util\MessageUtil;
 
 /**
  * Helper methods to read attributes from reflectors.
@@ -19,12 +19,12 @@ class AttributesUtil {
    *
    * @template T as object
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    * @param class-string<T> $name
    *
    * @return list<T>
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
    */
   public static function getAll(
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
@@ -42,7 +42,7 @@ class AttributesUtil {
   }
 
   /**
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    * @param class-string $name
    *
    * @return bool
@@ -50,7 +50,7 @@ class AttributesUtil {
    *   FALSE, if no attribute of the given type exists.
    *   Exception otherwise.
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
    */
   public static function hasSingle(
@@ -65,7 +65,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    * @param class-string<T> $name
    *
    * @return object
@@ -73,7 +73,7 @@ class AttributesUtil {
    * @psalm-return T
    *   Instance from the single attribute.
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
    *   None or more than one attribute of the given type.
    */
   public static function requireSingle(
@@ -96,7 +96,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    *   Element that has the attribute.
    * @param class-string<T> $name
    *   Expected attribute type/name.
@@ -107,7 +107,7 @@ class AttributesUtil {
    * @psalm-return T|null
    * @phpstan-return T|null
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
    */
   public static function getSingle(
@@ -130,7 +130,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
    *   Element that has the attribute.
    * @param class-string<T> $name
    *   Expected attribute type/name.
@@ -138,7 +138,7 @@ class AttributesUtil {
    * @return \ReflectionAttribute<T>|null
    *   Instance from the attribute, or NULL if no matching attribute found.
    *
-   * @throws \Donquixote\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
    *   More than one attribute of the given type.
    */
   private static function getSingleAttribute(

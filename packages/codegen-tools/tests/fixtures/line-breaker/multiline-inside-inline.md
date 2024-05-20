@@ -3,7 +3,7 @@
 Original php code:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\GenericObject;
+use Ock\CodegenTools\Tests\Fixtures\GenericObject;
 
 return GenericObject::f(
   GenericObject::f('short intro', ['long string that should be broken down', 'another long string which follows the previous string which came before it'], 'short ending'),
@@ -18,7 +18,7 @@ return GenericObject::f(
 Prettified code:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\GenericObject;
+use Ock\CodegenTools\Tests\Fixtures\GenericObject;
 
 return GenericObject::f(
   GenericObject::f('short intro', [

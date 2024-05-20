@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Exception;
+namespace Ock\ClassDiscovery\Exception;
 
 /**
  * A declaration, typically one with attributes, is malformed.

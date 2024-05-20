@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Attribute;
+namespace Ock\Adaptism\Attribute;
 
 /**
  * Marks a method as a self-adapter.

@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\CodegenTools\Attribute;
+namespace Ock\CodegenTools\Attribute;
 
-use Donquixote\CodegenTools\Util\CodeGen;
-use Donquixote\CodegenTools\ValueExporterInterface;
+use Ock\CodegenTools\Util\CodeGen;
+use Ock\CodegenTools\ValueExporterInterface;
 
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class TrivialExport implements ExportableAttributeInterface {

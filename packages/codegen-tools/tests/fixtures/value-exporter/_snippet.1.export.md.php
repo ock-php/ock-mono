@@ -7,8 +7,8 @@ declare(strict_types = 1);
  *   Original php snippet.
  */
 
-use Donquixote\CodegenTools\Util\CodeFormatUtil;
-use Donquixote\CodegenTools\ValueExporter;
+use Ock\CodegenTools\Util\CodeFormatUtil;
+use Ock\CodegenTools\ValueExporter;
 
 $value = eval($php);
 $php = (new ValueExporter())->export($value);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Donquixote\ClassDiscovery;
+namespace Ock\ClassDiscovery;
 
 class NsDirUtil {
 

@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\CodegenTools\Util;
+namespace Ock\CodegenTools\Util;
 
-use Donquixote\CodegenTools\Exception\EvaluationException;
+use Ock\CodegenTools\Exception\EvaluationException;
 
 class Expr {
 
@@ -13,7 +13,7 @@ class Expr {
    *
    * @return never
    *
-   * @throws \Donquixote\CodegenTools\Exception\EvaluationException
+   * @throws \Ock\CodegenTools\Exception\EvaluationException
    */
   public static function pl(int|string $key): never {
     throw new EvaluationException(sprintf("Unresolved placeholder for '%s'.", $key));

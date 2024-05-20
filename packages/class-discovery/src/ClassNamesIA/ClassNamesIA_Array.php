@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ClassDiscovery\ClassNamesIA;
+namespace Ock\ClassDiscovery\ClassNamesIA;
 
 /**
  * @template TKey

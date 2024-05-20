@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\AdapterMap;
+namespace Ock\Adaptism\AdapterMap;
 
 interface AdapterMapInterface {
 
@@ -10,9 +10,9 @@ interface AdapterMapInterface {
    * @param class-string|null $adapteeType
    * @param class-string|null $resultType
    *
-   * @return \Iterator<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface>
+   * @return \Iterator<\Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface>
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public function getSuitableAdapters(?string $adapteeType, ?string $resultType): \Iterator;
 

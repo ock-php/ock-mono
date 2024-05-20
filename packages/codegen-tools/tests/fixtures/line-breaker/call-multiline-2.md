@@ -3,7 +3,7 @@
 Original php code:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\GenericObject;
+use Ock\CodegenTools\Tests\Fixtures\GenericObject;
 
 return GenericObject::foo(
   ['op' => 'array', 'array' => [6, 7]],
@@ -13,7 +13,7 @@ return GenericObject::foo(
 Prettified code:
 
 ```php
-use Donquixote\CodegenTools\Tests\Fixtures\GenericObject;
+use Ock\CodegenTools\Tests\Fixtures\GenericObject;
 
 return GenericObject::foo(['op' => 'array', 'array' => [6, 7]]);
 ```

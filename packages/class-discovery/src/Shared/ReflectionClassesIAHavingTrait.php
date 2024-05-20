@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Shared;
+namespace Ock\ClassDiscovery\Shared;
 
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
-use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
+use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 
 /**
  * Trait for all kinds of discovery classes.
@@ -14,14 +14,14 @@ use Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 trait ReflectionClassesIAHavingTrait {
 
   /**
-   * @var \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface|null
+   * @var \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface|null
    */
   private ?ReflectionClassesIAInterface $reflectionClassesIA = NULL;
 
   /**
    * Immutable setter. Sets the classes iterator.
    *
-   * @param \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $reflectionClassesIA
+   * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $reflectionClassesIA
    *
    * @return static
    */
@@ -34,7 +34,7 @@ trait ReflectionClassesIAHavingTrait {
   /**
    * Immutable setter. Sets the classes iterator based on class files iterator.
    *
-   * @param \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
+   * @param \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
    * @return static
    */

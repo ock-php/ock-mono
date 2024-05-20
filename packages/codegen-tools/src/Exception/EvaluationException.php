@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\CodegenTools\Exception;
+namespace Ock\CodegenTools\Exception;
 
 /**
  * Exception to be thrown when running generated code.

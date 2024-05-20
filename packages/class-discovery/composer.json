@@ -10,12 +10,12 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Donquixote\\ClassDiscovery\\": "src"
+            "Ock\\ClassDiscovery\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Donquixote\\ClassDiscovery\\Tests\\": "tests/src"
+            "Ock\\ClassDiscovery\\Tests\\": "tests/src"
         }
     },
     "require": {

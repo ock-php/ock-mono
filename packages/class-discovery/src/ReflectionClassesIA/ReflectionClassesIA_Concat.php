@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\ReflectionClassesIA;
+namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 
 /**
  * Concatenation of multiple reflection classes iterator aggregates.
@@ -14,7 +14,7 @@ class ReflectionClassesIA_Concat implements ReflectionClassesIAInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface[] $parts
+   * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface[] $parts
    *   List of reflection classes iterator aggregates.
    */
   public function __construct(

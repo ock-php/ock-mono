@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Tests;
+namespace Ock\Adaptism\Tests;
 
-use Donquixote\Adaptism\AdaptismPackage;
-use Donquixote\Adaptism\Inspector\FactoryInspector_AdapterAttribute;
-use Donquixote\Adaptism\Inspector\FactoryInspector_SelfAdapterAttribute;
-use Donquixote\Adaptism\Tests\Fixtures\AdaptismTestNamespace;
-use Donquixote\Adaptism\Tests\Fixtures\FixturesUtil;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\ClassDiscovery\Discovery\DiscoveryInterface;
+use Ock\Adaptism\AdaptismPackage;
+use Ock\Adaptism\Inspector\FactoryInspector_AdapterAttribute;
+use Ock\Adaptism\Inspector\FactoryInspector_SelfAdapterAttribute;
+use Ock\Adaptism\Tests\Fixtures\AdaptismTestNamespace;
+use Ock\Adaptism\Tests\Fixtures\FixturesUtil;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\ClassDiscovery\Discovery\DiscoveryInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\UniversalAdapter;
+namespace Ock\Adaptism\UniversalAdapter;
 
 interface UniversalAdapterInterface {
 
@@ -10,7 +10,7 @@ interface UniversalAdapterInterface {
    *
    * @param object $adaptee
    * @param class-string<TResult> $resultType
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface|null $universalAdapter
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface|null $universalAdapter
    *   Top-level universal adapter, or NULL to use the object itself.
    *
    * @return object|null
@@ -20,7 +20,7 @@ interface UniversalAdapterInterface {
    * @phpstan-return TResult|null
    * @psalm-return TResult|null
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public function adapt(
     object $adaptee,

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\SpecificAdapter;
+namespace Ock\Adaptism\SpecificAdapter;
 
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 
 /**
  * A specific adapter can adapt some objects to some target types.
@@ -17,7 +17,7 @@ interface SpecificAdapterInterface {
    *
    * @param object $adaptee
    * @param class-string<TResult> $resultType
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
    * @return object|null
    *   An instance of $interface, or NULL if not found.
@@ -25,7 +25,7 @@ interface SpecificAdapterInterface {
    * @phpstan-return TResult|null
    * @psalm-return TResult|null
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public function adapt(
     object $adaptee,

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\AdapterDefinition;
+namespace Ock\Adaptism\AdapterDefinition;
 
 use Ock\Egg\Egg\EggInterface;
 
@@ -14,7 +14,7 @@ class AdapterDefinition_Simple implements AdapterDefinitionInterface {
    * @param class-string|null $sourceType
    * @param class-string|null $resultType
    * @param int $specifity
-   * @param EggInterface<\Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface> $adapterEgg
+   * @param EggInterface<\Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface> $adapterEgg
    */
   public function __construct(
     private readonly ?string $sourceType,

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Tests\Fixtures\Color;
+namespace Ock\Adaptism\Tests\Fixtures\Color;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Hex\HexColorInterface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\Attribute\Parameter\Adaptee;
+use Ock\Adaptism\Tests\Fixtures\Color\Hex\HexColorInterface;
 
 class NamedColor {
 

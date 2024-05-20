@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\AdapterDefinitionList;
+namespace Ock\Adaptism\AdapterDefinitionList;
 
-use Donquixote\Adaptism\AdapterDefinition\AdapterDefinitionInterface;
-use Donquixote\Adaptism\AdaptismPackage;
-use Donquixote\Adaptism\Exception\MalformedAdapterDeclarationException;
-use Donquixote\ClassDiscovery\Discovery\DiscoveryInterface;
-use Donquixote\ClassDiscovery\Exception\DiscoveryException;
+use Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface;
+use Ock\Adaptism\AdaptismPackage;
+use Ock\Adaptism\Exception\MalformedAdapterDeclarationException;
+use Ock\ClassDiscovery\Discovery\DiscoveryInterface;
+use Ock\ClassDiscovery\Exception\DiscoveryException;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 
@@ -21,7 +21,7 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
   /**
    * Constructor.
    *
-   * @param \Donquixote\ClassDiscovery\Discovery\DiscoveryInterface $discovery
+   * @param \Ock\ClassDiscovery\Discovery\DiscoveryInterface $discovery
    */
   public function __construct(
     #[Target(AdaptismPackage::DISCOVERY_TARGET)]

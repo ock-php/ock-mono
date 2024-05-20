@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Reflection;
+namespace Ock\ClassDiscovery\Reflection;
 
 /**
  * Reflection method which remembers the original class it was requested for.
  *
  * @template T of object
  *
- * @template-implements \Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface<T>
+ * @template-implements \Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<T>
  */
 class MethodReflection extends \ReflectionMethod implements FactoryReflectionInterface {
 

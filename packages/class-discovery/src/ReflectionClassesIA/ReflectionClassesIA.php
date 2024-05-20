@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\ClassDiscovery\ReflectionClassesIA;
+namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\ClassDiscovery\ClassNamesIA\ClassNamesIA_Array;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
+use Ock\ClassDiscovery\ClassNamesIA\ClassNamesIA_Array;
 
 /**
  * Static factories for ReflectionClassesIAInterface objects.
@@ -15,7 +15,7 @@ class ReflectionClassesIA {
   /**
    * @param class-string[] $classes
    *
-   * @return \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
+   * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
    */
   public static function fromClassNames(array $classes): ReflectionClassesIAInterface {
     $classNamesIA = new ClassNamesIA_Array($classes);
@@ -26,7 +26,7 @@ class ReflectionClassesIA {
    * @param string $dir
    * @param string $namespace
    *
-   * @return \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
+   * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
    */
   public static function psr4(string $dir, string $namespace): ReflectionClassesIAInterface {
     $classFilesIA = ClassFilesIA::psr4($dir, $namespace);
@@ -38,7 +38,7 @@ class ReflectionClassesIA {
    * @param string $namespace
    * @param int $nLevelsUp
    *
-   * @return \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
+   * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
    */
   public static function psr4Up(string $dir, string $namespace, int $nLevelsUp = 0): ReflectionClassesIAInterface {
     $classFilesIA = ClassFilesIA::psr4Up($dir, $namespace, $nLevelsUp);
@@ -49,7 +49,7 @@ class ReflectionClassesIA {
    * @param string $class
    * @param int $nLevelsUp
    *
-   * @return \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
+   * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
    *
    * @throws \ReflectionException
    *   Class does not exist.
@@ -63,7 +63,7 @@ class ReflectionClassesIA {
    * @param string $class
    * @param int $nLevelsUp
    *
-   * @return \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
+   * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
    */
   public static function psr4FromKnownClass(string $class, int $nLevelsUp = 0): ReflectionClassesIAInterface {
     $classFilesIA = ClassFilesIA::psr4FromKnownClass($class, $nLevelsUp);
@@ -71,9 +71,9 @@ class ReflectionClassesIA {
   }
 
   /**
-   * @param \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface[] $parts
+   * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface[] $parts
    *
-   * @return \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
+   * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
    */
   public static function concat(array $parts): ReflectionClassesIAInterface {
     return new ReflectionClassesIA_Concat($parts);
@@ -82,7 +82,7 @@ class ReflectionClassesIA {
   /**
    * @param class-string[] $classes
    *
-   * @return \Donquixote\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
+   * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
    */
   public static function psr4FromClasses(array $classes): ReflectionClassesIAInterface {
     return self::concat(array_map(

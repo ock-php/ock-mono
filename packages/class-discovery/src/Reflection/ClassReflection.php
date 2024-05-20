@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\ClassDiscovery\Reflection;
+namespace Ock\ClassDiscovery\Reflection;
 
 /**
  * @template T of object
  *
  * @template-extends \ReflectionClass<T>
- * @template-implements \Donquixote\ClassDiscovery\Reflection\FactoryReflectionInterface<T>
+ * @template-implements \Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<T>
  */
 class ClassReflection extends \ReflectionClass implements FactoryReflectionInterface {
 
@@ -82,7 +82,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   /**
    * @param int|null $filter
    *
-   * @return list<\Donquixote\ClassDiscovery\Reflection\MethodReflection<T>>
+   * @return list<\Ock\ClassDiscovery\Reflection\MethodReflection<T>>
    */
   public function getMethods(int|null $filter = null): array {
     try {
@@ -101,7 +101,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    *
    * @param int|null $filter
    *
-   * @return list<\Donquixote\ClassDiscovery\Reflection\MethodReflection<T>>
+   * @return list<\Ock\ClassDiscovery\Reflection\MethodReflection<T>>
    */
   public function getCallableMethods(int|null $filter = null): array {
     $methods = parent::getMethods($filter);
@@ -131,7 +131,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * @param bool|null $abstract
    * @param bool|null $final
    *
-   * @return list<\Donquixote\ClassDiscovery\Reflection\MethodReflection<T>>
+   * @return list<\Ock\ClassDiscovery\Reflection\MethodReflection<T>>
    */
   public function getFilteredMethods(
     int $filter = null,
@@ -179,7 +179,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * @param string $name
    *   Method name.
    *
-   * @return \Donquixote\ClassDiscovery\Reflection\MethodReflection<T>
+   * @return \Ock\ClassDiscovery\Reflection\MethodReflection<T>
    *   The method.
    *
    * @throws \ReflectionException
@@ -190,7 +190,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   }
 
   /**
-   * @return \Donquixote\ClassDiscovery\Reflection\MethodReflection<T>|null
+   * @return \Ock\ClassDiscovery\Reflection\MethodReflection<T>|null
    */
   public function getConstructor(): ?MethodReflection {
     if (!$this->hasMethod('__construct')) {

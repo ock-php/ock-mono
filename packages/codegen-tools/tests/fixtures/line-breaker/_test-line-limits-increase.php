@@ -9,7 +9,7 @@ declare(strict_types = 1);
  *   Original php snippet.
  */
 
-use Donquixote\CodegenTools\LineBreaker;
+use Ock\CodegenTools\LineBreaker;
 use PHPUnit\Framework\Assert;
 
 if (str_contains($name, 'irreversible')) {

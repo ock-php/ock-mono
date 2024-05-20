@@ -11,12 +11,12 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Donquixote\\Helpers\\": "src"
+            "Ock\\Helpers\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Donquixote\\Helpers\\Tests\\": "tests/src"
+            "Ock\\Helpers\\Tests\\": "tests/src"
         }
     },
     "require": {

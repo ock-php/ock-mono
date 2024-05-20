@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Attribute\Parameter;
+namespace Ock\Adaptism\Attribute\Parameter;
 
 /**
  * Marks a parameter to act as the target type specifier.

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\AdapterFromContainer;
+namespace Ock\Adaptism\AdapterFromContainer;
 
-use Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface;
+use Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface;
 use Psr\Container\ContainerInterface;
 
 interface AdapterFromContainerInterface {
@@ -12,9 +12,9 @@ interface AdapterFromContainerInterface {
   /**
    * @param \Psr\Container\ContainerInterface $container
    *
-   * @return \Donquixote\Adaptism\SpecificAdapter\SpecificAdapterInterface
+   * @return \Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public function createAdapter(ContainerInterface $container): SpecificAdapterInterface;
 

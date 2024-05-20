@@ -1,8 +1,8 @@
 <?php
 
-namespace Donquixote\ClassDiscovery;
+namespace Ock\ClassDiscovery;
 
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 
 /**
  * Value object representing a single namespace directory.

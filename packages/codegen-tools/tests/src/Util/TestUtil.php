@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Donquixote\CodegenTools\Tests\Util;
+namespace Ock\CodegenTools\Tests\Util;
 
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\AssertionFailedError;

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Donquixote\Adaptism\Tests\Fixtures\Color\Hex;
+namespace Ock\Adaptism\Tests\Fixtures\Color\Hex;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\Attribute\Parameter\Adaptee;
+use Ock\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface;
 
 class HexColor implements HexColorInterface {
 
@@ -17,7 +17,7 @@ class HexColor implements HexColorInterface {
   ) {}
 
   /**
-   * @param \Donquixote\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface $rgbColor
+   * @param \Ock\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface $rgbColor
    *
    * @return self
    */
