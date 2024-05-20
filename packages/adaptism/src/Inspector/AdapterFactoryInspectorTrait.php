@@ -10,8 +10,8 @@ use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\ClassDiscovery\Exception\DiscoveryException;
 use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\ClassDiscovery\Util\ReflectionTypeUtil;
-use Ock\Helpers\Util\MessageUtil;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
+use Ock\Helpers\Util\MessageUtil;
 
 trait AdapterFactoryInspectorTrait {
 
