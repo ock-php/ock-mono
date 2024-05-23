@@ -3,14 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\Ock\Attribute\Plugin\OckPluginFormula;
-use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Formula\DefaultConf\Formula_DefaultConf;
-use Ock\Ock\Formula\Formula;
-use Ock\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
-use Ock\Ock\Text\Text;
-use Ock\DID\Util\PhpUtil;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -21,6 +13,14 @@ use Drupal\renderkit\Formula\Formula_FieldFormatterId;
 use Drupal\renderkit\Formula\Formula_FieldFormatterSettings;
 use Drupal\renderkit\Helper\FieldDefinitionLookupInterface;
 use Drupal\renderkit\Helper\FormatterPluginLookup;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Util\PhpUtil;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\DefaultConf\Formula_DefaultConf;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
+use Ock\Ock\Text\Text;
 
 /**
  * Entity display handler to view a specific field on all the entities.

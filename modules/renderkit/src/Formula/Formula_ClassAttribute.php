@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Ock\DID\Util\PhpUtil;
 use Ock\Ock\Exception\GeneratorException;
 use Ock\Ock\Formula\StringVal\Formula_StringVal;
 use Ock\Ock\Formula\StringVal\Formula_StringValInterface;
 use Ock\Ock\Formula\Textfield\Formula_TextfieldBase;
 use Ock\Ock\Util\HtmlUtil;
-use Ock\DID\Util\PhpUtil;
 use Ock\Ock\V2V\String\V2V_StringInterface;
 
 class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_StringInterface {

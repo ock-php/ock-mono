@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Helper;
 
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Field\FormatterPluginManager;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
 
 #[Service]
 class FormatterPluginLookup {

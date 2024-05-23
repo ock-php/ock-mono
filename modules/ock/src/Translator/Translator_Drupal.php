@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Translator;
 
+use Drupal\Core\StringTranslation\TranslationInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
 use Ock\Ock\Translator\TranslatorInterface;
-use Drupal\Core\StringTranslation\TranslationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 #[Service]

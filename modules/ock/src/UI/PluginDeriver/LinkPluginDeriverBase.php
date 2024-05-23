@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\PluginDeriver;
 
-use Ock\DID\Attribute\Parameter\GetService;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\ock\DI\OckCallbackResolver;
+use Ock\DID\Attribute\Parameter\GetService;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouterInterface;

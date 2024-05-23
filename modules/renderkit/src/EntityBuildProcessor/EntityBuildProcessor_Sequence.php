@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 use Ock\Ock\Attribute\Parameter\OckListOfObjects;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
 /**
  * An entity build processor that runs each render array through a bunch of

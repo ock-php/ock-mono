@@ -4,10 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\ock\DI\ServiceProvider;
 
-use Ock\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
-use Ock\DID\Attribute\Service;
-use Ock\DID\Util\AttributesUtil;
-use Ock\DID\Util\ReflectionTypeUtil;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
 use Drupal\ock\Attribute\DI\ServiceTags;
@@ -20,6 +16,10 @@ use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArg_Attribute_GetContainerPara
 use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArg_Attribute_GetService;
 use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArg_Chain;
 use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArgInterface;
+use Ock\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
+use Ock\DID\Attribute\Service;
+use Ock\DID\Util\AttributesUtil;
+use Ock\DID\Util\ReflectionTypeUtil;
 use Symfony\Component\DependencyInjection\Definition;
 
 class ServiceProvider_AttributesDiscovery extends ReflectionClassesIAHavingBase implements ServiceProviderInterface {

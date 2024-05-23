@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
 use Drupal\ock\DrupalText;
+use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
 
 class Formula_ImageStyleName extends Formula_Select_BufferedBase {
 

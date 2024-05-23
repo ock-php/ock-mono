@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\renderkit\Formula\Formula_EntityViewMode;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Attribute\Parameter\OckFormulaFromService;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\renderkit\Formula\Formula_EntityViewMode;
 
 /**
  * Renders the entity with a view mode, but only if it has the expected type.

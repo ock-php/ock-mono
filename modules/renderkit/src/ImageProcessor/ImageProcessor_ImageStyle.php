@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ImageProcessor;
 
+use Drupal\renderkit\Formula\Formula_ImageStyleName;
 use Ock\Ock\Attribute\Parameter\OckFormulaFromClass;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Drupal\renderkit\Formula\Formula_ImageStyleName;
 
 #[OckPluginInstance('imageStyle', 'Image style')]
 class ImageProcessor_ImageStyle implements ImageProcessorInterface {

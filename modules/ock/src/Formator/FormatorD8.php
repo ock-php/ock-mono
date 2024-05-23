@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
+use Drupal\ock\Ock;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\FormulaAdapter;
 use Ock\Ock\Util\UtilBase;
-use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
-use Drupal\ock\Ock;
 
 final class FormatorD8 extends UtilBase {
 

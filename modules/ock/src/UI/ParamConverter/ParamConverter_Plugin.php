@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\ParamConverter;
 
+use Drupal\ock\Attribute\DI\ServiceTags;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
 use Ock\Ock\Exception\PluginListException;
 use Ock\Ock\Plugin\Map\PluginMapInterface;
 use Ock\Ock\Plugin\NamedPlugin;
-use Drupal\ock\Attribute\DI\ServiceTags;
 
 #[Service(self::class)]
 #[ServiceTags(['paramconverter'])]

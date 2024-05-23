@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
-use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\ock\DrupalText;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
+use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Ock\Ock\Text\TextInterface;
 
 #[Service(self::class)]
 class Formula_EntityType_Flat implements Formula_FlatSelectInterface {

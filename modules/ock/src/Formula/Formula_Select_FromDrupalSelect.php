@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula;
 
+use Drupal\ock\DrupalText;
+use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\Attribute\Parameter\Adaptee;
 use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
 use Ock\Ock\Text\Text;
 use Ock\Ock\Text\TextInterface;
-use Drupal\ock\DrupalText;
-use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
 /**
  * Adapter for Drupal select formulas.

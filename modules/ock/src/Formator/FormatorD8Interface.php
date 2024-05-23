@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Ock\Ock\Form\Common\FormatorCommonInterface;
 use Drupal\Component\Render\MarkupInterface;
+use Ock\Ock\Form\Common\FormatorCommonInterface;
 
 interface FormatorD8Interface extends FormatorCommonInterface {
 

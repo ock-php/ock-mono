@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula\DrupalSelect;
 
-use Ock\Ock\Formula\Id\Formula_IdInterface;
 use Drupal\Component\Render\MarkupInterface;
+use Ock\Ock\Formula\Id\Formula_IdInterface;
 
 /**
  * Alternative select formula with Drupal label types.

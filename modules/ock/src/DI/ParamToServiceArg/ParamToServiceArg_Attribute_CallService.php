@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\ock\DI\ParamToServiceArg;
 
-use Ock\DID\Util\AttributesUtil;
-use Ock\DID\Attribute\Parameter\CallService;
 use Drupal\ock\DI\ContainerArgumentExpression;
 use Drupal\ock\DI\ContainerExpressionUtil;
+use Ock\DID\Attribute\Parameter\CallService;
+use Ock\DID\Util\AttributesUtil;
 use Symfony\Component\DependencyInjection\Reference;
 
 class ParamToServiceArg_Attribute_CallService implements ParamToServiceArgInterface {

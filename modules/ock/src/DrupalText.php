@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock;
 
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Ock\Ock\Text\Text;
+use Ock\Ock\Text\TextInterface;
 
 /**
  * Utility class to bridge Drupal translatable markup with Ock.

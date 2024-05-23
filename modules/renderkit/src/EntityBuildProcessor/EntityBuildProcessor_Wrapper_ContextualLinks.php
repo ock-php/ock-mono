@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
 use Drupal\renderkit\Formula\Formula_TagName;
 use Drupal\renderkit\Html\HtmlTagTrait;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 
 /**
  * A typical entity container with contextual links and stuff.

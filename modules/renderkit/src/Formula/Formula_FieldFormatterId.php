@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Field\FormatterPluginManager;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
 
 #[Service(self::class)]
 class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {

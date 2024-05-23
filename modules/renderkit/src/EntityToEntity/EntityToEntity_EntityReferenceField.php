@@ -3,12 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityToEntity;
 
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\Ock\Attribute\Plugin\OckPluginFormula;
-use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
-use Ock\DID\Util\PhpUtil;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -16,6 +10,12 @@ use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\ock\Util\DrupalPhpUtil;
 use Drupal\renderkit\Formula\Formula_EtDotFieldName;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Util\PhpUtil;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 
 class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
 

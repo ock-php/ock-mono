@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\Ock\Plugin\Map\PluginMapInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Render\Markup;
@@ -17,6 +15,8 @@ use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
 use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
 use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
 use Drupal\ock\Util\StringUtil;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Plugin\Map\PluginMapInterface;
 
 #[Route('/admin/reports/ock')]
 #[RouteIsAdmin]

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Formula\Formula;
 use Drupal\renderkit\Context\EntityContext;
 use Drupal\renderkit\Util\UtilBase;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
 
 final class EntityDisplay extends UtilBase {
 

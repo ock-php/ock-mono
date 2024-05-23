@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ListFormat;
 
+use Drupal\renderkit\Formula\Formula_ListSeparator;
 use Ock\Ock\Attribute\Parameter\OckFormulaFromClass;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Drupal\renderkit\Formula\Formula_ListSeparator;
 
 /**
  * Concatenates the list items with a separator.

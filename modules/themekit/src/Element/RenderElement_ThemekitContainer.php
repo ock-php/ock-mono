@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\themekit\Element;
 
-use Drupal\Core\Render\Annotation\RenderElement;
 use Drupal\Core\Render\Element\RenderElement as CoreRenderElement;
 
 /**

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula\DrupalSelect;
 
+use Drupal\Component\Render\MarkupInterface;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\IdToFormula\IdToFormulaInterface;
 use Ock\Ock\Optionlessness\Optionlessness;
-use Drupal\Component\Render\MarkupInterface;
 
 /**
  * Decorator which appends .

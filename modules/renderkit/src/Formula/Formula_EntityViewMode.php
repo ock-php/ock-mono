@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
+use Drupal\renderkit\TextLookup\TextLookup_EntityType;
 use Ock\DID\Attribute\Parameter\CallService;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
-use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
-use Drupal\renderkit\TextLookup\TextLookup_EntityType;
 
 class Formula_EntityViewMode extends Formula_ConfigEntityIdGrouped {
 

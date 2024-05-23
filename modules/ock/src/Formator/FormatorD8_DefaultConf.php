@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Drupal\Component\Render\MarkupInterface;
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Drupal\Component\Render\MarkupInterface;
 
 class FormatorD8_DefaultConf implements FormatorD8Interface {
 

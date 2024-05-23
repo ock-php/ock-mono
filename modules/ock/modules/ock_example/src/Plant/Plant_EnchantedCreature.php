@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\ock_example\Plant;
 
+use Drupal\ock_example\Animal\AnimalInterface;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Drupal\ock_example\Animal\AnimalInterface;
 
 // @todo Mark as 'inline'?
 #[OckPluginInstance('enchantedCreature', 'Enchanted creature')]

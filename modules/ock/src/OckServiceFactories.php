@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock;
 
+use Drupal\Core\Extension\ModuleExtensionList;
 use Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
 use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
 use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_Concat;
@@ -16,7 +17,6 @@ use Ock\Ock\Plugin\GroupLabels\PluginGroupLabels;
 use Ock\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
 use Ock\Ock\Plugin\Registry\PluginRegistry_Discovery;
 use Ock\Ock\Text\Text;
-use Drupal\Core\Extension\ModuleExtensionList;
 
 /**
  * Some service factories that don't have their own class.

@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Drupal\Component\Render\MarkupInterface;
+use Drupal\ock\Formator\FormatorD8Interface;
+use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
+use Ock\DID\Util\PhpUtil;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Generator\GeneratorInterface;
 use Ock\Ock\Summarizer\SummarizerInterface;
 use Ock\Ock\Text\TextInterface;
-use Ock\DID\Util\PhpUtil;
-use Drupal\Component\Render\MarkupInterface;
-use Drupal\ock\Formator\FormatorD8Interface;
-use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
 
 /**
  * This is inspired by Display suite.

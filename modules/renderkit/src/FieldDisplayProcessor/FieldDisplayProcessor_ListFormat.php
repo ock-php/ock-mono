@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
+use Drupal\renderkit\ListFormat\ListFormatInterface;
 use Ock\Ock\Attribute\Parameter\Checkbox;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface {
 

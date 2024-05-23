@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
 use Drupal\ock\DrupalText;
+use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Ock\Ock\Text\TextInterface;
 
 class Formula_DrupalPluginId_Flat implements Formula_FlatSelectInterface {
 

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntitiesListFormat;
 
-use Ock\Ock\Attribute\Parameter\OckOption;
-use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
  * @CfrPlugin("listFormat", "List format")

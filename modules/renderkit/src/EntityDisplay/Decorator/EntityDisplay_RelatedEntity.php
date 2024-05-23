@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay\Decorator;
 
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Text\Text;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
-use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
 #[OckPluginInstance('related', 'Related entity')]
 class EntityDisplay_RelatedEntity implements EntityDisplayInterface {

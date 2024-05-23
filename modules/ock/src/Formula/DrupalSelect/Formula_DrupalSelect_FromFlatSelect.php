@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula\DrupalSelect;
 
+use Drupal\Component\Render\MarkupInterface;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Ock\Ock\Translator\TranslatorInterface;
-use Drupal\Component\Render\MarkupInterface;
 
 /**
  * Alternative select formula with Drupal label types.

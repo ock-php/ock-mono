@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImage;
 
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Text\Text;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
 class EntityImage_Related implements EntityImageInterface {
 

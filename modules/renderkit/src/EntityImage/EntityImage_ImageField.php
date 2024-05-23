@@ -3,12 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImage;
 
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\Ock\Attribute\Plugin\OckPluginFormula;
-use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Formula\Boolean\Formula_Boolean_YesNo;
-use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
@@ -16,6 +10,12 @@ use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldItemsBase;
 use Drupal\renderkit\Formula\Formula_EtDotFieldName;
 use Drupal\renderkit\Util\ImageFieldUtil;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Boolean\Formula_Boolean_YesNo;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 
 class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements EntityImageInterface {
 

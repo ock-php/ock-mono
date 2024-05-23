@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\ock;
 
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 /**
  * Static access to some essential services.

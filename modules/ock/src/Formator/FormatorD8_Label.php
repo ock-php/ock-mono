@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Drupal\Component\Render\MarkupInterface;
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Label\Formula_LabelInterface;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\Translator\TranslatorInterface;
-use Drupal\Component\Render\MarkupInterface;
 
 class FormatorD8_Label implements FormatorD8Interface {
 

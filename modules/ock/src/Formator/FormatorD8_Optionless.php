@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Ock\Adaptism\Attribute\Adapter;
-use Ock\Ock\Formula\Optionless\Formula_OptionlessInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Ock\Formula\Optionless\Formula_OptionlessInterface;
 
 class FormatorD8_Optionless implements FormatorD8Interface, OptionableFormatorD8Interface {
 

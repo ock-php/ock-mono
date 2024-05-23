@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Drupal\Component\Render\MarkupInterface;
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\Attribute\Parameter\Adaptee;
 use Ock\Adaptism\Attribute\Parameter\UniversalAdapter;
@@ -13,7 +14,6 @@ use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Formula\Group\Formula_GroupInterface;
 use Ock\Ock\Formula\Group\GroupHelper;
 use Ock\Ock\Translator\TranslatorInterface;
-use Drupal\Component\Render\MarkupInterface;
 
 #[Adapter]
 class FormatorD8_Group implements FormatorD8Interface {

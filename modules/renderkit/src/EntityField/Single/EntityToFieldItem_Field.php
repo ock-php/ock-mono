@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Single;
 
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\renderkit\Formula\Formula_EtDotFieldName;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 
 class EntityToFieldItem_Field implements EntityToFieldItemInterface {
 

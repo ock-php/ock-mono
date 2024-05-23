@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
 use Ock\Ock\Attribute\Parameter\OckFormulaFromClass;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Formula\Textfield\Formula_Textfield_IntegerInRange;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
 
 class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
 

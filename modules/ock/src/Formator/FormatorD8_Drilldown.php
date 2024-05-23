@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Drupal\Component\Render\MarkupInterface;
 use Ock\Adaptism\Exception\AdapterException;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
@@ -11,7 +12,6 @@ use Ock\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\IdToFormula\IdToFormulaInterface;
 use Ock\Ock\Optionlessness\Optionlessness;
-use Drupal\Component\Render\MarkupInterface;
 
 class FormatorD8_Drilldown implements FormatorD8Interface {
 

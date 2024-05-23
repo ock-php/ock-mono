@@ -3,16 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Ock\DID\Attribute\Parameter\GetCallableService;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\Ock\Attribute\Parameter\OckOption;
-use Ock\Ock\Attribute\Plugin\OckPluginFormula;
-use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\DID\Exception\EvaluatorException;
-use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
-use Ock\DID\Util\PhpUtil;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\ock\Util\DrupalPhpUtil;
@@ -20,6 +10,16 @@ use Drupal\renderkit\EntityDisplay\EntityDisplay;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\Formula\Formula_EntityIdAutocomplete;
 use Drupal\renderkit\Formula\Formula_EntityType_WithGroupLabels;
+use Ock\DID\Attribute\Parameter\GetCallableService;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Exception\EvaluatorException;
+use Ock\DID\Util\PhpUtil;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 
 /**
  * @todo Use an EntityProviderInterface object, instead of choosing type + id.

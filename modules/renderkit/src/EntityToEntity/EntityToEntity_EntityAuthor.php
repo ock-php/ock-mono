@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityToEntity;
 
-use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\user\UserInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 #[OckPluginInstance('author', 'Entity author')]
 class EntityToEntity_EntityAuthor implements EntityToEntityInterface {

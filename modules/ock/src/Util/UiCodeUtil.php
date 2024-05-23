@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Util;
 
-use Ock\Ock\Util\HtmlUtil;
-use Ock\DID\Util\PhpUtil;
-use Ock\Ock\Util\StringUtil as CfStringUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\Markup;
+use Ock\DID\Util\PhpUtil;
+use Ock\Ock\Util\HtmlUtil;
+use Ock\Ock\Util\StringUtil as CfStringUtil;
 
 // See https://bugs.php.net/bug.php?id=66773
 

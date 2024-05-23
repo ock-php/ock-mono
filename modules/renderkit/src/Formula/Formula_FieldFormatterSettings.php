@@ -3,10 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Generator\GeneratorInterface;
-use Ock\Ock\Summarizer\SummarizerInterface;
-use Ock\Ock\Text\TextInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FormatterInterface;
@@ -15,6 +11,10 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\DrupalText;
 use Drupal\ock\Formator\FormatorD8Interface;
 use Drupal\renderkit\Helper\FieldDefinitionLookupInterface;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Generator\GeneratorInterface;
+use Ock\Ock\Summarizer\SummarizerInterface;
+use Ock\Ock\Text\TextInterface;
 
 /**
  * Formula for the settings for a given formatter.

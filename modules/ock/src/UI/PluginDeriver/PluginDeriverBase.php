@@ -4,8 +4,6 @@ declare(strict_types=1);
 namespace Drupal\ock\UI\PluginDeriver;
 
 use Drupal\Component\Plugin\Derivative\DeriverInterface;
-use Symfony\Component\Routing\Route;
-use Symfony\Component\Routing\RouterInterface;
 
 abstract class PluginDeriverBase implements DeriverInterface {
 

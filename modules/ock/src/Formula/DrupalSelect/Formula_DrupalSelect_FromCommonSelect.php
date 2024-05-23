@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula\DrupalSelect;
 
+use Drupal\Component\Render\MarkupInterface;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Translator\TranslatorInterface;
-use Drupal\Component\Render\MarkupInterface;
 
 /**
  * Adapter for OCK select formulas.

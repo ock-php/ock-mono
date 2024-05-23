@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\TextToDrupal;
 
-use Ock\Ock\Text\TextInterface;
 use Drupal\Component\Render\MarkupInterface;
+use Ock\Ock\Text\TextInterface;
 
 interface TextToDrupalInterface {
 

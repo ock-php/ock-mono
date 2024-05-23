@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Ock\Adaptism\Attribute\Adapter;
-use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\Ock\Formula\Sequence\Formula_SequenceInterface;
-use Ock\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\ock\Formator\Util\ArrayMode;
 use Drupal\ock\UI\AjaxCallback\AjaxCallback_ElementWithProperty;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Formula\Sequence\Formula_SequenceInterface;
+use Ock\Ock\Translator\TranslatorInterface;
 
 class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
 

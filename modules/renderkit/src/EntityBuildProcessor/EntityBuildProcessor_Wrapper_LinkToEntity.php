@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Ock\Ock\Attribute\Parameter\OckFormulaFromCall;
-use Ock\Ock\Attribute\Parameter\OckOption;
-use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityMalformedException;
 use Drupal\Core\Entity\Exception\UndefinedLinkTemplateException;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit\Formula\Formula_TagName;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
+use Ock\Ock\Attribute\Parameter\OckFormulaFromCall;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
  * Wraps content from a decorated display into a link to the entity.

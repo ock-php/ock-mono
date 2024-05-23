@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\ock_example\Plant;
 
+use Drupal\ock_example\Animal\AnimalInterface;
 use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
 use Ock\Ock\Text\Text;
-use Drupal\ock_example\Animal\AnimalInterface;
 
 /**
  * Plant composed of a swarm of animals.

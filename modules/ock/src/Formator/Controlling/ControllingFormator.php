@@ -6,7 +6,6 @@ namespace Drupal\ock\Formator\Controlling;
 
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Core\Formula\FormulaInterface;
-use Drupal\ock\Ock;
 
 class ControllingFormator {
 

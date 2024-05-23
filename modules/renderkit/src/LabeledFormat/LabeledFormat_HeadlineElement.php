@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\LabeledFormat;
 
+use Drupal\Component\Utility\Html;
+use Drupal\renderkit\Formula\Formula_TagName;
 use Ock\Ock\Attribute\Parameter\OckFormulaFromCall;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Drupal\Component\Utility\Html;
-use Drupal\renderkit\Formula\Formula_TagName;
 
 #[OckPluginInstance('headlineElement', 'Headline element')]
 class LabeledFormat_HeadlineElement implements LabeledFormatInterface {

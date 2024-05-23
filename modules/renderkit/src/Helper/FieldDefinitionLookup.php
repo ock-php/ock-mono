@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Helper;
 
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldDefinitionInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
 
 #[Service(self::class)]
 class FieldDefinitionLookup implements FieldDefinitionLookupInterface {

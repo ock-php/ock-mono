@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Drupal\Component\Render\MarkupInterface;
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\Attribute\Parameter\Adaptee;
 use Ock\Ock\Formula\Boolean\Formula_BooleanInterface;
-use Drupal\Component\Render\MarkupInterface;
 
 class FormatorD8_Boolean implements FormatorD8Interface {
 

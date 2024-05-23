@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Ock\DID\Attribute\Parameter\CallService;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
-use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Text\TextInterface;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
 use Drupal\Core\Entity\EntityViewModeInterface;
 use Drupal\ock\DrupalText;
 use Drupal\renderkit\TextLookup\TextLookup_EntityType;
+use Ock\DID\Attribute\Parameter\CallService;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
+use Ock\Ock\Formula\Select\Formula_SelectInterface;
+use Ock\Ock\Text\TextInterface;
 
 #[Service(self::class)]
 class Formula_EntityViewModeX implements Formula_SelectInterface {

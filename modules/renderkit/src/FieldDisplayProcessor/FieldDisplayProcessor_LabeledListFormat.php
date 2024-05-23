@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
+use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
 use Ock\Ock\Attribute\Parameter\Checkbox;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
 
 class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorInterface {
 

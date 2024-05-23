@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
+use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Ock\Ock\Attribute\Parameter\OckListOfObjects;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 /**
  * Chain-of-responsibility entity display switcher.

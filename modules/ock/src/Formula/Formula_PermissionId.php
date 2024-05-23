@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula;
 
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\user\PermissionHandlerInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\Text;
 use Ock\Ock\Text\TextInterface;
-use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\user\PermissionHandlerInterface;
 use Psr\Container\ContainerInterface;
 
 /**

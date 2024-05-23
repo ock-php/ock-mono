@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay\Image;
 
-use Ock\Ock\Attribute\Parameter\OckOption;
-use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\EntityImage\EntityImageInterface;
 use Drupal\renderkit\ImageProcessor\ImageProcessorInterface;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
 

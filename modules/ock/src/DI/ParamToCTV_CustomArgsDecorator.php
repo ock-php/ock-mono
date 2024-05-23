@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\ock\DI;
 
-use Ock\DID\ContainerToValue\ContainerToValueInterface;
-use Ock\DID\ParamToCTV\ParamToCTVInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
+use Ock\DID\ContainerToValue\ContainerToValueInterface;
+use Ock\DID\ParamToCTV\ParamToCTVInterface;
 
 /**
  * Resolves parameters.

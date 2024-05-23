@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntitiesListFormat;
 
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Ock\Ock\Attribute\Parameter\OckFormulaFromCall;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
@@ -11,7 +12,6 @@ use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
 use Ock\Ock\Formula\Textfield\Formula_Textfield_NoValidation;
 use Ock\Ock\Text\Text;
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 #[OckPluginInstance('table', 'Table with headers')]
 class EntitiesListFormat_TableWithHeaders implements EntitiesListFormatInterface {

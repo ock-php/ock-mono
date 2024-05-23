@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Ock\Ock\Attribute\Parameter\OckFormulaFromCall;
-use Ock\Ock\Attribute\Parameter\OckFormulaFromClass;
-use Ock\Ock\Attribute\Parameter\OckOption;
-use Ock\Ock\Attribute\Plugin\OckPluginInstance;
-use Ock\Ock\Formula\Boolean\Formula_Boolean_YesNo;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessor_Wrapper_LinkToEntity;
 use Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithBuildProcessor;
 use Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithEntityBuildProcessor;
 use Drupal\renderkit\Formula\Formula_TagName;
+use Ock\Ock\Attribute\Parameter\OckFormulaFromCall;
+use Ock\Ock\Attribute\Parameter\OckFormulaFromClass;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\Ock\Formula\Boolean\Formula_Boolean_YesNo;
 
 /**
  * The most boring entity display handler, ever.

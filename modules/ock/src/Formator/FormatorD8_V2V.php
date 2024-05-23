@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
+use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\FormulaBase\Formula_ConfPassthruInterface;
 use Ock\Ock\Util\UtilBase;
-use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 
 /**
  * Formator for decorator formulas that don't affect config form and summary.

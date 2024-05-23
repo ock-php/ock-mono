@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Helper;
 
+use Drupal\Core\Field\FieldDefinitionInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
-use Drupal\Core\Field\FieldDefinitionInterface;
 
 #[Service]
 class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {

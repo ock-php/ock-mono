@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\ock\DrupalText;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
 use Ock\Ock\Text\Text;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\ock\DrupalText;
 
 #[Service(self::class)]
 class TextLookup_EntityField implements TextLookupInterface {

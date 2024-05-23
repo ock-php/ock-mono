@@ -3,11 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
-use Ock\DID\Attribute\ParametricService;
-use Ock\Ock\Exception\FormulaException;
-use Ock\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
-use Ock\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -16,6 +11,11 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\DrupalText;
 use Drupal\ock\Formator\FormatorD8Interface;
+use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
+use Ock\DID\Attribute\ParametricService;
+use Ock\Ock\Exception\FormulaException;
+use Ock\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
+use Ock\Ock\Text\TextInterface;
 
 #[ParametricService]
 class Formula_EntityIdAutocomplete implements Formula_IdToLabelInterface, FormatorD8Interface {
