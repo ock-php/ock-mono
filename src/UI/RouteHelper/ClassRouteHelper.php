@@ -14,7 +14,7 @@ class ClassRouteHelper extends ClassRouteHelperBase {
    *
    * @return self
    */
-  public static function fromClassName($class, array $routeParameters, $methodName): self {
+  public static function fromClassName(string $class, array $routeParameters, string $methodName): self {
     $routeBasename = StringUtil::classNameGetRouteBasename($class);
     return new self(
       $routeBasename . '.',
@@ -27,7 +27,7 @@ class ClassRouteHelper extends ClassRouteHelperBase {
    * @param array $routeParameters
    * @param string $methodName
    */
-  public function __construct(private $routePrefix, array $routeParameters, $methodName) {
+  public function __construct(private $routePrefix, array $routeParameters, string $methodName) {
     parent::__construct($routeParameters, $methodName);
   }
 

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
@@ -32,7 +33,8 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
     return ClassRouteHelper::fromClassName(
       self::class,
       [],
-      'overview');
+      'overview',
+    );
   }
 
   /**
@@ -42,6 +44,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
    *   Plugin map.
    */
   public function __construct(
+    #[GetService]
     private readonly PluginMapInterface $pluginMap,
   ) {}
 

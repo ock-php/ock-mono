@@ -17,7 +17,7 @@ final class D8SelectUtil extends UtilBase {
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    * @param string|null $value
-   * @param string $label
+   * @param \Drupal\Component\Render\MarkupInterface|string|null $label
    * @param bool $required
    *
    * @return array
@@ -29,7 +29,7 @@ final class D8SelectUtil extends UtilBase {
     Formula_SelectInterface $formula,
     TranslatorInterface $translator,
     ?string $value,
-    string $label,
+    MarkupInterface|string|null $label,
     bool $required = TRUE
   ): array {
     $options = self::selectOptionsFromCommonSelectFormula($formula, $translator);
@@ -63,11 +63,15 @@ final class D8SelectUtil extends UtilBase {
    * @param bool $required
    *
    * @return array
+   *   Select form element array.
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
+   *   Something went wrong in the formula.
    */
   public static function selectElementFromDrupalSelectFormula(
     Formula_DrupalSelectInterface $formula,
     ?string $value,
-    string $label,
+    MarkupInterface|string|null $label,
     bool $required = TRUE
   ): array {
     $options = self::selectOptionsFromDrupalSelectFormula($formula);
@@ -79,7 +83,7 @@ final class D8SelectUtil extends UtilBase {
    *
    * @param array $options
    * @param string|null $value
-   * @param string $label
+   * @param \Drupal\Component\Render\MarkupInterface|string|null $label
    * @param bool $required
    *
    * @return array
@@ -87,7 +91,7 @@ final class D8SelectUtil extends UtilBase {
   public static function selectElementFromOptions(
     array $options,
     ?string $value,
-    string $label,
+    MarkupInterface|string|null $label,
     bool $required = TRUE
   ): array {
 
@@ -145,7 +149,7 @@ final class D8SelectUtil extends UtilBase {
       $optionsByGroupId[$groupId][$id] = $formula->idGetLabel($id)->convert($translator);
     }
     $options = $optionsByGroupId[''] ?? [];
-    unset($options['']);
+    unset($optionsByGroupId['']);
     asort($options);
     $groupLabels = [];
     foreach ($optionsByGroupId as $groupId => $optionsInGroup) {
@@ -206,7 +210,9 @@ final class D8SelectUtil extends UtilBase {
   /**
    * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $formula
    *
-   * @return ((string|MarkupInterface)[]|string|MarkupInterface)[]
+   * @return array<string, string|MarkupInterface|array<string, string|MarkupInterface>>
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   public static function selectOptionsFromDrupalSelectFormula(Formula_DrupalSelectInterface $formula): array {
     // Get rid of empty groups.
@@ -232,7 +238,7 @@ final class D8SelectUtil extends UtilBase {
    *
    * @return bool
    */
-  private static function idExistsInSelectOptions($id, array $options): bool {
+  private static function idExistsInSelectOptions(string $id, array $options): bool {
 
     if (isset($options[$id]) && !\is_array($options[$id])) {
       return TRUE;

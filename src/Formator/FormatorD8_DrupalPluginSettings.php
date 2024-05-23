@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\Exception\AdapterException;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;

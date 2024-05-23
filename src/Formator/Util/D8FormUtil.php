@@ -30,7 +30,7 @@ class D8FormUtil extends UtilBase {
     if (\count($keys) < 2) {
       return $element;
     }
-    list($dependedKey, $dependingKey) = Element::children($element);
+    [$dependedKey, $dependingKey] = Element::children($element);
     $dependedElement =& $element[$dependedKey];
     $dependingElement =& $element[$dependingKey];
 

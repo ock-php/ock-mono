@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Donquixote\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
@@ -26,7 +26,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
    *
    * @var int
    */
-  private $arrayMode = 0;
+  private int $arrayMode = 0;
 
   /**
    * @var array
@@ -134,7 +134,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
    * @return array|null
    *   Value to store in $form_state->values for this element.
    */
-  private function elementValue(array $element, $input, FormStateInterface $form_state): ?array {
+  private function elementValue(array $element, mixed $input, FormStateInterface $form_state): ?array {
 
     if (!$form_state->getUserInput()) {
       // Return NULL to use default value.
@@ -531,13 +531,13 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
    *
    * This only applies to the 'assoc' variant of this class.
    *
-   * @param string|int $delta
+   * @param int|string $delta
    *   String key to validate.
    *
    * @return \Drupal\Component\Render\MarkupInterface|null
    *   NULL if ok, or a message if validation fails.
    */
-  protected function deltaGetValidationError($delta): ?MarkupInterface {
+  protected function deltaGetValidationError(int|string $delta): ?MarkupInterface {
 
     if ('' === $delta) {
       return t("Empty string key '' encountered.");

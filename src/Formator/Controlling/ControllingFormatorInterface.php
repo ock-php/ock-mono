@@ -8,11 +8,11 @@ interface ControllingFormatorInterface {
 
   /**
    * @param mixed $conf
-   * @param string|\Drupal\Component\Render\MarkupInterface|null $label
+   * @param \Drupal\Component\Render\MarkupInterface|string|null $label
    * @param array $ajax
    *
    * @return array
    */
-  public function buildControllingSubform($conf, $label, array $ajax): array;
+  public function buildControllingSubform(mixed $conf, \Drupal\Component\Render\MarkupInterface|string|null $label, array $ajax): array;
 
 }

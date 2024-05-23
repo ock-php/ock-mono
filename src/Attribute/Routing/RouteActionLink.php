@@ -12,12 +12,12 @@ class RouteActionLink implements RouteModifierInterface {
   /**
    * @var string
    */
-  private $title;
+  private mixed $title;
 
   /**
    * @var string[]|string|null
    */
-  private $appears_on;
+  private mixed $appears_on;
 
   /**
    * @param array $values

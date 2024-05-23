@@ -11,11 +11,6 @@ use Drupal\Component\Render\MarkupInterface;
 class FormatorD8_DefaultConf implements FormatorD8Interface {
 
   /**
-   * @var \Drupal\ock\Formator\FormatorD8Interface
-   */
-  private $decorated;
-
-  /**
    * @param \Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConfInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
@@ -29,25 +24,26 @@ class FormatorD8_DefaultConf implements FormatorD8Interface {
     UniversalAdapterInterface $adapter,
   ): ?FormatorD8_DefaultConf {
 
-    $decorated = FormatorD8::fromFormula(
+    $decorated = $adapter->adapt(
       $formula->getDecorated(),
-      $adapter);
+      FormatorD8Interface::class,
+    );
 
-    if (NULL === $decorated) {
+    if ($decorated === NULL) {
       return NULL;
     }
 
     return new self(
       $decorated,
-      $formula->getDefaultConf());
+      $formula->getDefaultConf(),
+    );
   }
 
   /**
    * @param \Drupal\ock\Formator\FormatorD8Interface $decorated
    * @param mixed $defaultConf
    */
-  public function __construct(FormatorD8Interface $decorated, private $defaultConf) {
-    $this->decorated = $decorated;
+  public function __construct(private readonly FormatorD8Interface $decorated, private readonly mixed $defaultConf) {
   }
 
   /**

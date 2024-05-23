@@ -1,60 +1,103 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\ock\DI;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
-use Donquixote\Ock\Util\ReflectionUtil;
-use Drupal\ock\Attribute\DI\RegisterService;
+use Donquixote\DID\Exception\ContainerToValueException;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
+use Donquixote\DID\Util\ReflectionUtil;
+use Drupal\Component\Discovery\DiscoveryException;
+use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArgInterface;
 
 /**
  * Implements the class resolver interface supporting class names and services.
  */
-#[RegisterService]
+#[Service]
 class OckCallbackResolver {
 
-  private $args = [];
+  /**
+   * @var array<int, mixed>
+   */
+  private array $args = [];
 
-  private $trailingArgs = [];
+  /**
+   * @var list<mixed>
+   */
+  private array $trailingArgs = [];
 
-  private $variadicArgs = [];
+  /**
+   * @var list<mixed>
+   */
+  private array $variadicArgs = [];
 
   /**
    * Constructor.
    *
-   * @param \Drupal\ock\DI\OckParameterResolver $parameterResolver
+   * @param \Drupal\ock\DI\ParamToServiceArg\ParamToServiceArgInterface $paramToServiceArg
    */
   public function __construct(
     #[GetService]
-    private OckParameterResolver $parameterResolver,
+    private ParamToServiceArgInterface $paramToServiceArg,
   ) {}
 
+  /**
+   * @param array<int, mixed> $args
+   *   Positional argument values.
+   *
+   * @return static
+   */
   public function withKnownArgs(array $args): static {
     $clone = clone $this;
     $clone->args = $args;
     return $clone;
   }
 
+  /**
+   * @param list<mixed> $trailingArgs
+   *   Argument values for the last non-variadic parameters.
+   *
+   * @return static
+   */
   public function withTrailingArgs(array $trailingArgs): static {
     $clone = clone $this;
     $clone->trailingArgs = $trailingArgs;
     return $clone;
   }
 
+  /**
+   * @param list<mixed> $variadicArgs
+   *   Argument values after the last non-variadic parameter.
+   *
+   * @return static
+   */
   public function withVariadicArgs(array $variadicArgs): static {
     $clone = clone $this;
     $clone->variadicArgs = $variadicArgs;
     return $clone;
   }
 
+  /**
+   * @param array<string, mixed> $args
+   *   Argument values by parameter name.
+   *
+   * @return static
+   */
   public function withNamedArgs(array $args): static {
     $clone = clone $this;
-    $clone->parameterResolver = $this->parameterResolver->withNamedArgs($args);
+    $clone->paramToServiceArg = $this->paramToServiceArg->withNamedArgs($args);
     return $clone;
   }
 
+  /**
+   * @param array $args
+   *
+   * @return static
+   */
   public function withTypeArgs(array $args): static {
     $clone = clone $this;
-    $clone->parameterResolver = $this->parameterResolver->withTypeArgs($args);
+    $clone->paramToServiceArg = $this->paramToServiceArg->withTypeArgs($args);
     return $clone;
   }
 
@@ -65,10 +108,15 @@ class OckCallbackResolver {
    *
    * @return T
    *
-   * @throws \Exception
+   * @throws \Donquixote\DID\Exception\ContainerToValueException
    */
   public function construct(string $class): object {
-    $rClass = new \ReflectionClass($class);
+    try {
+      $rClass = new \ReflectionClass($class);
+    }
+    catch (\ReflectionException $e) {
+      throw new ContainerToValueException($e->getMessage(), 0, $e);
+    }
     $rConstructor = $rClass->getConstructor();
     if ($rConstructor === NULL) {
       return new $class();
@@ -79,7 +127,11 @@ class OckCallbackResolver {
       return new $class(...$args);
     }
     catch (\Throwable $e) {
-      throw $e;
+      throw new DiscoveryException(sprintf(
+        'Error while instantiating %s: %s',
+        $class,
+        $e->getMessage(),
+      ), 0, $e);
     }
   }
 
@@ -90,10 +142,15 @@ class OckCallbackResolver {
    *
    * @return T
    *
-   * @throws \ReflectionException
+   * @throws \Donquixote\DID\Exception\ContainerToValueException
    */
   public function call(callable $callback): mixed {
-    $rFunction = ReflectionUtil::reflectCallable($callback);
+    try {
+      $rFunction = ReflectionUtil::reflectCallable($callback);
+    }
+    catch (\ReflectionException $e) {
+      throw new ContainerToValueException($e->getMessage(), 0, $e);
+    }
     $parameters = $rFunction->getParameters();
     $args = $this->buildArgs($parameters);
     return $callback(...$args);
@@ -102,8 +159,9 @@ class OckCallbackResolver {
   /**
    * @param array $parameters
    *
-   * @return array
-   * @throws \Exception
+   * @return list<mixed>
+   *
+   * @throws \Donquixote\DID\Exception\ContainerToValueException
    */
   private function buildArgs(array $parameters): array {
     if (!$parameters) {
@@ -122,7 +180,9 @@ class OckCallbackResolver {
     }
     $parameters = array_diff_key($parameters, $args);
     foreach ($parameters as $i => $parameter) {
-      $args[$i] = $this->parameterResolver->resolveParameter($parameter);
+      $arg = $this->paramToServiceArg->paramGetServiceArg($parameter);
+      $arg->
+      $args[$i] = $this->paramToServiceArg->paramGetValue($parameter);
     }
     ksort($args);
     if ($this->variadicArgs) {

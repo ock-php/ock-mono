@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Formula\Label\Formula_LabelInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\Translator\TranslatorInterface;

@@ -22,13 +22,13 @@ final class StringUtil extends UtilBase {
    *   Example to specify how to deal with multiple uppercase characters.
    *   Can be something like "AA Bc" or "A A Bc" or "AABc".
    *
-   * @param string|bool $glue
+   * @param bool|string $glue
    *   Allows to implode the fragments with sth like "_" or "." or " ".
    *   If $glue is FALSE, it will just return an array.
    *
    * @return string[]|string
    */
-  public static function camelCaseExplode($string, $lowercase = true, $example_string = 'AA Bc', $glue = false): array|string {
+  public static function camelCaseExplode(string $string, bool $lowercase = true, string $example_string = 'AA Bc', bool|string $glue = false): array|string {
     static $regexp_by_example = [];
     if (!isset($regexp_by_example[$example_string])) {
       $regexp_by_example[$example_string] = self::camelCaseExplodeExampleToRegex($example_string);
@@ -46,7 +46,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string[]
    */
-  public static function camelCaseExplodeWithRegex($regexp, $string): array {
+  public static function camelCaseExplodeWithRegex(string $regexp, string $string): array {
     return preg_split($regexp, $string, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
   }
 
@@ -56,7 +56,7 @@ final class StringUtil extends UtilBase {
    * @return string
    *   Regular expression to use.
    */
-  public static function camelCaseExplodeExampleToRegex($example_string): string {
+  public static function camelCaseExplodeExampleToRegex(string $example_string): string {
     static $regexp_available = [
       '/([A-Z][^A-Z]*)/',
       '/([A-Z][^A-Z]+)/',
@@ -78,7 +78,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string
    */
-  public static function interfaceGenerateLabel($interface): string {
+  public static function interfaceGenerateLabel(string $interface): string {
     $title = $interface;
     if (FALSE !== $pos = strrpos($title, '\\')) {
       $title = substr($title, $pos + 1);
@@ -94,7 +94,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string
    */
-  public static function classGetShortname($class): string {
+  public static function classGetShortname(string $class): string {
     return (FALSE !== $pos = strrpos($class, '\\'))
       ? substr($class, $pos + 1)
       : $class;
@@ -105,7 +105,7 @@ final class StringUtil extends UtilBase {
    *
    * @return string
    */
-  public static function methodNameGenerateLabel($methodName): string {
+  public static function methodNameGenerateLabel(string $methodName): string {
     return ucfirst(self::camelCaseExplode($methodName, TRUE, 'AA Bc', ' '));
   }
 
@@ -122,7 +122,8 @@ final class StringUtil extends UtilBase {
         $method,
         true,
         'AA Aa',
-        '_');
+        '_',
+      );
   }
 
   /**

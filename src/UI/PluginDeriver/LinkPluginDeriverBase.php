@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\PluginDeriver;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
-use Drupal\ock\Attribute\DI\DrupalService;
 use Drupal\ock\DI\OckCallbackResolver;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Routing\Route;
@@ -36,13 +36,11 @@ abstract class LinkPluginDeriverBase extends PluginDeriverBase implements Contai
    * @param \Symfony\Component\Routing\RouterInterface $router
    */
   public function __construct(
-    #[DrupalService('router.route_provider')]
+    #[GetService('router.route_provider')]
     protected RouteProviderInterface $provider,
-    #[DrupalService('router.no_access_checks')]
+    #[GetService('router.no_access_checks')]
     private readonly RouterInterface $router,
-  ) {
-    parent::__construct($router);
-  }
+  ) {}
 
   /**
    * @param \Symfony\Component\Routing\Route $route

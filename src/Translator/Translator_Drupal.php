@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Translator;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Translator\TranslatorInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+#[Service]
 class Translator_Drupal implements TranslatorInterface {
 
   /**
@@ -35,8 +38,10 @@ class Translator_Drupal implements TranslatorInterface {
    * @param \Drupal\Core\StringTranslation\TranslationInterface $translation
    *   String translation service.
    */
-  public function __construct(private readonly TranslationInterface $translation) {
-  }
+  public function __construct(
+    #[GetService('string_translation')]
+    private readonly TranslationInterface $translation,
+  ) {}
 
   /**
    * {@inheritdoc}

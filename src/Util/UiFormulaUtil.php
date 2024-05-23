@@ -3,10 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Util;
 
-use Donquixote\CallbackReflection\CodegenHelper\CodegenHelper;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\FormulaFactory\Formula_FormulaFactoryInterface;
-use Donquixote\Ock\Formula\ValueFactory\Formula_ValueFactoryInterface;
 
 final class UiFormulaUtil extends UtilBase {
 
@@ -14,32 +11,6 @@ final class UiFormulaUtil extends UtilBase {
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *
    * @return string|null
-   *
-   * @throws \ReflectionException
-   */
-  public static function formulaGetDocComment(FormulaInterface $formula): ?string {
-
-    if (NULL === $reflector = self::formulaGetReflector($formula)) {
-      return NULL;
-    }
-
-    if ($reflector instanceof \ReflectionClass) {
-      return $reflector->getDocComment();
-    }
-
-    if ($reflector instanceof \ReflectionFunctionAbstract) {
-      return $reflector->getDocComment();
-    }
-
-    return NULL;
-  }
-
-  /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   *
-   * @return string|null
-   *
-   * @throws \ReflectionException
    */
   public static function formulaGetCodeSnippet(FormulaInterface $formula): ?string {
 
@@ -62,13 +33,15 @@ final class UiFormulaUtil extends UtilBase {
       return $snippet;
     }
 
-    $snippet = ''
-      . "\n  [..]"
-      . "\n"
-      . "\n" . $snippet
-      . "\n"
-      . "\n  [..]"
-      . "\n";
+    $snippet = <<<"EOF"
+
+  [..]
+
+$snippet
+
+  [..]
+
+EOF;
 
     $snippet = self::reflectorGetSnippet(
       $reflClass,
@@ -85,7 +58,7 @@ final class UiFormulaUtil extends UtilBase {
    *
    * @return null|string
    */
-  public static function reflectorGetSnippet(\Reflector $reflector, $withDoc = FALSE, $replaceBody = NULL): ?string {
+  public static function reflectorGetSnippet(\Reflector $reflector, bool $withDoc = FALSE, string $replaceBody = NULL): ?string {
 
     if (1
       && !$reflector instanceof \ReflectionClass
@@ -141,7 +114,7 @@ final class UiFormulaUtil extends UtilBase {
    *
    * @todo Better exception handling for unreadable file?
    */
-  public static function fileGetLines($readableFile, $start, $end): string {
+  public static function fileGetLines(string $readableFile, int $start, int $end): string {
 
     if (!is_readable($readableFile)) {
       throw new \RuntimeException("File '$readableFile' is not readable.");
@@ -163,8 +136,6 @@ final class UiFormulaUtil extends UtilBase {
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *
    * @return string|null
-   *
-   * @throws \ReflectionException
    */
   public static function formulaGetClass(FormulaInterface $formula): ?string {
 
@@ -189,33 +160,9 @@ final class UiFormulaUtil extends UtilBase {
    * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
    *
    * @return \Reflector|null
-   *
-   * @throws \ReflectionException
-   * @throws \Exception
    */
   public static function formulaGetReflector(FormulaInterface $formula): ?\Reflector {
-
-    if ($formula instanceof Formula_ValueFactoryInterface) {
-      $factory = $formula->getValueFactory();
-    }
-    elseif ($formula instanceof Formula_FormulaFactoryInterface) {
-      $factory = $formula->getFormulaFactory();
-    }
-    else {
-      return NULL;
-    }
-
-    $helper = new CodegenHelper();
-    $php = $factory->argsPhpGetPhp(['...'], $helper);
-
-    if (preg_match('@^new ((?:\\\\\w+)+)\(@', $php, $m)) {
-      return new \ReflectionClass($m[1]);
-    }
-
-    if (preg_match('@^((?:\\\\\w+)+)::(\w+)\(@', $php, $m)) {
-      return new \ReflectionMethod($m[1], $m[2]);
-    }
-
+    // @todo Don't get this from the formula, get it from the plugin!
     return NULL;
   }
 }

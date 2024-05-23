@@ -21,26 +21,34 @@ class Formula_DrupalSelect_FromCommonSelect implements Formula_DrupalSelectInter
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $decorated
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
-  public function __construct(private readonly Formula_SelectInterface $decorated, private TranslatorInterface $translator) {
-  }
+  public function __construct(
+    private readonly Formula_SelectInterface $decorated,
+    private readonly TranslatorInterface $translator,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
   public function getGroupedOptions(): array {
-    $groups = $this->decorated->getOptGroups();
-    /** @var \Donquixote\Ock\Text\TextInterface[][] $labelss */
-    $labelss[''] = $this->decorated->getOptions(NULL);
-    foreach ($groups as $group_id => $group_label) {
-      $group_label_str = $group_label->convert($this->translator);
-      foreach ($this->decorated->getOptions($group_id) as $id => $label) {
-        $labelss[$group_label_str][$id] = $label;
-      }
+    $optionsByGroupId = [];
+    foreach ($this->decorated->getOptionsMap() as $id => $groupId) {
+      $optionsByGroupId[$groupId][$id] = $this->decorated->idGetLabel($id)->convert($this->translator);
     }
     $optionss = [];
-    foreach ($labelss as $group_label => $labels_in_group) {
-      foreach ($labels_in_group as $id => $label) {
-        $optionss[$group_label][$id] = $label->convert($this->translator);
+    foreach ($optionsByGroupId as $groupId => $optionsInGroup) {
+      if ($groupId === '') {
+        $groupLabelStr = '';
+      }
+      else {
+        $groupLabelStr = $this->decorated->groupIdGetLabel($groupId)
+          ?->convert($this->translator)
+          ?? $groupId;
+      }
+      if (isset($options[$groupLabelStr])) {
+        $optionss[$groupLabelStr] += $optionsInGroup;
+      }
+      else {
+        $optionss[$groupLabelStr] = $optionsInGroup;
       }
     }
     return $optionss;

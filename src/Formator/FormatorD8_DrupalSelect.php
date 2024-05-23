@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Donquixote\Ock\Translator\TranslatorInterface;
@@ -77,7 +77,7 @@ class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormato
   /**
    * {@inheritdoc}
    */
-  public function buildControllingSubform($conf, $label, array $ajax): array {
+  public function buildControllingSubform(mixed $conf, MarkupInterface|string|null $label, array $ajax): array {
     $subform = $this->confGetD8Form($conf, $label);
     $subform['#ajax'] = $ajax;
     return $subform;

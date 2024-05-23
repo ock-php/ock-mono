@@ -11,16 +11,6 @@ use Drupal\Core\Extension\ModuleExtensionList;
 class NamespaceDirectoriesIA_ModuleNamespaces implements NamespaceDirectoriesIAInterface {
 
   /**
-   * @var \Drupal\Core\Extension\ModuleExtensionList
-   */
-  private $modules;
-
-  /**
-   * @var \Traversable
-   */
-  private $namespaces;
-
-  /**
    * Constructor.
    *
    * @param \Drupal\Core\Extension\ModuleExtensionList $modules
@@ -29,9 +19,7 @@ class NamespaceDirectoriesIA_ModuleNamespaces implements NamespaceDirectoriesIAI
    *   Module namespaces.
    *   Format: $[$namespace] = $dir|$dirs
    */
-  public function __construct(ModuleExtensionList $modules, \Traversable $namespaces) {
-    $this->modules = $modules;
-    $this->namespaces = $namespaces;
+  public function __construct(private readonly ModuleExtensionList $modules, private readonly \Traversable $namespaces) {
   }
 
   /**

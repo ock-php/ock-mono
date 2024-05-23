@@ -5,12 +5,14 @@ namespace Drupal\ock\UI\Controller;
 
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\CallbackReflection\Util\CodegenUtil;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Plugin\NamedPlugin;
 use Donquixote\Ock\Summarizer\Summarizer;
 use Donquixote\Ock\Translator\TranslatorInterface;
 use Donquixote\Ock\Util\HtmlUtil;
+use Donquixote\DID\Util\PhpUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
@@ -69,7 +71,9 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
+    #[GetService]
     private readonly UniversalAdapterInterface $adapter,
+    #[GetService]
     private readonly TranslatorInterface $translator,
   ) {}
 
@@ -298,7 +302,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
         ],
       ];
     }
-    catch (AdapterException $e) {
+    catch (AdapterException|FormulaException) {
       $out['summary'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Problem'),
@@ -307,7 +311,6 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
         ],
       ];
     }
-
 
     $out['conf'] = [
       '#type' => 'fieldset',
@@ -336,8 +339,8 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
     ];
 
     $php = $generator->confGetPhp($settings);
-    $php = CodegenUtil::autoIndent($php, '  ', '    ');
-    $aliases = CodegenUtil::aliasify($php);
+    $php = PhpUtil::autoIndent($php, '  ', '    ');
+    $aliases = PhpUtil::aliasify($php);
     $aliases_php = '';
     foreach ($aliases as $class => $alias) {
       if (TRUE === $alias) {

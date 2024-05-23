@@ -5,7 +5,7 @@ namespace Drupal\ock\Formator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface;
 use Donquixote\Ock\Translator\TranslatorInterface;
 use Donquixote\Ock\Util\ConfUtil;

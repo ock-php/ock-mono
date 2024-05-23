@@ -27,7 +27,8 @@ final class FormatorD8 extends UtilBase {
     return FormulaAdapter::requireObject(
       $formula,
       FormatorD8Interface::class,
-      $adapter ?? Ock::adapter());
+      $adapter ?? Ock::adapter(),
+    );
   }
 
   /**

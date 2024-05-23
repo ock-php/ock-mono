@@ -5,7 +5,7 @@ namespace Drupal\ock\Formator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface;
+use Donquixote\Ock\FormulaBase\Formula_ConfPassthruInterface;
 use Donquixote\Ock\Util\UtilBase;
 use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 
@@ -15,7 +15,7 @@ use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 final class FormatorD8_V2V extends UtilBase {
 
   /**
-   * @param \Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface $formula
+   * @param \Donquixote\Ock\FormulaBase\Formula_ConfPassthruInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface
@@ -24,7 +24,7 @@ final class FormatorD8_V2V extends UtilBase {
    */
   #[Adapter]
   public static function create(
-    Formula_ValueToValueBaseInterface $formula,
+    Formula_ConfPassthruInterface $formula,
     UniversalAdapterInterface $adapter,
   ): FormatorD8Interface {
     return FormatorD8::fromFormula(
@@ -34,7 +34,7 @@ final class FormatorD8_V2V extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\Ock\FormulaBase\Formula_ValueToValueBaseInterface $formula
+   * @param \Donquixote\Ock\FormulaBase\Formula_ConfPassthruInterface $formula
    * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return \Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface|null
@@ -43,7 +43,7 @@ final class FormatorD8_V2V extends UtilBase {
    */
   #[Adapter]
   public static function createOptionable(
-    Formula_ValueToValueBaseInterface $formula,
+    Formula_ConfPassthruInterface $formula,
     UniversalAdapterInterface $adapter,
   ): ?OptionableFormatorD8Interface {
     return $adapter->adapt(

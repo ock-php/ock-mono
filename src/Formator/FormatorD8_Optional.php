@@ -26,14 +26,10 @@ class FormatorD8_Optional implements FormatorD8Interface {
     Formula_OptionalInterface $formula,
     UniversalAdapterInterface $adapter
   ): ?FormatorD8Interface {
-    $optionable = $adapter->adapt($formula, OptionableFormatorD8Interface::class);
-    if ($optionable !== NULL) {
-      return $optionable->getOptionalFormator();
-    }
-    return new self(FormatorD8::fromFormula(
+    return $adapter->adapt(
       $formula->getDecorated(),
-      $adapter
-    ));
+      OptionableFormatorD8Interface::class,
+    )?->getOptionalFormator();
   }
 
   /**
@@ -65,41 +61,33 @@ class FormatorD8_Optional implements FormatorD8Interface {
         '#attributes' => ['class' => ['ock-child-options']],
         'content' => $this->decorated->confGetD8Form($conf, NULL),
         '#process' => [
-
           function(array $element) {
-
             if (isset($element['content'])) {
               $element['content']['#parents'] = $element['#parents'];
             }
-
             return $element;
           },
         ],
       ],
       '#after_build' => [
-
         function(array $element /*, array &$form_state */) {
-
           $element['options']['#states']['visible'] = [
             ':input[' . $element['enabled']['#name'] . ']' => ['checked' => TRUE],
           ];
-
           return $element;
         },
-
         // Clear out $conf['options'], if $conf['enabled'] is empty.
         function(array $element, FormStateInterface $form_state) {
-
           $enabled = ConfUtil::confExtractNestedValue(
             $form_state->getValues(),
-            $element['enabled']['#parents']);
-
+            $element['enabled']['#parents'],
+          );
           if (empty($enabled)) {
             ConfUtil::confUnsetNestedValue(
               $form_state->getValues(),
-              $element['options']['#parents']);
+              $element['options']['#parents'],
+            );
           }
-
           return $element;
         },
       ],

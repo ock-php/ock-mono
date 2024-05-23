@@ -15,13 +15,6 @@ abstract class PluginDeriverBase implements DeriverInterface {
   private ?array $derivatives = NULL;
 
   /**
-   * @param \Symfony\Component\Routing\RouterInterface $router
-   */
-  public function __construct(
-    private readonly RouterInterface $router,
-  ) {}
-
-  /**
    * Gets the definition of a derivative plugin.
    *
    * @param string $derivative_id
@@ -37,7 +30,7 @@ abstract class PluginDeriverBase implements DeriverInterface {
    *   $base_plugin_definition with extra derivative-specific information. NULL
    *   if the derivative doesn't exist.
    */
-  public function getDerivativeDefinition($derivative_id, $base_plugin_definition): ?array {
+  public function getDerivativeDefinition($derivative_id, mixed $base_plugin_definition): ?array {
 
     $derivatives = $this->getDerivativeDefinitions(
       $base_plugin_definition);
@@ -65,30 +58,4 @@ abstract class PluginDeriverBase implements DeriverInterface {
    * @return array[]
    */
   abstract protected function buildDerivativeDefinitions(): array;
-
-  /**
-   * @param \Symfony\Component\Routing\Route $route
-   *
-   * @return string|null
-   */
-  protected function routeGetParentName(Route $route): ?string {
-
-    $path = $route->getPath();
-    $parent_path = \dirname($path);
-
-    try {
-      $parent_route = $this->router->match($parent_path);
-    }
-    catch (\Exception $e) {
-      // @todo Don't just silently ignore this.
-      unset($e);
-      return NULL;
-    }
-
-    if (empty($parent_route['_route'])) {
-      return NULL;
-    }
-
-    return $parent_route['_route'];
-  }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\ock\Attribute\Routing;
 
 use Symfony\Component\Routing\Route as RoutingRoute;

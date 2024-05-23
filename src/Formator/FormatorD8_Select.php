@@ -16,14 +16,9 @@ use Drupal\ock\Formator\Util\D8SelectUtil;
 class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Interface {
 
   /**
-   * @var \Donquixote\Ock\FormulaBase\FormulaBase_AbstractSelectInterface
-   */
-  private $formula;
-
-  /**
    * @var bool
    */
-  private $required = TRUE;
+  private bool $required = TRUE;
 
   /**
    * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
@@ -63,9 +58,9 @@ class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Inte
    *
    * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
    */
-  public function __construct(Formula_SelectInterface $formula) {
-    $this->formula = $formula;
-  }
+  public function __construct(
+    private Formula_SelectInterface $formula,
+  ) {}
 
   /**
    * {@inheritdoc}

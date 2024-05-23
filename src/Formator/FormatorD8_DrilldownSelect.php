@@ -18,7 +18,7 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
   /**
    * @var \Drupal\ock\Formator\FormatorD8Interface[]|false[]
    */
-  private $formators = [];
+  private array $formators = [];
 
   /**
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $drilldown
@@ -38,11 +38,18 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
 
     $idToFormula = $drilldown->getIdToFormula();
 
-    return new self(
+    $instance = new self(
       $idFormula,
       $idToFormula,
       DrilldownKeysHelper::fromFormula($drilldown),
-      $adapter);
+      $adapter,
+    );
+
+    if ($drilldown->allowsNull()) {
+      $instance = $instance->getOptionalFormator();
+    }
+
+    return $instance;
   }
 
   /**
@@ -73,7 +80,7 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
   /**
    * @inheritDoc
    */
-  protected function idGetSubform(string $id, $subConf): array {
+  protected function idGetSubform(string $id, mixed $subConf): array {
 
     try {
       if (false === $subFormator = $this->idGetFormatorOrFalse($id)) {

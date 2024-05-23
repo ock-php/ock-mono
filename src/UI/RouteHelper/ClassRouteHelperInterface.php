@@ -16,12 +16,12 @@ interface ClassRouteHelperInterface {
   public function subpage(string $method_name): self;
 
   /**
-   * @param string|\Drupal\Component\Render\MarkupInterface $text
+   * @param \Drupal\Component\Render\MarkupInterface|string $text
    * @param array $options
    *
    * @return \Drupal\Core\Link
    */
-  public function link($text, array $options = []): Link;
+  public function link(\Drupal\Component\Render\MarkupInterface|string $text, array $options = []): Link;
 
   /**
    * @param array $options

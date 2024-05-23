@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\ock\UI;
 
-use Donquixote\Adaptism\Util\AttributesUtil;
+use Donquixote\DID\Util\AttributesUtil;
 use Donquixote\ClassDiscovery\NamespaceDirectory;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\ock\Attribute\Routing\RouteModifierInterface;
@@ -30,32 +30,34 @@ class OckRouteProvider implements ContainerInjectionInterface {
     }
     $routes = [];
     foreach ($nsdir->withRealpathRoot() as $class) {
-      $rc = new \ReflectionClass($class);
-      if ($rc->isInterface() || $rc->isTrait() || $rc->isAbstract()) {
+      $rClass = new \ReflectionClass($class);
+      if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract()) {
         continue;
       }
-      $modifiers = AttributesUtil::getInstances($rc, RouteModifierInterface::class);
+      $modifiers = AttributesUtil::getAll($rClass, RouteModifierInterface::class);
       $class_route = clone $base_root;
       foreach ($modifiers as $modifier) {
-        $modifier->modifyRoute($class_route, $rc);
+        $modifier->modifyRoute($class_route, $rClass);
       }
-      foreach ($rc->getMethods() as $rm) {
-        if ($rm->isAbstract() || !$rm->isPublic()) {
+      foreach ($rClass->getMethods() as $rMethod) {
+        if ($rMethod->isAbstract() || !$rMethod->isPublic()) {
           continue;
         }
-        $modifiers = AttributesUtil::getInstances($rm, RouteModifierInterface::class);
+        $modifiers = AttributesUtil::getAll($rMethod, RouteModifierInterface::class);
         if (!$modifiers) {
           continue;
         }
         $route = clone $class_route;
         $route->setDefault(
           '_controller',
-          $rc->getName() . '::' . $rm->getName());
+          $rClass->getName() . '::' . $rMethod->getName(),
+        );
         foreach ($modifiers as $modifier) {
-          $modifier->modifyRoute($route, $rm);
+          $modifier->modifyRoute($route, $rMethod);
         }
         $route_name = StringUtil::methodGetRouteName(
-          [$class, $rm->getName()]);
+          [$class, $rMethod->getName()],
+        );
         if ($route->getPath() === '/') {
           throw new \RuntimeException("Route path for '$route_name' is empty.");
         }

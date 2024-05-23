@@ -4,8 +4,11 @@ declare(strict_types=1);
 namespace Drupal\ock\Util;
 
 use Donquixote\Ock\Util\HtmlUtil;
+use Drupal\Component\Render\FormattableMarkup;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\devel\DevelDumperManagerInterface;
+use Drupal\ock\UI\Markup\Markup_DefinitionList;
 
 final class UiDumpUtil extends UtilBase {
 
@@ -22,30 +25,29 @@ final class UiDumpUtil extends UtilBase {
       $e_class_reflection = new \ReflectionClass($e_class);
     }
     catch (\ReflectionException $e) {
-      throw new \RuntimeException("Impossible: Class '$e_class' not found.");
+      // Impossible exception.
+      throw new \RuntimeException($e->getMessage(), 0, $e);
     }
 
     $rows = [];
 
     $rows[] = [
       t('Exception message'),
-      HtmlUtil::sanitize($e->getMessage()),
+      '<pre>' . HtmlUtil::sanitize($e->getMessage()) . '</pre>',
     ];
 
     $rows[] = [
       t('Exception'),
-      t(
-        '@class thrown in line %line of @file',
-        [
-          '@class' => Markup::create(''
-            . '<code>' . HtmlUtil::sanitize($e_class_reflection->getShortName()) . '</code>'
-            . '<br/>'),
-          '%line' => $e->getLine(),
-          '@file' => Markup::create(''
-            . '<code>' . HtmlUtil::sanitize(basename($file)) . '</code>'
-            . '<br/>'
-            . '<code>' . HtmlUtil::sanitize($file) . '</code>'),
+      t('@class thrown in line %line of @file', [
+        '@class' => new FormattableMarkup('<code>@class</code><br/>', [
+          '@class' => $e_class_reflection->getShortName()
         ]),
+        '%line' => $e->getLine(),
+        '@file' => new FormattableMarkup('<code>@basename</code><br/><code>@file</code>', [
+          '@basename' => basename($file),
+          '@file' => $file,
+        ]),
+      ]),
     ];
 
     $rows[] = [
@@ -83,29 +85,21 @@ final class UiDumpUtil extends UtilBase {
       $e_class_reflection = new \ReflectionClass($e_class);
     }
     catch (\ReflectionException $e) {
-      throw new \RuntimeException("Impossible: Class '$e_class' not found.");
+      throw new \RuntimeException($e->getMessage(), 0, $e);
     }
 
     return [
       'text' => [
-        '#markup' => ''
-          // @todo This should probably be in a template. One day.
-          . '<dl>'
-          . '  <dt>' . t(
-            'Exception in line %line of %file',
-            [
-              '%line' => $e->getLine(),
-              '%file' => basename($file)
-            ]
-          ) . '</dt>'
-          . '  <dd><code>' . HtmlUtil::sanitize($file) . '</code></dd>'
-          . '  <dt>'
-          . t('Exception class: %class', ['%class' => $e_class_reflection->getShortName()])
-          . '</dt>'
-          . '  <dd>' . HtmlUtil::sanitize($e_class) . '</dt>'
-          . '  <dt>' . t('Exception message:') . '</dt>'
-          . '  <dd><pre>' . HtmlUtil::sanitize($e->getMessage()) . '</pre></dd>'
-          . '</dl>',
+        '#markup' => (new Markup_DefinitionList())
+          ->addDt(t('Exception in line %line of %file', [
+            '%line' => $e->getLine(),
+            '%file' => basename($file)
+          ]))
+          ->addDd(new FormattableMarkup('<code>@code</code>', ['@code' => $file]))
+          ->addDt(t('Exception class: %class', ['%class' => $e_class_reflection->getShortName()]))
+          ->addDd(HtmlUtil::sanitize($e_class))
+          ->addDt(t('Exception message:'))
+          ->addDd(new FormattableMarkup('<pre>@code</pre>', ['@code' => $e->getMessage()])),
       ],
       'trace_label' => [
         '#markup' => '<div>' . t('Exception stack trace') . ':</div>',
@@ -116,11 +110,11 @@ final class UiDumpUtil extends UtilBase {
 
   /**
    * @param mixed $data
-   * @param string $fieldset_label
+   * @param string|\Drupal\Component\Render\MarkupInterface $fieldset_label
    *
    * @return array
    */
-  public static function dumpDataInFieldset($data, $fieldset_label): array {
+  public static function dumpDataInFieldset(mixed $data, string|MarkupInterface $fieldset_label): array {
 
     return self::dumpData($data)
       + [
@@ -134,7 +128,7 @@ final class UiDumpUtil extends UtilBase {
    *
    * @return array
    */
-  public static function dumpData($data): array {
+  public static function dumpData(mixed $data): array {
 
     $element = [];
 
@@ -155,7 +149,7 @@ final class UiDumpUtil extends UtilBase {
    *
    * @return null|string
    */
-  public static function dumpValue($v): ?string {
+  public static function dumpValue(mixed $v): ?string {
 
     if (!\is_object($v) && !\is_array($v)) {
       return '<pre>' . var_export($v, TRUE) . '</pre>';

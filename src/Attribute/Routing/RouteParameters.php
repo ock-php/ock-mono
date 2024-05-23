@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\ock\Attribute\Routing;
 
 use Symfony\Component\Routing\Route;
@@ -10,9 +12,11 @@ class RouteParameters implements RouteModifierInterface {
   /**
    * @var array[]
    */
-  private $parameters;
+  private array $parameters;
 
   /**
+   * Constructor.
+   *
    * @param array $values
    */
   public function __construct(array $values) {

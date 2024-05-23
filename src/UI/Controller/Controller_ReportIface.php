@@ -5,16 +5,20 @@ namespace Drupal\ock\UI\Controller;
 
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\CallbackReflection\Util\CodegenUtil;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
+use Donquixote\Ock\Exception\FormulaException;
+use Donquixote\Ock\Exception\GeneratorException;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Generator\Generator;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 use Donquixote\Ock\Summarizer\Summarizer;
 use Donquixote\Ock\Translator\TranslatorInterface;
 use Donquixote\Ock\Util\HtmlUtil;
+use Donquixote\DID\Util\PhpUtil;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\Serialization\Yaml;
 use Drupal\ock\Attribute\Routing\Route;
 use Drupal\ock\Attribute\Routing\RouteDefaultTaskLink;
 use Drupal\ock\Attribute\Routing\RouteIsAdmin;
@@ -45,6 +49,22 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
   use ContainerInjectionViaAttributesTrait;
 
   /**
+   * Constructor.
+   *
+   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   */
+  public function __construct(
+    #[GetService]
+    private readonly PluginMapInterface $pluginMap,
+    #[GetService]
+    private readonly UniversalAdapterInterface $adapter,
+    #[GetService]
+    private readonly TranslatorInterface $translator,
+  ) {}
+
+  /**
    * @param string $interface
    * @param string $methodName
    *
@@ -56,21 +76,9 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
       [
         'interface' => UiUtil::interfaceGetSlug($interface),
       ],
-      $methodName);
+      $methodName,
+    );
   }
-
-  /**
-   * Constructor.
-   *
-   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
-   */
-  public function __construct(
-    private readonly PluginMapInterface $pluginMap,
-    private readonly UniversalAdapterInterface $adapter,
-    private readonly TranslatorInterface $translator,
-  ) {}
 
   /**
    * Title callback for the route below.
@@ -93,7 +101,6 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
   #[Route]
   #[RouteDefaultTaskLink('List of plugins')]
   public function listOfPlugins(string $interface): array {
-
     /**
      * @var array[] $rows
      *   Format: $[] = $row
@@ -101,7 +108,6 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
      *   Format: $[$groupLabel][] = $row
      */
     $rows = [];
-    $rows_grouped = [];
     foreach ($this->pluginMap->typeGetPlugins($interface) as $key => $plugin) {
 
       $label = $plugin->getLabel()->convert($this->translator);
@@ -123,18 +129,6 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
       ];
 
       $rows[] = $row;
-    }
-
-    foreach ($rows_grouped as $groupLabel => $rowsInGroup) {
-      $rows[] = [
-        [
-          'colspan' => 5,
-          'data' => ['#markup' => '<h3>' . HtmlUtil::sanitize($groupLabel) . '</h3>'],
-        ],
-      ];
-      foreach ($rowsInGroup as $row) {
-        $rows[] = $row;
-      }
     }
 
     return [
@@ -163,8 +157,6 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
    * @param string $interface
    *
    * @return array
-   *
-   * @throws \Donquixote\Ock\Exception\GeneratorException
    */
   #[Route('/demo')]
   #[RouteTaskLink('Demo')]
@@ -182,8 +174,6 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
       return $out;
     }
 
-    $sta = $this->adapter;
-
     if (!$settings) {
       return $out;
     }
@@ -191,14 +181,18 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
     $formula = Formula::iface($interface);
 
     try {
-      $summary_obj = Summarizer::fromFormula($formula, $sta)
-        ->confGetSummary($settings);
-      $summary = $summary_obj
-        ? $summary_obj->convert($this->translator)
-        : '?';
+      $summary = Summarizer::fromFormula($formula, $this->adapter)
+        ->confGetSummary($settings)
+        ?->convert($this->translator)
+        ?? '?';
     }
     catch (AdapterException) {
+      // @todo Better exception reporting.
       $summary = '?';
+    }
+    catch (FormulaException) {
+      // @todo Better exception reporting.
+      $summary = '??';
     }
 
     $out['summary'] = [
@@ -217,8 +211,19 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
       ],
     ];
 
+    $out['yaml'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Configuration data, YAML'),
+      'data' => [
+        # '#markup' => UiCodeUtil::exportHighlightWrap($settings),
+        '#markup' => '<pre>'
+          . Yaml::encode($settings)
+          . '</pre>',
+      ],
+    ];
+
     try {
-      $generator = Generator::fromFormula($formula, $sta);
+      $generator = Generator::fromFormula($formula, $this->adapter);
     }
     catch (AdapterException) {
       $out['problem'] = [
@@ -236,8 +241,14 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
       '#title' => $this->t('Generated PHP code'),
     ];
 
-    $php = $generator->confGetPhp($settings);
-    $php = CodegenUtil::autoIndent($php, '  ', '    ');
+    try {
+      $php = $generator->confGetPhp($settings);
+    }
+    catch (GeneratorException) {
+      // @todo Better exception reporting.
+      $php = '?';
+    }
+    $php = PhpUtil::autoIndent($php, '  ', '    ');
     $attribute_class = OckPluginInstance::class;
     $php = <<<EOT
 class Example {
@@ -250,7 +261,7 @@ class Example {
 EOT;
 
 
-    $aliases = CodegenUtil::aliasify($php);
+    $aliases = PhpUtil::aliasify($php);
     $aliases_php = '';
     foreach ($aliases as $class => $alias) {
       if (TRUE === $alias) {

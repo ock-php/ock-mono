@@ -31,10 +31,32 @@ class DrupalText {
   }
 
   /**
+   * @param string $string
+   *   Original language-neutral text with placeholders.
+   * @param (string|\Drupal\Component\Render\MarkupInterface|mixed)[] $replacements
+   *   Replacements.
+   *
+   * @return \Donquixote\Ock\Text\TextInterface
+   */
+  public static function s(string $string, array $replacements): TextInterface {
+    return Text::s($string, self::multiple($replacements));
+  }
+
+  /**
+   * @param string $string
+   * @param (string|\Drupal\Component\Render\MarkupInterface|mixed)[] $replacements
+   *
+   * @return \Donquixote\Ock\Text\TextInterface
+   */
+  public static function t(string $string, array $replacements): TextInterface {
+    return Text::t($string, self::multiple($replacements));
+  }
+
+  /**
    * @param object[] $definitions
    * @param string $method
    *
-   * @return \Donquixote\Ock\Text\TextInterface[]s
+   * @return \Donquixote\Ock\Text\TextInterface[]
    */
   public static function fromObjects(array $definitions, string $method = 'getLabel'): array {
     $texts = [];
@@ -69,7 +91,7 @@ class DrupalText {
    *
    * @return \Donquixote\Ock\Text\TextInterface
    */
-  public static function fromVarOr($source, string $else): TextInterface {
+  public static function fromVarOr(mixed $source, string $else): TextInterface {
     return self::fromVar($source) ?? Text::s($else);
   }
 
@@ -80,7 +102,7 @@ class DrupalText {
    *
    * @return \Donquixote\Ock\Text\TextInterface|null
    */
-  public static function fromVar($source): ?TextInterface {
+  public static function fromVar(mixed $source): ?TextInterface {
     if (is_string($source)) {
       return Text::s($source);
     }
@@ -103,7 +125,7 @@ class DrupalText {
    * @return \Donquixote\Ock\Text\TextInterface|null
    *   A text, or NULL if the source was empty or had an unexpected type.
    */
-  public static function fromVarRecursiveUl($source): ?TextInterface {
+  public static function fromVarRecursiveUl(mixed $source): ?TextInterface {
     if (!is_array($source)) {
       return self::fromVar($source);
     }
@@ -142,7 +164,7 @@ class DrupalText {
   public static function fromT(TranslatableMarkup $source): TextInterface {
     return Text::t(
       $source->getUntranslatedString(),
-      $source->getArguments(),
+      self::multiple($source->getArguments()),
     );
   }
 

@@ -18,7 +18,7 @@ class FormatorD8_Drilldown implements FormatorD8Interface {
   /**
    * @var \Drupal\ock\Formator\FormatorD8Interface[]|false[]
    */
-  private $formators = [];
+  private array $formators = [];
 
   /**
    * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $drilldown
@@ -90,7 +90,7 @@ class FormatorD8_Drilldown implements FormatorD8Interface {
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  private function idGetFormatorOrFalse($id): false|FormatorD8Interface {
+  private function idGetFormatorOrFalse(string $id): false|FormatorD8Interface {
     return $this->formators[$id]
       ??= $this->idBuildFormatorOrFalse($id);
   }
@@ -102,7 +102,7 @@ class FormatorD8_Drilldown implements FormatorD8Interface {
    *
    * @throws \Donquixote\Adaptism\Exception\AdapterException
    */
-  private function idBuildFormatorOrFalse($id): false|FormatorD8Interface {
+  private function idBuildFormatorOrFalse(string $id): false|FormatorD8Interface {
 
     if (NULL === $formula = $this->idToFormula->idGetFormula($id)) {
       return FALSE;

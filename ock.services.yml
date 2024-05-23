@@ -2,19 +2,3 @@ services:
   logger.channel.ock:
     parent: logger.channel_base
     arguments: ['ock']
-  Drupal\ock\UI\ParamConverter\ParamConverter_Iface:
-    autowire: true
-    tags:
-      - { name: paramconverter }
-  Drupal\ock\UI\ParamConverter\ParamConverter_Plugin:
-    autowire: true
-    tags:
-      - { name: paramconverter }
-  Drupal\ock\TextToDrupal\TextToDrupalInterface:
-    class: Drupal\ock\TextToDrupal\TextToDrupal_Default
-    arguments:
-      - '@string_translation'
-  Donquixote\Ock\Translator\TranslatorInterface:
-    class: Drupal\ock\Translator\Translator_Drupal
-    arguments:
-      - '@string_translation'

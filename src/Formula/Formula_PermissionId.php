@@ -3,13 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
-use Donquixote\Ock\Formula\Select\Formula_Select_BufferedBase;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\user\PermissionHandlerInterface;
 use Psr\Container\ContainerInterface;
 
@@ -18,7 +17,7 @@ use Psr\Container\ContainerInterface;
  *
  * @see \views_plugin_access_perm
  */
-#[RegisterService]
+#[Service(self::class)]
 class Formula_PermissionId implements Formula_SelectInterface {
 
   /**

@@ -3,9 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Util;
 
-use Donquixote\CallbackReflection\Util\CodegenUtil;
 use Donquixote\Ock\Util\HtmlUtil;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 use Donquixote\Ock\Util\StringUtil as CfStringUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\Markup;
@@ -69,7 +68,7 @@ final class UiCodeUtil extends UtilBase {
    *
    * @return string|\Drupal\Component\Render\MarkupInterface
    */
-  public static function exportHighlightWrap($value): MarkupInterface|string {
+  public static function exportHighlightWrap(mixed $value): MarkupInterface|string {
 
     try {
       $text = PhpUtil::phpValue($value);

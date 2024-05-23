@@ -12,7 +12,7 @@ class FormatorD8_Broken implements FormatorD8Interface {
   /**
    * @param string $message
    */
-  public function __construct(private $message) {
+  public function __construct(private string $message) {
   }
 
   /**

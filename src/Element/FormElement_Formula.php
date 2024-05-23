@@ -80,7 +80,7 @@ class FormElement_Formula extends FormElement {
    */
   public static function valueCallback(
     &$element,
-    $input,
+    mixed $input,
     FormStateInterface $form_state
   ): mixed {
     if ($input !== FALSE) {

@@ -8,15 +8,9 @@ use Drupal\Component\Render\MarkupInterface;
 class FormatorD8_RenderElement implements FormatorD8Interface {
 
   /**
-   * @var array
-   */
-  private $element;
-
-  /**
    * @param array $element
    */
-  public function __construct(array $element) {
-    $this->element = $element;
+  public function __construct(private readonly array $element) {
   }
 
   /**

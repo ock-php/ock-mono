@@ -22,17 +22,17 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
   /**
    * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface
    */
-  private $idSelectFormula;
+  private Formula_SelectInterface $idSelectFormula;
 
   /**
    * @var \Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface
    */
-  private $keysHelper;
+  private DrilldownKeysHelperInterface $keysHelper;
 
   /**
    * @var bool
    */
-  private $required = TRUE;
+  private bool $required = TRUE;
 
   /**
    * Constructor.
@@ -179,7 +179,7 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
     array $element,
     FormStateInterface $form_state,
     ?string $defaultId,
-    $defaultOptionsConf
+    mixed $defaultOptionsConf
   ): array {
 
     $value = $element['#value'];
@@ -249,7 +249,7 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
    *
    * @return array
    */
-  private function idConfBuildOptionsFormWrapper(?string $id, $subConf): array {
+  private function idConfBuildOptionsFormWrapper(?string $id, mixed $subConf): array {
 
     if (NULL === $id) {
       return [];
@@ -291,6 +291,6 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
    * @return array
    *   Sub-form for the chosen drilldown option.
    */
-  abstract protected function idGetSubform(string $id, $subConf): array;
+  abstract protected function idGetSubform(string $id, mixed $subConf): array;
 
 }

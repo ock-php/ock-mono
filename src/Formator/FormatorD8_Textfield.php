@@ -4,7 +4,10 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Donquixote\Adaptism\Attribute\Adapter;
+use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
+use Donquixote\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -12,16 +15,14 @@ use Drupal\Core\Form\FormStateInterface;
 class FormatorD8_Textfield implements FormatorD8Interface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface
-   */
-  private $formula;
-
-  /**
    * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula
    */
-  public function __construct(Formula_TextfieldInterface $formula) {
-    $this->formula = $formula;
-  }
+  public function __construct(
+    #[Adaptee]
+    private readonly Formula_TextfieldInterface $formula,
+    #[GetService]
+    private readonly TranslatorInterface $translator,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -40,7 +41,7 @@ class FormatorD8_Textfield implements FormatorD8Interface {
       '#required' => $this->formula->textIsValid(''),
       '#element_validate' => [[self::class, 'validate']],
       '#formula' => $this->formula,
-      '#description' => $this->formula->getDescription(),
+      '#description' => $this->formula->getDescription()?->convert($this->translator),
     ];
   }
 

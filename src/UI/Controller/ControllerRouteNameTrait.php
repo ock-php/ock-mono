@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\ock\UI\Controller;
 
 use Drupal\ock\Util\StringUtil;

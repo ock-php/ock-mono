@@ -10,14 +10,9 @@ use Drupal\Core\Url;
 abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
 
   /**
-   * @var array
-   */
-  private $routeParameters;
-
-  /**
    * @var string
    */
-  private $methodName;
+  private string $methodName;
 
   /**
    * Constructor.
@@ -25,8 +20,7 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
    * @param array $routeParameters
    * @param string $suffix
    */
-  public function __construct(array $routeParameters, $suffix) {
-    $this->routeParameters = $routeParameters;
+  public function __construct(private readonly array $routeParameters, string $suffix) {
     $this->methodName = $suffix;
   }
 
@@ -42,12 +36,12 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
   }
 
   /**
-   * @param string|\Drupal\Component\Render\MarkupInterface $text
+   * @param \Drupal\Component\Render\MarkupInterface|string $text
    * @param array $options
    *
    * @return \Drupal\Core\Link
    */
-  public function link($text, array $options = []): Link {
+  public function link(MarkupInterface|string $text, array $options = []): Link {
     assert(is_string($text)
       || $text instanceof MarkupInterface);
     return Link::fromTextAndUrl(

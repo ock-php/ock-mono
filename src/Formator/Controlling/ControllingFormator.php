@@ -20,9 +20,9 @@ class ControllingFormator {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    UniversalAdapterInterface $adapter = NULL,
+    UniversalAdapterInterface $adapter,
   ): ControllingFormatorInterface {
-    return ($adapter ?? Ock::adapter())
+    return $adapter
       ->adapt($formula, ControllingFormatorInterface::class);
   }
 

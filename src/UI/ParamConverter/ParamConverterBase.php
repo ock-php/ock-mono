@@ -24,7 +24,7 @@ abstract class ParamConverterBase implements ParamConverterInterface {
    *   TRUE if the converter applies to the passed route and parameter, FALSE
    *   otherwise.
    */
-  public function applies($definition, $name, Route $route): bool {
+  public function applies(mixed $definition, $name, Route $route): bool {
     return ($definition['type'] ?? FALSE) === static::TYPE;
   }
 

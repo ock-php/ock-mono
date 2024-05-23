@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\AjaxCallback;
 
+use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,13 +22,15 @@ class AjaxCallback_ElementWithProperty implements AjaxCallbackInterface {
    * @param mixed $value
    *   Expected property value.
    */
-  public function __construct(private readonly string $property, private $value) {
-  }
+  public function __construct(
+    private readonly string $property,
+    private readonly mixed $value,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
-  public function __invoke(array $form, FormStateInterface $form_state, Request $request): \Drupal\Core\Ajax\AjaxResponse|array {
+  public function __invoke(array $form, FormStateInterface $form_state, Request $request): AjaxResponse|array {
     $candidate = $this->findNestedElement($form);
     if ($candidate === NULL) {
       throw new \Exception('Element not found.');

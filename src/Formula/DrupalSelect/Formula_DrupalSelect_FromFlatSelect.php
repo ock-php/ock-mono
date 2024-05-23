@@ -14,18 +14,12 @@ use Drupal\Component\Render\MarkupInterface;
 class Formula_DrupalSelect_FromFlatSelect implements Formula_DrupalSelectInterface {
 
   /**
-   * @var \Donquixote\Ock\Translator\TranslatorInterface
-   */
-  private $translator;
-
-  /**
    * Constructor.
    *
    * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $decorated
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
-  public function __construct(private readonly Formula_FlatSelectInterface $decorated, TranslatorInterface $translator) {
-    $this->translator = $translator;
+  public function __construct(private readonly Formula_FlatSelectInterface $decorated, private TranslatorInterface $translator) {
   }
 
   /**

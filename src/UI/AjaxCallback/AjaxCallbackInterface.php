@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\AjaxCallback;
 
+use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -30,6 +31,6 @@ interface AjaxCallbackInterface {
    * @throws \Exception
    *   Cannot build response.
    */
-  public function __invoke(array $form, FormStateInterface $form_state, Request $request): \Drupal\Core\Ajax\AjaxResponse|array;
+  public function __invoke(array $form, FormStateInterface $form_state, Request $request): AjaxResponse|array;
 
 }

@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\ParamConverter;
 
+use Donquixote\DID\Attribute\Service;
+use Drupal\ock\Attribute\DI\ServiceTags;
 use Drupal\ock\Util\UiUtil;
 
+#[Service(self::class)]
+#[ServiceTags(['paramconverter'])]
 class ParamConverter_Iface extends ParamConverterBase {
 
   public const TYPE = 'ock:interface';
@@ -12,7 +16,7 @@ class ParamConverter_Iface extends ParamConverterBase {
   /**
    * {@inheritdoc}
    */
-  public function convert($value, $definition, $name, array $defaults) {
+  public function convert($value, $definition, $name, array $defaults): array|bool|string {
 
     $interface = str_replace('.', '\\', $value);
 

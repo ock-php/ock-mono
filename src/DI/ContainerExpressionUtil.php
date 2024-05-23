@@ -28,8 +28,8 @@ class ContainerExpressionUtil {
    * @template T
    *
    * @param callable(mixed...): T $callback
-   * @param string $specialKey
-   * @param mixed ...$args
+   * @param array $args
+   * @param array $ops
    *
    * @return T
    */
@@ -38,7 +38,13 @@ class ContainerExpressionUtil {
     return $callback(...$args);
   }
 
-  public static function processArgs(array $args, array $ops): array {
+  /**
+   * @param array $args
+   * @param array $ops
+   *
+   * @return array
+   */
+  private static function processArgs(array $args, array $ops): array {
     foreach ($ops as $k => $op) {
       $args[$k] = self::processArg($op, $args[$k]);
     }
@@ -51,7 +57,7 @@ class ContainerExpressionUtil {
    *
    * @return mixed
    */
-  public static function processArg(mixed $op, array $array): mixed {
+  private static function processArg(mixed $op, array $array): mixed {
     if (is_string($op)) {
       switch ($op) {
         case self::OP_CALL:
