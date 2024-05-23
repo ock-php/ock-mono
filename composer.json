@@ -1,11 +1,28 @@
 {
     "name": "ock/ock-mono",
     "description": "Monorepo for 'Object Construction Kit' packages (Ock)",
+    "type": "project",
     "license": "MIT",
     "authors": [
         {
             "name": "Andreas Hennings",
             "email": "andreas@dqxtech.net"
+        }
+    ],
+    "homepage": "https://github.com/ock-php/ock-mono",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "path",
+            "url": "packages/*",
+            "options": {
+                "versions": {
+                    "*": "self.version"
+                }
+            }
         }
     ],
     "require": {
@@ -29,21 +46,11 @@
         "symfony/expression-language": "^6.4",
         "symfony/yaml": "^6.2"
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        },
-        {
-            "type": "path",
-            "url": "packages/*",
-            "options": {
-                "versions": {
-                    "*": "self.version"
-                }
-            }
-        }
-    ],
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Ock\\Adaptism\\": "packages/adaptism/src/",
@@ -67,12 +74,15 @@
         }
     },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "composer/installers": true,
             "drupal/core-composer-scaffold": true,
-            "drupal/core-project-message": true
-        }
+            "drupal/core-project-message": true,
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true
+        },
+        "sort-packages": true
     },
     "replace": {
         "ock/adaptism": "self.version",
@@ -120,8 +130,27 @@
             "web/themes/custom/{$name}": [
                 "type:drupal-custom-theme"
             ]
+        },
+        "drupal-core-project-message": {
+            "include-keys": [
+                "homepage",
+                "support"
+            ],
+            "post-create-project-cmd-message": [
+                "<bg=blue;fg=white>                                                         </>",
+                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
+                "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
+                "<bg=blue;fg=white>                                                         </>",
+                "",
+                "<bg=yellow;fg=black>Next steps</>:",
+                "  * Install the site: https://www.drupal.org/docs/installing-drupal",
+                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
+                "  * Get support: https://www.drupal.org/support",
+                "  * Get involved with the Drupal community:",
+                "      https://www.drupal.org/getting-involved",
+                "  * Remove the plugin that prints this message:",
+                "      composer remove drupal/core-project-message"
+            ]
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
