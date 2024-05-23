@@ -11,6 +11,7 @@
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
+        "composer/installers": "^2.0",
         "drupal/core-recommended": "^10.2",
         "psr/container": "^2.0",
         "psr/log": "^1.1.4|^2.0|^3.0",
@@ -64,7 +65,10 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true
+        }
     },
     "replace": {
         "ock/adaptism": "self.version",
