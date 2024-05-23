@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula\DrupalPluginSettings;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Core\Formula\FormulaInterface;
 
 /**
  * Formula type for Drupal plugin settings.

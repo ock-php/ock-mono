@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\DID\Attribute\Parameter\GetCallableService;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Text\Text;
+use Ock\DID\Attribute\Parameter\GetCallableService;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 use Drupal\renderkit\Util\UtilBase;
 
 final class Formula_EntityTypeAndId extends UtilBase {
@@ -17,9 +17,9 @@ final class Formula_EntityTypeAndId extends UtilBase {
    * @param \Drupal\renderkit\Formula\Formula_EntityType $entityTypeFormula
    * @param callable(string): \Drupal\renderkit\Formula\Formula_EntityIdAutocomplete $entityIdFormulaMap
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   #[Service(serviceIdSuffix: self::class)]
   public static function create(

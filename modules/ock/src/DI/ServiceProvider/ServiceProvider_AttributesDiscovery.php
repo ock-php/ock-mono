@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\ock\DI\ServiceProvider;
 
-use Donquixote\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
-use Donquixote\DID\Attribute\Service;
-use Donquixote\DID\Util\AttributesUtil;
-use Donquixote\DID\Util\ReflectionTypeUtil;
+use Ock\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
+use Ock\DID\Attribute\Service;
+use Ock\DID\Util\AttributesUtil;
+use Ock\DID\Util\ReflectionTypeUtil;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
 use Drupal\ock\Attribute\DI\ServiceTags;
@@ -50,7 +50,7 @@ class ServiceProvider_AttributesDiscovery extends ReflectionClassesIAHavingBase 
   /**
    * {@inheritdoc}
    *
-   * @throws \Donquixote\DID\Exception\DiscoveryException
+   * @throws \Ock\DID\Exception\DiscoveryException
    */
   public function register(ContainerBuilder $container): void {
     $installedModulesMap = $container->getParameter('container.modules');
@@ -121,7 +121,7 @@ class ServiceProvider_AttributesDiscovery extends ReflectionClassesIAHavingBase 
    *
    * @return \Symfony\Component\DependencyInjection\Definition
    *
-   * @throws \Donquixote\DID\Exception\DiscoveryException
+   * @throws \Ock\DID\Exception\DiscoveryException
    */
   private function onClass(\ReflectionClass $rClass): Definition {
     $definition = new Definition();
@@ -152,7 +152,7 @@ class ServiceProvider_AttributesDiscovery extends ReflectionClassesIAHavingBase 
    *
    * @return \Symfony\Component\DependencyInjection\Definition
    *
-   * @throws \Donquixote\DID\Exception\DiscoveryException
+   * @throws \Ock\DID\Exception\DiscoveryException
    */
   private function onMethod(\ReflectionMethod $rMethod): Definition {
     $rDeclaringClass = $rMethod->getDeclaringClass();
@@ -190,7 +190,7 @@ class ServiceProvider_AttributesDiscovery extends ReflectionClassesIAHavingBase 
    *
    * @return array
    *
-   * @throws \Donquixote\DID\Exception\DiscoveryException
+   * @throws \Ock\DID\Exception\DiscoveryException
    */
   private function buildArguments(array $parameters, array &$ops): array {
     $args = [];

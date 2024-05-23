@@ -17,7 +17,7 @@ interface DependencyInjectionArgumentInterface {
    *
    * @return mixed
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Ock\DID\Exception\MalformedDeclarationException
    */
   public function getArgDefinition(\ReflectionParameter $parameter): mixed;
 
@@ -27,7 +27,7 @@ interface DependencyInjectionArgumentInterface {
    *
    * @return mixed
    *
-   * @throws \Donquixote\DID\Exception\MalformedDeclarationException
+   * @throws \Ock\DID\Exception\MalformedDeclarationException
    */
   public function paramGetValue(\ReflectionParameter $parameter, ContainerInterface $container): mixed;
 

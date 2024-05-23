@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\TextLookup\TextLookupInterface;
+use Ock\Ock\Text\Text;
+use Ock\Ock\Text\TextInterface;
+use Ock\Ock\TextLookup\TextLookupInterface;
 
 abstract class TextLookup_CombinedLabelBase implements TextLookupInterface {
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $groupLabelLookup
-   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $decorated
+   * @param \Ock\Ock\TextLookup\TextLookupInterface $groupLabelLookup
+   * @param \Ock\Ock\TextLookup\TextLookupInterface $decorated
    */
   public function __construct(
     private TextLookupInterface $groupLabelLookup,
@@ -22,7 +22,7 @@ abstract class TextLookup_CombinedLabelBase implements TextLookupInterface {
   ) {}
 
   /**
-   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $decorated
+   * @param \Ock\Ock\TextLookup\TextLookupInterface $decorated
    *
    * @return static
    */
@@ -33,7 +33,7 @@ abstract class TextLookup_CombinedLabelBase implements TextLookupInterface {
   }
 
   /**
-   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $groupLabelLookup
+   * @param \Ock\Ock\TextLookup\TextLookupInterface $groupLabelLookup
    *
    * @return static
    */
@@ -58,10 +58,10 @@ abstract class TextLookup_CombinedLabelBase implements TextLookupInterface {
   }
 
   /**
-   * @param \Donquixote\Ock\Text\TextInterface $groupLabel
-   * @param \Donquixote\Ock\Text\TextInterface $decoratedLabel
+   * @param \Ock\Ock\Text\TextInterface $groupLabel
+   * @param \Ock\Ock\Text\TextInterface $decoratedLabel
    *
-   * @return \Donquixote\Ock\Text\TextInterface
+   * @return \Ock\Ock\Text\TextInterface
    */
   protected function combineLabels(TextInterface $groupLabel, TextInterface $decoratedLabel): TextInterface {
     return Text::label($groupLabel, $decoratedLabel);

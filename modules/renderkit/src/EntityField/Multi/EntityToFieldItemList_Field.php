@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Multi;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Text\Text;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\renderkit\Formula\Formula_EtDotFieldName;
@@ -18,7 +18,7 @@ class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
    * @param \Drupal\renderkit\Formula\Formula_EtDotFieldName $etDotFieldNameFormula
    * @param string[]|null $allowedFieldTypes
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
   #[OckPluginFormula(self::class, 'field', 'Field')]
   public static function formula(

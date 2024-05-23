@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula\DrupalSelect;
 
-use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
-use Donquixote\Ock\Translator\TranslatorInterface;
+use Ock\Ock\Formula\Select\Formula_SelectInterface;
+use Ock\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 
 /**
@@ -18,8 +18,8 @@ class Formula_DrupalSelect_FromCommonSelect implements Formula_DrupalSelectInter
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $decorated
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $decorated
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
     private readonly Formula_SelectInterface $decorated,

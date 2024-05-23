@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConf;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
-use Donquixote\Ock\Text\Text;
-use Donquixote\DID\Util\PhpUtil;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\DefaultConf\Formula_DefaultConf;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
+use Ock\Ock\Text\Text;
+use Ock\DID\Util\PhpUtil;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -50,8 +50,8 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplayBase {
    * @param \Drupal\renderkit\Formula\Formula_FieldFormatterId $formatterIdFormula
    * @param \Drupal\renderkit\Helper\FormatterPluginLookup $formatterPluginLookup
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   #[OckPluginFormula(self::class, 'fieldWithFormatter', 'Field with formatter')]
   public static function formula(

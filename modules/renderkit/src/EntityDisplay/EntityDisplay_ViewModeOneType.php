@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Attribute\Parameter\OckFormulaFromService;
-use Donquixote\Ock\Attribute\Parameter\OckOption;
-use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Attribute\Parameter\OckFormulaFromService;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\renderkit\Formula\Formula_EntityViewMode;
 

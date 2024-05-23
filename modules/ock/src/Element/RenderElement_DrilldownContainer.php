@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Element;
 
-use Donquixote\Ock\Util\StringUtil;
+use Ock\Ock\Util\StringUtil;
 use Drupal\Core\Render\Element\RenderElement;
 use Drupal\ock\UI\Controller\Controller_ReportIface;
 

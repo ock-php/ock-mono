@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\ock\DI;
 
-use Donquixote\DID\Exception\ContainerToValueException;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
-use Donquixote\DID\Util\ReflectionUtil;
+use Ock\DID\Exception\ContainerToValueException;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
+use Ock\DID\Util\ReflectionUtil;
 use Drupal\Component\Discovery\DiscoveryException;
 use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArgInterface;
 
@@ -108,7 +108,7 @@ class OckCallbackResolver {
    *
    * @return T
    *
-   * @throws \Donquixote\DID\Exception\ContainerToValueException
+   * @throws \Ock\DID\Exception\ContainerToValueException
    */
   public function construct(string $class): object {
     try {
@@ -142,7 +142,7 @@ class OckCallbackResolver {
    *
    * @return T
    *
-   * @throws \Donquixote\DID\Exception\ContainerToValueException
+   * @throws \Ock\DID\Exception\ContainerToValueException
    */
   public function call(callable $callback): mixed {
     try {
@@ -161,7 +161,7 @@ class OckCallbackResolver {
    *
    * @return list<mixed>
    *
-   * @throws \Donquixote\DID\Exception\ContainerToValueException
+   * @throws \Ock\DID\Exception\ContainerToValueException
    */
   private function buildArgs(array $parameters): array {
     if (!$parameters) {

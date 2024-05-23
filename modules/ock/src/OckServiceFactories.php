@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Drupal\ock;
 
-use Donquixote\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA_Multiple;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Donquixote\ClassDiscovery\NamespaceDirectory;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
-use Donquixote\Ock\OckPackage;
-use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabels;
-use Donquixote\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
-use Donquixote\Ock\Plugin\Registry\PluginRegistry_Discovery;
-use Donquixote\Ock\Text\Text;
+use Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_Multiple;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Ock\ClassDiscovery\NamespaceDirectory;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
+use Ock\Ock\OckPackage;
+use Ock\Ock\Plugin\GroupLabels\PluginGroupLabels;
+use Ock\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
+use Ock\Ock\Plugin\Registry\PluginRegistry_Discovery;
+use Ock\Ock\Text\Text;
 use Drupal\Core\Extension\ModuleExtensionList;
 
 /**
@@ -31,7 +31,7 @@ class OckServiceFactories {
    * @param \Drupal\Core\Extension\ModuleExtensionList $modules
    * @param \Traversable $namespaces
    *
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    */
   #[Service(serviceIdSuffix: PluginRegistry_Discovery::class)]
   public static function pluginClassFiles(
@@ -83,7 +83,7 @@ class OckServiceFactories {
   }
 
   /**
-   * @return \Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
    *
    * @throws \ReflectionException
    */

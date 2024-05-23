@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
 use Drupal\renderkit\Context\EntityContext;
 use Drupal\renderkit\Util\UtilBase;
 
@@ -14,7 +14,7 @@ final class EntityDisplay extends UtilBase {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(string $entityType = NULL, string $bundle = NULL): FormulaInterface {
 

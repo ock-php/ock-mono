@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
-use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\TextLookup\TextLookupInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
+use Ock\Ock\Text\Text;
+use Ock\Ock\Text\TextInterface;
+use Ock\Ock\TextLookup\TextLookupInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\ock\DrupalText;

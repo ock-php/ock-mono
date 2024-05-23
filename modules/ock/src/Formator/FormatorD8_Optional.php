@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\Formula\Optional\Formula_OptionalInterface;
-use Donquixote\Ock\Util\ConfUtil;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Ock\Formula\Optional\Formula_OptionalInterface;
+use Ock\Ock\Util\ConfUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
@@ -14,12 +14,12 @@ use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 class FormatorD8_Optional implements FormatorD8Interface {
 
   /**
-   * @param \Donquixote\Ock\Formula\Optional\Formula_OptionalInterface $formula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Formula\Optional\Formula_OptionalInterface $formula
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface|null
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   #[Adapter]
   public static function create(

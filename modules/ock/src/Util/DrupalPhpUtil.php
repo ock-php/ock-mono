@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Util;
 
-use Donquixote\DID\Util\PhpUtil;
+use Ock\DID\Util\PhpUtil;
 
 final class DrupalPhpUtil extends UtilBase {
 

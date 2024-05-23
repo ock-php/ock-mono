@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Formula\Group\Formula_Group;
-use Donquixote\Ock\Formula\Group\Item\GroupFormulaItem;
-use Donquixote\Ock\Formula\Sequence\Formula_Sequence;
-use Donquixote\Ock\Text\Text;
-use Donquixote\DID\Util\PhpUtil;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Formula\Group\Formula_Group;
+use Ock\Ock\Formula\Group\Item\GroupFormulaItem;
+use Ock\Ock\Formula\Sequence\Formula_Sequence;
+use Ock\Ock\Text\Text;
+use Ock\DID\Util\PhpUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
 use Drupal\ock\DrupalText;
@@ -21,10 +21,10 @@ class Formula_LayoutAndRegions {
 
   /**
    * @param \Drupal\Core\Layout\LayoutPluginManagerInterface $layoutManager
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $itemFormula
+   * @param \Ock\Ock\Core\Formula\FormulaInterface $itemFormula
    * @param callable $callback
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
   public static function create(
     LayoutPluginManagerInterface $layoutManager,

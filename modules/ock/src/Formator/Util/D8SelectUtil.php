@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator\Util;
 
-use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
-use Donquixote\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface;
-use Donquixote\Ock\Translator\TranslatorInterface;
-use Donquixote\Ock\Util\UtilBase;
+use Ock\Ock\Formula\Select\Formula_SelectInterface;
+use Ock\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface;
+use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Ock\Util\UtilBase;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
@@ -14,8 +14,8 @@ use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 final class D8SelectUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $formula
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    * @param string|null $value
    * @param \Drupal\Component\Render\MarkupInterface|string|null $label
    * @param bool $required
@@ -23,7 +23,7 @@ final class D8SelectUtil extends UtilBase {
    * @return array
    *   Drupal form element array.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   public static function selectElementFromCommonSelectFormula(
     Formula_SelectInterface $formula,
@@ -37,8 +37,8 @@ final class D8SelectUtil extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface $formula
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface $formula
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    * @param string|null $value
    * @param string $label
    * @param bool $required
@@ -65,7 +65,7 @@ final class D8SelectUtil extends UtilBase {
    * @return array
    *   Select form element array.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\FormulaException
    *   Something went wrong in the formula.
    */
   public static function selectElementFromDrupalSelectFormula(
@@ -132,13 +132,13 @@ final class D8SelectUtil extends UtilBase {
   /**
    * Gets select options in a format suitable for Drupal 8.
    *
-   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $formula
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    *
    * @return string[][]|string[]
    *   Options to be used in '#options' in a '#type' => 'select' element.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   public static function selectOptionsFromCommonSelectFormula(
     Formula_SelectInterface $formula,
@@ -172,8 +172,8 @@ final class D8SelectUtil extends UtilBase {
   /**
    * Gets select options in a format suitable for Drupal.
    *
-   * @param \Donquixote\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface $formula
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface $formula
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    *
    * @return (string|string[])[]
    */
@@ -212,7 +212,7 @@ final class D8SelectUtil extends UtilBase {
    *
    * @return array<string, string|MarkupInterface|array<string, string|MarkupInterface>>
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   public static function selectOptionsFromDrupalSelectFormula(Formula_DrupalSelectInterface $formula): array {
     // Get rid of empty groups.

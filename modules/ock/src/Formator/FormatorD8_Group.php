@@ -3,32 +3,32 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Adaptism\Attribute\Parameter\UniversalAdapter;
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Exception\FormulaException;
-use Donquixote\Ock\Formula\Group\Formula_GroupInterface;
-use Donquixote\Ock\Formula\Group\GroupHelper;
-use Donquixote\Ock\Translator\TranslatorInterface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\Attribute\Parameter\Adaptee;
+use Ock\Adaptism\Attribute\Parameter\UniversalAdapter;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Exception\FormulaException;
+use Ock\Ock\Formula\Group\Formula_GroupInterface;
+use Ock\Ock\Formula\Group\GroupHelper;
+use Ock\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 
 #[Adapter]
 class FormatorD8_Group implements FormatorD8Interface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Group\GroupHelper
+   * @var \Ock\Ock\Formula\Group\GroupHelper
    *
    * @todo Make this a service?
    */
   private GroupHelper $groupHelper;
 
   /**
-   * @param \Donquixote\Ock\Formula\Group\Formula_GroupInterface $groupFormula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Group\Formula_GroupInterface $groupFormula
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
     #[Adaptee]

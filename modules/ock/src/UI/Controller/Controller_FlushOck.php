@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Parameter\GetService;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\ock\Attribute\Routing\Route;
 use Drupal\ock\Attribute\Routing\RouteIsAdmin;

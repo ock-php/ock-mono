@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator\Util;
 
-use Donquixote\Ock\Util\UtilBase;
+use Ock\Ock\Util\UtilBase;
 
 class ArrayMode extends UtilBase {
 

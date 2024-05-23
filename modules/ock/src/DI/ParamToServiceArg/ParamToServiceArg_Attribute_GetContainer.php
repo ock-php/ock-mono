@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\ock\DI\ParamToServiceArg;
 
-use Donquixote\DID\Util\AttributesUtil;
-use Donquixote\DID\Attribute\Parameter\GetContainer;
+use Ock\DID\Util\AttributesUtil;
+use Ock\DID\Attribute\Parameter\GetContainer;
 use Symfony\Component\DependencyInjection\Reference;
 
 class ParamToServiceArg_Attribute_GetContainer implements ParamToServiceArgInterface {

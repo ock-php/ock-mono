@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntitiesListFormat;
 
-use Donquixote\Ock\Attribute\Parameter\OckFormulaFromCall;
-use Donquixote\Ock\Attribute\Parameter\OckOption;
-use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
-use Donquixote\Ock\Formula\Textfield\Formula_Textfield_NoValidation;
-use Donquixote\Ock\Text\Text;
+use Ock\Ock\Attribute\Parameter\OckFormulaFromCall;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
+use Ock\Ock\Formula\Textfield\Formula_Textfield_NoValidation;
+use Ock\Ock\Text\Text;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 #[OckPluginInstance('table', 'Table with headers')]
@@ -28,9 +28,9 @@ class EntitiesListFormat_TableWithHeaders implements EntitiesListFormatInterface
   ) {}
 
   /**
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\FormulaException
    *
    * @internal
    */

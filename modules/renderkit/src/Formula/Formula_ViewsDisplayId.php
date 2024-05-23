@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\DID\Attribute\Parameter\CallService;
-use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
-use Donquixote\Ock\Text\TextInterface;
+use Ock\DID\Attribute\Parameter\CallService;
+use Ock\Ock\Formula\Select\Formula_SelectInterface;
+use Ock\Ock\Text\TextInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\ock\DrupalText;
 use Drupal\views\Entity\View;

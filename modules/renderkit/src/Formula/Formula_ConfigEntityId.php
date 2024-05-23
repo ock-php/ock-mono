@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\DID\Attribute\Parameter\CallServiceWithArguments;
-use Donquixote\DID\Attribute\ParametricService;
-use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\Ock\Text\TextInterface;
+use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
+use Ock\DID\Attribute\ParametricService;
+use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Ock\Ock\Text\TextInterface;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
 use Drupal\ock\DrupalText;

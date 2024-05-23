@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface;
-use Donquixote\Ock\Translator\TranslatorInterface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Formula\Sequence\Formula_SequenceInterface;
+use Ock\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
@@ -34,14 +34,14 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
   private array $minStubConf = [];
 
   /**
-   * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $sequence
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Sequence\Formula_SequenceInterface $sequence
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    *
    * @return self
    *   Created instance.
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   #[Adapter]
   public static function create(
@@ -61,9 +61,9 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Formula\Sequence\Formula_SequenceInterface $sequence
+   * @param \Ock\Ock\Formula\Sequence\Formula_SequenceInterface $sequence
    * @param \Drupal\ock\Formator\FormatorD8Interface $itemFormator
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
     private readonly Formula_SequenceInterface $sequence,

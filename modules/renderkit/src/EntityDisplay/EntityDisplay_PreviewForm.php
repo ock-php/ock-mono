@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\Context\CfContext;
-use Donquixote\Ock\Context\CfContextInterface;
-use Donquixote\Ock\Evaluator\Evaluator;
-use Donquixote\Ock\Evaluator\EvaluatorInterface;
-use Donquixote\DID\Exception\EvaluatorException;
-use Donquixote\Ock\Formula\Formula;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Ock\Context\CfContext;
+use Ock\Ock\Context\CfContextInterface;
+use Ock\Ock\Evaluator\Evaluator;
+use Ock\Ock\Evaluator\EvaluatorInterface;
+use Ock\DID\Exception\EvaluatorException;
+use Ock\Ock\Formula\Formula;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\ock\UI\Form\Form_GenericRedirectGET;
 
@@ -123,7 +123,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return \Donquixote\Ock\Context\CfContextInterface
+   * @return \Ock\Ock\Context\CfContextInterface
    */
   private function entityBuildContext(EntityInterface $entity): CfContextInterface {
 
@@ -140,7 +140,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
   /**
    * @param mixed $conf
-   * @param \Donquixote\Ock\Context\CfContextInterface $context
+   * @param \Ock\Ock\Context\CfContextInterface $context
    *
    * @return array
    */

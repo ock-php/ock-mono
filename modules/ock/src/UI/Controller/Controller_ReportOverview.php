@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Plugin\Map\PluginMapInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Plugin\Map\PluginMapInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Render\Markup;
@@ -40,7 +40,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Ock\Ock\Plugin\Map\PluginMapInterface $pluginMap
    *   Plugin map.
    */
   public function __construct(
@@ -51,7 +51,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
   /**
    * @return array
    *
-   * @throws \Donquixote\Ock\Exception\PluginListException
+   * @throws \Ock\Ock\Exception\PluginListException
    */
   #[Route]
   #[RouteTitle('ock plugins')]

@@ -3,19 +3,19 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
-use Donquixote\Ock\Exception\FormulaException;
-use Donquixote\Ock\Exception\GeneratorException;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Generator\Generator;
-use Donquixote\Ock\Plugin\Map\PluginMapInterface;
-use Donquixote\Ock\Summarizer\Summarizer;
-use Donquixote\Ock\Translator\TranslatorInterface;
-use Donquixote\Ock\Util\HtmlUtil;
-use Donquixote\DID\Util\PhpUtil;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\Ock\Exception\FormulaException;
+use Ock\Ock\Exception\GeneratorException;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Generator\Generator;
+use Ock\Ock\Plugin\Map\PluginMapInterface;
+use Ock\Ock\Summarizer\Summarizer;
+use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Ock\Util\HtmlUtil;
+use Ock\DID\Util\PhpUtil;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Serialization\Yaml;
@@ -51,9 +51,9 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
     #[GetService]
@@ -96,7 +96,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
    *
    * @return array
    *
-   * @throws \Donquixote\Ock\Exception\PluginListException
+   * @throws \Ock\Ock\Exception\PluginListException
    */
   #[Route]
   #[RouteDefaultTaskLink('List of plugins')]

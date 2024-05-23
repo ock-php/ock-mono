@@ -3,24 +3,24 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Formula\Label\Formula_LabelInterface;
-use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\Translator\TranslatorInterface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Formula\Label\Formula_LabelInterface;
+use Ock\Ock\Text\TextInterface;
+use Ock\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 
 class FormatorD8_Label implements FormatorD8Interface {
 
   /**
-   * @param \Donquixote\Ock\Formula\Label\Formula_LabelInterface $formula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Label\Formula_LabelInterface $formula
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    *
    * @return self
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   #[Adapter]
   public static function create(
@@ -40,8 +40,8 @@ class FormatorD8_Label implements FormatorD8Interface {
 
   /**
    * @param \Drupal\ock\Formator\FormatorD8Interface $decorated
-   * @param \Donquixote\Ock\Text\TextInterface $label
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Text\TextInterface $label
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
     private readonly FormatorD8Interface $decorated,

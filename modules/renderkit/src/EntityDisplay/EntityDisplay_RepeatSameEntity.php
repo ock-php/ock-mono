@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Ock\Attribute\Parameter\OckFormulaFromClass;
-use Donquixote\Ock\Attribute\Parameter\OckOption;
-use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
-use Donquixote\Ock\Formula\Textfield\Formula_Textfield_IntegerInRange;
+use Ock\Ock\Attribute\Parameter\OckFormulaFromClass;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\Ock\Formula\Textfield\Formula_Textfield_IntegerInRange;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
 

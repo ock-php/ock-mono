@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
-use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\TextLookup\TextLookupInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
+use Ock\Ock\Text\Text;
+use Ock\Ock\Text\TextInterface;
+use Ock\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\ock\DrupalText;
 
@@ -63,7 +63,7 @@ class TextLookup_EntityField implements TextLookupInterface {
    * @param string $entityType
    * @param string $fieldName
    *
-   * @return \Donquixote\Ock\Text\TextInterface|null
+   * @return \Ock\Ock\Text\TextInterface|null
    */
   private function findBaseFieldLabel(string $entityType, string $fieldName): ?TextInterface {
     $definition = $this->entityFieldManager->getBaseFieldDefinitions(
@@ -79,7 +79,7 @@ class TextLookup_EntityField implements TextLookupInterface {
    * @param string $entityType
    * @param string $fieldName
    *
-   * @return \Donquixote\Ock\Text\TextInterface|null
+   * @return \Ock\Ock\Text\TextInterface|null
    */
   private function findCombinedBundleFieldLabel(string $entityType, string $fieldName): ?TextInterface {
     /**

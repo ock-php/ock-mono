@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\Ock\Formula\Select\Formula_Select_TwoStepFlatSelectGrandBase;
+use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Ock\Ock\Formula\Select\Formula_Select_TwoStepFlatSelectGrandBase;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayCondition_And;
 use Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayCondition_EntityIdArg;
@@ -80,7 +80,7 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
   /**
    * @param string $id
    *
-   * @return \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface|null
+   * @return \Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface|null
    */
   protected function idGetSubFormula(string $id): ?Formula_FlatSelectInterface {
 

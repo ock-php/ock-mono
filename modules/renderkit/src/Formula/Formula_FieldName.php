@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\DID\Attribute\Parameter\CallServiceWithArguments;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\ParametricService;
-use Donquixote\DID\Attribute\Parameter\GetArgument;
-use Donquixote\Ock\Attribute\Parameter\GetContext;
-use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
-use Donquixote\Ock\Text\TextInterface;
+use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\ParametricService;
+use Ock\DID\Attribute\Parameter\GetArgument;
+use Ock\Ock\Attribute\Parameter\GetContext;
+use Ock\Ock\Formula\Select\Formula_SelectInterface;
+use Ock\Ock\Text\TextInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\renderkit\TextLookup\TextLookup_FieldName;

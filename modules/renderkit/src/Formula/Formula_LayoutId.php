@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
-use Donquixote\Ock\Formula\Select\Formula_Select_BufferedBase;
-use Donquixote\Ock\Text\Text;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
+use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
+use Ock\Ock\Text\Text;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
 use Drupal\ock\Attribute\RequireModules;
 use Drupal\ock\DrupalText;

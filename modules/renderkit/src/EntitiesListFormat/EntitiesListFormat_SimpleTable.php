@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntitiesListFormat;
 
-use Donquixote\Ock\Attribute\Parameter\OckFormulaFromCall;
-use Donquixote\Ock\Attribute\Parameter\OckOption;
-use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Text\Text;
+use Ock\Ock\Attribute\Parameter\OckFormulaFromCall;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 #[OckPluginInstance('tableSimple', 'Table without headers')]
@@ -26,7 +26,7 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
   ) {}
 
   /**
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
   public static function createColumnsFormula(): FormulaInterface {
     return Formula::ifaceSequence(EntityDisplayInterface::class)

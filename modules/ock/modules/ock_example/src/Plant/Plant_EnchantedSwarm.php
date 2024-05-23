@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\ock_example\Plant;
 
-use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
-use Donquixote\Ock\Text\Text;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
+use Ock\Ock\Text\Text;
 use Drupal\ock_example\Animal\AnimalInterface;
 
 /**
@@ -17,7 +17,7 @@ use Drupal\ock_example\Animal\AnimalInterface;
 class Plant_EnchantedSwarm implements PlantInterface {
 
   /**
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
   #[OckPluginFormula(self::class, "enchantedSwarm", "Enchanted swarm")]
   public static function formula(): FormulaInterface {

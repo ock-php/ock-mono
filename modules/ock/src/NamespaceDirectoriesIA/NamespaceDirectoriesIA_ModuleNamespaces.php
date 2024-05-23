@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\NamespaceDirectoriesIA;
 
-use Donquixote\ClassDiscovery\NamespaceDirectoriesIA\NamespaceDirectoriesIAInterface;
-use Donquixote\ClassDiscovery\NamespaceDirectory;
+use Ock\ClassDiscovery\NamespaceDirectoriesIA\NamespaceDirectoriesIAInterface;
+use Ock\ClassDiscovery\NamespaceDirectory;
 use Drupal\Core\Extension\ModuleExtensionList;
 
 class NamespaceDirectoriesIA_ModuleNamespaces implements NamespaceDirectoriesIAInterface {

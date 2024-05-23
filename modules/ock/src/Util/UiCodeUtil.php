@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Util;
 
-use Donquixote\Ock\Util\HtmlUtil;
-use Donquixote\DID\Util\PhpUtil;
-use Donquixote\Ock\Util\StringUtil as CfStringUtil;
+use Ock\Ock\Util\HtmlUtil;
+use Ock\DID\Util\PhpUtil;
+use Ock\Ock\Util\StringUtil as CfStringUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\Markup;
 

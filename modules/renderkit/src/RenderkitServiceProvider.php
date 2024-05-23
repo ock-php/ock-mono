@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit;
 
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
 use Drupal\ock\DI\ServiceProvider\ServiceProvider_AttributesDiscovery;

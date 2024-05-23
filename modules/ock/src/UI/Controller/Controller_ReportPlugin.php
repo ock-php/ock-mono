@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Exception\FormulaException;
-use Donquixote\Ock\Generator\Generator;
-use Donquixote\Ock\Plugin\NamedPlugin;
-use Donquixote\Ock\Summarizer\Summarizer;
-use Donquixote\Ock\Translator\TranslatorInterface;
-use Donquixote\Ock\Util\HtmlUtil;
-use Donquixote\DID\Util\PhpUtil;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Exception\FormulaException;
+use Ock\Ock\Generator\Generator;
+use Ock\Ock\Plugin\NamedPlugin;
+use Ock\Ock\Summarizer\Summarizer;
+use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Ock\Util\HtmlUtil;
+use Ock\DID\Util\PhpUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
@@ -67,8 +67,8 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   /**
    * Constructor.
    *
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
     #[GetService]
@@ -78,7 +78,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   ) {}
 
   /**
-   * @param \Donquixote\Ock\Plugin\NamedPlugin $named_plugin
+   * @param \Ock\Ock\Plugin\NamedPlugin $named_plugin
    *
    * @return string
    */
@@ -89,7 +89,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
 
   /**
    * @param string $interface
-   * @param \Donquixote\Ock\Plugin\NamedPlugin $named_plugin
+   * @param \Ock\Ock\Plugin\NamedPlugin $named_plugin
    *
    * @return array
    */
@@ -159,7 +159,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   }
 
   /**
-   * @param \Donquixote\Ock\Plugin\NamedPlugin $named_plugin
+   * @param \Ock\Ock\Plugin\NamedPlugin $named_plugin
    *
    * @return array|\Drupal\Component\Render\MarkupInterface
    *
@@ -182,7 +182,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
 
   /**
    * @param string $interface
-   * @param \Donquixote\Ock\Plugin\NamedPlugin $named_plugin
+   * @param \Ock\Ock\Plugin\NamedPlugin $named_plugin
    *
    * @return array
    */
@@ -260,7 +260,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
 
   /**
    * @param $interface
-   * @param \Donquixote\Ock\Plugin\NamedPlugin $named_plugin
+   * @param \Ock\Ock\Plugin\NamedPlugin $named_plugin
    *
    * @return array
    */

@@ -11,7 +11,7 @@ interface ParamToServiceArgInterface {
    *
    * @return mixed
    *
-   * @throws \Donquixote\DID\Exception\DiscoveryException
+   * @throws \Ock\DID\Exception\DiscoveryException
    */
   public function paramGetServiceArg(\ReflectionParameter $parameter): mixed;
 

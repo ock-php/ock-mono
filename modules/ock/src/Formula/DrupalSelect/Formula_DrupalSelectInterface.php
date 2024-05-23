@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula\DrupalSelect;
 
-use Donquixote\Ock\Formula\Id\Formula_IdInterface;
+use Ock\Ock\Formula\Id\Formula_IdInterface;
 use Drupal\Component\Render\MarkupInterface;
 
 /**
@@ -19,7 +19,7 @@ interface Formula_DrupalSelectInterface extends Formula_IdInterface {
    *   Format: $[$group_label][$option_value] = $option_label.
    *   Top-level options have $group_label === ''.
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   public function getGroupedOptions(): array;
 

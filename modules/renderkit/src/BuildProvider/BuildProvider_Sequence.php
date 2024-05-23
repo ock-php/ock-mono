@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Donquixote\Ock\Attribute\Parameter\OckListOfObjects;
-use Donquixote\Ock\Attribute\Parameter\OckOption;
-use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\Ock\Attribute\Parameter\OckListOfObjects;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 #[OckPluginInstance('sequence', 'Sequence of build providers')]

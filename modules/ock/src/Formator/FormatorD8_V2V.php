@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\FormulaBase\Formula_ConfPassthruInterface;
-use Donquixote\Ock\Util\UtilBase;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Ock\FormulaBase\Formula_ConfPassthruInterface;
+use Ock\Ock\Util\UtilBase;
 use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 
 /**
@@ -15,12 +15,12 @@ use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 final class FormatorD8_V2V extends UtilBase {
 
   /**
-   * @param \Donquixote\Ock\FormulaBase\Formula_ConfPassthruInterface $formula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\FormulaBase\Formula_ConfPassthruInterface $formula
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   #[Adapter]
   public static function create(
@@ -34,12 +34,12 @@ final class FormatorD8_V2V extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\Ock\FormulaBase\Formula_ConfPassthruInterface $formula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\FormulaBase\Formula_ConfPassthruInterface $formula
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return \Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface|null
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   #[Adapter]
   public static function createOptionable(

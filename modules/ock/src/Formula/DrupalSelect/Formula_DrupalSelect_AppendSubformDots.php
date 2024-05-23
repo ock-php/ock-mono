@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula\DrupalSelect;
 
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
-use Donquixote\Ock\Optionlessness\Optionlessness;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Ock\IdToFormula\IdToFormulaInterface;
+use Ock\Ock\Optionlessness\Optionlessness;
 use Drupal\Component\Render\MarkupInterface;
 
 /**
@@ -18,8 +18,8 @@ class Formula_DrupalSelect_AppendSubformDots implements Formula_DrupalSelectInte
    * Constructor.
    *
    * @param \Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface $decorated
-   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\IdToFormula\IdToFormulaInterface $idToFormula
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    */
   public function __construct(
     private readonly Formula_DrupalSelectInterface $decorated,

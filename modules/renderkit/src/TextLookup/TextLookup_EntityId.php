@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Donquixote\DID\Attribute\Parameter\CallServiceWithArguments;
-use Donquixote\DID\Attribute\ParametricService;
-use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\TextLookup\TextLookupInterface;
+use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
+use Ock\DID\Attribute\ParametricService;
+use Ock\Ock\Text\TextInterface;
+use Ock\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\ock\DrupalText;

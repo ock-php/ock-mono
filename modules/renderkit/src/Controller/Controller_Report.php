@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Controller;
 
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Evaluator\Evaluator;
-use Donquixote\DID\Exception\EvaluatorException;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Plugin\Map\PluginMapInterface;
-use Donquixote\Ock\Translator\TranslatorInterface;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Evaluator\Evaluator;
+use Ock\DID\Exception\EvaluatorException;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Plugin\Map\PluginMapInterface;
+use Ock\Ock\Translator\TranslatorInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\ock\Attribute\Routing\Route;
 use Drupal\ock\Attribute\Routing\RouteIsAdmin;
@@ -39,9 +39,9 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Plugin\Map\PluginMapInterface $pluginMap
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
     #[GetService]

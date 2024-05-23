@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\ParamConverter;
 
-use Donquixote\DID\Attribute\Service;
+use Ock\DID\Attribute\Service;
 use Drupal\ock\Attribute\DI\ServiceTags;
 use Drupal\ock\Util\UiUtil;
 

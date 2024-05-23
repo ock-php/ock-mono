@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula\DrupalSelect;
 
-use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\Ock\Translator\TranslatorInterface;
+use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Ock\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 
 /**
@@ -16,8 +16,8 @@ class Formula_DrupalSelect_FromFlatSelect implements Formula_DrupalSelectInterfa
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $decorated
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $decorated
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(private readonly Formula_FlatSelectInterface $decorated, private TranslatorInterface $translator) {
   }

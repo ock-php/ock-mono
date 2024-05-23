@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\ock\DI;
 
-use Donquixote\DID\ContainerToValue\ContainerToValueInterface;
-use Donquixote\DID\ParamToCTV\ParamToCTVInterface;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
+use Ock\DID\ContainerToValue\ContainerToValueInterface;
+use Ock\DID\ParamToCTV\ParamToCTVInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
 
 /**
  * Resolves parameters.
@@ -23,14 +23,14 @@ class ParamToCTV_CustomArgsDecorator implements ParamToCTVInterface {
   private array $namedArgs = [];
 
   /**
-   * @var array<string, mixed|\Donquixote\DID\ContainerToValue\ContainerToValueInterface>
+   * @var array<string, mixed|\Ock\DID\ContainerToValue\ContainerToValueInterface>
    */
   private array $typeArgs = [];
 
   /**
    * Constructor.
    *
-   * @param \Donquixote\DID\ParamToCTV\ParamToCTVInterface $decorated
+   * @param \Ock\DID\ParamToCTV\ParamToCTVInterface $decorated
    */
   public function __construct(
     #[GetService]
@@ -38,7 +38,7 @@ class ParamToCTV_CustomArgsDecorator implements ParamToCTVInterface {
   ) {}
 
   /**
-   * @param array<string, mixed|\Donquixote\DID\ContainerToValue\ContainerToValueInterface> $args
+   * @param array<string, mixed|\Ock\DID\ContainerToValue\ContainerToValueInterface> $args
    *
    * @return static
    */
@@ -49,7 +49,7 @@ class ParamToCTV_CustomArgsDecorator implements ParamToCTVInterface {
   }
 
   /**
-   * @param array<string, mixed|\Donquixote\DID\ContainerToValue\ContainerToValueInterface> $args
+   * @param array<string, mixed|\Ock\DID\ContainerToValue\ContainerToValueInterface> $args
    *
    * @return static
    */

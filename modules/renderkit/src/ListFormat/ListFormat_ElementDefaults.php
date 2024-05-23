@@ -10,9 +10,9 @@ class ListFormat_ElementDefaults implements ListFormatInterface {
   /**
    * @CfrPlugin("expert", "Expert")
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
-  public static function createExpertFormula(): Formula_ListFormat_Expert|\Donquixote\Ock\Core\Formula\FormulaInterface {
+  public static function createExpertFormula(): Formula_ListFormat_Expert|\Ock\Ock\Core\Formula\FormulaInterface {
     return new Formula_ListFormat_Expert();
   }
 

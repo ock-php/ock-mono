@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Donquixote\DID\Attribute\Parameter\GetCallableService;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Attribute\Parameter\OckOption;
-use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
-use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\DID\Exception\EvaluatorException;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Text\Text;
-use Donquixote\DID\Util\PhpUtil;
+use Ock\DID\Attribute\Parameter\GetCallableService;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Attribute\Parameter\OckOption;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\DID\Exception\EvaluatorException;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
+use Ock\DID\Util\PhpUtil;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\ock\Util\DrupalPhpUtil;
@@ -55,8 +55,8 @@ class BuildProvider_ShowEntityIfExists implements BuildProviderInterface {
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    * @param callable(string): \Drupal\renderkit\Formula\Formula_EntityIdAutocomplete $entityIdFormulaMap
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   #[OckPluginFormula(self::class, 'entityDisplay', 'Show an entity')]
   public static function formula(

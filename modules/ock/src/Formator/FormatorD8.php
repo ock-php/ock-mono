@@ -3,22 +3,22 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\FormulaAdapter;
-use Donquixote\Ock\Util\UtilBase;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\FormulaAdapter;
+use Ock\Ock\Util\UtilBase;
 use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 use Drupal\ock\Ock;
 
 final class FormatorD8 extends UtilBase {
 
   /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface|null $adapter
+   * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface|null $adapter
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public static function fromFormula(
     FormulaInterface $formula,
@@ -32,12 +32,12 @@ final class FormatorD8 extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface|null
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public static function optional(
     FormulaInterface $formula,
@@ -48,12 +48,12 @@ final class FormatorD8 extends UtilBase {
   }
 
   /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return \Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface|null
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public static function optionable(
     FormulaInterface $formula,

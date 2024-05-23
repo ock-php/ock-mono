@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Util;
 
-use Donquixote\Ock\Util\HtmlUtil;
+use Ock\Ock\Util\HtmlUtil;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\Markup;

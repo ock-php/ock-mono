@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface;
-use Donquixote\Ock\Translator\TranslatorInterface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\Attribute\Parameter\Adaptee;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Formula\Textfield\Formula_TextfieldInterface;
+use Ock\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -15,7 +15,7 @@ use Drupal\Core\Form\FormStateInterface;
 class FormatorD8_Textfield implements FormatorD8Interface {
 
   /**
-   * @param \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula
+   * @param \Ock\Ock\Formula\Textfield\Formula_TextfieldInterface $formula
    */
   public function __construct(
     #[Adaptee]
@@ -51,7 +51,7 @@ class FormatorD8_Textfield implements FormatorD8Interface {
    */
   public static function validate(array &$element, FormStateInterface $form_state) {
 
-    /** @var \Donquixote\Ock\Formula\Textfield\Formula_TextfieldInterface $formula */
+    /** @var \Ock\Ock\Formula\Textfield\Formula_TextfieldInterface $formula */
     $formula = $element['#formula'];
 
     foreach ($formula->textGetValidationErrors($element['#value']) as $error) {

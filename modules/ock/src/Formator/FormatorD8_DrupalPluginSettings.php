@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\DID\Attribute\Parameter\GetService;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\DID\Attribute\Parameter\GetService;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -31,7 +31,7 @@ class FormatorD8_DrupalPluginSettings implements FormatorD8Interface {
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   #[Adapter]
   public static function fromFormula(
@@ -50,7 +50,7 @@ class FormatorD8_DrupalPluginSettings implements FormatorD8Interface {
    * @param \Drupal\Core\Plugin\PluginFormFactoryInterface $pluginFormFactory
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public static function fromPlugin(object $plugin, PluginFormFactoryInterface $pluginFormFactory): FormatorD8Interface {
     if ($plugin instanceof PluginWithFormsInterface) {

@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface;
-use Donquixote\Ock\Formula\Select\Formula_Select_CustomLabelDecorator;
-use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
-use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\TextLookup\TextLookup_Fixed;
-use Donquixote\Ock\Translator\Translator;
-use Donquixote\Ock\Util\ConfUtil;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface;
+use Ock\Ock\Formula\Select\Formula_Select_CustomLabelDecorator;
+use Ock\Ock\Formula\Select\Formula_SelectInterface;
+use Ock\Ock\Text\Text;
+use Ock\Ock\TextLookup\TextLookup_Fixed;
+use Ock\Ock\Translator\Translator;
+use Ock\Ock\Util\ConfUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
@@ -20,12 +20,12 @@ use Drupal\ock\Formator\Util\D8SelectUtil;
 abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, OptionableFormatorD8Interface {
 
   /**
-   * @var \Donquixote\Ock\Formula\Select\Formula_SelectInterface
+   * @var \Ock\Ock\Formula\Select\Formula_SelectInterface
    */
   private Formula_SelectInterface $idSelectFormula;
 
   /**
-   * @var \Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface
+   * @var \Ock\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface
    */
   private DrilldownKeysHelperInterface $keysHelper;
 
@@ -37,8 +37,8 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $idFormula
-   * @param \Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface $drilldownKeysHelper
+   * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $idFormula
+   * @param \Ock\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface $drilldownKeysHelper
    */
   public function __construct(
     Formula_SelectInterface $idFormula,
@@ -139,10 +139,10 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
   /**
    * Builds a modified select formula with '…' appended to some options.
    *
-   * @return \Donquixote\Ock\Formula\Select\Formula_SelectInterface
+   * @return \Ock\Ock\Formula\Select\Formula_SelectInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Adaptism\Exception\AdapterException
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   private function buildEnhancedSelectFormula(): Formula_SelectInterface {
     $labels = [];
@@ -163,7 +163,7 @@ abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, Op
    * @return bool
    *   TRUE, if the sub-formula is optionless.
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   abstract protected function idIsOptionless(string $id): bool;
 

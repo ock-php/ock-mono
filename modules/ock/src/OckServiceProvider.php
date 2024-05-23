@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\ock;
 
-use Donquixote\Adaptism\AdaptismPackage;
-use Donquixote\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Donquixote\Ock\OckPackage;
+use Ock\Adaptism\AdaptismPackage;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
+use Ock\Ock\OckPackage;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
 use Drupal\ock\DI\ServiceProvider\ServiceProvider_AttributesDiscovery;

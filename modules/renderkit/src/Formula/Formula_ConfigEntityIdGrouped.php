@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Exception\FormulaException;
-use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
-use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\TextLookup\TextLookupInterface;
+use Ock\Ock\Exception\FormulaException;
+use Ock\Ock\Formula\Select\Formula_SelectInterface;
+use Ock\Ock\Text\TextInterface;
+use Ock\Ock\TextLookup\TextLookupInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
@@ -26,7 +26,7 @@ class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {
   private string|false|null $groupBy;
 
   /**
-   * @var \Donquixote\Ock\TextLookup\TextLookupInterface|null
+   * @var \Ock\Ock\TextLookup\TextLookupInterface|null
    */
   private ?TextLookupInterface $groupLabelLookup = NULL;
 
@@ -45,7 +45,7 @@ class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {
    *
    * @return self
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   public static function createForEntityType(
     EntityTypeManagerInterface $entityTypeManager,
@@ -86,7 +86,7 @@ class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {
 
   /**
    * @param string $name
-   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $groupLabelLookup
+   * @param \Ock\Ock\TextLookup\TextLookupInterface $groupLabelLookup
    *
    * @return static
    */
@@ -102,7 +102,7 @@ class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {
    *
    * E.g. for a config entity id "node.teaser", the group id would be "node".
    *
-   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $groupLabelLookup
+   * @param \Ock\Ock\TextLookup\TextLookupInterface $groupLabelLookup
    *   Label lookup for the group keys.
    *
    * @return static

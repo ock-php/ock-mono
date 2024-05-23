@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Generator\GeneratorInterface;
-use Donquixote\Ock\Summarizer\SummarizerInterface;
-use Donquixote\Ock\Text\TextInterface;
-use Donquixote\DID\Util\PhpUtil;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Generator\GeneratorInterface;
+use Ock\Ock\Summarizer\SummarizerInterface;
+use Ock\Ock\Text\TextInterface;
+use Ock\DID\Util\PhpUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\ock\Formator\FormatorD8Interface;
 use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;

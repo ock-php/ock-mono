@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\ock\TextToDrupal;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
-use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\Translator\TranslatorInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
+use Ock\Ock\Text\TextInterface;
+use Ock\Ock\Translator\TranslatorInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\Markup;
 
@@ -17,7 +17,7 @@ class TextToDrupal_Default implements TextToDrupalInterface {
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    *   String translation service.
    */
   public function __construct(

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Ock\Form\Common\FormatorCommonInterface;
+use Ock\Ock\Form\Common\FormatorCommonInterface;
 use Drupal\Component\Render\MarkupInterface;
 
 interface FormatorD8Interface extends FormatorCommonInterface {

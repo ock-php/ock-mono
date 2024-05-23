@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Util;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Core\Formula\FormulaInterface;
 
 final class UiFormulaUtil extends UtilBase {
 
   /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
    *
    * @return string|null
    */
@@ -133,7 +133,7 @@ EOF;
   }
 
   /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
    *
    * @return string|null
    */
@@ -157,7 +157,7 @@ EOF;
   }
 
   /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
    *
    * @return \Reflector|null
    */

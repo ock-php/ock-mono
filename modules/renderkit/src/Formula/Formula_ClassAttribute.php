@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Exception\GeneratorException;
-use Donquixote\Ock\Formula\StringVal\Formula_StringVal;
-use Donquixote\Ock\Formula\StringVal\Formula_StringValInterface;
-use Donquixote\Ock\Formula\Textfield\Formula_TextfieldBase;
-use Donquixote\Ock\Util\HtmlUtil;
-use Donquixote\DID\Util\PhpUtil;
-use Donquixote\Ock\V2V\String\V2V_StringInterface;
+use Ock\Ock\Exception\GeneratorException;
+use Ock\Ock\Formula\StringVal\Formula_StringVal;
+use Ock\Ock\Formula\StringVal\Formula_StringValInterface;
+use Ock\Ock\Formula\Textfield\Formula_TextfieldBase;
+use Ock\Ock\Util\HtmlUtil;
+use Ock\DID\Util\PhpUtil;
+use Ock\Ock\V2V\String\V2V_StringInterface;
 
 class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_StringInterface {
 
   /**
-   * @return \Donquixote\Ock\Formula\StringVal\Formula_StringValInterface
+   * @return \Ock\Ock\Formula\StringVal\Formula_StringValInterface
    */
   public static function create(): Formula_StringValInterface {
     $formula = new self();

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\PluginDeriver;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Parameter\GetService;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\ock\DI\OckCallbackResolver;

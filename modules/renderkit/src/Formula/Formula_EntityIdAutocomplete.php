@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\DID\Attribute\Parameter\CallServiceWithArguments;
-use Donquixote\DID\Attribute\ParametricService;
-use Donquixote\Ock\Exception\FormulaException;
-use Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
-use Donquixote\Ock\Text\TextInterface;
+use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
+use Ock\DID\Attribute\ParametricService;
+use Ock\Ock\Exception\FormulaException;
+use Ock\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
+use Ock\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -36,7 +36,7 @@ class Formula_EntityIdAutocomplete implements Formula_IdToLabelInterface, Format
    *
    * @return self
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   public static function create(
     EntityTypeManagerInterface $entityTypeManager,

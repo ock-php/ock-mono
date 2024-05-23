@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula;
 
-use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhpInterface;
-use Donquixote\DID\Util\PhpUtil;
+use Ock\Ock\Formula\ValueProvider\Formula_FixedPhpInterface;
+use Ock\DID\Util\PhpUtil;
 
 class Formula_DrupalService implements Formula_FixedPhpInterface {
 

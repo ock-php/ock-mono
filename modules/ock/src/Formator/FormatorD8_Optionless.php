@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Ock\Formula\Optionless\Formula_OptionlessInterface;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\ock\Formator\Optionable\OptionableFormatorD8Interface;
 
 class FormatorD8_Optionless implements FormatorD8Interface, OptionableFormatorD8Interface {
 
   /**
-   * @param \Donquixote\Ock\Formula\Optionless\Formula_OptionlessInterface $formula
+   * @param \Ock\Ock\Formula\Optionless\Formula_OptionlessInterface $formula
    *
    * @return self
    */

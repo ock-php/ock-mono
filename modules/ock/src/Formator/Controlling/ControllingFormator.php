@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator\Controlling;
 
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Ock\Core\Formula\FormulaInterface;
 use Drupal\ock\Ock;
 
 class ControllingFormator {
 
   /**
-   * @param \Donquixote\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface|null $adapter
+   * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface|null $adapter
    *
    * @return \Drupal\ock\Formator\Controlling\ControllingFormatorInterface
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public static function fromFormula(
     FormulaInterface $formula,

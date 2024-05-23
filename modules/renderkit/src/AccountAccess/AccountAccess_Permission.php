@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\AccountAccess;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Text\Text;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\ock\Formula\Formula_PermissionId;
@@ -17,7 +17,7 @@ class AccountAccess_Permission implements AccountAccessInterface {
   /**
    * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
   #[OckPluginFormula(self::class, 'permission', 'Permission')]
   public static function formula(

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\Service;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\FreeParameters\Formula_FreeParameters;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\Service;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\FreeParameters\Formula_FreeParameters;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
@@ -15,9 +15,9 @@ use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 class Formula_EntityType implements Formula_DrupalSelectInterface {
 
   /**
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    *
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   public static function proxy(): FormulaInterface {
     return Formula_FreeParameters::fromClass(self::class);

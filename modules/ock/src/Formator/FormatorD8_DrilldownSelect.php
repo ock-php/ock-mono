@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
-use Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface;
-use Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface;
-use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
-use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
-use Donquixote\Ock\Optionlessness\Optionlessness;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Ock\DrilldownKeysHelper\DrilldownKeysHelper;
+use Ock\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface;
+use Ock\Ock\Formula\Drilldown\Formula_DrilldownInterface;
+use Ock\Ock\Formula\Select\Formula_SelectInterface;
+use Ock\Ock\IdToFormula\IdToFormulaInterface;
+use Ock\Ock\Optionlessness\Optionlessness;
 
 class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
 
@@ -21,8 +21,8 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
   private array $formators = [];
 
   /**
-   * @param \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface $drilldown
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Formula\Drilldown\Formula_DrilldownInterface $drilldown
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return self|null
    */
@@ -55,10 +55,10 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
   /**
    * Constructor.
    *
-   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $idFormula
-   * @param \Donquixote\Ock\IdToFormula\IdToFormulaInterface $idToFormula
-   * @param \Donquixote\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface $drilldownKeysHelper
-   * @param \Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $idFormula
+   * @param \Ock\Ock\IdToFormula\IdToFormulaInterface $idToFormula
+   * @param \Ock\Ock\DrilldownKeysHelper\DrilldownKeysHelperInterface $drilldownKeysHelper
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    */
   public function __construct(
     Formula_SelectInterface $idFormula,
@@ -99,7 +99,7 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface|null
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   private function idGetFormatorOrFalse(string $id): ?FormatorD8Interface {
     return ($this->formators[$id]
@@ -112,7 +112,7 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
    *
    * @return \Drupal\ock\Formator\FormatorD8Interface|null
    *
-   * @throws \Donquixote\Adaptism\Exception\AdapterException
+   * @throws \Ock\Adaptism\Exception\AdapterException
    */
   private function idBuildFormator(string $id): ?FormatorD8Interface {
 

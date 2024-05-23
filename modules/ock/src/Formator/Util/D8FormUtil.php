@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator\Util;
 
-use Donquixote\Ock\Util\UtilBase;
+use Ock\Ock\Util\UtilBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 

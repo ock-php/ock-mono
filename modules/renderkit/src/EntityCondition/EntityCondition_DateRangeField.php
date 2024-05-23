@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityCondition;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Text\Text;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
@@ -23,7 +23,7 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
    * @param string|null $entityType
    * @param string|null $bundleName
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(string $entityType = NULL, string $bundleName = NULL): FormulaInterface {
     return Formula::group()

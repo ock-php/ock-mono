@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Formula\Select\Formula_Select_BufferedBase;
+use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
 use Drupal\ock\DrupalText;
 
 class Formula_ImageStyleName extends Formula_Select_BufferedBase {

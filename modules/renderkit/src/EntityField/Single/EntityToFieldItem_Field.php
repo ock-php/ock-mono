@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Single;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Text\Text;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Text\Text;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
@@ -30,8 +30,8 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
    * @param string|null $entityType
    * @param string|null $bundle
    *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @return \Ock\Ock\Core\Formula\FormulaInterface
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   public static function formula(
     #[GetService]

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\renderkit\EntitySelection;
 
-use Donquixote\DID\Attribute\Parameter\CallService;
+use Ock\DID\Attribute\Parameter\CallService;
 use Drupal\Core\Entity\EntityStorageInterface;
 
 /**

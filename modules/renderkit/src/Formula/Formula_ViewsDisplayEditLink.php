@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp_Null;
-use Donquixote\Ock\Text\Text;
+use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Formula\ValueProvider\Formula_FixedPhp_Null;
+use Ock\Ock\Text\Text;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Link;
 use Drupal\ock\Formator\FormatorD8Interface;
@@ -16,7 +16,7 @@ class Formula_ViewsDisplayEditLink extends Formula_FixedPhp_Null implements Form
   /**
    * @param \Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId $idFormula
    *
-   * @return \Donquixote\Ock\Formula\Drilldown\Formula_DrilldownInterface
+   * @return \Ock\Ock\Formula\Drilldown\Formula_DrilldownInterface
    */
   public static function createDrilldown(Formula_ViewIdWithDisplayId $idFormula): FormulaInterface {
     return Formula::group()

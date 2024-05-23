@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\renderkit\UI;
 
-use Donquixote\DID\Util\AttributesUtil;
-use Donquixote\ClassDiscovery\NamespaceDirectory;
+use Ock\DID\Util\AttributesUtil;
+use Ock\ClassDiscovery\NamespaceDirectory;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\ock\Attribute\Routing\RouteModifierInterface;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;

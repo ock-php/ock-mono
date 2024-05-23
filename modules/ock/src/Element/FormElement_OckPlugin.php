@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Element;
 
-use Donquixote\Adaptism\Exception\AdapterException;
-use Donquixote\Ock\Formula\Formula;
+use Ock\Adaptism\Exception\AdapterException;
+use Ock\Ock\Formula\Formula;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element\FormElement;
 use Drupal\ock\Formator\FormatorD8;

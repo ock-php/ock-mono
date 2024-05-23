@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit;
 
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\DID\Attribute\ParametricService;
-use Donquixote\DID\Attribute\Parameter\GetArgument;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DID\Attribute\ParametricService;
+use Ock\DID\Attribute\Parameter\GetArgument;
 use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\Core\Entity\EntityStorageInterface;

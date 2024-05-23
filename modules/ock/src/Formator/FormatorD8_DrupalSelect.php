@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\DID\Attribute\Parameter\GetService;
-use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
-use Donquixote\Ock\Translator\TranslatorInterface;
-use Donquixote\Ock\Util\ConfUtil;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
+use Ock\Ock\Formula\Select\Formula_SelectInterface;
+use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Ock\Util\ConfUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\ock\Formator\Controlling\ControllingFormatorInterface;
 use Drupal\ock\Formator\Util\D8SelectUtil;
@@ -24,8 +24,8 @@ class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormato
   private bool $required = TRUE;
 
   /**
-   * @param \Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    *
    * @return self
    */
@@ -40,8 +40,8 @@ class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormato
   }
 
   /**
-   * @param \Donquixote\Ock\Formula\Select\Formula_SelectInterface $formula
-   * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $formula
+   * @param \Ock\Ock\Translator\TranslatorInterface $translator
    *
    * @return self
    */

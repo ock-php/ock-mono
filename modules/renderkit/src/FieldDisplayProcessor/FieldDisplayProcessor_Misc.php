@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
-use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
-use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
-use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Formula\Textfield\Formula_Textfield_NoValidation;
-use Donquixote\Ock\Text\Text;
-use Donquixote\DID\Util\PhpUtil;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\Ock\Formula\Boolean\Formula_Boolean_YesNo;
+use Ock\Ock\Formula\Formula;
+use Ock\Ock\Formula\GroupVal\Formula_GroupValInterface;
+use Ock\Ock\Formula\Textfield\Formula_Textfield_NoValidation;
+use Ock\Ock\Text\Text;
+use Ock\DID\Util\PhpUtil;
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
 use Drupal\renderkit\Util\UtilBase;
 
@@ -38,8 +38,8 @@ abstract class FieldDisplayProcessor_Misc extends UtilBase {
   }
 
   /**
-   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @return \Ock\Ock\Formula\GroupVal\Formula_GroupValInterface
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   #[OckPluginFormula(FieldDisplayProcessorInterface::class, 'minimal', 'Minimal')]
   public static function minimal(): Formula_GroupValInterface {
@@ -47,8 +47,8 @@ abstract class FieldDisplayProcessor_Misc extends UtilBase {
   }
 
   /**
-   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @return \Ock\Ock\Formula\GroupVal\Formula_GroupValInterface
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   #[OckPluginFormula(FieldDisplayProcessorInterface::class, 'fullReset', 'Full reset')]
   public static function fullReset(): Formula_GroupValInterface {
@@ -60,8 +60,8 @@ abstract class FieldDisplayProcessor_Misc extends UtilBase {
    * @param bool $withOuterWrapperClasses
    * @param bool $withLabelOptions
    *
-   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
-   * @throws \Donquixote\Ock\Exception\FormulaException
+   * @return \Ock\Ock\Formula\GroupVal\Formula_GroupValInterface
+   * @throws \Ock\Ock\Exception\FormulaException
    */
   public static function miscFormula(
     bool $withOuterWrapper,

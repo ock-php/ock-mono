@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formula;
 
-use Donquixote\Adaptism\Attribute\Adapter;
-use Donquixote\Adaptism\Attribute\Parameter\Adaptee;
-use Donquixote\Ock\Formula\Select\Formula_Select_BufferedBase;
-use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Text\TextInterface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\Attribute\Parameter\Adaptee;
+use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
+use Ock\Ock\Text\Text;
+use Ock\Ock\Text\TextInterface;
 use Drupal\ock\DrupalText;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
