@@ -1,0 +1,31 @@
+<?php
+declare(strict_types=1);
+
+/* @see _renderkit_pop_parent() */
+
+const RENDERKIT_POP_PARENT = '_renderkit_pop_parent';
+
+/**
+ * @param array $element
+ *
+ * @return array
+ */
+function _renderkit_pop_parent(array $element): array {
+  array_pop($element['#parents']);
+  return $element;
+}
+
+/**
+ * @param array $existing_form
+ * @param array $form_state
+ * @param array $form
+ *
+ * @return array
+ */
+function _renderkit_generic_form(
+  /** @noinspection PhpUnusedParameterInspection */ array $existing_form,
+  /** @noinspection PhpUnusedParameterInspection */ array &$form_state,
+  array $form
+): array {
+  return $form;
+}

@@ -1,0 +1,4 @@
+view renderkit reports:
+  title: 'View OCK report pages'
+  description: 'View reports for Renderkit'
+  restrict access: true

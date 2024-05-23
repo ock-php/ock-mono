@@ -1,0 +1,7 @@
+name: Render Kit
+description: Tools for dealing with render arrays.
+type: module
+core_version_requirement: ^8.8 || ^9
+
+dependencies:
+  - themekit:themekit
