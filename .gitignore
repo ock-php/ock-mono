@@ -5,4 +5,11 @@
 /.phpunit.cache
 /build/
 /packages/*/composer.lock
-/web/
+
+# Ignore everything in /web/ except the /web/sites/default/settings.php file.
+/web/*
+!/web/sites/
+/web/sites/*
+!/web/sites/default/
+/web/sites/default/*
+!/web/sites/default/settings.php
