@@ -1,0 +1,56 @@
+<?php
+declare(strict_types=1);
+
+/**
+ * Implements hook_theme()
+ *
+ * @return array[]
+ */
+function themekit_theme() {
+  return [
+    'themekit_container' => [
+      'render element' => 'element',
+      'file' => 'themekit.theme.inc',
+      /* @see theme_themekit_container() */
+      'function' => 'theme_themekit_container',
+    ],
+    'themekit_item_containers' => [
+      'render element' => 'element',
+      'file' => 'themekit.theme.inc',
+      /* @see theme_themekit_item_containers() */
+      'function' => 'theme_themekit_item_containers',
+    ],
+    'themekit_link_wrapper' => [
+      'render element' => 'element',
+      'file' => 'themekit.theme.inc',
+      /* @see theme_themekit_link_wrapper() */
+      'function' => 'theme_themekit_link_wrapper',
+    ],
+    'themekit_list' => [
+      'render element' => 'element',
+      'file' => 'themekit.theme.inc',
+      /* @see theme_themekit_list() */
+      'function' => 'theme_themekit_list',
+    ],
+    'themekit_separator_list' => [
+      'render element' => 'element',
+      'file' => 'themekit.theme.inc',
+      /* @see theme_themekit_separator_list() */
+      'function' => 'theme_themekit_separator_list',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_element_info()
+ *
+ * @return array
+ */
+function themekit_element_info() {
+  return [
+    'themekit_container' => [
+      /* @see theme_themekit_container() */
+      '#theme_wrappers' => ['themekit_container'],
+    ],
+  ];
+}
