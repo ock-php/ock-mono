@@ -3,16 +3,18 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
+use Donquixote\DID\Attribute\Parameter\GetCallableService;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
 use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\DID\Exception\EvaluatorException;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\ock\Attribute\DI\DrupalService;
 use Drupal\ock\Util\DrupalPhpUtil;
 use Drupal\renderkit\EntityDisplay\EntityDisplay;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
@@ -25,16 +27,42 @@ use Drupal\renderkit\Formula\Formula_EntityType_WithGroupLabels;
 class BuildProvider_ShowEntityIfExists implements BuildProviderInterface {
 
   /**
+   * Constructor.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   * @param string $entityTypeId
+   * @param string|int $entityId
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
+   */
+  public function __construct(
+    private readonly EntityTypeManagerInterface $entityTypeManager,
+    private readonly string $entityTypeId,
+    private readonly string|int $entityId,
+    private readonly EntityDisplayInterface $entityDisplay,
+  ) {}
+
+  #[OckPluginInstance('entityDisplayNode1', 'Show node 1')]
+  public static function createNode1(
+    #[GetService('entity_type.manager')]
+    EntityTypeManagerInterface $entityTypeManager,
+    #[OckOption('entity_display', 'Display')]
+    EntityDisplayInterface $entityDisplay,
+  ): self {
+    return new self($entityTypeManager, 'node', 1, $entityDisplay);
+  }
+
+  /**
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    * @param callable(string): \Drupal\renderkit\Formula\Formula_EntityIdAutocomplete $entityIdFormulaMap
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   #[OckPluginFormula(self::class, 'entityDisplay', 'Show an entity')]
   public static function formula(
-    #[DrupalService('entity_type.manager')]
+    #[GetService('entity_type.manager')]
     EntityTypeManagerInterface $entityTypeManager,
-    #[DrupalService(Formula_EntityIdAutocomplete::MAP_SERVICE_ID)]
+    #[GetCallableService(Formula_EntityIdAutocomplete::class)]
     callable $entityIdFormulaMap,
   ): FormulaInterface {
     return Formula::group()
@@ -64,26 +92,13 @@ class BuildProvider_ShowEntityIfExists implements BuildProviderInterface {
           return EntityDisplay::formula($entityType, $bundle);
         },
       )
-      ->buildPhp(PhpUtil::phpNewClass(self::class, [
+      ->buildPhp(PhpUtil::phpConstruct(self::class, [
         DrupalPhpUtil::service('entity_type.manager'),
         PhpUtil::phpPlaceholder('entity_type'),
         PhpUtil::phpPlaceholder('entity_id'),
         PhpUtil::phpPlaceholder('entity_display'),
       ]));
   }
-
-  /**
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   * @param string $entityTypeId
-   * @param string|int $entityId
-   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
-   */
-  public function __construct(
-    private readonly EntityTypeManagerInterface $entityTypeManager,
-    private readonly string $entityTypeId,
-    private readonly string|int $entityId,
-    private readonly EntityDisplayInterface $entityDisplay,
-  ) {}
 
   /**
    * @return array

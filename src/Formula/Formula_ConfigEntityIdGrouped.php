@@ -11,13 +11,9 @@ use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\ock\Attribute\DI\DrupalService;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\DrupalText;
 
 class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {
-
-  const MAP_SERVICE_ID = 'renderkit.formula_map.config_entity_id_grouped';
 
   /**
    * @var array<string, mixed>
@@ -27,7 +23,7 @@ class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {
   /**
    * @var string|false|null
    */
-  private string|false|null $groupBy = NULL;
+  private string|false|null $groupBy;
 
   /**
    * @var \Donquixote\Ock\TextLookup\TextLookupInterface|null
@@ -42,22 +38,6 @@ class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {
   public function __construct(
     private readonly ConfigEntityStorageInterface $storage,
   ) {}
-
-  /**
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   *
-   * @return callable(string): self
-   */
-  #[RegisterService(self::MAP_SERVICE_ID)]
-  public static function createMap(
-    #[DrupalService('entity_type.manager')]
-    EntityTypeManagerInterface $entityTypeManager,
-  ): \Closure {
-    return fn (string $entityTypeId) => self::createForEntityType(
-      $entityTypeManager,
-      $entityTypeId,
-    );
-  }
 
   /**
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
@@ -118,7 +98,12 @@ class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {
   }
 
   /**
+   * Immutable setter. Uses a prefix of the entity id as the group key.
+   *
+   * E.g. for a config entity id "node.teaser", the group id would be "node".
+   *
    * @param \Donquixote\Ock\TextLookup\TextLookupInterface $groupLabelLookup
+   *   Label lookup for the group keys.
    *
    * @return static
    */

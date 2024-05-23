@@ -28,7 +28,8 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
    */
   public static function createNoArgs(): self {
     return self::createWithDisplayCondition(
-      new ViewsDisplayCondition_NoArgs());
+      new ViewsDisplayCondition_NoArgs(),
+    );
   }
 
   /**
@@ -37,9 +38,9 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
    * @return self
    */
   public static function createWithEntityIdArg(string $entityTypeId = NULL): self {
-
     return self::createWithDisplayCondition(
-      new ViewsDisplayCondition_EntityIdArg($entityTypeId));
+      new ViewsDisplayCondition_EntityIdArg($entityTypeId),
+    );
   }
 
   /**
@@ -63,7 +64,7 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
    * @param \Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface $condition
    */
   public function __construct(
-    $status = TRUE,
+    bool $status = TRUE,
     private readonly ViewsDisplayConditionInterface $condition,
   ) {
     $this->idFormula = new Formula_ViewId($status);

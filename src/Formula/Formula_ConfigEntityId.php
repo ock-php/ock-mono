@@ -3,20 +3,16 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Ock\Exception\FormulaException;
+use Donquixote\DID\Attribute\Parameter\CallServiceWithArguments;
+use Donquixote\DID\Attribute\ParametricService;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Text\TextInterface;
-use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\ock\Attribute\DI\DrupalService;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\DrupalText;
 
+#[ParametricService]
 class Formula_ConfigEntityId implements Formula_FlatSelectInterface {
-
-  const MAP_SERVICE_ID = 'renderkit.formula_map.config_entity_id';
 
   /**
    * @var array<string, mixed>
@@ -29,48 +25,9 @@ class Formula_ConfigEntityId implements Formula_FlatSelectInterface {
    * @param \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage
    */
   public function __construct(
+    #[CallServiceWithArguments]
     private readonly ConfigEntityStorageInterface $storage,
   ) {}
-
-  /**
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   *
-   * @return callable(string): self
-   */
-  #[RegisterService(self::MAP_SERVICE_ID)]
-  public static function createMap(
-    #[DrupalService('entity_type.manager')]
-    EntityTypeManagerInterface $entityTypeManager,
-  ): \Closure {
-    return fn (string $entityTypeId) => self::create(
-      $entityTypeManager,
-      $entityTypeId,
-    );
-  }
-
-  /**
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   * @param string $entityTypeId
-   *
-   * @return self
-   *
-   * @throws \Donquixote\Ock\Exception\FormulaException
-   */
-  public static function create(
-    EntityTypeManagerInterface $entityTypeManager,
-    string $entityTypeId,
-  ): self {
-    try {
-      $storage = $entityTypeManager->getStorage($entityTypeId);
-    }
-    catch (PluginException $e) {
-      throw new FormulaException("Entity type '$entityTypeId' was not found.", 0, $e);
-    }
-    if (!$storage instanceof ConfigEntityStorageInterface) {
-      throw new FormulaException("Entity type '$entityTypeId' does not seem to be a config entity type.");
-    }
-    return new self($storage);
-  }
 
   /**
    * @param bool $status

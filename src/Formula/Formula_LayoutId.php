@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Formula\Select\Formula_Select_BufferedBase;
 use Donquixote\Ock\Text\Text;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
-use Drupal\ock\Attribute\DI\RegisterService;
+use Drupal\ock\Attribute\RequireModules;
 use Drupal\ock\DrupalText;
 
 /**
  * Formula to select a layout id.
  */
-#[RegisterService(modules: ['layout'])]
+#[Service]
+#[RequireModules(['layout'])]
 class Formula_LayoutId extends Formula_Select_BufferedBase {
 
   /**

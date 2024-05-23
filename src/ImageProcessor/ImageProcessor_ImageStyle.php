@@ -3,38 +3,23 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ImageProcessor;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Attribute\Parameter\OckFormulaFromClass;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\Formula\Formula_ImageStyleName;
 
+#[OckPluginInstance('imageStyle', 'Image style')]
 class ImageProcessor_ImageStyle implements ImageProcessorInterface {
-
-  /**
-   * @CfrPlugin(
-   *   id = "imageStyle",
-   *   label = @t("Image style")
-   * )
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public static function createFormula(): FormulaInterface {
-
-    return Formula_GroupVal_Callback::fromClass(
-      __CLASS__,
-      [
-        new Formula_ImageStyleName(),
-      ],
-      [
-        t('Image style'),
-      ]);
-  }
 
   /**
    * @param string $styleName
    *   The image style name.
    */
-  public function __construct(private $styleName) {
-  }
+  public function __construct(
+    #[OckOption('image_style', 'Image style')]
+    #[OckFormulaFromClass(Formula_ImageStyleName::class)]
+    private readonly string $styleName,
+  ) {}
 
   /**
    * @param array $build

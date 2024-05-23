@@ -23,7 +23,7 @@ class EntityFilter_FromCondition implements EntityFilterInterface {
   /**
    * @var \Drupal\renderkit\EntityCondition\EntityConditionInterface
    */
-  private $singleEntityFilter;
+  private EntityConditionInterface $singleEntityFilter;
 
   /**
    * Adapter constructor.

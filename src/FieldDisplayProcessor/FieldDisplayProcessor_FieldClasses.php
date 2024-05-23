@@ -6,16 +6,11 @@ namespace Drupal\renderkit\FieldDisplayProcessor;
 class FieldDisplayProcessor_FieldClasses implements FieldDisplayProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
-   */
-  private $decorated;
-
-  /**
    * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface $decorated
    */
-  public function __construct(FieldDisplayProcessorInterface $decorated) {
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    private readonly FieldDisplayProcessorInterface $decorated,
+  ) {}
 
   /**
    * @param array $element

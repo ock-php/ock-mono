@@ -8,16 +8,11 @@ use Drupal\Core\Entity\EntityInterface;
 class EntityDisplay_FixedBuild extends EntityDisplayBase {
 
   /**
-   * @var array
-   */
-  private $fixedRenderArray;
-
-  /**
    * @param array $fixedRenderArray
    */
-  public function __construct(array $fixedRenderArray) {
-    $this->fixedRenderArray = $fixedRenderArray;
-  }
+  public function __construct(
+    private readonly array $fixedRenderArray,
+  ) {}
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity

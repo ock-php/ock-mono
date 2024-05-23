@@ -12,6 +12,6 @@ interface EntityDisplayListFormatInterface {
    *
    * @return array
    */
-  public function buildListWithEntity(array $builds, $entityType, $entity): array;
+  public function buildListWithEntity(array $builds, string $entityType, \Drupal\Core\Entity\EntityInterface $entity): array;
 
 }

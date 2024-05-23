@@ -18,16 +18,11 @@ use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntityBuildProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit\LabeledFormat\LabeledFormatInterface
-   */
-  private $labeledFormat;
-
-  /**
    * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
    */
-  public function __construct(LabeledFormatInterface $labeledFormat) {
-    $this->labeledFormat = $labeledFormat;
-  }
+  public function __construct(
+    private readonly LabeledFormatInterface $labeledFormat,
+  ) {}
 
   /**
    * @param array $build
@@ -36,7 +31,7 @@ class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntity
    *
    * @return array
    */
-  public function buildAddLabelWithEntity(array $build, EntityInterface $entity, $label): array {
+  public function buildAddLabelWithEntity(array $build, EntityInterface $entity, string $label): array {
     return $this->labeledFormat->buildAddLabel($build, $label);
   }
 }

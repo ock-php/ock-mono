@@ -6,16 +6,11 @@ namespace Drupal\renderkit\Formula\Misc\ViewsDisplayCondition;
 class ViewsDisplayCondition_ArgumentTypes implements ViewsDisplayConditionInterface {
 
   /**
-   * @var string[]
-   */
-  private $argumentsSignature;
-
-  /**
    * @param string[] $argumentsSignature
    */
-  public function __construct(array $argumentsSignature) {
-    $this->argumentsSignature = $argumentsSignature;
-  }
+  public function __construct(
+    private readonly array $argumentsSignature,
+  ) {}
 
   /**
    * @param string $id

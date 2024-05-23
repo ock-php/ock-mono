@@ -3,48 +3,28 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ListFormat;
 
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
+use Donquixote\Ock\Attribute\Parameter\OckFormulaFromClass;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\Formula\Formula_ListSeparator;
 
 /**
  * Concatenates the list items with a separator.
  */
+#[OckPluginInstance('separator', 'Separator')]
 class ListFormat_Separator implements ListFormatInterface {
-
-  /**
-   * @CfrPlugin(
-   *   id = "separator",
-   *   label = @t("Separator")
-   * )
-   *
-   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
-   */
-  public static function createFormula(): Formula_GroupValInterface {
-
-    return Formula_GroupVal_Callback::fromClass(
-      __CLASS__,
-      [
-        new Formula_ListSeparator(),
-      ],
-      [
-        t('Separator'),
-      ]);
-  }
 
   /**
    * @param string $separator
    */
-  public function __construct(private $separator = '') {
-  }
+  public function __construct(
+    #[OckOption('separator', 'Separator')]
+    #[OckFormulaFromClass(Formula_ListSeparator::class)]
+    private readonly string $separator = '',
+  ) {}
 
   /**
-   * @param array[] $builds
-   *   Array of render arrays for list items.
-   *   Must not contain any property keys like "#..".
-   *
-   * @return array
-   *   Render array for the list.
+   * {@inheritdoc}
    */
   public function buildList(array $builds): array {
     return [

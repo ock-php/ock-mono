@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Attribute\Parameter\OckFormulaFromCall;
+use Donquixote\Ock\Attribute\Parameter\OckFormulaFromClass;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Text\Text;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessor_Wrapper_LinkToEntity;
@@ -22,31 +23,8 @@ use Drupal\renderkit\Formula\Formula_TagName;
  *   label = "Entity title, raw"
  * )
  */
+#[OckPluginInstance('rawTitle', 'Title, raw')]
 class EntityDisplay_Title extends EntityDisplayBase {
-
-  /**
-   * Advanced plugin formula with additional options.
-   *
-   * @CfrPlugin(
-   *   id = "title",
-   *   label = "Entity title"
-   * )
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public static function createAdvancedFormula(): FormulaInterface {
-    return Formula::group()
-      ->add(
-        'tag_name',
-        Text::t('Wrapper'),
-        Formula_TagName::createOptional(
-          ['h1', 'h2', 'h3', 'h4', 'strong']))
-      ->add(
-        'link',
-        Text::t('Link to entity'),
-        new Formula_Boolean_YesNo())
-      ->call([self::class, 'create']);
-  }
 
   /**
    * Static factory for the advanced formula.
@@ -56,22 +34,28 @@ class EntityDisplay_Title extends EntityDisplayBase {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
-  public static function create(?string $wrapperTagName, bool $link): EntityDisplayInterface {
-
+  #[OckPluginInstance('title', 'Title')]
+  public static function create(
+    #[OckOption('tag_name', 'Wrapper')]
+    #[OckFormulaFromCall([Formula_TagName::class, 'create'], [['h1', 'h2', 'h3', 'h4', 'strong'], NULL])]
+    ?string $wrapperTagName,
+    #[OckOption('link', 'Link to entity')]
+    #[OckFormulaFromClass(Formula_Boolean_YesNo::class)]
+    bool $link,
+  ): EntityDisplayInterface {
     $display = new self();
-
     if ($link) {
       $display = new EntityDisplay_WithEntityBuildProcessor(
         $display,
-        new EntityBuildProcessor_Wrapper_LinkToEntity());
+        new EntityBuildProcessor_Wrapper_LinkToEntity(),
+      );
     }
-
     if ($wrapperTagName) {
       $display = new EntityDisplay_WithBuildProcessor(
         $display,
-        BuildProcessor_Container::create($wrapperTagName));
+        BuildProcessor_Container::create($wrapperTagName),
+      );
     }
-
     return $display;
   }
 

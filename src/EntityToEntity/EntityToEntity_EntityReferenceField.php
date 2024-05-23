@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityToEntity;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
-use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -33,14 +33,14 @@ class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
   ) {}
 
   /**
-   * @CfrPlugin("entityReferenceField", "Entity reference field")
-   *
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    * @param \Drupal\renderkit\Formula\Formula_EtDotFieldName $fieldNameFormula
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  #[OckPluginInstance('entityReferenceField', 'Entity reference field')]
+  #[OckPluginFormula(self::class, 'entityReferenceField', 'Entity reference field')]
   public static function createFormula(
     #[GetService('entity_field.manager')]
     EntityFieldManagerInterface $entityFieldManager,

@@ -14,11 +14,6 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 class EntityDisplay_ViewModeByType extends EntityDisplay_ViewModeBase {
 
   /**
-   * @var string[]
-   */
-  private $viewModesByType;
-
-  /**
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    * @param string[] $viewModesByType
    *   Format: $[$entity_type] = $view_mode
@@ -26,10 +21,9 @@ class EntityDisplay_ViewModeByType extends EntityDisplay_ViewModeBase {
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    array $viewModesByType,
-    private $defaultViewModeName = NULL
+    private readonly array $viewModesByType,
+    private readonly ?string $defaultViewModeName = NULL
   ) {
-    $this->viewModesByType = $viewModesByType;
     parent::__construct($entityTypeManager);
   }
 
@@ -38,7 +32,7 @@ class EntityDisplay_ViewModeByType extends EntityDisplay_ViewModeBase {
    *
    * @return string|null
    */
-  protected function etGetViewMode($entityType): ?string {
+  protected function etGetViewMode(string $entityType): ?string {
 
     if (!empty($this->viewModesByType[$entityType])) {
       return $this->viewModesByType[$entityType];

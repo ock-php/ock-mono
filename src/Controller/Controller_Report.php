@@ -5,12 +5,12 @@ namespace Drupal\renderkit\Controller;
 
 use Donquixote\Adaptism\Exception\AdapterException;
 use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Evaluator\Evaluator;
-use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\DID\Exception\EvaluatorException;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Plugin\Map\PluginMapInterface;
 use Donquixote\Ock\Translator\TranslatorInterface;
-use Drupal\controller_annotations\Configuration\Cache;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\ock\Attribute\Routing\Route;
 use Drupal\ock\Attribute\Routing\RouteIsAdmin;
@@ -28,7 +28,7 @@ use Drupal\renderkit\BuildProvider\BuildProviderInterface;
  * @Cache(expires="tomorrow")
  * @todo Define cache via attributes.
  */
-#[Route('/admin/report/renderkit')]
+#[Route('/admin/reports/renderkit')]
 #[RouteIsAdmin]
 #[RouteRequirePermission('view renderkit report pages')]
 class Controller_Report extends ControllerBase implements ControllerRouteNameInterface {
@@ -44,8 +44,11 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
    * @param \Donquixote\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
+    #[GetService]
     private readonly PluginMapInterface $pluginMap,
+    #[GetService]
     private readonly UniversalAdapterInterface $adapter,
+    #[GetService]
     private readonly TranslatorInterface $translator,
   ) {}
 
@@ -117,9 +120,11 @@ class Controller_Report extends ControllerBase implements ControllerRouteNameInt
           'warning');
       }
       $out['exception'] = [
+        /* @see \Drupal\Core\Render\Element\Fieldset */
         '#type' => 'fieldset',
         '#title' => t('Exception'),
-        '#description' => '<p>' . t('Cfrplugin was unable to generate a behavior object for the given configuration.') . '</p>',
+        '#description' => '<p>' . t('Renderkit was unable to generate a behavior object for the given configuration.') . '</p>',
+        '#description_display' => 'before',
         '#id' => '_',
       ];
       $out['exception'] += UiDumpUtil::displayException($e);

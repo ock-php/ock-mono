@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\LabeledEntityDisplayListFormat;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface;
 use Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface;
 use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
@@ -18,27 +19,27 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
   /**
    * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null
    */
-  private $outerProcessor;
+  private ?EntityBuildProcessorInterface $outerProcessor;
 
   /**
    * @var \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null
    */
-  private $labeledFormat;
+  private ?LabeledEntityBuildProcessorInterface $labeledFormat;
 
   /**
    * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null
    */
-  private $innerProcessor;
+  private ?EntityBuildProcessorInterface $innerProcessor;
 
   /**
    * @var \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface|null
    */
-  private $listFormat;
+  private ?EntityDisplayListFormatInterface $listFormat;
 
   /**
    * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null
    */
-  private $itemProcessor;
+  private ?EntityBuildProcessorInterface $itemProcessor;
 
   /**
    * @CfrPlugin(
@@ -120,7 +121,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    * @return array
    *   Combined render array.
    */
-  public function build(array $builds, $entityType, $entity, $label): array {
+  public function build(array $builds, string $entityType, EntityInterface $entity, string $label): array {
 
     if (NULL !== $this->itemProcessor) {
       foreach ($builds as $delta => $build) {

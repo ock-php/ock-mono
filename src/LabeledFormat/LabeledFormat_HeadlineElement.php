@@ -3,46 +3,25 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\LabeledFormat;
 
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Formula\Select\Formula_Select_Fixed;
+use Donquixote\Ock\Attribute\Parameter\OckFormulaFromCall;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\Component\Utility\Html;
+use Drupal\renderkit\Formula\Formula_TagName;
 
+#[OckPluginInstance('headlineElement', 'Headline element')]
 class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
 
   /**
-   * @CfrPlugin(
-   *   id = "headlineElement",
-   *   label = "Headline element"
-   * )
+   * Constructor.
    *
-   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
-   */
-  public static function createFormula(): Formula_GroupValInterface {
-    return Formula_GroupVal_Callback::fromClass(
-      __CLASS__,
-      [
-        Formula_Select_Fixed::createFlat(
-          [
-            'h1' => 'H1',
-            'h2' => 'H2',
-            'h3' => 'H3',
-            'h4' => 'H4',
-            'h5' => 'H5',
-          ]
-        ),
-      ],
-      [
-        t('Label element tag name'),
-      ]
-    );
-  }
-
-  /**
    * @param string $tagName
    */
-  public function __construct(private $tagName = 'h2') {
-  }
+  public function __construct(
+    #[OckOption('tag', 'Label element tag name')]
+    #[OckFormulaFromCall([Formula_TagName::class, 'createForTitle'])]
+    private readonly string $tagName = 'h2'
+  ) {}
 
   /**
    * @param array $build
@@ -53,8 +32,9 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
    * @return array
    *   Modified or wrapped render array with label.
    */
-  public function buildAddLabel(array $build, $label): array {
+  public function buildAddLabel(array $build, string $label): array {
 
+    // @todo Use proper render element setup.
     $label_markup = ''
       . '<' . $this->tagName . '>'
       . Html::escape($label)

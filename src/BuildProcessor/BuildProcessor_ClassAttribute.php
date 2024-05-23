@@ -9,17 +9,13 @@ namespace Drupal\renderkit\BuildProcessor;
 class BuildProcessor_ClassAttribute implements BuildProcessorInterface {
 
   /**
-   * @var string[]
-   */
-  private $classes;
-
-  /**
    * @param string[] $classes
    * @param string $attributesKey
    */
-  public function __construct(array $classes = [], private $attributesKey = '#attributes') {
-    $this->classes = $classes;
-  }
+  public function __construct(
+    private readonly array $classes = [],
+    private readonly string $attributesKey = '#attributes',
+  ) {}
 
   /**
    * @param array $build

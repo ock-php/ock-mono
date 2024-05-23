@@ -6,7 +6,7 @@ namespace Drupal\renderkit\Formula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Optional\Formula_Optional;
 use Donquixote\Ock\Formula\Optional\Formula_Optional_Null;
-use Donquixote\Ock\Formula\Select\Formula_Select_Fixed;
+use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
 use Donquixote\Ock\Text\Text;
 use Drupal\renderkit\Util\UtilBase;
 
@@ -37,7 +37,7 @@ final class Formula_TagName extends UtilBase {
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public static function createForContainer($default = 'div'): FormulaInterface {
+  public static function createForContainer(string $default = 'div'): FormulaInterface {
     return self::create(['div', 'span', 'article', 'section', 'pre'], $default);
   }
 
@@ -54,7 +54,7 @@ final class Formula_TagName extends UtilBase {
     ];
 
     // @todo Make 'ul' a default id?
-    return Formula_Select_Fixed::createFlat($optionsFlat);
+    return new Formula_FlatSelect_Fixed($optionsFlat);
   }
 
   /**
@@ -67,7 +67,7 @@ final class Formula_TagName extends UtilBase {
     foreach ($allowedTagNames as $tagName) {
       $optionsFlat[$tagName] = Text::s($tagName);
     }
-    $formula = Formula_Select_Fixed::createFlat($optionsFlat);
+    $formula = new Formula_FlatSelect_Fixed($optionsFlat);
 
     $formula = new Formula_Optional_Null($formula);
 
@@ -80,12 +80,12 @@ final class Formula_TagName extends UtilBase {
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public static function create(array $allowedTagNames, $defaultTagName = NULL): FormulaInterface {
+  public static function create(array $allowedTagNames, string $defaultTagName = NULL): FormulaInterface {
     $optionsFlat = [];
     foreach ($allowedTagNames as $tagName) {
       $optionsFlat[$tagName] = Text::s($tagName);
     }
-    $formula = Formula_Select_Fixed::createFlat($optionsFlat);
+    $formula = new Formula_FlatSelect_Fixed($optionsFlat);
     if (NULL !== $defaultTagName) {
       $formula = (new Formula_Optional($formula))
         ->withEmptySummary(Text::s($defaultTagName));

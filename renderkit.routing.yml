@@ -1,5 +1,2 @@
-renderkit_annotations:
-  path: ''
-  options:
-    type: annotation
-    module: renderkit
+route_callbacks:
+  - Drupal\renderkit\UI\RenderkitRouteProvider::routes

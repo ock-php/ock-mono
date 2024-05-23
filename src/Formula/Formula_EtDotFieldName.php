@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Formula\Select\Formula_SelectInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\ock\Attribute\DI\RegisterService;
-use Drupal\renderkit\TextLookup\TextLookup_EntityField;
+use Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType;
 use Drupal\renderkit\TextLookup\TextLookup_FieldType;
 
 /**
  * Select formula where the value is like 'node.body'.
  */
-#[RegisterService]
+#[Service(self::class)]
 class Formula_EtDotFieldName implements Formula_SelectInterface {
 
   /**
@@ -37,7 +37,7 @@ class Formula_EtDotFieldName implements Formula_SelectInterface {
    *
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    * @param \Drupal\renderkit\TextLookup\TextLookup_FieldType $fieldTypeLabelLookup
-   * @param \Drupal\renderkit\TextLookup\TextLookup_EntityField $fieldLabelLookup
+   * @param \Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType $fieldLabelLookup
    */
   public function __construct(
     #[GetService('entity_field.manager')]
@@ -45,7 +45,7 @@ class Formula_EtDotFieldName implements Formula_SelectInterface {
     #[GetService]
     private readonly TextLookup_FieldType $fieldTypeLabelLookup,
     #[GetService]
-    private TextLookup_EntityField $fieldLabelLookup,
+    private TextLookup_EntityFieldWithEntityType $fieldLabelLookup,
   ) {}
 
   /**
@@ -79,6 +79,9 @@ class Formula_EtDotFieldName implements Formula_SelectInterface {
     return $clone;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function getOptionsMap(): array {
     /**
      * @var array[][] $map

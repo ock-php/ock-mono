@@ -22,7 +22,7 @@ class Renderkit {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
-  public static function entityContainer(EntityDisplayInterface $decorated, $tagName = 'div'): EntityDisplayInterface {
+  public static function entityContainer(EntityDisplayInterface $decorated, string $tagName = 'div'): EntityDisplayInterface {
     return EntityDisplay_WithBuildProcessor::create(
       $decorated,
       BuildProcessor_Container::create($tagName));
@@ -34,7 +34,7 @@ class Renderkit {
    *
    * @return \Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithEntityBuildProcessor
    */
-  public static function entityContextualLinksWrapper(EntityDisplayInterface $decorated, $tagName = 'article'): EntityDisplay_WithEntityBuildProcessor {
+  public static function entityContextualLinksWrapper(EntityDisplayInterface $decorated, string $tagName = 'article'): EntityDisplay_WithEntityBuildProcessor {
     $processor = (new EntityBuildProcessor_Wrapper_ContextualLinks)->setTagName($tagName);
     return new EntityDisplay_WithEntityBuildProcessor($decorated, $processor);
   }

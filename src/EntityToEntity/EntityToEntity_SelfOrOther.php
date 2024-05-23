@@ -8,16 +8,11 @@ use Drupal\Core\Entity\EntityInterface;
 class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
-   */
-  private $decorated;
-
-  /**
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $decorated
    */
-  public function __construct(EntityToEntityInterface $decorated) {
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    private readonly EntityToEntityInterface $decorated,
+  ) {}
 
   /**
    * Gets the entity type of the referenced entities.

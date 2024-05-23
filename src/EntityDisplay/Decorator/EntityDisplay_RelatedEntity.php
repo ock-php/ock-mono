@@ -3,57 +3,54 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay\Decorator;
 
-use Donquixote\Ock\Context\CfContextInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
+#[OckPluginInstance('related', 'Related entity')]
 class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
-
-  /**
-   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
-   */
-  private $entityToEntity;
-
-  /**
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
-   */
-  private $relatedEntityDisplay;
-
-  /**
-   * @CfrPlugin(
-   *   id = "related",
-   *   label = "Related entity"
-   * )
-   *
-   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
-   *
-   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
-   */
-  public static function createFormula(CfContextInterface $context = NULL): Formula_GroupValInterface {
-
-    return Formula_GroupVal_Callback::fromClass(
-      __CLASS__,
-      [
-        new Formula_IfaceWithContext(EntityToEntityInterface::class, $context),
-        new Formula_IfaceWithContext(EntityDisplayInterface::class),
-      ],
-      [
-        t('Entity relation'),
-        t('Related entity display'),
-      ]);
-  }
 
   /**
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $entityToEntity
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $relatedEntityDisplay
    */
-  public function __construct(EntityToEntityInterface $entityToEntity, EntityDisplayInterface $relatedEntityDisplay) {
-    $this->entityToEntity = $entityToEntity;
-    $this->relatedEntityDisplay = $relatedEntityDisplay;
+  public function __construct(
+    #[OckOption('relation', 'Entity relation')]
+    private readonly EntityToEntityInterface $entityToEntity,
+    // @todo Reset context entity type and bundle for this formula.
+    #[OckOption('display', 'Display for the related entity')]
+    private readonly EntityDisplayInterface $relatedEntityDisplay,
+  ) {}
+
+  /**
+   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
+   *
+   * @todo Make this the real formula.
+   */
+  public function formula(): FormulaInterface {
+    return Formula::group()
+      ->add(
+        'relation',
+        Text::t('Entity relation'),
+        Formula::iface(EntityToEntityInterface::class),
+      )
+      ->addDynamicFormula(
+        'display',
+        Text::t('Display for the related entity'),
+        ['relation'],
+        // @todo Insert target entity type as context.
+        fn (EntityToEntityInterface $relation) => Formula::iface(
+          EntityDisplayInterface::class,
+        ),
+      )
+      ->construct(self::class, ['relation', 'display']);
   }
 
   /**

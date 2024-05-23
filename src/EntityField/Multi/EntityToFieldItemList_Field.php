@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityField\Multi;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
@@ -32,15 +32,8 @@ class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
         Text::t('Field'),
         $etDotFieldNameFormula->withAllowedFieldTypes($allowedFieldTypes),
       )
-      ->addDynamicValues(
-        ['entity_type', 'field_name'],
-        ['field'],
-        fn (string $etDotFieldName) => explode('.', $etDotFieldName),
-      )
-      ->construct(self::class, [
-        'entity_type',
-        'field_name',
-      ]);
+      ->addStringParts(['entity_type', 'field_name'], '.', 'field',)
+      ->construct(self::class, ['entity_type', 'field_name',]);
   }
 
   /**

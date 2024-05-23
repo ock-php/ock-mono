@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\ock\Attribute\DI\DrupalService;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\DrupalText;
 
-#[RegisterService('renderkit.text_lookup.bundle_field')]
+#[Service(self::class)]
 class TextLookup_BundleField implements TextLookupInterface {
 
   /**
@@ -20,7 +20,7 @@ class TextLookup_BundleField implements TextLookupInterface {
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    */
   private function __construct(
-    #[DrupalService('entity_field.manager')]
+    #[GetService('entity_field.manager')]
     private readonly EntityFieldManagerInterface $entityFieldManager,
   ) {}
 

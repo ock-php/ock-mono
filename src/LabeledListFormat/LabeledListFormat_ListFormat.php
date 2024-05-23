@@ -11,16 +11,11 @@ use Drupal\renderkit\ListFormat\ListFormatInterface;
 class LabeledListFormat_ListFormat implements LabeledListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface
-   */
-  private $listFormat;
-
-  /**
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    */
-  public function __construct(ListFormatInterface $listFormat) {
-    $this->listFormat = $listFormat;
-  }
+  public function __construct(
+    private readonly ListFormatInterface $listFormat,
+  ) {}
 
   /**
    * @param array[] $builds
@@ -31,7 +26,7 @@ class LabeledListFormat_ListFormat implements LabeledListFormatInterface {
    * @return array
    *   Combined render array.
    */
-  public function build(array $builds, $label): array {
+  public function build(array $builds, string $label): array {
     return $this->listFormat->buildList($builds);
   }
 }

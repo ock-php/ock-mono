@@ -75,7 +75,7 @@ final class ImageFieldUtil extends UtilBase {
       throw new \RuntimeException('Field item seems to be read-only.', 0, $e);
     }
 
-    /** @noinspection PhpUndefinedFieldInspection */
+    /** @noinspection PhpDynamicFieldDeclarationInspection */
     $file->_referringItem = $items[0];
 
     return $items;

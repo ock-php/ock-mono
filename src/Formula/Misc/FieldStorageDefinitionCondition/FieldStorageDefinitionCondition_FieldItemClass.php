@@ -11,8 +11,9 @@ class FieldStorageDefinitionCondition_FieldItemClass implements FieldStorageDefi
   /**
    * @param string $classOrInterface
    */
-  public function __construct(private $classOrInterface) {
-  }
+  public function __construct(
+    private readonly string $classOrInterface,
+  ) {}
 
   /**
    * @param \Drupal\Core\Field\FieldStorageDefinitionInterface $storageDefinition

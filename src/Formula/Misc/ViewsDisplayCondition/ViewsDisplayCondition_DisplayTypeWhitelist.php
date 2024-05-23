@@ -8,7 +8,7 @@ class ViewsDisplayCondition_DisplayTypeWhitelist implements ViewsDisplayConditio
   /**
    * @var true[]
    */
-  private $allowedDisplayTypes;
+  private array $allowedDisplayTypes;
 
   /**
    * @param string[] $allowedDisplayTypes

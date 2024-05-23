@@ -3,24 +3,22 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\CallServiceWithArguments;
+use Donquixote\DID\Attribute\ParametricService;
 use Donquixote\Ock\Exception\FormulaException;
 use Donquixote\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
-use Donquixote\Ock\IdToFormula\IdToFormula_Callback;
-use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\ock\Attribute\DI\RegisterService;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\DrupalText;
 use Drupal\ock\Formator\FormatorD8Interface;
 
+#[ParametricService]
 class Formula_EntityIdAutocomplete implements Formula_IdToLabelInterface, FormatorD8Interface {
-
-  const MAP_SERVICE_ID = 'renderkit.formula_map.entity_id_autocomplete';
 
   /**
    * Constructor.
@@ -28,24 +26,9 @@ class Formula_EntityIdAutocomplete implements Formula_IdToLabelInterface, Format
    * @param \Drupal\Core\Entity\EntityStorageInterface $storage
    */
   public function __construct(
+    #[CallServiceWithArguments]
     private readonly EntityStorageInterface $storage,
   ) {}
-
-  /**
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   *
-   * @return \Closure(string): self
-   */
-  #[RegisterService(self::MAP_SERVICE_ID)]
-  public static function createFormulaMap(
-    #[GetService('entity_type.manager')]
-    EntityTypeManagerInterface $entityTypeManager,
-  ): \Closure {
-    return fn (string $entityTypeId) => self::create(
-      $entityTypeManager,
-      $entityTypeId,
-    );
-  }
 
   /**
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
@@ -104,6 +87,13 @@ class Formula_EntityIdAutocomplete implements Formula_IdToLabelInterface, Format
       '#target_type' => $this->storage->getEntityTypeId(),
       '#default_value' => $entity,
       '#required' => TRUE,
+      '#_value_callback' => function (array &$element, mixed $input, FormStateInterface $form_state) {
+        if (!$form_state->getUserInput()) {
+          // Return NULL to use default value.
+          return NULL;
+        }
+        return $input;
+      },
     ];
   }
 

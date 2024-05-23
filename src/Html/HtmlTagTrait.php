@@ -10,14 +10,14 @@ trait HtmlTagTrait {
   /**
    * @var string
    */
-  private $tagName = 'div';
+  private string $tagName = 'div';
 
   /**
    * @param string $tagName
    *
    * @return $this
    */
-  public function setTagName($tagName): self {
+  public function setTagName(string $tagName): self {
     $this->tagName = $tagName;
     return $this;
   }
@@ -27,7 +27,7 @@ trait HtmlTagTrait {
    *
    * @return static
    */
-  public function withTagName($tagName): self {
+  public function withTagName(string $tagName): self {
     $clone = clone $this;
     $clone->tagName = $tagName;
     return $clone;

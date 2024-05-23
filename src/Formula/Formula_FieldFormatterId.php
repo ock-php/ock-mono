@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Field\FormatterPluginManager;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
-#[RegisterService]
+#[Service(self::class)]
 class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
 
   private ?string $fieldTypeName;
@@ -72,7 +72,7 @@ class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
    * @return array|null
    *   Field formatter definition, or NULL if not found.
    */
-  private function idGetDefinition($formatterTypeName): ?array {
+  private function idGetDefinition(string $formatterTypeName): ?array {
 
     try {
       $definition = $this->formatterPluginManager->getDefinition(

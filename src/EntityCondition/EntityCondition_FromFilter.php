@@ -22,18 +22,13 @@ use Drupal\renderkit\EntityFilter\EntityFilterInterface;
 class EntityCondition_FromFilter implements EntityConditionInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityFilter\EntityFilterInterface
-   */
-  private $multiEntityFilter;
-
-  /**
    * Adapter constructor.
    *
    * @param \Drupal\renderkit\EntityFilter\EntityFilterInterface $multiEntityFilter
    */
-  public function __construct(EntityFilterInterface $multiEntityFilter) {
-    $this->multiEntityFilter = $multiEntityFilter;
-  }
+  public function __construct(
+    private readonly EntityFilterInterface $multiEntityFilter,
+  ) {}
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity

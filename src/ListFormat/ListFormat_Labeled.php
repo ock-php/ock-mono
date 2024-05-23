@@ -8,17 +8,13 @@ use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
 class ListFormat_Labeled implements ListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface
-   */
-  private $labeledListFormat;
-
-  /**
    * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    * @param string $label
    */
-  public function __construct(LabeledListFormatInterface $labeledListFormat, private $label) {
-    $this->labeledListFormat = $labeledListFormat;
-  }
+  public function __construct(
+    private readonly LabeledListFormatInterface $labeledListFormat,
+    private readonly string $label,
+  ) {}
 
   /**
    * @param array[] $builds

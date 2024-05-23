@@ -18,12 +18,12 @@ class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
   /**
    * @var \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null
    */
-  private $imageProcessor;
+  private ?ImageProcessorInterface $imageProcessor;
 
   /**
    * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
    */
-  private $listFormat;
+  private ?ListFormatInterface $listFormat;
 
   /**
    * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface $imageProcessor

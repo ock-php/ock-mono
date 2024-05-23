@@ -8,7 +8,7 @@ class SelectByEt_FieldName_AllowedTypes extends SelectByEt_FieldName_Base {
   /**
    * @var null|string[]
    */
-  private $allowedFieldTypes;
+  private ?array $allowedFieldTypes;
 
   /**
    * @param string[]|null $allowedFieldTypes

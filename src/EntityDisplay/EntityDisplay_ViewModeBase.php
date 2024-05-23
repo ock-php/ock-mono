@@ -8,16 +8,11 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 abstract class EntityDisplay_ViewModeBase extends EntityDisplay_GroupByTypeBase {
 
   /**
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  private $entityTypeManager;
-
-  /**
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager) {
-    $this->entityTypeManager = $entityTypeManager;
-  }
+  public function __construct(
+    private readonly EntityTypeManagerInterface $entityTypeManager,
+  ) {}
 
   /**
    * @param string $entityTypeId
@@ -25,7 +20,7 @@ abstract class EntityDisplay_ViewModeBase extends EntityDisplay_GroupByTypeBase 
    *
    * @return array[]
    */
-  protected function typeBuildEntities($entityTypeId, array $entities): array {
+  protected function typeBuildEntities(string $entityTypeId, array $entities): array {
 
     $builder = $this->entityTypeManager->getViewBuilder($entityTypeId);
     $viewMode = $this->etGetViewMode($entityTypeId);
@@ -43,5 +38,5 @@ abstract class EntityDisplay_ViewModeBase extends EntityDisplay_GroupByTypeBase 
    *
    * @return string|null
    */
-  abstract protected function etGetViewMode($entityType): ?string;
+  abstract protected function etGetViewMode(string $entityType): ?string;
 }

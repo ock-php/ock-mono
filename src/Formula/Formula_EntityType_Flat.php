@@ -3,19 +3,17 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\ock\Attribute\DI\DrupalService;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\DrupalText;
 
-#[RegisterService(self::SERVICE_ID)]
+#[Service(self::class)]
 class Formula_EntityType_Flat implements Formula_FlatSelectInterface {
-
-  const SERVICE_ID = 'ock.formula.entity_type.flat';
 
   /**
    * Constructor.
@@ -23,7 +21,7 @@ class Formula_EntityType_Flat implements Formula_FlatSelectInterface {
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    */
   public function __construct(
-    #[DrupalService('entity_type.manager')]
+    #[GetService('entity_type.manager')]
     private readonly EntityTypeManagerInterface $entityTypeManager,
   ) {}
 

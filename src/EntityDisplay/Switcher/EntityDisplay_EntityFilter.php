@@ -16,30 +16,17 @@ use Drupal\renderkit\EntityFilter\EntityFilterInterface;
 class EntityDisplay_EntityFilter extends EntitiesDisplayBase {
 
   /**
-   * @var \Drupal\renderkit\EntityFilter\EntityFilterInterface
-   */
-  private $entityFilter;
-
-  /**
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
-   */
-  private $displayIfTrue;
-
-  /**
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
-   */
-  private $displayIfFalse;
-
-  /**
+   * Constructor.
+   *
    * @param \Drupal\renderkit\EntityFilter\EntityFilterInterface $entityFilter
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $displayIfTrue
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null $displayIfFalse
    */
-  public function __construct(EntityFilterInterface $entityFilter, EntityDisplayInterface $displayIfTrue, EntityDisplayInterface $displayIfFalse = NULL) {
-    $this->entityFilter = $entityFilter;
-    $this->displayIfTrue = $displayIfTrue;
-    $this->displayIfFalse = $displayIfFalse;
-  }
+  public function __construct(
+    private readonly EntityFilterInterface $entityFilter,
+    private readonly EntityDisplayInterface $displayIfTrue,
+    private readonly ?EntityDisplayInterface $displayIfFalse = NULL,
+  ) {}
 
   /**
    * Builds render arrays from the entities provided.

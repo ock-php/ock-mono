@@ -13,12 +13,12 @@ class ListFormat_OuterBuildProcessor implements ListFormatInterface {
   /**
    * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
    */
-  private $buildProcessor;
+  private BuildProcessorInterface $buildProcessor;
 
   /**
    * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
    */
-  private $decorated;
+  private ?ListFormatInterface $decorated;
 
   /**
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $outerBuildProcessor

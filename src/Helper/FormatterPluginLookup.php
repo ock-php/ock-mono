@@ -3,16 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Helper;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Field\FormatterPluginManager;
-use Drupal\ock\Attribute\DI\DrupalService;
-use Drupal\ock\Attribute\DI\RegisterService;
 
-#[RegisterService(self::SERVICE_ID)]
+#[Service]
 class FormatterPluginLookup {
-
-  const SERVICE_ID = 'renderkit.formatter_plugin_lookup';
 
   /**
    * Constructor.
@@ -21,7 +18,7 @@ class FormatterPluginLookup {
    * @param \Drupal\Core\Field\FormatterPluginManager $formatterPluginManager
    */
   public function __construct(
-    #[GetService(FieldDefinitionLookup::SERVICE_ID)]
+    #[GetService]
     private readonly FieldDefinitionLookupInterface $fieldDefinitionLookup,
     #[GetService('plugin.manager.field.formatter')]
     private readonly FormatterPluginManager $formatterPluginManager,

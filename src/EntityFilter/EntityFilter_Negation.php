@@ -12,16 +12,11 @@ namespace Drupal\renderkit\EntityFilter;
 class EntityFilter_Negation implements EntityFilterInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityFilter\EntityFilterInterface
-   */
-  private $negatedFilter;
-
-  /**
    * @param \Drupal\renderkit\EntityFilter\EntityFilterInterface $negatedFilter
    */
-  public function __construct(EntityFilterInterface $negatedFilter) {
-    $this->negatedFilter = $negatedFilter;
-  }
+  public function __construct(
+    private readonly EntityFilterInterface $negatedFilter,
+  ) {}
 
   /**
    * Filters the entities based on a condition.

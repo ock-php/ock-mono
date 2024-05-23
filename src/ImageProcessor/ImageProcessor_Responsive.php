@@ -14,7 +14,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
   /**
    * @var string[]
    */
-  private $sizes = [];
+  private array $sizes = [];
 
   /**
    * The image style names.
@@ -22,14 +22,16 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    * @var string[]
    *   Format: $[] = $imageStyleName
    */
-  private $styleNames = [];
+  private array $styleNames = [];
 
   /**
    * @param string|null $fallbackStyleName
    *   Image style for the fallback image (src attribute), for browsers that
    *   don't understand srcset.
    */
-  public function __construct(private $fallbackStyleName = NULL) {
+  public function __construct(
+    private readonly ?string $fallbackStyleName = NULL,
+  ) {
     // @todo Load the image styles here, instead of later!
     $this->styleNames[] = $fallbackStyleName;
   }
@@ -40,7 +42,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @return $this
    */
-  public function minWidthSize($min_width_px, $formula): self {
+  public function minWidthSize(int $min_width_px, string $formula): self {
     if ($min_width_px > 0) {
       $media_query = 'min-width: ' . $min_width_px . 'px';
       $formula = '(' . $media_query . ') ' . $formula;
@@ -51,12 +53,12 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
 
   /**
    * @param int $min_width_px
-   * @param int|float $ratio
-   * @param int|float $space
+   * @param float|int $ratio
+   * @param float|int $space
    *
    * @return $this
    */
-  public function minWidthColumn($min_width_px, $ratio, $space): self {
+  public function minWidthColumn(int $min_width_px, float|int $ratio, float|int $space): self {
     $percentage = (100 * $ratio) . 'vw';
     $subtract = ($space * $ratio) . 'px';
     $formula = 'calc(' . $percentage . ' - ' . $subtract . ')';
@@ -71,7 +73,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @return $this
    */
-  public function addImageStyle($style_name): self {
+  public function addImageStyle(string $style_name): self {
     $this->styleNames[] = $style_name;
     return $this;
   }

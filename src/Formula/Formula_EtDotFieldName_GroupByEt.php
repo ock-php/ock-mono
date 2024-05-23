@@ -14,14 +14,14 @@ class Formula_EtDotFieldName_GroupByEt implements Formula_DrupalSelectInterface 
 
   /**
    * @param null|string[] $allowedFieldTypes
-   * @param string $entityType
+   * @param string|null $entityType
    *   Contextual parameter.
-   * @param string $bundleName
+   * @param string|null $bundleName
    *   Contextual parameter.
    *
    * @return self
    */
-  public static function create(array $allowedFieldTypes = NULL, $entityType = NULL, $bundleName = NULL): self {
+  public static function create(array $allowedFieldTypes = NULL, string $entityType = NULL, string $bundleName = NULL): self {
 
     // @todo Real dependency injection.
 

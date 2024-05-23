@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Summarizer\SummarizerInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Component\Render\MarkupInterface;
@@ -18,14 +19,7 @@ use Drupal\renderkit\Helper\FieldDefinitionLookupInterface;
 /**
  * Formula for the settings for a given formatter.
  */
-class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, FormulaInterface {
-
-  /**
-   * Formatter with default settings.
-   *
-   * @var \Drupal\Core\Field\FormatterInterface
-   */
-  private $stubFormatter;
+class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerInterface, GeneratorInterface, FormulaInterface {
 
   /**
    * Constructor.
@@ -33,9 +27,9 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
    * @param \Drupal\Core\Field\FormatterInterface $stubFormatter
    *   Formatter with default settings.
    */
-  public function __construct(FormatterInterface $stubFormatter) {
-    $this->stubFormatter = $stubFormatter;
-  }
+  public function __construct(
+    private readonly FormatterInterface $stubFormatter,
+  ) {}
 
   /**
    * Static factory.
@@ -133,7 +127,7 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
 
     $summary = $this->getFormatterWithSettings($conf)->settingsSummary();
 
@@ -145,7 +139,7 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
    *
    * @return string
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
     return var_export($this->confGetFormatterSettings($conf), TRUE);
   }
 
@@ -154,16 +148,16 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
    *
    * @return array
    */
-  private function confGetFormatterSettings($conf): array {
+  private function confGetFormatterSettings(mixed $conf): array {
     return $this->getFormatterWithSettings($conf)->getSettings();
   }
 
   /**
-   * @param mixed $settings
+   * @param mixed|null $settings
    *
    * @return \Drupal\Core\Field\FormatterInterface
    */
-  private function getFormatterWithSettings($settings = NULL): FormatterInterface {
+  private function getFormatterWithSettings(mixed $settings = NULL): FormatterInterface {
     $formatter = clone $this->stubFormatter;
     return $formatter->setSettings($settings ?: []);
   }

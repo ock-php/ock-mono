@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplayListFormat;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 /**
@@ -15,16 +16,11 @@ use Drupal\renderkit\ListFormat\ListFormatInterface;
 class EntityDisplayListFormat_ListFormat implements EntityDisplayListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface
-   */
-  private $listFormat;
-
-  /**
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    */
-  public function __construct(ListFormatInterface $listFormat) {
-    $this->listFormat = $listFormat;
-  }
+  public function __construct(
+    private readonly ListFormatInterface $listFormat,
+  ) {}
 
   /**
    * @param array[] $builds
@@ -33,7 +29,7 @@ class EntityDisplayListFormat_ListFormat implements EntityDisplayListFormatInter
    *
    * @return array
    */
-  public function buildListWithEntity(array $builds, $entityType, $entity): array {
+  public function buildListWithEntity(array $builds, string $entityType, EntityInterface $entity): array {
     return $this->listFormat->buildList($builds);
   }
 }

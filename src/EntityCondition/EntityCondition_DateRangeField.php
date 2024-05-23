@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityCondition;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
-use Drupal\renderkit\EntityField\Multi\EntityToFieldItemList;
 use Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface;
 
 /**
@@ -18,30 +18,23 @@ use Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface;
 class EntityCondition_DateRangeField implements EntityConditionInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface
-   */
-  private $field;
-
-  /**
    * @CfrPlugin("dateRangeField", "Date range field")
    *
-   * @param string $entityType
-   * @param string $bundleName
+   * @param string|null $entityType
+   * @param string|null $bundleName
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
-  public static function formula($entityType = NULL, $bundleName = NULL): FormulaInterface {
-
-    return Formula_GroupVal_Callback::fromStaticMethod(
-      __CLASS__,
-      'createNow',
-      [
-        EntityToFieldItemList::formula(
-          ['daterange'],
-          $entityType,
-          $bundleName),
-      ],
-      [t('Date field')]);
+  public static function formula(string $entityType = NULL, string $bundleName = NULL): FormulaInterface {
+    return Formula::group()
+      ->add(
+        'field',
+        Text::t('Date range field'),
+        // @todo Inject field type 'daterange' as context.
+        // @todo Or just pick a field name.
+        Formula::iface(EntityToFieldItemListInterface::class),
+      )
+      ->call([self::class, 'createNow'], ['field']);
   }
 
   /**
@@ -55,14 +48,12 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
 
   /**
    * @param \Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface $field
-   * @param string|int $referenceTimestamp
+   * @param int|string $referenceTimestamp
    */
   public function __construct(
-    EntityToFieldItemListInterface $field,
-    private $referenceTimestamp
-  ) {
-    $this->field = $field;
-  }
+    private readonly EntityToFieldItemListInterface $field,
+    private readonly int|string $referenceTimestamp
+  ) {}
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity

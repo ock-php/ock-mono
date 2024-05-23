@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ListFormat;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Attribute\Parameter\OckFormulaFromCall;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
 use Drupal\renderkit\Formula\Formula_TagName;
 use Drupal\renderkit\Html\HtmlTagTrait;
@@ -14,32 +15,20 @@ class ListFormat_Container implements ListFormatInterface {
   use HtmlTagTrait;
 
   /**
-   * @CfrPlugin("container", @t("Outer container element"))
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public static function createFormula(): FormulaInterface {
-
-    return Formula_GroupVal_Callback::fromStaticMethod(
-      __CLASS__,
-      'create',
-      [
-        Formula_TagName::createForContainer(),
-        Formula_ClassAttribute::create(),
-      ],
-      [
-        t('List type'),
-        t('Classes'),
-      ]);
-  }
-
-  /**
    * @param string $tagName
    * @param string[] $classes
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  public static function create($tagName, array $classes): ListFormatInterface {
+  #[OckPluginInstance('container', 'Outer container element')]
+  public static function create(
+    #[OckOption('tag', 'Tag name')]
+    #[OckFormulaFromCall([Formula_TagName::class, 'createForContainer'])]
+    string $tagName,
+    #[OckOption('classes', 'Classes')]
+    #[OckFormulaFromCall([Formula_ClassAttribute::class, 'create'])]
+    array $classes,
+  ): ListFormatInterface {
     return (new self())
       ->setTagName($tagName)
       ->addClasses($classes);

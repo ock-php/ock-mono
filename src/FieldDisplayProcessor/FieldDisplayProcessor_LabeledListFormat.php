@@ -3,37 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\FieldDisplayProcessor;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Attribute\Parameter\Checkbox;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
 
 class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorInterface {
-
-  /**
-   * @var \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface
-   */
-  private $labeledListFormat;
-
-  /**
-   * @CfrPlugin("labeledListFormatPlus", "Labeled list format +")
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public static function createFormula(): FormulaInterface {
-    return Formula_GroupVal_Callback::fromStaticMethod(
-      __CLASS__,
-      'create',
-      [
-        new Formula_IfaceWithContext(LabeledListFormatInterface::class),
-        new Formula_Boolean_YesNo(),
-      ],
-      [
-        t('Labeled list format'),
-        t('Add field classes'),
-      ]);
-  }
 
   /**
    * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
@@ -41,7 +16,13 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
    *
    * @return \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
    */
-  public static function create(LabeledListFormatInterface $labeledListFormat, $withFieldClasses = FALSE): FieldDisplayProcessor_LabeledListFormat|FieldDisplayProcessorInterface|FieldDisplayProcessor_FieldClasses {
+  #[OckPluginInstance('labeledListFormatPlus', 'Labeled list format +')]
+  public static function create(
+    #[OckOption('labeled_list_format', 'Labeled list format')]
+    LabeledListFormatInterface $labeledListFormat,
+    #[OckOption('with_field_classes', 'Add field classes')]
+    #[Checkbox] bool $withFieldClasses = FALSE,
+  ): FieldDisplayProcessorInterface {
     $fieldDisplayProcessor = new self($labeledListFormat);
     if ($withFieldClasses) {
       $fieldDisplayProcessor = new FieldDisplayProcessor_FieldClasses($fieldDisplayProcessor);
@@ -52,9 +33,9 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
   /**
    * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    */
-  public function __construct(LabeledListFormatInterface $labeledListFormat) {
-    $this->labeledListFormat = $labeledListFormat;
-  }
+  public function __construct(
+    private readonly LabeledListFormatInterface $labeledListFormat,
+  ) {}
 
   /**
    * @param array|array[][] $element
@@ -65,14 +46,12 @@ class FieldDisplayProcessor_LabeledListFormat implements FieldDisplayProcessorIn
    * @return array
    */
   public function process(array $element): array {
-
     $builds = [];
     foreach ($element['#items'] as $delta => $item) {
       if (!empty($element[$delta])) {
         $builds[$delta] = $element[$delta];
       }
     }
-
     return $this->labeledListFormat->build($builds, $element['#title']);
   }
 }

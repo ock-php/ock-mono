@@ -8,7 +8,7 @@ use Donquixote\Ock\Formula\StringVal\Formula_StringVal;
 use Donquixote\Ock\Formula\StringVal\Formula_StringValInterface;
 use Donquixote\Ock\Formula\Textfield\Formula_TextfieldBase;
 use Donquixote\Ock\Util\HtmlUtil;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 use Donquixote\Ock\V2V\String\V2V_StringInterface;
 
 class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_StringInterface {
@@ -26,7 +26,7 @@ class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_String
    *
    * @return string[]
    */
-  public function textGetValidationErrors($text): array {
+  public function textGetValidationErrors(string $text): array {
 
     if ('' === $text) {
       return [];

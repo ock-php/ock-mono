@@ -8,7 +8,7 @@ class EntityTypeCondition_Whitelist implements EntityTypeConditionInterface {
   /**
    * @var true[]
    */
-  private $truthsByEt;
+  private array $truthsByEt;
 
   /**
    * @param string[] $entityTypeIds
@@ -22,7 +22,7 @@ class EntityTypeCondition_Whitelist implements EntityTypeConditionInterface {
    *
    * @return bool
    */
-  public function checkEntityTypeId($entityTypeId): bool {
+  public function checkEntityTypeId(string $entityTypeId): bool {
     return isset($this->truthsByEt[$entityTypeId]);
   }
 }

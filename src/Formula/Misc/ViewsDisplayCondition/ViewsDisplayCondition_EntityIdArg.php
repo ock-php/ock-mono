@@ -8,8 +8,9 @@ class ViewsDisplayCondition_EntityIdArg implements ViewsDisplayConditionInterfac
   /**
    * @param string|null $entityTypeId
    */
-  public function __construct(private $entityTypeId = NULL) {
-  }
+  public function __construct(
+    private readonly ?string $entityTypeId = NULL,
+  ) {}
 
   /**
    * @param string $id

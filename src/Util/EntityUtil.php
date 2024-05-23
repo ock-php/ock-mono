@@ -30,7 +30,7 @@ final class EntityUtil extends UtilBase {
    * @return \Drupal\Core\Entity\EntityInterface[]
    *   Format: $[$delta] = $entity
    */
-  public static function entitiesFilterByType(array $entities, $entityTypeId): array {
+  public static function entitiesFilterByType(array $entities, string $entityTypeId): array {
 
     $filtered = [];
     foreach ($entities as $delta => $entity) {
@@ -50,7 +50,7 @@ final class EntityUtil extends UtilBase {
    * @return \Drupal\Core\Entity\EntityInterface[]
    *   Format: $[$delta] = $entity
    */
-  public static function entitiesFilterByClass(array $entities, $class): array {
+  public static function entitiesFilterByClass(array $entities, string $class): array {
 
     $filtered = [];
     foreach ($entities as $delta => $entity) {
@@ -71,7 +71,7 @@ final class EntityUtil extends UtilBase {
    * @return \Drupal\Core\Entity\EntityInterface[]
    *   Format: $[$delta] = $entity
    */
-  public static function entitiesFilterByClassAndType(array $entities, $class, $entityTypeId): array {
+  public static function entitiesFilterByClassAndType(array $entities, string $class, string $entityTypeId): array {
 
     $filtered = [];
     foreach ($entities as $delta => $entity) {
@@ -91,7 +91,7 @@ final class EntityUtil extends UtilBase {
    *
    * @return int[]
    */
-  public static function entitiesGetIds($entities): array {
+  public static function entitiesGetIds(array $entities): array {
 
     $idsByDelta = [];
     foreach ($entities as $delta => $entity) {

@@ -6,10 +6,12 @@ namespace Drupal\renderkit\Formula;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Formula\Group\Formula_Group_SameItemFormula;
+use Donquixote\Ock\Formula\Group\Formula_Group;
+use Donquixote\Ock\Formula\Group\Item\GroupFormulaItem;
 use Donquixote\Ock\Formula\Sequence\Formula_Sequence;
 use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
 use Drupal\ock\DrupalText;
 use Drupal\ock\Formula\DrupalPluginSettings\Formula_DrupalPluginSettings;
@@ -53,15 +55,17 @@ class Formula_LayoutAndRegions {
           $itemFormula,
         ): FormulaInterface {
           $definition = $layoutManager->getDefinition($layoutId, FALSE);
-          // @todo Dedicated formula with regions tabledrag!
-          return new Formula_Group_SameItemFormula(
-            new Formula_Sequence($itemFormula),
-            // @todo Report fails.
-            DrupalText::multiple($definition->getRegionLabels()),
-          );
+          $sequenceFormula = new Formula_Sequence($itemFormula);
+          return new Formula_Group(array_map(
+            fn (string|MarkupInterface $drupalRegionLabel) => new GroupFormulaItem(
+              DrupalText::fromVar($drupalRegionLabel),
+              $sequenceFormula,
+            ),
+            $definition->getRegionLabels()
+          ));
         },
       )
-      ->addExpression(
+      ->addExpressionPhp(
         'layout',
         PhpUtil::phpCallMethod(
           DrupalPhpUtil::service('plugin.manager.core.layout'),

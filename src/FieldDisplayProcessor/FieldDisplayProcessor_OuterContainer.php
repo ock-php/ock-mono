@@ -6,34 +6,15 @@ namespace Drupal\renderkit\FieldDisplayProcessor;
 class FieldDisplayProcessor_OuterContainer implements FieldDisplayProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface
-   */
-  private $decorated;
-
-  /**
-   * @var string[]
-   */
-  private $classes = [];
-
-  /**
-   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface $decorated
-   */
-  public function __construct(FieldDisplayProcessorInterface $decorated) {
-    $this->decorated = $decorated;
-  }
-
-  /**
-   * @param string[] $classes
+   * Constructor.
    *
-   * @return static
+   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface $decorated
+   * @param list<string> $classes
    */
-  public function withAdditionalClasses(array $classes): self {
-    $clone = clone $this;
-    foreach ($classes as $class) {
-      $clone->classes[] = $class;
-    }
-    return $clone;
-  }
+  public function __construct(
+    private readonly FieldDisplayProcessorInterface $decorated,
+    private readonly array $classes = [],
+  ) {}
 
   /**
    * @param array $element

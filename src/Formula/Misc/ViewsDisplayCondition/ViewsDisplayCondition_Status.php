@@ -8,8 +8,9 @@ class ViewsDisplayCondition_Status implements ViewsDisplayConditionInterface {
   /**
    * @param bool $status
    */
-  public function __construct(private $status = TRUE) {
-  }
+  public function __construct(
+    private readonly bool $status = TRUE,
+  ) {}
 
   /**
    * @param string $id

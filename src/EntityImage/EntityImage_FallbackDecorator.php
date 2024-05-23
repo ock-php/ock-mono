@@ -14,23 +14,13 @@ use Drupal\Core\Entity\EntityInterface;
 class EntityImage_FallbackDecorator implements EntityImageInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
-   */
-  private $decorated;
-
-  /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
-   */
-  private $fallback;
-
-  /**
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $decorated
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $fallback
    */
-  public function __construct(EntityImageInterface $decorated, EntityImageInterface $fallback) {
-    $this->decorated = $decorated;
-    $this->fallback = $fallback;
-  }
+  public function __construct(
+    private readonly EntityImageInterface $decorated,
+    private readonly EntityImageInterface $fallback,
+  ) {}
 
   /**
    * Same as ->buildEntities(), just for a single entity.

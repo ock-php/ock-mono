@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\ListFormat;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Attribute\Parameter\OckFormulaFromCall;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
 use Drupal\renderkit\Formula\Formula_TagName;
 use Drupal\renderkit\Html\HtmlAttributesTrait;
@@ -17,39 +17,23 @@ class ListFormat_HtmlList implements ListFormatInterface {
   use HtmlAttributesTrait;
 
   /**
-   * @CfrPlugin("htmlList", @t("HTML list"))
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public static function createFormula(): FormulaInterface {
-
-    return Formula_GroupVal_Callback::fromStaticMethod(
-      __CLASS__,
-      'create',
-      [
-        Formula_TagName::createForHtmlList(),
-        Formula_ClassAttribute::create(),
-      ],
-      [
-        t('List type'),
-        t('Classes'),
-      ]);
-  }
-
-  /**
    * @param string $tagName
    * @param string[] $classes
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  public static function create($tagName = 'ul', array $classes = []): ListFormat_HtmlList|ListFormatInterface {
-
+  public static function create(
+    #[OckOption('list_type', 'Classes')]
+    #[OckFormulaFromCall([Formula_TagName::class, 'createForHtmlList'])]
+    string $tagName = 'ul',
+    #[OckOption('classes', 'Classes')]
+    #[OckFormulaFromCall([Formula_ClassAttribute::class, 'create'])]
+    array $classes = [],
+  ): ListFormat_HtmlList|ListFormatInterface {
     $format = new self($tagName);
-
     if ([] === $classes) {
       return $format;
     }
-
     return $format->addClasses($classes);
   }
 
@@ -58,7 +42,7 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *
    * @return \Drupal\renderkit\ListFormat\ListFormatInterface
    */
-  public static function ul(array $classes = []): ListFormat_HtmlList|ListFormatInterface {
+  public static function ul(array $classes = []): ListFormatInterface {
     return self::create('ul', $classes);
   }
 
@@ -74,8 +58,9 @@ class ListFormat_HtmlList implements ListFormatInterface {
   /**
    * @param string $tagName
    */
-  public function __construct(private $tagName = 'ul') {
-  }
+  public function __construct(
+    private readonly string $tagName = 'ul',
+  ) {}
 
   /**
    * @param array[] $builds
@@ -86,7 +71,6 @@ class ListFormat_HtmlList implements ListFormatInterface {
    *   Render array for the list.
    */
   public function buildList(array $builds): array {
-
     return [
       /* @see theme_themekit_list() */
       '#theme' => 'themekit_list',

@@ -3,22 +3,19 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplayListFormat;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface;
 
 class EntityDisplayListFormat_Labeled implements EntityDisplayListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
-   */
-  private $labeledEntityDisplayListFormat;
-
-  /**
    * @param \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat
    * @param string $label
    */
-  public function __construct(LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat, private $label) {
-    $this->labeledEntityDisplayListFormat = $labeledEntityDisplayListFormat;
-  }
+  public function __construct(
+    private readonly LabeledEntityDisplayListFormatInterface $labeledEntityDisplayListFormat,
+    private readonly string $label,
+  ) {}
 
   /**
    * @param array[] $builds
@@ -27,7 +24,7 @@ class EntityDisplayListFormat_Labeled implements EntityDisplayListFormatInterfac
    *
    * @return array
    */
-  public function buildListWithEntity(array $builds, $entityType, $entity): array {
+  public function buildListWithEntity(array $builds, string $entityType, EntityInterface $entity): array {
     return $this->labeledEntityDisplayListFormat->build($builds,$entityType, $entity, $this->label);
   }
 }

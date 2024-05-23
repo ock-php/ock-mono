@@ -3,19 +3,16 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\FreeParameters\Formula_FreeParameters;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
-use Drupal\ock\Attribute\DI\DrupalService;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 
-#[RegisterService(self::SERVICE_ID)]
+#[Service(self::class)]
 class Formula_EntityType implements Formula_DrupalSelectInterface {
-
-  const SERVICE_ID = 'renderkit.formula.entity_type';
 
   /**
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
@@ -30,7 +27,7 @@ class Formula_EntityType implements Formula_DrupalSelectInterface {
    * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
    */
   public function __construct(
-    #[DrupalService('entity_type.repository')]
+    #[GetService('entity_type.repository')]
     private readonly EntityTypeRepositoryInterface $entityTypeRepository,
   ) {}
 

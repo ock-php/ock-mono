@@ -3,9 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\FreeParameters\Formula_FreeParameters;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
@@ -14,9 +13,8 @@ use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 /**
  * Formula where the value is the name of an entity type with one or more fields.
  */
+#[Service(self::class)]
 class Formula_EntityType_WithFields implements Formula_FlatSelectInterface {
-
-  const SERVICE_ID = 'renderkit.formula.entity_type_with_fields';
 
   /**
    * Constructor.
@@ -30,15 +28,6 @@ class Formula_EntityType_WithFields implements Formula_FlatSelectInterface {
     #[GetService('entity_type.repository')]
     private readonly EntityTypeRepositoryInterface $entityTypeRepository,
   ) {}
-
-  /**
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   *
-   * @throws \Donquixote\Ock\Exception\FormulaException
-   */
-  public static function proxy(): FormulaInterface {
-    return Formula_FreeParameters::fromClass(self::class);
-  }
 
   /**
    * {@inheritdoc}

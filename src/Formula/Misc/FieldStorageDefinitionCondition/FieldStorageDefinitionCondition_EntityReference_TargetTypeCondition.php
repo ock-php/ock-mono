@@ -9,16 +9,11 @@ use Drupal\renderkit\Formula\Misc\EntityTypeCondition\EntityTypeConditionInterfa
 class FieldStorageDefinitionCondition_EntityReference_TargetTypeCondition extends FieldStorageDefinitionCondition_EntityReference {
 
   /**
-   * @var \Drupal\renderkit\Formula\Misc\EntityTypeCondition\EntityTypeConditionInterface
-   */
-  private $targetTypeCondition;
-
-  /**
    * @param \Drupal\renderkit\Formula\Misc\EntityTypeCondition\EntityTypeConditionInterface $targetTypeCondition
    */
-  public function __construct(EntityTypeConditionInterface $targetTypeCondition) {
-    $this->targetTypeCondition = $targetTypeCondition;
-  }
+  public function __construct(
+    private readonly EntityTypeConditionInterface $targetTypeCondition,
+  ) {}
 
   /**
    * @param \Drupal\Core\Field\FieldStorageDefinitionInterface $storageDefinition

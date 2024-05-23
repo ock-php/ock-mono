@@ -8,23 +8,13 @@ use Drupal\Core\Entity\EntityInterface;
 class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
-   */
-  private $first;
-
-  /**
-   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
-   */
-  private $second;
-
-  /**
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $first
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $second
    */
-  public function __construct(EntityToEntityInterface $first, EntityToEntityInterface $second) {
-    $this->first = $first;
-    $this->second = $second;
-  }
+  public function __construct(
+    private readonly EntityToEntityInterface $first,
+    private readonly EntityToEntityInterface $second,
+  ) {}
 
   /**
    * Gets the entity type of the referenced entities.

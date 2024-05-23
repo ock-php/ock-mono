@@ -16,16 +16,11 @@ use Drupal\Core\Entity\EntityInterface;
 class EntityCondition_Negation implements EntityConditionInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityCondition\EntityConditionInterface
-   */
-  private $negatedCondition;
-
-  /**
    * @param \Drupal\renderkit\EntityCondition\EntityConditionInterface $negatedCondition
    */
-  public function __construct(EntityConditionInterface $negatedCondition) {
-    $this->negatedCondition = $negatedCondition;
-  }
+  public function __construct(
+    private readonly EntityConditionInterface $negatedCondition,
+  ) {}
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity

@@ -75,5 +75,5 @@ abstract class EntityDisplay_GroupByTypeBase implements EntityDisplayInterface {
    *
    * @return array[]
    */
-  abstract protected function typeBuildEntities($entityTypeId, array $entities): array;
+  abstract protected function typeBuildEntities(string $entityTypeId, array $entities): array;
 }

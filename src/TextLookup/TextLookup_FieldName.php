@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\ParametricService;
+use Donquixote\DID\Attribute\Parameter\GetArgument;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\TextLookup\TextLookupInterface;
-use Drupal\ock\Attribute\DI\RegisterService;
 
 /**
  * Main entry point for field label lookup.
  *
  * This class only contains static factories, the main logic is elsewhere.
  */
+#[ParametricService]
 class TextLookup_FieldName implements TextLookupInterface {
-
-  const MAP_SERVICE_ID = 'renderkit.map.text_lookup.field_name';
 
   /**
    * Constructor.
@@ -25,25 +25,11 @@ class TextLookup_FieldName implements TextLookupInterface {
    * @param string $entityType
    */
   public function __construct(
+    #[GetService]
     private TextLookup_EntityField $entityFieldLabelLookup,
+    #[GetArgument]
     private readonly string $entityType,
   ) {}
-
-  /**
-   * @param \Drupal\renderkit\TextLookup\TextLookup_EntityField $entityFieldLabelLookup
-   *
-   * @return callable(string): self
-   */
-  #[RegisterService(self::MAP_SERVICE_ID)]
-  public static function createFormulaMap(
-    #[GetService]
-    TextLookup_EntityField $entityFieldLabelLookup,
-  ): \Closure {
-    return fn (string $entityTypeId) => new self(
-      $entityFieldLabelLookup,
-      $entityTypeId,
-    );
-  }
 
   /**
    * Immutable setter. Restricts the bundles to be considered for field labels.

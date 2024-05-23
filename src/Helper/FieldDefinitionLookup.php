@@ -3,38 +3,20 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Helper;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldDefinitionInterface;
-use Drupal\ock\Attribute\DI\RegisterService;
 
+#[Service(self::class)]
 class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
-
-  const SERVICE_ID = 'renderkit.field_definition_lookup';
-
-  /**
-   * @return \Drupal\renderkit\Helper\FieldDefinitionLookupInterface
-   */
-  #[RegisterService(self::SERVICE_ID)]
-  public static function createBuffered(): FieldDefinitionLookupInterface {
-    return new FieldDefinitionLookup_Buffer(
-      self::createBufferless(),
-    );
-  }
-
-  /**
-   * @return \Drupal\renderkit\Helper\FieldDefinitionLookupInterface
-   */
-  public static function createBufferless(): FieldDefinitionLookupInterface {
-
-    return new self(
-      \Drupal::service('entity_field.manager'));
-  }
 
   /**
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    */
   public function __construct(
+    #[GetService('entity_field.manager')]
     private readonly EntityFieldManagerInterface $entityFieldManager,
   ) {}
 
@@ -43,9 +25,9 @@ class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
    */
   public function etGetFieldDefinitions(string $entity_type): array {
 
+    $storageDefinitions = $this->entityFieldManager
+      ->getFieldStorageDefinitions($entity_type);
     try {
-      $storageDefinitions = $this->entityFieldManager
-        ->getFieldStorageDefinitions($entity_type);
     }
     catch (\LogicException $e) {
       throw $e;

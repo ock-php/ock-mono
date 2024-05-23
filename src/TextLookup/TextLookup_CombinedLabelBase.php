@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\TextLookup\TextLookupInterface;
@@ -18,9 +17,31 @@ abstract class TextLookup_CombinedLabelBase implements TextLookupInterface {
    * @param \Donquixote\Ock\TextLookup\TextLookupInterface $decorated
    */
   public function __construct(
-    private readonly TextLookupInterface $groupLabelLookup,
-    private readonly TextLookupInterface $decorated,
+    private TextLookupInterface $groupLabelLookup,
+    private TextLookupInterface $decorated,
   ) {}
+
+  /**
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $decorated
+   *
+   * @return static
+   */
+  public function withDecoratedLabelLookup(TextLookupInterface $decorated): static {
+    $clone = clone $this;
+    $clone->decorated = $decorated;
+    return $clone;
+  }
+
+  /**
+   * @param \Donquixote\Ock\TextLookup\TextLookupInterface $groupLabelLookup
+   *
+   * @return static
+   */
+  public function withGroupLabelLookup(TextLookupInterface $groupLabelLookup): static {
+    $clone = clone $this;
+    $clone->groupLabelLookup = $groupLabelLookup;
+    return $clone;
+  }
 
   /**
    * {@inheritdoc}

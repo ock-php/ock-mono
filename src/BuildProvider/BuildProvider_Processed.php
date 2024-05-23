@@ -11,23 +11,13 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 class BuildProvider_Processed implements BuildProviderInterface {
 
   /**
-   * @var \Drupal\renderkit\BuildProvider\BuildProviderInterface
-   */
-  private $decorated;
-
-  /**
-   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
-   */
-  private $processor;
-
-  /**
    * @param \Drupal\renderkit\BuildProvider\BuildProviderInterface $decorated
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $processor
    */
-  public function __construct(BuildProviderInterface $decorated, BuildProcessorInterface $processor) {
-    $this->decorated = $decorated;
-    $this->processor = $processor;
-  }
+  public function __construct(
+    private readonly BuildProviderInterface $decorated,
+    private readonly BuildProcessorInterface $processor,
+  ) {}
 
   /**
    * @return array

@@ -11,7 +11,7 @@ trait HtmlAttributesTrait {
   /**
    * @var mixed[]
    */
-  private $attributes = [];
+  private array $attributes = [];
 
   /**
    * @param array $attributes
@@ -30,7 +30,7 @@ trait HtmlAttributesTrait {
    *
    * @return $this
    */
-  public function setAttribute($key, $value): self {
+  public function setAttribute(string $key, mixed $value): self {
     $this->attributes[$key] = $value;
     return $this;
   }
@@ -41,7 +41,7 @@ trait HtmlAttributesTrait {
    *
    * @return static
    */
-  public function withAttributeValue($key, $value): self {
+  public function withAttributeValue(string $key, mixed $value): self {
     $clone = clone $this;
     $clone->attributes[$key] = $value;
     return $clone;
@@ -52,7 +52,7 @@ trait HtmlAttributesTrait {
    *
    * @return $this
    */
-  public function addClass($class): self {
+  public function addClass(string $class): self {
     $this->attributes['class'][] = $class;
     return $this;
   }
@@ -62,7 +62,7 @@ trait HtmlAttributesTrait {
    *
    * @return static
    */
-  public function withAddedClass($class): self {
+  public function withAddedClass(string $class): self {
     $clone = clone $this;
     $clone->attributes['class'][] = $class;
     return $clone;
@@ -92,7 +92,7 @@ trait HtmlAttributesTrait {
    *
    * @return array
    */
-  protected function tagNameBuildContainer($tagName): array {
+  protected function tagNameBuildContainer(string $tagName): array {
     return [
       /* @see themekit_element_info() */
       /* @see theme_themekit_container() */

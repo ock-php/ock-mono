@@ -3,52 +3,26 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
-use Donquixote\Ock\Context\CfContextInterface;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Attribute\Parameter\OckListOfObjects;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
 /**
  * Chain-of-responsibility entity display switcher.
  */
+#[OckPluginInstance('chain', 'Chain of responsibility')]
 class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
-
-  /**
-   * The displays to try.
-   *
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
-   *   Format: $[] = $displayHandler
-   */
-  private $displays;
-
-  /**
-   * @CfrPlugin(
-   *   id = "chain",
-   *   label = "Chain of responsibility"
-   * )
-   *
-   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public static function createCfrFormula(CfContextInterface $context = NULL): FormulaInterface {
-
-    return Formula_GroupVal_Callback::fromClass(
-      __CLASS__,
-      [Formula_IfaceWithContext::createSequence(
-        EntityDisplayInterface::class,
-        $context)],
-      ['']);
-  }
 
   /**
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $displays
    */
-  public function __construct(array $displays) {
-    $this->displays = $displays;
-  }
+  public function __construct(
+    #[OckOption('displays', 'Displays')]
+    #[OckListOfObjects(EntityDisplayInterface::class)]
+    private readonly array $displays,
+  ) {}
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
@@ -66,8 +40,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
           unset($entities[$delta]);
         }
       }
-      /** @noinspection DisconnectedForeachInstructionInspection */
-      if ([] === $entities) {
+      if ($entities === []) {
         break;
       }
     }

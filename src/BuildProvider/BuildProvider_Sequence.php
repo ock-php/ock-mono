@@ -3,74 +3,42 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Donquixote\Ock\Context\CfContextInterface;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Callback\Formula_Callback;
+use Donquixote\Ock\Attribute\Parameter\OckListOfObjects;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
+#[OckPluginInstance('sequence', 'Sequence of build providers')]
 class BuildProvider_Sequence implements BuildProviderInterface {
 
   /**
-   * @var \Drupal\renderkit\BuildProvider\BuildProviderInterface[]
-   */
-  private $providers;
-
-  /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface
-   */
-  private $listFormat;
-
-  /**
-   * @CfrPlugin(
-   *   id = "sequence",
-   *   label = "Sequence of build providers"
-   * )
+   * Constructor.
    *
-   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public static function getCfrFormula(CfContextInterface $context = NULL): FormulaInterface {
-
-    return Formula_Callback::fromClass(__CLASS__)
-      ->withContext($context)
-      ->withParam_IfaceSequence(
-        0,
-        BuildProviderInterface::class,
-        t('Build providers'))
-      ->withParam_IfaceOrNull(
-        1,
-        ListFormatInterface::class,
-        t('List format'));
-  }
-
-  /**
    * @param \Drupal\renderkit\BuildProvider\BuildProviderInterface[] $providers
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $listFormat
    */
-  public function __construct(array $providers, ListFormatInterface $listFormat = NULL) {
-    $this->providers = $providers;
-    $this->listFormat = $listFormat;
-  }
+  public function __construct(
+    #[OckOption('build_providers', 'Build providers')]
+    #[OckListOfObjects(BuildProviderInterface::class)]
+    private readonly array $providers,
+    #[OckOption('list_format', 'List format')]
+    private readonly ?ListFormatInterface $listFormat = NULL,
+  ) {}
 
   /**
-   * @return array
-   *   A render array.
+   * {@inheritdoc}
    */
   public function build(): array {
-    $builds = [];
+    $elements = [];
     foreach ($this->providers as $k => $provider) {
-      $build = $provider->build();
-      if (\is_array($build) && [] !== $build) {
-        $builds[$k] = $provider->build();
+      $element = $provider->build();
+      if ($element) {
+        $elements[$k] = $element;
       }
     }
-    if ([] === $builds) {
+    if (!$elements) {
       return [];
     }
-    if (NULL !== $this->listFormat) {
-      $builds = $this->listFormat->buildList($builds);
-    }
-    return $builds;
+    return $this->listFormat?->buildList($elements) ?? $elements;
   }
 }

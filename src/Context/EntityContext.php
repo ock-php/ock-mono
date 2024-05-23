@@ -14,7 +14,7 @@ final class EntityContext extends UtilBase {
    *
    * @return \Donquixote\Ock\Context\CfContext|null
    */
-  public static function get($entityType = NULL, $bundle = NULL): ?CfContext {
+  public static function get(string $entityType = NULL, string $bundle = NULL): ?CfContext {
 
     if ([] === $values = self::getValues($entityType, $bundle)) {
       return NULL;
@@ -29,7 +29,7 @@ final class EntityContext extends UtilBase {
    *
    * @return array
    */
-  public static function getValues($entityType = NULL, $bundle = NULL): array {
+  public static function getValues(string $entityType = NULL, string $bundle = NULL): array {
 
     if (NULL === $entityType) {
       return [];

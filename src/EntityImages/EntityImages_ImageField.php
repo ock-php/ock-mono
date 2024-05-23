@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImages;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Boolean\Formula_Boolean_YesNo;
@@ -35,10 +35,10 @@ class EntityImages_ImageField implements EntityImagesInterface {
         Text::t('Image field'),
         $fieldNameFormula->withAllowedFieldTypes(['image']),
       )
-      ->addDynamicValues(
+      ->addStringParts(
         ['entity_type', 'field_name'],
-        ['image_field'],
-        fn (string $etDotFieldName) => explode('.', $etDotFieldName),
+        '.',
+        'image_field',
       )
       ->add(
         'use_default_image',

@@ -12,11 +12,6 @@ use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 class Formula_EntityType_WithGroupLabels implements Formula_DrupalSelectInterface {
 
   /**
-   * @var \Drupal\Core\Entity\EntityTypeRepositoryInterface
-   */
-  private $entityTypeRepository;
-
-  /**
    * @return self
    */
   public static function create(): self {
@@ -28,9 +23,9 @@ class Formula_EntityType_WithGroupLabels implements Formula_DrupalSelectInterfac
   /**
    * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
    */
-  public function __construct(EntityTypeRepositoryInterface $entityTypeRepository) {
-    $this->entityTypeRepository = $entityTypeRepository;
-  }
+  public function __construct(
+    private readonly EntityTypeRepositoryInterface $entityTypeRepository,
+  ) {}
 
   /**
    * @return string[]

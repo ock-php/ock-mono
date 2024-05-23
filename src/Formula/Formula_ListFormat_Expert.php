@@ -7,7 +7,7 @@ use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Generator\GeneratorInterface;
 use Donquixote\Ock\Summarizer\SummarizerInterface;
 use Donquixote\Ock\Text\TextInterface;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\ock\Formator\FormatorD8Interface;
 use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
@@ -122,7 +122,7 @@ class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterf
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary($conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): ?TextInterface {
     // No summary details.
     return NULL;
   }
@@ -134,9 +134,9 @@ class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterf
    *
    * @throws \Exception
    */
-  public function confGetPhp($conf): string {
+  public function confGetPhp(mixed $conf): string {
     $defaults = $this->confGetElementDefaults($conf);
-    return PhpUtil::phpNewClass(
+    return PhpUtil::phpConstruct(
       ListFormat_ElementDefaults::class,
       [PhpUtil::phpValue($defaults)]);
   }
@@ -147,7 +147,7 @@ class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterf
    * @return array
    *   Render array defaults.
    */
-  private function confGetElementDefaults($conf): array {
+  private function confGetElementDefaults(mixed $conf): array {
 
     if (!\is_array($conf)) {
       $conf = [];
@@ -203,7 +203,7 @@ class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterf
    *
    * @return string
    */
-  private static function confExtractTagName(array $array, $key, $else): string {
+  private static function confExtractTagName(array $array, string $key, string $else): string {
 
     if (empty($array[$key])) {
       return $else;

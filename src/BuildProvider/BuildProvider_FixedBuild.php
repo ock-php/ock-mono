@@ -6,16 +6,11 @@ namespace Drupal\renderkit\BuildProvider;
 class BuildProvider_FixedBuild implements BuildProviderInterface {
 
   /**
-   * @var array
-   */
-  private $build;
-
-  /**
    * @param array $build
    */
-  public function __construct(array $build) {
-    $this->build = $build;
-  }
+  public function __construct(
+    private readonly array $build,
+  ) {}
 
   /**
    * @return array

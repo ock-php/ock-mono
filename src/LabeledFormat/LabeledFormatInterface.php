@@ -14,6 +14,6 @@ interface LabeledFormatInterface {
    * @return array
    *   Modified or wrapped render array with label.
    */
-  public function buildAddLabel(array $build, $label): array;
+  public function buildAddLabel(array $build, string $label): array;
 
 }

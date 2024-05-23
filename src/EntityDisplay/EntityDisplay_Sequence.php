@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Ock\Context\CfContextInterface;
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
-use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Attribute\Parameter\OckListOfObjects;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
  * A sequence of entity display handlers, whose results are assembled into a
@@ -15,42 +14,19 @@ use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
  * This can be used for something like a layout region with a number of fields
  * or elements.
  */
+#[OckPluginInstance('sequence', 'Sequence of entity displays')]
 class EntityDisplay_Sequence extends EntitiesDisplayBase {
 
   /**
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
-   */
-  protected $displayHandlers;
-
-  /**
-   * @CfrPlugin("sequence", @t("Sequence of entity displays"))
+   * Constructor.
    *
-   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $displays
    */
-  public static function createFormula(CfContextInterface $context = NULL): FormulaInterface {
-    return Formula_ValueToValue_CallbackMono::fromClass(
-      __CLASS__,
-      Formula_IfaceWithContext::createSequence(
-        EntityDisplayInterface::class,
-        $context));
-  }
-
-  /**
-   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $displayHandlers
-   */
-  public function __construct(array $displayHandlers) {
-
-    foreach ($displayHandlers as $delta => $displayHandler) {
-      if (!$displayHandler instanceof EntityDisplayInterface) {
-        unset($displayHandlers[$delta]);
-        break;
-      }
-    }
-
-    $this->displayHandlers = $displayHandlers;
-  }
+  public function __construct(
+    #[OckOption('displays', 'Displays')]
+    #[OckListOfObjects(EntityDisplayInterface::class)]
+    private readonly array $displays,
+  ) {}
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
@@ -58,15 +34,13 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
    * @return array[]
    */
   public function buildEntities(array $entities): array {
-
-    $builds = [];
-    foreach ($this->displayHandlers as $name => $handler) {
-      foreach ($handler->buildEntities($entities) as $delta => $entity_build) {
-        unset($entity_build['#weight']);
-        $builds[$delta][$name] = $entity_build;
+    $elements = [];
+    foreach ($this->displays as $name => $handler) {
+      foreach ($handler->buildEntities($entities) as $delta => $element) {
+        unset($element['#weight']);
+        $elements[$delta][$name] = $element;
       }
     }
-
-    return $builds;
+    return $elements;
   }
 }

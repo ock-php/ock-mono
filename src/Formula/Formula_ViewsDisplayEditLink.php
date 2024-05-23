@@ -5,13 +5,13 @@ namespace Drupal\renderkit\Formula;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Formula\ValueProvider\Formula_ValueProvider_Null;
+use Donquixote\Ock\Formula\ValueProvider\Formula_FixedPhp_Null;
 use Donquixote\Ock\Text\Text;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Link;
 use Drupal\ock\Formator\FormatorD8Interface;
 
-class Formula_ViewsDisplayEditLink extends Formula_ValueProvider_Null implements FormatorD8Interface {
+class Formula_ViewsDisplayEditLink extends Formula_FixedPhp_Null implements FormatorD8Interface {
 
   /**
    * @param \Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId $idFormula

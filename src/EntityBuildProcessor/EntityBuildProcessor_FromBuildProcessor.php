@@ -9,11 +9,6 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 class EntityBuildProcessor_FromBuildProcessor implements EntityBuildProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
-   */
-  private $processor;
-
-  /**
    * @CfrPlugin(
    *   id = "buildProcessor",
    *   label = @t("Build processor"),
@@ -35,9 +30,9 @@ class EntityBuildProcessor_FromBuildProcessor implements EntityBuildProcessorInt
    *
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $processor
    */
-  public function __construct(BuildProcessorInterface $processor) {
-    $this->processor = $processor;
-  }
+  public function __construct(
+    private readonly BuildProcessorInterface $processor,
+  ) {}
 
   /**
    * @param array $build

@@ -13,16 +13,11 @@ use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 class EntityDisplay_BuildProvider implements EntityDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit\BuildProvider\BuildProviderInterface
-   */
-  private $buildProvider;
-
-  /**
    * @param \Drupal\renderkit\BuildProvider\BuildProviderInterface $buildProvider
    */
-  public function __construct(BuildProviderInterface $buildProvider) {
-    $this->buildProvider = $buildProvider;
-  }
+  public function __construct(
+    private readonly BuildProviderInterface $buildProvider,
+  ) {}
 
   /**
    * {@inheritdoc}

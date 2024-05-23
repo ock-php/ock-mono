@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityToEntities;
 
+use Drupal\Core\Entity\EntityInterface;
+
 abstract class EntityToEntitiesMultipleBase implements EntityToEntitiesInterface {
 
   /**
@@ -10,7 +12,7 @@ abstract class EntityToEntitiesMultipleBase implements EntityToEntitiesInterface
    *
    * @return \Drupal\Core\Entity\EntityInterface[]
    */
-  public function entityGetRelated($entity): array {
+  public function entityGetRelated(EntityInterface $entity): array {
 
     $targetEntities = $this->entitiesGetRelated([$entity]);
 

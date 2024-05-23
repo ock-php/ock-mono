@@ -11,24 +11,14 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 class ListFormat_ItemBuildProcessor implements ListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
-   */
-  private $itemBuildProcessor;
-
-  /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
-   */
-  private $decorated;
-
-  /**
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $itemBuildProcessor
    *   Process the render array for each list item.
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $decorated
    */
-  public function __construct(BuildProcessorInterface $itemBuildProcessor, ListFormatInterface $decorated = NULL) {
-    $this->itemBuildProcessor = $itemBuildProcessor;
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    private readonly BuildProcessorInterface $itemBuildProcessor,
+    private readonly ?ListFormatInterface $decorated = NULL,
+  ) {}
 
   /**
    * @param array[] $builds

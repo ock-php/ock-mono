@@ -13,23 +13,13 @@ use Drupal\renderkit\Util\ExceptionUtil;
 class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
 
   /**
-   * @var \Drupal\renderkit\EntityToEntities\EntityToEntitiesInterface
-   */
-  private $entityToEntities;
-
-  /**
-   * @var \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface
-   */
-  private $entitiesListFormat;
-
-  /**
    * @param \Drupal\renderkit\EntityToEntities\EntityToEntitiesInterface $entityToEntities
    * @param \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
    */
-  public function __construct(EntityToEntitiesInterface $entityToEntities, EntitiesListFormatInterface $entitiesListFormat) {
-    $this->entityToEntities = $entityToEntities;
-    $this->entitiesListFormat = $entitiesListFormat;
-  }
+  public function __construct(
+    private readonly EntityToEntitiesInterface $entityToEntities,
+    private readonly EntitiesListFormatInterface $entitiesListFormat,
+  ) {}
 
   /**
    * Builds render arrays from the entities provided.

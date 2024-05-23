@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Donquixote\Ock\Text\TextInterface;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
-use Drupal\ock\Attribute\DI\DrupalService;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\DrupalText;
 
-#[RegisterService('ock.formula.field_type.flat')]
+#[Service(self::class)]
 class Formula_FieldType_Flat implements Formula_FlatSelectInterface {
 
   /**
@@ -20,7 +20,7 @@ class Formula_FieldType_Flat implements Formula_FlatSelectInterface {
    * @param \Drupal\Core\Field\FieldTypePluginManager $fieldTypePluginManager
    */
   public function __construct(
-    #[DrupalService('plugin.manager.field.field_type')]
+    #[GetService('plugin.manager.field.field_type')]
     private readonly FieldTypePluginManagerInterface $fieldTypePluginManager,
   ) {}
 

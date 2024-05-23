@@ -8,23 +8,13 @@ use Drupal\renderkit\ListFormat\ListFormatInterface;
 class ImagesDisplay_Multiple implements ImagesDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface[]
-   */
-  private $displays;
-
-  /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
-   */
-  private $listFormat;
-
-  /**
    * @param \Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface[] $displays
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $listFormat
    */
-  public function __construct(array $displays, ListFormatInterface $listFormat = NULL) {
-    $this->displays = $displays;
-    $this->listFormat = $listFormat;
-  }
+  public function __construct(
+    private readonly array $displays,
+    private readonly ?ListFormatInterface $listFormat = NULL,
+  ) {}
 
   /**
    * @param array[] $images

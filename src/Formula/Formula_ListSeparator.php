@@ -14,7 +14,7 @@ class Formula_ListSeparator extends Formula_TextfieldBase implements V2V_StringI
    *
    * @return string[]
    */
-  public function textGetValidationErrors($text): array {
+  public function textGetValidationErrors(string $text): array {
     $errors = [];
 
     if (\strlen($text) > 20) {

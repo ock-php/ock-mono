@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\CallServiceWithArguments;
+use Donquixote\DID\Attribute\ParametricService;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\DrupalText;
 
 /**
@@ -17,10 +17,8 @@ use Drupal\ock\DrupalText;
  *
  * This class only contains static factories, the main logic is elsewhere.
  */
-
+#[ParametricService(self::class)]
 class TextLookup_EntityId implements TextLookupInterface {
-
-  const MAP_SERVICE_ID = 'renderkit.map.text_lookup.entity_id';
 
   /**
    * Constructor.
@@ -28,6 +26,7 @@ class TextLookup_EntityId implements TextLookupInterface {
    * @param \Drupal\Core\Entity\EntityStorageInterface $entityStorage
    */
   public function __construct(
+    #[CallServiceWithArguments]
     private readonly EntityStorageInterface $entityStorage,
   ) {}
 
@@ -45,22 +44,6 @@ class TextLookup_EntityId implements TextLookupInterface {
   ): self {
     $storage = $entityTypeManager->getStorage($entityType);
     return new self($storage);
-  }
-
-  /**
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   *
-   * @return callable(string): self
-   */
-  #[RegisterService(self::MAP_SERVICE_ID)]
-  public static function createMap(
-    #[GetService('entity_type.manager')]
-    EntityTypeManagerInterface $entityTypeManager,
-  ): \Closure {
-    return fn (string $entityType) => self::create(
-      $entityTypeManager,
-      $entityType,
-    );
   }
 
   /**

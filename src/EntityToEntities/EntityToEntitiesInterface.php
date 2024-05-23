@@ -25,5 +25,5 @@ interface EntityToEntitiesInterface {
    *
    * @return \Drupal\Core\Entity\EntityInterface[]
    */
-  public function entityGetRelated($entity): array;
+  public function entityGetRelated(\Drupal\Core\Entity\EntityInterface $entity): array;
 }

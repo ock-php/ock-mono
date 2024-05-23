@@ -19,5 +19,5 @@ interface SelectByEtInterface {
    * @return string[][]
    *   Format: $[$groupLabel][$optionKey] = $optionLabel
    */
-  public function etGetGroupedOptions($entityTypeId, array $bundleNames = NULL): array;
+  public function etGetGroupedOptions(string $entityTypeId, array $bundleNames = NULL): array;
 }

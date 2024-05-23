@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
 use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\DefaultConf\Formula_DefaultConf;
 use Donquixote\Ock\Formula\Formula;
 use Donquixote\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
 use Donquixote\Ock\Text\Text;
-use Donquixote\Ock\Util\PhpUtil;
+use Donquixote\DID\Util\PhpUtil;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
@@ -19,7 +19,6 @@ use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 use Drupal\renderkit\Formula\Formula_EtDotFieldName;
 use Drupal\renderkit\Formula\Formula_FieldFormatterId;
 use Drupal\renderkit\Formula\Formula_FieldFormatterSettings;
-use Drupal\renderkit\Helper\FieldDefinitionLookup;
 use Drupal\renderkit\Helper\FieldDefinitionLookupInterface;
 use Drupal\renderkit\Helper\FormatterPluginLookup;
 
@@ -29,20 +28,36 @@ use Drupal\renderkit\Helper\FormatterPluginLookup;
 class EntityDisplay_FieldWithFormatter extends EntityDisplayBase {
 
   /**
+   * Constructor.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   * @param string $entityType
+   * @param string $fieldName
+   * @param array $display
+   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
+   */
+  public function __construct(
+    private readonly EntityTypeManagerInterface $entityTypeManager,
+    private readonly string $entityType,
+    private readonly string $fieldName,
+    private readonly array $display,
+    private readonly ?FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL,
+  ) {}
+
+  /**
    * @param \Drupal\renderkit\Formula\Formula_EtDotFieldName $fieldNameFormula
    * @param \Drupal\renderkit\Helper\FieldDefinitionLookupInterface $fieldDefinitionLookup
    * @param \Drupal\renderkit\Formula\Formula_FieldFormatterId $formatterIdFormula
    * @param \Drupal\renderkit\Helper\FormatterPluginLookup $formatterPluginLookup
-   * @param string|null $entityType
-   * @param string|null $bundle
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
   #[OckPluginFormula(self::class, 'fieldWithFormatter', 'Field with formatter')]
   public static function formula(
     #[GetService]
     Formula_EtDotFieldName $fieldNameFormula,
-    #[GetService(FieldDefinitionLookup::SERVICE_ID)]
+    #[GetService]
     FieldDefinitionLookupInterface $fieldDefinitionLookup,
     #[GetService]
     Formula_FieldFormatterId $formatterIdFormula,
@@ -55,11 +70,7 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplayBase {
         Text::t('Field'),
         $fieldNameFormula,
       )
-      ->addDynamicValues(
-        ['entity_type', 'field_name'],
-        ['field'],
-        fn (string $etDotFieldName) => explode('.', $etDotFieldName),
-      )
+      ->addStringParts(['entity_type', 'field_name'], '.', 'field')
       ->add(
         'label',
         Text::t('Label display'),
@@ -76,10 +87,13 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplayBase {
         'formatter',
         Text::t('Formatter'),
         ['entity_type', 'field_name'],
-        function (string $entityType, string $fieldName) use ($fieldDefinitionLookup, $formatterIdFormula): ?FormulaInterface {
+        function (
+          string $entityType,
+          string $fieldName,
+        ) use ($fieldDefinitionLookup, $formatterIdFormula): ?FormulaInterface {
           $fieldDefinition = $fieldDefinitionLookup->etAndFieldNameGetDefinition($entityType, $fieldName);
           if ($fieldDefinition === null) {
-            return null;
+            return NULL;
           }
           return $formatterIdFormula->withFieldType($fieldDefinition->getType());
         },
@@ -126,23 +140,6 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplayBase {
         PhpUtil::phpPlaceholder('processor'),
       ]);
   }
-
-  /**
-   * Constructor.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   * @param string $entityType
-   * @param string $fieldName
-   * @param array $display
-   * @param \Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface|null $fieldDisplayProcessor
-   */
-  public function __construct(
-    private readonly EntityTypeManagerInterface $entityTypeManager,
-    private readonly string $entityType,
-    private readonly string $fieldName,
-    private readonly array $display,
-    private readonly ?FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL,
-  ) {}
 
 
   /**

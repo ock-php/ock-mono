@@ -13,8 +13,11 @@ class EntityToRelatedIds_ReverseEntityReferenceField extends EntityToRelatedIds_
    * @param string $fieldName
    * @param string $fieldTargetType
    */
-  public function __construct(private $fieldSourceType, private $fieldName, private $fieldTargetType) {
-  }
+  public function __construct(
+    private readonly string $fieldSourceType,
+    private readonly string $fieldName,
+    private readonly string $fieldTargetType,
+  ) {}
 
   /**
    * @return string

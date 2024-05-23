@@ -3,21 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay\Image;
 
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
+use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\EntityImage\EntityImageInterface;
 use Drupal\renderkit\ImageProcessor\ImageProcessorInterface;
 
 class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
-
-  /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
-   */
-  private $entityImageProvider;
-
-  /**
-   * @var \Drupal\renderkit\ImageProcessor\ImageProcessorInterface
-   */
-  private $imageProcessor;
 
   /**
    * @CfrPlugin(
@@ -30,7 +23,13 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
    */
-  public static function create(EntityImageInterface $entityImageProvider, ImageProcessorInterface $imageProcessor = NULL): EntityImageInterface|\Drupal\renderkit\EntityDisplay\EntityDisplayInterface {
+  #[OckPluginInstance('image', 'Image')]
+  public static function create(
+    #[OckOption('image', 'Image')]
+    EntityImageInterface $entityImageProvider,
+    #[OckOption('image_processor', 'Image processor')]
+    ImageProcessorInterface $imageProcessor = NULL,
+  ): EntityDisplayInterface {
     return NULL !== $imageProcessor
       ? new static($entityImageProvider, $imageProcessor)
       : $entityImageProvider;
@@ -42,10 +41,10 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $entityImageProvider
    * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface $imageProcessor
    */
-  public function __construct(EntityImageInterface $entityImageProvider, ImageProcessorInterface $imageProcessor) {
-    $this->entityImageProvider = $entityImageProvider;
-    $this->imageProcessor = $imageProcessor;
-  }
+  public function __construct(
+    private readonly EntityImageInterface $entityImageProvider,
+    private readonly ImageProcessorInterface $imageProcessor,
+  ) {}
 
   /**
    * Builds render arrays from the entities provided.

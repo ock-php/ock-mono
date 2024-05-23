@@ -8,15 +8,16 @@ class EntityTypeCondition_EntityClassImplements implements EntityTypeConditionIn
   /**
    * @param string $classOrInterface
    */
-  public function __construct(private $classOrInterface) {
-  }
+  public function __construct(
+    private readonly string $classOrInterface,
+  ) {}
 
   /**
    * @param string $entityTypeId
    *
    * @return bool
    */
-  public function checkEntityTypeId($entityTypeId): bool {
+  public function checkEntityTypeId(string $entityTypeId): bool {
 
     $etm = \Drupal::entityTypeManager();
 

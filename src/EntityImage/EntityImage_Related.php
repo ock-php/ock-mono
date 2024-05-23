@@ -3,58 +3,51 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityImage;
 
-use Donquixote\Ock\Context\CfContextInterface;
+use Donquixote\Ock\Attribute\Plugin\OckPluginFormula;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
 class EntityImage_Related implements EntityImageInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
-   */
-  private $entityToEntity;
-
-  /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
-   */
-  private $relatedEntityImage;
-
-  /**
-   * @CfrPlugin(
-   *   id = "related",
-   *   label = "Image from related entity"
-   * )
-   *
-   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
-   *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
+   *
+   * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  public static function createFormula(CfContextInterface $context = NULL): FormulaInterface {
-
-    return Formula_GroupVal_Callback::fromClass(
-      __CLASS__,
-      [
-        new Formula_IfaceWithContext(EntityToEntityInterface::class, $context),
-        // This one is without context, because we no longer know the entity type.
-        new Formula_IfaceWithContext(EntityImageInterface::class),
-      ],
-      [
-        t('Entity relation'),
-        t('Related entity image provider'),
-      ]);
+  #[OckPluginFormula(self::class, 'related', 'Image from related entity')]
+  public static function createFormula(): FormulaInterface {
+    return Formula::group()
+      ->add(
+        'relation',
+        Text::t('Entity relation'),
+        // @todo Inject context?
+        Formula::iface(EntityToEntityInterface::class),
+      )
+      ->addDynamicFormula(
+        'image',
+        Text::t('Related entity image'),
+        ['relation'],
+        static function (EntityToEntityInterface $relation): FormulaInterface {
+          // @todo Context from target type.
+          $targetType = $relation->getTargetType();
+          unset($targetType);
+          return Formula::iface(EntityImageInterface::class);
+        },
+      )
+      ->construct(self::class);
   }
 
   /**
    * @param \Drupal\renderkit\EntityToEntity\EntityToEntityInterface $entityToEntity
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $relatedEntityImage
    */
-  public function __construct(EntityToEntityInterface $entityToEntity, EntityImageInterface $relatedEntityImage) {
-    $this->entityToEntity = $entityToEntity;
-    $this->relatedEntityImage = $relatedEntityImage;
-  }
+  public function __construct(
+    private readonly EntityToEntityInterface $entityToEntity,
+    private readonly EntityImageInterface $relatedEntityImage,
+  ) {}
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface[] $entities

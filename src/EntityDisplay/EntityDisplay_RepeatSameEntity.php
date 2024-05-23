@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Ock\Context\CfContextInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Attribute\Parameter\OckFormulaFromClass;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Donquixote\Ock\Formula\Textfield\Formula_Textfield_IntegerInRange;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
@@ -14,39 +13,19 @@ use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
 class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
 
   /**
-   * @var \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface
-   */
-  private $entitiesListFormat;
-
-  /**
-   * @CfrPlugin("repeatSameEntity", "Repeat the same entity")
-   *
-   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
-   *
-   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
-   */
-  public static function createFormula(CfContextInterface $context = NULL): Formula_GroupValInterface {
-
-    return Formula_GroupVal_Callback::fromStaticMethod(
-      __CLASS__,
-      'create',
-      [
-        new Formula_Textfield_IntegerInRange(1, 100),
-        Formula_IfaceWithContext::create(EntitiesListFormatInterface::class, $context),
-      ],
-      [
-        t('Number of repetitions'),
-        t('Entities list format'),
-      ]);
-  }
-
-  /**
    * @param int|string $n
    * @param \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
    *
    * @return self
    */
-  public static function create($n, EntitiesListFormatInterface $entitiesListFormat): self {
+  #[OckPluginInstance('repeatSameEntity', 'Repeat the same entity')]
+  public static function create(
+    #[OckOption('repeat_count', 'Number of repetitions')]
+    #[OckFormulaFromClass(Formula_Textfield_IntegerInRange::class, [1, 100])]
+    int|string $n,
+    #[OckOption('entities_list_format', 'Entities list format')]
+    EntitiesListFormatInterface $entitiesListFormat,
+  ): self {
     return new self($entitiesListFormat, (int) $n);
   }
 
@@ -54,9 +33,10 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
    * @param \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
    * @param int $n
    */
-  public function __construct(EntitiesListFormatInterface $entitiesListFormat, private $n) {
-    $this->entitiesListFormat = $entitiesListFormat;
-  }
+  public function __construct(
+    private readonly EntitiesListFormatInterface $entitiesListFormat,
+    private readonly int $n,
+  ) {}
 
   /**
    * Same as ->buildEntities(), just for a single entity.
@@ -68,6 +48,7 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
    */
   public function buildEntity(EntityInterface $entity): array {
     return $this->entitiesListFormat->entitiesBuildList(
-      array_fill(0, $this->n, $entity));
+      array_fill(0, $this->n, $entity),
+    );
   }
 }

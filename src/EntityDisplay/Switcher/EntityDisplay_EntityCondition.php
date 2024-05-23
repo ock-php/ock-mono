@@ -16,19 +16,9 @@ use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 class EntityDisplay_EntityCondition implements EntityDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityCondition\EntityConditionInterface
-   */
-  private $condition;
-
-  /**
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
-   */
-  private $displayIfTrue;
-
-  /**
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
    */
-  private $displayIfFalse;
+  private ?EntityDisplayInterface $displayIfFalse;
 
   /**
    * @param \Drupal\renderkit\EntityCondition\EntityConditionInterface $condition
@@ -36,12 +26,10 @@ class EntityDisplay_EntityCondition implements EntityDisplayInterface {
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null $displayIfFalse
    */
   public function __construct(
-    EntityConditionInterface $condition,
-    EntityDisplayInterface $displayIfTrue,
+    private readonly EntityConditionInterface $condition,
+    private readonly EntityDisplayInterface $displayIfTrue,
     EntityDisplayInterface $displayIfFalse = NULL
   ) {
-    $this->condition = $condition;
-    $this->displayIfTrue = $displayIfTrue;
     $this->displayIfFalse = $displayIfFalse;
   }
 

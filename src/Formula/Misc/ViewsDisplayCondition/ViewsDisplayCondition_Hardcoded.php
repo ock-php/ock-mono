@@ -8,17 +8,17 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
   /**
    * @var true[]|null
    */
-  private $allowedDisplayTypes;
+  private ?array $allowedDisplayTypes;
 
   /**
    * @var string[]|null
    */
-  private $argumentsSignature;
+  private ?array $argumentsSignature;
 
   /**
    * @var bool|null
    */
-  private $status = TRUE;
+  private ?bool $status = TRUE;
 
   /**
    * @param string[] $allowedDisplayTypes
@@ -47,7 +47,7 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
    *
    * @return static
    */
-  public function withStatus($status = TRUE): self {
+  public function withStatus(?bool $status = TRUE): self {
     $clone = clone $this;
     $clone->status = $status;
     return $clone;

@@ -13,12 +13,12 @@ class ImageProcessor_BuildProcessor implements ImageProcessorInterface {
   /**
    * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|null
    */
-  private $buildProcessor;
+  private ?BuildProcessorInterface $buildProcessor;
 
   /**
    * @var \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null
    */
-  private $decorated;
+  private ?ImageProcessorInterface $decorated;
 
   /**
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|null $buildProcessor

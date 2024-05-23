@@ -3,36 +3,35 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Helper;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Drupal\Core\Field\FieldDefinitionInterface;
 
+#[Service]
 class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {
 
   /**
    * @var \Drupal\Core\Field\FieldDefinitionInterface[][]
    */
-  private $definitions = [];
+  private array $definitions = [];
 
   /**
    * @var true[][]
    */
-  private $fieldProcessed = [];
+  private array $fieldProcessed = [];
 
   /**
    * @var true[]
    */
-  private $etProcessed = [];
-
-  /**
-   * @var \Drupal\renderkit\Helper\FieldDefinitionLookupInterface
-   */
-  private $decorated;
+  private array $etProcessed = [];
 
   /**
    * @param \Drupal\renderkit\Helper\FieldDefinitionLookupInterface $decorated
    */
-  public function __construct(FieldDefinitionLookupInterface $decorated) {
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    #[GetService(FieldDefinitionLookup::class)]
+    private readonly FieldDefinitionLookupInterface $decorated,
+  ) {}
 
   /**
    * {@inheritdoc}

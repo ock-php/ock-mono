@@ -12,7 +12,7 @@ class Formula_TagNameFree extends Formula_TextfieldBase {
    *
    * @return string[]
    */
-  public function textGetValidationErrors($text): array {
+  public function textGetValidationErrors(string $text): array {
 
     $errors = [];
 

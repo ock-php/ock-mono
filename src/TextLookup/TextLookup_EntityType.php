@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Donquixote\Adaptism\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\TextLookup\TextLookupInterface;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\DrupalText;
 
 /**
@@ -17,7 +17,7 @@ use Drupal\ock\DrupalText;
  *
  * This class only contains static factories, the main logic is elsewhere.
  */
-#[RegisterService]
+#[Service(self::class)]
 class TextLookup_EntityType implements TextLookupInterface {
 
   /**

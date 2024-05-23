@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityBuildProcessor;
 
 use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Group\Formula_Group;
-use Donquixote\Ock\Formula\ValueToValue\Formula_ValueToValue_CallbackMono;
+use Donquixote\Ock\Formula\Formula;
+use Donquixote\Ock\Text\Text;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\RevisionableInterface;
@@ -31,21 +31,18 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
    */
   public static function createCfrFormula(): FormulaInterface {
-
-    $groupFormula = new Formula_Group(
-      [
-        'tag_name' => Formula_TagName::createForContainer('article'),
-        'classes' => Formula_ClassAttribute::create(),
-      ],
-      [
-        'tag_name' => t('Tag name'),
-        'classes' => t('Classes'),
-      ]);
-
-    return Formula_ValueToValue_CallbackMono::fromStaticMethod(
-      __CLASS__,
-      'createFromGroupValues',
-      $groupFormula);
+    return Formula::group()
+      ->add(
+        'tag_name',
+        Text::t('Tag name'),
+        Formula_TagName::createForContainer('article'),
+      )
+      ->add(
+        'classes',
+        Text::t('Classes'),
+        Formula_ClassAttribute::create(),
+      )
+      ->call([self::class, 'createFromGroupValues']);
   }
 
   /**
@@ -54,7 +51,6 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
    * @return self
    */
   public static function createFromGroupValues(array $values): self {
-
     return (new self())
       ->setTagName($values['tag_name'])
       ->addClasses($values['classes']);
@@ -73,7 +69,6 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
    *   Render array after the processing.
    */
   public function processEntityBuild(array $build, EntityInterface $entity): array {
-
     return $this->entityBuildContainer($entity) + [
       'content' => $build,
     ];

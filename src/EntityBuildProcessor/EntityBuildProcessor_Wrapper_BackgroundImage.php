@@ -18,16 +18,11 @@ class EntityBuildProcessor_Wrapper_BackgroundImage implements EntityBuildProcess
   use HtmlTagTrait;
 
   /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
-   */
-  private $imageProvider;
-
-  /**
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $imageProvider
    */
-  public function __construct(EntityImageInterface $imageProvider) {
-    $this->imageProvider = $imageProvider;
-  }
+  public function __construct(
+    private readonly EntityImageInterface $imageProvider,
+  ) {}
 
   /**
    * @param array $build

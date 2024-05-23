@@ -15,22 +15,22 @@ class LabeledListFormat_Composite implements LabeledListFormatInterface {
   /**
    * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL
    */
-  private $outerProcessor;
+  private ?BuildProcessorInterface $outerProcessor;
 
   /**
    * @var \Drupal\renderkit\LabeledFormat\LabeledFormatInterface|NULL
    */
-  private $labeledFormat;
+  private ?LabeledFormatInterface $labeledFormat;
 
   /**
    * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL
    */
-  private $innerProcessor;
+  private ?BuildProcessorInterface $innerProcessor;
 
   /**
    * @var \Drupal\renderkit\ListFormat\ListFormatInterface|NULL
    */
-  private $listFormat;
+  private ?ListFormatInterface $listFormat;
 
   /**
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL $outerProcessor
@@ -59,7 +59,7 @@ class LabeledListFormat_Composite implements LabeledListFormatInterface {
    * @return array
    *   Combined render array.
    */
-  public function build(array $builds, $label): array {
+  public function build(array $builds, string $label): array {
     $build = (NULL !== $this->listFormat)
       ? $this->listFormat->buildList($builds)
       : $builds;

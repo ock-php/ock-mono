@@ -6,16 +6,11 @@ namespace Drupal\renderkit\Formula\Misc\ViewsDisplayCondition;
 class ViewsDisplayCondition_And implements ViewsDisplayConditionInterface {
 
   /**
-   * @var \Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface[]
-   */
-  private $filters;
-
-  /**
    * @param \Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface[] $filters
    */
-  public function __construct(array $filters) {
-    $this->filters = $filters;
-  }
+  public function __construct(
+    private readonly array $filters,
+  ) {}
 
   /**
    * @param string $id

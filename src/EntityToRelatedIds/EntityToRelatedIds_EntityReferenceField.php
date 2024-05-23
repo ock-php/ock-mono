@@ -11,17 +11,13 @@ use Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface;
 class EntityToRelatedIds_EntityReferenceField extends EntityToRelatedIdsBase {
 
   /**
-   * @var \Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface
-   */
-  private $field;
-
-  /**
    * @param \Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface $field
    * @param string $targetType
    */
-  public function __construct(EntityToFieldItemListInterface $field, private $targetType) {
-    $this->field = $field;
-  }
+  public function __construct(
+    private readonly EntityToFieldItemListInterface $field,
+    private readonly string $targetType,
+  ) {}
 
   /**
    * @return string

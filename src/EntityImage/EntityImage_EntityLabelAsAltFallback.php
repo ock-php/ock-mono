@@ -8,16 +8,11 @@ use Drupal\Core\Entity\EntityInterface;
 class EntityImage_EntityLabelAsAltFallback implements EntityImageInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityImage\EntityImageInterface
-   */
-  private $decorated;
-
-  /**
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $decorated
    */
-  public function __construct(EntityImageInterface $decorated) {
-    $this->decorated = $decorated;
-  }
+  public function __construct(
+    private readonly EntityImageInterface $decorated,
+  ) {}
 
   /**
    * Same as ->buildEntities(), just for a single entity.

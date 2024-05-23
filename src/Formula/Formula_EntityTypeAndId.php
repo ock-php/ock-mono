@@ -3,18 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Donquixote\DID\Attribute\Parameter\GetCallableService;
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Core\Formula\FormulaInterface;
 use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\IdToFormula\IdToFormulaInterface;
 use Donquixote\Ock\Text\Text;
-use Drupal\ock\Attribute\DI\DrupalServiceFromType;
-use Drupal\ock\Attribute\DI\DrupalService;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\renderkit\Util\UtilBase;
 
 final class Formula_EntityTypeAndId extends UtilBase {
-
-  const SERVICE_ID = 'renderkit.formula.entity_type_and_id';
 
   /**
    * @param \Drupal\renderkit\Formula\Formula_EntityType $entityTypeFormula
@@ -24,11 +21,11 @@ final class Formula_EntityTypeAndId extends UtilBase {
    *
    * @throws \Donquixote\Ock\Exception\FormulaException
    */
-  #[RegisterService(self::SERVICE_ID)]
+  #[Service(serviceIdSuffix: self::class)]
   public static function create(
-    #[DrupalServiceFromType]
+    #[GetService]
     Formula_EntityType $entityTypeFormula,
-    #[DrupalService(Formula_EntityIdAutocomplete::MAP_SERVICE_ID)]
+    #[GetCallableService(Formula_EntityIdAutocomplete::class)]
     callable $entityIdFormulaMap,
   ): FormulaInterface {
     return Formula::group()

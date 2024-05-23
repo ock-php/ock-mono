@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\Formula;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
+use Donquixote\Ock\Attribute\Parameter\OckFormulaFromCall;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 use Drupal\views\Views;
@@ -13,54 +13,39 @@ use Drupal\views\Views;
 class BuildProvider_ViewsDisplay implements BuildProviderInterface {
 
   /**
-   * @var \Drupal\renderkit\LabeledFormat\LabeledFormatInterface
-   */
-  private $labeledFormat;
-
-  /**
-   * @CfrPlugin("viewsDisplay", @t("Views display"))
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public static function createFormula(): FormulaInterface {
-
-    return Formula_GroupVal_Callback::fromStaticMethod(
-      __CLASS__,
-      'doCreate',
-      [
-        Formula_ViewIdWithDisplayId::createNoArgs(),
-        Formula::ifaceOptional(LabeledFormatInterface::class),
-      ],
-      [
-        t('Views display'),
-        t('Label format'),
-      ]);
-  }
-
-  /**
    * @param string $viewNameWithDisplayId
-   * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
+   * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface|null $labeledFormat
    *
    * @return self|null
    */
-  public static function doCreate($viewNameWithDisplayId, LabeledFormatInterface $labeledFormat = NULL): ?self {
+  #[OckPluginInstance('viewsDisplay', 'Views display')]
+  public static function doCreate(
+    #[OckOption('views_display', 'Views display')]
+    #[OckFormulaFromCall([Formula_ViewIdWithDisplayId::class, 'createNoArgs'])]
+    string $viewNameWithDisplayId,
+    #[OckOption('label_format', 'Label format')]
+    LabeledFormatInterface $labeledFormat = NULL,
+  ): ?self {
     [$view_name, $display_id] = explode(':', $viewNameWithDisplayId . ':');
     if ('' === $view_name || '' === $display_id) {
       return NULL;
     }
     // No further checking at this point.
     return new self($view_name, $display_id, $labeledFormat);
-
   }
 
   /**
+   * Constructor.
+   *
    * @param string $viewName
    * @param string $displayId
-   * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
+   * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface|null $labeledFormat
    */
-  public function __construct(private $viewName, private $displayId, LabeledFormatInterface $labeledFormat = NULL) {
-    $this->labeledFormat = $labeledFormat;
-  }
+  public function __construct(
+    private readonly string $viewName,
+    private readonly string $displayId,
+    private readonly ?LabeledFormatInterface $labeledFormat = NULL,
+  ) {}
 
   /**
    * @return array

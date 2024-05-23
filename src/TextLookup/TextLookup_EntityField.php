@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Text\Text;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\ock\Attribute\DI\DrupalService;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\DrupalText;
 
-#[RegisterService('renderkit.text_lookup.entity_field')]
+#[Service(self::class)]
 class TextLookup_EntityField implements TextLookupInterface {
 
   /**
@@ -31,7 +31,7 @@ class TextLookup_EntityField implements TextLookupInterface {
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    */
   public function __construct(
-    #[DrupalService('entity_field.manager')]
+    #[GetService('entity_field.manager')]
     private readonly EntityFieldManagerInterface $entityFieldManager,
   ) {}
 
@@ -68,11 +68,11 @@ class TextLookup_EntityField implements TextLookupInterface {
   private function findBaseFieldLabel(string $entityType, string $fieldName): ?TextInterface {
     $definition = $this->entityFieldManager->getBaseFieldDefinitions(
       $entityType,
-    )[$fieldName];
-    if ($definition !== null) {
+    )[$fieldName] ?? NULL;
+    if ($definition !== NULL) {
       return DrupalText::fromVar($definition->getLabel());
     }
-    return null;
+    return NULL;
   }
 
   /**

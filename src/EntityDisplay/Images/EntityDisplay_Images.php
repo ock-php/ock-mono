@@ -17,23 +17,13 @@ use Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface;
 class EntityDisplay_Images extends EntityDisplayBase {
 
   /**
-   * @var \Drupal\renderkit\EntityImages\EntityImagesInterface
-   */
-  private $entityImages;
-
-  /**
-   * @var \Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface
-   */
-  private $imagesDisplay;
-
-  /**
    * @param \Drupal\renderkit\EntityImages\EntityImagesInterface $entityImages
    * @param \Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface $imagesDisplay
    */
-  public function __construct(EntityImagesInterface $entityImages, ImagesDisplayInterface $imagesDisplay) {
-    $this->entityImages = $entityImages;
-    $this->imagesDisplay = $imagesDisplay;
-  }
+  public function __construct(
+    private readonly EntityImagesInterface $entityImages,
+    private readonly ImagesDisplayInterface $imagesDisplay,
+  ) {}
 
   /**
    * Same as ->buildEntities(), just for a single entity.

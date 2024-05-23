@@ -12,23 +12,13 @@ use Drupal\views\Entity\View;
 class Formula_ViewDisplayId_Condition implements Formula_FlatSelectInterface {
 
   /**
-   * @var \Drupal\views\Entity\View
-   */
-  private $view;
-
-  /**
-   * @var \Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface
-   */
-  private $condition;
-
-  /**
    * @param \Drupal\views\Entity\View $view
    * @param \Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface $condition
    */
-  public function __construct(View $view, ViewsDisplayConditionInterface $condition) {
-    $this->view = $view;
-    $this->condition = $condition;
-  }
+  public function __construct(
+    private readonly View $view,
+    private readonly ViewsDisplayConditionInterface $condition,
+  ) {}
 
   /**
    * @return string[]

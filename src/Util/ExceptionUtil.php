@@ -11,7 +11,7 @@ final class ExceptionUtil extends UtilBase {
    *
    * @return string
    */
-  public static function formatMessage($message, array $replacements): string {
+  public static function formatMessage(string $message, array $replacements): string {
 
     foreach ($replacements as $k => $v) {
       if ('?' === $k[0]) {
@@ -29,7 +29,7 @@ final class ExceptionUtil extends UtilBase {
    *
    * @return mixed|string
    */
-  public static function formatValue($value): mixed {
+  public static function formatValue(mixed $value): mixed {
 
     switch ($type = \gettype($value)) {
 

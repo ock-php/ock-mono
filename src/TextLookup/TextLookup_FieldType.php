@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
+use Donquixote\DID\Attribute\Parameter\GetService;
+use Donquixote\DID\Attribute\Service;
 use Donquixote\Ock\Text\TextInterface;
 use Donquixote\Ock\TextLookup\TextLookupInterface;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
-use Drupal\ock\Attribute\DI\DrupalService;
-use Drupal\ock\Attribute\DI\RegisterService;
 use Drupal\ock\DrupalText;
 
 /**
  * Lookup for field type labels.
  */
-#[RegisterService('renderkit.text_lookup.field_type')]
+#[Service(self::class)]
 class TextLookup_FieldType implements TextLookupInterface {
 
   /**
@@ -23,7 +23,7 @@ class TextLookup_FieldType implements TextLookupInterface {
    * @param \Drupal\Core\Field\FieldTypePluginManagerInterface $fieldTypeManager
    */
   public function __construct(
-    #[DrupalService('plugin.manager.field.field_type')]
+    #[GetService('plugin.manager.field.field_type')]
     private readonly FieldTypePluginManagerInterface $fieldTypeManager,
   ) {}
 

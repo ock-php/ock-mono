@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Donquixote\Ock\Context\CfContextInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface;
-use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Attribute\Parameter\OckListOfObjects;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 
@@ -17,34 +16,16 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
 
   /**
-   * @CfrPlugin(
-   *   id = "sequence",
-   *   label = "Sequence of processors"
-   * )
-   *
-   * @param \Donquixote\Ock\Context\CfContextInterface|null $context
-   *
-   * @return \Donquixote\Ock\Formula\GroupVal\Formula_GroupValInterface
-   */
-  public static function createCfrFormula(CfContextInterface $context = NULL): Formula_GroupValInterface {
-
-    return Formula_GroupVal_Callback::fromStaticMethod(
-      __CLASS__,
-      'create',
-      [
-        Formula_IfaceWithContext::createSequence(
-          EntityBuildProcessorInterface::class,
-          $context),
-      ],
-      ['']);
-  }
-
-  /**
    * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface[] $processors
    *
    * @return self
    */
-  public static function create(array $processors): self {
+  #[OckPluginInstance('sequence', 'Sequence of processors')]
+  public static function create(
+    #[OckOption('processors', 'Processors')]
+    #[OckListOfObjects(EntityBuildProcessorInterface::class)]
+    array $processors,
+  ): self {
     $sequence = new self();
     foreach ($processors as $processor) {
       if ($processor instanceof EntityBuildProcessorInterface) {
@@ -60,7 +41,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
   /**
    * @var object[]
    */
-  private $processors = [];
+  private array $processors = [];
 
   /**
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $buildProcessor

@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Donquixote\Ock\Core\Formula\FormulaInterface;
-use Donquixote\Ock\Formula\GroupVal\Formula_GroupVal_Callback;
-use Donquixote\Ock\Formula\Iface\Formula_IfaceWithContext;
+use Donquixote\Ock\Attribute\Parameter\OckFormulaFromClass;
+use Donquixote\Ock\Attribute\Parameter\OckOption;
+use Donquixote\Ock\Attribute\Plugin\OckPluginInstance;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\renderkit\Formula\Formula_ViewIdWithDisplayId;
+use Drupal\renderkit\Formula\Formula_ViewsDisplay_Id_EntityIdArg;
 use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
 use Drupal\views\Views;
 
@@ -17,49 +17,20 @@ use Drupal\views\Views;
 class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
 
   /**
-   * @var \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface
-   */
-  private $labeledDisplay;
-
-  /**
-   * @CfrPlugin(
-   *   id = "viewsDisplay",
-   *   label = @t("Views display")
-   * )
-   *
-   * @param string|null $entityType
-   *
-   * @return \Donquixote\Ock\Core\Formula\FormulaInterface
-   */
-  public static function createFormula($entityType = NULL): FormulaInterface {
-
-    return Formula_GroupVal_Callback::fromStaticMethod(
-      __CLASS__,
-      'create',
-      [
-        Formula_ViewIdWithDisplayId::createWithEntityIdArg($entityType),
-        Formula_IfaceWithContext::createOptional(LabeledEntityBuildProcessorInterface::class),
-      ],
-      [
-        t('Views display'),
-        t('Label format'),
-      ]);
-  }
-
-  /**
    * @param string $id
    * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledEntityBuildProcessor
    *
    * @return self|null
    */
-  public static function create($id, LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL): ?self {
-
-    [$view_name, $display_id] = explode(':', $id) + [NULL, NULL];
-
-    if (NULL === $display_id) {
-      return NULL;
-    }
-
+  #[OckPluginInstance('viewsDisplay', 'Views display')]
+  public static function create(
+    #[OckOption('views_display', 'Views display')]
+    #[OckFormulaFromClass(Formula_ViewsDisplay_Id_EntityIdArg::class)]
+    string $id,
+    #[OckOption('label_format', 'Label format')]
+    LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL,
+  ): ?self {
+    [$view_name, $display_id] = explode(':', $id);
     // No further checking at this point.
     return new self(
       $view_name,
@@ -72,9 +43,11 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    * @param string $displayId
    * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledDisplay
    */
-  public function __construct(private $viewName, private $displayId, LabeledEntityBuildProcessorInterface $labeledDisplay = NULL) {
-    $this->labeledDisplay = $labeledDisplay;
-  }
+  public function __construct(
+    private readonly string $viewName,
+    private readonly string $displayId,
+    private readonly ?LabeledEntityBuildProcessorInterface $labeledDisplay = NULL,
+  ) {}
 
   /**
    * Same as ->buildEntities(), just for a single entity.
@@ -85,53 +58,46 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
    * @return array
    */
   public function buildEntity(EntityInterface $entity): array {
-
-    if (NULL === $etid = $entity->id()) {
-      return [
-        '#markup' => __LINE__,
-      ];
+    try {
+      return $this->doBuildEntity($entity);
     }
-
-    if (NULL === $view = Views::getView($this->viewName)) {
-      return [
-        '#markup' => __LINE__,
-      ];
+    catch (\Exception $e) {
+      // @todo Log this.
+      return [];
     }
+  }
 
-    if (FALSE === $view->setDisplay($this->displayId)) {
-      return [
-        '#markup' => __LINE__,
-      ];
-    }
+  /**
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *
+   * @return array
+   * @throws \Exception
+   */
+  private function doBuildEntity(EntityInterface $entity): array {
+    $etid = $entity->id()
+      ?? $this->fail('Entity has no id.');
+
+    $view = Views::getView($this->viewName)
+      ?? $this->fail('View not found.');
+
+    $view->setDisplay($this->displayId)
+      ?: $this->fail('Cannot set display id.');
 
     $view->initHandlers();
-
     $arguments = $view->argument;
 
-    if ([] === $arguments) {
-      return [
-        '#markup' => __LINE__,
-      ];
-    }
+    $argPlugin = array_shift($arguments)
+      ?? $this->fail('No arguments.');
 
-    $argPlugin = array_shift($arguments);
+    $arguments && $this->fail('More than one argument.');
 
-    if ([] !== $arguments) {
-      return [
-        '#markup' => __LINE__,
-      ];
-    }
+    $argType = $argPlugin->options['validate']['type']
+      ?? $this->fail('No validation type in argument.');
 
-    if (!isset($argPlugin->options['validate']['type'])) {
-      return [
-        '#markup' => __LINE__,
-      ];
-    }
-
-    if ('entity:' . $entity->getEntityTypeId() !== $argPlugin->options['validate']['type']) {
-      return [
-        '#markup' => __LINE__,
-      ];
+    if ($argType !== 'entity:' . $entity->getEntityTypeId()) {
+      // Entity type does not match.
+      // This is a non-exceptional case, simply show nothing.
+      return [];
     }
 
     $args = [$etid];
@@ -149,13 +115,25 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
 
     $label = $view->getTitle();
 
-    if (empty($label)) {
+    if (!$label) {
       return $content;
     }
 
     return $this->labeledDisplay->buildAddLabelWithEntity(
       $content,
       $entity,
-      $label);
+      $label,
+    );
   }
+
+  /**
+   * @param string $message
+   *
+   * @return never
+   * @throws \Exception
+   */
+  private function fail(string $message): never {
+    throw new \Exception($message);
+  }
+
 }

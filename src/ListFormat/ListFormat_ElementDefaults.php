@@ -8,11 +8,6 @@ use Drupal\renderkit\Formula\Formula_ListFormat_Expert;
 class ListFormat_ElementDefaults implements ListFormatInterface {
 
   /**
-   * @var array
-   */
-  private $elementDefaults;
-
-  /**
    * @CfrPlugin("expert", "Expert")
    *
    * @return \Donquixote\Ock\Core\Formula\FormulaInterface
@@ -24,9 +19,9 @@ class ListFormat_ElementDefaults implements ListFormatInterface {
   /**
    * @param array $elementDefaults
    */
-  public function __construct(array $elementDefaults) {
-    $this->elementDefaults = $elementDefaults;
-  }
+  public function __construct(
+    private readonly array $elementDefaults,
+  ) {}
 
   /**
    * @param array[] $builds

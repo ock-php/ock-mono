@@ -15,27 +15,18 @@ use Drupal\renderkit\Formula\Formula_LayoutAndRegions;
 class EntityDisplay_Layout extends EntityDisplayBase {
 
   /**
-   * @var \Drupal\Core\Layout\LayoutInterface
-   */
-  private $layout;
-
-  /**
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
-   */
-  private $regionDisplays;
-
-  /**
    * Constructor.
    *
    * @param \Drupal\Core\Layout\LayoutInterface $layout
-   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $region_displays
+   * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[] $regionDisplays
    *
    * @throws \Exception
    *   Layouts do not match up.
    */
-  public function __construct(LayoutInterface $layout, $region_displays) {
-    $this->layout = $layout;
-    $this->regionDisplays = $region_displays;
+  public function __construct(
+    private readonly LayoutInterface $layout,
+    private readonly array $regionDisplays,
+  ) {
     $this->throwIfInvalid();
   }
 

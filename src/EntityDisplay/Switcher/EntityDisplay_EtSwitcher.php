@@ -14,7 +14,7 @@ class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
   /**
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null
    */
-  private $fallbackDisplay;
+  private ?EntityDisplayInterface $fallbackDisplay;
 
   /**
    * The displays to use per entity type.
@@ -22,7 +22,7 @@ class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
    *   Format: $[$entityType] = $displayHandler
    */
-  private $typeDisplays = [];
+  private array $typeDisplays = [];
 
   /**
    * Sets a fallback entity display handler to use for entity types where no
@@ -45,7 +45,7 @@ class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
    *
    * @return $this
    */
-  public function entityTypeSetDisplay($entityType, EntityDisplayInterface $display): self {
+  public function entityTypeSetDisplay(string $entityType, EntityDisplayInterface $display): self {
     $this->typeDisplays[$entityType] = $display;
 
     return $this;
@@ -57,7 +57,7 @@ class EntityDisplay_EtSwitcher extends EntityDisplay_GroupByTypeBase {
    *
    * @return array[]
    */
-  protected function typeBuildEntities($entityTypeId, array $entities): array {
+  protected function typeBuildEntities(string $entityTypeId, array $entities): array {
 
     if (isset($this->typeDisplays[$entityTypeId])) {
       return $this->typeDisplays[$entityTypeId]->buildEntities($entities);

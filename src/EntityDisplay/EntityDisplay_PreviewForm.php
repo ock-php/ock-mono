@@ -3,9 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Donquixote\Adaptism\Exception\AdapterException;
+use Donquixote\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Donquixote\Ock\Context\CfContext;
 use Donquixote\Ock\Context\CfContextInterface;
-use Donquixote\Ock\Exception\EvaluatorException;
+use Donquixote\Ock\Evaluator\Evaluator;
+use Donquixote\Ock\Evaluator\EvaluatorInterface;
+use Donquixote\DID\Exception\EvaluatorException;
+use Donquixote\Ock\Formula\Formula;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\ock\UI\Form\Form_GenericRedirectGET;
 
@@ -15,22 +20,26 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    * @var true[]
    *   Format: $[$urlKey] = TRUE
    */
-  private static $inProgress = [];
+  private static array $inProgress = [];
 
   /**
    * @CfrPlugin("previewForm", "Preview form")
    *
    * @return self
    */
-  public static function create(): self {
-    return new self('entity_display_preview');
+  public static function create(
+    UniversalAdapterInterface $adapter,
+  ): self {
+    return new self($adapter, 'entity_display_preview');
   }
 
   /**
    * @param string $queryKey
    */
-  public function __construct(private $queryKey) {
-  }
+  public function __construct(
+    private readonly UniversalAdapterInterface $adapter,
+    private readonly string $queryKey,
+  ) {}
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
@@ -79,12 +88,16 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
     }
 
     try {
-
-      $sta = CfrPluginHub::getContainer()->incarnator;
-
-      $entityDisplay = EntityDisplay::fromConf($conf, $sta);
+      $entityDisplay = Evaluator::fromFormula(
+        Formula::iface(EntityDisplayInterface::class),
+        $this->adapter,
+      )->confGetValue($conf);
+      $entityDisplay = $this->adapter->adapt(
+        Formula::iface(EntityDisplayInterface::class),
+        EvaluatorInterface::class,
+      )?->confGetValue($conf);
     }
-    catch (UnsupportedFormulaException $e) {
+    catch (AdapterException $e) {
       // @todo Log this.
       unset($e);
       \Drupal::messenger()->addMessage(t('Unsupported formula.'));
@@ -98,7 +111,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
     }
 
     if (null === $entityDisplay) {
-      // @ŧodo
+      // @todo Report this.
       return $build;
     }
 
@@ -131,7 +144,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    *
    * @return array
    */
-  private function buildForm($conf, CfContextInterface $context): array {
+  private function buildForm(mixed $conf, CfContextInterface $context): array {
 
     $form = [];
     $form[$this->queryKey] = [

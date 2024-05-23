@@ -11,16 +11,6 @@ use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 class EntityDisplay_WithEntityBuildProcessor extends EntityDisplayBase {
 
   /**
-   * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
-   */
-  private $entityDisplay;
-
-  /**
-   * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
-   */
-  private $processor;
-
-  /**
    * @CfrPlugin(
    *   id = "processedEntityDisplay",
    *   label = @Translate("Processed entity display")
@@ -43,10 +33,10 @@ class EntityDisplay_WithEntityBuildProcessor extends EntityDisplayBase {
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
    * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface $processor
    */
-  public function __construct(EntityDisplayInterface $entityDisplay, EntityBuildProcessorInterface $processor) {
-    $this->entityDisplay = $entityDisplay;
-    $this->processor = $processor;
-  }
+  public function __construct(
+    private readonly EntityDisplayInterface $entityDisplay,
+    private readonly EntityBuildProcessorInterface $processor,
+  ) {}
 
   /**
    * Same as ->buildEntities(), just for a single entity.
