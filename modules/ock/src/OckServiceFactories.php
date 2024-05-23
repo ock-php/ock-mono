@@ -6,7 +6,7 @@ namespace Drupal\ock;
 
 use Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
 use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_Multiple;
+use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_Concat;
 use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\DID\Attribute\Parameter\GetService;
@@ -68,7 +68,7 @@ class OckServiceFactories {
     }
     // Add example plugins.
     # $classFilesIAs[] = ClassFilesIA::psr4FromClass(IntOpInterface::class, 1);
-    return new ClassFilesIA_Multiple($classFilesIAs);
+    return new ClassFilesIA_Concat($classFilesIAs);
   }
 
   #[Service]
