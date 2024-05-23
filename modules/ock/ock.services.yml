@@ -1,0 +1,4 @@
+services:
+  logger.channel.ock:
+    parent: logger.channel_base
+    arguments: ['ock']

@@ -1,0 +1,26 @@
+form:
+  version: 1.x
+  css:
+    layout:
+      css/ock.form.css: {}
+  dependencies:
+    - core/jquery
+drilldown-tools:
+  version: 1.x
+  css:
+    layout:
+      css/ock.drilldown-tools.css: {}
+  js:
+    js/ock.drilldown-tools.js: {}
+  dependencies:
+    - core/jquery
+tabledrag:
+  version: 1.x
+  css:
+    layout:
+      css/ock.tabledrag.css: {}
+      css/ock.sequence-tabledrag.css: {}
+  js:
+    js/ock.tabledrag.js: {}
+  dependencies:
+    - core/drupal.tabledrag

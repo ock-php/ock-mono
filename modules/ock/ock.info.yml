@@ -1,0 +1,4 @@
+name: 'Composition UI (ock)'
+description: 'Integrates the "Composition UI" Composer package with Drupal.'
+type: module
+core_version_requirement: ^10

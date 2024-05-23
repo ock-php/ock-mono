@@ -1,0 +1,94 @@
+<?php
+declare(strict_types=1);
+
+namespace Drupal\ock\Element;
+
+use Donquixote\Adaptism\Exception\AdapterException;
+use Donquixote\Ock\Core\Formula\FormulaInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element\FormElement;
+use Drupal\ock\Formator\FormatorD8;
+
+/**
+ * @FormElement("ock_cf_formula")
+ */
+class FormElement_Formula extends FormElement {
+
+  public const ID = 'ock_cf_formula';
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getInfo(): array {
+    return [
+      '#input' => TRUE,
+      '#tree' => TRUE,
+      '#process' => [
+        /* @see process() */
+        [self::class, 'process'],
+      ],
+      // This needs to be set.
+      '#cf_formula' => NULL,
+      '#title' => NULL,
+    ];
+  }
+
+  /**
+   * @param array $element
+   *
+   * @return array
+   */
+  public static function process(array &$element): array {
+
+    if (!isset($element['#cf_formula'])) {
+      $element['line']['#markup'] = '<div>Line ' . __LINE__ . '</div>';
+      return $element;
+    }
+
+    $formula = $element['#cf_formula'];
+
+    if (!$formula instanceof FormulaInterface) {
+      $element['line']['#markup'] = '<div>Line ' . __LINE__ . '</div>';
+      return $element;
+    }
+
+    try {
+      $formator = FormatorD8::fromFormula($formula);
+    }
+    catch (AdapterException $e) {
+      $element['message']['#markup'] = \t('Unsupported formula: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+      return $element;
+    }
+
+    $element['formula'] = $formator->confGetD8Form(
+      $element['#value'],
+      $element['#title']);
+
+    $element['formula']['#parents'] = $element['#parents'];
+
+    return $element;
+  }
+
+  /**
+   * @param array $element
+   * @param mixed $input
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *
+   * @return mixed
+   */
+  public static function valueCallback(
+    &$element,
+    mixed $input,
+    FormStateInterface $form_state
+  ): mixed {
+    if ($input !== FALSE) {
+      return $input;
+    }
+
+    /** @var mixed $value */
+    $value = $element['#default_value'] ?? [];
+    return $value;
+  }
+}

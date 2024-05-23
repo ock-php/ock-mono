@@ -1,0 +1,69 @@
+
+/* See https://two-wrongs.com/draw-a-tree-structure-with-only-css */
+
+.ock-drilldown {
+  padding-bottom: 10px;
+}
+
+.ock-drilldown > .form-type-select {
+  padding: 0;
+  margin: 0;
+}
+
+.ock-child-options {
+  padding: 10px 0 0 32px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.ock-child-options > .ock-child-options {
+  padding: 0;
+}
+
+.ock-child-options::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  border: 1px none #888;
+  border-left-style: dotted;
+  height: 10px;
+  width: 0;
+  top: 0;
+}
+
+.ock-child-options > div {
+  position: relative;
+  margin: 0;
+  padding-top: 0;
+}
+
+.ock-child-options > div > div:first-child {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.ock-child-options > div::before,
+.ock-child-options > div::after {
+  content: '';
+  position: absolute;
+  left: -12px;
+  border: 1px none #888;
+}
+
+.ock-child-options > div::before {
+  border-bottom-style: dotted;
+  width: 8px;
+  top: 9px;
+  height: 0;
+}
+
+.ock-child-options > div::after {
+  border-left-style: dotted;
+  width: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.ock-child-options > div:last-child::after {
+  height: 8px;
+}
