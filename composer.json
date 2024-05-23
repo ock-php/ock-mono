@@ -24,8 +24,7 @@
         "phpstan/phpstan": "2.0.x-dev",
         "phpunit/phpunit": "^9.5",
         "symfony/expression-language": "^6.4",
-        "symfony/yaml": "^6.2",
-        "symplify/monorepo-builder": "^11.2"
+        "symfony/yaml": "^6.2"
     },
     "repositories": [
         {
