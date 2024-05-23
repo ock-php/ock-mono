@@ -12,6 +12,8 @@
         "php": ">=8.2",
         "ext-json": "*",
         "composer/installers": "^2.0",
+        "drupal/core-composer-scaffold": "^10.2",
+        "drupal/core-project-message": "^10.2",
         "drupal/core-recommended": "^10.2",
         "psr/container": "^2.0",
         "psr/log": "^1.1.4|^2.0|^3.0",
@@ -67,7 +69,9 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "composer/installers": true
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true
         }
     },
     "replace": {
@@ -81,6 +85,42 @@
         "symfony/polyfill-php72": "*",
         "symfony/polyfill-php80": "*",
         "symfony/polyfill-php81": "*"
+    },
+    "extra": {
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            }
+        },
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
