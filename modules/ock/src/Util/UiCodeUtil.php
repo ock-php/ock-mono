@@ -5,7 +5,9 @@ namespace Drupal\ock\Util;
 
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\Markup;
-use Ock\DID\Util\PhpUtil;
+use Ock\CodegenTools\CodeFormatter;
+use Ock\CodegenTools\Exception\CodegenException;
+use Ock\CodegenTools\Util\CodeGen;
 use Ock\Ock\Util\HtmlUtil;
 use Ock\Ock\Util\StringUtil as CfStringUtil;
 
@@ -69,29 +71,18 @@ final class UiCodeUtil extends UtilBase {
    * @return string|\Drupal\Component\Render\MarkupInterface
    */
   public static function exportHighlightWrap(mixed $value): MarkupInterface|string {
-
     try {
-      $text = PhpUtil::phpValue($value);
+      $php_expression = CodeGen::phpValue($value);
     }
-    catch (\Exception $e) {
+    catch (CodegenException) {
+      // Value cannot be exported.
       return '(' . get_debug_type($value) . ')';
     }
 
-    return self::highlightAndWrap($text);
-  }
+    $php_file_contents = CodeFormatter::create()
+      ->formatAsFile("return $php_expression");
 
-  /**
-   * @param string $php
-   *
-   * @return \Drupal\Component\Render\MarkupInterface|string
-   */
-  public static function highlightAndWrap(string $php): MarkupInterface|string {
-
-    $php = PhpUtil::autoIndent($php,'  ');
-
-    $php = "<?php\n" . $php;
-
-    $html = highlight_string($php, TRUE);
+    $html = highlight_string($php_file_contents, TRUE);
 
     $html = preg_replace(
       CfStringUtil::regex(

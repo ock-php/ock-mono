@@ -135,12 +135,19 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
     try {
       $formula = $plugin->getFormula();
       $reflObject = new \ReflectionObject($formula);
+      $php_file_contents = <<<PHP
+<?php
+
+declare(strict_types=1);
+
+namespace {$reflObject->getNamespaceName()};
+
+class {$reflObject->getShortName()} .. {..}
+PHP;
+
       $rows[] = [
         $this->t('Formula class'),
-        UiCodeUtil::highlightAndWrap(''
-          . "namespace " . $reflObject->getNamespaceName() . ";\n"
-          . "\n"
-          . "class " . $reflObject->getShortName() . " .. {..}"),
+        UiCodeUtil::highlightPhp($php_file_contents),
       ];
     }
     catch (\Exception $e) {
