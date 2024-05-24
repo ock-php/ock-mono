@@ -199,7 +199,7 @@ final class CodeGen {
    * @return string
    *   PHP value expression.
    *
-   * @throws \Exception
+   * @throws \Ock\CodegenTools\Exception\CodegenException
    *   Value cannot be exported.
    */
   public static function phpValue(mixed $value): string {
