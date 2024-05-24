@@ -26,8 +26,8 @@ use Drupal\ock\Util\UiFormulaUtil;
 use Drupal\ock\Util\UiUtil;
 use Ock\Adaptism\Exception\AdapterException;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\CodegenTools\CodeFormatter;
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Util\PhpUtil;
 use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Generator\Generator;
 use Ock\Ock\Plugin\NamedPlugin;
@@ -338,26 +338,9 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
       '#title' => $this->t('Generated PHP code'),
     ];
 
-    $php = $generator->confGetPhp($settings);
-    $php = PhpUtil::autoIndent($php, '  ', '    ');
-    $aliases = PhpUtil::aliasify($php);
-    $aliases_php = '';
-    foreach ($aliases as $class => $alias) {
-      if (TRUE === $alias) {
-        $aliases_php .= 'use ' . $class . ";\n";
-      }
-      else {
-        $aliases_php .= 'use ' . $class . ' as ' . $alias . ";\n";
-      }
-    }
+    $php_expression = $generator->confGetPhp($settings);
 
-    if ('' !== $aliases_php) {
-      $aliases_php = "\n" . $aliases_php;
-    }
-
-    $php = <<<EOT
-<?php
-$aliases_php
+    $php_class_declaration = <<<EOT
 class C {
 
   /**
@@ -366,11 +349,12 @@ class C {
    * @return \\$interface
    */
   public static function create() {
-
-    return $php;
+    return $php_expression;
   }
+
 }
 EOT;
+    $php_file_contents = CodeFormatter::create()->formatAsFile($php_class_declaration);
 
     $out['codegen']['help']['#markup'] = $this->t(
     // @todo Is it a good idea to send full HTML to $this->t()?
@@ -387,7 +371,7 @@ EOT;
 EOT
     );
 
-    $out['codegen']['code']['#children'] = UiCodeUtil::highlightPhp($php);
+    $out['codegen']['code']['#children'] = UiCodeUtil::highlightPhp($php_file_contents);
 
     return $out;
   }

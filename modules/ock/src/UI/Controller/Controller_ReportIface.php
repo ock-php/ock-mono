@@ -23,8 +23,8 @@ use Drupal\ock\Util\UiCodeUtil;
 use Drupal\ock\Util\UiUtil;
 use Ock\Adaptism\Exception\AdapterException;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\CodegenTools\CodeFormatter;
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Util\PhpUtil;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Exception\GeneratorException;
@@ -242,49 +242,25 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
     ];
 
     try {
-      $php = $generator->confGetPhp($settings);
+      $php_expression = $generator->confGetPhp($settings);
     }
     catch (GeneratorException) {
       // @todo Better exception reporting.
-      $php = '?';
+      $php_expression = '?';
     }
-    $php = PhpUtil::autoIndent($php, '  ', '    ');
     $attribute_class = OckPluginInstance::class;
-    $php = <<<EOT
+    $php_class_declaration = <<<EOT
 class Example {
 
   #[\\$attribute_class('examplePlugin', 'Example plugin')]
   public static function create(): \\$interface {
-    return $php;
+    return $php_expression;
   }
 }
 EOT;
 
-
-    $aliases = PhpUtil::aliasify($php);
-    $aliases_php = '';
-    foreach ($aliases as $class => $alias) {
-      if (TRUE === $alias) {
-        $aliases_php .= 'use ' . $class . ";\n";
-      }
-      else {
-        $aliases_php .= 'use ' . $class . ' as ' . $alias . ";\n";
-      }
-    }
-
-    if ('' !== $aliases_php) {
-      $aliases_php = "\n" . $aliases_php;
-    }
-
-    $php = <<<EOT
-<?php
-
-declare(strict_types = 1);
-
-namespace Drupal\EXAMPLE\SubNamespace;
-$aliases_php
-$php
-EOT;
+    $php_file_contents = CodeFormatter::create()
+      ->formatAsFile($php_class_declaration, 'Drupal\EXAMPLE\SubNamespace');
 
     $out['codegen']['help']['#markup'] = $this->t(
     // @todo Is it a good idea to send full HTML to t()?
@@ -293,7 +269,7 @@ EOT;
 EOT
     );
 
-    $out['codegen']['code']['#children'] = UiCodeUtil::highlightPhp($php);
+    $out['codegen']['code']['#children'] = UiCodeUtil::highlightPhp($php_file_contents);
 
     return $out;
   }
