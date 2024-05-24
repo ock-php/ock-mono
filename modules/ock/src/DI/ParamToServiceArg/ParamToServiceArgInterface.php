@@ -10,8 +10,6 @@ interface ParamToServiceArgInterface {
    * @param \ReflectionParameter $parameter
    *
    * @return mixed
-   *
-   * @throws \Ock\DID\Exception\DiscoveryException
    */
   public function paramGetServiceArg(\ReflectionParameter $parameter): mixed;
 

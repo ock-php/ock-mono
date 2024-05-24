@@ -49,8 +49,6 @@ class ServiceProvider_AttributesDiscovery extends ReflectionClassesIAHavingBase 
 
   /**
    * {@inheritdoc}
-   *
-   * @throws \Ock\DID\Exception\DiscoveryException
    */
   public function register(ContainerBuilder $container): void {
     $installedModulesMap = $container->getParameter('container.modules');
@@ -120,8 +118,6 @@ class ServiceProvider_AttributesDiscovery extends ReflectionClassesIAHavingBase 
    * @param \ReflectionClass $rClass
    *
    * @return \Symfony\Component\DependencyInjection\Definition
-   *
-   * @throws \Ock\DID\Exception\DiscoveryException
    */
   private function onClass(\ReflectionClass $rClass): Definition {
     $definition = new Definition();
@@ -151,8 +147,6 @@ class ServiceProvider_AttributesDiscovery extends ReflectionClassesIAHavingBase 
    * @param \ReflectionMethod $rMethod
    *
    * @return \Symfony\Component\DependencyInjection\Definition
-   *
-   * @throws \Ock\DID\Exception\DiscoveryException
    */
   private function onMethod(\ReflectionMethod $rMethod): Definition {
     $rDeclaringClass = $rMethod->getDeclaringClass();
@@ -189,8 +183,6 @@ class ServiceProvider_AttributesDiscovery extends ReflectionClassesIAHavingBase 
    * @param array $ops
    *
    * @return array
-   *
-   * @throws \Ock\DID\Exception\DiscoveryException
    */
   private function buildArguments(array $parameters, array &$ops): array {
     $args = [];
