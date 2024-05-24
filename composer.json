@@ -17,6 +17,15 @@
         },
         {
             "type": "path",
+            "url": "modules/*",
+            "options": {
+                "versions": {
+                    "*": "self.version"
+                }
+            }
+        },
+        {
+            "type": "path",
             "url": "packages/*",
             "options": {
                 "versions": {
@@ -34,6 +43,8 @@
         "drupal/core-project-message": "^10.2",
         "drupal/core-recommended": "^10.2",
         "drupal/devel": "^5.2",
+        "drupal/ock": "dev-main",
+        "drupal/renderkit": "dev-main",
         "drush/drush": "^12.5",
         "psr/container": "^2.0",
         "psr/log": "^1.1.4|^2.0|^3.0",
