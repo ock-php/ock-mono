@@ -59,7 +59,7 @@ class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Inte
    * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $formula
    */
   public function __construct(
-    private Formula_SelectInterface $formula,
+    private readonly Formula_SelectInterface $formula,
   ) {}
 
   /**

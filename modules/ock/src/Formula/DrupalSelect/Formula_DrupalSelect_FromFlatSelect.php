@@ -21,7 +21,7 @@ class Formula_DrupalSelect_FromFlatSelect implements Formula_DrupalSelectInterfa
    */
   public function __construct(
     private readonly Formula_FlatSelectInterface $decorated,
-    private TranslatorInterface $translator,
+    private readonly TranslatorInterface $translator,
   ) {}
 
   /**
