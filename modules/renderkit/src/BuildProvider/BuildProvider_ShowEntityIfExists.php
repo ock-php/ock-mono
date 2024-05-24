@@ -10,10 +10,11 @@ use Drupal\renderkit\EntityDisplay\EntityDisplay;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 use Drupal\renderkit\Formula\Formula_EntityIdAutocomplete;
 use Drupal\renderkit\Formula\Formula_EntityType_WithGroupLabels;
+use Ock\CodegenTools\Util\CodeGen;
+use Ock\CodegenTools\Util\PhpUtil;
 use Ock\DID\Attribute\Parameter\GetCallableService;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Exception\EvaluatorException;
-use Ock\DID\Util\PhpUtil;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
@@ -92,7 +93,7 @@ class BuildProvider_ShowEntityIfExists implements BuildProviderInterface {
           return EntityDisplay::formula($entityType, $bundle);
         },
       )
-      ->buildPhp(PhpUtil::phpConstruct(self::class, [
+      ->buildPhp(CodeGen::phpConstruct(self::class, [
         DrupalPhpUtil::service('entity_type.manager'),
         PhpUtil::phpPlaceholder('entity_type'),
         PhpUtil::phpPlaceholder('entity_id'),

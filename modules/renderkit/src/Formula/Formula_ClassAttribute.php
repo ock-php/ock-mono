@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Ock\DID\Util\PhpUtil;
+use Ock\CodegenTools\Util\CodeGen;
 use Ock\Ock\Exception\GeneratorException;
 use Ock\Ock\Formula\StringVal\Formula_StringVal;
 use Ock\Ock\Formula\StringVal\Formula_StringValInterface;
@@ -86,7 +86,7 @@ class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_String
     }
 
     try {
-      return PhpUtil::phpValue($classes);
+      return CodeGen::phpValue($classes);
     }
     catch (\Exception $e) {
       throw new GeneratorException($e->getMessage(), 0, $e);

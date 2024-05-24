@@ -9,7 +9,8 @@ use Drupal\Core\Layout\LayoutPluginManagerInterface;
 use Drupal\ock\DrupalText;
 use Drupal\ock\Formula\DrupalPluginSettings\Formula_DrupalPluginSettings;
 use Drupal\ock\Util\DrupalPhpUtil;
-use Ock\DID\Util\PhpUtil;
+use Ock\CodegenTools\Util\CodeGen;
+use Ock\CodegenTools\Util\PhpUtil;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Group\Formula_Group;
@@ -67,7 +68,7 @@ class Formula_LayoutAndRegions {
       )
       ->addExpressionPhp(
         'layout',
-        PhpUtil::phpCallMethod(
+        CodeGen::phpCallMethod(
           DrupalPhpUtil::service('plugin.manager.core.layout'),
           'createInstance',
           [

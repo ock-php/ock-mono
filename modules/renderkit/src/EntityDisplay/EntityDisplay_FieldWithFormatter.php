@@ -13,8 +13,9 @@ use Drupal\renderkit\Formula\Formula_FieldFormatterId;
 use Drupal\renderkit\Formula\Formula_FieldFormatterSettings;
 use Drupal\renderkit\Helper\FieldDefinitionLookupInterface;
 use Drupal\renderkit\Helper\FormatterPluginLookup;
+use Ock\CodegenTools\Util\CodeGen;
+use Ock\CodegenTools\Util\PhpUtil;
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Util\PhpUtil;
 use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\DefaultConf\Formula_DefaultConf;
@@ -131,7 +132,7 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplayBase {
         DrupalPhpUtil::service('entity_type.manager'),
         PhpUtil::phpPlaceholder('entity_type'),
         PhpUtil::phpPlaceholder('field_name'),
-        PhpUtil::phpArray([
+        CodeGen::phpArray([
           'label' => PhpUtil::phpPlaceholder('label'),
           'type' => PhpUtil::phpPlaceholder('formatter'),
           'settings' => PhpUtil::phpPlaceholder('settings'),

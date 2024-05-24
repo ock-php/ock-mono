@@ -6,7 +6,7 @@ namespace Drupal\renderkit\Formula;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\ock\Formator\FormatorD8Interface;
 use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
-use Ock\DID\Util\PhpUtil;
+use Ock\CodegenTools\Util\CodeGen;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Generator\GeneratorInterface;
 use Ock\Ock\Summarizer\SummarizerInterface;
@@ -136,9 +136,9 @@ class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterf
    */
   public function confGetPhp(mixed $conf): string {
     $defaults = $this->confGetElementDefaults($conf);
-    return PhpUtil::phpConstruct(
+    return CodeGen::phpConstruct(
       ListFormat_ElementDefaults::class,
-      [PhpUtil::phpValue($defaults)]);
+      [CodeGen::phpValue($defaults)]);
   }
 
   /**

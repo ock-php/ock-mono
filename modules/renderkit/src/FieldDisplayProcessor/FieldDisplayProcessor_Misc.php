@@ -5,7 +5,7 @@ namespace Drupal\renderkit\FieldDisplayProcessor;
 
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
 use Drupal\renderkit\Util\UtilBase;
-use Ock\DID\Util\PhpUtil;
+use Ock\CodegenTools\Util\CodeGen;
 use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Formula\Boolean\Formula_Boolean_YesNo;
@@ -93,23 +93,23 @@ abstract class FieldDisplayProcessor_Misc extends UtilBase {
       $withOuterWrapperClasses,
       $withLabelOptions,
     ): string {
-      $php = PhpUtil::phpConstruct(FieldDisplayProcessor_Bare::class);
+      $php = CodeGen::phpConstruct(FieldDisplayProcessor_Bare::class);
       if ($withLabelOptions) {
-        $php = PhpUtil::phpConstruct(FieldDisplayProcessor_PrependLabelElement::class, [
+        $php = CodeGen::phpConstruct(FieldDisplayProcessor_PrependLabelElement::class, [
           $php,
           $itemsPhp['lb-col'],
         ]);
         // @todo Give access to original configuration values.
         // @todo Also check NULL and null?
         if ($itemsPhp['label'] !== "''") {
-          $php = PhpUtil::phpConstruct(FieldDisplayProcessor_CustomLabel::class, [
+          $php = CodeGen::phpConstruct(FieldDisplayProcessor_CustomLabel::class, [
             $php,
             $itemsPhp['label'],
           ]);
         }
       }
       if ($withOuterWrapper) {
-        $php = PhpUtil::phpConstruct(FieldDisplayProcessor_OuterContainer::class, [
+        $php = CodeGen::phpConstruct(FieldDisplayProcessor_OuterContainer::class, [
           $php,
           $withOuterWrapperClasses ? $itemsPhp['classes'] : '[]',
         ]);
