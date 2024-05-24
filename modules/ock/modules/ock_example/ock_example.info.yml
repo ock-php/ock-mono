@@ -1,4 +1,4 @@
 name: 'Composition UI example'
 description: 'Example module for Composition UI.'
 type: module
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^10
