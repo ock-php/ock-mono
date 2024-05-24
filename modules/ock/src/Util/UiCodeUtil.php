@@ -82,30 +82,25 @@ final class UiCodeUtil extends UtilBase {
 
   /**
    * @param string $php
-   * @param bool $tmp_prepend_opening_tag
    *
    * @return \Drupal\Component\Render\MarkupInterface|string
    */
-  public static function highlightAndWrap(string $php, bool $tmp_prepend_opening_tag = TRUE): MarkupInterface|string {
+  public static function highlightAndWrap(string $php): MarkupInterface|string {
 
     $php = PhpUtil::autoIndent($php,'  ');
 
-    if ($tmp_prepend_opening_tag) {
-      $php = "<?php\n" . $php;
-    }
+    $php = "<?php\n" . $php;
 
     $html = highlight_string($php, TRUE);
 
-    if ($tmp_prepend_opening_tag) {
-      $html = preg_replace(
-        CfStringUtil::regex(
-          '<span style="color: #999999">&lt;?php<br /></span>',
-          '@',
-          ['999999' => '[a-fA-F0-9]{0,6}']),
-        '',
-        $html,
-        1);
-    }
+    $html = preg_replace(
+      CfStringUtil::regex(
+        '<span style="color: #999999">&lt;?php<br /></span>',
+        '@',
+        ['999999' => '[a-fA-F0-9]{0,6}']),
+      '',
+      $html,
+      1);
 
     $html = '<div class="codeblock"><pre>' . $html . '</pre></div>';
 
