@@ -49,7 +49,7 @@ class FormatorD8_Textfield implements FormatorD8Interface {
    * @param array $element
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    */
-  public static function validate(array &$element, FormStateInterface $form_state) {
+  public static function validate(array &$element, FormStateInterface $form_state): void {
 
     /** @var \Ock\Ock\Formula\Textfield\Formula_TextfieldInterface $formula */
     $formula = $element['#formula'];
