@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Formator\Controlling;
 
+use Drupal\Component\Render\MarkupInterface;
+
 interface ControllingFormatorInterface {
 
   /**
@@ -13,6 +15,6 @@ interface ControllingFormatorInterface {
    *
    * @return array
    */
-  public function buildControllingSubform(mixed $conf, \Drupal\Component\Render\MarkupInterface|string|null $label, array $ajax): array;
+  public function buildControllingSubform(mixed $conf, MarkupInterface|string|null $label, array $ajax): array;
 
 }

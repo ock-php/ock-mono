@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\RouteHelper;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 
@@ -21,7 +22,7 @@ interface ClassRouteHelperInterface {
    *
    * @return \Drupal\Core\Link
    */
-  public function link(\Drupal\Component\Render\MarkupInterface|string $text, array $options = []): Link;
+  public function link(MarkupInterface|string $text, array $options = []): Link;
 
   /**
    * @param array $options
