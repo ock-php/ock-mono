@@ -19,8 +19,10 @@ class Formula_DrupalSelect_FromFlatSelect implements Formula_DrupalSelectInterfa
    * @param \Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $decorated
    * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
-  public function __construct(private readonly Formula_FlatSelectInterface $decorated, private TranslatorInterface $translator) {
-  }
+  public function __construct(
+    private readonly Formula_FlatSelectInterface $decorated,
+    private TranslatorInterface $translator,
+  ) {}
 
   /**
    * {@inheritdoc}
