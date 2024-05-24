@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\ock\DI\ParamToServiceArg;
 
 use Drupal\ock\Attribute\DI\GetContainerParameter;
-use Ock\DID\Util\AttributesUtil;
+use Ock\ClassDiscovery\Util\AttributesUtil;
 
 class ParamToServiceArg_Attribute_GetContainerParameter implements ParamToServiceArgInterface {
 

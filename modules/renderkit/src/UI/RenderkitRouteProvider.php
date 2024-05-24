@@ -9,7 +9,7 @@ use Drupal\ock\Attribute\Routing\RouteModifierInterface;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
 use Drupal\ock\Util\StringUtil;
 use Ock\ClassDiscovery\NamespaceDirectory;
-use Ock\DID\Util\AttributesUtil;
+use Ock\ClassDiscovery\Util\AttributesUtil;
 use Symfony\Component\Routing\Route;
 
 class RenderkitRouteProvider implements ContainerInjectionInterface {

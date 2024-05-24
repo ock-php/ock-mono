@@ -17,8 +17,8 @@ use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArg_Attribute_GetService;
 use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArg_Chain;
 use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArgInterface;
 use Ock\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
+use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\DID\Attribute\Service;
-use Ock\DID\Util\AttributesUtil;
 use Ock\DID\Util\ReflectionTypeUtil;
 use Symfony\Component\DependencyInjection\Definition;
 
