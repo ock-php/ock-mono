@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\ParamConverter;
 
+use Drupal\Core\Utility\Error;
 use Drupal\ock\Attribute\DI\ServiceTags;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
@@ -41,7 +42,8 @@ class ParamConverter_Plugin extends ParamConverterBase {
       $plugins = $this->pluginMap->typeGetPlugins($interface);
     }
     catch (PluginListException $e) {
-      \watchdog_exception('ock', $e);
+      // @todo Inject the logger.
+      Error::logException(\Drupal::logger('ock'), $e);
     }
     $plugin = $plugins[$value] ?? null;
     if (!$plugin) {
