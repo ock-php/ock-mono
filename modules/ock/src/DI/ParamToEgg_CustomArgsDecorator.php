@@ -6,8 +6,8 @@ namespace Drupal\ock\DI;
 
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
-use Ock\DID\ContainerToValue\ContainerToValueInterface;
-use Ock\DID\ParamToCTV\ParamToCTVInterface;
+use Ock\Egg\Egg\EggInterface;
+use Ock\Egg\ParamToEgg\ParamToEggInterface;
 
 /**
  * Resolves parameters.
@@ -15,30 +15,30 @@ use Ock\DID\ParamToCTV\ParamToCTVInterface;
  * This is registered as a service twice.
  */
 #[Service(self::class)]
-class ParamToCTV_CustomArgsDecorator implements ParamToCTVInterface {
+class ParamToEgg_CustomArgsDecorator implements ParamToEggInterface {
 
   /**
-   * @var array<string, mixed|ParamToCTVInterface>
+   * @var array<string, mixed|\Ock\Egg\ParamToEgg\ParamToEggInterface>
    */
   private array $namedArgs = [];
 
   /**
-   * @var array<string, mixed|\Ock\DID\ContainerToValue\ContainerToValueInterface>
+   * @var array<string, mixed|\Ock\Egg\Egg\EggInterface>
    */
   private array $typeArgs = [];
 
   /**
    * Constructor.
    *
-   * @param \Ock\DID\ParamToCTV\ParamToCTVInterface $decorated
+   * @param \Ock\Egg\ParamToEgg\ParamToEggInterface $decorated
    */
   public function __construct(
     #[GetService]
-    private readonly ParamToCTVInterface $decorated,
+    private readonly ParamToEggInterface $decorated,
   ) {}
 
   /**
-   * @param array<string, mixed|\Ock\DID\ContainerToValue\ContainerToValueInterface> $args
+   * @param array<string, mixed|\Ock\Egg\Egg\EggInterface> $args
    *
    * @return static
    */
@@ -49,7 +49,7 @@ class ParamToCTV_CustomArgsDecorator implements ParamToCTVInterface {
   }
 
   /**
-   * @param array<string, mixed|\Ock\DID\ContainerToValue\ContainerToValueInterface> $args
+   * @param array<string, mixed|\Ock\Egg\Egg\EggInterface> $args
    *
    * @return static
    */
@@ -62,7 +62,7 @@ class ParamToCTV_CustomArgsDecorator implements ParamToCTVInterface {
   /**
    * {@inheritdoc}
    */
-  public function paramGetCTV(\ReflectionParameter $parameter, mixed $fail = NULL): ?ContainerToValueInterface {
+  public function paramGetEgg(\ReflectionParameter $parameter, mixed $fail = NULL): ?EggInterface {
     if ($this->namedArgs) {
       $name = $parameter->getName();
       if (array_key_exists($name, $this->namedArgs)) {
@@ -78,7 +78,7 @@ class ParamToCTV_CustomArgsDecorator implements ParamToCTVInterface {
         }
       }
     }
-    return $this->decorated->paramGetCTV($parameter);
+    return $this->decorated->paramGetEgg($parameter);
   }
 
 }
