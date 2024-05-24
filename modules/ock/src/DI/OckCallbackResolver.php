@@ -9,7 +9,7 @@ use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArgInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
 use Ock\DID\Exception\ContainerToValueException;
-use Ock\DID\Util\ReflectionUtil;
+use Ock\Ock\Util\ReflectionUtil;
 
 /**
  * Implements the class resolver interface supporting class names and services.
