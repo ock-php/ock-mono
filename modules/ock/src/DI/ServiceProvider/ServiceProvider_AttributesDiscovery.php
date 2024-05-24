@@ -18,8 +18,8 @@ use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArg_Chain;
 use Drupal\ock\DI\ParamToServiceArg\ParamToServiceArgInterface;
 use Ock\ClassDiscovery\Shared\ReflectionClassesIAHavingBase;
 use Ock\ClassDiscovery\Util\AttributesUtil;
+use Ock\ClassDiscovery\Util\ReflectionTypeUtil;
 use Ock\DID\Attribute\Service;
-use Ock\DID\Util\ReflectionTypeUtil;
 use Symfony\Component\DependencyInjection\Definition;
 
 class ServiceProvider_AttributesDiscovery extends ReflectionClassesIAHavingBase implements ServiceProviderInterface {
