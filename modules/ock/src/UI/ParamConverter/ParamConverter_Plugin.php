@@ -4,15 +4,13 @@ declare(strict_types=1);
 namespace Drupal\ock\UI\ParamConverter;
 
 use Drupal\Core\Utility\Error;
-use Drupal\ock\Attribute\DI\ServiceTags;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Ock\Ock\Exception\PluginListException;
 use Ock\Ock\Plugin\Map\PluginMapInterface;
 use Ock\Ock\Plugin\NamedPlugin;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-#[Service(self::class)]
-#[ServiceTags(['paramconverter'])]
+#[AutoconfigureTag('paramconverter')]
 class ParamConverter_Plugin extends ParamConverterBase {
 
   public const TYPE = 'ock:plugin';
@@ -21,10 +19,13 @@ class ParamConverter_Plugin extends ParamConverterBase {
    * Constructor.
    *
    * @param \Ock\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   *   Plugin map.
+   * @param \Psr\Log\LoggerInterface $logger
+   *   Logger.
    */
   public function __construct(
-    #[GetService]
     private readonly PluginMapInterface $pluginMap,
+    private readonly LoggerInterface $logger,
   ) {}
 
   /**
@@ -43,7 +44,7 @@ class ParamConverter_Plugin extends ParamConverterBase {
     }
     catch (PluginListException $e) {
       // @todo Inject the logger.
-      Error::logException(\Drupal::logger('ock'), $e);
+      Error::logException($this->logger, $e);
     }
     $plugin = $plugins[$value] ?? null;
     if (!$plugin) {

@@ -5,9 +5,9 @@ namespace Drupal\ock\UI\PluginDeriver;
 
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
-use Drupal\ock\DI\OckCallbackResolver;
-use Ock\DID\Attribute\Parameter\GetService;
+use Drupal\ock\DI\OckCallbackResolverInterface;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -21,11 +21,12 @@ abstract class LinkPluginDeriverBase extends PluginDeriverBase implements Contai
    *
    * @return static
    *
-   * @throws \Exception Some arguments are left unresolved.
+   * @throws \Psr\Container\ContainerExceptionInterface
+   *   Some arguments are left unresolved.
    */
   public static function create(ContainerInterface $container, $base_plugin_id): static {
-    /** @var \Drupal\ock\DI\OckCallbackResolver $resolver */
-    $resolver = $container->get(OckCallbackResolver::class);
+    $resolver = $container->get(OckCallbackResolverInterface::class);
+    assert($resolver instanceof OckCallbackResolverInterface);
     return $resolver
       ->withTypeArgs(['string' => $base_plugin_id])
       ->construct(static::class);
@@ -36,9 +37,9 @@ abstract class LinkPluginDeriverBase extends PluginDeriverBase implements Contai
    * @param \Symfony\Component\Routing\RouterInterface $router
    */
   public function __construct(
-    #[GetService('router.route_provider')]
+    #[Autowire(service: 'router.route_provider')]
     protected RouteProviderInterface $provider,
-    #[GetService('router.no_access_checks')]
+    #[Autowire(service: 'router.no_access_checks')]
     private readonly RouterInterface $router,
   ) {}
 

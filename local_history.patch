@@ -1,0 +1,99 @@
+Index: vendor/symfony/dependency-injection/Compiler/Compiler.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/symfony/dependency-injection/Compiler/Compiler.php b/vendor/symfony/dependency-injection/Compiler/Compiler.php
+--- a/vendor/symfony/dependency-injection/Compiler/Compiler.php	
++++ b/vendor/symfony/dependency-injection/Compiler/Compiler.php	(date 1716661011801)
+@@ -76,7 +76,7 @@
+     public function compile(ContainerBuilder $container)
+     {
+         try {
+-            foreach ($this->passConfig->getPasses() as $pass) {
++            foreach ($passes = $this->passConfig->getPasses() as $i => $pass) {
+                 $pass->process($container);
+             }
+         } catch (\Exception $e) {
+Index: vendor/symfony/dependency-injection/Compiler/RemovePrivateAliasesPass.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/symfony/dependency-injection/Compiler/RemovePrivateAliasesPass.php b/vendor/symfony/dependency-injection/Compiler/RemovePrivateAliasesPass.php
+--- a/vendor/symfony/dependency-injection/Compiler/RemovePrivateAliasesPass.php	
++++ b/vendor/symfony/dependency-injection/Compiler/RemovePrivateAliasesPass.php	(date 1716653939896)
+@@ -29,6 +29,7 @@
+      */
+     public function process(ContainerBuilder $container)
+     {
++      #print __METHOD__; exit();
+         foreach ($container->getAliases() as $id => $alias) {
+             if ($alias->isPublic()) {
+                 continue;
+Index: vendor/symfony/dependency-injection/Compiler/DefinitionErrorExceptionPass.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/symfony/dependency-injection/Compiler/DefinitionErrorExceptionPass.php b/vendor/symfony/dependency-injection/Compiler/DefinitionErrorExceptionPass.php
+--- a/vendor/symfony/dependency-injection/Compiler/DefinitionErrorExceptionPass.php	
++++ b/vendor/symfony/dependency-injection/Compiler/DefinitionErrorExceptionPass.php	(date 1716652400622)
+@@ -35,6 +35,7 @@
+      */
+     public function process(ContainerBuilder $container)
+     {
++      #print __METHOD__ . "\n"; exit();
+         try {
+             parent::process($container);
+ 
+@@ -48,7 +49,7 @@
+                 // only show the first error so the user can focus on it
+                 $errors = $definition->getErrors();
+ 
+-                throw new RuntimeException(reset($errors));
++                throw new RuntimeException($id . ': ' . reset($errors));
+             }
+         } finally {
+             $this->erroredDefinitions = [];
+Index: vendor/symfony/dependency-injection/Compiler/RemoveAbstractDefinitionsPass.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/symfony/dependency-injection/Compiler/RemoveAbstractDefinitionsPass.php b/vendor/symfony/dependency-injection/Compiler/RemoveAbstractDefinitionsPass.php
+--- a/vendor/symfony/dependency-injection/Compiler/RemoveAbstractDefinitionsPass.php	
++++ b/vendor/symfony/dependency-injection/Compiler/RemoveAbstractDefinitionsPass.php	(date 1716651734583)
+@@ -25,8 +25,10 @@
+      */
+     public function process(ContainerBuilder $container)
+     {
++      #print __METHOD__ . "\n"; exit();
+         foreach ($container->getDefinitions() as $id => $definition) {
+             if ($definition->isAbstract()) {
++              print "Remove abstract definition: '$id'.\n";
+                 $container->removeDefinition($id);
+                 $container->log($this, sprintf('Removed service "%s"; reason: abstract.', $id));
+             }
+Index: vendor/symfony/dependency-injection/Compiler/ResolveInstanceofConditionalsPass.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/symfony/dependency-injection/Compiler/ResolveInstanceofConditionalsPass.php b/vendor/symfony/dependency-injection/Compiler/ResolveInstanceofConditionalsPass.php
+--- a/vendor/symfony/dependency-injection/Compiler/ResolveInstanceofConditionalsPass.php	
++++ b/vendor/symfony/dependency-injection/Compiler/ResolveInstanceofConditionalsPass.php	(date 1716659136450)
+@@ -108,7 +108,12 @@
+             $bindings = $definition->getBindings();
+             $abstract = $container->setDefinition('.abstract.instanceof.'.$id, $definition);
+             $definition->setBindings([]);
+-            $definition = serialize($definition);
++            try {
++              $definition = serialize($definition);
++            }
++            catch (\Throwable $e) {
++              $x = 5;
++            }
+ 
+             if (Definition::class === $abstract::class) {
+                 // cast Definition to ChildDefinition

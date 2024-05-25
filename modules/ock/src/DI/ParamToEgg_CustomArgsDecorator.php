@@ -5,16 +5,17 @@ declare(strict_types = 1);
 namespace Drupal\ock\DI;
 
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Ock\Egg\Egg\EggInterface;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
+use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
+use Symfony\Component\DependencyInjection\Attribute\Exclude;
 
 /**
  * Resolves parameters.
  *
  * This is registered as a service twice.
  */
-#[Service(self::class)]
+#[Exclude]
 class ParamToEgg_CustomArgsDecorator implements ParamToEggInterface {
 
   /**

@@ -4,10 +4,12 @@ declare(strict_types = 1);
 
 namespace Ock\Egg\ParamToEgg;
 
+use Ock\DID\Attribute\Service;
 use Ock\Egg\Egg\Egg_ServiceId;
 use Ock\Egg\Egg\EggInterface;
 use Psr\Container\ContainerInterface;
 
+#[Service(alias: false)]
 class ParamToEgg_ParamTypeAsServiceId implements ParamToEggInterface {
 
   public function __construct(

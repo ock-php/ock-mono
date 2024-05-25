@@ -5,6 +5,10 @@ declare(strict_types = 1);
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return function (ContainerConfigurator $container): void {
+  #$classes = NamespaceDirectory::fromKnownClass(EggNamespace::class);
+  #SymfonyServiceDiscovery::create()->discover($container, $classes);
+  #return;
+
   $services = $container->services();
 
   $services->defaults()

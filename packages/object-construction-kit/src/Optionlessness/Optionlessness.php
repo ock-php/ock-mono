@@ -8,7 +8,9 @@ use Ock\Adaptism\Exception\AdapterException;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\FormulaAdapter;
+use Symfony\Component\DependencyInjection\Attribute\Exclude;
 
+# #[Exclude]
 class Optionlessness implements OptionlessnessInterface {
 
   /**

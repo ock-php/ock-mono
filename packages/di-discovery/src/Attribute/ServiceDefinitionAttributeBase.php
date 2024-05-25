@@ -17,10 +17,17 @@ abstract class ServiceDefinitionAttributeBase {
    * @param string|null $serviceIdSuffix
    *   Suffix to append to a service id.
    *   This allows to distinguish services that implement the same interface.
+   * @param string|list<string>|false|null $alias
+   *   One of:
+   *     - A string, to use a specific alias.
+   *     - A list of strings, to use multiple aliases.
+   *     - FALSE, to not add any aliases.
+   *     - NULL, to automatically determine aliases based on interfaces.
    */
   public function __construct(
     public readonly ?string $serviceId = NULL,
     public readonly ?string $serviceIdSuffix = NULL,
+    public readonly string|array|false|null $alias = null,
   ) {}
 
   /**

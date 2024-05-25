@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Ock\Adaptism\AdapterDefinition;
 
 use Ock\Egg\Egg\EggInterface;
+use Symfony\Component\DependencyInjection\Attribute\Exclude;
 
+# #[Exclude]
 class AdapterDefinition_Simple implements AdapterDefinitionInterface {
 
   /**

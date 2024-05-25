@@ -10,7 +10,9 @@ use Ock\Adaptism\SpecificAdapter\SpecificAdapterInterface;
 use Ock\Helpers\Util\MessageUtil;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Exclude;
 
+# #[Exclude]
 class AdapterFromContainer_Callback implements AdapterFromContainerInterface {
 
   /**
