@@ -221,6 +221,13 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   /**
    * {@inheritdoc}
    */
+  public function getMethodName(): ?string {
+    return NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function isMethod(): false {
     return false;
   }

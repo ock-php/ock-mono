@@ -6,9 +6,11 @@ namespace Drupal\ock\UI\ParamConverter;
 use Drupal\ock\Attribute\DI\ServiceTags;
 use Drupal\ock\Util\UiUtil;
 use Ock\DID\Attribute\Service;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[Service(self::class)]
 #[ServiceTags(['paramconverter'])]
+#[AutoconfigureTag('paramconverter')]
 class ParamConverter_Iface extends ParamConverterBase {
 
   public const TYPE = 'ock:interface';

@@ -70,6 +70,13 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
   /**
    * {@inheritdoc}
    */
+  public function getMethodName(): ?string {
+    return $this->name;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function isMethod(): true {
     return true;
   }

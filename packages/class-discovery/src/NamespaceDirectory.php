@@ -128,6 +128,34 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
+   * Gets the vendor namespace directory.
+   *
+   * @return self
+   */
+  public function vendor(): self {
+    return $this->requireParentAt(1);
+  }
+
+  /**
+   * Gets the package namespace directory.
+   *
+   * @return self
+   */
+  public function package(): self {
+    return $this->requireParentAt(2);
+  }
+
+  /**
+   * @param int $level
+   *
+   * @return self
+   */
+  public function requireParentAt(int $level): self {
+    $depth = substr_count($this->terminatedNamespace, '\\');
+    return $this->requireParentN($depth - $level);
+  }
+
+  /**
    * Gets the nth parent directory, expecting it to exist.
    *
    * @param int $nLevelsUp
@@ -247,7 +275,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @return string
    */
   public function getNamespace(): string {
-    return rtrim($this->terminatedNamespace);
+    return rtrim($this->terminatedNamespace, '\\');
   }
 
   /**
@@ -260,8 +288,156 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   /**
    * @return string
    */
+  public function getFqn(): string {
+    if ($this->terminatedNamespace === '') {
+      return '';
+    }
+    return '\\' . rtrim($this->terminatedNamespace, '\\');
+  }
+
+  /**
+   * @return string
+   */
   public function getDirectory(): string {
     return $this->directory;
+  }
+
+  /**
+   * Gets the directory with a trailing separator.
+   *
+   * @return string
+   *   Directory with trailing separator.
+   */
+  public function getTerminatedPath(): string {
+    // The directory can't be '/'.
+    return $this->directory . '/';
+  }
+
+  /**
+   * Gets the package directory.
+   *
+   * @param string $subdir
+   *   PSR-4 base path relative to the package directory.
+   *   Typically '' or '/src'.
+   * @param int $level
+   *   Number of namespace parts of the package namespace.
+   *
+   * @return string
+   *   Package directory with no trailing separator.
+   */
+  public function getPackageDirectory(string $subdir = '/src', int $level = 2): string {
+    $relativeFqn = $this->getRelativeFqn($level);
+    $relativePath = $subdir . str_replace('\\', '/', $relativeFqn);
+    if (!str_ends_with($this->directory, $relativePath)) {
+      throw new \RuntimeException(sprintf(
+        'Directory %s is expected to end with %s.',
+        $this->directory,
+        $relativePath,
+      ));
+    }
+    return \substr($this->directory, 0, -\strlen($relativePath));
+  }
+
+  /**
+   * Gets a relative namespace with trailing separator.
+   *
+   * @param non-negative-int $level
+   *   Number of namespace parts of the package namespace.
+   *
+   * @return string
+   *   Relative namespace with trailing separator.
+   */
+  public function getRelativeTerminatedNamespace(int $level = 2): string {
+    if ($level === 0) {
+      return $this->terminatedNamespace;
+    }
+    \assert($level > 0);
+    $parts = explode('\\', $this->terminatedNamespace);
+    if (count($parts) <= $level) {
+      throw new \RuntimeException(sprintf(
+        'Namespace %s is too short to get a relative namespace.',
+        $this->terminatedNamespace,
+      ));
+    }
+    return implode('\\', \array_slice($parts, $level));
+  }
+
+  /**
+   * Gets a relative namespace with leading separator.
+   *
+   * @param int $level
+   *   Number of namespace parts of the package namespace.
+   *
+   * @return string
+   *   Relative namespace with trailing separator.
+   */
+  public function getRelativeFqn(int $level = 2): string {
+    if ($level === 0) {
+      return $this->getFqn();
+    }
+    \assert($level > 0);
+    $parts = explode('\\', $this->terminatedNamespace);
+    $depth = count($parts) - 1;
+    if ($depth < $level) {
+      throw new \RuntimeException(sprintf(
+        'Namespace %s is too short to get a relative namespace.',
+        $this->terminatedNamespace,
+      ));
+    }
+    if ($depth === $level) {
+      return '';
+    }
+    return '\\' . implode('\\', \array_slice($parts, $level, -1));
+  }
+
+  /**
+   * Gets the path relative to the package directory, with leading '/'.
+   *
+   * @param string $subdir
+   *   PSR-4 base path relative to the package directory.
+   *   Typically '' or '/src'.
+   * @param int $level
+   *   Number of namespace parts of the package namespace.
+   *
+   * @return string
+   *   Relative path with leading '/' separator, unless empty.
+   */
+  public function getRelativePath(string $subdir = '/src', int $level = 2): string {
+    $relativeFqn = $this->getRelativeFqn($level);
+    $relativePath = $subdir . str_replace('\\', '/', $relativeFqn);
+    if (!\str_ends_with($this->directory, $relativePath)) {
+      throw new \RuntimeException(sprintf(
+        'Directory %s is expected to end with %s.',
+        $this->directory,
+        $relativePath,
+      ));
+    }
+    return $relativePath;
+  }
+
+  /**
+   * Gets the path relative to the package directory, with trailing '/'.
+   *
+   * @param string $subdir
+   *   Terminated PSR-4 base path relative to the terminated package directory.
+   *   Typically '' or 'src/'.
+   * @param int $level
+   *   Number of namespace parts of the package namespace.
+   *
+   * @return string
+   *   Relative path with trailing '/' separator, unless empty.
+   */
+  public function getRelativeTerminatedPath(string $subdir = 'src/', int $level = 2): string {
+    $relativeTerminatedNamespace = $this->getRelativeTerminatedNamespace($level);
+    $relativeTerminatedPath = $subdir . str_replace('\\', '/', $relativeTerminatedNamespace);
+    if (!\str_ends_with($this->directory . '/', $relativeTerminatedPath)) {
+      throw new \RuntimeException(sprintf(
+        'Directory %s is expected to end with %s.',
+        $this->directory . '/',
+        $relativeTerminatedPath,
+      ));
+    }
+    return $relativeTerminatedPath;
   }
 
   /**

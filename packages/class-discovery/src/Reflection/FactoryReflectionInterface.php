@@ -47,6 +47,14 @@ interface FactoryReflectionInterface {
   public function getClass(): ClassReflection;
 
   /**
+   * Gets the method name, if this is a method.
+   *
+   * @return string|null
+   *   Method name, or NULL if this is a class.
+   */
+  public function getMethodName(): ?string;
+
+  /**
    * Checks if this is a method.
    *
    * @return bool

@@ -15,7 +15,9 @@ use Ock\Ock\Exception\GeneratorException;
 use Ock\Ock\Generator\Generator;
 use Ock\Ock\Generator\GeneratorInterface;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Exclude;
 
+# #[Exclude]
 class Evaluator_GeneratorEval implements EvaluatorInterface {
 
   /**

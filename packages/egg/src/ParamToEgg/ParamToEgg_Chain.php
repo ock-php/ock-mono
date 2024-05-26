@@ -4,11 +4,13 @@ declare(strict_types = 1);
 
 namespace Ock\Egg\ParamToEgg;
 
+use Ock\DID\Attribute\Service;
 use Ock\Egg\Egg\EggInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 
 #[AsAlias]
+#[Service]
 class ParamToEgg_Chain implements ParamToEggInterface {
 
   /**

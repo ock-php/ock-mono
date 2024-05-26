@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace Ock\Egg\ClassToEgg;
 
+use Ock\DID\Attribute\Service;
 use Ock\Egg\Egg\Egg_Construct;
 use Ock\Egg\Egg\EggInterface;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
-use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
-#[AsAlias]
+#[Service]
 class ClassToEgg_Construct implements ClassToEggInterface {
 
   /**

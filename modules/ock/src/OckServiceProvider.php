@@ -4,29 +4,74 @@ declare(strict_types = 1);
 
 namespace Drupal\ock;
 
-use Drupal\Core\DependencyInjection\ContainerBuilder;
-use Drupal\Core\DependencyInjection\ServiceProviderInterface;
-use Drupal\ock\DI\ServiceProvider\ServiceProvider_AttributesDiscovery;
 use Ock\Adaptism\AdaptismPackage;
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
+use Ock\ClassDiscovery\NamespaceDirectory;
+use Ock\DID\DidNamespace;
+use Ock\Egg\EggNamespace;
 use Ock\Ock\OckPackage;
+use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 
-class OckServiceProvider implements ServiceProviderInterface {
+/**
+ * Service provider for the Ock module.
+ */
+class OckServiceProvider extends OckServiceProviderBase {
 
   /**
    * {@inheritdoc}
+   */
+  public function doRegister(ContainerBuilder $container): void {
+    static::loadPackageServicesPhp($container, dirname(DidNamespace::DIR));
+    static::loadPackageServicesPhp($container, dirname(EggNamespace::DIR));
+    static::loadPackageServicesPhp($container, dirname(AdaptismPackage::DIR));
+    static::loadPackageServicesPhp($container, dirname(OckPackage::DIR));
+
+    parent::doRegister($container);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function registerForCurrentModule(ServicesConfigurator $services, NamespaceDirectory $namespaceDir): void {
+    $services->alias(ContainerInterface::class, 'service_container');
+
+    $services->set('logger.channel.ock')
+      ->parent('logger.channel_base')
+      ->arg(0, 'ock');
+
+    $services->defaults()
+      ->autowire()
+      ->autoconfigure()
+      ->bind(LoggerInterface::class, new Reference('logger.channel.ock'));
+
+    parent::registerForCurrentModule($services, $namespaceDir);
+  }
+
+  /**
+   * Loads services from a services.php in a package directory.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+   *   Container builder.
+   * @param string $dir
+   *   Directory where the services.php is found.
+   * @param string $file
+   *   File name.
    *
    * @throws \Exception
-   *   Malformed service declaration.
+   *   Bad arguments, or a file is not found.
    */
-  public function register(ContainerBuilder $container): void {
-    ServiceProvider_AttributesDiscovery::create()
-      ->withClassFilesIA(ClassFilesIA::psr4FromClasses([
-        AdaptismPackage::class,
-        OckPackage::class,
-        self::class,
-      ]))
-      ->register($container);
+  protected static function loadPackageServicesPhp(ContainerBuilder $container, string $dir, string $file = 'services.php'): void {
+    // The Drupal container builder makes all aliases public, thus prevengin
+    // the removal of unused services.
+    // Use a symfony ContainerBuilder instead.
+    $locator = new FileLocator($dir);
+    $loader = new PhpFileLoader($container, $locator);
+    $loader->load($file);
   }
 
 }

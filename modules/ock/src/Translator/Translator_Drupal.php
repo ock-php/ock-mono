@@ -8,9 +8,11 @@ use Drupal\Core\StringTranslation\TranslationInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
 use Ock\Ock\Translator\TranslatorInterface;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 #[Service]
+#[AsAlias(public: true)]
 class Translator_Drupal implements TranslatorInterface {
 
   /**
