@@ -10,6 +10,7 @@ use Ock\DID\Attribute\Service;
 use Ock\Ock\Exception\PluginListException;
 use Ock\Ock\Plugin\Map\PluginMapInterface;
 use Ock\Ock\Plugin\NamedPlugin;
+use Psr\Log\LoggerInterface;
 
 #[Service(self::class)]
 #[ServiceTags(['paramconverter'])]
@@ -21,10 +22,14 @@ class ParamConverter_Plugin extends ParamConverterBase {
    * Constructor.
    *
    * @param \Ock\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   *   Plugin map.
+   * @param \Psr\Log\LoggerInterface $logger
+   *   Logger.
    */
   public function __construct(
     #[GetService]
     private readonly PluginMapInterface $pluginMap,
+    private readonly LoggerInterface $logger,
   ) {}
 
   /**
@@ -43,7 +48,7 @@ class ParamConverter_Plugin extends ParamConverterBase {
     }
     catch (PluginListException $e) {
       // @todo Inject the logger.
-      Error::logException(\Drupal::logger('ock'), $e);
+      Error::logException($this->logger, $e);
     }
     $plugin = $plugins[$value] ?? null;
     if (!$plugin) {
