@@ -6,8 +6,8 @@ namespace Drupal\ock\UI\PluginDeriver;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\ock\DI\OckCallbackResolverInterface;
-use Ock\DID\Attribute\Parameter\GetService;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -37,9 +37,9 @@ abstract class LinkPluginDeriverBase extends PluginDeriverBase implements Contai
    * @param \Symfony\Component\Routing\RouterInterface $router
    */
   public function __construct(
-    #[GetService('router.route_provider')]
+    #[Autowire(service: 'router.route_provider')]
     protected RouteProviderInterface $provider,
-    #[GetService('router.no_access_checks')]
+    #[Autowire(service: 'router.no_access_checks')]
     private readonly RouterInterface $router,
   ) {}
 
