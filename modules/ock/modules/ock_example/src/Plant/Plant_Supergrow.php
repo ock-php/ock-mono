@@ -18,7 +18,7 @@ class Plant_Supergrow implements PlantInterface {
    */
   public function __construct(
     #[OckOption('decorated', 'Decorated plant')]
-    PlantInterface $decorated,
+    public readonly PlantInterface $decorated,
   ) {}
 
 }
