@@ -279,6 +279,60 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
+   * Gets the last part of the namespace, without any separators.
+   *
+   * @return string|null
+   *   Last namespace fragment, or NULL if this is the root namespace.
+   */
+  public function getShortname(): ?string {
+    if ($this->terminatedNamespace === '') {
+      // This is the root namespace.
+      return null;
+    }
+    if (false === $pos = strrpos($this->terminatedNamespace, '\\', -2)) {
+      // This is a one-level namespace.
+      return \substr($this->terminatedNamespace, 0, -1);
+    }
+    return \substr($this->terminatedNamespace, $pos + 1, -1);
+  }
+
+  /**
+   * Gets the last part of the namespace, without trailing separator.
+   *
+   * @return string|null
+   *   Last namespace fragment, or NULL if this is the root namespace.
+   */
+  public function getTerminatedShortname(): ?string {
+    if ($this->terminatedNamespace === '') {
+      // This is the root namespace.
+      return null;
+    }
+    if (false === $pos = strrpos($this->terminatedNamespace, '\\', -2)) {
+      // This is a one-level namespace.
+      return $this->terminatedNamespace;
+    }
+    return \substr($this->terminatedNamespace, $pos + 1);
+  }
+
+  /**
+   * Gets the last part of the namespace, without trailing separator.
+   *
+   * @return string|null
+   *   Last namespace fragment, or NULL if this is the root namespace.
+   */
+  public function getShortFqn(): ?string {
+    if ($this->terminatedNamespace === '') {
+      // This is the root namespace.
+      return '';
+    }
+    if (false === $pos = strrpos($this->terminatedNamespace, '\\', -2)) {
+      // This is a one-level namespace.
+      return '\\' . \substr($this->terminatedNamespace, 0, -1);
+    }
+    return \substr($this->terminatedNamespace, $pos, -1);
+  }
+
+  /**
    * @return string
    */
   public function getTerminatedNamespace(): string {
