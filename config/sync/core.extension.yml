@@ -36,6 +36,8 @@ module:
   menu_ui: 0
   mysql: 0
   node: 0
+  ock: 0
+  ock_example: 0
   options: 0
   page_cache: 0
   path: 0
@@ -48,6 +50,7 @@ module:
   system: 0
   taxonomy: 0
   text: 0
+  themekit: 0
   toolbar: 0
   update: 0
   user: 0
