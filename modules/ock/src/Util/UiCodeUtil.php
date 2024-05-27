@@ -27,7 +27,7 @@ final class UiCodeUtil extends UtilBase {
       && !class_exists($class)
     ) {
       return (string)t(
-        'There is no class or interface named !name.',
+        'There is no class or interface named @name.',
         ['@name' => Markup::create('<code>' . HtmlUtil::sanitize($class) . '</code>')]
       );
     }
