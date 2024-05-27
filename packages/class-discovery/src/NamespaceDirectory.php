@@ -275,7 +275,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @return string
    */
   public function getNamespace(): string {
-    return rtrim($this->terminatedNamespace);
+    return rtrim($this->terminatedNamespace, '\\');
   }
 
   /**
