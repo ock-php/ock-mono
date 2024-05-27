@@ -19,8 +19,8 @@ trait ContainerInjectionViaAttributesTrait {
    *   Some arguments are left unresolved.
    */
   public static function create(ContainerInterface $container): static {
-    /** @var \Drupal\ock\DI\OckCallbackResolver $resolver */
-    $resolver = $container->get(OckCallbackResolver::class);
+    $resolver = $container->get(OckCallbackResolverInterface::class);
+    \assert($resolver instanceof OckCallbackResolverInterface);
     return $resolver->construct(static::class);
   }
 
