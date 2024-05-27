@@ -21,7 +21,8 @@ abstract class LinkPluginDeriverBase extends PluginDeriverBase implements Contai
    *
    * @return static
    *
-   * @throws \Exception Some arguments are left unresolved.
+   * @throws \Psr\Container\ContainerExceptionInterface
+   *   Some arguments are left unresolved.
    */
   public static function create(ContainerInterface $container, $base_plugin_id): static {
     $resolver = $container->get(OckCallbackResolverInterface::class);
