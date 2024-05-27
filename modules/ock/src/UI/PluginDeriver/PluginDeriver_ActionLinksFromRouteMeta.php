@@ -6,7 +6,7 @@ namespace Drupal\ock\UI\PluginDeriver;
 final class PluginDeriver_ActionLinksFromRouteMeta extends LinkPluginDeriverBase {
 
   /**
-   * @return array[]
+   * {@inheritdoc}
    */
   protected function buildDerivativeDefinitions(): array {
 
