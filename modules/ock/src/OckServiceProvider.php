@@ -40,7 +40,8 @@ class OckServiceProvider extends OckServiceProviderBase {
    * {@inheritdoc}
    */
   protected function registerForCurrentModule(ServicesConfigurator $services, NamespaceDirectory $namespaceDir): void {
-    $services->alias(ContainerInterface::class, 'service_container');
+    $services->alias(ContainerInterface::class, 'service_container')
+      ->public();
 
     // The logger bind has to be done per module, to avoid the error from unused
     // bind.
