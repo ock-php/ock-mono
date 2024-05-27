@@ -8,7 +8,7 @@ use Ock\Egg\Egg\EggInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 
-#[AsAlias]
+#[AsAlias(public: true)]
 class ParamToEgg_Chain implements ParamToEggInterface {
 
   /**
