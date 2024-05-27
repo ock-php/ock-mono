@@ -50,22 +50,26 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
    */
   public static function createWithDisplayCondition(ViewsDisplayConditionInterface $condition): self {
     return new self(
-      TRUE,
       new ViewsDisplayCondition_And([
         new ViewsDisplayCondition_Status(TRUE),
         # new ViewsDisplayCondition_DisplayTypeWhitelist([]),
         $condition,
       ]),
+      TRUE,
     );
   }
 
   /**
-   * @param bool $status
+   * Constructor.
+   *
    * @param \Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface $condition
+   * @param bool|null $status
+   *   TRUE for only enabled views, FALSE for only disabled views.
+   *   NULL for all views.
    */
   public function __construct(
-    bool $status = TRUE,
     private readonly ViewsDisplayConditionInterface $condition,
+    ?bool $status = TRUE,
   ) {
     $this->idFormula = new Formula_ViewId($status);
   }
