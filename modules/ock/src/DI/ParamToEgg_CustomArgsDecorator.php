@@ -4,17 +4,18 @@ declare(strict_types = 1);
 
 namespace Drupal\ock\DI;
 
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Ock\Egg\Egg\EggInterface;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
+use Symfony\Component\DependencyInjection\Attribute\Exclude;
 
 /**
- * Resolves parameters.
+ * Decorator to resolve parameters based on custom arguments tied to a type or
+ * a parameter name.
  *
- * This is registered as a service twice.
+ * For now, don't register this as a service.
+ * See https://github.com/symfony/symfony/discussions/57196
  */
-#[Service(self::class)]
+#[Exclude]
 class ParamToEgg_CustomArgsDecorator implements ParamToEggInterface {
 
   /**
@@ -33,7 +34,6 @@ class ParamToEgg_CustomArgsDecorator implements ParamToEggInterface {
    * @param \Ock\Egg\ParamToEgg\ParamToEggInterface $decorated
    */
   public function __construct(
-    #[GetService]
     private readonly ParamToEggInterface $decorated,
   ) {}
 
