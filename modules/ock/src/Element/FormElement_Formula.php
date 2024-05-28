@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\ock\Element;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element\FormElement;
+use Drupal\Core\Render\Element\FormElementBase;
 use Drupal\ock\Formator\FormatorD8;
 use Ock\Adaptism\Exception\AdapterException;
 use Ock\Ock\Core\Formula\FormulaInterface;
@@ -12,7 +12,7 @@ use Ock\Ock\Core\Formula\FormulaInterface;
 /**
  * @FormElement("ock_cf_formula")
  */
-class FormElement_Formula extends FormElement {
+class FormElement_Formula extends FormElementBase {
 
   public const ID = 'ock_cf_formula';
 
