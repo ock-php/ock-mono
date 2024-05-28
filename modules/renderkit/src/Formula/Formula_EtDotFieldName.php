@@ -10,11 +10,12 @@ use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\TextInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
 /**
  * Select formula where the value is like 'node.body'.
  */
-#[Service(self::class)]
+#[Autoconfigure(public: true)]
 class Formula_EtDotFieldName implements Formula_SelectInterface {
 
   /**
