@@ -281,7 +281,7 @@ PHP;
 
     $formula = $plugin->getFormula();
 
-    FALSE && $out['form'] = $this->formBuilder()->getForm(
+    $out['form'] = $this->formBuilder()->getForm(
       Form_FormulaDemo::class,
       $formula,
     );
