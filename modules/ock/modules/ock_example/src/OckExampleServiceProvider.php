@@ -7,7 +7,7 @@ namespace Drupal\ock_example;
 use Drupal\ock\OckServiceProviderBase;
 
 /**
- * Service provider for the Ock module.
+ * Service provider for the 'ock_example' module.
  */
 class OckExampleServiceProvider extends OckServiceProviderBase {
 
