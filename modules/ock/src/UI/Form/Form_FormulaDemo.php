@@ -5,6 +5,7 @@ namespace Drupal\ock\UI\Form;
 
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\ock\Element\FormElement_Formula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 
 class Form_FormulaDemo implements FormInterface {
@@ -37,8 +38,7 @@ class Form_FormulaDemo implements FormInterface {
     $conf = $_GET['conf'] ?? [];
 
     $form['conf'] = [
-      /* @see \Drupal\ock\Element\FormElement_CfFormula */
-      '#type' => 'ock_cf_formula',
+      '#type' => FormElement_Formula::ID,
       '#cf_formula' => $formula,
       '#title' => \t('Plugin'),
       '#default_value' => $conf,
