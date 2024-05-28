@@ -1,0 +1,7 @@
+name: 'OCK Preset'
+description: 'Reusable configurations for Object Construction Kit (OCK)'
+type: module
+core_version_requirement: ^10
+
+dependencies:
+  - ock_preset
