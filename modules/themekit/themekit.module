@@ -8,35 +8,26 @@ declare(strict_types=1);
  */
 function themekit_theme(): array {
   return [
+    //  This theme hook made sense in Drupal 7, but might no longer be needed.
     'themekit_container' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-      /* @see theme_themekit_container() */
-      'function' => 'theme_themekit_container',
     ],
     'themekit_item_containers' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-      /* @see theme_themekit_item_containers() */
-      'function' => 'theme_themekit_item_containers',
     ],
     'themekit_link_wrapper' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-      /* @see theme_themekit_link_wrapper() */
-      'function' => 'theme_themekit_link_wrapper',
     ],
     'themekit_list' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-      /* @see theme_themekit_list() */
-      'function' => 'theme_themekit_list',
     ],
     'themekit_separator_list' => [
       'render element' => 'element',
       'file' => 'themekit.theme.inc',
-      /* @see theme_themekit_separator_list() */
-      'function' => 'theme_themekit_separator_list',
     ],
   ];
 }

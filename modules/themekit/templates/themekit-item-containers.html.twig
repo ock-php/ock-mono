@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Wrap every item into a tag.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - children: The rendered child elements for the link.
+ * - url: The url.
+ * - options: The options for the link.
+ *
+ * @see template_preprocess_link()
+ *
+ * @ingroup themeable
+ */
+#}
+{%- if item_tag_name -%}
+  {%- for item in items -%}
+    {%- set _item %}{{ item }}{% endset -%}
+    {%- if _item|trim != '' -%}
+      <{{ item_tag_name }}{{ item_attributes }}>{{ _item }}</{{ item_tag_name }}>
+    {%- endif -%}
+  {%- endfor -%}
+{%- else -%}
+  {% for item in items -%}
+    {%- set _item %}{{ item }}{% endset -%}
+    {%- if _item|trim != '' -%}
+      {{ _item }}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
