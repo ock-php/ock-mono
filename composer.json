@@ -56,7 +56,8 @@
     "require-dev": {
         "ext-dom": "*",
         "ext-libxml": "*",
-        "phpstan/phpstan": "2.0.x-dev",
+        "drupal/core-dev": "^10",
+        "phpstan/phpstan": "^1.11",
         "phpunit/phpunit": "^9.5",
         "symfony/expression-language": "^6.4",
         "symfony/yaml": "^6.2"
