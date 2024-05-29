@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  * @return array[]
  */
-function themekit_theme() {
+function themekit_theme(): array {
   return [
     'themekit_container' => [
       'render element' => 'element',
