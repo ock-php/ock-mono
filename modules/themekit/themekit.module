@@ -40,17 +40,3 @@ function themekit_theme(): array {
     ],
   ];
 }
-
-/**
- * Implements hook_element_info()
- *
- * @return array
- */
-function themekit_element_info() {
-  return [
-    'themekit_container' => [
-      /* @see theme_themekit_container() */
-      '#theme_wrappers' => ['themekit_container'],
-    ],
-  ];
-}
