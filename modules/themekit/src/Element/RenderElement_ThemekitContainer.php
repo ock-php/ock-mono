@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\themekit\Element;
 
-use Drupal\Core\Render\Element\RenderElement as CoreRenderElement;
+use Drupal\Core\Render\Element\RenderElementBase;
 
 /**
  * @RenderElement("themekit_container")
  *
  * @see \Drupal\Core\Render\Element\Container
  */
-class RenderElement_ThemekitContainer extends CoreRenderElement {
+class RenderElement_ThemekitContainer extends RenderElementBase {
 
   public const ID = 'themekit_container';
 

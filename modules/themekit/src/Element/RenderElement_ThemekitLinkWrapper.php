@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\themekit\Element;
 
-use Drupal\Core\Render\Element\RenderElement as CoreRenderElement;
+use Drupal\Core\Render\Element\RenderElementBase;
 
 /**
  * @RenderElement("themekit_link_wrapper")
@@ -11,7 +11,7 @@ use Drupal\Core\Render\Element\RenderElement as CoreRenderElement;
  * @see \Drupal\Core\Render\Element\Link
  * @see \Drupal\Core\Render\Element\Container
  */
-class RenderElement_ThemekitLinkWrapper extends CoreRenderElement {
+class RenderElement_ThemekitLinkWrapper extends RenderElementBase {
 
   public const ID = 'themekit_link_wrapper';
 
