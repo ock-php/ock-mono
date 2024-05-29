@@ -6,17 +6,15 @@ namespace Drupal\renderkit\Helper;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldDefinitionInterface;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
-#[Service(self::class)]
+#[AsAlias]
 class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
 
   /**
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    */
   public function __construct(
-    #[GetService('entity_field.manager')]
     private readonly EntityFieldManagerInterface $entityFieldManager,
   ) {}
 

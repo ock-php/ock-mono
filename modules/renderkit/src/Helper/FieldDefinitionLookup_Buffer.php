@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Helper;
 
 use Drupal\Core\Field\FieldDefinitionInterface;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
+use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireDecorated;
 
-#[Service]
+#[AsDecorator(FieldDefinitionLookupInterface::class)]
 class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {
 
   /**
@@ -29,7 +29,7 @@ class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {
    * @param \Drupal\renderkit\Helper\FieldDefinitionLookupInterface $decorated
    */
   public function __construct(
-    #[GetService(FieldDefinitionLookup::class)]
+    #[AutowireDecorated]
     private readonly FieldDefinitionLookupInterface $decorated,
   ) {}
 
