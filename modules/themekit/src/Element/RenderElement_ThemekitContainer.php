@@ -25,7 +25,6 @@ class RenderElement_ThemekitContainer extends RenderElementBase {
    */
   public function getInfo() {
     return [
-      /* @see theme_themekit_container() */
       '#theme_wrappers' => ['themekit_container'],
     ];
   }

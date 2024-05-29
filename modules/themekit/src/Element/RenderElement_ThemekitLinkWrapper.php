@@ -22,7 +22,6 @@ class RenderElement_ThemekitLinkWrapper extends RenderElementBase {
    */
   public function getInfo() {
     return [
-      /* @see theme_themekit_link_wrapper() */
       '#theme_wrappers' => ['themekit_link_wrapper'],
     ];
   }
