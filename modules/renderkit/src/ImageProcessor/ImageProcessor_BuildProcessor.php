@@ -30,11 +30,7 @@ class ImageProcessor_BuildProcessor implements ImageProcessorInterface {
   }
 
   /**
-   * @param array $build
-   *   Render array with '#theme' => 'image'.
-   *
-   * @return array
-   *   Render array after the processing.
+   * {@inheritdoc}
    */
   public function processImage(array $build): array {
     if (NULL !== $this->decorated) {

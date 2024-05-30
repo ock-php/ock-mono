@@ -42,10 +42,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   ) {}
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   Single entity object for which to build a render arary.
-   *
-   * @return array
+   * {@inheritdoc}
    */
   public function buildEntity(EntityInterface $entity): array {
 

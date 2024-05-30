@@ -31,9 +31,7 @@ class EntityCondition_FromFilter implements EntityConditionInterface {
   ) {}
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *
-   * @return bool
+   * {@inheritdoc}
    */
   public function entityCheckCondition(EntityInterface $entity): bool {
     $entities = ['entity' => $entity];

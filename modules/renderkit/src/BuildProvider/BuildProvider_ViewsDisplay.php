@@ -48,8 +48,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
   ) {}
 
   /**
-   * @return array
-   *   A render array.
+   * {@inheritdoc}
    */
   public function build(): array {
 

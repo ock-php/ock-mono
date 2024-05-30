@@ -34,19 +34,7 @@ class EntityDisplay_EntityCondition implements EntityDisplayInterface {
   }
 
   /**
-   * Builds render arrays from the entities provided.
-   *
-   * Both the entities and the resulting render arrays are in plural, to allow
-   * for more performant implementations.
-   *
-   * Array keys and their order must be preserved, although implementations
-   * might remove some keys that are empty.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *   Entity objects for which to build the render arrays.
-   *   The array keys can be anything, they don't need to be the entity ids.
-   *
-   * @return array[]
+   * {@inheritdoc}
    */
   public function buildEntities(array $entities): array {
 
@@ -88,13 +76,7 @@ class EntityDisplay_EntityCondition implements EntityDisplayInterface {
   }
 
   /**
-   * Same as ->buildEntities(), just for a single entity.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *
-   * @return array
-   *
-   * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntity()
+   * {@inheritdoc}
    */
   public function buildEntity(EntityInterface $entity): array {
 

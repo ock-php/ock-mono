@@ -8,14 +8,7 @@ use Drupal\Core\Entity\EntityInterface;
 trait EntityDisplayBaseTrait {
 
   /**
-   * Builds the render array for multiple entities, by using the method for a
-   * single entity.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *
-   * @return array[]
-   *
-   * @see \Drupal\renderkit\EntityDisplay\EntityDisplayInterface::buildEntities()
+   * {@inheritdoc}
    */
   final public function buildEntities(array $entities): array {
 

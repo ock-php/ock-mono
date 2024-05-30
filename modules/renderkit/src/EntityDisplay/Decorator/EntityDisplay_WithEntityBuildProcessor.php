@@ -39,11 +39,7 @@ class EntityDisplay_WithEntityBuildProcessor extends EntityDisplayBase {
   ) {}
 
   /**
-   * Same as ->buildEntities(), just for a single entity.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *
-   * @return array
+   * {@inheritdoc}
    */
   public function buildEntity(EntityInterface $entity): array {
     $build = $this->entityDisplay->buildEntity($entity);

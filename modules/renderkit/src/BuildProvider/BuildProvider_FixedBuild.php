@@ -13,8 +13,7 @@ class BuildProvider_FixedBuild implements BuildProviderInterface {
   ) {}
 
   /**
-   * @return array
-   *   A render array.
+   * {@inheritdoc}
    */
   public function build(): array {
     return $this->build;

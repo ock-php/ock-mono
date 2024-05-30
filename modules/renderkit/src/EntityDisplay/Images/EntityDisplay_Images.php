@@ -26,12 +26,7 @@ class EntityDisplay_Images extends EntityDisplayBase {
   ) {}
 
   /**
-   * Same as ->buildEntities(), just for a single entity.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   Single entity object for which to build a render arary.
-   *
-   * @return array
+   * {@inheritdoc}
    */
   public function buildEntity(EntityInterface $entity): array {
     $images = $this->entityImages->entityGetImages($entity);
