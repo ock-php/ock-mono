@@ -57,6 +57,7 @@
         "ext-dom": "*",
         "ext-libxml": "*",
         "drupal/core-dev": "^10",
+        "phpspec/prophecy-phpunit": "^2.2",
         "phpstan/phpstan": "^1.11",
         "phpunit/phpunit": "^9.5",
         "symfony/expression-language": "^6.4",
