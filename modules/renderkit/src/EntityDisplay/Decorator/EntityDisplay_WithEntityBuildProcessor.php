@@ -7,20 +7,19 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayBase;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 class EntityDisplay_WithEntityBuildProcessor extends EntityDisplayBase {
 
   /**
-   * @CfrPlugin(
-   *   id = "processedEntityDisplay",
-   *   label = @Translate("Processed entity display")
-   * )
-   *
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
    * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|NULL $processor
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
+   *
+   * @todo Mark as decorator.
    */
+  #[OckPluginInstance('processedEntityDisplay', 'Processed entity display')]
   public static function create(EntityDisplayInterface $entityDisplay, EntityBuildProcessorInterface $processor = NULL): EntityDisplayInterface {
     return NULL !== $processor
       ? new static($entityDisplay, $processor)

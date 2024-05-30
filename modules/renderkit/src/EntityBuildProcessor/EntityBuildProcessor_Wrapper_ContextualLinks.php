@@ -9,27 +9,29 @@ use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\renderkit\Formula\Formula_ClassAttribute;
 use Drupal\renderkit\Formula\Formula_TagName;
 use Drupal\renderkit\Html\HtmlTagTrait;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Text\Text;
 
 /**
- * A typical entity container with contextual links and stuff.
- *
- * @CfrPlugin(
- *   id = "contextualLinksWrapperDefault",
- *   label = "Entity contextual links wrapper, default"
- * )
+ * Processor to wrap the entity in a wrapper element with contextual links.
  */
+#[OckPluginInstance('contextualLinksWrapperDefault', 'Entity contextual links wrapper, default')]
 class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcessorInterface {
 
   use HtmlTagTrait;
 
   /**
-   * @CfrPlugin("contextualLinksWrapper", "Entity contextual links wrapper")
+   * Static factory for a configurable version.
    *
    * @return \Ock\Ock\Core\Formula\FormulaInterface
+   *   A formula to configure the instance.
+   *
+   * @throws \Ock\Ock\Exception\GroupFormulaDuplicateKeyException
    */
+  #[OckPluginFormula(self::class, 'contextualLinksWrapper', 'Entity contextual links wrapper')]
   public static function createCfrFormula(): FormulaInterface {
     return Formula::group()
       ->add(

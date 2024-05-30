@@ -4,15 +4,16 @@ declare(strict_types=1);
 namespace Drupal\renderkit\ListFormat;
 
 use Drupal\renderkit\Formula\Formula_ListFormat_Expert;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
+use Ock\Ock\Core\Formula\FormulaInterface;
 
 class ListFormat_ElementDefaults implements ListFormatInterface {
 
   /**
-   * @CfrPlugin("expert", "Expert")
-   *
    * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
-  public static function createExpertFormula(): Formula_ListFormat_Expert|\Ock\Ock\Core\Formula\FormulaInterface {
+  #[OckPluginFormula(self::class, 'expert', 'Expert')]
+  public static function createExpertFormula(): FormulaInterface {
     return new Formula_ListFormat_Expert();
   }
 

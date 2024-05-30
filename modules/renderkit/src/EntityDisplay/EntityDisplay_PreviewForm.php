@@ -7,6 +7,8 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\ock\UI\Form\Form_GenericRedirectGET;
 use Ock\Adaptism\Exception\AdapterException;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Context\CfContext;
 use Ock\Ock\Context\CfContextInterface;
 use Ock\Ock\Evaluator\Evaluator;
@@ -23,11 +25,13 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   private static array $inProgress = [];
 
   /**
-   * @CfrPlugin("previewForm", "Preview form")
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return self
    */
+  #[OckPluginInstance('previewForm', 'Preview form')]
   public static function create(
+    #[GetService]
     UniversalAdapterInterface $adapter,
   ): self {
     return new self($adapter, 'entity_display_preview');

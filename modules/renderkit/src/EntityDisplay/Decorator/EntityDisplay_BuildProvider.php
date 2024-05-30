@@ -6,10 +6,12 @@ namespace Drupal\renderkit\EntityDisplay\Decorator;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\BuildProvider\BuildProviderInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
- * @CfrPlugin("buildProvider", @t("Build provider"))
+ * @todo Mark as adapter.
  */
+#[OckPluginInstance("buildProvider", "Build provider")]
 class EntityDisplay_BuildProvider implements EntityDisplayInterface {
 
   /**

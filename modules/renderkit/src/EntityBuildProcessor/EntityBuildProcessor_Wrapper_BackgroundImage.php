@@ -6,13 +6,9 @@ namespace Drupal\renderkit\EntityBuildProcessor;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityImage\EntityImageInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
-/**
- * @CfrPlugin(
- *   id = "entityBackgroundImageWrapper",
- *   label = @t("Entity background image wrapper")
- * )
- */
+#[OckPluginInstance('entityBackgroundImageWrapper', 'Entity background image wrapper')]
 class EntityBuildProcessor_Wrapper_BackgroundImage implements EntityBuildProcessorInterface {
 
   use HtmlTagTrait;

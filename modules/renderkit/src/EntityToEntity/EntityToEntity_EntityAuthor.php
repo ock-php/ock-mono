@@ -14,11 +14,6 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
 
   /**
-   * @CfrPlugin(
-   *   id = "userEntityOrAuthor",
-   *   label = @t("User entity or author")
-   * )
-   *
    * @return \Drupal\renderkit\EntityToEntity\EntityToEntityInterface
    */
   #[OckPluginInstance('userEntityOrAuthor', 'User entity or author')]

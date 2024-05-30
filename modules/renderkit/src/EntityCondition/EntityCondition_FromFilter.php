@@ -5,20 +5,17 @@ namespace Drupal\renderkit\EntityCondition;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityFilter\EntityFilterInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
  * Adapter from EntityFilterInterface to EntityConditionInterface.
  *
- * @CfrPlugin(
- *   id = "fromFilter",
- *   label = "Filter",
- *   inline = true
- * )
- *
  * @todo Implement interface equivalence for cfrplugin.
+ * @todo Mark as adapter / inline.
  *
  * @see \Drupal\renderkit\EntityFilter\EntityFilter_FromCondition
  */
+#[OckPluginInstance('fromFilter', 'Filter')]
 class EntityCondition_FromFilter implements EntityConditionInterface {
 
   /**

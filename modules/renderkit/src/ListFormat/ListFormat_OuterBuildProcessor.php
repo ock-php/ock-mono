@@ -4,10 +4,12 @@ declare(strict_types=1);
 namespace Drupal\renderkit\ListFormat;
 
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
- * @CfrPlugin("outerBuildProcessor", "Outer build processor")
+ * @todo Mark as decorator.
  */
+#[OckPluginInstance('outerBuildProcessor', 'Outer build processor')]
 class ListFormat_OuterBuildProcessor implements ListFormatInterface {
 
   /**

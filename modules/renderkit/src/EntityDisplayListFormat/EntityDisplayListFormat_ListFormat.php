@@ -5,14 +5,12 @@ namespace Drupal\renderkit\EntityDisplayListFormat;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
- * @CfrPlugin(
- *   id = "listFormat",
- *   label = @t("List format"),
- *   inline = true
- * )
+ * @todo Mark as adapter/inline.
  */
+#[OckPluginInstance("listFormat", "List format")]
 class EntityDisplayListFormat_ListFormat implements EntityDisplayListFormatInterface {
 
   /**

@@ -4,10 +4,9 @@ declare(strict_types=1);
 namespace Drupal\renderkit\ImageProcessor;
 
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
-/**
- * @CfrPlugin("buildProcessor", "Build processor")
- */
+#[OckPluginInstance("buildProcessor", "Build processor")]
 class ImageProcessor_BuildProcessor implements ImageProcessorInterface {
 
   /**

@@ -4,15 +4,14 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityCondition;
 
 use Drupal\Core\Entity\EntityInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
- * @CfrPlugin(
- *   id = "negation",
- *   label = @t("Negation")
- * )
- *
  * @see \Drupal\renderkit\EntityFilter\EntityFilter_Negation
+ *
+ * @todo Mark as decorator.
  */
+#[OckPluginInstance('negation', 'Negation')]
 class EntityCondition_Negation implements EntityConditionInterface {
 
   /**

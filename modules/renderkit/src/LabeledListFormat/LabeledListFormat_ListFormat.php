@@ -4,10 +4,12 @@ declare(strict_types=1);
 namespace Drupal\renderkit\LabeledListFormat;
 
 use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
- * @CfrPlugin("listformat", "List format", inline = true)
+ * @todo Mark as adapter/inline.
  */
+#[OckPluginInstance('listformat', 'List format')]
 class LabeledListFormat_ListFormat implements LabeledListFormatInterface {
 
   /**

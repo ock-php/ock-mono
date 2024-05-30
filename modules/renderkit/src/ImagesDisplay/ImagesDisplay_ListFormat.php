@@ -6,13 +6,12 @@ namespace Drupal\renderkit\ImagesDisplay;
 use Drupal\renderkit\ImageProcessor\ImageProcessorInterface;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 use Drupal\renderkit\Util\RenderUtil;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
- * @CfrPlugin(
- *   id = "listFormat",
- *   label = "List format with image processor"
- * )
+ * @todo Mark as adapter?
  */
+#[OckPluginInstance('listFormat', 'List format with image processor')]
 class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
 
   /**
