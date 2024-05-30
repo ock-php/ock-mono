@@ -1,0 +1,12 @@
+
+# Key placeholders: $interface, $machine_name
+ock_preset.preset.*.*:
+  type: mapping
+  label: 'ock_preset preset'
+  mapping:
+    label:
+      type: string
+      label: 'Label setting machine name'
+    conf:
+      type: ignore
+      label: 'ock_preset configuration'

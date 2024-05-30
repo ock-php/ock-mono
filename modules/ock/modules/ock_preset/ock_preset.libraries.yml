@@ -1,0 +1,7 @@
+drilldown-additions:
+  version: 1.x
+  js:
+    js/ock_preset.drilldown-additions.js: {}
+  dependencies:
+    - core/jquery
+    - ock_preset/drilldown-tools
