@@ -41,8 +41,14 @@
     <env name="MINK_DRIVER_ARGS_WEBDRIVER" value=''/>
   </php>
   <testsuites>
-    <testsuite name="Ock Monorepo test suite">
+    <testsuite name="packages">
       <directory>./packages/*/tests/src</directory>
+    </testsuite>
+    <testsuite name="modules-unit">
+      <directory>./modules/*/tests/src/Unit</directory>
+    </testsuite>
+    <testsuite name="modules-kernel">
+      <directory>./modules/*/tests/src/Kernel</directory>
     </testsuite>
   </testsuites>
   <logging>
