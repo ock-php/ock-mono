@@ -846,6 +846,10 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 // Automatically generated include for settings managed by ddev.
 if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev.php')) {
   include __DIR__ . '/settings.ddev.php';
+
+  // For now, assume that, if this site is run with ddev, it is a local
+  // development instance, and it should behave like one.
+  include __DIR__ . '/settings.development.php';
 }
 
 /**
