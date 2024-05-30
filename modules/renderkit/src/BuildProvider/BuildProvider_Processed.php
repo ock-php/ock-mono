@@ -4,10 +4,9 @@ declare(strict_types=1);
 namespace Drupal\renderkit\BuildProvider;
 
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
-/**
- * @CfrPlugin("processed", "Processed")
- */
+#[OckPluginInstance('processed', 'Processed')]
 class BuildProvider_Processed implements BuildProviderInterface {
 
   /**
