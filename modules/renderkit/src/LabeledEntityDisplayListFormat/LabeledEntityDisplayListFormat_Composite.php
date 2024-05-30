@@ -13,31 +13,6 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null
-   */
-  private ?EntityBuildProcessorInterface $outerProcessor;
-
-  /**
-   * @var \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null
-   */
-  private ?LabeledEntityBuildProcessorInterface $labeledFormat;
-
-  /**
-   * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null
-   */
-  private ?EntityBuildProcessorInterface $innerProcessor;
-
-  /**
-   * @var \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface|null
-   */
-  private ?EntityDisplayListFormatInterface $listFormat;
-
-  /**
-   * @var \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null
-   */
-  private ?EntityBuildProcessorInterface $itemProcessor;
-
-  /**
    * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledFormat
    *
    * @return self
@@ -76,25 +51,21 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
   }
 
   /**
-   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface $outerProcessor
-   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledFormat
-   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface $innerProcessor
-   * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface $listFormat
+   * Constructor.
+   *
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null $outerProcessor
+   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledFormat
+   * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null $innerProcessor
+   * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface|null $listFormat
    * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null $itemProcessor
    */
   public function __construct(
-    EntityBuildProcessorInterface $outerProcessor = NULL,
-    LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
-    EntityBuildProcessorInterface $innerProcessor = NULL,
-    EntityDisplayListFormatInterface $listFormat = NULL,
-    EntityBuildProcessorInterface $itemProcessor = NULL
-  ) {
-    $this->outerProcessor = $outerProcessor;
-    $this->labeledFormat = $labeledFormat;
-    $this->innerProcessor = $innerProcessor;
-    $this->listFormat = $listFormat;
-    $this->itemProcessor = $itemProcessor;
-  }
+    private readonly ?EntityBuildProcessorInterface $outerProcessor = NULL,
+    private readonly ?LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
+    private readonly ?EntityBuildProcessorInterface $innerProcessor = NULL,
+    private readonly ?EntityDisplayListFormatInterface $listFormat = NULL,
+    private readonly ?EntityBuildProcessorInterface $itemProcessor = NULL
+  ) {}
 
   /**
    * {@inheritdoc}

@@ -15,23 +15,13 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
 
   /**
-   * @var \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null
+   * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null $imageProcessor
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $listFormat
    */
-  private ?ImageProcessorInterface $imageProcessor;
-
-  /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
-   */
-  private ?ListFormatInterface $listFormat;
-
-  /**
-   * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface $imageProcessor
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
-   */
-  public function __construct(ImageProcessorInterface $imageProcessor = NULL, ListFormatInterface $listFormat = NULL) {
-    $this->imageProcessor = $imageProcessor;
-    $this->listFormat = $listFormat;
-  }
+  public function __construct(
+    private readonly ?ImageProcessorInterface $imageProcessor = NULL,
+    private readonly ?ListFormatInterface $listFormat = NULL,
+  ) {}
 
   /**
    * {@inheritdoc}

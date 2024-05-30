@@ -12,42 +12,17 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 class LabeledListFormat_Composite implements LabeledListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL
-   */
-  private ?BuildProcessorInterface $outerProcessor;
-
-  /**
-   * @var \Drupal\renderkit\LabeledFormat\LabeledFormatInterface|NULL
-   */
-  private ?LabeledFormatInterface $labeledFormat;
-
-  /**
-   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL
-   */
-  private ?BuildProcessorInterface $innerProcessor;
-
-  /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|NULL
-   */
-  private ?ListFormatInterface $listFormat;
-
-  /**
-   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL $outerProcessor
-   * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface|NULL $labeledFormat
-   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|NULL $innerProcessor
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|NULL $listFormat
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|null $outerProcessor
+   * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface|null $labeledFormat
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|null $innerProcessor
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $listFormat
    */
   public function __construct(
-    BuildProcessorInterface $outerProcessor = NULL,
-    LabeledFormatInterface $labeledFormat = NULL,
-    BuildProcessorInterface $innerProcessor = NULL,
-    ListFormatInterface $listFormat = NULL
-  ) {
-    $this->outerProcessor = $outerProcessor;
-    $this->labeledFormat = $labeledFormat;
-    $this->innerProcessor = $innerProcessor;
-    $this->listFormat = $listFormat;
-  }
+    private readonly ?BuildProcessorInterface $outerProcessor = NULL,
+    private readonly ?LabeledFormatInterface $labeledFormat = NULL,
+    private readonly ?BuildProcessorInterface $innerProcessor = NULL,
+    private readonly ?ListFormatInterface $listFormat = NULL
+  ) {}
 
   /**
    * @param array[] $builds
