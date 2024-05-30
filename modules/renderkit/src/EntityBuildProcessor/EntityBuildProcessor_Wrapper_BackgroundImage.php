@@ -6,6 +6,7 @@ namespace Drupal\renderkit\EntityBuildProcessor;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityImage\EntityImageInterface;
 use Drupal\renderkit\Html\HtmlTagTrait;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 #[OckPluginInstance('entityBackgroundImageWrapper', 'Entity background image wrapper')]
@@ -17,6 +18,7 @@ class EntityBuildProcessor_Wrapper_BackgroundImage implements EntityBuildProcess
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $imageProvider
    */
   public function __construct(
+    #[OckOption('imageProvider', 'Image provider')]
     private readonly EntityImageInterface $imageProvider,
   ) {}
 

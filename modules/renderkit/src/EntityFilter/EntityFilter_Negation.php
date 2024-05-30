@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityFilter;
 
+use Ock\Ock\Attribute\Parameter\OckDecorated;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
@@ -15,6 +16,7 @@ class EntityFilter_Negation implements EntityFilterInterface {
    * @param \Drupal\renderkit\EntityFilter\EntityFilterInterface $negatedFilter
    */
   public function __construct(
+    #[OckDecorated]
     private readonly EntityFilterInterface $negatedFilter,
   ) {}
 

@@ -5,6 +5,7 @@ namespace Drupal\renderkit\LabeledEntityBuildProcessor;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
@@ -19,6 +20,7 @@ class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntity
    * @param \Drupal\renderkit\LabeledFormat\LabeledFormatInterface $labeledFormat
    */
   public function __construct(
+    #[OckOption('labeledFormat', 'Labeled format')]
     private readonly LabeledFormatInterface $labeledFormat,
   ) {}
 

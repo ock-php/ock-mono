@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Drupal\renderkit\BuildProvider;
 
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Ock\Ock\Attribute\Parameter\OckDecorated;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
@@ -23,7 +25,9 @@ class BuildProvider_Processed implements BuildProviderInterface {
    *   A processor to process the result render element.
    */
   public function __construct(
+    #[OckDecorated]
     private readonly BuildProviderInterface $decorated,
+    #[OckOption('processor', 'Processor')]
     private readonly BuildProcessorInterface $processor,
   ) {}
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\LabeledListFormat;
 
 use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Ock\Ock\Attribute\Parameter\OckAdaptee;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
@@ -16,6 +17,7 @@ class LabeledListFormat_ListFormat implements LabeledListFormatInterface {
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    */
   public function __construct(
+    #[OckAdaptee]
     private readonly ListFormatInterface $listFormat,
   ) {}
 

@@ -6,6 +6,7 @@ namespace Drupal\renderkit\EntityDisplay;
 use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
 use Drupal\renderkit\EntityToEntities\EntityToEntitiesInterface;
 use Drupal\renderkit\Util\ExceptionUtil;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 #[OckPluginInstance('listOfRelatedEntities', 'Related entities list')]
@@ -16,7 +17,9 @@ class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
    * @param \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
    */
   public function __construct(
+    #[OckOption('entityToEntities', 'Entity to entities')]
     private readonly EntityToEntitiesInterface $entityToEntities,
+    #[OckOption('entitiesListFormat', 'Entities list format')]
     private readonly EntitiesListFormatInterface $entitiesListFormat,
   ) {}
 

@@ -6,10 +6,11 @@ namespace Drupal\renderkit\ImagesDisplay;
 use Drupal\renderkit\ImageProcessor\ImageProcessorInterface;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 use Drupal\renderkit\Util\RenderUtil;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
- * @todo Mark as adapter?
+ * @todo Mark as adapter? Not really.
  */
 #[OckPluginInstance('listFormat', 'List format with image processor')]
 class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
@@ -19,7 +20,9 @@ class ImagesDisplay_ListFormat implements ImagesDisplayInterface {
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $listFormat
    */
   public function __construct(
+    #[OckOption('imageProcessor', 'Image processor')]
     private readonly ?ImageProcessorInterface $imageProcessor = NULL,
+    #[OckOption('listFormat', 'List format')]
     private readonly ?ListFormatInterface $listFormat = NULL,
   ) {}
 

@@ -5,6 +5,7 @@ namespace Drupal\renderkit\LabeledEntityDisplayListFormat;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
+use Ock\Ock\Attribute\Parameter\OckAdaptee;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
@@ -19,6 +20,7 @@ class LabeledEntityDisplayListFormat_LabeledListFormat implements LabeledEntityD
    * @param \Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface $labeledListFormat
    */
   public function __construct(
+    #[OckAdaptee]
     private readonly LabeledListFormatInterface $labeledListFormat,
   ) {}
 
