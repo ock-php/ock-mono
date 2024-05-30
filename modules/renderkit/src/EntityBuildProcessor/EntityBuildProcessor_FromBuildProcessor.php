@@ -5,22 +5,18 @@ namespace Drupal\renderkit\EntityBuildProcessor;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 class EntityBuildProcessor_FromBuildProcessor implements EntityBuildProcessorInterface {
 
   /**
-   * @CfrPlugin(
-   *   id = "buildProcessor",
-   *   label = @t("Build processor"),
-   *   inline = true
-   * )
-   *
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $processor
    *
    * @return \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
    *
-   * @todo Use identity / inline.
+   * @todo Mark this as adapter / inline.
    */
+  #[OckPluginInstance('buildProcessor', 'Build processor')]
   public static function create(BuildProcessorInterface $processor): EntityBuildProcessorInterface {
     return new static($processor);
   }

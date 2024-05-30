@@ -6,12 +6,21 @@ namespace Drupal\renderkit\BuildProvider;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
+/**
+ * Decorator that processes the result from the decorated build provider.
+ *
+ * @todo Mark as decorator.
+ */
 #[OckPluginInstance('processed', 'Processed')]
 class BuildProvider_Processed implements BuildProviderInterface {
 
   /**
+   * Constructor.
+   *
    * @param \Drupal\renderkit\BuildProvider\BuildProviderInterface $decorated
+   *   The decorated build provider.
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $processor
+   *   A processor to process the result render element.
    */
   public function __construct(
     private readonly BuildProviderInterface $decorated,

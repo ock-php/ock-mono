@@ -16,14 +16,9 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Formula\Boolean\Formula_Boolean_YesNo;
 
 /**
- * The most boring entity display handler, ever.
- *
- * @CfrPlugin(
- *   id = "rawTitle",
- *   label = "Entity title, raw"
- * )
+ * Show the entity title.
  */
-#[OckPluginInstance('rawTitle', 'Title, raw')]
+#[OckPluginInstance('rawTitle', 'Entity title, raw')]
 class EntityDisplay_Title extends EntityDisplayBase {
 
   /**

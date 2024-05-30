@@ -8,9 +8,6 @@ use Drupal\renderkit\ListFormat\ListFormatInterface;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
-/**
- * @CfrPlugin("listFormat", "List format")
- */
 #[OckPluginInstance('listFormat', 'List format with entity display')]
 class EntitiesListFormat_ListFormat implements EntitiesListFormatInterface {
 

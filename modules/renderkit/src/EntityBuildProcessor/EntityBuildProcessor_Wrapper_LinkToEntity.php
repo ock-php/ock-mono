@@ -20,12 +20,8 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
  * the attributes of the link element.
  *
  * A typical use case would be to wrap in image into a link element.
- *
- * @CfrPlugin(
- *   id = "entityLinkWrapper",
- *   label = @t("Entity link wrapper")
- * )
  */
+#[OckPluginInstance('entityLinkWrapper', 'Entity link wrapper.')]
 class EntityBuildProcessor_Wrapper_LinkToEntity implements EntityBuildProcessorInterface {
 
   use HtmlAttributesTrait;

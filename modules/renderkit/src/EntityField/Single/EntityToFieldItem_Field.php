@@ -8,6 +8,7 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\renderkit\Formula\Formula_EtDotFieldName;
 use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Text\Text;
@@ -24,15 +25,18 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
   ) {}
 
   /**
-   * @CfrPlugin("field", "Field", inline = true)
-   *
+   * @param \Drupal\renderkit\Formula\Formula_EtDotFieldName $fieldNameFormula
    * @param string[]|null $allowedFieldTypes
    * @param string|null $entityType
    * @param string|null $bundle
    *
    * @return \Ock\Ock\Core\Formula\FormulaInterface
    * @throws \Ock\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\GroupFormulaDuplicateKeyException
+   *
+   * @todo Mark as adapter/inline?
    */
+  #[OckPluginFormula(self::class, 'field', 'Field')]
   public static function formula(
     #[GetService]
     Formula_EtDotFieldName $fieldNameFormula,

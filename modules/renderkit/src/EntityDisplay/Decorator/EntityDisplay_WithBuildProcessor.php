@@ -6,20 +6,19 @@ namespace Drupal\renderkit\EntityDisplay\Decorator;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 class EntityDisplay_WithBuildProcessor extends EntitiesDisplayBase {
 
   /**
-   * @CfrPlugin(
-   *   id = "processedEntityDisplay",
-   *   label = @Translate("Processed entity display")
-   * )
-   *
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface $entityDisplay
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $processor
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
+   *
+   * @todo Mark as decorator.
    */
+  #[OckPluginInstance('processedEntityDisplay', 'Processed entity display')]
   public static function create(EntityDisplayInterface $entityDisplay, BuildProcessorInterface $processor = NULL): EntityDisplayInterface {
     return NULL !== $processor
       ? new static($entityDisplay, $processor)

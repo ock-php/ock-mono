@@ -5,16 +5,14 @@ namespace Drupal\renderkit\LabeledEntityBuildProcessor;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
  * Implementation that ignores the entity.
  *
- * @CfrPlugin(
- *   id = "withoutEntity",
- *   label = "Without entity",
- *   inline = true
- * )
+ * @todo Mark as adapter.
  */
+#[OckPluginInstance('withoutEntity', 'Without entity')]
 class LabeledEntityBuildProcessor_LabeledBuildProcessor implements LabeledEntityBuildProcessorInterface {
 
   /**

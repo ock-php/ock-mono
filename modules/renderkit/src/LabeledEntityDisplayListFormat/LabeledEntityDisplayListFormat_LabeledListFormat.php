@@ -5,16 +5,14 @@ namespace Drupal\renderkit\LabeledEntityDisplayListFormat;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\LabeledListFormat\LabeledListFormatInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
  * Implementation that does not use the entity.
  *
- * @CfrPlugin(
- *   id = "withoutEntity",
- *   label = "Without entity",
- *   inline = true
- * )
+ * @todo Mark as adapter/inline.
  */
+#[OckPluginInstance('withoutEntity', 'Without entity')]
 class LabeledEntityDisplayListFormat_LabeledListFormat implements LabeledEntityDisplayListFormatInterface {
 
   /**

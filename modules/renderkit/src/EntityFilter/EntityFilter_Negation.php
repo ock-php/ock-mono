@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityFilter;
 
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
+
 /**
- * @CfrPlugin(
- *   id = "negation",
- *   label = @t("Negation")
- * )
+ * @todo Mark as decorator.
  */
+#[OckPluginInstance('negation', 'Negation')]
 class EntityFilter_Negation implements EntityFilterInterface {
 
   /**

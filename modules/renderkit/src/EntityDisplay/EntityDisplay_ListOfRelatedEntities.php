@@ -6,10 +6,9 @@ namespace Drupal\renderkit\EntityDisplay;
 use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
 use Drupal\renderkit\EntityToEntities\EntityToEntitiesInterface;
 use Drupal\renderkit\Util\ExceptionUtil;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
-/**
- * @CfrPlugin("listOfRelatedEntities", "Related entities list")
- */
+#[OckPluginInstance('listOfRelatedEntities', 'Related entities list')]
 class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
 
   /**

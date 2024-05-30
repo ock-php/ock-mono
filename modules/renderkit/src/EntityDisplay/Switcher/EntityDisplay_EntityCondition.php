@@ -6,13 +6,9 @@ namespace Drupal\renderkit\EntityDisplay\Switcher;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityCondition\EntityConditionInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
-/**
- * @CfrPlugin(
- *   id = "conditional",
- *   label = "Conditional"
- * )
- */
+#[OckPluginInstance('conditional', 'Conditional')]
 class EntityDisplay_EntityCondition implements EntityDisplayInterface {
 
   /**

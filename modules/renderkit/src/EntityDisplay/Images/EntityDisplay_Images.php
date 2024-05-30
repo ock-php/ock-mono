@@ -7,13 +7,9 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayBase;
 use Drupal\renderkit\EntityImages\EntityImagesInterface;
 use Drupal\renderkit\ImagesDisplay\ImagesDisplayInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
-/**
- * @CfrPlugin(
- *   id = "images",
- *   label = "Images"
- * )
- */
+#[OckPluginInstance('images', 'Images')]
 class EntityDisplay_Images extends EntityDisplayBase {
 
   /**

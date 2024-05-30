@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 use Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Text\Text;
@@ -18,13 +19,12 @@ use Ock\Ock\Text\Text;
 class EntityCondition_DateRangeField implements EntityConditionInterface {
 
   /**
-   * @CfrPlugin("dateRangeField", "Date range field")
-   *
    * @param string|null $entityType
    * @param string|null $bundleName
    *
    * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
+  #[OckPluginFormula(self::class, 'dateRangeField', 'Date range field')]
   public static function formula(string $entityType = NULL, string $bundleName = NULL): FormulaInterface {
     return Formula::group()
       ->add(

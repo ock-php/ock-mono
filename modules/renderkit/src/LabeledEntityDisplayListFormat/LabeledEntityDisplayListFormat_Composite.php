@@ -7,13 +7,9 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface;
 use Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface;
 use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
-/**
- * @CfrPlugin(
- *   id = "compositeAdvanced",
- *   label = @t("Composite, advanced")
- * )
- */
+#[OckPluginInstance('compositeAdvanced', 'Composite, advanced')]
 class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayListFormatInterface {
 
   /**
@@ -42,50 +38,40 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
   private ?EntityBuildProcessorInterface $itemProcessor;
 
   /**
-   * @CfrPlugin(
-   *   id = "labeledFormat",
-   *   label = @t("Labeled format"),
-   *   inline = true
-   * )
+   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledFormat
    *
-   * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface $labeledFormat
+   * @return self
    *
-   * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
+   * @todo Mark as adapter/inline.
    */
-  public static function createFromLabeledFormat(LabeledEntityBuildProcessorInterface $labeledFormat = NULL): LabeledEntityDisplayListFormat_Composite|LabeledEntityDisplayListFormatInterface {
+  #[OckPluginInstance('labeledFormat', 'Labeled format')]
+  public static function createFromLabeledFormat(LabeledEntityBuildProcessorInterface $labeledFormat = NULL): self {
     return new self(NULL, $labeledFormat, NULL, NULL);
   }
 
   /**
-   * @CfrPlugin(
-   *   id = "listFormat",
-   *   label = @t("List format"),
-   *   inline = true
-   * )
+   * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface|NULL $listFormat
    *
-   * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface $listFormat
+   * @return self
    *
-   * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
+   * @todo Mark as adapter/inline.
    */
-  public static function createFromListFormat(EntityDisplayListFormatInterface $listFormat = NULL): LabeledEntityDisplayListFormat_Composite|LabeledEntityDisplayListFormatInterface {
+  #[OckPluginInstance('listFormat', 'List format')]
+  public static function createFromListFormat(EntityDisplayListFormatInterface $listFormat = NULL): self {
     return new self(NULL, NULL, NULL, $listFormat);
   }
 
   /**
-   * @CfrPlugin(
-   *   id = "composite",
-   *   label = @t("Composite")
-   * )
-   *
    * @param \Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface|null $labeledFormat
    * @param \Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface|null $listFormat
    *
-   * @return \Drupal\renderkit\LabeledEntityDisplayListFormat\LabeledEntityDisplayListFormatInterface
+   * @return self
    */
+  #[OckPluginInstance('composite', 'Composite')]
   public static function createSimple(
     LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
     EntityDisplayListFormatInterface $listFormat = NULL
-  ): LabeledEntityDisplayListFormat_Composite|LabeledEntityDisplayListFormatInterface {
+  ): self {
     return new self(NULL, $labeledFormat, NULL, $listFormat);
   }
 

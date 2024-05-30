@@ -13,11 +13,6 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
 
   /**
-   * @CfrPlugin(
-   *   id = "processedEntityImage",
-   *   label = @t("Image")
-   * )
-   *
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $entityImageProvider
    * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|NULL $imageProcessor
    *

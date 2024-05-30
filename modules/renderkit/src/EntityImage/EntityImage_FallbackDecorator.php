@@ -4,13 +4,12 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityImage;
 
 use Drupal\Core\Entity\EntityInterface;
+use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
- * @CfrPlugin(
- *   id = "fallback",
- *   label = @t("Fallback")
- * )
+ * @todo Mark as decorator?
  */
+#[OckPluginInstance('fallback', 'Fallback')]
 class EntityImage_FallbackDecorator implements EntityImageInterface {
 
   /**
