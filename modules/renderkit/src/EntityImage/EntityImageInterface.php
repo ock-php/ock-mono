@@ -11,6 +11,8 @@ use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
  * For each entity, the image provider returns a render array with
  * '#theme' => 'image' and keys for alt and stuff, which can later be used to
  * build image styles and the like.
+ *
+ * @todo Don't combine the interfaces, rethink this interface.
  */
 interface EntityImageInterface extends EntityDisplayInterface {
 
