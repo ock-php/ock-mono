@@ -1,0 +1,4 @@
+administer ock_preset:
+  title: 'Administer ock_preset presets'
+  description: 'Create, update and delete ock_preset plugin presets.'
+  restrict access: TRUE
