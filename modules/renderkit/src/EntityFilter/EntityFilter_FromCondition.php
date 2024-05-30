@@ -19,18 +19,13 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 class EntityFilter_FromCondition implements EntityFilterInterface {
 
   /**
-   * @var \Drupal\renderkit\EntityCondition\EntityConditionInterface
-   */
-  private EntityConditionInterface $singleEntityFilter;
-
-  /**
    * Adapter constructor.
    *
    * @param \Drupal\renderkit\EntityCondition\EntityConditionInterface $entityCondition
    */
-  public function __construct(EntityConditionInterface $entityCondition) {
-    $this->singleEntityFilter = $entityCondition;
-  }
+  public function __construct(
+    private readonly EntityConditionInterface $entityCondition,
+  ) {}
 
   /**
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
@@ -41,7 +36,7 @@ class EntityFilter_FromCondition implements EntityFilterInterface {
   public function entitiesFilterDeltas(array $entities): array {
     $deltas = [];
     foreach ($entities as $delta => $entity) {
-      if ($this->singleEntityFilter->entityCheckCondition($entity)) {
+      if ($this->entityCondition->entityCheckCondition($entity)) {
         $deltas[] = $delta;
       }
     }

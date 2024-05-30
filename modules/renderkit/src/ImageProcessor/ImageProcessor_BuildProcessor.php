@@ -10,23 +10,13 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 class ImageProcessor_BuildProcessor implements ImageProcessorInterface {
 
   /**
-   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|null
-   */
-  private ?BuildProcessorInterface $buildProcessor;
-
-  /**
-   * @var \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null
-   */
-  private ?ImageProcessorInterface $decorated;
-
-  /**
    * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface|null $buildProcessor
-   * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null $decoratedImageProcessor
+   * @param \Drupal\renderkit\ImageProcessor\ImageProcessorInterface|null $decorated
    */
-  public function __construct(BuildProcessorInterface $buildProcessor = NULL, ImageProcessorInterface $decoratedImageProcessor = NULL) {
-    $this->buildProcessor = $buildProcessor;
-    $this->decorated = $decoratedImageProcessor;
-  }
+  public function __construct(
+    private readonly ?BuildProcessorInterface $buildProcessor = NULL,
+    private readonly ?ImageProcessorInterface $decorated = NULL,
+  ) {}
 
   /**
    * {@inheritdoc}
