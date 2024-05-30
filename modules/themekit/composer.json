@@ -6,5 +6,10 @@
     "require": {
         "php": ">=8.1",
         "drupal/core": "^10"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Drupal\\Tests\\themekit\\": "tests/src"
+        }
     }
 }
