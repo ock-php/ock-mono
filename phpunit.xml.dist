@@ -10,15 +10,6 @@
          stopOnFailure="false"
          bootstrap="web/core/tests/bootstrap.php"
 >
-  <coverage>
-    <include>
-      <directory>src</directory>
-    </include>
-    <report>
-      <clover outputFile="build/coverage/clover.xml"/>
-      <php outputFile="build/coverage/coverage.php"/>
-    </report>
-  </coverage>
   <testsuites>
     <testsuite name="Ock Monorepo test suite">
       <directory>./packages/*/tests/src</directory>
