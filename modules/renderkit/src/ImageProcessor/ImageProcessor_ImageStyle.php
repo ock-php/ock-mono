@@ -22,11 +22,7 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
   ) {}
 
   /**
-   * @param array $build
-   *   Render array with '#theme' => 'image'.
-   *
-   * @return array
-   *   Render array after the processing.
+   * {@inheritdoc}
    */
   public function processImage(array $build): array {
     if (empty($build)) {

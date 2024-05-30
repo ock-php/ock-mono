@@ -102,8 +102,7 @@ class BuildProvider_ShowEntityIfExists implements BuildProviderInterface {
   }
 
   /**
-   * @return array
-   *   A render array.
+   * {@inheritdoc}
    *
    * @throws \Exception
    */

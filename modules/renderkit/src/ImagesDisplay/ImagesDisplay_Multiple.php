@@ -17,11 +17,7 @@ class ImagesDisplay_Multiple implements ImagesDisplayInterface {
   ) {}
 
   /**
-   * @param array[] $images
-   *   Format: $[$delta] = ['#theme' => 'image', '#path' => .., ..]
-   *
-   * @return array
-   *   A Drupal render array.
+   * {@inheritdoc}
    */
   public function buildImages(array $images): array {
     $build = [];

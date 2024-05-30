@@ -111,15 +111,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
   }
 
   /**
-   * @param array[] $builds
-   *   Render arrays, e.g. for field items or field group children.
-   * @param string $entityType
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   * @param string $label
-   *   A label, e.g. for
-   *
-   * @return array
-   *   Combined render array.
+   * {@inheritdoc}
    */
   public function build(array $builds, string $entityType, EntityInterface $entity, string $label): array {
 

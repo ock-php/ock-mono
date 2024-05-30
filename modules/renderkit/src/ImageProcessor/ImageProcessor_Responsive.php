@@ -79,17 +79,7 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
   }
 
   /**
-   * Processes an image render array.
-   *
-   * @param array $build
-   *   Render array with '#theme' => 'image' and the original image path at
-   *   #path. The original image path must be in a place that supports image
-   *   style generation.
-   *
-   * @return array
-   *   Render array after the processing.
-   *
-   * @todo Detect if the original image location does not support image styles.
+   * {@inheritdoc}
    */
   public function processImage(array $build): array {
 

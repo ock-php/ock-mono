@@ -15,9 +15,7 @@ class EntityDisplay_FixedBuild extends EntityDisplayBase {
   ) {}
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *
-   * @return array
+   * {@inheritdoc}
    */
   public function buildEntity(EntityInterface $entity): array {
     return $this->fixedRenderArray;

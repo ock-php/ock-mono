@@ -9,11 +9,7 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 class ImageProcessor_Neutral implements ImageProcessorInterface {
 
   /**
-   * @param array $build
-   *   Render array with '#theme' => 'image'.
-   *
-   * @return array
-   *   Render array after the processing.
+   * {@inheritdoc}
    */
   public function processImage(array $build): array {
     return $build;

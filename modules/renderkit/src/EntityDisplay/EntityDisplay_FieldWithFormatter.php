@@ -144,11 +144,7 @@ class EntityDisplay_FieldWithFormatter extends EntityDisplayBase {
 
 
   /**
-   * Same as ->buildEntities(), just for a single entity.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *
-   * @return array
+   * {@inheritdoc}
    */
   final public function buildEntity(EntityInterface $entity): array {
 

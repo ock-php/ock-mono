@@ -29,9 +29,7 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
   ) {}
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *
-   * @return array[]
+   * {@inheritdoc}
    */
   public function buildEntities(array $entities): array {
     $elements = [];

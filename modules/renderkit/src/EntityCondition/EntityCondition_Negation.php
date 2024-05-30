@@ -23,9 +23,7 @@ class EntityCondition_Negation implements EntityConditionInterface {
   ) {}
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *
-   * @return bool
+   * {@inheritdoc}
    */
   public function entityCheckCondition(EntityInterface $entity): bool {
     return !$this->negatedCondition->entityCheckCondition($entity);

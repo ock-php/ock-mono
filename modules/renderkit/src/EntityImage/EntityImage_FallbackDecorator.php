@@ -23,12 +23,7 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
   ) {}
 
   /**
-   * Same as ->buildEntities(), just for a single entity.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   Single entity object for which to build a render arary.
-   *
-   * @return array
+   * {@inheritdoc}
    */
   public function buildEntity(EntityInterface $entity): array {
     $build = $this->decorated->buildEntity($entity);
@@ -39,12 +34,7 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
   }
 
   /**
-   * Same method signature as in parent interface, just a different description.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *   Entity objects for which to build the render arrays.
-   *
-   * @return array[]
+   * {@inheritdoc}
    */
   public function buildEntities(array $entities): array {
     $builds = array_fill_keys(array_keys($entities), NULL);

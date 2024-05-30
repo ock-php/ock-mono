@@ -19,8 +19,7 @@ class BuildProvider_Processed implements BuildProviderInterface {
   ) {}
 
   /**
-   * @return array
-   *   A render array.
+   * {@inheritdoc}
    */
   public function build(): array {
     $build = $this->decorated->build();

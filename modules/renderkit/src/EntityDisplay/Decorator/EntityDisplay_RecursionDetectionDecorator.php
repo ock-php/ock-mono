@@ -27,10 +27,7 @@ class EntityDisplay_RecursionDetectionDecorator extends EntitiesDisplayBase {
   ) {}
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *   Entity objects for which to build the render arrays.
-   *
-   * @return array[]
+   * {@inheritdoc}
    */
   public function buildEntities(array $entities): array {
     if (self::$recursionDepth > $this->recursionLimit) {

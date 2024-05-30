@@ -25,9 +25,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
   ) {}
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
-   *
-   * @return array[]
+   * {@inheritdoc}
    */
   public function buildEntities(array $entities): array {
     $builds = array_fill_keys(array_keys($entities), NULL);

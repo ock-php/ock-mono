@@ -12,9 +12,7 @@ use Drupal\Core\Entity\EntityInterface;
 abstract class EntitiesDisplayBase implements EntityDisplayInterface {
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *
-   * @return array
+   * {@inheritdoc}
    */
   final public function buildEntity(EntityInterface $entity): array {
     $builds = $this->buildEntities([$entity]);
