@@ -20,7 +20,7 @@ class RenderElement_ThemekitLinkWrapper extends RenderElementBase {
    *
    * @return array
    */
-  public function getInfo() {
+  public function getInfo(): array {
     return [
       '#theme_wrappers' => ['themekit_link_wrapper'],
     ];

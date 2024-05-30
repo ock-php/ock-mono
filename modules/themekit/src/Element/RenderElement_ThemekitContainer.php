@@ -23,7 +23,7 @@ class RenderElement_ThemekitContainer extends RenderElementBase {
    *   documentation of the standard properties of all elements, and the
    *   return value format.
    */
-  public function getInfo() {
+  public function getInfo(): array {
     return [
       '#theme_wrappers' => ['themekit_container'],
     ];
