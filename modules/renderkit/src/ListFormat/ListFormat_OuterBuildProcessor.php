@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\ListFormat;
 
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
@@ -13,23 +14,17 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 class ListFormat_OuterBuildProcessor implements ListFormatInterface {
 
   /**
-   * @var \Drupal\renderkit\BuildProcessor\BuildProcessorInterface
+   * Constructor.
+   *
+   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $buildProcessor
+   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $decorated
    */
-  private BuildProcessorInterface $buildProcessor;
-
-  /**
-   * @var \Drupal\renderkit\ListFormat\ListFormatInterface|null
-   */
-  private ?ListFormatInterface $decorated;
-
-  /**
-   * @param \Drupal\renderkit\BuildProcessor\BuildProcessorInterface $outerBuildProcessor
-   * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $decoratedListFormat
-   */
-  public function __construct(BuildProcessorInterface $outerBuildProcessor, ListFormatInterface $decoratedListFormat = NULL) {
-    $this->buildProcessor = $outerBuildProcessor;
-    $this->decorated = $decoratedListFormat;
-  }
+  public function __construct(
+    #[OckOption('outerBuildProcessor', 'Outer build processor')]
+    private readonly BuildProcessorInterface $buildProcessor,
+    #[OckOption('decorated', 'Decorated list format')]
+    private readonly ?ListFormatInterface $decorated = NULL,
+  ) {}
 
   /**
    * {@inheritdoc}
