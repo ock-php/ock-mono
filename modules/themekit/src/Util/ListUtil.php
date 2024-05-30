@@ -16,7 +16,7 @@ final class ListUtil {
    * @throws \Exception
    *   Exception from renderer.
    */
-  public static function elementRenderListItems(array &$element, RendererInterface $renderer) {
+  public static function elementRenderListItems(array &$element, RendererInterface $renderer): array {
 
     $items_rendered = [];
     foreach (self::elementGetListItems($element) as $delta => $item) {
@@ -38,7 +38,7 @@ final class ListUtil {
    *
    * @return array[]
    */
-  public static function elementGetListItems(array &$element) {
+  public static function elementGetListItems(array &$element): array {
 
     if (isset($element['#items'])) {
       return $element['#items'];

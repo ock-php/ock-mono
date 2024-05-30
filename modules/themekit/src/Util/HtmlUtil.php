@@ -13,7 +13,7 @@ final class HtmlUtil {
    *
    * @return string
    */
-  public static function elementAttributesString(array $element, $key = '#attributes') {
+  public static function elementAttributesString(array $element, string $key = '#attributes'): string {
 
     if (!isset($element[$key])) {
       return '';
@@ -38,7 +38,7 @@ final class HtmlUtil {
    *
    * @return \Drupal\Core\Template\Attribute
    */
-  public static function attributes(array $attributes) {
+  public static function attributes(array $attributes): Attribute {
     return new Attribute($attributes);
   }
 
