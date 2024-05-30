@@ -5,23 +5,26 @@ namespace Drupal\Tests\themekit\Kernel;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\Tests\themekit\Traits\ExceptionSerializationTrait;
 
 /**
  * @see \Drupal\KernelTests\Core\Render\Element\RenderElementTypesTest
  */
-class KernelTest_ThemekitElementTypes extends KernelTestBase {
+class ThemekitElementTypesTest extends KernelTestBase {
+
+  use ExceptionSerializationTrait;
 
   /**
    * Modules to enable.
    *
-   * @var array
+   * @var list<string>
    */
-  public static $modules = ['themekit', 'system'];
+  protected static $modules = ['themekit', 'system'];
 
-  public function testThemekitContainer() {
-
+  public function testThemekitContainer(): void {
     // Basic container with no attributes.
     $this->assertElements(
       "<div>foo</div>\n",
@@ -30,7 +33,8 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
         '#type' => 'themekit_container',
         '#markup' => 'foo',
       ],
-      "#type 'themekit_container' with no HTML attributes");
+      "#type 'themekit_container' with no HTML attributes",
+    );
 
     // Container with a class.
     $this->assertElements(
@@ -40,7 +44,8 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
         '#markup' => 'foo',
         '#attributes' => ['class' => ['bar']],
       ],
-      "#type 'themekit_container' with a class HTML attribute");
+      "#type 'themekit_container' with a class HTML attribute",
+    );
 
     // Container with children.
     $this->assertElements(
@@ -49,7 +54,8 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
         '#type' => 'themekit_container',
         'child' => ['#markup' => 'foo'],
       ],
-      "#type 'themekit_container' with child elements");
+      "#type 'themekit_container' with child elements",
+    );
 
     // Container with children.
     $this->assertElements(
@@ -71,11 +77,11 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
           'child' => ['#children' => 'foo'],
         ],
       ],
-      "#type 'themekit_container' with nested container");
+      "#type 'themekit_container' with nested container",
+    );
   }
 
-  public function testThemekitLinkWrapper() {
-
+  public function testThemekitLinkWrapper(): void {
     // Basic container with no attributes.
     $this->assertElements(
       '<a href="https://www.drupal.org"><div>foo</div>
@@ -88,17 +94,15 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
         ],
         '#url' => Url::fromUri('https://www.drupal.org'),
       ],
-      "#type 'themekit_link_wrapper' to https://www.drupal.org.");
+      "#type 'themekit_link_wrapper' to https://www.drupal.org.",
+    );
   }
 
-  public function testThemekitItemContainers() {
-
+  public function testThemekitItemContainers(): void {
     $this->assertElements(
-      ''
-      . '<div class="field-item">X</div>'
+      '<div class="field-item">X</div>'
       . '<div class="field-item">Y</div>'
-      . '<div class="field-item">Z</div>'
-      . '',
+      . '<div class="field-item">Z</div>',
       [
         /* @see theme_themekit_item_containers() */
         '#theme' => 'themekit_item_containers',
@@ -107,7 +111,8 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
         ['#markup' => 'Y'],
         ['#markup' => 'Z'],
       ],
-      "#theme 'themekit_item_containers' with three items.");
+      "#theme 'themekit_item_containers' with three items.",
+    );
 
     $this->assertElements(
       'XYZ',
@@ -120,11 +125,11 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
         ['#markup' => 'Z'],
         '#item_tag_name' => FALSE,
       ],
-      "#theme 'themekit_item_containers' with #item_tag_name false.");
+      "#theme 'themekit_item_containers' with #item_tag_name false.",
+    );
 
     $this->assertElements(
-      ''
-      . '<ul class="menu">'
+      '<ul class="menu">'
       . '<li>X</li>'
       . '<li>Y</li>'
       . '<li>Z</li>'
@@ -143,14 +148,13 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
         ['#markup' => 'Y'],
         ['#markup' => 'Z'],
       ],
-      "#theme 'themekit_item_containers' with #type 'themekit_container'.");
+      "#theme 'themekit_item_containers' with #type 'themekit_container'.",
+    );
   }
 
-  public function testThemekitItemList() {
-
+  public function testThemekitItemList(): void {
     $this->assertElements(
-      ''
-      . '<ul class="menu">'
+      '<ul class="menu">'
       . '<li>X</li>'
       . '<li>Y</li>'
       . '<li><div>Z</div>' . "\n" . '</li>'
@@ -168,11 +172,11 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
           ['#markup' => 'Z'],
         ],
       ],
-      "#theme 'themekit_list'.");
+      "#theme 'themekit_list'.",
+    );
 
     $this->assertElements(
-      ''
-      . '<ol>'
+      '<ol>'
       . '<li>X</li>'
       . '<li>Y</li>'
       . '</ol>'
@@ -188,12 +192,11 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
       "#theme 'themekit_list' with #tag_name 'ol'.");
   }
 
-  public function testThemekitSeparatorList() {
+  public function testThemekitSeparatorList(): void {
 
     $this->assertElements(
       'X|Y|<span>Z</span>' . "\n",
       [
-        /* @see theme_themekit_separator_list() */
         '#theme' => 'themekit_separator_list',
         '#separator' => '|',
         // Items.
@@ -210,17 +213,22 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
     $this->assertElements(
       'X<hr/>Y<hr/><span>Z</span>' . "\n",
       [
-        /* @see theme_themekit_separator_list() */
         '#theme' => 'themekit_separator_list',
         '#separator' => Markup::create('<hr/>'),
         // Items.
+        // Empty item at the start is removed.
+        ['#markup' => ''],
         ['#markup' => 'X'],
         ['#markup' => 'Y'],
+        // Empty items with left-over whitespace are removed.
+        ['#markup' => ' '],
         [
           '#type' => 'themekit_container',
           '#tag_name' => 'span',
           ['#markup' => 'Z']
-        ]
+        ],
+        // Empty item at the end is removed.
+        ['#markup' => ''],
       ],
       "#theme 'themekit_separator_list' with #separator HR tag.");
   }
@@ -235,22 +243,15 @@ class KernelTest_ThemekitElementTypes extends KernelTestBase {
    * @param string $message
    *   Assertion message.
    */
-  private function assertElements($expected_html, array $elements, $message) {
-
-    /** @var \Drupal\Core\Render\RendererInterface $renderer */
+  private function assertElements(string $expected_html, array $elements, string $message): void {
     $renderer = \Drupal::service('renderer');
-
+    assert($renderer instanceof RendererInterface);
     $actual_html = (string) $renderer->renderRoot($elements);
-
-    $out = '<table><tr>';
-    $out .= '<td valign="top"><pre>' . Html::escape($expected_html) . '</pre></td>';
-    $out .= '<td valign="top"><pre>' . Html::escape($actual_html) . '</pre></td>';
-    $out .= '</tr></table>';
-    $this->verbose($out);
-
     static::assertSame(
       $expected_html,
       $actual_html,
-      Html::escape($message));
+      Html::escape($message),
+    );
   }
+
 }
