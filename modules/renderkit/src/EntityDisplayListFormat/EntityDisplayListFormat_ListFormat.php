@@ -5,6 +5,7 @@ namespace Drupal\renderkit\EntityDisplayListFormat;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Ock\Ock\Attribute\Parameter\OckAdaptee;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
@@ -17,6 +18,7 @@ class EntityDisplayListFormat_ListFormat implements EntityDisplayListFormatInter
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface $listFormat
    */
   public function __construct(
+    #[OckAdaptee]
     private readonly ListFormatInterface $listFormat,
   ) {}
 

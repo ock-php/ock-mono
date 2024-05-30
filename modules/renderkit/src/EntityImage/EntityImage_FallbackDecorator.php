@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityImage;
 
 use Drupal\Core\Entity\EntityInterface;
+use Ock\Ock\Attribute\Parameter\OckDecorated;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
@@ -17,7 +19,9 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
    * @param \Drupal\renderkit\EntityImage\EntityImageInterface $fallback
    */
   public function __construct(
+    #[OckDecorated]
     private readonly EntityImageInterface $decorated,
+    #[OckOption('fallback', 'Fallback')]
     private readonly EntityImageInterface $fallback,
   ) {}
 

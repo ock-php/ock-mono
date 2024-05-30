@@ -7,6 +7,8 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface;
 use Drupal\renderkit\EntityDisplayListFormat\EntityDisplayListFormatInterface;
 use Drupal\renderkit\LabeledEntityBuildProcessor\LabeledEntityBuildProcessorInterface;
+use Ock\Ock\Attribute\Parameter\OckAdaptee;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 #[OckPluginInstance('compositeAdvanced', 'Composite, advanced')]
@@ -20,7 +22,10 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    * @todo Mark as adapter/inline.
    */
   #[OckPluginInstance('labeledFormat', 'Labeled format')]
-  public static function createFromLabeledFormat(LabeledEntityBuildProcessorInterface $labeledFormat = NULL): self {
+  public static function createFromLabeledFormat(
+    #[OckAdaptee]
+    LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
+  ): self {
     return new self(NULL, $labeledFormat, NULL, NULL);
   }
 
@@ -32,7 +37,10 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    * @todo Mark as adapter/inline.
    */
   #[OckPluginInstance('listFormat', 'List format')]
-  public static function createFromListFormat(EntityDisplayListFormatInterface $listFormat = NULL): self {
+  public static function createFromListFormat(
+    #[OckAdaptee]
+    EntityDisplayListFormatInterface $listFormat = NULL,
+  ): self {
     return new self(NULL, NULL, NULL, $listFormat);
   }
 
@@ -44,7 +52,9 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    */
   #[OckPluginInstance('composite', 'Composite')]
   public static function createSimple(
+    #[OckOption('labeledFormat', 'Labeled format')]
     LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
+    #[OckOption('listFormat', 'List format')]
     EntityDisplayListFormatInterface $listFormat = NULL
   ): self {
     return new self(NULL, $labeledFormat, NULL, $listFormat);
@@ -60,10 +70,15 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
    * @param \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface|null $itemProcessor
    */
   public function __construct(
+    #[OckOption('outerProcessor', 'Outer processor')]
     private readonly ?EntityBuildProcessorInterface $outerProcessor = NULL,
+    #[OckOption('labeledFormat', 'Labeled format')]
     private readonly ?LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
+    #[OckOption('innerProcessor', 'Inner processor')]
     private readonly ?EntityBuildProcessorInterface $innerProcessor = NULL,
+    #[OckOption('listFormat', 'List format')]
     private readonly ?EntityDisplayListFormatInterface $listFormat = NULL,
+    #[OckOption('itemProcessor', 'Item processor')]
     private readonly ?EntityBuildProcessorInterface $itemProcessor = NULL
   ) {}
 

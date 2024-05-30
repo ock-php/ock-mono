@@ -6,6 +6,7 @@ namespace Drupal\renderkit\EntityDisplay\Switcher;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\EntityCondition\EntityConditionInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 #[OckPluginInstance('conditional', 'Conditional')]
@@ -22,8 +23,11 @@ class EntityDisplay_EntityCondition implements EntityDisplayInterface {
    * @param \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|null $displayIfFalse
    */
   public function __construct(
+    #[OckOption('condition', 'Condition')]
     private readonly EntityConditionInterface $condition,
+    #[OckOption('displayIfTrue', 'Display if true')]
     private readonly EntityDisplayInterface $displayIfTrue,
+    #[OckOption('displayIfFalse', 'Display if false')]
     EntityDisplayInterface $displayIfFalse = NULL
   ) {
     $this->displayIfFalse = $displayIfFalse;

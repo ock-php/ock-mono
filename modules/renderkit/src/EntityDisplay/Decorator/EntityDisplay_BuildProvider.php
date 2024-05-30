@@ -6,6 +6,7 @@ namespace Drupal\renderkit\EntityDisplay\Decorator;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\BuildProvider\BuildProviderInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Ock\Ock\Attribute\Parameter\OckAdaptee;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
@@ -18,6 +19,7 @@ class EntityDisplay_BuildProvider implements EntityDisplayInterface {
    * @param \Drupal\renderkit\BuildProvider\BuildProviderInterface $buildProvider
    */
   public function __construct(
+    #[OckAdaptee]
     private readonly BuildProviderInterface $buildProvider,
   ) {}
 

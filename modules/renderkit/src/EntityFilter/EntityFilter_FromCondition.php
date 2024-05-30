@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityFilter;
 
 use Drupal\renderkit\EntityCondition\EntityConditionInterface;
+use Ock\Ock\Attribute\Parameter\OckAdaptee;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 /**
@@ -24,6 +25,7 @@ class EntityFilter_FromCondition implements EntityFilterInterface {
    * @param \Drupal\renderkit\EntityCondition\EntityConditionInterface $entityCondition
    */
   public function __construct(
+    #[OckAdaptee]
     private readonly EntityConditionInterface $entityCondition,
   ) {}
 

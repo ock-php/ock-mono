@@ -6,6 +6,7 @@ namespace Drupal\renderkit\LabeledListFormat;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 use Drupal\renderkit\LabeledFormat\LabeledFormatInterface;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 #[OckPluginInstance('composite', 'Composite')]
@@ -18,9 +19,13 @@ class LabeledListFormat_Composite implements LabeledListFormatInterface {
    * @param \Drupal\renderkit\ListFormat\ListFormatInterface|null $listFormat
    */
   public function __construct(
+    #[OckOption('outerProcessor', 'Outer processor')]
     private readonly ?BuildProcessorInterface $outerProcessor = NULL,
+    #[OckOption('labeledFormat', 'Labeled format')]
     private readonly ?LabeledFormatInterface $labeledFormat = NULL,
+    #[OckOption('innerProcessor', 'Inner processor')]
     private readonly ?BuildProcessorInterface $innerProcessor = NULL,
+    #[OckOption('listFormat', 'List format')]
     private readonly ?ListFormatInterface $listFormat = NULL
   ) {}
 

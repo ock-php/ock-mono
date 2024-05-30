@@ -5,6 +5,7 @@ namespace Drupal\renderkit\EntityBuildProcessor;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Ock\Ock\Attribute\Parameter\OckAdaptee;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 class EntityBuildProcessor_FromBuildProcessor implements EntityBuildProcessorInterface {
@@ -17,7 +18,10 @@ class EntityBuildProcessor_FromBuildProcessor implements EntityBuildProcessorInt
    * @todo Mark this as adapter / inline.
    */
   #[OckPluginInstance('buildProcessor', 'Build processor')]
-  public static function create(BuildProcessorInterface $processor): EntityBuildProcessorInterface {
+  public static function create(
+    #[OckAdaptee]
+    BuildProcessorInterface $processor,
+  ): EntityBuildProcessorInterface {
     return new static($processor);
   }
 

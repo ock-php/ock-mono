@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\ListFormat;
 
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
+use Ock\Ock\Attribute\Parameter\OckDecorated;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
@@ -22,7 +23,7 @@ class ListFormat_OuterBuildProcessor implements ListFormatInterface {
   public function __construct(
     #[OckOption('outerBuildProcessor', 'Outer build processor')]
     private readonly BuildProcessorInterface $buildProcessor,
-    #[OckOption('decorated', 'Decorated list format')]
+    #[OckDecorated]
     private readonly ?ListFormatInterface $decorated = NULL,
   ) {}
 

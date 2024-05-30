@@ -6,6 +6,8 @@ namespace Drupal\renderkit\EntityDisplay\Decorator;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Ock\Ock\Attribute\Parameter\OckDecorated;
+use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 
 class EntityDisplay_WithBuildProcessor extends EntitiesDisplayBase {
@@ -19,7 +21,12 @@ class EntityDisplay_WithBuildProcessor extends EntitiesDisplayBase {
    * @todo Mark as decorator.
    */
   #[OckPluginInstance('processedEntityDisplay', 'Processed entity display')]
-  public static function create(EntityDisplayInterface $entityDisplay, BuildProcessorInterface $processor = NULL): EntityDisplayInterface {
+  public static function create(
+    #[OckDecorated]
+    EntityDisplayInterface $entityDisplay,
+    #[OckOption('processor', 'Processor')]
+    BuildProcessorInterface $processor = NULL,
+  ): EntityDisplayInterface {
     return NULL !== $processor
       ? new static($entityDisplay, $processor)
       : $entityDisplay;
