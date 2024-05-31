@@ -6,12 +6,11 @@ namespace Drupal\ock\TextToDrupal;
 
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\Markup;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\Translator\TranslatorInterface;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
-#[Service]
+#[AsAlias]
 class TextToDrupal_Default implements TextToDrupalInterface {
 
   /**
@@ -21,7 +20,6 @@ class TextToDrupal_Default implements TextToDrupalInterface {
    *   String translation service.
    */
   public function __construct(
-    #[GetService]
     private readonly TranslatorInterface $translator,
   ) {}
 
