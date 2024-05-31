@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\ock;
 
+use Drupal\Ock\Attribute\DI\PublicService;
 use Ock\Adaptism\AdaptismPackage;
 use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\DID\DidNamespace;
@@ -12,6 +13,7 @@ use Ock\Ock\OckPackage;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
@@ -31,6 +33,14 @@ class OckServiceProvider extends OckServiceProviderBase {
     static::loadPackageServicesPhp($container, dirname(EggNamespace::DIR));
     static::loadPackageServicesPhp($container, dirname(AdaptismPackage::DIR));
     static::loadPackageServicesPhp($container, dirname(OckPackage::DIR));
+
+    // Make services public that have the
+    $container->registerAttributeForAutoconfiguration(
+      PublicService::class,
+      static function (ChildDefinition $definition, PublicService $attribute, \ReflectionClass $class_or_method): void {
+        $definition->setPublic(true);
+      },
+    );
 
     // Register packages in the module itself.
     parent::doRegister($container);
