@@ -5,10 +5,10 @@ namespace Drupal\renderkit\Helper;
 
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Field\FormatterPluginManager;
+use Drupal\Ock\Attribute\DI\PublicService;
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 
-#[Service]
+#[PublicService]
 class FormatterPluginLookup {
 
   /**

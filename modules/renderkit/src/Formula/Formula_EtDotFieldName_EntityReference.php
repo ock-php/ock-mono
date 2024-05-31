@@ -6,16 +6,16 @@ namespace Drupal\renderkit\Formula;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
+use Drupal\Ock\Attribute\DI\PublicService;
 use Drupal\renderkit\TextLookup\TextLookup_EntityType;
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\TextInterface;
 
 /**
  * Formula to choose entity reference fields.
  */
-#[Service(self::class)]
+#[PublicService]
 class Formula_EtDotFieldName_EntityReference implements Formula_SelectInterface {
 
   private ?string $targetEntityTypeId;

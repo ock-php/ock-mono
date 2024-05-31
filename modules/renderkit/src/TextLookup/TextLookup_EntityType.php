@@ -6,9 +6,9 @@ namespace Drupal\renderkit\TextLookup;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Ock\Attribute\DI\PublicService;
 use Drupal\ock\DrupalText;
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
@@ -17,7 +17,7 @@ use Ock\Ock\TextLookup\TextLookupInterface;
  *
  * This class only contains static factories, the main logic is elsewhere.
  */
-#[Service(self::class)]
+#[PublicService]
 class TextLookup_EntityType implements TextLookupInterface {
 
   /**

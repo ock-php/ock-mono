@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
+use Drupal\Ock\Attribute\DI\PublicService;
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 
 /**
  * Main entry point for field label lookup.
  *
  * This class only contains static factories, the main logic is elsewhere.
  */
-#[Service(self::class)]
+#[PublicService]
 class TextLookup_EntityFieldWithEntityType extends TextLookup_CombinedLabelBase {
 
   /**
