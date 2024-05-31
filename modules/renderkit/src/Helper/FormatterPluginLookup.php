@@ -6,7 +6,7 @@ namespace Drupal\renderkit\Helper;
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Field\FormatterPluginManager;
 use Drupal\Ock\Attribute\DI\PublicService;
-use Ock\DID\Attribute\Parameter\GetService;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 #[PublicService]
 class FormatterPluginLookup {
@@ -18,9 +18,8 @@ class FormatterPluginLookup {
    * @param \Drupal\Core\Field\FormatterPluginManager $formatterPluginManager
    */
   public function __construct(
-    #[GetService]
     private readonly FieldDefinitionLookupInterface $fieldDefinitionLookup,
-    #[GetService('plugin.manager.field.formatter')]
+    #[Autowire('plugin.manager.field.formatter')]
     private readonly FormatterPluginManager $formatterPluginManager,
   ) {}
 
