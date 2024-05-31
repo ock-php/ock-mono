@@ -27,7 +27,7 @@ class Controller_FlushOck extends ControllerBase {
   #[Route('/admin/flush/ock')]
   #[RouteMenuLink('Flush Ock plugins', menu_name: 'admin')]
   public function clear(): RedirectResponse {
-    // @todo Redirect
+    // @todo Actually clear the caches.
     $this->messenger()->addMessage(
       $this->t('Ock cache cleared.'),
     );
