@@ -63,4 +63,5 @@ class EntityToEntity_EntityAuthor implements EntityToEntityInterface {
 
     return $user;
   }
+
 }

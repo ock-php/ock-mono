@@ -75,4 +75,5 @@ class Formula_ViewsDisplayEditLink extends Formula_FixedPhp_Null implements Form
         ]),
     ];
   }
+
 }

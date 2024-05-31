@@ -50,4 +50,5 @@ class FieldStorageDefinitionCondition_FieldItemClass implements FieldStorageDefi
 
     return is_a($class, $this->classOrInterface, TRUE);
   }
+
 }

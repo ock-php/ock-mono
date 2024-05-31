@@ -84,4 +84,5 @@ class Formula_EntityType_WithFields implements Formula_FlatSelectInterface {
 
     return isset($map[$id], $etLabels[$id]);
   }
+
 }

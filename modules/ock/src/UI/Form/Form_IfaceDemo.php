@@ -61,4 +61,5 @@ class Form_IfaceDemo implements FormInterface {
       '<current>',
       [self::KEY => $form_state->getValue(self::KEY)]);
   }
+
 }

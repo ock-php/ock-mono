@@ -30,4 +30,5 @@ class ParamConverter_Iface extends ParamConverterBase {
     // Avoid interface_exists(), because autoload can have side effects.
     return $interface;
   }
+
 }

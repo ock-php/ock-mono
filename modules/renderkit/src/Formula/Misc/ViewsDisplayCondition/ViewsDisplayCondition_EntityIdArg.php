@@ -57,4 +57,5 @@ class ViewsDisplayCondition_EntityIdArg implements ViewsDisplayConditionInterfac
 
     return FALSE;
   }
+
 }

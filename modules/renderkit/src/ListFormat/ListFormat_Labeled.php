@@ -22,4 +22,5 @@ class ListFormat_Labeled implements ListFormatInterface {
   public function buildList(array $builds): array {
     return $this->labeledListFormat->build($builds, $this->label);
   }
+
 }

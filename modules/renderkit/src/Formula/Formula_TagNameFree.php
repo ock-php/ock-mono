@@ -26,4 +26,5 @@ class Formula_TagNameFree extends Formula_TextfieldBase {
 
     return $errors;
   }
+
 }

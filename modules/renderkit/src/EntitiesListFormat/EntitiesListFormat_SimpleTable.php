@@ -51,4 +51,5 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
       '#rows' => $rows,
     ];
   }
+
 }

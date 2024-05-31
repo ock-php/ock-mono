@@ -28,4 +28,5 @@ class ViewsDisplayCondition_DisplayTypeWhitelist implements ViewsDisplayConditio
 
     return isset($this->allowedDisplayTypes[$display['display_plugin']]);
   }
+
 }

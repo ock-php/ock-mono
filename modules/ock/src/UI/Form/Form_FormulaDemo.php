@@ -79,4 +79,5 @@ class Form_FormulaDemo implements FormInterface {
       '<current>',
       ['conf' => $form_state->getValue('conf')]);
   }
+
 }

@@ -52,4 +52,5 @@ class EntityToRelatedIds_EntityReferenceField extends EntityToRelatedIdsBase {
 
     return $relatedIds;
   }
+
 }

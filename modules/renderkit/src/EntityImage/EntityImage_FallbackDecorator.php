@@ -51,4 +51,5 @@ class EntityImage_FallbackDecorator implements EntityImageInterface {
     }
     return array_filter($builds);
   }
+
 }

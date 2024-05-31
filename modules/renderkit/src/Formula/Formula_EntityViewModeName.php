@@ -58,4 +58,5 @@ class Formula_EntityViewModeName implements Formula_DrupalSelectInterface {
 
     return isset($options[$id]);
   }
+
 }

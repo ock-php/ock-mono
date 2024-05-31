@@ -27,4 +27,5 @@ class EntityDisplayListFormat_Labeled implements EntityDisplayListFormatInterfac
   public function buildListWithEntity(array $builds, string $entityType, EntityInterface $entity): array {
     return $this->labeledEntityDisplayListFormat->build($builds,$entityType, $entity, $this->label);
   }
+
 }

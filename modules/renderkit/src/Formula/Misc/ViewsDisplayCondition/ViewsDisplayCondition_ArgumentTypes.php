@@ -47,4 +47,5 @@ class ViewsDisplayCondition_ArgumentTypes implements ViewsDisplayConditionInterf
 
     return $this->argumentsSignature === $argTypes;
   }
+
 }

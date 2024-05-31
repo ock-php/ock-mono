@@ -32,4 +32,5 @@ trait ControllerRouteNameTrait {
   public static function getRouteBaseName(): string {
     return StringUtil::classNameGetRouteBasename(static::class);
   }
+
 }

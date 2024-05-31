@@ -570,4 +570,5 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
   private function sta(): IncarnatorInterface {
     return CfrPluginHub::getContainer()->incarnator;
   }
+
 }

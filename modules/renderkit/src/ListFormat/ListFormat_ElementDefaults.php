@@ -30,4 +30,5 @@ class ListFormat_ElementDefaults implements ListFormatInterface {
   public function buildList(array $builds): array {
     return $builds + $this->elementDefaults;
   }
+
 }

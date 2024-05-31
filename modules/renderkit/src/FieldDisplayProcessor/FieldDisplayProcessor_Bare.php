@@ -20,4 +20,5 @@ class FieldDisplayProcessor_Bare implements FieldDisplayProcessorInterface {
     }
     return $builds;
   }
+
 }

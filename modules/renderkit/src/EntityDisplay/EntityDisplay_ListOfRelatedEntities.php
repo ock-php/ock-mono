@@ -50,4 +50,5 @@ class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
 
     return $builds;
   }
+
 }

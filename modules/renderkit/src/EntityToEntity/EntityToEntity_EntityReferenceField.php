@@ -135,4 +135,5 @@ class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
 
     return $referencedEntity;
   }
+
 }

@@ -64,4 +64,5 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
 
     return $this->viewMode;
   }
+
 }

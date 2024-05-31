@@ -161,4 +161,5 @@ class Formula_FieldFormatterSettings implements FormatorD8Interface, SummarizerI
     $formatter = clone $this->stubFormatter;
     return $formatter->setSettings($settings ?: []);
   }
+
 }

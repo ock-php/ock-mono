@@ -51,4 +51,5 @@ class EntityDisplay_WithEntityBuildProcessor extends EntityDisplayBase {
     $build = $this->entityDisplay->buildEntity($entity);
     return $this->processor->processEntityBuild($build, $entity);
   }
+
 }

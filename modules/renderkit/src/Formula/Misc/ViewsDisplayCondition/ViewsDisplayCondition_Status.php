@@ -27,4 +27,5 @@ class ViewsDisplayCondition_Status implements ViewsDisplayConditionInterface {
 
     return $display['enabled'] !== $this->status;
   }
+
 }

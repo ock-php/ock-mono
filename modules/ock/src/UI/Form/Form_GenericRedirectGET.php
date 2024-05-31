@@ -75,4 +75,5 @@ class Form_GenericRedirectGET implements FormInterface {
       '<current>',
       $query);
   }
+
 }

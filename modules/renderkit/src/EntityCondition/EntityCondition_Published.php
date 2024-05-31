@@ -23,4 +23,5 @@ class EntityCondition_Published implements EntityConditionInterface {
       ? $entity->isPublished()
       : TRUE;
   }
+
 }

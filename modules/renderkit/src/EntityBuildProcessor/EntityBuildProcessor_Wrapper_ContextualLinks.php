@@ -133,4 +133,5 @@ class EntityBuildProcessor_Wrapper_ContextualLinks implements EntityBuildProcess
 
     return [$group => $link];
   }
+
 }

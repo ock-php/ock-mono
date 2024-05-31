@@ -90,4 +90,5 @@ class EntityDisplay_EntityCondition implements EntityDisplayInterface {
 
     return [];
   }
+
 }

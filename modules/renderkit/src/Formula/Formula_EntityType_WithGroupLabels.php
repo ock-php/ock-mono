@@ -92,4 +92,5 @@ class Formula_EntityType_WithGroupLabels implements Formula_DrupalSelectInterfac
 
     return isset($options[$id]);
   }
+
 }

@@ -11,4 +11,5 @@ class SelectByEt_FieldName extends SelectByEt_FieldName_Base {
   public function getCacheId(): string {
     return static::class;
   }
+
 }

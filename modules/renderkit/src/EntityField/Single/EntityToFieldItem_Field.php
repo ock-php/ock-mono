@@ -92,4 +92,5 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
 
     return $item;
   }
+
 }

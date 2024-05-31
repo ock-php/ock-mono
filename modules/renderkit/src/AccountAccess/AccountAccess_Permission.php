@@ -50,4 +50,5 @@ class AccountAccess_Permission implements AccountAccessInterface {
       $account,
       $this->permission);
   }
+
 }

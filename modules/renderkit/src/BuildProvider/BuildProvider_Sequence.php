@@ -41,4 +41,5 @@ class BuildProvider_Sequence implements BuildProviderInterface {
     }
     return $this->listFormat?->buildList($elements) ?? $elements;
   }
+
 }

@@ -41,4 +41,5 @@ class BuildProcessor_ClassAttribute implements BuildProcessorInterface {
 
     return $build;
   }
+
 }

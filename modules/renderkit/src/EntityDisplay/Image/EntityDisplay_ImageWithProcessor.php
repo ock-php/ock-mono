@@ -52,4 +52,5 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
     }
     return $processedBuilds;
   }
+
 }

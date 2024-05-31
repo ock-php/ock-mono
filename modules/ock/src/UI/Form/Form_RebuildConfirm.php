@@ -56,4 +56,5 @@ class Form_RebuildConfirm extends ConfirmFormBase {
 
     $form_state->setRedirectUrl($this->getCancelUrl());
   }
+
 }

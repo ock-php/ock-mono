@@ -33,4 +33,5 @@ class ImageProcessor_ImageStyle implements ImageProcessorInterface {
     $build['#style_name'] = $this->styleName;
     return $build;
   }
+
 }

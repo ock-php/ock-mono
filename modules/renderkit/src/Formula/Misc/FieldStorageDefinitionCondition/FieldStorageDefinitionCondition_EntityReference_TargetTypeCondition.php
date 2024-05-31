@@ -32,4 +32,5 @@ class FieldStorageDefinitionCondition_EntityReference_TargetTypeCondition extend
 
     return $this->targetTypeCondition->checkEntityTypeId($targetTypeId);
   }
+
 }

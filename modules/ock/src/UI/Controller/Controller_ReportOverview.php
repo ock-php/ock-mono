@@ -132,4 +132,5 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
       '#rows' => $rows,
     ];
   }
+
 }

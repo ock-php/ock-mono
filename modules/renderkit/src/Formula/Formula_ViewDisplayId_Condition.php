@@ -96,4 +96,5 @@ class Formula_ViewDisplayId_Condition implements Formula_FlatSelectInterface {
 
     return TRUE;
   }
+
 }

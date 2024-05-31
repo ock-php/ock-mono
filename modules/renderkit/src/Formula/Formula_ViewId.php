@@ -102,4 +102,5 @@ class Formula_ViewId implements Formula_FlatSelectInterface {
 
     return Views::getEnabledViews();
   }
+
 }

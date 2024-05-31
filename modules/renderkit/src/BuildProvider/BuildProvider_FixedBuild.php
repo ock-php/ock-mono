@@ -18,4 +18,5 @@ class BuildProvider_FixedBuild implements BuildProviderInterface {
   public function build(): array {
     return $this->build;
   }
+
 }

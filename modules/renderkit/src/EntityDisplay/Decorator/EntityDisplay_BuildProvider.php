@@ -37,4 +37,5 @@ class EntityDisplay_BuildProvider implements EntityDisplayInterface {
   public function buildEntity(EntityInterface $entity): array {
     return $this->buildProvider->build();
   }
+
 }

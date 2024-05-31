@@ -44,4 +44,5 @@ class BuildProcessor_Container implements BuildProcessorInterface {
   public function process(array $build): array {
     return $this->buildContainer() + ['content' => $build];
   }
+
 }

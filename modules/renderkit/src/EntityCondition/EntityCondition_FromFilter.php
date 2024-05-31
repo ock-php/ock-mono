@@ -37,4 +37,5 @@ class EntityCondition_FromFilter implements EntityConditionInterface {
     $filteredDeltas = $this->multiEntityFilter->entitiesFilterDeltas($entities);
     return $filteredDeltas === ['entity'];
   }
+
 }

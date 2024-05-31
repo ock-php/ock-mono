@@ -14,4 +14,5 @@ class ListFormat_Bare implements ListFormatInterface {
   public function buildList(array $builds): array {
     return $builds;
   }
+
 }

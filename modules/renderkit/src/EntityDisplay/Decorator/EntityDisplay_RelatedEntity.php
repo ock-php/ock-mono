@@ -77,4 +77,5 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
     }
     return $this->relatedEntityDisplay->buildEntity($relatedEntity);
   }
+
 }

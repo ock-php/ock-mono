@@ -47,4 +47,5 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
       'contents' => $build,
     ];
   }
+
 }

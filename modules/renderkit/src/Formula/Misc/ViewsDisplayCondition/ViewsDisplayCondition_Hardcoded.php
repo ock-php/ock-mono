@@ -117,4 +117,5 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
 
     return $signature === $argTypes;
   }
+
 }

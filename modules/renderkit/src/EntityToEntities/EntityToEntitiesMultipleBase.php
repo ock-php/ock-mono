@@ -18,4 +18,5 @@ abstract class EntityToEntitiesMultipleBase implements EntityToEntitiesInterface
 
     return $targetEntities[0] ?? [];
   }
+
 }

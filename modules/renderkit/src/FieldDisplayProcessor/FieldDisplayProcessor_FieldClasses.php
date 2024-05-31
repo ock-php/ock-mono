@@ -26,4 +26,5 @@ class FieldDisplayProcessor_FieldClasses implements FieldDisplayProcessorInterfa
     $build['#attributes']['class'][] = 'field-label-' . $element['#label_display'];
     return $build;
   }
+
 }

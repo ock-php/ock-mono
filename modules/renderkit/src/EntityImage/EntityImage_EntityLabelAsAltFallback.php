@@ -53,4 +53,5 @@ class EntityImage_EntityLabelAsAltFallback implements EntityImageInterface {
 
     return $images;
   }
+
 }

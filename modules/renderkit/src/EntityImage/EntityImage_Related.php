@@ -73,4 +73,5 @@ class EntityImage_Related implements EntityImageInterface {
     }
     return $this->relatedEntityImage->buildEntity($relatedEntity);
   }
+
 }

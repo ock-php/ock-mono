@@ -42,4 +42,5 @@ final class Formula_EntityTypeAndId extends UtilBase {
       )
       ->buildGroupFormula();
   }
+
 }

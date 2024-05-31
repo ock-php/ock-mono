@@ -34,4 +34,5 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
       ? $entity
       : $this->decorated->entityGetRelated($entity);
   }
+
 }

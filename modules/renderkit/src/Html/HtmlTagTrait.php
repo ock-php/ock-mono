@@ -39,4 +39,5 @@ trait HtmlTagTrait {
   protected function buildContainer(): array {
     return $this->tagNameBuildContainer($this->tagName);
   }
+
 }

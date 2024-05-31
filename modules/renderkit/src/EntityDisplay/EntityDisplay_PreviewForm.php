@@ -176,4 +176,5 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
       Form_GenericRedirectGET::class,
       $form);
   }
+
 }

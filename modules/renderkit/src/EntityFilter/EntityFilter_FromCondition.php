@@ -44,4 +44,5 @@ class EntityFilter_FromCondition implements EntityFilterInterface {
     }
     return $deltas;
   }
+
 }

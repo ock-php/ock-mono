@@ -97,4 +97,5 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
 
     return TRUE;
   }
+
 }

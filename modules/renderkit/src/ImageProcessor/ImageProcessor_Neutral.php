@@ -14,4 +14,5 @@ class ImageProcessor_Neutral implements ImageProcessorInterface {
   public function processImage(array $build): array {
     return $build;
   }
+
 }

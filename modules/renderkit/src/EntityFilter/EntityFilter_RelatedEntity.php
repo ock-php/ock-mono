@@ -70,4 +70,5 @@ class EntityFilter_RelatedEntity implements EntityFilterInterface {
 
     return $entitiesHaveQuality;
   }
+
 }

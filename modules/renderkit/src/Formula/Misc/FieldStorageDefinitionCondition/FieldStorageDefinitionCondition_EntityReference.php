@@ -48,4 +48,5 @@ class FieldStorageDefinitionCondition_EntityReference implements FieldStorageDef
 
     return TRUE;
   }
+
 }

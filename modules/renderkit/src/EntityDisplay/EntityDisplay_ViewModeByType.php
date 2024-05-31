@@ -44,4 +44,5 @@ class EntityDisplay_ViewModeByType extends EntityDisplay_ViewModeBase {
       return NULL;
     }
   }
+
 }

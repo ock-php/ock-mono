@@ -111,4 +111,5 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
 
     return $build;
   }
+
 }

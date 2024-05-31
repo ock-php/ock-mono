@@ -122,4 +122,5 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
 
     return $view;
   }
+
 }

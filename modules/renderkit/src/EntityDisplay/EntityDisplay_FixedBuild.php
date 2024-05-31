@@ -20,4 +20,5 @@ class EntityDisplay_FixedBuild extends EntityDisplayBase {
   public function buildEntity(EntityInterface $entity): array {
     return $this->fixedRenderArray;
   }
+
 }
