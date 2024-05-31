@@ -39,8 +39,8 @@ class Controller_FlushOck extends ControllerBase {
    */
   public function reloadPage(): RedirectResponse {
     $referer = $this->requestStack->getCurrentRequest()
-      ?->get('HTTP_REFERER')
-      ?? '/';
+      ?->server?->get('HTTP_REFERER')
+      ?? \base_path();
     return new RedirectResponse($referer);
   }
 
