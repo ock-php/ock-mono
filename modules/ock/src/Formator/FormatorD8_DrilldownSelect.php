@@ -83,7 +83,7 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
   protected function idGetSubform(string $id, mixed $subConf): array {
 
     try {
-      if (false === $subFormator = $this->idGetFormatorOrFalse($id)) {
+      if (null === $subFormator = $this->idGetFormator($id)) {
         return [];
       }
     }
@@ -101,7 +101,7 @@ class FormatorD8_DrilldownSelect extends FormatorD8_DrilldownSelectBase {
    *
    * @throws \Ock\Adaptism\Exception\AdapterException
    */
-  private function idGetFormatorOrFalse(string $id): ?FormatorD8Interface {
+  private function idGetFormator(string $id): ?FormatorD8Interface {
     return ($this->formators[$id]
       ??= ($this->idBuildFormator($id) ?? FALSE))
       ?: NULL;
