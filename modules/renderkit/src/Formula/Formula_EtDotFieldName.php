@@ -4,18 +4,17 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Ock\Attribute\DI\PublicService;
 use Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType;
 use Drupal\renderkit\TextLookup\TextLookup_FieldType;
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\TextInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
 /**
  * Select formula where the value is like 'node.body'.
  */
-#[Autoconfigure(public: true)]
+#[PublicService]
 class Formula_EtDotFieldName implements Formula_SelectInterface {
 
   /**

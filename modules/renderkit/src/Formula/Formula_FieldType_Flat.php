@@ -5,13 +5,13 @@ namespace Drupal\renderkit\Formula;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
+use Drupal\Ock\Attribute\DI\PublicService;
 use Drupal\ock\DrupalText;
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Ock\Ock\Text\TextInterface;
 
-#[Service(self::class)]
+#[PublicService]
 class Formula_FieldType_Flat implements Formula_FlatSelectInterface {
 
   /**
