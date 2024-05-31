@@ -7,12 +7,14 @@ use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
 use Ock\Ock\Attribute\Parameter\OckDecorated;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
+use Ock\Ock\Attribute\PluginModifier\OckPluginDecorator;
 
 /**
  * Decorator that processes the result from the decorated build provider.
  *
  * @todo Mark as decorator.
  */
+#[OckPluginDecorator]
 #[OckPluginInstance('processed', 'Processed')]
 class BuildProvider_Processed implements BuildProviderInterface {
 
