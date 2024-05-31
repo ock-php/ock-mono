@@ -7,10 +7,10 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Field\FormatterPluginManager;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
-#[Service(self::class)]
+#[Autoconfigure(public: true)]
 class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
 
   private ?string $fieldTypeName;
@@ -19,7 +19,7 @@ class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
    * @param \Drupal\Core\Field\FormatterPluginManager $formatterPluginManager
    */
   public function __construct(
-    #[GetService('plugin.manager.field.formatter')]
+    #[Autowire(service: 'plugin.manager.field.formatter')]
     private readonly FormatterPluginManager $formatterPluginManager,
   ) {}
 
