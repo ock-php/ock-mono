@@ -3,32 +3,19 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
-use Drupal\renderkit\TextLookup\TextLookup_EntityType;
-use Ock\DID\Attribute\Parameter\CallService;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\Service;
+use Drupal\Ock\Attribute\DI\PublicService;
 
-class Formula_EntityViewMode extends Formula_ConfigEntityIdGrouped {
-
-  #[Service(self::class)]
-  public static function create(
-    #[CallService(args: ['entity_view_mode'])]
-    ConfigEntityStorageInterface $viewModeEntityStorage,
-    #[GetService]
-    TextLookup_EntityType $entityTypeLabelLookup,
-  ): self {
-    return (new self($viewModeEntityStorage))
-      ->withGroupByPrefix($entityTypeLabelLookup);
-  }
+/**
+ * Formula to choose a view mode.
+ */
+#[PublicService]
+class Formula_EntityViewMode extends Formula_EntityDisplayModeBase {
 
   /**
-   * @param string $entityType
-   *
-   * @return static
+   * {@inheritdoc}
    */
-  public function withEntityType(string $entityType): static {
-    return $this->withProperty('targetEntityType', $entityType);
+  protected static function getEntityTypeId(): string {
+    return 'entity_view_mode';
   }
 
 }

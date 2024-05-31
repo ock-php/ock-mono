@@ -16,27 +16,18 @@ use Ock\Ock\TextLookup\TextLookupInterface;
 class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {
 
   /**
-   * @var array<string, mixed>
-   */
-  private array $properties = [];
-
-  /**
-   * @var string|false|null
-   */
-  private string|false|null $groupBy;
-
-  /**
-   * @var \Ock\Ock\TextLookup\TextLookupInterface|null
-   */
-  private ?TextLookupInterface $groupLabelLookup = NULL;
-
-  /**
    * Constructor.
    *
    * @param \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage
+   * @param string|false|null $groupBy
+   * @param \Ock\Ock\TextLookup\TextLookupInterface|null $groupLabelLookup
+   * @param array $properties
    */
   public function __construct(
     private readonly ConfigEntityStorageInterface $storage,
+    private string|false|null $groupBy = null,
+    private TextLookupInterface|null $groupLabelLookup = null,
+    private array $properties = [],
   ) {}
 
   /**
@@ -123,7 +114,7 @@ class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {
       ? $this->storage->loadByProperties($this->properties)
       : $this->storage->loadMultiple();
     $map = [];
-    if ($this->groupBy === null) {
+    if ($this->groupBy === NULL) {
       foreach ($entities as $entity) {
         $map[$entity->id()] = '';
       }
