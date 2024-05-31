@@ -20,4 +20,5 @@ class EntityTypeCondition_EntityTypeId implements EntityTypeConditionInterface {
   public function checkEntityTypeId(string $entityTypeId): bool {
     return $entityTypeId === $this->entityTypeId;
   }
+
 }

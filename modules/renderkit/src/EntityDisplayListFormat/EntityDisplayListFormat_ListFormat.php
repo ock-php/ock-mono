@@ -32,4 +32,5 @@ class EntityDisplayListFormat_ListFormat implements EntityDisplayListFormatInter
   public function buildListWithEntity(array $builds, string $entityType, EntityInterface $entity): array {
     return $this->listFormat->buildList($builds);
   }
+
 }

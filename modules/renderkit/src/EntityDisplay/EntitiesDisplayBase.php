@@ -18,4 +18,5 @@ abstract class EntitiesDisplayBase implements EntityDisplayInterface {
     $builds = $this->buildEntities([$entity]);
     return $builds[0] ?? [];
   }
+
 }

@@ -48,4 +48,5 @@ class FieldDisplayProcessor_OuterContainer implements FieldDisplayProcessorInter
 
     return $modified;
   }
+
 }

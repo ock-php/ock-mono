@@ -120,4 +120,5 @@ class BuildProvider_ShowEntityIfExists implements BuildProviderInterface {
 
     return $this->entityDisplay->buildEntity($entity);
   }
+
 }

@@ -65,4 +65,5 @@ class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
 
     return BaseFieldDefinition::createFromFieldStorageDefinition($storageDefinition);
   }
+
 }

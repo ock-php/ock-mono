@@ -59,4 +59,5 @@ class FormatorD8_Textfield implements FormatorD8Interface {
       $form_state->setError($element, $error);
     }
   }
+
 }

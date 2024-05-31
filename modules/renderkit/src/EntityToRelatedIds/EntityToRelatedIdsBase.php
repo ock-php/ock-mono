@@ -20,4 +20,5 @@ abstract class EntityToRelatedIdsBase implements EntityToRelatedIdsInterface {
 
     return $relatedIdsByDelta;
   }
+
 }

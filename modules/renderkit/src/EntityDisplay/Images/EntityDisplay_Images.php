@@ -38,4 +38,5 @@ class EntityDisplay_Images extends EntityDisplayBase {
     }
     return $this->imagesDisplay->buildImages($images);
   }
+
 }

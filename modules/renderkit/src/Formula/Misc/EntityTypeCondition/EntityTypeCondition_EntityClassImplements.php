@@ -27,4 +27,5 @@ class EntityTypeCondition_EntityClassImplements implements EntityTypeConditionIn
 
     return is_a($etDefinition->getClass(), $this->classOrInterface, TRUE);
   }
+
 }

@@ -46,4 +46,5 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
       array_fill(0, $this->n, $entity),
     );
   }
+
 }

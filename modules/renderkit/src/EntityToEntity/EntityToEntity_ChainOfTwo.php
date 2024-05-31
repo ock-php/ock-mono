@@ -40,4 +40,5 @@ class EntityToEntity_ChainOfTwo implements EntityToEntityInterface {
 
     return $this->second->entityGetRelated($related);
   }
+
 }

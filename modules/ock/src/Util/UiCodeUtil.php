@@ -131,4 +131,5 @@ final class UiCodeUtil extends UtilBase {
 
     return $text;
   }
+
 }

@@ -30,4 +30,5 @@ class LabeledEntityDisplayListFormat_LabeledListFormat implements LabeledEntityD
   public function build(array $builds, string $entityType, EntityInterface $entity, string $label): array {
     return $this->labeledListFormat->build($builds, $label);
   }
+
 }

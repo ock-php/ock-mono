@@ -66,4 +66,5 @@ class EntityToRelatedIds_ReverseEntityReferenceField extends EntityToRelatedIds_
     }
     return $relatedIdsByDelta;
   }
+
 }

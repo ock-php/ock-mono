@@ -35,4 +35,5 @@ class FormatorD8_Optionless implements FormatorD8Interface, OptionableFormatorD8
   public function confGetD8Form(mixed $conf, MarkupInterface|string|null $label): array {
     return [];
   }
+
 }

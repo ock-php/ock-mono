@@ -43,4 +43,5 @@ class ClassRouteHelper extends ClassRouteHelperBase {
       'AA Aa',
       '_');
   }
+
 }

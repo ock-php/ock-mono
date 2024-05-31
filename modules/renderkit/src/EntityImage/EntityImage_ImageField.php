@@ -99,4 +99,5 @@ class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements Ent
 
     return ImageFieldUtil::buildImageFieldItem($item);
   }
+
 }

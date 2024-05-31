@@ -55,4 +55,5 @@ class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface
     }
     return $this->listFormat->buildList($builds);
   }
+
 }

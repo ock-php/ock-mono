@@ -57,4 +57,5 @@ class FormatorD8_GroupedSelect implements FormatorD8Interface, OptionableFormato
       $this->required,
     );
   }
+
 }

@@ -33,4 +33,5 @@ class Formula_ListSeparator extends Formula_TextfieldBase implements V2V_StringI
     // @todo The escape() seems wrong, depending what this is used for.
     return var_export(Html::escape($string), TRUE);
   }
+
 }

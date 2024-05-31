@@ -33,4 +33,5 @@ class EntitiesListFormat_ListFormat implements EntitiesListFormatInterface {
     $builds = $this->entityDisplay->buildEntities($entities);
     return $this->listFormat->buildList($builds);
   }
+
 }

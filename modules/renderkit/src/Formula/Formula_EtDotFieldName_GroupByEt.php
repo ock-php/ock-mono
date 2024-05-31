@@ -219,4 +219,5 @@ class Formula_EtDotFieldName_GroupByEt implements Formula_DrupalSelectInterface 
 
     return $grouped;
   }
+
 }

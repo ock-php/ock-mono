@@ -165,4 +165,5 @@ EOF;
     // @todo Don't get this from the formula, get it from the plugin!
     return NULL;
   }
+
 }

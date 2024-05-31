@@ -68,4 +68,5 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
   protected function getMethodName(): string {
     return $this->methodName;
   }
+
 }

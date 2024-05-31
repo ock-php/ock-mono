@@ -50,4 +50,5 @@ class EntityDisplay_Reference implements EntityDisplayInterface {
 
     return $this->decorated->buildEntity($related);
   }
+
 }

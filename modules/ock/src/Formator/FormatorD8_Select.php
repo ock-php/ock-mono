@@ -75,4 +75,5 @@ class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Inte
       $this->required
     );
   }
+
 }

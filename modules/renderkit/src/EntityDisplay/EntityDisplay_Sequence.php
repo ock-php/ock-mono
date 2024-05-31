@@ -41,4 +41,5 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
     }
     return $elements;
   }
+
 }

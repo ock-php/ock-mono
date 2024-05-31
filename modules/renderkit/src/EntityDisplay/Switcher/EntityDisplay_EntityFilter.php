@@ -59,4 +59,5 @@ class EntityDisplay_EntityFilter extends EntitiesDisplayBase {
 
     return $builds;
   }
+
 }

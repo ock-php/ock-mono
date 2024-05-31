@@ -92,4 +92,5 @@ class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_String
       throw new GeneratorException($e->getMessage(), 0, $e);
     }
   }
+
 }

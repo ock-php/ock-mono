@@ -37,4 +37,5 @@ class EntityFilter_Negation implements EntityFilterInterface {
 
     return array_keys($entities);
   }
+
 }

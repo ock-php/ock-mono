@@ -66,4 +66,5 @@ class FieldDefinitionLookup_Buffer implements FieldDefinitionLookupInterface {
       $entity_type,
       $field_name);
   }
+
 }

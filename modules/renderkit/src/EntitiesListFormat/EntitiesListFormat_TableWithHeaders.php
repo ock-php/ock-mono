@@ -72,4 +72,5 @@ class EntitiesListFormat_TableWithHeaders implements EntitiesListFormatInterface
       '#rows' => $rows,
     ];
   }
+
 }

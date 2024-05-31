@@ -25,4 +25,5 @@ class EntityTypeCondition_Whitelist implements EntityTypeConditionInterface {
   public function checkEntityTypeId(string $entityTypeId): bool {
     return isset($this->truthsByEt[$entityTypeId]);
   }
+
 }

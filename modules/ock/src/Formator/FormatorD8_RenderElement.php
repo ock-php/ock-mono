@@ -20,4 +20,5 @@ class FormatorD8_RenderElement implements FormatorD8Interface {
 
     return $this->element;
   }
+
 }

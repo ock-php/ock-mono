@@ -19,4 +19,5 @@ abstract class EntityToRelatedIds_MultipleBase implements EntityToRelatedIdsInte
       ? $relatedIdsByDelta[0]
       : [];
   }
+
 }

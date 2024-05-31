@@ -53,4 +53,5 @@ class ParamConverter_Plugin extends ParamConverterBase {
 
     return new NamedPlugin($value, $plugin);
   }
+
 }

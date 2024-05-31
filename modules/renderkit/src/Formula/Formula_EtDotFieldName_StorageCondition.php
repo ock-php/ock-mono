@@ -221,4 +221,5 @@ class Formula_EtDotFieldName_StorageCondition implements Formula_DrupalSelectInt
 
     return $grouped;
   }
+
 }

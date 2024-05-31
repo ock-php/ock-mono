@@ -26,4 +26,5 @@ class ViewsDisplayCondition_NoArgs implements ViewsDisplayConditionInterface {
 
     return [] === $arguments;
   }
+
 }

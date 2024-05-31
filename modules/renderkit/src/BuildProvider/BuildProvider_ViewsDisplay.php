@@ -78,4 +78,5 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
 
     return $this->labeledFormat->buildAddLabel($build, $label);
   }
+
 }

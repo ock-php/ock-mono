@@ -53,4 +53,5 @@ class LabeledListFormat_Composite implements LabeledListFormatInterface {
     }
     return $build;
   }
+
 }

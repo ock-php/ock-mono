@@ -100,4 +100,5 @@ class Formula_ConfigEntityId implements Formula_FlatSelectInterface {
     }
     return $entity;
   }
+
 }

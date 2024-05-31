@@ -217,4 +217,5 @@ class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterf
 
     return $tagName;
   }
+
 }

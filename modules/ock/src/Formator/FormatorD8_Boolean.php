@@ -33,4 +33,5 @@ class FormatorD8_Boolean implements FormatorD8Interface {
       '#default_value' => !empty($conf),
     ];
   }
+
 }

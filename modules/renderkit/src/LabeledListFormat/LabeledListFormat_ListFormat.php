@@ -33,4 +33,5 @@ class LabeledListFormat_ListFormat implements LabeledListFormatInterface {
   public function build(array $builds, string $label): array {
     return $this->listFormat->buildList($builds);
   }
+
 }

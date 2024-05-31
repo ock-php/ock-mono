@@ -34,4 +34,5 @@ class ImageProcessor_BuildProcessor implements ImageProcessorInterface {
     }
     return $build;
   }
+
 }

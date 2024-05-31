@@ -60,4 +60,5 @@ class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
 
     return $entity->get($this->fieldName);
   }
+
 }

@@ -36,4 +36,5 @@ class ListFormat_OuterBuildProcessor implements ListFormatInterface {
     }
     return $this->buildProcessor->process($builds);
   }
+
 }

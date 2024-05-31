@@ -41,4 +41,5 @@ class EntityBuildProcessor_Wrapper_BackgroundImage implements EntityBuildProcess
     }
     return $build;
   }
+
 }

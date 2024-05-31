@@ -58,4 +58,5 @@ class FormatorD8_Label implements FormatorD8Interface {
       $this->label->convert($this->translator),
     );
   }
+
 }

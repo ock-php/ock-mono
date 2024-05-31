@@ -93,4 +93,5 @@ class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
 
     return $definition;
   }
+
 }

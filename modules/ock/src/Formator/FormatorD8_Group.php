@@ -86,4 +86,5 @@ class FormatorD8_Group implements FormatorD8Interface {
 
     return $form;
   }
+
 }

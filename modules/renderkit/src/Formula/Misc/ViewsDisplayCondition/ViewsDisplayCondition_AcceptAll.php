@@ -15,4 +15,5 @@ class ViewsDisplayCondition_AcceptAll implements ViewsDisplayConditionInterface 
   public function displayCheckCondition(string $id, array $display, array $default_display = NULL): bool {
     return TRUE;
   }
+
 }

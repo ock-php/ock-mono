@@ -29,4 +29,5 @@ class ImagesDisplay_Multiple implements ImagesDisplayInterface {
     }
     return $build;
   }
+
 }

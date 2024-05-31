@@ -33,4 +33,5 @@ class ViewsDisplayCondition_And implements ViewsDisplayConditionInterface {
 
     return TRUE;
   }
+
 }

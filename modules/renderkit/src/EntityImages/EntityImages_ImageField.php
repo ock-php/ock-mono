@@ -110,4 +110,5 @@ class EntityImages_ImageField implements EntityImagesInterface {
 
     return $builds;
   }
+
 }
