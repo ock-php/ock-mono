@@ -8,7 +8,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
-#[AsAlias]
+#[AsAlias(public: true)]
 class FieldDefinitionLookup implements FieldDefinitionLookupInterface {
 
   /**
