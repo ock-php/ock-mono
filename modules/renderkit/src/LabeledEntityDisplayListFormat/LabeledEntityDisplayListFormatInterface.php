@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\LabeledEntityDisplayListFormat;
 
+use Drupal\Core\Entity\EntityInterface;
+
 interface LabeledEntityDisplayListFormatInterface {
 
   /**
@@ -16,6 +18,6 @@ interface LabeledEntityDisplayListFormatInterface {
    * @return array
    *   Combined render array.
    */
-  public function build(array $builds, string $entityType, \Drupal\Core\Entity\EntityInterface $entity, string $label): array;
+  public function build(array $builds, string $entityType, EntityInterface $entity, string $label): array;
 
 }
