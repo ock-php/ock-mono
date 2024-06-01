@@ -89,6 +89,14 @@ interface FactoryReflectionInterface {
   public function getParameters(): array;
 
   /**
+   * Checks whether the class or method has required parameters.
+   *
+   * @return bool
+   *   TRUE if at least one parameter is required.
+   */
+  public function hasRequiredParameters(): bool;
+
+  /**
    * Checks if the class or method is abstract.
    *
    * @return bool

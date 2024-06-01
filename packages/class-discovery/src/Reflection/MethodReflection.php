@@ -13,6 +13,8 @@ namespace Ock\ClassDiscovery\Reflection;
  */
 class MethodReflection extends \ReflectionMethod implements FactoryReflectionInterface {
 
+  use FactoryReflectionTrait;
+
   /**
    * Original class name that was passed in the constructor.
    *
