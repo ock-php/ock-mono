@@ -502,7 +502,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
    *   Format: $[$optgroupLabel][$id] = $optionLabel
    * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
    */
-  private function assertFormulaGroupedOptions(array $expected, FormulaInterface $formula) {
+  private function assertFormulaGroupedOptions(array $expected, FormulaInterface $formula): void {
 
     if ($formula instanceof Formula_Proxy_Cache_SelectBase) {
 
@@ -542,7 +542,7 @@ class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
    * @param string[][] $expected
    * @param mixed[][] $actualWithMarkup
    */
-  private function assertGroupedOptions(array $expected, array $actualWithMarkup) {
+  private function assertGroupedOptions(array $expected, array $actualWithMarkup): void {
 
     $actual = [];
     foreach ($actualWithMarkup as $groupLabel => $groupOptions) {
