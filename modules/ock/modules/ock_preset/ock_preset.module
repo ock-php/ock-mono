@@ -12,7 +12,7 @@ use Drupal\ock_preset\Schema\CfSchema_PresetSelect;
  *
  * @return array[][]
  */
-function ock_preset_ock_preset_info() {
+function ock_preset_ock_preset_info(): array {
 
   $repository = PresetRepository::create();
 
@@ -47,7 +47,7 @@ function ock_preset_ock_preset_info() {
  *
  * @param array $info
  */
-function ock_preset_element_info_alter(array &$info) {
+function ock_preset_element_info_alter(array &$info): void {
 
   /* @see \Drupal\ock_preset\Element\RenderElement_DrilldownContainer */
   if (isset($info[$k = 'ock_preset_drilldown_container'])) {
@@ -60,7 +60,7 @@ function ock_preset_element_info_alter(array &$info) {
  *
  * @return array
  */
-function _ock_preset_ock_preset_drilldown_container_pre_render(array $element) {
+function _ock_preset_ock_preset_drilldown_container_pre_render(array $element): array {
 
   if (!\Drupal::currentUser()->hasPermission('administer ock_preset')) {
     return $element;

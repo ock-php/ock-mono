@@ -67,7 +67,7 @@ class EntityDisplay_Layout extends EntityDisplayBase {
    *
    * @throws \Exception
    */
-  private function throwIfInvalid() {
+  private function throwIfInvalid(): void {
 
     $names = $this->layout->getPluginDefinition()->getRegionNames();
     $names_map = array_fill_keys($names, TRUE);
