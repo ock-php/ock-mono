@@ -82,6 +82,15 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   }
 
   /**
+   * Gets a list including the class itself and its methods.
+   *
+   * @return list<\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<T>>
+   */
+  public function getFactories(): array {
+    return [$this, ...$this->getMethods()];
+  }
+
+  /**
    * @param int|null $filter
    *
    * @return list<\Ock\ClassDiscovery\Reflection\MethodReflection<T>>
