@@ -23,6 +23,25 @@ interface FactoryReflectionInterface {
   public function getAttributes(?string $name = null, int $flags = 0): array;
 
   /**
+   * Gets attribute instances.
+   *
+   * This is a shortcut to skip dealing with ReflectionAttribute objects.
+   * It also provides better support for static analysis.
+   *
+   * @template TAttribute of object
+   *
+   * @param class-string<TAttribute> $name
+   *   Attribute class or interface to filter by.
+   * @param int $flags
+   *   Flags to pass to ->getAttributes().
+   *   Pass 0 to only get instances with the exact class.
+   *
+   * @return list<TAttribute>
+   *   Attribute instances.
+   */
+  public function getAttributeInstances(string $name, int $flags = \ReflectionAttribute::IS_INSTANCEOF): array;
+
+  /**
    * Gets the original class name that this method was requested for.
    *
    * This will be different from ->getDeclaringClass(), if the method is
