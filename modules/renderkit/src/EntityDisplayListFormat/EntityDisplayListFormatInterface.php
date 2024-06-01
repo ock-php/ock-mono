@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityDisplayListFormat;
 
+use Drupal\Core\Entity\EntityInterface;
+
 interface EntityDisplayListFormatInterface {
 
   /**
@@ -12,6 +14,6 @@ interface EntityDisplayListFormatInterface {
    *
    * @return array
    */
-  public function buildListWithEntity(array $builds, string $entityType, \Drupal\Core\Entity\EntityInterface $entity): array;
+  public function buildListWithEntity(array $builds, string $entityType, EntityInterface $entity): array;
 
 }

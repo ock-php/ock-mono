@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
+use Drupal\Core\Entity\EntityInterface;
+
 trait EntitiesBuildsProcessorTrait {
 
   /**
@@ -14,7 +16,7 @@ trait EntitiesBuildsProcessorTrait {
    * @return array
    *   Modified render array for the given entity.
    */
-  final public function processEntityBuild(array $build, string $entity_type, \Drupal\Core\Entity\EntityInterface $entity): array {
+  final public function processEntityBuild(array $build, string $entity_type, EntityInterface $entity): array {
     if (empty($build)) {
       return [];
     }

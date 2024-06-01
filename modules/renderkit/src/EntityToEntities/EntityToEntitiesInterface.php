@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\EntityToEntities;
 
+use Drupal\Core\Entity\EntityInterface;
+
 /**
  * Represents a one-to-many relation between entities.
  */
@@ -25,5 +27,5 @@ interface EntityToEntitiesInterface {
    *
    * @return \Drupal\Core\Entity\EntityInterface[]
    */
-  public function entityGetRelated(\Drupal\Core\Entity\EntityInterface $entity): array;
+  public function entityGetRelated(EntityInterface $entity): array;
 }
