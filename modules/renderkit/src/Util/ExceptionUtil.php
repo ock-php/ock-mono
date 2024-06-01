@@ -27,9 +27,9 @@ final class ExceptionUtil extends UtilBase {
    *
    * @param mixed $value
    *
-   * @return mixed|string
+   * @return string
    */
-  public static function formatValue(mixed $value): mixed {
+  public static function formatValue(mixed $value): string {
 
     switch ($type = \gettype($value)) {
 
