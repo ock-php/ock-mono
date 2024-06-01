@@ -11,6 +11,6 @@ namespace Ock\Adaptism\Attribute\Parameter;
  * @see \Ock\Adaptism\Attribute\Adapter
  */
 #[\Attribute(\Attribute::TARGET_PARAMETER|\Attribute::TARGET_PROPERTY)]
-final class Adaptee {
+final class Adaptee implements AdapterParameterAttributeInterface {
 
 }

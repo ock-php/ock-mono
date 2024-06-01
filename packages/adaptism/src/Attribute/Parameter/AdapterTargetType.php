@@ -10,6 +10,6 @@ namespace Ock\Adaptism\Attribute\Parameter;
  * class names as value.
  */
 #[\Attribute(\Attribute::TARGET_PARAMETER)]
-final class AdapterTargetType {
+final class AdapterTargetType implements AdapterParameterAttributeInterface {
 
 }

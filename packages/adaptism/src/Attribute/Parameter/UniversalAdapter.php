@@ -9,6 +9,6 @@ namespace Ock\Adaptism\Attribute\Parameter;
  * This is needed if the adapter method wants to call other adapters.
  */
 #[\Attribute(\Attribute::TARGET_PARAMETER)]
-final class UniversalAdapter {
+final class UniversalAdapter implements AdapterParameterAttributeInterface {
 
 }

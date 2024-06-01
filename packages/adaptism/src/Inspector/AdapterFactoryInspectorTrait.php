@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Ock\Adaptism\Inspector;
 
+use Ock\Adaptism\Attribute\Parameter\AdapterParameterAttributeInterface;
 use Ock\Adaptism\Attribute\Parameter\AdapterTargetType;
 use Ock\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\ClassDiscovery\Exception\DiscoveryException;
+use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\ClassDiscovery\Util\ReflectionTypeUtil;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
@@ -79,6 +81,16 @@ trait AdapterFactoryInspectorTrait {
   private function buildArgEggs(array $parameters): array {
     $argEggs = [];
     foreach ($parameters as $parameter) {
+      // The adapter parameter attributes are only allowed on the first
+      // parameters, in a very specific order.
+      $badAttributes = $parameter->getAttributes(AdapterParameterAttributeInterface::class, \ReflectionAttribute::IS_INSTANCEOF);
+      if ($badAttributes) {
+        throw new MalformedDeclarationException(sprintf(
+          'Attribute #[%s] is not allowed on %s. Check the order of parameters.',
+          $badAttributes[0]->getName(),
+          MessageUtil::formatReflector($parameter),
+        ));
+      }
       $egg = $this->paramToEgg->paramGetEgg($parameter);
       if ($egg === NULL) {
         throw new DiscoveryException(sprintf(
