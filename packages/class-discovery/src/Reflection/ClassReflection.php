@@ -12,6 +12,8 @@ namespace Ock\ClassDiscovery\Reflection;
  */
 class ClassReflection extends \ReflectionClass implements FactoryReflectionInterface {
 
+  use FactoryReflectionTrait;
+
   /**
    * Constructor.
    *
