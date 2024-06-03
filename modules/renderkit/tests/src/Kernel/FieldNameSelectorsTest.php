@@ -17,7 +17,7 @@ use Ock\Ock\Formula\Select\Formula_SelectInterface;
 /**
  * @see \Drupal\KernelTests\Core\Render\Element\RenderElementTypesTest
  */
-class KernelTest_FieldNameSelectors extends FieldKernelTestBase {
+class FieldNameSelectorsTest extends FieldKernelTestBase {
 
   /**
    * Modules to enable.
