@@ -139,10 +139,13 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   /**
    * Gets the package namespace directory.
    *
+   * @param int $level
+   *   Expected number of namespace fragments in the package namespace.
+   *
    * @return static
    */
-  public function package(): static {
-    return $this->requireParentAt(2);
+  public function package(int $level = 2): static {
+    return $this->requireParentAt($level);
   }
 
   /**
