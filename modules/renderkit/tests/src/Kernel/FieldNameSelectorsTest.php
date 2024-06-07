@@ -34,8 +34,6 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
     'ock',
     'node',
     'user',
-    # 'node_test_config',
-    # 'field_test_config'
   ];
 
   public function setUp(): void {
