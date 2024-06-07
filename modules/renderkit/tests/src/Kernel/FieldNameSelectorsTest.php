@@ -24,7 +24,7 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'system',
     'field',
     'text',
