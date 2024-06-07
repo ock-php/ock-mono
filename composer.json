@@ -88,7 +88,9 @@
             "Ock\\DID\\Tests\\": "packages/di-discovery/tests/src",
             "Ock\\Egg\\Tests\\": "packages/egg/tests/src",
             "Ock\\Helpers\\Tests\\": "packages/helpers/tests/src",
-            "Ock\\Ock\\Tests\\": "packages/object-construction-kit/tests/src"
+            "Ock\\Ock\\Tests\\": "packages/object-construction-kit/tests/src",
+            "Ock\\Testing\\": "packages/testing/src",
+            "Ock\\Testing\\Tests\\": "packages/testing/tests/src"
         }
     },
     "config": {
