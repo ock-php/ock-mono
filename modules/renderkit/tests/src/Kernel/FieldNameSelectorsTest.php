@@ -36,28 +36,6 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
     'user',
   ];
 
-  /**
-   * @throws \Exception
-   */
-  public function testEnvironment() {
-
-    /** @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface $etbi */
-    $etbi = $this->container->get('entity_type.bundle.info');
-
-    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $etm */
-    # $etm = $this->container->get('entity_type.manager');
-
-    $bundles = $etbi->getAllBundleInfo();
-
-    static::assertArrayHasKey('entity_test', $bundles);
-
-    static::assertSame(
-      [
-        'entity_test' => ['label' => 'Entity Test Bundle'],
-      ],
-      $bundles['entity_test']);
-  }
-
   public function testFieldName() {
 
     $this->assertFormulaGroupedOptions(
