@@ -139,18 +139,18 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   /**
    * Gets the package namespace directory.
    *
-   * @return self
+   * @return static
    */
-  public function package(): self {
+  public function package(): static {
     return $this->requireParentAt(2);
   }
 
   /**
    * @param int $level
    *
-   * @return self
+   * @return static
    */
-  public function requireParentAt(int $level): self {
+  public function requireParentAt(int $level): static {
     $depth = substr_count($this->terminatedNamespace, '\\');
     return $this->requireParentN($depth - $level);
   }
@@ -160,11 +160,11 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *
    * @param int $nLevelsUp
    *
-   * @return self
+   * @return static
    *
    * @throws \RuntimeException
    */
-  public function requireParentN(int $nLevelsUp): self {
+  public function requireParentN(int $nLevelsUp): static {
     if (null === $parent = $this->parentN($nLevelsUp)) {
       throw new \RuntimeException("No parent-!n namespace directory found for !dir / !nsp.");
     }
