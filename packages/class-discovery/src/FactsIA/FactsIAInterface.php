@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Discovery;
+namespace Ock\ClassDiscovery\FactsIA;
 
 /**
  * @template TFactKey
@@ -10,7 +10,7 @@ namespace Ock\ClassDiscovery\Discovery;
  *
  * @template-extends \IteratorAggregate<TFactKey, TFact>
  */
-interface DiscoveryInterface extends \IteratorAggregate {
+interface FactsIAInterface extends \IteratorAggregate {
 
   /**
    * @return \Iterator<TFactKey, TFact>

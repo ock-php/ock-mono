@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Discovery;
+namespace Ock\ClassDiscovery\FactsIA;
 
 use Ock\ClassDiscovery\Inspector\FactoryInspector_Concat;
 use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
@@ -15,9 +15,9 @@ use Ock\Helpers\Util\MessageUtil;
  * @template TFactKey
  * @template TFact
  *
- * @template-implements DiscoveryInterface<TFactKey, TFact>
+ * @template-implements FactsIAInterface<TFactKey, TFact>
  */
-class FactoryDiscovery implements DiscoveryInterface {
+class FactsIA_InspectFactories implements FactsIAInterface {
 
   /**
    * Constructor.

@@ -10,7 +10,7 @@ use Ock\Adaptism\Inspector\FactoryInspector_SelfAdapterAttribute;
 use Ock\Adaptism\Tests\Fixtures\AdaptismTestNamespace;
 use Ock\Adaptism\Tests\Fixtures\FixturesUtil;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
-use Ock\ClassDiscovery\Discovery\DiscoveryInterface;
+use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -25,8 +25,8 @@ class ServicesTest extends TestCase {
     $service = $container->get(UniversalAdapterInterface::class);
     static::assertInstanceOf(UniversalAdapterInterface::class, $service);
 
-    $service = $container->get(DiscoveryInterface::class . ' $' . AdaptismPackage::DISCOVERY_TARGET);
-    static::assertInstanceOf(DiscoveryInterface::class, $service);
+    $service = $container->get(FactsIAInterface::class . ' $' . AdaptismPackage::DISCOVERY_TARGET);
+    static::assertInstanceOf(FactsIAInterface::class, $service);
   }
 
   public function testTaggedServicesExist(): void {

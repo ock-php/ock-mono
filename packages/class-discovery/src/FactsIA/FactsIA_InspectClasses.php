@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Discovery;
+namespace Ock\ClassDiscovery\FactsIA;
 
 use Ock\ClassDiscovery\Inspector\ClassInspector_Concat;
 use Ock\ClassDiscovery\Inspector\ClassInspectorInterface;
@@ -18,9 +18,9 @@ use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
  * @template TFactKey
  * @template TFact
  *
- * @template-implements DiscoveryInterface<TFactKey, TFact>
+ * @template-implements FactsIAInterface<TFactKey, TFact>
  */
-class ClassDiscovery implements DiscoveryInterface {
+class FactsIA_InspectClasses implements FactsIAInterface {
 
   /**
    * Constructor.
