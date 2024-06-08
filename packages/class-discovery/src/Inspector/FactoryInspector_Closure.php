@@ -14,16 +14,17 @@ use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
  * This version expects a closure instead of an arbitrary callback, to keep it
  * more simple and predictable.
  *
- * @template TNeedle
+ * @template TFactKey
+ * @template TFact
  *
- * @template-implements \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TNeedle>
+ * @template-implements \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TFactKey, TFact>
  */
 class FactoryInspector_Closure implements FactoryInspectorInterface {
 
   /**
    * Constructor.
    *
-   * @param \Closure(FactoryReflectionInterface): \Iterator<TNeedle> $closure
+   * @param \Closure(FactoryReflectionInterface): \Iterator<TFactKey, TFact> $closure
    *   Closure returning an iterator.
    */
   public function __construct(

@@ -9,7 +9,8 @@ use Ock\ClassDiscovery\Reflection\ClassReflection;
 /**
  * Inspector for a reflection class.
  *
- * @template TNeedle
+ * @template TFactKey
+ * @template TFact
  */
 interface ClassInspectorInterface {
 
@@ -18,7 +19,7 @@ interface ClassInspectorInterface {
    *
    * @param ClassReflection $classReflection
    *
-   * @return \Iterator<TNeedle>
+   * @return \Iterator<TFactKey, TFact>
    *
    * @throws \Ock\ClassDiscovery\Exception\DiscoveryException
    */

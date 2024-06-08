@@ -12,9 +12,10 @@ use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 use Ock\Helpers\Util\MessageUtil;
 
 /**
- * @template TNeedle
+ * @template TFactKey
+ * @template TFact
  *
- * @template-implements DiscoveryInterface<TNeedle>
+ * @template-implements DiscoveryInterface<TFactKey, TFact>
  */
 class FactoryDiscovery implements DiscoveryInterface {
 
@@ -22,7 +23,7 @@ class FactoryDiscovery implements DiscoveryInterface {
    * Constructor.
    *
    * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $classes
-   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TNeedle> $inspector
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TFactKey, TFact> $inspector
    */
   public function __construct(
     private readonly ReflectionClassesIAInterface $classes,

@@ -5,14 +5,15 @@ declare(strict_types = 1);
 namespace Ock\ClassDiscovery\Discovery;
 
 /**
- * @template TNeedle
+ * @template TFactKey
+ * @template TFact
  *
- * @template-extends \IteratorAggregate<TNeedle>
+ * @template-extends \IteratorAggregate<TFactKey, TFact>
  */
 interface DiscoveryInterface extends \IteratorAggregate {
 
   /**
-   * @return \Iterator<TNeedle>
+   * @return \Iterator<TFactKey, TFact>
    *
    * @throws \Ock\ClassDiscovery\Exception\DiscoveryException
    */
