@@ -47,6 +47,16 @@ class ClassInspector_Concat implements ClassInspectorInterface {
   }
 
   /**
+   * Checks if the list of inspectors is empty.
+   *
+   * @return bool
+   *   If TRUE, this inspector can be safely skipped.
+   */
+  public function isEmpty(): bool {
+    return $this->inspectors === [];
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function findInClass(ClassReflection $classReflection): \Iterator {
