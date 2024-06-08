@@ -1,0 +1,53 @@
+test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
+'dataset name': ClassAsPrivateService
+arguments:
+  -
+    class: Ock\ClassDiscovery\NamespaceDirectory
+    $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/ClassAsPrivateService
+    $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\
+  - inspector.default.php
+values:
+  -
+    classes:
+      - Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\ClassWithPrivateConstructor
+      - Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\ServiceWithDependency
+      - Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleAbstractClass
+      - Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleInterface
+      - Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleTrait
+      - Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleUnusedPrivateService
+      - Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleUsedPrivateService
+  -
+    facts:
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\ServiceWithDependency:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleUnusedPrivateService:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleUsedPrivateService:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        '# Test callback to make one service public.':
+          class: Closure
+  -
+    'definitions before compile':
+      service_container:
+        getClass(): Symfony\Component\DependencyInjection\ContainerInterface
+        isAutoconfigured(): false
+        isAutowired(): false
+        isPublic(): true
+        isSynthetic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\ServiceWithDependency:
+        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleUnusedPrivateService: {  }
+      Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleUsedPrivateService: {  }
+  -
+    'aliases before compile': {  }
+  -
+    services:
+      service_container:
+        class: Symfony\Component\DependencyInjection\ContainerBuilder
+      Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\ServiceWithDependency:
+        $dependency:
+          class: Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleUsedPrivateService
