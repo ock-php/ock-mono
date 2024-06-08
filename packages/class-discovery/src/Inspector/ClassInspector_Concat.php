@@ -30,15 +30,23 @@ class ClassInspector_Concat implements ClassInspectorInterface {
    * @param array $candidates
    *   List of objects that may or may not be inspectors.
    *   This accepts any iterable, to support symfony tagged services.
+   * @param bool $includeFactoryInspectors
+   *   TRUE to also include factory inspectors.
    *
    * @return static
    *   New instance.
    */
-  public static function fromCandidateObjects(iterable $candidates): static {
+  public static function fromCandidateObjects(iterable $candidates, bool $includeFactoryInspectors): static {
     $inspectors = [];
     foreach ($candidates as $candidate) {
       if ($candidate instanceof ClassInspectorInterface) {
         $inspectors[] = $candidate;
+      }
+    }
+    if ($includeFactoryInspectors) {
+      $factoryConcatInspector = FactoryInspector_Concat::fromCandidateObjects($candidates);
+      if (!$factoryConcatInspector->isEmpty()) {
+        $inspectors[] = new ClassInspector_Factories($factoryConcatInspector);
       }
     }
     // Extend at your own risk.
