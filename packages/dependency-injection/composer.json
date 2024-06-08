@@ -1,0 +1,34 @@
+{
+    "name": "ock/dependency-injection",
+    "description": "Extensions to symfony/dependency-injection",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.2",
+        "ock/class-discovery": "@dev",
+        "ock/codegen-tools": "@dev",
+        "ock/helpers": "@dev",
+        "psr/container": "^2.0",
+        "psr/log": "^1.1.4|^2.0|^3.0",
+        "symfony/dependency-injection": "^6.4"
+    },
+    "require-dev": {
+        "ock/testing": "@dev",
+        "phpunit/phpunit": "^9.5",
+        "symfony/yaml": "^6.2"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Ock\\DependencyInjection\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ock\\DependencyInjection\\Tests\\": "tests/src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
