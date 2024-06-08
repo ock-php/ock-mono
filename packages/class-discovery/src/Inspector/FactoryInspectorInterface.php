@@ -13,13 +13,13 @@ use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
 interface FactoryInspectorInterface {
 
   /**
-   * Finds results in a class or method.
+   * Finds facts in a class or method.
    *
    * @param FactoryReflectionInterface $reflector
-   *   Class or method reflector.
+   *   Class or method to inspect.
    *
    * @return \Iterator<TFactKey, TFact>
-   *   Declarations.
+   *   Facts found in the class or method.
    *
    * @throws \Ock\ClassDiscovery\Exception\DiscoveryException
    *   Something went wrong, e.g. a bad declaration was found.

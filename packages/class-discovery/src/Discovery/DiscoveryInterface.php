@@ -14,6 +14,7 @@ interface DiscoveryInterface extends \IteratorAggregate {
 
   /**
    * @return \Iterator<TFactKey, TFact>
+   *   Facts iterator.
    *
    * @throws \Ock\ClassDiscovery\Exception\DiscoveryException
    */
