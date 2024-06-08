@@ -25,6 +25,17 @@ class FactoryInspector_Concat implements FactoryInspectorInterface {
   ) {}
 
   /**
+   * Checks if the inspector is empty.
+   *
+   * An empty inspector will not yield any facts.
+   *
+   * @return bool
+   */
+  public function isEmpty(): bool {
+    return $this->inspectors === [];
+  }
+
+  /**
    * Creates a new instance from a list of inspector candidates.
    *
    * @param array $candidates
