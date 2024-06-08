@@ -45,7 +45,7 @@ class FactsIA_InspectClasses implements FactsIAInterface {
    */
   public static function fromCandidateObjects(iterable $candidates): self {
     $classes = ReflectionClassesIA_Concat::fromCandidateObjects($candidates);
-    $inspector = ClassInspector_Concat::fromCandidateObjects($candidates);
+    $inspector = ClassInspector_Concat::fromCandidateObjects($candidates, true);
     return new self($classes, $inspector);
   }
 
