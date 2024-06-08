@@ -7,16 +7,17 @@ namespace Ock\ClassDiscovery\Inspector;
 use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
 
 /**
- * @template TNeedle
+ * @template TFactKey
+ * @template TFact
  *
- * @template-implements \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TNeedle>
+ * @template-implements \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TFactKey, TFact>
  */
 class FactoryInspector_Concat implements FactoryInspectorInterface {
 
   /**
    * Constructor.
    *
-   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface[] $inspectors
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TFactKey, TFact>[] $inspectors
    *   Inspectors to dispatch the call to.
    */
   public function __construct(

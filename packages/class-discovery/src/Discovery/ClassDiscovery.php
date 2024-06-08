@@ -15,9 +15,10 @@ use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
  * This can be used instead of FactoryDiscovery, to allow to decorate the
  * inspectors on class level.
  *
- * @template TNeedle
+ * @template TFactKey
+ * @template TFact
  *
- * @template-implements DiscoveryInterface<TNeedle>
+ * @template-implements DiscoveryInterface<TFactKey, TFact>
  */
 class ClassDiscovery implements DiscoveryInterface {
 
@@ -25,7 +26,7 @@ class ClassDiscovery implements DiscoveryInterface {
    * Constructor.
    *
    * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $reflectionClasses
-   * @param \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<TNeedle> $classInspector
+   * @param \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<TFactKey, TFact> $classInspector
    */
   public function __construct(
     private readonly ReflectionClassesIAInterface $reflectionClasses,

@@ -9,16 +9,17 @@ use Ock\ClassDiscovery\Reflection\ClassReflection;
 /**
  * Inspector that inspects the class and the methods.
  *
- * @template TNeedle
+ * @template TFactKey
+ * @template TFact
  *
- * @template-implements \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<TNeedle>
+ * @template-implements \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<TFactKey, TFact>
  */
 class ClassInspector_Factories implements ClassInspectorInterface {
 
   /**
    * Constructor.
    *
-   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface $factoryInspector
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TFactKey, TFact> $factoryInspector
    */
   public function __construct(
     private readonly FactoryInspectorInterface $factoryInspector,

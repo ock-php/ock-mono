@@ -7,7 +7,8 @@ namespace Ock\ClassDiscovery\Inspector;
 use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
 
 /**
- * @template TNeedle
+ * @template TFactKey
+ * @template TFact
  */
 interface FactoryInspectorInterface {
 
@@ -17,7 +18,7 @@ interface FactoryInspectorInterface {
    * @param FactoryReflectionInterface $reflector
    *   Class or method reflector.
    *
-   * @return \Iterator<TNeedle>
+   * @return \Iterator<TFactKey, TFact>
    *   Declarations.
    *
    * @throws \Ock\ClassDiscovery\Exception\DiscoveryException
