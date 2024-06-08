@@ -7,7 +7,7 @@ namespace Ock\Adaptism\AdapterDefinitionList;
 use Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface;
 use Ock\Adaptism\AdaptismPackage;
 use Ock\Adaptism\Exception\MalformedAdapterDeclarationException;
-use Ock\ClassDiscovery\Discovery\DiscoveryInterface;
+use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
 use Ock\ClassDiscovery\Exception\DiscoveryException;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\Target;
@@ -21,11 +21,11 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
   /**
    * Constructor.
    *
-   * @param \Ock\ClassDiscovery\Discovery\DiscoveryInterface $discovery
+   * @param \Ock\ClassDiscovery\FactsIA\FactsIAInterface $discovery
    */
   public function __construct(
     #[Target(AdaptismPackage::DISCOVERY_TARGET)]
-    private readonly DiscoveryInterface $discovery,
+    private readonly FactsIAInterface $discovery,
   ) {}
 
   /**

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\ClassDiscovery\Tests;
 
-use Ock\ClassDiscovery\Discovery\FactoryDiscovery;
+use Ock\ClassDiscovery\FactsIA\FactsIA_InspectFactories;
 use Ock\ClassDiscovery\Inspector\FactoryInspector_Closure;
 use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA;
@@ -12,7 +12,7 @@ use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Ock\ClassDiscovery\Discovery\FactoryDiscovery
+ * @coversDefaultClass \Ock\ClassDiscovery\FactsIA\FactsIA_InspectFactories
  */
 class FactoryDiscoveryTest extends TestCase {
 
@@ -26,7 +26,7 @@ class FactoryDiscoveryTest extends TestCase {
         yield $reflector->getDebugName();
       }
     );
-    $discovery = new FactoryDiscovery($classes, $inspector);
+    $discovery = new FactsIA_InspectFactories($classes, $inspector);
     $result = iterator_to_array($discovery, false);
     $expectedSubset = [
       self::class,
