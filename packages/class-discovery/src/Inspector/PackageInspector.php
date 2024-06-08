@@ -23,8 +23,10 @@ class PackageInspector {
    */
   public static function fromCandidateObjects(iterable $candidates): PackageInspectorInterface {
     $inspectors = [];
-    $classInspector = ClassInspector_Concat::fromCandidateObjects($candidates, true);
-    if (!$classInspector->isEmpty()) {
+    $classInspector = ClassInspector::fromCandidateObjects($candidates, true);
+    if (!$classInspector instanceof ClassInspector_Concat
+      || !$classInspector->isEmpty()
+    ) {
       $inspectors[] = new PackageInspector_FromClassInspector($classInspector);
     }
     foreach ($candidates as $candidate) {
@@ -32,10 +34,48 @@ class PackageInspector {
         $inspectors[] = $candidate;
       }
     }
-    if (count($inspectors) === 1) {
-      return $inspectors[0];
+    if (count($inspectors) !== 1) {
+      $packageInspector = new PackageInspector_Concat($inspectors);
     }
-    return new PackageInspector_Concat($inspectors);
+    else {
+      $packageInspector = $inspectors[0];
+    }
+    return static::applyDecorators($packageInspector, $candidates);
+  }
+
+  /**
+   * @param \Ock\ClassDiscovery\Inspector\PackageInspectorInterface $decorated
+   * @param iterable $candidates
+   *   Objects which may or may not contain decorator closures.
+   *
+   * @return \Ock\ClassDiscovery\Inspector\PackageInspectorInterface
+   */
+  public static function applyDecorators(PackageInspectorInterface $decorated, iterable $candidates): PackageInspectorInterface {
+    foreach ($candidates as $candidate) {
+      if (!$candidate instanceof \Closure) {
+        continue;
+      }
+      $rf = new \ReflectionFunction($candidate);
+      $params = $rf->getParameters();
+      if (count($params) !== 1) {
+        continue;
+      }
+      $type = $params[0]->getType();
+      if (!$type) {
+        continue;
+      }
+      // See https://youtrack.jetbrains.com/issue/WI-77852/ReflectionType-toString-no-longer-deprecated
+      // @phpstan-ignore-next-line
+      if ($type->__toString() !== PackageInspectorInterface::class) {
+        continue;
+      }
+      $decorator = $candidate($decorated);
+      if (!$decorator instanceof PackageInspectorInterface) {
+        continue;
+      }
+      $decorated = $decorator;
+    }
+    return $decorated;
   }
 
 }
