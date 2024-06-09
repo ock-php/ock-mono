@@ -1,0 +1,48 @@
+test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
+'dataset name': AutoAliasForSinglyImplemented
+arguments:
+  -
+    class: Ock\ClassDiscovery\NamespaceDirectory
+    $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/AutoAliasForSinglyImplemented
+    $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\
+  - inspector.default.php
+values:
+  -
+    classes:
+      - Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\NotSinglyImplementedA
+      - Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\NotSinglyImplementedB
+      - Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\NotSinglyImplementedInterface
+      - Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\SinglyImplemented
+      - Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\SinglyImplementedInterface
+  -
+    facts:
+      -
+        Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\NotSinglyImplementedA:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\NotSinglyImplementedB:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\SinglyImplemented:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        '# Register aliases for singly implemented interfaces.':
+          class: Closure
+  -
+    'definitions before compile':
+      service_container:
+        getClass(): Symfony\Component\DependencyInjection\ContainerInterface
+        isAutoconfigured(): false
+        isAutowired(): false
+        isPublic(): true
+        isSynthetic(): true
+      Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\NotSinglyImplementedA: {  }
+      Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\NotSinglyImplementedB: {  }
+      Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\SinglyImplemented: {  }
+  -
+    'aliases before compile':
+      Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\SinglyImplementedInterface: {  }
+  -
+    services:
+      service_container:
+        class: Symfony\Component\DependencyInjection\ContainerBuilder
