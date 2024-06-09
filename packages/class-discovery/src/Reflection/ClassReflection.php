@@ -376,6 +376,25 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   }
 
   /**
+   * Gets the interface name, if the class implements exactly one interface.
+   *
+   * @param bool $inclusive
+   *   If TRUE, and if this reflector object itself represents an interface,
+   *   then the name of that interface will be included in the list.
+   *
+   * @return string|null
+   *   The interface name, or NULL if the class implements no interfaces, or
+   *   more than one interface.
+   */
+  public function getOnlyInterfaceName(bool $inclusive = false): ?string {
+    $interfaces = $this->getInterfaceNames();
+    if ($inclusive && $this->isInterface()) {
+      return ($interfaces === []) ? $this->name : null;
+    }
+    return count($interfaces) !== 1 ? null : $interfaces[0];
+  }
+
+  /**
    * Gets interface names including the interface itself if it is one.
    *
    * @return list<class-string>
