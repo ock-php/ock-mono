@@ -7,7 +7,7 @@ namespace Ock\ClassDiscovery\Reflection;
 /**
  * @template T of object
  */
-interface FactoryReflectionInterface extends AttributesHavingReflectionInterface {
+interface FactoryReflectionInterface extends AttributesHavingReflectionInterface, NameHavingReflectionInterface {
 
   /**
    * Gets the original class name that this method was requested for.
@@ -53,9 +53,37 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
    * Checks if this is a class.
    *
    * @return bool
-   *   TRUE if this is a class, FALSE if it is a method.
+   *   TRUE if this is a class, interface or trait.
+   *   FALSE if it is a method.
+   */
+  public function isClassLike(): bool;
+
+  /**
+   * Checks if this is a class.
+   *
+   * @return bool
+   *   TRUE if this is a class.
+   *   FALSE if it is a method, interface or trait.
    */
   public function isClass(): bool;
+
+  /**
+   * Checks if this is an interface.
+   *
+   * @return bool
+   *   TRUE if this is an interface.
+   *   FALSE if it is a method, class or trait.
+   */
+  public function isInterface(): bool;
+
+  /**
+   * Checks if this is an interface.
+   *
+   * @return bool
+   *   TRUE if this is a trait.
+   *   FALSE if it is a method, class or interface.
+   */
+  public function isTrait(): bool;
 
   /**
    * Checks if a method is declared in a parent class.
@@ -69,7 +97,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets parameters of the method, or of the class constructor.
    *
-   * @return list<\ReflectionParameter>
+   * @return list<\Ock\ClassDiscovery\Reflection\ParameterReflection>
    *   Parameters of the method, or of the class constructor, or empty array if
    *   a class does not have a constructor.
    */
@@ -110,6 +138,24 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   public function isCallable(): bool;
 
   /**
+   * Checks if this is a constructor.
+   *
+   * @return bool
+   *   TRUE if this is a method and it is a constructor.
+   *   FALSE if this is not a method, or not a constructor.
+   */
+  public function isConstructor(): bool;
+
+  /**
+   * Checks if this is a destructor.
+   *
+   * @return bool
+   *   TRUE if this is a method and it is a destructor.
+   *   FALSE if this is not a method, or not a destructor.
+   */
+  public function isDestructor(): bool;
+
+  /**
    * Gets the specified return type.
    *
    * If this is a class, it returns a named type with this class.
@@ -145,31 +191,5 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
    *   The returned class, or NULL if no single return class can be determined.
    */
   public function getReturnClassIfExists(): ?ClassReflection;
-
-  /**
-   * Gets a name to use in debug and log messages.
-   *
-   * This name is unique against other classes and class members, assuming these
-   * would use different identifier patterns like "$class::$constant" and
-   * "$class::\$$property".
-   *
-   * @return string
-   *   For classes, this will be the qualified class name.
-   *   For methods, this will be like "$class::$method()".
-   */
-  public function getDebugName(): string;
-
-  /**
-   * Gets a name to use as identifier.
-   *
-   * This identifier is unique against other classes and methods, but could
-   * clash with other class members like properties and constants, assuming
-   * these would use the same identifier pattern "$class::$member".
-   *
-   * @return string
-   *   For classes, this will be the qualified class name.
-   *   For methods, this will be like "$class::$method".
-   */
-  public function getFullName(): string;
 
 }

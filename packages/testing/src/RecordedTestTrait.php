@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Ock\Testing;
 
-use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\Testing\Exporter\Exporter_ToYamlArray;
 use Ock\Testing\Exporter\ExporterInterface;
 use Ock\Testing\Recorder\AssertionRecorder_RecordingMode;
@@ -33,6 +32,18 @@ use PHPUnit\Util\Test;
 trait RecordedTestTrait {
 
   private ?AssertionRecorderInterface $recorder = null;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    if ($this->getName() === [self::class, 'testLeftoverRecordedFiles'][1]) {
+      // If this is a functional test with costly setup operations, then these
+      // operations can be skipped when testing for leftover recorded files.
+      return;
+    }
+    parent::setUp();
+  }
 
   /**
    * Verifies that no left-over recording files exist.
@@ -74,6 +85,41 @@ trait RecordedTestTrait {
    */
   protected function isRecording(): bool {
     return !!\getenv('UPDATE_TESTS');
+  }
+
+  /**
+   * Asserts that an array of objects is as recorded.
+   *
+   * @param object[] $objects
+   * @param string|null $label
+   * @param int $depth
+   * @param string|null $defaultClass
+   *   Omit the 'class' if identical to the default class.
+   * @param bool $arrayKeyIsDefaultClass
+   *   Whether to omit the 'class' key, if identical to array key.
+   * @param string|null $arrayKeyIsDefaultFor
+   *   Result property to omit if identical to array key.
+   */
+  protected function assertObjectsAsRecorded(
+    array $objects,
+    string $label = null,
+    int $depth = 2,
+    string $defaultClass = null,
+    bool $arrayKeyIsDefaultClass = false,
+    string $arrayKeyIsDefaultFor = null,
+  ): void {
+    $export = $this->exportForYaml($objects, depth: $depth);
+    foreach ($export as $key => $item) {
+      if (($item['class'] ?? false) === $defaultClass
+        || ($arrayKeyIsDefaultClass && ($item['class'] ?? false) === $key)
+      ) {
+        unset($export[$key]['class']);
+      }
+      if ($arrayKeyIsDefaultFor !== null && ($item[$arrayKeyIsDefaultFor] ?? false) === $key) {
+        unset($export[$key][$arrayKeyIsDefaultFor]);
+      }
+    }
+    $this->assertAsRecorded($export, $label, $depth + 2);
   }
 
   /**
@@ -132,14 +178,15 @@ trait RecordedTestTrait {
    * Creates a storage for the assertion recorder.
    */
   protected function createAssertionStore(): AssertionValueStoreInterface {
-    $nsdir = NamespaceDirectory::fromKnownClass(static::class)
-      ->package(3);
-    $tns = $nsdir->getTerminatedNamespace();
-    $relativeClassName = static::class;
-    if (\str_starts_with($relativeClassName, $tns)) {
-      $relativeClassName = \substr($relativeClassName, \strlen($tns));
-    }
-    $base = $nsdir->getPackageDirectory(level: 3) . '/recordings/' . $relativeClassName . '-';
+    $reflection_class = new \ReflectionClass(static::class);
+    $class_file = $reflection_class->getFileName();
+    $parts = \explode('\\', static::class);
+    $package_dir = dirname($class_file, count($parts) - 2);
+    $base = implode('/', [
+      $package_dir,
+      'recordings',
+      ...array_slice($parts, 3),
+    ]) . '-';
     return new AssertionValueStore_Yaml(
       $base,
       $this->buildYamlHeader(...),

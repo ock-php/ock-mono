@@ -1,0 +1,76 @@
+test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
+'dataset name': ParametricMovie
+arguments:
+  -
+    class: Ock\ClassDiscovery\NamespaceDirectory
+    $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/ParametricMovie
+    $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\
+  - inspector.default.php
+values:
+  -
+    classes:
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\Movie
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlas
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlasStaticMethod
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieHelperService1
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieHelperService2
+  -
+    facts:
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\Movie:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlas:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlas:
+          class: Symfony\Component\DependencyInjection\Definition
+          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlasStaticMethod:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlas:
+          class: Symfony\Component\DependencyInjection\Definition
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlasStaticMethod
+            - create
+          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieHelperService1:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieHelperService2:
+          class: Symfony\Component\DependencyInjection\Definition
+  -
+    'definitions before compile':
+      service_container:
+        getClass(): Symfony\Component\DependencyInjection\ContainerInterface
+        isAutoconfigured(): false
+        isAutowired(): false
+        isPublic(): true
+        isSynthetic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\Movie: {  }
+      Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlas:
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlasStaticMethod
+          - create
+        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlasStaticMethod: {  }
+      Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieHelperService1: {  }
+      Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieHelperService2: {  }
+  -
+    'aliases before compile': {  }
+  -
+    services:
+      service_container:
+        class: Symfony\Component\DependencyInjection\ContainerBuilder
+      Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlas:
+        $twilightMovie:
+          class: Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\Movie
+          $helperService1:
+            class: Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieHelperService1
+          $genre: romance
+          $name: Twilight
+          $helperService2:
+            class: Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieHelperService2

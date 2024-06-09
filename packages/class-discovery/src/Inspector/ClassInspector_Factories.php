@@ -32,7 +32,7 @@ class ClassInspector_Factories implements ClassInspectorInterface {
     // Do not filter the class and methods.
     // This way, the factory inspector can warn about misplaced attributes,
     // instead of them being silently ignored.
-    $this->factoryInspector->findInFactory($classReflection);
+    yield from $this->factoryInspector->findInFactory($classReflection);
     foreach ($classReflection->getMethods() as $method) {
       yield from $this->factoryInspector->findInFactory($method);
     }

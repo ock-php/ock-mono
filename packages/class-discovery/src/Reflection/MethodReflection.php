@@ -15,6 +15,8 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
 
   use FactoryReflectionTrait;
 
+  use NonClassTrait;
+
   /**
    * Original class name that was passed in the constructor.
    *
@@ -86,14 +88,6 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
   /**
    * {@inheritdoc}
    */
-  public function isClass(): false {
-    return false;
-  }
-
-  /**
-   * {@inheritdoc}
-   * @return bool
-   */
   public function isInherited(): bool {
     return $this->originalClass !== $this->class;
   }
@@ -103,6 +97,17 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
    */
   public function isCallable(): bool {
     return !$this->isAbstract() && !$this->isConstructor() && $this->isPublic();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getParameters(): array {
+    $parameters = [];
+    foreach (parent::getParameters() as $parameter) {
+      $parameters[] = new ParameterReflection([$this->class, $this->name], $parameter->name);
+    }
+    return $parameters;
   }
 
   /**

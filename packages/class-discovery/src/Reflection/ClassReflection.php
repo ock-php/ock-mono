@@ -14,6 +14,8 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
 
   use FactoryReflectionTrait;
 
+  use NonMethodTrait;
+
   /**
    * Constructor.
    *
@@ -82,12 +84,19 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   }
 
   /**
-   * Gets a list including the class itself and its methods.
+   * Gets a list including the class itself and its non-constructor methods.
+   *
+   * Normally only public, non-abstract methods should be considered as
+   * factories. However, some inspectors need to analyze other methods, if only
+   * to detect and report invalid placement of attributes.
+   *
+   * The constructor can always be omitted, because the class reflector itself
+   * already provides everything one could want from it.
    *
    * @return list<\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<T>>
    */
   public function getFactories(): array {
-    return [$this, ...$this->getMethods()];
+    return [$this, ...$this->getFilteredMethods(constructor: false)];
   }
 
   /**
@@ -285,22 +294,15 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   /**
    * {@inheritdoc}
    */
-  public function getMethodName(): ?string {
-    return NULL;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isMethod(): false {
-    return false;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isClass(): true {
+  public function isClassLike(): true {
     return true;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isClass(): bool {
+    return !$this->isInterface() && !$this->isTrait();
   }
 
   /**
@@ -314,7 +316,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * {@inheritdoc}
    */
   public function getParameters(): array {
-    return parent::getConstructor()?->getParameters() ?? [];
+    return $this->getConstructor()?->getParameters() ?? [];
   }
 
   /**
