@@ -141,6 +141,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * @param bool|null $private
    * @param bool|null $abstract
    * @param bool|null $final
+   * @param bool|null $constructor
    *
    * @return list<\Ock\ClassDiscovery\Reflection\MethodReflection<T>>
    */
@@ -152,6 +153,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
     bool $private = null,
     bool $abstract = null,
     bool $final = null,
+    bool $constructor = null,
   ): array {
     $methods = parent::getMethods($filter);
     $result = [];
@@ -172,6 +174,9 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
         continue;
       }
       if ($final !== null && $final !== $method->isFinal()) {
+        continue;
+      }
+      if ($constructor !== null && $constructor !== $method->isConstructor()) {
         continue;
       }
       try {
