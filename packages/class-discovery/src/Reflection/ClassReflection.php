@@ -221,6 +221,54 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   }
 
   /**
+   * Gets methods that match the filters.
+   *
+   * @param int|null $filter
+   * @param bool|null $static
+   * @param bool|null $public
+   * @param bool|null $protected
+   * @param bool|null $private
+   * @param bool|null $readonly
+   *
+   * @return list<\ReflectionProperty>
+   */
+  public function getFilteredProperties(
+    int $filter = null,
+    bool $static = null,
+    bool $public = null,
+    bool $protected = null,
+    bool $private = null,
+    bool $readonly = null,
+  ): array {
+    $properties = parent::getProperties($filter);
+    $result = [];
+    foreach ($properties as $property) {
+      if ($static !== NULL && $static !== $property->isStatic()) {
+        continue;
+      }
+      if ($public !== NULL && $public !== $property->isPublic()) {
+        continue;
+      }
+      if ($protected !== NULL && $protected !== $property->isProtected()) {
+        continue;
+      }
+      if ($private !== NULL && $private !== $property->isPrivate()) {
+        continue;
+      }
+      if ($readonly !== NULL && $readonly !== $property->isReadOnly()) {
+        continue;
+      }
+      try {
+        $result[] = new \ReflectionProperty($this->name, $property->getName());
+      }
+      catch (\ReflectionException $e) {
+        throw new \RuntimeException('Unreachable code.', 0, $e);
+      }
+    }
+    return $result;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function getClassName(): string {
