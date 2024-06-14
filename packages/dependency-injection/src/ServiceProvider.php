@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection;
 
 use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
+use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
@@ -29,6 +30,9 @@ class ServiceProvider {
     foreach ($this->factsIA as $key => $fact) {
       if ($fact instanceof Definition) {
         $container->setDefinition($key, $fact);
+      }
+      elseif ($fact instanceof Alias) {
+        $container->setAlias($key, $fact);
       }
       elseif ($fact instanceof \Closure) {
         $fact($container, $key);
