@@ -11,6 +11,8 @@ values:
     classes:
       - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\AbstractClass
       - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute
+      - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
+      - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
       - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId
       - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix
       - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget

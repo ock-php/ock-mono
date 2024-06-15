@@ -11,6 +11,8 @@ values:
     classes:
       - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\AbstractClass
       - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute
+      - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
+      - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
       - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId
       - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix
       - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget
@@ -19,6 +21,12 @@ values:
     facts:
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod:
           class: Symfony\Component\DependencyInjection\Definition
       -
         custom_service_id:
@@ -60,6 +68,8 @@ values:
         isPublic(): true
         isSynthetic(): true
       Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute: {  }
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod: {  }
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod: {  }
       custom_service_id:
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId
         isPublic(): true
