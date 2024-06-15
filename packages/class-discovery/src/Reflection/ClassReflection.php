@@ -82,12 +82,19 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   }
 
   /**
-   * Gets a list including the class itself and its methods.
+   * Gets a list including the class itself and its non-constructor methods.
+   *
+   * Normally only public, non-abstract methods should be considered as
+   * factories. However, some inspectors need to analyze other methods, if only
+   * to detect and report invalid placement of attributes.
+   *
+   * The constructor can always be omitted, because the class reflector itself
+   * already provides everything one could want from it.
    *
    * @return list<\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<T>>
    */
   public function getFactories(): array {
-    return [$this, ...$this->getMethods()];
+    return [$this, ...$this->getFilteredMethods(constructor: false)];
   }
 
   /**
