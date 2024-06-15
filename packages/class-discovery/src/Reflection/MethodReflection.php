@@ -86,6 +86,13 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
   /**
    * {@inheritdoc}
    */
+  public function isClassLike(): false {
+    return false;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function isClass(): false {
     return false;
   }

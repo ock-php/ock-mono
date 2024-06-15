@@ -299,6 +299,13 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   /**
    * {@inheritdoc}
    */
+  public function isClassLike(): true {
+    return true;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function isClass(): bool {
     return !$this->isInterface() && !$this->isTrait();
   }

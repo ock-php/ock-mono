@@ -53,6 +53,15 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
    * Checks if this is a class.
    *
    * @return bool
+   *   TRUE if this is a class, interface or trait.
+   *   FALSE if it is a method.
+   */
+  public function isClassLike(): bool;
+
+  /**
+   * Checks if this is a class.
+   *
+   * @return bool
    *   TRUE if this is a class.
    *   FALSE if it is a method, interface or trait.
    */
