@@ -113,7 +113,6 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
 
   /**
    * {@inheritdoc}
-   * @return bool
    */
   public function isInherited(): bool {
     return $this->originalClass !== $this->class;
