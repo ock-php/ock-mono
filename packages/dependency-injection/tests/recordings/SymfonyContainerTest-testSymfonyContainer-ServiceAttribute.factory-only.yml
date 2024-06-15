@@ -82,6 +82,25 @@ values:
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
           getFactory(): '[...]'
           isPublic(): true
+      -
+        custom_service_id:
+          class: Symfony\Component\DependencyInjection\Definition
+          getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId
+          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffixcustomSuffix:
+          class: Symfony\Component\DependencyInjection\Definition
+          getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix
+          isPublic(): true
+      -
+        'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget $customTarget':
+          class: Symfony\Component\DependencyInjection\Definition
+          getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget
+          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\SimplePublicService:
+          class: Symfony\Component\DependencyInjection\Definition
+          isPublic(): true
   -
     'definitions before compile':
       service_container:
@@ -131,6 +150,17 @@ values:
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
         getFactory(): '[...]'
         isPublic(): true
+      custom_service_id:
+        getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId
+        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffixcustomSuffix:
+        getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix
+        isPublic(): true
+      'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget $customTarget':
+        getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget
+        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\SimplePublicService:
+        isPublic(): true
   -
     'aliases before compile': {  }
   -
@@ -156,3 +186,10 @@ values:
         class: Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
       'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod $exampleTarget':
         class: Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
+      custom_service_id:
+        class: Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffixcustomSuffix:
+        class: Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix
+      'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget $customTarget':
+        class: Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\SimplePublicService: {  }
