@@ -99,6 +99,20 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
 
   /**
    * {@inheritdoc}
+   */
+  public function isInterface(): false {
+    return false;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isTrait(): false {
+    return false;
+  }
+
+  /**
+   * {@inheritdoc}
    * @return bool
    */
   public function isInherited(): bool {
