@@ -22,65 +22,87 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute:
           class: Symfony\Component\DependencyInjection\Definition
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\AbstractClass
+            - createExample
           isPublic(): true
       -
         'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute $exampleTarget':
           class: Symfony\Component\DependencyInjection\Definition
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\AbstractClass
+            - createWithTarget
           isPublic(): true
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttributeexampleSuffix:
           class: Symfony\Component\DependencyInjection\Definition
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\AbstractClass
+            - createWithSuffix
           isPublic(): true
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod:
           class: Symfony\Component\DependencyInjection\Definition
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
+            - create
           isPublic(): true
       -
         return_self_id:
           class: Symfony\Component\DependencyInjection\Definition
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
+            - create
           isPublic(): true
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod.suffix:
           class: Symfony\Component\DependencyInjection\Definition
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
+            - create
           isPublic(): true
       -
         'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod $exampleTarget':
           class: Symfony\Component\DependencyInjection\Definition
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
+            - create
           isPublic(): true
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod:
           class: Symfony\Component\DependencyInjection\Definition
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
+            - create
           isPublic(): true
       -
         return_static_id:
           class: Symfony\Component\DependencyInjection\Definition
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
+            - create
           isPublic(): true
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod.suffix:
           class: Symfony\Component\DependencyInjection\Definition
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
+            - create
           isPublic(): true
       -
         'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod $exampleTarget':
           class: Symfony\Component\DependencyInjection\Definition
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
-          getFactory(): '[...]'
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
+            - create
           isPublic(): true
       -
         custom_service_id:
@@ -129,45 +151,67 @@ values:
         isPublic(): true
         isSynthetic(): true
       Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute:
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\AbstractClass
+          - createExample
         isPublic(): true
       'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute $exampleTarget':
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\AbstractClass
+          - createWithTarget
         isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttributeexampleSuffix:
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\AbstractClass
+          - createWithSuffix
         isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod:
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
+          - create
         isPublic(): true
       return_self_id:
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
+          - create
         isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod.suffix:
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
+          - create
         isPublic(): true
       'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod $exampleTarget':
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod
+          - create
         isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod:
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
+          - create
         isPublic(): true
       return_static_id:
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
+          - create
         isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod.suffix:
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
+          - create
         isPublic(): true
       'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod $exampleTarget':
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
-        getFactory(): '[...]'
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
+          - create
         isPublic(): true
       custom_service_id:
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId
