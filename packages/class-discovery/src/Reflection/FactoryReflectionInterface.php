@@ -97,7 +97,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets parameters of the method, or of the class constructor.
    *
-   * @return list<\ReflectionParameter>
+   * @return list<\Ock\ClassDiscovery\Reflection\ParameterReflection>
    *   Parameters of the method, or of the class constructor, or empty array if
    *   a class does not have a constructor.
    */

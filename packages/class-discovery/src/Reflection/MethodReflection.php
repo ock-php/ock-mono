@@ -129,6 +129,17 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
   /**
    * {@inheritdoc}
    */
+  public function getParameters(): array {
+    $parameters = [];
+    foreach (parent::getParameters() as $parameter) {
+      $parameters[] = new ParameterReflection([$this->class, $this->name], $parameter->name);
+    }
+    return $parameters;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getReturnClassName(): string|null {
     $type = $this->getReturnType();
     if (!$type instanceof \ReflectionNamedType

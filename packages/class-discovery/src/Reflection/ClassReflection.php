@@ -321,7 +321,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * {@inheritdoc}
    */
   public function getParameters(): array {
-    return parent::getConstructor()?->getParameters() ?? [];
+    return $this->getConstructor()?->getParameters() ?? [];
   }
 
   /**
