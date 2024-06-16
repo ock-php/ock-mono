@@ -138,6 +138,24 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   public function isCallable(): bool;
 
   /**
+   * Checks if this is a constructor.
+   *
+   * @return bool
+   *   TRUE if this is a method and it is a constructor.
+   *   FALSE if this is not a method, or not a constructor.
+   */
+  public function isConstructor(): bool;
+
+  /**
+   * Checks if this is a destructor.
+   *
+   * @return bool
+   *   TRUE if this is a method and it is a destructor.
+   *   FALSE if this is not a method, or not a destructor.
+   */
+  public function isDestructor(): bool;
+
+  /**
    * Gets the specified return type.
    *
    * If this is a class, it returns a named type with this class.

@@ -350,6 +350,20 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   /**
    * {@inheritdoc}
    */
+  public function isConstructor(): bool {
+    return false;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isDestructor(): bool {
+    return false;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getReturnType(): ReflectionClassType {
     return new ReflectionClassType($this->name);
   }
