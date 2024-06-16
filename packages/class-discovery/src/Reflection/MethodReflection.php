@@ -15,6 +15,8 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
 
   use FactoryReflectionTrait;
 
+  use NonClassTrait;
+
   /**
    * Original class name that was passed in the constructor.
    *
@@ -81,34 +83,6 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
    */
   public function isMethod(): true {
     return true;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isClassLike(): false {
-    return false;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isClass(): false {
-    return false;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isInterface(): false {
-    return false;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isTrait(): false {
-    return false;
   }
 
   /**

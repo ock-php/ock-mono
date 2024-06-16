@@ -14,6 +14,8 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
 
   use FactoryReflectionTrait;
 
+  use NonMethodTrait;
+
   /**
    * Constructor.
    *
@@ -292,20 +294,6 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   /**
    * {@inheritdoc}
    */
-  public function getMethodName(): ?string {
-    return NULL;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isMethod(): false {
-    return false;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function isClassLike(): true {
     return true;
   }
@@ -345,20 +333,6 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    */
   public function isCallable(): bool {
     return $this->isInstantiable();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isConstructor(): bool {
-    return false;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isDestructor(): bool {
-    return false;
   }
 
   /**
