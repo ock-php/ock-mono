@@ -7,7 +7,7 @@ namespace Ock\ClassDiscovery\Reflection;
 /**
  * @template T of object
  */
-interface FactoryReflectionInterface extends AttributesHavingReflectionInterface {
+interface FactoryReflectionInterface extends AttributesHavingReflectionInterface, NameHavingReflectionInterface {
 
   /**
    * Gets the original class name that this method was requested for.
@@ -191,31 +191,5 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
    *   The returned class, or NULL if no single return class can be determined.
    */
   public function getReturnClassIfExists(): ?ClassReflection;
-
-  /**
-   * Gets a name to use in debug and log messages.
-   *
-   * This name is unique against other classes and class members, assuming these
-   * would use different identifier patterns like "$class::$constant" and
-   * "$class::\$$property".
-   *
-   * @return string
-   *   For classes, this will be the qualified class name.
-   *   For methods, this will be like "$class::$method()".
-   */
-  public function getDebugName(): string;
-
-  /**
-   * Gets a name to use as identifier.
-   *
-   * This identifier is unique against other classes and methods, but could
-   * clash with other class members like properties and constants, assuming
-   * these would use the same identifier pattern "$class::$member".
-   *
-   * @return string
-   *   For classes, this will be the qualified class name.
-   *   For methods, this will be like "$class::$method".
-   */
-  public function getFullName(): string;
 
 }

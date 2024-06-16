@@ -9,7 +9,7 @@ use Ock\Helpers\Util\MessageUtil;
 /**
  * Enhanced parameter reflector.
  */
-class ParameterReflection extends \ReflectionParameter implements AttributesHavingReflectionInterface {
+class ParameterReflection extends \ReflectionParameter implements AttributesHavingReflectionInterface, NameHavingReflectionInterface {
 
   use AttributesHavingReflectionTrait;
 
@@ -40,5 +40,33 @@ class ParameterReflection extends \ReflectionParameter implements AttributesHavi
     return $name;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getDebugName(): string {
+    // @todo Get the original class name, even if the function is inherited.
+    $function = $this->getDeclaringFunction();
+    return \sprintf(
+      'parameter $%s of %s',
+      $this->name,
+      $function instanceof \ReflectionMethod
+        ? $function->class . '::' . $function->name . '()'
+        : $function->name,
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFullName(): string {
+    $function = $this->getDeclaringFunction();
+    return \sprintf(
+      '%s$%s',
+      $function instanceof \ReflectionMethod
+        ? $function->class . '::' . $function->name . '()'
+        : $function->name,
+      $this->name,
+    );
+  }
 
 }
