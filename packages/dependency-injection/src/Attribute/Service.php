@@ -8,7 +8,6 @@ namespace Ock\DependencyInjection\Attribute;
  *
  * The service id is taken from the class name, or the method return type.
  *
- * @see \Ock\DependencyInjection\Inspector\ClassInspector_ServiceAttribute
  * @see \Ock\DependencyInjection\Inspector\FactoryInspector_ServiceAttribute
  */
 #[\Attribute(\Attribute::TARGET_METHOD|\Attribute::TARGET_CLASS|\Attribute::IS_REPEATABLE)]

@@ -13,9 +13,6 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * Registers services for classes and methods with #[Service] attribute.
  *
- * This should not be combined with ClassInspector_ServiceAttribute, to avoid
- * redundancy.
- *
  * @see \Symfony\Component\DependencyInjection\Loader\FileLoader::registerClasses()
  */
 class FactoryInspector_ServiceAttribute implements FactoryInspectorInterface {

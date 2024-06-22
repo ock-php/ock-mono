@@ -1,11 +1,11 @@
 test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
-'dataset name': ServiceAttribute.class-then-factory
+'dataset name': ServiceAttribute.BAD-factory-then-private
 arguments:
   -
     class: Ock\ClassDiscovery\NamespaceDirectory
     $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/ServiceAttribute
     $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\
-  - inspector.class-then-factory.php
+  - inspector.BAD-factory-then-private.php
 values:
   -
     classes:
@@ -43,6 +43,12 @@ values:
             - createWithSuffix
           isPublic(): true
       -
+        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod:
           class: Symfony\Component\DependencyInjection\Definition
           getFactory():
@@ -76,6 +82,9 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod:
           class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod:
+          class: Symfony\Component\DependencyInjection\Definition
           getFactory():
             - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
             - create
@@ -105,30 +114,24 @@ values:
             - create
           isPublic(): true
       -
-        custom_service_id:
+        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId:
           class: Symfony\Component\DependencyInjection\Definition
-          getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId
-          isPublic(): true
       -
         custom_service_id:
           class: Symfony\Component\DependencyInjection\Definition
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId
           isPublic(): true
       -
-        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffixcustomSuffix:
+        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix:
           class: Symfony\Component\DependencyInjection\Definition
-          getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix
-          isPublic(): true
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffixcustomSuffix:
           class: Symfony\Component\DependencyInjection\Definition
           getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix
           isPublic(): true
       -
-        'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget $customTarget':
+        Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget:
           class: Symfony\Component\DependencyInjection\Definition
-          getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget
-          isPublic(): true
       -
         'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget $customTarget':
           class: Symfony\Component\DependencyInjection\Definition
@@ -137,7 +140,6 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\SimplePublicService:
           class: Symfony\Component\DependencyInjection\Definition
-          isPublic(): true
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\SimplePublicService:
           class: Symfony\Component\DependencyInjection\Definition
@@ -150,11 +152,7 @@ values:
         isAutowired(): false
         isPublic(): true
         isSynthetic(): true
-      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute:
-        getFactory():
-          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\AbstractClass
-          - createExample
-        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute: {  }
       'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute $exampleTarget':
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute
         getFactory():
@@ -213,12 +211,15 @@ values:
           - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod
           - create
         isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId: {  }
       custom_service_id:
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId
         isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix: {  }
       Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffixcustomSuffix:
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix
         isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget: {  }
       'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget $customTarget':
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget
         isPublic(): true
@@ -230,7 +231,6 @@ values:
     services:
       service_container:
         class: Symfony\Component\DependencyInjection\ContainerBuilder
-      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute: {  }
       'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute $exampleTarget':
         class: Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute
       Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttributeexampleSuffix:
