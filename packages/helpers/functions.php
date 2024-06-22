@@ -5,6 +5,18 @@ declare(strict_types=1);
 namespace Ock\Helpers;
 
 /**
+ * @template TKey
+ * @template TValue
+ *
+ * @param array<TKey, TValue>|TValue $value
+ *
+ * @return array<TKey, TValue>
+ */
+function to_array(mixed $value): array {
+  return \is_array($value) ? $value : [$value];
+}
+
+/**
  * @template T of object
  *
  * @param array $candidates
