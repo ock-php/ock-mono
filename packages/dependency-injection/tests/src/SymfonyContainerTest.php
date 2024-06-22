@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Tests;
 
 use Ock\ClassDiscovery\FactsIA\FactsIA;
-use Ock\ClassDiscovery\FactsIA\FactsIA_InspectPackageNamespace;
-use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
-use Ock\ClassDiscovery\Inspector\PackageInspector;
-use Ock\ClassDiscovery\Inspector\PackageInspectorInterface;
 use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\ClassDiscovery\Reflection\ClassReflection;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
-use Ock\DependencyInjection\ServiceProvider;
+use Ock\DependencyInjection\Provider\ServiceProvider;
 use Ock\Testing\Exporter\Exporter_ToYamlArray;
 use Ock\Testing\RecordedTestTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use function Ock\Helpers\to_array;
 
 /**
  * Tests the integration with symfony container.
@@ -37,18 +34,16 @@ class SymfonyContainerTest extends TestCase {
     $inspector_php_file = $packageNamespaceDir->getDirectory() . '/' . $inspector_file;
     static::assertFileExists($inspector_php_file);
     $inspector_php_file_return = require $inspector_php_file;
+    $candidates = [$package, ...to_array($inspector_php_file_return)];
     $container = new ContainerBuilder();
     $this->assertClassesAsRecorded($package, 'classes');
-    $factsIA = FactsIA::fromCandidateObjects([
-      $package,
-      ...\is_array($inspector_php_file_return) ? $inspector_php_file_return : [$inspector_php_file_return],
-    ]);
+    $factsIA = FactsIA::fromCandidateObjects($candidates);
     $facts = [];
     foreach ($factsIA as $key => $fact) {
       $facts[] = [$key => $fact];
     }
     $this->assertAsRecorded($facts, 'facts', 5);
-    $provider = new ServiceProvider($factsIA);
+    $provider = ServiceProvider::fromCandidateObjects($candidates);
     $provider->register($container);
     $this->assertObjectsAsRecorded(
       $container->getDefinitions(),
