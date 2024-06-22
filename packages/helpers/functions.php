@@ -8,6 +8,28 @@ namespace Ock\Helpers;
  * @template TKey
  * @template TValue
  *
+ * @param string $pattern
+ * @param array<TKey, TValue> $values
+ * @param int $flags
+ *
+ * @return array<TKey, TValue>
+ */
+function preg_grep_keys(string $pattern, array $values, int $flags = 0): array {
+  $keys = \array_keys($values);
+  $filtered_keys = \preg_grep($pattern, $keys, $flags);
+  if ($filtered_keys === false) {
+    throw new \InvalidArgumentException("Bad pattern '$pattern'.");
+  }
+  return \array_intersect_key(
+    $values,
+    \array_fill_keys($filtered_keys, TRUE),
+  );
+}
+
+/**
+ * @template TKey
+ * @template TValue
+ *
  * @param array<TKey, TValue>|TValue $value
  *
  * @return array<TKey, TValue>
