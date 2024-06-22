@@ -65,7 +65,7 @@ class SymfonyContainerTest extends TestCase {
     $this->assertObjectsAsRecorded(
       $services,
       'services',
-      3,
+      7,
       arrayKeyIsDefaultClass: true,
     );
   }
