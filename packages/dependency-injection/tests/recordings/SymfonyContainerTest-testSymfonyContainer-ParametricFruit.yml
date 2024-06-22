@@ -1,0 +1,80 @@
+test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
+'dataset name': ParametricFruit
+arguments:
+  -
+    class: Ock\ClassDiscovery\NamespaceDirectory
+    $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/ParametricFruit
+    $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\
+  - inspector.default.php
+values:
+  -
+    classes:
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitAtlas
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\Orchard
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OrchardInterface
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruitJuice
+  -
+    facts:
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitAtlas:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitAtlas:
+          class: Symfony\Component\DependencyInjection\Definition
+          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OrchardInterface:
+          class: Symfony\Component\DependencyInjection\Definition
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\Orchard
+            - createParametric
+          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruitJuice:
+          class: Symfony\Component\DependencyInjection\Definition
+  -
+    'definitions before compile':
+      service_container:
+        getClass(): Symfony\Component\DependencyInjection\ContainerInterface
+        isAutoconfigured(): false
+        isAutowired(): false
+        isPublic(): true
+        isSynthetic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitAtlas:
+        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OrchardInterface:
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\Orchard
+          - createParametric
+        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit: {  }
+      Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruitJuice: {  }
+  -
+    'aliases before compile': {  }
+  -
+    services:
+      service_container:
+        class: Symfony\Component\DependencyInjection\ContainerBuilder
+      Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitAtlas:
+        $apple:
+          class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
+          $name: apple
+        $pearJuice:
+          class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruitJuice
+          $fruit:
+            class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
+            $name: '0'
+        $cherryOrchard:
+          class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\Orchard
+          $fruit:
+            class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
+            $name: '0'
+      Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OrchardInterface:
+        class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\Orchard
+        $fruit:
+          class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
+          $name: '0'
