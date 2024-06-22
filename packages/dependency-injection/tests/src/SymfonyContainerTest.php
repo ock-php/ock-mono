@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Ock\DependencyInjection\Tests;
 
+use Ock\ClassDiscovery\FactsIA\FactsIA;
 use Ock\ClassDiscovery\FactsIA\FactsIA_InspectPackageNamespace;
+use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
+use Ock\ClassDiscovery\Inspector\PackageInspector;
 use Ock\ClassDiscovery\Inspector\PackageInspectorInterface;
 use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\ClassDiscovery\Reflection\ClassReflection;
@@ -33,14 +36,13 @@ class SymfonyContainerTest extends TestCase {
     $package = $packageNamespaceDir->getReflectionClassesIA();
     $inspector_php_file = $packageNamespaceDir->getDirectory() . '/' . $inspector_file;
     static::assertFileExists($inspector_php_file);
-    $inspector = require $inspector_php_file;
-    static::assertInstanceOf(PackageInspectorInterface::class, $inspector);
+    $inspector_php_file_return = require $inspector_php_file;
     $container = new ContainerBuilder();
     $this->assertClassesAsRecorded($package, 'classes');
-    $factsIA = new FactsIA_InspectPackageNamespace(
+    $factsIA = FactsIA::fromCandidateObjects([
       $package,
-      $inspector,
-    );
+      ...\is_array($inspector_php_file_return) ? $inspector_php_file_return : [$inspector_php_file_return],
+    ]);
     $facts = [];
     foreach ($factsIA as $key => $fact) {
       $facts[] = [$key => $fact];
