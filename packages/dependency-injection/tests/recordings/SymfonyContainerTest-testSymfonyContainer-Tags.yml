@@ -1,0 +1,71 @@
+test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
+'dataset name': Tags
+arguments:
+  -
+    class: Ock\ClassDiscovery\NamespaceDirectory
+    $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/Tags
+    $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\Tags\
+  - inspector.default.php
+values:
+  -
+    classes:
+      - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
+      - Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag
+      - Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer
+  -
+    facts:
+      -
+        Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag:
+          class: Symfony\Component\DependencyInjection\Definition
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
+            - create
+          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag:
+          class: Symfony\Component\DependencyInjection\Definition
+          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
+          class: Symfony\Component\DependencyInjection\Definition
+          isPublic(): true
+  -
+    'definitions before compile':
+      service_container:
+        getClass(): Symfony\Component\DependencyInjection\ContainerInterface
+        isAutoconfigured(): false
+        isAutowired(): false
+        isPublic(): true
+        isSynthetic(): true
+      Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag:
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
+          - create
+        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag:
+        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
+        isPublic(): true
+  -
+    'aliases before compile': {  }
+  -
+    services:
+      service_container:
+        class: Symfony\Component\DependencyInjection\ContainerBuilder
+      Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag: {  }
+      Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag: {  }
+      Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
+        $services:
+          -
+            class: Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
+          -
+            class: Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag
