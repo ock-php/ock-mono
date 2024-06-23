@@ -6,7 +6,6 @@ namespace Ock\Adaptism\Tests\Fixtures\Value;
 
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\Attribute\Parameter\Adaptee;
-use Ock\DID\Attribute\Parameter\GetService;
 
 class Timestamp {
 
@@ -24,7 +23,7 @@ class Timestamp {
   #[Adapter]
   public static function fromDateTimeString(
     #[Adaptee] LocalDateTimeString $dateTimeString,
-    #[GetService] \DateTimeZone $dateTimeZone,
+    \DateTimeZone $dateTimeZone,
   ): self {
     return new self(
       \strtotime(

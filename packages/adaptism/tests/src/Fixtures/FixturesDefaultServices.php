@@ -7,7 +7,7 @@ namespace Ock\Adaptism\Tests\Fixtures;
 use Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
 use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
 use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Ock\DID\Attribute\Service;
+use Ock\DependencyInjection\Attribute\Service;
 
 class FixturesDefaultServices {
 
