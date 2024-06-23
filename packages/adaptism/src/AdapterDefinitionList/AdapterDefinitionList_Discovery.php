@@ -7,8 +7,8 @@ namespace Ock\Adaptism\AdapterDefinitionList;
 use Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface;
 use Ock\Adaptism\AdaptismPackage;
 use Ock\Adaptism\Exception\MalformedAdapterDeclarationException;
-use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
 use Ock\ClassDiscovery\Exception\DiscoveryException;
+use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 
