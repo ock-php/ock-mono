@@ -21,11 +21,11 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
   /**
    * Constructor.
    *
-   * @param \Ock\ClassDiscovery\FactsIA\FactsIAInterface $discovery
+   * @param \Ock\ClassDiscovery\FactsIA\FactsIAInterface $factsIA
    */
   public function __construct(
     #[Target(AdaptismPackage::DISCOVERY_TARGET)]
-    private readonly FactsIAInterface $discovery,
+    private readonly FactsIAInterface $factsIA,
   ) {}
 
   /**
@@ -34,7 +34,7 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
   public function getDefinitions(): array {
     try {
       $definitions = [];
-      foreach ($this->discovery->getIterator() as $delta => $candidate) {
+      foreach ($this->factsIA->getIterator() as $delta => $candidate) {
         if (!$candidate instanceof AdapterDefinitionInterface) {
           continue;
         }
