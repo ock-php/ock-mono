@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Provider;
 
 use Ock\ClassDiscovery\FactsIA\FactsIA;
+use Ock\DependencyInjection\Inspector\ClassInspector_ClassAsPrivateService;
+use Ock\DependencyInjection\Inspector\ClassInspector_SymfonyAsAliasAttributeDecorator;
+use Ock\DependencyInjection\Inspector\FactoryInspector_ServiceAttribute;
+use Ock\DependencyInjection\Inspector\PackageInspector_SinglyImplementedInterfaceAliasDecorator;
 use function Ock\Helpers\array_filter_instanceof;
 
 class ServiceProvider {
@@ -22,6 +26,20 @@ class ServiceProvider {
       new ServiceProvider_FactsIA($factsIA),
     ];
     return new ServiceProvider_Concat($providers);
+  }
+
+  /**
+   * @return list<object>
+   *   Objects to send to ::fromCandidateObjects().
+   *   This does not include namespaces.
+   */
+  public static function getDefaultInspectors(): array {
+    return [
+      ClassInspector_ClassAsPrivateService::create(),
+      ClassInspector_SymfonyAsAliasAttributeDecorator::create(...),
+      FactoryInspector_ServiceAttribute::create(),
+      PackageInspector_SinglyImplementedInterfaceAliasDecorator::create(...),
+    ];
   }
 
 }
