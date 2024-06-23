@@ -5,17 +5,13 @@ declare(strict_types=1);
 namespace Ock\Adaptism\AdapterDefinitionList;
 
 use Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface;
-use Ock\Adaptism\AdaptismPackage;
 use Ock\Adaptism\Exception\MalformedAdapterDeclarationException;
 use Ock\ClassDiscovery\Exception\DiscoveryException;
 use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
-use Symfony\Component\DependencyInjection\Attribute\AsAlias;
-use Symfony\Component\DependencyInjection\Attribute\Target;
 
 /**
  * The annotated service is an empty definition list.
  */
-#[AsAlias(public: true)]
 class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface {
 
   /**
@@ -24,7 +20,6 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
    * @param \Ock\ClassDiscovery\FactsIA\FactsIAInterface $factsIA
    */
   public function __construct(
-    #[Target(AdaptismPackage::DISCOVERY_TARGET)]
     private readonly FactsIAInterface $factsIA,
   ) {}
 
