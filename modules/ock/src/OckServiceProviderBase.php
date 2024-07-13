@@ -49,6 +49,12 @@ abstract class OckServiceProviderBase implements ServiceProviderInterface {
     // the removal of unused services.
     // Use a symfony ContainerBuilder instead.
     $new_builder = new ContainerBuilder();
+    // Set the private property 'compiler'.
+    // This is needed so that all compiler passes added to the symfony container
+    // are also added to the Drupal container.
+    (new \ReflectionClass($new_builder))
+      ->getProperty('compiler')
+      ->setValue($new_builder, $container->getCompiler());
 
     $this->doRegister($new_builder);
 
