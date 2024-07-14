@@ -50,7 +50,14 @@ class FactoryInspector_ServiceAttribute implements FactoryInspectorInterface {
             $reflector->getDebugName(),
           ));
         }
-        $id = $class;
+        if ($class === \Closure::class) {
+          // Use a more specific service id.
+          // @todo Also rethink service id for other builtin classes.
+          $id = $reflector->getDebugName();
+        }
+        else {
+          $id = $class;
+        }
       }
 
       // @todo Rethink or drop the suffix.
