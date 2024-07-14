@@ -7,7 +7,6 @@ namespace Drupal\ock;
 use Drupal\Ock\Attribute\DI\PublicService;
 use Ock\Adaptism\AdaptismPackage;
 use Ock\ClassDiscovery\NamespaceDirectory;
-use Ock\DID\DidNamespace;
 use Ock\Egg\EggNamespace;
 use Ock\Ock\OckPackage;
 use Psr\Container\ContainerInterface;
@@ -29,7 +28,6 @@ class OckServiceProvider extends OckServiceProviderBase {
    */
   public function doRegister(ContainerBuilder $container): void {
     // Register services in the composer packages.
-    static::loadPackageServicesPhp($container, dirname(DidNamespace::DIR));
     static::loadPackageServicesPhp($container, dirname(EggNamespace::DIR));
     (new AdaptismPackage())->register($container);
     (new OckPackage())->register($container);
