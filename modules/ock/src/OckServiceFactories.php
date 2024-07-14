@@ -82,17 +82,4 @@ class OckServiceFactories {
     return new PluginGroupLabels($labels);
   }
 
-  /**
-   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
-   *
-   * @throws \ReflectionException
-   */
-  #[Service(serviceIdSuffix: AdapterDefinitionList_Discovery::class)]
-  public static function getAdapterClassFilesIA(): ClassFilesIAInterface {
-    return ClassFilesIA::psr4FromClasses([
-      OckPackage::class,
-      self::class,
-    ]);
-  }
-
 }
