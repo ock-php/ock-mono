@@ -38,15 +38,18 @@ class FactoryInspector_ServiceAttribute implements FactoryInspectorInterface {
         },
       ));
     }
-    $class = $reflector->getReturnClassName()
-      ?? throw new MalformedDeclarationException(sprintf(
-        'Attribute #[%s] is not allowed on %s: The return type must be a single class name, or an id must be provided.',
-        \get_class($attributes[0]),
-        $reflector->getDebugName(),
-      ));
+    $class = $reflector->getReturnClassName();
     foreach ($attributes as $attribute) {
       // @todo Rename this to just `id`.
-      $id = $attribute->serviceId ?? $class;
+      $id = $attribute->serviceId
+        ?? $class
+        ?? throw new MalformedDeclarationException(
+          sprintf(
+            'Attribute #[%s] is not allowed on %s: The return type must be a single class name, or an id must be provided.',
+            \get_class($attributes[0]),
+            $reflector->getDebugName(),
+          ),
+        );
 
       // @todo Rethink or drop the suffix.
       if ($attribute->serviceIdSuffix !== null) {
