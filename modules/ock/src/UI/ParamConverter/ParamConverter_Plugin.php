@@ -9,6 +9,7 @@ use Ock\Ock\Plugin\Map\PluginMapInterface;
 use Ock\Ock\Plugin\NamedPlugin;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 #[AutoconfigureTag('paramconverter')]
 class ParamConverter_Plugin extends ParamConverterBase {
@@ -25,6 +26,7 @@ class ParamConverter_Plugin extends ParamConverterBase {
    */
   public function __construct(
     private readonly PluginMapInterface $pluginMap,
+    #[Autowire(service: 'logger.channel.ock')]
     private readonly LoggerInterface $logger,
   ) {}
 

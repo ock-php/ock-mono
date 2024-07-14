@@ -37,7 +37,6 @@ class FixturesUtil {
     static::loadPackageServicesPhp($container, dirname(EggNamespace::DIR));
     (new AdaptismPackage())->register($container);
     (new AdaptismTestPackage())->register($container);
-    $container->setAlias(ContainerInterface::class, 'service_container');
 
     $container->compile();
 

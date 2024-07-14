@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 
 /**
  * Formula to choose a view mode.

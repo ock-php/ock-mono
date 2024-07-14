@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\ock\Formula;
 
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\user\PermissionHandlerInterface;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\Text;

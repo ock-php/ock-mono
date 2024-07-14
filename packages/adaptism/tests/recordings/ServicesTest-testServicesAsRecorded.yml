@@ -18,5 +18,7 @@ values:
       $paramToEggs:
         class: Symfony\Component\DependencyInjection\Argument\RewindableGenerator
     Ock\Egg\ParamToEgg\ParamToEgg_ParamTypeAsServiceId: '(not found)'
+    Psr\Container\ContainerInterface:
+      class: Symfony\Component\DependencyInjection\ContainerBuilder
     service_container:
       class: Symfony\Component\DependencyInjection\ContainerBuilder
