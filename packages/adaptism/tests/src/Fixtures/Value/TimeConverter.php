@@ -6,12 +6,11 @@ namespace Ock\Adaptism\Tests\Fixtures\Value;
 
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\Attribute\Parameter\Adaptee;
-use Ock\DID\Attribute\Parameter\GetService;
 
 class TimeConverter {
 
   public function __construct(
-    #[GetService] private readonly \DateTimeZone $timeZone,
+    private readonly \DateTimeZone $timeZone,
   ) {}
 
   #[Adapter]

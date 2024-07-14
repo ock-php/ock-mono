@@ -1,3 +1,0 @@
-services:
-  Ock\Adaptism\:
-    resource: '../src/'

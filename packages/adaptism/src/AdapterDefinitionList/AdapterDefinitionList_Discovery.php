@@ -5,27 +5,22 @@ declare(strict_types=1);
 namespace Ock\Adaptism\AdapterDefinitionList;
 
 use Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface;
-use Ock\Adaptism\AdaptismPackage;
 use Ock\Adaptism\Exception\MalformedAdapterDeclarationException;
-use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
 use Ock\ClassDiscovery\Exception\DiscoveryException;
-use Symfony\Component\DependencyInjection\Attribute\AsAlias;
-use Symfony\Component\DependencyInjection\Attribute\Target;
+use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
 
 /**
  * The annotated service is an empty definition list.
  */
-#[AsAlias(public: true)]
 class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface {
 
   /**
    * Constructor.
    *
-   * @param \Ock\ClassDiscovery\FactsIA\FactsIAInterface $discovery
+   * @param \Ock\ClassDiscovery\FactsIA\FactsIAInterface $factsIA
    */
   public function __construct(
-    #[Target(AdaptismPackage::DISCOVERY_TARGET)]
-    private readonly FactsIAInterface $discovery,
+    private readonly FactsIAInterface $factsIA,
   ) {}
 
   /**
@@ -34,7 +29,7 @@ class AdapterDefinitionList_Discovery implements AdapterDefinitionListInterface 
   public function getDefinitions(): array {
     try {
       $definitions = [];
-      foreach ($this->discovery->getIterator() as $delta => $candidate) {
+      foreach ($this->factsIA->getIterator() as $delta => $candidate) {
         if (!$candidate instanceof AdapterDefinitionInterface) {
           continue;
         }

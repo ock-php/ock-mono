@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Ock\Adaptism\Tests\Fixtures;
 
 use Ock\Adaptism\AdaptismPackage;
-use Ock\DID\DidNamespace;
+use Ock\DependencyInjection\Provider\CommonServiceProvider;
 use Ock\Egg\EggNamespace;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Config\FileLocator;
@@ -14,29 +14,29 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 class FixturesUtil {
 
   /**
-   * @var \Psr\Container\ContainerInterface|null
+   * @var \Symfony\Component\DependencyInjection\ContainerBuilder
    */
-  private static ?ContainerInterface $container;
+  private static ContainerBuilder $container;
 
   /**
    * Builds a container with services for adaptism tests.
    *
-   * @return \Psr\Container\ContainerInterface
+   * @return \Symfony\Component\DependencyInjection\ContainerBuilder New container.
    *   New container.
    */
-  public static function getContainer(): ContainerInterface {
+  public static function getContainer(): ContainerBuilder {
     return self::$container ??= self::buildContainer();
   }
 
   /**
-   * @return \Psr\Container\ContainerInterface
+   * @return \Symfony\Component\DependencyInjection\ContainerBuilder
    */
-  private static function buildContainer(): ContainerInterface {
+  private static function buildContainer(): ContainerBuilder {
     $container = new ContainerBuilder();
-    static::loadPackageServicesPhp($container, dirname(DidNamespace::DIR));
+    (new CommonServiceProvider())->register($container);
     static::loadPackageServicesPhp($container, dirname(EggNamespace::DIR));
-    static::loadPackageServicesPhp($container, dirname(AdaptismPackage::DIR));
-    static::loadPackageServicesPhp($container, dirname(__DIR__, 2), 'services.test.php');
+    (new AdaptismPackage())->register($container);
+    (new AdaptismTestPackage())->register($container);
     $container->setAlias(ContainerInterface::class, 'service_container');
 
     $container->compile();
