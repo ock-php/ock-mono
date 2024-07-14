@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Drupal\ock\Formula\DrupalSelect;
 
 use Drupal\Component\Render\MarkupInterface;
+use Ock\Adaptism\Attribute\Adapter;
+use Ock\Adaptism\Attribute\Parameter\Adaptee;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Translator\TranslatorInterface;
 
@@ -13,6 +15,7 @@ use Ock\Ock\Translator\TranslatorInterface;
  *
  * @see \Drupal\ock\Formula\Formula_Select_FromDrupalSelect
  */
+#[Adapter]
 class Formula_DrupalSelect_FromCommonSelect implements Formula_DrupalSelectInterface {
 
   /**
@@ -22,6 +25,7 @@ class Formula_DrupalSelect_FromCommonSelect implements Formula_DrupalSelectInter
    * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(
+    #[Adaptee]
     private readonly Formula_SelectInterface $decorated,
     private readonly TranslatorInterface $translator,
   ) {}

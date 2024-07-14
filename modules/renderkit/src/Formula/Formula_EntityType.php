@@ -5,7 +5,7 @@ namespace Drupal\renderkit\Formula;
 
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Core\Formula\FormulaInterface;

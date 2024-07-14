@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Ock\DID\Attribute\Parameter\GetService;
 
 /**

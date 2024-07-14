@@ -6,11 +6,8 @@ namespace Drupal\ock;
 
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
 use Drupal\ock\DI\ResilientServiceAlias;
-use Ock\ClassDiscovery\NamespaceDirectory;
-use Symfony\Component\Config\FileLocator;
+use Ock\DependencyInjection\Provider\PackageServiceProviderBase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
-use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 /**
  * Base class for service providers that scan entire directories.
@@ -36,7 +33,7 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
  * entire module's src directory. To scan only specific directories, you can
  * override the ::registerForCurrentModule() method.
  */
-abstract class OckServiceProviderBase implements ServiceProviderInterface {
+abstract class OckServiceProviderBase extends PackageServiceProviderBase implements ServiceProviderInterface {
 
   /**
    * {@inheritdoc}
@@ -49,6 +46,12 @@ abstract class OckServiceProviderBase implements ServiceProviderInterface {
     // the removal of unused services.
     // Use a symfony ContainerBuilder instead.
     $new_builder = new ContainerBuilder();
+    // Set the private property 'compiler'.
+    // This is needed so that all compiler passes added to the symfony container
+    // are also added to the Drupal container.
+    (new \ReflectionClass($new_builder))
+      ->getProperty('compiler')
+      ->setValue($new_builder, $container->getCompiler());
 
     $this->doRegister($new_builder);
 
@@ -74,57 +77,8 @@ abstract class OckServiceProviderBase implements ServiceProviderInterface {
    *   (not here, but in sub-classes that override this method)
    */
   protected function doRegister(ContainerBuilder $container): void {
-    $namespaceDir = NamespaceDirectory::fromKnownClass(static::class)->package();
-    $instanceof = [];
-    $anonymousCount = 0;
-    $services = $this->createServicesConfigurator($container, $namespaceDir->getPackageDirectory(), $instanceof, $anonymousCount);
-    // @todo Do something with $instanceof and $anonymousCount.
-    $services->defaults()
-      ->autowire()
-      ->autoconfigure();
-
-    $this->registerForCurrentModule($services, $namespaceDir);
-  }
-
-  /**
-   * Registers services for the current module.
-   *
-   * Override this method to scan only specific subdirectories.
-   *
-   * @param \Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator $services
-   *   Services configurator.
-   * @param \Ock\ClassDiscovery\NamespaceDirectory $namespaceDir
-   *   Module namespace directory.
-   */
-  protected function registerForCurrentModule(ServicesConfigurator $services, NamespaceDirectory $namespaceDir): void {
-    $services->load($namespaceDir->getTerminatedNamespace(), $namespaceDir->getRelativeTerminatedPath());
-  }
-
-  /**
-   * Creates a service configurator for a given container builder.
-   *
-   * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-   *   Container builder.
-   * @param string $dir
-   *   Module or package directory.
-   * @param array $instanceof
-   *   This will be filled with instanceof definitions.
-   * @param int $anonymousCount
-   *   This will contain the anonymouse count.
-   *
-   * @return \Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator
-   *   Services configurator with additional methods.
-   */
-  protected function createServicesConfigurator(ContainerBuilder $container, string $dir, array &$instanceof, int &$anonymousCount): ServicesConfigurator {
-    $locator = new FileLocator($dir);
-    $loader = new PhpFileLoader($container, $locator);
-    return new ServicesConfigurator(
-      $container,
-      $loader,
-      $instanceof,
-      NULL,
-      $anonymousCount,
-    );
+    // Discover services in the module's 'src/' directory.
+    parent::register($container);
   }
 
 }

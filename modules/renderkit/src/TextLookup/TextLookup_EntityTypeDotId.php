@@ -6,7 +6,7 @@ namespace Drupal\renderkit\TextLookup;
 
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\ock\DrupalText;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Text\Text;

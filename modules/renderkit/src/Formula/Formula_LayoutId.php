@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\ock\Attribute\RequireModules;
 use Drupal\ock\DrupalText;
 use Ock\DID\Attribute\Parameter\GetService;

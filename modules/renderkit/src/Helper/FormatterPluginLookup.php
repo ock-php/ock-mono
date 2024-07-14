@@ -5,7 +5,7 @@ namespace Drupal\renderkit\Helper;
 
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Field\FormatterPluginManager;
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 #[PublicService]

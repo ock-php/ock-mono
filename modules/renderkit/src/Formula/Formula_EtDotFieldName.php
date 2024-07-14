@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType;
 use Drupal\renderkit\TextLookup\TextLookup_FieldType;
 use Ock\DID\Attribute\Parameter\GetService;

@@ -5,7 +5,7 @@ namespace Drupal\renderkit\Formula;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\ock\DrupalText;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;

@@ -6,7 +6,7 @@ namespace Drupal\renderkit\Formula;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Field\FormatterPluginManager;
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 

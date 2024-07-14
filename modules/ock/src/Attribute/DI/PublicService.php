@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\Ock\Attribute\DI;
+namespace Drupal\ock\Attribute\DI;
 
 /**
  * Marks a service as public.
