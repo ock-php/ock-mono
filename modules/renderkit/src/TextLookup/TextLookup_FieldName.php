@@ -4,19 +4,28 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Ock\DID\Attribute\Parameter\GetArgument;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\ParametricService;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument;
+use Ock\DependencyInjection\Attribute\PrivateService;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
 /**
- * Main entry point for field label lookup.
+ * Text lookup to get a field label from a field machine name.
  *
- * This class only contains static factories, the main logic is elsewhere.
+ * If the field label is different across bundles, these labels will be
+ * combined.
+ *
+ * This is similar to TextLookup_EntityField, but:
+ * - It only takes the field machine name without the entity type as prefix.
+ * - It only gets field labels for a single entity type.
+ *
+ * @see \Drupal\renderkit\TextLookup\TextLookup_EntityField
  */
-#[ParametricService]
+#[PrivateService]
 class TextLookup_FieldName implements TextLookupInterface {
+
+  const LOOKUP_SERVICE_ID = 'lookup.' . self::class;
 
   /**
    * Constructor.
@@ -25,11 +34,20 @@ class TextLookup_FieldName implements TextLookupInterface {
    * @param string $entityType
    */
   public function __construct(
-    #[GetService]
     private TextLookup_EntityField $entityFieldLabelLookup,
-    #[GetArgument]
+    #[GetParametricArgument(0)]
     private readonly string $entityType,
   ) {}
+
+  #[Service(self::LOOKUP_SERVICE_ID)]
+  public static function createLookup(
+    TextLookup_EntityField $entityFieldLabelLookup,
+  ): \Closure {
+    return fn (string $entityTypeId): self => new self(
+      $entityFieldLabelLookup,
+      $entityTypeId,
+    );
+  }
 
   /**
    * Immutable setter. Restricts the bundles to be considered for field labels.

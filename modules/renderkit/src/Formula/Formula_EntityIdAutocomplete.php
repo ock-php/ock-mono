@@ -11,14 +11,17 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\DrupalText;
 use Drupal\ock\Formator\FormatorD8Interface;
-use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
-use Ock\DID\Attribute\ParametricService;
+use Ock\DependencyInjection\Attribute\PrivateService;
+use Ock\DependencyInjection\Attribute\Service;
+use Ock\DID\Attribute\Parameter\GetParametricService;
 use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
 use Ock\Ock\Text\TextInterface;
 
-#[ParametricService]
+#[PrivateService]
 class Formula_EntityIdAutocomplete implements Formula_IdToLabelInterface, FormatorD8Interface {
+
+  const LOOKUP_SERVICE_ID = 'lookup.' . self::class;
 
   /**
    * Constructor.
@@ -26,9 +29,22 @@ class Formula_EntityIdAutocomplete implements Formula_IdToLabelInterface, Format
    * @param \Drupal\Core\Entity\EntityStorageInterface $storage
    */
   public function __construct(
-    #[CallServiceWithArguments]
+    #[GetParametricService]
     private readonly EntityStorageInterface $storage,
   ) {}
+
+  /**
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *
+   * @return \Closure(string): self
+   */
+  #[Service(self::LOOKUP_SERVICE_ID)]
+  public static function getFactory(EntityTypeManagerInterface $entityTypeManager): \Closure {
+    return fn (string $entity_type) => self::create(
+      $entityTypeManager,
+      $entity_type,
+    );
+  }
 
   /**
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager

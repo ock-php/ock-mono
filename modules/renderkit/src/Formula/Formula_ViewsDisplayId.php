@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
 use Drupal\ock\DrupalText;
 use Drupal\views\Entity\View;
-use Ock\DID\Attribute\Parameter\CallService;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\TextInterface;
 
@@ -18,11 +18,11 @@ class Formula_ViewsDisplayId implements Formula_SelectInterface {
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\Entity\EntityStorageInterface $storage
+   * @param \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage
    */
   public function __construct(
-    #[CallService(args: ['view'])]
-    private readonly EntityStorageInterface $storage,
+    #[GetParametricService('view')]
+    private readonly ConfigEntityStorageInterface $storage,
   ) {}
 
   /**

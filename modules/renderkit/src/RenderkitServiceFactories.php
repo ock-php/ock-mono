@@ -8,9 +8,8 @@ use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Ock\DID\Attribute\Parameter\GetArgument;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\ParametricService;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument;
+use Ock\DependencyInjection\Attribute\PrivateService;
 
 /**
  * Some service factories that don't have their own class.
@@ -24,19 +23,48 @@ class RenderkitServiceFactories {
    * @param string $entityTypeId
    *
    * @return \Drupal\Core\Entity\EntityStorageInterface
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  #[ParametricService]
-  #[ParametricService(ConfigEntityStorageInterface::class)]
-  #[ParametricService(ContentEntityStorageInterface::class)]
+  #[PrivateService]
   public static function entityStorage(
-    #[GetService('entity_type.manager')]
     EntityTypeManagerInterface $entityTypeManager,
-    #[GetArgument]
+    #[GetParametricArgument(0)]
     string $entityTypeId,
   ): EntityStorageInterface {
     return $entityTypeManager->getStorage($entityTypeId);
+  }
+
+  /**
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   * @param string $entityTypeId
+   *
+   * @return \Drupal\Core\Config\Entity\ConfigEntityStorageInterface
+   */
+  #[PrivateService]
+  public static function configEntityStorage(
+    EntityTypeManagerInterface $entityTypeManager,
+    #[GetParametricArgument(0)]
+    string $entityTypeId,
+  ): ConfigEntityStorageInterface {
+    $storage = $entityTypeManager->getStorage($entityTypeId);
+    \assert($storage instanceof ConfigEntityStorageInterface);
+    return $storage;
+  }
+
+  /**
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   * @param string $entityTypeId
+   *
+   * @return \Drupal\Core\Entity\ContentEntityStorageInterface
+   */
+  #[PrivateService]
+  public static function contentEntityStorage(
+    EntityTypeManagerInterface $entityTypeManager,
+    #[GetParametricArgument(0)]
+    string $entityTypeId,
+  ): ContentEntityStorageInterface {
+    $storage = $entityTypeManager->getStorage($entityTypeId);
+    \assert($storage instanceof ContentEntityStorageInterface);
+    return $storage;
   }
 
 }
