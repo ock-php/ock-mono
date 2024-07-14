@@ -32,7 +32,6 @@ class OckServiceProvider extends OckServiceProviderBase {
     static::loadPackageServicesPhp($container, dirname(DidNamespace::DIR));
     static::loadPackageServicesPhp($container, dirname(EggNamespace::DIR));
     (new AdaptismPackage())->register($container);
-    static::loadPackageServicesPhp($container, dirname(OckPackage::DIR));
     (new OckPackage())->register($container);
 
     // Make services public that have the
