@@ -5,14 +5,16 @@ namespace Drupal\renderkit\Formula;
 
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\ock\DrupalText;
-use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
-use Ock\DID\Attribute\ParametricService;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Ock\Ock\Text\TextInterface;
 
-#[ParametricService]
 class Formula_ConfigEntityId implements Formula_FlatSelectInterface {
+
+  const LOOKUP_SERVICE_ID = 'lookup.' . self::class;
 
   /**
    * @var array<string, mixed>
@@ -25,9 +27,23 @@ class Formula_ConfigEntityId implements Formula_FlatSelectInterface {
    * @param \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage
    */
   public function __construct(
-    #[CallServiceWithArguments]
+    #[GetParametricService]
     private readonly ConfigEntityStorageInterface $storage,
   ) {}
+
+  /**
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *
+   * @return \Closure(string): self
+   */
+  #[Service(self::LOOKUP_SERVICE_ID)]
+  public static function createLookup(EntityTypeManagerInterface $entityTypeManager): \Closure {
+    return function (string $entityTypeId) use ($entityTypeManager) {
+      $storage = $entityTypeManager->getStorage($entityTypeId);
+      \assert($storage instanceof ConfigEntityStorageInterface);
+      return new self($storage);
+    };
+  }
 
   /**
    * @param bool $status

@@ -7,19 +7,21 @@ use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\renderkit\TextLookup\TextLookup_FieldName;
 use Drupal\renderkit\TextLookup\TextLookup_FieldType;
-use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
-use Ock\DID\Attribute\Parameter\GetArgument;
-use Ock\DID\Attribute\Parameter\GetService;
-use Ock\DID\Attribute\ParametricService;
-use Ock\Ock\Attribute\Parameter\GetContext;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
+use Ock\DependencyInjection\Attribute\PrivateService;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\TextInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
  * Formula where the value is like 'body' for field 'node.body'.
  */
-#[ParametricService(self::class)]
+#[PrivateService]
 class Formula_FieldName implements Formula_SelectInterface {
+
+  const LOOKUP_SERVICE_ID = 'lookup.' . self::class;
 
   /**
    * @var true[]|null
@@ -37,20 +39,40 @@ class Formula_FieldName implements Formula_SelectInterface {
    * @param string[]|null $allowedTypes
    */
   public function __construct(
-    #[CallServiceWithArguments]
+    #[GetParametricService]
     private readonly TextLookup_FieldName $fieldLabelLookup,
-    #[GetService]
     private readonly TextLookup_FieldType $fieldTypeLabelLookup,
-    #[GetService('entity_field.manager')]
     private readonly EntityFieldManagerInterface $entityFieldManager,
-    #[GetArgument]
+    #[GetParametricArgument(0)]
     private readonly string $entityTypeId,
-    #[GetContext]
     private ?string $bundle = NULL,
-    #[GetContext]
     ?array $allowedTypes = NULL,
   ) {
-    $this->allowedTypesMap = array_fill_keys($allowedTypes, TRUE);
+    $this->allowedTypesMap = $allowedTypes !== NULL
+      ? array_fill_keys($allowedTypes, TRUE)
+      : NULL;
+  }
+
+  /**
+   * @param \Closure(string): TextLookup_FieldName $fieldLabelLookup
+   * @param \Drupal\renderkit\TextLookup\TextLookup_FieldType $fieldTypeLabelLookup
+   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
+   *
+   * @return \Closure(string): self
+   */
+  #[Service(self::LOOKUP_SERVICE_ID)]
+  public static function createLookup(
+    #[Autowire(service: TextLookup_FieldName::LOOKUP_SERVICE_ID)]
+    \Closure $fieldLabelLookup,
+    TextLookup_FieldType $fieldTypeLabelLookup,
+    EntityFieldManagerInterface $entityFieldManager,
+  ): \Closure {
+    return fn (string $entityTypeId): self => new self(
+      $fieldLabelLookup($entityTypeId),
+      $fieldTypeLabelLookup,
+      $entityFieldManager,
+      $entityTypeId,
+    );
   }
 
   /**
