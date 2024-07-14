@@ -5,14 +5,11 @@ declare(strict_types=1);
 namespace Drupal\ock;
 
 use Drupal\Core\Extension\ModuleExtensionList;
-use Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery;
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
 use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_Concat;
 use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
-use Ock\Ock\OckPackage;
 use Ock\Ock\Plugin\GroupLabels\PluginGroupLabels;
 use Ock\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
 use Ock\Ock\Plugin\Registry\PluginRegistry_Discovery;
@@ -80,19 +77,6 @@ class OckServiceFactories {
       $labels[$module] = Text::s($info->getName());
     }
     return new PluginGroupLabels($labels);
-  }
-
-  /**
-   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
-   *
-   * @throws \ReflectionException
-   */
-  #[Service(serviceIdSuffix: AdapterDefinitionList_Discovery::class)]
-  public static function getAdapterClassFilesIA(): ClassFilesIAInterface {
-    return ClassFilesIA::psr4FromClasses([
-      OckPackage::class,
-      self::class,
-    ]);
   }
 
 }
