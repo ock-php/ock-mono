@@ -7,6 +7,7 @@ namespace Drupal\ock;
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
 use Drupal\ock\DI\ResilientServiceAlias;
 use Ock\ClassDiscovery\NamespaceDirectory;
+use Ock\DependencyInjection\Provider\PackageServiceProviderBase;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
@@ -36,7 +37,7 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
  * entire module's src directory. To scan only specific directories, you can
  * override the ::registerForCurrentModule() method.
  */
-abstract class OckServiceProviderBase implements ServiceProviderInterface {
+abstract class OckServiceProviderBase extends PackageServiceProviderBase implements ServiceProviderInterface {
 
   /**
    * {@inheritdoc}
@@ -80,6 +81,9 @@ abstract class OckServiceProviderBase implements ServiceProviderInterface {
    *   (not here, but in sub-classes that override this method)
    */
   protected function doRegister(ContainerBuilder $container): void {
+    // Discover services in the module's 'src/' directory.
+    parent::register($container);
+
     $namespaceDir = NamespaceDirectory::fromKnownClass(static::class)->package();
     $instanceof = [];
     $anonymousCount = 0;
