@@ -24,11 +24,14 @@ final class Service {
    * @param string|null $target
    *   Alternative suffix to append to the service id, symfony style.
    *   This will be appended like a parameter name.
+   * @param bool $abstract
+   *   TRUE to make this service abstract.
    */
   public function __construct(
     public readonly ?string $serviceId = null,
     public readonly ?string $serviceIdSuffix = null,
     public readonly ?string $target = null,
+    public readonly bool $abstract = false,
   ) {}
 
 }
