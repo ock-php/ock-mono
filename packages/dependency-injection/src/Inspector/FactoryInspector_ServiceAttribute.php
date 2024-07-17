@@ -70,7 +70,7 @@ class FactoryInspector_ServiceAttribute implements FactoryInspectorInterface {
       }
       // Create a new definition each time, so that they can be updated
       // independently later.
-      $definition = $this->createDefinition($class, true);
+      $definition = $this->createDefinition($class, $attribute->public);
       $definition->setAbstract($attribute->abstract);
       if ($method = $reflector->getMethodName()) {
         if ($reflector->isStatic()) {

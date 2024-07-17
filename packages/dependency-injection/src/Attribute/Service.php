@@ -26,12 +26,16 @@ final class Service {
    *   This will be appended like a parameter name.
    * @param bool $abstract
    *   TRUE to make this service abstract.
+   * @param bool $public
+   *   (efault) TRUE to make this service public.
+   *   FALSE to make it private.
    */
   public function __construct(
     public readonly ?string $serviceId = null,
     public readonly ?string $serviceIdSuffix = null,
     public readonly ?string $target = null,
     public readonly bool $abstract = false,
+    public readonly bool $public = true,
   ) {}
 
 }
