@@ -9,7 +9,6 @@ use Drupal\renderkit\TextLookup\TextLookup_FieldName;
 use Drupal\renderkit\TextLookup\TextLookup_FieldType;
 use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
 use Ock\DID\Attribute\Parameter\GetArgument;
-use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\ParametricService;
 use Ock\Ock\Attribute\Parameter\GetContext;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
@@ -39,9 +38,7 @@ class Formula_FieldName implements Formula_SelectInterface {
   public function __construct(
     #[CallServiceWithArguments]
     private readonly TextLookup_FieldName $fieldLabelLookup,
-    #[GetService]
     private readonly TextLookup_FieldType $fieldTypeLabelLookup,
-    #[GetService('entity_field.manager')]
     private readonly EntityFieldManagerInterface $entityFieldManager,
     #[GetArgument]
     private readonly string $entityTypeId,

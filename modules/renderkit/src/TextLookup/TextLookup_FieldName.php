@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\renderkit\TextLookup;
 
 use Ock\DID\Attribute\Parameter\GetArgument;
-use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\ParametricService;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
@@ -25,7 +24,6 @@ class TextLookup_FieldName implements TextLookupInterface {
    * @param string $entityType
    */
   public function __construct(
-    #[GetService]
     private TextLookup_EntityField $entityFieldLabelLookup,
     #[GetArgument]
     private readonly string $entityType,

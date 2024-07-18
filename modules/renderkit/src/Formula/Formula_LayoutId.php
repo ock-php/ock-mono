@@ -8,7 +8,6 @@ use Drupal\Core\Layout\LayoutPluginManagerInterface;
 use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\ock\Attribute\RequireModules;
 use Drupal\ock\DrupalText;
-use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
 use Ock\Ock\Text\Text;
 
@@ -25,7 +24,6 @@ class Formula_LayoutId extends Formula_Select_BufferedBase {
    * @param \Drupal\Core\Layout\LayoutPluginManagerInterface $layoutManager
    */
   public function __construct(
-    #[GetService('plugin.manager.core.layout')]
     private readonly LayoutPluginManagerInterface $layoutManager,
   ) {}
 

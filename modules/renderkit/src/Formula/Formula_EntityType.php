@@ -7,7 +7,6 @@ use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
-use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\FreeParameters\Formula_FreeParameters;
 
@@ -27,7 +26,6 @@ class Formula_EntityType implements Formula_DrupalSelectInterface {
    * @param \Drupal\Core\Entity\EntityTypeRepositoryInterface $entityTypeRepository
    */
   public function __construct(
-    #[GetService('entity_type.repository')]
     private readonly EntityTypeRepositoryInterface $entityTypeRepository,
   ) {}
 

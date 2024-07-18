@@ -5,7 +5,6 @@ namespace Drupal\renderkit\Formula;
 
 use Drupal\renderkit\Util\UtilBase;
 use Ock\DID\Attribute\Parameter\GetCallableService;
-use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\Service;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
@@ -23,7 +22,6 @@ final class Formula_EntityTypeAndId extends UtilBase {
    */
   #[Service(serviceIdSuffix: self::class)]
   public static function create(
-    #[GetService]
     Formula_EntityType $entityTypeFormula,
     #[GetCallableService(Formula_EntityIdAutocomplete::class)]
     callable $entityIdFormulaMap,

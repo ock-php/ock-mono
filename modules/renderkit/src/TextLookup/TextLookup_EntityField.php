@@ -7,7 +7,6 @@ namespace Drupal\renderkit\TextLookup;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\ock\DrupalText;
-use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Text\Text;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
@@ -31,7 +30,6 @@ class TextLookup_EntityField implements TextLookupInterface {
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    */
   public function __construct(
-    #[GetService('entity_field.manager')]
     private readonly EntityFieldManagerInterface $entityFieldManager,
   ) {}
 
