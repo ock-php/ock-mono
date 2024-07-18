@@ -12,7 +12,6 @@ use Drupal\renderkit\Formula\Formula_EntityIdAutocomplete;
 use Drupal\renderkit\Formula\Formula_EntityType_WithGroupLabels;
 use Ock\CodegenTools\Util\CodeGen;
 use Ock\CodegenTools\Util\PhpUtil;
-use Ock\DID\Attribute\Parameter\GetCallableService;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
@@ -20,6 +19,7 @@ use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Exception\EvaluatorException;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Text\Text;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
  * @todo Use an EntityProviderInterface object, instead of choosing type + id.
@@ -60,7 +60,7 @@ class BuildProvider_ShowEntityIfExists implements BuildProviderInterface {
   #[OckPluginFormula(self::class, 'entityDisplay', 'Show an entity')]
   public static function formula(
     EntityTypeManagerInterface $entityTypeManager,
-    #[GetCallableService(Formula_EntityIdAutocomplete::class)]
+    #[Autowire(Formula_EntityIdAutocomplete::LOOKUP_SERVICE_ID)]
     callable $entityIdFormulaMap,
   ): FormulaInterface {
     return Formula::group()
