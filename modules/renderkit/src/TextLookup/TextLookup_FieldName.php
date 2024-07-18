@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Ock\DID\Attribute\Parameter\GetArgument;
-use Ock\DID\Attribute\ParametricService;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument;
+use Ock\DependencyInjection\Attribute\PrivateService;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
@@ -14,7 +14,7 @@ use Ock\Ock\TextLookup\TextLookupInterface;
  *
  * This class only contains static factories, the main logic is elsewhere.
  */
-#[ParametricService]
+#[PrivateService]
 class TextLookup_FieldName implements TextLookupInterface {
 
   /**
@@ -25,7 +25,7 @@ class TextLookup_FieldName implements TextLookupInterface {
    */
   public function __construct(
     private TextLookup_EntityField $entityFieldLabelLookup,
-    #[GetArgument]
+    #[GetParametricArgument(0)]
     private readonly string $entityType,
   ) {}
 
