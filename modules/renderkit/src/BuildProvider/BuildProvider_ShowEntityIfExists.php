@@ -13,7 +13,6 @@ use Drupal\renderkit\Formula\Formula_EntityType_WithGroupLabels;
 use Ock\CodegenTools\Util\CodeGen;
 use Ock\CodegenTools\Util\PhpUtil;
 use Ock\DID\Attribute\Parameter\GetCallableService;
-use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
@@ -44,7 +43,6 @@ class BuildProvider_ShowEntityIfExists implements BuildProviderInterface {
 
   #[OckPluginInstance('entityDisplayNode1', 'Show node 1')]
   public static function createNode1(
-    #[GetService('entity_type.manager')]
     EntityTypeManagerInterface $entityTypeManager,
     #[OckOption('entity_display', 'Display')]
     EntityDisplayInterface $entityDisplay,
@@ -61,7 +59,6 @@ class BuildProvider_ShowEntityIfExists implements BuildProviderInterface {
    */
   #[OckPluginFormula(self::class, 'entityDisplay', 'Show an entity')]
   public static function formula(
-    #[GetService('entity_type.manager')]
     EntityTypeManagerInterface $entityTypeManager,
     #[GetCallableService(Formula_EntityIdAutocomplete::class)]
     callable $entityIdFormulaMap,
