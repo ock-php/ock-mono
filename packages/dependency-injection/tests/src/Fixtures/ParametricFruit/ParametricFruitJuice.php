@@ -9,7 +9,7 @@ use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
 class ParametricFruitJuice {
 
   public function __construct(
-    #[GetParametricService(0)]
+    #[GetParametricService]
     public readonly ParametricFruit $fruit,
   ) {}
 

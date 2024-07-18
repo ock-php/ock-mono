@@ -15,7 +15,7 @@ class Orchard implements OrchardInterface {
 
   #[PrivateService]
   public static function createParametric(
-    #[GetParametricService(0)]
+    #[GetParametricService]
     ParametricFruit $fruit,
   ): OrchardInterface {
     return new self($fruit);
