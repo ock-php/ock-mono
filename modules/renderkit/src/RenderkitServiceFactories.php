@@ -8,8 +8,8 @@ use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
 use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Ock\DID\Attribute\Parameter\GetArgument;
-use Ock\DID\Attribute\ParametricService;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument;
+use Ock\DependencyInjection\Attribute\PrivateService;
 
 /**
  * Some service factories that don't have their own class.
@@ -26,12 +26,12 @@ class RenderkitServiceFactories {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  #[ParametricService]
-  #[ParametricService(ConfigEntityStorageInterface::class)]
-  #[ParametricService(ContentEntityStorageInterface::class)]
+  #[PrivateService]
+  #[PrivateService(ConfigEntityStorageInterface::class)]
+  #[PrivateService(ContentEntityStorageInterface::class)]
   public static function entityStorage(
     EntityTypeManagerInterface $entityTypeManager,
-    #[GetArgument]
+    #[GetParametricArgument(0)]
     string $entityTypeId,
   ): EntityStorageInterface {
     return $entityTypeManager->getStorage($entityTypeId);

@@ -7,9 +7,9 @@ use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\renderkit\TextLookup\TextLookup_FieldName;
 use Drupal\renderkit\TextLookup\TextLookup_FieldType;
-use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
-use Ock\DID\Attribute\Parameter\GetArgument;
-use Ock\DID\Attribute\ParametricService;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
+use Ock\DependencyInjection\Attribute\PrivateService;
 use Ock\Ock\Attribute\Parameter\GetContext;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\TextInterface;
@@ -17,7 +17,7 @@ use Ock\Ock\Text\TextInterface;
 /**
  * Formula where the value is like 'body' for field 'node.body'.
  */
-#[ParametricService(self::class)]
+#[PrivateService]
 class Formula_FieldName implements Formula_SelectInterface {
 
   /**
@@ -36,11 +36,11 @@ class Formula_FieldName implements Formula_SelectInterface {
    * @param string[]|null $allowedTypes
    */
   public function __construct(
-    #[CallServiceWithArguments]
+    #[GetParametricService]
     private readonly TextLookup_FieldName $fieldLabelLookup,
     private readonly TextLookup_FieldType $fieldTypeLabelLookup,
     private readonly EntityFieldManagerInterface $entityFieldManager,
-    #[GetArgument]
+    #[GetParametricArgument(0)]
     private readonly string $entityTypeId,
     #[GetContext]
     private ?string $bundle = NULL,

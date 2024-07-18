@@ -6,12 +6,10 @@ namespace Drupal\renderkit\Formula;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
 use Drupal\ock\DrupalText;
-use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
-use Ock\DID\Attribute\ParametricService;
+use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Ock\Ock\Text\TextInterface;
 
-#[ParametricService]
 class Formula_ConfigEntityId implements Formula_FlatSelectInterface {
 
   /**
@@ -25,7 +23,7 @@ class Formula_ConfigEntityId implements Formula_FlatSelectInterface {
    * @param \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $storage
    */
   public function __construct(
-    #[CallServiceWithArguments]
+    #[GetParametricService]
     private readonly ConfigEntityStorageInterface $storage,
   ) {}
 
