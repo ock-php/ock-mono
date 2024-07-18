@@ -27,14 +27,46 @@ class RenderkitServiceFactories {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   #[PrivateService]
-  #[PrivateService(ConfigEntityStorageInterface::class)]
-  #[PrivateService(ContentEntityStorageInterface::class)]
   public static function entityStorage(
     EntityTypeManagerInterface $entityTypeManager,
     #[GetParametricArgument(0)]
     string $entityTypeId,
   ): EntityStorageInterface {
     return $entityTypeManager->getStorage($entityTypeId);
+  }
+
+  /**
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   * @param string $entityTypeId
+   *
+   * @return \Drupal\Core\Config\Entity\ConfigEntityStorageInterface
+   */
+  #[PrivateService]
+  public static function configEntityStorage(
+    EntityTypeManagerInterface $entityTypeManager,
+    #[GetParametricArgument(0)]
+    string $entityTypeId,
+  ): ConfigEntityStorageInterface {
+    $storage = $entityTypeManager->getStorage($entityTypeId);
+    \assert($storage instanceof ConfigEntityStorageInterface);
+    return $storage;
+  }
+
+  /**
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   * @param string $entityTypeId
+   *
+   * @return \Drupal\Core\Entity\ContentEntityStorageInterface
+   */
+  #[PrivateService]
+  public static function contentEntityStorage(
+    EntityTypeManagerInterface $entityTypeManager,
+    #[GetParametricArgument(0)]
+    string $entityTypeId,
+  ): ContentEntityStorageInterface {
+    $storage = $entityTypeManager->getStorage($entityTypeId);
+    \assert($storage instanceof ContentEntityStorageInterface);
+    return $storage;
   }
 
 }
