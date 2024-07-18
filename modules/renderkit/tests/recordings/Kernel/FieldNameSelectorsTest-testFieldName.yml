@@ -1,0 +1,118 @@
+test: 'Drupal\Tests\renderkit\Kernel\FieldNameSelectorsTest::testFieldName()'
+values:
+  -
+    'node:non_existing_bundle':
+      'Number (integer)':
+        nid: ID
+        vid: 'Revision ID'
+      UUID:
+        uuid: UUID
+      Language:
+        langcode: Language
+      'Entity reference':
+        type: 'Content type'
+        revision_uid: 'Revision user'
+        uid: 'Authored by'
+      Created:
+        revision_timestamp: 'Revision create time'
+        created: 'Authored on'
+      'Text (plain, long)':
+        revision_log: 'Revision log message'
+      Boolean:
+        status: Published
+        promote: 'Promoted to front page'
+        sticky: 'Sticky at top of lists'
+        default_langcode: 'Default translation'
+        revision_default: 'Default revision'
+        revision_translation_affected: 'Revision translation affected'
+      'Text (plain)':
+        title: Title
+      'Last changed':
+        changed: Changed
+  -
+    'node:default':
+      'Number (integer)':
+        nid: ID
+        vid: 'Revision ID'
+      UUID:
+        uuid: UUID
+      Language:
+        langcode: Language
+      'Entity reference':
+        type: 'Content type'
+        revision_uid: 'Revision user'
+        uid: 'Authored by'
+      Created:
+        revision_timestamp: 'Revision create time'
+        created: 'Authored on'
+      'Text (plain, long)':
+        revision_log: 'Revision log message'
+      Boolean:
+        status: Published
+        promote: 'Promoted to front page'
+        sticky: 'Sticky at top of lists'
+        default_langcode: 'Default translation'
+        revision_default: 'Default revision'
+        revision_translation_affected: 'Revision translation affected'
+      'Text (plain)':
+        title: Title
+      'Last changed':
+        changed: Changed
+  -
+    'entity_text:entity_test':
+      'Number (integer)':
+        nid: ID
+        vid: 'Revision ID'
+      UUID:
+        uuid: UUID
+      Language:
+        langcode: Language
+      'Entity reference':
+        type: 'Content type'
+        revision_uid: 'Revision user'
+        uid: 'Authored by'
+      Created:
+        revision_timestamp: 'Revision create time'
+        created: 'Authored on'
+      'Text (plain, long)':
+        revision_log: 'Revision log message'
+      Boolean:
+        status: Published
+        promote: 'Promoted to front page'
+        sticky: 'Sticky at top of lists'
+        default_langcode: 'Default translation'
+        revision_default: 'Default revision'
+        revision_translation_affected: 'Revision translation affected'
+      'Text (plain)':
+        title: Title
+      'Last changed':
+        changed: Changed
+  -
+    'entity_text:non_existing_bundle':
+      'Number (integer)':
+        nid: ID
+        vid: 'Revision ID'
+      UUID:
+        uuid: UUID
+      Language:
+        langcode: Language
+      'Entity reference':
+        type: 'Content type'
+        revision_uid: 'Revision user'
+        uid: 'Authored by'
+      Created:
+        revision_timestamp: 'Revision create time'
+        created: 'Authored on'
+      'Text (plain, long)':
+        revision_log: 'Revision log message'
+      Boolean:
+        status: Published
+        promote: 'Promoted to front page'
+        sticky: 'Sticky at top of lists'
+        default_langcode: 'Default translation'
+        revision_default: 'Default revision'
+        revision_translation_affected: 'Revision translation affected'
+      'Text (plain)':
+        title: Title
+      'Last changed':
+        changed: Changed
