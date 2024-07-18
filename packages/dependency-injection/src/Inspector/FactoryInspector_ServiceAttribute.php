@@ -7,7 +7,7 @@ namespace Ock\DependencyInjection\Inspector;
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
-use Ock\DependencyInjection\Attribute\Service;
+use Ock\DependencyInjection\Attribute\ServiceBase;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
@@ -23,7 +23,7 @@ class FactoryInspector_ServiceAttribute implements FactoryInspectorInterface {
    * {@inheritdoc}
    */
   public function findInFactory(FactoryReflectionInterface $reflector): \Iterator {
-    $attributes = $reflector->getAttributeInstances(Service::class);
+    $attributes = $reflector->getAttributeInstances(ServiceBase::class);
     if (!$attributes) {
       return;
     }
