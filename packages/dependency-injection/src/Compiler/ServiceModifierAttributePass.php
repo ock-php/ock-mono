@@ -2,13 +2,10 @@
 
 namespace Ock\DependencyInjection\Compiler;
 
-use Ock\ClassDiscovery\Reflection\ClassReflection;
-use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
-use Ock\ClassDiscovery\Reflection\MethodReflection;
 use Ock\DependencyInjection\Attribute\ServiceModifierInterface;
+use Ock\DependencyInjection\ServiceDefinitionUtil;
 use Symfony\Component\DependencyInjection\Compiler\AbstractRecursivePass;
 use Symfony\Component\DependencyInjection\Definition;
-use function Ock\Helpers\is_valid_qcn;
 
 /**
  * @see \Symfony\Component\DependencyInjection\Compiler\AttributeAutoconfigurationPass
@@ -36,7 +33,7 @@ final class ServiceModifierAttributePass extends AbstractRecursivePass {
    * @param \Symfony\Component\DependencyInjection\Definition $definition
    */
   protected function processDefinition(Definition $definition): void {
-    $reflector = $this->getFactoryReflection($definition);
+    $reflector = ServiceDefinitionUtil::getFactoryReflection($definition);
     if ($reflector === null) {
       return;
     }
@@ -47,41 +44,6 @@ final class ServiceModifierAttributePass extends AbstractRecursivePass {
     foreach ($attributes as $attribute) {
       $attribute->modify($definition);
     }
-  }
-
-  /**
-   * Gets a factory reflector for a service definition.
-   *
-   * @param \Symfony\Component\DependencyInjection\Definition $definition
-   *
-   * @return \Ock\ClassDiscovery\Reflection\FactoryReflectionInterface|null
-   */
-  protected function getFactoryReflection(Definition $definition): ?FactoryReflectionInterface {
-    if ($factory = $definition->getFactory()) {
-      if (!\is_array($factory)
-        || \array_keys($factory) !== [0, 1]
-      ) {
-        // Whatever this is, it is not supported for now.
-        return null;
-      }
-      [$class_or_reference, $method] = $factory;
-      if (!\is_string($class_or_reference)
-        || !is_valid_qcn($class_or_reference)
-      ) {
-        // Not supported for now.
-        return null;
-      }
-      return new MethodReflection($class_or_reference, $method);
-    }
-    if ($class = $definition->getClass()) {
-      if (!is_valid_qcn($class)) {
-        // Not supported for now.
-        return null;
-      }
-      return new ClassReflection($class);
-    }
-    // Whatever this is, it is not supported.
-    return null;
   }
 
 }
