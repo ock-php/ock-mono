@@ -45,9 +45,7 @@ class Formula_FieldName implements Formula_SelectInterface {
     private readonly EntityFieldManagerInterface $entityFieldManager,
     #[GetParametricArgument(0)]
     private readonly string $entityTypeId,
-    #[GetContext]
     private ?string $bundle = NULL,
-    #[GetContext]
     ?array $allowedTypes = NULL,
   ) {
     $this->allowedTypesMap = $allowedTypes !== NULL
