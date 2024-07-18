@@ -6,6 +6,7 @@ namespace Ock\DependencyInjection\Tests\Fixtures\ParametricColors;
 
 use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
 use Ock\DependencyInjection\Attribute\Service;
+use PHPUnit\Framework\Assert;
 
 class ServiceWithBlueColorAndFactory {
 
@@ -18,6 +19,7 @@ class ServiceWithBlueColorAndFactory {
     #[GetParametricService('blue')]
     Color $azul,
   ): self {
+    Assert::assertSame('blue', $azul->color);
     return new self($azul);
   }
 

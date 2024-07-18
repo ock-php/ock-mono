@@ -6,6 +6,7 @@ namespace Ock\DependencyInjection\Tests\Fixtures\ParametricMovie;
 
 use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
 use Ock\DependencyInjection\Attribute\Service;
+use PHPUnit\Framework\Assert;
 
 class MovieAtlasStaticMethod {
 
@@ -14,6 +15,8 @@ class MovieAtlasStaticMethod {
     #[GetParametricService('romance', 'Twilight')]
     Movie $twilightMovie,
   ): MovieAtlas {
+    Assert::assertSame('romance', $twilightMovie->genre);
+    Assert::assertSame('Twilight', $twilightMovie->name);
     return new MovieAtlas($twilightMovie);
   }
 

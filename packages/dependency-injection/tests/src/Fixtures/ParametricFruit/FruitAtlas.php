@@ -6,6 +6,7 @@ namespace Ock\DependencyInjection\Tests\Fixtures\ParametricFruit;
 
 use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
 use Ock\DependencyInjection\Attribute\Service;
+use PHPUnit\Framework\Assert;
 
 /**
  * One public service to have other services as dependencies.
@@ -25,6 +26,12 @@ class FruitAtlas {
     public readonly OrchardInterface $cherryOrchard,
     #[GetParametricService('banana', 'strawberry')]
     public readonly FruitVendor $bananaAndStrawberryVendor,
-  ) {}
+  ) {
+    Assert::assertSame('apple', $apple->name);
+    Assert::assertSame('pear', $pearJuice->fruit->name);
+    Assert::assertSame('cherry', $cherryOrchard->fruit->name);
+    Assert::assertSame('banana', $bananaAndStrawberryVendor->fruit->name);
+    Assert::assertSame('strawberry', $bananaAndStrawberryVendor->otherFruit->name);
+  }
 
 }
