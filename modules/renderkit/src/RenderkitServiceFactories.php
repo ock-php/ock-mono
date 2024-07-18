@@ -23,8 +23,6 @@ class RenderkitServiceFactories {
    * @param string $entityTypeId
    *
    * @return \Drupal\Core\Entity\EntityStorageInterface
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   #[PrivateService]
   public static function entityStorage(
