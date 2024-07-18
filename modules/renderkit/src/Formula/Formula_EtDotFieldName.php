@@ -7,7 +7,6 @@ use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType;
 use Drupal\renderkit\TextLookup\TextLookup_FieldType;
-use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\TextInterface;
 
@@ -40,11 +39,8 @@ class Formula_EtDotFieldName implements Formula_SelectInterface {
    * @param \Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType $fieldLabelLookup
    */
   public function __construct(
-    #[GetService('entity_field.manager')]
     private readonly EntityFieldManagerInterface $entityFieldManager,
-    #[GetService]
     private readonly TextLookup_FieldType $fieldTypeLabelLookup,
-    #[GetService]
     private TextLookup_EntityFieldWithEntityType $fieldLabelLookup,
   ) {}
 

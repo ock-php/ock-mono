@@ -9,7 +9,6 @@ use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Ock\DID\Attribute\Parameter\GetArgument;
-use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DID\Attribute\ParametricService;
 
 /**
@@ -31,7 +30,6 @@ class RenderkitServiceFactories {
   #[ParametricService(ConfigEntityStorageInterface::class)]
   #[ParametricService(ContentEntityStorageInterface::class)]
   public static function entityStorage(
-    #[GetService('entity_type.manager')]
     EntityTypeManagerInterface $entityTypeManager,
     #[GetArgument]
     string $entityTypeId,
