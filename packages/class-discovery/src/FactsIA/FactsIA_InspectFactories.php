@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Discovery;
+namespace Ock\ClassDiscovery\FactsIA;
 
 use Ock\ClassDiscovery\Inspector\FactoryInspector_Concat;
 use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
@@ -12,17 +12,18 @@ use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 use Ock\Helpers\Util\MessageUtil;
 
 /**
- * @template TNeedle
+ * @template TFactKey
+ * @template TFact
  *
- * @template-implements DiscoveryInterface<TNeedle>
+ * @template-implements FactsIAInterface<TFactKey, TFact>
  */
-class FactoryDiscovery implements DiscoveryInterface {
+class FactsIA_InspectFactories implements FactsIAInterface {
 
   /**
    * Constructor.
    *
    * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $classes
-   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TNeedle> $inspector
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TFactKey, TFact> $inspector
    */
   public function __construct(
     private readonly ReflectionClassesIAInterface $classes,

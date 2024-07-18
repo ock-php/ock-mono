@@ -4,20 +4,20 @@ declare(strict_types = 1);
 
 namespace Ock\ClassDiscovery\Inspector;
 
-use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 
 /**
  * @template TFactKey
  * @template TFact
  *
- * @template-implements \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TFactKey, TFact>
+ * @template-implements \Ock\ClassDiscovery\Inspector\PackageInspectorInterface<TFactKey, TFact>
  */
-class FactoryInspector_Concat implements FactoryInspectorInterface {
+class PackageInspector_Concat implements PackageInspectorInterface {
 
   /**
    * Constructor.
    *
-   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TFactKey, TFact>[] $inspectors
+   * @param \Ock\ClassDiscovery\Inspector\PackageInspectorInterface<TFactKey, TFact>[] $inspectors
    *   Inspectors to dispatch the call to.
    */
   public function __construct(
@@ -48,7 +48,7 @@ class FactoryInspector_Concat implements FactoryInspectorInterface {
   public static function fromCandidateObjects(iterable $candidates): static {
     $inspectors = [];
     foreach ($candidates as $candidate) {
-      if ($candidate instanceof FactoryInspectorInterface) {
+      if ($candidate instanceof PackageInspectorInterface) {
         $inspectors[] = $candidate;
       }
     }
@@ -60,9 +60,9 @@ class FactoryInspector_Concat implements FactoryInspectorInterface {
   /**
    * {@inheritdoc}
    */
-  public function findInFactory(FactoryReflectionInterface $reflector): \Iterator {
+  public function findInPackage(ReflectionClassesIAInterface $package): \Iterator {
     foreach ($this->inspectors as $inspector) {
-      yield from $inspector->findInFactory($reflector);
+      yield from $inspector->findInPackage($package);
     }
   }
 

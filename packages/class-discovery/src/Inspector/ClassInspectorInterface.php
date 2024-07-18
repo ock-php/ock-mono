@@ -9,16 +9,19 @@ use Ock\ClassDiscovery\Reflection\ClassReflection;
 /**
  * Inspector for a reflection class.
  *
- * @template TNeedle
+ * @template TFactKey
+ * @template TFact
  */
 interface ClassInspectorInterface {
 
   /**
-   * Finds results in a reflection class.
+   * Finds facts in a reflection class.
    *
    * @param ClassReflection $classReflection
+   *   Class to inspect.
    *
-   * @return \Iterator<TNeedle>
+   * @return \Iterator<TFactKey, TFact>
+   *   Facts found when inspecting the class.
    *
    * @throws \Ock\ClassDiscovery\Exception\DiscoveryException
    */

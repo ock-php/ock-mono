@@ -2,34 +2,32 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Discovery;
+namespace Ock\ClassDiscovery\FactsIA;
 
 use Ock\ClassDiscovery\Inspector\ClassInspector_Concat;
-use Ock\ClassDiscovery\Inspector\ClassInspectorInterface;
+use Ock\ClassDiscovery\Inspector\PackageInspectorInterface;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Concat;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 
 /**
- * Finds results in reflection classes.
+ * Finds facts in packages.
  *
- * This can be used instead of FactoryDiscovery, to allow to decorate the
- * inspectors on class level.
+ * @template TFactKey
+ * @template TFact
  *
- * @template TNeedle
- *
- * @template-implements DiscoveryInterface<TNeedle>
+ * @template-implements FactsIAInterface<TFactKey, TFact>
  */
-class ClassDiscovery implements DiscoveryInterface {
+class FactsIA_InspectPackages implements FactsIAInterface {
 
   /**
    * Constructor.
    *
    * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $reflectionClasses
-   * @param \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<TNeedle> $classInspector
+   * @param \Ock\ClassDiscovery\Inspector\PackageInspectorInterface<TFactKey, TFact> $classInspector
    */
   public function __construct(
     private readonly ReflectionClassesIAInterface $reflectionClasses,
-    private readonly ClassInspectorInterface $classInspector,
+    private readonly PackageInspectorInterface $classInspector,
   ) {}
 
   /**
@@ -44,7 +42,7 @@ class ClassDiscovery implements DiscoveryInterface {
    */
   public static function fromCandidateObjects(iterable $candidates): self {
     $classes = ReflectionClassesIA_Concat::fromCandidateObjects($candidates);
-    $inspector = ClassInspector_Concat::fromCandidateObjects($candidates);
+    $inspector = ClassInspector_Concat::fromCandidateObjects($candidates, true);
     return new self($classes, $inspector);
   }
 
@@ -53,7 +51,7 @@ class ClassDiscovery implements DiscoveryInterface {
    */
   public function getIterator(): \Iterator {
     foreach ($this->reflectionClasses as $reflectionClass) {
-      yield from $this->classInspector->findInClass($reflectionClass);
+      yield from $this->classInspector->findInPackage($reflectionClass);
     }
   }
 

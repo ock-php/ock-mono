@@ -141,6 +141,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * @param bool|null $private
    * @param bool|null $abstract
    * @param bool|null $final
+   * @param bool|null $constructor
    *
    * @return list<\Ock\ClassDiscovery\Reflection\MethodReflection<T>>
    */
@@ -152,6 +153,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
     bool $private = null,
     bool $abstract = null,
     bool $final = null,
+    bool $constructor = null,
   ): array {
     $methods = parent::getMethods($filter);
     $result = [];
@@ -172,6 +174,9 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
         continue;
       }
       if ($final !== null && $final !== $method->isFinal()) {
+        continue;
+      }
+      if ($constructor !== null && $constructor !== $method->isConstructor()) {
         continue;
       }
       try {
@@ -213,6 +218,54 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
     catch (\ReflectionException $e) {
       throw new \RuntimeException('Unreachable code.', 0, $e);
     }
+  }
+
+  /**
+   * Gets methods that match the filters.
+   *
+   * @param int|null $filter
+   * @param bool|null $static
+   * @param bool|null $public
+   * @param bool|null $protected
+   * @param bool|null $private
+   * @param bool|null $readonly
+   *
+   * @return list<\ReflectionProperty>
+   */
+  public function getFilteredProperties(
+    int $filter = null,
+    bool $static = null,
+    bool $public = null,
+    bool $protected = null,
+    bool $private = null,
+    bool $readonly = null,
+  ): array {
+    $properties = parent::getProperties($filter);
+    $result = [];
+    foreach ($properties as $property) {
+      if ($static !== NULL && $static !== $property->isStatic()) {
+        continue;
+      }
+      if ($public !== NULL && $public !== $property->isPublic()) {
+        continue;
+      }
+      if ($protected !== NULL && $protected !== $property->isProtected()) {
+        continue;
+      }
+      if ($private !== NULL && $private !== $property->isPrivate()) {
+        continue;
+      }
+      if ($readonly !== NULL && $readonly !== $property->isReadOnly()) {
+        continue;
+      }
+      try {
+        $result[] = new \ReflectionProperty($this->name, $property->getName());
+      }
+      catch (\ReflectionException $e) {
+        throw new \RuntimeException('Unreachable code.', 0, $e);
+      }
+    }
+    return $result;
   }
 
   /**
@@ -320,6 +373,25 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    */
   public function getFullName(): string {
     return $this->name;
+  }
+
+  /**
+   * Gets the interface name, if the class implements exactly one interface.
+   *
+   * @param bool $inclusive
+   *   If TRUE, and if this reflector object itself represents an interface,
+   *   then the name of that interface will be included in the list.
+   *
+   * @return string|null
+   *   The interface name, or NULL if the class implements no interfaces, or
+   *   more than one interface.
+   */
+  public function getOnlyInterfaceName(bool $inclusive = false): ?string {
+    $interfaces = $this->getInterfaceNames();
+    if ($inclusive && $this->isInterface()) {
+      return ($interfaces === []) ? $this->name : null;
+    }
+    return count($interfaces) !== 1 ? null : $interfaces[0];
   }
 
   /**

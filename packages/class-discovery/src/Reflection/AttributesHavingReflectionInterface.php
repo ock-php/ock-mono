@@ -20,6 +20,21 @@ interface AttributesHavingReflectionInterface {
   public function getAttributes(?string $name = null, int $flags = 0): array;
 
   /**
+   * Shortcut method to check if any attributes exist.
+   *
+   * @param class-string|null $name
+   *   Attribute class or interface to filter by.
+   *   Or NULL to check for attributes of any type.
+   * @param int $flags
+   *   Flags to pass to ->getAttributes().
+   *   Pass 0 to only get instances with the exact class.
+   *
+   * @return bool
+   *   TRUE if at least one attribute exists.
+   */
+  public function hasAttributes(?string $name, int $flags = \ReflectionAttribute::IS_INSTANCEOF): bool;
+
+  /**
    * Gets attribute instances.
    *
    * This is a shortcut to skip dealing with ReflectionAttribute objects.

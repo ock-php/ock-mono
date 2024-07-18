@@ -11,6 +11,13 @@ trait AttributesHavingReflectionTrait {
   /**
    * {@inheritdoc}
    */
+  public function hasAttributes(?string $name, int $flags = \ReflectionAttribute::IS_INSTANCEOF): bool {
+    return $this->getAttributes($name, $flags) !== [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getAttributeInstances(string $name, int $flags = \ReflectionAttribute::IS_INSTANCEOF): array {
     $attributes = $this->getAttributes($name, $flags);
     if (!$attributes) {
