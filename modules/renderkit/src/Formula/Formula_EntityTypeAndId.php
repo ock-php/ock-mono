@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\renderkit\Util\UtilBase;
-use Ock\DID\Attribute\Parameter\GetCallableService;
 use Ock\DID\Attribute\Service;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Text\Text;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 final class Formula_EntityTypeAndId extends UtilBase {
 
@@ -23,7 +23,7 @@ final class Formula_EntityTypeAndId extends UtilBase {
   #[Service(serviceIdSuffix: self::class)]
   public static function create(
     Formula_EntityType $entityTypeFormula,
-    #[GetCallableService(Formula_EntityIdAutocomplete::class)]
+    #[Autowire(Formula_EntityIdAutocomplete::LOOKUP_SERVICE_ID)]
     callable $entityIdFormulaMap,
   ): FormulaInterface {
     return Formula::group()
