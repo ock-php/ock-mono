@@ -11,9 +11,16 @@ use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
 /**
- * Main entry point for field label lookup.
+ * Text lookup to get a field label from a field machine name.
  *
- * This class only contains static factories, the main logic is elsewhere.
+ * If the field label is different across bundles, these labels will be
+ * combined.
+ *
+ * This is similar to TextLookup_EntityField, but:
+ * - It only takes the field machine name without the entity type as prefix.
+ * - It only gets field labels for a single entity type.
+ *
+ * @see \Drupal\renderkit\TextLookup\TextLookup_EntityField
  */
 #[PrivateService]
 class TextLookup_FieldName implements TextLookupInterface {
