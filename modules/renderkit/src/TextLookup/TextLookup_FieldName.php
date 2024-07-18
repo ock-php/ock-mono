@@ -6,6 +6,7 @@ namespace Drupal\renderkit\TextLookup;
 
 use Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument;
 use Ock\DependencyInjection\Attribute\PrivateService;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
@@ -16,6 +17,8 @@ use Ock\Ock\TextLookup\TextLookupInterface;
  */
 #[PrivateService]
 class TextLookup_FieldName implements TextLookupInterface {
+
+  const LOOKUP_SERVICE_ID = 'lookup.' . self::class;
 
   /**
    * Constructor.
@@ -28,6 +31,16 @@ class TextLookup_FieldName implements TextLookupInterface {
     #[GetParametricArgument(0)]
     private readonly string $entityType,
   ) {}
+
+  #[Service(self::LOOKUP_SERVICE_ID)]
+  public static function createLookup(
+    TextLookup_EntityField $entityFieldLabelLookup,
+  ): \Closure {
+    return fn (string $entityTypeId): self => new self(
+      $entityFieldLabelLookup,
+      $entityTypeId,
+    );
+  }
 
   /**
    * Immutable setter. Restricts the bundles to be considered for field labels.
