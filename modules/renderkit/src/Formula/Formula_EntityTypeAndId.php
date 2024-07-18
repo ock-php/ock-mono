@@ -3,30 +3,30 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Drupal\renderkit\Util\UtilBase;
 use Ock\DID\Attribute\Service;
-use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
+use Ock\Ock\Formula\Group\Formula_Group;
 use Ock\Ock\Text\Text;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
-final class Formula_EntityTypeAndId extends UtilBase {
+#[Service]
+class Formula_EntityTypeAndId extends Formula_Group {
 
   /**
+   * Constructor.
+   *
    * @param \Drupal\renderkit\Formula\Formula_EntityType $entityTypeFormula
    * @param callable(string): \Drupal\renderkit\Formula\Formula_EntityIdAutocomplete $entityIdFormulaMap
    *
-   * @return \Ock\Ock\Core\Formula\FormulaInterface
-   *
    * @throws \Ock\Ock\Exception\FormulaException
+   * @throws \Ock\Ock\Exception\GroupFormulaDuplicateKeyException
    */
-  #[Service(serviceIdSuffix: self::class)]
-  public static function create(
+  public function __construct(
     Formula_EntityType $entityTypeFormula,
     #[Autowire(Formula_EntityIdAutocomplete::LOOKUP_SERVICE_ID)]
     callable $entityIdFormulaMap,
-  ): FormulaInterface {
-    return Formula::group()
+  ) {
+    $items = Formula::group()
       ->add(
         'entity_type',
         Text::t('Entity type'),
@@ -38,7 +38,9 @@ final class Formula_EntityTypeAndId extends UtilBase {
         ['entity_type'],
         $entityIdFormulaMap,
       )
-      ->buildGroupFormula();
+      ->buildGroupFormula()
+      ->getItems();
+    parent::__construct($items);
   }
 
 }
