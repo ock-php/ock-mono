@@ -10,8 +10,10 @@ values:
   -
     classes:
       - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitAtlas
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitVendor
       - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\Orchard
       - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OrchardInterface
+      - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OtherService
       - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
       - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruitJuice
   -
@@ -24,12 +26,20 @@ values:
           class: Symfony\Component\DependencyInjection\Definition
           isPublic(): true
       -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitVendor:
+          class: Symfony\Component\DependencyInjection\Definition
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitVendor
+            - createParametric
+      -
         Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OrchardInterface:
           class: Symfony\Component\DependencyInjection\Definition
           getFactory():
             - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\Orchard
             - createParametric
-          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OtherService:
+          class: Symfony\Component\DependencyInjection\Definition
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit:
           class: Symfony\Component\DependencyInjection\Definition
@@ -46,11 +56,15 @@ values:
         isSynthetic(): true
       Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitAtlas:
         isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitVendor:
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitVendor
+          - createParametric
       Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OrchardInterface:
         getFactory():
           - Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\Orchard
           - createParametric
-        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OtherService: {  }
       Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit: {  }
       Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruitJuice: {  }
   -
@@ -67,14 +81,19 @@ values:
           class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruitJuice
           $fruit:
             class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
-            $name: '0'
+            $name: pear
         $cherryOrchard:
           class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\Orchard
           $fruit:
             class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
-            $name: '0'
-      Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OrchardInterface:
-        class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\Orchard
-        $fruit:
-          class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
-          $name: '0'
+            $name: cherry
+        $bananaAndStrawberryVendor:
+          class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitVendor
+          $otherService:
+            class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OtherService
+          $fruit:
+            class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
+            $name: banana
+          $otherFruit:
+            class: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit
+            $name: strawberry

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Attribute\Parameter;
 
 /**
- * @see \Ock\DependencyInjection\Inspector\FactoryInspector_ParametricServiceAttribute
+ * @see \Ock\DependencyInjection\Compiler\InsertParametricArgumentsPlaceholdersPass
  */
 #[\Attribute(\Attribute::TARGET_PARAMETER|\Attribute::TARGET_PROPERTY)]
 class GetParametricService {

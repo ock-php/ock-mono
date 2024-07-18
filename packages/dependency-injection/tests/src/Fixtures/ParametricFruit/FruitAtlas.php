@@ -23,6 +23,8 @@ class FruitAtlas {
     public readonly ParametricFruitJuice $pearJuice,
     #[GetParametricService('cherry')]
     public readonly OrchardInterface $cherryOrchard,
+    #[GetParametricService('banana', 'strawberry')]
+    public readonly FruitVendor $bananaAndStrawberryVendor,
   ) {}
 
 }
