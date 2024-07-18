@@ -30,7 +30,7 @@ final class Formula_EntityTypeAndId extends UtilBase {
       ->add(
         'entity_type',
         Text::t('Entity type'),
-        Formula_EntityType::proxy(),
+        $entityTypeFormula,
       )
       ->addDynamicFormula(
         'entity_id',
