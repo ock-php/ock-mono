@@ -1,0 +1,20 @@
+test: 'Ock\Testing\Tests\RecordedTest::testRecordedValues()'
+values:
+  - 5
+  -
+    'The number seven': 7
+  -
+    'empty object':
+      class: stdClass
+  -
+    'empty array': {  }
+  -
+    'stdClass object with a property':
+      class: stdClass
+  -
+    'anonymous class':
+      class: "class@anonymous\0/var/www/html/packages/testing/tests/src/RecordedTest.php:**"
+  -
+    'anonymous class with property':
+      class: "class@anonymous\0/var/www/html/packages/testing/tests/src/RecordedTest.php:**"
+      $x: 5
