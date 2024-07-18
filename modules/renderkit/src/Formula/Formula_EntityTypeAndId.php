@@ -19,7 +19,6 @@ class Formula_EntityTypeAndId extends Formula_Group {
    * @param callable(string): \Drupal\renderkit\Formula\Formula_EntityIdAutocomplete $entityIdFormulaMap
    *
    * @throws \Ock\Ock\Exception\FormulaException
-   * @throws \Ock\Ock\Exception\GroupFormulaDuplicateKeyException
    */
   public function __construct(
     Formula_EntityType $entityTypeFormula,
@@ -38,7 +37,6 @@ class Formula_EntityTypeAndId extends Formula_Group {
         ['entity_type'],
         $entityIdFormulaMap,
       )
-      ->buildGroupFormula()
       ->getItems();
     parent::__construct($items);
   }
