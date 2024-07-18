@@ -50,7 +50,9 @@ class Formula_FieldName implements Formula_SelectInterface {
     #[GetContext]
     ?array $allowedTypes = NULL,
   ) {
-    $this->allowedTypesMap = array_fill_keys($allowedTypes, TRUE);
+    $this->allowedTypesMap = $allowedTypes !== NULL
+      ? array_fill_keys($allowedTypes, TRUE)
+      : NULL;
   }
 
   /**
