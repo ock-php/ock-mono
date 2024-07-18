@@ -15,8 +15,8 @@ class Placeholder_GetArgValue implements PlaceholderInterface {
   /**
    * {@inheritdoc}
    */
-  public function getRequiredKeys(): array {
-    return [$this->key];
+  public function needsArguments(): bool {
+    return true;
   }
 
   /**

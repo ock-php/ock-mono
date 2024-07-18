@@ -9,11 +9,11 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 interface PlaceholderInterface {
 
   /**
-   * Gets keys that are needed in the resolve() method $arguments array.
+   * Tells if the resolve() method needs arguments.
    *
-   * @return list<string|int>
+   * @return bool
    */
-  public function getRequiredKeys(): array;
+  public function needsArguments(): bool;
 
   /**
    * @param array $arguments

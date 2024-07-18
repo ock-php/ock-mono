@@ -17,7 +17,7 @@ class ResolveParametricArgumentsPass extends AbstractRecursivePass {
    */
   protected function processValue(mixed $value, bool $isRoot = FALSE) {
     if ($value instanceof PlaceholderInterface) {
-      if (!$value->getRequiredKeys()) {
+      if (!$value->needsArguments()) {
         $value = $value->resolve([], $this->container);
       }
     }
