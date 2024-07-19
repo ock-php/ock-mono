@@ -51,12 +51,6 @@ class OckServiceProvider extends OckServiceProviderBase {
     $services->alias(ContainerInterface::class, 'service_container')
       ->public();
 
-    // The logger bind has to be done per module, to avoid the error from unused
-    // bind.
-    $services->set('logger.channel.ock')
-      ->parent('logger.channel_base')
-      ->arg(0, 'ock');
-
     parent::registerForCurrentModule($services, $namespaceDir);
   }
 
