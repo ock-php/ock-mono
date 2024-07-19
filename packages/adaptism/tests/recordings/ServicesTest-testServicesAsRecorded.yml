@@ -1,0 +1,22 @@
+test: 'Ock\Adaptism\Tests\ServicesTest::testServicesAsRecorded()'
+values:
+  -
+    DateTimeZone: {  }
+    Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface:
+      class: Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery
+      $factsIA:
+        class: Ock\ClassDiscovery\FactsIA\FactsIA_Concat
+    Ock\Adaptism\Inspector\FactoryInspector_AdapterAttribute: '(not found)'
+    Ock\Adaptism\Inspector\FactoryInspector_SelfAdapterAttribute: '(not found)'
+    Ock\Adaptism\Tests\Fixtures\AdaptismTestNamespace: '(not found)'
+    Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface:
+      class: Ock\Adaptism\UniversalAdapter\UniversalAdapter
+      $specificAdapter:
+        class: Ock\Adaptism\SpecificAdapter\SpecificAdapter_DispatchByType
+    Ock\Egg\ParamToEgg\ParamToEggInterface:
+      class: Ock\Egg\ParamToEgg\ParamToEgg_Chain
+      $paramToEggs:
+        class: Symfony\Component\DependencyInjection\Argument\RewindableGenerator
+    Ock\Egg\ParamToEgg\ParamToEgg_ParamTypeAsServiceId: '(not found)'
+    service_container:
+      class: Symfony\Component\DependencyInjection\ContainerBuilder

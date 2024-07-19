@@ -1,0 +1,10 @@
+test: 'Ock\Adaptism\Tests\ServicesTest::testTaggedServicesAsRecorded()'
+values:
+  -
+    Ock\Egg\ParamToEgg\ParamToEggInterface:
+      Ock\Egg\ParamToEgg\ParamToEgg_ParamTypeAsServiceId: '[[]]'
+      Ock\Egg\ParamToEgg\ParamToEggInterface: '[[]]'
+    adaptism.discovery:
+      Ock\Adaptism\Inspector\FactoryInspector_AdapterAttribute: '[[]]'
+      Ock\Adaptism\Inspector\FactoryInspector_SelfAdapterAttribute: '[[]]'
+      Ock\Adaptism\Tests\Fixtures\AdaptismTestNamespace: '[[]]'
