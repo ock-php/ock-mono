@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\ock;
 
 use Drupal\ock\Attribute\DI\PublicService;
+use Drupal\service_discovery\ModuleServiceProviderBase;
 use Ock\Adaptism\AdaptismPackage;
 use Ock\DependencyInjection\Provider\CommonServiceProvider;
 use Ock\Egg\EggNamespace;
