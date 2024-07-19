@@ -14,24 +14,24 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 class FixturesUtil {
 
   /**
-   * @var \Psr\Container\ContainerInterface|null
+   * @var \Symfony\Component\DependencyInjection\ContainerBuilder
    */
-  private static ?ContainerInterface $container;
+  private static ContainerBuilder $container;
 
   /**
    * Builds a container with services for adaptism tests.
    *
-   * @return \Psr\Container\ContainerInterface
+   * @return \Symfony\Component\DependencyInjection\ContainerBuilder New container.
    *   New container.
    */
-  public static function getContainer(): ContainerInterface {
+  public static function getContainer(): ContainerBuilder {
     return self::$container ??= self::buildContainer();
   }
 
   /**
-   * @return \Psr\Container\ContainerInterface
+   * @return \Symfony\Component\DependencyInjection\ContainerBuilder
    */
-  private static function buildContainer(): ContainerInterface {
+  private static function buildContainer(): ContainerBuilder {
     $container = new ContainerBuilder();
     (new CommonServiceProvider())->register($container);
     static::loadPackageServicesPhp($container, dirname(EggNamespace::DIR));
