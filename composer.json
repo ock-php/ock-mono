@@ -46,6 +46,7 @@
         "drupal/devel": "^5.2",
         "drupal/ock": "dev-main",
         "drupal/renderkit": "dev-main",
+        "drupal/service_discovery": "dev-main",
         "drush/drush": "^12.5",
         "psr/container": "^2.0",
         "psr/log": "^1.1.4|^2.0|^3.0",

@@ -1,8 +1,8 @@
-name: Render Kit
-description: Tools for dealing with render arrays.
+name: 'Service discovery test'
 type: module
+description: 'Support module for action testing.'
+package: Testing
 core_version_requirement: ^10
 
 dependencies:
-  - themekit:themekit
   - service_discovery:service_discovery

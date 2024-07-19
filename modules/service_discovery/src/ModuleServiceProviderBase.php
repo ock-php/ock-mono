@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\ock;
+namespace Drupal\service_discovery;
 
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
 use Drupal\ock\DI\ResilientServiceAlias;
@@ -33,7 +33,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  * entire module's src directory. To scan only specific directories, you can
  * override the ::registerForCurrentModule() method.
  */
-abstract class OckServiceProviderBase extends PackageServiceProviderBase implements ServiceProviderInterface {
+abstract class ModuleServiceProviderBase extends PackageServiceProviderBase implements ServiceProviderInterface {
 
   /**
    * {@inheritdoc}

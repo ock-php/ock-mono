@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\ock;
 
 use Drupal\ock\Attribute\DI\PublicService;
+use Drupal\service_discovery\ModuleServiceProviderBase;
 use Ock\Adaptism\AdaptismPackage;
 use Ock\DependencyInjection\Provider\CommonServiceProvider;
 use Ock\Egg\EggNamespace;
@@ -17,7 +18,7 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 /**
  * Service provider for the Ock module.
  */
-class OckServiceProvider extends OckServiceProviderBase {
+class OckServiceProvider extends ModuleServiceProviderBase {
 
   /**
    * {@inheritdoc}
