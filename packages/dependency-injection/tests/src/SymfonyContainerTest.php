@@ -15,6 +15,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use function Ock\Helpers\to_array;
 
 /**
@@ -58,10 +59,21 @@ class SymfonyContainerTest extends TestCase {
     );
     $container->compile();
     $ids = $container->getServiceIds();
-    $services = \array_map(
-      $container->get(...),
-      \array_combine($ids, $ids),
-    );
+    $services = [];
+    foreach ($ids as $id) {
+      $this->assertTrue($container->has($id));
+      try {
+        $services[$id] = $container->get($id);
+      }
+      catch (ServiceNotFoundException $e) {
+        if ($e->getId() === $id) {
+          $services[$id] = '(not found)';
+        }
+        else {
+          throw $e;
+        }
+      }
+    }
     $this->assertObjectsAsRecorded(
       $services,
       'services',
