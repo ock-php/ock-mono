@@ -10,6 +10,9 @@ values:
   -
     classes:
       - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
+      - Ock\DependencyInjection\Tests\Fixtures\Tags\AutoTaggingInterface
+      - Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService
+      - Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService
       - Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag
       - Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer
   -
@@ -23,6 +26,19 @@ values:
           getFactory():
             - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
             - create
+          isPublic(): true
+      -
+        -
+          class: Closure
+      -
+        Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService:
+          class: Symfony\Component\DependencyInjection\Definition
           isPublic(): true
       -
         Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag:
@@ -51,6 +67,9 @@ values:
           - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
           - create
         isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService: {  }
+      Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService:
+        isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag:
         isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
@@ -62,10 +81,16 @@ values:
       service_container:
         class: Symfony\Component\DependencyInjection\ContainerBuilder
       Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag: {  }
+      Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService: '(not found)'
+      Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService: {  }
       Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag: {  }
       Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
         $services:
           -
             class: Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
+          -
+            class: Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService
+          -
+            class: Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService
           -
             class: Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag
