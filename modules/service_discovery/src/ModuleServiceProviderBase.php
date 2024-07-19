@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\ock;
+namespace Drupal\service_discovery;
 
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
 use Drupal\ock\DI\ResilientServiceAlias;
