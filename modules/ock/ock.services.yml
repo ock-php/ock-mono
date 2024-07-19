@@ -1,3 +1,4 @@
+# This file declares services that are not automatically discovered.
 services:
   logger.channel.ock:
     parent: logger.channel_base
