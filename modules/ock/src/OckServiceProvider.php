@@ -6,14 +6,12 @@ namespace Drupal\ock;
 
 use Drupal\ock\Attribute\DI\PublicService;
 use Ock\Adaptism\AdaptismPackage;
-use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\DependencyInjection\Provider\CommonServiceProvider;
 use Ock\Egg\EggNamespace;
 use Ock\Ock\OckPackage;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 /**
@@ -41,13 +39,6 @@ class OckServiceProvider extends OckServiceProviderBase {
 
     // Register packages in the module itself.
     parent::doRegister($container);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function registerForCurrentModule(ServicesConfigurator $services, NamespaceDirectory $namespaceDir): void {
-    parent::registerForCurrentModule($services, $namespaceDir);
   }
 
   /**
