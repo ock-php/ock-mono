@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\TextLookup;
 
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\ock\DrupalText;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Text\TextInterface;

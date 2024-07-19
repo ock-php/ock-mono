@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\ock;
 
-use Drupal\Ock\Attribute\DI\PublicService;
+use Drupal\ock\Attribute\DI\PublicService;
 use Ock\Adaptism\AdaptismPackage;
 use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\DependencyInjection\Provider\CommonServiceProvider;
