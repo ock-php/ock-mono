@@ -33,7 +33,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  * entire module's src directory. To scan only specific directories, you can
  * override the ::registerForCurrentModule() method.
  */
-abstract class OckServiceProviderBase extends PackageServiceProviderBase implements ServiceProviderInterface {
+abstract class ModuleServiceProviderBase extends PackageServiceProviderBase implements ServiceProviderInterface {
 
   /**
    * {@inheritdoc}

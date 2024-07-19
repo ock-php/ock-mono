@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 /**
  * Service provider for the Ock module.
  */
-class OckServiceProvider extends OckServiceProviderBase {
+class OckServiceProvider extends ModuleServiceProviderBase {
 
   /**
    * {@inheritdoc}
