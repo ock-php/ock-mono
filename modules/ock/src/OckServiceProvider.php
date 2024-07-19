@@ -10,7 +10,6 @@ use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\DependencyInjection\Provider\CommonServiceProvider;
 use Ock\Egg\EggNamespace;
 use Ock\Ock\OckPackage;
-use Psr\Container\ContainerInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -48,9 +47,6 @@ class OckServiceProvider extends OckServiceProviderBase {
    * {@inheritdoc}
    */
   protected function registerForCurrentModule(ServicesConfigurator $services, NamespaceDirectory $namespaceDir): void {
-    $services->alias(ContainerInterface::class, 'service_container')
-      ->public();
-
     parent::registerForCurrentModule($services, $namespaceDir);
   }
 
