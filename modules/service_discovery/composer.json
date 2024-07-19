@@ -1,0 +1,11 @@
+{
+    "name": "drupal/service_discovery",
+    "description": "Service discovery",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.1",
+        "drupal/core": "^10",
+        "ock/dependency-injection": "*"
+    }
+}
