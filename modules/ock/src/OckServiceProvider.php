@@ -11,13 +11,11 @@ use Ock\DependencyInjection\Provider\CommonServiceProvider;
 use Ock\Egg\EggNamespace;
 use Ock\Ock\OckPackage;
 use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
-use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * Service provider for the Ock module.
@@ -58,11 +56,6 @@ class OckServiceProvider extends OckServiceProviderBase {
     $services->set('logger.channel.ock')
       ->parent('logger.channel_base')
       ->arg(0, 'ock');
-
-    $services->defaults()
-      ->autowire()
-      ->autoconfigure()
-      ->bind(LoggerInterface::class, new Reference('logger.channel.ock'));
 
     parent::registerForCurrentModule($services, $namespaceDir);
   }
