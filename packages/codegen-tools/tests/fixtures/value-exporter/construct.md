@@ -3,7 +3,8 @@
 Value:
 
 ```php
-use Ock\CodegenTools\Tests\Fixtures\C;use Ock\CodegenTools\Tests\Fixtures\ExampleExportable;
+use Ock\CodegenTools\Tests\Fixtures\C;
+use Ock\CodegenTools\Tests\Fixtures\ExampleExportable;
 
 return [
   new C(5, 'eight'),
