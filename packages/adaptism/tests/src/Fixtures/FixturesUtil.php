@@ -5,8 +5,7 @@ namespace Ock\Adaptism\Tests\Fixtures;
 
 use Ock\Adaptism\AdaptismPackage;
 use Ock\DependencyInjection\Provider\CommonServiceProvider;
-use Ock\Egg\EggNamespace;
-use Psr\Container\ContainerInterface;
+use Ock\Egg\EggPackage;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
@@ -34,7 +33,7 @@ class FixturesUtil {
   private static function buildContainer(): ContainerBuilder {
     $container = new ContainerBuilder();
     (new CommonServiceProvider())->register($container);
-    static::loadPackageServicesPhp($container, dirname(EggNamespace::DIR));
+    (new EggPackage())->register($container);
     (new AdaptismPackage())->register($container);
     (new AdaptismTestPackage())->register($container);
 
