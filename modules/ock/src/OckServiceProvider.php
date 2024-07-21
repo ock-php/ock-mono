@@ -7,7 +7,6 @@ namespace Drupal\ock;
 use Drupal\ock\Attribute\DI\PublicService;
 use Drupal\service_discovery\ModuleServiceProviderBase;
 use Ock\Adaptism\AdaptismPackage;
-use Ock\DependencyInjection\Provider\CommonServiceProvider;
 use Ock\Egg\EggPackage;
 use Ock\Ock\OckPackage;
 use Symfony\Component\DependencyInjection\ChildDefinition;
@@ -24,7 +23,6 @@ class OckServiceProvider extends ModuleServiceProviderBase {
   public function doRegister(ContainerBuilder $container): void {
     // Register services in the composer packages.
     (new EggPackage())->register($container);
-    (new CommonServiceProvider())->register($container);
     (new AdaptismPackage())->register($container);
     (new OckPackage())->register($container);
 
