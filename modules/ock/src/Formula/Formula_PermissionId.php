@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Drupal\ock\Formula;
 
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\ock\Attribute\DI\PublicService;
+use Ock\DependencyInjection\Attribute\Service;
 use Drupal\user\PermissionHandlerInterface;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\Text;
@@ -16,7 +16,7 @@ use Psr\Container\ContainerInterface;
  *
  * @see \views_plugin_access_perm
  */
-#[PublicService]
+#[Service]
 class Formula_PermissionId implements Formula_SelectInterface {
 
   /**
