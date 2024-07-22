@@ -19,7 +19,7 @@ class TextLookup_BundleField implements TextLookupInterface {
    *
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    */
-  private function __construct(
+  public function __construct(
     #[Autowire('entity_field.manager')]
     private readonly EntityFieldManagerInterface $entityFieldManager,
   ) {}
