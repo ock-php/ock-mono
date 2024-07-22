@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Drupal\renderkit\TextLookup;
 
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Ock\DependencyInjection\Attribute\Service;
 use Drupal\ock\DrupalText;
-use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 #[Service]
 class TextLookup_BundleField implements TextLookupInterface {
@@ -20,7 +20,7 @@ class TextLookup_BundleField implements TextLookupInterface {
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
    */
   private function __construct(
-    #[GetService('entity_field.manager')]
+    #[Autowire('entity_field.manager')]
     private readonly EntityFieldManagerInterface $entityFieldManager,
   ) {}
 
