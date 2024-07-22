@@ -5,7 +5,7 @@ namespace Drupal\renderkit\Formula;
 
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
-use Drupal\ock\Attribute\DI\PublicService;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Ock\Ock\Text\TextInterface;
@@ -13,7 +13,7 @@ use Ock\Ock\Text\TextInterface;
 /**
  * Formula where the value is the name of an entity type with one or more fields.
  */
-#[PublicService]
+#[Service]
 class Formula_EntityType_WithFields implements Formula_FlatSelectInterface {
 
   /**

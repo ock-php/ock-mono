@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Drupal\ock\Attribute\DI\PublicService;
+use Ock\DependencyInjection\Attribute\Service;
 
 /**
  * Formula to choose a view mode.
  */
-#[PublicService]
+#[Service]
 class Formula_EntityViewMode extends Formula_EntityDisplayModeBase {
 
   /**
