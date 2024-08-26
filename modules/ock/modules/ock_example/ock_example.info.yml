@@ -2,3 +2,6 @@ name: 'Composition UI example'
 description: 'Example module for Composition UI.'
 type: module
 core_version_requirement: ^10
+
+dependencies:
+  - ock:ock
