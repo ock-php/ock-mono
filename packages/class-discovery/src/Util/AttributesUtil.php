@@ -70,7 +70,6 @@ class AttributesUtil {
    *
    * @return object
    * @phpstan-return T
-   * @psalm-return T
    *   Instance from the single attribute.
    *
    * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
@@ -104,7 +103,6 @@ class AttributesUtil {
    * @return object|null
    *   Instance from the attribute, or NULL if no matching attribute found.
    *
-   * @psalm-return T|null
    * @phpstan-return T|null
    *
    * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException

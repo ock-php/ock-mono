@@ -35,7 +35,6 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
    *   Unlike the parent class, this does not accept NULL.
    *
    * @phpstan-param T|class-string<T> $objectOrClass
-   * @psalm-param T|class-string<T> $objectOrClass
    *
    * @throws \ReflectionException
    */
