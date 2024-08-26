@@ -247,7 +247,8 @@ EOT;
    * @return string[]
    */
   private function getMarkdownFileNames(string $dirname): array {
-    return $this->getMatchingFileNames($dirname, '@^[^_\.].*\.md$@');
+    // Find file names that end with '.md' and don't start with '.' or '_'.
+    return $this->getMatchingFileNames($dirname, '@^[^_.].*\.md$@');
   }
 
   /**
