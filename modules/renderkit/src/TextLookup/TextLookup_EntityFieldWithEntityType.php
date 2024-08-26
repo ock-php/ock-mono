@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Drupal\ock\Attribute\DI\PublicService;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\DID\Attribute\Parameter\GetService;
 
 /**
@@ -12,7 +12,7 @@ use Ock\DID\Attribute\Parameter\GetService;
  *
  * This class only contains static factories, the main logic is elsewhere.
  */
-#[PublicService]
+#[Service]
 class TextLookup_EntityFieldWithEntityType extends TextLookup_CombinedLabelBase {
 
   /**

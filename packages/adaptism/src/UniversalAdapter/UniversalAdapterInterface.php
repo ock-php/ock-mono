@@ -18,7 +18,6 @@ interface UniversalAdapterInterface {
    *   NULL, if adaption is not supported for the given types.
    *
    * @phpstan-return TResult|null
-   * @psalm-return TResult|null
    *
    * @throws \Ock\Adaptism\Exception\AdapterException
    */

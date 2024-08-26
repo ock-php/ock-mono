@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
-use Drupal\ock\Attribute\DI\PublicService;
+use Ock\DependencyInjection\Attribute\Service;
 use Drupal\ock\DrupalText;
+use Drupal\service_discovery\Attribute\RequireModule;
 use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
 use Ock\Ock\Text\Text;
 
@@ -15,7 +16,8 @@ use Ock\Ock\Text\Text;
  *
  * @todo Only register service if 'layout_discovery' module is installed.
  */
-#[PublicService]
+#[Service]
+#[RequireModule('layout_discovery')]
 class Formula_LayoutId extends Formula_Select_BufferedBase {
 
   /**

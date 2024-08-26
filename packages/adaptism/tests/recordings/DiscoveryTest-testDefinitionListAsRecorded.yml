@@ -1,0 +1,66 @@
+test: 'Ock\Adaptism\Tests\DiscoveryTest::testDefinitionListAsRecorded()'
+values:
+  -
+    'Ock\Adaptism\Tests\Fixtures\Color\AltRgbColor::convert':
+      class: Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple
+      $sourceType: Ock\Adaptism\Tests\Fixtures\Color\AltRgbColor
+      $resultType: Ock\Adaptism\Tests\Fixtures\Color\Rgb\RgbColor
+      $specifity: 0
+      $adapterEgg:
+        class: Ock\Egg\Egg\Egg_Construct
+    'Ock\Adaptism\Tests\Fixtures\Color\Colored::adapt':
+      class: Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple
+      $sourceType: Ock\Adaptism\Tests\Fixtures\Color\Colored
+      $resultType: null
+      $specifity: 0
+      $adapterEgg:
+        class: Ock\Egg\Egg\Egg_Construct
+    'Ock\Adaptism\Tests\Fixtures\Color\Hex\HexColor::fromRgb':
+      class: Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple
+      $sourceType: Ock\Adaptism\Tests\Fixtures\Color\Rgb\RgbColorInterface
+      $resultType: Ock\Adaptism\Tests\Fixtures\Color\Hex\HexColor
+      $specifity: 0
+      $adapterEgg:
+        class: Ock\Egg\Egg\Egg_Construct
+    'Ock\Adaptism\Tests\Fixtures\Color\NamedColor::fromHex':
+      class: Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple
+      $sourceType: Ock\Adaptism\Tests\Fixtures\Color\Hex\HexColorInterface
+      $resultType: Ock\Adaptism\Tests\Fixtures\Color\NamedColor
+      $specifity: 0
+      $adapterEgg:
+        class: Ock\Egg\Egg\Egg_Construct
+    Ock\Adaptism\Tests\Fixtures\Countable\Countable_Traversable:
+      class: Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple
+      $sourceType: Traversable
+      $resultType: Ock\Adaptism\Tests\Fixtures\Countable\Countable_Traversable
+      $specifity: 0
+      $adapterEgg:
+        class: Ock\Egg\Egg\Egg_Construct
+    'Ock\Adaptism\Tests\Fixtures\Value\LocalDateTimeString::fromDateTime':
+      class: Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple
+      $sourceType: DateTime
+      $resultType: Ock\Adaptism\Tests\Fixtures\Value\LocalDateTimeString
+      $specifity: 1
+      $adapterEgg:
+        class: Ock\Egg\Egg\Egg_Construct
+    'Ock\Adaptism\Tests\Fixtures\Value\TimeConverter::convert':
+      class: Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple
+      $sourceType: Ock\Adaptism\Tests\Fixtures\Value\Timestamp
+      $resultType: Ock\Adaptism\Tests\Fixtures\Value\LocalDateTimeString
+      $specifity: 0
+      $adapterEgg:
+        class: Ock\Egg\Egg\Egg_Construct
+    'Ock\Adaptism\Tests\Fixtures\Value\Timestamp::fromDateTime':
+      class: Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple
+      $sourceType: DateTime
+      $resultType: Ock\Adaptism\Tests\Fixtures\Value\Timestamp
+      $specifity: 1
+      $adapterEgg:
+        class: Ock\Egg\Egg\Egg_Construct
+    'Ock\Adaptism\Tests\Fixtures\Value\Timestamp::fromDateTimeString':
+      class: Ock\Adaptism\AdapterDefinition\AdapterDefinition_Simple
+      $sourceType: Ock\Adaptism\Tests\Fixtures\Value\LocalDateTimeString
+      $resultType: Ock\Adaptism\Tests\Fixtures\Value\Timestamp
+      $specifity: 1
+      $adapterEgg:
+        class: Ock\Egg\Egg\Egg_Construct

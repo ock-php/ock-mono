@@ -582,7 +582,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @return \Iterator<string, class-string>
    *   Format: $[$file] = $class
    *
-   * @psalm-suppress MoreSpecificReturnType
+   * @phpstan-suppress MoreSpecificReturnType
    */
   private static function scan(string $dir, string $terminatedNamespace): \Iterator {
     foreach (\scandir($dir, \SCANDIR_SORT_ASCENDING) as $candidate) {

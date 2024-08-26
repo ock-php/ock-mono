@@ -143,14 +143,21 @@ class FactoryInspector_OckInstanceAttribute implements FactoryInspectorInterface
   }
 
   /**
+   * Gets a service id that would fit a parameter.
+   *
    * @param \Ock\ClassDiscovery\Reflection\ParameterReflection $parameter
    *
    * @return string
+   *   A service id.
    */
   private function paramGetServiceId(ParameterReflection $parameter): string {
     $class = $parameter->getParamClassName();
     if ($class !== null) {
       $id = $class . ' $' . $parameter->name;
+      if ($this->container->has($id)) {
+        return $id;
+      }
+      $id = $class;
       if ($this->container->has($id)) {
         return $id;
       }

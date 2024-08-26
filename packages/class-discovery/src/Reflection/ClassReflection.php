@@ -20,7 +20,6 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * Constructor.
    *
    * @phpstan-param T|class-string<T> $objectOrClass
-   * @psalm-param T|class-string<T> $objectOrClass
    *
    * @throws \ReflectionException
    *   Class does not exist or has missing dependencies.

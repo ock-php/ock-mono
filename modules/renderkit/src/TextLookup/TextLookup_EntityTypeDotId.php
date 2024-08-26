@@ -6,7 +6,7 @@ namespace Drupal\renderkit\TextLookup;
 
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\ock\Attribute\DI\PublicService;
+use Ock\DependencyInjection\Attribute\Service;
 use Drupal\ock\DrupalText;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Text\Text;
@@ -18,7 +18,7 @@ use Ock\Ock\TextLookup\TextLookupInterface;
  *
  * This class only contains static factories, the main logic is elsewhere.
  */
-#[PublicService]
+#[Service]
 class TextLookup_EntityTypeDotId implements TextLookupInterface {
 
   /**

@@ -6,11 +6,11 @@ namespace Drupal\renderkit\Formula;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Field\FormatterPluginManager;
-use Drupal\ock\Attribute\DI\PublicService;
+use Ock\DependencyInjection\Attribute\Service;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
-#[PublicService]
+#[Service]
 class Formula_FieldFormatterId implements Formula_DrupalSelectInterface {
 
   private ?string $fieldTypeName;

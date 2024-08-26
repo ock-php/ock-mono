@@ -5,12 +5,12 @@ namespace Drupal\renderkit\Formula;
 
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityTypeRepositoryInterface;
-use Drupal\ock\Attribute\DI\PublicService;
+use Ock\DependencyInjection\Attribute\Service;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\FreeParameters\Formula_FreeParameters;
 
-#[PublicService]
+#[Service]
 class Formula_EntityType implements Formula_DrupalSelectInterface {
 
   /**

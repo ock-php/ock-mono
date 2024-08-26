@@ -5,10 +5,10 @@ namespace Drupal\renderkit\Helper;
 
 use Drupal\Core\Field\FormatterInterface;
 use Drupal\Core\Field\FormatterPluginManager;
-use Drupal\ock\Attribute\DI\PublicService;
+use Ock\DependencyInjection\Attribute\Service;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
-#[PublicService]
+#[Service]
 class FormatterPluginLookup {
 
   /**

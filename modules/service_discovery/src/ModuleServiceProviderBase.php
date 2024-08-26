@@ -52,6 +52,10 @@ abstract class ModuleServiceProviderBase extends PackageServiceProviderBase impl
     (new \ReflectionClass($new_builder))
       ->getProperty('compiler')
       ->setValue($new_builder, $container->getCompiler());
+    // Give access to parameters like 'container.modules'.
+    (new \ReflectionClass($new_builder))
+      ->getProperty('parameterBag')
+      ->setValue($new_builder, $container->getParameterBag());
 
     $this->doRegister($new_builder);
 
