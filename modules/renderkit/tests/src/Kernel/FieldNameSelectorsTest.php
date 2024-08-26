@@ -33,6 +33,7 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
     'entity_test',
     'field_test',
     'renderkit',
+    'service_discovery',
     'ock',
     'node',
     'user',
