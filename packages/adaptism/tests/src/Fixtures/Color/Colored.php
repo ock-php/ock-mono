@@ -21,7 +21,6 @@ class Colored {
    *
    * @return object|null
    * @phpstan-return T|null
-   * @psalm-return T|null
    *
    * @throws \Ock\Adaptism\Exception\AdapterException
    */

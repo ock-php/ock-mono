@@ -23,7 +23,6 @@ interface SpecificAdapterInterface {
    *   An instance of $interface, or NULL if not found.
    *
    * @phpstan-return TResult|null
-   * @psalm-return TResult|null
    *
    * @throws \Ock\Adaptism\Exception\AdapterException
    */
