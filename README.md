@@ -24,6 +24,10 @@ ddev composer install
 # Install Drupal from existing configuration.
 ddev drush si --existing-config
 
+# Get the Umami default content.
+ddev drush pmu demo_umami_content
+ddev drush en demo_umami_content
+
 # (optional) Generate a login link.
 ddev drush uli --no-browser
 ```
