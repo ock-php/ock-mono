@@ -1,3 +1,3 @@
 # Helpers
 
-This package contains helper classes that are do not belong into a specific other package.
+This package contains helper classes and functions to be used in other ock packages.
