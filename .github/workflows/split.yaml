@@ -23,7 +23,7 @@ jobs:
       matrix:
         # define package to repository map
         package:
-          # - adaptism
+          - helpers
           - class-discovery
 
     steps:
