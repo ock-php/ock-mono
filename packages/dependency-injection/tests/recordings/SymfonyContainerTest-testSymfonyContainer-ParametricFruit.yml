@@ -1,11 +1,5 @@
 test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
 'dataset name': ParametricFruit
-arguments:
-  -
-    class: Ock\ClassDiscovery\NamespaceDirectory
-    $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/ParametricFruit
-    $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\
-  - inspector.default.php
 values:
   -
     classes:

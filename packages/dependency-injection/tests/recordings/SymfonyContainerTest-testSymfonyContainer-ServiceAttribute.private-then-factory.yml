@@ -1,11 +1,5 @@
 test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
 'dataset name': ServiceAttribute.private-then-factory
-arguments:
-  -
-    class: Ock\ClassDiscovery\NamespaceDirectory
-    $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/ServiceAttribute
-    $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\
-  - inspector.private-then-factory.php
 values:
   -
     classes:

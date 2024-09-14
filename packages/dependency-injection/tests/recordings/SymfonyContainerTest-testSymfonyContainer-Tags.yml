@@ -1,11 +1,5 @@
 test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
 'dataset name': Tags
-arguments:
-  -
-    class: Ock\ClassDiscovery\NamespaceDirectory
-    $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/Tags
-    $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\Tags\
-  - inspector.default.php
 values:
   -
     classes:
