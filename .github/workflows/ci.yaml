@@ -11,6 +11,7 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.2]
+        composer-flags: ['--prefer-lowest', '']
 
     steps:
       - uses: actions/checkout@v4
@@ -21,4 +22,5 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
           coverage: none
       - run: composer install --prefer-dist --no-interaction --no-progress
+      - run: composer update --no-progress ${{ matrix.composer-flags }}
       - run: vendor/bin/phpunit
