@@ -13,9 +13,9 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=8.2",
-        "ock/class-discovery": "@dev",
-        "ock/dependency-injection": "@dev",
-        "ock/helpers": "@dev",
+        "ock/class-discovery": "self.version",
+        "ock/dependency-injection": "self.version",
+        "ock/helpers": "self.version",
         "psr/container": "^2.0",
         "symfony/dependency-injection": "^6.4"
     },
