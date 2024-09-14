@@ -1,5 +1,5 @@
 {
-    "name": "ock/class-discovery",
+    "name": "ock/testing",
     "license": "MIT",
     "authors": [
         {
@@ -15,13 +15,15 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Ock\\Testing\\Tests": "tests/src"
+            "Ock\\Testing\\Tests\\": "tests/src"
         }
     },
     "require": {
         "php": ">=8.2",
-        "ock/helpers": "@dev",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ock/class-discovery": "self.version",
+        "ock/helpers": "self.version",
+        "symfony/yaml": "^6.4.11"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"

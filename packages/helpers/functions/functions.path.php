@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ock\Helpers;
 
-use Composer\Composer;
+use Composer\InstalledVersions;
 
 /**
  * Gets the root path of the current project.
@@ -20,13 +20,13 @@ use Composer\Composer;
  */
 function project_root_path(): string {
   try {
-    $class_path = (new \ReflectionClass(Composer::class))->getFileName();
+    $class_path = (new \ReflectionClass(InstalledVersions::class))->getFileName();
   }
   catch (\ReflectionException $e) {
-    throw new \RuntimeException(sprintf('Class %s not found. Perhaps an unknown version of Composer is used, or the class loader is not initialized.', Composer::class));
+    throw new \RuntimeException(sprintf('Class %s not found. Perhaps an unknown version of Composer is used, or the class loader is not initialized.', InstalledVersions::class));
   }
   if (!preg_match(
-    '@^(/.*)/vendor/composer/composer/src/Composer/Composer\.php$@',
+    '@^(/.*)/vendor/composer/InstalledVersions\.php$@',
     $class_path,
     $matches,
   )) {

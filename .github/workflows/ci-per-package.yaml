@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  - push
+
+jobs:
+  tests:
+    name: Package tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        package:
+          # Packages without tests are commented out.
+          - adaptism
+          - class-discovery
+          - codegen-tools
+          # - di-discovery
+          # - egg
+          - helpers
+          - object-construction-kit
+          - testing
+        php: [8.2]
+        composer-flags: ['--prefer-lowest', '']
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          # @todo Review which extensions are needed.
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
+          coverage: none
+      - run: |
+          composer config --merge --json repositories.0 '{"type": "path", "url": "../*", "options": {"versions": {"*": "self.version"}}}'
+        working-directory: packages/${{ matrix.package }}
+      - run: composer install --prefer-dist --no-interaction --no-progress
+        working-directory: packages/${{ matrix.package }}
+      - run: composer update --no-progress ${{ matrix.composer-flags }}
+        working-directory: packages/${{ matrix.package }}
+      - run: vendor/bin/phpunit
+        working-directory: packages/${{ matrix.package }}
