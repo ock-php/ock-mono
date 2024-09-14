@@ -15,6 +15,7 @@
         "php": ">=8.2",
         "ock/class-discovery": "self.version",
         "ock/dependency-injection": "self.version",
+        "ock/egg": "self.version",
         "ock/helpers": "self.version",
         "psr/container": "^2.0",
         "symfony/dependency-injection": "^6.4"
