@@ -71,7 +71,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
-        "files": ["packages/helpers/functions.php"],
+        "files": [
+            "packages/helpers/functions.php"
+        ],
         "psr-4": {
             "Ock\\Adaptism\\": "packages/adaptism/src/",
             "Ock\\ClassDiscovery\\": "packages/class-discovery/src",
