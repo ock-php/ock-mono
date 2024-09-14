@@ -24,8 +24,15 @@ jobs:
       matrix:
         # define package to repository map
         package:
-          - helpers
+          - adaptism
           - class-discovery
+          - codegen-tools
+          - dependency-injection
+          - di-discovery
+          - egg
+          - helpers
+          - object-construction-kit
+          - testing
 
     steps:
       -
