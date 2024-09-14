@@ -1,11 +1,5 @@
 test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
 'dataset name': ClassAsPrivateService
-arguments:
-  -
-    class: Ock\ClassDiscovery\NamespaceDirectory
-    $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/ClassAsPrivateService
-    $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\
-  - inspector.default.php
 values:
   -
     classes:

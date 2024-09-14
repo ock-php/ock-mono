@@ -1,11 +1,5 @@
 test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
 'dataset name': ParametricColors
-arguments:
-  -
-    class: Ock\ClassDiscovery\NamespaceDirectory
-    $directory: /var/www/html/packages/dependency-injection/tests/src/Fixtures/ParametricColors
-    $terminatedNamespace: Ock\DependencyInjection\Tests\Fixtures\ParametricColors\
-  - inspector.default.php
 values:
   -
     classes:

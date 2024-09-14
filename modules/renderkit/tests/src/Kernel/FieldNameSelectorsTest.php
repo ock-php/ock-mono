@@ -50,10 +50,9 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
       'entity_text' => ['entity_test', 'non_existing_bundle'],
     ] as $entity_type => $bundles) {
       foreach ($bundles as $bundle) {
-        $this->assertFormulaGroupedOptions(
-          $nodeFieldNameFormula->withBundle('non_existing_bundle'),
-          "$entity_type:$bundle",
-        );
+        $formula = $nodeFieldNameFormula->withBundle('non_existing_bundle');
+        $options = $this->getFormulaGroupedOptions($formula);
+        $this->assertAsRecorded($options, "$entity_type:$bundle");
       }
     }
   }
@@ -61,57 +60,50 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
   public function testEtDotFieldName() {
     $formula = $this->getService(Formula_EtDotFieldName::class);
 
-    $this->assertFormulaGroupedOptions(
-      $formula->withEntityType('entity_test', 'entity_test'),
-      'entity_test:entity_test',
-    );
+    $formulas_to_test = [
+      'entity_test:entity_test' => $formula->withEntityType('entity_test', 'entity_test'),
+      'entity_test:*' => $formula->withEntityType('entity_test'),
+      '*:*' => $formula,
+    ];
 
-    $this->assertFormulaGroupedOptions(
-      $formula->withEntityType('entity_test'),
-      'entity_test:*',
-    );
-
-    $this->assertFormulaGroupedOptions(
-      $formula,
-      '*:*',
-    );
+    foreach ($formulas_to_test as $key => $formula) {
+      $options = $this->getFormulaGroupedOptions($formula);
+      $this->assertAsRecorded($options, $key);
+    }
   }
 
   /**
+   * Adaptes a formula to DrupalSelect, and returns the grouped options.
+   *
    * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
-   * @param string $key
+   *   Original options formula.
+   *
+   * @return string[][]
+   *   Grouped options, with labels cast to string.
    */
-  private function assertFormulaGroupedOptions(FormulaInterface $formula, string $key = NULL): void {
+  private function getFormulaGroupedOptions(FormulaInterface $formula): array {
     if (!$formula instanceof Formula_DrupalSelectInterface) {
       $adapter = $this->getService(UniversalAdapterInterface::class);
       $formula = $adapter->adapt(
         $formula,
         Formula_DrupalSelectInterface::class,
-      )
-        ?? self::fail(sprintf(
-          'Cannot get select formula for %s',
-          \get_class($formula),
-        ));
+      );
+      $formula ?? self::fail(sprintf(
+        'Cannot get select formula for %s',
+        \get_class($formula),
+      ));
     }
-
-    $this->assertGroupedOptions(
-      $formula->getGroupedOptions(),
-      $key,
-    );
-  }
-
-  /**
-   * @param (string|\Drupal\Component\Render\MarkupInterface)[][] $actualWithMarkup
-   * @param string $key
-   */
-  private function assertGroupedOptions(array $actualWithMarkup, string $key = NULL): void {
-    $actual = [];
-    foreach ($actualWithMarkup as $groupLabel => $groupOptions) {
-      foreach ($groupOptions as $k => $label) {
-        $actual[$groupLabel][$k] = (string) $label;
+    $grouped_options = $formula->getGroupedOptions();
+    foreach ($grouped_options as $group_label => $options_in_group) {
+      foreach ($options_in_group as $value => $label) {
+        $grouped_options[$group_label][$value] = (string) $label;
       }
+      // For now ignore the order of options.
+      // @todo Somewhere the options should be sorted alphabetically.
+      ksort($grouped_options[$group_label]);
     }
-    static::assertAsRecorded($actual, $key);
+    ksort($grouped_options);
+    return $grouped_options;
   }
 
   /**
