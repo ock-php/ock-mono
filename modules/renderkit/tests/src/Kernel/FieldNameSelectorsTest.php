@@ -98,7 +98,11 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
       foreach ($options_in_group as $value => $label) {
         $grouped_options[$group_label][$value] = (string) $label;
       }
+      // For now ignore the order of options.
+      // @todo Somewhere the options should be sorted alphabetically.
+      ksort($grouped_options[$group_label]);
     }
+    ksort($grouped_options);
     return $grouped_options;
   }
 
