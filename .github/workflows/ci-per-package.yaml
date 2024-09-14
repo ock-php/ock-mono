@@ -16,6 +16,7 @@ jobs:
           - adaptism
           - class-discovery
           - codegen-tools
+          - dependency-injection
           # - di-discovery
           # - egg
           - helpers
