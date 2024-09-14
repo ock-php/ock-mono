@@ -37,7 +37,7 @@
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
-        "composer/installers": "^2.0",
+        "composer/installers": "^2.3.0",
         "donquixote/nicetrace": "^0.0.4",
         "drupal/admin_toolbar": "^3.4",
         "drupal/core-composer-scaffold": "^10.3",
@@ -57,12 +57,13 @@
     "require-dev": {
         "ext-dom": "*",
         "ext-libxml": "*",
-        "drupal/core-dev": "^10",
-        "phpspec/prophecy-phpunit": "^2.2",
-        "phpstan/phpstan": "^1.11",
-        "phpunit/phpunit": "^9.5",
-        "symfony/expression-language": "^6.4",
-        "symfony/yaml": "^6.2"
+        "drupal/core-dev": "^10.3.5 | ^11.0.4",
+        "league/container": "^4.2.2",
+        "phpspec/prophecy-phpunit": "^2.2.0",
+        "phpstan/phpstan": "^1.12.3",
+        "phpunit/phpunit": "^9.6.20",
+        "symfony/expression-language": "^6.4.11",
+        "symfony/yaml": "^6.4.11"
     },
     "conflict": {
         "drupal/drupal": "*"
