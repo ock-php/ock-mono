@@ -9,6 +9,7 @@
         "ock/helpers": "@dev",
         "psr/container": "^2.0",
         "psr/log": "^1.1.4|^2.0|^3.0",
+        "symfony/config": "^6.4",
         "symfony/dependency-injection": "^6.4"
     },
     "require-dev": {
