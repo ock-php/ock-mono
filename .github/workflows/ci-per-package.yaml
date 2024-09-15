@@ -25,6 +25,10 @@ jobs:
         php: [8.2]
         composer-flags: ['--prefer-lowest', '']
 
+    defaults:
+      run:
+        working-directory: packages/${{ matrix.package }}
+
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
@@ -35,10 +39,6 @@ jobs:
           coverage: none
       - run: |
           composer config --merge --json repositories.0 '{"type": "path", "url": "../*", "options": {"versions": {"*": "self.version"}}}'
-        working-directory: packages/${{ matrix.package }}
       - run: composer install --prefer-dist --no-interaction --no-progress
-        working-directory: packages/${{ matrix.package }}
       - run: composer update --no-progress ${{ matrix.composer-flags }}
-        working-directory: packages/${{ matrix.package }}
       - run: vendor/bin/phpunit
-        working-directory: packages/${{ matrix.package }}
