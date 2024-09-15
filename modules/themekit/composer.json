@@ -5,7 +5,7 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "php": ">=8.1",
-        "drupal/core": "^10"
+        "drupal/core": "^10.3.5|^11.0.4"
     },
     "require-dev": {
         "ock/testing": "self.version"
