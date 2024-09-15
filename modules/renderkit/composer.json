@@ -14,5 +14,7 @@
         "ock/di-discovery": "*",
         "ock/egg": "*",
         "ock/object-construction-kit": "*"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

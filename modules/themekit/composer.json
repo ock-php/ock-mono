@@ -11,5 +11,7 @@
         "psr-4": {
             "Drupal\\Tests\\themekit\\": "tests/src"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

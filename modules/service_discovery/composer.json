@@ -7,5 +7,7 @@
         "php": ">=8.1",
         "drupal/core": "^10",
         "ock/dependency-injection": "self.version"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
