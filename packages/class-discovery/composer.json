@@ -20,7 +20,7 @@
     },
     "require": {
         "php": ">=8.2",
-        "ock/helpers": "@dev",
+        "ock/helpers": "self.version",
         "ext-json": "*"
     },
     "require-dev": {
