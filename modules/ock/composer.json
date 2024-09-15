@@ -6,6 +6,7 @@
     "require": {
         "php": ">=8.1",
         "drupal/core": "^10",
+        "drupal/service_discovery": "self.version",
         "drupal/themekit": "*",
         "ock/adaptism": "*",
         "ock/class-discovery": "*",
