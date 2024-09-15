@@ -8,6 +8,9 @@
         "drupal/core": "^10",
         "ock/dependency-injection": "self.version"
     },
+    "require-dev": {
+        "ock/testing": "self.version"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }

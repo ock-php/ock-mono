@@ -15,6 +15,9 @@
         "ock/egg": "*",
         "ock/object-construction-kit": "*"
     },
+    "require-dev": {
+        "ock/testing": "self.version"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
