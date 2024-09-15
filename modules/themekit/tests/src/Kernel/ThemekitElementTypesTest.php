@@ -8,7 +8,7 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\Tests\themekit\Traits\ExceptionSerializationTrait;
+use Ock\Testing\ExceptionSerializationTrait;
 
 /**
  * @see \Drupal\KernelTests\Core\Render\Element\RenderElementTypesTest

@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\themekit\Traits;
-
-use Drupal\Tests\themekit\Tools\ExceptionCleaner;
+namespace Ock\Testing;
 
 /**
  * Trait that cleans up exceptions and test failures, to make them serializable.

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\themekit\Tools;
+namespace Ock\Testing;
 
 /**
  * Cleans up exception objects so they can be serialized.

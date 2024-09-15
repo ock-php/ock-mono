@@ -7,6 +7,9 @@
         "php": ">=8.1",
         "drupal/core": "^10"
     },
+    "require-dev": {
+        "ock/testing": "self.version"
+    },
     "autoload-dev": {
         "psr-4": {
             "Drupal\\Tests\\themekit\\": "tests/src"
