@@ -45,6 +45,8 @@ jobs:
           rm -f expand_composer_json.php
       # Avoid composer/installers v1 with '--prefer-lowest'.
       - run: composer require --no-update --dev composer/installers:^2
+      # Avoid open-telemetry/sdk beta version with '--prefer-lowest'.
+      - run: composer require --no-update --dev open-telemetry/sdk:@stable
       - run: composer update --no-install ${{ matrix.composer-flags }}
       - run: composer install --no-interaction
       # Run the equivalent of 'ddev symlink-project'.
