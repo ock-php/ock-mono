@@ -1,6 +1,6 @@
 {
     "name": "ock/helpers",
-    "description": "Helper classes that don't belong into a specific package.",
+    "description": "Helper functions and classes used by other packages in the ock ecosystem.",
     "license": "MIT",
     "authors": [
         {
