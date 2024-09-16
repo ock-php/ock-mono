@@ -5,8 +5,9 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "php": ">=8.1",
-        "drupal/core": "^10",
+        "drupal/core": "^10.3.5|^11.0.4",
         "drupal/ock": "*",
+        "drupal/service_discovery": "self.version",
         "drupal/themekit": "*",
         "ock/adaptism": "*",
         "ock/class-discovery": "*",
@@ -14,5 +15,10 @@
         "ock/di-discovery": "*",
         "ock/egg": "*",
         "ock/object-construction-kit": "*"
-    }
+    },
+    "require-dev": {
+        "ock/testing": "self.version"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

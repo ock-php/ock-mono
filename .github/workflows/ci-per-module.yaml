@@ -1,0 +1,57 @@
+name: CI Modules
+
+on:
+  - push
+
+jobs:
+  tests:
+    name: Module tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        module:
+          # Modules without tests are commented out.
+          # - ock
+          - renderkit
+          - service_discovery
+          - themekit
+        php: [8.2]
+        composer-flags: ['--prefer-lowest', '']
+        drupal-constraint: ['^10.3.5']
+
+    defaults:
+      run:
+        working-directory: modules/${{ matrix.module }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          # @todo Review which extensions are needed.
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
+          coverage: none
+      # Add other dirs from the monorepo as repositories.
+      - run: |
+          composer config --merge --json repositories.0 '{"type": "path", "url": "../../packages/*", "options": {"versions": {"*": "self.version"}}}'
+          composer config --merge --json repositories.1 '{"type": "path", "url": "../*", "options": {"versions": {"*": "self.version"}}}'
+      # Prepare composer.json as in 'ddev poser'.
+      - run: |
+          export DRUPAL_CORE=${{ matrix.drupal-constraint }}
+          curl -OL https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/expand_composer_json.php
+          php expand_composer_json.php ${{ matrix.module }}
+          rm -f expand_composer_json.php
+      # Avoid composer/installers v1 with '--prefer-lowest'.
+      - run: composer require --no-update --dev composer/installers:^2
+      # Avoid open-telemetry/sdk beta version with '--prefer-lowest'.
+      - run: composer require --no-update --dev open-telemetry/sdk:@stable
+      - run: composer update --no-install ${{ matrix.composer-flags }}
+      - run: composer install --no-interaction
+      # Run the equivalent of 'ddev symlink-project'.
+      - run: |
+          curl -OL https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/symlink_project.php
+          php symlink_project.php ${{ matrix.module }}
+          rm -f symlink_project.php
+      - run: vendor/bin/phpunit
