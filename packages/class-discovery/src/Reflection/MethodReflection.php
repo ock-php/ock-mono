@@ -99,7 +99,10 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
   }
 
   /**
-   * {@inheritdoc}
+   * Gets parameters of the method.
+   *
+   * @return list<\Ock\ClassDiscovery\Reflection\ParameterReflection>
+   *   Parameters of the method.
    */
   public function getParameters(): array {
     $parameters = [];
