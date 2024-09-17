@@ -1,12 +1,7 @@
 parameters:
   level: '2'
   paths:
-    - lib
-    - src
+    - .
   excludePaths:
-    - dist
     - vendor
-    - lib/*/node_modules/*
-  ignoreErrors:
-    - '#^Unsafe usage of new static#'
-    - '#^Call to deprecated method loadRevision#'
+    - .github
