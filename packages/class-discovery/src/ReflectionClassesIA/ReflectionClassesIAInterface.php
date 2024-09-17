@@ -3,7 +3,7 @@
 namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
 /**
- * @template-implements \IteratorAggregate<mixed, \Ock\ClassDiscovery\Reflection\ClassReflection>
+ * @template-extends \IteratorAggregate<mixed, \Ock\ClassDiscovery\Reflection\ClassReflection>
  */
 interface ReflectionClassesIAInterface extends \IteratorAggregate {
 
