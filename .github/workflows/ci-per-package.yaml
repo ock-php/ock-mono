@@ -39,6 +39,6 @@ jobs:
           coverage: none
       - run: |
           composer config --merge --json repositories.0 '{"type": "path", "url": "../*", "options": {"versions": {"*": "self.version"}}}'
-      - run: composer install --prefer-dist --no-interaction --no-progress
-      - run: composer update --no-progress ${{ matrix.composer-flags }}
+      - run: composer update --no-install ${{ matrix.composer-flags }}
+      - run: composer install --no-interaction
       - run: vendor/bin/phpunit
