@@ -60,7 +60,7 @@ class MessageUtil {
   /**
    * Gets a name for a reflector to use in messages.
    *
-   * @param \ReflectionClassConstant|\ReflectionParameter|\ReflectionClass|\ReflectionProperty|\ReflectionFunctionAbstract $reflector
+   * @param \ReflectionClassConstant|\ReflectionParameter|\ReflectionClass<object>|\ReflectionProperty|\ReflectionFunctionAbstract $reflector
    *
    * @return string
    */
