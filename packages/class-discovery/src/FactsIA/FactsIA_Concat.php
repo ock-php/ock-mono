@@ -49,7 +49,7 @@ class FactsIA_Concat implements FactsIAInterface {
    */
   public function optimize(): FactsIAInterface {
     return count($this->factsIAs) === 1
-      ? reset($this->factsIAs)
+      ? $this->factsIAs[array_key_first($this->factsIAs)]
       : $this;
   }
 
