@@ -28,8 +28,14 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
     try {
       parent::__construct($objectOrClass);
     }
+    // @phpstan-ignore catch.neverThrown
     catch (\Error $e) {
+      // This error happens if a class can be autoloaded, but the base class or
+      // one of the interfaces is missing.
       assert(is_string($objectOrClass));
+      // Re-throw as ReflectionException.
+      // This way, calling code can handle this the same way as if the class
+      // itself did not exist.
       throw new \ReflectionException(sprintf(
         'Class % is not available: %s',
         $objectOrClass,
