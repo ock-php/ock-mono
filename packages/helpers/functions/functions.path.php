@@ -21,6 +21,7 @@ use Composer\InstalledVersions;
 function project_root_path(): string {
   try {
     $class_path = (new \ReflectionClass(InstalledVersions::class))->getFileName();
+    assert($class_path !== false);
   }
   catch (\ReflectionException $e) {
     throw new \RuntimeException(sprintf('Class %s not found. Perhaps an unknown version of Composer is used, or the class loader is not initialized.', InstalledVersions::class));
