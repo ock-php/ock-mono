@@ -39,14 +39,16 @@ function to_array(mixed $value): array {
 }
 
 /**
+ * @template TKey
+ * @template TValue
  * @template T of object
  *
- * @param array $candidates
+ * @param array<TKey, TValue> $candidates
  *   Candidate values which may or may not be objects.
  * @param class-string<T> $class
  *   Class or interface to filter by.
  *
- * @return T[]
+ * @return array<TKey, TValue&T>
  *   Filtered values.
  */
 function array_filter_instanceof(array $candidates, string $class): array {

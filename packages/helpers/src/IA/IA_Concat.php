@@ -7,14 +7,17 @@ namespace Ock\Helpers\IA;
 /**
  * Iterator aggregate based on an array.
  *
- * @template TPart of \IteratorAggregate
+ * @template TKey
+ * @template TValue
+ *
+ * @template-implements \IteratorAggregate<TKey, TValue>
  */
 class IA_Concat implements \IteratorAggregate {
 
   /**
    * Constructor.
    *
-   * @param TPart[] $parts
+   * @param \IteratorAggregate<TKey, TValue>[] $parts
    */
   public function __construct(
     protected readonly array $parts,
@@ -29,7 +32,7 @@ class IA_Concat implements \IteratorAggregate {
   /**
    * Creates a new instance from a list of candidate objects.
    *
-   * @param iterable $candidates
+   * @param iterable<mixed> $candidates
    *   List of objects that may or may not be suitable parts.
    *   This accepts any iterable, to support symfony tagged services.
    *
