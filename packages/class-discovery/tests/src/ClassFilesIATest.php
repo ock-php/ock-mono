@@ -18,7 +18,7 @@ class ClassFilesIATest extends TestCase {
   /**
    * @throws \ReflectionException
    */
-  public function testClassFilesIA() {
+  public function testClassFilesIA(): void {
     $classFilesIA = ClassFilesIA_NamespaceDirectoryPsr4::createFromClass(
       PlantInterface::class,
       1);
@@ -33,7 +33,7 @@ class ClassFilesIATest extends TestCase {
     ], $classFiles);
   }
 
-  public function testClassFilesIAEmpty() {
+  public function testClassFilesIAEmpty(): void {
     $classFilesIA = new ClassFilesIA_Empty();
     $classFiles = iterator_to_array($classFilesIA->getIterator());
     asort($classFiles);
@@ -43,7 +43,7 @@ class ClassFilesIATest extends TestCase {
   /**
    * @throws \ReflectionException
    */
-  public function testClassFilesIAMultiple() {
+  public function testClassFilesIAMultiple(): void {
     $classFilesIAs = [];
     $classFilesIAs[] = ClassFilesIA::psr4FromClass(Fig::class);
     $classFilesIAs[] = ClassFilesIA::psr4FromClass(GreySquirrel::class);
