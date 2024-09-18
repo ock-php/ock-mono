@@ -11,7 +11,7 @@ use Psr\Container\ContainerInterface;
  *
  * It is serializable by convention.
  *
- * @template T
+ * @template-covariant T
  */
 interface EggInterface {
 

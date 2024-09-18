@@ -31,14 +31,32 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           # @todo Review which extensions are needed.
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
           coverage: none
-      - run: |
+
+      - name: Add repositories for monorepo packages
+        run: |
           composer config --merge --json repositories.0 '{"type": "path", "url": "../*", "options": {"versions": {"*": "self.version"}}}'
-      - run: composer install --prefer-dist --no-interaction --no-progress
-      - run: composer update --no-progress ${{ matrix.composer-flags }}
+
+      - run: composer update --no-install ${{ matrix.composer-flags }}
+
+      - run: composer install --no-interaction
+
+      - name: PhpStan
+        run: |
+          if [ -f phpstan.neon ]; then
+            cp composer.json composer.json.bak
+            cp composer.lock composer.lock.bak
+            composer require --dev phpstan/phpstan:^2
+            rm composer.json composer.lock
+            mv composer.json.bak composer.json
+            mv composer.lock.bak composer.lock
+            ./vendor/bin/phpstan
+          fi
+
       - run: vendor/bin/phpunit

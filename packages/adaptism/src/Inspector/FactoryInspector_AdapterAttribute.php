@@ -23,7 +23,7 @@ use Ock\Helpers\Util\MessageUtil;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 /**
- * @template-implements FactoryInspectorInterface<\Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface>
+ * @template-implements FactoryInspectorInterface<string, \Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface>
  */
 #[AutoconfigureTag(AdaptismPackage::DISCOVERY_TAG_NAME)]
 class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {

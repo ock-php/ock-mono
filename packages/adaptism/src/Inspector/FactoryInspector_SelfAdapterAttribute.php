@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
  *
  * @see \Ock\Adaptism\Attribute\SelfAdapter
  *
- * @template-implements FactoryInspectorInterface<\Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface>
+ * @template-implements FactoryInspectorInterface<string, \Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface>
  */
 #[AutoconfigureTag(AdaptismPackage::DISCOVERY_TAG_NAME)]
 class FactoryInspector_SelfAdapterAttribute implements FactoryInspectorInterface {
