@@ -46,8 +46,6 @@ class FactoryInspector {
       if (!$type) {
         continue;
       }
-      // See https://youtrack.jetbrains.com/issue/WI-77852/ReflectionType-toString-no-longer-deprecated
-      // @phpstan-ignore-next-line
       if ($type->__toString() !== FactoryInspectorInterface::class) {
         continue;
       }
