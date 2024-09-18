@@ -28,7 +28,6 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
     try {
       parent::__construct($objectOrClass);
     }
-    // @phpstan-ignore-next-line
     catch (\Error $e) {
       assert(is_string($objectOrClass));
       throw new \ReflectionException(sprintf(
