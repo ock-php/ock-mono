@@ -174,6 +174,8 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
    * @return callable&array{class-string, string}
    */
   public function getStaticCallableArray(): array {
+    // PhpStan does not know that the array is also a callable.
+    // @phpstan-ignore return.type
     return [$this->originalClass, $this->name];
   }
 
