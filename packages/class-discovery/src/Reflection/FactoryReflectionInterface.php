@@ -165,7 +165,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets the return value class name, if it is unique.
    *
-   * @return string|null
+   * @return class-string|null
    *   If this is a class, the class name is returned.
    *   If this is a method:
    *     - A class name, if the declared return type is a single class name.
