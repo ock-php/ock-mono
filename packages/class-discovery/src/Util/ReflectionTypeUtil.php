@@ -59,12 +59,19 @@ class ReflectionTypeUtil {
   /**
    * Gets the return value class name, if it is unique.
    *
+   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass<object>|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
+   *   Reflector to analyse.
+   *
    * @return class-string|bool
    *   If this is a class, the class name is returned.
-   *   If this is a method:
+   *   If this is a method or function:
    *     - A class name, if the declared return type is a single class name.
    *     - TRUE, if the single declared return type is 'object'.
    *     - FALSE, if the declared type is not a single class name.
+   *   If this is a parameter:
+   *     - A class name, if the declared parameter type is a single class name.
+   *     - TRUE, if the single declared parameter type is 'object'.
+   *     - FALSE, if the declared parameter type is not a single class name.
    */
   protected static function readType(
     \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass|FactoryReflectionInterface $reflector,
