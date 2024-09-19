@@ -40,7 +40,7 @@ class FactsIA_InspectClasses implements FactsIAInterface {
    *   Sequence of objects which may contain inspectors and class lists.
    *   This accepts any iterable, to support symfony tagged services.
    *
-   * @return self
+   * @return self<mixed, mixed>
    *   New instance.
    */
   public static function fromCandidateObjects(iterable $candidates): self {
