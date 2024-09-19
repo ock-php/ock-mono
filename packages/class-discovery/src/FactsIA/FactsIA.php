@@ -14,9 +14,9 @@ use function Ock\Helpers\array_filter_instanceof;
 class FactsIA {
 
   /**
-   * @param iterable $candidates
+   * @param iterable<mixed> $candidates
    *
-   * @return \Ock\ClassDiscovery\FactsIA\FactsIAInterface
+   * @return \Ock\ClassDiscovery\FactsIA\FactsIAInterface<mixed, mixed>
    */
   public static function fromCandidateObjects(iterable $candidates): FactsIAInterface {
     $candidates = \iterator_to_array($candidates, false);

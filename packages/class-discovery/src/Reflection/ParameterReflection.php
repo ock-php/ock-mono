@@ -37,6 +37,7 @@ class ParameterReflection extends \ReflectionParameter implements AttributesHavi
           MessageUtil::formatReflector($this),
         ));
     }
+    /** @var class-string $name */
     return $name;
   }
 

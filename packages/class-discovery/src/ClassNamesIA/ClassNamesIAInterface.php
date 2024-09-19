@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\ClassDiscovery\ClassNamesIA;
 
 /**
- * @template TKey
+ * @template-covariant TKey
  *
  * @template-extends \IteratorAggregate<TKey, class-string>
  */

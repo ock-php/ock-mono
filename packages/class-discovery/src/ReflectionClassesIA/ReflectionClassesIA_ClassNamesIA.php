@@ -10,7 +10,7 @@ class ReflectionClassesIA_ClassNamesIA implements ReflectionClassesIAInterface {
   /**
    * Constructor.
    *
-   * @param \Ock\ClassDiscovery\ClassNamesIA\ClassNamesIAInterface $classNamesIA
+   * @param \Ock\ClassDiscovery\ClassNamesIA\ClassNamesIAInterface<mixed> $classNamesIA
    */
   public function __construct(
     private readonly ClassNamesIAInterface $classNamesIA,

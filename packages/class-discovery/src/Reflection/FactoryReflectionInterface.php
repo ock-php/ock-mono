@@ -7,7 +7,7 @@ namespace Ock\ClassDiscovery\Reflection;
 /**
  * @template T of object
  */
-interface FactoryReflectionInterface extends AttributesHavingReflectionInterface, NameHavingReflectionInterface {
+interface FactoryReflectionInterface extends AttributesHavingReflectionInterface, NameHavingReflectionInterface, \Reflector {
 
   /**
    * Gets the original class name that this method was requested for.
@@ -165,7 +165,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets the return value class name, if it is unique.
    *
-   * @return string|null
+   * @return class-string|null
    *   If this is a class, the class name is returned.
    *   If this is a method:
    *     - A class name, if the declared return type is a single class name.
@@ -176,7 +176,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets the return value class, if it is unique.
    *
-   * @return \Ock\ClassDiscovery\Reflection\ClassReflection|null
+   * @return \Ock\ClassDiscovery\Reflection\ClassReflection<object>|null
    *   The returned class, or NULL if no single return class can be determined.
    *
    * @throws \ReflectionException
@@ -187,7 +187,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets the return value class, if it is unique.
    *
-   * @return \Ock\ClassDiscovery\Reflection\ClassReflection|null
+   * @return \Ock\ClassDiscovery\Reflection\ClassReflection<object>|null
    *   The returned class, or NULL if no single return class can be determined.
    */
   public function getReturnClassIfExists(): ?ClassReflection;

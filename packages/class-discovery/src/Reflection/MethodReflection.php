@@ -10,6 +10,11 @@ namespace Ock\ClassDiscovery\Reflection;
  * @template T of object
  *
  * @template-implements \Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<T>
+ *
+ * @noinspection PhpSuperClassIncompatibleWithInterfaceInspection
+ *   PhpStorm reports a conflict with the `export()` method which has long been
+ *   removed in PHP 8.x.
+ *   See https://youtrack.jetbrains.com/issue/WI-79059/PhpStorm-reports-conflict-in-methods-that-dont-exist-in-current-php-version.
  */
 class MethodReflection extends \ReflectionMethod implements FactoryReflectionInterface {
 
@@ -99,7 +104,10 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
   }
 
   /**
-   * {@inheritdoc}
+   * Gets parameters of the method.
+   *
+   * @return list<\Ock\ClassDiscovery\Reflection\ParameterReflection>
+   *   Parameters of the method.
    */
   public function getParameters(): array {
     $parameters = [];
@@ -119,6 +127,7 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
     ) {
       return null;
     }
+    /** @var class-string|'static'|'self' $name */
     $name = $type->getName();
     return match ($name) {
       'self' => $this->class,
@@ -170,6 +179,8 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
    * @return callable&array{class-string, string}
    */
   public function getStaticCallableArray(): array {
+    // PhpStan does not know that the array is also a callable.
+    // @phpstan-ignore return.type
     return [$this->originalClass, $this->name];
   }
 

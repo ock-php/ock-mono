@@ -53,7 +53,7 @@ class ClassFilesIA {
   }
 
   /**
-   * @param string $class
+   * @param class-string $class
    * @param int $nLevelsUp
    *
    * @return \Ock\ClassDiscovery\NamespaceDirectory

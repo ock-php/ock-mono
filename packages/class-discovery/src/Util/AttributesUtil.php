@@ -7,6 +7,7 @@ namespace Ock\ClassDiscovery\Util;
 use Ock\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\Reflection\NameHavingReflectionInterface;
 use Ock\Helpers\Util\MessageUtil;
 
 /**
@@ -19,7 +20,7 @@ class AttributesUtil {
    *
    * @template T as object
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
    * @param class-string<T> $name
    *
    * @return list<T>
@@ -42,7 +43,7 @@ class AttributesUtil {
   }
 
   /**
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
    * @param class-string $name
    *
    * @return bool
@@ -65,7 +66,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
    * @param class-string<T> $name
    *
    * @return object
@@ -84,7 +85,9 @@ class AttributesUtil {
       throw new MalformedDeclarationException(sprintf(
         'Required attribute %s missing on %s.',
         $name,
-        MessageUtil::formatReflector($reflector),
+        $reflector instanceof NameHavingReflectionInterface
+          ? $reflector->getDebugName()
+          : MessageUtil::formatReflector($reflector),
       ));
     }
     return $instance;
@@ -95,7 +98,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
    *   Element that has the attribute.
    * @param class-string<T> $name
    *   Expected attribute type/name.
@@ -128,7 +131,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
    *   Element that has the attribute.
    * @param class-string<T> $name
    *   Expected attribute type/name.
@@ -152,7 +155,9 @@ class AttributesUtil {
       throw new MalformedDeclarationException(\sprintf(
         'More than one %s attribute found on %s.',
         $name,
-        MessageUtil::formatReflector($reflector),
+        $reflector instanceof NameHavingReflectionInterface
+          ? $reflector->getDebugName()
+          : MessageUtil::formatReflector($reflector),
       ));
     }
     return $attributes[0];

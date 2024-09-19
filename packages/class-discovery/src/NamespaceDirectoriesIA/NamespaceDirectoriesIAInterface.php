@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Ock\ClassDiscovery\NamespaceDirectoriesIA;
 
+/**
+ * @template-extends \IteratorAggregate<string, \Ock\ClassDiscovery\NamespaceDirectory>
+ */
 interface NamespaceDirectoriesIAInterface extends \IteratorAggregate {
 
   /**

@@ -12,11 +12,11 @@ class FactoryInspector {
   /**
    * Creates a new instance from a list of inspector candidates.
    *
-   * @param array $candidates
+   * @param iterable<mixed> $candidates
    *   List of objects that may or may not be inspectors.
    *   This accepts any iterable, to support symfony tagged services.
    *
-   * @return \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface
+   * @return \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<mixed, mixed>
    *   New instance.
    */
   public static function fromCandidateObjects(iterable $candidates): FactoryInspectorInterface {
@@ -26,11 +26,11 @@ class FactoryInspector {
   }
 
   /**
-   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface $decorated
-   * @param iterable $candidates
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<mixed, mixed> $decorated
+   * @param iterable<mixed> $candidates
    *   Objects which may or may not contain decorator closures.
    *
-   * @return \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface
+   * @return \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<mixed, mixed>
    */
   public static function applyDecorators(FactoryInspectorInterface $decorated, iterable $candidates): FactoryInspectorInterface {
     foreach ($candidates as $candidate) {
@@ -46,8 +46,6 @@ class FactoryInspector {
       if (!$type) {
         continue;
       }
-      // See https://youtrack.jetbrains.com/issue/WI-77852/ReflectionType-toString-no-longer-deprecated
-      // @phpstan-ignore-next-line
       if ($type->__toString() !== FactoryInspectorInterface::class) {
         continue;
       }

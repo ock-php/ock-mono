@@ -17,7 +17,7 @@ interface ClassInspectorInterface {
   /**
    * Finds facts in a reflection class.
    *
-   * @param ClassReflection $classReflection
+   * @param ClassReflection<object> $classReflection
    *   Class to inspect.
    *
    * @return \Iterator<TFactKey, TFact>

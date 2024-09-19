@@ -35,21 +35,22 @@ class FactsIA_Concat implements FactsIAInterface {
    *   Sequence of objects which may contain inspectors and class lists.
    *   This accepts any iterable, to support symfony tagged services.
    *
-   * @return self
+   * @return self<mixed, mixed>
    *   New instance.
    */
   public static function fromCandidateObjects(iterable $candidates): self {
     $candidates = \iterator_to_array($candidates, false);
     $factsIAs = array_filter_instanceof($candidates, FactsIAInterface::class);
+    $factsIAs = array_values($factsIAs);
     return new self($factsIAs);
   }
 
   /**
-   * @return \Ock\ClassDiscovery\FactsIA\FactsIAInterface
+   * @return \Ock\ClassDiscovery\FactsIA\FactsIAInterface<TFactKey, TFact>
    */
   public function optimize(): FactsIAInterface {
     return count($this->factsIAs) === 1
-      ? reset($this->factsIAs)
+      ? $this->factsIAs[array_key_first($this->factsIAs)]
       : $this;
   }
 

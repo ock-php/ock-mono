@@ -12,13 +12,13 @@ class ClassInspector {
   /**
    * Creates a new instance from a list of inspector candidates.
    *
-   * @param array $candidates
+   * @param iterable<mixed> $candidates
    *   List of objects that may or may not be inspectors.
    *   This accepts any iterable, to support symfony tagged services.
    * @param bool $includeFactoryInspectors
    *   TRUE to also include factory inspectors.
    *
-   * @return \Ock\ClassDiscovery\Inspector\ClassInspectorInterface
+   * @return \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<mixed, mixed>
    *   New instance.
    */
   public static function fromCandidateObjects(iterable $candidates, bool $includeFactoryInspectors): ClassInspectorInterface {
@@ -39,10 +39,10 @@ class ClassInspector {
   }
 
   /**
-   * @param \Ock\ClassDiscovery\Inspector\ClassInspectorInterface $decorated
-   * @param iterable $candidates
+   * @param \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<mixed, mixed> $decorated
+   * @param iterable<mixed> $candidates
    *
-   * @return \Ock\ClassDiscovery\Inspector\ClassInspectorInterface
+   * @return \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<mixed, mixed>
    */
   public static function applyDecorators(ClassInspectorInterface $decorated, iterable $candidates): ClassInspectorInterface {
     foreach ($candidates as $candidate) {
@@ -58,8 +58,6 @@ class ClassInspector {
       if (!$type) {
         continue;
       }
-      // See https://youtrack.jetbrains.com/issue/WI-77852/ReflectionType-toString-no-longer-deprecated
-      // @phpstan-ignore-next-line
       if ($type->__toString() !== ClassInspectorInterface::class) {
         continue;
       }

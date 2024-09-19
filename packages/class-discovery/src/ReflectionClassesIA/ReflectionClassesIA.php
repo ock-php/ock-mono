@@ -60,7 +60,7 @@ class ReflectionClassesIA {
   }
 
   /**
-   * @param string $class
+   * @param class-string $class
    * @param int $nLevelsUp
    *
    * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface

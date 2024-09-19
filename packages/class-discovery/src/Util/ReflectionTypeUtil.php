@@ -5,12 +5,13 @@ namespace Ock\ClassDiscovery\Util;
 
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\Reflection\NameHavingReflectionInterface;
 use Ock\Helpers\Util\MessageUtil;
 
 class ReflectionTypeUtil {
 
   /**
-   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass|FactoryReflectionInterface $reflector
+   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass<object>|FactoryReflectionInterface<object> $reflector
    * @param bool $allowObject
    *   TRUE, to allow 'object' return type.
    *
@@ -37,12 +38,14 @@ class ReflectionTypeUtil {
     throw new MalformedDeclarationException(\sprintf(
       'Expected a class-like %s declaration on %s.',
       $reflector instanceof \ReflectionParameter ? 'type' : 'return type',
-      MessageUtil::formatReflector($reflector),
+      $reflector instanceof NameHavingReflectionInterface
+        ? $reflector->getDebugName()
+        : MessageUtil::formatReflector($reflector),
     ));
   }
 
   /**
-   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass|FactoryReflectionInterface $reflector
+   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass<object>|FactoryReflectionInterface<object> $reflector
    *
    * @return class-string|null
    */
@@ -59,12 +62,19 @@ class ReflectionTypeUtil {
   /**
    * Gets the return value class name, if it is unique.
    *
+   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass<object>|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
+   *   Reflector to analyse.
+   *
    * @return class-string|bool
    *   If this is a class, the class name is returned.
-   *   If this is a method:
+   *   If this is a method or function:
    *     - A class name, if the declared return type is a single class name.
    *     - TRUE, if the single declared return type is 'object'.
    *     - FALSE, if the declared type is not a single class name.
+   *   If this is a parameter:
+   *     - A class name, if the declared parameter type is a single class name.
+   *     - TRUE, if the single declared parameter type is 'object'.
+   *     - FALSE, if the declared parameter type is not a single class name.
    */
   protected static function readType(
     \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass|FactoryReflectionInterface $reflector,
@@ -88,6 +98,7 @@ class ReflectionTypeUtil {
       }
       return false;
     }
+    /** @var class-string|'self'|'static' $name */
     if ($name === 'self' || $name === 'static') {
       $reflectionFunction = $reflector instanceof \ReflectionParameter
         ? $reflector->getDeclaringFunction()
@@ -96,7 +107,9 @@ class ReflectionTypeUtil {
         throw new \RuntimeException(\sprintf(
           'Unexpected %s outside class context, in type declaration for %s.',
           "'$name'",
-          MessageUtil::formatReflector($reflector),
+          $reflector instanceof NameHavingReflectionInterface
+            ? $reflector->getDebugName()
+            : MessageUtil::formatReflector($reflector),
         ));
       }
       $name = $reflectionFunction->getDeclaringClass()->getName();

@@ -15,7 +15,7 @@ interface FactoryInspectorInterface {
   /**
    * Finds facts in a class or method.
    *
-   * @param FactoryReflectionInterface $reflector
+   * @param FactoryReflectionInterface<object> $reflector
    *   Class or method to inspect.
    *
    * @return \Iterator<TFactKey, TFact>

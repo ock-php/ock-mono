@@ -63,9 +63,17 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *   Class does not exist.
    */
   public static function createFromClass(string $class): self {
+    // Accept that `new \ReflectionClass()` will throw an exception if the class
+    // does not exist.
+    // @phpstan-ignore argument.type
     $reflClass = new \ReflectionClass($class);
+    $class_file = $reflClass->getFileName();
+    if ($class_file === false) {
+      // This is a native class in php core or an extension.
+      throw new \InvalidArgumentException("No file path for native class '$class'.");
+    }
     return self::create(
-      dirname($reflClass->getFileName()),
+      dirname($class_file),
       $reflClass->getNamespaceName(),
     );
   }
@@ -90,7 +98,11 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    */
   public function withRealpathRoot(): static {
     $clone = clone $this;
-    $clone->directory = realpath($this->directory);
+    $realpath = realpath($this->directory);
+    if ($realpath === false) {
+      throw new \RuntimeException("Failed to realpath('$this->directory')");
+    }
+    $clone->directory = $realpath;
     return $clone;
   }
 
@@ -480,7 +492,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @param string $subdir
    *   Terminated PSR-4 base path relative to the terminated package directory.
    *   Typically '' or 'src/'.
-   * @param int $level
+   * @param non-negative-int $level
    *   Number of namespace parts of the package namespace.
    *
    * @return string
@@ -513,7 +525,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   public function getElements(): array {
     $classes = [];
     $subdirs = [];
-    foreach (\scandir($this->directory, \SCANDIR_SORT_ASCENDING) as $candidate) {
+    foreach ($this->scanThisDir() as $candidate) {
       if (!preg_match(self::CANDIDATE_REGEX, $candidate, $m)) {
         continue;
       }
@@ -521,7 +533,6 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
       $path = $this->directory . '/' . $candidate;
       if ($ext) {
         if (is_file($path)) {
-          // @todo Make the $candidate available as a variable?
           $classes[$path] = $this->terminatedNamespace . $name;
         }
       }
@@ -531,6 +542,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
         }
       }
     }
+    /** @var array<string, class-string> $classes */
     return [$classes, $subdirs];
   }
 
@@ -539,7 +551,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    */
   public function getClassFilesHere(): array {
     $classFiles = [];
-    foreach (\scandir($this->directory, \SCANDIR_SORT_ASCENDING) as $candidate) {
+    foreach ($this->scanThisDir() as $candidate) {
       if ('.' === $candidate[0]
         || !\str_ends_with($candidate, '.php')
       ) {
@@ -553,9 +565,9 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
       if (!\preg_match(self::CLASS_NAME_REGEX, $name)) {
         continue;
       }
-      // @todo Make the $candidate available as a variable?
       $classFiles[$path] = $this->terminatedNamespace . $name;
     }
+    /** @var array<string, class-string> $classFiles */
     return $classFiles;
   }
 
@@ -563,7 +575,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @return \Iterator<string, static>
    */
   public function getSubdirsHere(): \Iterator {
-    foreach (\scandir($this->directory, \SCANDIR_SORT_ASCENDING) as $candidate) {
+    foreach ($this->scanThisDir() as $candidate) {
       if (!preg_match(self::CLASS_NAME_REGEX, $candidate)) {
         continue;
       }
@@ -581,11 +593,9 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *
    * @return \Iterator<string, class-string>
    *   Format: $[$file] = $class
-   *
-   * @phpstan-suppress MoreSpecificReturnType
    */
   private static function scan(string $dir, string $terminatedNamespace): \Iterator {
-    foreach (\scandir($dir, \SCANDIR_SORT_ASCENDING) as $candidate) {
+    foreach (self::scanKnownDir($dir) as $candidate) {
       if ('.' === $candidate[0]) {
         continue;
       }
@@ -598,6 +608,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
         if (!preg_match(self::CLASS_NAME_REGEX, $name)) {
           continue;
         }
+        // @phpstan-ignore generator.valueType
         yield $path => $terminatedNamespace . $name;
       }
       else {
@@ -625,6 +636,46 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    */
   public function getReflectionClassesIA(): ReflectionClassesIAInterface {
     return new ReflectionClassesIA_ClassFilesIA($this);
+  }
+
+  /**
+   * Runs scandir() on this namespace directory.
+   *
+   * Throws a runtime exception on failure, instead of returning false.
+   * This is considered an unhandled exception, because it is assumed that the
+   * current directory always exists.
+   *
+   * @return list<string>
+   *   Items in the directory in alphabetic order.
+   *   This also includes '.' and '..'.
+   */
+  private function scanThisDir(): array {
+    return self::scanKnownDir($this->directory);
+  }
+
+  /**
+   * Runs scandir() on a known directory.
+   *
+   * Throws a runtime exception on failure, instead of returning false.
+   * This is considered an unhandled exception, because it is assumed that the
+   * given directory always exists.
+   *
+   * @param string $dir
+   *   Known directory to scan.
+   *
+   * @return list<string>
+   *   Items in the directory in alphabetic order.
+   *   This also includes '.' and '..'.
+   *   Calling code already does filtering with regex or other means, so it
+   *   would be redundant to do additional filtering here.
+   */
+  private static function scanKnownDir(string $dir): array {
+    new \DirectoryIterator($dir);
+    $candidates = \scandir($dir, \SCANDIR_SORT_ASCENDING);
+    if ($candidates === false) {
+      throw new \RuntimeException("Failed to scandir('$dir').");
+    }
+    return $candidates;
   }
 
 

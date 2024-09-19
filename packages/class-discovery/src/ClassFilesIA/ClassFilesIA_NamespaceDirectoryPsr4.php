@@ -67,7 +67,10 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    */
   public function withRealpathRoot(): static {
     $clone = clone $this;
-    $clone->directory = realpath($this->directory);
+    $realpath = realpath($this->directory);
+    // @todo Properly handle this case.
+    assert($realpath !== false, "Cannot get realpath for '$this->directory'. Perhaps the directory does not exist.");
+    $clone->directory = $realpath;
     return $clone;
   }
 
@@ -86,7 +89,11 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    *   Format: $[$file] = $class
    */
   private static function scan(string $dir, string $terminatedNamespace): \Iterator {
-    foreach (\scandir($dir, \SCANDIR_SORT_ASCENDING) as $candidate) {
+    $candidates = \scandir($dir, \SCANDIR_SORT_ASCENDING);
+    if ($candidates === false) {
+      throw new \RuntimeException("Failed to scandir('$dir').");
+    }
+    foreach ($candidates as $candidate) {
       if ('.' === $candidate[0]) {
         continue;
       }
@@ -99,6 +106,8 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
         if (!preg_match(self::CLASS_NAME_REGEX, $name)) {
           continue;
         }
+        // The value is a class-string, but PhpStan does not know.
+        // @phpstan-ignore generator.valueType
         yield $path => $terminatedNamespace . $name;
       }
       else {
