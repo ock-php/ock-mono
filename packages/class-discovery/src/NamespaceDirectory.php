@@ -554,6 +554,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
       }
       $classFiles[$path] = $this->terminatedNamespace . $name;
     }
+    /** @var array<string, class-string> $classFiles */
     return $classFiles;
   }
 
