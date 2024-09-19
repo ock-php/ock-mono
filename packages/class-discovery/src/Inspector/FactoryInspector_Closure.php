@@ -24,7 +24,7 @@ class FactoryInspector_Closure implements FactoryInspectorInterface {
   /**
    * Constructor.
    *
-   * @param \Closure(FactoryReflectionInterface): \Iterator<TFactKey, TFact> $closure
+   * @param \Closure(FactoryReflectionInterface<object>): \Iterator<TFactKey, TFact> $closure
    *   Closure returning an iterator.
    */
   public function __construct(

@@ -10,7 +10,7 @@ use Ock\Helpers\Util\MessageUtil;
 class ReflectionTypeUtil {
 
   /**
-   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass<object>|FactoryReflectionInterface $reflector
+   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass<object>|FactoryReflectionInterface<object> $reflector
    * @param bool $allowObject
    *   TRUE, to allow 'object' return type.
    *
@@ -42,7 +42,7 @@ class ReflectionTypeUtil {
   }
 
   /**
-   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass<object>|FactoryReflectionInterface $reflector
+   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass<object>|FactoryReflectionInterface<object> $reflector
    *
    * @return class-string|null
    */
