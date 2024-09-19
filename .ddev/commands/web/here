@@ -1,0 +1,10 @@
+#!/bin/bash
+# Credits to Randy Fay @rfay in https://github.com/ddev/ddev/issues/3881#issuecomment-2351094704
+
+## Description: Exec anything in the same directory as on the host
+## Usage: here [flags] [args]
+## Example: "ddev here ls"
+## ExecRaw: true
+## HostWorkingDir: true
+
+bash -c "$@"
