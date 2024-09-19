@@ -122,6 +122,7 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
     ) {
       return null;
     }
+    /** @var class-string|'static'|'self' $name */
     $name = $type->getName();
     return match ($name) {
       'self' => $this->class,

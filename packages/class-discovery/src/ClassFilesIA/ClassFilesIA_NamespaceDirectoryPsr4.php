@@ -99,6 +99,8 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
         if (!preg_match(self::CLASS_NAME_REGEX, $name)) {
           continue;
         }
+        // The value is a class-string, but PhpStan does not know.
+        // @phpstan-ignore generator.valueType
         yield $path => $terminatedNamespace . $name;
       }
       else {
