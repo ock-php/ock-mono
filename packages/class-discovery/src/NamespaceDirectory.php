@@ -483,7 +483,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @param string $subdir
    *   Terminated PSR-4 base path relative to the terminated package directory.
    *   Typically '' or 'src/'.
-   * @param int $level
+   * @param non-negative-int $level
    *   Number of namespace parts of the package namespace.
    *
    * @return string
