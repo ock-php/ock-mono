@@ -7,4 +7,4 @@
 ## ExecRaw: true
 ## HostWorkingDir: true
 
-bash -c "$@"
+bash -c "$*"
