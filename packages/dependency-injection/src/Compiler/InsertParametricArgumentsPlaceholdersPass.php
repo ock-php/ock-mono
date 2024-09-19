@@ -151,7 +151,7 @@ class InsertParametricArgumentsPlaceholdersPass extends AbstractRecursivePass {
         $delta = $value;
         $value = new Placeholder_GetArgValue($delta);
       }
-      elseif (!is_string($value) && !is_int($value)) {
+      elseif (!is_string($value)) {
         throw new \RuntimeException('Invalid argument value.');
       }
       $args[$key] = $value;
