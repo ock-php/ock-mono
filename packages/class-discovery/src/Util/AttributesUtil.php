@@ -7,6 +7,7 @@ namespace Ock\ClassDiscovery\Util;
 use Ock\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\Reflection\NameHavingReflectionInterface;
 use Ock\Helpers\Util\MessageUtil;
 
 /**
@@ -84,7 +85,9 @@ class AttributesUtil {
       throw new MalformedDeclarationException(sprintf(
         'Required attribute %s missing on %s.',
         $name,
-        MessageUtil::formatReflector($reflector),
+        $reflector instanceof NameHavingReflectionInterface
+          ? $reflector->getDebugName()
+          : MessageUtil::formatReflector($reflector),
       ));
     }
     return $instance;
@@ -152,7 +155,9 @@ class AttributesUtil {
       throw new MalformedDeclarationException(\sprintf(
         'More than one %s attribute found on %s.',
         $name,
-        MessageUtil::formatReflector($reflector),
+        $reflector instanceof NameHavingReflectionInterface
+          ? $reflector->getDebugName()
+          : MessageUtil::formatReflector($reflector),
       ));
     }
     return $attributes[0];

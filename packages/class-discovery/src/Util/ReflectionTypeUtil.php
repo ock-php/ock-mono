@@ -5,6 +5,7 @@ namespace Ock\ClassDiscovery\Util;
 
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\Reflection\NameHavingReflectionInterface;
 use Ock\Helpers\Util\MessageUtil;
 
 class ReflectionTypeUtil {
@@ -37,7 +38,9 @@ class ReflectionTypeUtil {
     throw new MalformedDeclarationException(\sprintf(
       'Expected a class-like %s declaration on %s.',
       $reflector instanceof \ReflectionParameter ? 'type' : 'return type',
-      MessageUtil::formatReflector($reflector),
+      $reflector instanceof NameHavingReflectionInterface
+        ? $reflector->getDebugName()
+        : MessageUtil::formatReflector($reflector),
     ));
   }
 
@@ -104,7 +107,9 @@ class ReflectionTypeUtil {
         throw new \RuntimeException(\sprintf(
           'Unexpected %s outside class context, in type declaration for %s.',
           "'$name'",
-          MessageUtil::formatReflector($reflector),
+          $reflector instanceof NameHavingReflectionInterface
+            ? $reflector->getDebugName()
+            : MessageUtil::formatReflector($reflector),
         ));
       }
       $name = $reflectionFunction->getDeclaringClass()->getName();
