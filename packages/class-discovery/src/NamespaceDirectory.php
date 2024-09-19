@@ -516,7 +516,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   public function getElements(): array {
     $classes = [];
     $subdirs = [];
-    foreach (\scandir($this->directory, \SCANDIR_SORT_ASCENDING) as $candidate) {
+    foreach ($this->scanThisDir() as $candidate) {
       if (!preg_match(self::CANDIDATE_REGEX, $candidate, $m)) {
         continue;
       }
@@ -542,7 +542,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    */
   public function getClassFilesHere(): array {
     $classFiles = [];
-    foreach (\scandir($this->directory, \SCANDIR_SORT_ASCENDING) as $candidate) {
+    foreach ($this->scanThisDir() as $candidate) {
       if ('.' === $candidate[0]
         || !\str_ends_with($candidate, '.php')
       ) {
@@ -566,7 +566,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @return \Iterator<string, static>
    */
   public function getSubdirsHere(): \Iterator {
-    foreach (\scandir($this->directory, \SCANDIR_SORT_ASCENDING) as $candidate) {
+    foreach ($this->scanThisDir() as $candidate) {
       if (!preg_match(self::CLASS_NAME_REGEX, $candidate)) {
         continue;
       }
@@ -586,7 +586,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *   Format: $[$file] = $class
    */
   private static function scan(string $dir, string $terminatedNamespace): \Iterator {
-    foreach (\scandir($dir, \SCANDIR_SORT_ASCENDING) as $candidate) {
+    foreach (self::scanKnownDir($dir) as $candidate) {
       if ('.' === $candidate[0]) {
         continue;
       }
@@ -627,6 +627,46 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    */
   public function getReflectionClassesIA(): ReflectionClassesIAInterface {
     return new ReflectionClassesIA_ClassFilesIA($this);
+  }
+
+  /**
+   * Runs scandir() on this namespace directory.
+   *
+   * Throws a runtime exception on failure, instead of returning false.
+   * This is considered an unhandled exception, because it is assumed that the
+   * current directory always exists.
+   *
+   * @return list<string>
+   *   Items in the directory in alphabetic order.
+   *   This also includes '.' and '..'.
+   */
+  private function scanThisDir(): array {
+    return self::scanKnownDir($this->directory);
+  }
+
+  /**
+   * Runs scandir() on a known directory.
+   *
+   * Throws a runtime exception on failure, instead of returning false.
+   * This is considered an unhandled exception, because it is assumed that the
+   * given directory always exists.
+   *
+   * @param string $dir
+   *   Known directory to scan.
+   *
+   * @return list<string>
+   *   Items in the directory in alphabetic order.
+   *   This also includes '.' and '..'.
+   *   Calling code already does filtering with regex or other means, so it
+   *   would be redundant to do additional filtering here.
+   */
+  private static function scanKnownDir(string $dir): array {
+    new \DirectoryIterator($dir);
+    $candidates = \scandir($dir, \SCANDIR_SORT_ASCENDING);
+    if ($candidates === false) {
+      throw new \RuntimeException("Failed to scandir('$dir').");
+    }
+    return $candidates;
   }
 
 
