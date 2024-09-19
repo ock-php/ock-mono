@@ -95,6 +95,7 @@ class ReflectionTypeUtil {
       }
       return false;
     }
+    /** @var class-string|'self'|'static' $name */
     if ($name === 'self' || $name === 'static') {
       $reflectionFunction = $reflector instanceof \ReflectionParameter
         ? $reflector->getDeclaringFunction()
