@@ -18,7 +18,7 @@ class ClassInspector {
    * @param bool $includeFactoryInspectors
    *   TRUE to also include factory inspectors.
    *
-   * @return \Ock\ClassDiscovery\Inspector\ClassInspectorInterface
+   * @return \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<mixed, mixed>
    *   New instance.
    */
   public static function fromCandidateObjects(iterable $candidates, bool $includeFactoryInspectors): ClassInspectorInterface {
@@ -39,10 +39,10 @@ class ClassInspector {
   }
 
   /**
-   * @param \Ock\ClassDiscovery\Inspector\ClassInspectorInterface $decorated
+   * @param \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<mixed, mixed> $decorated
    * @param iterable<mixed> $candidates
    *
-   * @return \Ock\ClassDiscovery\Inspector\ClassInspectorInterface
+   * @return \Ock\ClassDiscovery\Inspector\ClassInspectorInterface<mixed, mixed>
    */
   public static function applyDecorators(ClassInspectorInterface $decorated, iterable $candidates): ClassInspectorInterface {
     foreach ($candidates as $candidate) {

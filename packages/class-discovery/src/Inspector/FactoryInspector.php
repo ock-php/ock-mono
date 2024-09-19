@@ -16,7 +16,7 @@ class FactoryInspector {
    *   List of objects that may or may not be inspectors.
    *   This accepts any iterable, to support symfony tagged services.
    *
-   * @return \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface
+   * @return \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<mixed, mixed>
    *   New instance.
    */
   public static function fromCandidateObjects(iterable $candidates): FactoryInspectorInterface {
@@ -26,11 +26,11 @@ class FactoryInspector {
   }
 
   /**
-   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface $decorated
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<mixed, mixed> $decorated
    * @param iterable<mixed> $candidates
    *   Objects which may or may not contain decorator closures.
    *
-   * @return \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface
+   * @return \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<mixed, mixed>
    */
   public static function applyDecorators(FactoryInspectorInterface $decorated, iterable $candidates): FactoryInspectorInterface {
     foreach ($candidates as $candidate) {
