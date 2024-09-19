@@ -26,7 +26,7 @@ class FactoryInspector_ConditionDecorator implements FactoryInspectorInterface {
   ) {}
 
   /**
-   * @param \Ock\ClassDiscovery\Inspector\PackageInspectorInterface $decorated
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface $decorated
    *
    * @return static
    */

@@ -11,7 +11,7 @@ class ServiceProvider_Concat implements ServiceProviderInterface {
   /**
    * Constructor.
    *
-   * @param list<\Ock\DependencyInjection\Provider\ServiceProviderInterface>
+   * @param list<\Ock\DependencyInjection\Provider\ServiceProviderInterface> $providers
    */
   public function __construct(
     private readonly array $providers,

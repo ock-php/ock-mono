@@ -29,6 +29,7 @@ class FruitAtlas {
   ) {
     Assert::assertSame('apple', $apple->name);
     Assert::assertSame('pear', $pearJuice->fruit->name);
+    Assert::assertInstanceOf(Orchard::class, $cherryOrchard);
     Assert::assertSame('cherry', $cherryOrchard->fruit->name);
     Assert::assertSame('banana', $bananaAndStrawberryVendor->fruit->name);
     Assert::assertSame('strawberry', $bananaAndStrawberryVendor->otherFruit->name);
