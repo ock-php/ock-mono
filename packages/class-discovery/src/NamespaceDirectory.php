@@ -63,6 +63,9 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *   Class does not exist.
    */
   public static function createFromClass(string $class): self {
+    // Accept that `new \ReflectionClass()` will throw an exception if the class
+    // does not exist.
+    // @phpstan-ignore argument.type
     $reflClass = new \ReflectionClass($class);
     return self::create(
       dirname($reflClass->getFileName()),
