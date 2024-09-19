@@ -35,7 +35,7 @@ class FactoryInspector_Closure implements FactoryInspectorInterface {
    * {@inheritdoc}
    */
   public function findInFactory(FactoryReflectionInterface $reflector): \Iterator {
-    return $this->closure->__invoke($reflector);
+    return ($this->closure)($reflector);
   }
 
 }
