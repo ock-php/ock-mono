@@ -41,6 +41,7 @@ class FactsIA_Concat implements FactsIAInterface {
   public static function fromCandidateObjects(iterable $candidates): self {
     $candidates = \iterator_to_array($candidates, false);
     $factsIAs = array_filter_instanceof($candidates, FactsIAInterface::class);
+    $factsIAs = array_values($factsIAs);
     return new self($factsIAs);
   }
 
