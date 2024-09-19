@@ -67,8 +67,13 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
     // does not exist.
     // @phpstan-ignore argument.type
     $reflClass = new \ReflectionClass($class);
+    $class_file = $reflClass->getFileName();
+    if ($class_file === false) {
+      // This is a native class in php core or an extension.
+      throw new \InvalidArgumentException("No file path for native class '$class'.");
+    }
     return self::create(
-      dirname($reflClass->getFileName()),
+      dirname($class_file),
       $reflClass->getNamespaceName(),
     );
   }
