@@ -530,6 +530,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
         }
       }
     }
+    /** @var array<string, class-string> $classes */
     return [$classes, $subdirs];
   }
 
