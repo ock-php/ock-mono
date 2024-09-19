@@ -594,6 +594,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
         if (!preg_match(self::CLASS_NAME_REGEX, $name)) {
           continue;
         }
+        // @phpstan-ignore generator.valueType
         yield $path => $terminatedNamespace . $name;
       }
       else {
