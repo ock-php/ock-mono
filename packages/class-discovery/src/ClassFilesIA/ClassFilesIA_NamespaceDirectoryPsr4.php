@@ -67,7 +67,10 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    */
   public function withRealpathRoot(): static {
     $clone = clone $this;
-    $clone->directory = realpath($this->directory);
+    $realpath = realpath($this->directory);
+    // @todo Properly handle this case.
+    assert($realpath !== false, "Cannot get realpath for '$this->directory'. Perhaps the directory does not exist.");
+    $clone->directory = $realpath;
     return $clone;
   }
 
