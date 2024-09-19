@@ -521,7 +521,6 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
       $path = $this->directory . '/' . $candidate;
       if ($ext) {
         if (is_file($path)) {
-          // @todo Make the $candidate available as a variable?
           $classes[$path] = $this->terminatedNamespace . $name;
         }
       }
@@ -553,7 +552,6 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
       if (!\preg_match(self::CLASS_NAME_REGEX, $name)) {
         continue;
       }
-      // @todo Make the $candidate available as a variable?
       $classFiles[$path] = $this->terminatedNamespace . $name;
     }
     return $classFiles;
