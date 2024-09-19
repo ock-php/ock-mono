@@ -89,7 +89,11 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    *   Format: $[$file] = $class
    */
   private static function scan(string $dir, string $terminatedNamespace): \Iterator {
-    foreach (\scandir($dir, \SCANDIR_SORT_ASCENDING) as $candidate) {
+    $candidates = \scandir($dir, \SCANDIR_SORT_ASCENDING);
+    if ($candidates === false) {
+      throw new \RuntimeException("Failed to scandir('$dir').");
+    }
+    foreach ($candidates as $candidate) {
       if ('.' === $candidate[0]) {
         continue;
       }
