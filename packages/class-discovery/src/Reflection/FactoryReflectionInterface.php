@@ -176,7 +176,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets the return value class, if it is unique.
    *
-   * @return \Ock\ClassDiscovery\Reflection\ClassReflection|null
+   * @return \Ock\ClassDiscovery\Reflection\ClassReflection<object>|null
    *   The returned class, or NULL if no single return class can be determined.
    *
    * @throws \ReflectionException
@@ -187,7 +187,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets the return value class, if it is unique.
    *
-   * @return \Ock\ClassDiscovery\Reflection\ClassReflection|null
+   * @return \Ock\ClassDiscovery\Reflection\ClassReflection<object>|null
    *   The returned class, or NULL if no single return class can be determined.
    */
   public function getReturnClassIfExists(): ?ClassReflection;
