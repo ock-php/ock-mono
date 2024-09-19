@@ -10,6 +10,11 @@ namespace Ock\ClassDiscovery\Reflection;
  * @template T of object
  *
  * @template-implements \Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<T>
+ *
+ * @noinspection PhpSuperClassIncompatibleWithInterfaceInspection
+ *   PhpStorm reports a conflict with the `export()` method which has long been
+ *   removed in PHP 8.x.
+ *   See https://youtrack.jetbrains.com/issue/WI-79059/PhpStorm-reports-conflict-in-methods-that-dont-exist-in-current-php-version.
  */
 class MethodReflection extends \ReflectionMethod implements FactoryReflectionInterface {
 

@@ -7,7 +7,7 @@ namespace Ock\ClassDiscovery\Reflection;
 /**
  * @template T of object
  */
-interface FactoryReflectionInterface extends AttributesHavingReflectionInterface, NameHavingReflectionInterface {
+interface FactoryReflectionInterface extends AttributesHavingReflectionInterface, NameHavingReflectionInterface, \Reflector {
 
   /**
    * Gets the original class name that this method was requested for.
