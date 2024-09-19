@@ -14,7 +14,7 @@ class PackageInspector {
   /**
    * Creates a new instance from a list of inspector candidates.
    *
-   * @param array $candidates
+   * @param iterable<mixed> $candidates
    *   List of objects that may or may not be class or factory inspectors.
    *   This accepts any iterable, to support symfony tagged services.
    *
@@ -45,7 +45,7 @@ class PackageInspector {
 
   /**
    * @param \Ock\ClassDiscovery\Inspector\PackageInspectorInterface $decorated
-   * @param iterable $candidates
+   * @param iterable<mixed> $candidates
    *   Objects which may or may not contain decorator closures.
    *
    * @return \Ock\ClassDiscovery\Inspector\PackageInspectorInterface

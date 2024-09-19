@@ -12,7 +12,7 @@ class FactoryInspector {
   /**
    * Creates a new instance from a list of inspector candidates.
    *
-   * @param array $candidates
+   * @param iterable<mixed> $candidates
    *   List of objects that may or may not be inspectors.
    *   This accepts any iterable, to support symfony tagged services.
    *
@@ -27,7 +27,7 @@ class FactoryInspector {
 
   /**
    * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface $decorated
-   * @param iterable $candidates
+   * @param iterable<mixed> $candidates
    *   Objects which may or may not contain decorator closures.
    *
    * @return \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface

@@ -12,7 +12,7 @@ class ClassInspector {
   /**
    * Creates a new instance from a list of inspector candidates.
    *
-   * @param array $candidates
+   * @param iterable<mixed> $candidates
    *   List of objects that may or may not be inspectors.
    *   This accepts any iterable, to support symfony tagged services.
    * @param bool $includeFactoryInspectors
@@ -40,7 +40,7 @@ class ClassInspector {
 
   /**
    * @param \Ock\ClassDiscovery\Inspector\ClassInspectorInterface $decorated
-   * @param iterable $candidates
+   * @param iterable<mixed> $candidates
    *
    * @return \Ock\ClassDiscovery\Inspector\ClassInspectorInterface
    */

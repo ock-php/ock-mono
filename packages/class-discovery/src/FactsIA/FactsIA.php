@@ -14,7 +14,7 @@ use function Ock\Helpers\array_filter_instanceof;
 class FactsIA {
 
   /**
-   * @param iterable $candidates
+   * @param iterable<mixed> $candidates
    *
    * @return \Ock\ClassDiscovery\FactsIA\FactsIAInterface
    */
