@@ -92,6 +92,8 @@ class SymfonyContainerTest extends TestCase {
       ->subdir('Fixtures');
     foreach ($fixturesNamespaceDir->getSubdirsHere() as $subdir_name => $subNamespaceDir) {
       $dir = $subNamespaceDir->getDirectory();
+      // Ignore possible false returned by scandir().
+      // @phpstan-ignore foreach.nonIterable
       foreach (scandir($dir) as $candidate) {
         if (\preg_match('#^inspector\.([\w\-]+)\.php$#', $candidate, $m)) {
           [$inspector_file, $inspector_name] = $m;
