@@ -6,6 +6,7 @@ namespace Ock\DependencyInjection\Inspector;
 
 use Ock\ClassDiscovery\Inspector\ClassInspectorInterface;
 use Ock\ClassDiscovery\Reflection\ClassReflection;
+use Ock\Helpers\Util\MessageUtil;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Definition;
@@ -50,6 +51,15 @@ class ClassInspector_SymfonyAsAliasAttributeDecorator implements ClassInspectorI
     $defaultAlias = $classReflection->getOnlyInterfaceName();
     foreach ($this->decorated->findInClass($classReflection) as $key => $fact) {
       if ($fact instanceof Definition) {
+        if (!is_string($key)) {
+          throw new \RuntimeException(
+            sprintf(
+              "Expected a string key with a service definition, found %s.",
+              // In an iterator, the key could be anything.
+              MessageUtil::formatValue($key),
+            )
+          );
+        }
         foreach ($attributes as $attribute) {
           $alias = $attribute->id ?? $defaultAlias;
           if ($alias === null) {
