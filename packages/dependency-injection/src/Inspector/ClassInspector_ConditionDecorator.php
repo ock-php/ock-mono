@@ -26,7 +26,7 @@ class ClassInspector_ConditionDecorator implements ClassInspectorInterface {
   ) {}
 
   /**
-   * @param \Ock\ClassDiscovery\Inspector\PackageInspectorInterface $decorated
+   * @param \Ock\ClassDiscovery\Inspector\ClassInspectorInterface $decorated
    *
    * @return static
    */

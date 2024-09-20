@@ -39,6 +39,9 @@ class ServiceDefinitionUtil {
         // Not supported for now.
         return NULL;
       }
+      // Pretend that $class_or_reference is a known class, because the first
+      // parameter expects class-string<T>.
+      /** @var class-string $class_or_reference */
       return new MethodReflection($class_or_reference, $method);
     }
     if ($class = $definition->getClass()) {
