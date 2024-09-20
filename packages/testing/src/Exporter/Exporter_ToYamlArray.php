@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ock\Testing\Exporter;
 
 use Ock\ClassDiscovery\Reflection\ClassReflection;
-use function Ock\Helpers\project_root_path;
 
 /**
  * Exports as array suitable for a yaml file.
@@ -13,7 +12,17 @@ use function Ock\Helpers\project_root_path;
 class Exporter_ToYamlArray implements ExporterInterface {
 
   /**
-   * @var array<class-string, \Closure(never&object, int, string|int|null, self): mixed>
+   * Dedicated exporters by class name.
+   *
+   * The first parameter will accept instances of the class from the respective
+   * array key.
+   * The correct parameter type to specify here would be 'never', following the
+   * idea of contravariance.
+   * However, this would not take us very far with PhpStan.
+   * For practical reasons, we pretend that all the callbacks accept any object
+   * as first parameter.
+   *
+   * @var array<class-string, \Closure(object, int, string|int|null, self): mixed>
    */
   private array $exportersByClass = [];
 
@@ -27,6 +36,8 @@ class Exporter_ToYamlArray implements ExporterInterface {
    */
   public function withDedicatedExporter(string $class, \Closure $exporter): static {
     $clone = clone $this;
+    // Pretend that the first parameter of $exporter allows any object.
+    /** @var \Closure(object, int, string|int|null, self): mixed $exporter */
     $clone->exportersByClass[$class] = $exporter;
     return $clone;
   }
@@ -76,6 +87,8 @@ class Exporter_ToYamlArray implements ExporterInterface {
     ) use ($reference, $decorated): array {
       $compare_export = $decorated($reference, $depth, $key, $exporter);
       $export = $decorated($object, $depth, $key, $exporter);
+      assert(is_array($export));
+      assert(is_array($compare_export));
       unset($compare_export['class']);
       return static::arrayDiffAssocStrict($export, $compare_export);
     });
@@ -105,6 +118,8 @@ class Exporter_ToYamlArray implements ExporterInterface {
       $reference = $factory($key);
       $compare_export = $decorated($reference, $depth, $key, $exporter);
       $export = $decorated($object, $depth, $key, $exporter);
+      assert(is_array($export));
+      assert(is_array($compare_export));
       unset($compare_export['class']);
       return static::arrayDiffAssocStrict($export, $compare_export);
     });
@@ -160,9 +175,9 @@ class Exporter_ToYamlArray implements ExporterInterface {
    * @param int $depth
    * @param int|string|null $key
    *
-   * @return array
+   * @return mixed
    */
-  protected function exportObject(object $object, int $depth, int|string|null $key = null): array {
+  protected function exportObject(object $object, int $depth, int|string|null $key = null): mixed {
     foreach ($this->exportersByClass as $class => $callback) {
       if ($object instanceof $class) {
         return $callback($object, $depth, $key, $this);
@@ -235,22 +250,23 @@ class Exporter_ToYamlArray implements ExporterInterface {
       $suffix = '';
       $base = $path;
     }
-    while (TRUE) {
+    while (true) {
       if ($base === '/') {
         return $path;
       }
-      if (file_exists($base . '/composer.json')) {
-        $package_name = json_decode(file_get_contents($base . '/composer.json'), TRUE)['name'];
+      if (file_exists($base . '/composer.json') && is_readable($base . '/composer.json')) {
+        $json = file_get_contents($base . '/composer.json');
+        // We know at this point that composer.json exists, and we assume it is
+        // readable. So we expect that file_get_contents() does not return
+        // false.
+        assert($json !== false, "Failed to read '$base/composer.json'.");
+        // @phpstan-ignore offsetAccess.nonOffsetAccessible
+        $package_name = json_decode($json, true)['name'] ?? NULL;
+        assert(is_string($package_name));
         return "[$package_name]$suffix";
       }
       $suffix = '/' . basename($base) . $suffix;
       $base = dirname($base);
-    }
-  }
-
-  function foo(): bool {
-    while (TRUE) {
-      return TRUE;
     }
   }
 
@@ -312,7 +328,7 @@ class Exporter_ToYamlArray implements ExporterInterface {
   protected static function arrayDiffAssocStrict(array $a, array $b): array {
     $diff = \array_filter(
       $a,
-      fn (mixed $v, string|int|null $k) => !\array_key_exists($k, $b)
+      fn (mixed $v, string|int $k) => !\array_key_exists($k, $b)
         || $v !== $b[$k],
       \ARRAY_FILTER_USE_BOTH,
     );

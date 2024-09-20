@@ -1,0 +1,13 @@
+parameters:
+  level: 9
+  treatPhpDocTypesAsCertain: false
+  paths:
+    - .
+  excludePaths:
+    - vendor
+    - .github
+  ignoreErrors:
+    # Assume that iterable value is 'mixed' if not further specified.
+    - identifier: missingType.iterableValue
+    # Assume that generic type is 'mixed' if not further specified.
+    - identifier: missingType.generics
