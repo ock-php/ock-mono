@@ -47,7 +47,7 @@ jobs:
 
       - run: composer install --no-interaction
 
-      - name: PhpStan 1
+      - name: PhpStan
         run: |
           if [ -f phpstan.neon ]; then
             cp composer.json composer.json.bak
@@ -56,20 +56,8 @@ jobs:
             rm composer.json composer.lock
             mv composer.json.bak composer.json
             mv composer.lock.bak composer.lock
-            ./vendor/bin/phpstan
-            composer remove --dev phpstan/phpstan:^1
-          fi
-
-      - name: PhpStan 2
-        run: |
-          if [ -f phpstan.neon ]; then
-            cp composer.json composer.json.bak
-            cp composer.lock composer.lock.bak
-            composer require --dev phpstan/phpstan:^2
-            rm composer.json composer.lock
-            mv composer.json.bak composer.json
-            mv composer.lock.bak composer.lock
-            ./vendor/bin/phpstan
+            ./vendor/bin/phpstan -v
+            composer remove --dev phpstan/phpstan
           fi
 
       - run: vendor/bin/phpunit
