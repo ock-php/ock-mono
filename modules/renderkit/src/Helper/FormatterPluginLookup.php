@@ -19,7 +19,7 @@ class FormatterPluginLookup {
    */
   public function __construct(
     private readonly FieldDefinitionLookupInterface $fieldDefinitionLookup,
-    #[Autowire('plugin.manager.field.formatter')]
+    #[Autowire(service: 'plugin.manager.field.formatter')]
     private readonly FormatterPluginManager $formatterPluginManager,
   ) {}
 
