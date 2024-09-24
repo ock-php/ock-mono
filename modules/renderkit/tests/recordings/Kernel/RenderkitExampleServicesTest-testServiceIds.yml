@@ -1,0 +1,5 @@
+test: 'Drupal\Tests\renderkit\Kernel\RenderkitExampleServicesTest::testServiceIds()'
+values:
+  -
+    "Service ids from 'renderkit_example' module.":
+      - Drupal\renderkit_example\RenderkitExampleNamespace
