@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\service_discovery\Kernel;
 
-use Drupal\KernelTests\KernelTestBase;
+use Drupal\service_discovery\Testing\ServicesTestBase;
 use Ock\Testing\RecordedTestTrait;
 
-class ServicesTest extends KernelTestBase {
+class ServicesTest extends ServicesTestBase {
 
   use RecordedTestTrait;
 
@@ -19,19 +19,5 @@ class ServicesTest extends KernelTestBase {
   protected static $modules = [
     'service_discovery_test',
   ];
-
-  public function testServices(): void {
-    $container = \Drupal::getContainer();
-    $all_ids = $container->getServiceIds();
-    $ids = \preg_grep('#service_discovery_test#', $all_ids);
-    $services = \array_map(
-      $container->get(...),
-      \array_combine($ids, $ids),
-    );
-    $this->assertObjectsAsRecorded(
-      $services,
-      arrayKeyIsDefaultClass: true,
-    );
-  }
 
 }
