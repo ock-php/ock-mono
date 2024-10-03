@@ -1,0 +1,5 @@
+test: 'Drupal\Tests\ock\Kernel\OckExampleServicesTest::testServiceIds()'
+values:
+  -
+    "Service ids from 'ock_example' module.":
+      - Drupal\ock_example\OckExampleNamespace
