@@ -1,4 +1,4 @@
-test: 'Drupal\Tests\renderkit\Kernel\RenderkitServicesTest::testServicesExist()'
+test: 'Drupal\Tests\renderkit\Kernel\RenderkitServicesTest::testPublicServicesExist()'
 values:
   -
     'Service types.':

@@ -1,7 +1,7 @@
 test: 'Drupal\Tests\renderkit\Kernel\RenderkitServicesTest::testServiceIds()'
 values:
   -
-    'Service ids from renderkit module.':
+    "Service ids from 'renderkit' module.":
       - Drupal\renderkit\Formula\Formula_EntityFormMode
       - Drupal\renderkit\Formula\Formula_EntityType
       - Drupal\renderkit\Formula\Formula_EntityType_Flat
