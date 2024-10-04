@@ -1,0 +1,4 @@
+test: 'Drupal\Tests\ock\Kernel\OckExampleServicesTest::testPublicServicesExist()'
+values:
+  -
+    'Service types.': {  }

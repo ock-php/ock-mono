@@ -1,6 +1,0 @@
-test: 'Drupal\Tests\service_discovery\Kernel\ServicesTest::testServices()'
-values:
-  -
-    Drupal\service_discovery_test\ServiceAtlas:
-      $exampleService:
-        class: Drupal\service_discovery_test\ExampleService

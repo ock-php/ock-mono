@@ -1,0 +1,28 @@
+test: 'Drupal\Tests\renderkit\Kernel\RenderkitServicesTest::testServiceIds()'
+values:
+  -
+    "Service ids from 'renderkit' module.":
+      - Drupal\renderkit\Formula\Formula_EntityFormMode
+      - Drupal\renderkit\Formula\Formula_EntityType
+      - Drupal\renderkit\Formula\Formula_EntityType_Flat
+      - Drupal\renderkit\Formula\Formula_EntityType_WithFields
+      - Drupal\renderkit\Formula\Formula_EntityViewMode
+      - Drupal\renderkit\Formula\Formula_EtDotFieldName
+      - Drupal\renderkit\Formula\Formula_EtDotFieldName_EntityReference
+      - Drupal\renderkit\Formula\Formula_FieldFormatterId
+      - Drupal\renderkit\Formula\Formula_FieldType_Flat
+      - Drupal\renderkit\Helper\FieldDefinitionLookupInterface
+      - Drupal\renderkit\Helper\FieldDefinitionLookup_Buffer.inner
+      - Drupal\renderkit\Helper\FormatterPluginLookup
+      - Drupal\renderkit\RenderkitNamespace
+      - Drupal\renderkit\TextLookup\TextLookup_BaseField
+      - Drupal\renderkit\TextLookup\TextLookup_BundleField
+      - Drupal\renderkit\TextLookup\TextLookup_EntityField
+      - Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType
+      - Drupal\renderkit\TextLookup\TextLookup_EntityType
+      - Drupal\renderkit\TextLookup\TextLookup_EntityTypeDotId
+      - Drupal\renderkit\TextLookup\TextLookup_FieldType
+      - lookup.Drupal\renderkit\Formula\Formula_ConfigEntityId
+      - lookup.Drupal\renderkit\Formula\Formula_EntityIdAutocomplete
+      - lookup.Drupal\renderkit\Formula\Formula_FieldName
+      - lookup.Drupal\renderkit\TextLookup\TextLookup_FieldName
