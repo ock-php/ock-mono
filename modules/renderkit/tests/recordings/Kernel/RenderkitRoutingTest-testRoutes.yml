@@ -1,0 +1,38 @@
+test: 'Drupal\Tests\renderkit\Kernel\RenderkitRoutingTest::testRoutes()'
+values:
+  -
+    "Routes from 'renderkit' module.":
+      renderkit.report.demo:
+        getDefaults():
+          _controller: 'Drupal\renderkit\Controller\Controller_Report::demo'
+          _title: 'Build provider demo'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          _menu_link: {  }
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): /admin/reports/renderkit/build-provider-demo
+        getRequirements():
+          _permission: 'view renderkit report pages'
+      renderkit.report.index:
+        getDefaults():
+          _controller: 'Drupal\renderkit\Controller\Controller_Report::index'
+          _title: Renderkit
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          _menu_link: {  }
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): /admin/reports/renderkit
+        getRequirements():
+          _permission: 'view renderkit report pages'
