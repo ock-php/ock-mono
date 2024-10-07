@@ -88,6 +88,9 @@ abstract class OckRoutingTestBase extends KernelTestBase {
     return $matches[1];
   }
 
+  /**
+   * {@inheritdoc}
+   */
   protected function createExporter(): ExporterInterface {
     return (new Exporter_ToYamlArray())
       ->withObjectGetters(Route::class)
