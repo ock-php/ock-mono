@@ -1,0 +1,223 @@
+test: 'Drupal\Tests\ock\Kernel\OckRoutingTest::testRoutes()'
+values:
+  -
+    "Routes from 'ock' module.":
+      ock.devel_ops.clear:
+        getDefaults():
+          _controller: 'Drupal\ock\UI\Controller\Controller_DevelOps::clear'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          _menu_link:
+            title: 'Rediscover Composition Plugins'
+            menu_name: devel
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): /devel/ock/clear
+        getRequirements():
+          _permission: 'administer ock preset'
+      ock.flush_ock.clear:
+        getDefaults():
+          _controller: 'Drupal\ock\UI\Controller\Controller_FlushOck::clear'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          _menu_link:
+            title: 'Flush Ock plugins'
+            menu_name: admin
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): /admin/flush/ock
+        getRequirements():
+          _permission: 'administer site configuration'
+      ock.report_iface.code:
+        getDefaults():
+          _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportIface::title'
+          _controller: 'Drupal\ock\UI\Controller\Controller_ReportIface::code'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          parameters:
+            interface:
+              type: 'ock:interface'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+          _task_link:
+            title: Code
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): '/admin/reports/ock/{interface}/code'
+        getRequirements():
+          _permission: 'view ock reports'
+      ock.report_iface.demo:
+        getDefaults():
+          _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportIface::title'
+          _controller: 'Drupal\ock\UI\Controller\Controller_ReportIface::demo'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          parameters:
+            interface:
+              type: 'ock:interface'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+          _task_link:
+            title: Demo
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): '/admin/reports/ock/{interface}/demo'
+        getRequirements():
+          _permission: 'view ock reports'
+      ock.report_iface.list_of_plugins:
+        getDefaults():
+          _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportIface::title'
+          _controller: 'Drupal\ock\UI\Controller\Controller_ReportIface::listOfPlugins'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          parameters:
+            interface:
+              type: 'ock:interface'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+          _task_link_default:
+            title: 'List of plugins'
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): '/admin/reports/ock/{interface}'
+        getRequirements():
+          _permission: 'view ock reports'
+      ock.report_overview.overview:
+        getDefaults():
+          _controller: 'Drupal\ock\UI\Controller\Controller_ReportOverview::overview'
+          _title: 'ock plugins'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          _menu_link: {  }
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): /admin/reports/ock
+        getRequirements():
+          _permission: 'view ock reports'
+      ock.report_plugin.code:
+        getDefaults():
+          _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::title'
+          _controller: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::code'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          parameters:
+            interface:
+              type: 'ock:interface'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+            named_plugin:
+              type: 'ock:plugin'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
+          _task_link:
+            title: Code
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): '/admin/reports/ock/{interface}/plugin/{named_plugin}/code'
+        getRequirements():
+          _permission: 'view ock reports'
+      ock.report_plugin.demo:
+        getDefaults():
+          _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::title'
+          _controller: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::demo'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          parameters:
+            interface:
+              type: 'ock:interface'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+            named_plugin:
+              type: 'ock:plugin'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
+          _task_link:
+            title: Demo
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): '/admin/reports/ock/{interface}/plugin/{named_plugin}/demo'
+        getRequirements():
+          _permission: 'view ock reports'
+      ock.report_plugin.devel:
+        getDefaults():
+          _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::title'
+          _controller: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::devel'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          parameters:
+            interface:
+              type: 'ock:interface'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+            named_plugin:
+              type: 'ock:plugin'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
+          _task_link:
+            title: Devel
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): '/admin/reports/ock/{interface}/plugin/{named_plugin}/devel'
+        getRequirements():
+          _permission: 'view ock reports'
+      ock.report_plugin.plugin:
+        getDefaults():
+          _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::title'
+          _controller: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::plugin'
+        getMethods():
+          - GET
+          - POST
+        getOptions():
+          compiler_class: Drupal\Core\Routing\RouteCompiler
+          _admin_route: true
+          parameters:
+            interface:
+              type: 'ock:interface'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+            named_plugin:
+              type: 'ock:plugin'
+              converter: Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
+          _task_link_default:
+            title: Plugin
+          _access_checks:
+            - access_check.permission
+          utf8: true
+        getPath(): '/admin/reports/ock/{interface}/plugin/{named_plugin}'
+        getRequirements():
+          _permission: 'view ock reports'
