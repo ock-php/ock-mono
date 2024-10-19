@@ -3,35 +3,32 @@ declare(strict_types=1);
 
 namespace Drupal\ock_preset\Controller;
 
-use Donquixote\Cf\Schema\CfSchema;
-use Donquixote\Cf\Summarizer\Summarizer;
-use Drupal\controller_annotations\Configuration\Route;
-use Drupal\controller_annotations\Configuration\RouteIsAdmin;
-use Drupal\controller_annotations\Configuration\RouteParameters;
-use Drupal\controller_annotations\Configuration\RouteRequirePermission;
-use Drupal\controller_annotations\Configuration\RouteTitleMethod;
-use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
-use Drupal\controller_annotations\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
+use Drupal\ock\Attribute\Routing\Route;
+use Drupal\ock\Attribute\Routing\RouteActionLink;
+use Drupal\ock\Attribute\Routing\RouteDefaultTaskLink;
+use Drupal\ock\Attribute\Routing\RouteIsAdmin;
+use Drupal\ock\Attribute\Routing\RouteParameters;
+use Drupal\ock\Attribute\Routing\RouteRequirePermission;
+use Drupal\ock\Attribute\Routing\RouteTaskLink;
+use Drupal\ock\Attribute\Routing\RouteTitleMethod;
+use Drupal\ock\UI\Controller\ControllerRouteNameInterface;
+use Drupal\ock\UI\Controller\ControllerRouteNameTrait;
+use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
+use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
+use Drupal\ock\Util\StringUtil;
+use Drupal\ock\Util\UiUtil;
 use Drupal\ock_preset\Form\Form_Decorator;
 use Drupal\ock_preset\Form\Form_PresetEdit;
 use Drupal\ock_preset\Form\Util\PresetConfUtil;
-use Drupal\ock_preset\Hub\CfrPluginHub;
-use Drupal\ock_preset\RouteHelper\ClassRouteHelper;
-use Drupal\ock_preset\Util\StringUtil;
-use Drupal\ock_preset\Util\UiUtil;
-use Drupal\routelink\RouteModifier\RouteActionLink;
-use Drupal\routelink\RouteModifier\RouteDefaultTaskLink;
-use Drupal\routelink\RouteModifier\RouteTaskLink;
+use Ock\Ock\Summarizer\Summarizer;
 
-/**
- * @Route("/admin/structure/ock_preset/{interface}")
- * @RouteIsAdmin
- * @RouteTitleMethod("title")
- * @RouteRequirePermission("administer ock_preset")
- * @RouteParameters(interface = "ock_preset:interface")
- */
+#[Route('/admin/structure/ock_preset/{interface}')]
+#[RouteIsAdmin]
+#[RouteTitleMethod([self::class, 'title'])]
+#[RouteRequirePermission('administer ock_preset')]
+#[RouteParameters(['interface' => 'ock_preset::interface'])]
 class Controller_IfacePresets extends ControllerBase implements ControllerRouteNameInterface {
 
   use ControllerRouteNameTrait;
@@ -40,15 +37,16 @@ class Controller_IfacePresets extends ControllerBase implements ControllerRouteN
    * @param string $interface
    * @param string $methodName
    *
-   * @return \Drupal\ock_preset\RouteHelper\ClassRouteHelperInterface
+   * @return \Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface
    */
-  public static function route($interface, $methodName = 'index') {
+  public static function route(string $interface, string $methodName = 'index'): ClassRouteHelperInterface {
     return ClassRouteHelper::fromClassName(
       self::class,
       [
         'interface' => UiUtil::interfaceGetSlug($interface),
       ],
-      $methodName);
+      $methodName,
+    );
   }
 
   /**
@@ -56,20 +54,18 @@ class Controller_IfacePresets extends ControllerBase implements ControllerRouteN
    *
    * @return string
    */
-  public function title($interface) {
-
+  public function title(string $interface): string {
     return StringUtil::interfaceGenerateLabel($interface);
   }
 
   /**
-   * @Route
-   * @RouteDefaultTaskLink("List")
-   *
    * @param string $interface
    *
    * @return array
    */
-  public function index($interface) {
+  #[Route]
+  #[RouteDefaultTaskLink('List')]
+  public function index(string $interface): array {
 
     $configFactory = \Drupal::configFactory();
 
@@ -130,33 +126,31 @@ class Controller_IfacePresets extends ControllerBase implements ControllerRouteN
   }
 
   /**
-   * @Route("/add")
-   * @RouteTaskLink("Add preset")
-   * @RouteActionLink("Add preset")
+   * Shows a page with a preset add form.
    *
    * @param string $interface
+   *   Interface from url.
    *
    * @return array
+   *   Page content render element.
    */
-  public function add($interface) {
+  #[Route('/add')]
+  #[RouteTaskLink('Add preset')]
+  #[RouteActionLink('Add preset')]
+  public function add(string $interface): array {
     $page = [];
-
     $interfaceLabel = StringUtil::interfaceGenerateLabel($interface);
-
     $page['#title'] = $this->t(
       'Create %type plugin preset',
-      ['%type' => $interfaceLabel]);
-
+      ['%type' => $interfaceLabel],
+    );
     $formObject = Form_PresetEdit::create($interface);
-
     if (!empty($_GET['conf'])) {
       $formObject = $formObject->withConf($_GET['conf']);
     }
     else {
       $conf = NULL;
     }
-
-    /** @noinspection PhpMethodParametersCountMismatchInspection */
     $page['form'] = \Drupal::formBuilder()->getForm(
       Form_Decorator::class, $formObject);
 

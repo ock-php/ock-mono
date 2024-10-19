@@ -3,23 +3,22 @@ declare(strict_types=1);
 
 namespace Drupal\ock_preset\Controller;
 
-use Drupal\controller_annotations\Configuration\Route;
-use Drupal\controller_annotations\Configuration\RouteIsAdmin;
-use Drupal\controller_annotations\Configuration\RouteRequirePermission;
-use Drupal\controller_annotations\Configuration\RouteTitle;
-use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
-use Drupal\controller_annotations\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
+use Drupal\ock\Attribute\Routing\Route;
+use Drupal\ock\Attribute\Routing\RouteIsAdmin;
+use Drupal\ock\Attribute\Routing\RouteMenuLink;
+use Drupal\ock\Attribute\Routing\RouteRequirePermission;
+use Drupal\ock\Attribute\Routing\RouteTitle;
+use Drupal\ock\UI\Controller\ControllerRouteNameInterface;
+use Drupal\ock\UI\Controller\ControllerRouteNameTrait;
+use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
+use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
 use Drupal\ock_preset\Crud\PresetRepository;
-use Drupal\ock_preset\RouteHelper\ClassRouteHelper;
-use Drupal\routelink\RouteModifier\RouteMenuLink;
 
-/**
- * @Route("/admin/structure/ock_preset")
- * @RouteIsAdmin
- * @RouteRequirePermission("administer ock_preset")
- */
+#[Route('/admin/structure/ock_preset')]
+#[RouteIsAdmin]
+#[RouteRequirePermission('view ock reports')]
 class Controller_AllPresetsOverview extends ControllerBase implements ControllerRouteNameInterface {
 
   use ControllerRouteNameTrait;
@@ -27,26 +26,18 @@ class Controller_AllPresetsOverview extends ControllerBase implements Controller
   /**
    * @param string $methodName
    *
-   * @return \Drupal\ock_preset\RouteHelper\ClassRouteHelperInterface
+   * @return \Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface
    */
-  public static function route($methodName = 'index') {
+  public static function route(string $methodName = 'index'): ClassRouteHelperInterface {
     return ClassRouteHelper::fromClassName(self::class, [], $methodName);
   }
 
-  /**
-   * @Route
-   * @RouteTitle("ock_preset presets")
-   * @RouteMenuLink
-   *
-   * @return array
-   */
-  public function index() {
-
-    /** @var \Drupal\Core\Config\ImmutableConfig[][] $configss */
+  #[Route]
+  #[RouteTitle('ock_preset presets')]
+  #[RouteMenuLink]
+  public function index(): array {
     $configss = PresetRepository::create()->loadAll();
-
     $orphanConfigss = $configss;
-
     $interfaceLabels = ock_preset()->getInterfaceLabels();
 
     $rows = [];
@@ -58,9 +49,7 @@ class Controller_AllPresetsOverview extends ControllerBase implements Controller
         unset($orphanConfigss[$interface]);
 
         foreach ($interfaceConfigs as $machine_name => $config) {
-
-          $presets_html .= ''
-            . '<li>'
+          $presets_html .= '<li>'
             . Controller_Preset::route($interface, $machine_name)
               ->link($config->get('label'))
               ->toString()
@@ -85,8 +74,7 @@ class Controller_AllPresetsOverview extends ControllerBase implements Controller
         ->link($this->t('add preset'));
 
       $cells = [];
-      $cells[] = ''
-        . '<strong>' . $interfaceLink->toString() . '</strong>'
+      $cells[] = '<strong>' . $interfaceLink->toString() . '</strong>'
         . '<br/>'
         . '<code>' . $interface . '</code>';
       $cells[] = $presets_html;
