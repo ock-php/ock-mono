@@ -5,6 +5,7 @@ values:
       - Drupal\ock\DI\OckCallbackResolverInterface
       - Drupal\ock\Formula\Formula_PermissionId
       - Drupal\ock\OckModuleNamespace
+      - Drupal\ock\TextToDrupal\TextToDrupalInterface
       - Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface
       - Ock\Adaptism\Inspector\FactoryInspector_AdapterAttribute
       - Ock\Adaptism\Inspector\FactoryInspector_SelfAdapterAttribute

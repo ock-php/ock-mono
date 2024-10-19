@@ -4,6 +4,7 @@ values:
     'Service types.':
       Drupal\ock\DI\OckCallbackResolverInterface: Drupal\ock\DI\OckCallbackResolver
       Drupal\ock\Formula\Formula_PermissionId: '='
+      Drupal\ock\TextToDrupal\TextToDrupalInterface: Drupal\ock\TextToDrupal\TextToDrupal_Default
       Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface: Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery
       Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface: Ock\Adaptism\UniversalAdapter\UniversalAdapter
       Ock\Egg\ParamToEgg\ParamToEggInterface: Ock\Egg\ParamToEgg\ParamToEgg_Chain
