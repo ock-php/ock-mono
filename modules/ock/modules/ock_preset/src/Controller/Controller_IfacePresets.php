@@ -15,6 +15,7 @@ use Drupal\ock\Attribute\Routing\RouteTaskLink;
 use Drupal\ock\Attribute\Routing\RouteTitleMethod;
 use Drupal\ock\UI\Controller\ControllerRouteNameInterface;
 use Drupal\ock\UI\Controller\ControllerRouteNameTrait;
+use Drupal\ock\UI\ParamConverter\ParamConverter_Iface;
 use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
 use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
 use Drupal\ock\Util\StringUtil;
@@ -28,7 +29,7 @@ use Ock\Ock\Summarizer\Summarizer;
 #[RouteIsAdmin]
 #[RouteTitleMethod([self::class, 'title'])]
 #[RouteRequirePermission('administer ock_preset')]
-#[RouteParameters(['interface' => 'ock_preset::interface'])]
+#[RouteParameters(['interface' => ParamConverter_Iface::TYPE])]
 class Controller_IfacePresets extends ControllerBase implements ControllerRouteNameInterface {
 
   use ControllerRouteNameTrait;
