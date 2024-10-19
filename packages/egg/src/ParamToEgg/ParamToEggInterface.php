@@ -5,9 +5,7 @@ declare(strict_types = 1);
 namespace Ock\Egg\ParamToEgg;
 
 use Ock\Egg\Egg\EggInterface;
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-#[AutoconfigureTag(self::SERVICE_TAG)]
 interface ParamToEggInterface {
 
   const SERVICE_TAG = self::class;

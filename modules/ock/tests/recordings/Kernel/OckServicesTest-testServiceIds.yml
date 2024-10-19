@@ -3,7 +3,6 @@ values:
   -
     "Service ids from 'ock' module.":
       - Drupal\ock\DI\OckCallbackResolverInterface
-      - Drupal\ock\DI\ParamToEgg_CustomArgsDecorator
       - Drupal\ock\Formula\Formula_PermissionId
       - Drupal\ock\OckModuleNamespace
       - Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface
