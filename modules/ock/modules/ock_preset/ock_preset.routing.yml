@@ -1,2 +1,2 @@
 route_callbacks:
-  - Drupal\ock_preset\UI\OckPresetRouteProvider::routes
+  - Drupal\ock_preset\OckPresetRouteProvider::routes
