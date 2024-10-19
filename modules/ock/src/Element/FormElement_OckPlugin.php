@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Element;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Attribute\FormElement;
 use Drupal\Core\Render\Element\FormElementBase;
@@ -31,6 +32,42 @@ class FormElement_OckPlugin extends FormElementBase {
       '#ock_context' => NULL,
       '#title' => NULL,
     ];
+  }
+
+  /**
+   * Creates a form element of this type.
+   *
+   * This method exists so that developers don't need to remember the property
+   * names available for this element type.
+   *
+   * @param string $interface
+   *   Interface.
+   * @param string|\Drupal\Component\Render\MarkupInterface $title
+   *   Title.
+   * @param array|null $default_value
+   *   Default value.
+   * @param mixed $context
+   *   (optional) Context.
+   *
+   * @return array
+   *   Form element array.
+   */
+  public static function createElement(
+    string $interface,
+    string|MarkupInterface $title,
+    array|null $default_value = NULL,
+    mixed $context = NULL,
+  ): array {
+    $element = [
+      '#type' => self::ELEMENT_TYPE,
+      '#ock_interface' => $interface,
+      '#title' => $title,
+      '#default_value' => $default_value,
+    ];
+    if ($context !== NULL) {
+      $element['#ock_context'] = $context;
+    }
+    return $element;
   }
 
   /**
