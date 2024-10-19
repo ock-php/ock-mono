@@ -55,11 +55,11 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
    * @return \Drupal\Core\Url
    */
   public function url(array $options = []): Url {
-
     return new Url(
       $this->routeName(),
       $this->routeParameters,
-      $options);
+      $options,
+    );
   }
 
   /**
