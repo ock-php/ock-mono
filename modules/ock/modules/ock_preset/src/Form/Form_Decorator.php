@@ -11,7 +11,7 @@ class Form_Decorator implements FormInterface {
   /**
    * @var \Drupal\Core\Form\FormInterface|null
    */
-  private $decorated;
+  private ?FormInterface $decorated;
 
   /**
    * Returns a unique string identifying the form.
