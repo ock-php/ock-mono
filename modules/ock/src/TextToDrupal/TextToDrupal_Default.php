@@ -10,7 +10,7 @@ use Ock\Ock\Text\TextInterface;
 use Ock\Ock\Translator\TranslatorInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
-#[AsAlias]
+#[AsAlias(public: true)]
 class TextToDrupal_Default implements TextToDrupalInterface {
 
   /**
