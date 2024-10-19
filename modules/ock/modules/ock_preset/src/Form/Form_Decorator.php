@@ -14,10 +14,7 @@ class Form_Decorator implements FormInterface {
   private ?FormInterface $decorated;
 
   /**
-   * Returns a unique string identifying the form.
-   *
-   * @return string
-   *   The unique string identifying the form.
+   * {@inheritdoc}
    */
   public function getFormId(): string {
     return 'ock_preset_decorator_form';
