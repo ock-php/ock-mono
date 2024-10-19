@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace Drupal\ock_preset\Controller;
 
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\ock\Attribute\Routing\Route;
 use Drupal\ock\Attribute\Routing\RouteDefaultTaskLink;
 use Drupal\ock\Attribute\Routing\RouteIsAdmin;
@@ -32,6 +34,21 @@ use Drupal\ock_preset\Form\Util\PresetConfUtil;
 class Controller_Preset extends ControllerBase implements ControllerRouteNameInterface {
 
   use ControllerRouteNameTrait;
+
+  /**
+   * Constructor.
+   *
+   * @param \Drupal\Core\Form\FormBuilderInterface $formBuilder
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
+   */
+  public function __construct(
+    FormBuilderInterface $formBuilder,
+    ConfigFactoryInterface $configFactory,
+  ) {
+    // Initialize base class properties.
+    $this->configFactory = $configFactory;
+    $this->formBuilder = $formBuilder;
+  }
 
   /**
    * Creates a builder object to create links and urls.
@@ -103,11 +120,12 @@ class Controller_Preset extends ControllerBase implements ControllerRouteNameInt
       ->withExistingPreset(
         $preset_name,
         $config->get('label'),
-        $config->get('conf'));
-    $page['form'] = $this->formBuilder()
-      ->getForm(
-        Form_Decorator::class,
-        $formObject);
+        $config->get('conf'),
+      );
+    $page['form'] = $this->formBuilder->getForm(
+      Form_Decorator::class,
+      $formObject,
+    );
 
     return $page;
   }
@@ -137,11 +155,12 @@ class Controller_Preset extends ControllerBase implements ControllerRouteNameInt
       $interface,
       $preset_name,
       $config->get('label'),
-      $config->get('conf'));
-    $page['form'] = $this->formBuilder()
-      ->getForm(
-        Form_Decorator::class,
-        $formObject);
+      $config->get('conf'),
+    );
+    $page['form'] = $this->formBuilder->getForm(
+      Form_Decorator::class,
+      $formObject,
+    );
 
     return $page;
   }
@@ -158,9 +177,8 @@ class Controller_Preset extends ControllerBase implements ControllerRouteNameInt
    *   Configuration.
    */
   private function getConfig(string $interface, string $preset): ImmutableConfig {
-    $configFactory = \Drupal::configFactory();
     $key = PresetConfUtil::presetConfKey($interface, $preset);
-    return $configFactory->get($key);
+    return $this->configFactory->get($key);
   }
 
 }
