@@ -31,7 +31,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  *
  * By default, a module service provider that extends this class will scan the
  * entire module's src directory. To scan only specific directories, you can
- * override the ::registerForCurrentModule() method.
+ * override the ::doRegister() method.
  */
 abstract class ModuleServiceProviderBase extends PackageServiceProviderBase implements ServiceProviderInterface {
 
