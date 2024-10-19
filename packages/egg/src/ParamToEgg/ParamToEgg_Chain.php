@@ -25,8 +25,18 @@ class ParamToEgg_Chain implements ParamToEggInterface {
    * {@inheritdoc}
    */
   public function paramGetEgg(\ReflectionParameter $parameter): ?EggInterface {
+    static $recursion_depth = 0;
+    if ($recursion_depth > 5) {
+      throw new \RuntimeException('Seems like infinite loop.');
+    }
     foreach ($this->paramToEggs as $paramToEgg) {
-      $egg = $paramToEgg->paramGetEgg($parameter);
+      ++$recursion_depth;
+      try {
+        $egg = $paramToEgg->paramGetEgg($parameter);
+      }
+      finally {
+        --$recursion_depth;
+      }
       if ($egg !== NULL) {
         return $egg;
       }
