@@ -5,6 +5,7 @@ namespace Drupal\ock_preset\Form;
 
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\ock\Element\FormElement_OckPlugin;
 use Drupal\ock_preset\Controller\Controller_IfacePresets;
 use Drupal\ock_preset\Controller\Controller_Preset;
 use Drupal\ock_preset\Crud\PresetRepository;
@@ -14,17 +15,17 @@ class Form_PresetEdit implements FormInterface {
   /**
    * @var null|string
    */
-  private ?string $presetMachineName;
+  private ?string $presetMachineName = NULL;
 
   /**
    * @var null|string
    */
-  private ?string $label;
+  private ?string $label = NULL;
 
   /**
    * @var mixed|null
    */
-  private mixed $conf;
+  private mixed $conf = NULL;
 
   /**
    * @param string $interface
@@ -93,16 +94,14 @@ class Form_PresetEdit implements FormInterface {
       '#default_value' => $this->label,
     ];
 
-    // Placeholder.
+    // Pre-fill this key to make sure it comes before other keys.
     $form['machine_name'] = [];
 
-    $form['conf'] = [
-      /* @see \Drupal\ock_preset\Element\FormElement_CfrPlugin */
-      '#type' => 'ock_preset',
-      '#ock_preset_interface' => $this->interface,
-      '#title' => t('Plugin'),
-      '#default_value' => $this->conf,
-    ];
+    $form['conf'] = FormElement_OckPlugin::createElement(
+      $this->interface,
+      t('Plugin'),
+      $this->conf,
+    );
 
     $form['actions'] = ['#type' => 'actions'];
 
