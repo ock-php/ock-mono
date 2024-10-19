@@ -10,8 +10,10 @@ use Drupal\ock\Formator\FormatorD8;
 use Ock\Adaptism\Exception\AdapterException;
 use Ock\Ock\Formula\Formula;
 
-#[FormElement('ock')]
+#[FormElement(self::ELEMENT_TYPE)]
 class FormElement_OckPlugin extends FormElementBase {
+
+  const ELEMENT_TYPE = 'ock';
 
   /**
    * {@inheritdoc}
