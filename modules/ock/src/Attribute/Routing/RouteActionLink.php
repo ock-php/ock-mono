@@ -10,43 +10,33 @@ use Symfony\Component\Routing\Route;
 class RouteActionLink implements RouteModifierInterface {
 
   /**
-   * @var string
+   * Constructor.
+   *
+   * @param string $title
+   *   Title to use for the action link.
+   * @param list<string> $appears_on
+   *   Routes which the action link appears on.
+   *   The spelling (lower snake case) reflects the spelling of the setting in
+   *   the respective yaml file.
    */
-  private mixed $title;
-
-  /**
-   * @var string[]|string|null
-   */
-  private mixed $appears_on;
-
-  /**
-   * @param array $values
-   */
-  public function __construct(array $values) {
-
-    if (isset($values['title'])) {
-      $this->title = $values['title'];
-    }
-    elseif (isset($values['value'])) {
-      $this->title = $values['value'];
-    }
-    else {
-      throw new \RuntimeException("Action link title is required.");
-    }
-
-    if (isset($values['appears_on'])) {
-      $this->appears_on = $values['appears_on'];
-    }
-  }
+  public function __construct(
+    private readonly string $title,
+    private readonly ?array $appears_on = null,
+    private readonly ?int $weight = null,
+  ) {}
 
   /**
    * {@inheritdoc}
    */
   public function modifyRoute(Route $route, \ReflectionMethod|\ReflectionClass $reflector): void {
-    $link = [];
-    $link['title'] = $this->title;
+    $link = [
+      'title' => $this->title,
+    ];
     if ($this->appears_on !== NULL) {
       $link['appears_on'] = $this->appears_on;
+    }
+    if ($this->weight !== NULL) {
+      $link['weight'] = $this->weight;
     }
     $route->setOption('_action_link', $link);
   }
