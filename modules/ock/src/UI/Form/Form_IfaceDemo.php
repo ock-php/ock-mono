@@ -29,12 +29,11 @@ class Form_IfaceDemo implements FormInterface {
 
     $settings = $_GET[self::KEY] ?? [];
 
-    $form[self::KEY] = [
-      '#type' => FormElement_OckPlugin::ELEMENT_TYPE,
-      '#ock_interface' => $interface,
-      '#title' => \t('Plugin'),
-      '#default_value' => $settings,
-    ];
+    $form[self::KEY] = FormElement_OckPlugin::createElement(
+      $interface,
+      \t('Plugin'),
+      $settings,
+    );
 
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
