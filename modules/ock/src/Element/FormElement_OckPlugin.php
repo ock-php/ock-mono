@@ -41,9 +41,11 @@ class FormElement_OckPlugin extends FormElementBase {
    *   Processed element.
    */
   public static function process(array &$element): array {
+    $interface = $element['#ock_interface']
+      ?? throw new \RuntimeException('Missing key #ock_interface in form element.');
 
     // @todo Filter by context.
-    $formula = Formula::iface($element['#ock_interface']);
+    $formula = Formula::iface($interface);
 
     try {
       $formator = FormatorD8::fromFormula($formula);
