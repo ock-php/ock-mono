@@ -89,7 +89,9 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   private function __construct(
     private string $directory,
     private readonly string $terminatedNamespace,
-  ) {}
+  ) {
+    assert(is_dir($directory), "Directory '$directory' does not exist, or is not a directory.");
+  }
 
   /**
    * Gets a version where all base paths are sent through ->realpath().
