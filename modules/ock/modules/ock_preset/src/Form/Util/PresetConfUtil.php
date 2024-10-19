@@ -16,7 +16,7 @@ class PresetConfUtil {
    *
    * @return string
    */
-  public static function presetConfKey($interface, $preset_name): string {
+  public static function presetConfKey(string $interface, string $preset_name): string {
     $key = self::interfaceConfPrefix($interface) . $preset_name;
     ConfigBase::validateName($key);
     return $key;
@@ -27,7 +27,7 @@ class PresetConfUtil {
    *
    * @return string
    */
-  public static function interfaceConfPrefix($interface): string {
+  public static function interfaceConfPrefix(string $interface): string {
     return self::CONF_PREFIX
       . str_replace('\\', '-', $interface) . '.';
   }

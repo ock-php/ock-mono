@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock_preset\Crud;
 
+use Drupal\Core\Config\Config;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\ock_preset\Form\Util\PresetConfUtil;
@@ -12,7 +13,7 @@ class PresetRepository {
   /**
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
-  private $configFactory;
+  private ConfigFactoryInterface $configFactory;
 
   /**
    * @return \Drupal\ock_preset\Crud\PresetRepository
@@ -51,7 +52,7 @@ class PresetRepository {
    *
    * @return \Drupal\Core\Config\ImmutableConfig[]
    */
-  public function loadForInterface($interface): array {
+  public function loadForInterface(string $interface): array {
 
     $prefix = PresetConfUtil::interfaceConfPrefix($interface);
 
@@ -73,7 +74,7 @@ class PresetRepository {
    *
    * @return \Drupal\Core\Config\ImmutableConfig
    */
-  public function load($interface, $preset_name): ImmutableConfig {
+  public function load(string $interface, string $preset_name): ImmutableConfig {
 
     $key = PresetConfUtil::presetConfKey($interface, $preset_name);
 
@@ -86,7 +87,7 @@ class PresetRepository {
    *
    * @return \Drupal\Core\Config\Config
    */
-  public function loadEditable($interface, $preset_name) {
+  public function loadEditable(string $interface, string $preset_name): Config {
 
     $key = PresetConfUtil::presetConfKey($interface, $preset_name);
 
