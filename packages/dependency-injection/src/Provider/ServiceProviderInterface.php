@@ -1,10 +1,6 @@
 <?php
-
-/**
- * @file
- */
-
 declare(strict_types=1);
+
 namespace Ock\DependencyInjection\Provider;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
