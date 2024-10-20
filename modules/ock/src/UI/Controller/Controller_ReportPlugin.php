@@ -126,10 +126,12 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
 
     $rows[] = [
       $this->t('Plugin'),
+      // @todo This output is not useful most of the time.
       UiCodeUtil::exportHighlightWrap($plugin),
     ];
 
     try {
+      // @todo Is this code snippet really useful?
       $formula = $plugin->getFormula();
       $reflObject = new \ReflectionObject($formula);
       $php_file_contents = <<<PHP
