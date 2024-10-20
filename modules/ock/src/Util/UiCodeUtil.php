@@ -26,17 +26,15 @@ final class UiCodeUtil extends UtilBase {
       && !interface_exists($class)
       && !class_exists($class)
     ) {
-      return (string)t(
-        'There is no class or interface named @name.',
-        ['@name' => Markup::create('<code>' . HtmlUtil::sanitize($class) . '</code>')]
-      );
+      return (string) t('There is no class or interface named @name.', [
+        '@name' => Markup::create('<code>' . HtmlUtil::sanitize($class) . '</code>'),
+      ]);
     }
 
     if (NULL === $php = self::classGetPhp($class)) {
-      return (string)t(
-        'Cannot access the code of class @name.',
-        ['@name' => Markup::create('<code>' . HtmlUtil::sanitize($class) . '</code>')]
-      );
+      return (string) t('Cannot access the code of class @name.', [
+        '@name' => Markup::create('<code>' . HtmlUtil::sanitize($class) . '</code>'),
+      ]);
     }
 
     return self::highlightPhp($php);
