@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Render\Markup;
 use Ock\CodegenTools\Util\CodeGen;
 use Ock\Ock\Exception\GeneratorException;
 use Ock\Ock\Formula\StringVal\Formula_StringVal;
@@ -39,16 +40,16 @@ class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_String
         $class_errors[] = 'Class contains more white space than needed.';
       }
       elseif (array_key_exists($class, $classes)) {
-        $class_errors[] = 'Found a duplicate class name: :class.';
+        $class_errors[] = 'Found a duplicate class name: @class.';
       }
       elseif (preg_match('@[^A-Za-z0-9_-]@', $class)) {
-        $class_errors[] = 'Class :class contains characters that are not allowed in class names.';
+        $class_errors[] = 'Class @class contains characters that are not allowed in class names.';
       }
 
       if ([] !== $class_errors) {
 
         $replacements = [
-          ':class' => '<code>' . Html::escape($text) . '</code>',
+          '@class' => Markup::create('<code>' . Html::escape($text) . '</code>'),
         ];
 
         foreach ($class_errors as $message) {
