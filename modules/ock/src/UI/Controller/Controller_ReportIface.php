@@ -101,12 +101,6 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
   #[Route]
   #[RouteDefaultTaskLink('List of plugins')]
   public function listOfPlugins(string $interface): array {
-    /**
-     * @var array[] $rows
-     *   Format: $[] = $row
-     * @var array[][] $rows_grouped
-     *   Format: $[$groupLabel][] = $row
-     */
     $rows = [];
     foreach ($this->pluginMap->typeGetPlugins($interface) as $key => $plugin) {
       $label = $plugin->getLabel()->convert($this->translator);
