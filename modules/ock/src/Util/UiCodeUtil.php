@@ -93,6 +93,7 @@ final class UiCodeUtil extends UtilBase {
 
     $html = '<div class="codeblock"><pre>' . $html . '</pre></div>';
 
+    // @todo Why would class Markup not exist?
     return class_exists(Markup::class)
       ? Markup::create($html)
       : $html;
