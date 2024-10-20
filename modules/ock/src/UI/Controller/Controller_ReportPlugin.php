@@ -96,10 +96,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   #[Route]
   #[RouteDefaultTaskLink('Plugin')]
   public function plugin(string $interface, NamedPlugin $named_plugin): array {
-
     $plugin = $named_plugin->getPlugin();
-    # $id = $named_plugin->getId();
-
     $rows = [];
 
     $rows[] = [
@@ -196,7 +193,6 @@ PHP;
   #[Route('/devel')]
   #[RouteTaskLink('Devel')]
   public function devel(string $interface, NamedPlugin $named_plugin): array {
-    # $id = $named_plugin->getId();
     $plugin = $named_plugin->getPlugin();
     $rows = [];
 
