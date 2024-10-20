@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Serialization\Yaml;
@@ -33,7 +34,6 @@ use Ock\Ock\Generator\Generator;
 use Ock\Ock\Plugin\Map\PluginMapInterface;
 use Ock\Ock\Summarizer\Summarizer;
 use Ock\Ock\Translator\TranslatorInterface;
-use Ock\Ock\Util\HtmlUtil;
 
 /**
  * @see \Drupal\ock\UI\ParamConverter\ParamConverter_Iface
@@ -113,7 +113,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
       $rows[] = [
         Controller_ReportPlugin::route($interface, $key)
           ->link($label),
-        Markup::create('<code>' . HtmlUtil::sanitize($key) . '</code>'),
+        Markup::create('<code>' . Html::escape($key) . '</code>'),
         self::route($interface)->subpage('demo')->link(
           $this->t('Demo'),
           [

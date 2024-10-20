@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\ock\UI\Controller;
 
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
 use Drupal\ock\Attribute\Routing\Route;
@@ -33,7 +34,6 @@ use Ock\Ock\Generator\Generator;
 use Ock\Ock\Plugin\NamedPlugin;
 use Ock\Ock\Summarizer\Summarizer;
 use Ock\Ock\Translator\TranslatorInterface;
-use Ock\Ock\Util\HtmlUtil;
 
 #[Route('/admin/reports/ock/{interface}/plugin/{named_plugin}')]
 #[RouteIsAdmin]
@@ -105,7 +105,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
       Markup::create(
         StringUtil::interfaceGenerateLabel($interface)
         . '<br/>'
-        . '<code>' . HtmlUtil::sanitize($interface) . '</code>'
+        . '<code>' . Html::escape($interface) . '</code>'
         . '<br/>'
         . Controller_ReportIface::route($interface)
           ->link(t('plugins'))
@@ -154,7 +154,7 @@ PHP;
       $rows[] = [
         $this->t('Problem'),
         Markup::create('<pre>'
-          . HtmlUtil::sanitize($e->getMessage())
+          . Html::escape($e->getMessage())
           . '</pre>'),
       ];
     }
@@ -204,7 +204,7 @@ PHP;
       Markup::create(
         StringUtil::interfaceGenerateLabel($interface)
         . '<br/>'
-        . '<code>' . HtmlUtil::sanitize($interface) . '</code>'
+        . '<code>' . Html::escape($interface) . '</code>'
         . '<br/>'
         . Controller_ReportIface::route($interface)
           ->link(t('plugins'))

@@ -5,10 +5,10 @@ namespace Drupal\ock\Util;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
 use Drupal\devel\DevelDumperManagerInterface;
 use Drupal\ock\UI\Markup\Markup_DefinitionList;
-use Ock\Ock\Util\HtmlUtil;
 
 final class UiDumpUtil extends UtilBase {
 
@@ -33,7 +33,7 @@ final class UiDumpUtil extends UtilBase {
 
     $rows[] = [
       t('Exception message'),
-      '<pre>' . HtmlUtil::sanitize($e->getMessage()) . '</pre>',
+      '<pre>' . Html::escape($e->getMessage()) . '</pre>',
     ];
 
     $rows[] = [
@@ -97,7 +97,7 @@ final class UiDumpUtil extends UtilBase {
           ]))
           ->addDd(new FormattableMarkup('<code>@code</code>', ['@code' => $file]))
           ->addDt(t('Exception class: %class', ['%class' => $e_class_reflection->getShortName()]))
-          ->addDd(HtmlUtil::sanitize($e_class))
+          ->addDd(Html::escape($e_class))
           ->addDt(t('Exception message:'))
           ->addDd(new FormattableMarkup('<pre>@code</pre>', ['@code' => $e->getMessage()])),
       ],

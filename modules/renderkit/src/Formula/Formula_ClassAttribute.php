@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
+use Drupal\Component\Utility\Html;
 use Ock\CodegenTools\Util\CodeGen;
 use Ock\Ock\Exception\GeneratorException;
 use Ock\Ock\Formula\StringVal\Formula_StringVal;
 use Ock\Ock\Formula\StringVal\Formula_StringValInterface;
 use Ock\Ock\Formula\Textfield\Formula_TextfieldBase;
-use Ock\Ock\Util\HtmlUtil;
 use Ock\Ock\V2V\String\V2V_StringInterface;
 
 class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_StringInterface {
@@ -48,7 +48,7 @@ class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_String
       if ([] !== $class_errors) {
 
         $replacements = [
-          ':class' => '<code>' . HtmlUtil::sanitize($text) . '</code>',
+          ':class' => '<code>' . Html::escape($text) . '</code>',
         ];
 
         foreach ($class_errors as $message) {
