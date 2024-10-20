@@ -149,6 +149,7 @@ PHP;
         UiCodeUtil::highlightPhp($php_file_contents),
       ];
     }
+    // @todo When does this exception ever occur?
     catch (\Exception $e) {
       $rows[] = [
         $this->t('Problem'),
