@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Util;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Render\MarkupInterface;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
 use Ock\CodegenTools\CodeFormatter;
 use Ock\CodegenTools\Exception\CodegenException;
@@ -27,13 +27,13 @@ final class UiCodeUtil extends UtilBase {
       && !class_exists($class)
     ) {
       return (string) t('There is no class or interface named @name.', [
-        '@name' => Markup::create('<code>' . Html::escape($class) . '</code>'),
+        '@name' => new FormattableMarkup('<code>@class</code>', ['@class' => $class]),
       ]);
     }
 
     if (NULL === $php = self::classGetPhp($class)) {
       return (string) t('Cannot access the code of class @name.', [
-        '@name' => Markup::create('<code>' . Html::escape($class) . '</code>'),
+        '@name' => new FormattableMarkup('<code>@class</code>', ['@class' => $class]),
       ]);
     }
 
