@@ -41,3 +41,40 @@ function scandir_known(string $dir, int $sorting_order = 0): array {
     restore_error_handler();
   }
 }
+
+/**
+ * Calls scandir() on a directory that is expected to exist.
+ *
+ * The "expected" here simply means that a failure leads to a regular exception.
+ *
+ * @param string $dir
+ *   Directory path.
+ * @param int $sorting_order
+ *   Sorting order.
+ *
+ * @return list<string>
+ *   Directory contents.
+ *
+ * @throws \Exception
+ *   Directory does not exist, or is not readable.
+ */
+function scandir_expected(string $dir, int $sorting_order = 0): array {
+  try {
+    set_error_handler(static function (
+      int $error_level,
+      string $message,
+      string $filename = NULL,
+      int $line = NULL,
+    ) use ($dir): void {
+      throw new \RuntimeException("Scandir failed with '$message' on '$dir'.");
+    });
+    $result = scandir($dir, $sorting_order);
+    if ($result === false) {
+      throw new \RuntimeException("Scandir failed on '$dir'.");
+    }
+    return $result;
+  }
+  finally {
+    restore_error_handler();
+  }
+}
