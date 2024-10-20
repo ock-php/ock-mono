@@ -128,13 +128,20 @@ class GroupFormulaBuilder extends GroupValFormulaBuilderBase {
    */
   public function addStringParts(array $keys, string $glue, string $sourceKey): static {
     foreach ($keys as $i => $key) {
-      $this->addItem($key, new GroupFormulaItem_Callback(
-        [$sourceKey],
-        Text::s($key),
-        fn (string $source) => Formula::value(
-          explode($glue, $source)[$i],
+      $this->addItem(
+        $key,
+        new GroupFormulaItem_Callback(
+          [$sourceKey],
+          Text::s($key),
+          // The signature requires a generic callback, but we know that the
+          // argument will be a string.
+          function (mixed $source = NULL) use ($glue, $i) {
+            assert(is_string($source));
+            $parts = explode($glue, $source);
+            return Formula::value($parts[$i]);
+          },
         ),
-      ));
+      );
     }
     return $this;
   }
@@ -156,20 +163,26 @@ class GroupFormulaBuilder extends GroupValFormulaBuilderBase {
    */
   public function addRegexMatch(array $keys, string $regex, string $sourceKey): static {
     foreach ($keys as $i => $key) {
-      $this->addItem($key, new GroupFormulaItem_Callback(
-        [$sourceKey],
-        Text::s($key),
-        fn (string $source) => Formula::value(
-          preg_match($regex, $source, $m)
-            ? $m[$i]
-            : throw new FormulaException(sprintf(
-              "String '%s' does not match '%s'.",
-              $source,
-              $regex,
-            )
-          ),
+      $this->addItem(
+        $key,
+        new GroupFormulaItem_Callback(
+          [$sourceKey],
+          Text::s($key),
+          // The signature requires a generic callback, but we know that the
+          // argument will be a string.
+          function (mixed $source = NULL) use ($regex, $i) {
+            assert(is_string($source));
+            if (!preg_match($regex, $source, $matches)) {
+              throw new FormulaException(sprintf(
+                "String '%s' does not match '%s'.",
+                $source,
+                $regex,
+              ));
+            }
+            return Formula::value($matches[$i]);
+          },
         ),
-      ));
+      );
     }
     return $this;
   }
