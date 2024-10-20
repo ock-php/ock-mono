@@ -97,7 +97,7 @@ final class UiDumpUtil extends UtilBase {
           ]))
           ->addDd(new FormattableMarkup('<code>@code</code>', ['@code' => $file]))
           ->addDt(t('Exception class: %class', ['%class' => $e_class_reflection->getShortName()]))
-          ->addDd(Html::escape($e_class))
+          ->addDd($e_class)
           ->addDt(t('Exception message:'))
           ->addDd(new FormattableMarkup('<pre>@code</pre>', ['@code' => $e->getMessage()])),
       ],

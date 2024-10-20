@@ -146,7 +146,7 @@ PHP;
 
       $rows[] = [
         $this->t('Formula class'),
-        UiCodeUtil::highlightPhp($php_file_contents),
+        Markup::create(UiCodeUtil::highlightPhp($php_file_contents)),
       ];
     }
     // @todo When does this exception ever occur?

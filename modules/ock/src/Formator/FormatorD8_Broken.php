@@ -33,7 +33,7 @@ class FormatorD8_Broken implements FormatorD8Interface {
     ];
 
     $form['content']['messages']['message'] = [
-      '#markup' => Html::escape($this->message),
+      '#plain_text' => $this->message,
     ];
 
     $form['#element_validate'][] = function (array $element, FormStateInterface $form_state) {
