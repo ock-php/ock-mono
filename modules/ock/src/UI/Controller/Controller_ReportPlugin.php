@@ -154,10 +154,11 @@ PHP;
       ];
     }
     // @todo When does this exception ever occur?
-    catch (\Exception $e) {
+    catch (\Exception) {
       $rows[] = [
-        $this->t('Problem'),
-        new FormattableMarkup('<pre>@message</pre>', ['@message' => $e->getMessage()]),
+        $this->t('Formula class'),
+        // Don't show the exception message in the output.
+        $this->t('Failed to generate php snippet.'),
       ];
     }
 
