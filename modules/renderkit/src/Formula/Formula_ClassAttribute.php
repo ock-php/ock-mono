@@ -22,9 +22,7 @@ class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_String
   }
 
   /**
-   * @param string $text
-   *
-   * @return string[]
+   * {@inheritdoc}
    */
   public function textGetValidationErrors(string $text): array {
 

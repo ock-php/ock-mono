@@ -109,15 +109,11 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
      */
     $rows = [];
     foreach ($this->pluginMap->typeGetPlugins($interface) as $key => $plugin) {
-
       $label = $plugin->getLabel()->convert($this->translator);
-
-      $row = [
+      $rows[] = [
         Controller_ReportPlugin::route($interface, $key)
           ->link($label),
-
         Markup::create('<code>' . HtmlUtil::sanitize($key) . '</code>'),
-
         self::route($interface)->subpage('demo')->link(
           $this->t('Demo'),
           [
@@ -125,10 +121,9 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
               'plugin[id]' => $key,
               'noshow' => TRUE,
             ],
-          ]),
+          ],
+        ),
       ];
-
-      $rows[] = $row;
     }
 
     return [

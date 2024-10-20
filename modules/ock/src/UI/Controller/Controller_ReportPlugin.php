@@ -96,10 +96,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
   #[Route]
   #[RouteDefaultTaskLink('Plugin')]
   public function plugin(string $interface, NamedPlugin $named_plugin): array {
-
     $plugin = $named_plugin->getPlugin();
-    # $id = $named_plugin->getId();
-
     $rows = [];
 
     $rows[] = [
@@ -129,10 +126,12 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
 
     $rows[] = [
       $this->t('Plugin'),
+      // @todo This output is not useful most of the time.
       UiCodeUtil::exportHighlightWrap($plugin),
     ];
 
     try {
+      // @todo Is this code snippet really useful?
       $formula = $plugin->getFormula();
       $reflObject = new \ReflectionObject($formula);
       $php_file_contents = <<<PHP
@@ -150,6 +149,7 @@ PHP;
         UiCodeUtil::highlightPhp($php_file_contents),
       ];
     }
+    // @todo When does this exception ever occur?
     catch (\Exception $e) {
       $rows[] = [
         $this->t('Problem'),
@@ -196,7 +196,6 @@ PHP;
   #[Route('/devel')]
   #[RouteTaskLink('Devel')]
   public function devel(string $interface, NamedPlugin $named_plugin): array {
-    # $id = $named_plugin->getId();
     $plugin = $named_plugin->getPlugin();
     $rows = [];
 

@@ -36,7 +36,7 @@ class FormatorD8_Broken implements FormatorD8Interface {
       '#markup' => HtmlUtil::sanitize($this->message),
     ];
 
-    $form['#element_validate'][] = function(array $element, FormStateInterface $form_state) {
+    $form['#element_validate'][] = function (array $element, FormStateInterface $form_state) {
       $form_state->setError(
         $element,
         "Unsupported formula. The form will always fail to validate.");
