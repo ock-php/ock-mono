@@ -3,9 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
-use Drupal\Component\Utility\Html;
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Render\Markup;
 use Drupal\Core\Serialization\Yaml;
 use Drupal\ock\Attribute\Routing\Route;
 use Drupal\ock\Attribute\Routing\RouteDefaultTaskLink;
@@ -107,7 +106,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
       $rows[] = [
         Controller_ReportPlugin::route($interface, $key)
           ->link($label),
-        Markup::create('<code>' . Html::escape($key) . '</code>'),
+        new FormattableMarkup('<code>@key</code>', ['@key' => $key]),
         self::route($interface)->subpage('demo')->link(
           $this->t('Demo'),
           [

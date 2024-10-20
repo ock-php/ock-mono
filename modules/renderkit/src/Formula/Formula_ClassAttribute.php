@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Formula;
 
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Render\Markup;
+use Drupal\Component\Render\FormattableMarkup;
 use Ock\CodegenTools\Util\CodeGen;
 use Ock\Ock\Exception\GeneratorException;
 use Ock\Ock\Formula\StringVal\Formula_StringVal;
@@ -49,7 +48,9 @@ class Formula_ClassAttribute extends Formula_TextfieldBase implements V2V_String
       if ([] !== $class_errors) {
 
         $replacements = [
-          '@class' => Markup::create('<code>' . Html::escape($text) . '</code>'),
+          '@class' => new FormattableMarkup('<code>@text</code>', [
+            '@text' => var_export($text, true),
+          ]),
         ];
 
         foreach ($class_errors as $message) {

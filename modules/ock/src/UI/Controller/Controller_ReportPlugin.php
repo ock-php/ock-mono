@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Render\MarkupInterface;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
 use Drupal\ock\Attribute\Routing\Route;
@@ -101,27 +101,31 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
 
     $rows[] = [
       $this->t('Interface'),
-
-      Markup::create(
-        StringUtil::interfaceGenerateLabel($interface)
-        . '<br/>'
-        . '<code>' . Html::escape($interface) . '</code>'
-        . '<br/>'
-        . Controller_ReportIface::route($interface)
-          ->link(t('plugins'))
-          ->toString()
-        . ' | '
-        . Controller_ReportIface::route($interface)
-          ->subpage('code')
-          ->link(t('code'))
-          ->toString()),
+      new FormattableMarkup(
+        <<<'EOT'
+@interface_label<br>
+<code>@interface</code><br>
+@link | @code_link
+EOT,
+        [
+          '@interface_label' => StringUtil::interfaceGenerateLabel($interface),
+          '@interface' => $interface,
+          '@link' => Controller_ReportIface::route($interface)
+            ->link(t('plugins'))
+            ->toString(),
+          '@code_link' => Controller_ReportIface::route($interface)
+            ->subpage('code')
+            ->link(t('code'))
+            ->toString(),
+        ],
+      ),
     ];
 
     $rows[] = [
       $this->t('Label'),
-      Markup::create('<h3>'
-        . $plugin->getLabel()->convert($this->translator)
-        . '</h3>'),
+      new FormattableMarkup('<h3>@label</h3>', [
+        '@label' => Markup::create($plugin->getLabel()->convert($this->translator)),
+      ]),
     ];
 
     $rows[] = [
@@ -153,9 +157,7 @@ PHP;
     catch (\Exception $e) {
       $rows[] = [
         $this->t('Problem'),
-        Markup::create('<pre>'
-          . Html::escape($e->getMessage())
-          . '</pre>'),
+        new FormattableMarkup('<pre>@message</pre>', ['@message' => $e->getMessage()]),
       ];
     }
 
@@ -201,20 +203,24 @@ PHP;
 
     $rows[] = [
       $this->t('Interface'),
-      Markup::create(
-        StringUtil::interfaceGenerateLabel($interface)
-        . '<br/>'
-        . '<code>' . Html::escape($interface) . '</code>'
-        . '<br/>'
-        . Controller_ReportIface::route($interface)
-          ->link(t('plugins'))
-          ->toString()
-        . ' | '
-        . Controller_ReportIface::route($interface)
-          ->subpage('code')
-          ->link(t('code'))
-          ->toString()
-        . ''),
+      new FormattableMarkup(
+        <<<'EOT'
+@interface_label<br>
+<code>@interface</code><br>
+@link | @code_link
+EOT,
+        [
+          '@interface_label' => StringUtil::interfaceGenerateLabel($interface),
+          '@interface' => $interface,
+          '@link' => Controller_ReportIface::route($interface)
+            ->link(t('plugins'))
+            ->toString(),
+          '@code_link' => Controller_ReportIface::route($interface)
+            ->subpage('code')
+            ->link(t('code'))
+            ->toString(),
+        ],
+      ),
     ];
 
     $rows[] = [

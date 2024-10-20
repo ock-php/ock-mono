@@ -5,7 +5,6 @@ namespace Drupal\ock\Util;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Render\MarkupInterface;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
 use Drupal\devel\DevelDumperManagerInterface;
 use Drupal\ock\UI\Markup\Markup_DefinitionList;
@@ -33,7 +32,7 @@ final class UiDumpUtil extends UtilBase {
 
     $rows[] = [
       t('Exception message'),
-      '<pre>' . Html::escape($e->getMessage()) . '</pre>',
+      new FormattableMarkup('<pre>@message</pre>', ['@message' => $e->getMessage()]),
     ];
 
     $rows[] = [
