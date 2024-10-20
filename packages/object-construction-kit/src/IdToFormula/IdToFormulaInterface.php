@@ -7,14 +7,14 @@ namespace Ock\Ock\IdToFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 
 /**
- * @template T of \Ock\Ock\Core\Formula\FormulaInterface
+ * @template-covariant T of \Ock\Ock\Core\Formula\FormulaInterface
  */
 interface IdToFormulaInterface {
 
   /**
    * @param string|int $id
    *
-   * @return T|null
+   * @return (T&FormulaInterface)|null
    *
    * @throws \Ock\Ock\Exception\FormulaException
    */

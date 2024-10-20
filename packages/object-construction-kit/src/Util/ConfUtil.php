@@ -11,7 +11,7 @@ final class ConfUtil extends UtilBase {
    * @param string $k0
    * @param string $k1
    *
-   * @return array
+   * @return array{bool, mixed}
    *   Format: [$enabled, $options]
    */
   public static function confGetStatusAndOptions(mixed $conf, string $k0 = 'enabled', string $k1 = 'options'): array {
@@ -72,10 +72,10 @@ final class ConfUtil extends UtilBase {
   }
 
   /**
-   * @param array $conf
+   * @param mixed[] $conf
    * @param string[] $parents
    *   Trail of keys indicating an array position within $conf.
-   * @param array $value
+   * @param mixed[] $value
    *
    * @return bool
    *   TRUE on success, FALSE on failure.

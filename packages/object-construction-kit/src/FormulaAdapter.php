@@ -58,13 +58,13 @@ final class FormulaAdapter extends UtilBase {
   }
 
   /**
-   * @template T as object
+   * @template T of object
    *
    * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
    * @param class-string<T> $interface
    * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
-   * @return T
+   * @return T&object
    *
    * @throws \Ock\Adaptism\Exception\AdapterException
    */

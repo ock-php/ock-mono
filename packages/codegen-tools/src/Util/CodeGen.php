@@ -23,7 +23,7 @@ final class CodeGen {
   /**
    * @param callable $method
    *   Static method, as an array of two strings.
-   * @param string[] $argsPhp
+   * @param list<string> $argsPhp
    *   Arguments as php expressions.
    *
    * @return string
@@ -98,7 +98,7 @@ final class CodeGen {
 
   /**
    * @param callable-string $function
-   * @param string[] $argsPhp
+   * @param list<string> $argsPhp
    *
    * @return string
    *   PHP expression.

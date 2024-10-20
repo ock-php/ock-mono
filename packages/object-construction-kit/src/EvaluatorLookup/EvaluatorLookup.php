@@ -13,7 +13,7 @@ use Ock\Ock\Formula\Formula;
 class EvaluatorLookup implements EvaluatorLookupInterface {
 
   /**
-   * @var array<class-string, EvaluatorInterface>
+   * @var array<class-string, EvaluatorInterface<object>>
    */
   private array $evaluators = [];
 
@@ -27,7 +27,7 @@ class EvaluatorLookup implements EvaluatorLookupInterface {
   ) {}
 
   /**
-   * @template T
+   * @template T of object
    *
    * @param class-string<T> $interface
    *
@@ -36,6 +36,7 @@ class EvaluatorLookup implements EvaluatorLookupInterface {
    * @throws \Ock\Adaptism\Exception\AdapterException
    */
   public function interfaceGetEvaluator(string $interface): EvaluatorInterface {
+    // @phpstan-ignore return.type
     return $this->evaluators[$interface]
       ??= $this->createEvaluator($interface);
   }

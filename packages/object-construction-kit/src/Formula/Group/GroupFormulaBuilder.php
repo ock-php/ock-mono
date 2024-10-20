@@ -107,7 +107,7 @@ class GroupFormulaBuilder extends GroupValFormulaBuilderBase {
   /**
    * @param list<string> $keys
    * @param list<string> $sourceKeys
-   * @param callable(mixed...): array $multipleValueCallback
+   * @param callable(mixed...): array<mixed> $multipleValueCallback
    *
    * @return $this
    * @throws \Ock\Ock\Exception\FormulaException
@@ -124,6 +124,12 @@ class GroupFormulaBuilder extends GroupValFormulaBuilderBase {
   }
 
   /**
+   * @param list<string> $keys
+   * @param string $glue
+   * @param string $sourceKey
+   *
+   * @return $this
+   *
    * @throws \Ock\Ock\Exception\FormulaException
    */
   public function addStringParts(array $keys, string $glue, string $sourceKey): static {

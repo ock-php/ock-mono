@@ -12,8 +12,18 @@ use Ock\DependencyInjection\Attribute\ServiceTag;
 use Ock\Ock\Attribute\PluginModifier\PluginModifierAttributeInterface;
 use Ock\Ock\OckPackage;
 
+/**
+ * @template TKey
+ *
+ * @template-implements FactoryInspectorInterface<TKey, \Ock\Ock\Plugin\PluginDeclaration>
+ */
 class FactoryInspector_ModifierDecorator implements FactoryInspectorInterface {
 
+  /**
+   * Constructor.
+   *
+   * @param \Ock\ClassDiscovery\Inspector\FactoryInspectorInterface<TKey, \Ock\Ock\Plugin\PluginDeclaration> $decorated
+   */
   public function __construct(
     private readonly FactoryInspectorInterface $decorated,
   ) {}
@@ -24,6 +34,9 @@ class FactoryInspector_ModifierDecorator implements FactoryInspectorInterface {
     return fn (FactoryInspectorInterface $inspector): self => new self($inspector);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function findInFactory(FactoryReflectionInterface $reflector): \Iterator {
     foreach ($this->decorated->findInFactory($reflector) as $key => $declaration) {
       $modifierAttributes ??= AttributesUtil::getAll($reflector, PluginModifierAttributeInterface::class);

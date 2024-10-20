@@ -25,7 +25,7 @@ final class Formula extends UtilBase {
    *   Formulas to validate.
    *   In PHP < 8.0, string keys are not allowed here.
    */
-  public static function validate(FormulaInterface ...$formulas) {}
+  public static function validate(FormulaInterface ...$formulas): void {}
 
   /**
    * Validates an array of formulas.
@@ -153,7 +153,7 @@ final class Formula extends UtilBase {
   /**
    * @param string $serviceId
    * @param string $method
-   * @param array $args
+   * @param mixed[] $args
    *
    * @return \Ock\Ock\Formula\ValueProvider\Formula_FixedPhp
    */
