@@ -125,7 +125,8 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
               'plugin[id]' => $key,
               'noshow' => TRUE,
             ],
-          ]),
+          ],
+        ),
       ];
 
       $rows[] = $row;
