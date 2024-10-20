@@ -16,7 +16,7 @@ use Ock\Ock\Util\StringUtil as CfStringUtil;
 final class UiCodeUtil extends UtilBase {
 
   /**
-   * @param string $class
+   * @param class-string $class
    *
    * @return string
    */
