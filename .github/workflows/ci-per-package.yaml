@@ -49,10 +49,15 @@ jobs:
 
       - name: PhpStan
         run: |
+          set -x
           if [ -f phpstan.neon ]; then
             cp composer.json composer.json.bak
             cp composer.lock composer.lock.bak
-            composer require --dev phpstan/phpstan:^1
+            # Install phpstan packages that are required by drupal/core-dev.
+            # This is needed so that phpstan has the same result if it is run
+            # from the top level.
+            composer config --no-plugins allow-plugins.phpstan/extension-installer true
+            composer require --dev phpstan/phpstan:^1 phpstan/extension-installer:^1 phpstan/phpstan-deprecation-rules:^1
             rm composer.json composer.lock
             mv composer.json.bak composer.json
             mv composer.lock.bak composer.lock
