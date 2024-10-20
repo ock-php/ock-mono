@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Serialization\Yaml;
@@ -33,7 +34,6 @@ use Ock\Ock\Generator\Generator;
 use Ock\Ock\Plugin\Map\PluginMapInterface;
 use Ock\Ock\Summarizer\Summarizer;
 use Ock\Ock\Translator\TranslatorInterface;
-use Ock\Ock\Util\HtmlUtil;
 
 /**
  * @see \Drupal\ock\UI\ParamConverter\ParamConverter_Iface
@@ -101,19 +101,13 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
   #[Route]
   #[RouteDefaultTaskLink('List of plugins')]
   public function listOfPlugins(string $interface): array {
-    /**
-     * @var array[] $rows
-     *   Format: $[] = $row
-     * @var array[][] $rows_grouped
-     *   Format: $[$groupLabel][] = $row
-     */
     $rows = [];
     foreach ($this->pluginMap->typeGetPlugins($interface) as $key => $plugin) {
       $label = $plugin->getLabel()->convert($this->translator);
       $rows[] = [
         Controller_ReportPlugin::route($interface, $key)
           ->link($label),
-        Markup::create('<code>' . HtmlUtil::sanitize($key) . '</code>'),
+        Markup::create('<code>' . Html::escape($key) . '</code>'),
         self::route($interface)->subpage('demo')->link(
           $this->t('Demo'),
           [

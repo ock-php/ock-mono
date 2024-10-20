@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
-use Ock\Ock\Util\HtmlUtil;
 
 class FormatorD8_Broken implements FormatorD8Interface {
 
@@ -33,7 +33,7 @@ class FormatorD8_Broken implements FormatorD8Interface {
     ];
 
     $form['content']['messages']['message'] = [
-      '#markup' => HtmlUtil::sanitize($this->message),
+      '#markup' => Html::escape($this->message),
     ];
 
     $form['#element_validate'][] = function (array $element, FormStateInterface $form_state) {

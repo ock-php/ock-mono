@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace Drupal\ock\Util;
 
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Markup;
 use Ock\CodegenTools\CodeFormatter;
 use Ock\CodegenTools\Exception\CodegenException;
 use Ock\CodegenTools\Util\CodeGen;
-use Ock\Ock\Util\HtmlUtil;
 use Ock\Ock\Util\StringUtil as CfStringUtil;
 
 // See https://bugs.php.net/bug.php?id=66773
@@ -27,13 +27,13 @@ final class UiCodeUtil extends UtilBase {
       && !class_exists($class)
     ) {
       return (string) t('There is no class or interface named @name.', [
-        '@name' => Markup::create('<code>' . HtmlUtil::sanitize($class) . '</code>'),
+        '@name' => Markup::create('<code>' . Html::escape($class) . '</code>'),
       ]);
     }
 
     if (NULL === $php = self::classGetPhp($class)) {
       return (string) t('Cannot access the code of class @name.', [
-        '@name' => Markup::create('<code>' . HtmlUtil::sanitize($class) . '</code>'),
+        '@name' => Markup::create('<code>' . Html::escape($class) . '</code>'),
       ]);
     }
 
