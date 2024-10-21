@@ -1,0 +1,6 @@
+test: 'Drupal\Tests\ock\Kernel\OckExampleServicesTest::testTaggedServicesAsRecorded()'
+values:
+  -
+    "Tagged services from 'ock_example' module.":
+      ock.discovery:
+        Drupal\ock_example\OckExampleNamespace: '[[]]'
