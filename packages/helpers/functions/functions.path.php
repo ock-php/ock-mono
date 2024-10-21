@@ -4,6 +4,7 @@
  * @file
  * Functions to deal with paths.
  */
+
 declare(strict_types=1);
 
 namespace Ock\Helpers;

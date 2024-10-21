@@ -10,42 +10,50 @@ use Ock\Ock\Formula\Formula;
 use Ock\Ock\FormulaAdapter;
 use Ock\Ock\Util\UtilBase;
 
+/**
+ * Shortcut methods to get SummarizerInterface objects.
+ */
 final class Summarizer extends UtilBase {
 
   /**
+   * Gets a summarizer for an interface.
+   *
    * @param class-string $interface
-   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
+   *   Interface.
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   *   The universal adapter.
    *
    * @return \Ock\Ock\Summarizer\SummarizerInterface
+   *   Summarizer for the given interface.
    *
    * @throws \Ock\Adaptism\Exception\AdapterException
+   *   Cannot build a summarizer for the given interface.
    */
   public static function fromIface(
     string $interface,
-    UniversalAdapterInterface $universalAdapter
+    UniversalAdapterInterface $adapter
   ): SummarizerInterface {
-    return self::fromFormula(
-      Formula::iface($interface),
-      $universalAdapter);
+    $formula = Formula::iface($interface);
+    return self::fromFormula($formula, $adapter);
   }
 
   /**
    * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
-   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
    *
    * @return \Ock\Ock\Summarizer\SummarizerInterface
    *
    * @throws \Ock\Adaptism\Exception\AdapterException
-   *   Cannot build a generator for the given formula.
+   *   Cannot build a summarizer for the given formula.
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    UniversalAdapterInterface $universalAdapter
+    UniversalAdapterInterface $adapter
   ): SummarizerInterface {
     return FormulaAdapter::requireObject(
       $formula,
       SummarizerInterface::class,
-      $universalAdapter,
+      $adapter,
     );
   }
 
