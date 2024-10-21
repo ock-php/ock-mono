@@ -99,14 +99,15 @@ abstract class GroupValFormulaBuilderBase {
 
   /**
    * @param list<string> $keys
-   * @param string $glue
+   * @param non-empty-string $glue
    * @param string $sourceConfKey
    *
-   * @return \Ock\Ock\Formula\Group\GroupValFormulaBuilder
+   * @return self
    *
    * @throws \Ock\Ock\Exception\FormulaException
    */
-  public function addStringPartExpressions(array $keys, string $glue, string $sourceConfKey): GroupValFormulaBuilder {
+  public function addStringPartExpressions(array $keys, string $glue, string $sourceConfKey): self {
+    assert($glue !== '');
     $instance = $this;
     foreach ($keys as $i => $key) {
       $instance = $instance->doAddExpression(
@@ -138,11 +139,11 @@ abstract class GroupValFormulaBuilderBase {
    * @param string[] $keys
    * @param callable(string[], mixed[]): (string[]) $multiExpressionCallback
    *
-   * @return \Ock\Ock\Formula\Group\GroupValFormulaBuilder
+   * @return self
    *
    * @throws \Ock\Ock\Exception\FormulaException
    */
-  public function addMultiExpressionCallback(array $keys, callable $multiExpressionCallback): GroupValFormulaBuilder {
+  public function addMultiExpressionCallback(array $keys, callable $multiExpressionCallback): self {
     $instance = $this;
     foreach ($keys as $i => $key) {
       $v2v = new V2V_Group_ExpressionCallback(
@@ -224,7 +225,7 @@ abstract class GroupValFormulaBuilderBase {
   /**
    * Constructs a class with group options as parameters.
    *
-   * @param string $class
+   * @param class-string $class
    * @param string[]|null $keys
    *
    * @return \Ock\Ock\Core\Formula\FormulaInterface
@@ -315,9 +316,9 @@ abstract class GroupValFormulaBuilderBase {
   /**
    * @param string[] $keys
    *
-   * @return \Ock\Ock\Formula\GroupVal\Formula_GroupVal
+   * @return \Ock\Ock\Formula\GroupVal\Formula_GroupVal|\Ock\Ock\Formula\Group\Formula_Group
    */
-  public function buildRekeyed(array $keys): Formula_GroupVal {
+  public function buildRekeyed(array $keys): Formula_GroupVal|Formula_Group {
     return $this->buildGroupValFormula(NULL, $keys);
   }
 
@@ -346,9 +347,9 @@ abstract class GroupValFormulaBuilderBase {
    * @param callable $getPhp
    * @param string[]|null $keys
    *
-   * @return \Ock\Ock\Formula\GroupVal\Formula_GroupVal
+   * @return \Ock\Ock\Formula\GroupVal\Formula_GroupVal|\Ock\Ock\Formula\Group\Formula_Group
    */
-  public function generate(callable $getPhp, array $keys = NULL): Formula_GroupVal {
+  public function generate(callable $getPhp, array $keys = NULL): Formula_GroupVal|Formula_Group {
     return $this->buildGroupValFormula(
       new class ($getPhp) implements V2V_GroupInterface {
         public function __construct(private mixed $getPhp) {}
@@ -363,9 +364,9 @@ abstract class GroupValFormulaBuilderBase {
   /**
    * @param string $key
    *
-   * @return \Ock\Ock\Formula\GroupVal\Formula_GroupVal
+   * @return \Ock\Ock\Formula\GroupVal\Formula_GroupVal|\Ock\Ock\Formula\Group\Formula_Group
    */
-  public function pick(string $key): Formula_GroupVal {
+  public function pick(string $key): Formula_GroupVal|Formula_Group {
     return $this->buildGroupValFormula(new V2V_Group_Pick($key));
   }
 
