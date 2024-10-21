@@ -3,8 +3,6 @@ values:
   -
     "Tagged services from 'ock' module.":
       Ock\Egg\ParamToEgg\ParamToEggInterface:
-        Drupal\ock\DI\ParamToEgg_CustomArgsDecorator: '[[]]'
-        Ock\Egg\ParamToEgg\ParamToEggInterface: '[[]]'
         Ock\Egg\ParamToEgg\ParamToEgg_ParamTypeAsServiceId: '[[]]'
       _provider:
         logger.channel.ock:
