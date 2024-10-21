@@ -1,0 +1,26 @@
+test: 'Drupal\Tests\ock\Kernel\OckServicesTest::testTaggedServicesAsRecorded()'
+values:
+  -
+    "Tagged services from 'ock' module.":
+      Ock\Egg\ParamToEgg\ParamToEggInterface:
+        Drupal\ock\DI\ParamToEgg_CustomArgsDecorator: '[[]]'
+        Ock\Egg\ParamToEgg\ParamToEggInterface: '[[]]'
+        Ock\Egg\ParamToEgg\ParamToEgg_ParamTypeAsServiceId: '[[]]'
+      _provider:
+        logger.channel.ock:
+          -
+            provider: ock
+      adaptism.discovery:
+        Drupal\ock\OckModuleNamespace: '[[]]'
+        Ock\Adaptism\Inspector\FactoryInspector_AdapterAttribute: '[[]]'
+        Ock\Adaptism\Inspector\FactoryInspector_SelfAdapterAttribute: '[[]]'
+        Ock\Ock\OckNamespace: '[[]]'
+      container.decorator:
+        Ock\Ock\Plugin\Registry\PluginRegistryInterface:
+          -
+            id: Ock\Ock\Plugin\Registry\PluginRegistryInterface
+            inner: Ock\Ock\Plugin\Registry\PluginRegistry_Buffer.inner
+      ock.discovery:
+        'Ock\Ock\Inspector\FactoryInspector_ModifierDecorator::createDecoratorCallback()': '[[]]'
+        Ock\Ock\Inspector\FactoryInspector_OckFormulaAttribute: '[[]]'
+        Ock\Ock\Inspector\FactoryInspector_OckInstanceAttribute: '[[]]'

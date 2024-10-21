@@ -116,6 +116,56 @@ abstract class ServicesTestBase extends KernelTestBase {
   }
 
   /**
+   * Verifies tagged service ids.
+   */
+  public function testTaggedServicesAsRecorded(): void {
+    $container = \Drupal::getContainer();
+    $this->assertInstanceOf(ContainerBuilder::class, $container);
+    $tag_names = $container->findTags();
+    $report = [];
+    foreach ($tag_names as $tag_name) {
+      foreach ($container->findTaggedServiceIds($tag_name) as $service_id => $tags_info) {
+        if ($tags_info === [[]]) {
+          $tags_info = '[[]]';
+        }
+        $report[$tag_name][$service_id] = $tags_info;
+      }
+    }
+
+    // Uninstall the module, but keep dependencies enabled.
+    /** @var ModuleInstallerInterface $module_installer */
+    $module_installer = \Drupal::service(ModuleInstallerInterface::class);
+    $module = $this->getTestedModuleName();
+    $module_installer->uninstall([$module]);
+    $container = \Drupal::getContainer();
+
+    // Remove tagged services that still exist without this module.
+    $tag_names = $container->findTags();
+    foreach ($tag_names as $tag_name) {
+      foreach ($container->findTaggedServiceIds($tag_name) as $service_id => $tags_info) {
+        if ($tags_info === [[]]) {
+          $tags_info = '[[]]';
+        }
+        $tags_info_while_module_installed = $report[$tag_name][$service_id] ?? NULL;
+        // For now, assume that installing a module only _adds_ new tags and
+        // tagged services, but does not remove or change them.
+        // If this ever changes, the test needs to become more sophisticated.
+        $this->assertSame($tags_info_while_module_installed, $tags_info, "Service '$service_id' tagged with '$tag_name'.");
+        unset($report[$tag_name][$service_id]);
+      }
+    }
+
+    // Remove tags that have not changed.
+    $report = array_filter($report);
+
+    // Sort the array and its children.
+    ksort($report);
+    array_walk($report, fn (&$arr) => ksort($arr));
+
+    $this->assertAsRecorded($report, "Tagged services from '$module' module.", 4);
+  }
+
+  /**
    * Gets the module name the services of which to test.
    *
    * This base implementation uses a crude heuristic, and should be replaced
