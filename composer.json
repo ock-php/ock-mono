@@ -59,6 +59,7 @@
         "ext-libxml": "*",
         "drupal/core-dev": "^10.3.5 | ^11.0.4",
         "league/container": "^4.2.2",
+        "ock/testing": "self.version",
         "phpspec/prophecy-phpunit": "^2.2.0",
         "phpstan/phpstan": "^1.12.3",
         "phpunit/phpunit": "^9.6.20",
@@ -70,21 +71,6 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "autoload": {
-        "files": [
-            "packages/helpers/functions.php"
-        ],
-        "psr-4": {
-            "Ock\\Adaptism\\": "packages/adaptism/src/",
-            "Ock\\ClassDiscovery\\": "packages/class-discovery/src",
-            "Ock\\CodegenTools\\": "packages/codegen-tools/src",
-            "Ock\\DependencyInjection\\": "packages/dependency-injection/src",
-            "Ock\\DID\\": "packages/di-discovery/src",
-            "Ock\\Egg\\": "packages/egg/src",
-            "Ock\\Helpers\\": "packages/helpers/src",
-            "Ock\\Ock\\": "packages/object-construction-kit/src"
-        }
-    },
     "autoload-dev": {
         "psr-4": {
             "Ock\\Adaptism\\Tests\\": "packages/adaptism/tests/src/",
@@ -95,7 +81,6 @@
             "Ock\\Egg\\Tests\\": "packages/egg/tests/src",
             "Ock\\Helpers\\Tests\\": "packages/helpers/tests/src",
             "Ock\\Ock\\Tests\\": "packages/object-construction-kit/tests/src",
-            "Ock\\Testing\\": "packages/testing/src",
             "Ock\\Testing\\Tests\\": "packages/testing/tests/src"
         }
     },
@@ -112,13 +97,6 @@
         "sort-packages": true
     },
     "replace": {
-        "ock/adaptism": "self.version",
-        "ock/class-discovery": "self.version",
-        "ock/codegen-tools": "self.version",
-        "ock/di-discovery": "self.version",
-        "ock/egg": "self.version",
-        "ock/helpers": "self.version",
-        "ock/object-construction-kit": "self.version",
         "symfony/polyfill-php72": "*",
         "symfony/polyfill-php80": "*",
         "symfony/polyfill-php81": "*"
