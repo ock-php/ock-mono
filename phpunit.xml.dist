@@ -50,6 +50,12 @@
     <testsuite name="modules-kernel">
       <directory>./modules/*/tests/src/Kernel</directory>
     </testsuite>
+    <testsuite name="modules-functional">
+      <directory>./modules/*/tests/src/Functional</directory>
+    </testsuite>
+    <testsuite name="modules-functional-javascript">
+      <directory>./modules/*/tests/src/FunctionalJavascript</directory>
+    </testsuite>
   </testsuites>
   <logging>
     <junit outputFile="build/logs/junit.xml"/>

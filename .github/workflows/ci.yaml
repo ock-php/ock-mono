@@ -12,16 +12,33 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.2]
-        composer-flags: ['--prefer-lowest', '']
+        composer-flags: ['', '--prefer-lowest']
 
     steps:
       - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
+
+      - name: DDEV - Setup
+        uses: ddev/github-action-setup-ddev@v1
         with:
-          php-version: ${{ matrix.php }}
-          # @todo Review which extensions are needed.
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
-          coverage: none
-      - run: composer install --prefer-dist --no-interaction --no-progress
-      - run: composer update --no-progress ${{ matrix.composer-flags }}
-      - run: vendor/bin/phpunit
+          autostart: false
+
+      - name: DDEV - Configure and start
+        run: |
+          set -x
+          ddev config --php-version=${{ matrix.php }}
+          ddev start
+
+      - name: Composer
+        run: |
+          set -x
+          ddev composer update --no-install ${{ matrix.composer-flags }}
+          ddev composer install --prefer-dist --no-interaction
+
+      - name: PhpUnit
+        run: |
+          set -x
+          ddev exec ./vendor/bin/phpunit -vvv --debug \
+            --fail-on-incomplete \
+            --fail-on-warning \
+            --fail-on-skipped \
+            --fail-on-risky

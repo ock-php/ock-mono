@@ -23,7 +23,7 @@ jobs:
           - object-construction-kit
           - testing
         php: [8.2]
-        composer-flags: ['--prefer-lowest', '']
+        composer-flags: ['', '--prefer-lowest']
 
     defaults:
       run:
