@@ -9,6 +9,9 @@ use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\ClassDiscovery\Util\AttributesUtil;
 use Symfony\Component\Routing\Route;
 
+/**
+ * Base class for a route provider based on discovery and attributes.
+ */
 abstract class AttributesRouteProviderBase {
 
   /**
