@@ -66,4 +66,10 @@ jobs:
           php symlink_project.php ${{ matrix.module }}
           rm -f symlink_project.php
 
-      - run: vendor/bin/phpunit
+      - name: phpunit
+        run: |
+          vendor/bin/phpunit -vvv --debug \
+            --fail-on-incomplete \
+            --fail-on-warning \
+            --fail-on-skipped \
+            --fail-on-risky
