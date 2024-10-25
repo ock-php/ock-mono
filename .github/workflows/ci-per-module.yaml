@@ -28,6 +28,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Prepare a local setup without ddev for regular tests.
+      # This allows quick fails before any docker containers need to be pulled.
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -40,8 +42,10 @@ jobs:
           set -x
 
           # Add repositories for monorepo packages.
-          composer config --merge --json repositories.0 '{"type": "path", "url": "../../packages/*", "options": {"versions": {"*": "self.version"}}}'
-          composer config --merge --json repositories.1 '{"type": "path", "url": "../*", "options": {"versions": {"*": "self.version"}}}'
+          # Use copy instead of symlink.
+          # This way, the package will still be present in docker/ddev.
+          composer config --merge --json repositories.0 '{"type": "path", "url": "../../packages/*", "options": {"symlink": false, "versions": {"*": "self.version"}}}'
+          composer config --merge --json repositories.1 '{"type": "path", "url": "../*", "options": {"symlink": false, "versions": {"*": "self.version"}}}'
 
           # Expand composer.json as with ddev poser.
           export DRUPAL_CORE=${{ matrix.drupal-constraint }}
@@ -66,9 +70,44 @@ jobs:
           php symlink_project.php ${{ matrix.module }}
           rm -f symlink_project.php
 
-      - name: phpunit
+      - name: phpunit - Non-browser tests
         run: |
+          set -x
+          # Run all tests that don't need a browser.
           vendor/bin/phpunit -vvv --debug \
+            --filter "\\\\(Unit|Kernel)\\\\" \
+            --fail-on-incomplete \
+            --fail-on-warning \
+            --fail-on-skipped \
+            --fail-on-risky
+
+      - name: DDEV - Setup
+        uses: ddev/github-action-setup-ddev@v1
+        with:
+          autostart: false
+
+      - name: DDEV - Configure and start
+        run: |
+          set -x
+
+          # Delete the top-level ddev directory, so ddev does not get confused.
+          rm -rf ../../.ddev/
+
+          ddev config \
+            --project-type=drupal \
+            --docroot=web \
+            --php-version=${{ matrix.php }} \
+            --project-name=demo
+          ddev get ddev/ddev-drupal-contrib
+          ddev get ddev/ddev-selenium-standalone-chrome
+          ddev start
+
+      - name: phpunit - Browser tests (DDEV)
+        run: |
+          set -x
+          # Run tests need a browser.
+          ddev phpunit -vvv --debug \
+            --filter "\\\\(Functional|FunctionalJavascript)\\\\" \
             --fail-on-incomplete \
             --fail-on-warning \
             --fail-on-skipped \
