@@ -3,16 +3,18 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Element;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element\FormElement;
+use Drupal\Core\Render\Attribute\FormElement;
+use Drupal\Core\Render\Element\FormElementBase;
 use Drupal\ock\Formator\FormatorD8;
 use Ock\Adaptism\Exception\AdapterException;
 use Ock\Ock\Formula\Formula;
 
-/**
- * @FormElement("ock")
- */
-class FormElement_OckPlugin extends FormElement {
+#[FormElement(self::ELEMENT_TYPE)]
+class FormElement_OckPlugin extends FormElementBase {
+
+  const ELEMENT_TYPE = 'ock';
 
   /**
    * {@inheritdoc}
@@ -33,6 +35,42 @@ class FormElement_OckPlugin extends FormElement {
   }
 
   /**
+   * Creates a form element of this type.
+   *
+   * This method exists so that developers don't need to remember the property
+   * names available for this element type.
+   *
+   * @param string $interface
+   *   Interface.
+   * @param string|\Drupal\Component\Render\MarkupInterface $title
+   *   Title.
+   * @param array|null $default_value
+   *   Default value.
+   * @param mixed $context
+   *   (optional) Context.
+   *
+   * @return array
+   *   Form element array.
+   */
+  public static function createElement(
+    string $interface,
+    string|MarkupInterface $title,
+    array|null $default_value = NULL,
+    mixed $context = NULL,
+  ): array {
+    $element = [
+      '#type' => self::ELEMENT_TYPE,
+      '#ock_interface' => $interface,
+      '#title' => $title,
+      '#default_value' => $default_value,
+    ];
+    if ($context !== NULL) {
+      $element['#ock_context'] = $context;
+    }
+    return $element;
+  }
+
+  /**
    * @param array $element
    *   Original element.
    *
@@ -40,9 +78,11 @@ class FormElement_OckPlugin extends FormElement {
    *   Processed element.
    */
   public static function process(array &$element): array {
+    $interface = $element['#ock_interface']
+      ?? throw new \RuntimeException('Missing key #ock_interface in form element.');
 
     // @todo Filter by context.
-    $formula = Formula::iface($element['#ock_interface']);
+    $formula = Formula::iface($interface);
 
     try {
       $formator = FormatorD8::fromFormula($formula);

@@ -5,6 +5,7 @@ namespace Drupal\ock\UI\Form;
 
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\ock\Element\FormElement_OckPlugin;
 
 class Form_IfaceDemo implements FormInterface {
 
@@ -28,13 +29,11 @@ class Form_IfaceDemo implements FormInterface {
 
     $settings = $_GET[self::KEY] ?? [];
 
-    $form[self::KEY] = [
-      /* @see \Drupal\ock\Element\FormElement_OckPlugin */
-      '#type' => 'ock',
-      '#ock_interface' => $interface,
-      '#title' => \t('Plugin'),
-      '#default_value' => $settings,
-    ];
+    $form[self::KEY] = FormElement_OckPlugin::createElement(
+      $interface,
+      \t('Plugin'),
+      $settings,
+    );
 
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
