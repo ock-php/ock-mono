@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\ock\Element\FormElement_OckPlugin;
 use Drupal\ock\UI\Form\Form_GenericRedirectGET;
 use Ock\Adaptism\Exception\AdapterException;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
@@ -148,15 +149,13 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
   private function buildForm(mixed $conf, CfContextInterface $context): array {
 
     $form = [];
-    $form[$this->queryKey] = [
-      '#title' => t('Entity display plugin'),
-      /* @see \Drupal\ock\Element\FormElement_CuPlugin() */
-      '#type' => 'cu',
-      '#cu_interface' => EntityDisplayInterface::class,
-      '#cu_context' => $context,
-      '#default_value' => $conf,
-      '#required' => TRUE,
-    ];
+    $form[$this->queryKey] = FormElement_OckPlugin::createElement(
+      EntityDisplayInterface::class,
+      t('Entity display plugin'),
+      $conf,
+      $context,
+    );
+    $form[$this->queryKey]['#required'] = TRUE;
 
     $form['query_key'] = [
       '#type' => 'value',
