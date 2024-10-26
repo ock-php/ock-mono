@@ -4,8 +4,8 @@ declare(strict_types=1);
 use Drupal\ock_preset\Controller\Controller_IfacePresets;
 use Drupal\ock_preset\Crud\PresetRepository;
 use Drupal\ock_preset\ElementPreRender\ElementPreRender_ock_presetDrilldownContainer_PresetLink;
-use Drupal\ock_preset\Schema\CfSchema_PresetProxy;
-use Drupal\ock_preset\Schema\CfSchema_PresetSelect;
+use Drupal\ock_preset\Formula\Formula_PresetProxy;
+use Drupal\ock_preset\Formula\Formula_PresetSelect;
 
 /**
  * Implements hook_cfrplugin_info()
@@ -22,7 +22,7 @@ function ock_preset_ock_preset_info(): array {
 
     foreach ($ifacePresetConfigs as $presetMachineName => $config) {
       $definitions[$interface]['preset:' . $presetMachineName] = [
-        'schema_class' => CfSchema_PresetProxy::class,
+        'schema_class' => Formula_PresetProxy::class,
         'schema_arguments' => [$interface, $presetMachineName],
         'label' => 'Preset: ' . $config->get('label'),
       ];
@@ -30,8 +30,8 @@ function ock_preset_ock_preset_info(): array {
 
     if (false) {
       $definitions[$interface]['preset'] = [
-        /* @see \Drupal\ock_preset\Schema\CfSchema_PresetSelect::createRealSchema() */
-        'schema_factory' => [CfSchema_PresetSelect::class, 'createRealSchema'],
+        /* @see \Drupal\ock_preset\Formula\Formula_PresetSelect::createRealSchema() */
+        'schema_factory' => [Formula_PresetSelect::class, 'createRealSchema'],
         'schema_arguments' => [$interface],
         'label' => 'Preset',
         'inline' => TRUE,
