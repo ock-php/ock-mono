@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\ock\FunctionalJavascript;
 
+use Behat\Mink\Element\NodeElement;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use WebDriver\Service\CurlService;
 use WebDriver\ServiceFactory;
@@ -36,6 +37,63 @@ class OckWebDriverTestBase extends WebDriverTestBase {
     );
 
     parent::setUp();
+  }
+
+  /**
+   * Asserts the page title.
+   *
+   * @param string $title
+   *   Expected page title.
+   */
+  protected function assertPageTitle(string $title): void {
+    $title_element = $this->getSession()->getPage()->find('css', 'title');
+    $actual_title = strip_tags($title_element?->getOuterHtml() ?? '');
+    $this->assertSame($title . ' | Drupal', $actual_title);
+  }
+
+  /**
+   * Asserts that a link with given text and url is found on the page.
+   *
+   * @param string $text
+   *   Expected link text.
+   * @param string|null $href
+   *   Expected link url.
+   * @param \Behat\Mink\Element\NodeElement|null $parent
+   *   Optional parent element.
+   *
+   * @return \Behat\Mink\Element\NodeElement
+   *   Link element.
+   */
+  protected function linkExists(string $text, ?string $href = NULL, ?NodeElement $parent = NULL): NodeElement {
+    $parent ??= $this->getSession()->getPage();
+    $link = $parent->findLink($text);
+    if ($link === NULL) {
+      $this->fail("Link '$text' not found.");
+    }
+    $actual_href = $link->getAttribute('href');
+    if ($href !== NULL) {
+      $this->assertSame($href, $actual_href, "Link url for '$text'.");
+    }
+    return $link;
+  }
+
+  /**
+   * Asserts and returns an element with tag and text.
+   *
+   * @param string $tag
+   *   Tag name.
+   * @param string $text
+   *   Expected text that the element should contain.
+   *
+   * @return \Behat\Mink\Element\NodeElement
+   *   The element.
+   */
+  protected function elementWithTextExists(string $tag, string $text): NodeElement {
+    return $this->assertSession()->elementExists(
+      'xpath',
+      // @todo Escape the text somehow.
+      "//{$tag}[contains(., '$text')]",
+    );
   }
 
 }
