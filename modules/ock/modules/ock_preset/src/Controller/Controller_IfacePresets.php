@@ -3,52 +3,77 @@ declare(strict_types=1);
 
 namespace Drupal\ock_preset\Controller;
 
-use Donquixote\Cf\Schema\CfSchema;
-use Donquixote\Cf\Summarizer\Summarizer;
-use Drupal\controller_annotations\Configuration\Route;
-use Drupal\controller_annotations\Configuration\RouteIsAdmin;
-use Drupal\controller_annotations\Configuration\RouteParameters;
-use Drupal\controller_annotations\Configuration\RouteRequirePermission;
-use Drupal\controller_annotations\Configuration\RouteTitleMethod;
-use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
-use Drupal\controller_annotations\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Render\Markup;
+use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\ock\Attribute\Routing\Route;
+use Drupal\ock\Attribute\Routing\RouteActionLink;
+use Drupal\ock\Attribute\Routing\RouteDefaultTaskLink;
+use Drupal\ock\Attribute\Routing\RouteIsAdmin;
+use Drupal\ock\Attribute\Routing\RouteParameters;
+use Drupal\ock\Attribute\Routing\RouteRequirePermission;
+use Drupal\ock\Attribute\Routing\RouteTaskLink;
+use Drupal\ock\Attribute\Routing\RouteTitleMethod;
+use Drupal\ock\TextToDrupal\TextToDrupalInterface;
+use Drupal\ock\UI\Controller\ControllerRouteNameInterface;
+use Drupal\ock\UI\Controller\ControllerRouteNameTrait;
+use Drupal\ock\UI\ParamConverter\ParamConverter_Iface;
+use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
+use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
+use Drupal\ock\Util\StringUtil;
+use Drupal\ock\Util\UiUtil;
+use Drupal\ock_preset\Crud\PresetRepository;
 use Drupal\ock_preset\Form\Form_Decorator;
 use Drupal\ock_preset\Form\Form_PresetEdit;
-use Drupal\ock_preset\Form\Util\PresetConfUtil;
-use Drupal\ock_preset\Hub\CfrPluginHub;
-use Drupal\ock_preset\RouteHelper\ClassRouteHelper;
-use Drupal\ock_preset\Util\StringUtil;
-use Drupal\ock_preset\Util\UiUtil;
-use Drupal\routelink\RouteModifier\RouteActionLink;
-use Drupal\routelink\RouteModifier\RouteDefaultTaskLink;
-use Drupal\routelink\RouteModifier\RouteTaskLink;
+use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
+use Ock\Ock\Summarizer\Summarizer;
 
-/**
- * @Route("/admin/structure/ock_preset/{interface}")
- * @RouteIsAdmin
- * @RouteTitleMethod("title")
- * @RouteRequirePermission("administer ock_preset")
- * @RouteParameters(interface = "ock_preset:interface")
- */
+#[Route('/admin/structure/ock_preset/{interface}')]
+#[RouteIsAdmin]
+#[RouteTitleMethod([self::class, 'title'])]
+#[RouteRequirePermission('administer ock_preset')]
+#[RouteParameters(['interface' => ParamConverter_Iface::TYPE])]
 class Controller_IfacePresets extends ControllerBase implements ControllerRouteNameInterface {
 
   use ControllerRouteNameTrait;
 
   /**
-   * @param string $interface
-   * @param string $methodName
+   * Constructor.
    *
-   * @return \Drupal\ock_preset\RouteHelper\ClassRouteHelperInterface
+   * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
+   *   Universal adapter.
+   * @param \Drupal\ock\TextToDrupal\TextToDrupalInterface $textToDrupal
+   *   Converts ock text to Drupal markup.
+   * @param \Drupal\Core\Form\FormBuilderInterface $formBuilder
+   *   Form builder.
    */
-  public static function route($interface, $methodName = 'index') {
+  public function __construct(
+    private readonly UniversalAdapterInterface $adapter,
+    private readonly TextToDrupalInterface $textToDrupal,
+    FormBuilderInterface $formBuilder,
+  ) {
+    // The base class has this property, but it does not initialize it.
+    $this->formBuilder = $formBuilder;
+  }
+
+  /**
+   * Gets a builder object to create links and urls.
+   *
+   * @param string $interface
+   *   Interface to use in the url.
+   * @param string $methodName
+   *   One of the method names in this class.
+   *
+   * @return \Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface
+   *   Builder object for urls and links.
+   */
+  public static function route(string $interface, string $methodName = 'index'): ClassRouteHelperInterface {
     return ClassRouteHelper::fromClassName(
       self::class,
       [
         'interface' => UiUtil::interfaceGetSlug($interface),
       ],
-      $methodName);
+      $methodName,
+    );
   }
 
   /**
@@ -56,45 +81,35 @@ class Controller_IfacePresets extends ControllerBase implements ControllerRouteN
    *
    * @return string
    */
-  public function title($interface) {
-
+  public function title(string $interface): string {
     return StringUtil::interfaceGenerateLabel($interface);
   }
 
   /**
-   * @Route
-   * @RouteDefaultTaskLink("List")
+   * Shows a list of presets for a given interface.
    *
    * @param string $interface
+   *   Interface name.
    *
    * @return array
+   *   Page content render element.
+   *
+   * @throws \Ock\Adaptism\Exception\AdapterException
+   *   The summarizer cannot be created.
+   * @throws \Ock\Ock\Exception\SummarizerException
+   *   One of the summaries cannot be created.
    */
-  public function index($interface) {
-
-    $configFactory = \Drupal::configFactory();
-
-    $confKeyPrefix = PresetConfUtil::interfaceConfPrefix($interface);
-
-    $keys = $configFactory->listAll($confKeyPrefix);
-
-    /** @var \Drupal\Core\Config\ImmutableConfig[] $configs */
-    $configs = [];
-    foreach ($keys as $key) {
-      [,,, $machine_name] = explode('.', $key);
-      $configs[$machine_name] = $configFactory->get($key);
-    }
-
-    $sta = CfrPluginHub::getContainer()->schemaToAnything;
-    $schema = CfSchema::iface($interface);
-    $summarizer = Summarizer::fromSchema($schema, $sta);
+  #[Route]
+  #[RouteDefaultTaskLink('List')]
+  public function index(string $interface): array {
+    $summarizer = Summarizer::fromIface($interface, $this->adapter);
+    $configs = PresetRepository::create()->loadForInterface($interface);
 
     $rows = [];
     foreach ($configs as $machine_name => $config) {
 
       $conf = $config->get('conf');
-      $summary = (null !== $summarizer)
-        ? $summarizer->confGetSummary($conf)
-        : '';
+      $summary = $summarizer->confGetSummary($conf);
 
       $presetRouteHelper = Controller_Preset::route($interface, $machine_name);
 
@@ -105,7 +120,7 @@ class Controller_IfacePresets extends ControllerBase implements ControllerRouteN
       $row[] = $presetRouteHelper
         ->subpage('delete')
         ->link($this->t('delete'));
-      $row[] = Markup::create($summary);
+      $row[] = $this->textToDrupal->convert($summary);
 
       $rows[] = $row;
     }
@@ -115,7 +130,7 @@ class Controller_IfacePresets extends ControllerBase implements ControllerRouteN
     $interfaceLabel = StringUtil::interfaceGenerateLabel($interface);
 
     $page['#title'] = $this->t(
-      'Manage %type plugin presets.',
+      'Manage %type plugin presets',
       [
         '%type' => $interfaceLabel,
       ]);
@@ -130,35 +145,32 @@ class Controller_IfacePresets extends ControllerBase implements ControllerRouteN
   }
 
   /**
-   * @Route("/add")
-   * @RouteTaskLink("Add preset")
-   * @RouteActionLink("Add preset")
+   * Shows a page with a preset add form.
    *
    * @param string $interface
+   *   Interface from url.
    *
    * @return array
+   *   Page content render element.
    */
-  public function add($interface) {
+  #[Route('/add')]
+  #[RouteTaskLink('Add preset')]
+  #[RouteActionLink('Add preset')]
+  public function add(string $interface): array {
     $page = [];
-
     $interfaceLabel = StringUtil::interfaceGenerateLabel($interface);
-
     $page['#title'] = $this->t(
       'Create %type plugin preset',
-      ['%type' => $interfaceLabel]);
-
+      ['%type' => $interfaceLabel],
+    );
     $formObject = Form_PresetEdit::create($interface);
-
     if (!empty($_GET['conf'])) {
       $formObject = $formObject->withConf($_GET['conf']);
     }
-    else {
-      $conf = NULL;
-    }
-
-    /** @noinspection PhpMethodParametersCountMismatchInspection */
-    $page['form'] = \Drupal::formBuilder()->getForm(
-      Form_Decorator::class, $formObject);
+    $page['form'] = $this->formBuilder->getForm(
+      Form_Decorator::class,
+      $formObject,
+    );
 
     return $page;
   }

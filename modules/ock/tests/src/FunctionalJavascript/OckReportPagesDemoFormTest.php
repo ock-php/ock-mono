@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\ock\FunctionalJavascript;
 
-use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
-
 /**
  * Tests interactive report pages under /en/admin/reports/ock/*.
  *
@@ -15,7 +13,7 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
  * @see \Drupal\ock\Element\FormElement_OckPlugin
  * @see \Drupal\ock\UI\Controller\Controller_ReportIface::demo()
  */
-class OckReportPagesDemoFormTest extends WebDriverTestBase {
+class OckReportPagesDemoFormTest extends OckWebDriverTestBase {
 
   /**
    * {@inheritdoc}
@@ -24,11 +22,6 @@ class OckReportPagesDemoFormTest extends WebDriverTestBase {
     'ock',
     'ock_example',
   ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $defaultTheme = 'stark';
 
   /**
    * {@inheritdoc}

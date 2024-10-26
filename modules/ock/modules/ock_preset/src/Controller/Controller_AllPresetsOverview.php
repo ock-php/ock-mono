@@ -3,54 +3,73 @@ declare(strict_types=1);
 
 namespace Drupal\ock_preset\Controller;
 
-use Drupal\controller_annotations\Configuration\Route;
-use Drupal\controller_annotations\Configuration\RouteIsAdmin;
-use Drupal\controller_annotations\Configuration\RouteRequirePermission;
-use Drupal\controller_annotations\Configuration\RouteTitle;
-use Drupal\controller_annotations\Controller\ControllerRouteNameInterface;
-use Drupal\controller_annotations\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
+use Drupal\ock\Attribute\Routing\Route;
+use Drupal\ock\Attribute\Routing\RouteIsAdmin;
+use Drupal\ock\Attribute\Routing\RouteMenuLink;
+use Drupal\ock\Attribute\Routing\RouteRequirePermission;
+use Drupal\ock\Attribute\Routing\RouteTitle;
+use Drupal\ock\UI\Controller\ControllerRouteNameInterface;
+use Drupal\ock\UI\Controller\ControllerRouteNameTrait;
+use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
+use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
+use Drupal\ock\Util\StringUtil;
 use Drupal\ock_preset\Crud\PresetRepository;
-use Drupal\ock_preset\RouteHelper\ClassRouteHelper;
-use Drupal\routelink\RouteModifier\RouteMenuLink;
+use Ock\DID\Attribute\Parameter\GetService;
+use Ock\Ock\Plugin\Map\PluginMapInterface;
 
-/**
- * @Route("/admin/structure/ock_preset")
- * @RouteIsAdmin
- * @RouteRequirePermission("administer ock_preset")
- */
+#[Route('/admin/structure/ock_preset')]
+#[RouteIsAdmin]
+#[RouteRequirePermission('administer ock_preset')]
 class Controller_AllPresetsOverview extends ControllerBase implements ControllerRouteNameInterface {
 
   use ControllerRouteNameTrait;
 
   /**
-   * @param string $methodName
+   * Constructor.
    *
-   * @return \Drupal\ock_preset\RouteHelper\ClassRouteHelperInterface
+   * @param \Ock\Ock\Plugin\Map\PluginMapInterface $pluginMap
+   *   Plugin map.
    */
-  public static function route($methodName = 'index') {
+  public function __construct(
+    #[GetService]
+    private readonly PluginMapInterface $pluginMap,
+  ) {}
+
+  /**
+   * Gets a builder object to create urls and links.
+   *
+   * @param string $methodName
+   *   Name of a method in this class.
+   *
+   * @return \Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface
+   *   Builder object to create links and urls.
+   */
+  public static function route(string $methodName = 'index'): ClassRouteHelperInterface {
     return ClassRouteHelper::fromClassName(self::class, [], $methodName);
   }
 
   /**
-   * @Route
-   * @RouteTitle("ock_preset presets")
-   * @RouteMenuLink
+   * Shows a page with an overview list of all types with their presets.
    *
    * @return array
+   *   Page content render element.
+   *
+   * @throws \Ock\Ock\Exception\PluginListException
+   *   The list of plugins types cannot be retrieved.
    */
-  public function index() {
-
-    /** @var \Drupal\Core\Config\ImmutableConfig[][] $configss */
+  #[Route]
+  #[RouteTitle('ock_preset presets')]
+  #[RouteMenuLink]
+  public function index(): array {
+    $types = $this->pluginMap->getTypes();
     $configss = PresetRepository::create()->loadAll();
-
     $orphanConfigss = $configss;
 
-    $interfaceLabels = ock_preset()->getInterfaceLabels();
-
     $rows = [];
-    foreach ($interfaceLabels as $interface => $interfaceLabel) {
+    foreach ($types as $interface) {
+      $interfaceLabel = StringUtil::interfaceGenerateLabel($interface);
 
       $presets_html = '';
       if (isset($configss[$interface])) {
@@ -58,9 +77,7 @@ class Controller_AllPresetsOverview extends ControllerBase implements Controller
         unset($orphanConfigss[$interface]);
 
         foreach ($interfaceConfigs as $machine_name => $config) {
-
-          $presets_html .= ''
-            . '<li>'
+          $presets_html .= '<li>'
             . Controller_Preset::route($interface, $machine_name)
               ->link($config->get('label'))
               ->toString()
@@ -85,8 +102,7 @@ class Controller_AllPresetsOverview extends ControllerBase implements Controller
         ->link($this->t('add preset'));
 
       $cells = [];
-      $cells[] = ''
-        . '<strong>' . $interfaceLink->toString() . '</strong>'
+      $cells[] = '<strong>' . $interfaceLink->toString() . '</strong>'
         . '<br/>'
         . '<code>' . $interface . '</code>';
       $cells[] = $presets_html;
