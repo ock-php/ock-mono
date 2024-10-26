@@ -41,7 +41,6 @@ class OckReportPagesDemoFormTest extends OckWebDriverTestBase {
     $this->selectAndWait('Animal', 'Elephant');
     $this->assertSession()->buttonExists('Show')->click();
     $this->assertSession()->pageTextContains('Animal: Elephant');
-    $this->assertTrue(TRUE);
   }
 
 }
