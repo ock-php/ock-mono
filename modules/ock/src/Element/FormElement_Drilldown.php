@@ -9,8 +9,10 @@ use Drupal\Core\Render\Element\FormElementBase;
 /**
  * @todo Not used currently.
  */
-#[FormElement('ock_drilldown')]
+#[FormElement(self::ELEMENT_TYPE)]
 class FormElement_Drilldown extends FormElementBase {
+
+  const ELEMENT_TYPE = 'ock_drilldown';
 
   /**
    * {@inheritdoc}

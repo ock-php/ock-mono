@@ -10,7 +10,7 @@ use Drupal\Core\Render\Element\RenderElementBase;
  * @see \Drupal\Core\Render\Element\Link
  * @see \Drupal\Core\Render\Element\Container
  */
-#[RenderElement('themekit_link_wrapper')]
+#[RenderElement(self::ID)]
 class RenderElement_ThemekitLinkWrapper extends RenderElementBase {
 
   public const ID = 'themekit_link_wrapper';

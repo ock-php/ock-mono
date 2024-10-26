@@ -8,8 +8,10 @@ use Drupal\Core\Render\Element\RenderElementBase;
 use Drupal\ock\UI\Controller\Controller_ReportIface;
 use Ock\Ock\Util\StringUtil;
 
-#[RenderElement('ock_drilldown_container')]
+#[RenderElement(self::ELEMENT_TYPE)]
 class RenderElement_DrilldownContainer extends RenderElementBase {
+
+  const ELEMENT_TYPE = 'ock_drilldown_container';
 
   /**
    * {@inheritdoc}

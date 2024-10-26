@@ -9,7 +9,7 @@ use Drupal\Core\Render\Element\RenderElementBase;
 /**
  * @see \Drupal\Core\Render\Element\Container
  */
-#[RenderElement('themekit_container')]
+#[RenderElement(self::ID)]
 class RenderElement_ThemekitContainer extends RenderElementBase {
 
   public const ID = 'themekit_container';
