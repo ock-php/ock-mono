@@ -2,7 +2,7 @@
 # Key placeholders: $interface, $machine_name
 ock_preset.preset.*.*:
   type: mapping
-  label: 'ock_preset preset'
+  label: 'OCK Presets'
   mapping:
     label:
       type: string
