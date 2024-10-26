@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\themekit\Element;
 
+use Drupal\Core\Render\Attribute\RenderElement;
 use Drupal\Core\Render\Element\RenderElementBase;
 
 /**
- * @RenderElement("themekit_link_wrapper")
- *
  * @see \Drupal\Core\Render\Element\Link
  * @see \Drupal\Core\Render\Element\Container
  */
+#[RenderElement('themekit_link_wrapper')]
 class RenderElement_ThemekitLinkWrapper extends RenderElementBase {
 
   public const ID = 'themekit_link_wrapper';
