@@ -66,9 +66,7 @@ class OckPresetPagesTest extends OckWebDriverTestBase {
     // On the create preset page.
     $this->assertPageTitle('Create Animal plugin preset');
     $this->assertSession()->fieldExists('Administrative title')->setValue('Laura Longneck');
-    $this->assertSession()->selectExists('Plugin')->selectOption('Giraffe');
-    sleep(1);
-    # $this->assertSession()->waitForElement('css', '[data-drupal-selector=edit-conf-previous-id]');
+    $this->selectAndWait('Plugin', 'Giraffe');
     $this->assertSession()->buttonExists('Save preset')->click();
 
     // Back on the list page.

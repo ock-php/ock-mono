@@ -96,4 +96,28 @@ class OckWebDriverTestBase extends WebDriverTestBase {
     );
   }
 
+  /**
+   * Selects a select option and waits until the select is not disabled.
+   *
+   * This is needed for select elements that trigger ajax requests.
+   *
+   * @param string $select
+   *   One of id|name|label|value for the select field.
+   * @param string $option
+   *   Select option label.
+   * @param int $max_seconds
+   *   Maximum number of seconds to wait.
+   */
+  protected function selectAndWait(string $select, string $option, int $max_seconds = 1): void {
+    $element = $this->assertSession()->selectExists($select);
+    $element->selectOption($option);
+    $success = $element->waitFor(
+      $max_seconds,
+      fn() => !$element->hasAttribute('disabled'),
+    );
+    if (!$success) {
+      $this->fail("Select element is still 'disabled' after $max_seconds seconds.");
+    }
+  }
+
 }
