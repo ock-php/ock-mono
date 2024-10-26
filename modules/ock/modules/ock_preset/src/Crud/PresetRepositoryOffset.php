@@ -3,31 +3,26 @@ declare(strict_types=1);
 
 namespace Drupal\ock_preset\Crud;
 
+use Drupal\Core\Config\Config;
+use Drupal\Core\Config\ImmutableConfig;
+
 class PresetRepositoryOffset {
 
   /**
-   * @var \Drupal\ock_preset\Crud\PresetRepository
-   */
-  private $repository;
-
-  /**
-   * @var string
-   */
-  private $interface;
-
-  /**
+   * Constructor.
+   *
    * @param \Drupal\ock_preset\Crud\PresetRepository $repository
    * @param string $interface
    */
-  public function __construct(PresetRepository $repository, $interface) {
-    $this->repository = $repository;
-    $this->interface = $interface;
-  }
+  public function __construct(
+    private readonly PresetRepository $repository,
+    private readonly string $interface,
+  ) {}
 
   /**
    * @return \Drupal\Core\Config\ImmutableConfig[]
    */
-  public function loadAll() {
+  public function loadAll(): array {
     return $this->repository->loadForInterface($this->interface);
   }
 
@@ -36,7 +31,7 @@ class PresetRepositoryOffset {
    *
    * @return \Drupal\Core\Config\ImmutableConfig
    */
-  public function load($preset_name) {
+  public function load(string $preset_name): ImmutableConfig {
     return $this->repository->load(
       $this->interface,
       $preset_name);
@@ -47,10 +42,11 @@ class PresetRepositoryOffset {
    *
    * @return \Drupal\Core\Config\Config
    */
-  public function loadEditable($preset_name) {
+  public function loadEditable(string $preset_name): Config {
     return $this->repository->loadEditable(
       $this->interface,
-      $preset_name);
+      $preset_name,
+    );
   }
 
 }
