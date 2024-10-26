@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Element;
 
-use Drupal\Core\Render\Element\FormElement;
+use Drupal\Core\Render\Element\FormElementBase;
 
 /**
  * @todo Not used currently.
  *
  * @FormElement("ock_drilldown")
  */
-class FormElement_Drilldown extends FormElement {
+class FormElement_Drilldown extends FormElementBase {
 
   /**
    * {@inheritdoc}

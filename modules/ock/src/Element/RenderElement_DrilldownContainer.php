@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Drupal\ock\Element;
 
-use Drupal\Core\Render\Element\RenderElement;
+use Drupal\Core\Render\Element\RenderElementBase;
 use Drupal\ock\UI\Controller\Controller_ReportIface;
 use Ock\Ock\Util\StringUtil;
 
 /**
  * @RenderElement("ock_drilldown_container")
  */
-class RenderElement_DrilldownContainer extends RenderElement {
+class RenderElement_DrilldownContainer extends RenderElementBase {
 
   /**
    * {@inheritdoc}
