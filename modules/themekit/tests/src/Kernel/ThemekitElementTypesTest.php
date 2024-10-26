@@ -9,6 +9,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\themekit\Element\RenderElement_ThemekitContainer;
+use Drupal\themekit\Element\RenderElement_ThemekitLinkWrapper;
 use Ock\Testing\ExceptionSerializationTrait;
 
 /**
@@ -87,7 +88,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
       '<a href="https://www.drupal.org"><div>foo</div>
 </a>',
       [
-        '#type' => 'themekit_link_wrapper',
+        '#type' => RenderElement_ThemekitLinkWrapper::ID,
         'content' => [
           '#type' => 'container',
           ['#children' => 'foo'],
