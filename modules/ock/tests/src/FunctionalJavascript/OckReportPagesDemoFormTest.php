@@ -37,14 +37,10 @@ class OckReportPagesDemoFormTest extends OckWebDriverTestBase {
    */
   public function testInterfaceDemoPage(): void {
     $this->drupalGet('/admin/reports/ock/Drupal.ock_example.Plant.PlantInterface/demo');
-    $this->assertSession()->selectExists('Plugin')
-      ->selectOption('Enchanted creature…');
-    $this->assertSession()->waitForId('edit-plugin-options-animal-id');
-    $this->assertSession()->selectExists('Animal')
-      ->selectOption('Elephant');
+    $this->selectAndWait('Plugin', 'Enchanted creature…');
+    $this->selectAndWait('Animal', 'Elephant');
     $this->assertSession()->buttonExists('Show')->click();
     $this->assertSession()->pageTextContains('Animal: Elephant');
-    $this->assertTrue(TRUE);
   }
 
 }
