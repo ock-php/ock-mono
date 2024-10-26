@@ -6,6 +6,7 @@ namespace Drupal\renderkit\Formula;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\ock\Formator\FormatorD8Interface;
 use Drupal\renderkit\ListFormat\ListFormat_ElementDefaults;
+use Drupal\themekit\Element\RenderElement_ThemekitContainer;
 use Ock\CodegenTools\Util\CodeGen;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Generator\GeneratorInterface;
@@ -157,9 +158,7 @@ class Formula_ListFormat_Expert implements FormatorD8Interface, SummarizerInterf
 
     if (!empty($conf['items'])) {
 
-      /* @see themekit_element_info() */
-      /* @see theme_themekit_container() */
-      $defaults['#type'] = 'themekit_container';
+      $defaults['#type'] = RenderElement_ThemekitContainer::ID;
 
       $defaults['#tag_name'] = self::confExtractTagName($conf, 'items-tag-name', 'div');
 
