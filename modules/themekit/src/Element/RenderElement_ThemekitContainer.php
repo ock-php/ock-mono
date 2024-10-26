@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\themekit\Element;
 
+use Drupal\Core\Render\Attribute\RenderElement;
 use Drupal\Core\Render\Element\RenderElementBase;
 
 /**
- * @RenderElement("themekit_container")
- *
  * @see \Drupal\Core\Render\Element\Container
  */
+#[RenderElement(self::ID)]
 class RenderElement_ThemekitContainer extends RenderElementBase {
 
   public const ID = 'themekit_container';

@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\ock\Formator\Util\ArrayMode;
 use Drupal\ock\UI\AjaxCallback\AjaxCallback_ElementWithProperty;
+use Drupal\themekit\Element\RenderElement_ThemekitContainer;
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\DID\Attribute\Parameter\GetService;
@@ -90,7 +91,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
     $form = [
       '#input' => TRUE,
       '#default_value' => $conf,
-      '#type' => 'themekit_container',
+      '#type' => RenderElement_ThemekitContainer::ID,
       '#attributes' => ['class' => ['ock-sequence']],
       // Use closures so that the actual methods can remain private.
       '#process' => [function (array $element, FormStateInterface $form_state, array $form) {
@@ -309,7 +310,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
     }
     else {
       $element['add_more_assoc'] = [
-        '#type' => 'themekit_container',
+        '#type' => RenderElement_ThemekitContainer::ID,
         '#attributes' => [
           'class' => ['ock-assoc_add_more'],
         ],
@@ -360,7 +361,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
       }
 
       $element['add_more_assoc']['add'] = [
-        '#type' => 'themekit_container',
+        '#type' => RenderElement_ThemekitContainer::ID,
       ];
 
       $element['add_more_assoc']['add']['button'] = [
@@ -480,7 +481,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
 
     if ([] === $rows) {
       $element['items'] = [
-        '#type' => 'themekit_container',
+        '#type' => RenderElement_ThemekitContainer::ID,
         '#children' => '(' . t('no items') . ')',
       ];
       return $element;

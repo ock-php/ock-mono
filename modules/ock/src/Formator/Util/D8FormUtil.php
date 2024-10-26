@@ -5,6 +5,7 @@ namespace Drupal\ock\Formator\Util;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\themekit\Element\RenderElement_ThemekitContainer;
 use Ock\Ock\Util\UtilBase;
 
 class D8FormUtil extends UtilBase {
@@ -79,7 +80,7 @@ class D8FormUtil extends UtilBase {
 
     if (empty($dependingElement)) {
       $dependingElement += [
-        '#type' => 'themekit_container',
+        '#type' => RenderElement_ThemekitContainer::ID,
         '#markup' => '<!-- -->',
       ];
     }

@@ -8,6 +8,8 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\themekit\Element\RenderElement_ThemekitContainer;
+use Drupal\themekit\Element\RenderElement_ThemekitLinkWrapper;
 use Ock\Testing\ExceptionSerializationTrait;
 
 /**
@@ -29,8 +31,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
     $this->assertElements(
       "<div>foo</div>\n",
       [
-        /* @see theme_themekit_container() */
-        '#type' => 'themekit_container',
+        '#type' => RenderElement_ThemekitContainer::ID,
         '#markup' => 'foo',
       ],
       "#type 'themekit_container' with no HTML attributes",
@@ -40,7 +41,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
     $this->assertElements(
       '<div class="bar">foo</div>' . "\n",
       [
-        '#type' => 'themekit_container',
+        '#type' => RenderElement_ThemekitContainer::ID,
         '#markup' => 'foo',
         '#attributes' => ['class' => ['bar']],
       ],
@@ -51,7 +52,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
     $this->assertElements(
       "<div>foo</div>\n",
       [
-        '#type' => 'themekit_container',
+        '#type' => RenderElement_ThemekitContainer::ID,
         'child' => ['#markup' => 'foo'],
       ],
       "#type 'themekit_container' with child elements",
@@ -61,7 +62,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
     $this->assertElements(
       "<article>foo</article>\n",
       [
-        '#type' => 'themekit_container',
+        '#type' => RenderElement_ThemekitContainer::ID,
         '#tag_name' => 'article',
         'child' => ['#markup' => 'foo'],
       ],
@@ -71,7 +72,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
     $this->assertElements(
       "<div><div>foo</div>\n</div>\n",
       [
-        '#type' => 'themekit_container',
+        '#type' => RenderElement_ThemekitContainer::ID,
         'child' => [
           '#type' => 'container',
           'child' => ['#children' => 'foo'],
@@ -87,7 +88,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
       '<a href="https://www.drupal.org"><div>foo</div>
 </a>',
       [
-        '#type' => 'themekit_link_wrapper',
+        '#type' => RenderElement_ThemekitLinkWrapper::ID,
         'content' => [
           '#type' => 'container',
           ['#children' => 'foo'],
@@ -137,7 +138,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
       . "\n",
       [
         // Outer wrapper <ol>.
-        '#type' => 'themekit_container',
+        '#type' => RenderElement_ThemekitContainer::ID,
         '#tag_name' => 'ul',
         '#attributes' => ['class' => ['menu']],
         // Wrap each item in <li>.
@@ -168,7 +169,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
         'x' => ['#markup' => 'X'],
         ['#markup' => 'Y'],
         [
-          '#type' => 'themekit_container',
+          '#type' => RenderElement_ThemekitContainer::ID,
           ['#markup' => 'Z'],
         ],
       ],
@@ -203,7 +204,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
         ['#markup' => 'X'],
         ['#markup' => 'Y'],
         [
-          '#type' => 'themekit_container',
+          '#type' => RenderElement_ThemekitContainer::ID,
           '#tag_name' => 'span',
           ['#markup' => 'Z']
         ]
@@ -223,7 +224,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
         // Empty items with left-over whitespace are removed.
         ['#markup' => ' '],
         [
-          '#type' => 'themekit_container',
+          '#type' => RenderElement_ThemekitContainer::ID,
           '#tag_name' => 'span',
           ['#markup' => 'Z']
         ],
