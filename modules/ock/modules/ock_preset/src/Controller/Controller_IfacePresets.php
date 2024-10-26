@@ -130,7 +130,7 @@ class Controller_IfacePresets extends ControllerBase implements ControllerRouteN
     $interfaceLabel = StringUtil::interfaceGenerateLabel($interface);
 
     $page['#title'] = $this->t(
-      'Manage %type plugin presets.',
+      'Manage %type plugin presets',
       [
         '%type' => $interfaceLabel,
       ]);
