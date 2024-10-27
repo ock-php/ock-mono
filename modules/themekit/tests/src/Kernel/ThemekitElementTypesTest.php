@@ -10,6 +10,7 @@ use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\themekit\Element\RenderElement_ThemekitContainer;
 use Drupal\themekit\Element\RenderElement_ThemekitLinkWrapper;
+use Ock\DrupalTesting\DrupalTesting;
 use Ock\Testing\ExceptionSerializationTrait;
 
 /**
@@ -245,8 +246,7 @@ class ThemekitElementTypesTest extends KernelTestBase {
    *   Assertion message.
    */
   private function assertElements(string $expected_html, array $elements, string $message): void {
-    $renderer = \Drupal::service('renderer');
-    assert($renderer instanceof RendererInterface);
+    $renderer = DrupalTesting::service(RendererInterface::class);
     $actual_html = (string) $renderer->renderRoot($elements);
     static::assertSame(
       $expected_html,

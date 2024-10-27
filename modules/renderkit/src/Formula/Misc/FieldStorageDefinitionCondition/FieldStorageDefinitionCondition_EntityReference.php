@@ -5,7 +5,9 @@ namespace Drupal\renderkit\Formula\Misc\FieldStorageDefinitionCondition;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Field\FieldTypePluginManagerInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
+use Ock\DrupalTesting\DrupalTesting;
 
 class FieldStorageDefinitionCondition_EntityReference implements FieldStorageDefinitionConditionInterface {
 
@@ -18,8 +20,7 @@ class FieldStorageDefinitionCondition_EntityReference implements FieldStorageDef
 
     $fieldTypeId = $storageDefinition->getType();
 
-    /** @var \Drupal\Core\Field\FieldTypePluginManagerInterface $ftm */
-    $ftm = \Drupal::service('plugin.manager.field.field_type');
+    $ftm = DrupalTesting::service(FieldTypePluginManagerInterface::class);
 
     try {
       $fieldTypeDefinition = $ftm->getDefinition($fieldTypeId);
