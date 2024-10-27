@@ -7,7 +7,9 @@ use Drupal\Core\Config\Config;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\ock_preset\Form\Util\PresetConfUtil;
+use Ock\DependencyInjection\Attribute\Service;
 
+#[Service(public: true)]
 class PresetRepository {
 
   /**

@@ -20,7 +20,7 @@ class Plant_EnchantedCreature implements PlantInterface {
    */
   public function __construct(
     #[OckOption('animal', 'Animal')]
-    AnimalInterface $enchanted_animal,
+    public readonly AnimalInterface $enchanted_animal,
   ) {}
 
 }
