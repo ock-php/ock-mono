@@ -99,7 +99,6 @@ class OckPresetPagesTest extends OckWebDriverTestBase {
     $this->assertSession()->pageTextContains('The preset Laura 1 Longneck has been deleted.');
     $this->getSession()->reload();
 
-
     // Back on the list page, refreshed.
     $this->assertSession()->pageTextNotContains('Laura');
   }
