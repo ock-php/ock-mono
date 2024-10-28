@@ -1,0 +1,71 @@
+name: CI - Test recordings
+
+on:
+  - push
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.3]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: DDEV - Setup
+        uses: ddev/github-action-setup-ddev@v1
+        with:
+          autostart: false
+
+      - name: DDEV - Configure and start
+        run: |
+          set -x
+          ddev config --php-version=${{ matrix.php }}
+          ddev start
+          ddev php --version
+
+      - name: Composer
+        if:
+        run: |
+          set -x
+          ddev composer install --prefer-dist --no-interaction
+
+      - name: PhpUnit - check recordings
+        run: |
+          set -x
+
+          # Check git diff and status before.
+          # Make sure there _is_ a diff.
+          touch noise.txt
+          git status
+          git add .
+          # This will fail if nothing to commit.
+          git config --global user.email "ci@example.com"
+          git config --global user.name "CI"
+          git commit -m"Changes before the test."
+          git status
+
+          # Delete all recordings.
+          rm -vr packages/**/tests/recordings/*
+          rm -vr modules/**/tests/recordings/*
+
+          # Run in recording mode.
+          ddev exec UPDATE_TESTS=1 ./vendor/bin/phpunit -vvv --debug \
+            --fail-on-incomplete \
+            --fail-on-warning \
+            --fail-on-skipped \
+            --fail-on-risky
+
+          # Compare the result. Include untracked files.
+          git add .
+          git diff --staged
+
+          # Fail if different.
+          if [[ `git status --porcelain` ]]; then
+            # Recordings have changed.
+            exit 1
+          fi
