@@ -12,11 +12,6 @@ use Drupal\service_discovery\Testing\ServicesTestBase;
 class OckExampleServicesTest extends ServicesTestBase {
 
   /**
-   * Other modules to enable as dependencies.
-   */
-  protected static $modules = ['ock'];
-
-  /**
    * {@inheritdoc}
    */
   protected function getTestedModuleName(): string {

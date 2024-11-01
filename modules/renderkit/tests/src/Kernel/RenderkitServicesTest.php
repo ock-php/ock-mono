@@ -11,9 +11,4 @@ use Drupal\service_discovery\Testing\ServicesTestBase;
  */
 class RenderkitServicesTest extends ServicesTestBase {
 
-  /**
-   * Additional modules to install.
-   */
-  protected static $modules = ['ock'];
-
 }

@@ -8,13 +8,4 @@ use Drupal\Tests\ock\Kernel\OckRoutingTestBase;
 
 class RenderkitRoutingTest extends OckRoutingTestBase {
 
-  /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  protected static $modules = [
-    'ock',
-  ];
-
 }
