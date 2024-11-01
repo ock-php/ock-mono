@@ -1,0 +1,5 @@
+test: 'Drupal\Tests\service_discovery\Kernel\TestModuleServicesTest::testServiceIds()'
+values:
+  -
+    "Service ids from 'service_discovery_test' module.":
+      - Drupal\service_discovery_test\ServiceAtlas
