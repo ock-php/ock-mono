@@ -4,6 +4,11 @@
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          colors="true"
          bootstrap="web/core/tests/bootstrap.php"
+         failOnEmptyTestSuite="true"
+         failOnIncomplete="true"
+         failOnSkipped="true"
+         failOnRisky="true"
+         failOnWarning="true"
 >
   <php>
     <!-- See https://gist.github.com/davidjguru/2d59eed50818f74710ae3b0f87fb947d -->
