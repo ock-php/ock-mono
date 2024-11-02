@@ -60,6 +60,10 @@ jobs:
           # Avoid open-telemetry/sdk beta version with '--prefer-lowest'.
           composer require --no-update --dev open-telemetry/sdk:@stable
 
+          # Disallow some plugins.
+          composer config --no-plugins allow-plugins.php-http/discovery false
+          composer config --no-plugins allow-plugins.tbachert/spi false
+
           # Apply composer flags.
           composer update --no-install ${{ matrix.composer-flags }}
 
