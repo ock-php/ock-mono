@@ -204,7 +204,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
     $ajax = [
       'callback' => new AjaxCallback_ElementWithProperty('#prefix', $element['#prefix']),
       'wrapper' => $uniqid,
-      'method' => 'replace',
+      'method' => 'replaceWith',
     ];
 
     foreach ($value as $delta => $item_value) {
