@@ -13,7 +13,7 @@ use Ock\Testing\Exporter\ExporterInterface;
 use Ock\Testing\RecordedTestTrait;
 use Symfony\Component\Routing\Route;
 
-abstract class OckRoutingTestBase extends KernelTestBase {
+abstract class ModuleRoutingTestBase extends KernelTestBase {
 
   use RecordedTestTrait;
 
