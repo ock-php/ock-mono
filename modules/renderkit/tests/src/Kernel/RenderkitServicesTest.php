@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\renderkit\Kernel;
 
-use Drupal\service_discovery\Testing\ServicesTestBase;
+use Ock\DrupalTesting\ModuleServicesTestBase;
 
 /**
  * Test for services from renderkit module.
  */
-class RenderkitServicesTest extends ServicesTestBase {
-
-  /**
-   * Additional modules to install.
-   */
-  protected static $modules = ['ock'];
+class RenderkitServicesTest extends ModuleServicesTestBase {
 
 }

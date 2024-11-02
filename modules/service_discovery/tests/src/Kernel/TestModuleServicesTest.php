@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\service_discovery\Kernel;
 
-use Drupal\service_discovery\Testing\ServicesTestBase;
+use Ock\DrupalTesting\ModuleServicesTestBase;
 
-class TestModuleServicesTest extends ServicesTestBase {
+class TestModuleServicesTest extends ModuleServicesTestBase {
 
   /**
    * {@inheritdoc}

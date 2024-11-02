@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\ock\Kernel;
 
-use Drupal\service_discovery\Testing\ServicesTestBase;
+use Ock\DrupalTesting\ModuleServicesTestBase;
 
-class OckServicesTest extends ServicesTestBase {
+class OckServicesTest extends ModuleServicesTestBase {
 
 }

@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\ock\Kernel;
 
-use Drupal\service_discovery\Testing\ServicesTestBase;
+use Ock\DrupalTesting\ModuleServicesTestBase;
 
 /**
  * Test for services from 'ock_example' module.
  */
-class OckExampleServicesTest extends ServicesTestBase {
-
-  /**
-   * Other modules to enable as dependencies.
-   */
-  protected static $modules = ['ock'];
+class OckExampleServicesTest extends ModuleServicesTestBase {
 
   /**
    * {@inheritdoc}
