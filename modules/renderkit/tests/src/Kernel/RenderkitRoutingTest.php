@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\renderkit\Kernel;
 
-use Drupal\Tests\ock\Kernel\OckRoutingTestBase;
+use Ock\DrupalTesting\OckRoutingTestBase;
 
 class RenderkitRoutingTest extends OckRoutingTestBase {
 

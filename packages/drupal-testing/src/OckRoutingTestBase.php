@@ -2,13 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\ock\Kernel;
+namespace Ock\DrupalTesting;
 
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\KernelTests\KernelTestBase;
-use Ock\DrupalTesting\DrupalTesting;
 use Ock\Testing\Exporter\Exporter_ToYamlArray;
 use Ock\Testing\Exporter\ExporterInterface;
 use Ock\Testing\RecordedTestTrait;
