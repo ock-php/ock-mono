@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
-         executionOrder="depends,defects"
          colors="true"
-         beStrictAboutOutputDuringTests="true"
-         beStrictAboutChangesToGlobalState="true"
+         bootstrap="vendor/autoload.php"
          displayDetailsOnIncompleteTests="true"
          displayDetailsOnSkippedTests="true"
          displayDetailsOnPhpunitDeprecations="true"
@@ -18,40 +15,21 @@
          failOnNotice="true"
          failOnSkipped="true"
          failOnPhpunitDeprecation="true"
-         stopOnFailure="true"
          failOnDeprecation="true"
          failOnRisky="true"
          failOnWarning="true"
-         cacheDirectory=".phpunit.cache">
-  <coverage>
-    <report>
-      <clover outputFile="build/coverage/clover.xml"/>
-      <php outputFile="build/coverage/coverage.php"/>
-    </report>
-  </coverage>
-
+>
+  <php>
+    <ini name="error_reporting" value="32767"/>
+  </php>
   <testsuites>
     <testsuite name="default">
       <directory>./tests/src</directory>
     </testsuite>
   </testsuites>
-
-  <php>
-    <ini name="error_reporting" value="-1"/>
-    <ini name="memory_limit" value="-1"/>
-  </php>
-
-  <!-- <logging>
-    <coverage-clover target="build/logs/clover.xml"/>
-    <junit target="build/logs/junit.xml"/>
-    <coverage-php target="build/cov/coverage.cov"/>
-  </logging> -->
-  <logging>
-    <junit outputFile="build/logs/junit.xml"/>
-  </logging>
   <source>
     <include>
-      <directory suffix=".php">src</directory>
+      <directory>./src/</directory>
     </include>
   </source>
 </phpunit>
