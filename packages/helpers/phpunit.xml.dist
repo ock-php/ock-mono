@@ -30,6 +30,7 @@
   <source>
     <include>
       <directory>./src/</directory>
+      <directory>./functions/</directory>
     </include>
   </source>
 </phpunit>
