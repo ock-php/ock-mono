@@ -54,7 +54,7 @@ class D8FormUtil extends UtilBase {
       /* @see dependedElementAjaxCallback() */
       'callback' => [self::class, 'dependedElementAjaxCallback'],
       'wrapper' => $uniqid,
-      'method' => 'replace',
+      'method' => 'replaceWith',
     ];
 
     $dependedElement['#depending_element_reference'] =& $dependingElement;
