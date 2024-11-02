@@ -16,7 +16,7 @@
         "ock/object-construction-kit": "*"
     },
     "require-dev": {
-        "ock/testing": "self.version"
+        "ock/drupal-testing": "self.version"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

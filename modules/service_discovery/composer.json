@@ -9,7 +9,7 @@
         "ock/dependency-injection": "self.version"
     },
     "require-dev": {
-        "ock/testing": "self.version"
+        "ock/drupal-testing": "self.version"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
