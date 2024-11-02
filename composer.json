@@ -59,7 +59,7 @@
         "ext-libxml": "*",
         "drupal/core-dev": "^10.3.5 | ^11.0.4",
         "league/container": "^4.2.2",
-        "ock/testing": "self.version",
+        "ock/drupal-testing": "self.version",
         "phpspec/prophecy-phpunit": "^2.2.0",
         "phpstan/phpstan": "^1.12.3",
         "phpunit/phpunit": "^9.6.20",
