@@ -17,7 +17,7 @@ jobs:
           - renderkit
           - service_discovery
           - themekit
-        php: [8.2]
+        php: [8.2, 8.3]
         composer-flags: ['', '--prefer-lowest']
         drupal-constraint: ['^10.3.5']
 
