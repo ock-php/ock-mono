@@ -114,10 +114,10 @@ EOT;
   /**
    * @return \Iterator
    */
-  public function providerTestSelfUpdating(): \Iterator {
-    foreach ($this->getDirNames() as $dirname) {
-      $markdownFileNames = $this->getMarkdownFileNames($dirname);
-      $snippetFileNames = $this->getSnippetFileNames($dirname);
+  public static function providerTestSelfUpdating(): \Iterator {
+    foreach (self::getDirNames() as $dirname) {
+      $markdownFileNames = self::getMarkdownFileNames($dirname);
+      $snippetFileNames = self::getSnippetFileNames($dirname);
       if (!$snippetFileNames) {
         continue;
       }
@@ -173,10 +173,10 @@ EOT;
   /**
    * @return \Iterator
    */
-  public function providerTestOther(): \Iterator {
-    foreach ($this->getDirNames() as $dirname) {
-      $markdownFileNames = $this->getMarkdownFileNames($dirname);
-      foreach ($this->getMatchingFileNames($dirname, '@^_[\w\-]+\.php$@') as $testCaseFileName) {
+  public static function providerTestOther(): \Iterator {
+    foreach (self::getDirNames() as $dirname) {
+      $markdownFileNames = self::getMarkdownFileNames($dirname);
+      foreach (self::getMatchingFileNames($dirname, '@^_[\w\-]+\.php$@') as $testCaseFileName) {
         foreach ($markdownFileNames as $markdownFileName) {
           if (str_starts_with($markdownFileName, '0.')) {
             continue;
@@ -220,8 +220,8 @@ EOT;
    *
    * @return string[]
    */
-  private function getSnippetFileNames(string $dirname): array {
-    return $this->getMatchingFileNames($dirname, '@^_snippet\..+\.md\.php$@');
+  private static function getSnippetFileNames(string $dirname): array {
+    return self::getMatchingFileNames($dirname, '@^_snippet\..+\.md\.php$@');
   }
 
   /**
@@ -230,9 +230,9 @@ EOT;
    *
    * @return string[]
    */
-  private function getMatchingFileNames(string $dirname, string $pattern): array {
+  private static function getMatchingFileNames(string $dirname, string $pattern): array {
     $names = [];
-    foreach (scandir($this->getFixturesDir() . '/' . $dirname) as $candidate) {
+    foreach (scandir(self::getFixturesDir() . '/' . $dirname) as $candidate) {
       if (preg_match($pattern, $candidate)) {
         $names[] = $candidate;
       }
@@ -246,18 +246,18 @@ EOT;
    *
    * @return string[]
    */
-  private function getMarkdownFileNames(string $dirname): array {
+  private static function getMarkdownFileNames(string $dirname): array {
     // Find file names that end with '.md' and don't start with '.' or '_'.
-    return $this->getMatchingFileNames($dirname, '@^[^_.].*\.md$@');
+    return self::getMatchingFileNames($dirname, '@^[^_.].*\.md$@');
   }
 
   /**
    * @return string[]
    */
-  private function getDirNames(): array {
-    $fixturesDir = $this->getFixturesDir();
+  private static function getDirNames(): array {
+    $fixturesDir = self::getFixturesDir();
     $names = [];
-    foreach (scandir($this->getFixturesDir()) as $candidate) {
+    foreach (scandir(self::getFixturesDir()) as $candidate) {
       if (($candidate[0] ?? NULL) === '.') {
         continue;
       }
@@ -269,7 +269,7 @@ EOT;
     return $names;
   }
 
-  private function getFixturesDir(): string {
+  private static function getFixturesDir(): string {
     return dirname(__DIR__) . '/fixtures';
   }
 
