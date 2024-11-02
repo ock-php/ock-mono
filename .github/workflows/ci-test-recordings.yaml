@@ -54,7 +54,7 @@ jobs:
           rm -vr modules/**/tests/recordings/*
 
           # Run in recording mode.
-          ddev exec UPDATE_TESTS=1 ./vendor/bin/phpunit -vvv --debug \
+          ddev exec UPDATE_TESTS=1 ./vendor/bin/phpunit --debug \
             --fail-on-incomplete \
             --fail-on-warning \
             --fail-on-skipped \

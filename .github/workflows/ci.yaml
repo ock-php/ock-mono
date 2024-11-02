@@ -38,7 +38,7 @@ jobs:
       - name: PhpUnit
         run: |
           set -x
-          ddev exec ./vendor/bin/phpunit -vvv --debug \
+          ddev exec ./vendor/bin/phpunit --debug \
             --fail-on-incomplete \
             --fail-on-warning \
             --fail-on-skipped \
