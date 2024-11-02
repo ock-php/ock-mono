@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\ock\Kernel;
 
-use Drupal\service_discovery\Testing\ServicesTestBase;
+use Ock\DrupalTesting\ServicesTestBase;
 
 /**
  * Test for services from 'ock_example' module.

@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Drupal\service_discovery\Testing;
+namespace Ock\DrupalTesting;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\KernelTests\KernelTestBase;
-use Ock\DrupalTesting\DrupalTesting;
 use Ock\Testing\RecordedTestTrait;
 use Psr\Container\NotFoundExceptionInterface;
 
