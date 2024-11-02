@@ -1,0 +1,5 @@
+services:
+  web:
+    environment:
+      # Help Composer to find a package version when in git detached HEAD.
+      COMPOSER_ROOT_VERSION: 1.0.0
