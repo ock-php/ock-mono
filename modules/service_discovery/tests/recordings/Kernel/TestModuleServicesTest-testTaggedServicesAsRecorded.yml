@@ -1,0 +1,4 @@
+test: 'Drupal\Tests\service_discovery\Kernel\TestModuleServicesTest::testTaggedServicesAsRecorded()'
+values:
+  -
+    "Tagged services from 'service_discovery_test' module.": {  }

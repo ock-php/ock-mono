@@ -2,5 +2,4 @@ test: 'Drupal\Tests\service_discovery\Kernel\ServicesTest::testServiceIds()'
 values:
   -
     "Service ids from 'service_discovery' module.":
-      - Drupal\service_discovery_test\ServiceAtlas
       - Psr\Container\ContainerInterface
