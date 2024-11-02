@@ -17,7 +17,7 @@ jobs:
           - renderkit
           - service_discovery
           - themekit
-        php: [8.2]
+        php: [8.2, 8.3]
         composer-flags: ['', '--prefer-lowest']
         drupal-constraint: ['^10.3.5']
 
@@ -40,6 +40,7 @@ jobs:
       - name: Composer
         run: |
           set -x
+          php --version
 
           # Add repositories for monorepo packages.
           # Use copy instead of symlink.
@@ -101,6 +102,7 @@ jobs:
           ddev get ddev/ddev-drupal-contrib
           ddev get ddev/ddev-selenium-standalone-chrome
           ddev start
+          ddev php --version
 
       - name: phpunit - Browser tests (DDEV)
         run: |

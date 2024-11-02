@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [8.2]
+        php: [8.2, 8.3]
         composer-flags: ['', '--prefer-lowest']
 
     steps:
@@ -27,6 +27,7 @@ jobs:
           set -x
           ddev config --php-version=${{ matrix.php }}
           ddev start
+          ddev php --version
 
       - name: Composer
         run: |
