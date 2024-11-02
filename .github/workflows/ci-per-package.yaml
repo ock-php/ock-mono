@@ -37,7 +37,7 @@ jobs:
           php-version: ${{ matrix.php }}
           # @todo Review which extensions are needed.
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
-          coverage: none
+          coverage: pcov
 
       - name: Add repositories for monorepo packages
         run: |
