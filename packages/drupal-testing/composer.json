@@ -1,0 +1,30 @@
+{
+    "name": "ock/drupal-testing",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Hennings",
+            "email": "andreas@dqxtech.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Ock\\DrupalTesting\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ock\\DrupalTesting\\Tests\\": "tests/src"
+        }
+    },
+    "require": {
+        "php": ">=8.2",
+        "ext-json": "*",
+        "drupal/core": "^10.3.6",
+        "ock/testing": "self.version"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}

@@ -7,6 +7,7 @@ namespace Drupal\service_discovery\Testing;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\KernelTests\KernelTestBase;
+use Ock\DrupalTesting\DrupalTesting;
 use Ock\Testing\RecordedTestTrait;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -41,8 +42,7 @@ abstract class ServicesTestBase extends KernelTestBase {
     parent::setUp();
     $this->installEntitySchema('user');
     $this->installSchema('user', ['users_data']);
-    /** @var ModuleInstallerInterface $module_installer */
-    $module_installer = \Drupal::service(ModuleInstallerInterface::class);
+    $module_installer = DrupalTesting::service(ModuleInstallerInterface::class);
     $module = $this->getTestedModuleName();
     // Install the module and all dependencies.
     // Install one more module than we need, and uninstall it immediately after.
@@ -61,8 +61,7 @@ abstract class ServicesTestBase extends KernelTestBase {
    *   Service ids from this module.
    */
   public function testServiceIds(): array {
-    /** @var ModuleInstallerInterface $module_installer */
-    $module_installer = \Drupal::service(ModuleInstallerInterface::class);
+    $module_installer = DrupalTesting::service(ModuleInstallerInterface::class);
     $module = $this->getTestedModuleName();
     $all_ids = \Drupal::getContainer()->getServiceIds();
     // Uninstall the modules, but keep dependencies enabled.
@@ -133,8 +132,7 @@ abstract class ServicesTestBase extends KernelTestBase {
     }
 
     // Uninstall the module, but keep dependencies enabled.
-    /** @var ModuleInstallerInterface $module_installer */
-    $module_installer = \Drupal::service(ModuleInstallerInterface::class);
+    $module_installer = DrupalTesting::service(ModuleInstallerInterface::class);
     $module = $this->getTestedModuleName();
     $module_installer->uninstall([$module]);
     $container = \Drupal::getContainer();

@@ -5,6 +5,7 @@ namespace Drupal\ock\UI\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
+use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Render\Markup;
 use Drupal\ock\Attribute\Routing\Route;
 use Drupal\ock\Attribute\Routing\RouteIsAdmin;
@@ -16,6 +17,7 @@ use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
 use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
 use Drupal\ock\Util\StringUtil;
 use Ock\DID\Attribute\Parameter\GetService;
+use Ock\DrupalTesting\DrupalTesting;
 use Ock\Ock\Plugin\Map\PluginMapInterface;
 
 #[Route('/admin/reports/ock')]
@@ -94,8 +96,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
       }
     }
 
-    /** @var \Drupal\Core\Extension\ModuleExtensionList $modules_info */
-    $modules_info = \Drupal::service('extension.list.module');
+    $modules_info = DrupalTesting::service(ModuleExtensionList::class);
 
     foreach ($rows_grouped as $module => $module_rows) {
       $module_label = $module;

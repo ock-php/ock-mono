@@ -7,6 +7,7 @@ namespace Drupal\Tests\ock\Kernel;
 use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\KernelTests\KernelTestBase;
+use Ock\DrupalTesting\DrupalTesting;
 use Ock\Testing\Exporter\Exporter_ToYamlArray;
 use Ock\Testing\Exporter\ExporterInterface;
 use Ock\Testing\RecordedTestTrait;
@@ -33,8 +34,7 @@ abstract class OckRoutingTestBase extends KernelTestBase {
     parent::setUp();
     $this->installEntitySchema('user');
     $this->installSchema('user', ['users_data']);
-    /** @var ModuleInstallerInterface $module_installer */
-    $module_installer = \Drupal::service(ModuleInstallerInterface::class);
+    $module_installer = DrupalTesting::service(ModuleInstallerInterface::class);
     $module = $this->getTestedModuleName();
     // Install the module and all dependencies.
     // Install one more module than we need, and uninstall it immediately after.
@@ -48,10 +48,8 @@ abstract class OckRoutingTestBase extends KernelTestBase {
    * Tests route definitions from this module.
    */
   public function testRoutes(): void {
-    /** @var \Drupal\Core\Routing\RouteProviderInterface $route_provider */
-    $route_provider = \Drupal::service(RouteProviderInterface::class);
-    /** @var ModuleInstallerInterface $module_installer */
-    $module_installer = \Drupal::service(ModuleInstallerInterface::class);
+    $route_provider = DrupalTesting::service(RouteProviderInterface::class);
+    $module_installer = DrupalTesting::service(ModuleInstallerInterface::class);
     $module = $this->getTestedModuleName();
     /** @var \ArrayIterator<\Symfony\Component\Routing\Route> $all_routes_iterator */
     $all_routes_iterator = $route_provider->getAllRoutes();
