@@ -2,64 +2,50 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\ock\Kernel;
+namespace Ock\DrupalTesting;
 
+use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\KernelTests\KernelTestBase;
-use Ock\DrupalTesting\DrupalTesting;
 use Ock\Testing\Exporter\Exporter_ToYamlArray;
 use Ock\Testing\Exporter\ExporterInterface;
 use Ock\Testing\RecordedTestTrait;
 use Symfony\Component\Routing\Route;
 
-abstract class OckRoutingTestBase extends KernelTestBase {
+abstract class ModuleRoutingTestBase extends KernelTestBase {
 
   use RecordedTestTrait;
-
-  /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  protected static $modules = [
-    'user',
-    'service_discovery',
-  ];
 
   /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
     parent::setUp();
-    $this->installEntitySchema('user');
-    $this->installSchema('user', ['users_data']);
-    $module_installer = DrupalTesting::service(ModuleInstallerInterface::class);
-    $module = $this->getTestedModuleName();
-    // Install the module and all dependencies.
-    // Install one more module than we need, and uninstall it immediately after.
-    // This prevents a bogus service id to appear in the test output.
-    /** @noinspection PhpUnhandledExceptionInspection */
-    $module_installer->install([$module, 'tour']);
-    $module_installer->uninstall(['tour']);
+    # $this->installEntitySchema('user');
+    # $this->installSchema('user', ['users_data']);
   }
 
   /**
    * Tests route definitions from this module.
    */
   public function testRoutes(): void {
-    $route_provider = DrupalTesting::service(RouteProviderInterface::class);
-    $module_installer = DrupalTesting::service(ModuleInstallerInterface::class);
     $module = $this->getTestedModuleName();
-    /** @var \ArrayIterator<\Symfony\Component\Routing\Route> $all_routes_iterator */
-    $all_routes_iterator = $route_provider->getAllRoutes();
-    $module_installer->uninstall([$module]);
-    /** @var \ArrayIterator<\Symfony\Component\Routing\Route> $remaining_routes_iterator */
-    $remaining_routes_iterator = $route_provider->getAllRoutes();
+    $info = DrupalTesting::service(ModuleExtensionList::class)->get($module);
+    assert(property_exists($info, 'requires'));
+    $other_modules = array_keys($info->requires);
+
+    DrupalTesting::service(ModuleInstallerInterface::class)->install($other_modules);
+    /** @var \ArrayIterator<\Symfony\Component\Routing\Route> $routes_without */
+    $routes_without = DrupalTesting::service(RouteProviderInterface::class)->getAllRoutes();
+
+    DrupalTesting::service(ModuleInstallerInterface::class)->install([$module]);
+    /** @var \ArrayIterator<\Symfony\Component\Routing\Route> $routes_with */
+    $routes_with = DrupalTesting::service(RouteProviderInterface::class)->getAllRoutes();
 
     $module_routes = array_diff_key(
-      $all_routes_iterator->getArrayCopy(),
-      $remaining_routes_iterator->getArrayCopy(),
+      $routes_with->getArrayCopy(),
+      $routes_without->getArrayCopy(),
     );
     ksort($module_routes);
     $this->assertObjectsAsRecorded(

@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\ock\Kernel;
 
-class OckRoutingTest extends OckRoutingTestBase {
+use Ock\DrupalTesting\ModuleRoutingTestBase;
+
+class OckRoutingTest extends ModuleRoutingTestBase {
 
 }
