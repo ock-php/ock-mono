@@ -19,12 +19,12 @@ if (!class_exists(KernelTestBase::class)
 }
 
 /**
- * Base class for services tests.
+ * Base class to test which services a specific module provides.
  *
  * This is used to detect regressions if a service has disappeared or changed
  * accidentally.
  */
-abstract class ServicesTestBase extends KernelTestBase {
+abstract class ModuleServicesTestBase extends KernelTestBase {
 
   use RecordedTestTrait;
 

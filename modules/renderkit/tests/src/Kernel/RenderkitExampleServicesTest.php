@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\renderkit\Kernel;
 
-use Ock\DrupalTesting\ServicesTestBase;
+use Ock\DrupalTesting\ModuleServicesTestBase;
 
-class RenderkitExampleServicesTest extends ServicesTestBase {
+class RenderkitExampleServicesTest extends ModuleServicesTestBase {
 
   /**
    * {@inheritdoc}
