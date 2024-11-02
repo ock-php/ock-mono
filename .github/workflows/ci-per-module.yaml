@@ -79,7 +79,7 @@ jobs:
         run: |
           set -x
           # Run all tests that don't need a browser.
-          vendor/bin/phpunit --debug \
+          vendor/bin/phpunit \
             --filter "\\\\(Unit|Kernel)\\\\" \
             --fail-on-incomplete \
             --fail-on-warning \
@@ -112,7 +112,7 @@ jobs:
         run: |
           set -x
           # Run tests need a browser.
-          ddev phpunit --debug \
+          ddev phpunit \
             --filter "\\\\(Functional|FunctionalJavascript)\\\\" \
             --fail-on-incomplete \
             --fail-on-warning \
