@@ -27,6 +27,7 @@ jobs:
           set -x
           ddev config --php-version=${{ matrix.php }}
           ddev start
+          ddev php --version
 
       - name: Composer
         run: |

@@ -41,6 +41,8 @@ jobs:
 
       - name: Add repositories for monorepo packages
         run: |
+          set -x
+          php --version
           composer config --merge --json repositories.0 '{"type": "path", "url": "../*", "options": {"versions": {"*": "self.version"}}}'
 
       - run: composer update --no-install ${{ matrix.composer-flags }}
