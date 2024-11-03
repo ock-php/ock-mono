@@ -54,11 +54,10 @@ jobs:
           php expand_composer_json.php ${{ matrix.module }}
           rm -f expand_composer_json.php
 
-          # Further prepare composer.json to avoid bad versions.
-          # Avoid composer/installers v1 with '--prefer-lowest'.
+          # Set some minimum versions for '--prefer-lowest'.
           composer require --no-update --dev composer/installers:^2
-          # Avoid open-telemetry/sdk beta version with '--prefer-lowest'.
           composer require --no-update --dev open-telemetry/sdk:@stable
+          composer require --no-update --dev masterminds/html5:^2.9.0
 
           # Disallow some plugins.
           composer config --no-plugins allow-plugins.php-http/discovery false
