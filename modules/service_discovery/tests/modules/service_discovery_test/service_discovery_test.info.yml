@@ -2,7 +2,7 @@ name: 'Service discovery test'
 type: module
 description: 'Support module for action testing.'
 package: Testing
-core_version_requirement: ^10
+core_version_requirement: ^11
 
 dependencies:
   - service_discovery:service_discovery

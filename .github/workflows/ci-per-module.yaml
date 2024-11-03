@@ -17,9 +17,9 @@ jobs:
           - renderkit
           - service_discovery
           - themekit
-        php: [8.2, 8.3]
+        php: [8.3]
         composer-flags: ['', '--prefer-lowest']
-        drupal-constraint: ['^10.3.5']
+        drupal-constraint: ['^11.0.5']
 
     defaults:
       run:
@@ -54,11 +54,14 @@ jobs:
           php expand_composer_json.php ${{ matrix.module }}
           rm -f expand_composer_json.php
 
-          # Further prepare composer.json to avoid bad versions.
-          # Avoid composer/installers v1 with '--prefer-lowest'.
+          # Set some minimum versions for '--prefer-lowest'.
           composer require --no-update --dev composer/installers:^2
-          # Avoid open-telemetry/sdk beta version with '--prefer-lowest'.
           composer require --no-update --dev open-telemetry/sdk:@stable
+          composer require --no-update --dev masterminds/html5:^2.9.0
+
+          # Disallow some plugins.
+          composer config --no-plugins allow-plugins.php-http/discovery false
+          composer config --no-plugins allow-plugins.tbachert/spi false
 
           # Apply composer flags.
           composer update --no-install ${{ matrix.composer-flags }}
@@ -70,17 +73,6 @@ jobs:
           curl -OL https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/symlink_project.php
           php symlink_project.php ${{ matrix.module }}
           rm -f symlink_project.php
-
-      - name: phpunit - Non-browser tests
-        run: |
-          set -x
-          # Run all tests that don't need a browser.
-          vendor/bin/phpunit -vvv --debug \
-            --filter "\\\\(Unit|Kernel)\\\\" \
-            --fail-on-incomplete \
-            --fail-on-warning \
-            --fail-on-skipped \
-            --fail-on-risky
 
       - name: DDEV - Setup
         uses: ddev/github-action-setup-ddev@v1
@@ -104,12 +96,11 @@ jobs:
           ddev start
           ddev php --version
 
-      - name: phpunit - Browser tests (DDEV)
+      - name: phpunit (DDEV)
         run: |
           set -x
           # Run tests need a browser.
-          ddev phpunit -vvv --debug \
-            --filter "\\\\(Functional|FunctionalJavascript)\\\\" \
+          ddev phpunit \
             --fail-on-incomplete \
             --fail-on-warning \
             --fail-on-skipped \

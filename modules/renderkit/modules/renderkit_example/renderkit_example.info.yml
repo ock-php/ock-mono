@@ -1,7 +1,7 @@
 name: 'Renderkit example'
 description: 'Example module for Renderkit.'
 type: module
-core_version_requirement: ^10
+core_version_requirement: ^11
 
 dependencies:
   - renderkit:renderkit

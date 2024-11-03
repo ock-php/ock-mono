@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [8.2, 8.3]
+        php: [8.3]
         composer-flags: ['', '--prefer-lowest']
 
     steps:
@@ -38,7 +38,7 @@ jobs:
       - name: PhpUnit
         run: |
           set -x
-          ddev exec ./vendor/bin/phpunit -vvv --debug \
+          ddev exec ./vendor/bin/phpunit \
             --fail-on-incomplete \
             --fail-on-warning \
             --fail-on-skipped \

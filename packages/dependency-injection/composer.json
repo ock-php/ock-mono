@@ -3,19 +3,19 @@
     "description": "Extensions to symfony/dependency-injection",
     "license": "GPL-2.0-or-later",
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "ock/class-discovery": "self.version",
         "ock/codegen-tools": "self.version",
         "ock/helpers": "self.version",
         "psr/container": "^2.0",
         "psr/log": "^1.1.4|^2.0|^3.0",
-        "symfony/config": "^6.4",
-        "symfony/dependency-injection": "^6.4"
+        "symfony/config": "^7.1.1",
+        "symfony/dependency-injection": "^7.1.5"
     },
     "require-dev": {
         "ock/testing": "self.version",
-        "phpunit/phpunit": "^9.5",
-        "symfony/yaml": "^6.2"
+        "phpunit/phpunit": "^10.5.38",
+        "symfony/yaml": "^7.1.5"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

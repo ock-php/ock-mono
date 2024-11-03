@@ -12,20 +12,20 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "ock/class-discovery": "self.version",
         "ock/dependency-injection": "self.version",
         "ock/egg": "self.version",
         "ock/helpers": "self.version",
         "psr/container": "^2.0",
-        "symfony/dependency-injection": "^6.4"
+        "symfony/dependency-injection": "^7.1.5"
     },
     "require-dev": {
         "ock/testing": "self.version",
         "phpstan/phpstan": "2.0.x-dev",
-        "phpunit/phpunit": "^9.5",
-        "symfony/yaml": "^6.2",
-        "symfony/config": "^6.4"
+        "phpunit/phpunit": "^10.5.38",
+        "symfony/yaml": "^7.1.5",
+        "symfony/config": "^7.1.1"
     },
     "autoload": {
         "psr-4": {

@@ -1,4 +1,4 @@
 name: Service discovery
 description: Provides service providers to automatically register services from classes and methods in a module directory.
 type: module
-core_version_requirement: ^10
+core_version_requirement: ^11

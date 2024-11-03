@@ -35,36 +35,36 @@
         }
     ],
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "ext-json": "*",
         "composer/installers": "^2.3.0",
         "donquixote/nicetrace": "^0.0.4",
         "drupal/admin_toolbar": "^3.4",
-        "drupal/core-composer-scaffold": "^10.3",
-        "drupal/core-project-message": "^10.3",
-        "drupal/core-recommended": "^10.3",
+        "drupal/core-composer-scaffold": "^11.0.5",
+        "drupal/core-project-message": "^11.0.5",
+        "drupal/core-recommended": "^11.0.5",
         "drupal/devel": "^5.2",
         "drupal/ock": "self.version",
         "drupal/renderkit": "self.version",
         "drupal/service_discovery": "self.version",
-        "drush/drush": "^12.5",
+        "drush/drush": "^12.5 | ^13@beta",
         "psr/container": "^2.0",
         "psr/log": "^1.1.4|^2.0|^3.0",
-        "symfony/config": "^6.4",
-        "symfony/dependency-injection": "^6.4",
-        "symfony/translation": "^7.0"
+        "symfony/config": "^7.1.1",
+        "symfony/dependency-injection": "^7.1.5",
+        "symfony/translation": "^7.1.5"
     },
     "require-dev": {
         "ext-dom": "*",
         "ext-libxml": "*",
-        "drupal/core-dev": "^10.3.5 | ^11.0.4",
+        "drupal/core-dev": "^11.0.5",
         "league/container": "^4.2.2",
         "ock/drupal-testing": "self.version",
         "phpspec/prophecy-phpunit": "^2.2.0",
         "phpstan/phpstan": "^1.12.3",
-        "phpunit/phpunit": "^9.6.20",
-        "symfony/expression-language": "^6.4.11",
-        "symfony/yaml": "^6.4.11"
+        "phpunit/phpunit": "^10.5.38",
+        "symfony/expression-language": "^7.1.4",
+        "symfony/yaml": "^7.1.5"
     },
     "conflict": {
         "drupal/drupal": "*"

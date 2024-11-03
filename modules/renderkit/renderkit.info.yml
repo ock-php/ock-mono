@@ -1,7 +1,7 @@
 name: Render Kit
 description: Tools for dealing with render arrays.
 type: module
-core_version_requirement: ^10
+core_version_requirement: ^11
 
 dependencies:
   - ock:ock
