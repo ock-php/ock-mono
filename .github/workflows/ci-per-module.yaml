@@ -75,17 +75,6 @@ jobs:
           php symlink_project.php ${{ matrix.module }}
           rm -f symlink_project.php
 
-      - name: phpunit - Non-browser tests
-        run: |
-          set -x
-          # Run all tests that don't need a browser.
-          vendor/bin/phpunit \
-            --filter "\\\\(Unit|Kernel)\\\\" \
-            --fail-on-incomplete \
-            --fail-on-warning \
-            --fail-on-skipped \
-            --fail-on-risky
-
       - name: DDEV - Setup
         uses: ddev/github-action-setup-ddev@v1
         with:
@@ -108,12 +97,11 @@ jobs:
           ddev start
           ddev php --version
 
-      - name: phpunit - Browser tests (DDEV)
+      - name: phpunit (DDEV)
         run: |
           set -x
           # Run tests need a browser.
           ddev phpunit \
-            --filter "\\\\(Functional|FunctionalJavascript)\\\\" \
             --fail-on-incomplete \
             --fail-on-warning \
             --fail-on-skipped \
