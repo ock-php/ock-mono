@@ -49,5 +49,4 @@ values:
         class: Symfony\Component\DependencyInjection\ContainerBuilder
       Ock\DependencyInjection\Tests\Fixtures\StaticFactoryInterfaceAutowire\InterfaceI:
         class: Ock\DependencyInjection\Tests\Fixtures\StaticFactoryInterfaceAutowire\ClassC
-        $dependencyD:
-          class: Ock\DependencyInjection\Tests\Fixtures\StaticFactoryInterfaceAutowire\DependencyD
+        $dependencyD: null

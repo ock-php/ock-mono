@@ -25,6 +25,9 @@ values:
             - Ock\DependencyInjection\Tests\Fixtures\StaticFactoryInterfaceAutowire\Factories
             - createService
           isPublic(): true
+      -
+        'register interfaces':
+          class: Closure
   -
     'definitions before compile':
       service_container:
