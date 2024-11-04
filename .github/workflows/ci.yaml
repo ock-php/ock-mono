@@ -35,6 +35,9 @@ jobs:
           ddev composer update --no-install ${{ matrix.composer-flags }}
           ddev composer install --prefer-dist --no-interaction
 
+      - name: PhpStan
+        run: ddev exec ./scripts/phpstan-all.sh
+
       - name: PhpUnit
         run: |
           set -x
