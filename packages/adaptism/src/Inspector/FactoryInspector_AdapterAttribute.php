@@ -17,15 +17,15 @@ use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Ock\ClassDiscovery\Reflection\MethodReflection;
 use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\ClassDiscovery\Util\ReflectionTypeUtil;
+use Ock\DependencyInjection\Attribute\ServiceTag;
 use Ock\Egg\ClassToEgg\ClassToEggInterface;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
 use Ock\Helpers\Util\MessageUtil;
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 /**
  * @template-implements FactoryInspectorInterface<string, \Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface>
  */
-#[AutoconfigureTag(AdaptismPackage::DISCOVERY_TAG_NAME)]
+#[ServiceTag(AdaptismPackage::DISCOVERY_TAG_NAME)]
 class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
 
   use AdapterFactoryInspectorTrait;
