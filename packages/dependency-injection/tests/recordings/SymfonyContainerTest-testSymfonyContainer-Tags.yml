@@ -21,9 +21,6 @@ values:
             - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
             - create
       -
-        -
-          class: Closure
-      -
         Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService:
           class: Symfony\Component\DependencyInjection\Definition
       -

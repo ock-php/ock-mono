@@ -8,7 +8,6 @@ use Ock\ClassDiscovery\FactsIA\FactsIA;
 use Ock\DependencyInjection\Inspector\ClassInspector_ClassAsPrivateService;
 use Ock\DependencyInjection\Inspector\ClassInspector_ConditionDecorator;
 use Ock\DependencyInjection\Inspector\ClassInspector_SymfonyAsAliasAttributeDecorator;
-use Ock\DependencyInjection\Inspector\ClassInspector_SymfonyAutoconfigureAttribute;
 use Ock\DependencyInjection\Inspector\FactoryInspector_ConditionDecorator;
 use Ock\DependencyInjection\Inspector\FactoryInspector_ServiceAttribute;
 use Ock\DependencyInjection\Inspector\PackageInspector_RegisterInterfacesReflection;
@@ -41,7 +40,6 @@ class ServiceProvider {
     return [
       ClassInspector_ClassAsPrivateService::create(),
       ClassInspector_SymfonyAsAliasAttributeDecorator::create(...),
-      new ClassInspector_SymfonyAutoconfigureAttribute(),
       FactoryInspector_ServiceAttribute::create(),
       PackageInspector_SinglyImplementedInterfaceAliasDecorator::create(...),
       FactoryInspector_ConditionDecorator::create(...),
