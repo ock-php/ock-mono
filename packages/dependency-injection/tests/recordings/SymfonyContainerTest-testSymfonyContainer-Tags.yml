@@ -20,7 +20,6 @@ values:
           getFactory():
             - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
             - create
-          isPublic(): true
       -
         -
           class: Closure
@@ -56,7 +55,6 @@ values:
         getFactory():
           - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
           - create
-        isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService: {  }
       Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService:
         isPublic(): true
@@ -69,7 +67,7 @@ values:
     services:
       service_container:
         class: Symfony\Component\DependencyInjection\ContainerBuilder
-      Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag: {  }
+      Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag: '(not found)'
       Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService: '(not found)'
       Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService: {  }
       Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag: '(not found)'
