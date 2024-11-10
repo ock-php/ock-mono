@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\controller_attributes\Controller;
 
-use Drupal\ock\Util\StringUtil;
+use Drupal\controller_attributes\RouteNameUtil;
 
 trait ControllerRouteNameTrait {
 
@@ -23,14 +23,14 @@ trait ControllerRouteNameTrait {
    * @return string
    */
   public static function methodNameGetRouteName(string $methodName): string {
-    return StringUtil::methodGetRouteName([static::class, $methodName]);
+    return RouteNameUtil::methodGetRouteName([static::class, $methodName]);
   }
 
   /**
    * @return string
    */
   public static function getRouteBaseName(): string {
-    return StringUtil::classNameGetRouteBasename(static::class);
+    return RouteNameUtil::classNameGetRouteBasename(static::class);
   }
 
 }
