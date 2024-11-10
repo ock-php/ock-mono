@@ -57,7 +57,11 @@ values:
           - createClassA
         isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassWithStaticFactories: {  }
-      Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassZ: {  }
+      Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassZ:
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassWithStaticFactories
+          - createClassZ
+        isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService: {  }
   -
     'aliases before compile': {  }
@@ -68,3 +72,7 @@ values:
       Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassA:
         $dependencyService:
           class: Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService
+      Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassZ:
+        $dependencyService:
+          class: Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService
+      Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService: '(not found)'

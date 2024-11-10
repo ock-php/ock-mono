@@ -160,7 +160,11 @@ values:
         isAutowired(): false
         isPublic(): true
         isSynthetic(): true
-      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute: {  }
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute:
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\AbstractClass
+          - createExample
+        isPublic(): true
       'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute $exampleTarget':
         getClass(): Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute
         getFactory():
@@ -239,6 +243,7 @@ values:
     services:
       service_container:
         class: Symfony\Component\DependencyInjection\ContainerBuilder
+      Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute: {  }
       'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute $exampleTarget':
         class: Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute
       Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttributeexampleSuffix:
