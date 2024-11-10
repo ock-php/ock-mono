@@ -43,13 +43,12 @@ class SymfonyContainerTest extends TestCase {
     foreach ($factsIA as $key => $fact) {
       $facts[] = [$key => $fact];
     }
-    $this->assertAsRecorded($facts, 'facts', 5);
+    $this->assertAsRecorded($facts, 'facts');
     $provider = ServiceProvider::fromCandidateObjects($candidates);
     $provider->register($container);
     $this->assertObjectsAsRecorded(
       $container->getDefinitions(),
       'definitions before compile',
-      4,
       defaultClass: Definition::class,
     );
     $this->assertObjectsAsRecorded(
@@ -77,7 +76,6 @@ class SymfonyContainerTest extends TestCase {
     $this->assertObjectsAsRecorded(
       $services,
       'services',
-      7,
       arrayKeyIsDefaultClass: true,
     );
   }

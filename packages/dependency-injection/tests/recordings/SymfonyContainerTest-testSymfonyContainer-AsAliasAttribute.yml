@@ -16,7 +16,8 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\AsAliasAttribute\PrivateAliasClass:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\AsAliasAttribute\PublicAliasInterface:
           class: Symfony\Component\DependencyInjection\Alias
@@ -26,7 +27,8 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\AsAliasAttribute\PublicAliasClass:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
   -
     'definitions before compile':
       service_container:

@@ -51,8 +51,7 @@ abstract class ModuleRoutingTestBase extends KernelTestBase {
     $this->assertObjectsAsRecorded(
       $module_routes,
       "Routes from '$module' module.",
-      7,
-      Route::class,
+      defaultClass: Route::class,
     );
   }
 

@@ -13,12 +13,14 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassA:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassWithStaticFactories:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassA:
           class: Symfony\Component\DependencyInjection\Definition
@@ -37,12 +39,14 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassZ:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
   -
     'definitions before compile':
       service_container:

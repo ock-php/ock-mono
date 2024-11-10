@@ -159,7 +159,7 @@ abstract class ModuleServicesTestBase extends KernelTestBase {
     ksort($report);
     array_walk($report, fn (&$arr) => ksort($arr));
 
-    $this->assertAsRecorded($report, "Tagged services from '$module' module.", 4);
+    $this->assertAsRecorded($report, "Tagged services from '$module' module.");
   }
 
   /**

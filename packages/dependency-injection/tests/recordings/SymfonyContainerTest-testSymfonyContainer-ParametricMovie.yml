@@ -14,12 +14,14 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\Movie:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlas:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlas:
           class: Symfony\Component\DependencyInjection\Definition
@@ -28,7 +30,8 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlasStaticMethod:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieAtlas:
           class: Symfony\Component\DependencyInjection\Definition
@@ -40,12 +43,14 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieHelperService1:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricMovie\MovieHelperService2:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
   -
     'definitions before compile':
       service_container:

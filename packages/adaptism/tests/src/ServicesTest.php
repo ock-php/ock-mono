@@ -62,7 +62,7 @@ class ServicesTest extends TestCase {
         $report[$tag_name][$service_id] = $tags_info;
       }
     }
-    $this->assertAsRecorded($report, depth: 4);
+    $this->assertAsRecorded($report);
   }
 
   /**
