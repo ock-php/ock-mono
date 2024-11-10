@@ -85,6 +85,6 @@ values:
           -
             class: Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService
           -
-            class: Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService
+            _ref: '[Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService]'
           -
             class: Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag
