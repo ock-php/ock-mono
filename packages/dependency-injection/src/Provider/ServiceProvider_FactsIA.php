@@ -37,7 +37,6 @@ class ServiceProvider_FactsIA implements ServiceProviderInterface {
           );
         }
         $container->setDefinition($key, $fact);
-        $x = 5;
       }
       elseif ($fact instanceof Alias) {
         if (!is_string($key)) {
@@ -54,46 +53,6 @@ class ServiceProvider_FactsIA implements ServiceProviderInterface {
         $fact($container, $key);
       }
     }
-    $x = 5;
-  }
-
-  public function foo(): array {
-    $counter = 0;
-    return [
-      function () use (&$counter) {++$counter;},
-      fn () => $counter,
-    ];
-  }
-
-  public function f(): array {
-    $parametric = [];
-    $parameterized = [];
-    return [
-      function (mixed $key, mixed $fact) use (&$parametric, &$parameterized): bool {
-        if (!is_string($key)) {
-          return false;
-        }
-        if (\str_starts_with($key, 'parametric.')
-          && $fact instanceof \Closure
-        ) {
-          $parametric[$key] = $fact;
-          return true;
-        }
-        elseif (\str_starts_with($key, 'parameterized.')
-          // @todo This one might not be a closure.
-          && $fact instanceof \Closure
-        ) {
-          $parameterized[$key] = $fact;
-          return true;
-        }
-        return false;
-      },
-      function (): \Closure {
-        return function (ContainerBuilder $container): void {
-
-        };
-      }
-    ];
   }
 
 }
