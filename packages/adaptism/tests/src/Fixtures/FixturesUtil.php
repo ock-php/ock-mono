@@ -12,24 +12,12 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 class FixturesUtil {
 
   /**
-   * @var \Symfony\Component\DependencyInjection\ContainerBuilder
-   */
-  private static ContainerBuilder $container;
-
-  /**
    * Builds a container with services for adaptism tests.
    *
    * @return \Symfony\Component\DependencyInjection\ContainerBuilder New container.
    *   New container.
    */
   public static function getContainer(): ContainerBuilder {
-    return self::$container ??= self::buildContainer();
-  }
-
-  /**
-   * @return \Symfony\Component\DependencyInjection\ContainerBuilder
-   */
-  private static function buildContainer(): ContainerBuilder {
     $container = new ContainerBuilder();
     (new CommonServiceProvider())->register($container);
     (new EggPackage())->register($container);
