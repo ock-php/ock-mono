@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace Drupal\ock\UI\ParamConverter;
 
 use Drupal\ock\Util\UiUtil;
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+use Ock\DependencyInjection\Attribute\ServiceTag;
 
 /**
  * Converter for '{ock:interface}' route parameter.
  */
-#[AutoconfigureTag('paramconverter')]
+#[ServiceTag('paramconverter')]
 class ParamConverter_Iface extends ParamConverterBase {
 
   public const TYPE = 'ock:interface';

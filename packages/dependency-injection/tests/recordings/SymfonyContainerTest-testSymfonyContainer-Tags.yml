@@ -20,10 +20,6 @@ values:
           getFactory():
             - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
             - create
-          isPublic(): true
-      -
-        -
-          class: Closure
       -
         Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService:
           class: Symfony\Component\DependencyInjection\Definition
@@ -37,10 +33,6 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag:
           class: Symfony\Component\DependencyInjection\Definition
-      -
-        Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag:
-          class: Symfony\Component\DependencyInjection\Definition
-          isPublic(): true
       -
         Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
           class: Symfony\Component\DependencyInjection\Definition
@@ -60,12 +52,10 @@ values:
         getFactory():
           - Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag
           - create
-        isPublic(): true
       Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService: {  }
       Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService:
         isPublic(): true
-      Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag:
-        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag: {  }
       Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
         isPublic(): true
   -
@@ -74,10 +64,10 @@ values:
     services:
       service_container:
         class: Symfony\Component\DependencyInjection\ContainerBuilder
-      Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag: {  }
+      Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag: '(not found)'
       Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService: '(not found)'
       Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService: {  }
-      Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag: {  }
+      Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag: '(not found)'
       Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
         $services:
           -

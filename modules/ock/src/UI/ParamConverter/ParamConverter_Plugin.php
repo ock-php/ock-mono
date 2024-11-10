@@ -4,14 +4,14 @@ declare(strict_types=1);
 namespace Drupal\ock\UI\ParamConverter;
 
 use Drupal\Core\Utility\Error;
+use Ock\DependencyInjection\Attribute\ServiceTag;
 use Ock\Ock\Exception\PluginListException;
 use Ock\Ock\Plugin\Map\PluginMapInterface;
 use Ock\Ock\Plugin\NamedPlugin;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
-#[AutoconfigureTag('paramconverter')]
+#[ServiceTag('paramconverter')]
 class ParamConverter_Plugin extends ParamConverterBase {
 
   public const TYPE = 'ock:plugin';

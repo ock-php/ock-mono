@@ -13,8 +13,8 @@ use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\ClassDiscovery\Util\ReflectionTypeUtil;
+use Ock\DependencyInjection\Attribute\ServiceTag;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 /**
  * Finds adapter methods where the `$this` object is the adaptee.
@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
  *
  * @template-implements FactoryInspectorInterface<string, \Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface>
  */
-#[AutoconfigureTag(AdaptismPackage::DISCOVERY_TAG_NAME)]
+#[ServiceTag(AdaptismPackage::DISCOVERY_TAG_NAME)]
 class FactoryInspector_SelfAdapterAttribute implements FactoryInspectorInterface {
 
   use AdapterFactoryInspectorTrait;

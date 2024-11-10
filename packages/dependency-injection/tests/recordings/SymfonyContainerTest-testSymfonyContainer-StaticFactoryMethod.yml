@@ -1,0 +1,62 @@
+test: 'Ock\DependencyInjection\Tests\SymfonyContainerTest::testSymfonyContainer()'
+'dataset name': StaticFactoryMethod
+values:
+  -
+    classes:
+      - Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassA
+      - Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassWithStaticFactories
+      - Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassZ
+      - Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService
+  -
+    facts:
+      -
+        Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassA:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassWithStaticFactories:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassA:
+          class: Symfony\Component\DependencyInjection\Definition
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassWithStaticFactories
+            - createClassA
+          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassZ:
+          class: Symfony\Component\DependencyInjection\Definition
+          getFactory():
+            - Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassWithStaticFactories
+            - createClassZ
+          isPublic(): true
+      -
+        Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassZ:
+          class: Symfony\Component\DependencyInjection\Definition
+      -
+        Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService:
+          class: Symfony\Component\DependencyInjection\Definition
+  -
+    'definitions before compile':
+      service_container:
+        getClass(): Symfony\Component\DependencyInjection\ContainerInterface
+        isAutoconfigured(): false
+        isAutowired(): false
+        isPublic(): true
+        isSynthetic(): true
+      Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassA:
+        getFactory():
+          - Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassWithStaticFactories
+          - createClassA
+        isPublic(): true
+      Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassWithStaticFactories: {  }
+      Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassZ: {  }
+      Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService: {  }
+  -
+    'aliases before compile': {  }
+  -
+    services:
+      service_container:
+        class: Symfony\Component\DependencyInjection\ContainerBuilder
+      Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassA:
+        $dependencyService:
+          class: Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService
