@@ -41,10 +41,10 @@ class RouteNameUtilTest extends UnitTestCase {
         'greenFrog' => 'green_frog',
         'GREENFROG' => 'greenfrog',
         'green_frog' => 'green_frog',
-        'GREEN_FROG' => 'gree_n__frog',
+        'GREEN_FROG' => 'green_frog',
         'GreenFROG' => 'green_frog',
-        'greenFRog' => 'greenf_rog',
-        'greenFROG' => 'greenfrog',
+        'greenFRog' => 'green_f_rog',
+        'greenFROG' => 'green_frog',
       ],
       RouteNameUtil::camelToSnake(...),
     );

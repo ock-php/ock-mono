@@ -46,11 +46,11 @@ class RouteNameUtil {
   }
 
   public static function camelToSnake(string $string): string {
-    // Replicate behavior from old version.
-    $regexp = '/([A-Z][^A-Z]+)/';
-    $parts = preg_split($regexp, $string, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);;
-    $parts = array_map('strtolower', $parts);
-    return implode('_', $parts);
+    return strtolower(preg_replace(
+      '#(?<=[^_])(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])#',
+      '_',
+      $string,
+    ));
   }
 
 }
