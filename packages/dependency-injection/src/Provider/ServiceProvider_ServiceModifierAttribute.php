@@ -13,7 +13,7 @@ class ServiceProvider_ServiceModifierAttribute implements ServiceProviderInterfa
    * {@inheritdoc}
    */
   public function register(ContainerBuilder $container): void {
-    $container->addCompilerPass(new ServiceModifierAttributePass());
+    $container->addCompilerPass(new ServiceModifierAttributePass(), priority: 99);
   }
 
 }
