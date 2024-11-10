@@ -16,17 +16,20 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\ServiceWithDependency:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleUnusedPrivateService:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService\SimpleUsedPrivateService:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         '# Test callback to make one service public.':
           class: Closure

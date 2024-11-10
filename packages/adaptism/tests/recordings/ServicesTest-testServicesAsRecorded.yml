@@ -6,6 +6,23 @@ values:
       class: Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionList_Discovery
       $factsIA:
         class: Ock\ClassDiscovery\FactsIA\FactsIA_Concat
+        $factsIAs:
+          -
+            class: Ock\ClassDiscovery\FactsIA\FactsIA_InspectPackageNamespace
+            $reflectionClasses:
+              class: Ock\Adaptism\Tests\Fixtures\AdaptismTestNamespace
+            $packageInspector:
+              class: Ock\ClassDiscovery\Inspector\PackageInspector_FromClassInspector
+              $classInspector:
+                class: Ock\ClassDiscovery\Inspector\ClassInspector_Concat
+                $inspectors:
+                  -
+                    class: Ock\ClassDiscovery\Inspector\ClassInspector_Concat
+                    $inspectors: {  }
+                  -
+                    class: Ock\ClassDiscovery\Inspector\ClassInspector_Factories
+                    $factoryInspector:
+                      class: Ock\ClassDiscovery\Inspector\FactoryInspector_Concat
     Ock\Adaptism\Inspector\FactoryInspector_AdapterAttribute: '(not found)'
     Ock\Adaptism\Inspector\FactoryInspector_SelfAdapterAttribute: '(not found)'
     Ock\Adaptism\Tests\Fixtures\AdaptismTestNamespace: '(not found)'
@@ -13,10 +30,21 @@ values:
       class: Ock\Adaptism\UniversalAdapter\UniversalAdapter
       $specificAdapter:
         class: Ock\Adaptism\SpecificAdapter\SpecificAdapter_DispatchByType
+        $adapterMap:
+          class: Ock\Adaptism\AdapterMap\AdapterMap_DefinitionList
+          $realAdapterMap: null
+          $definitionList:
+            _ref: '[Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface]'
+          $container:
+            _ref: '[Psr\Container\ContainerInterface]'
     Ock\Egg\ParamToEgg\ParamToEggInterface:
       class: Ock\Egg\ParamToEgg\ParamToEgg_Chain
       $paramToEggs:
         class: Symfony\Component\DependencyInjection\Argument\RewindableGenerator
+        $generator:
+          class: Closure
+        $count:
+          class: Closure
     Ock\Egg\ParamToEgg\ParamToEgg_ParamTypeAsServiceId: '(not found)'
     Psr\Container\ContainerInterface:
       class: Symfony\Component\DependencyInjection\ContainerBuilder

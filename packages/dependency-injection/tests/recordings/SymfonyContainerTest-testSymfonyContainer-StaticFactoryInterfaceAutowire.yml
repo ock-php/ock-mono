@@ -13,17 +13,20 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\StaticFactoryInterfaceAutowire\ClassC:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\StaticFactoryInterfaceAutowire\DependencyD:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\StaticFactoryInterfaceAutowire\Factories:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\StaticFactoryInterfaceAutowire\InterfaceI:
           class: Symfony\Component\DependencyInjection\Definition

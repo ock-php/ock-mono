@@ -15,7 +15,8 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\Tags\AnotherServiceWithTag:
           class: Symfony\Component\DependencyInjection\Definition
@@ -26,12 +27,14 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\Tags\PrivateAutoTaggedService:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\Tags\PublicAutoTaggedService:
           class: Symfony\Component\DependencyInjection\Definition
@@ -40,12 +43,14 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\Tags\ServiceWithTag:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\Tags\TaggedServiceConsumer:
           class: Symfony\Component\DependencyInjection\Definition

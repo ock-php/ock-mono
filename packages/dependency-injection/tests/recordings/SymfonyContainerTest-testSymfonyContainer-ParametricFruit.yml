@@ -16,7 +16,8 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitAtlas:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\FruitAtlas:
           class: Symfony\Component\DependencyInjection\Definition
@@ -37,17 +38,20 @@ values:
         Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\OtherService:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruit:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricFruit\ParametricFruitJuice:
           class: Symfony\Component\DependencyInjection\Definition
           getTags():
-            tentative: '[...]'
+            tentative:
+              - {  }
   -
     'definitions before compile':
       service_container:
