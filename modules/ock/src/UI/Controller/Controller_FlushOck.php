@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Drupal\ock\UI\Controller;
 
+use Drupal\controller_attributes\Attribute\Route;
+use Drupal\controller_attributes\Attribute\RouteIsAdmin;
+use Drupal\controller_attributes\Attribute\RouteMenuLink;
+use Drupal\controller_attributes\Attribute\RouteRequirePermission;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\ock\Attribute\Routing\Route;
-use Drupal\ock\Attribute\Routing\RouteIsAdmin;
-use Drupal\ock\Attribute\Routing\RouteMenuLink;
-use Drupal\ock\Attribute\Routing\RouteRequirePermission;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
 use Ock\DID\Attribute\Parameter\GetService;
 use Symfony\Component\HttpFoundation\RedirectResponse;

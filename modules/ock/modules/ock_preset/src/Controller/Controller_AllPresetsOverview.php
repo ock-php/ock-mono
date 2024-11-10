@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Drupal\ock_preset\Controller;
 
+use Drupal\controller_attributes\Attribute\Route;
+use Drupal\controller_attributes\Attribute\RouteIsAdmin;
+use Drupal\controller_attributes\Attribute\RouteMenuLink;
+use Drupal\controller_attributes\Attribute\RouteRequirePermission;
+use Drupal\controller_attributes\Attribute\RouteTitle;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
-use Drupal\ock\Attribute\Routing\Route;
-use Drupal\ock\Attribute\Routing\RouteIsAdmin;
-use Drupal\ock\Attribute\Routing\RouteMenuLink;
-use Drupal\ock\Attribute\Routing\RouteRequirePermission;
-use Drupal\ock\Attribute\Routing\RouteTitle;
 use Drupal\ock\UI\Controller\ControllerRouteNameInterface;
 use Drupal\ock\UI\Controller\ControllerRouteNameTrait;
 use Drupal\ock\UI\RouteHelper\ClassRouteHelper;

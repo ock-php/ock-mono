@@ -2,25 +2,27 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\ock\Attribute\Routing;
+namespace Drupal\controller_attributes\Attribute;
 
 use Symfony\Component\Routing\Route;
 
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
-class RouteDefaults implements RouteModifierInterface {
+class RouteTitle implements RouteModifierInterface {
 
   /**
-   * @param array $defaults
+   * Constructor.
+   *
+   * @param string $title
    */
   public function __construct(
-    private readonly array $defaults,
+    private readonly string $title,
   ) {}
 
   /**
    * {@inheritdoc}
    */
   public function modifyRoute(Route $route, \ReflectionMethod|\ReflectionClass $reflector): void {
-    $route->addDefaults($this->defaults);
+    $route->addDefaults(['_title' => $this->title]);
   }
 
 }

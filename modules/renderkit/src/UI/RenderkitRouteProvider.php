@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\renderkit\UI;
 
+use Drupal\controller_attributes\Attribute\RouteModifierInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\ock\Attribute\Routing\RouteModifierInterface;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
 use Drupal\ock\Util\StringUtil;
 use Ock\ClassDiscovery\Util\AttributesUtil;

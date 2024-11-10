@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\ock\Attribute\Routing;
+namespace Drupal\controller_attributes\Attribute;
 
 use Symfony\Component\Routing\Route;
 
