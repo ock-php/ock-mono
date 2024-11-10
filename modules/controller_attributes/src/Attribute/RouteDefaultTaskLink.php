@@ -2,15 +2,18 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\ock\Attribute\Routing;
+namespace Drupal\controller_attributes\Attribute;
 
 use Symfony\Component\Routing\Route;
 
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
-class RouteAccessPublic implements RouteModifierInterface {
+class RouteDefaultTaskLink extends RouteTaskLink {
 
+  /**
+   * {@inheritdoc}
+   */
   public function modifyRoute(Route $route, \ReflectionMethod|\ReflectionClass $reflector): void {
-    $route->addRequirements(['_access' => 'TRUE']);
+    $route->setOption('_task_link_default', $this->buildLink());
   }
 
 }

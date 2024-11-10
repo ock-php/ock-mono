@@ -2,25 +2,24 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\ock\Attribute\Routing;
+namespace Drupal\controller_attributes\Attribute;
 
 use Symfony\Component\Routing\Route;
 
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
-class RouteOptions implements RouteModifierInterface {
+class RouteRequirements implements RouteModifierInterface {
 
   /**
-   * @param array $options
+   * Constructor.
+   *
+   * @param array $requirements
    */
   public function __construct(
-    private readonly array $options,
+    private readonly array $requirements,
   ) {}
 
-  /**
-   * {@inheritdoc}
-   */
   public function modifyRoute(Route $route, \ReflectionMethod|\ReflectionClass $reflector): void {
-    $route->addOptions($this->options);
+    $route->addRequirements($this->requirements);
   }
 
 }
