@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\controller_attributes;
 
 use Drupal\controller_attributes\Attribute\RouteModifierInterface;
-use Drupal\ock\Util\StringUtil;
 use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Symfony\Component\Routing\Route;
@@ -51,7 +50,7 @@ abstract class AttributesRouteProviderBase {
         foreach ($modifiers as $modifier) {
           $modifier->modifyRoute($route, $rMethod);
         }
-        $route_name = StringUtil::methodGetRouteName(
+        $route_name = RouteNameUtil::methodGetRouteName(
           [$class, $rMethod->getName()],
         );
         if ($route->getPath() === '/') {
