@@ -2,15 +2,15 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\ock\UI;
+namespace Drupal\controller_attributes;
 
-use Drupal\ock\Attribute\Routing\RouteModifierInterface;
+use Drupal\controller_attributes\Attribute\RouteModifierInterface;
 use Drupal\ock\Util\StringUtil;
 use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Symfony\Component\Routing\Route;
 
-abstract class OckRouteProviderBase {
+abstract class AttributesRouteProviderBase {
 
   /**
    * @return \Symfony\Component\Routing\Route[]
