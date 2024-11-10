@@ -8,6 +8,8 @@ use Drupal\controller_attributes\Attribute\RouteIsAdmin;
 use Drupal\controller_attributes\Attribute\RouteMenuLink;
 use Drupal\controller_attributes\Attribute\RouteRequirePermission;
 use Drupal\controller_attributes\Attribute\RouteTitle;
+use Drupal\controller_attributes\ClassRouteHelper;
+use Drupal\controller_attributes\ClassRouteHelperInterface;
 use Drupal\controller_attributes\Controller\ControllerRouteNameInterface;
 use Drupal\controller_attributes\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
@@ -15,8 +17,6 @@ use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Render\Markup;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
-use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
-use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
 use Drupal\ock\Util\StringUtil;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\DrupalTesting\DrupalTesting;
@@ -31,7 +31,7 @@ class Controller_ReportOverview extends ControllerBase implements ControllerRout
   use ContainerInjectionViaAttributesTrait;
 
   /**
-   * @return \Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface
+   * @return \Drupal\controller_attributes\ClassRouteHelperInterface
    */
   public static function route(): ClassRouteHelperInterface {
     return ClassRouteHelper::fromClassName(

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\ock\UI\RouteHelper;
+namespace Drupal\controller_attributes;
 
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Link;

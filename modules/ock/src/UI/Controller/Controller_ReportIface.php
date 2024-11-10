@@ -11,6 +11,8 @@ use Drupal\controller_attributes\Attribute\RouteParameters;
 use Drupal\controller_attributes\Attribute\RouteRequirePermission;
 use Drupal\controller_attributes\Attribute\RouteTaskLink;
 use Drupal\controller_attributes\Attribute\RouteTitleMethod;
+use Drupal\controller_attributes\ClassRouteHelper;
+use Drupal\controller_attributes\ClassRouteHelperInterface;
 use Drupal\controller_attributes\Controller\ControllerRouteNameInterface;
 use Drupal\controller_attributes\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
@@ -18,8 +20,6 @@ use Drupal\Core\Serialization\Yaml;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
 use Drupal\ock\UI\Form\Form_IfaceDemo;
 use Drupal\ock\UI\ParamConverter\ParamConverter_Iface;
-use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
-use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
 use Drupal\ock\Util\StringUtil;
 use Drupal\ock\Util\UiCodeUtil;
 use Drupal\ock\Util\UiUtil;
@@ -69,7 +69,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
    * @param string $interface
    * @param string $methodName
    *
-   * @return \Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface
+   * @return \Drupal\controller_attributes\ClassRouteHelperInterface
    */
   public static function route(string $interface, string $methodName = 'listOfPlugins'): ClassRouteHelperInterface {
     return ClassRouteHelper::fromClassName(
