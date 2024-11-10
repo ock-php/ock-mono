@@ -13,12 +13,18 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\NotSinglyImplementedA:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\NotSinglyImplementedB:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         Ock\DependencyInjection\Tests\Fixtures\AutoAliasForSinglyImplemented\SinglyImplemented:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         '# Register aliases for singly implemented interfaces.':
           class: Closure

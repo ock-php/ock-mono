@@ -39,9 +39,13 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ClassWithoutAttribute:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnSelfMethod:
           class: Symfony\Component\DependencyInjection\Definition
@@ -76,6 +80,8 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ReturnStaticMethod:
           class: Symfony\Component\DependencyInjection\Definition
@@ -110,6 +116,8 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithId:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         custom_service_id:
           class: Symfony\Component\DependencyInjection\Definition
@@ -118,6 +126,8 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffix:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithSuffixcustomSuffix:
           class: Symfony\Component\DependencyInjection\Definition
@@ -126,6 +136,8 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         'Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\ServiceWithTarget $customTarget':
           class: Symfony\Component\DependencyInjection\Definition
@@ -134,6 +146,8 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\SimplePublicService:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         Ock\DependencyInjection\Tests\Fixtures\ServiceAttribute\SimplePublicService:
           class: Symfony\Component\DependencyInjection\Definition

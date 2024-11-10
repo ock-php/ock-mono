@@ -11,9 +11,13 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricColors\Color:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricColors\ServiceWithBlueColorAndFactory:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricColors\ServiceWithBlueColorAndFactory:
           class: Symfony\Component\DependencyInjection\Definition
@@ -24,6 +28,8 @@ values:
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricColors\ServiceWithYellowColor:
           class: Symfony\Component\DependencyInjection\Definition
+          getTags():
+            tentative: '[...]'
       -
         Ock\DependencyInjection\Tests\Fixtures\ParametricColors\ServiceWithYellowColor:
           class: Symfony\Component\DependencyInjection\Definition
