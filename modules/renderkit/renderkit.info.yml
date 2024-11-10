@@ -4,6 +4,7 @@ type: module
 core_version_requirement: ^11
 
 dependencies:
+  - controller_attributes:controller_attributes
   - ock:ock
   - themekit:themekit
   - service_discovery:service_discovery
