@@ -33,6 +33,23 @@ class RouteNameUtilTest extends UnitTestCase {
     );
   }
 
+  public function testCamelToSnake(): void {
+    $this->assertTransformation(
+      [
+        'GREENFrog' => 'green_frog',
+        'GreenFrog' => 'green_frog',
+        'greenFrog' => 'green_frog',
+        'GREENFROG' => 'greenfrog',
+        'green_frog' => 'green_frog',
+        'GREEN_FROG' => 'gree_n__frog',
+        'GreenFROG' => 'green_frog',
+        'greenFRog' => 'greenf_rog',
+        'greenFROG' => 'greenfrog',
+      ],
+      RouteNameUtil::camelToSnake(...),
+    );
+  }
+
   protected function assertTransformation(array $expected, \Closure $transformation): void {
     $keys = array_keys($expected);
     $map = array_combine($keys, $keys);

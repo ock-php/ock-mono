@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Drupal\controller_attributes;
 
-use Drupal\ock\Util\StringUtil;
-
 class ClassRouteHelper extends ClassRouteHelperBase {
 
   /**
@@ -36,11 +34,8 @@ class ClassRouteHelper extends ClassRouteHelperBase {
    */
   public function routeName(): string {
     // @todo Instead this should rely on the methods on the class.
-    return $this->routePrefix . StringUtil::camelCaseExplode(
-      $this->getMethodName(),
-      TRUE,
-      'AA Aa',
-      '_');
+    return $this->routePrefix
+      . RouteNameUtil::camelToSnake($this->getMethodName());
   }
 
 }
