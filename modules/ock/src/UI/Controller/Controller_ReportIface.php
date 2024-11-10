@@ -11,6 +11,8 @@ use Drupal\controller_attributes\Attribute\RouteParameters;
 use Drupal\controller_attributes\Attribute\RouteRequirePermission;
 use Drupal\controller_attributes\Attribute\RouteTaskLink;
 use Drupal\controller_attributes\Attribute\RouteTitleMethod;
+use Drupal\controller_attributes\Controller\ControllerRouteNameInterface;
+use Drupal\controller_attributes\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Serialization\Yaml;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;

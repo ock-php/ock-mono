@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\ock\UI\Controller;
+namespace Drupal\controller_attributes\Controller;
 
 use Drupal\ock\Util\StringUtil;
 

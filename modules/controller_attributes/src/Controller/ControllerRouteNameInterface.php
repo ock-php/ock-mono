@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\ock\UI\Controller;
+namespace Drupal\controller_attributes\Controller;
 
 /**
  * Interface that annotated controllers can implement to provide custom route names.

@@ -8,6 +8,8 @@ use Drupal\controller_attributes\Attribute\RouteIsAdmin;
 use Drupal\controller_attributes\Attribute\RouteMenuLink;
 use Drupal\controller_attributes\Attribute\RouteRequirePermission;
 use Drupal\controller_attributes\Attribute\RouteTitle;
+use Drupal\controller_attributes\Controller\ControllerRouteNameInterface;
+use Drupal\controller_attributes\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Extension\Exception\UnknownExtensionException;
 use Drupal\Core\Extension\ModuleExtensionList;
