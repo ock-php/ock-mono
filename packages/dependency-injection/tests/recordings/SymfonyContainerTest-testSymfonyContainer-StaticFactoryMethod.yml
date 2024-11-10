@@ -74,5 +74,5 @@ values:
           class: Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService
       Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassZ:
         $dependencyService:
-          class: Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService
+          _ref: '[Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\ClassA]->dependencyService'
       Ock\DependencyInjection\Tests\Fixtures\StaticFactoryMethod\DependencyService: '(not found)'

@@ -21,4 +21,4 @@ values:
     Psr\Container\ContainerInterface:
       class: Symfony\Component\DependencyInjection\ContainerBuilder
     service_container:
-      class: Symfony\Component\DependencyInjection\ContainerBuilder
+      _ref: '[Psr\Container\ContainerInterface]'
