@@ -15,6 +15,8 @@ use function Ock\Helpers\is_valid_qcn;
  */
 class ServiceDefinitionUtil {
 
+  const TENTATIVE_TAG = 'tentative';
+
   /**
    * Gets a factory reflector for a service definition.
    *

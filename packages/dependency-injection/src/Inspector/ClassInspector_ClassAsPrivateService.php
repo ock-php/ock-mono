@@ -6,6 +6,8 @@ namespace Ock\DependencyInjection\Inspector;
 
 use Ock\ClassDiscovery\Inspector\ClassInspectorInterface;
 use Ock\ClassDiscovery\Reflection\ClassReflection;
+use Ock\DependencyInjection\ServiceDefinitionUtil;
+use Symfony\Component\DependencyInjection\Definition;
 
 /**
  * @see \Symfony\Component\DependencyInjection\Loader\FileLoader::registerClasses()
@@ -13,6 +15,21 @@ use Ock\ClassDiscovery\Reflection\ClassReflection;
 class ClassInspector_ClassAsPrivateService implements ClassInspectorInterface {
 
   use CreateDefinitionTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(): static {
+    $definition = new Definition();
+    $definition->setAutoconfigured(true);
+    $definition->setAutowired(true);
+    $definition->addTag(ServiceDefinitionUtil::TENTATIVE_TAG);
+    // Extend at your own risk.
+    // @phpstan-ignore-next-line
+    return new static(
+      fn () => clone $definition,
+    );
+  }
 
   /**
    * {@inheritdoc}

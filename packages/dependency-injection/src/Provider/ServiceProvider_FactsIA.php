@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Provider;
 
 use Ock\ClassDiscovery\FactsIA\FactsIAInterface;
+use Ock\DependencyInjection\ServiceDefinitionUtil;
 use Ock\Helpers\Util\MessageUtil;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -35,6 +36,13 @@ class ServiceProvider_FactsIA implements ServiceProviderInterface {
               MessageUtil::formatValue($key),
             )
           );
+        }
+        if ($fact->getTag(ServiceDefinitionUtil::TENTATIVE_TAG)) {
+          if ($container->has($key)) {
+            // Don't overwrite existing definition.
+            continue;
+          }
+          $fact->clearTag(ServiceDefinitionUtil::TENTATIVE_TAG);
         }
         $container->setDefinition($key, $fact);
       }
