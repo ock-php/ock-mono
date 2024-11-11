@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Drupal\ock\UI\PluginDeriver;
+namespace Drupal\controller_attributes\PluginDeriver;
 
 final class PluginDeriver_ActionLinksFromRouteMeta extends LinkPluginDeriverBase {
 
