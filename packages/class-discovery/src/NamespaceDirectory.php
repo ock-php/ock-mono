@@ -183,7 +183,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    */
   public function requireParentN(int $nLevelsUp): static {
     if (null === $parent = $this->parentN($nLevelsUp)) {
-      throw new \RuntimeException("No parent-!n namespace directory found for !dir / !nsp.");
+      throw new \RuntimeException(sprintf("No parent-%s namespace directory found for %s / %s.", $nLevelsUp, $this->getDirectory(), $this->getNamespace()));
     }
     return $parent;
   }
