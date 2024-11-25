@@ -67,14 +67,29 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
     // does not exist.
     // @phpstan-ignore argument.type
     $reflClass = new \ReflectionClass($class);
-    $class_file = $reflClass->getFileName();
+    return self::fromReflectionClass($reflClass);
+  }
+
+  /**
+   * Creates a namespace directory based on a reflection class.
+   *
+   * This is useful if the calling code already has a ReflectionClass object.
+   *
+   * @param \ReflectionClass $reflection_class
+   *   A class in the namespace directory.
+   *
+   * @return self
+   *   Namespace directory that contains the given class.
+   */
+  public static function fromReflectionClass(\ReflectionClass $reflection_class): self {
+    $class_file = $reflection_class->getFileName();
     if ($class_file === false) {
       // This is a native class in php core or an extension.
-      throw new \InvalidArgumentException("No file path for native class '$class'.");
+      throw new \InvalidArgumentException("No file path for native class '$reflection_class->name'.");
     }
     return self::create(
       dirname($class_file),
-      $reflClass->getNamespaceName(),
+      $reflection_class->getNamespaceName(),
     );
   }
 
