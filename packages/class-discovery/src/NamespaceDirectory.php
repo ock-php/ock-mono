@@ -678,5 +678,4 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
     return $candidates;
   }
 
-
 }
