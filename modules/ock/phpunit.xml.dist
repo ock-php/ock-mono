@@ -50,6 +50,7 @@
   <testsuites>
     <testsuite name="default">
       <directory>./tests/src</directory>
+      <directory>./modules/*/tests/src</directory>
     </testsuite>
   </testsuites>
 </phpunit>
