@@ -10,7 +10,6 @@ use Ock\DependencyInjection\Inspector\ClassInspector_ConditionDecorator;
 use Ock\DependencyInjection\Inspector\ClassInspector_SymfonyAsAliasAttributeDecorator;
 use Ock\DependencyInjection\Inspector\FactoryInspector_ConditionDecorator;
 use Ock\DependencyInjection\Inspector\FactoryInspector_ServiceAttribute;
-use Ock\DependencyInjection\Inspector\PackageInspector_RegisterInterfacesReflection;
 use Ock\DependencyInjection\Inspector\PackageInspector_SinglyImplementedInterfaceAliasDecorator;
 use function Ock\Helpers\array_filter_instanceof;
 
@@ -44,7 +43,6 @@ class ServiceProvider {
       PackageInspector_SinglyImplementedInterfaceAliasDecorator::create(...),
       FactoryInspector_ConditionDecorator::create(...),
       ClassInspector_ConditionDecorator::create(...),
-      PackageInspector_RegisterInterfacesReflection::decorateIfNeeded(...),
     ];
   }
 
