@@ -6,7 +6,6 @@ namespace Drupal\service_discovery;
 
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
 use Drupal\ock\DI\ResilientServiceAlias;
-use Ock\DependencyInjection\Inspector\PackageInspector_RegisterInterfacesReflection;
 use Ock\DependencyInjection\Provider\PackageServiceProviderBase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -69,8 +68,6 @@ abstract class ModuleServiceProviderBase extends PackageServiceProviderBase impl
     $new_builder->setAliases($aliases);
 
     $container->merge($new_builder);
-
-    PackageInspector_RegisterInterfacesReflection::mergeFromOtherContainer($container, $new_builder);
   }
 
   /**

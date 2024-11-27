@@ -9,7 +9,7 @@
         "ock/helpers": "self.version",
         "psr/container": "^2.0",
         "psr/log": "^1.1.4|^2.0|^3.0",
-        "symfony/dependency-injection": "^7.1.5"
+        "symfony/dependency-injection": "^7.1.9"
     },
     "require-dev": {
         "ock/testing": "self.version",
