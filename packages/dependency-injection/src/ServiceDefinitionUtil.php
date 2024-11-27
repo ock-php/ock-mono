@@ -51,6 +51,9 @@ class ServiceDefinitionUtil {
         // Not supported for now.
         return NULL;
       }
+      // Pretend that $class is a known class, because the first
+      // parameter expects class-string<T>.
+      /** @var class-string $class */
       return new ClassReflection($class);
     }
     // Whatever this is, it is not supported.
