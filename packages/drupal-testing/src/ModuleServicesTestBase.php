@@ -26,6 +26,7 @@ if (!class_exists(KernelTestBase::class)
  */
 abstract class ModuleServicesTestBase extends KernelTestBase {
 
+  use CurrentModuleTestTrait;
   use RecordedTestTrait;
 
   /**
@@ -160,22 +161,6 @@ abstract class ModuleServicesTestBase extends KernelTestBase {
     array_walk($report, fn (&$arr) => ksort($arr));
 
     $this->assertAsRecorded($report, "Tagged services from '$module' module.");
-  }
-
-  /**
-   * Gets the module name the services of which to test.
-   *
-   * This base implementation uses a crude heuristic, and should be replaced
-   * with a custom implementation if the heuristic does not work.
-   *
-   * @return string
-   *   Module name.
-   */
-  protected function getTestedModuleName(): string {
-    if (!preg_match('@^Drupal\\\\Tests\\\\(\w+)\\\\@', static::class, $matches)) {
-      throw new \RuntimeException(sprintf('Class name %s does not imply a module name.', static::class));
-    }
-    return $matches[1];
   }
 
 }
