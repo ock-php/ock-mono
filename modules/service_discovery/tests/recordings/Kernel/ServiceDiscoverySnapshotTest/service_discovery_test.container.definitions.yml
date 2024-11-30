@@ -1,0 +1,10 @@
+module: service_discovery_test
+type: container.definitions
+'++ Drupal\service_discovery_test\ServiceAtlas':
+  class: Symfony\Component\DependencyInjection\Definition
+  getArguments():
+    -
+      class: Symfony\Component\DependencyInjection\Definition
+      getClass(): Drupal\service_discovery_test\ExampleService
+  getClass(): Drupal\service_discovery_test\ServiceAtlas
+  isPublic(): true

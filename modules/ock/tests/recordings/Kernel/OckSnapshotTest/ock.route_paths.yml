@@ -1,0 +1,13 @@
+module: ock
+type: route_paths
+++:
+  - /admin/flush/ock
+  - /admin/reports/ock
+  - '/admin/reports/ock/{interface}'
+  - '/admin/reports/ock/{interface}/code'
+  - '/admin/reports/ock/{interface}/demo'
+  - '/admin/reports/ock/{interface}/plugin/{named_plugin}'
+  - '/admin/reports/ock/{interface}/plugin/{named_plugin}/code'
+  - '/admin/reports/ock/{interface}/plugin/{named_plugin}/demo'
+  - '/admin/reports/ock/{interface}/plugin/{named_plugin}/devel'
+  - /devel/ock/clear

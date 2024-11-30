@@ -1,0 +1,9 @@
+module: ock_preset
+type: links.task
+'++ routelink:ock_preset.iface_presets.add':
+  id: null
+  title: 'Add preset'
+  route_name: ock_preset.iface_presets.add
+  appears_on:
+    - ock_preset.iface_presets.index
+  class: Drupal\Core\Menu\LocalActionDefault

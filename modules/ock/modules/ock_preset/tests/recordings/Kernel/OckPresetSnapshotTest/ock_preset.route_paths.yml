@@ -1,0 +1,8 @@
+module: ock_preset
+type: route_paths
+++:
+  - /admin/structure/ock_preset
+  - '/admin/structure/ock_preset/{interface}'
+  - '/admin/structure/ock_preset/{interface}/add'
+  - '/admin/structure/ock_preset/{interface}/preset/{preset_name}'
+  - '/admin/structure/ock_preset/{interface}/preset/{preset_name}/delete'
