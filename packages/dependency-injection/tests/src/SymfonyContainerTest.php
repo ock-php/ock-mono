@@ -136,8 +136,8 @@ class SymfonyContainerTest extends TestCase {
       )
       ->withObjectGetters(Alias::class)
       ->withObjectGetters(Definition::class, ['isPrivate()', 'getChanges()'])
-      ->withReferenceObject(new Alias('#'))
-      ->withReferenceObjectFactory(
+      ->withDefaultObject(new Alias('#'))
+      ->withDefaultObjectFactory(
         Definition::class,
         fn (string|int|null $key) => (new Definition(is_string($key) ? $key : null))
           ->setAutoconfigured(true)
