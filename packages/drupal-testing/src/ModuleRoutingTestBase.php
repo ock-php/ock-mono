@@ -77,7 +77,7 @@ abstract class ModuleRoutingTestBase extends KernelTestBase {
   protected function createExporter(): ExporterInterface {
     return (new Exporter_ToYamlArray())
       ->withObjectGetters(Route::class)
-      ->withReferenceObject(new Route('#'));
+      ->withDefaultObject(new Route('#'));
   }
 
 }
