@@ -87,7 +87,7 @@ class Exporter_ToYamlArray implements ExporterInterface {
    *
    * @return static
    */
-  public function withReferenceObject(object $reference, string $class = null): static {
+  public function withDefaultObject(object $reference, string $class = null): static {
     $class ??= \get_class($reference);
     $decorated = $this->exportersByClass[$class] ?? fn (
       object $object,
@@ -118,7 +118,7 @@ class Exporter_ToYamlArray implements ExporterInterface {
    *
    * @return static
    */
-  public function withReferenceObjectFactory(string $class, \Closure $factory): static {
+  public function withDefaultObjectFactory(string $class, \Closure $factory): static {
     $decorated = $this->exportersByClass[$class] ?? fn (
       object $object,
       int $depth,
@@ -144,7 +144,7 @@ class Exporter_ToYamlArray implements ExporterInterface {
   /**
    * {@inheritdoc}
    */
-  public function export(mixed $value, string $label = null, int $depth = 2): mixed {
+  public function export(mixed $value, int $depth = 2): mixed {
     // Don't pollute the main object cache in the main instance.
     $clone = clone $this;
     // Populate the object cache breadth-first.
@@ -152,9 +152,6 @@ class Exporter_ToYamlArray implements ExporterInterface {
       $clone->exportRecursive($value, $i, null);
     }
     $export = $clone->exportRecursive($value, $depth, null);
-    if ($label !== null) {
-      $export = [$label => $export];
-    }
     return $export;
   }
 
@@ -314,9 +311,9 @@ class Exporter_ToYamlArray implements ExporterInterface {
    * @param bool $public
    *   TRUE to only export public properties.
    *
-   * @return array|string
+   * @return array<string, mixed>
    */
-  protected function exportObjectProperties(object $object, int $depth, bool $public = false): array|string {
+  protected function exportObjectProperties(object $object, int $depth, bool $public = false): array {
     $reflector = new ClassReflection($object);
     $properties = $reflector->getFilteredProperties(static: false, public: $public ?: null);
     $export = [];
@@ -343,9 +340,9 @@ class Exporter_ToYamlArray implements ExporterInterface {
    * @param object $object
    * @param int $depth
    *
-   * @return array|string
+   * @return array<string, mixed>
    */
-  protected function exportObjectGetterValues(object $object, int $depth): array|string {
+  protected function exportObjectGetterValues(object $object, int $depth): array {
     $reflector = new ClassReflection($object);
     $result = [];
     foreach ($reflector->getFilteredMethods(static: false, public: true, constructor: false) as $method) {

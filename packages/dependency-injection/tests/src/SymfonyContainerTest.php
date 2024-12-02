@@ -130,13 +130,14 @@ class SymfonyContainerTest extends TestCase {
    */
   protected function createExporter(): Exporter_ToYamlArray {
     return (new Exporter_ToYamlArray())
-      ->withDedicatedExporter(ContainerBuilder::class, fn (
-        ContainerBuilder $builder,
-      ) => ['class' => \get_class($builder)])
+      ->withDedicatedExporter(
+        ContainerBuilder::class,
+        fn (ContainerBuilder $builder) => ['class' => \get_class($builder)],
+      )
       ->withObjectGetters(Alias::class)
       ->withObjectGetters(Definition::class, ['isPrivate()', 'getChanges()'])
-      ->withReferenceObject(new Alias('#'))
-      ->withReferenceObjectFactory(
+      ->withDefaultObject(new Alias('#'))
+      ->withDefaultObjectFactory(
         Definition::class,
         fn (string|int|null $key) => (new Definition(is_string($key) ? $key : null))
           ->setAutoconfigured(true)

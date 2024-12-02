@@ -11,6 +11,7 @@ use Ock\Testing\Recorder\AssertionRecorder_ReplayMode;
 use Ock\Testing\Recorder\AssertionRecorderInterface;
 use Ock\Testing\Storage\AssertionValueStore_Yaml;
 use Ock\Testing\Storage\AssertionValueStoreInterface;
+use PHPUnit\Framework\Attributes\After;
 
 /**
  * Mechanism where expected values are pre-recorded.
@@ -81,7 +82,10 @@ trait RecordedTestTrait {
         unset($export[$key][$arrayKeyIsDefaultFor]);
       }
     }
-    $this->assertAsRecorded($export, $label, $depth + 2);
+    if ($label !== null) {
+      $export = [$label => $export];
+    }
+    $this->assertExportedAsRecorded($export);
   }
 
   /**
@@ -96,13 +100,22 @@ trait RecordedTestTrait {
    */
   public function assertAsRecorded(mixed $actual, string $label = null, int $depth = 9): void {
     $actual = $this->exportForYaml($actual, $label, $depth);
+    $this->assertExportedAsRecorded($actual);
+  }
+
+  /**
+   * Asserts that an exported value is the same as previously recorded.
+   *
+   * @param mixed $actual
+   *   The exported actual value to compare.
+   *   This should be prepared to export to yaml.
+   */
+  public function assertExportedAsRecorded(mixed $actual): void {
     $this->recorder ??= $this->createRecorder();
     $this->recorder->assertValue($actual);
   }
 
-  /**
-   * @after
-   */
+  #[After]
   public function tearDownRecorder(): void {
     if ($this->status()->isSuccess()) {
       $this->recorder ??= $this->createRecorder();
@@ -195,7 +208,11 @@ trait RecordedTestTrait {
    *   This won't contain any objects.
    */
   protected function exportForYaml(mixed $value, string|null $label, int $depth): mixed {
-    return $this->createExporter()->export($value, $label, $depth);
+    $export = $this->createExporter()->export($value, $depth);
+    if ($label !== null) {
+      $export = [$label => $export];
+    }
+    return $export;
   }
 
   /**
