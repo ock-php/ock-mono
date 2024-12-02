@@ -27,11 +27,18 @@ class Exporter_ToYamlArray implements ExporterInterface {
   private array $exportersByClass = [];
 
   /**
-   * Object paths as array keys by object hash.
+   * Objects to export later.
    *
-   * @var array<int, string>
+   * @var array<int, object>
    */
-  private array $objectPaths = [];
+  private array $objects = [];
+
+  /**
+   * Object occurences by object id and depth.
+   *
+   * @var array<int, array<int, list<array{key: int|string|null, path: string, ref: mixed}>>>
+   */
+  private array $objectOccurences = [];
 
   /**
    * Path in the tree.
@@ -43,10 +50,26 @@ class Exporter_ToYamlArray implements ExporterInterface {
   private string $path = '';
 
   /**
+   * Default objects, to reduce redundancy of the export.
+   *
+   * @var array<class-string, object|false>
+   */
+  private array $defaultObjects = [];
+
+  /**
+   * Default object factories.
+   *
+   * @var array<class-string, callable(string|int|null): (object)>
+   */
+  private array $defaultObjectFactories = [];
+
+  /**
    * @template T of object
    *
    * @param class-string<T> $class
-   * @param \Closure(T, int, string|int|null, self): mixed $exporter
+   * @param \Closure(T, int, string|int|null, self): (mixed|null) $exporter
+   *   Dedicated export function for objects of the provided class.
+   *   If that function returns NULL, the regular exporter is used instead.
    *
    * @return static
    */
@@ -71,7 +94,7 @@ class Exporter_ToYamlArray implements ExporterInterface {
       string|int|null $key,
       self $exporter,
     ) use ($keys_to_unset): array {
-      $export = $exporter->doExportObject($object, $depth, true);
+      $export = $exporter->doExportObject($object, $depth, $key, true);
       foreach ($keys_to_unset as $key) {
         unset($export[$key]);
       }
@@ -88,26 +111,9 @@ class Exporter_ToYamlArray implements ExporterInterface {
    * @return static
    */
   public function withDefaultObject(object $reference, string $class = null): static {
-    $class ??= \get_class($reference);
-    $decorated = $this->exportersByClass[$class] ?? fn (
-      object $object,
-      int $depth,
-      string|int|null $key,
-      self $exporter,
-    ): array => $exporter->doExportObject($object, $depth);
-    return $this->withDedicatedExporter($class, static function (
-      object $object,
-      int $depth,
-      string|int|null $key,
-      self $exporter,
-    ) use ($reference, $decorated): array {
-      $compare_export = $decorated($reference, $depth, $key, $exporter);
-      $export = $decorated($object, $depth, $key, $exporter);
-      assert(is_array($export));
-      assert(is_array($compare_export));
-      unset($compare_export['class']);
-      return static::arrayDiffAssocStrict($export, $compare_export);
-    });
+    $clone = clone $this;
+    $clone->defaultObjects[$class ?? get_class($reference)] = $reference;
+    return $clone;
   }
 
   /**
@@ -119,26 +125,9 @@ class Exporter_ToYamlArray implements ExporterInterface {
    * @return static
    */
   public function withDefaultObjectFactory(string $class, \Closure $factory): static {
-    $decorated = $this->exportersByClass[$class] ?? fn (
-      object $object,
-      int $depth,
-      string|int|null $key,
-      self $exporter,
-    ): array => $exporter->doExportObject($object, $depth);
-    return $this->withDedicatedExporter($class, static function(
-      object $object,
-      int $depth,
-      string|int|null $key,
-      self $exporter,
-    ) use ($factory, $decorated): array {
-      $reference = $factory($key);
-      $compare_export = $decorated($reference, $depth, $key, $exporter);
-      $export = $decorated($object, $depth, $key, $exporter);
-      assert(is_array($export));
-      assert(is_array($compare_export));
-      unset($compare_export['class']);
-      return static::arrayDiffAssocStrict($export, $compare_export);
-    });
+    $clone = clone $this;
+    $clone->defaultObjectFactories[$class] = $factory;
+    return $clone;
   }
 
   /**
@@ -146,12 +135,51 @@ class Exporter_ToYamlArray implements ExporterInterface {
    */
   public function export(mixed $value, int $depth = 2): mixed {
     // Don't pollute the main object cache in the main instance.
-    $clone = clone $this;
+    return (clone $this)->doExport($value, $depth);
+  }
+
+  /**
+   * @param mixed $value
+   * @param int $depth
+   *
+   * @return mixed
+   */
+  public function doExport(mixed $value, int $depth): mixed {
     // Populate the object cache breadth-first.
-    for ($i = 0; $i < $depth; ++$i) {
-      $clone->exportRecursive($value, $i, null);
+    $export =& $this->exportRecursive($value, $depth, null);
+
+    $canonical_object_paths = [];
+    while ($objects = $this->objects) {
+      $this->objects = [];
+      foreach ($objects as $id => $object) {
+        if (isset($canonical_object_paths[$id])) {
+          continue;
+        }
+        $object_best_depth = max(array_keys($this->objectOccurences[$id]));
+        $object_best_occurence = array_shift($this->objectOccurences[$id][$object_best_depth]);
+        assert($object_best_occurence !== null);
+        // Overwrite the reference.
+        try {
+          $original_path = $this->path;
+          $this->path = $object_best_occurence['path'];
+          $object_best_occurence['ref'] = $this->exportObject($object, $object_best_depth, $object_best_occurence['key']);
+        }
+        finally {
+          $this->path = $original_path;
+        }
+        $canonical_object_paths[$id] = $object_best_occurence['path'];
+      }
     }
-    $export = $clone->exportRecursive($value, $depth, null);
+
+    foreach ($this->objectOccurences as $id => $occurences_by_depth) {
+      foreach ($occurences_by_depth as $occurences) {
+        foreach ($occurences as $occurence) {
+          // Overwrite the reference.
+          $occurence['ref'] = ['_ref' => $canonical_object_paths[$id]];
+        }
+      }
+    }
+
     return $export;
   }
 
@@ -162,39 +190,70 @@ class Exporter_ToYamlArray implements ExporterInterface {
    *
    * @return mixed
    */
-  protected function exportRecursive(mixed $value, int $depth, string|int|null $key): mixed {
-    if (\is_array($value)) {
-      if ($value === []) {
-        return [];
-      }
-      if ($depth <= 0) {
-        if (array_is_list($value)) {
-          return '[...]';
-        }
-        else {
-          return '{...}';
-        }
-      }
+  protected function &exportRecursive(mixed $value, int $depth, string|int|null $key): mixed {
+    if (is_array($value)) {
+      $result = $this->exportArrayRecursive($value, $depth);
+    }
+    elseif (is_object($value)) {
+      $result =& $this->registerObject($value, $depth, $key);
+    }
+    elseif (\is_resource($value)) {
+      $result = 'resource';
+    }
+    else {
+      $result = $value;
+    }
+
+    return $result;
+  }
+
+  /**
+   * @param array $value
+   * @param int $depth
+   *
+   * @return mixed
+   */
+  protected function exportArrayRecursive(array $value, int $depth): mixed {
+    if ($value === []) {
       $result = [];
-      foreach ($value as $k => $v) {
-        $parents = $this->path;
-        $this->path .= '[' . $k . ']';
-        try {
-          $result[$k] = $this->exportRecursive($v, $depth - 1, $k);
-        }
-        finally {
-          $this->path = $parents;
-        }
+      return $result;
+    }
+    if ($depth <= 0) {
+      if (array_is_list($value)) {
+        $result = '[...]';
+      }
+      else {
+        $result = '{...}';
       }
       return $result;
     }
-    if (is_object($value)) {
-      return $this->exportObject($value, $depth, $key);
+    $result = [];
+    foreach ($value as $k => $v) {
+      $parents = $this->path;
+      $this->path .= '[' . $k . ']';
+      try {
+        $result[$k] =& $this->exportRecursive($v, $depth - 1, $k);
+      }
+      finally {
+        $this->path = $parents;
+      }
     }
-    if (\is_resource($value)) {
-      return 'resource';
-    }
-    return $value;
+    return $result;
+  }
+
+  /**
+   * @param object $object
+   * @param int $depth
+   * @param string|int|null $key
+   *
+   * @return int
+   */
+  protected function &registerObject(object $object, int $depth, string|int|null $key): int {
+    $id = spl_object_id($object);
+    $this->objects[$id] = $object;
+    $ref = $id;
+    $this->objectOccurences[$id][$depth][] = ['key' => $key, 'path' => $this->path, 'ref' => &$ref];
+    return $ref;
   }
 
   /**
@@ -205,20 +264,34 @@ class Exporter_ToYamlArray implements ExporterInterface {
    * @return mixed
    */
   protected function exportObject(object $object, int $depth, int|string|null $key = null): mixed {
-    $id = spl_object_id($object);
-    $known_path = $this->objectPaths[$id] ?? null;
-    if ($known_path === NULL) {
-      $this->objectPaths[$id] = $this->path;
-    }
-    elseif ($known_path !== $this->path) {
-      return ['_ref' => $known_path];
-    }
     foreach ($this->exportersByClass as $class => $callback) {
       if ($object instanceof $class) {
-        return $callback($object, $depth, $key, $this);
+        $export = $callback($object, $depth, $key, $this);
+        if ($export !== null) {
+          return $export;
+        }
       }
     }
-    return $this->doExportObject($object, $depth);
+    return $this->doExportObject($object, $depth, $key);
+  }
+
+  /**
+   * @param object $object
+   * @param int $depth
+   * @param int|string|null $key
+   * @param bool $getters
+   *
+   * @return array
+   */
+  protected function doExportObject(object $object, int $depth, int|string|null $key = null, bool $getters = false): array {
+    $export = ['class' => $this->exportObjectClassName($object)];
+    $export += $this->exportObjectValues($object, $depth, $getters);
+    $default_object = $this->getDefaultObject(get_class($object), $key);
+    if ($default_object) {
+      $default_export = $this->exportObjectValues($default_object, $depth, $getters);
+      $export = static::arrayDiffAssocStrict($export, $default_export);
+    }
+    return $export;
   }
 
   /**
@@ -228,31 +301,102 @@ class Exporter_ToYamlArray implements ExporterInterface {
    *
    * @return array
    */
-  protected function doExportObject(object $object, int $depth, bool $getters = false): array {
+  protected function exportObjectValues(object $object, int $depth, bool $getters = false): array {
+    if ($depth <= 0) {
+      return [];
+    }
+    if (!$getters) {
+      return $this->exportObjectProperties($object, $depth - 1);
+    }
+    $export = $this->exportObjectProperties($object, $depth - 1, true);
+    $export += $this->exportObjectGetterValues($object, $depth - 1);
+    return $export;
+  }
+
+  /**
+   * Exports the object's class name.
+   *
+   * @param object $object
+   *
+   * @return string
+   */
+  protected function exportObjectClassName(object $object): string {
     $reflectionClass = new \ReflectionClass($object);
-    $classNameExport = $reflectionClass->getName();
     if ($reflectionClass->isAnonymous()) {
-      if (\preg_match('#^class@anonymous\\0(/[^:]+:)\d+\$[0-9a-f]+$#', $classNameExport, $matches)) {
+      if (\preg_match('#^class@anonymous\\0(/[^:]+:)\d+\$[0-9a-f]+$#', $reflectionClass->getName(), $matches)) {
         $path = $matches[1];
         // @todo Inject project root path from outside.
         $path = $this->stabilizePath($path);
         // Replace the line number and the hash-like suffix.
         // This will make the asserted value more stable.
-        $classNameExport = 'class@anonymous:' . $path . ':**';
+        return 'class@anonymous:' . $path . ':**';
       }
     }
-    $export = ['class' => $classNameExport];
-    if ($depth <= 0) {
-      return $export;
+    return $reflectionClass->getName();
+  }
+
+  /**
+   * @template T of object
+   *
+   * @param class-string<T> $class
+   * @param int|string|null $key
+   *
+   * @return (object&T)|null
+   */
+  protected function getDefaultObject(string $class, int|string|null $key): object|null {
+    if (isset($this->defaultObjectFactories[$class])) {
+      $object = ($this->defaultObjectFactories[$class])($key);
+      assert($object instanceof $class);
+      return $object;
     }
-    if (!$getters) {
-      $export += $this->exportObjectProperties($object, $depth - 1);
+    $object_or_false = $this->defaultObjects[$class]
+      ??= ($this->createDefaultObject($class) ?? false);
+    if (!$object_or_false) {
+      return NULL;
     }
-    else {
-      $export += $this->exportObjectProperties($object, $depth - 1, true);
-      $export += $this->exportObjectGetterValues($object, $depth - 1);
+    assert($object_or_false instanceof $class);
+    return $object_or_false;
+  }
+
+  /**
+   * @template T of object
+   *
+   * @param class-string<T> $class
+   *
+   * @return (object&T)|null
+   */
+  protected function createDefaultObject(string $class): object|null {
+    $rc = new \ReflectionClass($class);
+    $constructor = $rc->getConstructor();
+    if ($constructor && !$constructor->isPublic()) {
+      return null;
     }
-    return $export;
+    $args = [];
+    foreach (($constructor?->getParameters() ?? []) as $parameter) {
+      if ($parameter->isOptional()) {
+        break;
+      }
+      $type = $parameter->getType();
+      if (!$type) {
+        return null;
+      }
+      switch ($type->__toString()) {
+        case 'string':
+        case 'string|int':
+        case 'int|string':
+          $args[] = '?#?#?#*';
+          break;
+
+        default:
+          return null;
+      }
+    }
+    try {
+      return new $class(...$args);
+    }
+    catch (\Throwable) {
+      return null;
+    }
   }
 
   /**
@@ -327,7 +471,7 @@ class Exporter_ToYamlArray implements ExporterInterface {
       $parents = $this->path;
       $this->path .= '->' . $property->name;
       try {
-        $export['$' . $property->name] = $this->exportRecursive($propertyValue, $depth - 1, null);
+        $export['$' . $property->name] =& $this->exportRecursive($propertyValue, $depth - 1, null);
       }
       finally {
         $this->path = $parents;
@@ -358,7 +502,7 @@ class Exporter_ToYamlArray implements ExporterInterface {
       $parents = $this->path;
       $this->path .= '->' . $method->name . '()';
       try {
-        $result[$method->name . '()'] = $this->exportRecursive($value, $depth - 1, null);
+        $result[$method->name . '()'] =& $this->exportRecursive($value, $depth - 1, null);
       }
       finally {
         $this->path = $parents;
