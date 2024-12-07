@@ -1,5 +1,0 @@
-test: 'Drupal\Tests\service_discovery\Kernel\ServicesTest::testPublicServicesExist()'
-values:
-  -
-    'Service types.':
-      Psr\Container\ContainerInterface: Drupal\Core\DependencyInjection\ContainerBuilder
