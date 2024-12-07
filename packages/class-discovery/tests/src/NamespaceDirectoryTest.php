@@ -64,6 +64,19 @@ class NamespaceDirectoryTest extends TestCase {
     );
   }
 
+  public function testFromReflectionClass(): void {
+    $this->assertNamespaceDir(
+      __DIR__,
+      __NAMESPACE__,
+      NamespaceDirectory::fromReflectionClass(new \ReflectionClass(self::class)),
+    );
+    // Does not work with built-in class.
+    $this->callAndAssertException(
+      \InvalidArgumentException::class,
+      fn () => NamespaceDirectory::fromReflectionClass(new \ReflectionClass(\stdClass::class)),
+    );
+  }
+
   public function testWithRealpathRoot(): void {
     $this->assertNamespaceDir(
       __DIR__,
