@@ -30,17 +30,10 @@ use PHPUnit\Framework\Attributes\After;
  */
 trait RecordedTestTrait {
 
-  private ?AssertionRecorderInterface $recorder = null;
+  use IsRecordingTrait;
+  use RecordingsPathTrait;
 
-  /**
-   * Checks whether the test runs in "recording" mode.
-   *
-   * @return bool
-   *   TRUE if the test runs in "recording" mode.
-   */
-  protected function isRecording(): bool {
-    return !!\getenv('UPDATE_TESTS');
-  }
+  private ?AssertionRecorderInterface $recorder = null;
 
   /**
    * Asserts that an array of objects is as recorded.
@@ -153,25 +146,8 @@ trait RecordedTestTrait {
    * Creates a storage for the assertion recorder.
    */
   protected function createAssertionStore(): AssertionValueStoreInterface {
-    $reflection_class = new \ReflectionClass(static::class);
-    $class_file = $reflection_class->getFileName();
-    if ($class_file === false) {
-      throw new \RuntimeException(sprintf("No class file for '%s'.", static::class));
-    }
-    /** @var non-empty-list<string> $parts */
-    $parts = \explode('\\', static::class);
-    $parts_count = count($parts);
-    if ($parts_count < 3) {
-      throw new \RuntimeException(sprintf("Namespace of class '%s' is too shallow.", static::class));
-    }
-    $package_dir = dirname($class_file, $parts_count - 2);
-    $base = implode('/', [
-      $package_dir,
-      'recordings',
-      ...array_slice($parts, 3),
-    ]) . '-';
     return new AssertionValueStore_Yaml(
-      $base,
+      $this->getClassRecordingsPath() . '-',
       $this->buildYamlHeader(...),
     );
   }
