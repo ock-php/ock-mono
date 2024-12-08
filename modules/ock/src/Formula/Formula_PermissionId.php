@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Drupal\ock\Formula;
 
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Ock\DependencyInjection\Attribute\Service;
 use Drupal\user\PermissionHandlerInterface;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\Text;
 use Ock\Ock\Text\TextInterface;

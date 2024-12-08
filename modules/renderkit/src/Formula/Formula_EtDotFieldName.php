@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Ock\DependencyInjection\Attribute\Service;
 use Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType;
 use Drupal\renderkit\TextLookup\TextLookup_FieldType;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Text\TextInterface;
 
