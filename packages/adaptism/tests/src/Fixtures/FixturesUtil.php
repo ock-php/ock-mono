@@ -7,7 +7,6 @@ use Ock\Adaptism\AdaptismPackage;
 use Ock\DependencyInjection\Provider\CommonServiceProvider;
 use Ock\Egg\EggPackage;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 class FixturesUtil {
 

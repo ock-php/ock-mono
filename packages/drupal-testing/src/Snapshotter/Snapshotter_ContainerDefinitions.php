@@ -8,7 +8,6 @@ use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Ock\Testing\Diff\DifferInterface;
 use Ock\Testing\Diff\ExportedArrayDiffer;
 use Ock\Testing\Exporter\Exporter_ToYamlArray;
-use Ock\Testing\Exporter\ExporterInterface;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
