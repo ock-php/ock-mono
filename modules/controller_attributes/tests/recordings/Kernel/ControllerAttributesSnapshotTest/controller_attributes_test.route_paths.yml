@@ -1,0 +1,4 @@
+module: controller_attributes_test
+type: route_paths
+++:
+  - /controller-attributes-test/hello
