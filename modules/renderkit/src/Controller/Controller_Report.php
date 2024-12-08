@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\Controller;
 
+use Drupal\controller_attributes\Attribute\Route;
+use Drupal\controller_attributes\Attribute\RouteIsAdmin;
+use Drupal\controller_attributes\Attribute\RouteMenuLink;
+use Drupal\controller_attributes\Attribute\RouteRequirePermission;
+use Drupal\controller_attributes\Attribute\RouteTitle;
+use Drupal\controller_attributes\Controller\ControllerRouteNameInterface;
+use Drupal\controller_attributes\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\ock\Attribute\Routing\Route;
-use Drupal\ock\Attribute\Routing\RouteIsAdmin;
-use Drupal\ock\Attribute\Routing\RouteMenuLink;
-use Drupal\ock\Attribute\Routing\RouteRequirePermission;
-use Drupal\ock\Attribute\Routing\RouteTitle;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
-use Drupal\ock\UI\Controller\ControllerRouteNameInterface;
-use Drupal\ock\UI\Controller\ControllerRouteNameTrait;
 use Drupal\ock\UI\Form\Form_IfaceDemo;
 use Drupal\ock\Util\UiDumpUtil;
 use Drupal\renderkit\BuildProvider\BuildProviderInterface;

@@ -31,6 +31,8 @@ class ServiceDiscoveryServiceProvider extends ModuleServiceProviderBase {
       $passes[$delta] = new NeutrallyDecoratingPass($pass);
     }
     $pass_config->setRemovingPasses($passes);
+
+    parent::doRegister($container);
   }
 
 }

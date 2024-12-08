@@ -3,22 +3,22 @@ declare(strict_types=1);
 
 namespace Drupal\ock_preset\Controller;
 
+use Drupal\controller_attributes\Attribute\Route;
+use Drupal\controller_attributes\Attribute\RouteActionLink;
+use Drupal\controller_attributes\Attribute\RouteDefaultTaskLink;
+use Drupal\controller_attributes\Attribute\RouteIsAdmin;
+use Drupal\controller_attributes\Attribute\RouteParameters;
+use Drupal\controller_attributes\Attribute\RouteRequirePermission;
+use Drupal\controller_attributes\Attribute\RouteTaskLink;
+use Drupal\controller_attributes\Attribute\RouteTitleMethod;
+use Drupal\controller_attributes\ClassRouteHelper;
+use Drupal\controller_attributes\ClassRouteHelperInterface;
+use Drupal\controller_attributes\Controller\ControllerRouteNameInterface;
+use Drupal\controller_attributes\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Form\FormBuilderInterface;
-use Drupal\ock\Attribute\Routing\Route;
-use Drupal\ock\Attribute\Routing\RouteActionLink;
-use Drupal\ock\Attribute\Routing\RouteDefaultTaskLink;
-use Drupal\ock\Attribute\Routing\RouteIsAdmin;
-use Drupal\ock\Attribute\Routing\RouteParameters;
-use Drupal\ock\Attribute\Routing\RouteRequirePermission;
-use Drupal\ock\Attribute\Routing\RouteTaskLink;
-use Drupal\ock\Attribute\Routing\RouteTitleMethod;
 use Drupal\ock\TextToDrupal\TextToDrupalInterface;
-use Drupal\ock\UI\Controller\ControllerRouteNameInterface;
-use Drupal\ock\UI\Controller\ControllerRouteNameTrait;
 use Drupal\ock\UI\ParamConverter\ParamConverter_Iface;
-use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
-use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
 use Drupal\ock\Util\StringUtil;
 use Drupal\ock\Util\UiUtil;
 use Drupal\ock_preset\Crud\PresetRepository;
@@ -63,7 +63,7 @@ class Controller_IfacePresets extends ControllerBase implements ControllerRouteN
    * @param string $methodName
    *   One of the method names in this class.
    *
-   * @return \Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface
+   * @return \Drupal\controller_attributes\ClassRouteHelperInterface
    *   Builder object for urls and links.
    */
   public static function route(string $interface, string $methodName = 'index'): ClassRouteHelperInterface {
