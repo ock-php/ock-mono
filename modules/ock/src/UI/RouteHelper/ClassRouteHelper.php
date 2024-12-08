@@ -35,7 +35,6 @@ class ClassRouteHelper extends ClassRouteHelperBase {
    * @return string
    */
   public function routeName(): string {
-
     // @todo Instead this should rely on the methods on the class.
     return $this->routePrefix . StringUtil::camelCaseExplode(
       $this->getMethodName(),

@@ -6,12 +6,12 @@
 
 declare(strict_types=1);
 
-namespace Drupal\ock\DI;
+namespace Drupal\service_discovery;
 
 /**
  * A service to autowire constructor and factory signatures.
  */
-interface OckCallbackResolverInterface {
+interface CallbackResolverInterface {
 
   /**
    * @param array<int, mixed> $args

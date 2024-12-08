@@ -2,8 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\ock\DI;
+namespace Drupal\service_discovery;
 
+use Drupal\service_discovery\CallbackResolverInterface;
 use Ock\DID\Exception\ContainerToValueException;
 use Ock\Helpers\Util\MessageUtil;
 use Ock\Ock\Util\ReflectionUtil;
@@ -18,7 +19,7 @@ use Symfony\Component\DependencyInjection\Reference;
  * Implements the class resolver interface supporting class names and services.
  */
 #[AsAlias(public: true)]
-class OckCallbackResolver implements OckCallbackResolverInterface {
+class CallbackResolver implements CallbackResolverInterface {
 
   /**
    * @var array<int, mixed>
