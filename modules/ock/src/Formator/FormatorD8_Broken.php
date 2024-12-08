@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Drupal\ock\Formator;
 
 use Drupal\Component\Render\MarkupInterface;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
 
 class FormatorD8_Broken implements FormatorD8Interface {

@@ -7,9 +7,9 @@ use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 use Drupal\renderkit\Formula\Formula_EtDotFieldName;
 use Drupal\renderkit\Formula\Formula_FieldName;
 use Drupal\Tests\field\Kernel\FieldKernelTestBase;
-use Ock\Testing\ExceptionSerializationTrait;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Core\Formula\FormulaInterface;
+use Ock\Testing\ExceptionSerializationTrait;
 use Ock\Testing\RecordedTestTrait;
 
 /**

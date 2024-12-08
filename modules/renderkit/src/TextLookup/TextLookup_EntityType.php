@@ -6,8 +6,8 @@ namespace Drupal\renderkit\TextLookup;
 
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Ock\DependencyInjection\Attribute\Service;
 use Drupal\ock\DrupalText;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;

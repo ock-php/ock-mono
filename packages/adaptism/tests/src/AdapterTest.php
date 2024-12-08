@@ -29,12 +29,12 @@ class AdapterTest extends TestCase {
     self::assertSame(2, $adapter->adapt(
       (static function () {yield 'a'; yield 'b';})(),
       \Countable::class,
-    )->count());
+    )?->count());
 
     self::assertSame('ff3250', $adapter->adapt(
       new RgbColor(255, 50, 80),
       HexColorInterface::class,
-    )->getHexCode());
+    )?->getHexCode());
 
     self::assertNull($adapter->adapt(
       new RgbColor(255, 50, 80),
@@ -49,37 +49,37 @@ class AdapterTest extends TestCase {
     self::assertSame('ff0000', $adapter->adapt(
       new RgbColor(255, 0, 0),
       HexColor::class,
-    )->getHexCode());
+    )?->getHexCode());
 
     self::assertSame('red', $adapter->adapt(
       new RgbColor(255, 0, 0),
       NamedColor::class,
-    )->getColor());
+    )?->getColor());
 
     self::assertSame('blue', $adapter->adapt(
       new AltRgbColor(0, 0, 255),
       NamedColor::class,
-    )->getColor());
+    )?->getColor());
 
     self::assertSame('green', $adapter->adapt(
       new HexColor('00ff00'),
       NamedColor::class,
-    )->getColor());
+    )?->getColor());
 
     self::assertSame('ff3250', $adapter->adapt(
       new Colored(new RgbColor(255, 50, 80)),
       HexColorInterface::class,
-    )->getHexCode());
+    )?->getHexCode());
 
     self::assertSame(1649044800, $adapter->adapt(
       new LocalDateTimeString('2022-04-04'),
       Timestamp::class,
-    )->getTimestamp());
+    )?->getTimestamp());
 
     self::assertSame('2022-04-04T00:00:00', $adapter->adapt(
       new Timestamp(1649044800),
       LocalDateTimeString::class,
-    )->__toString());
+    )?->__toString());
   }
 
 }

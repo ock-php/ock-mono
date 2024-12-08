@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Drupal\renderkit\Formula;
 
 use Drupal\Core\Layout\LayoutPluginManagerInterface;
-use Ock\DependencyInjection\Attribute\Service;
 use Drupal\ock\DrupalText;
 use Drupal\service_discovery\Attribute\RequireModule;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
 use Ock\Ock\Text\Text;
 
