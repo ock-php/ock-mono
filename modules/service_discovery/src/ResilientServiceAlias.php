@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\ock\DI;
+namespace Drupal\service_discovery;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Alias;
