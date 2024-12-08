@@ -1,5 +1,0 @@
-test: 'Drupal\Tests\service_discovery\Kernel\ServicesTest::testServiceIds()'
-values:
-  -
-    "Service ids from 'service_discovery' module.":
-      - Psr\Container\ContainerInterface

@@ -1,6 +1,0 @@
-test: 'Drupal\Tests\renderkit\Kernel\RenderkitServicesTest::testTaggedServicesAsRecorded()'
-values:
-  -
-    "Tagged services from 'renderkit' module.":
-      ock.discovery:
-        Drupal\renderkit\RenderkitNamespace: '[[]]'
