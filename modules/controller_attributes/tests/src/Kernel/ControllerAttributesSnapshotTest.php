@@ -8,4 +8,14 @@ use Ock\DrupalTesting\ModuleSnapshotTestBase;
 
 class ControllerAttributesSnapshotTest extends ModuleSnapshotTestBase {
 
+  /**
+   * {@inheritdoc}
+   */
+  protected static function getTestedModuleNames(): array {
+    return [
+      'controller_attributes',
+      'controller_attributes_test',
+    ];
+  }
+
 }
