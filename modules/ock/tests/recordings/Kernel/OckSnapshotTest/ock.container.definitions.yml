@@ -33,12 +33,6 @@ type: container.definitions
             paramconverter:
               - {  }
         - Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
-'++ Drupal\ock\DI\OckCallbackResolverInterface':
-  class: Symfony\Component\DependencyInjection\Definition
-  getArguments():
-    - '@service_container'
-  getClass(): Drupal\ock\DI\OckCallbackResolver
-  isPublic(): true
 '++ Drupal\ock\Formula\Formula_PermissionId':
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():

@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\service_discovery;
 
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
-use Drupal\ock\DI\ResilientServiceAlias;
 use Ock\DependencyInjection\Provider\PackageServiceProviderBase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 

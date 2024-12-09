@@ -1,0 +1,8 @@
+module: service_discovery
+type: container.definitions
+'++ Drupal\service_discovery\CallbackResolverInterface':
+  class: Symfony\Component\DependencyInjection\Definition
+  getArguments():
+    - '@service_container'
+  getClass(): Drupal\service_discovery\CallbackResolver
+  isPublic(): true

@@ -5,7 +5,7 @@ namespace Drupal\ock\UI\PluginDeriver;
 
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
-use Drupal\ock\DI\OckCallbackResolverInterface;
+use Drupal\service_discovery\CallbackResolverInterface;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Routing\Route;
@@ -25,8 +25,8 @@ abstract class LinkPluginDeriverBase extends PluginDeriverBase implements Contai
    *   Some arguments are left unresolved.
    */
   public static function create(ContainerInterface $container, $base_plugin_id): static {
-    $resolver = $container->get(OckCallbackResolverInterface::class);
-    assert($resolver instanceof OckCallbackResolverInterface);
+    $resolver = $container->get(CallbackResolverInterface::class);
+    assert($resolver instanceof CallbackResolverInterface);
     return $resolver
       ->withTypeArgs(['string' => $base_plugin_id])
       ->construct(static::class);
