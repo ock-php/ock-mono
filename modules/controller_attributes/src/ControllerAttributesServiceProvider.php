@@ -9,6 +9,4 @@ use Drupal\service_discovery\ModuleServiceProviderBase;
 /**
  * Service provider for this module.
  */
-class ControllerAttributesServiceProvider extends ModuleServiceProviderBase {
-
-}
+class ControllerAttributesServiceProvider extends ModuleServiceProviderBase {}
