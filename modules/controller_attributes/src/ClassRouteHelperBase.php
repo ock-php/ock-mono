@@ -20,7 +20,10 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
    * @param array $routeParameters
    * @param string $suffix
    */
-  public function __construct(private readonly array $routeParameters, string $suffix) {
+  public function __construct(
+    private readonly array $routeParameters,
+    string $suffix,
+  ) {
     $this->methodName = $suffix;
   }
 
@@ -44,9 +47,7 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
   public function link(MarkupInterface|string $text, array $options = []): Link {
     assert(is_string($text)
       || $text instanceof MarkupInterface);
-    return Link::fromTextAndUrl(
-      $text,
-      $this->url( $options));
+    return Link::fromTextAndUrl($text, $this->url( $options));
   }
 
   /**
@@ -55,11 +56,11 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
    * @return \Drupal\Core\Url
    */
   public function url(array $options = []): Url {
-
     return new Url(
       $this->routeName(),
       $this->routeParameters,
-      $options);
+      $options,
+    );
   }
 
   /**
