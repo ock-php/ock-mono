@@ -3,14 +3,23 @@ declare(strict_types=1);
 
 namespace Drupal\controller_attributes;
 
+/**
+ * Url builder for routes based on controller attributes.
+ */
 class ClassRouteHelper extends ClassRouteHelperBase {
 
   /**
-   * @param string $class
+   * Static factory.
+   *
+   * @param class-string $class
+   *   Controller class name.
    * @param array $routeParameters
+   *   Route parameter values.
    * @param string $methodName
+   *   Controller method name.
    *
    * @return self
+   *   New instance.
    */
   public static function fromClassName(string $class, array $routeParameters, string $methodName): self {
     $routeBasename = RouteNameUtil::classNameGetRouteBasename($class);
@@ -22,9 +31,14 @@ class ClassRouteHelper extends ClassRouteHelperBase {
   }
 
   /**
+   * Constructor.
+   *
    * @param string $routePrefix
+   *   Route name prefix, usually based on the class name.
    * @param array $routeParameters
+   *   Parameters to use in the url path.
    * @param string $methodName
+   *   Name of the controller method.
    */
   public function __construct(
     private $routePrefix,
@@ -35,7 +49,7 @@ class ClassRouteHelper extends ClassRouteHelperBase {
   }
 
   /**
-   * @return string
+   * {@inheritdoc}
    */
   public function routeName(): string {
     // @todo Instead this should rely on the methods on the class.
