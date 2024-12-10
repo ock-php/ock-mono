@@ -45,8 +45,6 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
    * {@inheritdoc}
    */
   public function link(MarkupInterface|string $text, array $options = []): Link {
-    assert(is_string($text)
-      || $text instanceof MarkupInterface);
     return Link::fromTextAndUrl($text, $this->url( $options));
   }
 
