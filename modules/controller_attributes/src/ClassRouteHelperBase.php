@@ -7,6 +7,9 @@ use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 
+/**
+ * Base class for a url builder.
+ */
 abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
 
   /**
@@ -18,7 +21,9 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
    * Constructor.
    *
    * @param array $routeParameters
+   *   Route parameter values.
    * @param string $suffix
+   *   Controller method name.
    */
   public function __construct(
     private readonly array $routeParameters,
@@ -28,9 +33,7 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
   }
 
   /**
-   * @param string $method_name
-   *
-   * @return static
+   * {@inheritdoc}
    */
   public function subpage(string $method_name): self {
     $clone = clone $this;
@@ -39,10 +42,7 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
   }
 
   /**
-   * @param \Drupal\Component\Render\MarkupInterface|string $text
-   * @param array $options
-   *
-   * @return \Drupal\Core\Link
+   * {@inheritdoc}
    */
   public function link(MarkupInterface|string $text, array $options = []): Link {
     assert(is_string($text)
@@ -51,9 +51,7 @@ abstract class ClassRouteHelperBase implements ClassRouteHelperInterface {
   }
 
   /**
-   * @param array $options
-   *
-   * @return \Drupal\Core\Url
+   * {@inheritdoc}
    */
   public function url(array $options = []): Url {
     return new Url(
