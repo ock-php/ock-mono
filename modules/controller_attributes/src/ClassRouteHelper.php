@@ -41,7 +41,7 @@ class ClassRouteHelper extends ClassRouteHelperBase {
    *   Name of the controller method.
    */
   public function __construct(
-    private $routePrefix,
+    private readonly string $routePrefix,
     array $routeParameters,
     string $methodName,
   ) {
