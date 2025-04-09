@@ -15,6 +15,12 @@ use PHPUnit\Framework\TestCase;
 
 class ClassFilesIATest extends TestCase {
 
+  public function testAssertionsEnabled(): void {
+    $assertions_enabled = false;
+    assert($assertions_enabled = true);
+    $this->assertTrue($assertions_enabled);
+  }
+
   /**
    * @throws \ReflectionException
    */
