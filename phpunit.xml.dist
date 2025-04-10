@@ -48,6 +48,11 @@
     <!-- Example for changing the driver args to webdriver tests MINK_DRIVER_ARGS_WEBDRIVER value: '["chrome", { "chromeOptions": { "w3c": false } }, "http://localhost:4444/wd/hub"]' For using the Firefox browser, replace "chrome" with "firefox" -->
     <env name="MINK_DRIVER_ARGS_WEBDRIVER" value=''/>
   </php>
+  <coverage>
+    <report>
+      <clover outputFile="build/logs/clover.xml"/>
+    </report>
+  </coverage>
   <testsuites>
     <testsuite name="packages">
       <directory>./packages/*/tests/src</directory>
@@ -65,6 +70,19 @@
       <directory>./modules/*/tests/src/FunctionalJavascript</directory>
     </testsuite>
   </testsuites>
+  <source>
+    <include>
+      <directory>./packages/*/src</directory>
+      <directory>./modules/**/src</directory>
+      <file>./modules/**/*.module</file>
+      <file>./modules/**/*.inc</file>
+      <file>./modules/**/*.install</file>
+      <file>./modules/**/*.php</file>
+    </include>
+    <exclude>
+      <directory>tests</directory>
+    </exclude>
+  </source>
   <logging>
     <junit outputFile="build/logs/junit.xml"/>
   </logging>
