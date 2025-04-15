@@ -19,6 +19,12 @@ values:
       UUID:
         entity_test.uuid: 'Test entity: UUID'
   -
+    'entity_test:test_bundle':
+      'Text (formatted)':
+        entity_test.field_test_import_2: 'Test entity: Test import field 2 on test bundle'
+  -
+    'entity_test:non_existing_bundle': {  }
+  -
     'entity_test:*':
       Created:
         entity_test.created: 'Test entity: Authored on'

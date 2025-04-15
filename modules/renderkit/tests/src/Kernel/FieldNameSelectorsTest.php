@@ -72,6 +72,8 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
 
     $formulas_to_test = [
       'entity_test:entity_test' => $formula->withEntityType('entity_test', 'entity_test'),
+      'entity_test:test_bundle' => $formula->withEntityType('entity_test', 'test_bundle'),
+      'entity_test:non_existing_bundle' => $formula->withEntityType('entity_test', 'non_existing_bundle'),
       'entity_test:*' => $formula->withEntityType('entity_test'),
       '*:*' => $formula,
     ];
