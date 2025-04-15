@@ -59,7 +59,7 @@ class Formula_EtDotFieldName implements Formula_SelectInterface {
    * @param string|null $entity_type
    * @param string|null $bundle
    *
-   * @return $this
+   * @return static
    */
   public function withEntityType(?string $entity_type, string $bundle = NULL): static {
     if ($entity_type === NULL && $bundle !== NULL) {
