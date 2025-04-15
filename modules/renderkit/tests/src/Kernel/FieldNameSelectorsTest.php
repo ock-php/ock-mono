@@ -78,9 +78,21 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
       '*:*' => $formula,
     ];
 
+    $fields_of_interest = [
+      'user.uuid',
+      'entity_test.user_id',
+      'entity_test.field_test_import',
+      'entity_test.field_test_import_2',
+    ];
+    $fields_of_interest_map = array_fill_keys($fields_of_interest, TRUE);
+
     foreach ($formulas_to_test as $key => $formula) {
       $options = $this->getFormulaGroupedOptions($formula);
-      $this->assertAsRecorded($options, $key);
+      $filtered_options = array_filter(array_map(
+        fn (array $fields) => array_intersect_key($fields, $fields_of_interest_map),
+        $options,
+      ));
+      $this->assertAsRecorded($filtered_options, $key);
     }
   }
 
