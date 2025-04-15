@@ -32,6 +32,7 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
     'text',
     'entity_test',
     'field_test',
+    'field_test_config',
     'renderkit',
     'service_discovery',
     'ock',
@@ -39,6 +40,15 @@ class FieldNameSelectorsTest extends FieldKernelTestBase {
     'user',
     'layout_discovery',
   ];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+
+    $this->installConfig(['field_test_config']);
+  }
 
   public function testFieldName(): void {
     /** @var \Closure(string): Formula_FieldName $fieldNameFormulaLookup */

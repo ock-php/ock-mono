@@ -10,6 +10,9 @@ values:
         entity_test.langcode: 'Test entity: Language'
       'Number (integer)':
         entity_test.id: 'Test entity: ID'
+      'Text (formatted)':
+        entity_test.field_test_import: 'Test entity: Test import field'
+        entity_test.field_test_import_2: 'Test entity: Test import field 2 on entity_test bundle'
       'Text (plain)':
         entity_test.name: 'Test entity: Name'
         entity_test.type: 'Test entity: Test entity bundle'
@@ -25,6 +28,9 @@ values:
         entity_test.langcode: 'Test entity: Language'
       'Number (integer)':
         entity_test.id: 'Test entity: ID'
+      'Text (formatted)':
+        entity_test.field_test_import: 'Test entity: Test import field'
+        entity_test.field_test_import_2: 'Test entity: Test import field 2 on test bundle | Test import field 2 on entity_test bundle'
       'Text (plain)':
         entity_test.name: 'Test entity: Name'
         entity_test.type: 'Test entity: Test entity bundle'
@@ -60,6 +66,7 @@ values:
         entity_test_rev.revision_default: 'Test entity - revisions: Default revision'
         entity_test_revpub.revision_default: 'Test entity - revisions and publishing status: Default revision'
         entity_test_revpub.status: 'Test entity - revisions and publishing status: Published'
+        entity_test_uuid_id.default_langcode: 'Test entity with UUIDs as IDs: Default translation'
         entity_test_with_bundle.default_langcode: 'Test entity with bundle: Default translation'
         node.default_langcode: 'Content: Default translation'
         node.promote: 'Content: Promoted to front page'
@@ -108,6 +115,7 @@ values:
         entity_test_serialized_field.created: 'Test serialized fields: Authored on'
         entity_test_string_id.created: 'Test entity with string_id: Authored on'
         entity_test_unique_constraint.created: 'unique field entity: Authored on'
+        entity_test_uuid_id.created: 'Test entity with UUIDs as IDs: Authored on'
         entity_test_view_builder.created: 'Entity Test view builder: Authored on'
         node.created: 'Content: Authored on'
         node.revision_timestamp: 'Content: Revision create time'
@@ -158,6 +166,7 @@ values:
         entity_test_string_id.user_id: 'Test entity with string_id: User ID'
         entity_test_unique_constraint.field_test_reference: 'unique field entity: unique_reference_test'
         entity_test_unique_constraint.user_id: 'unique field entity: User ID'
+        entity_test_uuid_id.user_id: 'Test entity with UUIDs as IDs: User ID'
         entity_test_view_builder.user_id: 'Entity Test view builder: User ID'
         entity_test_with_bundle.type: 'Test entity with bundle: Test entity bundle'
         node.revision_uid: 'Content: Revision user'
@@ -185,6 +194,7 @@ values:
         entity_test_no_uuid.langcode: 'Test entity without UUID: Language'
         entity_test_rev.langcode: 'Test entity - revisions: Language'
         entity_test_revpub.langcode: 'Test entity - revisions and publishing status: Language'
+        entity_test_uuid_id.langcode: 'Test entity with UUIDs as IDs: Language'
         entity_test_view_builder.langcode: 'Entity Test view builder: Language'
         entity_test_with_bundle.langcode: 'Test entity with bundle: Language'
         node.langcode: 'Content: Language'
@@ -262,6 +272,8 @@ values:
       'Test serialized property field item':
         entity_test_serialized_field.serialized_text: 'Test serialized fields: Serialized text'
       'Text (formatted)':
+        entity_test.field_test_import: 'Test entity: Test import field'
+        entity_test.field_test_import_2: 'Test entity: Test import field 2 on test bundle | Test import field 2 on entity_test bundle'
         entity_test_base_field_display.test_display_configurable: 'Test entity - base field display: Field with configurable display'
         entity_test_base_field_display.test_display_multiple: 'Test entity - base field display: A field with multiple values'
         entity_test_base_field_display.test_display_non_configurable: 'Test entity - base field display: Field with non-configurable display'
@@ -348,6 +360,9 @@ values:
         entity_test_string_id.type: 'Test entity with string_id: Test entity with string_id bundle'
         entity_test_unique_constraint.field_test_text: 'unique field entity: unique_field_test'
         entity_test_unique_constraint.name: 'unique field entity: Name'
+        entity_test_uuid_id.name: 'Test entity with UUIDs as IDs: Name'
+        entity_test_uuid_id.type: 'Test entity with UUIDs as IDs: Test entity with UUIDs as IDs bundle'
+        entity_test_uuid_id.uuid: 'Test entity with UUIDs as IDs: UUID'
         entity_test_view_builder.name: 'Entity Test view builder: Name'
         entity_test_view_builder.type: 'Entity Test view builder: Entity Test view builder bundle'
         entity_test_with_bundle.name: 'Test entity with bundle: Name'
