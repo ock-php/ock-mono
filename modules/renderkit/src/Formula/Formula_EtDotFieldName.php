@@ -68,10 +68,16 @@ class Formula_EtDotFieldName implements Formula_SelectInterface {
     $clone = clone $this;
     $clone->entityType = $entity_type;
     $clone->bundleName = $bundle;
-    $clone->fieldLabelLookup = $clone->fieldLabelLookup->withEntityBundles(
-      $entity_type,
-      [$bundle => TRUE],
-    );
+    // When a bundle is specified, the field label lookup should only take the
+    // label from that bundle into account.
+    // @todo When no bundle is specified, the constraint needs to be removed
+    //   from the field label lookup. Currently this is not possible.
+    if ($bundle !== NULL) {
+      $clone->fieldLabelLookup = $clone->fieldLabelLookup->withEntityBundles(
+        $entity_type,
+        [$bundle => TRUE],
+      );
+    }
     return $clone;
   }
 
