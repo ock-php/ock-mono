@@ -11,6 +11,15 @@ use Ock\Ock\Text\Text;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
+/**
+ * Text lookup to get a field label.
+ *
+ * The id parameter is like "$entity_type.$field_machine_name".
+ * The return value is a field label.
+ *
+ * This works both for base fields and for bundle fields.
+ * For bundle fields, it will concatenate distinct labels from multiple bundles.
+ */
 #[Service]
 class TextLookup_EntityField implements TextLookupInterface {
 
@@ -58,10 +67,13 @@ class TextLookup_EntityField implements TextLookupInterface {
   }
 
   /**
+   * Finds a field label for an entity base field.
+   *
    * @param string $entityType
    * @param string $fieldName
    *
    * @return \Ock\Ock\Text\TextInterface|null
+   *   The base field label, or NULL if the field is not found or has no label.
    */
   private function findBaseFieldLabel(string $entityType, string $fieldName): ?TextInterface {
     $definition = $this->entityFieldManager->getBaseFieldDefinitions(
@@ -74,10 +86,13 @@ class TextLookup_EntityField implements TextLookupInterface {
   }
 
   /**
+   * Finds a field label for a bundle field.
+   *
    * @param string $entityType
    * @param string $fieldName
    *
    * @return \Ock\Ock\Text\TextInterface|null
+   *   The label, or NULL if field not found or has no label.
    */
   private function findCombinedBundleFieldLabel(string $entityType, string $fieldName): ?TextInterface {
     /**
