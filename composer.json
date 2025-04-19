@@ -82,6 +82,7 @@
             "Ock\\Egg\\Tests\\": "packages/egg/tests/src",
             "Ock\\Helpers\\Tests\\": "packages/helpers/tests/src",
             "Ock\\Ock\\Tests\\": "packages/object-construction-kit/tests/src",
+            "Ock\\Reflection\\Tests\\": "packages/reflection/tests/src",
             "Ock\\Testing\\Tests\\": "packages/testing/tests/src"
         }
     },

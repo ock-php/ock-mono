@@ -33,6 +33,7 @@ jobs:
           - egg
           - helpers
           - object-construction-kit
+          - reflection
           - testing
 
     steps:
