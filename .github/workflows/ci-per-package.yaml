@@ -15,6 +15,7 @@ jobs:
           # Packages without tests are commented out.
           - adaptism
           - class-discovery
+          - class-files-iterator
           - codegen-tools
           - dependency-injection
           # - di-discovery
