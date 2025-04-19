@@ -8,6 +8,7 @@ use Ock\ClassDiscovery\Inspector\ClassInspectorInterface;
 use Ock\ClassDiscovery\Reflection\ClassReflection;
 use Ock\DependencyInjection\Attribute\ServiceConditionAttributeInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use function Ock\ClassDiscovery\get_attributes;
 
 /**
  * Registers services for classes and methods with #[Service] attribute.
@@ -40,7 +41,7 @@ class ClassInspector_ConditionDecorator implements ClassInspectorInterface {
    * {@inheritdoc}
    */
   public function findInClass(ClassReflection $classReflection): \Iterator {
-    $attributes = $classReflection->getAttributeInstances(ServiceConditionAttributeInterface::class);
+    $attributes = get_attributes($classReflection, ServiceConditionAttributeInterface::class);
     if ($attributes) {
       $result = null;
       yield 'check condition' => static function (ContainerBuilder $container) use (&$result, $attributes) {

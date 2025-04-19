@@ -9,6 +9,7 @@ use Ock\ClassDiscovery\Reflection\ClassReflection;
 use Ock\ClassDiscovery\Reflection\MethodReflection;
 use Ock\DependencyInjection\Attribute\ServiceConditionAttributeInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use function Ock\ClassDiscovery\get_attributes;
 
 /**
  * Registers services for classes and methods with #[Service] attribute.
@@ -41,7 +42,7 @@ class FactoryInspector_ConditionDecorator implements FactoryInspectorInterface {
    * {@inheritdoc}
    */
   public function findInFactory(ClassReflection|MethodReflection $reflector): \Iterator {
-    $attributes = $reflector->getAttributeInstances(ServiceConditionAttributeInterface::class);
+    $attributes = get_attributes($reflector, ServiceConditionAttributeInterface::class);
     if ($attributes) {
       $result = null;
       yield 'check condition' => static function (ContainerBuilder $container) use (&$result, $attributes) {

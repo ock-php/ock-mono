@@ -11,6 +11,7 @@ use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Exception\LogicException;
+use function Ock\ClassDiscovery\get_attributes;
 
 /**
  * Decorator to support the AsAlias attribute.
@@ -43,7 +44,7 @@ class ClassInspector_SymfonyAsAliasAttributeDecorator implements ClassInspectorI
    * {@inheritdoc}
    */
   public function findInClass(ClassReflection $classReflection): \Iterator {
-    $attributes = $classReflection->getAttributeInstances(AsAlias::class);
+    $attributes = get_attributes($classReflection, AsAlias::class);
     if (!$attributes) {
       yield from $this->decorated->findInClass($classReflection);
       return;
