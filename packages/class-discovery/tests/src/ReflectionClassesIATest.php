@@ -31,9 +31,8 @@ class ReflectionClassesIATest extends TestCase {
     ];
     $expectedRemainingClassNames = [
       VenusFlyTrap::class,
-      // @todo The following classes are lost due to a bug.
-      // RedSquirrel::class,
-      // VenusFlyTrap::class,
+      RedSquirrel::class,
+      VenusFlyTrap::class,
     ];
 
     $classNamesIA = new class($classNames) extends \ArrayObject implements ClassNamesIAInterface {};
@@ -52,8 +51,7 @@ class ReflectionClassesIATest extends TestCase {
     ];
     $expectedRemainingClassNames = [
       VenusFlyTrap::class,
-      // @todo The following class is skipped due to a bug.
-      // RedSquirrel::class,
+      RedSquirrel::class,
     ];
     $classFilesIA = new class($classNames) extends \ArrayObject implements ClassFilesIAInterface {
       use RealpathRootThisTrait;

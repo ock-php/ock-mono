@@ -28,7 +28,7 @@ class ReflectionClassesIA_ClassNamesIA implements ReflectionClassesIAInterface {
         // Skip non-existing classes / interfaces / traits.
         // Skip if a base class or interface is missing.
         // Unfortunately, missing traits still cause fatal error.
-        return null;
+        continue;
       }
       yield $reflectionClass;
     }
