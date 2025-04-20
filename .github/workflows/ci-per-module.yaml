@@ -101,6 +101,7 @@ jobs:
           set -x
           # Run tests need a browser.
           ddev phpunit \
+            --debug \
             --fail-on-incomplete \
             --fail-on-warning \
             --fail-on-skipped \
