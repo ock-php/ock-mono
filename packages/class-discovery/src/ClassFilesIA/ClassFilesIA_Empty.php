@@ -4,6 +4,8 @@ namespace Ock\ClassDiscovery\ClassFilesIA;
 
 class ClassFilesIA_Empty implements ClassFilesIAInterface {
 
+  use RealpathRootThisTrait;
+
   /**
    * {@inheritdoc}
    */
@@ -11,10 +13,4 @@ class ClassFilesIA_Empty implements ClassFilesIAInterface {
     return new \EmptyIterator();
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function withRealpathRoot(): static {
-    return $this;
-  }
 }
