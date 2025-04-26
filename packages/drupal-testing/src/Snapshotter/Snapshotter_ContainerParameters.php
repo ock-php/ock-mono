@@ -26,6 +26,9 @@ class Snapshotter_ContainerParameters extends AdvancedSnapshotterBase {
     foreach ($parameters['container.namespaces'] as &$dir) {
       $dir = preg_replace('#^modules/(contrib|custom)/#', 'modules/*/', $dir);
     }
+    // Remove parameters which only occur in specific Drupal versions.
+    // Hook implementations are better checked with a dedicated snapshotter.
+    unset($parameters['hook_implementations_map']);
     return $parameters;
   }
 

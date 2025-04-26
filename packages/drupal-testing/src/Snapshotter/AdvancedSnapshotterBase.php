@@ -20,7 +20,7 @@ abstract class AdvancedSnapshotterBase implements SnapshotterInterface, DifferIn
     if (!$items) {
       return [];
     }
-    $exporter = $this->createExporter();
+    $exporter = $this->createExporter(true);
     $items = $exporter->export($items, 15);
     return $items;
   }
@@ -30,7 +30,7 @@ abstract class AdvancedSnapshotterBase implements SnapshotterInterface, DifferIn
    */
   public function compare(array $before, array $after): array {
     $diff = $this->createDiffer()->compare($before, $after);
-    $exporter = $this->createExporter();
+    $exporter = $this->createExporter(false);
     foreach ($diff as $op => &$items) {
       if ($op === '!=') {
         continue;
@@ -65,8 +65,15 @@ abstract class AdvancedSnapshotterBase implements SnapshotterInterface, DifferIn
 
   /**
    * Creates an exporter to process asserted values.
+   *
+   * @param bool $top_level
+   *   TRUE if this exporter is used for the full snapshot.
+   *   FALSE if this exporter is used for default values.
+   *
+   * @return \Ock\Testing\Exporter\ExporterInterface
+   *   Exporter.
    */
-  protected function createExporter(): ExporterInterface {
+  protected function createExporter(bool $top_level): ExporterInterface {
     return new Exporter_ToYamlArray();
   }
 

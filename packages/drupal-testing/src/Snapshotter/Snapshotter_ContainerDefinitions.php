@@ -41,8 +41,8 @@ class Snapshotter_ContainerDefinitions extends AdvancedSnapshotterBase {
   /**
    * {@inheritdoc}
    */
-  protected function createExporter(): Exporter_ToYamlArray {
-    return (new Exporter_ToYamlArray())
+  protected function createExporter(bool $top_level): Exporter_ToYamlArray {
+    $exporter = (new Exporter_ToYamlArray())
       ->withObjectGetters(Definition::class, ['isPrivate()', 'getChanges()'])
       ->withObjectGetters(TaggedIteratorArgument::class)
       ->withDefaultObject((new Definition())
@@ -64,6 +64,22 @@ class Snapshotter_ContainerDefinitions extends AdvancedSnapshotterBase {
           return null;
         }
       );
+    if (!$top_level) {
+      return $exporter;
+    }
+    return $exporter
+      // Remove information from event subscribers, it causes too much noise.
+      ->withResultFilter(function (array $result, mixed $definitions) use ($top_level): array {
+        foreach ($result['event_dispatcher']['getMethodCalls()'] ?? [] as $i => $call_result) {
+          if ($call_result[0] === 'addListener') {
+            unset($result['event_dispatcher']['getMethodCalls()'][$i]);
+          }
+        }
+        foreach ($result as $id => $definition_result) {
+          unset($result[$id]['getTags()']['kernel.event_listener']);
+        }
+        return $result;
+      });
   }
 
   /**
