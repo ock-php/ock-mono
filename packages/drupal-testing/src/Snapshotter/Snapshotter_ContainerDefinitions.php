@@ -41,7 +41,7 @@ class Snapshotter_ContainerDefinitions extends AdvancedSnapshotterBase {
   /**
    * {@inheritdoc}
    */
-  protected function createExporter(): Exporter_ToYamlArray {
+  protected function createExporter(bool $top_level): Exporter_ToYamlArray {
     return (new Exporter_ToYamlArray())
       ->withObjectGetters(Definition::class, ['isPrivate()', 'getChanges()'])
       ->withObjectGetters(TaggedIteratorArgument::class)
