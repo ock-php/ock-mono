@@ -2,6 +2,9 @@
 
 namespace Ock\ClassDiscovery\Tests\Fixtures\Acme\Animal;
 
-class RedSquirrel {
+/**
+ * It's a tardigrade.
+ */
+class WaterBear {
 
 }

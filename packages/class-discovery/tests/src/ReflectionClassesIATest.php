@@ -8,8 +8,8 @@ use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassNamesIA;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 use Ock\ClassDiscovery\Tests\Defunct\ClassWithInterfaceMissing;
-use Ock\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel;
-use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
+use Ock\ClassDiscovery\Tests\Fixtures\Acme\Animal\WaterBear;
+use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\MusaAcuminata;
 use Ock\ClassDiscovery\Tests\Fixtures\NonLoadingInterface;
 use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface;
 use Ock\ClassFilesIterator\ClassFilesIA\RealpathRootThisTrait;
@@ -20,19 +20,19 @@ class ReflectionClassesIATest extends TestCase {
 
   public function testFromClassNamesIA(): void {
     $classNames = [
-      VenusFlyTrap::class,
+      MusaAcuminata::class,
       // Non-loading classes are skipped.
       NonLoadingInterface::class,
       // Classes with non-loading interface are skipped.
       ClassWithInterfaceMissing::class,
-      RedSquirrel::class,
+      WaterBear::class,
       // Repeated classes are kept.
-      VenusFlyTrap::class,
+      MusaAcuminata::class,
     ];
     $expectedRemainingClassNames = [
-      VenusFlyTrap::class,
-      RedSquirrel::class,
-      VenusFlyTrap::class,
+      MusaAcuminata::class,
+      WaterBear::class,
+      MusaAcuminata::class,
     ];
 
     $classNamesIA = new class($classNames) extends \ArrayObject implements ClassNamesIAInterface {};
@@ -42,16 +42,16 @@ class ReflectionClassesIATest extends TestCase {
 
   public function testFromClassFilesIA(): void {
     $classNames = [
-      __DIR__ . '/Fixtures/Acme/Plant/VenusFlyTrap.php' => VenusFlyTrap::class,
+      __DIR__ . '/Fixtures/Acme/Plant/MusaAcuminata.php' => MusaAcuminata::class,
       // Non-loading classes are skipped.
       __DIR__ . '/non-existing-file.php' => NonLoadingInterface::class,
       // Classes with missing interface or base class are skipped.
       __DIR__ . '/Defunct/ClassWithInterfaceMissing.php' => ClassWithInterfaceMissing::class,
-      __DIR__ . '/Fixtures/Acme/Animal/RedSquirrel.php' => RedSquirrel::class,
+      __DIR__ . '/Fixtures/Acme/Animal/WaterBear.php' => WaterBear::class,
     ];
     $expectedRemainingClassNames = [
-      VenusFlyTrap::class,
-      RedSquirrel::class,
+      MusaAcuminata::class,
+      WaterBear::class,
     ];
     $classFilesIA = new class($classNames) extends \ArrayObject implements ClassFilesIAInterface {
       use RealpathRootThisTrait;
@@ -62,12 +62,12 @@ class ReflectionClassesIATest extends TestCase {
 
   public function testSkipWrongPath(): void {
     $classNames = [
-      __DIR__ . '/Fixtures/Acme/Plant/VenusFlyTrap.php' => VenusFlyTrap::class,
+      __DIR__ . '/Fixtures/Acme/Plant/MusaAcuminata.php' => MusaAcuminata::class,
       // Classes with the wrong path are skipped.
-      __DIR__ . '/Fixtures/Acme/Plant/RedSquirrel.php' => RedSquirrel::class,
+      __DIR__ . '/Fixtures/Acme/Plant/WaterBear.php' => WaterBear::class,
     ];
     $expectedRemainingClassNames = [
-      VenusFlyTrap::class,
+      MusaAcuminata::class,
     ];
     $classFilesIA = new class($classNames) extends \ArrayObject implements ClassFilesIAInterface {
       use RealpathRootThisTrait;

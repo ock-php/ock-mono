@@ -2,6 +2,9 @@
 
 namespace Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant;
 
-class VenusFlyTrap {
+/**
+ * It's a banana plant.
+ */
+class MusaAcuminata {
 
 }
