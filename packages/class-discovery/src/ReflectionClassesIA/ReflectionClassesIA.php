@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Ock\ClassDiscovery\ClassNamesIA\ClassNamesIA_Array;
+use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA;
+use Ock\ClassFilesIterator\ClassNamesIA\ClassNamesIA_Array;
 
 /**
  * Static factories for ReflectionClassesIAInterface objects.

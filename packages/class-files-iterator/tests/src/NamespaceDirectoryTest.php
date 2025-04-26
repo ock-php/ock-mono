@@ -1,12 +1,11 @@
 <?php
 
-namespace Ock\ClassDiscovery\Tests;
+namespace Ock\ClassFilesIterator\Tests;
 
-use Ock\ClassDiscovery\NamespaceDirectory;
-use Ock\ClassDiscovery\Reflection\ClassReflection;
-use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\PlantInterface;
-use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\Tree\Fig;
-use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
+use Ock\ClassFilesIterator\NamespaceDirectory;
+use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\PlantInterface;
+use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\Tree\Fig;
+use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
 use PHPUnit\Framework\TestCase;
 
 class NamespaceDirectoryTest extends TestCase {
@@ -428,24 +427,6 @@ class NamespaceDirectoryTest extends TestCase {
     );
   }
 
-  public function testGetReflectionClassesIA(): void {
-    $nsdir = $this->nsdirFromClass(PlantInterface::class);
-    $rfia = $nsdir->getReflectionClassesIA();
-    $classes = [];
-    foreach ($rfia as $key => $value) {
-      $this->assertInstanceOf(ClassReflection::class, $value);
-      $classes[$key] = $value->getClassName();
-    }
-    $this->assertSame(
-      [
-        PlantInterface::class,
-        Fig::class,
-        VenusFlyTrap::class,
-      ],
-      $classes,
-    );
-  }
-
   /**
    * Asserts that a namespace directory object is as expected.
    *
@@ -453,7 +434,7 @@ class NamespaceDirectoryTest extends TestCase {
    *   Expected directory.
    * @param string $namespace
    *   Expected namespace.
-   * @param \Ock\ClassDiscovery\NamespaceDirectory $namespace_directory
+   * @param \Ock\ClassFilesIterator\NamespaceDirectory $namespace_directory
    *   Namespace directory object to check.
    */
   protected function assertNamespaceDir(
@@ -484,7 +465,7 @@ class NamespaceDirectoryTest extends TestCase {
    * @param string $directory
    * @param string $namespace
    *
-   * @return \Ock\ClassDiscovery\NamespaceDirectory
+   * @return \Ock\ClassFilesIterator\NamespaceDirectory
    */
   protected function nsdir(string $directory, string $namespace): NamespaceDirectory {
     $nsdir = NamespaceDirectory::create($directory, $namespace);
@@ -495,7 +476,7 @@ class NamespaceDirectoryTest extends TestCase {
   /**
    * @param class-string $class
    *
-   * @return \Ock\ClassDiscovery\NamespaceDirectory
+   * @return \Ock\ClassFilesIterator\NamespaceDirectory
    */
   protected function nsdirFromClass(string $class): NamespaceDirectory {
     $nsdir = NamespaceDirectory::fromKnownClass($class);

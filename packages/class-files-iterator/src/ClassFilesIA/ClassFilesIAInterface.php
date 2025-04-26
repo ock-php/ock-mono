@@ -1,8 +1,8 @@
 <?php
 
-namespace Ock\ClassDiscovery\ClassFilesIA;
+namespace Ock\ClassFilesIterator\ClassFilesIA;
 
-use Ock\ClassDiscovery\ClassNamesIA\ClassNamesIAInterface;
+use Ock\ClassFilesIterator\ClassNamesIA\ClassNamesIAInterface;
 
 /**
  * @template-extends ClassNamesIAInterface<string>

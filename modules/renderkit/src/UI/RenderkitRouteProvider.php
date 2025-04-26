@@ -8,8 +8,8 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\ock\Attribute\Routing\RouteModifierInterface;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
 use Drupal\ock\Util\StringUtil;
-use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\ClassDiscovery\Util\AttributesUtil;
+use Ock\ClassFilesIterator\NamespaceDirectory;
 use Symfony\Component\Routing\Route;
 
 class RenderkitRouteProvider implements ContainerInjectionInterface {

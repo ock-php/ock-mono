@@ -1,5 +1,5 @@
 {
-    "name": "ock/class-discovery",
+    "name": "ock/class-files-iterator",
     "license": "MIT",
     "authors": [
         {
@@ -10,17 +10,16 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Ock\\ClassDiscovery\\": "src"
+            "Ock\\ClassFilesIterator\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ock\\ClassDiscovery\\Tests\\": "tests/src"
+            "Ock\\ClassFilesIterator\\Tests\\": "tests/src"
         }
     },
     "require": {
         "php": ">=8.3",
-        "ock/class-files-iterator": "self.version",
         "ock/helpers": "self.version",
         "ext-json": "*"
     },

@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace Ock\ClassDiscovery\Shared;
 
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
+use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface;
 
 /**
  * Trait for all kinds of discovery classes.
@@ -34,7 +34,7 @@ trait ReflectionClassesIAHavingTrait {
   /**
    * Immutable setter. Sets the classes iterator based on class files iterator.
    *
-   * @param \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface $classFilesIA
+   * @param \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface $classFilesIA
    *
    * @return static
    */

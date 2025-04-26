@@ -74,6 +74,7 @@
         "psr-4": {
             "Ock\\Adaptism\\Tests\\": "packages/adaptism/tests/src/",
             "Ock\\ClassDiscovery\\Tests\\": "packages/class-discovery/tests/src",
+            "Ock\\ClassFilesIterator\\Tests\\": "packages/class-files-iterator/tests/src",
             "Ock\\CodegenTools\\Tests\\": "packages/codegen-tools/tests/src",
             "Ock\\DependencyInjection\\Tests\\": "packages/dependency-injection/tests/src",
             "Ock\\DID\\Tests\\": "packages/di-discovery/tests/src",

@@ -6,7 +6,7 @@ namespace Drupal\ock\NamespaceDirectoriesIA;
 
 use Drupal\Core\Extension\ModuleExtensionList;
 use Ock\ClassDiscovery\NamespaceDirectoriesIA\NamespaceDirectoriesIAInterface;
-use Ock\ClassDiscovery\NamespaceDirectory;
+use Ock\ClassFilesIterator\NamespaceDirectory;
 
 class NamespaceDirectoriesIA_ModuleNamespaces implements NamespaceDirectoriesIAInterface {
 

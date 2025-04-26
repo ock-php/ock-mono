@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Tests;
 
 use Ock\ClassDiscovery\FactsIA\FactsIA;
-use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\ClassDiscovery\Reflection\ClassReflection;
+use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
+use Ock\ClassFilesIterator\NamespaceDirectory;
 use Ock\DependencyInjection\Provider\ServiceProvider;
 use Ock\Testing\Exporter\Exporter_ToYamlArray;
 use Ock\Testing\RecordedTestTrait;
@@ -31,7 +32,7 @@ class SymfonyContainerTest extends TestCase {
    * @dataProvider providerTestSymfonyContainer
    */
   public function testSymfonyContainer(NamespaceDirectory $packageNamespaceDir, string $inspector_file): void {
-    $package = $packageNamespaceDir->getReflectionClassesIA();
+    $package = new ReflectionClassesIA_ClassFilesIA($packageNamespaceDir);
     $inspector_php_file = $packageNamespaceDir->getDirectory() . '/' . $inspector_file;
     static::assertFileExists($inspector_php_file);
     $inspector_php_file_return = require $inspector_php_file;

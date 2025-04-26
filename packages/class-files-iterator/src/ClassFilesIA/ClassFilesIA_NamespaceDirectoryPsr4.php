@@ -1,9 +1,9 @@
 <?php
 
-namespace Ock\ClassDiscovery\ClassFilesIA;
+namespace Ock\ClassFilesIterator\ClassFilesIA;
 
-use Ock\ClassDiscovery\NamespaceDirectory;
-use Ock\ClassDiscovery\NsDirUtil;
+use Ock\ClassFilesIterator\NamespaceDirectory;
+use Ock\ClassFilesIterator\NsDirUtil;
 
 class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
 
@@ -29,7 +29,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @param class-string $class
    * @param int $nLevelsUp
    *
-   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
    * @throws \ReflectionException
    */
   public static function createFromClass(string $class, int $nLevelsUp = 0): ClassFilesIAInterface {
@@ -39,9 +39,9 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
   }
 
   /**
-   * @param \Ock\ClassDiscovery\NamespaceDirectory $nsdir
+   * @param \Ock\ClassFilesIterator\NamespaceDirectory $nsdir
    *
-   * @return \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface
+   * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
    */
   public static function createFromNsdirObject(NamespaceDirectory $nsdir): ClassFilesIAInterface {
     if (!is_dir($nsdir->getDirectory())) {
