@@ -3,7 +3,6 @@
 namespace Ock\ClassDiscovery\Tests;
 
 use Ock\ClassDiscovery\NamespaceDirectory;
-use Ock\ClassDiscovery\Reflection\ClassReflection;
 use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\PlantInterface;
 use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\Tree\Fig;
 use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
@@ -425,24 +424,6 @@ class NamespaceDirectoryTest extends TestCase {
         'Tree' => NamespaceDirectory::fromKnownClass(Fig::class),
       ],
       iterator_to_array($nsdir->getSubdirsHere()),
-    );
-  }
-
-  public function testGetReflectionClassesIA(): void {
-    $nsdir = $this->nsdirFromClass(PlantInterface::class);
-    $rfia = $nsdir->getReflectionClassesIA();
-    $classes = [];
-    foreach ($rfia as $key => $value) {
-      $this->assertInstanceOf(ClassReflection::class, $value);
-      $classes[$key] = $value->getClassName();
-    }
-    $this->assertSame(
-      [
-        PlantInterface::class,
-        Fig::class,
-        VenusFlyTrap::class,
-      ],
-      $classes,
     );
   }
 

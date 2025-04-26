@@ -3,8 +3,6 @@
 namespace Ock\ClassDiscovery;
 
 use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
-use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 
 /**
  * Value object representing a single namespace directory.
@@ -639,18 +637,6 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
         );
       }
     }
-  }
-
-  /**
-   * Wraps the current object as a reflection class iterator.
-   *
-   * This is a convenience method for easier chaining.
-   *
-   * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
-   *   Reflection class iterator.
-   */
-  public function getReflectionClassesIA(): ReflectionClassesIAInterface {
-    return new ReflectionClassesIA_ClassFilesIA($this);
   }
 
   /**
