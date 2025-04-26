@@ -6,8 +6,8 @@ namespace Drupal\ock\UI;
 
 use Drupal\ock\Attribute\Routing\RouteModifierInterface;
 use Drupal\ock\Util\StringUtil;
-use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\ClassDiscovery\Util\AttributesUtil;
+use Ock\ClassFilesIterator\NamespaceDirectory;
 use Symfony\Component\Routing\Route;
 
 abstract class OckRouteProviderBase {

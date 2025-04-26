@@ -1,16 +1,16 @@
 <?php
 
-namespace Ock\ClassDiscovery\Tests;
+namespace Ock\ClassFilesIterator\Tests;
 
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA;
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_Concat;
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_Empty;
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
-use Ock\ClassDiscovery\Tests\Fixtures\Acme\Animal\GreySquirrel;
-use Ock\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel;
-use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\PlantInterface;
-use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\Tree\Fig;
-use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
+use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA;
+use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA_Concat;
+use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA_Empty;
+use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
+use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Animal\GreySquirrel;
+use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Animal\RedSquirrel;
+use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\PlantInterface;
+use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\Tree\Fig;
+use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
 use PHPUnit\Framework\TestCase;
 
 class ClassFilesIATest extends TestCase {

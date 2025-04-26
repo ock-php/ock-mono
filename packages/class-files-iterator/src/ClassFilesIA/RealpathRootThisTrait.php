@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\ClassFilesIA;
+namespace Ock\ClassFilesIterator\ClassFilesIA;
 
 /**
  * @internal

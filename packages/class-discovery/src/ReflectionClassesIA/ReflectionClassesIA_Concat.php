@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface;
 
 /**
  * Concatenation of multiple reflection classes iterator aggregates.

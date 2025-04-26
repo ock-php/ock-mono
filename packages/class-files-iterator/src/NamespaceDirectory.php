@@ -1,8 +1,8 @@
 <?php
 
-namespace Ock\ClassDiscovery;
+namespace Ock\ClassFilesIterator;
 
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
+use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface;
 
 /**
  * Value object representing a single namespace directory.

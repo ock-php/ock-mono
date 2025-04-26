@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
-use Ock\ClassDiscovery\NamespaceDirectory;
+use Ock\ClassFilesIterator\NamespaceDirectory;
 
 /**
  * Base class to declare a discovery namespace in the current directory.

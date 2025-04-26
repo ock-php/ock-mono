@@ -2,15 +2,15 @@
 
 namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
-use Ock\ClassDiscovery\ClassNamesIA\ClassNamesIAInterface;
 use Ock\ClassDiscovery\Reflection\ClassReflection;
+use Ock\ClassFilesIterator\ClassNamesIA\ClassNamesIAInterface;
 
 class ReflectionClassesIA_ClassNamesIA implements ReflectionClassesIAInterface {
 
   /**
    * Constructor.
    *
-   * @param \Ock\ClassDiscovery\ClassNamesIA\ClassNamesIAInterface<mixed> $classNamesIA
+   * @param \Ock\ClassFilesIterator\ClassNamesIA\ClassNamesIAInterface<mixed> $classNamesIA
    */
   public function __construct(
     private readonly ClassNamesIAInterface $classNamesIA,

@@ -4,9 +4,6 @@ declare(strict_types = 1);
 
 namespace Ock\ClassDiscovery\Tests;
 
-use Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface;
-use Ock\ClassDiscovery\ClassFilesIA\RealpathRootThisTrait;
-use Ock\ClassDiscovery\ClassNamesIA\ClassNamesIAInterface;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassNamesIA;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
@@ -14,6 +11,9 @@ use Ock\ClassDiscovery\Tests\Defunct\ClassWithInterfaceMissing;
 use Ock\ClassDiscovery\Tests\Fixtures\Acme\Animal\RedSquirrel;
 use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
 use Ock\ClassDiscovery\Tests\Fixtures\NonLoadingInterface;
+use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface;
+use Ock\ClassFilesIterator\ClassFilesIA\RealpathRootThisTrait;
+use Ock\ClassFilesIterator\ClassNamesIA\ClassNamesIAInterface;
 use PHPUnit\Framework\TestCase;
 
 class ReflectionClassesIATest extends TestCase {

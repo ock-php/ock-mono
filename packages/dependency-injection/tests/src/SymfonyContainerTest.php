@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Tests;
 
 use Ock\ClassDiscovery\FactsIA\FactsIA;
-use Ock\ClassDiscovery\NamespaceDirectory;
 use Ock\ClassDiscovery\Reflection\ClassReflection;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
+use Ock\ClassFilesIterator\NamespaceDirectory;
 use Ock\DependencyInjection\Provider\ServiceProvider;
 use Ock\Testing\Exporter\Exporter_ToYamlArray;
 use Ock\Testing\RecordedTestTrait;

@@ -1,11 +1,11 @@
 <?php
 
-namespace Ock\ClassDiscovery\ClassFilesIA;
+namespace Ock\ClassFilesIterator\ClassFilesIA;
 
 class ClassFilesIA_Concat implements ClassFilesIAInterface {
 
   /**
-   * @param \Ock\ClassDiscovery\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
+   * @param \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
    */
   public function __construct(
     private array $classFilesIAs,

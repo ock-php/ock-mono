@@ -1,6 +1,6 @@
 <?php
 
-namespace Ock\ClassDiscovery;
+namespace Ock\ClassFilesIterator;
 
 class NsDirUtil {
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ock\ClassDiscovery\ClassNamesIA;
+namespace Ock\ClassFilesIterator\ClassNamesIA;
 
 /**
  * @template-covariant TKey

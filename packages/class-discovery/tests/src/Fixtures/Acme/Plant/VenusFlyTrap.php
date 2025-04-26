@@ -2,6 +2,6 @@
 
 namespace Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant;
 
-class VenusFlyTrap implements PlantInterface {
+class VenusFlyTrap {
 
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Tests;
+namespace Ock\ClassFilesIterator\Tests;
 
 use PHPUnit\Framework\Attributes\After;
 
