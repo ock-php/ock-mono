@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Ock\Testing\Diff;
 
+use Fisharebest\Algorithm\MyersDiff;
 use Symfony\Component\Yaml\Tag\TaggedValue;
 
 class ExportedArrayDiffer implements DifferInterface {
@@ -107,76 +108,41 @@ class ExportedArrayDiffer implements DifferInterface {
    * @return array|false
    */
   protected function compareLists(array $before, array $after): array|false {
-    $diff = $this->doCompareLists($before, $after);
-    if (!$diff || count($diff) === count($before) + count($after)) {
-      // The two lists are completely different.
+    $algorithm = new MyersDiff();
+    /** @var list<array{mixed, -1|0|1}> $myers_diff_solution */
+    $myers_diff_solution = $algorithm->calculate(
+      $before,
+      $after,
+      fn ($a, $b) => false !== $this->compareValues($a, $b),
+    );
+    if (count($myers_diff_solution) >= count($before) + count($after) - 1) {
+      // The two lists are too different.
       return false;
     }
-    return $diff;
-  }
-
-  /**
-   * Compares two lists recursively.
-   *
-   * @param list<mixed> $before
-   * @param list<mixed> $after
-   * @param int $i_before
-   * @param int $i_after
-   *
-   * @return array
-   */
-  protected function doCompareLists(array $before, array $after, int $i_before = 0, int $i_after = 0): array {
-    $diff = [];
-    while (true) {
-      if ($i_before >= count($before)) {
-        // There are more items in "after" list.
-        for (; $i_after < count($after); ++$i_after) {
-          $diff[] = new TaggedValue('add', $after[$i_after]);
-        }
-        return $diff;
-      }
-      if ($i_after >= count($after)) {
-        // There are more items in "before" list.
-        for (; $i_before < count($before); ++$i_before) {
-          $diff[] = new TaggedValue('--', $before[$i_before]);
-        }
-        return $diff;
-      }
-      $item_diff = $this->compareValues($before[$i_before], $after[$i_after]);
-      if ($item_diff === []) {
-        // The two values are the same.
+    $result = [];
+    $i_before = 0;
+    $i_after = 0;
+    foreach ($myers_diff_solution as [, $operation]) {
+      if ($operation === -1) {
+        $result[] = new TaggedValue('--', $before[$i_before]);
         ++$i_before;
+      }
+      elseif ($operation === 1) {
+        $result[] = new TaggedValue('add', $after[$i_after]);
         ++$i_after;
-        continue;
-      }
-      // The two items are completely different.
-      $diff_minus = $this->doCompareLists($before, $after, $i_before + 1, $i_after);
-      $diff_plus = $this->doCompareLists($before, $after, $i_before, $i_after + 1);
-      if ($item_diff !== false) {
-        $diff_eq = $this->doCompareLists($before, $after, $i_before + 1, $i_after + 1);
-        if (count($diff_eq) < count($diff_minus) && count($diff_eq) < count($diff_plus)) {
-          return [
-            ...$diff,
-            new TaggedValue('diff', $item_diff),
-            ...$diff_eq,
-          ];
-        }
-      }
-      if (count($diff_minus) <= count($diff_plus)) {
-        return [
-          ...$diff,
-          new TaggedValue('--', $before[$i_before]),
-          ...$diff_minus,
-        ];
       }
       else {
-        return [
-          ...$diff,
-          new TaggedValue('add', $after[$i_after]),
-          ...$diff_plus,
-        ];
+        $item_diff = $this->compareValues($before[$i_before], $after[$i_after]);
+        ++$i_before;
+        ++$i_after;
+        #assert($item_diff !== false);
+        if ($item_diff === []) {
+          continue;
+        }
+        $result[] = new TaggedValue('diff', $item_diff);
       }
     }
+    return $result;
   }
 
   protected function compareAssoc(array $before, array $after): array|false {
