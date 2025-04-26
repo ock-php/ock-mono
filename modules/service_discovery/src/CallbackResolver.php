@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\service_discovery;
 
-use Drupal\service_discovery\CallbackResolverInterface;
 use Ock\DID\Exception\ContainerToValueException;
 use Ock\Helpers\Util\MessageUtil;
 use Ock\Ock\Util\ReflectionUtil;
