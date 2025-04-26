@@ -111,7 +111,11 @@ class ExportedArrayDiffer implements DifferInterface {
     $algorithm = new MyersDiff();
     /** @var list<array{mixed, -1|0|1}> $myers_diff_solution */
     $myers_diff_solution = $algorithm->calculate(
+      // The Myers diff actually works for non-strings.
+      // See https://github.com/fisharebest/algorithm/pull/9.
+      // @phpstan-ignore argument.type
       $before,
+      // @phpstan-ignore argument.type
       $after,
       fn ($a, $b) => false !== $this->compareValues($a, $b),
     );
