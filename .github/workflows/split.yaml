@@ -26,6 +26,7 @@ jobs:
         package:
           - adaptism
           - class-discovery
+          - class-files-iterator
           - codegen-tools
           - dependency-injection
           - di-discovery
