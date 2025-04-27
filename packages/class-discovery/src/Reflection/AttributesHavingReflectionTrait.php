@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Ock\ClassDiscovery\Reflection;
 
-use Ock\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
-
 trait AttributesHavingReflectionTrait {
 
   /**
@@ -23,15 +21,7 @@ trait AttributesHavingReflectionTrait {
     if (!$attributes) {
       return [];
     }
-    $instances = [];
-    foreach ($attributes as $attribute) {
-      $instance = $attribute->newInstance();
-      if ($instance instanceof ReflectorAwareAttributeInterface) {
-        $instance->setReflector($this);
-      }
-      $instances[] = $instance;
-    }
-    return $instances;
+    return array_map(fn (\ReflectionAttribute $attribute) => $attribute->newInstance(), $attributes);
   }
 
 }
