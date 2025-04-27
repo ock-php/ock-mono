@@ -340,30 +340,41 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   }
 
   /**
-   * {@inheritdoc}
+   * @return \Ock\ClassDiscovery\Reflection\ReflectionClassType
    */
+  #[\Override]
   public function getReturnType(): ReflectionClassType {
     return new ReflectionClassType($this->name);
   }
 
   /**
-   * {@inheritdoc}
+   * Gets the return value class name, if it is unique.
+   *
+   * @return class-string
+   *   The class name of this class.
    */
+  #[\Override]
   public function getReturnClassName(): string {
     return $this->name;
   }
 
   /**
-   * {@inheritdoc}
+   * Gets the "return value class", which is the class itself.
+   *
+   * @return self
    */
-  public function getReturnClass(): static {
+  #[\Override]
+  public function getReturnClass(): self {
     return $this;
   }
 
   /**
-   * {@inheritdoc}
+   * Gets the "return value class", which is the class itself.
+   *
+   * @return self
    */
-  public function getReturnClassIfExists(): static {
+  #[\Override]
+  public function getReturnClassIfExists(): self {
     return $this;
   }
 
