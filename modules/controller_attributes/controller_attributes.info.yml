@@ -1,0 +1,7 @@
+name: Controller Attributes
+description: Discover routes and links from controller attributes.
+type: module
+core_version_requirement: ^11
+
+dependencies:
+  - service_discovery:service_discovery

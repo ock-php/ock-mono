@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\renderkit\UI;
 
+use Drupal\controller_attributes\Attribute\RouteModifierInterface;
+use Drupal\controller_attributes\RouteNameUtil;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\ock\Attribute\Routing\RouteModifierInterface;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
-use Drupal\ock\Util\StringUtil;
 use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Symfony\Component\Routing\Route;
@@ -55,8 +55,9 @@ class RenderkitRouteProvider implements ContainerInjectionInterface {
         foreach ($modifiers as $modifier) {
           $modifier->modifyRoute($route, $rm);
         }
-        $route_name = StringUtil::methodGetRouteName(
-          [$class, $rm->getName()]);
+        $route_name = RouteNameUtil::methodGetRouteName(
+          [$class, $rm->getName()]
+        );
         if ($route->getPath() === '/') {
           throw new \RuntimeException("Route path for '$route_name' is empty.");
         }

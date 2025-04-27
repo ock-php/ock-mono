@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 namespace Drupal\ock_preset\Controller;
 
+use Drupal\controller_attributes\Attribute\Route;
+use Drupal\controller_attributes\Attribute\RouteIsAdmin;
+use Drupal\controller_attributes\Attribute\RouteMenuLink;
+use Drupal\controller_attributes\Attribute\RouteRequirePermission;
+use Drupal\controller_attributes\Attribute\RouteTitle;
+use Drupal\controller_attributes\ClassRouteHelper;
+use Drupal\controller_attributes\ClassRouteHelperInterface;
+use Drupal\controller_attributes\Controller\ControllerRouteNameInterface;
+use Drupal\controller_attributes\Controller\ControllerRouteNameTrait;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
-use Drupal\ock\Attribute\Routing\Route;
-use Drupal\ock\Attribute\Routing\RouteIsAdmin;
-use Drupal\ock\Attribute\Routing\RouteMenuLink;
-use Drupal\ock\Attribute\Routing\RouteRequirePermission;
-use Drupal\ock\Attribute\Routing\RouteTitle;
-use Drupal\ock\UI\Controller\ControllerRouteNameInterface;
-use Drupal\ock\UI\Controller\ControllerRouteNameTrait;
-use Drupal\ock\UI\RouteHelper\ClassRouteHelper;
-use Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface;
 use Drupal\ock\Util\StringUtil;
 use Drupal\ock_preset\Crud\PresetRepository;
 use Ock\DID\Attribute\Parameter\GetService;
@@ -43,7 +43,7 @@ class Controller_AllPresetsOverview extends ControllerBase implements Controller
    * @param string $methodName
    *   Name of a method in this class.
    *
-   * @return \Drupal\ock\UI\RouteHelper\ClassRouteHelperInterface
+   * @return \Drupal\controller_attributes\ClassRouteHelperInterface
    *   Builder object to create links and urls.
    */
   public static function route(string $methodName = 'index'): ClassRouteHelperInterface {

@@ -1,0 +1,17 @@
+{
+    "name": "drupal/controller_attributes",
+    "description": "Controller Attributes",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.3",
+        "drupal/core": "^11.0.5",
+        "drupal/service_discovery": "self.version",
+        "ock/class-discovery": "*"
+    },
+    "require-dev": {
+        "ock/drupal-testing": "self.version"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

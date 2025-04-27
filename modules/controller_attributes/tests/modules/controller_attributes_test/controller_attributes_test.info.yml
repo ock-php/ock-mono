@@ -1,0 +1,7 @@
+name: Controller Attributes Test
+description: Test module for Controller Attributes.
+type: module
+core_version_requirement: ^11
+
+dependencies:
+  - controller_attributes:controller_attributes
