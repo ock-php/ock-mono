@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Inspector;
 
 use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
-use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\ClassDiscovery\Reflection\ClassReflection;
+use Ock\ClassDiscovery\Reflection\MethodReflection;
 use Ock\DependencyInjection\Attribute\ServiceConditionAttributeInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -39,7 +40,7 @@ class FactoryInspector_ConditionDecorator implements FactoryInspectorInterface {
   /**
    * {@inheritdoc}
    */
-  public function findInFactory(FactoryReflectionInterface $reflector): \Iterator {
+  public function findInFactory(ClassReflection|MethodReflection $reflector): \Iterator {
     $attributes = $reflector->getAttributeInstances(ServiceConditionAttributeInterface::class);
     if ($attributes) {
       $result = null;
