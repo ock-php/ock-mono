@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Inspector;
 
 use Ock\ClassDiscovery\Inspector\ClassInspectorInterface;
-use Ock\ClassDiscovery\Reflection\ClassReflection;
+use Ock\Reflection\ClassReflection;
 use Ock\Helpers\Util\MessageUtil;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;

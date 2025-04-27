@@ -2,7 +2,7 @@
 
 namespace Ock\ClassDiscovery\ReflectionClassesIA;
 
-use Ock\ClassDiscovery\Reflection\ClassReflection;
+use Ock\Reflection\ClassReflection;
 use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface;
 
 class ReflectionClassesIA_ClassFilesIA implements ReflectionClassesIAInterface {

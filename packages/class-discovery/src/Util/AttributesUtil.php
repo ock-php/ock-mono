@@ -6,8 +6,8 @@ namespace Ock\ClassDiscovery\Util;
 
 use Ock\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
-use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
-use Ock\ClassDiscovery\Reflection\NameHavingReflectionInterface;
+use Ock\Reflection\FactoryReflectionInterface;
+use Ock\Reflection\NameHavingReflectionInterface;
 use Ock\Helpers\Util\MessageUtil;
 
 /**
@@ -20,7 +20,7 @@ class AttributesUtil {
    *
    * @template T as object
    *
-   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
    * @param class-string<T> $name
    *
    * @return list<T>
@@ -43,7 +43,7 @@ class AttributesUtil {
   }
 
   /**
-   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
    * @param class-string $name
    *
    * @return bool
@@ -66,7 +66,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
    * @param class-string<T> $name
    *
    * @return object
@@ -98,7 +98,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
    *   Element that has the attribute.
    * @param class-string<T> $name
    *   Expected attribute type/name.
@@ -131,7 +131,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
    *   Element that has the attribute.
    * @param class-string<T> $name
    *   Expected attribute type/name.

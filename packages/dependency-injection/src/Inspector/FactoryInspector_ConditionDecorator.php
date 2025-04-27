@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Inspector;
 
 use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
-use Ock\ClassDiscovery\Reflection\ClassReflection;
-use Ock\ClassDiscovery\Reflection\MethodReflection;
 use Ock\DependencyInjection\Attribute\ServiceConditionAttributeInterface;
+use Ock\Reflection\ClassReflection;
+use Ock\Reflection\MethodReflection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use function Ock\ClassDiscovery\get_attributes;
 

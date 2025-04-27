@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Reflection;
+namespace Ock\Reflection;
 
 /**
  * Reflection type class that works if it is instantiated normally.

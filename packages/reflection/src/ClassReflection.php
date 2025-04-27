@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Reflection;
+namespace Ock\Reflection;
 
 /**
  * @template T of object
  *
  * @template-extends \ReflectionClass<T>
- * @template-implements \Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<T>
+ * @template-implements \Ock\Reflection\FactoryReflectionInterface<T>
  */
 class ClassReflection extends \ReflectionClass implements FactoryReflectionInterface {
 
@@ -97,7 +97,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * The constructor can always be omitted, because the class reflector itself
    * already provides everything one could want from it.
    *
-   * @return list<\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<T>>
+   * @return list<\Ock\Reflection\FactoryReflectionInterface<T>>
    */
   public function getFactories(): array {
     return [$this, ...$this->getFilteredMethods(constructor: false)];
@@ -106,7 +106,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   /**
    * @param int|null $filter
    *
-   * @return list<\Ock\ClassDiscovery\Reflection\MethodReflection<T>>
+   * @return list<\Ock\Reflection\MethodReflection<T>>
    */
   public function getMethods(int|null $filter = null): array {
     try {
@@ -125,7 +125,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    *
    * @param int|null $filter
    *
-   * @return list<\Ock\ClassDiscovery\Reflection\MethodReflection<T>>
+   * @return list<\Ock\Reflection\MethodReflection<T>>
    */
   public function getCallableMethods(int|null $filter = null): array {
     $methods = parent::getMethods($filter);
@@ -156,7 +156,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * @param bool|null $final
    * @param bool|null $constructor
    *
-   * @return list<\Ock\ClassDiscovery\Reflection\MethodReflection<T>>
+   * @return list<\Ock\Reflection\MethodReflection<T>>
    */
   public function getFilteredMethods(
     int $filter = null,
@@ -208,7 +208,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * @param string $name
    *   Method name.
    *
-   * @return \Ock\ClassDiscovery\Reflection\MethodReflection<T>
+   * @return \Ock\Reflection\MethodReflection<T>
    *   The method.
    *
    * @throws \ReflectionException
@@ -219,7 +219,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   }
 
   /**
-   * @return \Ock\ClassDiscovery\Reflection\MethodReflection<T>|null
+   * @return \Ock\Reflection\MethodReflection<T>|null
    */
   public function getConstructor(): ?MethodReflection {
     if (!$this->hasMethod('__construct')) {
@@ -340,7 +340,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
   }
 
   /**
-   * @return \Ock\ClassDiscovery\Reflection\ReflectionClassType
+   * @return \Ock\Reflection\ReflectionClassType
    */
   #[\Override]
   public function getReturnType(): ReflectionClassType {

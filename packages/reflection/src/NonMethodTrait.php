@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ock\ClassDiscovery\Reflection;
+namespace Ock\Reflection;
 
 trait NonMethodTrait {
 

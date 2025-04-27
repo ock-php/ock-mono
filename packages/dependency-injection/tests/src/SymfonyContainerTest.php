@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Tests;
 
 use Ock\ClassDiscovery\FactsIA\FactsIA;
-use Ock\ClassDiscovery\Reflection\ClassReflection;
+use Ock\Reflection\ClassReflection;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_ClassFilesIA;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 use Ock\ClassFilesIterator\NamespaceDirectory;
