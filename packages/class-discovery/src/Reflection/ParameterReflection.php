@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Ock\ClassDiscovery\Reflection;
 
-use Ock\Helpers\Util\MessageUtil;
-
 /**
  * Enhanced parameter reflector.
  */
@@ -34,7 +32,7 @@ class ParameterReflection extends \ReflectionParameter implements AttributesHavi
         ?? throw new \RuntimeException(sprintf(
           'Unexpected %s parameter type on %s.',
           $name,
-          MessageUtil::formatReflector($this),
+          $this->getDebugName(),
         ));
     }
     /** @var class-string $name */
