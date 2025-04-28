@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\DependencyInjection\Compiler;
 
-use Ock\ClassDiscovery\Reflection\ParameterReflection;
+use Ock\Reflection\ParameterReflection;
 use Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument;
 use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
 use Ock\DependencyInjection\Parametric\Placeholder_GetArgValue;
@@ -74,7 +74,7 @@ class InsertParametricArgumentsPlaceholdersPass extends AbstractRecursivePass {
   /**
    * Creates a placeholder argument.
    *
-   * @param \Ock\ClassDiscovery\Reflection\ParameterReflection $parameter
+   * @param \Ock\Reflection\ParameterReflection $parameter
    *
    * @return \Ock\DependencyInjection\Parametric\PlaceholderInterface|null
    */
@@ -92,7 +92,7 @@ class InsertParametricArgumentsPlaceholdersPass extends AbstractRecursivePass {
    * Creates a placeholder argument.
    *
    * @param \Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument $attribute
-   * @param \Ock\ClassDiscovery\Reflection\ParameterReflection $parameter
+   * @param \Ock\Reflection\ParameterReflection $parameter
    *
    * @return \Ock\DependencyInjection\Parametric\PlaceholderInterface
    */
@@ -117,7 +117,7 @@ class InsertParametricArgumentsPlaceholdersPass extends AbstractRecursivePass {
    * Creates a placeholder argument.
    *
    * @param \Ock\DependencyInjection\Attribute\Parameter\GetParametricService $attribute
-   * @param \Ock\ClassDiscovery\Reflection\ParameterReflection $parameter
+   * @param \Ock\Reflection\ParameterReflection $parameter
    *
    * @return \Ock\DependencyInjection\Parametric\PlaceholderInterface
    */

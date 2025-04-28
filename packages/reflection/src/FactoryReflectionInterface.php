@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Reflection;
+namespace Ock\Reflection;
 
 /**
  * @template T of object
@@ -27,7 +27,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
    * This will be different from ->getDeclaringClass(), if the method is
    * declared in a parent class.
    *
-   * @return \Ock\ClassDiscovery\Reflection\ClassReflection<T>
+   * @return \Ock\Reflection\ClassReflection<T>
    *   Object reflecting the original class.
    *   If this is already a class reflector, it returns the reflector itself.
    */
@@ -97,7 +97,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets parameters of the method, or of the class constructor.
    *
-   * @return list<\Ock\ClassDiscovery\Reflection\ParameterReflection>
+   * @return list<\Ock\Reflection\ParameterReflection>
    *   Parameters of the method, or of the class constructor, or empty array if
    *   a class does not have a constructor.
    */
@@ -176,7 +176,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets the return value class, if it is unique.
    *
-   * @return \Ock\ClassDiscovery\Reflection\ClassReflection<object>|null
+   * @return \Ock\Reflection\ClassReflection<object>|null
    *   The returned class, or NULL if no single return class can be determined.
    *
    * @throws \ReflectionException
@@ -187,7 +187,7 @@ interface FactoryReflectionInterface extends AttributesHavingReflectionInterface
   /**
    * Gets the return value class, if it is unique.
    *
-   * @return \Ock\ClassDiscovery\Reflection\ClassReflection<object>|null
+   * @return \Ock\Reflection\ClassReflection<object>|null
    *   The returned class, or NULL if no single return class can be determined.
    */
   public function getReturnClassIfExists(): ?ClassReflection;

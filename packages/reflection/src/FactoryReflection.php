@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ock\ClassDiscovery\Reflection;
+namespace Ock\Reflection;
 
 /**
  * Contains static factories.
@@ -15,7 +15,7 @@ class FactoryReflection {
    * @param \Reflector $reflector
    *   Native or other reflector.
    *
-   * @return \Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object>|null
+   * @return \Ock\Reflection\FactoryReflectionInterface<object>|null
    *   A factory reflection object, or NULL if conversion not available.
    */
   public static function fromReflector(\Reflector $reflector): ?FactoryReflectionInterface {

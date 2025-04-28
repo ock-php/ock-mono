@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Ock\ClassDiscovery\Inspector;
 
-use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\Reflection\FactoryReflectionInterface;
 
 /**
  * @template TFactKey

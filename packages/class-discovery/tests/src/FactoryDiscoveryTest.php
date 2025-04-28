@@ -6,7 +6,7 @@ namespace Ock\ClassDiscovery\Tests;
 
 use Ock\ClassDiscovery\FactsIA\FactsIA_InspectFactories;
 use Ock\ClassDiscovery\Inspector\FactoryInspector_Closure;
-use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\Reflection\FactoryReflectionInterface;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA;
 use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\MusaAcuminata;
 use PHPUnit\Framework\TestCase;

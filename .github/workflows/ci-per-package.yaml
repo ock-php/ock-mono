@@ -22,6 +22,7 @@ jobs:
           # - egg
           - helpers
           - object-construction-kit
+          - reflection
           - testing
         php: [8.3]
         composer-flags: ['', '--prefer-lowest']

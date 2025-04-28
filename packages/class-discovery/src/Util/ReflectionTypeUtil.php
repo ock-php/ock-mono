@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Ock\ClassDiscovery\Util;
 
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
-use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
-use Ock\ClassDiscovery\Reflection\NameHavingReflectionInterface;
+use Ock\Reflection\FactoryReflectionInterface;
+use Ock\Reflection\NameHavingReflectionInterface;
 use Ock\Helpers\Util\MessageUtil;
 
 class ReflectionTypeUtil {
@@ -62,7 +62,7 @@ class ReflectionTypeUtil {
   /**
    * Gets the return value class name, if it is unique.
    *
-   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass<object>|\Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<object> $reflector
+   * @param \ReflectionParameter|\ReflectionFunctionAbstract|\ReflectionClass<object>|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
    *   Reflector to analyse.
    *
    * @return class-string|bool

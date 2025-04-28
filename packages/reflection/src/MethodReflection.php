@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Reflection;
+namespace Ock\Reflection;
 
 /**
  * Reflection method which remembers the original class it was requested for.
  *
  * @template T of object
  *
- * @template-implements \Ock\ClassDiscovery\Reflection\FactoryReflectionInterface<T>
+ * @template-implements \Ock\Reflection\FactoryReflectionInterface<T>
  *
  * @noinspection PhpSuperClassIncompatibleWithInterfaceInspection
  *   PhpStorm reports a conflict with the `export()` method which has long been
@@ -106,7 +106,7 @@ class MethodReflection extends \ReflectionMethod implements FactoryReflectionInt
   /**
    * Gets parameters of the method.
    *
-   * @return list<\Ock\ClassDiscovery\Reflection\ParameterReflection>
+   * @return list<\Ock\Reflection\ParameterReflection>
    *   Parameters of the method.
    */
   public function getParameters(): array {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Inspector;
 
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
-use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
+use Ock\Reflection\FactoryReflectionInterface;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
@@ -60,7 +60,7 @@ trait CreateDefinitionTrait {
   }
 
   /**
-   * @param \Ock\ClassDiscovery\Reflection\FactoryReflectionInterface $reflector
+   * @param \Ock\Reflection\FactoryReflectionInterface $reflector
    * @param bool $public
    *
    * @return \Symfony\Component\DependencyInjection\Definition

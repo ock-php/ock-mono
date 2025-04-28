@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ock\DependencyInjection;
 
-use Ock\ClassDiscovery\Reflection\ClassReflection;
-use Ock\ClassDiscovery\Reflection\MethodReflection;
+use Ock\Reflection\ClassReflection;
+use Ock\Reflection\MethodReflection;
 use Symfony\Component\DependencyInjection\Definition;
 use function Ock\Helpers\is_valid_qcn;
 
@@ -22,7 +22,7 @@ class ServiceDefinitionUtil {
    * @param \Symfony\Component\DependencyInjection\Definition $definition
    *   Service definition.
    *
-   * @return \Ock\ClassDiscovery\Reflection\ClassReflection|\Ock\ClassDiscovery\Reflection\MethodReflection|null
+   * @return \Ock\Reflection\ClassReflection|\Ock\Reflection\MethodReflection|null
    *   Class or method reflection, or NULL if not applicable.
    */
   public static function getFactoryReflection(Definition $definition): null|ClassReflection|MethodReflection {

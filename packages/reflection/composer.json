@@ -1,5 +1,5 @@
 {
-    "name": "ock/class-discovery",
+    "name": "ock/reflection",
     "license": "MIT",
     "authors": [
         {
@@ -9,23 +9,18 @@
     ],
     "minimum-stability": "dev",
     "autoload": {
-        "files": [
-            "functions/functions.attributes.php"
-        ],
         "psr-4": {
-            "Ock\\ClassDiscovery\\": "src"
+            "Ock\\Reflection\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ock\\ClassDiscovery\\Tests\\": "tests/src"
+            "Ock\\Reflection\\Tests\\": "tests/src"
         }
     },
     "require": {
         "php": ">=8.3",
-        "ock/class-files-iterator": "self.version",
         "ock/helpers": "self.version",
-        "ock/reflection": "self.version",
         "ext-json": "*"
     },
     "require-dev": {
