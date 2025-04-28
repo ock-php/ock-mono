@@ -9,6 +9,7 @@ use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Ock\ClassDiscovery\Reflection\FactoryReflectionInterface;
 use Ock\DependencyInjection\Attribute\ServiceBase;
 use Symfony\Component\DependencyInjection\Reference;
+use function Ock\ClassDiscovery\get_attributes;
 
 /**
  * Registers services for classes and methods with #[Service] attribute.
@@ -23,7 +24,7 @@ class FactoryInspector_ServiceAttribute implements FactoryInspectorInterface {
    * {@inheritdoc}
    */
   public function findInFactory(FactoryReflectionInterface $reflector): \Iterator {
-    $attributes = $reflector->getAttributeInstances(ServiceBase::class);
+    $attributes = get_attributes($reflector, ServiceBase::class);
     if (!$attributes) {
       return;
     }

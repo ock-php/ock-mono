@@ -14,6 +14,7 @@ use Ock\DependencyInjection\ServiceDefinitionUtil;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\Compiler\AbstractRecursivePass;
 use Symfony\Component\DependencyInjection\Definition;
+use function Ock\ClassDiscovery\get_attributes;
 
 /**
  * Inserts placeholders for parametric arguments.
@@ -78,10 +79,10 @@ class InsertParametricArgumentsPlaceholdersPass extends AbstractRecursivePass {
    * @return \Ock\DependencyInjection\Parametric\PlaceholderInterface|null
    */
   protected function createArgumentPlaceholder(ParameterReflection $parameter): ?PlaceholderInterface {
-    foreach ($parameter->getAttributeInstances(GetParametricArgument::class) as $attribute) {
+    foreach (get_attributes($parameter, GetParametricArgument::class) as $attribute) {
       return $this->createParametricArgumentPlaceholder($attribute, $parameter);
     }
-    foreach ($parameter->getAttributeInstances(GetParametricService::class) as $attribute) {
+    foreach (get_attributes($parameter, GetParametricService::class) as $attribute) {
       return $this->createParametricServicePlaceholder($attribute, $parameter);
     }
     return NULL;
