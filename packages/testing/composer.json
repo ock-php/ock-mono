@@ -23,6 +23,7 @@
         "ext-json": "*",
         "ock/class-discovery": "self.version",
         "ock/helpers": "self.version",
+        "fisharebest/algorithm": "^1.6",
         "symfony/yaml": "^7.1.5"
     },
     "require-dev": {
