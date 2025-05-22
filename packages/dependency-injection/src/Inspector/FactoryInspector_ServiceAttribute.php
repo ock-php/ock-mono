@@ -6,8 +6,8 @@ namespace Ock\DependencyInjection\Inspector;
 
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
-use Ock\Reflection\FactoryReflectionInterface;
 use Ock\DependencyInjection\Attribute\ServiceBase;
+use Ock\Reflection\FactoryReflectionInterface;
 use Symfony\Component\DependencyInjection\Reference;
 use function Ock\ClassDiscovery\get_attributes;
 
