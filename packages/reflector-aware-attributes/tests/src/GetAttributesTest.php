@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Ock\ClassDiscovery\Tests\Functions;
+namespace Ock\ReflectorAwareAttributes\Tests;
 
-use Ock\ClassDiscovery\Tests\Fixtures\Attribute\OtherTestAttribute;
-use Ock\ClassDiscovery\Tests\Fixtures\Attribute\ReflectorAwareTestAttribute;
-use Ock\ClassDiscovery\Tests\Fixtures\Attribute\TestAttribute;
-use Ock\ClassDiscovery\Tests\Fixtures\Attribute\TestAttributeInterface;
-use Ock\ClassDiscovery\Tests\Fixtures\TestClassWithAttributes;
+use Ock\ReflectorAwareAttributes\Tests\Fixtures\Attribute\OtherTestAttribute;
+use Ock\ReflectorAwareAttributes\Tests\Fixtures\Attribute\ReflectorAwareTestAttribute;
+use Ock\ReflectorAwareAttributes\Tests\Fixtures\Attribute\TestAttribute;
+use Ock\ReflectorAwareAttributes\Tests\Fixtures\Attribute\TestAttributeInterface;
+use Ock\ReflectorAwareAttributes\Tests\Fixtures\TestClassWithAttributes;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use function Ock\ClassDiscovery\get_attributes;
-use function Ock\ClassDiscovery\get_raw_attributes;
+use function Ock\ReflectorAwareAttributes\get_attributes;
+use function Ock\ReflectorAwareAttributes\get_raw_attributes;
 
 /**
- * @covers \Ock\ClassDiscovery\get_attributes()
- * @covers \Ock\ClassDiscovery\get_raw_attributes()
+ * @covers \Ock\ReflectorAwareAttributes\get_attributes()
+ * @covers \Ock\ReflectorAwareAttributes\get_raw_attributes()
  */
 class GetAttributesTest extends TestCase {
 

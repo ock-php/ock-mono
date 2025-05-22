@@ -14,7 +14,7 @@ use Ock\Reflection\ParameterReflection;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\Compiler\AbstractRecursivePass;
 use Symfony\Component\DependencyInjection\Definition;
-use function Ock\ClassDiscovery\get_attributes;
+use function Ock\ReflectorAwareAttributes\get_attributes;
 
 /**
  * Inserts placeholders for parametric arguments.

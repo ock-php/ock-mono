@@ -9,9 +9,6 @@
     ],
     "minimum-stability": "dev",
     "autoload": {
-        "files": [
-            "functions/functions.attributes.php"
-        ],
         "psr-4": {
             "Ock\\ClassDiscovery\\": "src"
         }
@@ -26,6 +23,7 @@
         "ock/class-files-iterator": "self.version",
         "ock/helpers": "self.version",
         "ock/reflection": "self.version",
+        "ock/reflector-aware-attributes": "self.version",
         "ext-json": "*"
     },
     "require-dev": {

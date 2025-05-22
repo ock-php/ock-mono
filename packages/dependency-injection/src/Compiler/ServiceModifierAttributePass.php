@@ -6,7 +6,7 @@ use Ock\DependencyInjection\Attribute\ServiceModifierInterface;
 use Ock\DependencyInjection\ServiceDefinitionUtil;
 use Symfony\Component\DependencyInjection\Compiler\AbstractRecursivePass;
 use Symfony\Component\DependencyInjection\Definition;
-use function Ock\ClassDiscovery\get_attributes;
+use function Ock\ReflectorAwareAttributes\get_attributes;
 
 /**
  * @see \Symfony\Component\DependencyInjection\Compiler\AttributeAutoconfigurationPass
