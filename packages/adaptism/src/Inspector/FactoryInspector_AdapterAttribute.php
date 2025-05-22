@@ -12,15 +12,15 @@ use Ock\Adaptism\SpecificAdapter\SpecificAdapter_Callback;
 use Ock\Adaptism\SpecificAdapter\SpecificAdapter_Construct;
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
-use Ock\Reflection\ClassReflection;
-use Ock\Reflection\FactoryReflectionInterface;
-use Ock\Reflection\MethodReflection;
 use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\ClassDiscovery\Util\ReflectionTypeUtil;
 use Ock\DependencyInjection\Attribute\ServiceTag;
 use Ock\Egg\ClassToEgg\ClassToEggInterface;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
 use Ock\Helpers\Util\MessageUtil;
+use Ock\Reflection\ClassReflection;
+use Ock\Reflection\FactoryReflectionInterface;
+use Ock\Reflection\MethodReflection;
 
 /**
  * @template-implements FactoryInspectorInterface<string, \Ock\Adaptism\AdapterDefinition\AdapterDefinitionInterface>

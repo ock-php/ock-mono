@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Ock\DependencyInjection\Inspector;
 
 use Ock\ClassDiscovery\Inspector\ClassInspectorInterface;
-use Ock\Reflection\ClassReflection;
 use Ock\DependencyInjection\Attribute\ServiceConditionAttributeInterface;
+use Ock\Reflection\ClassReflection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use function Ock\ClassDiscovery\get_attributes;
 

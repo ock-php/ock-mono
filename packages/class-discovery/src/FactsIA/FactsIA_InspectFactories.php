@@ -6,10 +6,10 @@ namespace Ock\ClassDiscovery\FactsIA;
 
 use Ock\ClassDiscovery\Inspector\FactoryInspector_Concat;
 use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
-use Ock\Reflection\ClassReflection;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Concat;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
 use Ock\Helpers\Util\MessageUtil;
+use Ock\Reflection\ClassReflection;
 
 /**
  * @template TFactKey

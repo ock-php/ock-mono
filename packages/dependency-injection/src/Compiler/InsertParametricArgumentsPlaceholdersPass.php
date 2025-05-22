@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Ock\DependencyInjection\Compiler;
 
-use Ock\Reflection\ParameterReflection;
 use Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument;
 use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
 use Ock\DependencyInjection\Parametric\Placeholder_GetArgValue;
 use Ock\DependencyInjection\Parametric\Placeholder_GetParametricService;
 use Ock\DependencyInjection\Parametric\PlaceholderInterface;
 use Ock\DependencyInjection\ServiceDefinitionUtil;
+use Ock\Reflection\ParameterReflection;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\Compiler\AbstractRecursivePass;
 use Symfony\Component\DependencyInjection\Definition;

@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Ock\ClassDiscovery\Util;
 
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
+use Ock\Helpers\Util\MessageUtil;
 use Ock\Reflection\FactoryReflectionInterface;
 use Ock\Reflection\NameHavingReflectionInterface;
-use Ock\Helpers\Util\MessageUtil;
 
 class ReflectionTypeUtil {
 
