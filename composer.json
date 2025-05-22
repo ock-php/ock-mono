@@ -83,6 +83,7 @@
             "Ock\\Helpers\\Tests\\": "packages/helpers/tests/src",
             "Ock\\Ock\\Tests\\": "packages/object-construction-kit/tests/src",
             "Ock\\Reflection\\Tests\\": "packages/reflection/tests/src",
+            "Ock\\ReflectorAwareAttributes\\Tests\\": "packages/reflector-aware-attributes/tests/src",
             "Ock\\Testing\\Tests\\": "packages/testing/tests/src"
         }
     },
