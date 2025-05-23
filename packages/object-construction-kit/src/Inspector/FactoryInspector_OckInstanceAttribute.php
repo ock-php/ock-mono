@@ -29,6 +29,7 @@ use Ock\Reflection\MethodReflection;
 use Ock\Reflection\ParameterReflection;
 use Ock\ReflectorAwareAttributes\ReflectorAwareAttributeInterface;
 use Psr\Container\ContainerInterface;
+use function Ock\ReflectorAwareAttributes\get_attributes;
 
 /**
  * Inspector that looks for instance factories.
@@ -46,7 +47,7 @@ class FactoryInspector_OckInstanceAttribute implements FactoryInspectorInterface
    * {@inheritdoc}
    */
   public function findInFactory(FactoryReflectionInterface $reflector): \Iterator {
-    $attribute = AttributesUtil::getSingle($reflector, OckPluginInstance::class);
+    $attribute = AttributesUtil::getSingle($reflector->reveal(), OckPluginInstance::class);
     if ($attribute === null) {
       return;
     }
@@ -137,7 +138,7 @@ class FactoryInspector_OckInstanceAttribute implements FactoryInspectorInterface
         ), 0, $e);
       }
       /** @var \Ock\ReflectorAwareAttributes\ReflectorAwareAttributeInterface $attribute */
-      foreach (AttributesUtil::getAll($parameter, ReflectorAwareAttributeInterface::class) as $attribute) {
+      foreach (get_attributes($parameter, ReflectorAwareAttributeInterface::class) as $attribute) {
         $attribute->setReflector($parameter);
       }
     }

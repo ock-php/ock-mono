@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace Drupal\controller_attributes;
 
 use Drupal\controller_attributes\Attribute\RouteModifierInterface;
-use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Symfony\Component\Routing\Route;
+use function Ock\ReflectorAwareAttributes\get_attributes;
 
 /**
  * Base class for a route provider based on discovery and attributes.
@@ -32,7 +32,7 @@ abstract class AttributesRouteProviderBase {
       if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract()) {
         continue;
       }
-      $modifiers = AttributesUtil::getAll($rClass, RouteModifierInterface::class);
+      $modifiers = get_attributes($rClass, RouteModifierInterface::class);
       $class_route = clone $base_root;
       foreach ($modifiers as $modifier) {
         $modifier->modifyRoute($class_route, $rClass);
@@ -41,7 +41,7 @@ abstract class AttributesRouteProviderBase {
         if ($rMethod->isAbstract() || !$rMethod->isPublic()) {
           continue;
         }
-        $modifiers = AttributesUtil::getAll($rMethod, RouteModifierInterface::class);
+        $modifiers = get_attributes($rMethod, RouteModifierInterface::class);
         if (!$modifiers) {
           continue;
         }

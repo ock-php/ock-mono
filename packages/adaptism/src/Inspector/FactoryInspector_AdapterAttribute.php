@@ -45,7 +45,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
    * {@inheritdoc}
    */
   public function findInFactory(FactoryReflectionInterface $reflector): \Iterator {
-    $attribute = AttributesUtil::getSingle($reflector, Adapter::class);
+    $attribute = AttributesUtil::getSingle($reflector->reveal(), Adapter::class);
     if ($attribute === NULL) {
       return;
     }

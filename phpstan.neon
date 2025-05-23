@@ -6,3 +6,6 @@ parameters:
   excludePaths:
     - web
     - vendor
+  ignoreErrors:
+    # Assume that generic type is 'mixed' if not further specified.
+    - identifier: missingType.generics

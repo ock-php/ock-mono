@@ -48,7 +48,7 @@ class FactoryInspector_SelfAdapterAttribute implements FactoryInspectorInterface
     ) {
       return;
     }
-    $attribute = AttributesUtil::getSingle($reflector, SelfAdapter::class);
+    $attribute = AttributesUtil::getSingle($reflector->reveal(), SelfAdapter::class);
     if ($attribute === NULL) {
       return;
     }
