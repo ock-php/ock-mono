@@ -6,7 +6,6 @@ namespace Ock\ClassDiscovery\Util;
 
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\Helpers\Util\MessageUtil;
-use Ock\Reflection\FactoryReflectionInterface;
 use Ock\Reflection\NameHavingReflectionInterface;
 use function Ock\ReflectorAwareAttributes\get_attributes;
 
@@ -20,7 +19,7 @@ class AttributesUtil {
    *
    * @template T as object
    *
-   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
    * @param class-string<T> $name
    *
    * @return list<T>
@@ -28,14 +27,14 @@ class AttributesUtil {
    * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
    */
   public static function getAll(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
   ): array {
     return get_attributes($reflector, $name);
   }
 
   /**
-   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
    * @param class-string $name
    *
    * @return bool
@@ -47,7 +46,7 @@ class AttributesUtil {
    *   More than one attribute of the given type.
    */
   public static function hasSingle(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
   ): bool {
     $attributes = $reflector->getAttributes($name, \ReflectionAttribute::IS_INSTANCEOF);
@@ -65,7 +64,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
    * @param class-string<T> $name
    *
    * @return object
@@ -76,7 +75,7 @@ class AttributesUtil {
    *   None or more than one attribute of the given type.
    */
   public static function requireSingle(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
   ): object {
     $instances = get_attributes($reflector, $name);
@@ -94,7 +93,7 @@ class AttributesUtil {
    *
    * @template T of object
    *
-   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
+   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
    *   Element that has the attribute.
    * @param class-string<T> $name
    *   Expected attribute type/name.
@@ -108,7 +107,7 @@ class AttributesUtil {
    *   More than one attribute of the given type.
    */
   public static function getSingle(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
     string $name,
   ): ?object {
     $instances = get_attributes($reflector, $name);
@@ -126,14 +125,14 @@ class AttributesUtil {
    *
    * @param class-string $name
    *   Expected attribute class or interface.
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
    *   Reflector on which the attribute was expected.
    *
    * @return never
    */
   private static function failForAttributeMissing(
     string $name,
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
   ): never {
     throw new MalformedDeclarationException(sprintf(
       'Required attribute %s missing on %s.',
@@ -149,14 +148,14 @@ class AttributesUtil {
    *
    * @param class-string $name
    *   Filtering attribute class or interface.
-   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface $reflector
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector
    *   Reflector on which the attributes were found.
    *
    * @return never
    */
   private static function failForRepeatedAttribute(
     string $name,
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty $reflector,
   ): never {
     throw new MalformedDeclarationException(\sprintf(
       'More than one %s attribute found on %s.',
