@@ -12,7 +12,9 @@ interface ReflectorAwareAttributeInterface {
    * @param \Reflector $reflector
    *   The place where the attribute was found.
    *
-   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
+   * @throws \LogicException
+   *   The attribute is not allowed here.
+   *   There is no point in catching this, the developer must fix their program.
    */
   public function setReflector(\Reflector $reflector): void;
 
