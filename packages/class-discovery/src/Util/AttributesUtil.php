@@ -8,7 +8,7 @@ use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\Helpers\Util\MessageUtil;
 use Ock\Reflection\FactoryReflectionInterface;
 use Ock\Reflection\NameHavingReflectionInterface;
-use Ock\ReflectorAwareAttributes\ReflectorAwareAttributeInterface;
+use function Ock\ReflectorAwareAttributes\get_attributes;
 
 /**
  * Helper methods to read attributes from reflectors.
@@ -31,15 +31,7 @@ class AttributesUtil {
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
     string $name,
   ): array {
-    $instances = [];
-    /** @var \ReflectionAttribute<T> $attribute */
-    foreach ($reflector->getAttributes($name, \ReflectionAttribute::IS_INSTANCEOF) as $attribute) {
-      $instances[] = $instance = $attribute->newInstance();
-      if ($instance instanceof ReflectorAwareAttributeInterface) {
-        $instance->setReflector($reflector);
-      }
-    }
-    return $instances;
+    return get_attributes($reflector, $name);
   }
 
   /**
@@ -58,7 +50,14 @@ class AttributesUtil {
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
     string $name,
   ): bool {
-    return self::getSingleAttribute($reflector, $name) !== null;
+    $attributes = $reflector->getAttributes($name, \ReflectionAttribute::IS_INSTANCEOF);
+    if (!$attributes) {
+      return false;
+    }
+    if (count($attributes) > 1) {
+      self::failForRepeatedAttribute($name, $reflector);
+    }
+    return true;
   }
 
   /**
@@ -80,17 +79,14 @@ class AttributesUtil {
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
     string $name,
   ): object {
-    $instance = self::getSingle($reflector, $name);
-    if ($instance === NULL) {
-      throw new MalformedDeclarationException(sprintf(
-        'Required attribute %s missing on %s.',
-        $name,
-        $reflector instanceof NameHavingReflectionInterface
-          ? $reflector->getDebugName()
-          : MessageUtil::formatReflector($reflector),
-      ));
+    $instances = get_attributes($reflector, $name);
+    if ($instances === []) {
+      self::failForAttributeMissing($name, $reflector);
     }
-    return $instance;
+    if (count($instances) > 1) {
+      self::failForRepeatedAttribute($name, $reflector);
+    }
+    return reset($instances);
   }
 
   /**
@@ -115,52 +111,60 @@ class AttributesUtil {
     \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
     string $name,
   ): ?object {
-    $attribute = self::getSingleAttribute($reflector, $name);
-    if ($attribute === NULL) {
-      return NULL;
+    $instances = get_attributes($reflector, $name);
+    if ($instances === []) {
+      return null;
     }
-    $instance = $attribute->newInstance();
-    if ($instance instanceof ReflectorAwareAttributeInterface) {
-      $instance->setReflector($reflector);
+    if (count($instances) > 1) {
+      self::failForRepeatedAttribute($name, $reflector);
     }
-    return $instance;
+    return reset($instances);
   }
 
   /**
-   * Gets and instantiates the first attribute of a given type, if exists.
+   * Throws an exception stating that an attribute is missing.
    *
-   * @template T of object
+   * @param class-string $name
+   *   Expected attribute class or interface.
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface $reflector
+   *   Reflector on which the attribute was expected.
    *
-   * @param \ReflectionClass<object>|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface<object> $reflector
-   *   Element that has the attribute.
-   * @param class-string<T> $name
-   *   Expected attribute type/name.
-   *
-   * @return \ReflectionAttribute<T>|null
-   *   Instance from the attribute, or NULL if no matching attribute found.
-   *
-   * @throws \Ock\ClassDiscovery\Exception\MalformedDeclarationException
-   *   More than one attribute of the given type.
+   * @return never
    */
-  private static function getSingleAttribute(
-    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
+  private static function failForAttributeMissing(
     string $name,
-  ): ?\ReflectionAttribute {
-    /** @var \ReflectionAttribute<T>[] $attributes */
-    $attributes = $reflector->getAttributes($name, \ReflectionAttribute::IS_INSTANCEOF);
-    if (!$attributes) {
-      return null;
-    }
-    if (\array_keys($attributes) !== [0]) {
-      throw new MalformedDeclarationException(\sprintf(
-        'More than one %s attribute found on %s.',
-        $name,
-        $reflector instanceof NameHavingReflectionInterface
-          ? $reflector->getDebugName()
-          : MessageUtil::formatReflector($reflector),
-      ));
-    }
-    return $attributes[0];
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
+  ): never {
+    throw new MalformedDeclarationException(sprintf(
+      'Required attribute %s missing on %s.',
+      $name,
+      $reflector instanceof NameHavingReflectionInterface
+        ? $reflector->getDebugName()
+        : MessageUtil::formatReflector($reflector),
+    ));
+  }
+
+  /**
+   * Throws an exception stating that too many attributes were found.
+   *
+   * @param class-string $name
+   *   Filtering attribute class or interface.
+   * @param \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|\Ock\Reflection\FactoryReflectionInterface $reflector
+   *   Reflector on which the attributes were found.
+   *
+   * @return never
+   */
+  private static function failForRepeatedAttribute(
+    string $name,
+    \ReflectionClass|\ReflectionFunctionAbstract|\ReflectionParameter|\ReflectionClassConstant|\ReflectionProperty|FactoryReflectionInterface $reflector,
+  ): never {
+    throw new MalformedDeclarationException(\sprintf(
+      'More than one %s attribute found on %s.',
+      $name,
+      $reflector instanceof NameHavingReflectionInterface
+        ? $reflector->getDebugName()
+        : MessageUtil::formatReflector($reflector),
+    ));
   }
 
 }
