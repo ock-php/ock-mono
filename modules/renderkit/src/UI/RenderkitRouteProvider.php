@@ -8,9 +8,9 @@ use Drupal\controller_attributes\Attribute\RouteModifierInterface;
 use Drupal\controller_attributes\RouteNameUtil;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\ock\DI\ContainerInjectionViaAttributesTrait;
-use Ock\ClassDiscovery\Util\AttributesUtil;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Symfony\Component\Routing\Route;
+use function Ock\ReflectorAwareAttributes\get_attributes;
 
 class RenderkitRouteProvider implements ContainerInjectionInterface {
 
@@ -35,7 +35,7 @@ class RenderkitRouteProvider implements ContainerInjectionInterface {
       if ($rc->isInterface() || $rc->isTrait() || $rc->isAbstract()) {
         continue;
       }
-      $modifiers = AttributesUtil::getAll($rc, RouteModifierInterface::class);
+      $modifiers = get_attributes($rc, RouteModifierInterface::class);
       $class_route = clone $base_root;
       foreach ($modifiers as $modifier) {
         $modifier->modifyRoute($class_route, $rc);
@@ -44,7 +44,7 @@ class RenderkitRouteProvider implements ContainerInjectionInterface {
         if ($rm->isAbstract() || !$rm->isPublic()) {
           continue;
         }
-        $modifiers = AttributesUtil::getAll($rm, RouteModifierInterface::class);
+        $modifiers = get_attributes($rm, RouteModifierInterface::class);
         if (!$modifiers) {
           continue;
         }
