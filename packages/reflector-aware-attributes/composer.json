@@ -1,5 +1,5 @@
 {
-    "name": "ock/class-discovery",
+    "name": "ock/reflector-aware-attributes",
     "license": "MIT",
     "authors": [
         {
@@ -9,22 +9,20 @@
     ],
     "minimum-stability": "dev",
     "autoload": {
+        "files": [
+            "functions/functions.attributes.php"
+        ],
         "psr-4": {
-            "Ock\\ClassDiscovery\\": "src"
+            "Ock\\ReflectorAwareAttributes\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ock\\ClassDiscovery\\Tests\\": "tests/src"
+            "Ock\\ReflectorAwareAttributes\\Tests\\": "tests/src"
         }
     },
     "require": {
-        "php": ">=8.3",
-        "ock/class-files-iterator": "self.version",
-        "ock/helpers": "self.version",
-        "ock/reflection": "self.version",
-        "ock/reflector-aware-attributes": "self.version",
-        "ext-json": "*"
+        "php": ">=8.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.5.38"

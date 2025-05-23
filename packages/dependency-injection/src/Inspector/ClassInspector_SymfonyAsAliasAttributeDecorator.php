@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Exception\LogicException;
-use function Ock\ClassDiscovery\get_attributes;
+use function Ock\ReflectorAwareAttributes\get_attributes;
 
 /**
  * Decorator to support the AsAlias attribute.

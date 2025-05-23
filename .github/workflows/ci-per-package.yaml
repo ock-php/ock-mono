@@ -23,6 +23,7 @@ jobs:
           - helpers
           - object-construction-kit
           - reflection
+          - reflector-aware-attributes
           - testing
         php: [8.3]
         composer-flags: ['', '--prefer-lowest']

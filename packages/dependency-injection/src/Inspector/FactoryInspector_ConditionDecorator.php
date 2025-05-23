@@ -9,7 +9,7 @@ use Ock\DependencyInjection\Attribute\ServiceConditionAttributeInterface;
 use Ock\Reflection\ClassReflection;
 use Ock\Reflection\MethodReflection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use function Ock\ClassDiscovery\get_attributes;
+use function Ock\ReflectorAwareAttributes\get_attributes;
 
 /**
  * Registers services for classes and methods with #[Service] attribute.

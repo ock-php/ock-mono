@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Ock\ClassDiscovery\Util;
 
-use Ock\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
 use Ock\ClassDiscovery\Exception\MalformedDeclarationException;
 use Ock\Helpers\Util\MessageUtil;
 use Ock\Reflection\FactoryReflectionInterface;
 use Ock\Reflection\NameHavingReflectionInterface;
+use Ock\ReflectorAwareAttributes\ReflectorAwareAttributeInterface;
 
 /**
  * Helper methods to read attributes from reflectors.

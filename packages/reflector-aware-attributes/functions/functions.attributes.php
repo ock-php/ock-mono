@@ -5,9 +5,7 @@
  * Functions related to attributes.
  */
 
-namespace Ock\ClassDiscovery;
-
-use Ock\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
+namespace Ock\ReflectorAwareAttributes;
 
 /**
  * Gets attribute instances, and calls ->setReflector().

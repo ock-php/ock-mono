@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Tests\Fixtures\Attribute;
+namespace Ock\ReflectorAwareAttributes\Tests\Fixtures\Attribute;
 
 #[\Attribute(\Attribute::IS_REPEATABLE | \Attribute::TARGET_ALL)]
-class OtherTestAttribute implements TestAttributeInterface {
+class TestAttribute implements TestAttributeInterface {
 
   public function __construct(
     public readonly ?string $label = NULL,

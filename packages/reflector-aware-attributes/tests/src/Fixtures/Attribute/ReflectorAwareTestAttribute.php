@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Tests\Fixtures\Attribute;
+namespace Ock\ReflectorAwareAttributes\Tests\Fixtures\Attribute;
 
-use Ock\ClassDiscovery\Attribute\ReflectorAwareAttributeInterface;
+use Ock\ReflectorAwareAttributes\ReflectorAwareAttributeInterface;
 
 #[\Attribute(\Attribute::IS_REPEATABLE | \Attribute::TARGET_ALL)]
 class ReflectorAwareTestAttribute implements ReflectorAwareAttributeInterface {

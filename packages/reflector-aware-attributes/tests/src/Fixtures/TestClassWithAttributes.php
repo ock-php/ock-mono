@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Ock\ClassDiscovery\Tests\Fixtures;
+namespace Ock\ReflectorAwareAttributes\Tests\Fixtures;
 
-use Ock\ClassDiscovery\Tests\Fixtures\Attribute\OtherTestAttribute;
-use Ock\ClassDiscovery\Tests\Fixtures\Attribute\ReflectorAwareTestAttribute;
-use Ock\ClassDiscovery\Tests\Fixtures\Attribute\TestAttribute;
+use Ock\ReflectorAwareAttributes\Tests\Fixtures\Attribute\OtherTestAttribute;
+use Ock\ReflectorAwareAttributes\Tests\Fixtures\Attribute\ReflectorAwareTestAttribute;
+use Ock\ReflectorAwareAttributes\Tests\Fixtures\Attribute\TestAttribute;
 
 #[TestAttribute('on a class')]
 #[OtherTestAttribute('on a class')]
