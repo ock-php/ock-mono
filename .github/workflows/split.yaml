@@ -34,6 +34,7 @@ jobs:
           - helpers
           - object-construction-kit
           - reflection
+          - reflector-aware-attributes
           - testing
 
     steps:
