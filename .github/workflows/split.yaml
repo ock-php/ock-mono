@@ -20,19 +20,23 @@ jobs:
       fail-fast: false
       matrix:
         # define package to repository map
-        package:
-          - adaptism
-          - class-discovery
-          - class-files-iterator
-          - codegen-tools
-          - dependency-injection
-          - di-discovery
-          - egg
-          - helpers
-          - object-construction-kit
-          - reflection
-          - reflector-aware-attributes
-          - testing
+        include:
+          - package: adaptism
+          - package: class-discovery
+          - { package: class-files-iterator, release: true}
+          - package: codegen-tools
+          - package: dependency-injection
+          - package: di-discovery
+          - package: egg
+          - { package: helpers, release: true }
+          - package: object-construction-kit
+          - package: reflection
+          - { package: reflector-aware-attributes, release: true}
+          - package: testing
+
+    # Use 'if' to skip unwanted matrix values for tag pushes
+    if: |
+      !(startsWith(github.ref, 'refs/tags/') && !matrix.release)
 
     steps:
       -
