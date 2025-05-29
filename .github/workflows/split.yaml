@@ -5,9 +5,7 @@ name: Split packages
 on:
   push:
     branches:
-      # @todo Decide to use either master or main.
       - main
-      - master
       - probe
       - issue-*
 
