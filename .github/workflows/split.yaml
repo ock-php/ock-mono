@@ -55,4 +55,4 @@ jobs:
           prefix: "packages/${{ matrix.package }}"
           remote: "https://github.com/ock-php/${{ matrix.package }}.git"
           reference: "${{ github.ref_name }}"
-          as_tag: "${{ startsWith(github.ref, 'refs/tags/') }}"
+          as_tag: ${{ startsWith(github.ref, 'refs/tags/') }}
