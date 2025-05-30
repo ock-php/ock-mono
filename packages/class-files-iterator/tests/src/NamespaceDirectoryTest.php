@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class NamespaceDirectoryTest extends TestCase {
 
+  use ExceptionTestTrait;
   use ImmutableObjectsTrait;
 
   public function testCreate(): void {
@@ -486,24 +487,6 @@ class NamespaceDirectoryTest extends TestCase {
   ): void {
     $this->assertSame($dir, $namespace_directory->getDirectory());
     $this->assertSame($namespace, $namespace_directory->getNamespace());
-  }
-
-  /**
-   * @param class-string $exception_class
-   * @param callable(): (void|mixed) $callback
-   */
-  protected function callAndAssertException(string $exception_class, callable $callback): void {
-    // Does not work with non-existing class.
-    try {
-      $callback();
-      $this->fail("Expected exception was not thrown.");
-    }
-    catch (\Throwable $e) {
-      if (get_class($e) !== $exception_class) {
-        throw $e;
-      }
-      $this->addToAssertionCount(1);
-    }
   }
 
   /**
