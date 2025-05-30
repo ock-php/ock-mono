@@ -84,33 +84,32 @@ class NamespaceDirectoryTest extends TestCase {
         ->nsdir(__DIR__ . '/../src', __NAMESPACE__)
         ->withRealpathRoot(),
     );
+    $this->callAndAssertException(
+      \RuntimeException::class,
+      fn () => $this
+        ->nsdir(__DIR__ . '/non/existing/path', 'Acme\Foo')
+        ->withRealpathRoot(),
+    );
   }
 
   public function testFindNamespace(): void {
-    // It does not work from a child namespace towards a top namespace.
-    $this->assertNull(
-      $this
-        ->nsdirFromClass(PlantInterface::class)
-        ->findNamespace(__NAMESPACE__),
-    );
-
-    // It does work from a parent namespace to a child namespace.
+    $nsdir = $this->nsdir('path/to/package/src/Animal/Mammal', 'Acme\Zoo\Animal\Mammal');
+    $this->assertSame($nsdir, $nsdir->findNamespace('Acme\Zoo\Animal\Mammal'));
+    // Find child namespace.
     $this->assertNamespaceDir(
-      __DIR__ . '/Fixtures/Acme/Plant',
-      __NAMESPACE__ . '\\Fixtures\\Acme\\Plant',
-      $this
-        ->nsdirFromClass(self::class)
-        ->findNamespace(__NAMESPACE__ . '\\Fixtures\\Acme\\Plant') ?? $this->fail(),
+      'path/to/package/src/Animal/Mammal/Whale',
+      $namespace = 'Acme\Zoo\Animal\Mammal\Whale',
+      $nsdir->findNamespace($namespace) ?? $this->fail(),
     );
-
-    // It also works for non-existing directory.
     $this->assertNamespaceDir(
-      __DIR__ . '/NonExisting',
-      __NAMESPACE__ . '\\NonExisting',
-      $this
-        ->nsdirFromClass(self::class)
-        ->findNamespace(__NAMESPACE__ . '\\NonExisting') ?? $this->fail(),
+      'path/to/package/src/Animal/Mammal/Whale/Dolphin',
+      $namespace = 'Acme\Zoo\Animal\Mammal\Whale\Dolphin',
+      $nsdir->findNamespace($namespace) ?? $this->fail(),
     );
+    // Cannot find parent namespace.
+    $this->assertNull($nsdir->findNamespace('Acme\Zoo\Animal'));
+    // Cannot find sibling namespace.
+    $this->assertNull($nsdir->findNamespace('Acme\Zoo\Animal\Insect'));
   }
 
   public function testBasedir(): void {
@@ -212,28 +211,63 @@ class NamespaceDirectoryTest extends TestCase {
   }
 
   public function testParentN(): void {
-    $nsdir = $this->nsdirFromClass(PlantInterface::class);
+    $nsdir = $this->nsdir(
+      'path/to/package/src/Animal/Mammal',
+      'Acme\Zoo\Animal\Mammal',
+    );
+    $this->assertSame($nsdir, $nsdir->parentN(0));
     $this->assertNamespaceDir(
-      $nsdir->getDirectory(),
-      $nsdir->getNamespace(),
-      $nsdir->parentN(0) ?? $this->fail('->parentN(0) is NULL.'),
+      'path/to/package/src/Animal',
+      'Acme\Zoo\Animal',
+      $nsdir->parentN(1) ?? $this->fail(),
     );
     $this->assertNamespaceDir(
-      __DIR__,
-      __NAMESPACE__,
-      $nsdir->parentN(3) ?? $this->fail('->parentN(3) is NULL.'),
+      'path/to/package/src',
+      'Acme\Zoo',
+      $nsdir->parentN(2) ?? $this->fail(),
     );
+    $this->assertNull($nsdir->parentN(3));
     $this->assertNull($nsdir->parentN(4));
+    $this->assertNull($nsdir->parentN(-1));
+    $this->assertNamespaceDir(
+      'path/to/package/src',
+      'Acme\Zoo',
+      $nsdir->parentN(-2) ?? $this->fail(),
+    );
+    $this->assertNamespaceDir(
+      'path/to/package/src/Animal',
+      'Acme\Zoo\Animal',
+      $nsdir->parentN(-3) ?? $this->fail(),
+    );
+    $this->assertSame($nsdir, $nsdir->parentN(-4));
+    $this->assertNull($nsdir->parentN(-5));
+    $this->assertNull($nsdir->parentN(-6));
   }
 
   public function testParent(): void {
-    $nsdir = $this->nsdirFromClass(PlantInterface::class);
+    $f = fn (string $dir, string $namespace) => $this->nsdir($dir, $namespace)->parent();
     $this->assertNamespaceDir(
-      __DIR__ . '/Fixtures/Acme',
-      __NAMESPACE__ . '\\Fixtures\\Acme',
-      $nsdir->parent() ?? $this->fail('->parent() is NULL.'),
+      'path/to/Animal',
+      'Acme\Zoo\Animal',
+      $f(
+        'path/to/Animal/Mammal',
+        'Acme\Zoo\Animal\Mammal',
+      ) ?? $this->fail(),
     );
-    $this->assertNull($this->nsdirFromClass(self::class)->parent());
+    $this->assertNull($f('path/to/package/src', 'Acme\Zoo'));
+    $this->assertNull($f('path/to/package', ''));
+    $this->assertNull($f('', 'Acme'));
+    $this->assertNull($f('path-without-slash', 'Acme\Zoo'));
+    $this->assertNamespaceDir(
+      '',
+      'Acme',
+      $f('Zoo', 'Acme\Zoo') ?? $this->fail(),
+    );
+    $this->assertNamespaceDir(
+      'path/to/package',
+      '',
+      $f('path/to/package/Acme', 'Acme') ?? $this->fail(),
+    );
   }
 
   public function testSubdir(): void {
@@ -257,34 +291,24 @@ class NamespaceDirectoryTest extends TestCase {
   }
 
   public function testGetShortname(): void {
-    $this->assertSame(
-      'Tests',
-      $this->nsdirFromClass(self::class)->getShortname(),
-    );
-    $this->assertNull(
-      $this->nsdir('/path/to/root/nsp', '')->getTerminatedShortname(),
-    );
+    $f = fn (string $namespace) => $this->nsdir('path/to', $namespace)->getShortname();
+    $this->assertSame('Animal', $f('Acme\Zoo\Animal'));
+    $this->assertSame('Acme',$f('Acme'));
+    $this->assertNull($f(''));
   }
 
   public function testGetTerminatedShortname(): void {
-    $this->assertSame(
-      'Tests\\',
-      $this->nsdirFromClass(self::class)->getTerminatedShortname(),
-    );
-    $this->assertNull(
-      $this->nsdir('/path/to/root/nsp', '')->getTerminatedShortname(),
-    );
+    $f = fn (string $namespace) => $this->nsdir('path/to', $namespace)->getTerminatedShortname();
+    $this->assertSame('Animal\\', $f('Acme\Zoo\Animal'));
+    $this->assertSame('Acme\\', $f('Acme'));
+    $this->assertNull($f(''));
   }
 
   public function testGetShortFqn(): void {
-    $this->assertSame(
-      '\\Tests',
-      $this->nsdirFromClass(self::class)->getShortFqn(),
-    );
-    $this->assertSame(
-      '',
-      $this->nsdir('/path/to/root/nsp', '')->getShortFqn(),
-    );
+    $f = fn (string $namespace) => $this->nsdir('path/to', $namespace)->getShortFqn();
+    $this->assertSame('\\Animal', $f('Acme\Zoo\Animal'));
+    $this->assertSame('\\Acme', $f('Acme'));
+    $this->assertSame('', $f(''));
   }
 
   public function testGetTerminatedNamespace(): void {
@@ -334,24 +358,40 @@ class NamespaceDirectoryTest extends TestCase {
   }
 
   public function testGetRelativeTerminatedNamespace(): void {
-    $nsdir = $this->nsdirFromClass(PlantInterface::class);
-    $this->assertSame('Fixtures\\Acme\\Plant\\', $nsdir->getRelativeTerminatedNamespace(3));
-    $this->assertSame('Tests\\Fixtures\\Acme\\Plant\\', $nsdir->getRelativeTerminatedNamespace());
-    $this->assertSame('Acme\\Plant\\', $nsdir->getRelativeTerminatedNamespace(4));
-    // It does not work with level: 2.
-    $this->expectException(\RuntimeException::class);
-    $nsdir->getPackageDirectory();
-    $this->assertSame(
-      __NAMESPACE__ . '\\',
-      $this->nsdirFromClass(self::class)->getTerminatedNamespace(),
-    );
-    $this->assertSame(
-      '',
-      $this->nsdir('/path/to/root/nsp', '')->getTerminatedNamespace(),
-    );
+    // @phpstan-ignore argument.type
+    $f = fn (string $namespace, int ...$args) => $this->nsdir('path/to', $namespace)->getRelativeTerminatedNamespace(...$args);
+    $fn = fn (int ...$args) => $f('Acme\Zoo\Animal\Mammal', ...$args);
+    $this->assertSame('Animal\Mammal\\', $fn());
+    $this->assertSame('Acme\Zoo\Animal\Mammal\\', $fn(0));
+    $this->assertSame('Zoo\Animal\Mammal\\', $fn(1));
+    $this->assertSame('Animal\Mammal\\', $fn(2));
+    $this->assertSame('Mammal\\', $fn(3));
+    $this->assertSame('', $fn(4));
+    $this->callAndAssertException(\RuntimeException::class, fn () => $fn(5));
+    $this->assertSame('', $f('', 0));
+    $this->callAndAssertException(\RuntimeException::class, fn () => $f('', 1));
+    $this->assertSame('Acme\\', $f('Acme', 0));
+    $this->assertSame('', $f('Acme', 1));
+    $this->callAndAssertException(\RuntimeException::class, fn () => $f('Acme', 2));
   }
 
   public function testGetRelativeFqn(): void {
+    $f = fn (string $namespace, int ...$args) => $this->nsdir('path/to', $namespace)->getRelativeFqn(...$args);
+    $fn = fn (int ...$args) => $f('Acme\Zoo\Animal\Mammal', ...$args);
+    $this->assertSame('\\Animal\Mammal', $fn());
+    $this->assertSame('\\Acme\Zoo\Animal\Mammal', $fn(0));
+    $this->assertSame('\\Zoo\Animal\Mammal', $fn(1));
+    $this->assertSame('\\Animal\Mammal', $fn(2));
+    $this->assertSame('\\Mammal', $fn(3));
+    $this->assertSame('', $fn(4));
+    $this->callAndAssertException(\RuntimeException::class, fn () => $fn(5));
+    $this->assertSame('', $f('', 0));
+    $this->callAndAssertException(\RuntimeException::class, fn () => $f('', 1));
+    $this->assertSame('\\Acme', $f('Acme', 0));
+    $this->assertSame('', $f('Acme', 1));
+    $this->callAndAssertException(\RuntimeException::class, fn () => $f('Acme', 2));
+
+
     $nsdir = $this->nsdirFromClass(PlantInterface::class);
     $this->assertSame('\\Fixtures\\Acme\\Plant', $nsdir->getRelativeFqn(3));
     $this->assertSame('\\Tests\\Fixtures\\Acme\\Plant', $nsdir->getRelativeFqn());
@@ -388,6 +428,8 @@ class NamespaceDirectoryTest extends TestCase {
       ],
       iterator_to_array($nsdir->getIterator()),
     );
+    $bad_nsdir = $this->nsdir(__DIR__ . '/non/existing/subdir', 'Acme\Missing');
+    $this->callAndAssertException(\RuntimeException::class, fn () => $bad_nsdir->getIterator()->valid());
   }
 
   public function testGetElements(): void {
@@ -457,7 +499,10 @@ class NamespaceDirectoryTest extends TestCase {
       $this->fail("Expected exception was not thrown.");
     }
     catch (\Throwable $e) {
-      $this->assertSame($exception_class, get_class($e));
+      if (get_class($e) !== $exception_class) {
+        throw $e;
+      }
+      $this->addToAssertionCount(1);
     }
   }
 
