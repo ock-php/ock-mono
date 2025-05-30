@@ -5,15 +5,14 @@ name: Split packages
 on:
   push:
     branches:
-      # @todo Decide to use either master or main.
       - main
-      - master
       - probe
-      - issue-*
+      - '\d+\.x'
+      - '\d+\.\d+\.x'
 
     # see https://github.community/t/how-to-run-github-actions-workflow-only-for-new-tags/16075/10?u=tomasvotruba
     tags:
-      - '*'
+      - '^\d+\.\d+\.\d+(|\-(alpha|beta|rc)\d+)$'
 
 jobs:
   packages_split:
@@ -23,27 +22,36 @@ jobs:
       fail-fast: false
       matrix:
         # define package to repository map
-        package:
-          - adaptism
-          - class-discovery
-          - class-files-iterator
-          - codegen-tools
-          - dependency-injection
-          - di-discovery
-          - egg
-          - helpers
-          - object-construction-kit
-          - reflection
-          - reflector-aware-attributes
-          - testing
+        include:
+          - package: adaptism
+          - package: class-discovery
+          - { package: class-files-iterator, release: true}
+          - package: codegen-tools
+          - package: dependency-injection
+          - package: di-discovery
+          - package: egg
+          - { package: helpers, release: true }
+          - package: object-construction-kit
+          - package: reflection
+          - { package: reflector-aware-attributes, release: true}
+          - package: testing
 
     steps:
       -
+        # Push tags only to packages marked as 'release'.
+        if: |
+          !startsWith(github.ref, 'refs/tags/') || matrix.release
+
         name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       -
+        # Push tags only to packages marked as 'release'.
+        # This condition has to be repeated on every step.
+        if: |
+          !startsWith(github.ref, 'refs/tags/') || matrix.release
+
         name: Split package ${{ matrix.package }}
         uses: "claudiodekker/splitsh-action@v1.0.0"
         env:
@@ -52,4 +60,4 @@ jobs:
           prefix: "packages/${{ matrix.package }}"
           remote: "https://github.com/ock-php/${{ matrix.package }}.git"
           reference: "${{ github.ref_name }}"
-          as_tag: "${{ startsWith(github.ref, 'refs/tags/') }}"
+          as_tag: ${{ startsWith(github.ref, 'refs/tags/') }}
