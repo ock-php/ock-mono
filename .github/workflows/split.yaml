@@ -36,17 +36,22 @@ jobs:
           - { package: reflector-aware-attributes, release: true}
           - package: testing
 
-    # Use 'if' to skip unwanted matrix values for tag pushes
-    if: |
-      !(startsWith(github.ref, 'refs/tags/') && !matrix.release)
-
     steps:
       -
+        # Push tags only to packages marked as 'release'.
+        if: |
+          !startsWith(github.ref, 'refs/tags/') || matrix.release
+
         name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       -
+        # Push tags only to packages marked as 'release'.
+        # This condition has to be repeated on every step.
+        if: |
+          !startsWith(github.ref, 'refs/tags/') || matrix.release
+
         name: Split package ${{ matrix.package }}
         uses: "claudiodekker/splitsh-action@v1.0.0"
         env:
