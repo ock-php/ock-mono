@@ -667,7 +667,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *   would be redundant to do additional filtering here.
    */
   private static function scanKnownDir(string $dir): array {
-    $candidates = \scandir($dir, \SCANDIR_SORT_ASCENDING);
+    $candidates = @\scandir($dir, \SCANDIR_SORT_ASCENDING);
     if ($candidates === false) {
       throw new \RuntimeException("Failed to scandir('$dir').");
     }
