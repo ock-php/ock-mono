@@ -5,7 +5,6 @@
     "require": {
         "php": ">=8.3",
         "ock/class-discovery": "self.version",
-        "ock/codegen-tools": "self.version",
         "ock/helpers": "self.version",
         "ock/reflector-aware-attributes": "self.version",
         "psr/container": "^2.0",
