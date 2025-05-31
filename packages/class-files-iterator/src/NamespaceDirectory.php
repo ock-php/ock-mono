@@ -279,10 +279,6 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
       return NULL;
     }
 
-    if ('\\' . $subdirName . '\\' !== substr($this->terminatedNamespace, -$l - 2)) {
-      return NULL;
-    }
-
     return new self(
       $parentDir,
       substr($this->terminatedNamespace, 0, -($l + 1)),
@@ -671,8 +667,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *   would be redundant to do additional filtering here.
    */
   private static function scanKnownDir(string $dir): array {
-    new \DirectoryIterator($dir);
-    $candidates = \scandir($dir, \SCANDIR_SORT_ASCENDING);
+    $candidates = @\scandir($dir, \SCANDIR_SORT_ASCENDING);
     if ($candidates === false) {
       throw new \RuntimeException("Failed to scandir('$dir').");
     }
