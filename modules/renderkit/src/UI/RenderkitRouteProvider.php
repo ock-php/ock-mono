@@ -30,7 +30,7 @@ class RenderkitRouteProvider implements ContainerInjectionInterface {
       throw new \RuntimeException('Unexpected path.');
     }
     $routes = [];
-    foreach ($nsdir->withRealpathRoot() as $class) {
+    foreach ($nsdir as $class) {
       $rc = new \ReflectionClass($class);
       if ($rc->isInterface() || $rc->isTrait() || $rc->isAbstract()) {
         continue;
