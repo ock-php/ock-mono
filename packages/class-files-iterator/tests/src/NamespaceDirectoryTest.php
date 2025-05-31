@@ -15,15 +15,14 @@ class NamespaceDirectoryTest extends TestCase {
 
   public function testCreate(): void {
     $this->assertNamespaceDir(
-      __DIR__,
-      __NAMESPACE__,
-      NamespaceDirectory::create(__DIR__, __NAMESPACE__),
+      'path/to',
+      'Acme\Zoo',
+      NamespaceDirectory::create('path/to', 'Acme\Zoo'),
     );
-    // Non-existing class is no problem.
     $this->assertNamespaceDir(
-      __DIR__ . '/NonExisting',
-      __NAMESPACE__ . '\\NonExisting',
-      NamespaceDirectory::create(__DIR__ . '/NonExisting', __NAMESPACE__ . '\\NonExisting'),
+      'path/to',
+      '',
+      NamespaceDirectory::create('path/to', ''),
     );
   }
 
