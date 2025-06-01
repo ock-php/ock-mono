@@ -3,15 +3,18 @@
 namespace Ock\ClassFilesIterator\Tests;
 
 use Ock\ClassFilesIterator\NamespaceDirectory;
+use Ock\ClassFilesIterator\NsDirUtil;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\PlantInterface;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\Tree\Fig;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
 use Ock\ClassFilesIterator\Tests\Traits\ExceptionTestTrait;
 use Ock\ClassFilesIterator\Tests\Traits\ImmutableObjectsTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(NamespaceDirectory::class)]
+#[UsesClass(NsDirUtil::class)]
 class NamespaceDirectoryTest extends TestCase {
 
   use ExceptionTestTrait;
