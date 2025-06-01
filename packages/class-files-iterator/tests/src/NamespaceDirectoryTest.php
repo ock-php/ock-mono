@@ -97,9 +97,9 @@ class NamespaceDirectoryTest extends TestCase {
 
     $this->callAndAssertException(
       \RuntimeException::class,
-      fn () => $this
+      $this
         ->nsdir(__DIR__ . '/non/existing/path', 'Acme\Zoo')
-        ->withRealpathRoot(),
+        ->withRealpathRoot(...),
     );
   }
 
@@ -440,7 +440,7 @@ class NamespaceDirectoryTest extends TestCase {
       iterator_to_array($nsdir->getIterator()),
     );
     $bad_nsdir = $this->nsdir(__DIR__ . '/non/existing/subdir', 'Acme\Missing');
-    $this->callAndAssertException(\RuntimeException::class, fn () => $bad_nsdir->getIterator()->valid());
+    $this->callAndAssertException(\RuntimeException::class, $bad_nsdir->getIterator()->valid(...));
   }
 
   public function testGetElements(): void {
