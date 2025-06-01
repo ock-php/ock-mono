@@ -5,6 +5,8 @@
 /.phpunit.cache
 /build/
 /packages/*/composer.lock
+# Ignore symlinked vendor directories in packages.
+/packages/*/vendor
 
 # Ignore everything in /web/ except the /web/sites/default/settings.php file.
 /web/*
