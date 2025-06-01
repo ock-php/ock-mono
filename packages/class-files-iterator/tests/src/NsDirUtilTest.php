@@ -5,8 +5,11 @@ declare(strict_types = 1);
 namespace Ock\ClassFilesIterator\Tests;
 
 use Ock\ClassFilesIterator\NsDirUtil;
+use Ock\ClassFilesIterator\Tests\Traits\ExceptionTestTrait;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(NsDirUtil::class)]
 class NsDirUtilTest extends TestCase {
 
   use ExceptionTestTrait;

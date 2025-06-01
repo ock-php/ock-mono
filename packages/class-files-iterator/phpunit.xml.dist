@@ -18,10 +18,16 @@
          failOnDeprecation="true"
          failOnRisky="true"
          failOnWarning="true"
+         beStrictAboutCoverageMetadata="true"
 >
   <php>
     <ini name="error_reporting" value="32767"/>
   </php>
+  <coverage>
+    <report>
+      <clover outputFile="build/logs/clover.xml"/>
+    </report>
+  </coverage>
   <testsuites>
     <testsuite name="default">
       <directory>./tests/src</directory>
