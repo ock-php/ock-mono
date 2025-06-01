@@ -24,6 +24,7 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.5.38"
+        "phpunit/phpunit": "^10.5.38",
+        "symfony/finder": "^7.4"
     }
 }
