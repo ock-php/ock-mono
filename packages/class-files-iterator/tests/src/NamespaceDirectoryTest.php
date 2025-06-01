@@ -15,15 +15,14 @@ class NamespaceDirectoryTest extends TestCase {
 
   public function testCreate(): void {
     $this->assertNamespaceDir(
-      __DIR__,
-      __NAMESPACE__,
-      NamespaceDirectory::create(__DIR__, __NAMESPACE__),
+      'path/to',
+      'Acme\Zoo',
+      NamespaceDirectory::create('path/to', 'Acme\Zoo'),
     );
-    // Non-existing class is no problem.
     $this->assertNamespaceDir(
-      __DIR__ . '/NonExisting',
-      __NAMESPACE__ . '\\NonExisting',
-      NamespaceDirectory::create(__DIR__ . '/NonExisting', __NAMESPACE__ . '\\NonExisting'),
+      'path/to',
+      '',
+      NamespaceDirectory::create('path/to', ''),
     );
   }
 
@@ -78,17 +77,26 @@ class NamespaceDirectoryTest extends TestCase {
   }
 
   public function testWithRealpathRoot(): void {
-    $this->assertNamespaceDir(
-      __DIR__,
-      __NAMESPACE__,
-      $this
-        ->nsdir(__DIR__ . '/../src', __NAMESPACE__)
-        ->withRealpathRoot(),
-    );
+    $c = fn (string $dir) => NamespaceDirectory::create($dir, 'Acme\Zoo');
+    $realpath = realpath(__DIR__) ?: $this->fail();
+    $crooked_path = __DIR__ . '/../src';
+    $this->assertFalse(str_ends_with($realpath, '/../src'));
+    $obj_with_realpath = $c($realpath);
+    $this->assertEquals($obj_with_realpath, $c($crooked_path)->withRealpathRoot());
+
+    // A new clone is returned even though values are the same.
+    // Perhaps this will change in the future.
+    $this->assertEquals($obj_with_realpath, $obj_with_realpath->withRealpathRoot());
+    $this->assertNotSame($obj_with_realpath, $obj_with_realpath->withRealpathRoot());
+
+    // Test effect on the iterator.
+    $this->assertSame($realpath, dirname($obj_with_realpath->getIterator()->key()));
+    $this->assertSame($crooked_path, dirname($c($crooked_path)->getIterator()->key()));
+
     $this->callAndAssertException(
       \RuntimeException::class,
       fn () => $this
-        ->nsdir(__DIR__ . '/non/existing/path', 'Acme\Foo')
+        ->nsdir(__DIR__ . '/non/existing/path', 'Acme\Zoo')
         ->withRealpathRoot(),
     );
   }
