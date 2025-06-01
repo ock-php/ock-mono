@@ -9,6 +9,7 @@ use Ock\ClassFilesIterator\Tests\Traits\ExceptionTestTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ClassNamesIA_Array::class)]
 class ClassNamesIATest extends TestCase {
 
   use ExceptionTestTrait;

@@ -13,8 +13,13 @@ use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\PlantInterface;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\Tree\Fig;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
 use Ock\ClassFilesIterator\Tests\Traits\ExceptionTestTrait;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ClassFilesIA::class)]
+#[CoversClass(ClassFilesIA_Concat::class)]
+#[CoversClass(ClassFilesIA_Empty::class)]
+#[CoversClass(ClassFilesIA_NamespaceDirectoryPsr4::class)]
 class ClassFilesIATest extends TestCase {
 
   use ExceptionTestTrait;
