@@ -27,7 +27,7 @@ abstract class AttributesRouteProviderBase {
       throw new \RuntimeException('Unexpected path.');
     }
     $routes = [];
-    foreach ($nsdir->withRealpathRoot() as $class) {
+    foreach ($nsdir as $class) {
       $rClass = new \ReflectionClass($class);
       if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract()) {
         continue;

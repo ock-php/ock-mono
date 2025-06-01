@@ -7,6 +7,8 @@ namespace Ock\DependencyInjection\Attribute;
 use Symfony\Component\DependencyInjection\Definition;
 
 /**
+ * Adds a tag to a service.
+ *
  * @see \Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag
  */
 #[\Attribute(\Attribute::TARGET_CLASS|\Attribute::TARGET_METHOD)]
