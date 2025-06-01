@@ -534,21 +534,23 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   public function getElements(): array {
     $classes = [];
     $subdirs = [];
-    foreach ($this->scanThisDir() as $candidate) {
-      if (!preg_match(self::CANDIDATE_REGEX, $candidate, $m)) {
-        continue;
-      }
-      [, $name, $ext] = $m;
-      $path = $this->directory . '/' . $candidate;
-      if ($ext) {
-        if (is_file($path)) {
-          $classes[$path] = $this->terminatedNamespace . $name;
+    foreach (NsDirUtil::getDirContents($this->directory) as $candidate => $is_dir) {
+      if (!$is_dir) {
+        if (!\str_ends_with($candidate, '.php')) {
+          continue;
         }
+        $path = $this->directory . '/' . $candidate;
+        $name = \substr($candidate, 0, -4);
+        if (!\preg_match(self::CLASS_NAME_REGEX, $name)) {
+          continue;
+        }
+        $classes[$path] = $this->terminatedNamespace . $name;
       }
       else {
-        if (is_dir($path)) {
-          $subdirs[$candidate] = $this->subdir($candidate);
+        if (!\preg_match(self::CLASS_NAME_REGEX, $candidate)) {
+          continue;
         }
+        $subdirs[$candidate] = $this->subdir($candidate);
       }
     }
     /** @var array<string, class-string> $classes */
@@ -560,16 +562,11 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    */
   public function getClassFilesHere(): array {
     $classFiles = [];
-    foreach ($this->scanThisDir() as $candidate) {
-      if ('.' === $candidate[0]
-        || !\str_ends_with($candidate, '.php')
-      ) {
+    foreach (NsDirUtil::getDirContents($this->directory) as $candidate => $is_dir) {
+      if ($is_dir || !\str_ends_with($candidate, '.php')) {
         continue;
       }
       $path = $this->directory . '/' . $candidate;
-      if (!\is_file($path)) {
-        continue;
-      }
       $name = \substr($candidate, 0, -4);
       if (!\preg_match(self::CLASS_NAME_REGEX, $name)) {
         continue;
@@ -584,31 +581,12 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @return \Iterator<string, static>
    */
   public function getSubdirsHere(): \Iterator {
-    foreach ($this->scanThisDir() as $candidate) {
-      if (!preg_match(self::CLASS_NAME_REGEX, $candidate)) {
-        continue;
-      }
-      $path = $this->directory . '/' . $candidate;
-      if (!\is_dir($path)) {
+    foreach (NsDirUtil::getDirContents($this->directory) as $candidate => $is_dir) {
+      if (!$is_dir || !preg_match(self::CLASS_NAME_REGEX, $candidate)) {
         continue;
       }
       yield $candidate => $this->subdir($candidate);
     }
-  }
-
-  /**
-   * Runs scandir() on this namespace directory.
-   *
-   * Throws a runtime exception on failure, instead of returning false.
-   * This is considered an unhandled exception, because it is assumed that the
-   * current directory always exists.
-   *
-   * @return list<string>
-   *   Items in the directory in alphabetic order.
-   *   This also includes '.' and '..'.
-   */
-  private function scanThisDir(): array {
-    return NsDirUtil::scanKnownDir($this->directory);
   }
 
 }

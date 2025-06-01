@@ -77,13 +77,10 @@ class NsDirUtil {
    *   Format: $[$file] = $class
    */
   private static function doIterateRecursively(string $dir, string $terminatedNamespace): \Iterator {
-    foreach (self::scanKnownDir($dir) as $candidate) {
-      if ('.' === $candidate[0]) {
-        continue;
-      }
+    foreach (self::getDirContents($dir) as $candidate => $is_dir) {
       $path = $dir . '/' . $candidate;
-      if (\str_ends_with($candidate, '.php')) {
-        if (!is_file($path)) {
+      if (!$is_dir) {
+        if (!\str_ends_with($candidate, '.php')) {
           continue;
         }
         $name = substr($candidate, 0, -4);
@@ -94,9 +91,6 @@ class NsDirUtil {
         yield $path => $terminatedNamespace . $name;
       }
       else {
-        if (!is_dir($path)) {
-          continue;  // @codeCoverageIgnore
-        }
         if (!preg_match(self::CLASS_NAME_REGEX, $candidate)) {
           continue;
         }
@@ -109,27 +103,25 @@ class NsDirUtil {
   }
 
   /**
-   * Runs scandir() on a known directory.
-   *
-   * Throws a runtime exception on failure, instead of returning false.
-   * This is considered an unhandled exception, because it is assumed that the
-   * given directory always exists.
+   * Gets names of files and subdirectories in a directory.
    *
    * @param string $dir
-   *   Known directory to scan.
+   *   Parent directory to scan.
    *
-   * @return list<string>
-   *   Items in the directory in alphabetic order.
-   *   This also includes '.' and '..'.
-   *   Calling code already does filtering with regex or other means, so it
-   *   would be redundant to do additional filtering here.
+   * @return array<string, bool>
+   *   Array where the keys are file or directory names, and the values indicate
+   *   whether the entry is a directory.
+   *
+   * @internal
    */
-  public static function scanKnownDir(string $dir): array {
-    $candidates = @\scandir($dir, \SCANDIR_SORT_ASCENDING);
-    if ($candidates === false) {
-      throw new \RuntimeException("Failed to scandir('$dir').");
+  public static function getDirContents(string $dir): array {
+    $iterator = new \RecursiveDirectoryIterator($dir, \FilesystemIterator::SKIP_DOTS|\FilesystemIterator::KEY_AS_FILENAME|\FilesystemIterator::CURRENT_AS_SELF);
+    $contents = [];
+    foreach ($iterator as $name => $iterator_self) {
+      $contents[$name] = $iterator->hasChildren();
     }
-    return $candidates;
+    ksort($contents);
+    return $contents;
   }
 
 }

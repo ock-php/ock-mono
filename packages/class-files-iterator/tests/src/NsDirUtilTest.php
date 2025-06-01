@@ -58,7 +58,7 @@ class NsDirUtilTest extends TestCase {
     // Only read permissions, no execute bit.
     // The directory will appear as empty.
     chmod($dir, $perms & 0444);
-    $this->assertNull(NsDirUtil::iterate($dir, '')->key());
+    $this->assertSame($file, NsDirUtil::iterate($dir, '')->key());
     $this->assertFalse(@include $file);
   }
 
@@ -85,9 +85,9 @@ class NsDirUtilTest extends TestCase {
     $f($dir);
   }
 
-  public function testScanKnownDir(): void {
-    $f = NsDirUtil::scanKnownDir(...);
-    $this->callAndAssertException(\RuntimeException::class, fn () => $f(__DIR__ . '/NonExistingDir'));
+  public function testGetDirContents(): void {
+    $f = NsDirUtil::getDirContents(...);
+    $this->callAndAssertException(\UnexpectedValueException::class, fn () => $f(__DIR__ . '/NonExistingDir'));
   }
 
 }
