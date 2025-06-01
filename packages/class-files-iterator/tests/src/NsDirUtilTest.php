@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Ock\ClassFilesIterator\Tests;
 
 use Ock\ClassFilesIterator\NsDirUtil;
+use Ock\ClassFilesIterator\Tests\Traits\ExceptionTestTrait;
 use PHPUnit\Framework\TestCase;
 
 class NsDirUtilTest extends TestCase {

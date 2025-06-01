@@ -12,6 +12,7 @@ use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Animal\RedSquirrel;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\PlantInterface;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\Tree\Fig;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
+use Ock\ClassFilesIterator\Tests\Traits\ExceptionTestTrait;
 use PHPUnit\Framework\TestCase;
 
 class ClassFilesIATest extends TestCase {

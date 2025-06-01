@@ -6,6 +6,8 @@ use Ock\ClassFilesIterator\NamespaceDirectory;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\PlantInterface;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\Tree\Fig;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\VenusFlyTrap;
+use Ock\ClassFilesIterator\Tests\Traits\ExceptionTestTrait;
+use Ock\ClassFilesIterator\Tests\Traits\ImmutableObjectsTrait;
 use PHPUnit\Framework\TestCase;
 
 class NamespaceDirectoryTest extends TestCase {
