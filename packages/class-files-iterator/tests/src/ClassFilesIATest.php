@@ -78,24 +78,6 @@ class ClassFilesIATest extends TestCase {
     $this->assertEquals(new ClassFilesIA_Empty(), $f(__DIR__ . '/non/existing/subdir'));
   }
 
-  public function testWithRealpathRoot(): void {
-    $c = fn (string $dir) => new ClassFilesIA_NamespaceDirectoryPsr4($dir, 'Acme\Zoo\\');
-    $realpath = realpath(__DIR__) ?: $this->fail();
-    $crooked_path = __DIR__ . '/../src';
-    $this->assertFalse(str_ends_with($realpath, '/../src'));
-    $obj_with_realpath = $c($realpath);
-    $this->assertEquals($obj_with_realpath, $c($crooked_path)->withRealpathRoot());
-
-    // A new clone is returned even though values are the same.
-    // Perhaps this will change in the future.
-    $this->assertEquals($obj_with_realpath, $obj_with_realpath->withRealpathRoot());
-    $this->assertNotSame($obj_with_realpath, $obj_with_realpath->withRealpathRoot());
-
-    // Test effect on the iterator.
-    $this->assertSame($realpath, dirname($obj_with_realpath->getIterator()->key()));
-    $this->assertSame($crooked_path, dirname($c($crooked_path)->getIterator()->key()));
-  }
-
   /**
    * @throws \ReflectionException
    */
@@ -117,7 +99,6 @@ class ClassFilesIATest extends TestCase {
   public function testEmpty(): void {
     $classFilesIA = new ClassFilesIA_Empty();
     $this->assertFalse($classFilesIA->getIterator()->valid());
-    $this->assertSame($classFilesIA, $classFilesIA->withRealpathRoot());
   }
 
   /**
@@ -140,17 +121,6 @@ class ClassFilesIATest extends TestCase {
       [__DIR__ . '/Fixtures/Acme/Animal/RedSquirrel.php', RedSquirrel::class],
       [__DIR__ . '/Fixtures/Acme/Plant/Tree/Fig.php', Fig::class],
     ], $actual);
-
-    $this->assertEquals(
-      new ClassFilesIA_Concat([
-        ClassFilesIA::psr4(realpath(__DIR__) ?: '?', 'Acme\Zoo'),
-        ClassFilesIA::psr4(realpath(__DIR__ . '/Fixtures') ?: '?', 'Acme\Zoo'),
-      ]),
-      (new ClassFilesIA_Concat([
-        ClassFilesIA::psr4(__DIR__ . '/../src', 'Acme\Zoo'),
-        ClassFilesIA::psr4(__DIR__ . '/../src/Fixtures', 'Acme\Zoo'),
-      ]))->withRealpathRoot(),
-    );
   }
 
   public function testFactoryPsr4(): void {

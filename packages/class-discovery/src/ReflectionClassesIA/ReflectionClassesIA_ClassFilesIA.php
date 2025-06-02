@@ -20,7 +20,7 @@ class ReflectionClassesIA_ClassFilesIA implements ReflectionClassesIAInterface {
    * {@inheritdoc}
    */
   public function getIterator(): \Iterator {
-    foreach ($this->classFilesIA->withRealpathRoot() as $file => $class) {
+    foreach ($this->classFilesIA as $file => $class) {
       try {
         $reflectionClass = new ClassReflection($class);
       }
@@ -30,8 +30,19 @@ class ReflectionClassesIA_ClassFilesIA implements ReflectionClassesIAInterface {
         // Unfortunately, missing traits still cause fatal error.
         continue;
       }
+      // Skip a class that is defined elsewhere.
+      // Optimize for the case where both paths are already the same, without
+      // calling realpath().
       if ($file !== $reflectionClass->getFileName()) {
-        continue;
+        if ($reflectionClass->getFileName() === false) {
+          // This is a built-in class.
+          continue;
+        }
+        if (realpath($file) !== $reflectionClass->getFileName()
+          && realpath($file) !== realpath($reflectionClass->getFileName())
+        ) {
+          continue;
+        }
       }
       yield $reflectionClass;
     }

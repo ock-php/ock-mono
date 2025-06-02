@@ -98,21 +98,6 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   ) {}
 
   /**
-   * Gets a version where all base paths are sent through ->realpath().
-   *
-   * @return static
-   */
-  public function withRealpathRoot(): static {
-    $clone = clone $this;
-    $realpath = realpath($this->directory);
-    if ($realpath === false) {
-      throw new \RuntimeException("Failed to realpath('$this->directory')");
-    }
-    $clone->directory = $realpath;
-    return $clone;
-  }
-
-  /**
    * @param string $namespace
    *
    * @return self|null

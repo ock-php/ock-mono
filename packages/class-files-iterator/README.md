@@ -42,24 +42,38 @@ $basic_namespace_dir = NamespaceDirectory::create($basedir . '/src', 'Acme\\Foo'
 // The directory is determined automatically with ReflectionClass::getFileName().
 $namespace_dir = NamespaceDirectory::fromKnownClass(VenusFlyTrap::class);
 
-// Iterate class files.
-function foo(ClassFilesIAInterface $classFilesIA): void {
-  foreach ($classFilesIA as $file => $class) {
-    $rc = new \ReflectionClass($class);
-    // Call realpath() to be sure.
-    assert($rc->getFileName() === realpath($file));
-  }
-  // Or do this to skip the realpath() call:
-  foreach ($classFilesIA->withRealpathRoot() as $file => $class) {
-    $rc = new \ReflectionClass($class);
-    assert($rc->getFileName() === $file);
-  }
-}
-
-// Iterate class names.
+// Iterate class names by integer key.
 function foo(ClassNamesIAInterface $classNamesIA): void {
   foreach ($classNamesIA as $class) {
     assert(class_exists($class));
+  }
+}
+
+// Iterate class names with file path as key.
+function foo(ClassFilesIAInterface $classNamesIA): void {
+  foreach ($classNamesIA as $file => $class) {
+    assert(file_exists($file));
+    assert(class_exists($class));
+  }
+}
+
+// Get reflection classes.
+function foo(ClassFilesIAInterface $classFilesIA): void {
+  foreach ($classFilesIA as $file => $class) {
+    try {
+      $rc = new \ReflectionClass($class);
+    }
+    catch (\ReflectionException|\Error) {
+      // Skip non-existing classes / interfaces / traits.
+      // Skip if a base class or interface is missing.
+      // Unfortunately, missing traits still cause fatal error.
+      continue;
+    }
+    // Ignore if the class is defined elsewhere.
+    if ($rc->getFileName() !== $file && realpath($rc->getFileName()) !== realpath($file)) {
+      continue;
+    }
+    do_something($rc);
   }
 }
 ```

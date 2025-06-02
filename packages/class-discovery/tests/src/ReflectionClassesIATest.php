@@ -12,7 +12,6 @@ use Ock\ClassDiscovery\Tests\Fixtures\Acme\Animal\WaterBear;
 use Ock\ClassDiscovery\Tests\Fixtures\Acme\Plant\MusaAcuminata;
 use Ock\ClassDiscovery\Tests\Fixtures\NonLoadingInterface;
 use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface;
-use Ock\ClassFilesIterator\ClassFilesIA\RealpathRootThisTrait;
 use Ock\ClassFilesIterator\ClassNamesIA\ClassNamesIAInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -53,9 +52,7 @@ class ReflectionClassesIATest extends TestCase {
       MusaAcuminata::class,
       WaterBear::class,
     ];
-    $classFilesIA = new class($classNames) extends \ArrayObject implements ClassFilesIAInterface {
-      use RealpathRootThisTrait;
-    };
+    $classFilesIA = new class($classNames) extends \ArrayObject implements ClassFilesIAInterface {};
     $reflectionClassesIA = new ReflectionClassesIA_ClassFilesIA($classFilesIA);
     $this->assertReflectionClassNames($expectedRemainingClassNames, $reflectionClassesIA);
   }
@@ -69,9 +66,7 @@ class ReflectionClassesIATest extends TestCase {
     $expectedRemainingClassNames = [
       MusaAcuminata::class,
     ];
-    $classFilesIA = new class($classNames) extends \ArrayObject implements ClassFilesIAInterface {
-      use RealpathRootThisTrait;
-    };
+    $classFilesIA = new class($classNames) extends \ArrayObject implements ClassFilesIAInterface {};
     $reflectionClassesIA = new ReflectionClassesIA_ClassFilesIA($classFilesIA);
     $this->assertReflectionClassNames($expectedRemainingClassNames, $reflectionClassesIA);
   }

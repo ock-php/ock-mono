@@ -60,18 +60,6 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
   /**
    * {@inheritdoc}
    */
-  public function withRealpathRoot(): static {
-    $clone = clone $this;
-    $realpath = realpath($this->directory);
-    // @todo Properly handle this case.
-    assert($realpath !== false, "Cannot get realpath for '$this->directory'. Perhaps the directory does not exist.");
-    $clone->directory = $realpath;
-    return $clone;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getIterator(): \Iterator {
     return NsDirUtil::iterate($this->directory, $this->terminatedNamespace);
   }
