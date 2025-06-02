@@ -59,7 +59,7 @@ class ClassFilesIA {
    * @return \Ock\ClassFilesIterator\NamespaceDirectory
    */
   public static function psr4FromKnownClass(string $class, int $nLevelsUp = 0): NamespaceDirectory {
-    $result = NamespaceDirectory::fromKnownClass($class);
+    $result = NamespaceDirectory::fromClass($class);
     if ($nLevelsUp !== 0) {
       $result = $result->requireParentN($nLevelsUp);
     }

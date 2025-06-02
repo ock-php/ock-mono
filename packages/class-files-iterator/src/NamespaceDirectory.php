@@ -45,7 +45,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *
    * @return self
    */
-  public static function fromKnownClass(string $class): self {
+  public static function fromClass(string $class): self {
     try {
       return self::createFromClass($class);
     }

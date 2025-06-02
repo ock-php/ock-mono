@@ -87,7 +87,7 @@ class SymfonyContainerTest extends TestCase {
    * @return \Iterator<string, array{NamespaceDirectory, string}>
    */
   public static function providerTestSymfonyContainer(): \Iterator {
-    $fixturesNamespaceDir = NamespaceDirectory::fromKnownClass(self::class)
+    $fixturesNamespaceDir = NamespaceDirectory::fromClass(self::class)
       ->subdir('Fixtures');
     foreach ($fixturesNamespaceDir->getSubdirsHere() as $subdir_name => $subNamespaceDir) {
       $dir = $subNamespaceDir->getDirectory();

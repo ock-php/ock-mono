@@ -40,7 +40,7 @@ $basic_namespace_dir = NamespaceDirectory::create($basedir . '/src', 'Acme\\Foo'
 
 // Convenient creation with a "seed" class.
 // The directory is determined automatically with ReflectionClass::getFileName().
-$namespace_dir = NamespaceDirectory::fromKnownClass(VenusFlyTrap::class);
+$namespace_dir = NamespaceDirectory::fromClass(VenusFlyTrap::class);
 
 // Iterate class names by integer key.
 function foo(ClassNamesIAInterface $classNamesIA): void {

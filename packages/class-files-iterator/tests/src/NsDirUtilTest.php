@@ -32,7 +32,7 @@ class NsDirUtilTest extends TestCase {
   }
 
   public function testIterate(): void {
-    $nsdir = NamespaceDirectory::fromKnownClass(PlantInterface::class);
+    $nsdir = NamespaceDirectory::fromClass(PlantInterface::class);
     $this->assertSame(
       [
         __DIR__ . '/Fixtures/Acme/Plant/PlantInterface.php' => PlantInterface::class,

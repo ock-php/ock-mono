@@ -35,22 +35,22 @@ class NamespaceDirectoryTest extends TestCase {
     );
   }
 
-  public function testFromKnownClass(): void {
+  public function testFromClass(): void {
     $this->assertNamespaceDir(
       __DIR__,
       __NAMESPACE__,
-      NamespaceDirectory::fromKnownClass(self::class),
+      NamespaceDirectory::fromClass(self::class),
     );
     // Does not work with non-existing class.
     $this->callAndAssertException(
       \RuntimeException::class,
       // @phpstan-ignore argument.type
-      fn () => NamespaceDirectory::fromKnownClass(__NAMESPACE__ . '\\NonExistingClass'),
+      fn () => NamespaceDirectory::fromClass(__NAMESPACE__ . '\\NonExistingClass'),
     );
     // Does not work with built-in class.
     $this->callAndAssertException(
       \InvalidArgumentException::class,
-      fn() => NamespaceDirectory::fromKnownClass(\stdClass::class),
+      fn() => NamespaceDirectory::fromClass(\stdClass::class),
     );
   }
 
@@ -434,7 +434,7 @@ class NamespaceDirectoryTest extends TestCase {
           __DIR__ . '/Fixtures/Acme/Plant/VenusFlyTrap.php' => VenusFlyTrap::class,
         ],
         [
-          'Tree' => NamespaceDirectory::fromKnownClass(Fig::class),
+          'Tree' => NamespaceDirectory::fromClass(Fig::class),
         ],
       ],
       $nsdir->getElements(),
@@ -456,7 +456,7 @@ class NamespaceDirectoryTest extends TestCase {
     $nsdir = $this->nsdirFromClass(PlantInterface::class);
     $this->assertEquals(
       [
-        'Tree' => NamespaceDirectory::fromKnownClass(Fig::class),
+        'Tree' => NamespaceDirectory::fromClass(Fig::class),
       ],
       iterator_to_array($nsdir->getSubdirsHere()),
     );
@@ -499,7 +499,7 @@ class NamespaceDirectoryTest extends TestCase {
    * @return \Ock\ClassFilesIterator\NamespaceDirectory
    */
   protected function nsdirFromClass(string $class): NamespaceDirectory {
-    $nsdir = NamespaceDirectory::fromKnownClass($class);
+    $nsdir = NamespaceDirectory::fromClass($class);
     $this->registerImmutableObject($nsdir);
     return $nsdir;
   }
