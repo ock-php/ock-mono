@@ -46,13 +46,10 @@ class ReflectionClassesIA {
   }
 
   /**
-   * @param string $class
+   * @param class-string $class
    * @param int $nLevelsUp
    *
    * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
-   *
-   * @throws \ReflectionException
-   *   Class does not exist.
    */
   public static function psr4FromClass(string $class, int $nLevelsUp = 0): ReflectionClassesIAInterface {
     $classFilesIA = ClassFilesIA::psr4FromClass($class, $nLevelsUp);

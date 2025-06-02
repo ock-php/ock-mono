@@ -66,7 +66,7 @@ class ClassFilesIATest extends TestCase {
       $f(Fig::class, -3),
     );
     // @phpstan-ignore argument.type
-    $this->callAndAssertException(\ReflectionException::class, fn () => $f(__NAMESPACE__ . '\\NonExistingClass'));
+    $this->callAndAssertException(\RuntimeException::class, fn () => $f(__NAMESPACE__ . '\\NonExistingClass'));
     $this->callAndAssertException(\RuntimeException::class, fn () => $f(Fig::class, 5));
     $this->callAndAssertException(\RuntimeException::class, fn () => $f(Fig::class, -2));
   }
@@ -101,9 +101,6 @@ class ClassFilesIATest extends TestCase {
     $this->assertFalse($classFilesIA->getIterator()->valid());
   }
 
-  /**
-   * @throws \ReflectionException
-   */
   public function testConcat(): void {
     $concat = new ClassFilesIA_Concat([
       ClassFilesIA::psr4FromClass(Fig::class),

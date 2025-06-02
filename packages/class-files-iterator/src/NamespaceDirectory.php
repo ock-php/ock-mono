@@ -57,20 +57,22 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   /**
    * Creates a namespace directory based on a class name.
    *
-   * @param class-string|string $class
+   * @param class-string $class
    *   A class in the namespace directory.
    *
    * @return self
    *   Namespace directory of this very class file.
-   *
-   * @throws \ReflectionException
-   *   Class does not exist.
    */
   public static function createFromClass(string $class): self {
-    // Accept that `new \ReflectionClass()` will throw an exception if the class
-    // does not exist.
-    // @phpstan-ignore argument.type
-    $reflClass = new \ReflectionClass($class);
+    try {
+      $reflClass = new \ReflectionClass($class);
+    }
+    // The $class parameter is annotated as class-string, but we don't want to
+    // rely on it.
+    // @phpstan-ignore catch.neverThrown
+    catch (\ReflectionException $e) {
+      throw new \RuntimeException($e->getMessage(), 0, $e);
+    }
     return self::fromReflectionClass($reflClass);
   }
 

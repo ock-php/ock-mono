@@ -36,13 +36,10 @@ class ClassFilesIA {
   }
 
   /**
-   * @param string $class
+   * @param class-string $class
    * @param int $nLevelsUp
    *
    * @return \Ock\ClassFilesIterator\NamespaceDirectory
-   *
-   * @throws \ReflectionException
-   *   Class does not exist.
    */
   public static function psr4FromClass(string $class, int $nLevelsUp = 0): NamespaceDirectory {
     $result = NamespaceDirectory::createFromClass($class);
@@ -79,9 +76,6 @@ class ClassFilesIA {
    * @param class-string[] $classes
    *
    * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
-   *
-   * @throws \ReflectionException
-   *   One of the classes does not exist.
    */
   public static function psr4FromClasses(array $classes): ClassFilesIAInterface {
     return self::multiple(array_map(

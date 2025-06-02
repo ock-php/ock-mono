@@ -62,7 +62,8 @@ class NamespaceDirectoryTest extends TestCase {
     );
     // Does not work with non-existing class.
     $this->callAndAssertException(
-      \ReflectionException::class,
+      \RuntimeException::class,
+      // @phpstan-ignore argument.type
       fn () => NamespaceDirectory::createFromClass(__NAMESPACE__ . '\\NonExistingClass'),
     );
     // Does not work with built-in class.
