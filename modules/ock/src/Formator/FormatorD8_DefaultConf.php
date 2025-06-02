@@ -43,8 +43,10 @@ class FormatorD8_DefaultConf implements FormatorD8Interface {
    * @param \Drupal\ock\Formator\FormatorD8Interface $decorated
    * @param mixed $defaultConf
    */
-  public function __construct(private readonly FormatorD8Interface $decorated, private readonly mixed $defaultConf) {
-  }
+  public function __construct(
+    private readonly FormatorD8Interface $decorated,
+    private readonly mixed $defaultConf,
+  ) {}
 
   /**
    * {@inheritdoc}
