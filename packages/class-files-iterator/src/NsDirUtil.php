@@ -27,7 +27,7 @@ class NsDirUtil {
   /**
    * Recursively iterates over class files.
    *
-   * @param string $dir
+   * @param string $directory
    *   Directory without trailing slash.
    * @param string $terminatedNamespace
    *   Namespace with trailing separator.
@@ -35,35 +35,35 @@ class NsDirUtil {
    * @return \Iterator<string, class-string>
    *   Format: $[$file] = $class
    */
-  public static function iterate(string $dir, string $terminatedNamespace): \Iterator {
-    assert(!str_ends_with($dir, '/'));
+  public static function iterate(string $directory, string $terminatedNamespace): \Iterator {
+    assert(!str_ends_with($directory, '/'));
     assert(str_ends_with($terminatedNamespace, '\\') || $terminatedNamespace === '');
-    self::assertReadableDirectory($dir);
-    return self::doIterateRecursively($dir, $terminatedNamespace);
+    self::assertReadableDirectory($directory);
+    return self::doIterateRecursively($directory, $terminatedNamespace);
   }
 
   /**
    * Asserts that a path is a readable directory.
    *
-   * @param string $dir
+   * @param string $directory
    *   Directory path.
    */
-  public static function assertReadableDirectory(string $dir): void {
-    if (!is_dir($dir)) {
-      if (!file_exists($dir)) {
-        throw new \RuntimeException("Directory '$dir' does not exist.");
+  public static function assertReadableDirectory(string $directory): void {
+    if (!is_dir($directory)) {
+      if (!file_exists($directory)) {
+        throw new \RuntimeException("Directory '$directory' does not exist.");
       }
-      throw new \RuntimeException("Path '$dir' is not a directory.");
+      throw new \RuntimeException("Path '$directory' is not a directory.");
     }
-    if (!is_readable($dir)) {
-      throw new \RuntimeException("Directory '$dir' is not readable.");
+    if (!is_readable($directory)) {
+      throw new \RuntimeException("Directory '$directory' is not readable.");
     }
   }
 
   /**
    * Recursively iterates over class files.
    *
-   * @param string $dir
+   * @param string $directory
    *   Directory without trailing slash.
    * @param string $terminatedNamespace
    *   Namespace with trailing separator.
@@ -71,16 +71,16 @@ class NsDirUtil {
    * @return \Iterator<string, class-string>
    *   Format: $[$file] = $class
    */
-  private static function doIterateRecursively(string $dir, string $terminatedNamespace): \Iterator {
-    $contents = DirectoryContents::load($dir);
+  private static function doIterateRecursively(string $directory, string $terminatedNamespace): \Iterator {
+    $contents = DirectoryContents::load($directory);
     foreach ($contents->iterateClassAndNamespaceMap() as $name => $is_namespace) {
       if (!$is_namespace) {
         // @phpstan-ignore generator.valueType
-        yield $dir . '/' . $name . '.php' => $terminatedNamespace . $name;
+        yield $directory . '/' . $name . '.php' => $terminatedNamespace . $name;
       }
       else {
         yield from self::doIterateRecursively(
-          $dir . '/' . $name,
+          $directory . '/' . $name,
           $terminatedNamespace . $name . '\\',
         );
       }

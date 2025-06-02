@@ -17,14 +17,14 @@ class ClassFilesIA_Psr4 implements ClassFilesIAInterface {
   ) {}
 
   /**
-   * @param string $dir
+   * @param string $directory
    * @param string $namespace
    *
    * @return self
    */
-  public static function create(string $dir, string $namespace): self {
+  public static function create(string $directory, string $namespace): self {
     return new self(
-      $dir,
+      $directory,
       NsDirUtil::terminateNamespace($namespace),
     );
   }
