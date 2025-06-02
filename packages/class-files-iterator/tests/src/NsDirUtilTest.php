@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Ock\ClassFilesIterator\Tests;
 
+use Ock\ClassFilesIterator\DirectoryContents;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Ock\ClassFilesIterator\NsDirUtil;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\PlantInterface;
@@ -16,6 +17,7 @@ use PHPUnit\Framework\TestCase;
 
 #[CoversClass(NsDirUtil::class)]
 #[UsesClass(NamespaceDirectory::class)]
+#[UsesClass(DirectoryContents::class)]
 class NsDirUtilTest extends TestCase {
 
   use ExceptionTestTrait;
@@ -83,11 +85,6 @@ class NsDirUtilTest extends TestCase {
     // The directory will appear as empty.
     chmod($dir, $perms & 0444);
     $f($dir);
-  }
-
-  public function testGetDirContents(): void {
-    $f = NsDirUtil::getDirContents(...);
-    $this->callAndAssertException(\UnexpectedValueException::class, fn () => $f(__DIR__ . '/NonExistingDir'));
   }
 
 }
