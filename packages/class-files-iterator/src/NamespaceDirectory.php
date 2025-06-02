@@ -525,7 +525,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *   Format: $[$file] = $class
    */
   public function getIterator(): \Iterator {
-    return self::scan($this->directory, $this->terminatedNamespace);
+    return NsDirUtil::iterate($this->directory, $this->terminatedNamespace);
   }
 
   /**
@@ -597,45 +597,6 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
-   * @param string $dir
-   * @param string $terminatedNamespace
-   *
-   * @return \Iterator<string, class-string>
-   *   Format: $[$file] = $class
-   */
-  private static function scan(string $dir, string $terminatedNamespace): \Iterator {
-    foreach (self::scanKnownDir($dir) as $candidate) {
-      if ('.' === $candidate[0]) {
-        continue;
-      }
-      $path = $dir . '/' . $candidate;
-      if (\str_ends_with($candidate, '.php')) {
-        if (!is_file($path)) {
-          continue;
-        }
-        $name = substr($candidate, 0, -4);
-        if (!preg_match(self::CLASS_NAME_REGEX, $name)) {
-          continue;
-        }
-        // @phpstan-ignore generator.valueType
-        yield $path => $terminatedNamespace . $name;
-      }
-      else {
-        if (!is_dir($path)) {
-          continue;
-        }
-        if (!preg_match(self::CLASS_NAME_REGEX, $candidate)) {
-          continue;
-        }
-        yield from self::scan(
-          $path,
-          $terminatedNamespace . $candidate . '\\',
-        );
-      }
-    }
-  }
-
-  /**
    * Runs scandir() on this namespace directory.
    *
    * Throws a runtime exception on failure, instead of returning false.
@@ -647,31 +608,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *   This also includes '.' and '..'.
    */
   private function scanThisDir(): array {
-    return self::scanKnownDir($this->directory);
-  }
-
-  /**
-   * Runs scandir() on a known directory.
-   *
-   * Throws a runtime exception on failure, instead of returning false.
-   * This is considered an unhandled exception, because it is assumed that the
-   * given directory always exists.
-   *
-   * @param string $dir
-   *   Known directory to scan.
-   *
-   * @return list<string>
-   *   Items in the directory in alphabetic order.
-   *   This also includes '.' and '..'.
-   *   Calling code already does filtering with regex or other means, so it
-   *   would be redundant to do additional filtering here.
-   */
-  private static function scanKnownDir(string $dir): array {
-    $candidates = @\scandir($dir, \SCANDIR_SORT_ASCENDING);
-    if ($candidates === false) {
-      throw new \RuntimeException("Failed to scandir('$dir').");
-    }
-    return $candidates;
+    return NsDirUtil::scanKnownDir($this->directory);
   }
 
 }

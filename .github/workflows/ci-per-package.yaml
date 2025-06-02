@@ -79,11 +79,12 @@ jobs:
             exit 0
           fi
           expected=$(head -n 1 .coverage)
-          line=$(grep -o '<metrics[^>]*>' build/logs/clover.xml | head -1)
+          line=$(grep -o '<metrics[^>]*>' build/logs/clover.xml | tail -1)
           total=$(echo "$line" | sed -n 's/.* statements="\([0-9]*\)".*/\1/p')
           covered=$(echo "$line" | sed -n 's/.* coveredstatements="\([0-9]*\)".*/\1/p')
           percentage=$(echo "$covered / $total * 100" | bc -l)
           if [ $(echo "$covered * 100 < $expected * $total" | bc) -eq 1  ]; then
+            cat build/logs/clover.xml
             echo "Fail: Expected at least $expected% coverage, found $percentage% coverage."
             exit 1
           fi

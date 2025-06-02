@@ -445,7 +445,7 @@ class NamespaceDirectoryTest extends TestCase {
       iterator_to_array($nsdir->getIterator()),
     );
     $bad_nsdir = $this->nsdir(__DIR__ . '/non/existing/subdir', 'Acme\Missing');
-    $this->callAndAssertException(\RuntimeException::class, $bad_nsdir->getIterator()->valid(...));
+    $this->callAndAssertException(\RuntimeException::class, $bad_nsdir->getIterator(...));
   }
 
   public function testGetElements(): void {

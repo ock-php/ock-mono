@@ -8,11 +8,6 @@ use Ock\ClassFilesIterator\NsDirUtil;
 class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
 
   /**
-   * See http://php.net/manual/en/language.oop5.basic.php
-   */
-  const CLASS_NAME_REGEX = /** @lang RegExp */ '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/';
-
-  /**
    * @param string $dir
    * @param string $namespace
    *
@@ -78,48 +73,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * {@inheritdoc}
    */
   public function getIterator(): \Iterator {
-    return self::scan($this->directory, $this->terminatedNamespace);
+    return NsDirUtil::iterate($this->directory, $this->terminatedNamespace);
   }
 
-  /**
-   * @param string $dir
-   * @param string $terminatedNamespace
-   *
-   * @return \Iterator<string, class-string>
-   *   Format: $[$file] = $class
-   */
-  private static function scan(string $dir, string $terminatedNamespace): \Iterator {
-    $candidates = @\scandir($dir, \SCANDIR_SORT_ASCENDING);
-    if ($candidates === false) {
-      throw new \RuntimeException("Failed to scandir('$dir').");
-    }
-    foreach ($candidates as $candidate) {
-      if ('.' === $candidate[0]) {
-        continue;
-      }
-      $path = $dir . '/' . $candidate;
-      if (str_ends_with($candidate, '.php')) {
-        if (!is_file($path)) {
-          continue;
-        }
-        $name = substr($candidate, 0, -4);
-        if (!preg_match(self::CLASS_NAME_REGEX, $name)) {
-          continue;
-        }
-        // The value is a class-string, but PhpStan does not know.
-        // @phpstan-ignore generator.valueType
-        yield $path => $terminatedNamespace . $name;
-      }
-      else {
-        if (!is_dir($path)) {
-          continue;
-        }
-        if (!preg_match(self::CLASS_NAME_REGEX, $candidate)) {
-          continue;
-        }
-        // @todo Make PHP 7 version with "yield from".
-        yield from self::scan($path, $terminatedNamespace . $candidate . '\\');
-      }
-    }
-  }
 }
