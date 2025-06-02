@@ -47,7 +47,9 @@ class ReflectionClassesIA {
 
   /**
    * @param class-string $class
+   *   Known class in the directory to be searched.
    * @param int $nLevelsUp
+   *   Depth of the class namespace relative to the search namespace.
    *
    * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
    */
