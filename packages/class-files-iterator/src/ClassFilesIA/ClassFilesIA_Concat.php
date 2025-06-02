@@ -20,14 +20,4 @@ class ClassFilesIA_Concat implements ClassFilesIAInterface {
     }
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function withRealpathRoot(): static {
-    $clone = clone $this;
-    foreach ($clone->classFilesIAs as $i => $classFilesIA) {
-      $clone->classFilesIAs[$i] = $classFilesIA->withRealpathRoot();
-    }
-    return $clone;
-  }
 }

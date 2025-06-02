@@ -85,31 +85,6 @@ class NamespaceDirectoryTest extends TestCase {
     );
   }
 
-  public function testWithRealpathRoot(): void {
-    $c = fn (string $dir) => NamespaceDirectory::create($dir, 'Acme\Zoo');
-    $realpath = realpath(__DIR__) ?: $this->fail();
-    $crooked_path = __DIR__ . '/../src';
-    $this->assertFalse(str_ends_with($realpath, '/../src'));
-    $obj_with_realpath = $c($realpath);
-    $this->assertEquals($obj_with_realpath, $c($crooked_path)->withRealpathRoot());
-
-    // A new clone is returned even though values are the same.
-    // Perhaps this will change in the future.
-    $this->assertEquals($obj_with_realpath, $obj_with_realpath->withRealpathRoot());
-    $this->assertNotSame($obj_with_realpath, $obj_with_realpath->withRealpathRoot());
-
-    // Test effect on the iterator.
-    $this->assertSame($realpath, dirname($obj_with_realpath->getIterator()->key()));
-    $this->assertSame($crooked_path, dirname($c($crooked_path)->getIterator()->key()));
-
-    $this->callAndAssertException(
-      \RuntimeException::class,
-      $this
-        ->nsdir(__DIR__ . '/non/existing/path', 'Acme\Zoo')
-        ->withRealpathRoot(...),
-    );
-  }
-
   public function testFindNamespace(): void {
     $nsdir = $this->nsdir('path/to/package/src/Animal/Mammal', 'Acme\Zoo\Animal\Mammal');
     $this->assertSame($nsdir, $nsdir->findNamespace('Acme\Zoo\Animal\Mammal'));
