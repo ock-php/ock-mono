@@ -8,6 +8,15 @@ use Ock\ClassFilesIterator\NsDirUtil;
 class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
 
   /**
+   * @param string $directory
+   * @param string $terminatedNamespace
+   */
+  public function __construct(
+    private readonly string $directory,
+    private readonly string $terminatedNamespace,
+  ) {}
+
+  /**
    * @param string $dir
    * @param string $namespace
    *
@@ -47,15 +56,6 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
       $nsdir->getTerminatedNamespace(),
     );
   }
-
-  /**
-   * @param string $directory
-   * @param string $terminatedNamespace
-   */
-  public function __construct(
-    private readonly string $directory,
-    private readonly string $terminatedNamespace,
-  ) {}
 
   /**
    * {@inheritdoc}

@@ -10,6 +10,19 @@ use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface;
 final class NamespaceDirectory implements ClassFilesIAInterface {
 
   /**
+   * Constructor.
+   *
+   * @param string $directory
+   *   Directory without trailing slash.
+   * @param string $terminatedNamespace
+   *   Namespace ending with separator, or '' for the root namespace.
+   */
+  private function __construct(
+    private readonly string $directory,
+    private readonly string $terminatedNamespace,
+  ) {}
+
+  /**
    * Creates a new instance.
    *
    * @param string $directory
@@ -83,19 +96,6 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
       $reflection_class->getNamespaceName(),
     );
   }
-
-  /**
-   * Constructor.
-   *
-   * @param string $directory
-   *   Directory without trailing slash.
-   * @param string $terminatedNamespace
-   *   Namespace ending with separator, or '' for the root namespace.
-   */
-  private function __construct(
-    private readonly string $directory,
-    private readonly string $terminatedNamespace,
-  ) {}
 
   /**
    * @param string $namespace
