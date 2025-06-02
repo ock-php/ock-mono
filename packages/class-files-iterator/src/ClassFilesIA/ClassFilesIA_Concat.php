@@ -8,7 +8,7 @@ class ClassFilesIA_Concat implements ClassFilesIAInterface {
    * @param \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
    */
   public function __construct(
-    private array $classFilesIAs,
+    private readonly array $classFilesIAs,
   ) {}
 
   /**
