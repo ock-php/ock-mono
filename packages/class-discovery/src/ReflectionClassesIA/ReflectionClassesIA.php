@@ -63,7 +63,7 @@ class ReflectionClassesIA {
    * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
    */
   public static function psr4FromKnownClass(string $class, int $nLevelsUp = 0): ReflectionClassesIAInterface {
-    $classFilesIA = ClassFilesIA::psr4FromKnownClass($class, $nLevelsUp);
+    $classFilesIA = ClassFilesIA::psr4FromClass($class, $nLevelsUp);
     return new ReflectionClassesIA_ClassFilesIA($classFilesIA);
   }
 

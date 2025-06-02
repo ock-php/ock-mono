@@ -146,25 +146,21 @@ class ClassFilesIATest extends TestCase {
   }
 
   public function testFactoryPsr4FromClass(): void {
-    foreach ([
-      ClassFilesIA::psr4FromClass(...),
-      ClassFilesIA::psr4FromKnownClass(...),
-    ] as $f) {
-      $fn = fn (int ...$args) => $f(Fig::class, ...$args);
-      $this->assertEquals($default = NamespaceDirectory::create(
-        __DIR__ . '/Fixtures/Acme/Plant/Tree',
-        __NAMESPACE__ . '\Fixtures\Acme\Plant\Tree',
-      ), $fn());
-      $this->assertEquals($default, $fn(0));
-      $this->assertEquals(NamespaceDirectory::create(
-        __DIR__ . '/Fixtures/Acme/Plant',
-        __NAMESPACE__ . '\Fixtures\Acme\Plant',
-      ), $fn(1));
-      $this->assertEquals(NamespaceDirectory::create(
-        __DIR__,
-        __NAMESPACE__,
-      ), $fn(-3));
-    }
+    $f = ClassFilesIA::psr4FromClass(...);
+    $fn = fn (int ...$args) => $f(Fig::class, ...$args);
+    $this->assertEquals($default = NamespaceDirectory::create(
+      __DIR__ . '/Fixtures/Acme/Plant/Tree',
+      __NAMESPACE__ . '\Fixtures\Acme\Plant\Tree',
+    ), $fn());
+    $this->assertEquals($default, $fn(0));
+    $this->assertEquals(NamespaceDirectory::create(
+      __DIR__ . '/Fixtures/Acme/Plant',
+      __NAMESPACE__ . '\Fixtures\Acme\Plant',
+    ), $fn(1));
+    $this->assertEquals(NamespaceDirectory::create(
+      __DIR__,
+      __NAMESPACE__,
+    ), $fn(-3));
   }
 
   public function testFactoryMultiple(): void {

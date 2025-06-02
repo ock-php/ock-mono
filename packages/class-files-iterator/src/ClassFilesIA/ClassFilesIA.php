@@ -50,20 +50,6 @@ class ClassFilesIA {
   }
 
   /**
-   * @param class-string $class
-   * @param int $nLevelsUp
-   *
-   * @return \Ock\ClassFilesIterator\NamespaceDirectory
-   */
-  public static function psr4FromKnownClass(string $class, int $nLevelsUp = 0): NamespaceDirectory {
-    $result = NamespaceDirectory::fromClass($class);
-    if ($nLevelsUp !== 0) {
-      $result = $result->requireParentN($nLevelsUp);
-    }
-    return $result;
-  }
-
-  /**
    * @param \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface[] $classFilesIAs
    *
    * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
