@@ -40,7 +40,7 @@ class NsDirUtilTest extends TestCase {
       iterator_to_array(NsDirUtil::iterate($nsdir->getDirectory(), $nsdir->getTerminatedNamespace())),
     );
 
-    $assert_exception = fn (string $path) => $this->callAndAssertException(\RuntimeException::class, NsDirUtil::iterate($path, '')->valid(...));
+    $assert_exception = fn (string $path) => $this->callAndAssertException(\RuntimeException::class, fn () => NsDirUtil::iterate($path, ''));
 
     $assert_exception(__DIR__ . '/NonExistingSubdir');
     $assert_exception(__FILE__);
@@ -60,6 +60,29 @@ class NsDirUtilTest extends TestCase {
     chmod($dir, $perms & 0444);
     $this->assertNull(NsDirUtil::iterate($dir, '')->key());
     $this->assertFalse(@include $file);
+  }
+
+  public function testAssertReadableDirectory(): void {
+    $f = NsDirUtil::assertReadableDirectory(...);
+    $assert_exception = fn(string $path) => $this->callAndAssertException(\RuntimeException::class, fn () => $f($path));
+
+    $f(__DIR__);
+    $assert_exception(__DIR__ . '/NonExistingSubdir');
+    $assert_exception(__FILE__);
+
+    mkdir($dir = sys_get_temp_dir() . '/test-dir-' . uniqid());
+    $perms = fileperms($dir) & 0777;
+    touch($file = $dir . '/Test.php');
+    $f($dir);
+
+    // Write and "execute" permissions.
+    chmod($dir, $perms & 0333);
+    $assert_exception($dir);
+
+    // Only read permissions, no execute bit.
+    // The directory will appear as empty.
+    chmod($dir, $perms & 0444);
+    $f($dir);
   }
 
   public function testScanKnownDir(): void {

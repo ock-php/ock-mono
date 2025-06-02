@@ -109,7 +109,7 @@ class ClassFilesIATest extends TestCase {
       __DIR__ . '/Fixtures/Acme/Plant/Tree/Fig.php' => Fig::class,
       __DIR__ . '/Fixtures/Acme/Plant/VenusFlyTrap.php' => VenusFlyTrap::class,
     ], $classFiles);
-    $this->callAndAssertException(\RuntimeException::class, ClassFilesIA_NamespaceDirectoryPsr4::create(__DIR__ . '/non/existing/subdir', 'Acme\\Zoo')->getIterator()->valid(...));
+    $this->callAndAssertException(\RuntimeException::class, ClassFilesIA_NamespaceDirectoryPsr4::create(__DIR__ . '/non/existing/subdir', 'Acme\\Zoo')->getIterator(...));
   }
 
   public function testEmpty(): void {

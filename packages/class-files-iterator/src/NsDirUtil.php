@@ -43,7 +43,26 @@ class NsDirUtil {
   public static function iterate(string $dir, string $terminatedNamespace): \Iterator {
     assert(!str_ends_with($dir, '/'));
     assert(str_ends_with($terminatedNamespace, '\\') || $terminatedNamespace === '');
+    self::assertReadableDirectory($dir);
     return self::doIterateRecursively($dir, $terminatedNamespace);
+  }
+
+  /**
+   * Asserts that a path is a readable directory.
+   *
+   * @param string $dir
+   *   Directory path.
+   */
+  public static function assertReadableDirectory(string $dir): void {
+    if (!is_dir($dir)) {
+      if (!file_exists($dir)) {
+        throw new \RuntimeException("Directory '$dir' does not exist.");
+      }
+      throw new \RuntimeException("Path '$dir' is not a directory.");
+    }
+    if (!is_readable($dir)) {
+      throw new \RuntimeException("Directory '$dir' is not readable.");
+    }
   }
 
   /**
