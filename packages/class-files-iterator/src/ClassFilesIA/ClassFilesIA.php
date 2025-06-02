@@ -42,7 +42,7 @@ class ClassFilesIA {
    * @return \Ock\ClassFilesIterator\NamespaceDirectory
    */
   public static function psr4FromClass(string $class, int $nLevelsUp = 0): NamespaceDirectory {
-    $result = NamespaceDirectory::createFromClass($class);
+    $result = NamespaceDirectory::fromClass($class);
     if ($nLevelsUp !== 0) {
       $result = $result->requireParentN($nLevelsUp);
     }

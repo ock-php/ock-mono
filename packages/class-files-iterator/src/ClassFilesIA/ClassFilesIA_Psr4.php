@@ -36,7 +36,7 @@ class ClassFilesIA_Psr4 implements ClassFilesIAInterface {
    * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
    */
   public static function createFromClass(string $class, int $nLevelsUp = 0): ClassFilesIAInterface {
-    $nsDir = NamespaceDirectory::createFromClass($class)
+    $nsDir = NamespaceDirectory::fromClass($class)
       ->requireParentN($nLevelsUp);
     return self::createFromNsdirObject($nsDir);
   }

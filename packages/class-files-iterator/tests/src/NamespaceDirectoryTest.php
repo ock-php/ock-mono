@@ -50,26 +50,7 @@ class NamespaceDirectoryTest extends TestCase {
     // Does not work with built-in class.
     $this->callAndAssertException(
       \InvalidArgumentException::class,
-      fn() => NamespaceDirectory::fromClass(\stdClass::class),
-    );
-  }
-
-  public function testCreateFromClass(): void {
-    $this->assertNamespaceDir(
-      __DIR__,
-      __NAMESPACE__,
-      NamespaceDirectory::createFromClass(self::class),
-    );
-    // Does not work with non-existing class.
-    $this->callAndAssertException(
-      \RuntimeException::class,
-      // @phpstan-ignore argument.type
-      fn () => NamespaceDirectory::createFromClass(__NAMESPACE__ . '\\NonExistingClass'),
-    );
-    // Does not work with built-in class.
-    $this->callAndAssertException(
-      \InvalidArgumentException::class,
-      fn () => NamespaceDirectory::createFromClass(\stdClass::class),
+      fn () => NamespaceDirectory::fromClass(\stdClass::class),
     );
   }
 
