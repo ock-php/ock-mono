@@ -53,7 +53,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
    * @param string $terminatedNamespace
    */
   public function __construct(
-    private string $directory,
+    private readonly string $directory,
     private readonly string $terminatedNamespace,
   ) {}
 

@@ -93,7 +93,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    *   Namespace ending with separator, or '' for the root namespace.
    */
   private function __construct(
-    private string $directory,
+    private readonly string $directory,
     private readonly string $terminatedNamespace,
   ) {}
 
