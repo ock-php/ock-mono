@@ -57,9 +57,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
     );
   }
 
-  /**
-   * {@inheritdoc}
-   */
+  #[\Override]
   public function getIterator(): \Iterator {
     return NsDirUtil::iterate($this->directory, $this->terminatedNamespace);
   }

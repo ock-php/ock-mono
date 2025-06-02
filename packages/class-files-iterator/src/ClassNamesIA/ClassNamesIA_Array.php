@@ -26,9 +26,7 @@ class ClassNamesIA_Array implements ClassNamesIAInterface {
     ), 'Array values must be class names.');
   }
 
-  /**
-   * {@inheritdoc}
-   */
+  #[\Override]
   public function getIterator(): \Iterator {
     yield from $this->values;
   }

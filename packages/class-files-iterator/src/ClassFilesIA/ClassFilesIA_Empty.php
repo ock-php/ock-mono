@@ -4,9 +4,7 @@ namespace Ock\ClassFilesIterator\ClassFilesIA;
 
 class ClassFilesIA_Empty implements ClassFilesIAInterface {
 
-  /**
-   * {@inheritdoc}
-   */
+  #[\Override]
   public function getIterator(): \Iterator {
     return new \EmptyIterator();
   }

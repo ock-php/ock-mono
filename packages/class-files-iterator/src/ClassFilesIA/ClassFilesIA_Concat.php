@@ -11,9 +11,7 @@ class ClassFilesIA_Concat implements ClassFilesIAInterface {
     private readonly array $classFilesIAs,
   ) {}
 
-  /**
-   * {@inheritdoc}
-   */
+  #[\Override]
   public function getIterator(): \Iterator {
     foreach ($this->classFilesIAs as $classFilesIA) {
       yield from $classFilesIA;

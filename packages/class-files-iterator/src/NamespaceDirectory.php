@@ -498,10 +498,7 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
     return $relativeTerminatedPath;
   }
 
-  /**
-   * @return \Iterator<string, class-string>
-   *   Format: $[$file] = $class
-   */
+  #[\Override]
   public function getIterator(): \Iterator {
     return NsDirUtil::iterate($this->directory, $this->terminatedNamespace);
   }
