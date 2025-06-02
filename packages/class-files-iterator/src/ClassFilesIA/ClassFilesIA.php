@@ -54,7 +54,7 @@ class ClassFilesIA {
    *
    * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
    */
-  public static function multiple(array $classFilesIAs): ClassFilesIAInterface {
+  public static function concat(array $classFilesIAs): ClassFilesIAInterface {
     return new ClassFilesIA_Concat($classFilesIAs);
   }
 
@@ -64,7 +64,7 @@ class ClassFilesIA {
    * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
    */
   public static function psr4FromClasses(array $classes): ClassFilesIAInterface {
-    return self::multiple(array_map(
+    return self::concat(array_map(
       self::psr4FromClass(...),
       $classes,
     ));

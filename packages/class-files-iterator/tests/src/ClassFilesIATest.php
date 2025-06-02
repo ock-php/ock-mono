@@ -163,11 +163,11 @@ class ClassFilesIATest extends TestCase {
     ), $fn(-3));
   }
 
-  public function testFactoryMultiple(): void {
+  public function testFactoryConcat(): void {
     $parts = [new ClassFilesIA_Empty()];
     $this->assertEquals(
       new ClassFilesIA_Concat($parts),
-      ClassFilesIA::multiple($parts),
+      ClassFilesIA::concat($parts),
     );
   }
 
