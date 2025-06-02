@@ -5,7 +5,7 @@ namespace Ock\ClassFilesIterator\ClassFilesIA;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Ock\ClassFilesIterator\NsDirUtil;
 
-class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
+class ClassFilesIA_Psr4 implements ClassFilesIAInterface {
 
   /**
    * @param string $directory

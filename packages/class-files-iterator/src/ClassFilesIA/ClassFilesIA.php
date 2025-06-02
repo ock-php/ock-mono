@@ -17,7 +17,7 @@ class ClassFilesIA {
    * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
    */
   public static function psr4(string $dir, string $namespace): ClassFilesIAInterface {
-    return new ClassFilesIA_NamespaceDirectoryPsr4(
+    return new ClassFilesIA_Psr4(
       $dir,
       NsDirUtil::terminateNamespace($namespace),
     );
