@@ -6,6 +6,7 @@ use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA;
 use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA_Concat;
 use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA_Empty;
 use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
+use Ock\ClassFilesIterator\DirectoryContents;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Ock\ClassFilesIterator\NsDirUtil;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Animal\GreySquirrel;
@@ -24,6 +25,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(ClassFilesIA_NamespaceDirectoryPsr4::class)]
 #[UsesClass(NamespaceDirectory::class)]
 #[UsesClass(NsDirUtil::class)]
+#[UsesClass(DirectoryContents::class)]
 class ClassFilesIATest extends TestCase {
 
   use ExceptionTestTrait;

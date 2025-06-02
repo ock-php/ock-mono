@@ -2,6 +2,7 @@
 
 namespace Ock\ClassFilesIterator\Tests;
 
+use Ock\ClassFilesIterator\DirectoryContents;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Ock\ClassFilesIterator\NsDirUtil;
 use Ock\ClassFilesIterator\Tests\Fixtures\Acme\Plant\PlantInterface;
@@ -15,6 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 #[CoversClass(NamespaceDirectory::class)]
 #[UsesClass(NsDirUtil::class)]
+#[UsesClass(DirectoryContents::class)]
 class NamespaceDirectoryTest extends TestCase {
 
   use ExceptionTestTrait;

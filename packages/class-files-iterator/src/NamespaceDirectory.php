@@ -10,13 +10,6 @@ use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface;
 final class NamespaceDirectory implements ClassFilesIAInterface {
 
   /**
-   * See http://php.net/manual/en/language.oop5.basic.php
-   */
-  const CLASS_NAME_REGEX = /** @lang RegExp */ '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/';
-
-  const CANDIDATE_REGEX = /** @lang RegExp */ '/^([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(\.php|)$/';
-
-  /**
    * Creates a new instance.
    *
    * @param string $directory
@@ -534,24 +527,12 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   public function getElements(): array {
     $classes = [];
     $subdirs = [];
-    foreach (NsDirUtil::getDirContents($this->directory) as $candidate => $is_dir) {
-      if (!$is_dir) {
-        if (!\str_ends_with($candidate, '.php')) {
-          continue;
-        }
-        $path = $this->directory . '/' . $candidate;
-        $name = \substr($candidate, 0, -4);
-        if (!\preg_match(self::CLASS_NAME_REGEX, $name)) {
-          continue;
-        }
-        $classes[$path] = $this->terminatedNamespace . $name;
-      }
-      else {
-        if (!\preg_match(self::CLASS_NAME_REGEX, $candidate)) {
-          continue;
-        }
-        $subdirs[$candidate] = $this->subdir($candidate);
-      }
+    $contents = DirectoryContents::load($this->directory);
+    foreach ($contents->getClassNames() as $name) {
+      $classes[$this->directory . '/' . $name . '.php'] = $this->terminatedNamespace . $name;
+    }
+    foreach ($contents->getNamespaceNames() as $name) {
+      $subdirs[$name] = $this->subdir($name);
     }
     /** @var array<string, class-string> $classes */
     return [$classes, $subdirs];
@@ -562,15 +543,8 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    */
   public function getClassFilesHere(): array {
     $classFiles = [];
-    foreach (NsDirUtil::getDirContents($this->directory) as $candidate => $is_dir) {
-      if ($is_dir || !\str_ends_with($candidate, '.php')) {
-        continue;
-      }
-      $path = $this->directory . '/' . $candidate;
-      $name = \substr($candidate, 0, -4);
-      if (!\preg_match(self::CLASS_NAME_REGEX, $name)) {
-        continue;
-      }
+    foreach (DirectoryContents::load($this->directory)->getClassNames() as $name) {
+      $path = $this->directory . '/' . $name . '.php';
       $classFiles[$path] = $this->terminatedNamespace . $name;
     }
     /** @var array<string, class-string> $classFiles */
@@ -581,11 +555,8 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
    * @return \Iterator<string, static>
    */
   public function getSubdirsHere(): \Iterator {
-    foreach (NsDirUtil::getDirContents($this->directory) as $candidate => $is_dir) {
-      if (!$is_dir || !preg_match(self::CLASS_NAME_REGEX, $candidate)) {
-        continue;
-      }
-      yield $candidate => $this->subdir($candidate);
+    foreach (DirectoryContents::load($this->directory)->getNamespaceNames() as $name) {
+      yield $name => $this->subdir($name);
     }
   }
 
