@@ -72,7 +72,7 @@ class ClassFilesIATest extends TestCase {
   }
 
   public function testCreateFromNsdirObject(): void {
-    $f = fn (string $dir) => ClassFilesIA_Psr4::createFromNsdirObject(NamespaceDirectory::create($dir, 'Acme\Zoo'));
+    $f = fn (string $dir) => ClassFilesIA_Psr4::fromNsdirObject(NamespaceDirectory::create($dir, 'Acme\Zoo'));
     $c = fn (string $dir) => new ClassFilesIA_Psr4($dir, 'Acme\Zoo\\');
     $this->assertEquals($c(__DIR__), $f(__DIR__));
     $this->assertEquals(new ClassFilesIA_Empty(), $f(__DIR__ . '/non/existing/subdir'));

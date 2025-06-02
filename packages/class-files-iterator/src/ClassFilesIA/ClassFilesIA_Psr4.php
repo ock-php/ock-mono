@@ -38,7 +38,7 @@ class ClassFilesIA_Psr4 implements ClassFilesIAInterface {
   public static function fromClass(string $class, int $nLevelsUp = 0): ClassFilesIAInterface {
     $nsDir = NamespaceDirectory::fromClass($class)
       ->requireParentN($nLevelsUp);
-    return self::createFromNsdirObject($nsDir);
+    return self::fromNsdirObject($nsDir);
   }
 
   /**
@@ -46,7 +46,7 @@ class ClassFilesIA_Psr4 implements ClassFilesIAInterface {
    *
    * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
    */
-  public static function createFromNsdirObject(NamespaceDirectory $nsdir): ClassFilesIAInterface {
+  public static function fromNsdirObject(NamespaceDirectory $nsdir): ClassFilesIAInterface {
     if (!is_dir($nsdir->getDirectory())) {
       return new ClassFilesIA_Empty();
     }
