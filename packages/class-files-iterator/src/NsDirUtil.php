@@ -95,7 +95,7 @@ class NsDirUtil {
       }
       else {
         if (!is_dir($path)) {
-          continue;
+          continue;  // @codeCoverageIgnore
         }
         if (!preg_match(self::CLASS_NAME_REGEX, $candidate)) {
           continue;
