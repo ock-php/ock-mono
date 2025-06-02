@@ -38,8 +38,8 @@ class ClassFilesIATest extends TestCase {
     $this->assertEquals($c('Acme\\Zoo\\'), $f('Acme\\Zoo'));
   }
 
-  public function testCreateFromClass(): void {
-    $f = ClassFilesIA_Psr4::createFromClass(...);
+  public function testFromClass(): void {
+    $f = ClassFilesIA_Psr4::fromClass(...);
     $this->assertEquals(
       new ClassFilesIA_Psr4(__DIR__, __NAMESPACE__ . '\\'),
       $f(self::class),
@@ -82,7 +82,7 @@ class ClassFilesIATest extends TestCase {
    * @throws \ReflectionException
    */
   public function testGetIterator(): void {
-    $classFilesIA = ClassFilesIA_Psr4::createFromClass(
+    $classFilesIA = ClassFilesIA_Psr4::fromClass(
       PlantInterface::class,
       1);
     $classFiles = iterator_to_array($classFilesIA->getIterator());
