@@ -15,7 +15,7 @@ abstract class CurrentNamespaceBase extends ReflectionClassesIA_ClassFilesIA {
    * Constructor.
    */
   public function __construct() {
-    $classFilesIA = NamespaceDirectory::fromKnownClass(static::class);
+    $classFilesIA = NamespaceDirectory::fromClass(static::class);
     parent::__construct($classFilesIA);
   }
 

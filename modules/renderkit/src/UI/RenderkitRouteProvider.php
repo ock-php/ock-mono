@@ -22,7 +22,7 @@ class RenderkitRouteProvider implements ContainerInjectionInterface {
    * @throws \ReflectionException
    */
   public function routes(): array {
-    $nsdir = NamespaceDirectory::createFromClass(self::class)
+    $nsdir = NamespaceDirectory::fromClass(self::class)
       ->parent()
       ->subdir('Controller');
     $base_root = new Route('/');

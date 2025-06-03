@@ -38,8 +38,8 @@ class ClassFilesIATest extends TestCase {
     $this->assertEquals($c('Acme\\Zoo\\'), $f('Acme\\Zoo'));
   }
 
-  public function testCreateFromClass(): void {
-    $f = ClassFilesIA_Psr4::createFromClass(...);
+  public function testFromClass(): void {
+    $f = ClassFilesIA_Psr4::fromClass(...);
     $this->assertEquals(
       new ClassFilesIA_Psr4(__DIR__, __NAMESPACE__ . '\\'),
       $f(self::class),
@@ -66,13 +66,13 @@ class ClassFilesIATest extends TestCase {
       $f(Fig::class, -3),
     );
     // @phpstan-ignore argument.type
-    $this->callAndAssertException(\ReflectionException::class, fn () => $f(__NAMESPACE__ . '\\NonExistingClass'));
+    $this->callAndAssertException(\RuntimeException::class, fn () => $f(__NAMESPACE__ . '\\NonExistingClass'));
     $this->callAndAssertException(\RuntimeException::class, fn () => $f(Fig::class, 5));
     $this->callAndAssertException(\RuntimeException::class, fn () => $f(Fig::class, -2));
   }
 
   public function testCreateFromNsdirObject(): void {
-    $f = fn (string $dir) => ClassFilesIA_Psr4::createFromNsdirObject(NamespaceDirectory::create($dir, 'Acme\Zoo'));
+    $f = fn (string $dir) => ClassFilesIA_Psr4::fromNsdirObject(NamespaceDirectory::create($dir, 'Acme\Zoo'));
     $c = fn (string $dir) => new ClassFilesIA_Psr4($dir, 'Acme\Zoo\\');
     $this->assertEquals($c(__DIR__), $f(__DIR__));
     $this->assertEquals(new ClassFilesIA_Empty(), $f(__DIR__ . '/non/existing/subdir'));
@@ -82,7 +82,7 @@ class ClassFilesIATest extends TestCase {
    * @throws \ReflectionException
    */
   public function testGetIterator(): void {
-    $classFilesIA = ClassFilesIA_Psr4::createFromClass(
+    $classFilesIA = ClassFilesIA_Psr4::fromClass(
       PlantInterface::class,
       1);
     $classFiles = iterator_to_array($classFilesIA->getIterator());
@@ -101,9 +101,6 @@ class ClassFilesIATest extends TestCase {
     $this->assertFalse($classFilesIA->getIterator()->valid());
   }
 
-  /**
-   * @throws \ReflectionException
-   */
   public function testConcat(): void {
     $concat = new ClassFilesIA_Concat([
       ClassFilesIA::psr4FromClass(Fig::class),
@@ -149,32 +146,28 @@ class ClassFilesIATest extends TestCase {
   }
 
   public function testFactoryPsr4FromClass(): void {
-    foreach ([
-      ClassFilesIA::psr4FromClass(...),
-      ClassFilesIA::psr4FromKnownClass(...),
-    ] as $f) {
-      $fn = fn (int ...$args) => $f(Fig::class, ...$args);
-      $this->assertEquals($default = NamespaceDirectory::create(
-        __DIR__ . '/Fixtures/Acme/Plant/Tree',
-        __NAMESPACE__ . '\Fixtures\Acme\Plant\Tree',
-      ), $fn());
-      $this->assertEquals($default, $fn(0));
-      $this->assertEquals(NamespaceDirectory::create(
-        __DIR__ . '/Fixtures/Acme/Plant',
-        __NAMESPACE__ . '\Fixtures\Acme\Plant',
-      ), $fn(1));
-      $this->assertEquals(NamespaceDirectory::create(
-        __DIR__,
-        __NAMESPACE__,
-      ), $fn(-3));
-    }
+    $f = ClassFilesIA::psr4FromClass(...);
+    $fn = fn (int ...$args) => $f(Fig::class, ...$args);
+    $this->assertEquals($default = NamespaceDirectory::create(
+      __DIR__ . '/Fixtures/Acme/Plant/Tree',
+      __NAMESPACE__ . '\Fixtures\Acme\Plant\Tree',
+    ), $fn());
+    $this->assertEquals($default, $fn(0));
+    $this->assertEquals(NamespaceDirectory::create(
+      __DIR__ . '/Fixtures/Acme/Plant',
+      __NAMESPACE__ . '\Fixtures\Acme\Plant',
+    ), $fn(1));
+    $this->assertEquals(NamespaceDirectory::create(
+      __DIR__,
+      __NAMESPACE__,
+    ), $fn(-3));
   }
 
-  public function testFactoryMultiple(): void {
+  public function testFactoryConcat(): void {
     $parts = [new ClassFilesIA_Empty()];
     $this->assertEquals(
       new ClassFilesIA_Concat($parts),
-      ClassFilesIA::multiple($parts),
+      ClassFilesIA::concat($parts),
     );
   }
 

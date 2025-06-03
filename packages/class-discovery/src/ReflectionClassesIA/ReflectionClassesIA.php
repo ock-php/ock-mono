@@ -46,27 +46,15 @@ class ReflectionClassesIA {
   }
 
   /**
-   * @param string $class
+   * @param class-string $class
+   *   Known class in the directory to be searched.
    * @param int $nLevelsUp
+   *   Depth of the class namespace relative to the search namespace.
    *
    * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
-   *
-   * @throws \ReflectionException
-   *   Class does not exist.
    */
   public static function psr4FromClass(string $class, int $nLevelsUp = 0): ReflectionClassesIAInterface {
     $classFilesIA = ClassFilesIA::psr4FromClass($class, $nLevelsUp);
-    return new ReflectionClassesIA_ClassFilesIA($classFilesIA);
-  }
-
-  /**
-   * @param class-string $class
-   * @param int $nLevelsUp
-   *
-   * @return \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface
-   */
-  public static function psr4FromKnownClass(string $class, int $nLevelsUp = 0): ReflectionClassesIAInterface {
-    $classFilesIA = ClassFilesIA::psr4FromKnownClass($class, $nLevelsUp);
     return new ReflectionClassesIA_ClassFilesIA($classFilesIA);
   }
 

@@ -20,7 +20,7 @@ abstract class AttributesRouteProviderBase {
    * @throws \ReflectionException
    */
   public function routes(): array {
-    $nsdir = NamespaceDirectory::createFromClass(static::class)
+    $nsdir = NamespaceDirectory::fromClass(static::class)
       ->subdir('Controller');
     $base_root = new Route('/');
     if ($base_root->getPath() !== '/') {

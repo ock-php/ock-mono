@@ -25,7 +25,7 @@ abstract class PackageServiceProviderBase implements ServiceProviderInterface {
    */
   protected function getPackages(): array {
     return [
-      ReflectionClassesIA::psr4FromKnownClass(static::class),
+      ReflectionClassesIA::psr4FromClass(static::class),
     ];
   }
 
