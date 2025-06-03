@@ -5,7 +5,7 @@ namespace Ock\ClassFilesIterator\Tests;
 use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA;
 use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA_Concat;
 use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA_Empty;
-use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA_NamespaceDirectoryPsr4;
+use Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIA_Psr4;
 use Ock\ClassFilesIterator\DirectoryContents;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Ock\ClassFilesIterator\NsDirUtil;
@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(ClassFilesIA::class)]
 #[CoversClass(ClassFilesIA_Concat::class)]
 #[CoversClass(ClassFilesIA_Empty::class)]
-#[CoversClass(ClassFilesIA_NamespaceDirectoryPsr4::class)]
+#[CoversClass(ClassFilesIA_Psr4::class)]
 #[UsesClass(NamespaceDirectory::class)]
 #[UsesClass(NsDirUtil::class)]
 #[UsesClass(DirectoryContents::class)]
@@ -31,35 +31,35 @@ class ClassFilesIATest extends TestCase {
   use ExceptionTestTrait;
 
   public function testCreate(): void {
-    $f = fn (string $namespace) => ClassFilesIA_NamespaceDirectoryPsr4::create('path/to', $namespace);
-    $c = fn (string $terminated_namespace) => new ClassFilesIA_NamespaceDirectoryPsr4('path/to', $terminated_namespace);
+    $f = fn (string $namespace) => ClassFilesIA_Psr4::create('path/to', $namespace);
+    $c = fn (string $terminated_namespace) => new ClassFilesIA_Psr4('path/to', $terminated_namespace);
     $this->assertEquals($c(''), $f(''));
     $this->assertEquals($c('Acme\\'), $f('Acme'));
     $this->assertEquals($c('Acme\\Zoo\\'), $f('Acme\\Zoo'));
   }
 
   public function testCreateFromClass(): void {
-    $f = ClassFilesIA_NamespaceDirectoryPsr4::createFromClass(...);
+    $f = ClassFilesIA_Psr4::createFromClass(...);
     $this->assertEquals(
-      new ClassFilesIA_NamespaceDirectoryPsr4(__DIR__, __NAMESPACE__ . '\\'),
+      new ClassFilesIA_Psr4(__DIR__, __NAMESPACE__ . '\\'),
       $f(self::class),
     );
     $this->assertEquals(
-      new ClassFilesIA_NamespaceDirectoryPsr4(
+      new ClassFilesIA_Psr4(
         __DIR__ . '/Fixtures/Acme/Plant/Tree',
         __NAMESPACE__ . '\Fixtures\Acme\Plant\Tree\\',
       ),
       $f(Fig::class, 0),
     );
     $this->assertEquals(
-      new ClassFilesIA_NamespaceDirectoryPsr4(
+      new ClassFilesIA_Psr4(
         __DIR__ . '/Fixtures/Acme',
         __NAMESPACE__ . '\Fixtures\Acme\\',
       ),
       $f(Fig::class, 2),
     );
     $this->assertEquals(
-      new ClassFilesIA_NamespaceDirectoryPsr4(
+      new ClassFilesIA_Psr4(
         __DIR__,
         __NAMESPACE__ . '\\',
       ),
@@ -72,8 +72,8 @@ class ClassFilesIATest extends TestCase {
   }
 
   public function testCreateFromNsdirObject(): void {
-    $f = fn (string $dir) => ClassFilesIA_NamespaceDirectoryPsr4::createFromNsdirObject(NamespaceDirectory::create($dir, 'Acme\Zoo'));
-    $c = fn (string $dir) => new ClassFilesIA_NamespaceDirectoryPsr4($dir, 'Acme\Zoo\\');
+    $f = fn (string $dir) => ClassFilesIA_Psr4::createFromNsdirObject(NamespaceDirectory::create($dir, 'Acme\Zoo'));
+    $c = fn (string $dir) => new ClassFilesIA_Psr4($dir, 'Acme\Zoo\\');
     $this->assertEquals($c(__DIR__), $f(__DIR__));
     $this->assertEquals(new ClassFilesIA_Empty(), $f(__DIR__ . '/non/existing/subdir'));
   }
@@ -82,7 +82,7 @@ class ClassFilesIATest extends TestCase {
    * @throws \ReflectionException
    */
   public function testGetIterator(): void {
-    $classFilesIA = ClassFilesIA_NamespaceDirectoryPsr4::createFromClass(
+    $classFilesIA = ClassFilesIA_Psr4::createFromClass(
       PlantInterface::class,
       1);
     $classFiles = iterator_to_array($classFilesIA->getIterator());
@@ -93,7 +93,7 @@ class ClassFilesIATest extends TestCase {
       __DIR__ . '/Fixtures/Acme/Plant/Tree/Fig.php' => Fig::class,
       __DIR__ . '/Fixtures/Acme/Plant/VenusFlyTrap.php' => VenusFlyTrap::class,
     ], $classFiles);
-    $this->callAndAssertException(\RuntimeException::class, ClassFilesIA_NamespaceDirectoryPsr4::create(__DIR__ . '/non/existing/subdir', 'Acme\\Zoo')->getIterator(...));
+    $this->callAndAssertException(\RuntimeException::class, ClassFilesIA_Psr4::create(__DIR__ . '/non/existing/subdir', 'Acme\\Zoo')->getIterator(...));
   }
 
   public function testEmpty(): void {
@@ -125,7 +125,7 @@ class ClassFilesIATest extends TestCase {
 
   public function testFactoryPsr4(): void {
     $this->assertEquals(
-      new ClassFilesIA_NamespaceDirectoryPsr4('path/to', 'Acme\Zoo\\'),
+      new ClassFilesIA_Psr4('path/to', 'Acme\Zoo\\'),
       ClassFilesIA::psr4('path/to', 'Acme\Zoo'),
     );
   }

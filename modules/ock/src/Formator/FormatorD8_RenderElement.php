@@ -10,8 +10,9 @@ class FormatorD8_RenderElement implements FormatorD8Interface {
   /**
    * @param array $element
    */
-  public function __construct(private readonly array $element) {
-  }
+  public function __construct(
+    private readonly array $element,
+  ) {}
 
   /**
    * {@inheritdoc}

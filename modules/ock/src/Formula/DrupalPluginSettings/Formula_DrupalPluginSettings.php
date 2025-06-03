@@ -11,8 +11,9 @@ class Formula_DrupalPluginSettings implements Formula_DrupalPluginSettingsInterf
    *
    * @param object $plugin
    */
-  public function __construct(private readonly object $plugin) {
-  }
+  public function __construct(
+    private readonly object $plugin,
+  ) {}
 
   /**
    * {@inheritdoc}

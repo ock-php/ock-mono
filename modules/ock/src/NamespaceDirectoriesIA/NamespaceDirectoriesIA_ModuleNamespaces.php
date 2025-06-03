@@ -19,8 +19,10 @@ class NamespaceDirectoriesIA_ModuleNamespaces implements NamespaceDirectoriesIAI
    *   Module namespaces.
    *   Format: $[$namespace] = $dir|$dirs
    */
-  public function __construct(private readonly ModuleExtensionList $modules, private readonly \Traversable $namespaces) {
-  }
+  public function __construct(
+    private readonly ModuleExtensionList $modules,
+    private readonly \Traversable $namespaces,
+  ) {}
 
   /**
    * {@inheritdoc}

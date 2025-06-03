@@ -30,14 +30,14 @@ final class DirectoryContents {
   /**
    * Static factory which loads a directory.
    *
-   * @param string $dir
+   * @param string $directory
    *   Directory path without trailing slash.
    *
    * @return static
    */
-  public static function load(string $dir): static {
-    assert(!str_ends_with($dir, '/'));
-    $iterator = new \RecursiveDirectoryIterator($dir, \FilesystemIterator::SKIP_DOTS|\FilesystemIterator::KEY_AS_FILENAME|\FilesystemIterator::CURRENT_AS_SELF);
+  public static function load(string $directory): static {
+    assert(!str_ends_with($directory, '/'));
+    $iterator = new \RecursiveDirectoryIterator($directory, \FilesystemIterator::SKIP_DOTS|\FilesystemIterator::KEY_AS_FILENAME|\FilesystemIterator::CURRENT_AS_SELF);
     $subdir_names = [];
     $file_names = [];
     foreach ($iterator as $name => $iterator_self) {

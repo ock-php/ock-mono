@@ -5,17 +5,26 @@ namespace Ock\ClassFilesIterator\ClassFilesIA;
 use Ock\ClassFilesIterator\NamespaceDirectory;
 use Ock\ClassFilesIterator\NsDirUtil;
 
-class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
+class ClassFilesIA_Psr4 implements ClassFilesIAInterface {
 
   /**
-   * @param string $dir
+   * @param string $directory
+   * @param string $terminatedNamespace
+   */
+  public function __construct(
+    private readonly string $directory,
+    private readonly string $terminatedNamespace,
+  ) {}
+
+  /**
+   * @param string $directory
    * @param string $namespace
    *
    * @return self
    */
-  public static function create(string $dir, string $namespace): self {
+  public static function create(string $directory, string $namespace): self {
     return new self(
-      $dir,
+      $directory,
       NsDirUtil::terminateNamespace($namespace),
     );
   }
@@ -48,18 +57,7 @@ class ClassFilesIA_NamespaceDirectoryPsr4 implements ClassFilesIAInterface {
     );
   }
 
-  /**
-   * @param string $directory
-   * @param string $terminatedNamespace
-   */
-  public function __construct(
-    private string $directory,
-    private readonly string $terminatedNamespace,
-  ) {}
-
-  /**
-   * {@inheritdoc}
-   */
+  #[\Override]
   public function getIterator(): \Iterator {
     return NsDirUtil::iterate($this->directory, $this->terminatedNamespace);
   }

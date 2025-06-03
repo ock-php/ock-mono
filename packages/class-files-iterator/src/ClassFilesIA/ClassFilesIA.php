@@ -11,27 +11,27 @@ use Ock\ClassFilesIterator\NsDirUtil;
 class ClassFilesIA {
 
   /**
-   * @param string $dir
+   * @param string $directory
    * @param string $namespace
    *
    * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
    */
-  public static function psr4(string $dir, string $namespace): ClassFilesIAInterface {
-    return new ClassFilesIA_NamespaceDirectoryPsr4(
-      $dir,
+  public static function psr4(string $directory, string $namespace): ClassFilesIAInterface {
+    return new ClassFilesIA_Psr4(
+      $directory,
       NsDirUtil::terminateNamespace($namespace),
     );
   }
 
   /**
-   * @param string $dir
+   * @param string $directory
    * @param string $namespace
    * @param int $nLevelsUp
    *
    * @return \Ock\ClassFilesIterator\ClassFilesIA\ClassFilesIAInterface
    */
-  public static function psr4Up(string $dir, string $namespace, int $nLevelsUp = 0): ClassFilesIAInterface {
-    return NamespaceDirectory::create($dir, $namespace)
+  public static function psr4Up(string $directory, string $namespace, int $nLevelsUp = 0): ClassFilesIAInterface {
+    return NamespaceDirectory::create($directory, $namespace)
       ->requireParentN($nLevelsUp);
   }
 
