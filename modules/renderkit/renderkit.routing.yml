@@ -1,2 +1,2 @@
 route_callbacks:
-  - Drupal\renderkit\UI\RenderkitRouteProvider::routes
+  - Drupal\renderkit\RenderkitRouteProvider::routes

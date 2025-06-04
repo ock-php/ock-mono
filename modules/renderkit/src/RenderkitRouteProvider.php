@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\renderkit\UI;
+namespace Drupal\renderkit;
 
 use Drupal\controller_attributes\Attribute\RouteModifierInterface;
 use Drupal\controller_attributes\RouteNameUtil;
@@ -23,7 +23,6 @@ class RenderkitRouteProvider implements ContainerInjectionInterface {
    */
   public function routes(): array {
     $nsdir = NamespaceDirectory::fromClass(self::class)
-      ->parent()
       ->subdir('Controller');
     $base_root = new Route('/');
     if ($base_root->getPath() !== '/') {
