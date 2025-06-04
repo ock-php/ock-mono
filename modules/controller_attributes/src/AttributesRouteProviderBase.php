@@ -25,7 +25,7 @@ abstract class AttributesRouteProviderBase {
     $routes = [];
     foreach ($this->getControllerClasses() as $class) {
       $rClass = new \ReflectionClass($class);
-      if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract()) {
+      if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract() || $rClass->isEnum()) {
         continue;
       }
       $modifiers = $this->getAttributes($rClass, RouteModifierInterface::class);
