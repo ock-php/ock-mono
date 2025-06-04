@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Route;
 abstract class AttributesRouteProviderBase {
 
   /**
-   * @return \Symfony\Component\Routing\Route[]
+   * @return array<string, \Symfony\Component\Routing\Route>
    *
    * @throws \ReflectionException
    */
