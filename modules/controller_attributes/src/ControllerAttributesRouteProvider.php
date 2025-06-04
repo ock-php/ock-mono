@@ -5,22 +5,56 @@ declare(strict_types = 1);
 namespace Drupal\controller_attributes;
 
 use Drupal\controller_attributes\Attribute\RouteModifierInterface;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Extension\ModuleExtensionList;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Route;
 
 /**
  * Base class for a route provider based on discovery and attributes.
  */
-abstract class AttributesRouteProviderBase {
+class ControllerAttributesRouteProvider implements ContainerInjectionInterface {
+
+  public function __construct(
+    protected readonly ModuleHandlerInterface $moduleHandler,
+    protected readonly ModuleExtensionList $moduleList,
+  ) {}
 
   /**
-   * @return array<string, \Symfony\Component\Routing\Route>
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container): static {
+    return new static(
+      $container->get(ModuleHandlerInterface::class),
+      $container->get(ModuleExtensionList::class),
+    );
+  }
+
+  /**
+   * Collects routes from all participating modules.
    *
-   * @throws \ReflectionException
+   * @return array<string, \Symfony\Component\Routing\Route>
+   *   Routes by route name.
    */
   public function routes(): array {
     $routes = [];
-    foreach ($this->getControllerClasses() as $class) {
-      $routes = array_replace($routes, $this->getRoutesForClass($class));
+    $list = $this->moduleList->getList();
+    foreach ($this->moduleHandler->getModuleList() as $module => $module_info) {
+      assert(isset($list[$module]), $module);
+      // Modules can opt-in by adding the dependency.
+      // An indirect dependency does not work for this.
+      if (!array_intersect([
+        'controller_attributes:controller_attributes',
+        'controller_attributes',
+      ], $list[$module]->info['dependencies'] ?? [])) {
+        continue;
+      }
+      $directory = $module_info->getPath() . '/src/Controller';
+      $namespace = 'Drupal\\' . $module . '\\Controller';
+      foreach ($this->findControllerClasses($directory, $namespace) as $class) {
+        $routes = array_replace($routes, $this->getRoutesForClass($class));
+      }
     }
     return $routes;
   }
@@ -32,6 +66,7 @@ abstract class AttributesRouteProviderBase {
    *   Controller class.
    *
    * @return array<string, \Symfony\Component\Routing\Route>
+   *   Routes by route name.
    */
   protected function getRoutesForClass(string $class): array {
     $base_root = new Route('/');
@@ -73,18 +108,6 @@ abstract class AttributesRouteProviderBase {
       $routes[$route_name] = $route;
     }
     return $routes;
-  }
-
-  /**
-   * Gets controller classes for this module.
-   *
-   * @return \Iterator<class-string>
-   */
-  protected function getControllerClasses(): \Iterator {
-    $rc = new \ReflectionClass(static::class);
-    $directory = dirname($rc->getFileName()) . '/Controller';
-    $namespace = $rc->getNamespaceName() . '\\Controller';
-    return $this->findControllerClasses($directory, $namespace);
   }
 
   /**
