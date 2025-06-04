@@ -1,9 +1,0 @@
-module: controller_attributes_test
-type: routes
-'++ /controller-attributes-test/hello':
-  controller_attributes_test.hello.hello:
-    defaults:
-      _controller: 'Drupal\controller_attributes_test\Controller\HelloController::hello'
-    options:
-      compiler_class: null
-      utf8: null
