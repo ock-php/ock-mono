@@ -32,7 +32,7 @@ abstract class AttributesRouteProviderBase {
       if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract()) {
         continue;
       }
-      $modifiers = get_attributes($rClass, RouteModifierInterface::class);
+      $modifiers = $this->getAttributes($rClass, RouteModifierInterface::class);
       $class_route = clone $base_root;
       foreach ($modifiers as $modifier) {
         $modifier->modifyRoute($class_route, $rClass);
@@ -41,7 +41,7 @@ abstract class AttributesRouteProviderBase {
         if ($rMethod->isAbstract() || !$rMethod->isPublic()) {
           continue;
         }
-        $modifiers = get_attributes($rMethod, RouteModifierInterface::class);
+        $modifiers = $this->getAttributes($rMethod, RouteModifierInterface::class);
         if (!$modifiers) {
           continue;
         }
@@ -63,6 +63,23 @@ abstract class AttributesRouteProviderBase {
       }
     }
     return $routes;
+  }
+
+  /**
+   * Gets attributes from a reflector.
+   *
+   * @template TAttribute of object
+   *
+   * @param \ReflectionClass|\ReflectionMethod $reflector
+   *   Class or method on which to look for attributes.
+   * @param class-string<TAttribute> $name
+   *   Attribute class or interface to filter by.
+   *
+   * @return list<TAttribute>
+   */
+  protected function getAttributes(\ReflectionClass|\ReflectionMethod $reflector, string $name): array {
+    $attributes = $reflector->getAttributes($name, \ReflectionAttribute::IS_INSTANCEOF);
+    return array_map(fn (\ReflectionAttribute $attribute) => $attribute->newInstance(), $attributes);
   }
 
 }
