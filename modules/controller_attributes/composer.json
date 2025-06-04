@@ -7,7 +7,8 @@
         "php": ">=8.3",
         "drupal/core": "^11.0.5",
         "drupal/service_discovery": "self.version",
-        "ock/class-discovery": "*"
+        "ock/class-discovery": "*",
+        "ock/reflector-aware-attributes": "*"
     },
     "require-dev": {
         "ock/drupal-testing": "self.version"
