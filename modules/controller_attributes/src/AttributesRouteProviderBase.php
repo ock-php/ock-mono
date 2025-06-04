@@ -18,45 +18,59 @@ abstract class AttributesRouteProviderBase {
    * @throws \ReflectionException
    */
   public function routes(): array {
+    $routes = [];
+    foreach ($this->getControllerClasses() as $class) {
+      $routes = array_replace($routes, $this->getRoutesForClass($class));
+    }
+    return $routes;
+  }
+
+  /**
+   * Collects routes for a controller class.
+   *
+   * @param class-string $class
+   *   Controller class.
+   *
+   * @return array<string, \Symfony\Component\Routing\Route>
+   */
+  protected function getRoutesForClass(string $class): array {
     $base_root = new Route('/');
     if ($base_root->getPath() !== '/') {
       throw new \RuntimeException('Unexpected path.');
     }
     $routes = [];
-    foreach ($this->getControllerClasses() as $class) {
-      $rClass = new \ReflectionClass($class);
-      if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract() || $rClass->isEnum()) {
+    $rClass = new \ReflectionClass($class);
+    if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract() || $rClass->isEnum()) {
+      return [];
+    }
+    $modifiers = $this->getAttributes($rClass, RouteModifierInterface::class);
+    $class_route = clone $base_root;
+    foreach ($modifiers as $modifier) {
+      $modifier->modifyRoute($class_route, $rClass);
+    }
+    foreach ($rClass->getMethods() as $rMethod) {
+      if ($rMethod->isAbstract() || !$rMethod->isPublic()) {
         continue;
       }
-      $modifiers = $this->getAttributes($rClass, RouteModifierInterface::class);
-      $class_route = clone $base_root;
+      $modifiers = $this->getAttributes($rMethod, RouteModifierInterface::class);
+      if (!$modifiers) {
+        continue;
+      }
+      $route = clone $class_route;
+      $route->setDefault(
+        '_controller',
+        $rClass->getName() . '::' . $rMethod->getName(),
+      );
       foreach ($modifiers as $modifier) {
-        $modifier->modifyRoute($class_route, $rClass);
+        $modifier->modifyRoute($route, $rMethod);
       }
-      foreach ($rClass->getMethods() as $rMethod) {
-        if ($rMethod->isAbstract() || !$rMethod->isPublic()) {
-          continue;
-        }
-        $modifiers = $this->getAttributes($rMethod, RouteModifierInterface::class);
-        if (!$modifiers) {
-          continue;
-        }
-        $route = clone $class_route;
-        $route->setDefault(
-          '_controller',
-          $rClass->getName() . '::' . $rMethod->getName(),
-        );
-        foreach ($modifiers as $modifier) {
-          $modifier->modifyRoute($route, $rMethod);
-        }
-        $route_name = RouteNameUtil::methodGetRouteName(
-          [$class, $rMethod->getName()],
-        );
-        if ($route->getPath() === '/') {
-          throw new \RuntimeException("Route path for '$route_name' is empty.");
-        }
-        $routes[$route_name] = $route;
+      $route_name = RouteNameUtil::methodGetRouteName(
+        [$class, $rMethod->getName()],
+      );
+      if ($route->getPath() === '/') {
+        throw new \RuntimeException("Route path for '$route_name' is empty.");
       }
+      $routes[$route_name] = $route;
     }
     return $routes;
   }
