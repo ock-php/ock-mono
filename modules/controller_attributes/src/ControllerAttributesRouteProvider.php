@@ -5,72 +5,109 @@ declare(strict_types = 1);
 namespace Drupal\controller_attributes;
 
 use Drupal\controller_attributes\Attribute\RouteModifierInterface;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Extension\ModuleExtensionList;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Route;
 
 /**
  * Base class for a route provider based on discovery and attributes.
  */
-abstract class AttributesRouteProviderBase {
+class ControllerAttributesRouteProvider implements ContainerInjectionInterface {
+
+  public function __construct(
+    protected readonly ModuleHandlerInterface $moduleHandler,
+    protected readonly ModuleExtensionList $moduleList,
+  ) {}
 
   /**
-   * @return \Symfony\Component\Routing\Route[]
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container): static {
+    return new static(
+      $container->get(ModuleHandlerInterface::class),
+      $container->get(ModuleExtensionList::class),
+    );
+  }
+
+  /**
+   * Collects routes from all participating modules.
    *
-   * @throws \ReflectionException
+   * @return array<string, \Symfony\Component\Routing\Route>
+   *   Routes by route name.
    */
   public function routes(): array {
-    $base_root = new Route('/');
-    if ($base_root->getPath() !== '/') {
-      throw new \RuntimeException('Unexpected path.');
-    }
     $routes = [];
-    foreach ($this->getControllerClasses() as $class) {
-      $rClass = new \ReflectionClass($class);
-      if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract()) {
+    $list = $this->moduleList->getList();
+    foreach ($this->moduleHandler->getModuleList() as $module => $module_info) {
+      assert(isset($list[$module]), $module);
+      // Modules can opt-in by adding the dependency.
+      // An indirect dependency does not work for this.
+      if (!array_intersect([
+        'controller_attributes:controller_attributes',
+        'controller_attributes',
+      ], $list[$module]->info['dependencies'] ?? [])) {
         continue;
       }
-      $modifiers = $this->getAttributes($rClass, RouteModifierInterface::class);
-      $class_route = clone $base_root;
-      foreach ($modifiers as $modifier) {
-        $modifier->modifyRoute($class_route, $rClass);
-      }
-      foreach ($rClass->getMethods() as $rMethod) {
-        if ($rMethod->isAbstract() || !$rMethod->isPublic()) {
-          continue;
-        }
-        $modifiers = $this->getAttributes($rMethod, RouteModifierInterface::class);
-        if (!$modifiers) {
-          continue;
-        }
-        $route = clone $class_route;
-        $route->setDefault(
-          '_controller',
-          $rClass->getName() . '::' . $rMethod->getName(),
-        );
-        foreach ($modifiers as $modifier) {
-          $modifier->modifyRoute($route, $rMethod);
-        }
-        $route_name = RouteNameUtil::methodGetRouteName(
-          [$class, $rMethod->getName()],
-        );
-        if ($route->getPath() === '/') {
-          throw new \RuntimeException("Route path for '$route_name' is empty.");
-        }
-        $routes[$route_name] = $route;
+      $directory = $module_info->getPath() . '/src/Controller';
+      $namespace = 'Drupal\\' . $module . '\\Controller';
+      foreach ($this->findControllerClasses($directory, $namespace) as $class) {
+        $routes = array_replace($routes, $this->getRoutesForClass($class));
       }
     }
     return $routes;
   }
 
   /**
-   * Gets controller classes for this module.
+   * Collects routes for a controller class.
    *
-   * @return \Iterator<class-string>
+   * @param class-string $class
+   *   Controller class.
+   *
+   * @return array<string, \Symfony\Component\Routing\Route>
+   *   Routes by route name.
    */
-  protected function getControllerClasses(): \Iterator {
-    $rc = new \ReflectionClass(static::class);
-    $directory = dirname($rc->getFileName()) . '/Controller';
-    $namespace = $rc->getNamespaceName() . '\\Controller';
-    return $this->findControllerClasses($directory, $namespace);
+  protected function getRoutesForClass(string $class): array {
+    $base_root = new Route('/');
+    if ($base_root->getPath() !== '/') {
+      throw new \RuntimeException('Unexpected path.');
+    }
+    $routes = [];
+    $rClass = new \ReflectionClass($class);
+    if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract() || $rClass->isEnum()) {
+      return [];
+    }
+    $modifiers = $this->getAttributes($rClass, RouteModifierInterface::class);
+    $class_route = clone $base_root;
+    foreach ($modifiers as $modifier) {
+      $modifier->modifyRoute($class_route, $rClass);
+    }
+    foreach ($rClass->getMethods() as $rMethod) {
+      if ($rMethod->isAbstract() || !$rMethod->isPublic()) {
+        continue;
+      }
+      $modifiers = $this->getAttributes($rMethod, RouteModifierInterface::class);
+      if (!$modifiers) {
+        continue;
+      }
+      $route = clone $class_route;
+      $route->setDefault(
+        '_controller',
+        $rClass->getName() . '::' . $rMethod->getName(),
+      );
+      foreach ($modifiers as $modifier) {
+        $modifier->modifyRoute($route, $rMethod);
+      }
+      $route_name = RouteNameUtil::methodGetRouteName(
+        [$class, $rMethod->getName()],
+      );
+      if ($route->getPath() === '/') {
+        throw new \RuntimeException("Route path for '$route_name' is empty.");
+      }
+      $routes[$route_name] = $route;
+    }
+    return $routes;
   }
 
   /**

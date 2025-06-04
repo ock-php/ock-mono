@@ -3,7 +3,7 @@ type: routes
 '++ /admin/flush/ock':
   ock.flush_ock.clear:
     defaults:
-      _controller: 'Drupal\ock\UI\Controller\Controller_FlushOck::clear'
+      _controller: 'Drupal\ock\Controller\Controller_FlushOck::clear'
     requirements:
       _permission: 'administer site configuration'
     options:
@@ -16,7 +16,7 @@ type: routes
 '++ /admin/reports/ock':
   ock.report_overview.overview:
     defaults:
-      _controller: 'Drupal\ock\UI\Controller\Controller_ReportOverview::overview'
+      _controller: 'Drupal\ock\Controller\Controller_ReportOverview::overview'
       _title: 'ock plugins'
     requirements:
       _permission: 'view ock reports'
@@ -28,8 +28,8 @@ type: routes
 '++ /admin/reports/ock/{interface}':
   ock.report_iface.list_of_plugins:
     defaults:
-      _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportIface::title'
-      _controller: 'Drupal\ock\UI\Controller\Controller_ReportIface::listOfPlugins'
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportIface::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportIface::listOfPlugins'
     requirements:
       _permission: 'view ock reports'
     options:
@@ -45,8 +45,8 @@ type: routes
 '++ /admin/reports/ock/{interface}/code':
   ock.report_iface.code:
     defaults:
-      _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportIface::title'
-      _controller: 'Drupal\ock\UI\Controller\Controller_ReportIface::code'
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportIface::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportIface::code'
     requirements:
       _permission: 'view ock reports'
     options:
@@ -62,8 +62,8 @@ type: routes
 '++ /admin/reports/ock/{interface}/demo':
   ock.report_iface.demo:
     defaults:
-      _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportIface::title'
-      _controller: 'Drupal\ock\UI\Controller\Controller_ReportIface::demo'
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportIface::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportIface::demo'
     requirements:
       _permission: 'view ock reports'
     options:
@@ -79,8 +79,8 @@ type: routes
 '++ /admin/reports/ock/{interface}/plugin/{named_plugin}':
   ock.report_plugin.plugin:
     defaults:
-      _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::title'
-      _controller: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::plugin'
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportPlugin::plugin'
     requirements:
       _permission: 'view ock reports'
     options:
@@ -99,8 +99,8 @@ type: routes
 '++ /admin/reports/ock/{interface}/plugin/{named_plugin}/code':
   ock.report_plugin.code:
     defaults:
-      _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::title'
-      _controller: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::code'
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportPlugin::code'
     requirements:
       _permission: 'view ock reports'
     options:
@@ -119,8 +119,8 @@ type: routes
 '++ /admin/reports/ock/{interface}/plugin/{named_plugin}/demo':
   ock.report_plugin.demo:
     defaults:
-      _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::title'
-      _controller: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::demo'
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportPlugin::demo'
     requirements:
       _permission: 'view ock reports'
     options:
@@ -139,8 +139,8 @@ type: routes
 '++ /admin/reports/ock/{interface}/plugin/{named_plugin}/devel':
   ock.report_plugin.devel:
     defaults:
-      _title_callback: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::title'
-      _controller: 'Drupal\ock\UI\Controller\Controller_ReportPlugin::devel'
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportPlugin::devel'
     requirements:
       _permission: 'view ock reports'
     options:
@@ -159,7 +159,7 @@ type: routes
 '++ /devel/ock/clear':
   ock.devel_ops.clear:
     defaults:
-      _controller: 'Drupal\ock\UI\Controller\Controller_DevelOps::clear'
+      _controller: 'Drupal\ock\Controller\Controller_DevelOps::clear'
     requirements:
       _permission: 'administer ock preset'
     options:

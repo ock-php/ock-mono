@@ -11,6 +11,7 @@ use Drupal\KernelTests\KernelTestBase;
 class ControllerRouteNameTest extends KernelTestBase {
 
   protected static $modules = [
+    'controller_attributes',
     'controller_attributes_test',
   ];
 

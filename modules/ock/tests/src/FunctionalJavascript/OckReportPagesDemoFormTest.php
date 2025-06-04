@@ -11,7 +11,7 @@ namespace Drupal\Tests\ock\FunctionalJavascript;
  * Other pages are covered in regular 'Functional' tests.
  *
  * @see \Drupal\ock\Element\FormElement_OckPlugin
- * @see \Drupal\ock\UI\Controller\Controller_ReportIface::demo()
+ * @see \Drupal\ock\Controller\Controller_ReportIface::demo()
  */
 class OckReportPagesDemoFormTest extends OckWebDriverTestBase {
 

@@ -1,2 +1,0 @@
-route_callbacks:
-  - Drupal\controller_attributes_test\ControllerAttributesTestRouteProvider::routes

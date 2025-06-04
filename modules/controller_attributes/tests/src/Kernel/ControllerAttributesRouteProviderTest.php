@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\controller_attributes\Kernel;
 
-use Drupal\controller_attributes\AttributesRouteProviderBase;
+use Drupal\controller_attributes\ControllerAttributesRouteProvider;
 use Drupal\controller_attributes_test\Controller\HelloController;
 use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\Core\Routing\RouteCompiler;
@@ -13,7 +13,7 @@ use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\Routing\Route;
 
-#[CoversClass(AttributesRouteProviderBase::class)]
+#[CoversClass(ControllerAttributesRouteProvider::class)]
 class ControllerAttributesRouteProviderTest extends KernelTestBase {
 
   public function testRoutes(): void {
