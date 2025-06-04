@@ -5,7 +5,7 @@ namespace Drupal\ock\Element;
 
 use Drupal\Core\Render\Attribute\RenderElement;
 use Drupal\Core\Render\Element\RenderElementBase;
-use Drupal\ock\UI\Controller\Controller_ReportIface;
+use Drupal\ock\Controller\Controller_ReportIface;
 use Ock\Ock\Util\StringUtil;
 
 #[RenderElement(self::ELEMENT_TYPE)]

@@ -7,7 +7,7 @@ use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\ock\UI\Controller\Controller_ReportOverview;
+use Drupal\ock\Controller\Controller_ReportOverview;
 
 class Form_RebuildConfirm extends ConfirmFormBase {
 
