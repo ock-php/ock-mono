@@ -28,9 +28,13 @@ abstract class LinkPluginDeriverBase extends PluginDeriverBase implements Contai
 
 
   /**
+   * Attempts to find a parent route for a given route, based on the path.
+   *
    * @param \Symfony\Component\Routing\Route $route
+   *   The route for which to find a parent.
    *
    * @return string|null
+   *   A parent route name, or NULL if none found.
    */
   protected function routeGetParentName(Route $route): ?string {
 
@@ -41,7 +45,7 @@ abstract class LinkPluginDeriverBase extends PluginDeriverBase implements Contai
       $parent_route = $this->router->match($parent_path);
     }
     catch (\Exception $e) {
-      // @todo Don't just silently ignore this.
+      // No applicable route was found for the parent path.
       unset($e);
       return NULL;
     }
