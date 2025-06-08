@@ -2,7 +2,7 @@ module: ock
 snapshots:
   links.action: '=='
   links.menu: '!='
-  links.task: '=='
+  links.task: '!='
   container.definitions: '!='
   container.aliases: '=='
   container.parameters: '=='
