@@ -1,8 +1,8 @@
 module: controller_attributes_test
 snapshots:
-  links.action: '=='
-  links.menu: '=='
-  links.task: '=='
+  links.action: '!='
+  links.menu: '!='
+  links.task: '!='
   container.definitions: '=='
   container.aliases: '=='
   container.parameters: '=='

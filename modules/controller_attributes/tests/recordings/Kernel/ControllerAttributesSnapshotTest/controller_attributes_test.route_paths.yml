@@ -1,4 +1,16 @@
 module: controller_attributes_test
 type: route_paths
 ++:
+  - /controller-attributes-test/goodbye
   - /controller-attributes-test/hello
+  - /controller-attributes-test/subdir/hello-in-subdir
+  - /explicit-child
+  - /hello/user
+  - /hello/user/add-user
+  - /hello/user/invite-user
+  - '/hello/user/{user}'
+  - '/hello/user/{user}/delete-different-base-route'
+  - '/hello/user/{user}/edit'
+  - '/hello/user/{user}/invite'
+  - /parent
+  - /parent/auto-child

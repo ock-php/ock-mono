@@ -1,9 +1,151 @@
 module: controller_attributes_test
 type: routes
+'++ /controller-attributes-test/goodbye':
+  controller_attributes_test.hello.goodbye:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\HelloController::goodbye'
+    options:
+      _menu_link:
+        title: Goodbye
+        description: 'A farewell greeting'
 '++ /controller-attributes-test/hello':
   controller_attributes_test.hello.hello:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloController::hello'
     options:
+      _menu_link: {  }
+'++ /controller-attributes-test/subdir/hello-in-subdir':
+  controller_attributes_test.subdir.controller_in_subdir.hello:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\Subdir\ControllerInSubdir::hello'
+    options:
       compiler_class: null
       utf8: null
+'++ /explicit-child':
+  controller_attributes_test.parent_child.explicit_child:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\ParentChildController::explicitChild'
+    options:
+      _menu_link:
+        title: Parent
+        parent: controller_attributes_test.parent_child.parent
+'++ /hello/user':
+  controller_attributes_test.hello_user_overview.overview:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\HelloUserOverviewController::overview'
+      _title: 'List of users'
+    requirements:
+      _permission: 'administer users'
+    options:
+      _menu_link:
+        title: 'List of users'
+      _access_checks:
+        - access_check.permission
+'++ /hello/user/add-user':
+  controller_attributes_test.hello_user_overview.add:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\HelloUserOverviewController::add'
+      _title: 'Add user'
+    requirements:
+      _permission: 'administer users'
+    options:
+      _action_link:
+        title: 'Add user'
+        appears_on:
+          - controller_attributes_test.hello_user_overview.overview
+      _access_checks:
+        - access_check.permission
+'++ /hello/user/invite-user':
+  controller_attributes_test.hello_user_overview.invite:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\HelloUserOverviewController::invite'
+      _title: 'Invite user'
+    requirements:
+      _permission: 'administer users'
+    options:
+      _action_link:
+        title: 'Invite user'
+        appears_on:
+          - controller_attributes_test.hello_user_overview.overview
+        weight: 10
+      _access_checks:
+        - access_check.permission
+'++ /hello/user/{user}':
+  controller_attributes_test.hello_user.view:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\HelloUserController::view'
+      _title_callback: 'Drupal\controller_attributes_test\Controller\HelloUserController::title'
+    requirements:
+      _access: 'TRUE'
+    options:
+      _task_link_default:
+        title: View
+      parameters:
+        user:
+          type: 'entity:user'
+          converter: paramconverter.entity
+      _access_checks:
+        - access_check.default
+'++ /hello/user/{user}/delete-different-base-route':
+  controller_attributes_test.hello_user.delete_user_different_base_route:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\HelloUserController::deleteUserDifferentBaseRoute'
+    requirements:
+      _access: 'TRUE'
+    options:
+      _task_link:
+        title: Edit
+        base_route: entity.user.canonical
+      parameters:
+        user:
+          type: 'entity:user'
+          converter: paramconverter.entity
+      _access_checks:
+        - access_check.default
+'++ /hello/user/{user}/edit':
+  controller_attributes_test.hello_user.edit:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\HelloUserController::edit'
+      _title: Edit
+    requirements:
+      _access: 'TRUE'
+    options:
+      _task_link:
+        title: Edit
+        base_route: controller_attributes_test.hello_user.view
+      parameters:
+        user:
+          type: 'entity:user'
+          converter: paramconverter.entity
+      _access_checks:
+        - access_check.default
+'++ /hello/user/{user}/invite':
+  controller_attributes_test.hello_user.invite:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\HelloUserController::invite'
+      _title: Invite
+    requirements:
+      _access: 'TRUE'
+    options:
+      _task_link:
+        title: Invite
+      parameters:
+        user:
+          type: 'entity:user'
+          converter: paramconverter.entity
+      _access_checks:
+        - access_check.default
+'++ /parent':
+  controller_attributes_test.parent_child.parent:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\ParentChildController::parent'
+    options:
+      _menu_link:
+        title: Parent
+'++ /parent/auto-child':
+  controller_attributes_test.parent_child.automatic_child:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\ParentChildController::automaticChild'
+    options:
+      _menu_link:
+        title: Parent
