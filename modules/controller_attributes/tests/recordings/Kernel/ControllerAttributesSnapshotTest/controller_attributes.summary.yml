@@ -1,0 +1,10 @@
+module: controller_attributes
+snapshots:
+  links.action: '=='
+  links.menu: '=='
+  links.task: '=='
+  container.definitions: '=='
+  container.aliases: '=='
+  container.parameters: '=='
+  route_paths: '=='
+  routes: '=='
