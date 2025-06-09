@@ -33,6 +33,10 @@ class ControllerRouteNameTest extends KernelTestBase {
         'link' => $builder->link('Hello')->toString()->getGeneratedLink(),
       ],
     );
+    $this->assertEquals(
+      ClassRouteHelper::fromClassName(HelloController::class, [], 'goodbye'),
+      $builder->subpage('goodbye'),
+    );
   }
 
 }
