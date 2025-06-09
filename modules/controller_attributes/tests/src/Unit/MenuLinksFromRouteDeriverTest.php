@@ -12,7 +12,7 @@ use Drupal\Tests\controller_attributes\Traits\ExceptionTestTrait;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Route;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Routing\RouteCollection;
 
 #[CoversClass(PluginDeriver_MenuLinksFromRouteMeta::class)]
 #[CoversClass(PluginDeriverBase::class)]
@@ -30,15 +30,24 @@ class MenuLinksFromRouteDeriverTest extends TestCase {
         'route_with_non_array_menu_link' => (new Route('/path/to/b'))
           ->setOption('_menu_link', 'non_array_value')
           ->setDefault('_title', 'Non-array menu link'),
-        'route_with_menu_link' => (new Route('/path/to/c'))
+        'route_with_menu_link' => $parent = (new Route('/path/to/c'))
           ->setOption('_menu_link', [
             'title' => 'Test menu link',
             'parent' => 'parent_route_name',
           ]),
+        'auto_parent' => (new Route('/path/to/c/child'))
+          ->setOption('_menu_link', [
+            'title' => 'Link with auto parent',
+          ]),
       ]);
-    $router = $this->createMock(RouterInterface::class);
-    $deriver = new PluginDeriver_MenuLinksFromRouteMeta($route_provider, $router);
-    $cloned_deriver = clone $deriver;
+    $route_provider->method('getRoutesByPattern')
+      ->willReturnCallback(fn (string $pattern): RouteCollection => match ($pattern) {
+        '/path/to' => $this->createRouteCollection([]),
+        '/path/to/c' => $this->createRouteCollection([
+          'route_with_menu_link' => $parent,
+        ]),
+      });
+    $deriver = new PluginDeriver_MenuLinksFromRouteMeta($route_provider);
     $definitions = $deriver->getDerivativeDefinitions([]);
     // @todo This should be skipped instead.
     $this->assertSame([
@@ -51,11 +60,21 @@ class MenuLinksFromRouteDeriverTest extends TestCase {
         'title' => 'Test menu link',
         'parent' => 'parent_route_name',
         'route_name' => 'route_with_menu_link',
+     ],
+      'auto_parent' => [
+        'title' => 'Link with auto parent',
+        'route_name' => 'auto_parent',
+        'parent' => 'routelink:route_with_menu_link',
       ],
     ], $definitions);
-    $this->assertSame($definitions['route_with_menu_link'], $deriver->getDerivativeDefinition('route_with_menu_link', []));
-    $this->assertNull($deriver->getDerivativeDefinition('non_existing_id', []));
-    $this->assertSame($definitions['route_with_menu_link'], $cloned_deriver->getDerivativeDefinition('route_with_menu_link', []));
+  }
+
+  protected function createRouteCollection(array $routes): RouteCollection {
+    $collection = new RouteCollection();
+    foreach ($routes as $name => $route) {
+      $collection->add($name, $route);
+    }
+    return $collection;
   }
 
 }

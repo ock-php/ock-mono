@@ -7,13 +7,11 @@ use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Routing\Route;
-use Symfony\Component\Routing\RouterInterface;
 
 abstract class LinkPluginDeriverBase extends PluginDeriverBase implements ContainerDeriverInterface {
 
   public function __construct(
     protected RouteProviderInterface $provider,
-    private readonly RouterInterface $router,
   ) {}
 
   /**
@@ -22,7 +20,6 @@ abstract class LinkPluginDeriverBase extends PluginDeriverBase implements Contai
   public static function create(ContainerInterface $container, $base_plugin_id): static {
     return new static(
       $container->get(RouteProviderInterface::class),
-      $container->get('router.no_access_checks'),
     );
   }
 
@@ -40,21 +37,18 @@ abstract class LinkPluginDeriverBase extends PluginDeriverBase implements Contai
 
     $path = $route->getPath();
     $parent_path = \dirname($path);
-
-    try {
-      $parent_route = $this->router->match($parent_path);
-    }
-    catch (\Exception $e) {
-      // No applicable route was found for the parent path.
-      unset($e);
+    if ($parent_path === '/' || $parent_path === '') {
       return NULL;
     }
 
-    if (empty($parent_route['_route'])) {
-      return NULL;
+    $candidate_routes = $this->provider->getRoutesByPattern($parent_path);
+    foreach ($candidate_routes as $candidate_name => $candidate_route) {
+      if ($candidate_route->getPath() === $parent_path) {
+        return $candidate_name;
+      }
     }
 
-    return $parent_route['_route'];
+    return NULL;
   }
 
 }

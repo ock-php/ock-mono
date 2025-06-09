@@ -27,4 +27,3 @@ type: links.menu
   menu_name: tools
   route_name: controller_attributes_test.parent_child.parent
   title: Parent
-  parent: user.login
