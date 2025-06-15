@@ -30,7 +30,7 @@ final class PluginDeriver_ActionLinksFromRouteMeta extends LinkPluginDeriverBase
         $link['appears_on'] = [$parentRouteName];
       }
       elseif (!\is_array($link['appears_on'])) {
-        $link['appears_on'] = [$link['appears_on']];
+        continue;
       }
 
       $definitions[$k] = $link;
