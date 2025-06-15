@@ -13,23 +13,17 @@ final class PluginDeriver_TaskLinksFromRouteMeta extends LinkPluginDeriverBase {
     $definitions = [];
     foreach ($this->provider->getAllRoutes() as $k => $route) {
 
-      if (NULL !== $link = $route->getOption('_task_link')) {
+      if (is_array($link = $route->getOption('_task_link'))) {
         $is_default_task = FALSE;
       }
-      elseif (NULL !== $link = $route->getOption('_task_link_default')) {
+      elseif (is_array($link = $route->getOption('_task_link_default'))) {
         $is_default_task = TRUE;
       }
       else {
         continue;
       }
 
-      if (\is_string($link)) {
-        $link = ['title' => $link];
-      }
-      elseif (!\is_array($link)) {
-        $link = [];
-      }
-      elseif (!$is_default_task) {
+      if (!$is_default_task) {
         $is_default_task = !empty($link['is_default_task']);
       }
 

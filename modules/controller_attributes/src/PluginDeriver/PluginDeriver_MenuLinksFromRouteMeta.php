@@ -18,6 +18,7 @@ final class PluginDeriver_MenuLinksFromRouteMeta extends LinkPluginDeriverBase {
       }
 
       if (!\is_array($link)) {
+        // @todo Skip invalid values like this.
         $link = [];
       }
 

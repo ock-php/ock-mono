@@ -13,15 +13,8 @@ final class PluginDeriver_ActionLinksFromRouteMeta extends LinkPluginDeriverBase
     $definitions = [];
     foreach ($this->provider->getAllRoutes() as $k => $route) {
 
-      if (NULL === $link = $route->getOption('_action_link')) {
+      if (!is_array($link = $route->getOption('_action_link'))) {
         continue;
-      }
-
-      if (\is_string($link)) {
-        $link = ['title' => $link];
-      }
-      elseif (!\is_array($link)) {
-        $link = [];
       }
 
       $link += [
@@ -37,7 +30,7 @@ final class PluginDeriver_ActionLinksFromRouteMeta extends LinkPluginDeriverBase
         $link['appears_on'] = [$parentRouteName];
       }
       elseif (!\is_array($link['appears_on'])) {
-        $link['appears_on'] = [$link['appears_on']];
+        continue;
       }
 
       $definitions[$k] = $link;

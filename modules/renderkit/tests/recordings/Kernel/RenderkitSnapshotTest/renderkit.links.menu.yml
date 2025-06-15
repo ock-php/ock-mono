@@ -5,10 +5,8 @@ type: links.menu
   route_name: renderkit.report.demo
   title: 'Build provider demo'
   parent: 'routelink:renderkit.report.index'
-  id: 'routelink:renderkit.report.demo'
 '++ routelink:renderkit.report.index':
   menu_name: tools
   route_name: renderkit.report.index
   title: Renderkit
   parent: system.admin_reports
-  id: 'routelink:renderkit.report.index'

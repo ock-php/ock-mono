@@ -36,7 +36,7 @@ jobs:
           php-version: ${{ matrix.php }}
           # @todo Review which extensions are needed.
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
-          coverage: none
+          coverage: pcov
 
       - name: Composer
         run: |
@@ -91,6 +91,7 @@ jobs:
             --project-type=drupal \
             --docroot=web \
             --php-version=${{ matrix.php }} \
+            --webimage-extra-packages=php8.3-pcov \
             --project-name=demo
           ddev add-on get ddev/ddev-drupal-contrib
           ddev add-on get ddev/ddev-selenium-standalone-chrome
@@ -106,3 +107,21 @@ jobs:
             --fail-on-warning \
             --fail-on-skipped \
             --fail-on-risky
+
+      - name: Enforce PHPUnit code coverage
+        run: |
+          set -x
+          if [ ! -f .coverage ] || [ ! -f build/logs/clover.xml ]; then
+            exit 0
+          fi
+          expected=$(head -n 1 .coverage)
+          line=$(grep -o '<metrics[^>]*>' build/logs/clover.xml | tail -1)
+          total=$(echo "$line" | sed -n 's/.* statements="\([0-9]*\)".*/\1/p')
+          covered=$(echo "$line" | sed -n 's/.* coveredstatements="\([0-9]*\)".*/\1/p')
+          percentage=$(echo "$covered / $total * 100" | bc -l)
+          if [ $(echo "$covered * 100 < $expected * $total" | bc) -eq 1  ]; then
+            cat build/logs/clover.xml
+            echo "Fail: Expected at least $expected% coverage, found $percentage% coverage."
+            exit 1
+          fi
+          echo "Pass: Expected at least $expected% coverage, found $percentage% coverage."

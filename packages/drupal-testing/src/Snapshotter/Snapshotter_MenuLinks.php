@@ -15,8 +15,14 @@ class Snapshotter_MenuLinks extends SnapshotterBase {
    * {@inheritdoc}
    */
   protected function getItems(): array {
-    return DrupalTesting::service(MenuLinkManagerInterface::class)
+    $definitions = DrupalTesting::service(MenuLinkManagerInterface::class)
       ->getDefinitions();
+    foreach ($definitions as $id => $definition) {
+      if (($definition['id'] ?? null) === $id) {
+        unset($definitions[$id]['id']);
+      }
+    }
+    return $definitions;
   }
 
   /**
