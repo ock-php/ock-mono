@@ -3,6 +3,7 @@ type: route_paths
 ++:
   - /controller-attributes-test/goodbye
   - /controller-attributes-test/hello
+  - '/controller-attributes-test/post-or-put/{arg}'
   - /controller-attributes-test/subdir/hello-in-subdir
   - /explicit-child
   - /hello/user

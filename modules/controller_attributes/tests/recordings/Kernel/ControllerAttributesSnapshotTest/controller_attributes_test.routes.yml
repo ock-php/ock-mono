@@ -14,6 +14,23 @@ type: routes
       _controller: 'Drupal\controller_attributes_test\Controller\HelloController::hello'
     options:
       _menu_link: {  }
+'++ /controller-attributes-test/post-or-put/{arg}':
+  controller_attributes_test.hello.post_or_put:
+    defaults:
+      _controller: 'Drupal\controller_attributes_test\Controller\HelloController::postOrPut'
+      x: X
+    methods:
+      - POST
+      - PUT
+    requirements:
+      _module_dependencies: user
+    options:
+      _admin_route: true
+      a: B
+      parameters:
+        arg:
+          type: 'entity:user'
+          converter: paramconverter.entity
 '++ /controller-attributes-test/subdir/hello-in-subdir':
   controller_attributes_test.subdir.controller_in_subdir.hello:
     defaults:
