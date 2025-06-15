@@ -12,9 +12,13 @@ use Drupal\controller_attributes\Attribute\RouteMenuLink;
 use Drupal\controller_attributes\Attribute\RouteOptions;
 use Drupal\controller_attributes\Attribute\RouteParameters;
 use Drupal\controller_attributes\Attribute\RouteRequirements;
+use Drupal\controller_attributes\Controller\ControllerRouteNameInterface;
+use Drupal\controller_attributes\Controller\ControllerRouteNameTrait;
 
 #[Route('/controller-attributes-test')]
-class HelloController {
+class HelloController implements ControllerRouteNameInterface {
+
+  use ControllerRouteNameTrait;
 
   public function methodWithoutAttributes(): array {
     return [];
