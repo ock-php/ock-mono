@@ -21,7 +21,6 @@ class LinksFromRoutes {
 
   #[Hook('menu_links_discovered_alter')]
   public function menuLinksDiscoveredAlter(&$links): void {
-    $definitions = [];
     foreach ($this->provider->getAllRoutes() as $k => $route) {
       if (NULL === $link = $route->getOption('_menu_link')) {
         continue;
@@ -37,14 +36,7 @@ class LinksFromRoutes {
       if (!isset($link['parent'])) {
         $link['parent'] = $this->routeGetParentName($route);
       }
-      $definitions[$k] = $link;
-    }
-
-    foreach ($definitions as $k => $link) {
-      if (isset($definitions[$link['parent']])) {
-        $link['parent'] = 'routelink:' . $link['parent'];
-      }
-      $links['routelink:' . $k] = $link;
+      $links[$k] = $link;
     }
   }
 
@@ -68,9 +60,9 @@ class LinksFromRoutes {
         continue;
       }
       if ($this->localActionManager instanceof DefaultPluginManager) {
-        $this->localActionManager->processDefinition($link, 'routelink:' . $k);
+        $this->localActionManager->processDefinition($link, $k);
       }
-      $local_actions['routelink:' . $k] = $link;
+      $local_actions[$k] = $link;
     }
   }
 
@@ -105,9 +97,9 @@ class LinksFromRoutes {
         }
       }
       if ($this->localTaskManager instanceof DefaultPluginManager) {
-        $this->localTaskManager->processDefinition($link, 'routelink:' . $k);
+        $this->localTaskManager->processDefinition($link, $k);
       }
-      $local_tasks['routelink:' . $k] = $link;
+      $local_tasks[$k] = $link;
     }
   }
 

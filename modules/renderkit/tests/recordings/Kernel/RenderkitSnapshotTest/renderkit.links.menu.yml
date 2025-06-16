@@ -1,12 +1,10 @@
 module: renderkit
 type: links.menu
-'++ routelink:renderkit.report.demo':
+'++ renderkit.report.demo':
   menu_name: tools
-  route_name: renderkit.report.demo
   title: 'Build provider demo'
-  parent: 'routelink:renderkit.report.index'
-'++ routelink:renderkit.report.index':
+  parent: renderkit.report.index
+'++ renderkit.report.index':
   menu_name: tools
-  route_name: renderkit.report.index
   title: Renderkit
   parent: system.admin_reports

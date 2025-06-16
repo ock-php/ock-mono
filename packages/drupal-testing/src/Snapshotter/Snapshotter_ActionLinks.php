@@ -14,8 +14,17 @@ class Snapshotter_ActionLinks extends SnapshotterBase {
    * {@inheritdoc}
    */
   protected function getItems(): array {
-    return DrupalTesting::service(LocalActionManagerInterface::class)
+    $definitions = DrupalTesting::service(LocalActionManagerInterface::class)
       ->getDefinitions();
+    foreach ($definitions as $id => $definition) {
+      if (!array_key_exists('route_name', $definition)) {
+        $definitions[$id]['route_name'] = '(missing)';
+      }
+      elseif ($definition['route_name'] === $id) {
+        unset($definitions[$id]['route_name']);
+      }
+    }
+    return $definitions;
   }
 
   /**
