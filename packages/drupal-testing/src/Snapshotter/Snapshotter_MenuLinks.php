@@ -18,7 +18,10 @@ class Snapshotter_MenuLinks extends SnapshotterBase {
     $definitions = DrupalTesting::service(MenuLinkManagerInterface::class)
       ->getDefinitions();
     foreach ($definitions as $id => $definition) {
-      if (($definition['id'] ?? null) === $id) {
+      if (!array_key_exists('id', $definition)) {
+        $definitions[$id]['id'] = '(missing)';
+      }
+      elseif ($definition['id'] === $id) {
         unset($definitions[$id]['id']);
       }
     }
