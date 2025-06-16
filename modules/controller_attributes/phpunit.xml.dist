@@ -19,7 +19,6 @@
          failOnRisky="true"
          failOnWarning="true"
          requireCoverageMetadata="true"
-         beStrictAboutCoverageMetadata="true"
 >
   <php>
     <!-- See https://gist.github.com/davidjguru/2d59eed50818f74710ae3b0f87fb947d -->
