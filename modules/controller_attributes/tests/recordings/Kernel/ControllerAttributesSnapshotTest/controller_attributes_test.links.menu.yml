@@ -1,29 +1,29 @@
 module: controller_attributes_test
 type: links.menu
-'++ routelink:controller_attributes_test.hello.goodbye':
+'++ controller_attributes_test.hello.goodbye':
   menu_name: tools
   route_name: controller_attributes_test.hello.goodbye
   title: Goodbye
   description: 'A farewell greeting'
-'++ routelink:controller_attributes_test.hello.hello':
+'++ controller_attributes_test.hello.hello':
   menu_name: tools
   route_name: controller_attributes_test.hello.hello
   title: null
-'++ routelink:controller_attributes_test.hello_user_overview.overview':
+'++ controller_attributes_test.hello_user_overview.overview':
   menu_name: tools
   route_name: controller_attributes_test.hello_user_overview.overview
   title: 'List of users'
-'++ routelink:controller_attributes_test.parent_child.automatic_child':
+'++ controller_attributes_test.parent_child.automatic_child':
   menu_name: tools
   route_name: controller_attributes_test.parent_child.automatic_child
   title: Parent
-  parent: 'routelink:controller_attributes_test.parent_child.parent'
-'++ routelink:controller_attributes_test.parent_child.explicit_child':
+  parent: controller_attributes_test.parent_child.parent
+'++ controller_attributes_test.parent_child.explicit_child':
   menu_name: tools
   route_name: controller_attributes_test.parent_child.explicit_child
   title: Parent
-  parent: 'routelink:controller_attributes_test.parent_child.parent'
-'++ routelink:controller_attributes_test.parent_child.parent':
+  parent: controller_attributes_test.parent_child.parent
+'++ controller_attributes_test.parent_child.parent':
   menu_name: tools
   route_name: controller_attributes_test.parent_child.parent
   title: Parent

@@ -57,20 +57,20 @@ class LinksFromRouteTest extends TestCase {
     // @todo This should be skipped instead.
     $this->assertSame([
       'existing' => [],
-      'routelink:route_with_non_array_menu_link' => [
+      'route_with_non_array_menu_link' => [
         'title' => 'Non-array menu link',
         'route_name' => 'route_with_non_array_menu_link',
         'parent' => null,
       ],
-      'routelink:route_with_menu_link' => [
+      'route_with_menu_link' => [
         'title' => 'Test menu link',
         'parent' => 'parent_route_name',
         'route_name' => 'route_with_menu_link',
      ],
-      'routelink:auto_parent' => [
+      'auto_parent' => [
         'title' => 'Link with auto parent',
         'route_name' => 'auto_parent',
-        'parent' => 'routelink:route_with_menu_link',
+        'parent' => 'route_with_menu_link',
       ],
     ], $links);
   }
@@ -119,12 +119,12 @@ class LinksFromRouteTest extends TestCase {
     $hook_object->menuLocalActionsAlter($local_actions);
     $this->assertSame([
       'existing' => [],
-      'routelink:route_with_action_link' => [
+      'route_with_action_link' => [
         'title' => 'Test action link',
         'appears_on' => ['appears_on_route'],
         'route_name' => 'route_with_action_link',
       ],
-      'routelink:auto_appears_on' => [
+      'auto_appears_on' => [
         'title' => 'Appears on',
         'route_name' => 'auto_appears_on',
         'appears_on' => ['parent'],
