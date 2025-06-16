@@ -1,2 +1,0 @@
-routelink:
-  deriver: Drupal\controller_attributes\PluginDeriver\PluginDeriver_MenuLinksFromRouteMeta

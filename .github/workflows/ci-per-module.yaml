@@ -20,7 +20,7 @@ jobs:
           - themekit
         php: [8.3]
         composer-flags: ['', '--prefer-lowest']
-        drupal-constraint: ['^11.0.5']
+        drupal-constraint: ['^11.1.8']
 
     defaults:
       run:

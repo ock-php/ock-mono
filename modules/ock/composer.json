@@ -6,7 +6,7 @@
     "require": {
         "php": ">=8.3",
         "drupal/controller_attributes": "self.version",
-        "drupal/core": "^11.0.5",
+        "drupal/core": "^11.1.8",
         "drupal/service_discovery": "self.version",
         "drupal/themekit": "*",
         "ock/adaptism": "*",
