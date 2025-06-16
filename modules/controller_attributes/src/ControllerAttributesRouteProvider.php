@@ -70,9 +70,6 @@ class ControllerAttributesRouteProvider implements ContainerInjectionInterface {
    */
   protected function getRoutesForClass(string $class): array {
     $base_root = new Route('/');
-    if ($base_root->getPath() !== '/') {
-      throw new \RuntimeException('Unexpected path.');
-    }
     $routes = [];
     $rClass = new \ReflectionClass($class);
     if ($rClass->isInterface() || $rClass->isTrait() || $rClass->isAbstract() || $rClass->isEnum()) {

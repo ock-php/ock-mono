@@ -5,4 +5,3 @@ type: links.menu
   route_name: ock_preset.all_presets_overview.index
   title: 'ock_preset presets'
   parent: system.admin_structure
-  id: 'routelink:ock_preset.all_presets_overview.index'
