@@ -1,18 +1,14 @@
 module: controller_attributes_test
 type: links.task
 '++ controller_attributes_test.hello_user.delete_user_different_base_route':
-  route_name: controller_attributes_test.hello_user.delete_user_different_base_route
   title: Edit
   base_route: entity.user.canonical
 '++ controller_attributes_test.hello_user.edit':
-  route_name: controller_attributes_test.hello_user.edit
   title: Edit
   base_route: controller_attributes_test.hello_user.view
 '++ controller_attributes_test.hello_user.invite':
-  route_name: controller_attributes_test.hello_user.invite
   title: Invite
   base_route: controller_attributes_test.hello_user.view
 '++ controller_attributes_test.hello_user.view':
-  route_name: controller_attributes_test.hello_user.view
   title: View
   base_route: controller_attributes_test.hello_user.view

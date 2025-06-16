@@ -2,12 +2,10 @@ module: controller_attributes_test
 type: links.action
 '++ controller_attributes_test.hello_user_overview.add':
   title: 'Add user'
-  route_name: controller_attributes_test.hello_user_overview.add
   appears_on:
     - controller_attributes_test.hello_user_overview.overview
 '++ controller_attributes_test.hello_user_overview.invite':
   title: 'Invite user'
   weight: 10
-  route_name: controller_attributes_test.hello_user_overview.invite
   appears_on:
     - controller_attributes_test.hello_user_overview.overview

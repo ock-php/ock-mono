@@ -24,6 +24,12 @@ class Snapshotter_MenuLinks extends SnapshotterBase {
       elseif ($definition['id'] === $id) {
         unset($definitions[$id]['id']);
       }
+      if (!array_key_exists('route_name', $definition)) {
+        $definitions[$id]['route_name'] = '(missing)';
+      }
+      elseif ($definition['route_name'] === $id) {
+        unset($definitions[$id]['route_name']);
+      }
     }
     return $definitions;
   }

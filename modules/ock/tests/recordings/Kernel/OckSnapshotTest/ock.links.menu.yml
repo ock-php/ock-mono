@@ -2,14 +2,11 @@ module: ock
 type: links.menu
 '++ ock.devel_ops.clear':
   menu_name: devel
-  route_name: ock.devel_ops.clear
   title: 'Rediscover Composition Plugins'
 '++ ock.flush_ock.clear':
   menu_name: admin
-  route_name: ock.flush_ock.clear
   title: 'Flush Ock plugins'
 '++ ock.report_overview.overview':
   menu_name: tools
-  route_name: ock.report_overview.overview
   title: 'ock plugins'
   parent: system.admin_reports

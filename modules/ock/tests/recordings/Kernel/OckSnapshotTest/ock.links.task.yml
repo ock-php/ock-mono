@@ -1,30 +1,23 @@
 module: ock
 type: links.task
 '++ ock.report_iface.code':
-  route_name: ock.report_iface.code
   title: Code
   base_route: ock.report_iface.list_of_plugins
 '++ ock.report_iface.demo':
-  route_name: ock.report_iface.demo
   title: Demo
   base_route: ock.report_iface.list_of_plugins
 '++ ock.report_iface.list_of_plugins':
-  route_name: ock.report_iface.list_of_plugins
   title: 'List of plugins'
   base_route: ock.report_iface.list_of_plugins
 '++ ock.report_plugin.code':
-  route_name: ock.report_plugin.code
   title: Code
   base_route: ock.report_plugin.plugin
 '++ ock.report_plugin.demo':
-  route_name: ock.report_plugin.demo
   title: Demo
   base_route: ock.report_plugin.plugin
 '++ ock.report_plugin.devel':
-  route_name: ock.report_plugin.devel
   title: Devel
   base_route: ock.report_plugin.plugin
 '++ ock.report_plugin.plugin':
-  route_name: ock.report_plugin.plugin
   title: Plugin
   base_route: ock.report_plugin.plugin

@@ -1,18 +1,14 @@
 module: ock_preset
 type: links.task
 '++ ock_preset.iface_presets.add':
-  route_name: ock_preset.iface_presets.add
   title: 'Add preset'
   base_route: ock_preset.iface_presets.index
 '++ ock_preset.iface_presets.index':
-  route_name: ock_preset.iface_presets.index
   title: List
   base_route: ock_preset.iface_presets.index
 '++ ock_preset.preset.delete':
-  route_name: ock_preset.preset.delete
   title: Delete
   base_route: ock_preset.preset.edit
 '++ ock_preset.preset.edit':
-  route_name: ock_preset.preset.edit
   title: Edit
   base_route: ock_preset.preset.edit
