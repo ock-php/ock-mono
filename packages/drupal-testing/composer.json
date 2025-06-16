@@ -21,7 +21,7 @@
     "require": {
         "php": ">=8.3",
         "ext-json": "*",
-        "drupal/core": "^11.0.5",
+        "drupal/core": "^11.1.8",
         "ock/testing": "self.version"
     },
     "require-dev": {
