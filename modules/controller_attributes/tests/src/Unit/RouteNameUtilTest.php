@@ -7,7 +7,9 @@ namespace Drupal\Tests\controller_attributes\Unit;
 use Drupal\controller_attributes\RouteNameUtil;
 use Drupal\Core\Serialization\Yaml;
 use Drupal\Tests\UnitTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
+#[CoversClass(RouteNameUtil::class)]
 class RouteNameUtilTest extends UnitTestCase {
 
   public function testMethodGetRouteName(): void {
