@@ -1,5 +1,5 @@
-module: controller_attributes_test
-type: links.action
+# controller_attributes_test
+# links.action
 controller_attributes_test.hello_user_overview.add: !add
   title: 'Add user'
   appears_on:

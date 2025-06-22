@@ -1,5 +1,5 @@
-module: ock
-type: links.menu
+# ock
+# links.menu
 ock.devel_ops.clear: !add
   menu_name: devel
   title: 'Rediscover Composition Plugins'

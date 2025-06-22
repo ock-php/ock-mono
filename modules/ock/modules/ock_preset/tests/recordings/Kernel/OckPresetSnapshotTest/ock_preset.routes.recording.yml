@@ -1,5 +1,5 @@
-module: ock_preset
-type: routes
+# ock_preset
+# routes
 /admin/structure/ock_preset: !add
   ock_preset.all_presets_overview.index:
     defaults:

@@ -1,5 +1,5 @@
-module: ock
-type: route_paths
+# ock
+# route_paths
 ++:
   - /admin/flush/ock
   - /admin/reports/ock

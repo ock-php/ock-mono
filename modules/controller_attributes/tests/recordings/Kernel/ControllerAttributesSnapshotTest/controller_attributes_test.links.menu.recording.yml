@@ -1,5 +1,5 @@
-module: controller_attributes_test
-type: links.menu
+# controller_attributes_test
+# links.menu
 controller_attributes_test.hello.goodbye: !add
   menu_name: tools
   title: Goodbye

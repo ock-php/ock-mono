@@ -1,5 +1,5 @@
-module: service_discovery_test
-type: container.definitions
+# service_discovery_test
+# container.definitions
 Drupal\service_discovery_test\ServiceAtlas: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():

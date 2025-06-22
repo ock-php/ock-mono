@@ -1,5 +1,5 @@
-module: controller_attributes_test
-type: links.task
+# controller_attributes_test
+# links.task
 controller_attributes_test.hello_user.delete_user_different_base_route: !add
   title: Edit
   base_route: entity.user.canonical

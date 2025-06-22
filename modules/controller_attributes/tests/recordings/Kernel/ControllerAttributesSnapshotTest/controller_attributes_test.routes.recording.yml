@@ -1,5 +1,5 @@
-module: controller_attributes_test
-type: routes
+# controller_attributes_test
+# routes
 /controller-attributes-test/goodbye: !add
   controller_attributes_test.hello.goodbye:
     defaults:

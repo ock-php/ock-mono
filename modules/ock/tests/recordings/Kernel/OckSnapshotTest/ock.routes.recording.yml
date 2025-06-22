@@ -1,5 +1,5 @@
-module: ock
-type: routes
+# ock
+# routes
 /admin/flush/ock: !add
   ock.flush_ock.clear:
     defaults:

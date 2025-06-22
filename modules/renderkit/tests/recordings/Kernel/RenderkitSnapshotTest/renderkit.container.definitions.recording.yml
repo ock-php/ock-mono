@@ -1,5 +1,5 @@
-module: renderkit
-type: container.definitions
+# renderkit
+# container.definitions
 Ock\Ock\Plugin\Registry\PluginRegistryInterface: !diff
   class: Symfony\Component\DependencyInjection\Definition
   getClass(): Ock\Ock\Plugin\Registry\PluginRegistry_Buffer

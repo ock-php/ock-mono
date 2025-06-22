@@ -1,5 +1,5 @@
-module: ock
-type: container.definitions
+# ock
+# container.definitions
 paramconverter_manager: !diff
   class: Symfony\Component\DependencyInjection\Definition
   getClass(): Drupal\Core\ParamConverter\ParamConverterManager

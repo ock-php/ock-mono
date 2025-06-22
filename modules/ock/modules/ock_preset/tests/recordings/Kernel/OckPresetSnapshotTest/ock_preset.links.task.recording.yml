@@ -1,5 +1,5 @@
-module: ock_preset
-type: links.task
+# ock_preset
+# links.task
 ock_preset.iface_presets.add: !add
   title: 'Add preset'
   base_route: ock_preset.iface_presets.index

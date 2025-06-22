@@ -1,5 +1,5 @@
-module: controller_attributes_test
-type: route_paths
+# controller_attributes_test
+# route_paths
 ++:
   - /controller-attributes-test/goodbye
   - /controller-attributes-test/hello

@@ -1,5 +1,5 @@
-module: ock
-type: links.task
+# ock
+# links.task
 ock.report_iface.code: !add
   title: Code
   base_route: ock.report_iface.list_of_plugins

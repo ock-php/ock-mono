@@ -1,5 +1,5 @@
-module: ock_preset
-type: route_paths
+# ock_preset
+# route_paths
 ++:
   - /admin/structure/ock_preset
   - '/admin/structure/ock_preset/{interface}'

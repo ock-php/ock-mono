@@ -1,5 +1,5 @@
-module: controller_attributes
-type: container.definitions
+# controller_attributes
+# container.definitions
 Drupal\controller_attributes\Hook\LinksFromRoutes: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():

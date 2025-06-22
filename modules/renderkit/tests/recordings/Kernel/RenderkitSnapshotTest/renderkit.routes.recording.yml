@@ -1,5 +1,5 @@
-module: renderkit
-type: routes
+# renderkit
+# routes
 /admin/reports/renderkit: !add
   renderkit.report.index:
     defaults:
