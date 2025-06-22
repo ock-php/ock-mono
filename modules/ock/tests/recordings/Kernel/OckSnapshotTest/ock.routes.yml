@@ -1,6 +1,6 @@
 module: ock
 type: routes
-'++ /admin/flush/ock':
+/admin/flush/ock: !add
   ock.flush_ock.clear:
     defaults:
       _controller: 'Drupal\ock\Controller\Controller_FlushOck::clear'
@@ -13,7 +13,7 @@ type: routes
         menu_name: admin
       _access_checks:
         - access_check.permission
-'++ /admin/reports/ock':
+/admin/reports/ock: !add
   ock.report_overview.overview:
     defaults:
       _controller: 'Drupal\ock\Controller\Controller_ReportOverview::overview'
@@ -25,7 +25,7 @@ type: routes
       _menu_link: {  }
       _access_checks:
         - access_check.permission
-'++ /admin/reports/ock/{interface}':
+'/admin/reports/ock/{interface}': !add
   ock.report_iface.list_of_plugins:
     defaults:
       _title_callback: 'Drupal\ock\Controller\Controller_ReportIface::title'
@@ -42,7 +42,7 @@ type: routes
         title: 'List of plugins'
       _access_checks:
         - access_check.permission
-'++ /admin/reports/ock/{interface}/code':
+'/admin/reports/ock/{interface}/code': !add
   ock.report_iface.code:
     defaults:
       _title_callback: 'Drupal\ock\Controller\Controller_ReportIface::title'
@@ -59,7 +59,7 @@ type: routes
         title: Code
       _access_checks:
         - access_check.permission
-'++ /admin/reports/ock/{interface}/demo':
+'/admin/reports/ock/{interface}/demo': !add
   ock.report_iface.demo:
     defaults:
       _title_callback: 'Drupal\ock\Controller\Controller_ReportIface::title'
@@ -76,7 +76,7 @@ type: routes
         title: Demo
       _access_checks:
         - access_check.permission
-'++ /admin/reports/ock/{interface}/plugin/{named_plugin}':
+'/admin/reports/ock/{interface}/plugin/{named_plugin}': !add
   ock.report_plugin.plugin:
     defaults:
       _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
@@ -96,7 +96,7 @@ type: routes
         title: Plugin
       _access_checks:
         - access_check.permission
-'++ /admin/reports/ock/{interface}/plugin/{named_plugin}/code':
+'/admin/reports/ock/{interface}/plugin/{named_plugin}/code': !add
   ock.report_plugin.code:
     defaults:
       _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
@@ -116,7 +116,7 @@ type: routes
         title: Code
       _access_checks:
         - access_check.permission
-'++ /admin/reports/ock/{interface}/plugin/{named_plugin}/demo':
+'/admin/reports/ock/{interface}/plugin/{named_plugin}/demo': !add
   ock.report_plugin.demo:
     defaults:
       _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
@@ -136,7 +136,7 @@ type: routes
         title: Demo
       _access_checks:
         - access_check.permission
-'++ /admin/reports/ock/{interface}/plugin/{named_plugin}/devel':
+'/admin/reports/ock/{interface}/plugin/{named_plugin}/devel': !add
   ock.report_plugin.devel:
     defaults:
       _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
@@ -156,7 +156,7 @@ type: routes
         title: Devel
       _access_checks:
         - access_check.permission
-'++ /devel/ock/clear':
+/devel/ock/clear: !add
   ock.devel_ops.clear:
     defaults:
       _controller: 'Drupal\ock\Controller\Controller_DevelOps::clear'

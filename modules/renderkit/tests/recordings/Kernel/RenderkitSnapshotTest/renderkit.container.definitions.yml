@@ -1,21 +1,21 @@
 module: renderkit
 type: container.definitions
-'~~ Ock\Ock\Plugin\Registry\PluginRegistryInterface':
+Ock\Ock\Plugin\Registry\PluginRegistryInterface: !diff
   class: Symfony\Component\DependencyInjection\Definition
   getClass(): Ock\Ock\Plugin\Registry\PluginRegistry_Buffer
-  '~~ getArguments()':
-    '~~ 0':
+  getArguments(): !diff
+    - !diff
       class: Symfony\Component\DependencyInjection\Definition
       getClass(): Ock\Ock\Plugin\Registry\PluginRegistryInterface
       getFactory():
         - Ock\Ock\Plugin\Registry\PluginRegistry
         - fromCandidateObjects
-      '~~ getArguments()':
-        '~~ 0':
+      getArguments(): !diff
+        - !diff
           class: Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument
-          '~~ getValues()':
+          getValues(): !diff
             - !add '@Drupal\renderkit\RenderkitNamespace'
-'++ Drupal\renderkit\Formula\Formula_EntityFormMode':
+Drupal\renderkit\Formula\Formula_EntityFormMode: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_type.manager'
@@ -24,26 +24,26 @@ type: container.definitions
       $type: Drupal\renderkit\TextLookup\TextLookup_EntityType
   getClass(): Drupal\renderkit\Formula\Formula_EntityFormMode
   isPublic(): true
-'++ Drupal\renderkit\Formula\Formula_EntityType':
+Drupal\renderkit\Formula\Formula_EntityType: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_type.repository'
   getClass(): Drupal\renderkit\Formula\Formula_EntityType
   isPublic(): true
-'++ Drupal\renderkit\Formula\Formula_EntityType_Flat':
+Drupal\renderkit\Formula\Formula_EntityType_Flat: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_type.manager'
   getClass(): Drupal\renderkit\Formula\Formula_EntityType_Flat
   isPublic(): true
-'++ Drupal\renderkit\Formula\Formula_EntityType_WithFields':
+Drupal\renderkit\Formula\Formula_EntityType_WithFields: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_field.manager'
     - '@entity_type.repository'
   getClass(): Drupal\renderkit\Formula\Formula_EntityType_WithFields
   isPublic(): true
-'++ Drupal\renderkit\Formula\Formula_EntityViewMode':
+Drupal\renderkit\Formula\Formula_EntityViewMode: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_type.manager'
@@ -52,7 +52,7 @@ type: container.definitions
       $type: Drupal\renderkit\TextLookup\TextLookup_EntityType
   getClass(): Drupal\renderkit\Formula\Formula_EntityViewMode
   isPublic(): true
-'++ Drupal\renderkit\Formula\Formula_EtDotFieldName':
+Drupal\renderkit\Formula\Formula_EtDotFieldName: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_field.manager'
@@ -64,7 +64,7 @@ type: container.definitions
       $type: Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType
   getClass(): Drupal\renderkit\Formula\Formula_EtDotFieldName
   isPublic(): true
-'++ Drupal\renderkit\Formula\Formula_EtDotFieldName_EntityReference':
+Drupal\renderkit\Formula\Formula_EtDotFieldName_EntityReference: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     -
@@ -77,7 +77,7 @@ type: container.definitions
       $type: Drupal\renderkit\TextLookup\TextLookup_EntityType
   getClass(): Drupal\renderkit\Formula\Formula_EtDotFieldName_EntityReference
   isPublic(): true
-'++ Drupal\renderkit\Formula\Formula_FieldFormatterId':
+Drupal\renderkit\Formula\Formula_FieldFormatterId: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     -
@@ -89,13 +89,13 @@ type: container.definitions
           $value: '@plugin.manager.field.formatter'
   getClass(): Drupal\renderkit\Formula\Formula_FieldFormatterId
   isPublic(): true
-'++ Drupal\renderkit\Formula\Formula_FieldType_Flat':
+Drupal\renderkit\Formula\Formula_FieldType_Flat: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@plugin.manager.field.field_type'
   getClass(): Drupal\renderkit\Formula\Formula_FieldType_Flat
   isPublic(): true
-'++ Drupal\renderkit\Helper\FieldDefinitionLookupInterface':
+Drupal\renderkit\Helper\FieldDefinitionLookupInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   $innerServiceId: Drupal\renderkit\Helper\FieldDefinitionLookup_Buffer.inner
   $decorationOnInvalid: 1
@@ -103,13 +103,13 @@ type: container.definitions
     - '@Drupal\renderkit\Helper\FieldDefinitionLookup_Buffer.inner'
   getClass(): Drupal\renderkit\Helper\FieldDefinitionLookup_Buffer
   isPublic(): true
-'++ Drupal\renderkit\Helper\FieldDefinitionLookup_Buffer.inner':
+Drupal\renderkit\Helper\FieldDefinitionLookup_Buffer.inner: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_field.manager'
   getClass(): Drupal\renderkit\Helper\FieldDefinitionLookup
   isPublic(): true
-'++ Drupal\renderkit\Helper\FormatterPluginLookup':
+Drupal\renderkit\Helper\FormatterPluginLookup: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@Drupal\renderkit\Helper\FieldDefinitionLookupInterface'
@@ -122,19 +122,19 @@ type: container.definitions
           $value: '@plugin.manager.field.formatter'
   getClass(): Drupal\renderkit\Helper\FormatterPluginLookup
   isPublic(): true
-'++ Drupal\renderkit\RenderkitNamespace':
+Drupal\renderkit\RenderkitNamespace: !add
   class: Symfony\Component\DependencyInjection\Definition
   getClass(): Drupal\renderkit\RenderkitNamespace
   getTags():
     ock.discovery:
       - {  }
-'++ Drupal\renderkit\TextLookup\TextLookup_BaseField':
+Drupal\renderkit\TextLookup\TextLookup_BaseField: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_field.manager'
   getClass(): Drupal\renderkit\TextLookup\TextLookup_BaseField
   isPublic(): true
-'++ Drupal\renderkit\TextLookup\TextLookup_BundleField':
+Drupal\renderkit\TextLookup\TextLookup_BundleField: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     -
@@ -146,13 +146,13 @@ type: container.definitions
           $value: '@entity_field.manager'
   getClass(): Drupal\renderkit\TextLookup\TextLookup_BundleField
   isPublic(): true
-'++ Drupal\renderkit\TextLookup\TextLookup_EntityField':
+Drupal\renderkit\TextLookup\TextLookup_EntityField: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_field.manager'
   getClass(): Drupal\renderkit\TextLookup\TextLookup_EntityField
   isPublic(): true
-'++ Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType':
+Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     -
@@ -163,13 +163,13 @@ type: container.definitions
       $type: Drupal\renderkit\TextLookup\TextLookup_EntityField
   getClass(): Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType
   isPublic(): true
-'++ Drupal\renderkit\TextLookup\TextLookup_EntityType':
+Drupal\renderkit\TextLookup\TextLookup_EntityType: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_type.manager'
   getClass(): Drupal\renderkit\TextLookup\TextLookup_EntityType
   isPublic(): true
-'++ Drupal\renderkit\TextLookup\TextLookup_EntityTypeDotId':
+Drupal\renderkit\TextLookup\TextLookup_EntityTypeDotId: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_type.manager'
@@ -178,13 +178,13 @@ type: container.definitions
       $type: Drupal\renderkit\TextLookup\TextLookup_EntityType
   getClass(): Drupal\renderkit\TextLookup\TextLookup_EntityTypeDotId
   isPublic(): true
-'++ Drupal\renderkit\TextLookup\TextLookup_FieldType':
+Drupal\renderkit\TextLookup\TextLookup_FieldType: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@plugin.manager.field.field_type'
   getClass(): Drupal\renderkit\TextLookup\TextLookup_FieldType
   isPublic(): true
-'++ lookup.Drupal\renderkit\Formula\Formula_ConfigEntityId':
+lookup.Drupal\renderkit\Formula\Formula_ConfigEntityId: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_type.manager'
@@ -193,7 +193,7 @@ type: container.definitions
     - Drupal\renderkit\Formula\Formula_ConfigEntityId
     - createLookup
   isPublic(): true
-'++ lookup.Drupal\renderkit\Formula\Formula_EntityIdAutocomplete':
+lookup.Drupal\renderkit\Formula\Formula_EntityIdAutocomplete: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@entity_type.manager'
@@ -202,7 +202,7 @@ type: container.definitions
     - Drupal\renderkit\Formula\Formula_EntityIdAutocomplete
     - getFactory
   isPublic(): true
-'++ lookup.Drupal\renderkit\Formula\Formula_FieldName':
+lookup.Drupal\renderkit\Formula\Formula_FieldName: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     -
@@ -221,7 +221,7 @@ type: container.definitions
     - Drupal\renderkit\Formula\Formula_FieldName
     - createLookup
   isPublic(): true
-'++ lookup.Drupal\renderkit\TextLookup\TextLookup_FieldName':
+lookup.Drupal\renderkit\TextLookup\TextLookup_FieldName: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     -

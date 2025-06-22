@@ -1,6 +1,6 @@
 module: controller_attributes_test
 type: routes
-'++ /controller-attributes-test/goodbye':
+/controller-attributes-test/goodbye: !add
   controller_attributes_test.hello.goodbye:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloController::goodbye'
@@ -8,13 +8,13 @@ type: routes
       _menu_link:
         title: Goodbye
         description: 'A farewell greeting'
-'++ /controller-attributes-test/hello':
+/controller-attributes-test/hello: !add
   controller_attributes_test.hello.hello:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloController::hello'
     options:
       _menu_link: {  }
-'++ /controller-attributes-test/post-or-put/{arg}':
+'/controller-attributes-test/post-or-put/{arg}': !add
   controller_attributes_test.hello.post_or_put:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloController::postOrPut'
@@ -31,14 +31,14 @@ type: routes
         arg:
           type: 'entity:user'
           converter: paramconverter.entity
-'++ /controller-attributes-test/subdir/hello-in-subdir':
+/controller-attributes-test/subdir/hello-in-subdir: !add
   controller_attributes_test.subdir.controller_in_subdir.hello:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\Subdir\ControllerInSubdir::hello'
     options:
       compiler_class: null
       utf8: null
-'++ /explicit-child':
+/explicit-child: !add
   controller_attributes_test.parent_child.explicit_child:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\ParentChildController::explicitChild'
@@ -46,7 +46,7 @@ type: routes
       _menu_link:
         title: Parent
         parent: controller_attributes_test.parent_child.parent
-'++ /hello/user':
+/hello/user: !add
   controller_attributes_test.hello_user_overview.overview:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloUserOverviewController::overview'
@@ -58,7 +58,7 @@ type: routes
         title: 'List of users'
       _access_checks:
         - access_check.permission
-'++ /hello/user/add-user':
+/hello/user/add-user: !add
   controller_attributes_test.hello_user_overview.add:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloUserOverviewController::add'
@@ -72,7 +72,7 @@ type: routes
           - controller_attributes_test.hello_user_overview.overview
       _access_checks:
         - access_check.permission
-'++ /hello/user/invite-user':
+/hello/user/invite-user: !add
   controller_attributes_test.hello_user_overview.invite:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloUserOverviewController::invite'
@@ -87,7 +87,7 @@ type: routes
         weight: 10
       _access_checks:
         - access_check.permission
-'++ /hello/user/{user}':
+'/hello/user/{user}': !add
   controller_attributes_test.hello_user.view:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloUserController::view'
@@ -103,7 +103,7 @@ type: routes
           converter: paramconverter.entity
       _access_checks:
         - access_check.default
-'++ /hello/user/{user}/delete-different-base-route':
+'/hello/user/{user}/delete-different-base-route': !add
   controller_attributes_test.hello_user.delete_user_different_base_route:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloUserController::deleteUserDifferentBaseRoute'
@@ -119,7 +119,7 @@ type: routes
           converter: paramconverter.entity
       _access_checks:
         - access_check.default
-'++ /hello/user/{user}/edit':
+'/hello/user/{user}/edit': !add
   controller_attributes_test.hello_user.edit:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloUserController::edit'
@@ -136,7 +136,7 @@ type: routes
           converter: paramconverter.entity
       _access_checks:
         - access_check.default
-'++ /hello/user/{user}/invite':
+'/hello/user/{user}/invite': !add
   controller_attributes_test.hello_user.invite:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\HelloUserController::invite'
@@ -152,14 +152,14 @@ type: routes
           converter: paramconverter.entity
       _access_checks:
         - access_check.default
-'++ /parent':
+/parent: !add
   controller_attributes_test.parent_child.parent:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\ParentChildController::parent'
     options:
       _menu_link:
         title: Parent
-'++ /parent/auto-child':
+/parent/auto-child: !add
   controller_attributes_test.parent_child.automatic_child:
     defaults:
       _controller: 'Drupal\controller_attributes_test\Controller\ParentChildController::automaticChild'

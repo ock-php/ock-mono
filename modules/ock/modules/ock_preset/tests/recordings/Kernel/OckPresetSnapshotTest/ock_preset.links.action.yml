@@ -1,6 +1,6 @@
 module: ock_preset
 type: links.action
-'++ ock_preset.iface_presets.add':
+ock_preset.iface_presets.add: !add
   title: 'Add preset'
   appears_on:
     - ock_preset.iface_presets.index

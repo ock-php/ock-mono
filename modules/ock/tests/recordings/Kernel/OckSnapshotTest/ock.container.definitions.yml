@@ -1,9 +1,9 @@
 module: ock
 type: container.definitions
-'~~ paramconverter_manager':
+paramconverter_manager: !diff
   class: Symfony\Component\DependencyInjection\Definition
   getClass(): Drupal\Core\ParamConverter\ParamConverterManager
-  '~~ getMethodCalls()':
+  getMethodCalls(): !diff
     - !add
       - addConverter
       -
@@ -33,26 +33,26 @@ type: container.definitions
             paramconverter:
               - {  }
         - Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
-'++ Drupal\ock\Formula\Formula_PermissionId':
+Drupal\ock\Formula\Formula_PermissionId: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@user.permissions'
     - '@module_handler'
   getClass(): Drupal\ock\Formula\Formula_PermissionId
   isPublic(): true
-'++ Drupal\ock\OckModuleNamespace':
+Drupal\ock\OckModuleNamespace: !add
   class: Symfony\Component\DependencyInjection\Definition
   getClass(): Drupal\ock\OckModuleNamespace
   getTags():
     adaptism.discovery:
       - {  }
-'++ Drupal\ock\TextToDrupal\TextToDrupalInterface':
+Drupal\ock\TextToDrupal\TextToDrupalInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@Ock\Ock\Translator\TranslatorInterface'
   getClass(): Drupal\ock\TextToDrupal\TextToDrupal_Default
   isPublic(): true
-'++ Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface':
+Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     -
@@ -68,7 +68,7 @@ type: container.definitions
     - Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionList
     - fromCandidateObjects
   isPublic(): true
-'++ Ock\Adaptism\Inspector\FactoryInspector_AdapterAttribute':
+Ock\Adaptism\Inspector\FactoryInspector_AdapterAttribute: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     -
@@ -81,7 +81,7 @@ type: container.definitions
   getTags():
     adaptism.discovery:
       - {  }
-'++ Ock\Adaptism\Inspector\FactoryInspector_SelfAdapterAttribute':
+Ock\Adaptism\Inspector\FactoryInspector_SelfAdapterAttribute: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@Ock\Egg\ParamToEgg\ParamToEggInterface'
@@ -89,7 +89,7 @@ type: container.definitions
   getTags():
     adaptism.discovery:
       - {  }
-'++ Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface':
+Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     -
@@ -106,7 +106,7 @@ type: container.definitions
       getClass(): Ock\Adaptism\SpecificAdapter\SpecificAdapter_DispatchByType
   getClass(): Ock\Adaptism\UniversalAdapter\UniversalAdapter
   isPublic(): true
-'++ Ock\Egg\ParamToEgg\ParamToEggInterface':
+Ock\Egg\ParamToEgg\ParamToEggInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     -
@@ -116,7 +116,7 @@ type: container.definitions
         - '@Ock\Egg\ParamToEgg\ParamToEgg_ParamTypeAsServiceId'
   getClass(): Ock\Egg\ParamToEgg\ParamToEgg_Chain
   isPublic(): true
-'++ Ock\Egg\ParamToEgg\ParamToEgg_ParamTypeAsServiceId':
+Ock\Egg\ParamToEgg\ParamToEgg_ParamTypeAsServiceId: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@service_container'
@@ -124,7 +124,7 @@ type: container.definitions
   getTags():
     Ock\Egg\ParamToEgg\ParamToEggInterface:
       - {  }
-'++ Ock\Ock\Inspector\FactoryInspector_ModifierDecorator::createDecoratorCallback()':
+'Ock\Ock\Inspector\FactoryInspector_ModifierDecorator::createDecoratorCallback()': !add
   class: Symfony\Component\DependencyInjection\Definition
   getClass(): Closure
   getFactory():
@@ -134,13 +134,13 @@ type: container.definitions
     ock.discovery:
       - {  }
   isPublic(): true
-'++ Ock\Ock\Inspector\FactoryInspector_OckFormulaAttribute':
+Ock\Ock\Inspector\FactoryInspector_OckFormulaAttribute: !add
   class: Symfony\Component\DependencyInjection\Definition
   getClass(): Ock\Ock\Inspector\FactoryInspector_OckFormulaAttribute
   getTags():
     ock.discovery:
       - {  }
-'++ Ock\Ock\Inspector\FactoryInspector_OckInstanceAttribute':
+Ock\Ock\Inspector\FactoryInspector_OckInstanceAttribute: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@service_container'
@@ -148,13 +148,13 @@ type: container.definitions
   getTags():
     ock.discovery:
       - {  }
-'++ Ock\Ock\OckNamespace':
+Ock\Ock\OckNamespace: !add
   class: Symfony\Component\DependencyInjection\Definition
   getClass(): Ock\Ock\OckNamespace
   getTags():
     adaptism.discovery:
       - {  }
-'++ Ock\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface':
+Ock\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@extension.list.module'
@@ -163,7 +163,7 @@ type: container.definitions
     - Drupal\ock\OckServiceFactories
     - pluginGroupLabels
   isPublic(): true
-'++ Ock\Ock\Plugin\Map\PluginMapInterface':
+Ock\Ock\Plugin\Map\PluginMapInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   $innerServiceId: Ock\Ock\Plugin\Map\PluginMap_Buffer.inner
   $decorationOnInvalid: 1
@@ -171,13 +171,13 @@ type: container.definitions
     - '@Ock\Ock\Plugin\Map\PluginMap_Buffer.inner'
   getClass(): Ock\Ock\Plugin\Map\PluginMap_Buffer
   isPublic(): true
-'++ Ock\Ock\Plugin\Map\PluginMap_Buffer.inner':
+Ock\Ock\Plugin\Map\PluginMap_Buffer.inner: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@Ock\Ock\Plugin\Registry\PluginRegistryInterface'
   getClass(): Ock\Ock\Plugin\Map\PluginMap_Registry
   isPublic(): true
-'++ Ock\Ock\Plugin\Registry\PluginRegistryInterface':
+Ock\Ock\Plugin\Registry\PluginRegistryInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   $innerServiceId: Ock\Ock\Plugin\Registry\PluginRegistry_Buffer.inner
   $decorationOnInvalid: 1
@@ -203,13 +203,13 @@ type: container.definitions
         id: Ock\Ock\Plugin\Registry\PluginRegistryInterface
         inner: Ock\Ock\Plugin\Registry\PluginRegistry_Buffer.inner
   isPublic(): true
-'++ Ock\Ock\Translator\TranslatorInterface':
+Ock\Ock\Translator\TranslatorInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@string_translation'
   getClass(): Drupal\ock\Translator\Translator_Drupal
   isPublic(): true
-'++ logger.channel.ock':
+logger.channel.ock: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - ock

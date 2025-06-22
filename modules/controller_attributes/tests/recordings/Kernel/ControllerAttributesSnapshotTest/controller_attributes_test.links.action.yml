@@ -1,10 +1,10 @@
 module: controller_attributes_test
 type: links.action
-'++ controller_attributes_test.hello_user_overview.add':
+controller_attributes_test.hello_user_overview.add: !add
   title: 'Add user'
   appears_on:
     - controller_attributes_test.hello_user_overview.overview
-'++ controller_attributes_test.hello_user_overview.invite':
+controller_attributes_test.hello_user_overview.invite: !add
   title: 'Invite user'
   weight: 10
   appears_on:

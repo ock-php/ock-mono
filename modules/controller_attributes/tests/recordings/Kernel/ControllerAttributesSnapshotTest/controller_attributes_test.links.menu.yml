@@ -1,23 +1,23 @@
 module: controller_attributes_test
 type: links.menu
-'++ controller_attributes_test.hello.goodbye':
+controller_attributes_test.hello.goodbye: !add
   menu_name: tools
   title: Goodbye
   description: 'A farewell greeting'
-'++ controller_attributes_test.hello.hello':
+controller_attributes_test.hello.hello: !add
   menu_name: tools
   title: null
-'++ controller_attributes_test.hello_user_overview.overview':
+controller_attributes_test.hello_user_overview.overview: !add
   menu_name: tools
   title: 'List of users'
-'++ controller_attributes_test.parent_child.automatic_child':
+controller_attributes_test.parent_child.automatic_child: !add
   menu_name: tools
   title: Parent
   parent: controller_attributes_test.parent_child.parent
-'++ controller_attributes_test.parent_child.explicit_child':
+controller_attributes_test.parent_child.explicit_child: !add
   menu_name: tools
   title: Parent
   parent: controller_attributes_test.parent_child.parent
-'++ controller_attributes_test.parent_child.parent':
+controller_attributes_test.parent_child.parent: !add
   menu_name: tools
   title: Parent

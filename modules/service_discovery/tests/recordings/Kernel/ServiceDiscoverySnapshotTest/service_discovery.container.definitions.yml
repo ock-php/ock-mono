@@ -1,6 +1,6 @@
 module: service_discovery
 type: container.definitions
-'++ Drupal\service_discovery\CallbackResolverInterface':
+Drupal\service_discovery\CallbackResolverInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
     - '@service_container'
