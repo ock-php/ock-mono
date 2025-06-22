@@ -1,0 +1,26 @@
+# renderkit
+# routes
+/admin/reports/renderkit: !add
+  renderkit.report.index:
+    defaults:
+      _controller: 'Drupal\renderkit\Controller\Controller_Report::index'
+      _title: Renderkit
+    requirements:
+      _permission: 'view renderkit report pages'
+    options:
+      _admin_route: true
+      _menu_link: {  }
+      _access_checks:
+        - access_check.permission
+/admin/reports/renderkit/build-provider-demo: !add
+  renderkit.report.demo:
+    defaults:
+      _controller: 'Drupal\renderkit\Controller\Controller_Report::demo'
+      _title: 'Build provider demo'
+    requirements:
+      _permission: 'view renderkit report pages'
+    options:
+      _admin_route: true
+      _menu_link: {  }
+      _access_checks:
+        - access_check.permission

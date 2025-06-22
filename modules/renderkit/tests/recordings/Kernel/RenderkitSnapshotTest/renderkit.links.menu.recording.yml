@@ -1,0 +1,10 @@
+# renderkit
+# links.menu
+renderkit.report.demo: !add
+  menu_name: tools
+  title: 'Build provider demo'
+  parent: renderkit.report.index
+renderkit.report.index: !add
+  menu_name: tools
+  title: Renderkit
+  parent: system.admin_reports

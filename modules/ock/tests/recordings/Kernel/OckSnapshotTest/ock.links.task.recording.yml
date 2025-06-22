@@ -1,0 +1,23 @@
+# ock
+# links.task
+ock.report_iface.code: !add
+  title: Code
+  base_route: ock.report_iface.list_of_plugins
+ock.report_iface.demo: !add
+  title: Demo
+  base_route: ock.report_iface.list_of_plugins
+ock.report_iface.list_of_plugins: !add
+  title: 'List of plugins'
+  base_route: ock.report_iface.list_of_plugins
+ock.report_plugin.code: !add
+  title: Code
+  base_route: ock.report_plugin.plugin
+ock.report_plugin.demo: !add
+  title: Demo
+  base_route: ock.report_plugin.plugin
+ock.report_plugin.devel: !add
+  title: Devel
+  base_route: ock.report_plugin.plugin
+ock.report_plugin.plugin: !add
+  title: Plugin
+  base_route: ock.report_plugin.plugin

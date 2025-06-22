@@ -1,0 +1,84 @@
+# ock_preset
+# routes
+/admin/structure/ock_preset: !add
+  ock_preset.all_presets_overview.index:
+    defaults:
+      _controller: 'Drupal\ock_preset\Controller\Controller_AllPresetsOverview::index'
+      _title: 'ock_preset presets'
+    requirements:
+      _permission: 'administer ock_preset'
+    options:
+      _admin_route: true
+      _menu_link: {  }
+      _access_checks:
+        - access_check.permission
+'/admin/structure/ock_preset/{interface}': !add
+  ock_preset.iface_presets.index:
+    defaults:
+      _title_callback: 'Drupal\ock_preset\Controller\Controller_IfacePresets::title'
+      _controller: 'Drupal\ock_preset\Controller\Controller_IfacePresets::index'
+    requirements:
+      _permission: 'administer ock_preset'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+      _task_link_default:
+        title: List
+      _access_checks:
+        - access_check.permission
+'/admin/structure/ock_preset/{interface}/add': !add
+  ock_preset.iface_presets.add:
+    defaults:
+      _title_callback: 'Drupal\ock_preset\Controller\Controller_IfacePresets::title'
+      _controller: 'Drupal\ock_preset\Controller\Controller_IfacePresets::add'
+    requirements:
+      _permission: 'administer ock_preset'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+      _task_link:
+        title: 'Add preset'
+      _action_link:
+        title: 'Add preset'
+      _access_checks:
+        - access_check.permission
+'/admin/structure/ock_preset/{interface}/preset/{preset_name}': !add
+  ock_preset.preset.edit:
+    defaults:
+      _title_callback: 'Drupal\ock_preset\Controller\Controller_Preset::title'
+      _controller: 'Drupal\ock_preset\Controller\Controller_Preset::edit'
+    requirements:
+      _permission: 'administer ock_preset'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+      _task_link_default:
+        title: Edit
+      _access_checks:
+        - access_check.permission
+'/admin/structure/ock_preset/{interface}/preset/{preset_name}/delete': !add
+  ock_preset.preset.delete:
+    defaults:
+      _title_callback: 'Drupal\ock_preset\Controller\Controller_Preset::title'
+      _controller: 'Drupal\ock_preset\Controller\Controller_Preset::delete'
+    requirements:
+      _permission: 'administer ock_preset'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+      _task_link:
+        title: Delete
+      _access_checks:
+        - access_check.permission

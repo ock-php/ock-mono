@@ -1,5 +1,0 @@
-module: renderkit
-type: route_paths
-++:
-  - /admin/reports/renderkit
-  - /admin/reports/renderkit/build-provider-demo

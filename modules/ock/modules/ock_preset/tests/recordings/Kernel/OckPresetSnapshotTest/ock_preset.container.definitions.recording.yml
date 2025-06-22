@@ -1,0 +1,33 @@
+# ock_preset
+# container.definitions
+Ock\Ock\Plugin\Registry\PluginRegistryInterface: !diff
+  class: Symfony\Component\DependencyInjection\Definition
+  getClass(): Ock\Ock\Plugin\Registry\PluginRegistry_Buffer
+  getArguments(): !diff
+    - !diff
+      class: Symfony\Component\DependencyInjection\Definition
+      getClass(): Ock\Ock\Plugin\Registry\PluginRegistryInterface
+      getFactory():
+        - Ock\Ock\Plugin\Registry\PluginRegistry
+        - fromCandidateObjects
+      getArguments(): !diff
+        - !diff
+          class: Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument
+          getValues(): !diff
+            - !add '@Drupal\ock_preset\FactsIA\FactsIA_PresetPluginDeclarations'
+Drupal\ock_preset\Crud\PresetRepository: !add
+  class: Symfony\Component\DependencyInjection\Definition
+  getArguments():
+    - '@config.factory'
+  getClass(): Drupal\ock_preset\Crud\PresetRepository
+  isPublic(): true
+Drupal\ock_preset\FactsIA\FactsIA_PresetPluginDeclarations: !add
+  class: Symfony\Component\DependencyInjection\Definition
+  getArguments():
+    -
+      class: Symfony\Component\DependencyInjection\TypedReference
+      $type: Drupal\ock_preset\Crud\PresetRepository
+  getClass(): Drupal\ock_preset\FactsIA\FactsIA_PresetPluginDeclarations
+  getTags():
+    ock.discovery:
+      - {  }

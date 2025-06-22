@@ -59,25 +59,12 @@ trait ModuleSnapshotTestTrait {
    */
   protected function createReportsFromDiffs(string $module, array $diffs): array {
     $reports = [];
+    $summary = [];
     foreach ($diffs as $key => $diff) {
-      if (!$diff) {
-        $reports[$key] = NULL;
-      }
-      else {
-        $info = [
-          'module' => $module,
-          'type' => $key,
-        ];
-        $reports[$key] = $info + $diff;
-      }
+      $reports[$key] = $diff ?: NULL;
+      $summary[$key] = $diff ? '!=' : '==';
     }
-    $reports['summary'] = [
-      'module' => $module,
-      'snapshots' => array_map(
-        fn (array $diff) => $diff ? '!=' : '==',
-        $diffs,
-      ),
-    ];
+    $reports['summary'] = $summary;
     return $reports;
   }
 
@@ -88,8 +75,18 @@ trait ModuleSnapshotTestTrait {
   protected function assertReportsAsRecorded(string $prefix, array $reports): void {
     $base_path = $this->getClassRecordingsPath();
     foreach ($reports as $key => $report) {
-      $yaml = ($report === NULL) ? NULL : Yaml::encode($report);
-      $file = $base_path . '/' . $prefix . '.' . $key . '.yml';
+      if ($report === NULL) {
+        // The file should be deleted / not exist.
+        $yaml = NULL;
+      }
+      else {
+        $yaml = Yaml::encode($report);
+        // Prepend a comment.
+        // This helps prevent undesired rename detection in git.
+        $yaml = '# ' . $prefix . "\n# " . $key . "\n" . $yaml;
+      }
+      // Use '.recording.yml' suffix, to not trigger any schema validation.
+      $file = $base_path . '/' . $prefix . '.' . $key . '.recording.yml';
       $this->assertFileAsRecorded($file, $yaml);
     }
   }

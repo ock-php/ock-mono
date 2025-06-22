@@ -1,0 +1,171 @@
+# ock
+# routes
+/admin/flush/ock: !add
+  ock.flush_ock.clear:
+    defaults:
+      _controller: 'Drupal\ock\Controller\Controller_FlushOck::clear'
+    requirements:
+      _permission: 'administer site configuration'
+    options:
+      _admin_route: true
+      _menu_link:
+        title: 'Flush Ock plugins'
+        menu_name: admin
+      _access_checks:
+        - access_check.permission
+/admin/reports/ock: !add
+  ock.report_overview.overview:
+    defaults:
+      _controller: 'Drupal\ock\Controller\Controller_ReportOverview::overview'
+      _title: 'ock plugins'
+    requirements:
+      _permission: 'view ock reports'
+    options:
+      _admin_route: true
+      _menu_link: {  }
+      _access_checks:
+        - access_check.permission
+'/admin/reports/ock/{interface}': !add
+  ock.report_iface.list_of_plugins:
+    defaults:
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportIface::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportIface::listOfPlugins'
+    requirements:
+      _permission: 'view ock reports'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+      _task_link_default:
+        title: 'List of plugins'
+      _access_checks:
+        - access_check.permission
+'/admin/reports/ock/{interface}/code': !add
+  ock.report_iface.code:
+    defaults:
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportIface::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportIface::code'
+    requirements:
+      _permission: 'view ock reports'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+      _task_link:
+        title: Code
+      _access_checks:
+        - access_check.permission
+'/admin/reports/ock/{interface}/demo': !add
+  ock.report_iface.demo:
+    defaults:
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportIface::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportIface::demo'
+    requirements:
+      _permission: 'view ock reports'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+      _task_link:
+        title: Demo
+      _access_checks:
+        - access_check.permission
+'/admin/reports/ock/{interface}/plugin/{named_plugin}': !add
+  ock.report_plugin.plugin:
+    defaults:
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportPlugin::plugin'
+    requirements:
+      _permission: 'view ock reports'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+        named_plugin:
+          type: 'ock:plugin'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
+      _task_link_default:
+        title: Plugin
+      _access_checks:
+        - access_check.permission
+'/admin/reports/ock/{interface}/plugin/{named_plugin}/code': !add
+  ock.report_plugin.code:
+    defaults:
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportPlugin::code'
+    requirements:
+      _permission: 'view ock reports'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+        named_plugin:
+          type: 'ock:plugin'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
+      _task_link:
+        title: Code
+      _access_checks:
+        - access_check.permission
+'/admin/reports/ock/{interface}/plugin/{named_plugin}/demo': !add
+  ock.report_plugin.demo:
+    defaults:
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportPlugin::demo'
+    requirements:
+      _permission: 'view ock reports'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+        named_plugin:
+          type: 'ock:plugin'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
+      _task_link:
+        title: Demo
+      _access_checks:
+        - access_check.permission
+'/admin/reports/ock/{interface}/plugin/{named_plugin}/devel': !add
+  ock.report_plugin.devel:
+    defaults:
+      _title_callback: 'Drupal\ock\Controller\Controller_ReportPlugin::title'
+      _controller: 'Drupal\ock\Controller\Controller_ReportPlugin::devel'
+    requirements:
+      _permission: 'view ock reports'
+    options:
+      _admin_route: true
+      parameters:
+        interface:
+          type: 'ock:interface'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+        named_plugin:
+          type: 'ock:plugin'
+          converter: Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
+      _task_link:
+        title: Devel
+      _access_checks:
+        - access_check.permission
+/devel/ock/clear: !add
+  ock.devel_ops.clear:
+    defaults:
+      _controller: 'Drupal\ock\Controller\Controller_DevelOps::clear'
+    requirements:
+      _permission: 'administer ock preset'
+    options:
+      _admin_route: true
+      _menu_link:
+        title: 'Rediscover Composition Plugins'
+        menu_name: devel
+      _access_checks:
+        - access_check.permission

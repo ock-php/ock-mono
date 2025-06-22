@@ -1,0 +1,12 @@
+# controller_attributes
+# container.definitions
+Drupal\controller_attributes\Hook\LinksFromRoutes: !add
+  class: Symfony\Component\DependencyInjection\Definition
+  getArguments():
+    - '@router.route_provider'
+    - '@plugin.manager.menu.local_action'
+    - '@plugin.manager.menu.local_task'
+  getClass(): Drupal\controller_attributes\Hook\LinksFromRoutes
+  getTags(): {  }
+  isAutoconfigured(): false
+  isPublic(): true

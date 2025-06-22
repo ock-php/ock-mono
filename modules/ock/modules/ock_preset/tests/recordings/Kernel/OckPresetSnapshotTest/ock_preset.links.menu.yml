@@ -1,6 +1,0 @@
-module: ock_preset
-type: links.menu
-'++ ock_preset.all_presets_overview.index':
-  menu_name: tools
-  title: 'ock_preset presets'
-  parent: system.admin_structure

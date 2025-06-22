@@ -1,0 +1,14 @@
+# ock_preset
+# links.task
+ock_preset.iface_presets.add: !add
+  title: 'Add preset'
+  base_route: ock_preset.iface_presets.index
+ock_preset.iface_presets.index: !add
+  title: List
+  base_route: ock_preset.iface_presets.index
+ock_preset.preset.delete: !add
+  title: Delete
+  base_route: ock_preset.preset.edit
+ock_preset.preset.edit: !add
+  title: Edit
+  base_route: ock_preset.preset.edit

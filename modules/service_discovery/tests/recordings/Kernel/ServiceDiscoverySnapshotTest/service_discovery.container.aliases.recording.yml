@@ -1,0 +1,5 @@
+# service_discovery
+# container.aliases
+Psr\Container\ContainerInterface: !add
+  class: Symfony\Component\DependencyInjection\Alias
+  isPublic(): true
