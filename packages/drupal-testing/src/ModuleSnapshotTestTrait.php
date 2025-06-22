@@ -89,7 +89,8 @@ trait ModuleSnapshotTestTrait {
     $base_path = $this->getClassRecordingsPath();
     foreach ($reports as $key => $report) {
       $yaml = ($report === NULL) ? NULL : Yaml::encode($report);
-      $file = $base_path . '/' . $prefix . '.' . $key . '.yml';
+      // Use '.recording.yml' suffix, to not trigger any schema validation.
+      $file = $base_path . '/' . $prefix . '.' . $key . '.recording.yml';
       $this->assertFileAsRecorded($file, $yaml);
     }
   }
