@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ock\Ock\Text;
+namespace Ock\Text;
 
 /**
  * Base class with additional convenience methods.
@@ -11,7 +11,7 @@ abstract class TextBase implements TextInterface {
 
   /**
    * @param string $token
-   * @param \Ock\Ock\Text\TextInterface $wrapper
+   * @param \Ock\Text\TextInterface $wrapper
    *
    * @return self
    */
@@ -49,7 +49,7 @@ abstract class TextBase implements TextInterface {
   }
 
   /**
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   protected function getThis(): TextInterface {
     return $this;

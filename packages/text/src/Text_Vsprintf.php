@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ock\Ock\Text;
+namespace Ock\Text;
 
 use Ock\Ock\Translator\TranslatorInterface;
 
@@ -12,7 +12,7 @@ class Text_Vsprintf extends TextBase {
    * Constructor.
    *
    * @param string $source
-   * @param \Ock\Ock\Text\TextInterface[] $replacements
+   * @param \Ock\Text\TextInterface[] $replacements
    */
   public function __construct(
     private readonly string $source,

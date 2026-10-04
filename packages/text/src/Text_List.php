@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Ock\Ock\Text;
+namespace Ock\Text;
 
 class Text_List extends Text_ListBase {
 
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $items
+   * @param \Ock\Text\TextInterface[] $items
    * @param string $tag
    */
   public function __construct(

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ock\Ock\Text;
+namespace Ock\Text;
 
 use Ock\Ock\Translator\TranslatorInterface;
 

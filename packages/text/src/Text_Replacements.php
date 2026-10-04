@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ock\Ock\Text;
+namespace Ock\Text;
 
 use Ock\Ock\Translator\TranslatorInterface;
 
@@ -11,8 +11,8 @@ class Text_Replacements extends TextBuilderBase {
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Text\TextInterface $source
-   * @param \Ock\Ock\Text\TextInterface[] $replacements
+   * @param \Ock\Text\TextInterface $source
+   * @param \Ock\Text\TextInterface[] $replacements
    */
   public function __construct(
     private readonly TextInterface $source,

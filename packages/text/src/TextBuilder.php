@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ock\Ock\Text;
+namespace Ock\Text;
 
 class TextBuilder {
 
   /**
-   * @var \Ock\Ock\Text\TextInterface[]
+   * @var \Ock\Text\TextInterface[]
    */
   private array $replacements = [];
 
@@ -19,7 +19,7 @@ class TextBuilder {
 
   /**
    * @param string $token
-   * @param \Ock\Ock\Text\TextInterface $replacement
+   * @param \Ock\Text\TextInterface $replacement
    *
    * @return $this
    */
@@ -52,7 +52,7 @@ class TextBuilder {
 
   /**
    * @param string $token
-   * @param \Ock\Ock\Text\TextInterface $wrapper
+   * @param \Ock\Text\TextInterface $wrapper
    *
    * @return $this
    */
@@ -78,7 +78,7 @@ class TextBuilder {
   /**
    * @param string $source
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public function s(string $source): TextInterface {
     return $this->build(new Text_Raw($source));
@@ -87,16 +87,16 @@ class TextBuilder {
   /**
    * @param string $source
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public function t(string $source): TextInterface {
     return $this->build(new Text_Translatable($source));
   }
 
   /**
-   * @param \Ock\Ock\Text\TextInterface $text
+   * @param \Ock\Text\TextInterface $text
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public function build(TextInterface $text): TextInterface {
     if ($this->replacements) {

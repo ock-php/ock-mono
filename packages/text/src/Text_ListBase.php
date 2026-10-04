@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ock\Ock\Text;
+namespace Ock\Text;
 
 use Ock\Ock\Translator\TranslatorInterface;
 
@@ -11,7 +11,7 @@ abstract class Text_ListBase extends TextBase {
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $items
+   * @param \Ock\Text\TextInterface[] $items
    */
   public function __construct(
     private array $items,
@@ -20,7 +20,7 @@ abstract class Text_ListBase extends TextBase {
   }
 
   /**
-   * @param \Ock\Ock\Text\TextInterface $item
+   * @param \Ock\Text\TextInterface $item
    *
    * @return static
    */
@@ -31,7 +31,7 @@ abstract class Text_ListBase extends TextBase {
   }
 
   /**
-   * @param \Ock\Ock\Text\TextInterface $item
+   * @param \Ock\Text\TextInterface $item
    *
    * @return $this
    */

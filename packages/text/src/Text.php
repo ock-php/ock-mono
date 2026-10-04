@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ock\Ock\Text;
+namespace Ock\Text;
 
 /**
  * Utility class with static methods.
@@ -10,16 +10,16 @@ namespace Ock\Ock\Text;
 class Text {
 
   /**
-   * @return \Ock\Ock\Text\TextBuilder
+   * @return \Ock\Text\TextBuilder
    */
   public static function builder(): TextBuilder {
     return new TextBuilder();
   }
 
   /**
-   * @param \Ock\Ock\Text\TextInterface $text
+   * @param \Ock\Text\TextInterface $text
    *
-   * @return \Ock\Ock\Text\TextBase
+   * @return \Ock\Text\TextBase
    */
   public static function fluent(TextInterface $text): TextBase {
     return $text instanceof TextBase
@@ -30,12 +30,12 @@ class Text {
   /**
    * Builds a text object for "Label: Value".
    *
-   * @param \Ock\Ock\Text\TextInterface $label
+   * @param \Ock\Text\TextInterface $label
    *   Label.
-   * @param \Ock\Ock\Text\TextInterface $value
+   * @param \Ock\Text\TextInterface $value
    *   Value.
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public static function label(TextInterface $label, TextInterface $value): TextInterface {
     return static::t('@label: @value', [
@@ -51,9 +51,9 @@ class Text {
    *
    * @param string|null $string
    *   String to be translated, or NULL.
-   * @param \Ock\Ock\Text\TextInterface[] $replacements
+   * @param \Ock\Text\TextInterface[] $replacements
    *
-   * @return \Ock\Ock\Text\TextBuilderBase|null
+   * @return \Ock\Text\TextBuilderBase|null
    *   Text object, or NULL if the original string was NULL.
    */
   public static function tOrNull(?string $string, array $replacements = []): ?TextBuilderBase {
@@ -67,10 +67,10 @@ class Text {
    *
    * @param string $string
    *   Original untranslated text with placeholders.
-   * @param \Ock\Ock\Text\TextInterface[] $replacements
+   * @param \Ock\Text\TextInterface[] $replacements
    *   Replacements.
    *
-   * @return \Ock\Ock\Text\TextBuilderBase
+   * @return \Ock\Text\TextBuilderBase
    *   Translatable text object.
    */
   public static function t(string $string, array $replacements = []): TextBuilderBase {
@@ -86,10 +86,10 @@ class Text {
    *
    * @param string $string
    *   Original language-neutral text with placeholders.
-   * @param \Ock\Ock\Text\TextInterface[] $replacements
+   * @param \Ock\Text\TextInterface[] $replacements
    *   Replacements.
    *
-   * @return \Ock\Ock\Text\TextBuilderBase
+   * @return \Ock\Text\TextBuilderBase
    *   Text object.
    */
   public static function s(string $string, array $replacements = []): TextBuilderBase {
@@ -113,10 +113,10 @@ class Text {
    *   Original string, possibly with placeholders.
    * @param bool $translate
    *   TRUE if the original string should be translated, FALSE if not.
-   * @param \Ock\Ock\Text\TextInterface[] $replacements
+   * @param \Ock\Text\TextInterface[] $replacements
    *   Placeholder replacements.
    *
-   * @return \Ock\Ock\Text\TextBuilderBase
+   * @return \Ock\Text\TextBuilderBase
    */
   public static function tIf(string $string, bool $translate, array $replacements = []): TextBuilderBase {
     return $translate
@@ -130,7 +130,7 @@ class Text {
    * @param int $number
    *   Integer number.
    *
-   * @return \Ock\Ock\Text\TextBuilderBase
+   * @return \Ock\Text\TextBuilderBase
    *   Text object.
    */
   public static function i(int $number): TextBuilderBase {
@@ -140,10 +140,10 @@ class Text {
   /**
    * Builds a text object for a html list with <ul>.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $parts
+   * @param \Ock\Text\TextInterface[] $parts
    *   List items.
    *
-   * @return \Ock\Ock\Text\Text_ListBase
+   * @return \Ock\Text\Text_ListBase
    *   Translatable text object.
    */
   public static function ul(array $parts = []): Text_ListBase {
@@ -153,10 +153,10 @@ class Text {
   /**
    * Builds a text object for a html list with <ol>.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $parts
+   * @param \Ock\Text\TextInterface[] $parts
    *   List items.
    *
-   * @return \Ock\Ock\Text\Text_ListBase
+   * @return \Ock\Text\Text_ListBase
    *   Translatable text object.
    */
   public static function ol(array $parts = []): Text_ListBase {
@@ -166,12 +166,12 @@ class Text {
   /**
    * Builds a text object for a html list with <ul> or <ol>.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $parts
+   * @param \Ock\Text\TextInterface[] $parts
    *   List items.
    * @param string $tag
    *   One of 'ul' or 'ol'.
    *
-   * @return \Ock\Ock\Text\Text_ListBase
+   * @return \Ock\Text\Text_ListBase
    *   Translatable text object.
    */
   protected static function ulOrOl(array $parts, string $tag): Text_ListBase {
@@ -184,12 +184,12 @@ class Text {
   /**
    * Gets a non-translatable text object.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $parts
+   * @param \Ock\Text\TextInterface[] $parts
    *   List items.
    * @param string $glue
    *   Glue string between the items.
    *
-   * @return \Ock\Ock\Text\Text_ListBase
+   * @return \Ock\Text\Text_ListBase
    *   Translatable text object.
    */
   public static function concat(array $parts, string $glue = ''): Text_ListBase {
@@ -199,12 +199,12 @@ class Text {
   /**
    * Shows a list of distinct values.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $parts
+   * @param \Ock\Text\TextInterface[] $parts
    *   List items.
    * @param string $glue
    *   Glue string between the items.
    *
-   * @return \Ock\Ock\Text\Text_ListBase
+   * @return \Ock\Text\Text_ListBase
    *   Translatable text object.
    */
   public static function concatDistinct(array $parts, string $glue = ' | '): Text_ListBase {
@@ -214,14 +214,14 @@ class Text {
   /**
    * Validates text objects.
    *
-   * @param \Ock\Ock\Text\TextInterface ...$texts
+   * @param \Ock\Text\TextInterface ...$texts
    */
   public static function validate(TextInterface ...$texts): void {}
 
   /**
    * Validates text objects.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $texts
+   * @param \Ock\Text\TextInterface[] $texts
    *   Text objects to validate.
    *   In PHP < 8.0, string keys are not allowed here.
    */
@@ -232,7 +232,7 @@ class Text {
   /**
    * Validates arrays of text objects.
    *
-   * @param \Ock\Ock\Text\TextInterface[][] $textss
+   * @param \Ock\Text\TextInterface[][] $textss
    *   Arrays of text objects.
    *   This array can have string keys.
    */

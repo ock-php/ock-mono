@@ -2,30 +2,31 @@
 
 declare(strict_types=1);
 
-namespace Ock\Ock\Text;
+namespace Ock\Text;
 
 use Ock\Ock\Translator\TranslatorInterface;
 
-/**
- * Simple translatable text.
- */
-class Text_Translatable extends TextBuilderBase {
+class Text_SprintfOne extends TextBase {
 
   /**
    * Constructor.
    *
    * @param string $source
-   *   Text in source language, typically English.
+   * @param \Ock\Text\TextInterface $replacement
    */
   public function __construct(
     private readonly string $source,
+    private readonly TextInterface $replacement,
   ) {}
 
   /**
    * {@inheritdoc}
    */
   public function convert(TranslatorInterface $translator): string {
-    return $translator->translate($this->source);
+    return sprintf(
+      $this->source,
+      $this->replacement->convert($translator),
+    );
   }
 
 }
