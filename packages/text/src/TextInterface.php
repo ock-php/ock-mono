@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Text;
 
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 /**
  * Generic interface for values that can be used as text.
@@ -16,7 +16,7 @@ interface TextInterface {
   /**
    * Gets translated html.
    *
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    *   Translator to look up strings in another language.
    *
    * @return string

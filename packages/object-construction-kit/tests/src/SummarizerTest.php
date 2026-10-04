@@ -11,7 +11,7 @@ use Ock\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Ock\Ock\Tests\Translator\Translator_Testing;
 use Ock\Ock\Tests\Util\TestingServices;
 use Ock\Ock\Tests\Util\XmlTestUtil;
-use Ock\Ock\Translator\Translator_Passthru;
+use Ock\Text\Translator\Translator_Passthru;
 use Symfony\Component\Yaml\Yaml;
 
 class SummarizerTest extends FormulaTestBase {

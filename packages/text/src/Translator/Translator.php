@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ock\Ock\Translator;
+namespace Ock\Text\Translator;
 
 class Translator {
 
   /**
-   * @return \Ock\Ock\Translator\TranslatorInterface
+   * @return \Ock\Text\Translator\TranslatorInterface
    */
   public static function passthru(): TranslatorInterface {
     return new Translator_Passthru();

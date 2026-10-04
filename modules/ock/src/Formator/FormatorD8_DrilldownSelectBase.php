@@ -14,7 +14,7 @@ use Ock\Ock\Formula\Select\Formula_Select_CustomLabelDecorator;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Text\Text;
 use Ock\Ock\TextLookup\TextLookup_Fixed;
-use Ock\Ock\Translator\Translator;
+use Ock\Text\Translator\Translator;
 use Ock\Ock\Util\ConfUtil;
 
 abstract class FormatorD8_DrilldownSelectBase implements FormatorD8Interface, OptionableFormatorD8Interface {

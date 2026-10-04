@@ -6,7 +6,7 @@ namespace Ock\Ock\Formula\Select;
 
 use Ock\Ock\Formula\Select\Option\SelectOptionInterface;
 use Ock\Text\TextInterface;
-use Ock\Ock\Translator\Translator;
+use Ock\Text\Translator\Translator;
 
 class Formula_Select_FromOptions implements Formula_SelectInterface {
 

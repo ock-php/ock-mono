@@ -9,7 +9,7 @@ use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\Attribute\Parameter\Adaptee;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Textfield\Formula_TextfieldInterface;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 #[Adapter]
 class FormatorD8_Textfield implements FormatorD8Interface {

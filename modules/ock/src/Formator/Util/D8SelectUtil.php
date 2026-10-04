@@ -8,14 +8,14 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
 use Ock\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 use Ock\Ock\Util\UtilBase;
 
 final class D8SelectUtil extends UtilBase {
 
   /**
    * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $formula
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    * @param string|null $value
    * @param \Drupal\Component\Render\MarkupInterface|string|null $label
    * @param bool $required
@@ -38,7 +38,7 @@ final class D8SelectUtil extends UtilBase {
 
   /**
    * @param \Ock\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface $formula
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    * @param string|null $value
    * @param string $label
    * @param bool $required
@@ -133,7 +133,7 @@ final class D8SelectUtil extends UtilBase {
    * Gets select options in a format suitable for Drupal 8.
    *
    * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $formula
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    *
    * @return string[][]|string[]
    *   Options to be used in '#options' in a '#type' => 'select' element.
@@ -173,7 +173,7 @@ final class D8SelectUtil extends UtilBase {
    * Gets select options in a format suitable for Drupal.
    *
    * @param \Ock\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface $formula
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    *
    * @return (string|string[])[]
    */

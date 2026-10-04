@@ -9,14 +9,14 @@ use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Label\Formula_LabelInterface;
 use Ock\Text\TextInterface;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 class FormatorD8_Label implements FormatorD8Interface {
 
   /**
    * @param \Ock\Ock\Formula\Label\Formula_LabelInterface $formula
    * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    *
    * @return self
    *
@@ -41,7 +41,7 @@ class FormatorD8_Label implements FormatorD8Interface {
   /**
    * @param \Drupal\ock\Formator\FormatorD8Interface $decorated
    * @param \Ock\Text\TextInterface $label
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    */
   public function __construct(
     private readonly FormatorD8Interface $decorated,

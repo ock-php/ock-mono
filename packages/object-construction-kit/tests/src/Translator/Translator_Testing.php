@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Tests\Translator;
 
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 class Translator_Testing implements TranslatorInterface {
 

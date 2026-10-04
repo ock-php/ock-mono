@@ -34,7 +34,7 @@ use Ock\Ock\Formula\Formula;
 use Ock\Ock\Generator\Generator;
 use Ock\Ock\Plugin\Map\PluginMapInterface;
 use Ock\Ock\Summarizer\Summarizer;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 /**
  * @see \Drupal\ock\UI\ParamConverter\ParamConverter_Iface
@@ -54,7 +54,7 @@ class Controller_ReportIface extends ControllerBase implements ControllerRouteNa
    *
    * @param \Ock\Ock\Plugin\Map\PluginMapInterface $pluginMap
    * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    */
   public function __construct(
     #[GetService]

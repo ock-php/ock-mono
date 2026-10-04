@@ -10,7 +10,7 @@ use Ock\CodegenTools\Util\CodeGen;
 use Ock\Ock\Exception\GeneratorException;
 use Ock\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Ock\Ock\Formula\Validator\Formula_ConstrainedValueInterface;
-use Ock\Ock\Translator\Translator_Passthru;
+use Ock\Text\Translator\Translator_Passthru;
 
 #[Adapter]
 class Generator_ConstrainedValue implements GeneratorInterface {

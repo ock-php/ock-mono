@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Text;
 
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 /**
  * Raw text, potentially unsafe for output.

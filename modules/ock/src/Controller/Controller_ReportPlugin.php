@@ -35,7 +35,7 @@ use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Generator\Generator;
 use Ock\Ock\Plugin\NamedPlugin;
 use Ock\Ock\Summarizer\Summarizer;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 #[Route('/admin/reports/ock/{interface}/plugin/{named_plugin}')]
 #[RouteIsAdmin]
@@ -70,7 +70,7 @@ class Controller_ReportPlugin extends ControllerBase implements ControllerRouteN
    * Constructor.
    *
    * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    */
   public function __construct(
     #[GetService]

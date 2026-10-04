@@ -6,7 +6,7 @@ namespace Drupal\ock\Formula\DrupalSelect;
 
 use Drupal\Component\Render\MarkupInterface;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 /**
  * Alternative select formula with Drupal label types.
@@ -17,7 +17,7 @@ class Formula_DrupalSelect_FromFlatSelect implements Formula_DrupalSelectInterfa
    * Constructor.
    *
    * @param \Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $decorated
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    */
   public function __construct(
     private readonly Formula_FlatSelectInterface $decorated,
