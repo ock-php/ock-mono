@@ -8,7 +8,7 @@ use Drupal\renderkit\TextLookup\TextLookup_EntityFieldWithEntityType;
 use Drupal\renderkit\TextLookup\TextLookup_FieldType;
 use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * Select formula where the value is like 'node.body'.

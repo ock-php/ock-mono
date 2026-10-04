@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\Sequence;
 
 use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 interface Formula_SequenceInterface extends FormulaInterface {
 
@@ -20,7 +20,7 @@ interface Formula_SequenceInterface extends FormulaInterface {
    * @param int|null $delta
    *   Index of the sequence item, or NULL for the "new item" item.
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    *
    * @throws \Ock\Ock\Exception\FormulaException
    */

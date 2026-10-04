@@ -8,7 +8,7 @@ use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Label\Formula_LabelInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Ock\Ock\Translator\TranslatorInterface;
 
 class FormatorD8_Label implements FormatorD8Interface {
@@ -40,7 +40,7 @@ class FormatorD8_Label implements FormatorD8Interface {
 
   /**
    * @param \Drupal\ock\Formator\FormatorD8Interface $decorated
-   * @param \Ock\Ock\Text\TextInterface $label
+   * @param \Ock\Text\TextInterface $label
    * @param \Ock\Ock\Translator\TranslatorInterface $translator
    */
   public function __construct(

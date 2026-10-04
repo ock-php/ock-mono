@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\Sequence;
 
 use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 class Formula_Sequence implements Formula_SequenceInterface {
 
@@ -37,8 +37,8 @@ class Formula_Sequence implements Formula_SequenceInterface {
   }
 
   /**
-   * @param \Ock\Ock\Text\TextInterface $newItemLabel
-   * @param \Ock\Ock\Text\TextInterface $itemLabelN
+   * @param \Ock\Text\TextInterface $newItemLabel
+   * @param \Ock\Text\TextInterface $itemLabelN
    * @param string $placeholder
    *
    * @return \Ock\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT

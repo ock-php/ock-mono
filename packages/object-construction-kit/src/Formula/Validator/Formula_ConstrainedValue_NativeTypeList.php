@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\Validator;
 
 use Ock\Helpers\Util\MessageUtil;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 class Formula_ConstrainedValue_NativeTypeList implements Formula_ConstrainedValueInterface {
 

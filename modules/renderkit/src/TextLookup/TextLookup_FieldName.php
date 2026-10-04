@@ -7,7 +7,7 @@ namespace Drupal\renderkit\TextLookup;
 use Ock\DependencyInjection\Attribute\Parameter\GetParametricArgument;
 use Ock\DependencyInjection\Attribute\PrivateService;
 use Ock\DependencyInjection\Attribute\Service;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
 /**

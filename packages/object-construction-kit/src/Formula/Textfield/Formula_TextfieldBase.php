@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\Textfield;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 abstract class Formula_TextfieldBase implements Formula_TextfieldInterface {
 

@@ -14,7 +14,7 @@ use Drupal\renderkit\Helper\FieldDefinitionLookupInterface;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Generator\GeneratorInterface;
 use Ock\Ock\Summarizer\SummarizerInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * Formula for the settings for a given formatter.

@@ -6,8 +6,8 @@ namespace Ock\Ock\Summarizer;
 
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Ock\Formula\Primitive\Formula_ScalarInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 #[Adapter]
 class Summarizer_Scalar implements SummarizerInterface {

@@ -12,8 +12,8 @@ use Ock\Ock\Formula\Group\Item\GroupFormulaItem;
 use Ock\Ock\Formula\Group\Item\GroupFormulaItem_Callback;
 use Ock\Ock\Formula\Group\Item\GroupFormulaItemInterface;
 use Ock\Ock\Formula\Optionless\Formula_OptionlessInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 use Ock\Ock\V2V\Group\V2V_GroupInterface;
 
 class GroupFormulaBuilder extends GroupValFormulaBuilderBase {
@@ -27,7 +27,7 @@ class GroupFormulaBuilder extends GroupValFormulaBuilderBase {
    * Adds another group option.
    *
    * @param string $key
-   * @param \Ock\Ock\Text\TextInterface $label
+   * @param \Ock\Text\TextInterface $label
    * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
    *
    * @return $this
@@ -72,7 +72,7 @@ class GroupFormulaBuilder extends GroupValFormulaBuilderBase {
 
   /**
    * @param string $key
-   * @param \Ock\Ock\Text\TextInterface|(callable(mixed...): TextInterface) $label
+   * @param \Ock\Text\TextInterface|(callable(mixed...): TextInterface) $label
    * @param list<string> $sourceKeys
    * @param callable(mixed...): \Ock\Ock\Core\Formula\FormulaInterface $callback
    *

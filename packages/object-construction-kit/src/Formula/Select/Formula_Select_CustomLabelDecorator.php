@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\Select;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
 /**

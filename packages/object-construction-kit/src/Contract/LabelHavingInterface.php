@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Contract;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * Generic interface for objects that provide a label.
@@ -12,7 +12,7 @@ use Ock\Ock\Text\TextInterface;
 interface LabelHavingInterface {
 
   /**
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public function getLabel(): TextInterface;
 

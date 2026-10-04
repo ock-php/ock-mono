@@ -9,7 +9,7 @@ use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 #[OckPluginInstance('tableSimple', 'Table without headers')]
 class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {

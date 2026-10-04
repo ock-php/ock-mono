@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\SelectOld;
 
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 /**
  * @phpstan-ignore class.implementsDeprecatedInterface
@@ -15,12 +15,12 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
   /**
    * Flattened options.
    *
-   * @var \Ock\Ock\Text\TextInterface[]
+   * @var \Ock\Text\TextInterface[]
    */
   private array $flatOptions;
 
   /**
-   * @param \Ock\Ock\Text\TextInterface[] $options
+   * @param \Ock\Text\TextInterface[] $options
    *
    * @return self
    */
@@ -31,10 +31,10 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Text\TextInterface[][] $groupedOptions
+   * @param \Ock\Text\TextInterface[][] $groupedOptions
    *   Format: $[$group_id][$option_value] = $option_label,
    *   with $group_id === '' for top-level options.
-   * @param \Ock\Ock\Text\TextInterface[] $groups
+   * @param \Ock\Text\TextInterface[] $groups
    *   Optgroup labels, without the top-level group.
    */
   public function __construct(
@@ -48,9 +48,9 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
 
   /**
    * @param string $id
-   * @param \Ock\Ock\Text\TextInterface $label
+   * @param \Ock\Text\TextInterface $label
    * @param string $group_id
-   * @param \Ock\Ock\Text\TextInterface|null $group_label
+   * @param \Ock\Text\TextInterface|null $group_label
    *
    * @return static
    */

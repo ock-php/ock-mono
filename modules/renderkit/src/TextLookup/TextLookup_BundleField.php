@@ -7,7 +7,7 @@ namespace Drupal\renderkit\TextLookup;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\ock\DrupalText;
 use Ock\DependencyInjection\Attribute\Service;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 

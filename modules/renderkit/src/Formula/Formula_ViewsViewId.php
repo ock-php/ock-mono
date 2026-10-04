@@ -7,7 +7,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\ock\DrupalText;
 use Ock\DID\Attribute\Parameter\CallService;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_ViewsViewId implements Formula_SelectInterface {
 
@@ -53,7 +53,7 @@ class Formula_ViewsViewId implements Formula_SelectInterface {
   /**
    * @param int|string $groupId
    *
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    */
   public function groupIdGetLabel(int|string $groupId): ?TextInterface {
     return NULL;

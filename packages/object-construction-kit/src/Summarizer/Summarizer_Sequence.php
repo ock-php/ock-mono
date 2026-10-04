@@ -9,8 +9,8 @@ use Ock\Adaptism\Attribute\Parameter\Adaptee;
 use Ock\Adaptism\Attribute\Parameter\UniversalAdapter;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Formula\Sequence\Formula_SequenceInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 class Summarizer_Sequence implements SummarizerInterface {
 

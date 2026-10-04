@@ -6,7 +6,7 @@ namespace Ock\Ock\Formula\Label;
 
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\FormulaBase\Decorator\Formula_DecoratorBase;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_Label extends Formula_DecoratorBase implements Formula_LabelInterface {
 
@@ -14,7 +14,7 @@ class Formula_Label extends Formula_DecoratorBase implements Formula_LabelInterf
    * Constructor.
    *
    * @param \Ock\Ock\Core\Formula\FormulaInterface $decorated
-   * @param \Ock\Ock\Text\TextInterface|null $label
+   * @param \Ock\Text\TextInterface|null $label
    */
   public function __construct(
     FormulaInterface $decorated,

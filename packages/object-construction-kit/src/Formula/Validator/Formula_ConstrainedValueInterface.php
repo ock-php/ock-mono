@@ -11,7 +11,7 @@ interface Formula_ConstrainedValueInterface extends FormulaInterface {
   /**
    * @param mixed $conf
    *
-   * @return \Iterator<int, \Ock\Ock\Text\TextInterface>
+   * @return \Iterator<int, \Ock\Text\TextInterface>
    *   List of validation failures.
    */
   public function validate(mixed $conf): \Iterator;

@@ -6,8 +6,8 @@ namespace Ock\Ock\Formula\Boolean;
 
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\DefaultConf\Formula_DefaultConf;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 class Formula_Boolean_YesNo implements Formula_BooleanInterface {
 

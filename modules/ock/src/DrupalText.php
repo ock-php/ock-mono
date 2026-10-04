@@ -6,21 +6,21 @@ namespace Drupal\ock;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 /**
  * Utility class to bridge Drupal translatable markup with Ock.
  *
  * @see \t()
- * @see \Ock\Ock\Text\Text
+ * @see \Ock\Text\Text
  */
 class DrupalText {
 
   /**
    * @param array[] $definitions
    *
-   * @return \Ock\Ock\Text\TextInterface[]s
+   * @return \Ock\Text\TextInterface[]s
    */
   public static function fromArrays(array $definitions, string $key = 'label'): array {
     $texts = [];
@@ -36,7 +36,7 @@ class DrupalText {
    * @param (string|\Drupal\Component\Render\MarkupInterface|mixed)[] $replacements
    *   Replacements.
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public static function s(string $string, array $replacements): TextInterface {
     return Text::s($string, self::multiple($replacements));
@@ -46,7 +46,7 @@ class DrupalText {
    * @param string $string
    * @param (string|\Drupal\Component\Render\MarkupInterface|mixed)[] $replacements
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public static function t(string $string, array $replacements): TextInterface {
     return Text::t($string, self::multiple($replacements));
@@ -56,7 +56,7 @@ class DrupalText {
    * @param object[] $definitions
    * @param string $method
    *
-   * @return \Ock\Ock\Text\TextInterface[]
+   * @return \Ock\Text\TextInterface[]
    */
   public static function fromObjects(array $definitions, string $method = 'getLabel'): array {
     $texts = [];
@@ -70,7 +70,7 @@ class DrupalText {
    * @param mixed[] $sources
    * @param string[]|int[] $fails
    *
-   * @return \Ock\Ock\Text\TextInterface[]
+   * @return \Ock\Text\TextInterface[]
    */
   public static function multiple(array $sources, ?array &$fails = []): array {
     $texts = [];
@@ -89,7 +89,7 @@ class DrupalText {
    * @param mixed $source
    * @param string $else
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public static function fromVarOr(mixed $source, string $else): TextInterface {
     return self::fromVar($source) ?? Text::s($else);
@@ -100,7 +100,7 @@ class DrupalText {
    *
    * @param string|\Drupal\Core\StringTranslation\TranslatableMarkup|mixed $source
    *
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    */
   public static function fromVar(mixed $source): ?TextInterface {
     if (is_string($source)) {
@@ -122,7 +122,7 @@ class DrupalText {
    *
    * @param mixed|array $source
    *
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    *   A text, or NULL if the source was empty or had an unexpected type.
    */
   public static function fromVarRecursiveUl(mixed $source): ?TextInterface {
@@ -159,7 +159,7 @@ class DrupalText {
    *
    * @param \Drupal\Core\StringTranslation\TranslatableMarkup $source
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public static function fromT(TranslatableMarkup $source): TextInterface {
     return Text::t(
@@ -171,7 +171,7 @@ class DrupalText {
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public static function fromEntity(EntityInterface $entity): TextInterface {
     return self::fromVarOr($entity->label(), $entity->id());
@@ -180,7 +180,7 @@ class DrupalText {
   /**
    * @param \Drupal\Core\Entity\EntityInterface|null $entity
    *
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    */
   public static function fromEntityOrNull(?EntityInterface $entity): ?TextInterface {
     return $entity ? self::fromEntity($entity) : NULL;

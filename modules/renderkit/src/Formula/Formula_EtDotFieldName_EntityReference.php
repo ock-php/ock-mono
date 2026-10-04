@@ -10,7 +10,7 @@ use Drupal\renderkit\TextLookup\TextLookup_EntityType;
 use Ock\DependencyInjection\Attribute\Service;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * Formula to choose entity reference fields.

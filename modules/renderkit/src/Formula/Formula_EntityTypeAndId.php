@@ -6,7 +6,7 @@ namespace Drupal\renderkit\Formula;
 use Ock\DID\Attribute\Service;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Group\Formula_Group;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 #[Service]

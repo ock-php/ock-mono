@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\SelectOld;
 
 use Ock\Ock\Formula\SelectOld\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 /**
  * @phpstan-ignore class.implementsDeprecatedInterface
@@ -89,10 +89,10 @@ abstract class Formula_Select_TwoStepFlatSelectGrandBase implements Formula_Sele
   }
 
   /**
-   * @param \Ock\Ock\Text\TextInterface $label0
-   * @param \Ock\Ock\Text\TextInterface $label1
+   * @param \Ock\Text\TextInterface $label0
+   * @param \Ock\Text\TextInterface $label1
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   protected function combineLabels(TextInterface $label0, TextInterface $label1): TextInterface {
     return Text::concat([$label0, $label1], ' - ');

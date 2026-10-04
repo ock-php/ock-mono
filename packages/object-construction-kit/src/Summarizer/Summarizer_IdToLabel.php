@@ -6,8 +6,8 @@ namespace Ock\Ock\Summarizer;
 
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 use Ock\Ock\Util\ConfUtil;
 
 #[Adapter]

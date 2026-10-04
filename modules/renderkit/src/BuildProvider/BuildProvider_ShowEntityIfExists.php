@@ -18,7 +18,7 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Exception\EvaluatorException;
 use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**

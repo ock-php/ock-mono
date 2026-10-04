@@ -9,8 +9,8 @@ use Ock\Ock\Contract\LabelHavingInterface;
 use Ock\Ock\Contract\NameHavingInterface;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\ValueProvider\Formula_FixedPhp_Decorated;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 #[\Attribute(\Attribute::TARGET_PARAMETER|\Attribute::TARGET_PROPERTY)]
 class OckDecorated implements NameHavingInterface, LabelHavingInterface, FormulaHavingInterface {

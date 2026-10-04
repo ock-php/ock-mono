@@ -9,7 +9,7 @@ use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 /**
  * Plant composed of a swarm of animals.

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\Textfield;
 
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
 
@@ -55,7 +55,7 @@ class Formula_Textfield_IntegerInRange extends Formula_Textfield_IntegerBase {
   /**
    * @param int $number
    *
-   * @return \Ock\Ock\Text\TextInterface[]
+   * @return \Ock\Text\TextInterface[]
    */
   protected function numberGetValidationErrors(int $number): array {
 

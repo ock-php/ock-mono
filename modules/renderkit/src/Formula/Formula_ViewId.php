@@ -8,7 +8,7 @@ use Drupal\ock\DrupalText;
 use Drupal\views\Entity\View;
 use Drupal\views\Views;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_ViewId implements Formula_FlatSelectInterface {
 

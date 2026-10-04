@@ -9,7 +9,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\ock\DrupalText;
 use Ock\DID\Attribute\Parameter\CallServiceWithArguments;
 use Ock\DID\Attribute\ParametricService;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
 /**

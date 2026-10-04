@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Summarizer;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * Produces a html summary for a given configuration.
@@ -17,7 +17,7 @@ interface SummarizerInterface {
    * @param mixed $conf
    *   Configuration to summarize.
    *
-   * @return null|\Ock\Ock\Text\TextInterface
+   * @return null|\Ock\Text\TextInterface
    *   The summary as html text.
    *
    * @throws \Ock\Ock\Exception\SummarizerException

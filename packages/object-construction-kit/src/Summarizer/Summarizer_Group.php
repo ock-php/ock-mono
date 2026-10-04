@@ -10,8 +10,8 @@ use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Formula\Group\Formula_GroupInterface;
 use Ock\Ock\Formula\Group\GroupHelper;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 #[Adapter]
 class Summarizer_Group implements SummarizerInterface {

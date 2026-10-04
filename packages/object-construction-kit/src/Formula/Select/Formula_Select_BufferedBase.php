@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\Select;
 
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
 
@@ -19,14 +19,14 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
   /**
    * Buffered labels.
    *
-   * @var \Ock\Ock\Text\TextInterface[]
+   * @var \Ock\Text\TextInterface[]
    */
   private array $labels = [];
 
   /**
    * Buffered group labels.
    *
-   * @var \Ock\Ock\Text\TextInterface[]
+   * @var \Ock\Text\TextInterface[]
    */
   private array $groupLabels = [];
 
@@ -61,9 +61,9 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
    * @param array<string, string> $map
    *   Format: $[$id] = $groupId,
    *   with $group_id === '' for top-level options.
-   * @param \Ock\Ock\Text\TextInterface[] $labels
+   * @param \Ock\Text\TextInterface[] $labels
    *   Format: $[$id] = $label.
-   * @param \Ock\Ock\Text\TextInterface[] $groupLabels
+   * @param \Ock\Text\TextInterface[] $groupLabels
    *   Format: $[$optgroup_id] = $optgroup_label.
    *
    * @throws \Ock\Ock\Exception\FormulaException

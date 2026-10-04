@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\Select;
 
 use Ock\Ock\Formula\Select\Option\SelectOptionInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Ock\Ock\Translator\Translator;
 
 class Formula_Select_FromOptions implements Formula_SelectInterface {
 
   /**
-   * @var \Ock\Ock\Text\TextInterface[]|null
+   * @var \Ock\Text\TextInterface[]|null
    */
   private ?array $groupLabels = NULL;
 

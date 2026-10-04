@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Ock\Ock\Plugin;
 
 use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Plugin {
 
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Text\TextInterface $label
-   * @param \Ock\Ock\Text\TextInterface|null $description
+   * @param \Ock\Text\TextInterface $label
+   * @param \Ock\Text\TextInterface|null $description
    * @param \Ock\Ock\Core\Formula\FormulaInterface $formula
    * @param mixed[] $info
    */
@@ -34,7 +34,7 @@ class Plugin {
   /**
    * Gets a label for the plugin.
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public function getLabel(): TextInterface {
     return $this->label;
@@ -54,7 +54,7 @@ class Plugin {
   /**
    * Gets a description for the plugin.
    *
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    */
   public function getDescription(): ?TextInterface {
     return $this->description;

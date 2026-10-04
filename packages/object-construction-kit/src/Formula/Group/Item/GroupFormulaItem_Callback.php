@@ -7,7 +7,7 @@ namespace Ock\Ock\Formula\Group\Item;
 use Ock\Helpers\Util\MessageUtil;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Exception\FormulaException;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class GroupFormulaItem_Callback implements GroupFormulaItemInterface {
 

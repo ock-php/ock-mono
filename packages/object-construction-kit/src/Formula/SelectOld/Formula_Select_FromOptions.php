@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\SelectOld;
 
 use Ock\Ock\Formula\SelectOld\Option\SelectOptionInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Ock\Ock\Translator\Translator;
 
 class Formula_Select_FromOptions extends Formula_Select_BufferedBase {

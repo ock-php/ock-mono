@@ -10,7 +10,7 @@ use Drupal\ock\DrupalText;
 use Ock\DependencyInjection\Attribute\Service;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 #[Service]
 class Formula_EntityType_Flat implements Formula_FlatSelectInterface {

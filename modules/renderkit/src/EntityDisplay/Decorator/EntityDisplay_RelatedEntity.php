@@ -10,7 +10,7 @@ use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 #[OckPluginInstance('related', 'Related entity')]
 class EntityDisplay_RelatedEntity implements EntityDisplayInterface {

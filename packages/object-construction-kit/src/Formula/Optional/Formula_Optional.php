@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\Optional;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_Optional extends Formula_OptionalBase {
 
   /**
-   * @var \Ock\Ock\Text\TextInterface|null
+   * @var \Ock\Text\TextInterface|null
    */
   private ?TextInterface $emptySummary;
 
@@ -19,7 +19,7 @@ class Formula_Optional extends Formula_OptionalBase {
   private string $emptyPhp = 'NULL';
 
   /**
-   * @param \Ock\Ock\Text\TextInterface $emptySummary
+   * @param \Ock\Text\TextInterface $emptySummary
    *
    * @return static
    */

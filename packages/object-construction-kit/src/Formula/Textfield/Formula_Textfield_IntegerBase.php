@@ -6,7 +6,7 @@ namespace Ock\Ock\Formula\Textfield;
 
 use Ock\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Ock\Ock\Formula\StringVal\Formula_StringVal;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 use Ock\Ock\Translator\Translator;
 use Ock\Ock\V2V\String\V2V_StringInterface;
 
@@ -37,7 +37,7 @@ abstract class Formula_Textfield_IntegerBase extends Formula_TextfieldBase imple
   /**
    * @param int $number
    *
-   * @return \Ock\Ock\Text\TextInterface[]
+   * @return \Ock\Text\TextInterface[]
    */
   protected function numberGetValidationErrors(int $number): array {
     return [];

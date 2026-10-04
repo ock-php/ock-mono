@@ -12,8 +12,8 @@ use Ock\Ock\Contract\NameHavingInterface;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\ValueProvider\Formula_FixedPhp_Adaptee;
 use Ock\Ock\Plugin\PluginDeclaration;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 use Ock\ReflectorAwareAttributes\AttributeConstructor;
 
 #[\Attribute(\Attribute::TARGET_PARAMETER|\Attribute::TARGET_PROPERTY)]

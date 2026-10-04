@@ -10,7 +10,7 @@ use Drupal\renderkit\EntityField\Multi\EntityToFieldItemListInterface;
 use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 /**
  * An entity condition that returns true if a given timestamp is contained in

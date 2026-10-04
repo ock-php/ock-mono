@@ -7,7 +7,7 @@ namespace Ock\Ock\Plugin\GroupLabels;
 interface PluginGroupLabelsInterface {
 
   /**
-   * @return \Ock\Ock\Text\TextInterface[]
+   * @return \Ock\Text\TextInterface[]
    */
   public function getLabels(): array;
 

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\Select\Option;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class SelectOption implements SelectOptionInterface {
 
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Text\TextInterface|null $label
-   * @param \Ock\Ock\Text\TextInterface|null $groupLabel
+   * @param \Ock\Text\TextInterface|null $label
+   * @param \Ock\Text\TextInterface|null $groupLabel
    */
   public function __construct(
     private readonly ?TextInterface $label,

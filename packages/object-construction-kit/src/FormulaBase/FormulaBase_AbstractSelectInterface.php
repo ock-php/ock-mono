@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Ock\FormulaBase;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * This is a base interface, which by itself does NOT extend FormulaInterface.
@@ -16,7 +16,7 @@ interface FormulaBase_AbstractSelectInterface {
   /**
    * Gets named select optgroups.
    *
-   * @return \Ock\Ock\Text\TextInterface[]
+   * @return \Ock\Text\TextInterface[]
    *   Format: $[$group_id] = $group_label.
    *
    * @throws \Ock\Ock\Exception\FormulaException
@@ -30,7 +30,7 @@ interface FormulaBase_AbstractSelectInterface {
    * @param string|null $group_id
    *   Id of the optgroup, or NULL for top-level options.
    *
-   * @return \Ock\Ock\Text\TextInterface[]
+   * @return \Ock\Text\TextInterface[]
    *   Format: $[$value] = $label.
    *
    * @throws \Ock\Ock\Exception\FormulaException
@@ -41,7 +41,7 @@ interface FormulaBase_AbstractSelectInterface {
   /**
    * @param string|int $id
    *
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    *
    * @throws \Ock\Ock\Exception\FormulaException
    */

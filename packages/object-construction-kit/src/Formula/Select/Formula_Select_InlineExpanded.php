@@ -9,8 +9,8 @@ use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Formula\Id\Formula_IdInterface;
 use Ock\Ock\IdToFormula\IdToFormulaInterface;
 use Ock\Ock\InlineDrilldown\InlineDrilldownInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 class Formula_Select_InlineExpanded implements Formula_SelectInterface {
 

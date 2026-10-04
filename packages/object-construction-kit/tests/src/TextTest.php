@@ -6,7 +6,7 @@ namespace Ock\Ock\Tests;
 
 use Ock\Ock\Tests\Translator\Translator_Testing;
 use Ock\Ock\Tests\Util\XmlTestUtil;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Ock\Ock\Translator\Translator_Passthru;
 use PHPUnit\Framework\TestCase;
 use function Ock\Helpers\scandir_known;

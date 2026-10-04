@@ -9,7 +9,7 @@ use Ock\Helpers\Util\MessageUtil;
 use Ock\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Ock\Ock\Formula\StringVal\Formula_StringValInterface;
 use Ock\Ock\Formula\Textfield\Formula_TextfieldInterface;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 use Ock\Ock\Translator\Translator;
 use Ock\Ock\V2V\String\V2V_String_Trivial;
 use Ock\Ock\V2V\String\V2V_StringInterface;

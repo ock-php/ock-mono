@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\ock\DrupalText;
 use Ock\DependencyInjection\Attribute\Service;
 use Ock\DID\Attribute\Parameter\GetService;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
 #[Service]

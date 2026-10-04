@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\Select;
 
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
 

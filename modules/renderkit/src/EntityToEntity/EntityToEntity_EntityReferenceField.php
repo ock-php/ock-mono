@@ -15,7 +15,7 @@ use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 class EntityToEntity_EntityReferenceField implements EntityToEntityInterface {
 

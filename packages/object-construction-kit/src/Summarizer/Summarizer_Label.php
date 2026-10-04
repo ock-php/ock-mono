@@ -8,8 +8,8 @@ use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\Exception\AdapterException;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Formula\Label\Formula_LabelInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 /**
  * Decorator that prepends a "<label>: " to a summary.
@@ -43,7 +43,7 @@ class Summarizer_Label implements SummarizerInterface {
    * Constructor.
    *
    * @param \Ock\Ock\Summarizer\SummarizerInterface $decorated
-   * @param \Ock\Ock\Text\TextInterface $label
+   * @param \Ock\Text\TextInterface $label
    */
   public function __construct(
     private readonly SummarizerInterface $decorated,

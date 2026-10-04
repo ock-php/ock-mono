@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\Textfield;
 
 use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * @todo What about limited number of characters?
@@ -13,7 +13,7 @@ use Ock\Ock\Text\TextInterface;
 interface Formula_TextfieldInterface extends FormulaInterface {
 
   /**
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    */
   public function getDescription(): ?TextInterface;
 
@@ -27,7 +27,7 @@ interface Formula_TextfieldInterface extends FormulaInterface {
   /**
    * @param string $text
    *
-   * @return \Ock\Ock\Text\TextInterface[]
+   * @return \Ock\Text\TextInterface[]
    */
   public function textGetValidationErrors(string $text): array;
 
