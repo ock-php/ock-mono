@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 return Text::ul()
   ->add(Text::s('First item'))
