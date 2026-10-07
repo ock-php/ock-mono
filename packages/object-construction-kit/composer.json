@@ -33,7 +33,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Ock\\Ock\\Tests\\": "tests/src"
+            "Ock\\Ock\\Tests\\": "tests/src",
+            "Ock\\Text\\Tests\\": "vendor/ock/text/tests/src"
         }
     }
 }
