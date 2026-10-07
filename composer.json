@@ -84,7 +84,8 @@
             "Ock\\Ock\\Tests\\": "packages/object-construction-kit/tests/src",
             "Ock\\Reflection\\Tests\\": "packages/reflection/tests/src",
             "Ock\\ReflectorAwareAttributes\\Tests\\": "packages/reflector-aware-attributes/tests/src",
-            "Ock\\Testing\\Tests\\": "packages/testing/tests/src"
+            "Ock\\Testing\\Tests\\": "packages/testing/tests/src",
+            "Ock\\Text\\Tests\\": "packages/text/tests/src"
         }
     },
     "config": {
