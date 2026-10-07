@@ -76,6 +76,16 @@ jobs:
           php symlink_project.php
           rm -f symlink_project.php
 
+      - name: "Report: composer.json"
+        run: |
+          set -x
+          cat composer.json
+
+      - name: "Report: composer info"
+        run: |
+          set -x
+          composer info
+
       - name: DDEV - Setup
         uses: ddev/github-action-setup-ddev@v1
         with:
