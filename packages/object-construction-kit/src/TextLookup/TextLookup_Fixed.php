@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Ock\TextLookup;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * Helper object to provide labels in bulk.
@@ -14,7 +14,7 @@ class TextLookup_Fixed implements TextLookupInterface {
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $labels
+   * @param \Ock\Text\TextInterface[] $labels
    */
   public function __construct(
     private readonly array $labels,

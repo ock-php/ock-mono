@@ -6,7 +6,7 @@ namespace Drupal\renderkit\Formula;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\ock\DrupalText;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_EntityBundleName implements Formula_FlatSelectInterface {
 

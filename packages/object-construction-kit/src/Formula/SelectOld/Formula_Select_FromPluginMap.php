@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\SelectOld;
 
 use Ock\Ock\Plugin\Map\PluginMapInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_Select_FromPluginMap extends Formula_Select_BufferedBase {
 

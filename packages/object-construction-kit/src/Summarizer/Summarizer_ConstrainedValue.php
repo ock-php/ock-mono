@@ -9,8 +9,8 @@ use Ock\Adaptism\Attribute\Parameter\Adaptee;
 use Ock\CodegenTools\Util\CodeGen;
 use Ock\Helpers\Util\MessageUtil;
 use Ock\Ock\Formula\Validator\Formula_ConstrainedValueInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 #[Adapter]
 class Summarizer_ConstrainedValue implements SummarizerInterface {

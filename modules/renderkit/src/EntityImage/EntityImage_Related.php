@@ -8,7 +8,7 @@ use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 class EntityImage_Related implements EntityImageInterface {
 

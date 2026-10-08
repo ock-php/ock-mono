@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\SelectOld;
 
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 /**
  * @phpstan-ignore class.implementsDeprecatedInterface
@@ -14,14 +14,14 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
   /**
    * Buffered optgroups.
    *
-   * @var \Ock\Ock\Text\TextInterface[]
+   * @var \Ock\Text\TextInterface[]
    */
   private array $groups = [];
 
   /**
    * Buffered grouped options, with '' for top-level options.
    *
-   * @var \Ock\Ock\Text\TextInterface[][]|null
+   * @var \Ock\Text\TextInterface[][]|null
    */
   private ?array $groupedOptions;
 
@@ -66,10 +66,10 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
   /**
    * Initializes grouped options and optgroup labels.
    *
-   * @param \Ock\Ock\Text\TextInterface[][] $grouped_options
+   * @param \Ock\Text\TextInterface[][] $grouped_options
    *   Format: $[$group_id][$id] = $label,
    *   with $group_id === '' for top-level options.
-   * @param \Ock\Ock\Text\TextInterface[] $group_labels
+   * @param \Ock\Text\TextInterface[] $group_labels
    *   Format: $[$optgroup_id] = $optgroup_label.
    *
    * @throws \Ock\Ock\Exception\FormulaException

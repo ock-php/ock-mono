@@ -8,7 +8,7 @@ use Drupal\ock\DrupalText;
 use Drupal\views\Entity\View;
 use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * Formula for values of the structure "$viewId.$viewDisplayId".

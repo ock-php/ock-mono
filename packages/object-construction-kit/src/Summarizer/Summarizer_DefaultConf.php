@@ -7,7 +7,7 @@ namespace Ock\Ock\Summarizer;
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Formula\DefaultConf\Formula_DefaultConfInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Summarizer_DefaultConf implements SummarizerInterface {
 

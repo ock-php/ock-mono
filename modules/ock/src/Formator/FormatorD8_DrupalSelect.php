@@ -13,7 +13,7 @@ use Ock\Adaptism\Attribute\Adapter;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 use Ock\Ock\Util\ConfUtil;
 
 class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormatorInterface {
@@ -25,7 +25,7 @@ class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormato
 
   /**
    * @param \Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface $formula
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    *
    * @return self
    */
@@ -41,7 +41,7 @@ class FormatorD8_DrupalSelect implements FormatorD8Interface, ControllingFormato
 
   /**
    * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $formula
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    *
    * @return self
    */

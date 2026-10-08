@@ -11,7 +11,7 @@ use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
 use Ock\Ock\Formula\Textfield\Formula_Textfield_NoValidation;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 #[OckPluginInstance('table', 'Table with headers')]
 class EntitiesListFormat_TableWithHeaders implements EntitiesListFormatInterface {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\Optional;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_Optional_Null extends Formula_OptionalBase {
 

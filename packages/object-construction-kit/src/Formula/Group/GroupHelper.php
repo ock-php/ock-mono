@@ -12,7 +12,7 @@ use Ock\Ock\Exception\EvaluatorException;
 use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Formula\Group\Item\GroupFormulaItemInterface;
 use Ock\Ock\FormulaAdapter;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class GroupHelper {
 
@@ -189,7 +189,7 @@ class GroupHelper {
   /**
    * @param string|int $key
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    * @throws \Ock\Ock\Exception\FormulaException
    */
   public function keyGetLabel(string|int $key): TextInterface {

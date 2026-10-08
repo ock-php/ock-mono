@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Attribute\Parameter;
 
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 /**
  * Marks a configurable parameter.
@@ -27,7 +27,7 @@ class Setting {
   }
 
   /**
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public function getLabel(): TextInterface {
     return $this->translate

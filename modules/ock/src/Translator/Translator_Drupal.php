@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\ock\Translator;
 
 use Drupal\Core\StringTranslation\TranslationInterface;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\SelectOld\Grouped;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Optgroup {
 
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Text\TextInterface|null $label
+   * @param \Ock\Text\TextInterface|null $label
    *   The group label, or NULL for top-level options.
-   * @param \Ock\Ock\Text\TextInterface[] $options
+   * @param \Ock\Text\TextInterface[] $options
    *   Option labels within the group.
    *
    */
@@ -23,7 +23,7 @@ class Optgroup {
   ) {}
 
   /**
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    *   Optgroup label, or NULL if this is for top-level options.
    */
   public function getLabel(): ?TextInterface {
@@ -31,7 +31,7 @@ class Optgroup {
   }
 
   /**
-   * @return \Ock\Ock\Text\TextInterface[]
+   * @return \Ock\Text\TextInterface[]
    */
   public function getOptions(): array {
     return $this->options;

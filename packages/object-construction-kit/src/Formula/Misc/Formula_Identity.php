@@ -9,8 +9,8 @@ use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Exception\GeneratorException_IncompatibleConfiguration;
 use Ock\Ock\Generator\GeneratorInterface;
 use Ock\Ock\Summarizer\SummarizerInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 final class Formula_Identity implements FormulaInterface, GeneratorInterface, SummarizerInterface {
 

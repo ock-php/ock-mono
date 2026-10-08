@@ -13,7 +13,7 @@ use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Formula\Group\Formula_GroupInterface;
 use Ock\Ock\Formula\Group\GroupHelper;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 #[Adapter]
 class FormatorD8_Group implements FormatorD8Interface {
@@ -28,7 +28,7 @@ class FormatorD8_Group implements FormatorD8Interface {
   /**
    * @param \Ock\Ock\Formula\Group\Formula_GroupInterface $groupFormula
    * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    */
   public function __construct(
     #[Adaptee]

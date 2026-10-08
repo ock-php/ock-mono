@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityTypeRepositoryInterface;
 use Ock\DependencyInjection\Attribute\Service;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * Formula where the value is the name of an entity type with one or more fields.

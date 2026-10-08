@@ -9,7 +9,7 @@ use Ock\Ock\Attribute\Parameter\OckOption;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Validator\Formula_ConstrainedValue_IntegerInRange;
-use Ock\Ock\Text\Text_Translatable;
+use Ock\Text\Text_Translatable;
 
 class Plant_OakTree implements PlantInterface {
 

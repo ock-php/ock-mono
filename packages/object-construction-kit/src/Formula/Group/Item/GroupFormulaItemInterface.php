@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\Group\Item;
 
 use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 interface GroupFormulaItemInterface {
 
@@ -18,7 +18,7 @@ interface GroupFormulaItemInterface {
   /**
    * @param mixed[] $args
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   public function getLabel(array $args = []): TextInterface;
 

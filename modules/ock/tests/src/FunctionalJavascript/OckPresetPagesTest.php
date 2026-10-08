@@ -12,7 +12,7 @@ use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Evaluator\Evaluator;
 use Ock\Ock\Generator\Generator;
 use Ock\Ock\Summarizer\Summarizer;
-use Ock\Ock\Translator\Translator;
+use Ock\Text\Translator\Translator;
 use WebDriver\Service\CurlService;
 use WebDriver\ServiceFactory;
 

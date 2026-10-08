@@ -9,7 +9,7 @@ use Drupal\ock\DrupalText;
 use Drupal\service_discovery\Attribute\RequireModule;
 use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 /**
  * Formula to select a layout id.

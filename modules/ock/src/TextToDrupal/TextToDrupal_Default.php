@@ -6,8 +6,8 @@ namespace Drupal\ock\TextToDrupal;
 
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\Markup;
-use Ock\Ock\Text\TextInterface;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\TextInterface;
+use Ock\Text\Translator\TranslatorInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
 #[AsAlias(public: true)]
@@ -16,7 +16,7 @@ class TextToDrupal_Default implements TextToDrupalInterface {
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    *   String translation service.
    */
   public function __construct(

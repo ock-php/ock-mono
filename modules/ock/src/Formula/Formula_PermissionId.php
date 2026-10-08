@@ -7,8 +7,8 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\user\PermissionHandlerInterface;
 use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 use Psr\Container\ContainerInterface;
 
 /**

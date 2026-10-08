@@ -8,7 +8,7 @@ use Drupal\Component\Render\MarkupInterface;
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\Attribute\Parameter\Adaptee;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 /**
  * Adapter for OCK select formulas.
@@ -22,7 +22,7 @@ class Formula_DrupalSelect_FromCommonSelect implements Formula_DrupalSelectInter
    * Constructor.
    *
    * @param \Ock\Ock\Formula\Select\Formula_SelectInterface $decorated
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    */
   public function __construct(
     #[Adaptee]

@@ -8,8 +8,8 @@ use Ock\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Ock\Ock\Formula\DrilldownVal\Formula_DrilldownValInterface;
 use Ock\Ock\Formula\Id\Formula_IdInterface;
 use Ock\Ock\IdToFormula\IdToFormulaInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 class Formula_Select_ExpandNested extends Formula_Select_BufferedBase {
 

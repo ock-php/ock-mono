@@ -21,7 +21,7 @@ use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\DefaultConf\Formula_DefaultConf;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 /**
  * Entity display handler to view a specific field on all the entities.

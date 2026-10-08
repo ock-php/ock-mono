@@ -72,8 +72,19 @@ jobs:
 
           # Run symlink_project.php
           curl -OL https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/symlink_project.php
-          php symlink_project.php ${{ matrix.module }}
+          export DRUPAL_PROJECT_FOLDER="./web/modules/custom/${{ matrix.module }}"
+          php symlink_project.php
           rm -f symlink_project.php
+
+      - name: "Report: composer.json"
+        run: |
+          set -x
+          cat composer.json
+
+      - name: "Report: composer info"
+        run: |
+          set -x
+          composer info
 
       - name: DDEV - Setup
         uses: ddev/github-action-setup-ddev@v1

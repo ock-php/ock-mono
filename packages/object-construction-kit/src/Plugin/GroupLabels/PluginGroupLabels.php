@@ -9,7 +9,7 @@ class PluginGroupLabels implements PluginGroupLabelsInterface {
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $labels
+   * @param \Ock\Text\TextInterface[] $labels
    */
   public function __construct(
     private readonly array $labels,

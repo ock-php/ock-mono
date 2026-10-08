@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Util;
 
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 /**
  * Helper methods to generate labels from PHP identifiers.

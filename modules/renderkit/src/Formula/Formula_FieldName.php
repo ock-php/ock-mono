@@ -12,7 +12,7 @@ use Ock\DependencyInjection\Attribute\Parameter\GetParametricService;
 use Ock\DependencyInjection\Attribute\PrivateService;
 use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**

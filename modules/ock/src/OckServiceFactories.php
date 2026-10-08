@@ -8,7 +8,7 @@ use Drupal\Core\Extension\ModuleExtensionList;
 use Ock\DependencyInjection\Attribute\Service;
 use Ock\Ock\Plugin\GroupLabels\PluginGroupLabels;
 use Ock\Ock\Plugin\GroupLabels\PluginGroupLabelsInterface;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 /**
  * Some service factories that don't have their own class.

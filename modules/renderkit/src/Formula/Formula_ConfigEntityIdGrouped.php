@@ -10,7 +10,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\ock\DrupalText;
 use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
 class Formula_ConfigEntityIdGrouped implements Formula_SelectInterface {

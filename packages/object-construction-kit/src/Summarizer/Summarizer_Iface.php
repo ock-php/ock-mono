@@ -11,8 +11,8 @@ use Ock\Adaptism\Exception\AdapterException;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\Ock\Formula\Iface\Formula_IfaceInterface;
 use Ock\Ock\Plugin\Map\PluginMapInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 #[Adapter]
 class Summarizer_Iface implements SummarizerInterface {

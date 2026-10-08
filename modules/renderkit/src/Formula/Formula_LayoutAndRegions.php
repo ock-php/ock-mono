@@ -16,7 +16,7 @@ use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Group\Formula_Group;
 use Ock\Ock\Formula\Group\Item\GroupFormulaItem;
 use Ock\Ock\Formula\Sequence\Formula_Sequence;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 class Formula_LayoutAndRegions {
 

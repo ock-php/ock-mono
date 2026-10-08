@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Drupal\ock\TextToDrupal;
 
 use Drupal\Component\Render\MarkupInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 interface TextToDrupalInterface {
 
   /**
-   * @param \Ock\Ock\Text\TextInterface $text
+   * @param \Ock\Text\TextInterface $text
    *
    * @return \Drupal\Component\Render\MarkupInterface
    */

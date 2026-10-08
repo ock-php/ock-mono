@@ -18,7 +18,7 @@ use Ock\Ock\Tests\Fixture\IntCondition\IntCondition_GreaterThan;
 use Ock\Ock\Tests\Fixture\IntCondition\IntConditionInterface;
 use Ock\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Ock\Ock\Tests\Util\TestingServices;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 class DiscoveryTest extends FormulaTestBase {
 

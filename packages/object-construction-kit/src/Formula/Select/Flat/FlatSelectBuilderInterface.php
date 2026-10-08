@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\Select\Flat;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 interface FlatSelectBuilderInterface {
 
@@ -12,7 +12,7 @@ interface FlatSelectBuilderInterface {
    * Adds a select option.
    *
    * @param string $name
-   * @param \Ock\Ock\Text\TextInterface $label
+   * @param \Ock\Text\TextInterface $label
    *
    * @return $this
    */

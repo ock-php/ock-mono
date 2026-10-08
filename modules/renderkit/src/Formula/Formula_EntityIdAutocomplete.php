@@ -16,7 +16,7 @@ use Ock\DependencyInjection\Attribute\Service;
 use Ock\DID\Attribute\Parameter\GetParametricService;
 use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 #[PrivateService]
 class Formula_EntityIdAutocomplete implements Formula_IdToLabelInterface, FormatorD8Interface {

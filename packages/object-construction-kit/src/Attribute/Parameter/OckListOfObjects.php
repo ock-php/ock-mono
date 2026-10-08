@@ -9,7 +9,7 @@ use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Sequence\Formula_Sequence;
 use Ock\Ock\Formula\Sequence\Formula_Sequence_ItemLabelT;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 #[\Attribute(\Attribute::TARGET_PARAMETER|\Attribute::TARGET_PROPERTY)]
 class OckListOfObjects implements FormulaHavingInterface {

@@ -6,8 +6,8 @@ namespace Ock\Ock\Formula\Validator;
 
 use Ock\Helpers\Util\MessageUtil;
 use Ock\Ock\Formula\Description\Formula_DescriptionInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 final class Formula_ConstrainedValue_IntegerInRange implements Formula_ConstrainedValueInterface, Formula_DescriptionInterface {
 

@@ -8,7 +8,7 @@ use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Optional\Formula_Optional;
 use Ock\Ock\Formula\Optional\Formula_Optional_Null;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelect_Fixed;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 final class Formula_TagName extends UtilBase {
 

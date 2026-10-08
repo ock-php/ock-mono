@@ -6,8 +6,8 @@ namespace Ock\Ock\Attribute\Parameter;
 
 use Ock\Ock\Contract\LabelHavingInterface;
 use Ock\Ock\Contract\NameHavingInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 #[\Attribute(\Attribute::TARGET_PARAMETER|\Attribute::TARGET_PROPERTY)]
 class OckOption implements NameHavingInterface, LabelHavingInterface {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\SelectOld;
 
 use Ock\Ock\Formula\SelectOld\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * @phpstan-ignore class.implementsDeprecatedInterface

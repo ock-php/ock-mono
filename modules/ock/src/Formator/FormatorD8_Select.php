@@ -10,7 +10,7 @@ use Ock\Adaptism\Attribute\Adapter;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
 use Ock\Ock\Formula\Select\Formula_Select_FromFlatSelect;
 use Ock\Ock\Formula\Select\Formula_SelectInterface;
-use Ock\Ock\Translator\Translator;
+use Ock\Text\Translator\Translator;
 use Ock\Ock\Util\ConfUtil;
 
 class FormatorD8_Select implements FormatorD8Interface, OptionableFormatorD8Interface {

@@ -6,8 +6,8 @@ namespace Ock\Ock\Formula\Sequence;
 
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Exception\FormulaException;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 class Formula_Sequence_ItemLabelCallback implements Formula_SequenceInterface {
 

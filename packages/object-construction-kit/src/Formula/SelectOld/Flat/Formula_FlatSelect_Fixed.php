@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Ock\Ock\Formula\SelectOld\Flat;
 
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_FlatSelect_Fixed implements Formula_FlatSelectInterface, FlatSelectBuilderInterface {
 
   /**
    * Constructor.
    *
-   * @param \Ock\Ock\Text\TextInterface[] $options
+   * @param \Ock\Text\TextInterface[] $options
    */
   public function __construct(
     private array $options,

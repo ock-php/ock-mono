@@ -15,7 +15,7 @@ use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Boolean\Formula_Boolean_YesNo;
 use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 class EntityImage_ImageField extends EntityDisplay_FieldItemsBase implements EntityImageInterface {
 

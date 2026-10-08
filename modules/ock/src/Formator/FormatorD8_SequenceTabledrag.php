@@ -14,7 +14,7 @@ use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Sequence\Formula_SequenceInterface;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 
 class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
 
@@ -37,7 +37,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
   /**
    * @param \Ock\Ock\Formula\Sequence\Formula_SequenceInterface $sequence
    * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $adapter
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    *
    * @return self
    *   Created instance.
@@ -64,7 +64,7 @@ class FormatorD8_SequenceTabledrag implements FormatorD8Interface {
    *
    * @param \Ock\Ock\Formula\Sequence\Formula_SequenceInterface $sequence
    * @param \Drupal\ock\Formator\FormatorD8Interface $itemFormator
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    */
   public function __construct(
     private readonly Formula_SequenceInterface $sequence,

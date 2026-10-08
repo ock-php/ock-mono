@@ -7,8 +7,8 @@ namespace Drupal\renderkit\TextLookup;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\ock\DrupalText;
 use Ock\DependencyInjection\Attribute\Service;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
 /**
@@ -72,7 +72,7 @@ class TextLookup_EntityField implements TextLookupInterface {
    * @param string $entityType
    * @param string $fieldName
    *
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    *   The base field label, or NULL if the field is not found or has no label.
    */
   private function findBaseFieldLabel(string $entityType, string $fieldName): ?TextInterface {
@@ -91,7 +91,7 @@ class TextLookup_EntityField implements TextLookupInterface {
    * @param string $entityType
    * @param string $fieldName
    *
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    *   The label, or NULL if field not found or has no label.
    */
   private function findCombinedBundleFieldLabel(string $entityType, string $fieldName): ?TextInterface {

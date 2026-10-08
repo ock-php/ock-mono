@@ -6,7 +6,7 @@ namespace Ock\Ock\Summarizer;
 
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Ock\Formula\Boolean\Formula_BooleanInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 #[Adapter]
 class Summarizer_Boolean implements SummarizerInterface {

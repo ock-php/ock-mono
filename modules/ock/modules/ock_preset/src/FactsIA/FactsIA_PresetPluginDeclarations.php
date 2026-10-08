@@ -11,7 +11,7 @@ use Ock\DependencyInjection\Attribute\ServiceTag;
 use Ock\Ock\OckPackage;
 use Ock\Ock\Plugin\Plugin;
 use Ock\Ock\Plugin\PluginDeclaration;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 /**
  * @template-implements FactsIAInterface<int, \Ock\Ock\Plugin\PluginDeclaration>

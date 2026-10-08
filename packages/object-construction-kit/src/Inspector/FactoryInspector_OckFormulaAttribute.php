@@ -15,7 +15,7 @@ use Ock\Ock\Formula\Neutral\Formula_Passthru_FormulaFactory;
 use Ock\Ock\OckPackage;
 use Ock\Ock\Plugin\Plugin;
 use Ock\Ock\Plugin\PluginDeclaration;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 use Ock\Reflection\FactoryReflectionInterface;
 use Ock\Reflection\MethodReflection;
 

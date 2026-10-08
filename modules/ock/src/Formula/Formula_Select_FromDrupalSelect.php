@@ -8,8 +8,8 @@ use Drupal\ock\Formula\DrupalSelect\Formula_DrupalSelectInterface;
 use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\Attribute\Parameter\Adaptee;
 use Ock\Ock\Formula\Select\Formula_Select_BufferedBase;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 /**
  * Adapter for Drupal select formulas.

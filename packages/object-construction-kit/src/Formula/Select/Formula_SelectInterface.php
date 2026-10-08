@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\Select;
 
 use Ock\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 /**
  * @todo Maybe "Options" should be renamed to "Choice"?
@@ -24,7 +24,7 @@ interface Formula_SelectInterface extends Formula_IdToLabelInterface {
   /**
    * @param string|int $groupId
    *
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    *
    * @throws \Ock\Ock\Exception\FormulaException
    */

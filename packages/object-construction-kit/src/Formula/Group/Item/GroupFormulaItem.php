@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\Group\Item;
 
 use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class GroupFormulaItem implements GroupFormulaItemInterface {
 

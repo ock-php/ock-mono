@@ -21,7 +21,7 @@ use Ock\Ock\Formula\Iface\Formula_Iface;
 use Ock\Ock\OckPackage;
 use Ock\Ock\Plugin\Plugin;
 use Ock\Ock\Plugin\PluginDeclaration;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 use Ock\Ock\Util\IdentifierLabelUtil;
 use Ock\Reflection\ClassReflection;
 use Ock\Reflection\FactoryReflectionInterface;

@@ -12,8 +12,8 @@ use Ock\Ock\Exception\FormulaException;
 use Ock\Ock\Exception\SummarizerException;
 use Ock\Ock\Formula\Drilldown\Formula_DrilldownInterface;
 use Ock\Ock\Formula\IdToLabel\Formula_IdToLabelInterface;
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 
 #[Adapter]
 class Summarizer_Drilldown implements SummarizerInterface {

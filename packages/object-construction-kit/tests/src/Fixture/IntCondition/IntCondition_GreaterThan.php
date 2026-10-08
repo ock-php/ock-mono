@@ -9,7 +9,7 @@ use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Primitive\Formula_Int;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 /**
  * Compares the number to a defined operand.

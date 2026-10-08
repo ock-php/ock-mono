@@ -10,7 +10,7 @@ use Ock\Adaptism\Attribute\Adapter;
 use Ock\Adaptism\Attribute\Parameter\Adaptee;
 use Ock\DID\Attribute\Parameter\GetService;
 use Ock\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface;
-use Ock\Ock\Translator\TranslatorInterface;
+use Ock\Text\Translator\TranslatorInterface;
 use Ock\Ock\Util\ConfUtil;
 
 #[Adapter]
@@ -22,7 +22,7 @@ class FormatorD8_GroupedSelect implements FormatorD8Interface, OptionableFormato
    * Constructor.
    *
    * @param \Ock\Ock\Formula\Select\Grouped\Formula_GroupedSelectInterface $formula
-   * @param \Ock\Ock\Translator\TranslatorInterface $translator
+   * @param \Ock\Text\Translator\TranslatorInterface $translator
    */
   public function __construct(
     #[Adaptee]

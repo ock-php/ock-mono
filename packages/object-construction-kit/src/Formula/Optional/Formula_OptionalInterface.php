@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\Optional;
 
 use Ock\Ock\Core\Formula\FormulaInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 interface Formula_OptionalInterface extends FormulaInterface {
 
@@ -16,7 +16,7 @@ interface Formula_OptionalInterface extends FormulaInterface {
   public function getDecorated(): FormulaInterface;
 
   /**
-   * @return \Ock\Ock\Text\TextInterface|null
+   * @return \Ock\Text\TextInterface|null
    */
   public function getEmptySummary(): ?TextInterface;
 

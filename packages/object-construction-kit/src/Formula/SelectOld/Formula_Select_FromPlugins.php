@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\SelectOld;
 
 use Ock\Ock\Plugin\Plugin;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
 
@@ -13,7 +13,7 @@ class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
    * Constructor.
    *
    * @param \Ock\Ock\Plugin\Plugin[] $plugins
-   * @param \Ock\Ock\Text\TextInterface[] $groupLabels
+   * @param \Ock\Text\TextInterface[] $groupLabels
    */
   public function __construct(
     private readonly array $plugins,

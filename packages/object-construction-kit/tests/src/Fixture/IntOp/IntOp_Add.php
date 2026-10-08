@@ -8,7 +8,7 @@ use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Primitive\Formula_Int;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 class IntOp_Add implements IntOpInterface {
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\renderkit\TextLookup;
 
-use Ock\Ock\Text\Text;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\Text;
+use Ock\Text\TextInterface;
 use Ock\Ock\TextLookup\TextLookupInterface;
 
 abstract class TextLookup_CombinedLabelBase implements TextLookupInterface {
@@ -58,10 +58,10 @@ abstract class TextLookup_CombinedLabelBase implements TextLookupInterface {
   }
 
   /**
-   * @param \Ock\Ock\Text\TextInterface $groupLabel
-   * @param \Ock\Ock\Text\TextInterface $decoratedLabel
+   * @param \Ock\Text\TextInterface $groupLabel
+   * @param \Ock\Text\TextInterface $decoratedLabel
    *
-   * @return \Ock\Ock\Text\TextInterface
+   * @return \Ock\Text\TextInterface
    */
   protected function combineLabels(TextInterface $groupLabel, TextInterface $decoratedLabel): TextInterface {
     return Text::label($groupLabel, $decoratedLabel);

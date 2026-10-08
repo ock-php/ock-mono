@@ -13,7 +13,7 @@ use Ock\Ock\Attribute\Plugin\OckPluginFormula;
 use Ock\Ock\Attribute\Plugin\OckPluginInstance;
 use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Formula\Formula;
-use Ock\Ock\Text\Text;
+use Ock\Text\Text;
 
 /**
  * Processor to wrap the entity in a wrapper element with contextual links.

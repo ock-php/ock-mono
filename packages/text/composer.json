@@ -1,0 +1,29 @@
+{
+    "name": "ock/text",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Hennings",
+            "email": "andreas@dqxtech.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Ock\\Text\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ock\\Text\\Tests\\": "tests/src"
+        }
+    },
+    "require": {
+        "php": ">=8.3"
+    },
+    "require-dev": {
+        "ext-dom": "*",
+        "ock/helpers": "self.version",
+        "phpunit/phpunit": "^10.5.38"
+    }
+}

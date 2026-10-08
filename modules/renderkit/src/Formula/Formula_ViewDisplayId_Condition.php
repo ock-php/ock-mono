@@ -7,7 +7,7 @@ use Drupal\ock\DrupalText;
 use Drupal\renderkit\Formula\Misc\ViewsDisplayCondition\ViewsDisplayConditionInterface;
 use Drupal\views\Entity\View;
 use Ock\Ock\Formula\Select\Flat\Formula_FlatSelectInterface;
-use Ock\Ock\Text\TextInterface;
+use Ock\Text\TextInterface;
 
 class Formula_ViewDisplayId_Condition implements Formula_FlatSelectInterface {
 

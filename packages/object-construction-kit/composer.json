@@ -9,6 +9,7 @@
         "ock/di-discovery": "self.version",
         "ock/helpers": "self.version",
         "ock/reflector-aware-attributes": "self.version",
+        "ock/text": "self.version",
         "psr/log": "^1.1.4|^2.0|^3.0"
     },
     "require-dev": {
@@ -32,7 +33,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Ock\\Ock\\Tests\\": "tests/src"
+            "Ock\\Ock\\Tests\\": "tests/src",
+            "Ock\\Text\\Tests\\": "vendor/ock/text/tests/src"
         }
     }
 }
