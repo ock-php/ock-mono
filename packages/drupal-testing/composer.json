@@ -21,7 +21,7 @@
     "require": {
         "php": ">=8.3",
         "ext-json": "*",
-        "drupal/core": "^11.1.8",
+        "drupal/core": "^11.3.18",
         "ock/testing": "self.version",
         "phpunit/phpunit": "^11.5"
     }
