@@ -18,7 +18,7 @@ jobs:
           - renderkit
           - service_discovery
           - themekit
-        php: [8.3]
+        php: [8.3, 8.4, 8.5]
         drupal-constraint: ['~11.4.9']
 
     defaults:
