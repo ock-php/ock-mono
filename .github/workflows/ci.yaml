@@ -13,6 +13,7 @@ jobs:
       matrix:
         php: [8.3, 8.4]
         composer-flags: ['', '--prefer-lowest']
+        drupal-constraint: ['~11.3.18', '~11.4.8']
 
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +33,11 @@ jobs:
       - name: Composer
         run: |
           set -x
-          ddev composer update --no-install ${{ matrix.composer-flags }}
+          ddev composer update \
+            --no-install ${{ matrix.composer-flags }} \
+            --with drupal/core-recommended:${{ matrix.drupal-constraint }} \
+            --with drupal/core-composer-scaffold:${{ matrix.drupal-constraint }} \
+            --with drupal/core-dev:${{ matrix.drupal-constraint }}
           ddev composer install --prefer-dist --no-interaction
 
       - name: PhpStan
