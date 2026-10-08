@@ -19,7 +19,7 @@ jobs:
           - renderkit
           - service_discovery
           - themekit
-        php: [8.3]
+        php: [8.3, 8.4, 8.5]
         drupal-constraint: ['~11.4.9']
 
     defaults:
@@ -83,7 +83,7 @@ jobs:
             --project-type=drupal \
             --docroot=web \
             --php-version=${{ matrix.php }} \
-            --webimage-extra-packages=php8.3-pcov \
+            --webimage-extra-packages=php${{ matrix.php }}-pcov \
             --project-name="$PROJECT_NAME"
           ddev add-on get ddev/ddev-drupal-contrib
           ddev add-on get ddev/ddev-selenium-standalone-chrome
