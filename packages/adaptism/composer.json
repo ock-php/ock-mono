@@ -23,7 +23,7 @@
     "require-dev": {
         "ock/testing": "self.version",
         "phpstan/phpstan": "2.0.x-dev",
-        "phpunit/phpunit": "^10.5.38",
+        "phpunit/phpunit": "^11.5",
         "symfony/yaml": "^7.1.5"
     },
     "autoload": {

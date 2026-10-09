@@ -20,7 +20,7 @@ jobs:
           - themekit
         php: [8.3]
         composer-flags: ['', '--prefer-lowest']
-        drupal-constraint: ['^11.1.8']
+        drupal-constraint: ['^11.3.18']
 
     defaults:
       run:
@@ -72,7 +72,8 @@ jobs:
 
           # Run symlink_project.php
           curl -OL https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/symlink_project.php
-          php symlink_project.php ${{ matrix.module }}
+          export DRUPAL_PROJECT_FOLDER="./web/modules/custom/${{ matrix.module }}"
+          php symlink_project.php
           rm -f symlink_project.php
 
       - name: DDEV - Setup
