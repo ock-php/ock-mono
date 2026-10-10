@@ -24,7 +24,7 @@
         "ock/class-files-iterator": "self.version",
         "ock/helpers": "self.version",
         "ock/reflection": "self.version",
-        "phpunit/phpunit": "^10.5.38",
+        "phpunit/phpunit": "^10.5 | ^11.5",
         "symfony/yaml": "^7.1.5"
     }
 }

@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         module:
           # Modules without tests are commented out.
@@ -20,7 +20,7 @@ jobs:
           - themekit
         php: [8.3]
         composer-flags: ['', '--prefer-lowest']
-        drupal-constraint: ['^11.1.8']
+        drupal-constraint: ['~11.1.10', '~11.2.14', '~11.3.18', '~11.4.9']
 
     defaults:
       run:
@@ -51,8 +51,9 @@ jobs:
 
           # Expand composer.json as with ddev poser.
           export DRUPAL_CORE=${{ matrix.drupal-constraint }}
+          export IGNORE_PROJECT_DRUPAL_CORE_VERSION=1
           curl -OL https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/expand_composer_json.php
-          php expand_composer_json.php ${{ matrix.module }}
+          php expand_composer_json.php -v ${{ matrix.module }}
           rm -f expand_composer_json.php
 
           # Set some minimum versions for '--prefer-lowest'.
@@ -70,11 +71,6 @@ jobs:
           # Install composer packages.
           composer install --no-interaction
 
-          # Run symlink_project.php
-          curl -OL https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/symlink_project.php
-          php symlink_project.php ${{ matrix.module }}
-          rm -f symlink_project.php
-
       - name: DDEV - Setup
         uses: ddev/github-action-setup-ddev@v1
         with:
@@ -87,12 +83,14 @@ jobs:
           # Delete the top-level ddev directory, so ddev does not get confused.
           rm -rf ../../.ddev/
 
+          MODULE_NAME="${{ matrix.module }}"
+          PROJECT_NAME="${MODULE_NAME//_/-}"
           ddev config \
             --project-type=drupal \
             --docroot=web \
             --php-version=${{ matrix.php }} \
             --webimage-extra-packages=php8.3-pcov \
-            --project-name=demo
+            --project-name="$PROJECT_NAME"
           ddev add-on get ddev/ddev-drupal-contrib
           ddev add-on get ddev/ddev-selenium-standalone-chrome
           ddev start
