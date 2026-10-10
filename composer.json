@@ -98,6 +98,11 @@
             "symfony/runtime": true,
             "tbachert/spi": false
         },
+        "policy": {
+            "advisories": {
+                "block": false
+            }
+        },
         "sort-packages": true
     },
     "replace": {
