@@ -4,28 +4,26 @@ values:
     'entity_test:entity_test':
       'Entity reference':
         entity_test.user_id: 'Test entity: User ID'
-      'Text (formatted)':
+      'Short text':
         entity_test.field_test_import: 'Test entity: Test import field'
         entity_test.field_test_import_2: 'Test entity: Test import field 2 on entity_test bundle'
   -
-    'entity_test:test_bundle':
-      'Text (formatted)':
-        entity_test.field_test_import_2: 'Test entity: Test import field 2 on test bundle'
+    'entity_test:test_bundle': {  }
   -
     'entity_test:non_existing_bundle': {  }
   -
     'entity_test:*':
       'Entity reference':
         entity_test.user_id: 'Test entity: User ID'
-      'Text (formatted)':
+      'Short text':
         entity_test.field_test_import: 'Test entity: Test import field'
-        entity_test.field_test_import_2: 'Test entity: Test import field 2 on test bundle | Test import field 2 on entity_test bundle'
+        entity_test.field_test_import_2: 'Test entity: Test import field 2 on entity_test bundle'
   -
     '*:*':
       'Entity reference':
         entity_test.user_id: 'Test entity: User ID'
-      'Text (formatted)':
+      'Short text':
         entity_test.field_test_import: 'Test entity: Test import field'
-        entity_test.field_test_import_2: 'Test entity: Test import field 2 on test bundle | Test import field 2 on entity_test bundle'
+        entity_test.field_test_import_2: 'Test entity: Test import field 2 on entity_test bundle'
       UUID:
         user.uuid: 'User: UUID'

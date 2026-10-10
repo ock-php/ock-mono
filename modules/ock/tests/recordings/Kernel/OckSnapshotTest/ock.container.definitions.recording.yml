@@ -3,36 +3,24 @@
 paramconverter_manager: !diff
   class: Symfony\Component\DependencyInjection\Definition
   getClass(): Drupal\Core\ParamConverter\ParamConverterManager
-  getMethodCalls(): !diff
-    - !add
-      - addConverter
-      -
-        -
-          class: Symfony\Component\DependencyInjection\Definition
-          getClass(): Drupal\ock\UI\ParamConverter\ParamConverter_Iface
-          getTags():
-            paramconverter:
-              - {  }
-        - Drupal\ock\UI\ParamConverter\ParamConverter_Iface
-    - !add
-      - addConverter
-      -
-        -
-          class: Symfony\Component\DependencyInjection\Definition
-          getArguments():
-            - '@Ock\Ock\Plugin\Map\PluginMapInterface'
-            -
-              class: Symfony\Component\DependencyInjection\TypedReference
-              $type: Psr\Log\LoggerInterface
-              $attributes:
-                -
-                  class: Symfony\Component\DependencyInjection\Attribute\Autowire
-                  $value: '@logger.channel.ock'
-          getClass(): Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
-          getTags():
-            paramconverter:
-              - {  }
-        - Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
+  getArguments(): !diff
+    - !diff
+      class: Symfony\Component\DependencyInjection\Definition
+      getClass(): Symfony\Component\DependencyInjection\ServiceLocator
+      getArguments(): !diff
+        - !diff
+          Drupal\ock\UI\ParamConverter\ParamConverter_Iface: !add
+            class: Symfony\Component\DependencyInjection\Argument\ServiceClosureArgument
+            $values:
+              -
+                class: Symfony\Component\DependencyInjection\TypedReference
+                $type: Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+          Drupal\ock\UI\ParamConverter\ParamConverter_Plugin: !add
+            class: Symfony\Component\DependencyInjection\Argument\ServiceClosureArgument
+            $values:
+              -
+                class: Symfony\Component\DependencyInjection\TypedReference
+                $type: Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
 Drupal\ock\Formula\Formula_PermissionId: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
@@ -52,6 +40,27 @@ Drupal\ock\TextToDrupal\TextToDrupalInterface: !add
     - '@Ock\Ock\Translator\TranslatorInterface'
   getClass(): Drupal\ock\TextToDrupal\TextToDrupal_Default
   isPublic(): true
+Drupal\ock\UI\ParamConverter\ParamConverter_Iface: !add
+  class: Symfony\Component\DependencyInjection\Definition
+  getClass(): Drupal\ock\UI\ParamConverter\ParamConverter_Iface
+  getTags():
+    paramconverter:
+      - {  }
+Drupal\ock\UI\ParamConverter\ParamConverter_Plugin: !add
+  class: Symfony\Component\DependencyInjection\Definition
+  getArguments():
+    - '@Ock\Ock\Plugin\Map\PluginMapInterface'
+    -
+      class: Symfony\Component\DependencyInjection\TypedReference
+      $type: Psr\Log\LoggerInterface
+      $attributes:
+        -
+          class: Symfony\Component\DependencyInjection\Attribute\Autowire
+          $value: '@logger.channel.ock'
+  getClass(): Drupal\ock\UI\ParamConverter\ParamConverter_Plugin
+  getTags():
+    paramconverter:
+      - {  }
 Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():

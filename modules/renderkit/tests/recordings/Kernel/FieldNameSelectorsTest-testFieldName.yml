@@ -16,17 +16,17 @@ values:
         revision_uid: 'Revision user'
         type: 'Content type'
         uid: 'Authored by'
+      Integer:
+        nid: ID
+        vid: 'Revision ID'
       Language:
         langcode: Language
       'Last changed':
         changed: Changed
-      'Number (integer)':
-        nid: ID
-        vid: 'Revision ID'
-      'Text (plain)':
-        title: Title
-      'Text (plain, long)':
+      'Long text':
         revision_log: 'Revision log message'
+      'Short text':
+        title: Title
       UUID:
         uuid: UUID
   -
@@ -45,17 +45,17 @@ values:
         revision_uid: 'Revision user'
         type: 'Content type'
         uid: 'Authored by'
+      Integer:
+        nid: ID
+        vid: 'Revision ID'
       Language:
         langcode: Language
       'Last changed':
         changed: Changed
-      'Number (integer)':
-        nid: ID
-        vid: 'Revision ID'
-      'Text (plain)':
-        title: Title
-      'Text (plain, long)':
+      'Long text':
         revision_log: 'Revision log message'
+      'Short text':
+        title: Title
       UUID:
         uuid: UUID
   -
@@ -74,17 +74,17 @@ values:
         revision_uid: 'Revision user'
         type: 'Content type'
         uid: 'Authored by'
+      Integer:
+        nid: ID
+        vid: 'Revision ID'
       Language:
         langcode: Language
       'Last changed':
         changed: Changed
-      'Number (integer)':
-        nid: ID
-        vid: 'Revision ID'
-      'Text (plain)':
-        title: Title
-      'Text (plain, long)':
+      'Long text':
         revision_log: 'Revision log message'
+      'Short text':
+        title: Title
       UUID:
         uuid: UUID
   -
@@ -103,16 +103,16 @@ values:
         revision_uid: 'Revision user'
         type: 'Content type'
         uid: 'Authored by'
+      Integer:
+        nid: ID
+        vid: 'Revision ID'
       Language:
         langcode: Language
       'Last changed':
         changed: Changed
-      'Number (integer)':
-        nid: ID
-        vid: 'Revision ID'
-      'Text (plain)':
-        title: Title
-      'Text (plain, long)':
+      'Long text':
         revision_log: 'Revision log message'
+      'Short text':
+        title: Title
       UUID:
         uuid: UUID
