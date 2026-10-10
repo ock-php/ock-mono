@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         module:
           # Modules without tests are commented out.
