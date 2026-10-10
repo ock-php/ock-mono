@@ -70,18 +70,6 @@ jobs:
           # Install composer packages.
           composer install --no-interaction
 
-          # Run symlink_project.php
-          curl -OL https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/symlink_project.php
-          export DRUPAL_PROJECT_FOLDER="$(pwd)/web/modules/custom/${{ matrix.module }}"
-          php symlink_project.php
-          rm -f symlink_project.php
-          pwd
-          ls -lA .
-          ls -lA ./web
-          ls -lA ./web/modules
-          ls -lA ./web/modules/custom
-          ls -lA "./web/modules/custom/${{ matrix.module }}"
-
       - name: DDEV - Setup
         uses: ddev/github-action-setup-ddev@v1
         with:
@@ -94,12 +82,14 @@ jobs:
           # Delete the top-level ddev directory, so ddev does not get confused.
           rm -rf ../../.ddev/
 
+          MODULE_NAME="${{ matrix.module }}"
+          PROJECT_NAME="${MODULE_NAME//_/-}"
           ddev config \
             --project-type=drupal \
             --docroot=web \
             --php-version=${{ matrix.php }} \
             --webimage-extra-packages=php8.3-pcov \
-            --project-name=demo
+            --project-name="$PROJECT_NAME"
           ddev add-on get ddev/ddev-drupal-contrib
           ddev add-on get ddev/ddev-selenium-standalone-chrome
           ddev start
