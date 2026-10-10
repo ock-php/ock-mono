@@ -6,7 +6,9 @@ namespace Ock\DrupalTesting\Snapshotter;
 
 use Drupal\Core\Routing\RouteCompiler;
 use Drupal\Core\Routing\RouteProviderInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Ock\DrupalTesting\DrupalTesting;
+use Ock\Testing\Exporter\Exporter_ToYamlArray;
 use Ock\Testing\Snapshotter\SnapshotterInterface;
 use Symfony\Component\Routing\Route;
 
@@ -52,7 +54,7 @@ class Snapshotter_Routes implements SnapshotterInterface {
   }
 
   protected function exportRoute(Route $route): array {
-    return [
+    $info = [
       'defaults' => $route->getDefaults(),
       'methods' => $route->getMethods(),
       'requirements' => $route->getRequirements(),
@@ -61,6 +63,9 @@ class Snapshotter_Routes implements SnapshotterInterface {
       'host' => $route->getHost(),
       'schemes' => $route->getSchemes(),
     ];
+    return (new Exporter_ToYamlArray())
+      ->withDefaultObject(new TranslatableMarkup(''))
+      ->export($info, 10);
   }
 
 }
