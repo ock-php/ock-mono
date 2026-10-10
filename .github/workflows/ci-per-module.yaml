@@ -72,7 +72,7 @@ jobs:
 
           # Run symlink_project.php
           curl -OL https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/symlink_project.php
-          export DRUPAL_PROJECT_FOLDER="./web/modules/custom/${{ matrix.module }}"
+          export DRUPAL_PROJECT_FOLDER="$(pwd)/web/modules/custom/${{ matrix.module }}"
           php symlink_project.php
           rm -f symlink_project.php
 
