@@ -23,6 +23,6 @@
         "ext-json": "*",
         "drupal/core": "^11.1.8",
         "ock/testing": "self.version",
-        "phpunit/phpunit": "^10.5.38"
+        "phpunit/phpunit": "^10.5 | ^11.5"
     }
 }
