@@ -51,6 +51,7 @@ jobs:
 
           # Expand composer.json as with ddev poser.
           export DRUPAL_CORE=${{ matrix.drupal-constraint }}
+          export IGNORE_PROJECT_DRUPAL_CORE_VERSION=1
           curl -OL https://git.drupalcode.org/project/gitlab_templates/-/raw/default-ref/scripts/expand_composer_json.php
           php expand_composer_json.php -v ${{ matrix.module }}
           rm -f expand_composer_json.php
