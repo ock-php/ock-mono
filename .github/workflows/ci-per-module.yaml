@@ -75,6 +75,12 @@ jobs:
           export DRUPAL_PROJECT_FOLDER="$(pwd)/web/modules/custom/${{ matrix.module }}"
           php symlink_project.php
           rm -f symlink_project.php
+          pwd
+          ls -lA .
+          ls -lA ./web
+          ls -lA ./web/modules
+          ls -lA ./web/modules/custom
+          ls -lA "./web/modules/custom/${{ matrix.module }}"
 
       - name: DDEV - Setup
         uses: ddev/github-action-setup-ddev@v1
