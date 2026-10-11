@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Drupal\ock\UI\ParamConverter;
 
 use Drupal\Core\Utility\Error;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\DependencyInjection\Attribute\ServiceTag;
 use Ock\Ock\Exception\PluginListException;
 use Ock\Ock\Plugin\Map\PluginMapInterface;
@@ -11,6 +12,13 @@ use Ock\Ock\Plugin\NamedPlugin;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
+/**
+ * Converter for '{ock:plugin}' route parameter.
+ *
+ * For now, a parameter converter service needs to be public or it will not work
+ * in Drupal 11.4. This is why the #[Service] attribute is needed.
+ */
+#[Service]
 #[ServiceTag('paramconverter')]
 class ParamConverter_Plugin extends ParamConverterBase {
 
