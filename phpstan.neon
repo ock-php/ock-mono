@@ -15,3 +15,5 @@ parameters:
     - identifier: argument.templateType
     # Assume that generic type is 'mixed' if not further specified.
     - identifier: missingType.generics
+    # Don't force Drupal Yaml in packages.
+    - identifier: drupal.symfonyYamlParse
