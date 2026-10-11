@@ -1,4 +1,5 @@
 parameters:
+  level: 9
   treatPhpDocTypesAsCertain: false
   paths:
     - packages
@@ -6,6 +7,13 @@ parameters:
   excludePaths:
     - web
     - vendor
+    - packages/reflection/src/MethodReflection.php
   ignoreErrors:
+    # Assume that iterable value is 'mixed' if not further specified.
+    - identifier: missingType.iterableValue
+    # Assume that generic type is 'mixed' if not further specified.
+    - identifier: argument.templateType
     # Assume that generic type is 'mixed' if not further specified.
     - identifier: missingType.generics
+    # Don't force Drupal Yaml in packages.
+    - identifier: drupal.symfonyYamlParse
