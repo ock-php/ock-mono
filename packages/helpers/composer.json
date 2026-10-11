@@ -10,7 +10,12 @@
     ],
     "minimum-stability": "dev",
     "autoload": {
-        "files": ["functions.php"],
+        "files": [
+            "functions/functions.array.php",
+            "functions/functions.filesystem.php",
+            "functions/functions.path.php",
+            "functions/functions.string.php"
+        ],
         "psr-4": {
             "Ock\\Helpers\\": "src"
         }
