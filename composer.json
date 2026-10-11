@@ -61,7 +61,7 @@
         "league/container": "^4.2.2",
         "ock/drupal-testing": "self.version",
         "phpspec/prophecy-phpunit": "^2.2.0",
-        "phpstan/phpstan": "^1.12.3",
+        "phpstan/phpstan": "^2.2",
         "phpunit/phpunit": "^11.5",
         "symfony/expression-language": "^7.1.4",
         "symfony/yaml": "^7.1.5"

@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "ock/testing": "self.version",
-        "phpstan/phpstan": "2.0.x-dev",
+        "phpstan/phpstan": "^2.2",
         "phpunit/phpunit": "^11.5",
         "symfony/yaml": "^7.1.5"
     },
