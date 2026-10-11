@@ -25,7 +25,7 @@ final class BacktraceUtil extends UtilBase {
    * @return array[]
    *   Part of $trace that is not shared in $othertrace.
    */
-  public static function traceDiff(array $trace, array $othertrace = NULL): array {
+  public static function traceDiff(array $trace, ?array $othertrace = NULL): array {
 
     if (NULL === $othertrace) {
       $othertrace = debug_backtrace();

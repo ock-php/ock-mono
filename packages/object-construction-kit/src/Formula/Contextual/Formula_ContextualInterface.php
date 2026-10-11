@@ -22,6 +22,6 @@ interface Formula_ContextualInterface extends Formula_ValuePassthruInterface {
    * @return \Ock\Ock\Core\Formula\FormulaInterface
    *   Decorated formula with the context applied.
    */
-  public function getDecorated(CfContextInterface $context = NULL): FormulaInterface;
+  public function getDecorated(?CfContextInterface $context = NULL): FormulaInterface;
 
 }

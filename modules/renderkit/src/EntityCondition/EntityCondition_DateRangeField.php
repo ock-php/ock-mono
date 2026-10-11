@@ -25,7 +25,7 @@ class EntityCondition_DateRangeField implements EntityConditionInterface {
    * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
   #[OckPluginFormula(self::class, 'dateRangeField', 'Date range field')]
-  public static function formula(string $entityType = NULL, string $bundleName = NULL): FormulaInterface {
+  public static function formula(?string $entityType = NULL, ?string $bundleName = NULL): FormulaInterface {
     return Formula::group()
       ->add(
         'field',

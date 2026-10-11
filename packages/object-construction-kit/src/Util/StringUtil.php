@@ -43,7 +43,7 @@ final class StringUtil extends UtilBase {
    *
    * @return callable(string): string
    */
-  public static function fnSplitJoin(callable $split, string $glue, callable $each = null): callable {
+  public static function fnSplitJoin(callable $split, string $glue, ?callable $each = null): callable {
     return static function (string $string) use ($split, $glue, $each): string {
       $parts = $split($string);
       if ($each) {

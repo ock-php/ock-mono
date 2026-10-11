@@ -91,7 +91,7 @@ trait RecordedTestTrait {
    * @param int $depth
    *   Depth for yaml export.
    */
-  public function assertAsRecorded(mixed $actual, string $label = null, int $depth = 9): void {
+  public function assertAsRecorded(mixed $actual, ?string $label = null, int $depth = 9): void {
     $actual = $this->exportForYaml($actual, $label, $depth);
     $this->assertExportedAsRecorded($actual);
   }

@@ -44,7 +44,7 @@ class CodeFormatter {
    *
    * @throws \Ock\CodegenTools\Exception\CodegenException
    */
-  public function formatAsFile(string $php, string $namespace = NULL): string {
+  public function formatAsFile(string $php, ?string $namespace = NULL): string {
     $filePhp = "<?php\n\ndeclare(strict_types=1);\n\n"
       . self::formatAsSnippet($php, $namespace);
     if (!str_ends_with($filePhp, "\n")) {
@@ -80,7 +80,7 @@ class CodeFormatter {
    *
    * @throws \Ock\CodegenTools\Exception\CodegenException
    */
-  public function formatAsSnippet(string $php, string $namespace = NULL): string {
+  public function formatAsSnippet(string $php, ?string $namespace = NULL): string {
     $php = $this->aliasifier->aliasify($php)->getImportsPhp() . $php;
 
     if (NULL !== $namespace) {

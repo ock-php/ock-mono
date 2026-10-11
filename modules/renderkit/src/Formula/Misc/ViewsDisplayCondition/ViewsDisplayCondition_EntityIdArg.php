@@ -19,7 +19,7 @@ class ViewsDisplayCondition_EntityIdArg implements ViewsDisplayConditionInterfac
    *
    * @return bool
    */
-  public function displayCheckCondition(string $id, array $display, array $default_display = NULL): bool {
+  public function displayCheckCondition(string $id, array $display, ?array $default_display = NULL): bool {
 
     if (isset($display['display_options']['arguments'])) {
       $arguments = $display['display_options']['arguments'];
