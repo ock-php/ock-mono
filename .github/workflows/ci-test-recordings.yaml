@@ -29,7 +29,6 @@ jobs:
           ddev php --version
 
       - name: Composer
-        if:
         run: |
           set -x
           ddev composer install --prefer-dist --no-interaction
