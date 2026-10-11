@@ -181,7 +181,11 @@ class Exporter_ToYamlArray implements ExporterInterface {
         if (isset($canonical_object_paths[$id])) {
           continue;
         }
+        // @todo Explain why this cannot be empty.
+        assert($this->objectOccurences[$id] !== []);
         $object_best_depth = max(array_keys($this->objectOccurences[$id]));
+        // @todo This looks suspicious, with array_shift() we modify the array.
+        //   Is this intended?
         $object_best_occurence = array_shift($this->objectOccurences[$id][$object_best_depth]);
         assert($object_best_occurence !== null);
         // Overwrite the reference.
@@ -201,6 +205,8 @@ class Exporter_ToYamlArray implements ExporterInterface {
       foreach ($occurences_by_depth as $occurences) {
         foreach ($occurences as $occurence) {
           // Overwrite the reference.
+          // @todo This looks wrong, the variable is not by-reference, so this
+          //   will have no effect.
           $occurence['ref'] = ['_ref' => $canonical_object_paths[$id]];
         }
       }
