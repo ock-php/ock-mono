@@ -4,11 +4,16 @@ declare(strict_types=1);
 namespace Drupal\ock\UI\ParamConverter;
 
 use Drupal\ock\Util\UiUtil;
+use Ock\DependencyInjection\Attribute\Service;
 use Ock\DependencyInjection\Attribute\ServiceTag;
 
 /**
  * Converter for '{ock:interface}' route parameter.
+ *
+ * For now, a parameter converter service needs to be public or it will not work
+ * in Drupal 11.4. This is why the #[Service] attribute is needed.
  */
+#[Service]
 #[ServiceTag('paramconverter')]
 class ParamConverter_Iface extends ParamConverterBase {
 

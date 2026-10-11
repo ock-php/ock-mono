@@ -7,6 +7,5 @@ Drupal\controller_attributes\Hook\LinksFromRoutes: !add
     - '@plugin.manager.menu.local_action'
     - '@plugin.manager.menu.local_task'
   getClass(): Drupal\controller_attributes\Hook\LinksFromRoutes
-  getTags(): {  }
   isAutoconfigured(): false
   isPublic(): true
