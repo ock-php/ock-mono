@@ -66,6 +66,7 @@ trait RecordedTestTrait {
     $export = $this->exportForYaml($objects, null, $depth);
     \assert(is_array($export));
     foreach ($export as $key => $item) {
+      assert(is_array($item));
       if (($item['class'] ?? false) === $defaultClass
         || ($arrayKeyIsDefaultClass && ($item['class'] ?? false) === $key)
       ) {
