@@ -13,6 +13,7 @@ jobs:
       matrix:
         php: [8.3]
         composer-flags: ['', '--prefer-lowest']
+        drupal-constraint: ['~11.4.9']
 
     steps:
       - uses: actions/checkout@v4
