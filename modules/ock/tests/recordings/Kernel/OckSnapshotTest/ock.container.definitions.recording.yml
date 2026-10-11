@@ -46,6 +46,7 @@ Drupal\ock\UI\ParamConverter\ParamConverter_Iface: !add
   getTags():
     paramconverter:
       - {  }
+  isPublic(): true
 Drupal\ock\UI\ParamConverter\ParamConverter_Plugin: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
@@ -61,6 +62,7 @@ Drupal\ock\UI\ParamConverter\ParamConverter_Plugin: !add
   getTags():
     paramconverter:
       - {  }
+  isPublic(): true
 Ock\Adaptism\AdapterDefinitionList\AdapterDefinitionListInterface: !add
   class: Symfony\Component\DependencyInjection\Definition
   getArguments():
