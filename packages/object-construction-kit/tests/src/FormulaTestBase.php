@@ -7,7 +7,7 @@ namespace Ock\Ock\Tests;
 use PHPUnit\Framework\TestCase;
 use function Ock\Helpers\scandir_known;
 
-class FormulaTestBase extends TestCase {
+abstract class FormulaTestBase extends TestCase {
 
   /**
    * Data provider.
