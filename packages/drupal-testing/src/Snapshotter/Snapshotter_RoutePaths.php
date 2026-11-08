@@ -15,6 +15,8 @@ class Snapshotter_RoutePaths implements SnapshotterInterface, DifferInterface {
    * {@inheritdoc}
    */
   public function takeSnapshot(): array {
+    // The return type is not declared, only documented as `Route[]`.
+    // Drupal core returned an \ArrayObject before, now an \ArrayIterator.
     $routes = DrupalTesting::service(RouteProviderInterface::class)
       ->getAllRoutes();
     $report = [];
