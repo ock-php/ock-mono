@@ -4,7 +4,7 @@ parameters:
   paths:
     - .
   excludePaths:
-    - vendor
+    - vendor (?)
     - .github
   ignoreErrors:
     # Assume that iterable value is 'mixed' if not further specified.

@@ -4,7 +4,7 @@ parameters:
   paths:
     - .
   excludePaths:
-    - vendor
+    - vendor (?)
     - .github
   ignoreErrors:
     # Assume that generic type is 'mixed' if not further specified.
