@@ -12,6 +12,21 @@ OCK stands for "Object Construction Kit". It provides configuration-driven objec
 A main current target platform is Drupal. However, a lot of the code is published as stand-alone composer packages, which could be used outside of Drupal.
 
 
+## Licensing
+
+Different parts of this repository use different licenses:
+
+| Path | License |
+|---|---|
+| Everything not listed below, including the composer packages in `packages/` and the monorepo tooling | MIT, see [LICENSE](LICENSE) |
+| `modules/` (Drupal modules) | GPL-2.0-or-later, as required on drupal.org |
+| `config/`, `web/sites/` (derived from Drupal) | GPL-2.0-or-later |
+| `.ddev/` (local ddev environment, including files from ddev add-ons) | Apache-2.0, like ddev itself |
+
+Each package and module also declares its license in its own `composer.json`.
+
+The machine-readable version is in [REUSE.toml](REUSE.toml) (see [reuse.software](https://reuse.software/)), and the license texts are in [LICENSES/](LICENSES/).
+
 ## Development: Local installation
 
 ```sh
