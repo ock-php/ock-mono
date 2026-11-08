@@ -1,7 +1,7 @@
 {
     "name": "ock/dependency-injection",
     "description": "Extensions to symfony/dependency-injection",
-    "license": "GPL-2.0-or-later",
+    "license": "MIT",
     "require": {
         "php": ">=8.3",
         "ock/class-discovery": "self.version",
