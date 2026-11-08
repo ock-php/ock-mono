@@ -36,7 +36,7 @@ class RouteAttributeTest extends UnitTestCase {
 
   public function testModifyRoute(): void {
     $attribute = new Route('/child');
-    $reflector = new \ReflectionMethod(__METHOD__);
+    $reflector = \ReflectionMethod::createFromMethodName(__METHOD__);
 
     $route = new RoutingRoute('');
     $attribute->modifyRoute($route, $reflector);
