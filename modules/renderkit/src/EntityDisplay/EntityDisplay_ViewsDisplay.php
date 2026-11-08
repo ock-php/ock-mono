@@ -28,7 +28,7 @@ class EntityDisplay_ViewsDisplay extends EntityDisplayBase {
     #[OckFormulaFromClass(Formula_ViewsDisplay_Id_EntityIdArg::class)]
     string $id,
     #[OckOption('label_format', 'Label format')]
-    LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL,
+    ?LabeledEntityBuildProcessorInterface $labeledEntityBuildProcessor = NULL,
   ): ?self {
     [$view_name, $display_id] = explode(':', $id);
     // No further checking at this point.

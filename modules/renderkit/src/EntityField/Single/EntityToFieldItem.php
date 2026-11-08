@@ -18,9 +18,9 @@ final class EntityToFieldItem extends UtilBase {
    * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
   public static function formula(
-    array $allowedFieldTypes = NULL,
-    string $entityType = NULL,
-    string $bundle = NULL
+    ?array $allowedFieldTypes = NULL,
+    ?string $entityType = NULL,
+    ?string $bundle = NULL
   ): FormulaInterface {
     return Formula::iface(
       EntityToFieldItemInterface::class,

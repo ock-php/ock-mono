@@ -23,7 +23,7 @@ class EntityDisplay_ImageWithProcessor extends EntitiesDisplayBase {
     #[OckOption('image', 'Image')]
     EntityImageInterface $entityImageProvider,
     #[OckOption('image_processor', 'Image processor')]
-    ImageProcessorInterface $imageProcessor = NULL,
+    ?ImageProcessorInterface $imageProcessor = NULL,
   ): EntityDisplayInterface {
     return NULL !== $imageProcessor
       ? new static($entityImageProvider, $imageProcessor)
