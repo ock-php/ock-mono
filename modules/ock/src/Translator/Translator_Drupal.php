@@ -21,7 +21,7 @@ class Translator_Drupal implements TranslatorInterface {
    * @return static
    *   Created instance.
    */
-  public static function fromContainer(ContainerInterface $container = NULL): self {
+  public static function fromContainer(?ContainerInterface $container = NULL): self {
     $container = $container ?? \Drupal::getContainer();
     if (!$container) {
       throw new \RuntimeException('Container is NULL.');

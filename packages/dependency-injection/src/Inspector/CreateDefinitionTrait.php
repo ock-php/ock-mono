@@ -48,7 +48,7 @@ trait CreateDefinitionTrait {
    * @return \Symfony\Component\DependencyInjection\Definition
    *   New service definition.
    */
-  protected function createDefinition(string $class = null, bool $public = false): Definition {
+  protected function createDefinition(?string $class = null, bool $public = false): Definition {
     $definition = ($this->createNewDefinition)();
     if ($class !== null) {
       $definition->setClass($class);

@@ -23,7 +23,7 @@ class RouteParametersAttributeTest extends UnitTestCase {
 
   public function testConstructGoodArguments() {
     $reflector = new \ReflectionMethod(__METHOD__);
-    $assert_parameters_ok = function (array $parameters, array $values = NULL) use ($reflector) {
+    $assert_parameters_ok = function (array $parameters, ?array $values = NULL) use ($reflector) {
       $route = new Route('/path');
       $attribute = new RouteParameters($values ?? $parameters);
       $attribute->modifyRoute($route, $reflector);

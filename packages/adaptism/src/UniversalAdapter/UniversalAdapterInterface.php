@@ -24,7 +24,7 @@ interface UniversalAdapterInterface {
   public function adapt(
     object $adaptee,
     string $resultType,
-    UniversalAdapterInterface $universalAdapter = null,
+    ?UniversalAdapterInterface $universalAdapter = null,
   ): ?object;
 
 }
