@@ -1,16 +1,29 @@
 #!/bin/bash
 
-set -ex
+# Runs phpstan for each package that has a phpstan.neon.
+# Continues after a failure, and exits with non-zero status if any failed.
 
-FAILED=0
+set -e
 
-for PACKAGE_DIR in ./packages/*/
+# Work from the repository root, wherever the script is called from.
+cd "$(dirname "$0")/.."
+
+FAILED_PACKAGES=()
+
+for PACKAGE_DIR in packages/*/
 do
-  cd "$PACKAGE_DIR" || exit 1
-  if [ -f phpstan.neon ]; then
-    ../../vendor/bin/phpstan || FAILED=1
+  PACKAGE_DIR="${PACKAGE_DIR%/}"
+  if [ ! -f "$PACKAGE_DIR/phpstan.neon" ]; then
+    continue
   fi
-  cd ../..
+  echo
+  echo "=== PhpStan: $PACKAGE_DIR ==="
+  (cd "$PACKAGE_DIR" && ../../vendor/bin/phpstan) || FAILED_PACKAGES+=("$PACKAGE_DIR")
 done
 
-exit "$FAILED"
+echo
+if [ "${#FAILED_PACKAGES[@]}" -gt 0 ]; then
+  echo "PhpStan failed for: ${FAILED_PACKAGES[*]}"
+  exit 1
+fi
+echo "PhpStan passed for all packages."
