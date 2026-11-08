@@ -9,6 +9,7 @@ use Ock\Ock\Core\Formula\FormulaInterface;
 use Ock\Ock\Optionlessness\Optionlessness;
 use Ock\Ock\Tests\Util\TestingServices;
 use Ock\Ock\Tests\Util\TestUtil;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Yaml\Yaml;
 
 class OptionlessnessTest extends FormulaTestBase {
@@ -17,9 +18,8 @@ class OptionlessnessTest extends FormulaTestBase {
    * Tests various formulas.
    *
    * @param string $base
-   *
-   * @dataProvider providerTestFormula()
    */
+  #[DataProvider('providerTestFormula')]
   public function testFormula(string $base): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
     $formula = include "$dir/$base.php";

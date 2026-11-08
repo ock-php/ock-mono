@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Ock\Helpers\Tests;
 
+use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
 use function Ock\Helpers\is_valid_identifier;
 use function Ock\Helpers\is_valid_qcn;
 
+#[CoversFunction('Ock\Helpers\is_valid_identifier')]
+#[CoversFunction('Ock\Helpers\is_valid_qcn')]
 class StringFunctionsTest extends TestCase {
 
-  /**
-   * @covers \Ock\Helpers\is_valid_identifier()
-   */
   public function testIsValidIdentifier(): void {
     $groups = [
       [
@@ -36,9 +36,6 @@ class StringFunctionsTest extends TestCase {
     }
   }
 
-  /**
-   * @covers \Ock\Helpers\is_valid_qcn()
-   */
   public function testIsValidQcn(): void {
     $groups = [
       [

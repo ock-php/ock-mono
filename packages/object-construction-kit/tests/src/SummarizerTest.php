@@ -12,6 +12,7 @@ use Ock\Ock\Tests\Translator\Translator_Testing;
 use Ock\Ock\Tests\Util\TestingServices;
 use Ock\Ock\Tests\Util\XmlTestUtil;
 use Ock\Ock\Translator\Translator_Passthru;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Yaml\Yaml;
 
 class SummarizerTest extends FormulaTestBase {
@@ -24,9 +25,8 @@ class SummarizerTest extends FormulaTestBase {
    *
    * @throws \Exception
    * @throws \Psr\Container\ContainerExceptionInterface
-   *
-   * @dataProvider providerTestFormulaCases()
    */
+  #[DataProvider('providerTestFormulaCases')]
   public function testFormula(string $base, string $case): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
     $formula = include "$dir/$base.php";
@@ -63,9 +63,8 @@ class SummarizerTest extends FormulaTestBase {
    *
    * @throws \Exception
    * @throws \Psr\Container\ContainerExceptionInterface
-   *
-   * @dataProvider providerTestIface()
    */
+  #[DataProvider('providerTestIface')]
   public function testIface(string $type, string $name): void {
     /** @var class-string $interface */
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);

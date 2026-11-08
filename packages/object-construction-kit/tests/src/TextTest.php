@@ -8,6 +8,7 @@ use Ock\Ock\Tests\Translator\Translator_Testing;
 use Ock\Ock\Tests\Util\XmlTestUtil;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\Translator\Translator_Passthru;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use function Ock\Helpers\scandir_known;
 
@@ -18,9 +19,8 @@ class TextTest extends TestCase {
    *
    * @param string $name
    *   File containing the expected generated code.
-   *
-   * @dataProvider providerText()
    */
+  #[DataProvider('providerText')]
   public function testText(string $name): void {
     $dir = dirname(__DIR__) . '/fixtures/text';
     $text = include "$dir/$name.php";

@@ -14,6 +14,7 @@ use Ock\Ock\Generator\GeneratorInterface;
 use Ock\Ock\Tests\Fixture\IntOp\IntOpInterface;
 use Ock\Ock\Tests\Util\TestingServices;
 use Ock\Ock\Tests\Util\TestUtil;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Yaml\Yaml;
 
 class GeneratorTest extends FormulaTestBase {
@@ -23,9 +24,8 @@ class GeneratorTest extends FormulaTestBase {
    *
    * @param string $base
    * @param string $case
-   *
-   * @dataProvider providerTestFormulaCases()
    */
+  #[DataProvider('providerTestFormulaCases')]
   public function testFormula(string $base, string $case): void {
     $dir = dirname(__DIR__) . '/fixtures/formula';
     $formula = include "$dir/$base.php";
@@ -54,9 +54,8 @@ class GeneratorTest extends FormulaTestBase {
    *   Short id identifying the interface.
    * @param string $name
    *   Name of the test case.
-   *
-   * @dataProvider providerTestIface()
    */
+  #[DataProvider('providerTestIface')]
   public function testIface(string $type, string $name): void {
     /** @var class-string $interface */
     $interface = strtr(IntOpInterface::class, ['IntOp' => $type]);
