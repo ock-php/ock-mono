@@ -1,0 +1,35 @@
+# Machine-readable licensing information, see https://reuse.software/.
+# License texts are in LICENSES/.
+# If several annotations match a file, the last matching one takes precedence.
+# Check with: reuse lint
+version = 1
+
+# Default: monorepo tooling and packages/ are MIT.
+[[annotations]]
+path = "**"
+SPDX-FileCopyrightText = "Andreas Hennings"
+SPDX-License-Identifier = "MIT"
+
+# Drupal modules: GPL, as required on drupal.org.
+[[annotations]]
+path = "modules/**"
+SPDX-FileCopyrightText = "Andreas Hennings"
+SPDX-License-Identifier = "GPL-2.0-or-later"
+
+# Files derived from Drupal: GPL.
+# - config/: exported Drupal site configuration, based on the default config
+#   of core and contrib modules.
+# - web/sites/: settings files based on Drupal core's default.settings.php.
+[[annotations]]
+path = ["config/**", "web/sites/**"]
+SPDX-FileCopyrightText = ["Andreas Hennings", "Drupal contributors <https://www.drupal.org>"]
+SPDX-License-Identifier = "GPL-2.0-or-later"
+
+# ddev environment: Apache-2.0, like ddev itself and its official add-ons.
+# This covers our own ddev config, files installed by ddev add-ons (e.g.
+# ddev/ddev-selenium-standalone-chrome), and snippets from the ddev project.
+# When installing a third-party add-on, check that it is Apache-2.0 too.
+[[annotations]]
+path = ".ddev/**"
+SPDX-FileCopyrightText = ["Andreas Hennings", "DDEV contributors <https://github.com/ddev>"]
+SPDX-License-Identifier = "Apache-2.0"
