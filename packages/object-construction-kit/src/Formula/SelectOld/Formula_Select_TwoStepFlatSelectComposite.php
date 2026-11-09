@@ -7,6 +7,9 @@ namespace Ock\Ock\Formula\SelectOld;
 use Ock\Ock\Formula\SelectOld\Flat\Formula_FlatSelectInterface;
 use Ock\Ock\IdToFormula\IdToFormulaInterface;
 
+/**
+ * @deprecated
+ */
 class Formula_Select_TwoStepFlatSelectComposite extends Formula_Select_TwoStepFlatSelectBase {
 
   /**

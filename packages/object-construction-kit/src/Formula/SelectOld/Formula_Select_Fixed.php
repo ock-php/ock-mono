@@ -8,7 +8,7 @@ use Ock\Ock\Text\Text;
 use Ock\Ock\Text\TextInterface;
 
 /**
- * @phpstan-ignore class.implementsDeprecatedInterface
+ * @deprecated
  */
 class Formula_Select_Fixed implements Formula_SelectInterface {
 

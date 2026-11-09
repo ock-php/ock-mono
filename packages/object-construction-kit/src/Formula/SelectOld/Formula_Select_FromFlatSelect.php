@@ -8,7 +8,7 @@ use Ock\Ock\Formula\SelectOld\Flat\Formula_FlatSelectInterface;
 use Ock\Ock\Text\TextInterface;
 
 /**
- * @phpstan-ignore class.implementsDeprecatedInterface
+ * @deprecated
  */
 class Formula_Select_FromFlatSelect implements Formula_SelectInterface {
 

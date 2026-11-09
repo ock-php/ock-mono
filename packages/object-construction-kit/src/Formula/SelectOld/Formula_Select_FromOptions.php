@@ -8,6 +8,9 @@ use Ock\Ock\Formula\SelectOld\Option\SelectOptionInterface;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\Translator\Translator;
 
+/**
+ * @deprecated
+ */
 class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
 
   /**
