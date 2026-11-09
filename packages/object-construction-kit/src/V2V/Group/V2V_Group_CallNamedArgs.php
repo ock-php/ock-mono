@@ -82,7 +82,8 @@ class V2V_Group_CallNamedArgs implements V2V_GroupInterface {
    * {@inheritdoc}
    */
   public function itemsPhpGetPhp(array $itemsPhp, array $conf): string {
-    return CodeGen::phpCallFqn($this->fqn, $itemsPhp);
+    // @todo Argument names are lost.
+    return CodeGen::phpCallFqn($this->fqn, array_values($itemsPhp));
   }
 
 }
