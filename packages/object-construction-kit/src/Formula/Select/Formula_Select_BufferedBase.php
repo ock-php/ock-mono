@@ -47,9 +47,12 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
     $group_labels = [];
     $this->initialize($map, $labels, $group_labels);
     // Validate.
-    (static fn (string ...$args) => null)(...$map);
-    (static fn (TextInterface ...$args) => null)(...$labels);
-    (static fn (TextInterface ...$args) => null)(...$group_labels);
+    // Use array_values(): With mixed keys, an integer key after a string key
+    // would cause an error, "Cannot use positional argument after named
+    // argument during unpacking".
+    self::validateGroupIds(...array_values($map));
+    Text::validateMultiple($labels);
+    Text::validateMultiple($group_labels);
     $this->map = $map;
     $this->labels = $labels;
     $this->groupLabels = $group_labels;
@@ -106,5 +109,13 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
   public function groupIdGetLabel(int|string $groupId): ?TextInterface {
     return $this->groupLabels[$groupId] ?? NULL;
   }
+
+  /**
+   * Validates group ids, through the parameter type.
+   *
+   * @param string ...$groupIds
+   *   Group ids.
+   */
+  private static function validateGroupIds(string ...$groupIds): void {}
 
 }

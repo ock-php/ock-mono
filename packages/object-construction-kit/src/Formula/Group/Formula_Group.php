@@ -16,8 +16,10 @@ class Formula_Group implements Formula_GroupInterface {
   public function __construct(
     private readonly array $items,
   ) {
-    // Validate item type.
-    (static fn (GroupFormulaItemInterface... $items) => null)(...array_values($items));
+    // Use array_values(): With mixed keys, an integer key after a string key
+    // would cause an error, "Cannot use positional argument after named
+    // argument during unpacking".
+    self::validateItems(...array_values($items));
   }
 
   /**
@@ -26,5 +28,13 @@ class Formula_Group implements Formula_GroupInterface {
   public function getItems(): array {
     return $this->items;
   }
+
+  /**
+   * Validates item types, through the parameter type.
+   *
+   * @param \Ock\Ock\Formula\Group\Item\GroupFormulaItemInterface ...$items
+   *   Group items.
+   */
+  private static function validateItems(GroupFormulaItemInterface ...$items): void {}
 
 }
