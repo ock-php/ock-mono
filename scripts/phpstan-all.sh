@@ -14,6 +14,7 @@ LOG="$(mktemp)"
 trap 'rm -f "$LOG"' EXIT
 
 SUMMARY=()
+SKIPPED=()
 FAILED=0
 
 # The phpstan output is piped through tee, so phpstan cannot detect a terminal
@@ -28,6 +29,7 @@ for PACKAGE_DIR in packages/*/
 do
   PACKAGE_DIR="${PACKAGE_DIR%/}"
   if [ ! -f "$PACKAGE_DIR/phpstan.neon" ]; then
+    SKIPPED+=("$PACKAGE_DIR")
     continue
   fi
   echo
@@ -50,5 +52,11 @@ done
 echo
 echo "=== PhpStan summary ==="
 printf '%s\n' "${SUMMARY[@]}"
+
+if [ "${#SKIPPED[@]}" -gt 0 ]; then
+  echo
+  echo "=== Skipped, no phpstan.neon ==="
+  printf '%s\n' "${SKIPPED[@]}"
+fi
 
 exit "$FAILED"
