@@ -47,7 +47,9 @@ jobs:
           php --version
           composer config --merge --json repositories.0 '{"type": "path", "url": "../*", "options": {"versions": {"*": "self.version"}}}'
 
-      - run: composer install --no-interaction
+      # Use 'update', because 'install' would report the missing
+      # composer.lock file.
+      - run: composer update --no-interaction
 
       - name: PhpStan
         run: |

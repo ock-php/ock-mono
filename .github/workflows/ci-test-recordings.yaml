@@ -31,7 +31,9 @@ jobs:
       - name: Composer
         run: |
           set -x
-          ddev composer install --prefer-dist --no-interaction
+          # Use 'update', because 'install' would report the missing
+          # composer.lock file.
+          ddev composer update --prefer-dist --no-interaction
 
       - name: PhpUnit - check recordings
         run: |

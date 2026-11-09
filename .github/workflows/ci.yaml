@@ -32,12 +32,10 @@ jobs:
       - name: Composer
         run: |
           set -x
-          ddev composer update \
-            --no-install \
+          ddev composer update --prefer-dist --no-interaction \
             --with drupal/core-recommended:${{ matrix.drupal-constraint }} \
             --with drupal/core-composer-scaffold:${{ matrix.drupal-constraint }} \
             --with drupal/core-dev:${{ matrix.drupal-constraint }}
-          ddev composer install --prefer-dist --no-interaction
 
       - name: PhpStan
         run: ddev exec ./scripts/phpstan-all.sh

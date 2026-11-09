@@ -60,7 +60,9 @@ jobs:
           composer config --no-plugins allow-plugins.tbachert/spi false
 
           # Install composer packages.
-          composer install --no-interaction
+          # Use 'update', because 'install' would report the missing
+          # composer.lock file.
+          composer update --no-interaction
 
       - name: DDEV - Setup
         uses: ddev/github-action-setup-ddev@v1
