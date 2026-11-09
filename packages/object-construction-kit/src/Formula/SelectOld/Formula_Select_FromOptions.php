@@ -43,7 +43,7 @@ class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
       $group_label = $option->getGroupLabel();
       if ($group_label !== NULL) {
         $group_id = $group_label->convert($translator);
-        $groups[$group_id] = $group_label;
+        $group_labels[$group_id] = $group_label;
         $grouped_options[$group_id][$id] = $label;
       }
       else {
