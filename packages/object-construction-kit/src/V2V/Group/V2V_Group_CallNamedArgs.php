@@ -48,7 +48,7 @@ class V2V_Group_CallNamedArgs implements V2V_GroupInterface {
    */
   public static function fromCallable(callable $callable): self {
     if (is_array($callable)) {
-      if (!is_string($callable[0]) || !isset($callable[1])) {
+      if (!is_string($callable[0])) {
         throw new \InvalidArgumentException('Method must be static.');
       }
       return new self('\\' . $callable[0] . '::' . $callable[1]);
