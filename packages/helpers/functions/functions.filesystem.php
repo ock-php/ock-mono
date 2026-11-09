@@ -16,7 +16,10 @@ namespace Ock\Helpers;
  * @param string $dir
  *   Directory path.
  * @param int $sorting_order
- *   Sorting order.
+ *   Sorting order, as one of the SCANDIR_SORT_* constants.
+ *   The default is 0, which means SCANDIR_SORT_ASCENDING.
+ *
+ * @phpstan-param 0|1|2 $sorting_order
  *
  * @return list<string>
  *   Directory contents.
@@ -50,7 +53,10 @@ function scandir_known(string $dir, int $sorting_order = 0): array {
  * @param string $dir
  *   Directory path.
  * @param int $sorting_order
- *   Sorting order.
+ *   Sorting order, as one of the SCANDIR_SORT_* constants.
+ *   The default is 0, which means SCANDIR_SORT_ASCENDING.
+ *
+ * @phpstan-param 0|1|2 $sorting_order
  *
  * @return list<string>
  *   Directory contents.
