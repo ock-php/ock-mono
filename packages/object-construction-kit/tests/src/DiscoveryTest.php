@@ -9,6 +9,7 @@ use Ock\ClassFilesIterator\NamespaceDirectory;
 use Ock\Ock\Formula\Formula;
 use Ock\Ock\Formula\Sequence\Formula_SequenceInterface;
 use Ock\Ock\Generator\Generator;
+use Ock\Ock\Generator\Generator_Iface;
 use Ock\Ock\Generator\Generator_Neutral;
 use Ock\Ock\Generator\GeneratorInterface;
 use Ock\Ock\OckNamespace;
@@ -95,7 +96,7 @@ class DiscoveryTest extends FormulaTestBase {
 
     $generator = Generator::fromFormula($formula, $adapter);
 
-    self::assertNotNull($generator, 'Generator not NULL.');
+    self::assertInstanceOf(Generator_Iface::class, $generator);
   }
 
 }
