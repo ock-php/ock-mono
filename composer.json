@@ -143,6 +143,11 @@
                 "type:drupal-custom-theme"
             ]
         },
+        "phpstan/extension-installer": {
+            "ignore": [
+                "mglaman/phpstan-drupal"
+            ]
+        },
         "drupal-core-project-message": {
             "include-keys": [
                 "homepage",

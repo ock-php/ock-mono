@@ -1,3 +1,7 @@
+# @todo phpstan-drupal does not run here, because it is in the ignore list for
+#   phpstan/extension-installer in composer.json. Packages should not get
+#   Drupal rules. To use it for modules, include its extension.neon and
+#   rules.neon here, or move modules to separate phpstan runs.
 parameters:
   level: 9
   treatPhpDocTypesAsCertain: false
