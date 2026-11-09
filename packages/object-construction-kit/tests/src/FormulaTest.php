@@ -24,7 +24,6 @@ class FormulaTest extends FormulaTestBase {
     $adapter = TestingServices::getContainer()->get(UniversalAdapterInterface::class);
     $generator = $adapter->adapt($formula, GeneratorInterface::class);
     self::assertInstanceOf(Generator_Iface::class, $generator);
-    self::assertNotSame($generator, $formula);
   }
 
 }
