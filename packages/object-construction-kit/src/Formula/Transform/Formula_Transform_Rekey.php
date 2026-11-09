@@ -19,12 +19,12 @@ class Formula_Transform_Rekey extends Formula_TransformBase {
   /**
    * @var string|null
    */
-  private ?string $packedNullKey;
+  private ?string $packedNullKey = null;
 
   /**
    * @var string|null
    */
-  private ?string $unpackedNullKey;
+  private ?string $unpackedNullKey = null;
 
   /**
    * @param string|null $packed_key
@@ -38,10 +38,10 @@ class Formula_Transform_Rekey extends Formula_TransformBase {
       if ($unpacked_key === NULL) {
         throw new \RuntimeException('Only one of the keys can be null.');
       }
-      $this->unpackedNullKey = $unpacked_key;
+      $clone->unpackedNullKey = $unpacked_key;
     }
     elseif ($unpacked_key === NULL) {
-      $this->packedNullKey = $packed_key;
+      $clone->packedNullKey = $packed_key;
     }
     else {
       $clone->map[$unpacked_key] = $packed_key;
