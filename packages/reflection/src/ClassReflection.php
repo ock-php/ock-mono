@@ -37,7 +37,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
       // This way, calling code can handle this the same way as if the class
       // itself did not exist.
       throw new \ReflectionException(sprintf(
-        'Class % is not available: %s',
+        'Class %s is not available: %s',
         $objectOrClass,
         $e->getMessage(),
       ), 0, $e);
