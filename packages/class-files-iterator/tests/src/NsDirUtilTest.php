@@ -61,6 +61,9 @@ class NsDirUtilTest extends TestCase {
     // The directory will appear as empty.
     chmod($dir, $perms & 0444);
     $this->assertSame($file, NsDirUtil::iterate($dir, '')->key());
+    // PhpStan reads the return value from the file, but here the include
+    // fails due to missing permissions.
+    // @phpstan-ignore method.impossibleType
     $this->assertFalse(@include $file);
   }
 

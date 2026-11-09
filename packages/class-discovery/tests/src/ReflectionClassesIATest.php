@@ -79,6 +79,9 @@ class ReflectionClassesIATest extends TestCase {
   protected function assertReflectionClassNames(array $expectedClassNames, ReflectionClassesIAInterface $reflectionClassesIA, string $expectedReflectionClass = NULL): void {
     $actualClassNames = [];
     foreach ($reflectionClassesIA as $i => $reflectionClass) {
+      // Verify the contract at runtime. PhpStan treats the phpdoc generics
+      // type as certain.
+      // @phpstan-ignore method.alreadyNarrowedType
       $this->assertInstanceOf(\ReflectionClass::class, $reflectionClass);
       if ($expectedReflectionClass !== NULL) {
         $this->assertInstanceOf($expectedReflectionClass, $reflectionClass);

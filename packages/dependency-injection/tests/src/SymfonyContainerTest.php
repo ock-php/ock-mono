@@ -113,6 +113,9 @@ class SymfonyContainerTest extends TestCase {
   protected function assertClassesAsRecorded(ReflectionClassesIAInterface $classesIA, string $label = null): void {
     $export = [];
     foreach ($classesIA as $key => $classReflection) {
+      // Verify the contract at runtime. PhpStan treats the phpdoc generics
+      // type as certain.
+      // @phpstan-ignore staticMethod.alreadyNarrowedType
       static::assertInstanceOf(ClassReflection::class, $classReflection);
       while (isset($export[$key])) {
         // There is no reason to expect duplicate keys, but the test should
