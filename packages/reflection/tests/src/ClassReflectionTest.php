@@ -5,11 +5,10 @@ declare(strict_types = 1);
 namespace Ock\Reflection\Tests;
 
 use Ock\Reflection\ClassReflection;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @coversDefaultClass \Ock\Reflection\ClassReflection
- */
+#[CoversClass(ClassReflection::class)]
 class ClassReflectionTest extends TestCase {
 
   public function testCreateKnown(): void {
