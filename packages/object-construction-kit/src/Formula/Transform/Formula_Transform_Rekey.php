@@ -38,9 +38,11 @@ class Formula_Transform_Rekey extends Formula_TransformBase {
       if ($unpacked_key === NULL) {
         throw new \RuntimeException('Only one of the keys can be null.');
       }
+      // @todo This looks suspicious, we should only set the value on $clone.
       $clone->unpackedNullKey = $unpacked_key;
     }
     elseif ($unpacked_key === NULL) {
+      // @todo This looks suspicious, we should only set the value on $clone.
       $clone->packedNullKey = $packed_key;
     }
     else {
