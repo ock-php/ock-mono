@@ -61,8 +61,12 @@ jobs:
             # Install phpstan packages that are required by drupal/core-dev.
             # This is needed so that phpstan has the same result if it is run
             # from the top level.
+            # The top level composer.json also installs mglaman/phpstan-drupal
+            # via drupal/core-dev, but it is disabled as a phpstan extension,
+            # see `extra.phpstan/extension-installer` in the root
+            # composer.json.
             composer config --no-plugins allow-plugins.phpstan/extension-installer true
-            composer require --dev phpstan/phpstan phpstan/extension-installer phpstan/phpstan-deprecation-rules
+            composer require --dev phpstan/phpstan phpstan/extension-installer phpstan/phpstan-deprecation-rules phpstan/phpstan-phpunit
             rm composer.json composer.lock
             mv composer.json.bak composer.json
             mv composer.lock.bak composer.lock
