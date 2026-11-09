@@ -29,7 +29,7 @@ final class Formula_Identity implements FormulaInterface, GeneratorInterface, Su
   /**
    * {@inheritdoc}
    */
-  public function confGetSummary(mixed $conf): ?TextInterface {
+  public function confGetSummary(mixed $conf): TextInterface {
     return Text::s(var_export($conf, TRUE));
   }
 

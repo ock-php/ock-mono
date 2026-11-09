@@ -15,7 +15,7 @@ final class Summarizer_V2V extends UtilBase {
    * @param \Ock\Ock\FormulaBase\Formula_ConfPassthruInterface $formula
    * @param \Ock\Adaptism\UniversalAdapter\UniversalAdapterInterface $universalAdapter
    *
-   * @return \Ock\Ock\Summarizer\SummarizerInterface|null
+   * @return \Ock\Ock\Summarizer\SummarizerInterface
    *
    * @throws \Ock\Adaptism\Exception\AdapterException
    */
@@ -23,7 +23,7 @@ final class Summarizer_V2V extends UtilBase {
   public static function create(
     Formula_ConfPassthruInterface $formula,
     UniversalAdapterInterface $universalAdapter
-  ): ?SummarizerInterface {
+  ): SummarizerInterface {
     return Summarizer::fromFormula(
       $formula->getDecorated(),
       $universalAdapter

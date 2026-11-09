@@ -25,7 +25,7 @@ final class Formula_ConstrainedValue_IntegerInRange implements Formula_Constrain
   /**
    * {@inheritdoc}
    */
-  public function getDescription(): ?TextInterface {
+  public function getDescription(): TextInterface {
     if ($this->max === NULL) {
       if ($this->min === NULL) {
         return Text::t('Integer number.');
