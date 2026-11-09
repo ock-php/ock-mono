@@ -57,7 +57,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
       // @phpstan-ignore-next-line
       return new static($name);
     }
-    catch (\ReflectionException|\Error $e) {
+    catch (\ReflectionException $e) {
       // The class does not exist, or one of its parents or interfaces is
       // missing.
       throw new \RuntimeException("Known class $name was not found or could not be loaded.", 0, $e);
@@ -80,7 +80,7 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
       // @phpstan-ignore-next-line
       return new static($name);
     }
-    catch (\ReflectionException|\Error) {
+    catch (\ReflectionException) {
       // The class does not exist, or one of its parents or interfaces is
       // missing.
       return null;

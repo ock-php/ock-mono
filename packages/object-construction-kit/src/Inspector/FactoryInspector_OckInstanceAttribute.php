@@ -61,7 +61,7 @@ class FactoryInspector_OckInstanceAttribute implements FactoryInspectorInterface
     try {
       $resultClassReflection = $reflector->getReturnClass();
     }
-    catch (\ReflectionException|\Error) {
+    catch (\ReflectionException) {
       // Result class does not exist.
       // Ignore this declaration.
       return;
