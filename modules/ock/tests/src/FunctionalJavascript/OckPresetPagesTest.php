@@ -77,6 +77,9 @@ class OckPresetPagesTest extends OckWebDriverTestBase {
     $this->assertSession()->fieldExists('Administrative title')->setValue('Laura Longneck');
     $this->selectAndWait('Plugin', 'Giraffe');
     $this->assertSession()->buttonExists('Save preset')->click();
+    $this->assertTrue($this->assertSession()->waitForText(
+      'Preset laura_longneck was successfully created.',
+    ));
 
     // Back on the list page.
     $this->assertPageTitle('Manage Animal plugin presets');
@@ -92,6 +95,9 @@ class OckPresetPagesTest extends OckWebDriverTestBase {
     $title_field->setValue('Laura 1 Longneck');
     $this->assertSession()->linkExists('Delete');
     $this->assertSession()->buttonExists('Save preset')->click();
+    $this->assertTrue($this->assertSession()->waitForText(
+      'Preset laura_longneck was successfully updated.',
+    ));
 
     // Back on the list page.
     $this->assertPageTitle('Manage Animal plugin presets');
@@ -105,7 +111,9 @@ class OckPresetPagesTest extends OckWebDriverTestBase {
     $this->assertSession()->buttonExists('Delete')->click();
 
     // Back on the list page.
-    $this->assertSession()->pageTextContains('The preset Laura 1 Longneck has been deleted.');
+    $this->assertTrue($this->assertSession()->waitForText(
+      'The preset Laura 1 Longneck has been deleted.',
+    ));
     $this->getSession()->reload();
 
     // Back on the list page, refreshed.
@@ -137,6 +145,10 @@ class OckPresetPagesTest extends OckWebDriverTestBase {
     $this->selectAndWait('Plugin', 'Enchanted creature…');
     $this->selectAndWait('Animal', 'Preset: Pink elephant');
     $this->assertSession()->buttonExists('Save preset')->click();
+    // Wait for the form submission to complete, before loading the config.
+    $this->assertTrue($this->assertSession()->waitForText(
+      'Preset enchanted_pink_elephant was successfully created.',
+    ));
 
     $config = $repo->load(PlantInterface::class, 'enchanted_pink_elephant');
     $this->assertFalse($config->isNew());
