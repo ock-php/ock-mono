@@ -74,6 +74,21 @@ class Generator_Iface implements GeneratorInterface {
       throw new GeneratorException_IncompatibleConfiguration('Required id is missing.');
     }
 
+    if (!is_string($id) && !is_int($id)) {
+      throw new GeneratorException_IncompatibleConfiguration(sprintf(
+        'Expected $conf[\'id\'] to be string|int, found %s.',
+        get_debug_type($id),
+      ));
+    }
+
+    if (!is_array($decoratorsConf)) {
+      throw new GeneratorException_IncompatibleConfiguration(sprintf(
+        'Expected $conf[\'decorators\'] to be an array, found %s, for id %s.',
+        get_debug_type($decoratorsConf),
+        var_export($id, TRUE),
+      ));
+    }
+
     try {
       $plugins = $this->pluginMap->typeGetPlugins($this->type);
     }

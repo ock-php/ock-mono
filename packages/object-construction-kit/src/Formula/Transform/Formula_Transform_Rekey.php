@@ -63,6 +63,13 @@ class Formula_Transform_Rekey extends Formula_TransformBase {
     $unpacked_conf = [];
     if ($this->packedNullKey !== NULL) {
       $unpacked_conf = $packed_conf[$this->packedNullKey] ?? [];
+      if (!is_array($unpacked_conf)) {
+        throw new \Exception(sprintf(
+          'Expected an array at \$packed_conf[%s], found %s',
+          var_export($this->packedNullKey, TRUE),
+          get_debug_type($unpacked_conf),
+        ));
+      }
       unset($packed_conf[$this->packedNullKey]);
     }
     foreach (array_intersect_key($this->unmap, $packed_conf) as $packed_key => $unpacked_key) {
@@ -88,6 +95,13 @@ class Formula_Transform_Rekey extends Formula_TransformBase {
     $packed_conf = [];
     if ($this->unpackedNullKey !== NULL) {
       $packed_conf = $unpacked_conf[$this->unpackedNullKey] ?? [];
+      if (!is_array($packed_conf)) {
+        throw new \Exception(sprintf(
+          'Expected an array at \$unpacked_conf[%s], found %s.',
+          var_export($this->unpackedNullKey, TRUE),
+          get_debug_type($packed_conf),
+        ));
+      }
       unset($unpacked_conf[$this->unpackedNullKey]);
     }
     foreach (array_intersect_key($this->map, $unpacked_conf) as $unpacked_key => $packed_key) {
