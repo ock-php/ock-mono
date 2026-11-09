@@ -8,6 +8,8 @@ parameters:
     - web
     - vendor
     - packages/reflection/src/MethodReflection.php
+    # Fixtures with a missing parent or interface cause non-ignorable errors.
+    - packages/reflection/tests/src/Fixtures/ClassWithMissing*.php
   ignoreErrors:
     # Assume that iterable value is 'mixed' if not further specified.
     - identifier: missingType.iterableValue
