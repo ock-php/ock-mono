@@ -96,6 +96,7 @@ class DiscoveryTest extends FormulaTestBase {
 
     $generator = Generator::fromFormula($formula, $adapter);
 
+    // @todo This assertion seems pointless, assert something more meaningful.
     self::assertInstanceOf(Generator_Iface::class, $generator);
   }
 
