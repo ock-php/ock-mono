@@ -16,6 +16,14 @@ trap 'rm -f "$LOG"' EXIT
 SUMMARY=()
 FAILED=0
 
+# The phpstan output is piped through tee, so phpstan cannot detect a terminal
+# by itself. Decide here, based on where the output of this script goes.
+if [ -t 1 ]; then
+  PHPSTAN_OPTIONS=(--ansi)
+else
+  PHPSTAN_OPTIONS=(--no-ansi --no-progress)
+fi
+
 for PACKAGE_DIR in packages/*/
 do
   PACKAGE_DIR="${PACKAGE_DIR%/}"
@@ -24,8 +32,7 @@ do
   fi
   echo
   echo "=== PhpStan: $PACKAGE_DIR ==="
-  # Output is piped, so force colors to keep the usual look.
-  if (cd "$PACKAGE_DIR" && ../../vendor/bin/phpstan --ansi) 2>&1 | tee "$LOG"; then
+  if (cd "$PACKAGE_DIR" && ../../vendor/bin/phpstan "${PHPSTAN_OPTIONS[@]}") 2>&1 | tee "$LOG"; then
     RESULT="OK"
   else
     FAILED=1
