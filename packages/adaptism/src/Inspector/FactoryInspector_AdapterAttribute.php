@@ -19,7 +19,6 @@ use Ock\Egg\ClassToEgg\ClassToEggInterface;
 use Ock\Egg\ParamToEgg\ParamToEggInterface;
 use Ock\Helpers\Util\MessageUtil;
 use Ock\Reflection\ClassReflection;
-use Ock\Reflection\FactoryReflectionInterface;
 use Ock\Reflection\MethodReflection;
 
 /**
@@ -44,7 +43,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
   /**
    * {@inheritdoc}
    */
-  public function findInFactory(FactoryReflectionInterface $reflector): \Iterator {
+  public function findInFactory(ClassReflection|MethodReflection $reflector): \Iterator {
     $attribute = AttributesUtil::getSingle($reflector->reveal(), Adapter::class);
     if ($attribute === NULL) {
       return;
@@ -74,7 +73,7 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
         $argEggs,
       );
     }
-    elseif ($reflector instanceof MethodReflection) {
+    else {
       if ($reflector->isStatic()) {
         $classOrEgg = $reflector->originalClass;
       }
@@ -88,9 +87,6 @@ class FactoryInspector_AdapterAttribute implements FactoryInspectorInterface {
         $hasUniversalAdapterParameter,
         $argEggs,
       );
-    }
-    else {
-      return;
     }
     $resultClass = ReflectionTypeUtil::requireGetClassLikeType($reflector, true);
 
