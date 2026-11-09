@@ -39,7 +39,7 @@ class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
     $translator = Translator::passthru();
 
     foreach ($this->options as $id => $option) {
-      $label = $option->getLabel();
+      $label = $option->getLabel() ?? Text::s((string) $id);
       $group_label = $option->getGroupLabel();
       if ($group_label !== NULL) {
         $group_id = $group_label->convert($translator);
@@ -59,7 +59,7 @@ class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
     if (!isset($this->options[$id])) {
       return NULL;
     }
-    return $this->options[$id]->getLabel();
+    return $this->options[$id]->getLabel() ?? Text::s((string) $id);
   }
 
   /**
