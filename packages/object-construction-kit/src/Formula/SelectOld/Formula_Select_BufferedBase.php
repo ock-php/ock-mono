@@ -21,9 +21,11 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
   /**
    * Buffered grouped options, with '' for top-level options.
    *
-   * @var \Ock\Ock\Text\TextInterface[][]|null
+   * Lazily populated in ->init().
+   *
+   * @var \Ock\Ock\Text\TextInterface[][]
    */
-  private ?array $groupedOptions;
+  private array $groupedOptions;
 
   /**
    * {@inheritdoc}
@@ -48,7 +50,7 @@ abstract class Formula_Select_BufferedBase implements Formula_SelectInterface {
    *   Failure to initialize the formula.
    */
   private function init(): void {
-    if ($this->groupedOptions !== NULL) {
+    if (isset($this->groupedOptions)) {
       return;
     }
     // Use local variables, instead of writing directly to object properties.
