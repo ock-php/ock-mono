@@ -1,7 +1,7 @@
 {
     "name": "ock/di-discovery",
     "description": "Dependency injection discovery (DID)",
-    "license": "GPL-2.0-or-later",
+    "license": "MIT",
     "require": {
         "php": ">=8.3",
         "ock/class-discovery": "self.version",

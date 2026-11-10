@@ -1,7 +1,7 @@
 {
     "name": "ock/object-construction-kit",
     "description": "Object Construction Kit (Ock)",
-    "license": "GPL-2.0-or-later",
+    "license": "MIT",
     "require": {
         "php": ">=8.3",
         "ock/adaptism": "*",
