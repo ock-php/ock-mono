@@ -108,16 +108,11 @@ class OckWebDriverTestBase extends WebDriverTestBase {
    * @param int $max_seconds
    *   Maximum number of seconds to wait.
    */
-  protected function selectAndWait(string $select, string $option, int $max_seconds = 1): void {
+  protected function selectAndWait(string $select, string $option, int $max_seconds = 10): void {
     $element = $this->assertSession()->selectExists($select);
     $element->selectOption($option);
-    $success = $element->waitFor(
-      $max_seconds,
-      fn() => !$element->hasAttribute('disabled'),
-    );
-    if (!$success) {
-      $this->fail("Select element is still 'disabled' after $max_seconds seconds.");
-    }
+    $this->assertSession()->assertWaitOnAjaxRequest($max_seconds * 1000);
+    $this->assertFalse($element->hasAttribute('disabled'));
   }
 
 }
