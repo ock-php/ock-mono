@@ -13,9 +13,11 @@ use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
 class PluginRegistry_Buffer implements PluginRegistryInterface {
 
   /**
-   * @var \Ock\Ock\Plugin\Plugin[][]|null
+   * Plugins by type, lazily populated in ->getPluginsByType().
+   *
+   * @var \Ock\Ock\Plugin\Plugin[][]
    */
-  private ?array $pluginss;
+  private array $pluginss;
 
   /**
    * Constructor.

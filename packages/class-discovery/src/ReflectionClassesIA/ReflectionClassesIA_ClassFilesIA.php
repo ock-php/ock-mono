@@ -24,7 +24,7 @@ class ReflectionClassesIA_ClassFilesIA implements ReflectionClassesIAInterface {
       try {
         $reflectionClass = new ClassReflection($class);
       }
-      catch (\ReflectionException|\Error) {
+      catch (\ReflectionException) {
         // Skip non-existing classes / interfaces / traits.
         // Skip if a base class or interface is missing.
         // Unfortunately, missing traits still cause fatal error.

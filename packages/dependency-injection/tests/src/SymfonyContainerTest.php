@@ -91,8 +91,6 @@ class SymfonyContainerTest extends TestCase {
       ->subdir('Fixtures');
     foreach ($fixturesNamespaceDir->getSubdirsHere() as $subdir_name => $subNamespaceDir) {
       $dir = $subNamespaceDir->getDirectory();
-      // Ignore possible false returned by scandir().
-      // @phpstan-ignore foreach.nonIterable
       foreach (scandir($dir) as $candidate) {
         if (\preg_match('#^inspector\.([\w\-]+)\.php$#', $candidate, $m)) {
           [$inspector_file, $inspector_name] = $m;
@@ -115,6 +113,9 @@ class SymfonyContainerTest extends TestCase {
   protected function assertClassesAsRecorded(ReflectionClassesIAInterface $classesIA, string $label = null): void {
     $export = [];
     foreach ($classesIA as $key => $classReflection) {
+      // Verify the contract at runtime. PhpStan treats the phpdoc generics
+      // type as certain.
+      // @phpstan-ignore staticMethod.alreadyNarrowedType
       static::assertInstanceOf(ClassReflection::class, $classReflection);
       while (isset($export[$key])) {
         // There is no reason to expect duplicate keys, but the test should

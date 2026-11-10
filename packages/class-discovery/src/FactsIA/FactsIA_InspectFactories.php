@@ -8,8 +8,6 @@ use Ock\ClassDiscovery\Inspector\FactoryInspector_Concat;
 use Ock\ClassDiscovery\Inspector\FactoryInspectorInterface;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIA_Concat;
 use Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface;
-use Ock\Helpers\Util\MessageUtil;
-use Ock\Reflection\ClassReflection;
 
 /**
  * @template TFactKey
@@ -51,11 +49,6 @@ class FactsIA_InspectFactories implements FactsIAInterface {
    */
   public function getIterator(): \Iterator {
     foreach ($this->classes as $classReflection) {
-      assert($classReflection instanceof ClassReflection, sprintf(
-        'Expected only ClassReflection objects from %s, found %s.',
-        MessageUtil::formatValue($this->classes),
-        MessageUtil::formatValue($classReflection),
-      ));
       yield from $this->inspector->findInFactory($classReflection);
       foreach ($classReflection->getMethods() as $methodReflection) {
         yield from $this->inspector->findInFactory($methodReflection);

@@ -9,9 +9,9 @@ use Ock\Ock\Text\TextInterface;
 class Formula_Optional extends Formula_OptionalBase {
 
   /**
-   * @var \Ock\Ock\Text\TextInterface|null
+   * The summary if empty, or NULL for no summary if empty.
    */
-  private ?TextInterface $emptySummary;
+  private ?TextInterface $emptySummary = null;
 
   /**
    * @var string

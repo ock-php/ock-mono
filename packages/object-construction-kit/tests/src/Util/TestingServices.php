@@ -18,9 +18,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class TestingServices {
 
   /**
-   * @var \Psr\Container\ContainerInterface|null
+   * Container, lazily populated in ::getContainer().
    */
-  private static ?ContainerInterface $container;
+  private static ContainerInterface $container;
 
   /**
    * Builds a container with services for adaptism tests.

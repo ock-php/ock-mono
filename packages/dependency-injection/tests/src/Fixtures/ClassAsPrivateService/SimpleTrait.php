@@ -6,6 +6,8 @@ namespace Ock\DependencyInjection\Tests\Fixtures\ClassAsPrivateService;
 
 /**
  * A trait should be ignored.
+ *
+ * @phpstan-ignore trait.unused
  */
 trait SimpleTrait {
 

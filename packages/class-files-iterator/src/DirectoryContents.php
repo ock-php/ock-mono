@@ -110,7 +110,7 @@ final class DirectoryContents {
   public function getNamespaceNames(): array {
     $names = preg_grep(self::CLASS_NAME_PATTERN, $this->subdirNames);
     assert($names !== false);
-    return $names;
+    return array_values($names);
   }
 
 }

@@ -4,8 +4,10 @@ parameters:
   paths:
     - .
   excludePaths:
-    - vendor
+    - vendor (?)
     - .github
+    # Fixtures with a missing parent or interface cause non-ignorable errors.
+    - tests/src/Fixtures/ClassWithMissing*.php
   ignoreErrors:
     # Assume that generic type is 'mixed' if not further specified.
     - identifier: missingType.generics

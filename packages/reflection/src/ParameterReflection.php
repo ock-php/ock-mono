@@ -27,7 +27,7 @@ class ParameterReflection extends \ReflectionParameter implements AttributesHavi
     }
     $name = $type->getName();
     if ($name === 'self' || $name === 'static') {
-      $name = $this->getDeclaringClass()?->name
+      $name = $this->getDeclaringClass()->name
         // With current php versions, the exception below should be impossible.
         ?? throw new \RuntimeException(sprintf(
           'Unexpected %s parameter type on %s.',

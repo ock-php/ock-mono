@@ -305,12 +305,13 @@ final class NamespaceDirectory implements ClassFilesIAInterface {
   }
 
   /**
-   * Gets the last part of the namespace, without trailing separator.
+   * Gets the last part of the namespace, with leading separator.
    *
-   * @return string|null
-   *   Last namespace fragment, or NULL if this is the root namespace.
+   * @return string
+   *   The last namespace fragment, with leading '\'.
+   *   Or '', if this is the root namespace.
    */
-  public function getShortFqn(): ?string {
+  public function getShortFqn(): string {
     if ($this->terminatedNamespace === '') {
       // This is the root namespace.
       return '';

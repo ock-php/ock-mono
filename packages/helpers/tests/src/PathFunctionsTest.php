@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Ock\Helpers\Tests;
 
+use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
 use function Ock\Helpers\project_root_path;
 
+#[CoversFunction('Ock\Helpers\project_root_path')]
 class PathFunctionsTest extends TestCase {
 
-  /**
-   * @covers \Ock\Helpers\project_root_path()
-   */
   public function testGetProjectRootPath(): void {
     $root = project_root_path();
     // The root path can differ depending how the test is run.

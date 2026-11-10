@@ -19,7 +19,6 @@ jobs:
           - service_discovery
           - themekit
         php: [8.3]
-        composer-flags: ['', '--prefer-lowest']
         drupal-constraint: ['~11.4.9']
 
     defaults:
@@ -56,20 +55,14 @@ jobs:
           php expand_composer_json.php ${{ matrix.module }}
           rm -f expand_composer_json.php
 
-          # Set some minimum versions for '--prefer-lowest'.
-          composer require --no-update --dev composer/installers:^2
-          composer require --no-update --dev open-telemetry/sdk:@stable
-          composer require --no-update --dev masterminds/html5:^2.9.0
-
           # Disallow some plugins.
           composer config --no-plugins allow-plugins.php-http/discovery false
           composer config --no-plugins allow-plugins.tbachert/spi false
 
-          # Apply composer flags.
-          composer update --no-install ${{ matrix.composer-flags }}
-
           # Install composer packages.
-          composer install --no-interaction
+          # Use 'update', because 'install' would report the missing
+          # composer.lock file.
+          composer update --no-interaction
 
       - name: DDEV - Setup
         uses: ddev/github-action-setup-ddev@v1

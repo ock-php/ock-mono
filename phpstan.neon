@@ -1,4 +1,9 @@
+# @todo phpstan-drupal does not run here, because it is in the ignore list for
+#   phpstan/extension-installer in composer.json. Packages should not get
+#   Drupal rules. To use it for modules, include its extension.neon and
+#   rules.neon here, or move modules to separate phpstan runs.
 parameters:
+  level: 9
   treatPhpDocTypesAsCertain: false
   paths:
     - packages
@@ -6,6 +11,15 @@ parameters:
   excludePaths:
     - web
     - vendor
+    - packages/reflection/src/MethodReflection.php
+    # Fixtures with a missing parent or interface cause non-ignorable errors.
+    - packages/reflection/tests/src/Fixtures/ClassWithMissing*.php
   ignoreErrors:
+    # Assume that iterable value is 'mixed' if not further specified.
+    - identifier: missingType.iterableValue
+    # Assume that generic type is 'mixed' if not further specified.
+    - identifier: argument.templateType
     # Assume that generic type is 'mixed' if not further specified.
     - identifier: missingType.generics
+    # Don't force Drupal Yaml in packages.
+    - identifier: drupal.symfonyYamlParse

@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace Ock\Ock\Formula\SelectOld;
 
 use Ock\Ock\Formula\SelectOld\Option\SelectOptionInterface;
+use Ock\Ock\Text\Text;
 use Ock\Ock\Text\TextInterface;
 use Ock\Ock\Translator\Translator;
 
+/**
+ * @deprecated
+ */
 class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
 
   /**
@@ -18,7 +22,7 @@ class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
   public function __construct(
     private readonly array $options,
   ) {
-    self::validateOptions(...$options);
+    self::validateOptions(...array_values($options));
   }
 
   /**
@@ -35,11 +39,11 @@ class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
     $translator = Translator::passthru();
 
     foreach ($this->options as $id => $option) {
-      $label = $option->getLabel();
+      $label = $option->getLabel() ?? Text::s((string) $id);
       $group_label = $option->getGroupLabel();
       if ($group_label !== NULL) {
         $group_id = $group_label->convert($translator);
-        $groups[$group_id] = $group_label;
+        $group_labels[$group_id] = $group_label;
         $grouped_options[$group_id][$id] = $label;
       }
       else {
@@ -55,7 +59,7 @@ class Formula_Select_FromOptions extends Formula_Select_BufferedBase {
     if (!isset($this->options[$id])) {
       return NULL;
     }
-    return $this->options[$id]->getLabel();
+    return $this->options[$id]->getLabel() ?? Text::s((string) $id);
   }
 
   /**

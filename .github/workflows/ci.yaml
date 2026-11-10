@@ -12,7 +12,6 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.3]
-        composer-flags: ['', '--prefer-lowest']
         drupal-constraint: ['~11.4.9']
 
     steps:
@@ -33,12 +32,10 @@ jobs:
       - name: Composer
         run: |
           set -x
-          ddev composer update \
-            --no-install ${{ matrix.composer-flags }} \
+          ddev composer update --prefer-dist --no-interaction \
             --with drupal/core-recommended:${{ matrix.drupal-constraint }} \
             --with drupal/core-composer-scaffold:${{ matrix.drupal-constraint }} \
             --with drupal/core-dev:${{ matrix.drupal-constraint }}
-          ddev composer install --prefer-dist --no-interaction
 
       - name: PhpStan
         run: ddev exec ./scripts/phpstan-all.sh

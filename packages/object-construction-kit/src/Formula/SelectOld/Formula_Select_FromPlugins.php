@@ -7,6 +7,9 @@ namespace Ock\Ock\Formula\SelectOld;
 use Ock\Ock\Plugin\Plugin;
 use Ock\Ock\Text\TextInterface;
 
+/**
+ * @deprecated
+ */
 class Formula_Select_FromPlugins extends Formula_Select_BufferedBase {
 
   /**

@@ -11,9 +11,11 @@ use Symfony\Component\DependencyInjection\Attribute\AutowireDecorated;
 class PluginMap_Buffer implements PluginMapInterface {
 
   /**
-   * @var string[]|null
+   * Plugin types, lazily populated in ->getTypes().
+   *
+   * @var string[]
    */
-  private ?array $types;
+  private array $types;
 
   /**
    * @var \Ock\Ock\Plugin\Plugin[][]
