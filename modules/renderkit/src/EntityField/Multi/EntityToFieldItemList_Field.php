@@ -24,7 +24,7 @@ class EntityToFieldItemList_Field implements EntityToFieldItemListInterface {
   public static function formula(
     #[GetService]
     Formula_EtDotFieldName $etDotFieldNameFormula,
-    array $allowedFieldTypes = NULL,
+    ?array $allowedFieldTypes = NULL,
   ): FormulaInterface {
     return Formula::group()
       ->add(

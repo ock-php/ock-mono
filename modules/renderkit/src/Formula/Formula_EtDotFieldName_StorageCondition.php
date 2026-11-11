@@ -22,9 +22,9 @@ class Formula_EtDotFieldName_StorageCondition implements Formula_DrupalSelectInt
    * @return self
    */
   public static function create(
-    array $allowedFieldTypes = NULL,
-    string $entityType = NULL,
-    string $bundleName = NULL,
+    ?array $allowedFieldTypes = NULL,
+    ?string $entityType = NULL,
+    ?string $bundleName = NULL,
   ): self {
 
     // @todo Real dependency injection.

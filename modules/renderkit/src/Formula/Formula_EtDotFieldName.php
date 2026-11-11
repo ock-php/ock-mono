@@ -61,7 +61,7 @@ class Formula_EtDotFieldName implements Formula_SelectInterface {
    *
    * @return static
    */
-  public function withEntityType(?string $entity_type, string $bundle = NULL): static {
+  public function withEntityType(?string $entity_type, ?string $bundle = NULL): static {
     if ($entity_type === NULL && $bundle !== NULL) {
       throw new \InvalidArgumentException('Bundle must be NULL if entity type is NULL.');
     }

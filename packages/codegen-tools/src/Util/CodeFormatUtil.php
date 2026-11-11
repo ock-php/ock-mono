@@ -18,7 +18,7 @@ class CodeFormatUtil {
    *
    * @throws \Ock\CodegenTools\Exception\CodegenException
    */
-  public static function formatAsFile(string $php, string $namespace = NULL): string {
+  public static function formatAsFile(string $php, ?string $namespace = NULL): string {
     return CodeFormatter::create()->formatAsFile($php, $namespace);
   }
 
@@ -47,7 +47,7 @@ class CodeFormatUtil {
    *
    * @throws \Ock\CodegenTools\Exception\CodegenException
    */
-  public static function formatAsSnippet(string $php, string $namespace = NULL): string {
+  public static function formatAsSnippet(string $php, ?string $namespace = NULL): string {
     return CodeFormatter::create()->formatAsSnippet($php, $namespace);
   }
 

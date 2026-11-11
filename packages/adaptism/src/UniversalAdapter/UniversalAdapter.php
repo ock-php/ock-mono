@@ -24,7 +24,7 @@ class UniversalAdapter implements UniversalAdapterInterface {
   public function adapt(
     object $adaptee,
     string $resultType,
-    UniversalAdapterInterface $universalAdapter = null,
+    ?UniversalAdapterInterface $universalAdapter = null,
   ): ?object {
     if ($adaptee instanceof $resultType) {
       return $adaptee;

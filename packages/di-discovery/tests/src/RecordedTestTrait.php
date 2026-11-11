@@ -144,7 +144,7 @@ trait RecordedTestTrait {
    * @param string|null $key
    *   A key or message to add to the value.
    */
-  public function assertAsRecorded(mixed $actual, string $key = null): void {
+  public function assertAsRecorded(mixed $actual, ?string $key = null): void {
     $actual = $this->exportForYaml($actual);
     if ($key !== null) {
       $actual = [$key => $actual];

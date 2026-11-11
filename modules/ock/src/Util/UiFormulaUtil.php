@@ -58,7 +58,7 @@ EOF;
    *
    * @return null|string
    */
-  public static function reflectorGetSnippet(\Reflector $reflector, bool $withDoc = FALSE, string $replaceBody = NULL): ?string {
+  public static function reflectorGetSnippet(\Reflector $reflector, bool $withDoc = FALSE, ?string $replaceBody = NULL): ?string {
 
     if (1
       && !$reflector instanceof \ReflectionClass

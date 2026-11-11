@@ -7,7 +7,7 @@ namespace Ock\DID\Attribute\Parameter;
 /**
  * Gets a callable service from the container.
  */
-#[\Attribute(\Attribute::TARGET_PARAMETER|\Attribute::TARGET_PROPERTY)]
+
 interface GetServiceInterface extends ServiceArgumentAttributeInterface {
 
   /**

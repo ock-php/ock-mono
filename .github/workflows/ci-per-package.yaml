@@ -25,7 +25,7 @@ jobs:
           - reflection
           - reflector-aware-attributes
           - testing
-        php: [8.3]
+        php: [8.3, 8.4, 8.5]
 
     defaults:
       run:

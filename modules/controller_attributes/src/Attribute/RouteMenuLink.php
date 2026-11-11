@@ -23,10 +23,10 @@ class RouteMenuLink implements RouteModifierInterface {
    * @param string|null $menu_name
    */
   public function __construct(
-    string $title = NULL,
-    string $description = NULL,
-    string $parent = NULL,
-    string $menu_name = NULL,
+    ?string $title = NULL,
+    ?string $description = NULL,
+    ?string $parent = NULL,
+    ?string $menu_name = NULL,
   ) {
     $this->link = array_filter([
       'title' => $title,
