@@ -25,7 +25,7 @@ class EntityDisplay_WithBuildProcessor extends EntitiesDisplayBase {
     #[OckDecorated]
     EntityDisplayInterface $entityDisplay,
     #[OckOption('processor', 'Processor')]
-    BuildProcessorInterface $processor = NULL,
+    ?BuildProcessorInterface $processor = NULL,
   ): EntityDisplayInterface {
     return NULL !== $processor
       ? new static($entityDisplay, $processor)

@@ -30,7 +30,7 @@ class Form_Decorator implements FormInterface {
   public function buildForm(
     array $form,
     FormStateInterface $form_state,
-    FormInterface $decorated = NULL
+    ?FormInterface $decorated = NULL
   ): array {
 
     if (NULL === $decorated) {

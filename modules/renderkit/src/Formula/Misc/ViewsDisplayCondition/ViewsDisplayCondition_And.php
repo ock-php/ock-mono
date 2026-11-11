@@ -19,7 +19,7 @@ class ViewsDisplayCondition_And implements ViewsDisplayConditionInterface {
    *
    * @return bool
    */
-  public function displayCheckCondition(string $id, array $display, array $default_display = NULL): bool {
+  public function displayCheckCondition(string $id, array $display, ?array $default_display = NULL): bool {
 
     foreach ($this->filters as $filter) {
       if (!$filter->displayCheckCondition(

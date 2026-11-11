@@ -6,7 +6,6 @@ namespace Ock\DID\Attribute;
 /**
  * Marks a class or method as a service.
  */
-#[\Attribute(\Attribute::TARGET_METHOD|\Attribute::TARGET_CLASS|\Attribute::IS_REPEATABLE)]
 abstract class ServiceDefinitionAttributeBase {
 
   /**

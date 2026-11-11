@@ -117,7 +117,7 @@ class Exporter_ToYamlArray implements ExporterInterface {
    *
    * @return static
    */
-  public function withDefaultObject(object $reference, string $class = null): static {
+  public function withDefaultObject(object $reference, ?string $class = null): static {
     $clone = clone $this;
     $clone->defaultObjects[$class ?? get_class($reference)] = $reference;
     return $clone;

@@ -80,7 +80,7 @@ final class Formula_TagName extends UtilBase {
    *
    * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
-  public static function create(array $allowedTagNames, string $defaultTagName = NULL): FormulaInterface {
+  public static function create(array $allowedTagNames, ?string $defaultTagName = NULL): FormulaInterface {
     $optionsFlat = [];
     foreach ($allowedTagNames as $tagName) {
       $optionsFlat[$tagName] = Text::s($tagName);

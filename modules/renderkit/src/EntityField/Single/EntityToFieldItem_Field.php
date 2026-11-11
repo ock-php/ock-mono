@@ -41,9 +41,9 @@ class EntityToFieldItem_Field implements EntityToFieldItemInterface {
     #[GetService]
     Formula_EtDotFieldName $fieldNameFormula,
     // @todo Inject these from context.
-    array $allowedFieldTypes = NULL,
-    string $entityType = NULL,
-    string $bundle = NULL,
+    ?array $allowedFieldTypes = NULL,
+    ?string $entityType = NULL,
+    ?string $bundle = NULL,
   ): FormulaInterface {
     return Formula::group()
       ->add(

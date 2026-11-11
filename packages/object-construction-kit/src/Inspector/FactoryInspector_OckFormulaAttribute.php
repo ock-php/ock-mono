@@ -57,20 +57,17 @@ class FactoryInspector_OckFormulaAttribute implements FactoryInspectorInterface 
     $label = Text::tIf($attribute->label, $attribute->translate);
     $plugin = new Plugin($label, null, $formula, []);
 
-    try {
-      $rclass = new \ReflectionClass($attribute->type);
-    }
     // The $attribute->type is annotated as class-string, but we don't want to
     // rely on it.
-    // @phpstan-ignore catch.neverThrown
-    catch (\ReflectionException $e) {
+    if (!class_exists($attribute->type) && !interface_exists($attribute->type)) {
       throw new MalformedDeclarationException(sprintf(
         "Unknown type '%s' in attribute %s on %s.",
         $attribute->type,
         get_class($attribute),
         $reflector->getDebugName(),
-      ), 0, $e);
+      ));
     }
+    $rclass = new \ReflectionClass($attribute->type);
 
     $types = $rclass->getInterfaceNames();
 

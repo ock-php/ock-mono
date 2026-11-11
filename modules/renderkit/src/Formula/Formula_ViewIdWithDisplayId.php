@@ -37,7 +37,7 @@ class Formula_ViewIdWithDisplayId extends Formula_Select_TwoStepFlatSelectGrandB
    *
    * @return self
    */
-  public static function createWithEntityIdArg(string $entityTypeId = NULL): self {
+  public static function createWithEntityIdArg(?string $entityTypeId = NULL): self {
     return self::createWithDisplayCondition(
       new ViewsDisplayCondition_EntityIdArg($entityTypeId),
     );

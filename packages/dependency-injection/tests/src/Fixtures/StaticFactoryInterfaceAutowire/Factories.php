@@ -10,7 +10,7 @@ class Factories {
 
   #[Service]
   public static function createService(
-    DependencyD $dependencyD = null,
+    ?DependencyD $dependencyD = null,
   ): InterfaceI {
     return new ClassC($dependencyD);
   }
