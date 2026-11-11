@@ -32,7 +32,6 @@ class OckWebDriverTestBase extends WebDriverTestBase {
       'service.curl',
       get_class(new class () extends CurlService {
         public function __construct($defaultOptions = []) {
-          /** @noinspection PhpComposerExtensionStubsInspection */
           $defaultOptions[CURLOPT_TIMEOUT] = 30;
           parent::__construct($defaultOptions);
         }
