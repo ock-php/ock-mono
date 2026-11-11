@@ -1,7 +1,8 @@
 name: CI - Test recordings
 
+# Called from ci.yaml.
 on:
-  - push
+  workflow_call:
 
 jobs:
   tests:

@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  - push
+
+# The actual jobs are in reusable workflows, one per file.
+# This keeps the files organized, while each push only creates one workflow
+# run in the GitHub UI.
+jobs:
+  # Package tests are fast, run them first.
+  packages:
+    name: Packages
+    uses: ./.github/workflows/ci-per-package.yaml
+
+  # The others all run module tests in Drupal, which is slower.
+  main:
+    name: Main
+    needs: packages
+    uses: ./.github/workflows/ci-main.yaml
+
+  modules:
+    name: Modules
+    needs: packages
+    uses: ./.github/workflows/ci-per-module.yaml
+
+  recordings:
+    name: Recordings
+    needs: packages
+    uses: ./.github/workflows/ci-test-recordings.yaml

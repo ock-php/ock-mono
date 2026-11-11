@@ -1,7 +1,8 @@
-name: CI
+name: CI - Main
 
+# Called from ci.yaml.
 on:
-  - push
+  workflow_call:
 
 jobs:
   tests:
