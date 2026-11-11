@@ -121,6 +121,10 @@ class OckPresetPagesTest extends OckWebDriverTestBase {
     $this->assertSession()->fieldExists('Administrative title')->setValue('Pink elephant');
     $this->selectAndWait('Plugin', 'Elephant');
     $this->assertSession()->buttonExists('Save preset')->click();
+    // Wait for the form submission to complete, before the next page request.
+    $this->assertTrue($this->assertSession()->waitForText(
+      'Preset pink_elephant was successfully created.',
+    ));
 
     // Make sure the new preset option is available in the select.
     $this->drupalGet('/admin/structure/ock_preset/Drupal.ock_example.Animal.AnimalInterface/add');
