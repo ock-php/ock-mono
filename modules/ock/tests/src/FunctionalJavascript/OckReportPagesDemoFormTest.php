@@ -40,7 +40,8 @@ class OckReportPagesDemoFormTest extends OckWebDriverTestBase {
     $this->selectAndWait('Plugin', 'Enchanted creature…');
     $this->selectAndWait('Animal', 'Elephant');
     $this->assertSession()->buttonExists('Show')->click();
-    $this->assertSession()->pageTextContains('Animal: Elephant');
+    // Wait for the new page, to avoid a stale element reference.
+    $this->assertTrue($this->assertSession()->waitForText('Animal: Elephant'));
   }
 
 }
