@@ -1,11 +1,12 @@
-name: CI Modules
+name: CI - Modules
 
+# Called from ci.yaml.
 on:
-  - push
+  workflow_call:
 
 jobs:
   tests:
-    name: Module tests
+    name: Tests
     runs-on: ubuntu-latest
 
     strategy:

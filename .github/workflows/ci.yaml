@@ -3,48 +3,27 @@ name: CI
 on:
   - push
 
+# The actual jobs are in reusable workflows, one per file.
+# This keeps the files organized, while each push only creates one workflow
+# run in the GitHub UI.
 jobs:
-  tests:
-    name: Run tests
-    runs-on: ubuntu-latest
+  # Package tests are fast, run them first.
+  packages:
+    name: Packages
+    uses: ./.github/workflows/ci-per-package.yaml
 
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [8.3]
-        drupal-constraint: ['~11.4.9']
+  # The others all run module tests in Drupal, which is slower.
+  main:
+    name: Main
+    needs: packages
+    uses: ./.github/workflows/ci-main.yaml
 
-    steps:
-      - uses: actions/checkout@v4
+  modules:
+    name: Modules
+    needs: packages
+    uses: ./.github/workflows/ci-per-module.yaml
 
-      - name: DDEV - Setup
-        uses: ddev/github-action-setup-ddev@v1
-        with:
-          autostart: false
-
-      - name: DDEV - Configure and start
-        run: |
-          set -x
-          ddev config --php-version=${{ matrix.php }}
-          ddev start
-          ddev php --version
-
-      - name: Composer
-        run: |
-          set -x
-          ddev composer update --prefer-dist --no-interaction \
-            --with drupal/core-recommended:${{ matrix.drupal-constraint }} \
-            --with drupal/core-composer-scaffold:${{ matrix.drupal-constraint }} \
-            --with drupal/core-dev:${{ matrix.drupal-constraint }}
-
-      - name: PhpStan
-        run: ddev exec ./scripts/phpstan-all.sh
-
-      - name: PhpUnit
-        run: |
-          set -x
-          ddev exec ./vendor/bin/phpunit \
-            --fail-on-incomplete \
-            --fail-on-warning \
-            --fail-on-skipped \
-            --fail-on-risky
+  recordings:
+    name: Recordings
+    needs: packages
+    uses: ./.github/workflows/ci-test-recordings.yaml

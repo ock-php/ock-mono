@@ -1,0 +1,51 @@
+name: CI - Main
+
+# Called from ci.yaml.
+on:
+  workflow_call:
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.3]
+        drupal-constraint: ['~11.4.9']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: DDEV - Setup
+        uses: ddev/github-action-setup-ddev@v1
+        with:
+          autostart: false
+
+      - name: DDEV - Configure and start
+        run: |
+          set -x
+          ddev config --php-version=${{ matrix.php }}
+          ddev start
+          ddev php --version
+
+      - name: Composer
+        run: |
+          set -x
+          ddev composer update --prefer-dist --no-interaction \
+            --with drupal/core-recommended:${{ matrix.drupal-constraint }} \
+            --with drupal/core-composer-scaffold:${{ matrix.drupal-constraint }} \
+            --with drupal/core-dev:${{ matrix.drupal-constraint }}
+
+      - name: PhpStan
+        run: ddev exec ./scripts/phpstan-all.sh
+
+      - name: PhpUnit
+        run: |
+          set -x
+          ddev exec ./vendor/bin/phpunit \
+            --fail-on-incomplete \
+            --fail-on-warning \
+            --fail-on-skipped \
+            --fail-on-risky
