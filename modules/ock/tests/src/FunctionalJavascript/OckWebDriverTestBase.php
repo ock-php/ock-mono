@@ -23,14 +23,16 @@ class OckWebDriverTestBase extends WebDriverTestBase {
    * {@inheritdoc}
    */
   public function setUp(): void {
-    // Set a timeout for web driver requests.
-    // Otherwise, the test will hang if the web driver is unavailable.
+    // Set a timeout for each web driver request, so that the test fails
+    // instead of hanging if the web driver is unavailable. Some single
+    // requests (session start, page navigation) block until the browser
+    // is done, and can take several seconds in CI, so this must not be
+    // too short. 1 second caused random failures.
     ServiceFactory::getInstance()->setServiceClass(
       'service.curl',
       get_class(new class () extends CurlService {
         public function __construct($defaultOptions = []) {
-          /** @noinspection PhpComposerExtensionStubsInspection */
-          $defaultOptions[CURLOPT_TIMEOUT] = 1;
+          $defaultOptions[CURLOPT_TIMEOUT] = 30;
           parent::__construct($defaultOptions);
         }
       }),

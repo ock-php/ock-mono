@@ -13,8 +13,6 @@ use Ock\Ock\Evaluator\Evaluator;
 use Ock\Ock\Generator\Generator;
 use Ock\Ock\Summarizer\Summarizer;
 use Ock\Ock\Translator\Translator;
-use WebDriver\Service\CurlService;
-use WebDriver\ServiceFactory;
 
 class OckPresetPagesTest extends OckWebDriverTestBase {
 
@@ -32,17 +30,6 @@ class OckPresetPagesTest extends OckWebDriverTestBase {
    * {@inheritdoc}
    */
   public function setUp(): void {
-    ServiceFactory::getInstance()->setServiceClass(
-      'service.curl',
-      get_class(new class () extends CurlService {
-        public function __construct($defaultOptions = []) {
-          /** @noinspection PhpComposerExtensionStubsInspection */
-          $defaultOptions[CURLOPT_TIMEOUT] = 1;
-          parent::__construct($defaultOptions);
-        }
-      }),
-    );
-
     parent::setUp();
 
     $this->drupalPlaceBlock('local_tasks_block');
