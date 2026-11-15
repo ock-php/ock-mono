@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      fail-fast: true
+      fail-fast: ${{ github.run_attempt == 1 }}
       matrix:
         module:
           # Modules without tests are commented out.
