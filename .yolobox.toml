@@ -1,0 +1,14 @@
+# Project settings for yolobox, a sandbox for AI coding agents.
+# See https://github.com/finbarr/yolobox/blob/master/docs/configuration.md
+#
+# Personal settings (e.g. tokens) belong in ~/.config/yolobox/config.toml on
+# the host, not here.
+#
+# Security: yolobox reads this file on the host when a box starts. Settings
+# here can widen the sandbox (mounts, docker, env_from_host, runtime_args).
+# Review any change to this file and to .yolobox.Dockerfile before starting
+# yolobox on a branch that contains it.
+
+[customize]
+# Installs PHP 8.3, 8.4, 8.5 and Composer.
+dockerfile = ".yolobox.Dockerfile"
