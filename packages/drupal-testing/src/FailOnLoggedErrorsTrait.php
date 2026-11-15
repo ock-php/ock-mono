@@ -9,18 +9,25 @@ namespace Ock\DrupalTesting;
  *
  * In a test, the PHP error log of the site under test is the error.log file
  * in the test site directory. Each request to the site under test writes PHP
- * errors there.
+ * errors there. Errors from the Drupal log are copied there by a logger.
  *
  * This is especially needed in WebDriver tests: There the browser sends the
  * requests to the site, so the test does not see server-side errors, unlike
  * in BrowserTestBase tests.
  *
+ * The logger is registered in the services.yml of the test site. This way no
+ * module needs to be installed, and the logger is active from the start of
+ * the site install.
+ *
  * @phpstan-require-extends \Drupal\Tests\BrowserTestBase
  *
  * @see \Drupal\Core\DrupalKernel::setupDrupalTestInChildSite()
  * @see \Drupal\Core\Test\FunctionalTestSetupTrait::prepareEnvironment()
+ * @see \Ock\DrupalTesting\TestSiteServicesTrait
  */
 trait FailOnLoggedErrorsTrait {
+
+  use TestSiteServicesTrait;
 
   /**
    * Contents of the error log of the site under test, if not empty.
@@ -30,6 +37,19 @@ trait FailOnLoggedErrorsTrait {
    * @see self::cleanupEnvironment()
    */
   private ?string $loggedErrors = null;
+
+  /**
+   * {@inheritdoc}
+   *
+   * Registers a logger that copies errors from the Drupal log to error.log.
+   */
+  protected function prepareSettings(): void {
+    parent::prepareSettings();
+    $this->registerTestSiteService(FailOnLoggedErrorsLogger::class, [
+      'autowire' => true,
+      'tags' => [['name' => 'logger']],
+    ]);
+  }
 
   /**
    * {@inheritdoc}
