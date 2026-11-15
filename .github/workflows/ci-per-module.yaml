@@ -85,6 +85,15 @@ jobs:
             --php-version=${{ matrix.php }} \
             --webimage-extra-packages=php${{ matrix.php }}-pcov \
             --project-name="$PROJECT_NAME"
+          # Disable JIT. It is incompatible with pcov, which overrides
+          # zend_execute_ex().
+          # On PHP 8.4, the packaged opcache.ini has 'opcache.jit=off', which
+          # (unlike 'disable') still runs the JIT compatibility check, because
+          # 'opcache.jit_buffer_size' defaults to 64M since PHP 8.4. Then every
+          # process prints a startup warning, which fails tests that run in
+          # separate processes.
+          mkdir -p .ddev/php
+          printf "opcache.jit=disable\n" > .ddev/php/no-jit.ini
           ddev add-on get ddev/ddev-drupal-contrib
           ddev add-on get ddev/ddev-selenium-standalone-chrome
           ddev start
