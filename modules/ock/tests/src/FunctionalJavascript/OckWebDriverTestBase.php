@@ -6,6 +6,7 @@ namespace Drupal\Tests\ock\FunctionalJavascript;
 
 use Behat\Mink\Element\NodeElement;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Ock\DrupalTesting\FailOnLoggedErrorsTrait;
 use WebDriver\Service\CurlService;
 use WebDriver\ServiceFactory;
 
@@ -13,6 +14,8 @@ use WebDriver\ServiceFactory;
  * Enhanced base class for web driver tests.
  */
 class OckWebDriverTestBase extends WebDriverTestBase {
+
+  use FailOnLoggedErrorsTrait;
 
   /**
    * {@inheritdoc}
