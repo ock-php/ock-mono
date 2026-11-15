@@ -17,7 +17,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    * @return string[][]
    *   Format: $[$groupLabel][$optionKey] = $optionLabel
    */
-  public function etGetGroupedOptions(string $entityTypeId, array $bundleNames = NULL): array {
+  public function etGetGroupedOptions(string $entityTypeId, ?array $bundleNames = NULL): array {
 
     if (NULL !== $bundleNames) {
       $bundleNames = array_combine($bundleNames, $bundleNames);
@@ -50,7 +50,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    *
    * @return string[]
    */
-  private function buildFieldLabels(array $storagesByType, string $entityTypeId, array $bundleNames = NULL): array {
+  private function buildFieldLabels(array $storagesByType, string $entityTypeId, ?array $bundleNames = NULL): array {
 
     $fieldLabels = [];
     $fieldLabelsMissing = [];
@@ -155,7 +155,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    * @return \Drupal\Core\Field\FieldStorageDefinitionInterface[][]
    *   Format: $[$fieldTypeId][$fieldName] = $fieldStorageDefinition
    */
-  protected function getStorageDefinitionsByType(string $entityTypeId, array $bundleNames = NULL): array {
+  protected function getStorageDefinitionsByType(string $entityTypeId, ?array $bundleNames = NULL): array {
 
     $storages = $this->etGetStorageDefinitions(
       $entityTypeId,
@@ -178,7 +178,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    * @return \Drupal\Core\Field\FieldStorageDefinitionInterface[]
    *   Format: $[$fieldName] = $fieldStorageDefinition
    */
-  private function etGetStorageDefinitions(string $entityTypeId, array $bundleNames = NULL): array {
+  private function etGetStorageDefinitions(string $entityTypeId, ?array $bundleNames = NULL): array {
 
     /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
     $efm = \Drupal::service('entity_field.manager');
@@ -221,7 +221,7 @@ abstract class SelectByEt_FieldName_Base implements SelectByEtInterface {
    * @return string[]
    *   Format: [$fieldName] = $label
    */
-  private function fieldNamesGetLabels(array $fieldNamesMap, string $entityTypeId, array $bundleNames = NULL): array {
+  private function fieldNamesGetLabels(array $fieldNamesMap, string $entityTypeId, ?array $bundleNames = NULL): array {
 
     /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $efm */
     $efm = \Drupal::service('entity_field.manager');

@@ -29,8 +29,8 @@ function scandir_known(string $dir, int $sorting_order = 0): array {
     set_error_handler(static function (
       int $error_level,
       string $message,
-      string $filename = NULL,
-      int $line = NULL,
+      ?string $filename = NULL,
+      ?int $line = NULL,
     ) use ($dir): void {
       throw new \RuntimeException("Scandir failed with '$message' on '$dir'.");
     });
@@ -69,8 +69,8 @@ function scandir_expected(string $dir, int $sorting_order = 0): array {
     set_error_handler(static function (
       int $error_level,
       string $message,
-      string $filename = NULL,
-      int $line = NULL,
+      ?string $filename = NULL,
+      ?int $line = NULL,
     ) use ($dir): void {
       throw new \RuntimeException("Scandir failed with '$message' on '$dir'.");
     });

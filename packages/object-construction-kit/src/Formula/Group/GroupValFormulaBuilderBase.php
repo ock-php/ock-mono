@@ -90,7 +90,7 @@ abstract class GroupValFormulaBuilderBase {
    *
    * @throws \Ock\Ock\Exception\FormulaException
    */
-  public function addExpression(string $key, V2V_GroupInterface $v2v, array $keys = NULL): GroupValFormulaBuilder {
+  public function addExpression(string $key, V2V_GroupInterface $v2v, ?array $keys = NULL): GroupValFormulaBuilder {
     if ($keys !== NULL) {
       $v2v = new V2V_Group_Rekey($v2v, $keys);
     }
@@ -233,7 +233,7 @@ abstract class GroupValFormulaBuilderBase {
    * @throws \ReflectionException
    *   Class does not exist.
    */
-  public function construct(string $class, array $keys = NULL): FormulaInterface {
+  public function construct(string $class, ?array $keys = NULL): FormulaInterface {
     return $this->val(V2V_Group_Call::fromClass($class), $keys);
   }
 
@@ -245,7 +245,7 @@ abstract class GroupValFormulaBuilderBase {
    *
    * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
-  public function call(callable $callback, array $keys = NULL): FormulaInterface {
+  public function call(callable $callback, ?array $keys = NULL): FormulaInterface {
     return $this->val(V2V_Group_Call::fromCallable($callback), $keys);
   }
 
@@ -272,7 +272,7 @@ abstract class GroupValFormulaBuilderBase {
    *
    * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
-  public function val(V2V_GroupInterface $v2v, array $keys = NULL): FormulaInterface {
+  public function val(V2V_GroupInterface $v2v, ?array $keys = NULL): FormulaInterface {
     return $this->buildGroupValFormula($v2v, $keys);
   }
 
@@ -328,7 +328,7 @@ abstract class GroupValFormulaBuilderBase {
    *
    * @return \Ock\Ock\Formula\GroupVal\Formula_GroupVal|\Ock\Ock\Formula\Group\Formula_Group
    */
-  public function buildGroupValFormula(V2V_GroupInterface $v2v = NULL, array $keys = NULL): Formula_GroupVal|Formula_Group {
+  public function buildGroupValFormula(?V2V_GroupInterface $v2v = NULL, ?array $keys = NULL): Formula_GroupVal|Formula_Group {
     $formula = $this->getGroupFormula();
     $v2v = $this->decorateV2V($v2v);
     if ($keys) {
@@ -349,7 +349,7 @@ abstract class GroupValFormulaBuilderBase {
    *
    * @return \Ock\Ock\Formula\GroupVal\Formula_GroupVal|\Ock\Ock\Formula\Group\Formula_Group
    */
-  public function generate(callable $getPhp, array $keys = NULL): Formula_GroupVal|Formula_Group {
+  public function generate(callable $getPhp, ?array $keys = NULL): Formula_GroupVal|Formula_Group {
     $v2v = new class ($getPhp) implements V2V_GroupInterface {
 
       /**

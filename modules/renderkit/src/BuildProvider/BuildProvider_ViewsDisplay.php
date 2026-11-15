@@ -24,7 +24,7 @@ class BuildProvider_ViewsDisplay implements BuildProviderInterface {
     #[OckFormulaFromCall([Formula_ViewIdWithDisplayId::class, 'createNoArgs'])]
     string $viewNameWithDisplayId,
     #[OckOption('label_format', 'Label format')]
-    LabeledFormatInterface $labeledFormat = NULL,
+    ?LabeledFormatInterface $labeledFormat = NULL,
   ): ?self {
     [$view_name, $display_id] = explode(':', $viewNameWithDisplayId . ':');
     if ('' === $view_name || '' === $display_id) {

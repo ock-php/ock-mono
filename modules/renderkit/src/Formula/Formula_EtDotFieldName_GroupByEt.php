@@ -21,7 +21,7 @@ class Formula_EtDotFieldName_GroupByEt implements Formula_DrupalSelectInterface 
    *
    * @return self
    */
-  public static function create(array $allowedFieldTypes = NULL, string $entityType = NULL, string $bundleName = NULL): self {
+  public static function create(?array $allowedFieldTypes = NULL, ?string $entityType = NULL, ?string $bundleName = NULL): self {
 
     // @todo Real dependency injection.
 

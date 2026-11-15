@@ -27,7 +27,7 @@ class Form_GenericRedirectGET implements FormInterface {
    * @return array
    *   The form structure.
    */
-  public function buildForm(array $form, FormStateInterface $form_state, array $form_arg = NULL): array {
+  public function buildForm(array $form, FormStateInterface $form_state, ?array $form_arg = NULL): array {
 
     if (NULL === $form_arg) {
       throw new \RuntimeException("Generic redirect form requires an argument.");

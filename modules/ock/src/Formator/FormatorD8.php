@@ -22,7 +22,7 @@ final class FormatorD8 extends UtilBase {
    */
   public static function fromFormula(
     FormulaInterface $formula,
-    UniversalAdapterInterface $adapter = NULL,
+    ?UniversalAdapterInterface $adapter = NULL,
   ): FormatorD8Interface {
     return FormulaAdapter::requireObject(
       $formula,

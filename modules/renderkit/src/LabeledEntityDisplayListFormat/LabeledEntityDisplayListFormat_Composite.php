@@ -24,7 +24,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
   #[OckPluginInstance('labeledFormat', 'Labeled format')]
   public static function createFromLabeledFormat(
     #[OckAdaptee]
-    LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
+    ?LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
   ): self {
     return new self(NULL, $labeledFormat, NULL, NULL);
   }
@@ -39,7 +39,7 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
   #[OckPluginInstance('listFormat', 'List format')]
   public static function createFromListFormat(
     #[OckAdaptee]
-    EntityDisplayListFormatInterface $listFormat = NULL,
+    ?EntityDisplayListFormatInterface $listFormat = NULL,
   ): self {
     return new self(NULL, NULL, NULL, $listFormat);
   }
@@ -53,9 +53,9 @@ class LabeledEntityDisplayListFormat_Composite implements LabeledEntityDisplayLi
   #[OckPluginInstance('composite', 'Composite')]
   public static function createSimple(
     #[OckOption('labeledFormat', 'Labeled format')]
-    LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
+    ?LabeledEntityBuildProcessorInterface $labeledFormat = NULL,
     #[OckOption('listFormat', 'List format')]
-    EntityDisplayListFormatInterface $listFormat = NULL
+    ?EntityDisplayListFormatInterface $listFormat = NULL
   ): self {
     return new self(NULL, $labeledFormat, NULL, $listFormat);
   }

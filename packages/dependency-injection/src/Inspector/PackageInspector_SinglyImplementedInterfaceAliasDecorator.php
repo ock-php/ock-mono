@@ -39,7 +39,11 @@ class PackageInspector_SinglyImplementedInterfaceAliasDecorator implements Packa
     $service_classes = [];
     foreach ($this->decorated->findInPackage($package) as $key => $fact) {
       yield $key => $fact;
-      if (!$fact instanceof Definition
+      // Collect only if the fact is a service instantiating a class, and if the
+      // service id (`$key`) is identical to the class name.
+      // Skip if $key is empty or NULL, as this cannot be a class name.
+      if (!$key
+        || !$fact instanceof Definition
         || $fact->getFactory()
         || $fact->getClass() !== $key
       ) {

@@ -36,7 +36,7 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
    *
    * @return static
    */
-  public function withArgumentsSignature(array $argumentsSignature = NULL): self {
+  public function withArgumentsSignature(?array $argumentsSignature = NULL): self {
     $clone = clone $this;
     $clone->argumentsSignature = $argumentsSignature;
     return $clone;
@@ -60,7 +60,7 @@ class ViewsDisplayCondition_Hardcoded implements ViewsDisplayConditionInterface 
    *
    * @return bool
    */
-  public function displayCheckCondition(string $id, array $display, array $default_display = NULL): bool {
+  public function displayCheckCondition(string $id, array $display, ?array $default_display = NULL): bool {
 
     if (NULL !== $this->status) {
       if ($display['enabled'] !== $this->status) {

@@ -29,7 +29,7 @@ class Form_FormulaDemo implements FormInterface {
    *
    * @return array
    */
-  public function buildForm(array $form, FormStateInterface $form_state, FormulaInterface $formula = NULL): array {
+  public function buildForm(array $form, FormStateInterface $form_state, ?FormulaInterface $formula = NULL): array {
 
     if (NULL === $formula) {
       throw new \RuntimeException("Formula demo form requires a factory formula as argument.");

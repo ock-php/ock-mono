@@ -12,6 +12,6 @@ interface ViewsDisplayConditionInterface {
    *
    * @return bool
    */
-  public function displayCheckCondition(string $id, array $display, array $default_display = NULL): bool;
+  public function displayCheckCondition(string $id, array $display, ?array $default_display = NULL): bool;
 
 }

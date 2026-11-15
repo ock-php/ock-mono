@@ -76,7 +76,7 @@ class ReflectionClassesIATest extends TestCase {
    * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $reflectionClassesIA
    * @param class-string<\ReflectionClass>|null $expectedReflectionClass
    */
-  protected function assertReflectionClassNames(array $expectedClassNames, ReflectionClassesIAInterface $reflectionClassesIA, string $expectedReflectionClass = NULL): void {
+  protected function assertReflectionClassNames(array $expectedClassNames, ReflectionClassesIAInterface $reflectionClassesIA, ?string $expectedReflectionClass = NULL): void {
     $actualClassNames = [];
     foreach ($reflectionClassesIA as $i => $reflectionClass) {
       // Verify the contract at runtime. PhpStan treats the phpdoc generics

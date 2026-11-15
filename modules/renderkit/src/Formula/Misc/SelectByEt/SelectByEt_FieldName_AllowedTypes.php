@@ -13,7 +13,7 @@ class SelectByEt_FieldName_AllowedTypes extends SelectByEt_FieldName_Base {
   /**
    * @param string[]|null $allowedFieldTypes
    */
-  public function __construct(array $allowedFieldTypes = NULL) {
+  public function __construct(?array $allowedFieldTypes = NULL) {
     $this->allowedFieldTypes = $allowedFieldTypes;
   }
 
@@ -32,7 +32,7 @@ class SelectByEt_FieldName_AllowedTypes extends SelectByEt_FieldName_Base {
    * @return \Drupal\Core\Field\FieldStorageDefinitionInterface[][]
    *   Format: $[$fieldTypeId][$fieldName] = $fieldStorageDefinition
    */
-  protected function getStorageDefinitionsByType(string $entityTypeId, array $bundleNames = NULL): array {
+  protected function getStorageDefinitionsByType(string $entityTypeId, ?array $bundleNames = NULL): array {
 
     $storagesByType = parent::getStorageDefinitionsByType(
       $entityTypeId,

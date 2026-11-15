@@ -159,14 +159,14 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * @return list<\Ock\Reflection\MethodReflection<T>>
    */
   public function getFilteredMethods(
-    int $filter = null,
-    bool $static = null,
-    bool $public = null,
-    bool $protected = null,
-    bool $private = null,
-    bool $abstract = null,
-    bool $final = null,
-    bool $constructor = null,
+    ?int $filter = null,
+    ?bool $static = null,
+    ?bool $public = null,
+    ?bool $protected = null,
+    ?bool $private = null,
+    ?bool $abstract = null,
+    ?bool $final = null,
+    ?bool $constructor = null,
   ): array {
     $methods = parent::getMethods($filter);
     $result = [];
@@ -246,12 +246,12 @@ class ClassReflection extends \ReflectionClass implements FactoryReflectionInter
    * @return list<\ReflectionProperty>
    */
   public function getFilteredProperties(
-    int $filter = null,
-    bool $static = null,
-    bool $public = null,
-    bool $protected = null,
-    bool $private = null,
-    bool $readonly = null,
+    ?int $filter = null,
+    ?bool $static = null,
+    ?bool $public = null,
+    ?bool $protected = null,
+    ?bool $private = null,
+    ?bool $readonly = null,
   ): array {
     $properties = parent::getProperties($filter);
     $result = [];

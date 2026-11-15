@@ -110,7 +110,7 @@ class SymfonyContainerTest extends TestCase {
    * @param \Ock\ClassDiscovery\ReflectionClassesIA\ReflectionClassesIAInterface $classesIA
    * @param string|null $label
    */
-  protected function assertClassesAsRecorded(ReflectionClassesIAInterface $classesIA, string $label = null): void {
+  protected function assertClassesAsRecorded(ReflectionClassesIAInterface $classesIA, ?string $label = null): void {
     $export = [];
     foreach ($classesIA as $key => $classReflection) {
       // Verify the contract at runtime. PhpStan treats the phpdoc generics

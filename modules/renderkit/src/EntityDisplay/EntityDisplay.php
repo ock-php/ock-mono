@@ -16,7 +16,7 @@ final class EntityDisplay extends UtilBase {
    *
    * @return \Ock\Ock\Core\Formula\FormulaInterface
    */
-  public static function formula(string $entityType = NULL, string $bundle = NULL): FormulaInterface {
+  public static function formula(?string $entityType = NULL, ?string $bundle = NULL): FormulaInterface {
 
     if (NULL === $entityType) {
       return Formula::iface(EntityDisplayInterface::class);

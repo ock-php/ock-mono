@@ -54,7 +54,7 @@ class Formula_Select_Fixed implements Formula_SelectInterface {
    *
    * @return static
    */
-  public function withOption(string $id, TextInterface $label, string $group_id = '', TextInterface $group_label = NULL): static {
+  public function withOption(string $id, TextInterface $label, string $group_id = '', ?TextInterface $group_label = NULL): static {
     $clone = clone $this;
     $clone->groupedOptions[$group_id][$id] = $label;
     $clone->flatOptions[$id] = $label;

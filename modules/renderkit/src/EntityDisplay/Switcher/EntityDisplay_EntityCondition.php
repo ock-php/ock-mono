@@ -28,7 +28,7 @@ class EntityDisplay_EntityCondition implements EntityDisplayInterface {
     #[OckOption('displayIfTrue', 'Display if true')]
     private readonly EntityDisplayInterface $displayIfTrue,
     #[OckOption('displayIfFalse', 'Display if false')]
-    EntityDisplayInterface $displayIfFalse = NULL
+    ?EntityDisplayInterface $displayIfFalse = NULL
   ) {
     $this->displayIfFalse = $displayIfFalse;
   }
