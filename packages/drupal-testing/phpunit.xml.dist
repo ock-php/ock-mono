@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PHPUnit config for running the tests of this package on its own, with the
+  Drupal codebase installed by composer into web/.
+
+  The functional tests need a web server for the web/ directory, e.g.:
+
+    php -S 127.0.0.1:8888 -t "$PWD/web" "$PWD/web/.ht.router.php"
+
+  Use absolute paths: With a relative path for the router script, some
+  requests fail to load it, and are not handled by Drupal as expected.
+
+  The env values below are defaults. Values that are already set in the
+  environment take precedence.
+
+  In the monorepo, the tests run with the top-level phpunit.xml.dist instead.
+-->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         colors="true"
+         bootstrap="web/core/tests/bootstrap.php"
+         displayDetailsOnIncompleteTests="true"
+         displayDetailsOnSkippedTests="true"
+         displayDetailsOnPhpunitDeprecations="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerErrors="true"
+         displayDetailsOnTestsThatTriggerNotices="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         failOnEmptyTestSuite="true"
+         failOnIncomplete="true"
+         failOnNotice="true"
+         failOnSkipped="true"
+         failOnPhpunitDeprecation="false"
+         failOnDeprecation="true"
+         failOnRisky="true"
+         failOnWarning="true"
+>
+  <php>
+    <ini name="error_reporting" value="32767"/>
+    <ini name="memory_limit" value="-1"/>
+    <env name="SIMPLETEST_BASE_URL" value="http://127.0.0.1:8888"/>
+    <!-- A relative sqlite path is relative to the Drupal root, web/. -->
+    <env name="SIMPLETEST_DB" value="sqlite://localhost/sites/default/files/.ht.sqlite"/>
+  </php>
+  <testsuites>
+    <testsuite name="default">
+      <directory>./tests/src</directory>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <directory>./src/</directory>
+    </include>
+  </source>
+</phpunit>
