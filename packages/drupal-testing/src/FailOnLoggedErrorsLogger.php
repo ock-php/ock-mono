@@ -55,9 +55,18 @@ class FailOnLoggedErrorsLogger implements LoggerInterface {
    * {@inheritdoc}
    */
   public function log($level, string|\Stringable $message, array $context = []): void {
+    // Drupal's LoggerChannel::log() sets $context['channel'] to the (string)
+    // channel name, if not already set. For other calls where this is not a
+    // string, default to ''.
+    /* @see \Drupal\Core\Logger\LoggerChannel::log() */
     $channel = $context['channel'] ?? '';
-    // The logger channel already converts PSR-3 string levels to integers.
-    // @see \Drupal\Core\Logger\LoggerChannel::log()
+    if (!is_string($channel)) {
+      $channel = '';
+    }
+    // Drupal's LoggerChannel::log() converts PSR-3 string levels to RFC 5424
+    // integers. Ignore calls where this is not an integer.
+    // Also ignore if this is not considered an error/defect.
+    /* @see \Drupal\Core\Logger\LoggerChannel::log() */
     if (!is_int($level) || !$this->isError($level, $channel)) {
       return;
     }

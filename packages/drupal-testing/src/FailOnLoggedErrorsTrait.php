@@ -111,7 +111,8 @@ trait FailOnLoggedErrorsTrait {
    *   Contents of the error log, or null if it is empty or does not exist.
    */
   protected function readErrorLog(): ?string {
-    if (!isset($this->siteDirectory)) {
+    // The property is initialized as NULL.
+    if ($this->siteDirectory === NULL) {
       // The setup did not get far enough.
       return null;
     }

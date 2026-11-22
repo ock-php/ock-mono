@@ -47,6 +47,10 @@ class FailOnLoggedErrorsTest extends BrowserTestBase {
    *
    * Verifies that the trait fails the test, because the test method leaves an
    * error in the error log on purpose.
+   *
+   * The parent method is called through the aliased trait method.
+   *
+   * @phpstan-ignore phpunit.callParent
    */
   protected function tearDown(): void {
     try {
@@ -80,7 +84,11 @@ class FailOnLoggedErrorsTest extends BrowserTestBase {
     ], $this->getLines($this->readAndClearErrorLog()));
 
     // Log during a request to the site under test, in a different process.
-    foreach ([
+    // The cases are declared with plain string types. Otherwise PhpStan 2.3.6
+    // tracks all combinations of the literal strings in the messages, and
+    // reports an 'unresolvable type' in assertSame().
+    /** @var list<array{string, string, bool}> $cases */
+    $cases = [
       // Errors and worse are copied.
       ['error', 'ock_test', true],
       ['critical', 'ock_test', true],
@@ -90,7 +98,8 @@ class FailOnLoggedErrorsTest extends BrowserTestBase {
       ['notice', 'php', true],
       // Deprecations are logged with severity 'debug', and are not copied.
       ['debug', 'php', false],
-    ] as [$level, $channel, $expected]) {
+    ];
+    foreach ($cases as [$level, $channel, $expected]) {
       $message = "Message with level '$level' in channel '$channel'.";
       $this->drupalGet('/', ['query' => [
         'log_level' => $level,
