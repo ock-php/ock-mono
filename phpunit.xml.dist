@@ -54,6 +54,9 @@
     </report>
   </coverage>
   <testsuites>
+    <testsuite name="monorepo">
+      <directory>./tests/src</directory>
+    </testsuite>
     <testsuite name="packages">
       <directory>./packages/*/tests/src</directory>
     </testsuite>
