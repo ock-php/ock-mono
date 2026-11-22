@@ -14,6 +14,7 @@ class Snapshotter_TaskLinks extends SnapshotterBase {
    * {@inheritdoc}
    */
   protected function getItems(): array {
+    /** @var array<string, array> $definitions */
     $definitions = DrupalTesting::service(LocalTaskManagerInterface::class)
       ->getDefinitions();
     foreach ($definitions as $id => $definition) {

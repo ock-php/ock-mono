@@ -14,6 +14,7 @@ class Snapshotter_ActionLinks extends SnapshotterBase {
    * {@inheritdoc}
    */
   protected function getItems(): array {
+    /** @var array<string, array> $definitions */
     $definitions = DrupalTesting::service(LocalActionManagerInterface::class)
       ->getDefinitions();
     foreach ($definitions as $id => $definition) {
