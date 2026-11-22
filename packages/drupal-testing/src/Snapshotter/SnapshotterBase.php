@@ -26,7 +26,7 @@ abstract class SnapshotterBase implements SnapshotterInterface {
     }
     $default = $exporter->export($raw_default, 15);
     $items = array_map(
-      function ($item) use ($exporter, $default) {
+      function ($item) use ($default) {
         foreach ($default as $key => $default_value) {
           if (!array_key_exists($key, $item)) {
             $item[$key] = '(missing)';

@@ -69,7 +69,7 @@ class Snapshotter_ContainerDefinitions extends AdvancedSnapshotterBase {
     }
     return $exporter
       // Remove information from event subscribers, it causes too much noise.
-      ->withResultFilter(function (array $result, mixed $definitions) use ($top_level): array {
+      ->withResultFilter(function (array $result, mixed $definitions): array {
         foreach ($result['event_dispatcher']['getMethodCalls()'] ?? [] as $i => $call_result) {
           if ($call_result[0] === 'addListener') {
             unset($result['event_dispatcher']['getMethodCalls()'][$i]);
