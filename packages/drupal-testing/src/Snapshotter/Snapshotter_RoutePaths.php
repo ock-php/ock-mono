@@ -16,7 +16,7 @@ class Snapshotter_RoutePaths implements SnapshotterInterface, DifferInterface {
    */
   public function takeSnapshot(): array {
     $routes = DrupalTesting::service(RouteProviderInterface::class)
-      ->getAllRoutes()->getArrayCopy();
+      ->getAllRoutes();
     $report = [];
     foreach ($routes as $route) {
       $report[] = $route->getPath();
