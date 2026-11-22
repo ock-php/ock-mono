@@ -20,6 +20,7 @@ jobs:
           - codegen-tools
           - dependency-injection
           # - di-discovery
+          - drupal-testing
           # - egg
           - helpers
           - object-construction-kit
@@ -52,6 +53,18 @@ jobs:
       # composer.lock file.
       - run: composer update --no-interaction
 
+      # Packages with Drupal functional tests install a Drupal codebase into
+      # web/, see their composer.json and phpunit.xml.dist.
+      # Use absolute paths: With a relative path for the router script, some
+      # requests fail to load it.
+      - name: Start web server, if needed
+        run: |
+          set -x
+          if [ -f web/.ht.router.php ]; then
+            mkdir -p web/sites/default/files
+            PHP_CLI_SERVER_WORKERS=4 nohup php -S 127.0.0.1:8888 -t "$PWD/web" "$PWD/web/.ht.router.php" > "$RUNNER_TEMP/web-server.log" 2>&1 &
+          fi
+
       - name: PhpStan
         run: |
           set -x
@@ -71,10 +84,20 @@ jobs:
             mv composer.json.bak composer.json
             mv composer.lock.bak composer.lock
             ./vendor/bin/phpstan -v
-            composer remove --dev phpstan/phpstan
+            # Restore vendor/ to the state in composer.lock.
+            # Don't use 'composer remove --dev phpstan/phpstan', which fails
+            # if phpstan is also required by another package.
+            composer install --no-interaction
           fi
 
       - run: vendor/bin/phpunit
+
+      - name: Show web server log
+        if: failure()
+        run: |
+          if [ -f "$RUNNER_TEMP/web-server.log" ]; then
+            tail -n 100 "$RUNNER_TEMP/web-server.log"
+          fi
 
       - name: Enforce PHPUnit code coverage
         run: |
