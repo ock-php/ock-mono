@@ -63,6 +63,8 @@ class Snapshotter_Routes implements SnapshotterInterface {
       'host' => $route->getHost(),
       'schemes' => $route->getSchemes(),
     ];
+    // Returns an array, because $info is a non-empty array and depth > 0.
+    // @phpstan-ignore return.type
     return (new Exporter_ToYamlArray())
       ->withDefaultObject(new TranslatableMarkup(''))
       ->export($info, 10);

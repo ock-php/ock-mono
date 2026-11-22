@@ -22,6 +22,7 @@ abstract class AdvancedSnapshotterBase implements SnapshotterInterface, DifferIn
     }
     $exporter = $this->createExporter(true);
     $items = $exporter->export($items, 15);
+    assert(is_array($items));
     return $items;
   }
 
@@ -38,6 +39,7 @@ abstract class AdvancedSnapshotterBase implements SnapshotterInterface, DifferIn
       foreach ($items as $id => &$item) {
         $default_item = $this->getDefaultItemForId($id);
         $default_item = $exporter->export($default_item);
+        assert(is_array($default_item));
         foreach ($default_item as $key => $default_value) {
           if (($item[$key] ?? NULL) === $default_value) {
             unset($item[$key]);

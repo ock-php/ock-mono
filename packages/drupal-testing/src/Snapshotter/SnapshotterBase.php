@@ -20,13 +20,18 @@ abstract class SnapshotterBase implements SnapshotterInterface {
     }
     $exporter = $this->createExporter();
     $items = $exporter->export($items, 15);
+    assert(is_array($items));
     $raw_default = $this->getDefaultItem();
     if (!$raw_default) {
       return $items;
     }
     $default = $exporter->export($raw_default, 15);
+    // Not guaranteed: A custom exporter for the object class could return any
+    // value.
+    assert(is_array($default));
     $items = array_map(
-      function ($item) use ($default) {
+      function (mixed $item) use ($default): array {
+        assert(is_array($item));
         foreach ($default as $key => $default_value) {
           if (!array_key_exists($key, $item)) {
             $item[$key] = '(missing)';
