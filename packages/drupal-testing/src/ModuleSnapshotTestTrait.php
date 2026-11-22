@@ -122,6 +122,7 @@ trait ModuleSnapshotTestTrait {
   protected function installModuleDependencies(string $module): void {
     $info = DrupalTesting::service(ModuleExtensionList::class)->get($module);
     assert(property_exists($info, 'requires'));
+    /** @var list<string> $dependencies */
     $dependencies = array_keys($info->requires);
     DrupalTesting::service(ModuleInstallerInterface::class)->install(['system', ...$dependencies]);
   }
