@@ -1,0 +1,24 @@
+parameters:
+  level: 9
+  treatPhpDocTypesAsCertain: false
+  paths:
+    - .
+  excludePaths:
+    analyseAndScan:
+      - vendor (?)
+      - .github (?)
+    analyse:
+      # Drupal codebase, installed into web/ when testing this package on its
+      # own. Not analysed, but scanned for the test classes, see below.
+      - web (?)
+  # Drupal core's test base classes (Drupal\Tests, Drupal\KernelTests, ...)
+  # are not in the composer autoloader. Drupal's phpunit bootstrap registers
+  # them at runtime, so PhpStan has to be told where to find them.
+  # The path is relative to vendor/phpstan/phpstan, so it works both in the
+  # monorepo and when this package is installed on its own.
+  scanDirectories:
+    - %rootDir%/../../../web/core/tests/Drupal
+  ignoreErrors:
+    # Assume that iterable value is 'mixed' if not further specified.
+    # Same as in packages/testing, whose interfaces are implemented here.
+    - identifier: missingType.iterableValue
